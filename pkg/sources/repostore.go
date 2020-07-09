@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/rs/zerolog/log"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -16,6 +15,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/rs/zerolog/log"
 )
 
 var supportedExtensions = map[string]struct{}{
@@ -95,7 +96,7 @@ func (s *RepostoreSourceProvider) loadContent(scanID, location string) (io.ReadC
 		// TODO temp solution for easy debugging, should be removed once we add tests
 		if errors.As(err, &e) {
 			accessibleURL := strings.Replace(e.URL, "minio:9000", "127.0.0.1:80/api/storage", -1)
-			response, err = http.Get(accessibleURL)
+			response, err = http.Get(accessibleURL) // nolint
 			if err != nil {
 				return nil, fmt.Errorf("failed to load sources : %w", err)
 			}
@@ -115,8 +116,8 @@ func (s *RepostoreSourceProvider) downloadFile(scanID, file, dstPath string) err
 		return err
 	}
 	defer content.Close()
-	if err := os.MkdirAll(path.Join(dstPath, filepath.Dir(file)), os.ModePerm); err != nil {
-		return err
+	if mkErr := os.MkdirAll(path.Join(dstPath, filepath.Dir(file)), os.ModePerm); mkErr != nil {
+		return mkErr
 	}
 	outFile, err := os.Create(path.Join(dstPath, file))
 	if err != nil {

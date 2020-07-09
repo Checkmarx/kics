@@ -1,13 +1,13 @@
 package worker
 
 import (
-	//"github.com/checkmarxDev/ice/internal/logger"
 	"context"
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/sources"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+
+	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/checkmarxDev/ice/pkg/sources"
 )
 
 type FetchWorker interface {
@@ -19,10 +19,10 @@ type WorkTask struct {
 	sourceProvider sources.SourceProvider
 }
 
-func NewFetchTask(scanID string, sourceProvider *sources.SourceProvider) *WorkTask {
+func NewFetchTask(scanID string, sourceProvider sources.SourceProvider) *WorkTask {
 	return &WorkTask{
 		ScanID:         scanID,
-		sourceProvider: *sourceProvider,
+		sourceProvider: sourceProvider,
 	}
 }
 
@@ -65,5 +65,4 @@ func (t *WorkTask) Fetch(ctx context.Context, chFetchStatus chan WorkStatus) {
 		State:  WorkStateCompleted,
 		ScanID: t.ScanID,
 	}
-
 }
