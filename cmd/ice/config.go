@@ -41,10 +41,10 @@ func loadConfig() *config {
 	viper.SetDefault(natsConnectionRetryEnvField, natsConnectionRetryDefault)
 	viper.SetDefault(logLevelEnvField, logLevelDefault)
 	viper.SetDefault(IceRESTPortEnvField, iceRESTPortDefault)
-	//viper.SetDefault("NATS_URL", "nats://cxnats:Cx123456@127.0.0.1:4222")
-	//viper.SetDefault("NATS_TASK_SUBJECT", "FETCH_QUERIES")
-	//viper.SetDefault("NATS_TASK_GROUP", "WORKERSQG")
-	//viper.SetDefault(RepostoreAddressEnvField, "http://localhost:30302")
+	// viper.SetDefault("NATS_URL", "nats://cxnats:Cx123456@127.0.0.1:4222")
+	// viper.SetDefault("NATS_TASK_SUBJECT", "FETCH_QUERIES")
+	// viper.SetDefault("NATS_TASK_GROUP", "WORKERSQG")
+	// viper.SetDefault(RepostoreAddressEnvField, "http://localhost:30302")
 
 	viper.AutomaticEnv()
 

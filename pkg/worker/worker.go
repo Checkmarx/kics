@@ -88,7 +88,7 @@ func (w *Worker) Listen(ctx context.Context, natsURL, subject, qGroup string, co
 				Msg("could not deserialize scan")
 			return
 		}
-		switch msg.Action {
+		switch msg.Action { // nolint:gocritic
 		case "WORK":
 			go w.handelWork(worker, &protoScan, corrID)
 
@@ -126,7 +126,7 @@ func (w *Worker) handelWork(worker *workflow.WorkerNatsConnection, scan *scans.S
 
 	ctx := correlation.AddToContext(context.Background(), correlationID)
 	chWorkStatus := make(chan WorkStatus)
-	go NewFetchTask(scan.ID, w.SourceProvider).Fetch(ctx, chWorkStatus)
+	go NewFetchTask(scan.ID, *w.SourceProvider).Fetch(ctx, chWorkStatus)
 
 	for fetchStatus := range chWorkStatus {
 		status := fetchStatus

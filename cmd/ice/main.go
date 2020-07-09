@@ -2,12 +2,13 @@ package main
 
 import (
 	"context"
-	"github.com/checkmarxDev/ice/internal/rest"
-	"github.com/checkmarxDev/ice/pkg/sources"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
+
+	"github.com/checkmarxDev/ice/internal/rest"
+	"github.com/checkmarxDev/ice/pkg/sources"
 
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/worker"

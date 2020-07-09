@@ -3,8 +3,9 @@ package rest
 import (
 	"context"
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
 
 	"github.com/rs/zerolog/log"
 )
@@ -61,5 +62,5 @@ func (s *Server) getRouter() *mux.Router {
 func (s *Server) tempPath(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "Hello from ICE -  Infrastructure code engine"}`))
+	w.Write([]byte(`{"message": "Hello from ICE -  Infrastructure code engine"}`)) // nolint:errcheck // just example
 }
