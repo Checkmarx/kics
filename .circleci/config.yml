@@ -9,7 +9,7 @@ executors:
       - image: circleci/golang:1.13.7
   go-lint:
     docker:
-      - image: golangci/golangci-lint:v1.23.6-alpine
+      - image: golangci/golangci-lint:v1.28.1-alpine
     resource_class: small
     
 jobs:
