@@ -11,7 +11,10 @@ executors:
     docker:
       - image: golangci/golangci-lint:v1.28.1-alpine
     resource_class: small
-    
+
+orbs:
+  checkmarx: checkmarx/circleci-kpi-shipper@0.11.0
+
 jobs:
   unit-tests:
     executor: 
@@ -130,6 +133,9 @@ jobs:
 
 
 workflows:
+  Visibility-workflow:
+    jobs:
+      - checkmarx/circleci-kpi-shipper
   Test-workflow:
     jobs:
       - unit-tests:
