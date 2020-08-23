@@ -3,155 +3,116 @@ package worker
 import (
 	"context"
 	"fmt"
-
-	"github.com/checkmarxDev/ice/internal/correlation"
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/sources"
-
 	"net/url"
 
-	"github.com/checkmarxDev/scans/pkg/api/scans"
+	"github.com/checkmarxDev/ice/pkg/worker/handler"
 
-	"google.golang.org/protobuf/proto"
+	"github.com/checkmarxDev/ice/internal/logger"
 
 	api "github.com/checkmarxDev/scans/pkg/api/workflow"
-	"github.com/checkmarxDev/scans/pkg/workflow"
-
+	"github.com/checkmarxDev/scans/pkg/workflow/worker"
 	"github.com/rs/zerolog/log"
 )
 
-type WorkStatus struct {
-	ScanID   string
-	State    WorkState
-	Progress string
-	Info     string
-}
-
-type WorkState int32
-
-const (
-	// RunState_Created    RunState = 0
-	WorkStateQueued     WorkState = 1
-	WorkStateStarted    WorkState = 2
-	WorkStateInProgress WorkState = 3
-	WorkStateCompleted  WorkState = 4
-	WorkStateFailed     WorkState = 5
-)
-
-func (w WorkState) String() string {
-	switch w {
-	case WorkStateQueued:
-		return "Queued"
-	case WorkStateStarted:
-		return "Started"
-	case WorkStateCompleted:
-		return "Completed"
-	case WorkStateFailed:
-		return "Failed"
-	case WorkStateInProgress:
-		return "InProgress"
-	default:
-		return fmt.Sprintf("%d", int(w))
-	}
-}
-
 type Worker struct {
-	SourceProvider *sources.SourceProvider
+	workerName         string
+	workTimeoutMinutes uint
+	ZBWorker           worker.Worker
+	workHandler        handler.WorkHandler
 }
 
-func NewWorker(sourceProvider sources.SourceProvider) *Worker {
-	return &Worker{
-		SourceProvider: &sourceProvider,
+func NewWorker(workerName string,
+	workTimeoutMinutes uint,
+	workloadAddr,
+	jobType string,
+	workHandler handler.WorkHandler) (*Worker, error) {
+	log.Info().
+		Msgf("Create new workload, workloadAddr=%s, jobType=%s", sanitizeURL(workloadAddr), jobType)
+
+	wo, err := worker.NewZBWorker(workloadAddr, jobType, workerName, int(workTimeoutMinutes))
+	if err != nil {
+		return nil, fmt.Errorf("cant connect to scan queue : %w", err)
 	}
+
+	return &Worker{
+		workerName:         workerName,
+		workTimeoutMinutes: workTimeoutMinutes,
+		ZBWorker:           wo,
+		workHandler:        workHandler,
+	}, nil
 }
 
 // Listen on worker task messages
-func (w *Worker) Listen(ctx context.Context, natsURL, subject, qGroup string, connectionRetry int) error {
+func (w *Worker) Listen(ctx context.Context) error {
+	log.Info().Msgf("Start workload Listening")
 	errChan := make(chan error, 1)
-	worker, err := workflow.NewWorkerNatsConnection(natsURL, subject, connectionRetry, errChan)
-	if err != nil {
-		return fmt.Errorf("cant connect to scan queue : %w", err)
-	}
-
-	log.Info().
-		Msgf("Start Listening. natsURL=%s subject=%s qGroup=%s connectionRetry=%d", sanitizeURL(natsURL), subject, qGroup, connectionRetry)
-
-	worker.HandleFunc(qGroup, func(msg *api.WorkerMessage) {
-		corrID := msg.CorrelationID
-		logWithFields := logger.GetLoggerWithCorrelationID(corrID)
-		logWithFields.Info().Msgf("New message received. action=%s", msg.Action)
-
-		protoScan := scans.Scan{}
-		if err = proto.Unmarshal(msg.Input.Value, &protoScan); err != nil {
-			logWithFields.Error().
-				Err(err).
-				Msg("could not deserialize scan")
-			return
-		}
-		switch msg.Action { // nolint:gocritic
-		case "WORK":
-			go w.handelWork(worker, &protoScan, corrID)
-
-			// TODO implement case "CANCEL":
-		}
-	})
-
-	done := make(chan struct{}, 1)
 	go func() {
-		if sErr := worker.ServeMessages(); sErr != nil {
-			errChan <- sErr
+		if err := w.ZBWorker.Start(); err != nil {
+			errChan <- err
 		}
 	}()
+
+	w.ZBWorker.Handler(func(jobKey int64, msg *api.Message) {
+		for message := range w.workHandler.Handler(msg) {
+			logWithFields := logger.GetLoggerWithCorrelationID(msg.CorrelationId)
+
+			if message.Err != nil {
+				logWithFields.Error().Err(message.Err).Msgf("Work failed on job=%d", jobKey)
+				if err := w.ZBWorker.FailJob(jobKey, message.ErrMsg); err != nil {
+					logWithFields.Error().
+						Err(err).
+						Msgf("Failed to send update that job %d failed for ScanID %s", jobKey, message.ScanID)
+				}
+			}
+			switch message.State {
+			case handler.JobStatusCompleted:
+				logWithFields.Info().
+					Msgf("Work on job %d completed. ScanID=%s", jobKey, message.ScanID)
+				if err := w.ZBWorker.CompleteJob(jobKey); err != nil {
+					logWithFields.Error().
+						Err(err).
+						Msgf("Failed to send update that job %d completed for scan %s", jobKey, message.ScanID)
+				}
+			case handler.JobStatusFailed:
+				logWithFields.Info().
+					Msgf("Work on job %d failed. reason=%s, ScanID=%s", jobKey, message.ErrMsg, message.ScanID)
+				if err := w.ZBWorker.FailJob(jobKey, message.ErrMsg); err != nil {
+					logWithFields.Error().
+						Err(err).
+						Msgf("Failed to send update that job %d failed for scan %s", jobKey, message.ScanID)
+				}
+			default:
+				logWithFields.Debug().
+					Msgf("Send update on job %d. ScanID=%s, progress=%s, info=%s", jobKey, message.ScanID, message.Progress, message.Info)
+				if err := w.ZBWorker.UpdateStatus(message.ScanID, message.Progress, message.Info); err != nil {
+					logWithFields.Error().
+						Err(err).
+						Msgf("Failed to update status for scan %s. jobKey=%d, progress=%s, info=%s",
+							message.ScanID,
+							jobKey,
+							message.Progress,
+							message.Info)
+				}
+			}
+		}
+	})
 
 	// Graceful shutdown on cancellation
 	go func() {
 		select {
+		case errFromChan := <-errChan:
+			errChan <- errFromChan
 		case <-ctx.Done():
 			log.Info().Msg("Shutting down worker..")
-			worker.Close()
+			if err := w.ZBWorker.Close(); err != nil {
+				log.Error().Err(err).Msg("Failed to close worker")
+			}
 			errChan <- ctx.Err()
-		case <-done:
-			return
 		}
 	}()
 
-	err = <-errChan
+	err := <-errChan
 	return err
-}
-
-func (w *Worker) handelWork(worker *workflow.WorkerNatsConnection, scan *scans.Scan, correlationID string) {
-	logWithFields := logger.GetLoggerWithCorrelationID(correlationID)
-
-	logWithFields.Info().Msgf("Start work on scan %s", scan.ID)
-
-	ctx := correlation.AddToContext(context.Background(), correlationID)
-	chWorkStatus := make(chan WorkStatus)
-	go NewFetchTask(scan.ID, *w.SourceProvider).Fetch(ctx, chWorkStatus)
-
-	for fetchStatus := range chWorkStatus {
-		status := fetchStatus
-		updateStatus(status.ScanID, status.State, status.Progress, status.Info, worker, correlationID)
-	}
-
-	logWithFields.Info().Msgf("Work done on scan %s", scan.ID)
-}
-
-func updateStatus(scanID string, state WorkState, progress, info string, worker *workflow.WorkerNatsConnection, correlationID string) {
-	logWithFields := logger.GetLoggerWithCorrelationID(correlationID)
-
-	logWithFields.Debug().
-		Msgf("Send update status. scanId=%s state=%s progress=%s info=%s", scanID, state, progress, info)
-
-	status := api.TaskStatus{
-		State:    api.TaskStatus_TaskState(state),
-		Info:     info,
-		Progress: progress,
-	}
-	if err := worker.UpdateStatus(scanID, &status); err != nil {
-		logWithFields.Error().
-			Err(err).
-			Msgf("Failed to update status. scanId=%s state=%s", scanID, state)
-	}
 }
 
 func sanitizeURL(rawurl string) string {
