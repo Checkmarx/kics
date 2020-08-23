@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
-	"github.com/checkmarxDev/ice/pkg/worker/handler"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
+
+	"github.com/checkmarxDev/ice/pkg/worker/handler"
 
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/internal/rest"
