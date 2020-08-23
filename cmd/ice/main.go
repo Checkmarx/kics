@@ -2,15 +2,14 @@ package main
 
 import (
 	"context"
+	"github.com/checkmarxDev/ice/pkg/worker/handler"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 
-	"github.com/checkmarxDev/ice/internal/rest"
-	"github.com/checkmarxDev/ice/pkg/sources"
-
 	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/checkmarxDev/ice/internal/rest"
 	"github.com/checkmarxDev/ice/pkg/worker"
 	"github.com/rs/zerolog/log"
 )
@@ -80,20 +79,19 @@ func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errCha
 
 func initWorker(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error) {
 	// TODO service have a reason to live without work from queue ? if not we should fail the service.
-	if cfg.natsURL == "" {
-		log.Info().Msgf("%s is not provided, will not take work from message queue", NatsURLEnvField)
+	if cfg.WorkflowBrokerAddress == "" {
+		log.Info().Msgf("%s is not provided, will not take work from message queue", WorkflowBrokerAddressEnvField)
 		return
 	}
 
 	wg.Add(1) //nolint:gomnd
-	sourceProvider := sources.NewRepostoreSourceProvider(cfg.repostoreAddress)
-	workerInstance := worker.NewWorker(sourceProvider)
+	scanHandler := &handler.ScanHandler{}
+	workerInstance, err := worker.NewWorker(appName, cfg.workTimeoutMinutes, cfg.WorkflowBrokerAddress, cfg.workJobType, scanHandler)
+	if err != nil {
+		errChan <- err
+	}
 	go func() {
 		defer wg.Done()
-		errChan <- workerInstance.Listen(ctx,
-			cfg.natsURL,
-			cfg.tasksConnection.subject,
-			cfg.tasksConnection.qGroup,
-			cfg.natsConnectionRetry)
+		errChan <- workerInstance.Listen(ctx)
 	}()
 }
