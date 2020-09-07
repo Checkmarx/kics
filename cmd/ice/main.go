@@ -9,7 +9,7 @@ import (
 
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/internal/rest"
-	"github.com/checkmarxDev/ice/internal/storage"
+	"github.com/checkmarxDev/ice/internal/storage/postgresql"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/ice"
@@ -40,7 +40,7 @@ func main() {
 	ctx, cancel := context.WithCancel(ctx)
 	errChan := make(chan error)
 
-	store, err := storage.NewPostgresStore(cfg.dbConnectionAddress)
+	store, err := postgresql.NewPostgresStore(cfg.dbConnectionAddress)
 	if err != nil {
 		log.Fatal().Msg("Database initialization failed")
 	}
@@ -68,7 +68,7 @@ func main() {
 
 	var servicesWg sync.WaitGroup
 	initWorker(ctx, cfg, &servicesWg, errChan, service)
-	initRESTServer(ctx, cfg, &servicesWg, errChan)
+	initRESTServer(ctx, cfg, &servicesWg, errChan, service)
 
 	go func() {
 		servicesWg.Wait()
@@ -96,14 +96,17 @@ func main() {
 	log.Info().Msg("service Ended")
 }
 
-func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error) {
+func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error, service *ice.Service) {
 	if cfg.restPort == "" {
 		log.Info().Msgf("%s is not provided, will not expose REST", iceRESTPortEnvField)
 		return
 	}
 
 	wg.Add(1) //nolint:gomnd
-	restServer := rest.NewRestServer(cfg.restPort)
+	restServer := rest.Server{
+		Port:    cfg.restPort,
+		Service: service,
+	}
 	go func() {
 		defer wg.Done()
 		errChan <- restServer.ListenAndServe(ctx)

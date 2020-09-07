@@ -1,4 +1,4 @@
-package storage
+package postgresql
 
 import (
 	"context"
@@ -42,7 +42,7 @@ VALUES
 		"file_name": file.FileName,
 		"json_hash": file.JSONHash,
 	}); err != nil {
-		return err
+		return errors.Wrap(err, "inserting file")
 	}
 
 	return nil
@@ -60,32 +60,7 @@ WHERE
 `
 	err := s.db.SelectContext(ctx, &res, query, scanID, jPath)
 
-	return res, err
-}
-
-func (s *PostgresStorage) SaveVulnerabilities(ctx context.Context, items []model.Vulnerability) error {
-	const query = `
-INSERT INTO ast_ice_results 
-	(scan_id, file_id, query_name, severity, line, output) 
-VALUES 
-	(:scan_id, :file_id, :query_name, :severity, :line, :output);
-`
-
-	// todo: add all queries to one transaction
-	for _, item := range items {
-		if _, err := s.db.NamedExecContext(ctx, query, map[string]interface{}{
-			"scan_id":    item.ScanID,
-			"file_id":    item.FileID,
-			"query_name": item.QueryName,
-			"severity":   item.Severity,
-			"line":       item.Line,
-			"output":     item.Output,
-		}); err != nil {
-			return err
-		}
-	}
-
-	return nil
+	return res, errors.Wrap(err, "selecting files")
 }
 
 func (s *PostgresStorage) Close() {
