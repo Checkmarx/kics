@@ -41,6 +41,10 @@ func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities [
 	return nil
 }
 
+func (m *MemoryStorage) GetResults(ctx context.Context, _ string) ([]model.ResultItem, error) {
+	return nil, nil
+}
+
 func NewMemoryStorage() *MemoryStorage {
 	return &MemoryStorage{
 		files: make(map[int]*model.FileMetadata),

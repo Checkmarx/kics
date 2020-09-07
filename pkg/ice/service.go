@@ -20,6 +20,7 @@ type SourceProvider interface {
 
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
+	GetResults(ctx context.Context, scanID string) ([]model.ResultItem, error)
 }
 
 type Service struct {
@@ -58,6 +59,10 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	err := s.Inspector.Inspect(ctx, scanID)
 
 	return errors.Wrap(err, "failed to read sources")
+}
+
+func (s *Service) GetResults(ctx context.Context, scanID string) ([]model.ResultItem, error) {
+	return s.Storage.GetResults(ctx, scanID)
 }
 
 func hash(s string) uint32 {

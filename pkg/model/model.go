@@ -30,13 +30,21 @@ type QueryMetadata struct {
 }
 
 type Vulnerability struct {
-	ID        int
-	ScanID    string `db:"scan_id"`
-	FileID    int    `db:"file_id"`
-	QueryName string `db:"query_name"`
-	Severity  string
-	Line      *int
-	Output    string
+	ID        int    `json:"id"`
+	ScanID    string `db:"scan_id" json:"-"`
+	FileID    int    `db:"file_id" json:"file_id"`
+	QueryName string `db:"query_name" json:"query_name"`
+	Severity  string `json:"severity"`
+	Line      *int   `json:"line"`
+	Output    string `json:"-"`
+}
+
+type ResultItem struct {
+	ID        int    `json:"id"`
+	FileName  int    `db:"file_id" json:"file_name"`
+	Line      *int   `json:"line"`
+	QueryName string `db:"query_name" json:"query_name"`
+	Severity  string `json:"severity"`
 }
 
 type FileMetadatas []FileMetadata
