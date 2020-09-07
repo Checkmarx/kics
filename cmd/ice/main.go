@@ -9,12 +9,12 @@ import (
 
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/internal/rest"
+	"github.com/checkmarxDev/ice/internal/storage"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/checkmarxDev/ice/pkg/source"
-	"github.com/checkmarxDev/ice/pkg/storage"
 	"github.com/checkmarxDev/ice/pkg/worker"
 	"github.com/checkmarxDev/ice/pkg/worker/handler"
 	_ "github.com/lib/pq"
@@ -50,17 +50,21 @@ func main() {
 		log.Fatal().Msg("Repostore initialization failed")
 	}
 
-	inspector, err := engine.NewInspector(ctx, query.NewFilesystemSource(cfg.querySourcePath), store)
+	querySource := &query.FilesystemSource{
+		Source: cfg.querySourcePath,
+	}
+
+	inspector, err := engine.NewInspector(ctx, querySource, store)
 	if err != nil {
 		log.Fatal().Msg("Inspector initialization failed")
 	}
 
-	service := ice.NewService(
-		filesSource,
-		store,
-		parser.NewDefault(),
-		inspector,
-	)
+	service := &ice.Service{
+		SourceProvider: filesSource,
+		Storage:        store,
+		Parser:         parser.NewDefault(),
+		Inspector:      inspector,
+	}
 
 	var servicesWg sync.WaitGroup
 	initWorker(ctx, cfg, &servicesWg, errChan, service)
