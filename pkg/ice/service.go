@@ -23,34 +23,25 @@ type Storage interface {
 }
 
 type Service struct {
-	sourceProvider SourceProvider
-	storage        Storage
-	parser         *parser.TerraformParser
-	inspector      *engine.Inspector
-}
-
-func NewService(
-	sourceProvider SourceProvider,
-	storage Storage,
-	terraformParser *parser.TerraformParser,
-	inspector *engine.Inspector,
-) *Service {
-	return &Service{sourceProvider: sourceProvider, storage: storage, parser: terraformParser, inspector: inspector}
+	SourceProvider SourceProvider
+	Storage        Storage
+	Parser         *parser.TerraformParser
+	Inspector      *engine.Inspector
 }
 
 func (s *Service) StartScan(ctx context.Context, scanID string) error {
-	if err := s.sourceProvider.GetSources(ctx, scanID, func(ctx context.Context, filename string, rc io.ReadCloser) error {
+	if err := s.SourceProvider.GetSources(ctx, scanID, func(ctx context.Context, filename string, rc io.ReadCloser) error {
 		content, err := ioutil.ReadAll(rc)
 		if err != nil {
 			return errors.Wrap(err, "failed to read file content")
 		}
 
-		jsonContent, err := s.parser.Parse(filename, content)
+		jsonContent, err := s.Parser.Parse(filename, content)
 		if err != nil {
 			return errors.Wrap(err, "failed to parse file content")
 		}
 
-		err = s.storage.SaveFile(ctx, &model.FileMetadata{
+		err = s.Storage.SaveFile(ctx, &model.FileMetadata{
 			ScanID:       scanID,
 			JSONData:     jsonContent,
 			OriginalData: string(content),
@@ -64,7 +55,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	err := s.inspector.Inspect(ctx, scanID)
+	err := s.Inspector.Inspect(ctx, scanID)
 
 	return errors.Wrap(err, "failed to read sources")
 }

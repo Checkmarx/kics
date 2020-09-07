@@ -13,29 +13,23 @@ import (
 const extensionTerraform = ".tf"
 
 type FileSystemSourceProvider struct {
-	path string
+	Path string
 }
 
 var ErrNotSupportedFile = errors.New("invalid file format")
 
-func NewFilesystemSourceProvider(path string) *FileSystemSourceProvider {
-	return &FileSystemSourceProvider{
-		path: path,
-	}
-}
-
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context, scanID string, sink Sink) error {
-	fileInfo, err := os.Stat(s.path)
+	fileInfo, err := os.Stat(s.Path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
 	}
 
 	if !fileInfo.IsDir() {
-		if filepath.Ext(s.path) != extensionTerraform {
+		if filepath.Ext(s.Path) != extensionTerraform {
 			return ErrNotSupportedFile
 		}
 
-		c, errOpenFile := os.Open(s.path)
+		c, errOpenFile := os.Open(s.Path)
 		if errOpenFile != nil {
 			return errors.Wrap(errOpenFile, "failed to open path")
 		}
@@ -43,7 +37,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, scanID string
 		return sink(ctx, fileInfo.Name(), c)
 	}
 
-	err = filepath.Walk(s.path, func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}

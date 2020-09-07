@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 
+	"github.com/checkmarxDev/ice/internal/storage"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/checkmarxDev/ice/pkg/source"
-	"github.com/checkmarxDev/ice/pkg/storage"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -27,19 +27,23 @@ func main() {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 
-			inspector, err := engine.NewInspector(ctx, query.NewFilesystemSource(queryPath), store)
+			querySource := &query.FilesystemSource{
+				Source: queryPath,
+			}
+
+			inspector, err := engine.NewInspector(ctx, querySource, store)
 			if err != nil {
 				return err
 			}
 
-			filesSource := source.NewFilesystemSourceProvider(path)
+			filesSource := &source.FileSystemSourceProvider{Path: path}
 
-			service := ice.NewService(
-				filesSource,
-				store,
-				parser.NewDefault(),
-				inspector,
-			)
+			service := &ice.Service{
+				SourceProvider: filesSource,
+				Storage:        store,
+				Parser:         parser.NewDefault(),
+				Inspector:      inspector,
+			}
 
 			return service.StartScan(ctx, "console scan")
 		},

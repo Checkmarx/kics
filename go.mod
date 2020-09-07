@@ -1,6 +1,6 @@
 module github.com/checkmarxDev/ice
 
-go 1.13
+go 1.14
 
 require (
 	github.com/checkmarxDev/repostore v1.0.3
