@@ -1,13 +1,18 @@
 package handler
 
 import (
+	"context"
+
+	"github.com/checkmarxDev/ice/internal/correlation"
 	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/checkmarxDev/scans/pkg/api/scans"
 	"github.com/checkmarxDev/scans/pkg/api/workflow"
 	"google.golang.org/protobuf/proto"
 )
 
 type ScanHandler struct {
+	Scanner *ice.Service
 }
 
 func (s *ScanHandler) Handler(msg *workflow.Message) <-chan StatusInfo {
@@ -35,6 +40,20 @@ func (s *ScanHandler) handelWork(scan *scans.Scan, correlationID string, statusI
 
 	scanID := scan.Id
 	logWithFields.Info().Msgf("Start work on scan=%s", scanID)
+
+	ctx := correlation.AddToContext(context.Background(), correlationID)
+	err := s.Scanner.StartScan(ctx, scanID)
+	if err != nil {
+		logWithFields.Err(err).Msgf("Failed scan: %s", scanID)
+
+		statusInfo <- StatusInfo{
+			ScanID: scanID,
+			State:  JobStatusFailed,
+			Err:    err,
+			ErrMsg: err.Error(),
+		}
+		return
+	}
 
 	statusInfo <- StatusInfo{
 		ScanID: scanID,

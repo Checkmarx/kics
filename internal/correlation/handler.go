@@ -3,6 +3,8 @@ package correlation
 import (
 	"context"
 	"net/http"
+
+	"google.golang.org/grpc/metadata"
 )
 
 type ContextKey int
@@ -30,4 +32,9 @@ func FromHTTPRequest(r *http.Request) string {
 
 func AddToContext(ctx context.Context, correlationID string) context.Context {
 	return context.WithValue(ctx, ContextField, correlationID)
+}
+
+func ToGRPCOutgoingContext(ctx context.Context, correlationID string) context.Context {
+	header := metadata.New(map[string]string{MetadataField: correlationID})
+	return metadata.NewOutgoingContext(ctx, header)
 }

@@ -7,11 +7,17 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/checkmarxDev/ice/pkg/worker/handler"
-
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/internal/rest"
+	"github.com/checkmarxDev/ice/pkg/engine"
+	"github.com/checkmarxDev/ice/pkg/engine/query"
+	"github.com/checkmarxDev/ice/pkg/ice"
+	"github.com/checkmarxDev/ice/pkg/parser"
+	"github.com/checkmarxDev/ice/pkg/source"
+	"github.com/checkmarxDev/ice/pkg/storage"
 	"github.com/checkmarxDev/ice/pkg/worker"
+	"github.com/checkmarxDev/ice/pkg/worker/handler"
+	_ "github.com/lib/pq"
 	"github.com/rs/zerolog/log"
 )
 
@@ -34,8 +40,30 @@ func main() {
 	ctx, cancel := context.WithCancel(ctx)
 	errChan := make(chan error)
 
+	store, err := storage.NewPostgresStore(cfg.dbConnectionAddress)
+	if err != nil {
+		log.Fatal().Msg("Database initialization failed")
+	}
+
+	filesSource, err := source.NewRepostoreSourceProvider(ctx, cfg.repostoreRestAddress, cfg.repostoreGrpcAddress)
+	if err != nil {
+		log.Fatal().Msg("Repostore initialization failed")
+	}
+
+	inspector, err := engine.NewInspector(ctx, query.NewFilesystemSource(cfg.querySourcePath), store)
+	if err != nil {
+		log.Fatal().Msg("Inspector initialization failed")
+	}
+
+	service := ice.NewService(
+		filesSource,
+		store,
+		parser.NewDefault(),
+		inspector,
+	)
+
 	var servicesWg sync.WaitGroup
-	initWorker(ctx, cfg, &servicesWg, errChan)
+	initWorker(ctx, cfg, &servicesWg, errChan, service)
 	initRESTServer(ctx, cfg, &servicesWg, errChan)
 
 	go func() {
@@ -66,7 +94,7 @@ func main() {
 
 func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error) {
 	if cfg.restPort == "" {
-		log.Info().Msgf("%s is not provided, will not expose REST", IceRESTPortEnvField)
+		log.Info().Msgf("%s is not provided, will not expose REST", iceRESTPortEnvField)
 		return
 	}
 
@@ -78,16 +106,16 @@ func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errCha
 	}()
 }
 
-func initWorker(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error) {
+func initWorker(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error, service *ice.Service) {
 	// TODO service have a reason to live without work from queue ? if not we should fail the service.
-	if cfg.WorkflowBrokerAddress == "" {
-		log.Info().Msgf("%s is not provided, will not take work from message queue", WorkflowBrokerAddressEnvField)
+	if cfg.workflowBrokerAddress == "" {
+		log.Info().Msgf("%s is not provided, will not take work from message queue", workflowBrokerAddressEnvField)
 		return
 	}
 
 	wg.Add(1) //nolint:gomnd
-	scanHandler := &handler.ScanHandler{}
-	workerInstance, err := worker.NewWorker(appName, cfg.workTimeoutMinutes, cfg.WorkflowBrokerAddress, cfg.workJobType, scanHandler)
+	scanHandler := &handler.ScanHandler{Scanner: service}
+	workerInstance, err := worker.NewWorker(appName, cfg.workTimeoutMinutes, cfg.workflowBrokerAddress, cfg.workJobType, scanHandler)
 	if err != nil {
 		errChan <- err
 	}
