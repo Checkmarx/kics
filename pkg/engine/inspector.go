@@ -54,6 +54,7 @@ func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorag
 					Err(err).
 					Str("fileName", metadata.FileName).
 					Msgf("failed to prepare query for evaluation: %s", metadata.FileName)
+
 				continue
 			}
 			opaQueries = append(opaQueries, &preparedQuery{
@@ -62,6 +63,9 @@ func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorag
 			})
 		}
 	}
+
+	log.Info().
+		Msgf("Inspector initialized with %d queries", len(opaQueries))
 
 	return &Inspector{
 		queries: opaQueries,

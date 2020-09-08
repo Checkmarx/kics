@@ -1,4 +1,5 @@
 GOLINT := golangci-lint
+IMAGE_TAG := $(shell git rev-parse HEAD)
 
 .PHONY: dep
 dep: # Download required dependencies
@@ -11,4 +12,12 @@ lint: dep # Lint the files
 
 .PHONY: test
 test: dep # Run unit tests
-	go test -race -count=1 -short ./...
+	go test -short ./...
+
+.PHONY: dockerise
+dockerise:
+	docker build --build-arg GIT_USER=$(user) --build-arg GIT_TOKEN=$(token) -t "ice:${IMAGE_TAG}" .
+
+.PHONY: mock
+mock:
+	mockgen -package mock -source pkg/engine/inspector.go > pkg/engine/mock/inspector.go
