@@ -2,15 +2,13 @@ package worker
 
 import (
 	"context"
-	"fmt"
 	"net/url"
 
-	"github.com/checkmarxDev/ice/pkg/worker/handler"
-
 	"github.com/checkmarxDev/ice/internal/logger"
-
+	"github.com/checkmarxDev/ice/pkg/worker/handler"
 	api "github.com/checkmarxDev/scans/pkg/api/workflow"
 	"github.com/checkmarxDev/scans/pkg/workflow/worker"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
 
@@ -31,7 +29,7 @@ func NewWorker(workerName string,
 
 	wo, err := worker.NewZBWorker(workloadAddr, jobType, workerName, int(workTimeoutMinutes))
 	if err != nil {
-		return nil, fmt.Errorf("cant connect to scan queue : %w", err)
+		return nil, errors.Wrap(err, "failed to connect to scan queue")
 	}
 
 	return &Worker{
