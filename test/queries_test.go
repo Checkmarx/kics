@@ -305,10 +305,10 @@ func TestQueries(t *testing.T) {
 					}, nil
 				})
 
-			checker, err := engine.NewInspector(ctx, queriesSource, storage)
+			inspector, err := engine.NewInspector(ctx, queriesSource, storage)
 			assert.Nil(t, err)
 
-			err = checker.Inspect(ctx, scanID)
+			err = inspector.Inspect(ctx, scanID)
 			assert.Nil(t, err)
 		})
 	}
