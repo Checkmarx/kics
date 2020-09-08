@@ -6,7 +6,7 @@ executors:
       docker_layer_caching: true
   go-container:
     docker:
-      - image: circleci/golang:1.13.7
+      - image: circleci/golang:1.14.8
   go-lint:
     docker:
       - image: golangci/golangci-lint:v1.28.1-alpine
