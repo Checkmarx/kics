@@ -42,12 +42,12 @@ func main() {
 
 	store, err := postgresql.NewPostgresStore(cfg.dbConnectionAddress)
 	if err != nil {
-		log.Fatal().Msg("Database initialization failed")
+		log.Fatal().Err(err).Msg("Database initialization failed")
 	}
 
 	filesSource, err := source.NewRepostoreSourceProvider(ctx, cfg.repostoreRestAddress, cfg.repostoreGrpcAddress)
 	if err != nil {
-		log.Fatal().Msg("Repostore initialization failed")
+		log.Fatal().Err(err).Msg("Repostore initialization failed")
 	}
 
 	querySource := &query.FilesystemSource{
@@ -56,7 +56,7 @@ func main() {
 
 	inspector, err := engine.NewInspector(ctx, querySource, store)
 	if err != nil {
-		log.Fatal().Msg("Inspector initialization failed")
+		log.Fatal().Err(err).Msg("Inspector initialization failed")
 	}
 
 	service := &ice.Service{
