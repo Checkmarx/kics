@@ -45,7 +45,7 @@ func loadConfig() *config {
 	viper.SetDefault(repostoreRestAddressEnvField, "http://localhost:30302")
 	viper.SetDefault(repostoreGRPCAddressEnvField, "localhost:3333")
 	viper.SetDefault(dbConnectionField, "host=localhost port=5432 user=postgres password=Cx123456 database=AST_SHOWOFF sslmode=disable")
-	viper.SetDefault(querySourcePathField, "./assets/queries")
+	viper.SetDefault(querySourcePathField, "/app/assets/queries")
 
 	viper.AutomaticEnv()
 

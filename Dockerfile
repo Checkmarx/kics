@@ -35,6 +35,7 @@ FROM alpine:3.11.3
 RUN apk add --no-cache  git
 
 COPY --from=build_env /app/bin/ice /app/bin/ice
+COPY --from=build_env /app/assets /app/assets
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/ice"]

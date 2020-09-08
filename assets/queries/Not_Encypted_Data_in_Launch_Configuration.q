@@ -2,10 +2,12 @@ package Cx
 
 #CxPragma "$.resource.aws_launch_configuration"
 
+#data stored in the Launch configuration EBS is not securely encrypted
+#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance
+
 result [ getMetadata({"id" : input.All[i].CxId, "data" : [block], "search": "block_device"}) ] {
-	some i    
-    enc = input.All[i].resource.aws_launch_configuration[name][block].encrypted
-    enc = false
+	enc := input.All[i].resource.aws_launch_configuration[name][block].encrypted
+    enc == false
     not contains(block, "ephemeral")
     contains(block, "block_device")
 }
