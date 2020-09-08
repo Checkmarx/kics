@@ -11,11 +11,10 @@ import (
 	"sync"
 
 	internalcontext "github.com/checkmarxDev/ice/internal/context"
+	"github.com/checkmarxDev/ice/internal/logger"
 	repo "github.com/checkmarxDev/repostore/pkg/api/v1"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
-
-	"github.com/rs/zerolog/log"
 )
 
 const fileRegex = `(.*)\.tf$`
@@ -64,19 +63,19 @@ func (s *RepostoreSourceProvider) doGetSources(ctx context.Context, scanID strin
 			defer wg.Done()
 			content, downloadFileErr := s.loadContent(scanID, l.Path)
 			if downloadFileErr != nil {
-				log.
+				logger.GetLoggerWithFieldsFromContext(ctx).
 					Err(err).
 					Str("scanID", scanID).
 					Str("path", l.Path).
-					Msg("failed load file content")
+					Msg("saving file. failed load file content")
 			}
 
 			if err := sink(ctx, l.Path, content); err != nil {
-				log.
+				logger.GetLoggerWithFieldsFromContext(ctx).
 					Err(err).
 					Str("scanID", scanID).
 					Str("path", l.Path).
-					Msg("failed sink file content")
+					Msg("saving file. failed sink file content")
 			}
 		}(res)
 	}
@@ -90,7 +89,7 @@ func (s *RepostoreSourceProvider) loadContent(scanID, location string) (io.ReadC
 		return nil, err
 	}
 	u.Path = path.Join("code", scanID, location)
-	log.Trace().Msgf("Requesting code. url=%s", u.String())
+
 	response, err := http.Get(u.String()) //nolint
 	if err != nil {
 		var e *url.Error
@@ -105,8 +104,10 @@ func (s *RepostoreSourceProvider) loadContent(scanID, location string) (io.ReadC
 			return nil, errors.Wrap(err, "failed to load source")
 		}
 	}
+
 	if response.StatusCode != http.StatusOK && response.StatusCode != http.StatusFound {
 		return nil, fmt.Errorf("failed to load sources. status=%s", response.Status)
 	}
+
 	return response.Body, nil
 }

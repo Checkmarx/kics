@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/checkmarxDev/ice/internal/correlation"
+	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/gorilla/mux"
 
@@ -57,10 +59,23 @@ func (s *Server) getRouter() *mux.Router {
 }
 
 func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
+	corrID := correlation.FromHTTPRequest(r)
+	ctx := correlation.AddToContext(r.Context(), corrID)
+
 	scanID := mux.Vars(r)["scan-id"]
 
-	results, err := s.Service.GetResults(context.Background(), scanID)
+	logger.GetLoggerWithFieldsFromContext(ctx).
+		Trace().
+		Str("scanID", scanID).
+		Msg("rest api. getting scan results")
+
+	results, err := s.Service.GetResults(ctx, scanID)
 	if err != nil {
+		logger.GetLoggerWithFieldsFromContext(ctx).
+			Err(err).
+			Str("scanID", scanID).
+			Msg("rest api. failed to get results for scan")
+
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -68,6 +83,8 @@ func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if encodeErr := json.NewEncoder(w).Encode(results); encodeErr != nil {
-		log.Error().Err(encodeErr).Msg("Failed encoding and returning results")
+		logger.GetLoggerWithFieldsFromContext(ctx).
+			Err(encodeErr).
+			Msg("rest api. failed encoding and returning results")
 	}
 }

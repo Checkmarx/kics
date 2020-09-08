@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/pkg/errors"
@@ -38,19 +39,28 @@ type Inspector struct {
 func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorage) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		opaQuery, err := rego.New(rego.Query("result = data.Cx.result"), rego.Module(metadata.FileName, metadata.Content)).PrepareForEval(ctx)
-		if err != nil {
-			return nil, errors.Wrap(err, "failed to prepare query metadata")
+		select {
+		case <-ctx.Done():
+			return nil, nil
+		default:
+			opaQuery, err := rego.New(rego.Query("result = data.Cx.result"), rego.Module(metadata.FileName, metadata.Content)).PrepareForEval(ctx)
+			if err != nil {
+				log.
+					Err(err).
+					Str("fileName", metadata.FileName).
+					Msgf("failed to prepare query for evaluation: %s", metadata.FileName)
+				continue
+			}
+			opaQueries = append(opaQueries, &preparedQuery{
+				opaQuery: opaQuery,
+				metadata: metadata,
+			})
 		}
-		opaQueries = append(opaQueries, &preparedQuery{
-			opaQuery: opaQuery,
-			metadata: metadata,
-		})
 	}
 
 	return &Inspector{
@@ -68,10 +78,10 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
 
 		err = c.doRun(ctx, scanID, files, query)
 		if err != nil {
-			log.
+			logger.GetLoggerWithFieldsFromContext(ctx).
 				Err(err).
 				Str("scanID", scanID).
-				Msgf("query %s executed with error", query.metadata.FileName)
+				Msgf("inspector. query %s executed with error", query.metadata.FileName)
 		}
 	}
 
@@ -124,14 +134,14 @@ func (c *Inspector) saveResultIfExists(ctx context.Context, scanID string, vars 
 			return errors.Wrap(err, "failed to marshall query output")
 		}
 
-		file := filesInMap[interfaceToString(vOjb["id"])]
-		line := c.detectLine(&file, vOjb["search"])
+		file := filesInMap[interfaceToString(ctx, vOjb["id"])]
+		line := c.detectLine(ctx, scanID, &file, vOjb["search"])
 
 		results = append(results, model.Vulnerability{
-			FileID:    interfaceToInt(vOjb["id"]),
+			FileID:    interfaceToInt(ctx, vOjb["id"]),
 			ScanID:    scanID,
-			QueryName: interfaceToString(vOjb["name"]),
-			Severity:  interfaceToString(vOjb["severity"]),
+			QueryName: interfaceToString(ctx, vOjb["name"]),
+			Severity:  interfaceToString(ctx, vOjb["severity"]),
 			Line:      line,
 			Output:    string(output),
 		})
@@ -144,7 +154,7 @@ func (c *Inspector) saveResultIfExists(ctx context.Context, scanID string, vars 
 	return nil
 }
 
-func (c *Inspector) detectLine(file *model.FileMetadata, i interface{}) *int {
+func (c *Inspector) detectLine(ctx context.Context, scanID string, file *model.FileMetadata, i interface{}) *int {
 	scanner := bufio.NewScanner(strings.NewReader(file.OriginalData))
 	line := 1
 
@@ -174,9 +184,10 @@ func (c *Inspector) detectLine(file *model.FileMetadata, i interface{}) *int {
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.
+		logger.GetLoggerWithFieldsFromContext(ctx).
 			Err(err).
-			Msgf("detecting line: file id %d, search %v", file.ID, i)
+			Str("scanID", scanID).
+			Msgf("detecting line. file id %d, search %v", file.ID, i)
 	}
 
 	return nil
@@ -197,19 +208,23 @@ func lineContains(s, substr string) bool {
 	return true
 }
 
-func interfaceToString(v interface{}) string {
+func interfaceToString(ctx context.Context, v interface{}) string {
 	s, ok := v.(string)
 	if !ok {
-		log.Debug().Msg("inspector: can't format result item to string")
+		logger.GetLoggerWithFieldsFromContext(ctx).
+			Debug().
+			Msg("detecting line. can't format item to string")
 	}
 
 	return s
 }
 
-func interfaceToInt(v interface{}) int {
-	i, err := strconv.Atoi(interfaceToString(v))
+func interfaceToInt(ctx context.Context, v interface{}) int {
+	i, err := strconv.Atoi(interfaceToString(ctx, v))
 	if err != nil {
-		log.Err(err).Msg("inspector: can't format result item to int")
+		logger.GetLoggerWithFieldsFromContext(ctx).
+			Err(err).
+			Msg("detecting line. can't format item to int")
 	}
 
 	return i

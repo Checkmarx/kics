@@ -55,12 +55,15 @@ func InitLogger(logLevel, appName string) error {
 	return nil
 }
 
-func GetLoggerWithFieldsFromContext(ctx context.Context) zerolog.Logger {
+func GetLoggerWithFieldsFromContext(ctx context.Context) *zerolog.Logger {
 	corID := correlation.FromContext(ctx)
 	return GetLoggerWithCorrelationID(corID)
 }
 
-func GetLoggerWithCorrelationID(correlationID string) zerolog.Logger {
-	return log.With().
-		Str(correlationIDLogField, correlationID).Logger()
+func GetLoggerWithCorrelationID(correlationID string) *zerolog.Logger {
+	l := log.With().
+		Str(correlationIDLogField, correlationID).
+		Logger()
+
+	return &l
 }

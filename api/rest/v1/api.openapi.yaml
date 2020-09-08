@@ -1,0 +1,62 @@
+openapi: 3.0.2
+info:
+  title: ICE Results API
+  description: TBD
+  version: 1.0.0
+tags:
+  - name: Results
+paths:
+  '/results/{scan-id}':
+    get:
+      tags:
+        - Results
+      summary: get result by scan id
+      description: Returns result item for specific scan
+      operationId: findResultsByScanID
+      parameters:
+        - in: path
+          name: scan-id
+          schema:
+            type: string
+          required: true
+          description: get by Scan ID field
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResultItem'
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    ResultItem:
+      type: object
+      properties:
+        ID:
+          type: string
+        fileName:
+          type: string
+        line:
+          type: integer
+        queryName:
+          type: string
+          description: Query name
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+    SeverityEnum:
+      type: string
+      description: Severity enum of a result.
+      enum:
+        - HIGH
+        - MEDIUM
+        - LOW
+        - INFO
+  securitySchemes:
+    accessControl:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

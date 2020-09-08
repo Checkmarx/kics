@@ -6,12 +6,12 @@ import (
 	"io"
 	"io/ioutil"
 
+	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/checkmarxDev/ice/pkg/source"
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 type SourceProvider interface {
@@ -48,7 +48,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 			OriginalData: string(content),
 			Kind:         model.KindTerraform,
 			FileName:     filename,
-			JSONHash:     hash(jsonContent),
+			JSONHash:     hash(ctx, filename, jsonContent),
 		})
 
 		return errors.Wrap(err, "failed to save file content")
@@ -65,10 +65,13 @@ func (s *Service) GetResults(ctx context.Context, scanID string) ([]model.Result
 	return s.Storage.GetResults(ctx, scanID)
 }
 
-func hash(s string) uint32 {
+func hash(ctx context.Context, filename, content string) uint32 {
 	h := fnv.New32a()
-	if _, err := h.Write([]byte(s)); err != nil {
-		log.Err(err).Msgf("failed to create file hash")
+	if _, err := h.Write([]byte(content)); err != nil {
+		logger.GetLoggerWithFieldsFromContext(ctx).
+			Err(err).
+			Str("fileName", filename).
+			Msgf("saving file. failed to create file hash")
 	}
 	return h.Sum32()
 }

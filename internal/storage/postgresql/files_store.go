@@ -6,7 +6,7 @@ import (
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 type PostgresStorage struct {
@@ -65,7 +65,7 @@ WHERE
 
 func (s *PostgresStorage) Close() {
 	if err := s.db.Close(); err != nil {
-		log.WithError(err).Error("postgres: db close error")
+		log.Err(err).Msg("postgres: db close error")
 	}
 }
 
