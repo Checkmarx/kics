@@ -1,12 +1,13 @@
 package Cx
 
 #CxPragma "$.resource ? (@.aws_security_group_rule != null || @.aws_security_group != null"
+
 #Security groups allow ingress from 0.0.0.0:0
 #https://www.terraform.io/docs/providers/aws/r/security_group.html
 #https://www.terraform.io/docs/providers/aws/r/security_group_rule.html
 
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [rule], "search": ["0.0.0.0/0", "cidr_blocks"]}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [rule], "search": ["aws_security_group_rule", "ingress"]}) ] {
 	rule := input.All[i].resource.aws_security_group_rule[name]
     rule.type == "ingress"
     rule.from_port
@@ -15,7 +16,7 @@ result [ getMetadata({"id" : input.All[i].CxId, "data" : [rule], "search": ["0.0
 }
 
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [ingrs], "search": ["0.0.0.0/0", "cidr_blocks"]}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [ingrs], "search": ["ingress", "cidr_blocks"]}) ] {
 	ingrs := input.All[i].resource.aws_security_group[name].ingress
     ingrs.from_port
     ingrs.to_port    

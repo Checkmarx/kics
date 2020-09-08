@@ -5,6 +5,7 @@ go 1.14
 require (
 	github.com/checkmarxDev/repostore v1.0.3
 	github.com/checkmarxDev/scans v1.5.1
+	github.com/golang/mock v1.4.3
 	github.com/google/go-cmp v0.5.1 // indirect
 	github.com/gorilla/mux v1.7.5-0.20200711200521-98cb6bf42e08
 	github.com/hashicorp/hcl/v2 v2.6.0
