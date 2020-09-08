@@ -12,7 +12,7 @@ lint: dep # Lint the files
 
 .PHONY: test
 test: dep # Run unit tests
-	go test -race -count=1 -short ./...
+	go test -short ./...
 
 .PHONY: dockerise
 dockerise:

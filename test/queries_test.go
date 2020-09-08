@@ -16,6 +16,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 type expectedResult struct {
@@ -32,7 +33,7 @@ type testCase struct {
 
 var testCases = []testCase{
 	{
-		query: "ALB_protocol_is_HTTP.q",
+		query: "ALB_Protocol_is_HTTP.q",
 		file:  "ALB_protocol_is_HTTP.tf",
 		expectedResults: []expectedResult{
 			{
@@ -48,11 +49,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "ALB_protocol_is_HTTP.q",
+		query: "ALB_Protocol_is_HTTP.q",
 		file:  "ALB_protocol_is_HTTP_success.tf",
 	},
 	{
-		query: "Cloudfront_configuration_allow_HTTP.q",
+		query: "Cloudfront_Configuration_Allow_HTTP.q",
 		file:  "Cloudfront_configuration_allow_HTTP.tf",
 		expectedResults: []expectedResult{
 			{
@@ -68,11 +69,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Cloudfront_configuration_allow_HTTP.q",
+		query: "Cloudfront_Configuration_Allow_HTTP.q",
 		file:  "Cloudfront_configuration_allow_HTTP_success.tf",
 	},
 	{
-		query: "Cloudwatch_without_retention_days.q",
+		query: "Cloudwatch_without_Retention_Days.q",
 		file:  "Cloudwatch_without_retention_days.tf",
 		expectedResults: []expectedResult{
 			{
@@ -83,7 +84,7 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Cloudwatch_without_retention_days.q",
+		query: "Cloudwatch_without_Retention_Days.q",
 		file:  "Cloudwatch_without_retention_days_success.tf",
 	},
 	{
@@ -102,7 +103,7 @@ var testCases = []testCase{
 		file:  "Cloudfront_without_WAF_success.tf",
 	},
 	{
-		query: "Eks_Cluster_Public_Access_cidrs.q",
+		query: "EKS_Cluster_Public_Access_cidrs.q",
 		file:  "Eks_Cluster_Public_Access_cidrs.tf",
 		expectedResults: []expectedResult{
 			{
@@ -113,12 +114,12 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Eks_Cluster_Public_Access_cidrs.q",
+		query: "EKS_Cluster_Public_Access_cidrs.q",
 		file:  "Eks_Cluster_Public_Access_cidrs_success.tf",
 	},
 
 	{
-		query: "Eks_Cluster_Public_Access.q",
+		query: "EKS_Cluster_Public_Access.q",
 		file:  "Eks_Cluster_Public_Access.tf",
 		expectedResults: []expectedResult{
 			{
@@ -129,7 +130,7 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Eks_Cluster_Public_Access.q",
+		query: "EKS_Cluster_Public_Access.q",
 		file:  "Eks_Cluster_Public_Access_success.tf",
 	},
 
@@ -164,7 +165,7 @@ var testCases = []testCase{
 		file:  "Hard_Coded_AWS_Access_Key_success.tf",
 	},
 	{
-		query: "IAM_policies_allow_all.q",
+		query: "IAM_Policies_Allow_All.q",
 		file:  "IAM_policies_allow_all.tf",
 		expectedResults: []expectedResult{
 			{
@@ -175,11 +176,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_policies_allow_all.q",
+		query: "IAM_Policies_Allow_All.q",
 		file:  "IAM_policies_allow_all_success.tf",
 	},
 	{
-		query: "IAM_policies_attached_to_User.q",
+		query: "IAM_Policies_Attached_to_User.q",
 		file:  "IAM_policies_attached_to_User.tf",
 		expectedResults: []expectedResult{
 			{
@@ -190,7 +191,7 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_policies_attached_to_User.q",
+		query: "IAM_Policies_Attached_to_User.q",
 		file:  "IAM_policies_attached_to_User_success.tf",
 	},
 	{
@@ -228,6 +229,7 @@ var testCases = []testCase{
 func TestQueries(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 	log.Output(ioutil.Discard)
+
 	for _, testCase := range testCases {
 		t.Run(testCase.query, func(t *testing.T) {
 			ctrl := gomock.NewController(t)
@@ -271,7 +273,7 @@ func TestQueries(t *testing.T) {
 
 			storage.EXPECT().SaveVulnerabilities(gomock.Eq(ctx), gomock.Any()).
 				DoAndReturn(func(_ context.Context, results []model.Vulnerability) error {
-					assert.Len(t, results, len(testCase.expectedResults), "Found issues and expected doesn't match")
+					require.Len(t, results, len(testCase.expectedResults), "Found issues and expected doesn't match")
 
 					for i, item := range testCase.expectedResults {
 						if i > len(results)-1 {
@@ -279,11 +281,11 @@ func TestQueries(t *testing.T) {
 						}
 
 						result := results[i]
-						assert.NotNil(t, result.Line, "Line should be detected")
-						assert.Equal(t, item.line, *result.Line, "Not corrected detected line")
-						assert.Equal(t, item.severity, result.Severity, "Invalid severity")
-						assert.Equal(t, item.name, result.QueryName, "Invalid query name")
-						assert.Equal(t, fileID, result.FileID)
+						require.NotNil(t, result.Line, "Line should be detected")
+						require.Equal(t, item.line, *result.Line, "Not corrected detected line")
+						require.Equal(t, item.severity, result.Severity, "Invalid severity")
+						require.Equal(t, item.name, result.QueryName, "Invalid query name")
+						require.Equal(t, fileID, result.FileID)
 					}
 
 					return nil
@@ -292,7 +294,7 @@ func TestQueries(t *testing.T) {
 			queriesSource := mock.NewMockQueriesSource(ctrl)
 			queriesSource.EXPECT().GetQueries().
 				DoAndReturn(func() ([]model.QueryMetadata, error) {
-					qCode, err := ioutil.ReadFile(path.Join("./../assets/queries", testCase.query))
+					qCode, err := ioutil.ReadFile(path.Join("../assets/queries", testCase.query))
 					if err != nil {
 						return nil, fmt.Errorf("query source: %w", err)
 					}
@@ -306,7 +308,8 @@ func TestQueries(t *testing.T) {
 				})
 
 			inspector, err := engine.NewInspector(ctx, queriesSource, storage)
-			assert.Nil(t, err)
+			require.Nil(t, err)
+			require.NotNil(t, inspector)
 
 			err = inspector.Inspect(ctx, scanID)
 			assert.Nil(t, err)
