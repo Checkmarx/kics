@@ -64,10 +64,11 @@ func (s *RepostoreSourceProvider) doGetSources(ctx context.Context, scanID strin
 			content, downloadFileErr := s.loadContent(scanID, l.Path)
 			if downloadFileErr != nil {
 				logger.GetLoggerWithFieldsFromContext(ctx).
-					Err(err).
+					Err(downloadFileErr).
 					Str("scanID", scanID).
 					Str("path", l.Path).
 					Msg("saving file. failed load file content")
+				return
 			}
 
 			if err := sink(ctx, l.Path, content); err != nil {
