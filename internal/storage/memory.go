@@ -30,12 +30,12 @@ func (m *MemoryStorage) GetFiles(_ context.Context, _, _ string) (model.FileMeta
 
 func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities []model.Vulnerability) error {
 	for _, v := range vulnerabilities {
-		if v.Line != nil {
-			log.Info().Msgf("[%s] %s:%d %s", v.Severity, m.files[v.FileID].FileName, *v.Line, v.QueryName)
-			continue
-		}
-
-		log.Info().Msgf("[%s] %s: %s", v.Severity, m.files[v.FileID].FileName, v.QueryName)
+		log.Warn().
+			Str("severity", v.Severity).
+			Str("filename", m.files[v.FileID].FileName).
+			Str("queryName", v.QueryName).
+			Int("line", v.Line).
+			Msgf("[%s] %s:%d %s", v.Severity, m.files[v.FileID].FileName, v.Line, v.QueryName)
 	}
 
 	return nil
