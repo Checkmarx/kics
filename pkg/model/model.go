@@ -35,14 +35,14 @@ type Vulnerability struct {
 	FileID    int    `db:"file_id" json:"file_id"`
 	QueryName string `db:"query_name" json:"query_name"`
 	Severity  string `json:"severity"`
-	Line      *int   `json:"line"`
+	Line      int    `json:"line"`
 	Output    string `json:"-"`
 }
 
 type ResultItem struct {
 	ID        int    `json:"id"`
 	FileName  int    `db:"file_name" json:"fileName"`
-	Line      *int   `json:"line"`
+	Line      int    `json:"line"`
 	QueryName string `db:"query_name" json:"queryName"`
 	Severity  string `json:"severity"`
 }
