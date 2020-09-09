@@ -228,7 +228,6 @@ var testCases = []testCase{
 
 func TestQueries(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
-	log.Output(ioutil.Discard)
 
 	for _, testCase := range testCases {
 		t.Run(testCase.query, func(t *testing.T) {
@@ -281,8 +280,7 @@ func TestQueries(t *testing.T) {
 						}
 
 						result := results[i]
-						require.NotNil(t, result.Line, "Line should be detected")
-						require.Equal(t, item.line, *result.Line, "Not corrected detected line")
+						require.Equal(t, item.line, result.Line, "Not corrected detected line")
 						require.Equal(t, item.severity, result.Severity, "Invalid severity")
 						require.Equal(t, item.name, result.QueryName, "Invalid query name")
 						require.Equal(t, fileID, result.FileID)

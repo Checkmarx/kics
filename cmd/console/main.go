@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"os"
 
 	"github.com/checkmarxDev/ice/internal/storage"
 	"github.com/checkmarxDev/ice/pkg/engine"
@@ -9,6 +10,7 @@ import (
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/checkmarxDev/ice/pkg/source"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -20,6 +22,7 @@ func main() {
 	)
 
 	ctx := context.Background()
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
 	rootCmd := &cobra.Command{
 		Use:   "inspect",

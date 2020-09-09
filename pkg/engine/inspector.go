@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"context"
 	"encoding/json"
-	"strconv"
+	"fmt"
 	"strings"
 
 	"github.com/checkmarxDev/ice/internal/logger"
@@ -12,6 +12,12 @@ import (
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+)
+
+const (
+	UndetectedVulnerabilityLine = 1
+	DefaultQueryName            = "Anonymous"
+	DefaultSeverity             = "Info"
 )
 
 var ErrNoResult = errors.New("query: not result")
@@ -112,20 +118,30 @@ func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMe
 		return ErrNoResult
 	}
 
-	if err := c.saveResultIfExists(ctx, scanID, results[0].Bindings, filesInMap); err != nil {
-		return errors.Wrap(err, "failed to parse query result")
+	if err := c.saveResultIfExists(ctx, scanID, query, results[0].Bindings, filesInMap); err != nil {
+		return errors.Wrap(err, "failed to save query result")
 	}
 
 	return nil
 }
 
-func (c *Inspector) saveResultIfExists(ctx context.Context, scanID string, vars rego.Vars, filesInMap map[string]model.FileMetadata) error {
+func (c *Inspector) saveResultIfExists(
+	ctx context.Context,
+	scanID string,
+	query *preparedQuery,
+	vars rego.Vars,
+	filesInMap map[string]model.FileMetadata,
+) error { // nolint:lll
 	v, ok := vars["result"]
 	if !ok {
 		return ErrNoResult
 	}
 
-	vList := v.([]interface{})
+	vList, ok := v.([]interface{})
+	if !ok {
+		return ErrInvalidResult
+	}
+
 	results := make([]model.Vulnerability, 0, len(vList))
 	for _, vListItem := range vList {
 		vOjb, ok := vListItem.(map[string]interface{})
@@ -138,14 +154,48 @@ func (c *Inspector) saveResultIfExists(ctx context.Context, scanID string, vars 
 			return errors.Wrap(err, "failed to marshall query output")
 		}
 
-		file := filesInMap[interfaceToString(ctx, vOjb["id"])]
-		line := c.detectLine(ctx, scanID, &file, vOjb["search"])
+		fileID, err := mapKeyToString(ctx, vOjb, "id")
+		if err != nil {
+			return errors.Wrap(err, "failed to recognize file id")
+		}
+
+		file, ok := filesInMap[fileID]
+		if !ok {
+			return errors.New("failed to find file from query response")
+		}
+
+		logWithFields := log.With().
+			Str("scanID", scanID).
+			Int("fileID", file.ID).
+			Str("queryName", query.metadata.FileName).
+			Logger()
+
+		line := UndetectedVulnerabilityLine
+		if searchInfo, ok := vOjb["search"]; ok {
+			line = c.detectLine(ctx, scanID, &file, searchInfo)
+		} else {
+			logWithFields.Info().Msg("saving result. failed to detect line")
+		}
+
+		queryName := DefaultQueryName
+		if qn, err := mapKeyToString(ctx, vOjb, "name"); err == nil {
+			queryName = qn
+		} else {
+			logWithFields.Info().Msg("saving result. failed to detect query name")
+		}
+
+		severity := DefaultSeverity
+		if s, err := mapKeyToString(ctx, vOjb, "severity"); err == nil {
+			severity = s
+		} else {
+			logWithFields.Info().Msg("saving result. failed to detect severity")
+		}
 
 		results = append(results, model.Vulnerability{
-			FileID:    interfaceToInt(ctx, vOjb["id"]),
+			FileID:    file.ID,
 			ScanID:    scanID,
-			QueryName: interfaceToString(ctx, vOjb["name"]),
-			Severity:  interfaceToString(ctx, vOjb["severity"]),
+			QueryName: queryName,
+			Severity:  severity,
 			Line:      line,
 			Output:    string(output),
 		})
@@ -158,7 +208,7 @@ func (c *Inspector) saveResultIfExists(ctx context.Context, scanID string, vars 
 	return nil
 }
 
-func (c *Inspector) detectLine(ctx context.Context, scanID string, file *model.FileMetadata, i interface{}) *int {
+func (c *Inspector) detectLine(ctx context.Context, scanID string, file *model.FileMetadata, i interface{}) int {
 	scanner := bufio.NewScanner(strings.NewReader(file.OriginalData))
 	line := 1
 
@@ -169,7 +219,7 @@ func (c *Inspector) detectLine(ctx context.Context, scanID string, file *model.F
 			for scanner.Scan() {
 				if lineContains(scanner.Text(), s) {
 					if index == len(v)-1 {
-						return &line
+						return line
 					}
 
 					line++
@@ -181,7 +231,7 @@ func (c *Inspector) detectLine(ctx context.Context, scanID string, file *model.F
 	case string:
 		for scanner.Scan() {
 			if lineContains(scanner.Text(), v) {
-				return &line
+				return line
 			}
 			line++
 		}
@@ -194,7 +244,13 @@ func (c *Inspector) detectLine(ctx context.Context, scanID string, file *model.F
 			Msgf("detecting line. file id %d, search %v", file.ID, i)
 	}
 
-	return nil
+	logger.GetLoggerWithFieldsFromContext(ctx).
+		Info().
+		Str("scanID", scanID).
+		Int("fileID", file.ID).
+		Msgf("filed to detect line, query response %v", i)
+
+	return UndetectedVulnerabilityLine
 }
 
 func lineContains(s, substr string) bool {
@@ -212,7 +268,12 @@ func lineContains(s, substr string) bool {
 	return true
 }
 
-func interfaceToString(ctx context.Context, v interface{}) string {
+func mapKeyToString(ctx context.Context, m map[string]interface{}, key string) (string, error) {
+	v, ok := m[key]
+	if !ok {
+		return "", fmt.Errorf("key '%s' not found in map", key)
+	}
+
 	s, ok := v.(string)
 	if !ok {
 		logger.GetLoggerWithFieldsFromContext(ctx).
@@ -220,16 +281,5 @@ func interfaceToString(ctx context.Context, v interface{}) string {
 			Msg("detecting line. can't format item to string")
 	}
 
-	return s
-}
-
-func interfaceToInt(ctx context.Context, v interface{}) int {
-	i, err := strconv.Atoi(interfaceToString(ctx, v))
-	if err != nil {
-		logger.GetLoggerWithFieldsFromContext(ctx).
-			Err(err).
-			Msg("detecting line. can't format item to int")
-	}
-
-	return i
+	return s, nil
 }
