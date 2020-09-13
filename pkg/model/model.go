@@ -6,11 +6,27 @@ import (
 )
 
 const (
-	KindTerraform         FileMetadataKind = "TF"
-	emptyJSONStringLength int              = 2
+	KindTerraform FileMetadataKind = "TF"
+
+	SeverityHigh   = "HIGH"
+	SeverityMedium = "MEDIUM"
+	SeverityLow    = "LOW"
+	SeverityInfo   = "INFO"
+
+	emptyJSONStringLength int = 2
+)
+
+var (
+	AllSeverities = []Severity{
+		SeverityHigh,
+		SeverityMedium,
+		SeverityLow,
+		SeverityInfo,
+	}
 )
 
 type FileMetadataKind string
+type Severity string
 
 type FileMetadata struct {
 	ID           int
@@ -30,21 +46,21 @@ type QueryMetadata struct {
 }
 
 type Vulnerability struct {
-	ID        int    `json:"id"`
-	ScanID    string `db:"scan_id" json:"-"`
-	FileID    int    `db:"file_id" json:"file_id"`
-	QueryName string `db:"query_name" json:"query_name"`
-	Severity  string `json:"severity"`
-	Line      int    `json:"line"`
-	Output    string `json:"-"`
+	ID        int      `json:"id"`
+	ScanID    string   `db:"scan_id" json:"-"`
+	FileID    int      `db:"file_id" json:"file_id"`
+	QueryName string   `db:"query_name" json:"query_name"`
+	Severity  Severity `json:"severity"`
+	Line      int      `json:"line"`
+	Output    string   `json:"-"`
 }
 
 type ResultItem struct {
-	ID        int    `json:"id"`
-	FileName  string `db:"file_name" json:"fileName"`
-	Line      int    `json:"line"`
-	QueryName string `db:"query_name" json:"queryName"`
-	Severity  string `json:"severity"`
+	ID        int      `json:"id"`
+	FileName  string   `db:"file_name" json:"fileName"`
+	Line      int      `json:"line"`
+	QueryName string   `db:"query_name" json:"queryName"`
+	Severity  Severity `json:"severity"`
 }
 
 type FileMetadatas []FileMetadata

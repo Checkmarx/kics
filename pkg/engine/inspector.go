@@ -17,7 +17,6 @@ import (
 const (
 	UndetectedVulnerabilityLine = 1
 	DefaultQueryName            = "Anonymous"
-	DefaultSeverity             = "Info"
 )
 
 var ErrNoResult = errors.New("query: not result")
@@ -184,9 +183,21 @@ func (c *Inspector) saveResultIfExists(
 			logWithFields.Info().Msg("saving result. failed to detect query name")
 		}
 
-		severity := DefaultSeverity
+		var severity model.Severity = model.SeverityInfo
 		if s, err := mapKeyToString(ctx, vOjb, "severity"); err == nil {
-			severity = s
+			s = strings.ToUpper(s)
+			var found bool
+			for _, si := range model.AllSeverities {
+				if s == string(si) {
+					severity = si
+					found = true
+					break
+				}
+			}
+
+			if !found {
+				logWithFields.Info().Str("severity", s).Msg("saving result. invalid severity constant value")
+			}
 		} else {
 			logWithFields.Info().Msg("saving result. failed to detect severity")
 		}

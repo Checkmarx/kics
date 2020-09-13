@@ -21,7 +21,7 @@ import (
 
 type expectedResult struct {
 	line     int
-	severity string
+	severity model.Severity
 	name     string
 }
 
@@ -38,12 +38,12 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     25,
-				severity: "High",
+				severity: model.SeverityHigh,
 				name:     "ALB protocol is HTTP",
 			},
 			{
 				line:     19,
-				severity: "High",
+				severity: model.SeverityHigh,
 				name:     "ALB protocol is HTTP",
 			},
 		},
@@ -58,12 +58,12 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     49,
-				severity: "High",
+				severity: model.SeverityHigh,
 				name:     "Cloudfront configuration allow HTTP",
 			},
 			{
 				line:     76,
-				severity: "High",
+				severity: model.SeverityHigh,
 				name:     "Cloudfront configuration allow HTTP",
 			},
 		},
@@ -78,7 +78,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     15,
-				severity: "Low",
+				severity: model.SeverityLow,
 				name:     "Cloudwatch without retention days",
 			},
 		},
@@ -93,7 +93,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     15,
-				severity: "Low",
+				severity: model.SeverityLow,
 				name:     "Cloudfront without WAF",
 			},
 		},
@@ -108,7 +108,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     8,
-				severity: "High",
+				severity: model.SeverityHigh,
 				name:     "EKS cluster public access cidrs",
 			},
 		},
@@ -124,7 +124,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     7,
-				severity: "Medium",
+				severity: model.SeverityMedium,
 				name:     "EKS cluster public access",
 			},
 		},
@@ -140,7 +140,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     91,
-				severity: "High",
+				severity: model.SeverityHigh,
 				name:     "Fully open Ingress",
 			},
 		},
@@ -155,7 +155,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     14,
-				severity: "Low",
+				severity: model.SeverityLow,
 				name:     "Hardcoded AWS access key",
 			},
 		},
@@ -170,7 +170,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     32,
-				severity: "Medium",
+				severity: model.SeverityMedium,
 				name:     "Allow all IAM policies",
 			},
 		},
@@ -185,7 +185,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     16,
-				severity: "Low",
+				severity: model.SeverityLow,
 				name:     "IAM policies attached to user",
 			},
 		},
@@ -200,7 +200,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     1,
-				severity: "Medium",
+				severity: model.SeverityMedium,
 				name:     "IAM policies with full privileges",
 			},
 		},
@@ -215,7 +215,7 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     15,
-				severity: "Low",
+				severity: model.SeverityLow,
 				name:     "IAM role allows public assume",
 			},
 		},
