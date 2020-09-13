@@ -4,49 +4,56 @@ import (
 	"context"
 
 	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/rs/zerolog/log"
 )
 
 type MemoryStorage struct {
-	files map[int]*model.FileMetadata
-	index int
+	vulnerabilities []model.Vulnerability
+
+	allFiles  model.FileMetadatas
+	filesByID map[int]*model.FileMetadata
+	fileIndex int
 }
 
 func (m *MemoryStorage) SaveFile(_ context.Context, metadata *model.FileMetadata) error {
-	metadata.ID = m.index
-	m.files[m.index] = metadata
-	m.index++
+	m.allFiles = append(m.allFiles, *metadata)
+	m.allFiles[m.fileIndex].ID = m.fileIndex
+
+	m.filesByID[m.fileIndex] = metadata
+	m.filesByID[m.fileIndex].ID = m.fileIndex
+
+	m.fileIndex++
 	return nil
 }
 
 func (m *MemoryStorage) GetFiles(_ context.Context, _, _ string) (model.FileMetadatas, error) {
-	slice := make([]model.FileMetadata, 0, len(m.files))
-	for _, file := range m.files {
-		slice = append(slice, *file)
-	}
-
-	return slice, nil
+	return m.allFiles, nil
 }
 
 func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities []model.Vulnerability) error {
-	for _, v := range vulnerabilities {
-		log.Warn().
-			Str("severity", v.Severity).
-			Str("filename", m.files[v.FileID].FileName).
-			Str("queryName", v.QueryName).
-			Int("line", v.Line).
-			Msgf("[%s] %s:%d %s", v.Severity, m.files[v.FileID].FileName, v.Line, v.QueryName)
-	}
+	m.vulnerabilities = append(m.vulnerabilities, vulnerabilities...)
 
 	return nil
 }
 
-func (m *MemoryStorage) GetResults(ctx context.Context, _ string) ([]model.ResultItem, error) {
-	return nil, nil
+func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.ResultItem, error) {
+	res := make([]model.ResultItem, len(m.vulnerabilities))
+	for i, v := range m.vulnerabilities {
+		res[i] = model.ResultItem{
+			ID:        i,
+			FileName:  m.filesByID[v.FileID].FileName,
+			Line:      v.Line,
+			QueryName: v.QueryName,
+			Severity:  v.Severity,
+		}
+	}
+
+	return res, nil
 }
 
 func NewMemoryStorage() *MemoryStorage {
 	return &MemoryStorage{
-		files: make(map[int]*model.FileMetadata),
+		allFiles:        make(model.FileMetadatas, 0),
+		filesByID:       make(map[int]*model.FileMetadata),
+		vulnerabilities: make([]model.Vulnerability, 0),
 	}
 }

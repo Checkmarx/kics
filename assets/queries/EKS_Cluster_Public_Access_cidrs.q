@@ -12,11 +12,10 @@ result [ getMetadata({"id" : input.All[i].CxId, "data" : [ input.All[i].resource
 }
 
 #default vaule of cidrs is "0.0.0.0/0"
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [ input.All[i].resource.aws_eks_cluster[_].vpc_config], "search": ["aws_eks_cluster", "public_access_cidrs"]}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [ input.All[i].resource.aws_eks_cluster[_].vpc_config], "search": ["aws_eks_cluster", name,  "vpc_config"]}) ] {
 	input.All[i].resource.aws_eks_cluster[name].vpc_config.endpoint_public_access = true
     not input.All[i].resource.aws_eks_cluster[name].vpc_config.public_access_cidrs
 }
-
 
 getMetadata(id) = res {
 	some cnt
