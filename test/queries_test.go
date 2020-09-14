@@ -224,6 +224,81 @@ var testCases = []testCase{
 		query: "IAM_Role_Allows_Public_Assume.q",
 		file:  "IAM_Role_Allows_Public_Assume_success.tf",
 	},
+	{
+		query: "IAM_Role_Assumed_by_All.q",
+		file:  "IAM_Role_Assumed_by_All.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     26,
+				severity: model.SeverityLow,
+				name:     "IAM role allows all principals to assume",
+			},
+		},
+	},
+	{
+		query: "IAM_Role_Assumed_by_All.q",
+		file:  "IAM_Role_Assumed_by_All_success.tf",
+	},
+	{
+		query: "Incorrect_Password_Policy_Experation.q",
+		file:  "Incorrect_Password_Policy_Experation.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     1,
+				severity: model.SeverityMedium,
+				name:     "Incorrect password policy expiration",
+			},
+		},
+	},
+	{
+		query: "Incorrect_Password_Policy_Experation.q",
+		file:  "Incorrect_Password_Policy_Experation_success.tf",
+	},
+	{
+		query: "Insufficient_Password_Length.q",
+		file:  "Insufficient_Password_Length.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     1,
+				severity: model.SeverityHigh,
+				name:     "Insufficient password length",
+			},
+		},
+	},
+	{
+		query: "Insufficient_Password_Length.q",
+		file:  "Insufficient_Password_Length_success.tf",
+	},
+	{
+		query: "Lamda_Hardcoded_AWS_Access_Key.q",
+		file:  "Lamda_Hardcoded_AWS_Access_Key.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     21,
+				severity: model.SeverityLow,
+				name:     "Lambda hardcoded AWS access key",
+			},
+		},
+	},
+	{
+		query: "Lamda_Hardcoded_AWS_Access_Key.q",
+		file:  "Lamda_Hardcoded_AWS_Access_Key_success.tf",
+	},
+	{
+		query: "Missing_Cluster_Log_Types.q",
+		file:  "Missing_Cluster_Log_Types.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     6,
+				severity: model.SeverityLow,
+				name:     "Missing cluster log types",
+			},
+		},
+	},
+	{
+		query: "Missing_Cluster_Log_Types.q",
+		file:  "Missing_Cluster_Log_Types_success.tf",
+	},
 }
 
 func TestQueries(t *testing.T) {
