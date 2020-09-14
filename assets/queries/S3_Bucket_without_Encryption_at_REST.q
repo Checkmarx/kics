@@ -6,8 +6,9 @@ package Cx
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
 
 #default of block_public_policy is false
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [input.All[i].resource.aws_s3_bucket[name]], "search": "aws_s3_bucket"}) ] {
-	not input.All[i].resource.aws_s3_bucket[name].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default 
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [bucket], "search": concat("+", ["aws_s3_bucket", name]) }) ] {
+	bucket := input.All[i].resource.aws_s3_bucket[name]
+	not bucket.server_side_encryption_configuration.rule.apply_server_side_encryption_by_default
 }
 
 

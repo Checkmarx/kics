@@ -6,17 +6,17 @@ package Cx
 #S3 bucket allows actions with any Principal
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol.Statement[idx]], "search": "*"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol.Statement[idx]], "search": concat("+", [r, name])}) ] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	policy := input.All[i].resource[pl[_]][name].policy
+	policy := input.All[i].resource[pl[r]][name].policy
     pol := json.unmarshal(policy)
     pol.Statement[idx].Effect = "Allow"
     pol.Statement[idx].Principal = "*"
 }
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol.Statement[idx]], "search": "*"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol.Statement[idx]], "search": concat("+", [r, name]) }) ] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	policy := input.All[i].resource[pl[_]][name].policy
+	policy := input.All[i].resource[pl[r]][name].policy
     pol := json.unmarshal(policy)
     pol.Statement[idx].Effect = "Allow"
     contains(pol.Statement[idx].Principal.AWS, "*")

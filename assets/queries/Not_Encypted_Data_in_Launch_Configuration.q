@@ -5,8 +5,8 @@ package Cx
 #data stored in the Launch configuration EBS is not securely encrypted
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [block], "search": "block_device"}) ] {
-	enc := input.All[i].resource.aws_launch_configuration[name][block].encrypted
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [block], "search": concat("+", ["aws_launch_configuration", name])}) ] {
+	enc := input.All[i].data.aws_launch_configuration[name][block].encrypted
     enc == false
     not contains(block, "ephemeral")
     contains(block, "block_device")
