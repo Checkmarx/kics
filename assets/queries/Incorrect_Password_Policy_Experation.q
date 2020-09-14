@@ -5,12 +5,12 @@ package Cx
 #No password exeration policy
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [expr], "search": "aws_iam_account_password_policy"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [expr], "search": concat("+", ["aws_iam_account_password_policy", name]) }) ] {
 	expr := input.All[i].resource.aws_iam_account_password_policy[name]
     not expr.max_password_age
 }
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [expr], "search": "aws_iam_account_password_policy"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [expr], "search": concat("+", ["aws_iam_account_password_policy", name]) }) ] {
 	expr := input.All[i].resource.aws_iam_account_password_policy[name]
     expr.max_password_age > 90
 }

@@ -5,12 +5,12 @@ package Cx
 #Unsafe Password length policy
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": "minimum_password_length"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": concat("+", ["aws_iam_account_password_policy", name]) }) ] {
 	pol := input.All[i].resource.aws_iam_account_password_policy[name]
     not pol.minimum_password_length    
 }
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": "minimum_password_length"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search":  concat("+", ["aws_iam_account_password_policy", name]) }) ] {
 	pol := input.All[i].resource.aws_iam_account_password_policy[name]
     pol.minimum_password_length < 8
 }
