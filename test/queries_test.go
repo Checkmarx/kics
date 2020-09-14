@@ -117,7 +117,6 @@ var testCases = []testCase{
 		query: "EKS_Cluster_Public_Access_cidrs.q",
 		file:  "Eks_Cluster_Public_Access_cidrs_success.tf",
 	},
-
 	{
 		query: "EKS_Cluster_Public_Access.q",
 		file:  "Eks_Cluster_Public_Access.tf",
@@ -133,7 +132,6 @@ var testCases = []testCase{
 		query: "EKS_Cluster_Public_Access.q",
 		file:  "Eks_Cluster_Public_Access_success.tf",
 	},
-
 	{
 		query: "Fully_Open_Ingress.q",
 		file:  "Fully_Open_Ingress.tf",
@@ -298,6 +296,246 @@ var testCases = []testCase{
 	{
 		query: "Missing_Cluster_Log_Types.q",
 		file:  "Missing_Cluster_Log_Types_success.tf",
+	},
+	{
+		query: "No_Password_Reuse_Prevention.q",
+		file:  "No_Password_Reuse_Prevention.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     3,
+				severity: model.SeverityMedium,
+				name:     "No password reuse prevention",
+			},
+		},
+	},
+	{
+		query: "No_Password_Reuse_Prevention.q",
+		file:  "No_Password_Reuse_Prevention_success.tf",
+	},
+	{
+		query: "Not_Encypted_Data_in_Launch_Configuration.q",
+		file:  "Not_Encypted_Data_in_Launch_Configuration.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     2,
+				severity: model.SeverityMedium,
+				name:     "Not encrypted data in launch configuration",
+			},
+		},
+	},
+	{
+		query: "Not_Encypted_Data_in_Launch_Configuration.q",
+		file:  "Not_Encypted_Data_in_Launch_Configuration_success.tf",
+	},
+	{
+		query: "Open_Access_to_Resources_through_API.q",
+		file:  "Open_Access_to_Resources_through_API.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     12,
+				severity: model.SeverityLow,
+				name:     "Open access to resources through API",
+			},
+		},
+	},
+	{
+		query: "Open_Access_to_Resources_through_API.q",
+		file:  "Open_Access_to_Resources_through_API_success.tf",
+	},
+	{
+		query: "Public_ECR_Policy.q",
+		file:  "Public_ECR_Policy.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityMedium,
+				name:     "Public ECR policy",
+			},
+		},
+	},
+	{
+		query: "Public_ECR_Policy.q",
+		file:  "Public_ECR_Policy_success.tf",
+	},
+	{
+		query: "S3_Bucket_with_Ignore_Public_ACL.q",
+		file:  "S3_Bucket_with_Ignore_Public_ACL.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityLow,
+				name:     "S3 bucket with ignore public ACL",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_with_Ignore_Public_ACL.q",
+		file:  "S3_Bucket_with_Ignore_Public_ACL_success.tf",
+	},
+	{
+		query: "S3_Bucket_with_Public_ACL.q",
+		file:  "S3_Bucket_with_Public_ACL.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityMedium,
+				name:     "S3 bucket allows public ACL",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_with_Public_ACL.q",
+		file:  "S3_Bucket_with_Public_ACL_success.tf",
+	},
+	{
+		query: "S3_Bucket_with_Public_Policy.q",
+		file:  "S3_Bucket_with_Public_Policy.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket allows public policy",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_with_Public_Policy.q",
+		file:  "S3_Bucket_with_Public_Policy_success.tf",
+	},
+	{
+		query: "S3_Bucket_with_any_Principal.q",
+		file:  "S3_Bucket_with_any_Principal.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket with any principal",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_with_any_Principal.q",
+		file:  "S3_Bucket_with_any_Principal_success.tf",
+	},
+	{
+		query: "S3_Bucket_without_Enabled_MFA_Delete.q",
+		file:  "S3_Bucket_without_Enabled_MFA_Delete.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     2,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without enabled MFA Delete",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_without_Enabled_MFA_Delete.q",
+		file:  "S3_Bucket_without_Enabled_MFA_Delete_success.tf",
+	},
+	{
+		query: "S3_Bucket_without_Encryption_at_REST.q",
+		file:  "S3_Bucket_without_Encryption_at_REST.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     2,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without encryption at REST",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_without_Encryption_at_REST.q",
+		file:  "S3_Bucket_without_Encryption_at_REST_success.tf",
+	},
+	{
+		query: "S3_Bucket_without_Logging.q",
+		file:  "S3_Bucket_without_Logging.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     2,
+				severity: model.SeverityLow,
+				name:     "S3 no logging",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_without_Logging.q",
+		file:  "S3_Bucket_without_Logging_success.tf",
+	},
+	{
+		query: "S3_Bucket_without_Restriction_of_Public_Bucket.q",
+		file:  "S3_Bucket_without_Restriction_of_Public_Bucket.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without restriction of public buckety",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_without_Restriction_of_Public_Bucket.q",
+		file:  "S3_Bucket_without_Restriction_of_Public_Bucket_success.tf",
+	},
+	{
+		query: "S3_Bucket_without_Versioning.q",
+		file:  "S3_Bucket_without_Versioning.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     2,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without versioning",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_without_Versioning.q",
+		file:  "S3_Bucket_without_Versioning_success.tf",
+	},
+	{
+		query: "S3_Bucket_wth_Public_RW.q",
+		file:  "S3_Bucket_wth_Public_RW.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     2,
+				severity: model.SeverityInfo,
+				name:     "S3 bucket with public RW access",
+			},
+		},
+	},
+	{
+		query: "S3_Bucket_wth_Public_RW.q",
+		file:  "S3_Bucket_wth_Public_RW_success.tf",
+	},
+	{
+		query: "SQS_Policy_with_ALL_Actions.q",
+		file:  "SQS_Policy_with_ALL_Actions.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     5,
+				severity: model.SeverityMedium,
+				name:     "SQS policy allows ALL (*) actions",
+			},
+		},
+	},
+	{
+		query: "SQS_Policy_with_ALL_Actions.q",
+		file:  "SQS_Policy_with_ALL_Actions_success.tf",
+	},
+	{
+		query: "Unchangeable_Password.q",
+		file:  "Unchangeable_Password.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     6,
+				severity: model.SeverityMedium,
+				name:     "Unchangeable password",
+			},
+		},
+	},
+	{
+		query: "Unchangeable_Password.q",
+		file:  "Unchangeable_Password_success.tf",
 	},
 }
 

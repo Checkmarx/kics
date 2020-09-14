@@ -113,6 +113,11 @@ func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMe
 		return errors.Wrap(err, "failed to evaluate query")
 	}
 
+	log.Trace().
+		Str("scanID", scanID).
+		Str("query", query.metadata.FileName).
+		Msgf("execution result %+v", results)
+
 	if len(results) == 0 {
 		return ErrNoResult
 	}

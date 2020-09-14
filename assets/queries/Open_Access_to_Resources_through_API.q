@@ -5,7 +5,7 @@ package Cx
 #Open access to back-end resources through API
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [], "search": "http_method"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [], "search": concat("+", ["aws_api_gateway_method", name])}) ] {
 	input.All[i].resource.aws_api_gateway_method[name].authorization = "NONE"
     input.All[i].resource.aws_api_gateway_method[name].http_method != "OPTIONS"
 }
