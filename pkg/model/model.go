@@ -75,7 +75,7 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 }
 
 func (m FileMetadatas) CombineToJSON() string {
-	retVal := "{\"All\"   :   ["
+	retVal := "{\"document\"   :   ["
 	if len(m) > 0 {
 		for i, cur := range m {
 			cJSON := strings.TrimSpace(cur.JSONData)
@@ -83,8 +83,8 @@ func (m FileMetadatas) CombineToJSON() string {
 				continue
 			}
 
-			curJSON := "{\"CxId\": \"" + strconv.Itoa(cur.ID) + "\",\n"
-			curJSON += "\"CxFile\": \"" + cur.FileName + "\",\n"
+			curJSON := "{\"id\": \"" + strconv.Itoa(cur.ID) + "\",\n"
+			curJSON += "\"file\": \"" + cur.FileName + "\",\n"
 			curJSON += cJSON[1:]
 
 			retVal += curJSON + "\n"

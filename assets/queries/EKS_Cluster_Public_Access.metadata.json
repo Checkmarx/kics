@@ -1,0 +1,8 @@
+{
+	"id": 1,
+	"name": "EKS cluster public access",
+    "severity": "Medium",
+    "category": null,
+    "descriptionText": "Amazon EKS public endpoint is enables",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster"
+}

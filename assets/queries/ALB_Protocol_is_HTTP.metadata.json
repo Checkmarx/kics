@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "ALB protocol is HTTP",
+  "severity": "High",
+  "category": null,
+  "descriptionText": "AWS Application Load Balancer (alb) should not listen on HTTP",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener"
+}

@@ -1,0 +1,8 @@
+{
+	"id": 1,
+	"name": "S3 bucket without versioning",
+    "severity": "High",
+    "category": null,
+    "descriptionText": "S3 bucket without versioning",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning"
+}
