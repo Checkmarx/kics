@@ -56,11 +56,7 @@ func ReadQuery(source, queryName string) (model.QueryMetadata, error) {
 		return model.QueryMetadata{}, errors.Wrapf(err, "metadata not found %s", metadataFileName)
 	}
 
-	formattedMetadata, err := formatMetadata(string(metadataContent))
-	if err != nil {
-		return model.QueryMetadata{}, errors.Wrap(err, "failed to format metadata")
-	}
-
+	formattedMetadata := formatMetadata(string(metadataContent))
 	queryContentWithMetadata := strings.ReplaceAll(string(queryContent), metadataPlaceholder, formattedMetadata)
 
 	return model.QueryMetadata{
@@ -70,10 +66,10 @@ func ReadQuery(source, queryName string) (model.QueryMetadata, error) {
 	}, nil
 }
 
-func formatMetadata(content string) (string, error) {
+func formatMetadata(content string) string {
 	lines := strings.Split(content, "\n")
 
-	return strings.Join(lines[1:len(lines)-1], "\n"), nil
+	return strings.Join(lines[1:len(lines)-1], "\n")
 }
 
 func getQueryFilter(query string) string {
