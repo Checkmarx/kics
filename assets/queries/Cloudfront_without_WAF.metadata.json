@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "Cloudfront without WAF",
-    "severity": "Low",
-    "category": null,
-    "descriptionText": "CloudFront Distribution without WAF enabled",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution"
+  "id": 1,
+  "name": "Cloudfront without WAF",
+  "severity": "Low",
+  "category": null,
+  "descriptionText": "CloudFront Distribution without WAF enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution"
 }

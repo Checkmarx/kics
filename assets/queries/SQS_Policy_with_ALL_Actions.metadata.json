@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "SQS policy allows ALL (*) actions",
-    "severity": "Medium",
-    "category": null,
-    "descriptionText": "SQS policy allows ALL (*) actions",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy"
+  "id": 1,
+  "name": "SQS policy allows ALL (*) actions",
+  "severity": "Medium",
+  "category": null,
+  "descriptionText": "SQS policy allows ALL (*) actions",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy"
 }

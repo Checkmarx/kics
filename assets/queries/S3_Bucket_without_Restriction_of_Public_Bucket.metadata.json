@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "S3 bucket without restriction of public buckety",
-    "severity": "High",
-    "category": null,
-    "descriptionText": "S3 bucket without restriction of public bucket",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block"
+  "id": 1,
+  "name": "S3 bucket without restriction of public buckety",
+  "severity": "High",
+  "category": null,
+  "descriptionText": "S3 bucket without restriction of public bucket",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block"
 }
