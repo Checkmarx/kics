@@ -6,12 +6,12 @@ package Cx
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
 
 #default of block_public_acls is false
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pubACL], "search": "aws_s3_bucket_public_access_block"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pubACL], "search": concat("+", ["aws_s3_bucket_public_access_block", name]) }) ] {
 	pubACL := input.All[i].resource.aws_s3_bucket_public_access_block[name]
     not pubACL.block_public_acls
 }
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pubACL], "search": "aws_s3_bucket_public_access_block"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pubACL], "search": concat("+", ["aws_s3_bucket_public_access_block", name]) }) ] {
 	pubACL := input.All[i].resource.aws_s3_bucket_public_access_block[name]
     pubACL.block_public_acls == false
 }

@@ -6,7 +6,7 @@ package Cx
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy
 #allow_users_to_change_password default is true
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": "allow_users_to_change_password"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": concat("+", ["aws_iam_account_password_policy", name]) }) ] {
 	pol := input.All[i].resource.aws_iam_account_password_policy[name]
     pol.allow_users_to_change_password = false
 }

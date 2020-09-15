@@ -5,8 +5,8 @@ package Cx
 #Public ECR policy
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": "Principal"}) ] {
-	pol := input.All[i].resource.aws_ecr_repository_policy[_].policy
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": concat("+", ["aws_ecr_repository_policy", name])}) ] {
+	pol := input.All[i].resource.aws_ecr_repository_policy[name].policy
     re_match("\"Principal\"\\s*:\\s*\"*\"", pol)
 }
 

@@ -7,7 +7,7 @@ package Cx
 
 
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pubACL], "search": "aws_s3_bucket_public_access_block"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pubACL], "search": concat("+", ["aws_s3_bucket_public_access_block", name]) }) ] {
 	pubACL := input.All[i].resource.aws_s3_bucket_public_access_block[name]
     pubACL.ignore_public_acls == true
 }
