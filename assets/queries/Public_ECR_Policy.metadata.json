@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "Public ECR policy",
-    "severity": "Medium",
-    "category": null,
-    "descriptionText": "Public ECR policy",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy"
+  "id": 1,
+  "name": "Public ECR policy",
+  "severity": "Medium",
+  "category": null,
+  "descriptionText": "Public ECR policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy"
 }

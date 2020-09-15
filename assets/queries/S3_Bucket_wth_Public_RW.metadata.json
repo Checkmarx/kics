@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "S3 bucket with public RW access",
-    "severity": "Info",
-    "category": null,
-    "descriptionText": "S3 bucket with public READ/WRITE access",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete"
+  "id": 1,
+  "name": "S3 bucket with public RW access",
+  "severity": "Info",
+  "category": null,
+  "descriptionText": "S3 bucket with public READ/WRITE access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete"
 }

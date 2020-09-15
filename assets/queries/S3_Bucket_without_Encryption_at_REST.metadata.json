@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "S3 bucket without encryption at REST",
-    "severity": "High",
-    "category": null,
-    "descriptionText": "S3 bucket without encryption at REST",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+  "id": 1,
+  "name": "S3 bucket without encryption at REST",
+  "severity": "High",
+  "category": null,
+  "descriptionText": "S3 bucket without encryption at REST",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
 }

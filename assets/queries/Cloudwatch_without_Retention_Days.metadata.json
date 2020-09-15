@@ -1,8 +1,8 @@
 {
-	"id": 1,
-	"name": "Cloudwatch without retention days",
-    "severity": "Low",
-    "category": null,
-    "descriptionText": "Cloudwatch log groups without retention days specified",
-    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group"
+  "id": 1,
+  "name": "Cloudwatch without retention days",
+  "severity": "Low",
+  "category": null,
+  "descriptionText": "Cloudwatch log groups without retention days specified",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group"
 }
