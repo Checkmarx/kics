@@ -1,0 +1,8 @@
+{
+	"id": 1,
+	"name": "Open access to resources through API",
+    "severity": "Low",
+    "category": null,
+    "descriptionText": "Open access to back-end resources through API",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method"
+}

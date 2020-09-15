@@ -41,6 +41,8 @@ type Inspector struct {
 	storage FilesStorage
 }
 
+const query = `result = data.Cx.CxPolicy`
+
 func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorage) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
@@ -53,7 +55,7 @@ func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorag
 		case <-ctx.Done():
 			return nil, nil
 		default:
-			opaQuery, err := rego.New(rego.Query("result = data.Cx.result"), rego.Module(metadata.FileName, metadata.Content)).PrepareForEval(ctx)
+			opaQuery, err := rego.New(rego.Query(query), rego.Module(metadata.FileName, metadata.Content)).PrepareForEval(ctx)
 			if err != nil {
 				log.
 					Err(err).
@@ -158,7 +160,7 @@ func (c *Inspector) saveResultIfExists(
 			return errors.Wrap(err, "failed to marshall query output")
 		}
 
-		fileID, err := mapKeyToString(ctx, vOjb, "id")
+		fileID, err := mapKeyToString(ctx, vOjb, "fileId")
 		if err != nil {
 			return errors.Wrap(err, "failed to recognize file id")
 		}
@@ -175,7 +177,7 @@ func (c *Inspector) saveResultIfExists(
 			Logger()
 
 		line := UndetectedVulnerabilityLine
-		if searchInfo, ok := vOjb["search"]; ok {
+		if searchInfo, ok := vOjb["lineSearchKey"]; ok {
 			line = c.detectLine(ctx, scanID, &file, searchInfo)
 		} else {
 			logWithFields.Info().Msg("saving result. failed to detect line")
