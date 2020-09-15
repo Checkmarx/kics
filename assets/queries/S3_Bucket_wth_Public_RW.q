@@ -6,18 +6,18 @@ package Cx
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete
 
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [acl], "search": "aws_s3_bucket"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [acl], "search": concat("+", ["aws_s3_bucket", name]) }) ] {
 	acl := input.All[i].resource.aws_s3_bucket[name].acl
     acl == "public-read"
 }
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [acl], "search": "aws_s3_bucket"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [acl], "search": concat("+", ["aws_s3_bucket", name]) }) ] {
 	acl := input.All[i].resource.aws_s3_bucket[name].acl
     acl == "public-read-write"
 }
 
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [acl], "search": "aws_s3_bucket"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [acl], "search": concat("+", ["aws_s3_bucket", name]) }) ] {
 	acl := input.All[i].resource.aws_s3_bucket[name].acl
     acl == "website"
 }

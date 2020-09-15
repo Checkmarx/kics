@@ -3,12 +3,12 @@ package Cx
 #CxPragma "$.resource.aws_iam_account_password_policy"
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": "aws_iam_account_password_policy"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": concat("+", ["aws_iam_account_password_policy", name])}) ] {
 	pol := input.All[i].resource.aws_iam_account_password_policy[name]
-    not pol.password_reuse_prevention    
+    not pol.password_reuse_prevention
 }
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": "aws_iam_account_password_policy"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [pol], "search": concat("+", ["aws_iam_account_password_policy", name])}) ] {
 	pol := input.All[i].resource.aws_iam_account_password_policy[name]
     pol.password_reuse_prevention = false
 }

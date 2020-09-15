@@ -5,7 +5,7 @@ package Cx
 #IAM role allows all services or principals to assume it
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
 
-result [ getMetadata({"id" : input.All[i].CxId, "data" : [aws], "search": "arn:aws:iam::"}) ] {
+result [ getMetadata({"id" : input.All[i].CxId, "data" : [aws], "search": concat("+", ["aws_iam_role", name])}) ] {
 	policy := input.All[i].resource.aws_iam_role[name].assume_role_policy
     re_match("arn:aws:iam::", policy)
     out := json.unmarshal(policy)
