@@ -28,7 +28,7 @@ CxPolicy [ result ] {
                 "foundKye": 		pubACL,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket_public_access_block", name]),
+                "lineSearchKey": 	[concat("+", ["aws_s3_bucket_public_access_block", name]), "block_public_policy"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"block_public_policy",
                 "keyExpectedValue": true,

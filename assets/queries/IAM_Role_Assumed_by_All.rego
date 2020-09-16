@@ -14,7 +14,7 @@ CxPolicy [ result ] {
                 "foundKye": 		aws,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_role", name]),
+                "lineSearchKey": 	[concat("+", ["aws_iam_role", name]), "assume_role_policy", ":root"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"assume_role_policy",
                 "keyExpectedValue": null,

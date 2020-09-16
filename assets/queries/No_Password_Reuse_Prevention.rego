@@ -27,7 +27,7 @@ CxPolicy [ result ] {
                 "foundKye": 		pol,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
+                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "password_reuse_prevention"],
                 "issueType":		"MissingAttribute",
                 "keyName":			"password_reuse_prevention",
                 "keyExpectedValue": 5,

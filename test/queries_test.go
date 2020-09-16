@@ -137,7 +137,7 @@ var testCases = []testCase{
 		file:  "Fully_Open_Ingress.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     91,
+				line:     95,
 				severity: model.SeverityHigh,
 				name:     "Fully open Ingress",
 			},
@@ -197,7 +197,7 @@ var testCases = []testCase{
 		file:  "IAM_Policies_with_Full_Pivileges.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     1,
+				line:     11,
 				severity: model.SeverityMedium,
 				name:     "IAM policies with full privileges",
 			},
@@ -227,7 +227,7 @@ var testCases = []testCase{
 		file:  "IAM_Role_Assumed_by_All.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     26,
+				line:     37,
 				severity: model.SeverityLow,
 				name:     "IAM role allows all principals to assume",
 			},
@@ -272,7 +272,7 @@ var testCases = []testCase{
 		file:  "Lamda_Hardcoded_AWS_Access_Key.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     21,
+				line:     35,
 				severity: model.SeverityLow,
 				name:     "Lambda hardcoded AWS access key",
 			},
@@ -287,7 +287,7 @@ var testCases = []testCase{
 		file:  "Missing_Cluster_Log_Types.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     6,
+				line:     9,
 				severity: model.SeverityLow,
 				name:     "Missing cluster log types",
 			},
@@ -302,7 +302,7 @@ var testCases = []testCase{
 		file:  "No_Password_Reuse_Prevention.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     3,
+				line:     10,
 				severity: model.SeverityMedium,
 				name:     "No password reuse prevention",
 			},
@@ -317,7 +317,7 @@ var testCases = []testCase{
 		file:  "Not_Encypted_Data_in_Launch_Configuration.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     2,
+				line:     6,
 				severity: model.SeverityMedium,
 				name:     "Not encrypted data in launch configuration",
 			},
@@ -332,7 +332,7 @@ var testCases = []testCase{
 		file:  "Open_Access_to_Resources_through_API.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     12,
+				line:     16,
 				severity: model.SeverityLow,
 				name:     "Open access to resources through API",
 			},
@@ -347,7 +347,7 @@ var testCases = []testCase{
 		file:  "Public_ECR_Policy.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     8,
 				severity: model.SeverityMedium,
 				name:     "Public ECR policy",
 			},
@@ -362,7 +362,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_with_Ignore_Public_ACL.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     10,
 				severity: model.SeverityLow,
 				name:     "S3 bucket with ignore public ACL",
 			},
@@ -377,7 +377,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_with_Public_ACL.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     8,
 				severity: model.SeverityMedium,
 				name:     "S3 bucket allows public ACL",
 			},
@@ -392,7 +392,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_with_Public_Policy.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     9,
 				severity: model.SeverityHigh,
 				name:     "S3 bucket allows public policy",
 			},
@@ -407,7 +407,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_with_any_Principal.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     17,
 				severity: model.SeverityHigh,
 				name:     "S3 bucket with any principal",
 			},
@@ -422,7 +422,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_without_Enabled_MFA_Delete.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     2,
+				line:     12,
 				severity: model.SeverityHigh,
 				name:     "S3 bucket without enabled MFA Delete",
 			},
@@ -482,7 +482,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_without_Versioning.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     2,
+				line:     12,
 				severity: model.SeverityHigh,
 				name:     "S3 bucket without versioning",
 			},
@@ -497,7 +497,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_wth_Public_RW.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     2,
+				line:     4,
 				severity: model.SeverityInfo,
 				name:     "S3 bucket with public RW access",
 			},
@@ -512,7 +512,7 @@ var testCases = []testCase{
 		file:  "SQS_Policy_with_ALL_Actions.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     17,
 				severity: model.SeverityMedium,
 				name:     "SQS policy allows ALL (*) actions",
 			},
@@ -527,7 +527,7 @@ var testCases = []testCase{
 		file:  "Unchangeable_Password.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     6,
+				line:     12,
 				severity: model.SeverityMedium,
 				name:     "Unchangeable password",
 			},
