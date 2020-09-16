@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "foundKye": 		pol,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
+                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "allow_users_to_change_password"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"allow_users_to_change_password",
                 "keyExpectedValue": true,

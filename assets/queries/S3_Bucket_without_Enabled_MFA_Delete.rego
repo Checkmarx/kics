@@ -28,7 +28,7 @@ CxPolicy [ result ] {
                 "foundKye": 		ver,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
+                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "mfa_delete"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"versioning.mfa_delete",
                 "keyExpectedValue": true,

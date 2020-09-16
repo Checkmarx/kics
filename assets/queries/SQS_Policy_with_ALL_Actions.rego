@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "foundKye": 		out,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_sqs_queue_policy", name]),
+                "lineSearchKey": 	[concat("+", ["aws_sqs_queue_policy", name]), "Action"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"policy",
                 "keyExpectedValue": null,

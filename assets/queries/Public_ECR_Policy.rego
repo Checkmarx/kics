@@ -10,7 +10,7 @@ CxPolicy [ result ] {
                 "foundKye": 		pol,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_ecr_repository_policy", name]),
+                "lineSearchKey": 	[concat("+", ["aws_ecr_repository_policy", name]), "policy"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"policy",
                 "keyExpectedValue": null,

@@ -27,7 +27,7 @@ CxPolicy [ result ] {
                 "foundKye": 		expr,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
+                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "max_password_age"],
                 "issueType":		"IncorrectValue",
                 "keyName":			"max_password_age",
                 "keyExpectedValue": 90,
