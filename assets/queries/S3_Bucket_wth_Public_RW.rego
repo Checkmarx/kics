@@ -11,10 +11,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"acl",
+                "keyExpectedValue": "private",
+                "keyActualValue": 	"public-read",
                 #{metadata}
               }
 }
@@ -28,10 +28,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"acl",
+                "keyExpectedValue": "private",
+                "keyActualValue": 	"public-read-write",
                 #{metadata}
               }
 }
@@ -45,10 +45,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"acl",
+                "keyExpectedValue": "private",
+                "keyActualValue": 	"website",
                 #{metadata}
               }
 }

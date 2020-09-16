@@ -16,7 +16,7 @@ CxPolicy [ result ] {
                 "lineSearchKey": 	concat("+", [lb[idx], name]),
                 "issueType":		"MissingAttribute",
                 "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyExpectedValue": "HTTPS",
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -35,7 +35,7 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", [lb[idx], name]), "default_action", "redirect", "protocol"],
                 "issueType":		"IncorrectValue",
-                "keyName":			"protocol",
+                "keyName":			"default_action.redirect.protocol",
                 "keyExpectedValue": "HTTPS",
                 "keyActualValue": 	resource.default_action.redirect.protocol,
                 #{metadata}

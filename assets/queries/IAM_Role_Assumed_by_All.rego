@@ -15,9 +15,9 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_iam_role", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "issueType":		"IncorrectValue",
+                "keyName":			"assume_role_policy",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

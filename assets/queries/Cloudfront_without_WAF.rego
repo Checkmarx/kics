@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_cloudfront_distribution", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"web_acl_id",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

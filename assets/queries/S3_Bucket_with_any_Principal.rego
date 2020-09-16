@@ -14,10 +14,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", [r, name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"policy",
+                "keyExpectedValue": null,
+                "keyActualValue": 	"*",
                 #{metadata}
               }
 }
@@ -35,8 +35,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", [r, name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"policy",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

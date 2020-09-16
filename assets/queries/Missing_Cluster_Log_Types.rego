@@ -13,9 +13,9 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_eks_cluster", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "issueType":		"IncorrectValue",
+                "keyName":			"enabled_cluster_log_types",
+                "keyExpectedValue": "api, audit, authenticator, controllerManager, scheduler",
                 "keyActualValue": 	null,
                 #{metadata}
               }
