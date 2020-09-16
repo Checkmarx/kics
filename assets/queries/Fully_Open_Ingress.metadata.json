@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Fully open Ingress",
+  "severity": "High",
+  "category": null,
+  "descriptionText": "Security groups allow ingress from 0.0.0.0:0",
+  "descriptionUrl": [
+    "https://www.terraform.io/docs/providers/aws/r/security_group.html",
+    "https://www.terraform.io/docs/providers/aws/r/security_group_rule.html"
+  ]
+}

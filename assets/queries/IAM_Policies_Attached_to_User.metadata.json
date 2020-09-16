@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "IAM policies attached to user",
+  "severity": "Low",
+  "category": null,
+  "descriptionText": "IAM policies should be attached only to groups or roles",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment"
+}

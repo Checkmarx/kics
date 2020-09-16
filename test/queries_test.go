@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path"
@@ -10,6 +9,7 @@ import (
 
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/mock"
+	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/golang/mock/gomock"
@@ -33,7 +33,7 @@ type testCase struct {
 
 var testCases = []testCase{
 	{
-		query: "ALB_Protocol_is_HTTP.q",
+		query: "ALB_Protocol_is_HTTP.rego",
 		file:  "ALB_protocol_is_HTTP.tf",
 		expectedResults: []expectedResult{
 			{
@@ -49,11 +49,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "ALB_Protocol_is_HTTP.q",
+		query: "ALB_Protocol_is_HTTP.rego",
 		file:  "ALB_protocol_is_HTTP_success.tf",
 	},
 	{
-		query: "Cloudfront_Configuration_Allow_HTTP.q",
+		query: "Cloudfront_Configuration_Allow_HTTP.rego",
 		file:  "Cloudfront_configuration_allow_HTTP.tf",
 		expectedResults: []expectedResult{
 			{
@@ -69,11 +69,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Cloudfront_Configuration_Allow_HTTP.q",
+		query: "Cloudfront_Configuration_Allow_HTTP.rego",
 		file:  "Cloudfront_configuration_allow_HTTP_success.tf",
 	},
 	{
-		query: "Cloudwatch_without_Retention_Days.q",
+		query: "Cloudwatch_without_Retention_Days.rego",
 		file:  "Cloudwatch_without_retention_days.tf",
 		expectedResults: []expectedResult{
 			{
@@ -84,11 +84,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Cloudwatch_without_Retention_Days.q",
+		query: "Cloudwatch_without_Retention_Days.rego",
 		file:  "Cloudwatch_without_retention_days_success.tf",
 	},
 	{
-		query: "Cloudfront_without_WAF.q",
+		query: "Cloudfront_without_WAF.rego",
 		file:  "Cloudfront_without_WAF.tf",
 		expectedResults: []expectedResult{
 			{
@@ -99,11 +99,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Cloudfront_without_WAF.q",
+		query: "Cloudfront_without_WAF.rego",
 		file:  "Cloudfront_without_WAF_success.tf",
 	},
 	{
-		query: "EKS_Cluster_Public_Access_cidrs.q",
+		query: "EKS_Cluster_Public_Access_cidrs.rego",
 		file:  "Eks_Cluster_Public_Access_cidrs.tf",
 		expectedResults: []expectedResult{
 			{
@@ -114,11 +114,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "EKS_Cluster_Public_Access_cidrs.q",
+		query: "EKS_Cluster_Public_Access_cidrs.rego",
 		file:  "Eks_Cluster_Public_Access_cidrs_success.tf",
 	},
 	{
-		query: "EKS_Cluster_Public_Access.q",
+		query: "EKS_Cluster_Public_Access.rego",
 		file:  "Eks_Cluster_Public_Access.tf",
 		expectedResults: []expectedResult{
 			{
@@ -129,11 +129,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "EKS_Cluster_Public_Access.q",
+		query: "EKS_Cluster_Public_Access.rego",
 		file:  "Eks_Cluster_Public_Access_success.tf",
 	},
 	{
-		query: "Fully_Open_Ingress.q",
+		query: "Fully_Open_Ingress.rego",
 		file:  "Fully_Open_Ingress.tf",
 		expectedResults: []expectedResult{
 			{
@@ -144,11 +144,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Fully_Open_Ingress.q",
+		query: "Fully_Open_Ingress.rego",
 		file:  "Fully_Open_Ingress_success.tf",
 	},
 	{
-		query: "Hard_Coded_AWS_Access_Key.q",
+		query: "Hard_Coded_AWS_Access_Key.rego",
 		file:  "Hard_Coded_AWS_Access_Key.tf",
 		expectedResults: []expectedResult{
 			{
@@ -159,11 +159,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Hard_Coded_AWS_Access_Key.q",
+		query: "Hard_Coded_AWS_Access_Key.rego",
 		file:  "Hard_Coded_AWS_Access_Key_success.tf",
 	},
 	{
-		query: "IAM_Policies_Allow_All.q",
+		query: "IAM_Policies_Allow_All.rego",
 		file:  "IAM_policies_allow_all.tf",
 		expectedResults: []expectedResult{
 			{
@@ -174,11 +174,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_Policies_Allow_All.q",
+		query: "IAM_Policies_Allow_All.rego",
 		file:  "IAM_policies_allow_all_success.tf",
 	},
 	{
-		query: "IAM_Policies_Attached_to_User.q",
+		query: "IAM_Policies_Attached_to_User.rego",
 		file:  "IAM_policies_attached_to_User.tf",
 		expectedResults: []expectedResult{
 			{
@@ -189,11 +189,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_Policies_Attached_to_User.q",
+		query: "IAM_Policies_Attached_to_User.rego",
 		file:  "IAM_policies_attached_to_User_success.tf",
 	},
 	{
-		query: "IAM_Policies_with_Full_Pivileges.q",
+		query: "IAM_Policies_with_Full_Pivileges.rego",
 		file:  "IAM_Policies_with_Full_Pivileges.tf",
 		expectedResults: []expectedResult{
 			{
@@ -204,11 +204,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_Policies_with_Full_Pivileges.q",
+		query: "IAM_Policies_with_Full_Pivileges.rego",
 		file:  "IAM_Policies_with_Full_Pivileges_success.tf",
 	},
 	{
-		query: "IAM_Role_Allows_Public_Assume.q",
+		query: "IAM_Role_Allows_Public_Assume.rego",
 		file:  "IAM_Role_Allows_Public_Assume.tf",
 		expectedResults: []expectedResult{
 			{
@@ -219,11 +219,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_Role_Allows_Public_Assume.q",
+		query: "IAM_Role_Allows_Public_Assume.rego",
 		file:  "IAM_Role_Allows_Public_Assume_success.tf",
 	},
 	{
-		query: "IAM_Role_Assumed_by_All.q",
+		query: "IAM_Role_Assumed_by_All.rego",
 		file:  "IAM_Role_Assumed_by_All.tf",
 		expectedResults: []expectedResult{
 			{
@@ -234,11 +234,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "IAM_Role_Assumed_by_All.q",
+		query: "IAM_Role_Assumed_by_All.rego",
 		file:  "IAM_Role_Assumed_by_All_success.tf",
 	},
 	{
-		query: "Incorrect_Password_Policy_Experation.q",
+		query: "Incorrect_Password_Policy_Experation.rego",
 		file:  "Incorrect_Password_Policy_Experation.tf",
 		expectedResults: []expectedResult{
 			{
@@ -249,11 +249,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Incorrect_Password_Policy_Experation.q",
+		query: "Incorrect_Password_Policy_Experation.rego",
 		file:  "Incorrect_Password_Policy_Experation_success.tf",
 	},
 	{
-		query: "Insufficient_Password_Length.q",
+		query: "Insufficient_Password_Length.rego",
 		file:  "Insufficient_Password_Length.tf",
 		expectedResults: []expectedResult{
 			{
@@ -264,11 +264,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Insufficient_Password_Length.q",
+		query: "Insufficient_Password_Length.rego",
 		file:  "Insufficient_Password_Length_success.tf",
 	},
 	{
-		query: "Lamda_Hardcoded_AWS_Access_Key.q",
+		query: "Lamda_Hardcoded_AWS_Access_Key.rego",
 		file:  "Lamda_Hardcoded_AWS_Access_Key.tf",
 		expectedResults: []expectedResult{
 			{
@@ -279,11 +279,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Lamda_Hardcoded_AWS_Access_Key.q",
+		query: "Lamda_Hardcoded_AWS_Access_Key.rego",
 		file:  "Lamda_Hardcoded_AWS_Access_Key_success.tf",
 	},
 	{
-		query: "Missing_Cluster_Log_Types.q",
+		query: "Missing_Cluster_Log_Types.rego",
 		file:  "Missing_Cluster_Log_Types.tf",
 		expectedResults: []expectedResult{
 			{
@@ -294,11 +294,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Missing_Cluster_Log_Types.q",
+		query: "Missing_Cluster_Log_Types.rego",
 		file:  "Missing_Cluster_Log_Types_success.tf",
 	},
 	{
-		query: "No_Password_Reuse_Prevention.q",
+		query: "No_Password_Reuse_Prevention.rego",
 		file:  "No_Password_Reuse_Prevention.tf",
 		expectedResults: []expectedResult{
 			{
@@ -309,11 +309,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "No_Password_Reuse_Prevention.q",
+		query: "No_Password_Reuse_Prevention.rego",
 		file:  "No_Password_Reuse_Prevention_success.tf",
 	},
 	{
-		query: "Not_Encypted_Data_in_Launch_Configuration.q",
+		query: "Not_Encypted_Data_in_Launch_Configuration.rego",
 		file:  "Not_Encypted_Data_in_Launch_Configuration.tf",
 		expectedResults: []expectedResult{
 			{
@@ -324,11 +324,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Not_Encypted_Data_in_Launch_Configuration.q",
+		query: "Not_Encypted_Data_in_Launch_Configuration.rego",
 		file:  "Not_Encypted_Data_in_Launch_Configuration_success.tf",
 	},
 	{
-		query: "Open_Access_to_Resources_through_API.q",
+		query: "Open_Access_to_Resources_through_API.rego",
 		file:  "Open_Access_to_Resources_through_API.tf",
 		expectedResults: []expectedResult{
 			{
@@ -339,11 +339,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Open_Access_to_Resources_through_API.q",
+		query: "Open_Access_to_Resources_through_API.rego",
 		file:  "Open_Access_to_Resources_through_API_success.tf",
 	},
 	{
-		query: "Public_ECR_Policy.q",
+		query: "Public_ECR_Policy.rego",
 		file:  "Public_ECR_Policy.tf",
 		expectedResults: []expectedResult{
 			{
@@ -354,11 +354,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Public_ECR_Policy.q",
+		query: "Public_ECR_Policy.rego",
 		file:  "Public_ECR_Policy_success.tf",
 	},
 	{
-		query: "S3_Bucket_with_Ignore_Public_ACL.q",
+		query: "S3_Bucket_with_Ignore_Public_ACL.rego",
 		file:  "S3_Bucket_with_Ignore_Public_ACL.tf",
 		expectedResults: []expectedResult{
 			{
@@ -369,11 +369,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_with_Ignore_Public_ACL.q",
+		query: "S3_Bucket_with_Ignore_Public_ACL.rego",
 		file:  "S3_Bucket_with_Ignore_Public_ACL_success.tf",
 	},
 	{
-		query: "S3_Bucket_with_Public_ACL.q",
+		query: "S3_Bucket_with_Public_ACL.rego",
 		file:  "S3_Bucket_with_Public_ACL.tf",
 		expectedResults: []expectedResult{
 			{
@@ -384,11 +384,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_with_Public_ACL.q",
+		query: "S3_Bucket_with_Public_ACL.rego",
 		file:  "S3_Bucket_with_Public_ACL_success.tf",
 	},
 	{
-		query: "S3_Bucket_with_Public_Policy.q",
+		query: "S3_Bucket_with_Public_Policy.rego",
 		file:  "S3_Bucket_with_Public_Policy.tf",
 		expectedResults: []expectedResult{
 			{
@@ -399,11 +399,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_with_Public_Policy.q",
+		query: "S3_Bucket_with_Public_Policy.rego",
 		file:  "S3_Bucket_with_Public_Policy_success.tf",
 	},
 	{
-		query: "S3_Bucket_with_any_Principal.q",
+		query: "S3_Bucket_with_any_Principal.rego",
 		file:  "S3_Bucket_with_any_Principal.tf",
 		expectedResults: []expectedResult{
 			{
@@ -414,11 +414,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_with_any_Principal.q",
+		query: "S3_Bucket_with_any_Principal.rego",
 		file:  "S3_Bucket_with_any_Principal_success.tf",
 	},
 	{
-		query: "S3_Bucket_without_Enabled_MFA_Delete.q",
+		query: "S3_Bucket_without_Enabled_MFA_Delete.rego",
 		file:  "S3_Bucket_without_Enabled_MFA_Delete.tf",
 		expectedResults: []expectedResult{
 			{
@@ -429,11 +429,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_without_Enabled_MFA_Delete.q",
+		query: "S3_Bucket_without_Enabled_MFA_Delete.rego",
 		file:  "S3_Bucket_without_Enabled_MFA_Delete_success.tf",
 	},
 	{
-		query: "S3_Bucket_without_Encryption_at_REST.q",
+		query: "S3_Bucket_without_Encryption_at_REST.rego",
 		file:  "S3_Bucket_without_Encryption_at_REST.tf",
 		expectedResults: []expectedResult{
 			{
@@ -444,11 +444,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_without_Encryption_at_REST.q",
+		query: "S3_Bucket_without_Encryption_at_REST.rego",
 		file:  "S3_Bucket_without_Encryption_at_REST_success.tf",
 	},
 	{
-		query: "S3_Bucket_without_Logging.q",
+		query: "S3_Bucket_without_Logging.rego",
 		file:  "S3_Bucket_without_Logging.tf",
 		expectedResults: []expectedResult{
 			{
@@ -459,11 +459,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_without_Logging.q",
+		query: "S3_Bucket_without_Logging.rego",
 		file:  "S3_Bucket_without_Logging_success.tf",
 	},
 	{
-		query: "S3_Bucket_without_Restriction_of_Public_Bucket.q",
+		query: "S3_Bucket_without_Restriction_of_Public_Bucket.rego",
 		file:  "S3_Bucket_without_Restriction_of_Public_Bucket.tf",
 		expectedResults: []expectedResult{
 			{
@@ -474,11 +474,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_without_Restriction_of_Public_Bucket.q",
+		query: "S3_Bucket_without_Restriction_of_Public_Bucket.rego",
 		file:  "S3_Bucket_without_Restriction_of_Public_Bucket_success.tf",
 	},
 	{
-		query: "S3_Bucket_without_Versioning.q",
+		query: "S3_Bucket_without_Versioning.rego",
 		file:  "S3_Bucket_without_Versioning.tf",
 		expectedResults: []expectedResult{
 			{
@@ -489,11 +489,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_without_Versioning.q",
+		query: "S3_Bucket_without_Versioning.rego",
 		file:  "S3_Bucket_without_Versioning_success.tf",
 	},
 	{
-		query: "S3_Bucket_wth_Public_RW.q",
+		query: "S3_Bucket_wth_Public_RW.rego",
 		file:  "S3_Bucket_wth_Public_RW.tf",
 		expectedResults: []expectedResult{
 			{
@@ -504,11 +504,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "S3_Bucket_wth_Public_RW.q",
+		query: "S3_Bucket_wth_Public_RW.rego",
 		file:  "S3_Bucket_wth_Public_RW_success.tf",
 	},
 	{
-		query: "SQS_Policy_with_ALL_Actions.q",
+		query: "SQS_Policy_with_ALL_Actions.rego",
 		file:  "SQS_Policy_with_ALL_Actions.tf",
 		expectedResults: []expectedResult{
 			{
@@ -519,11 +519,11 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "SQS_Policy_with_ALL_Actions.q",
+		query: "SQS_Policy_with_ALL_Actions.rego",
 		file:  "SQS_Policy_with_ALL_Actions_success.tf",
 	},
 	{
-		query: "Unchangeable_Password.q",
+		query: "Unchangeable_Password.rego",
 		file:  "Unchangeable_Password.tf",
 		expectedResults: []expectedResult{
 			{
@@ -534,7 +534,7 @@ var testCases = []testCase{
 		},
 	},
 	{
-		query: "Unchangeable_Password.q",
+		query: "Unchangeable_Password.rego",
 		file:  "Unchangeable_Password_success.tf",
 	},
 }
@@ -605,17 +605,12 @@ func TestQueries(t *testing.T) {
 			queriesSource := mock.NewMockQueriesSource(ctrl)
 			queriesSource.EXPECT().GetQueries().
 				DoAndReturn(func() ([]model.QueryMetadata, error) {
-					qCode, err := ioutil.ReadFile(path.Join("../assets/queries", testCase.query))
+					q, err := query.ReadQuery("../assets/queries", testCase.query)
 					if err != nil {
-						return nil, fmt.Errorf("query source: %w", err)
+						return nil, err
 					}
 
-					return []model.QueryMetadata{
-						{
-							FileName: testCase.query,
-							Content:  string(qCode),
-						},
-					}, nil
+					return []model.QueryMetadata{q}, nil
 				})
 
 			inspector, err := engine.NewInspector(ctx, queriesSource, storage)

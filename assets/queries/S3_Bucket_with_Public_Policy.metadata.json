@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "S3 bucket allows public policy",
+  "severity": "High",
+  "category": null,
+  "descriptionText": "S3 bucket allows public policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block"
+}
