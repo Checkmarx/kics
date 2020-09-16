@@ -11,10 +11,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["resource", "aws_eks_cluster", name]), "endpoint_public_access"],
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"vpc_config.endpoint_public_access",
+                "keyExpectedValue": false,
+                "keyActualValue": 	true,
                 #{metadata}
               }
 }

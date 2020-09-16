@@ -11,9 +11,9 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_iam_policy_attachment", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "issueType":		"RedundantAttribute",
+                "keyName":			"user",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

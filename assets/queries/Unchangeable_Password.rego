@@ -12,10 +12,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"allow_users_to_change_password",
+                "keyExpectedValue": true,
+                "keyActualValue": 	false,
                 #{metadata}
               }
 }

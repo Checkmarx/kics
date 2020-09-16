@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"versioning",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -31,8 +31,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"versioning.enabled",
+                "keyExpectedValue": true,
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -47,10 +47,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"versioning.enabled",
+                "keyExpectedValue": true,
+                "keyActualValue": 	v.enabled,
                 #{metadata}
               }
 }
