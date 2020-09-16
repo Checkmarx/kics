@@ -8,9 +8,12 @@ import (
 
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 )
 
-const queryExtension = ".q"
+const queryExtension = ".rego"
+const metadataFileSuffix = ".metadata.json"
+const metadataPlaceholder = "#{metadata}"
 
 type FilesystemSource struct {
 	Source string
@@ -22,27 +25,55 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 		return nil, errors.Wrap(err, "failed to get query Source")
 	}
 
-	metadatas := make([]model.QueryMetadata, 0, len(files))
+	queries := make([]model.QueryMetadata, 0, len(files))
 	for _, f := range files {
 		if strings.HasSuffix(f.Name(), queryExtension) {
-			qCode, errReadFile := ioutil.ReadFile(path.Join(s.Source, f.Name()))
-			if errReadFile != nil {
-				return nil, errors.Wrap(errReadFile, "failed to get query Source")
+			query, errRQ := ReadQuery(s.Source, f.Name())
+			if errRQ != nil {
+				log.Err(errRQ).
+					Str("fileName", f.Name()).
+					Msg("failed to read query file")
+
+				continue
 			}
 
-			metadatas = append(metadatas, model.QueryMetadata{
-				FileName: f.Name(),
-				Content:  string(qCode),
-				Filter:   getQueryFilter(string(qCode)),
-			})
+			queries = append(queries, query)
 		}
 	}
 
-	return metadatas, err
+	return queries, err
+}
+
+func ReadQuery(source, queryName string) (model.QueryMetadata, error) {
+	queryContent, err := ioutil.ReadFile(path.Join(source, queryName))
+	if err != nil {
+		return model.QueryMetadata{}, errors.Wrapf(err, "metadata not found %s", queryName)
+	}
+
+	metadataFileName := strings.Replace(queryName, queryExtension, metadataFileSuffix, 1)
+	metadataContent, err := ioutil.ReadFile(path.Join(source, metadataFileName))
+	if err != nil {
+		return model.QueryMetadata{}, errors.Wrapf(err, "metadata not found %s", metadataFileName)
+	}
+
+	formattedMetadata := formatMetadata(string(metadataContent))
+	queryContentWithMetadata := strings.ReplaceAll(string(queryContent), metadataPlaceholder, formattedMetadata)
+
+	return model.QueryMetadata{
+		FileName: queryName,
+		Content:  queryContentWithMetadata,
+		Filter:   getQueryFilter(string(queryContent)),
+	}, nil
+}
+
+func formatMetadata(content string) string {
+	lines := strings.Split(content, "\n")
+
+	return strings.Join(lines[1:len(lines)-1], "\n")
 }
 
 func getQueryFilter(query string) string {
-	var re = regexp.MustCompile(`\n#CxPragma:\s*"([^"]+)"\s*\n`)
+	var re = regexp.MustCompile(`^SupportedResources\s*=\s*"([^"]+)"\s*$`)
 
 	match := re.FindStringSubmatch(query)
 	if match != nil {
