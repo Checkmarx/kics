@@ -10,6 +10,11 @@ dep: # Download required dependencies
 lint: dep # Lint the files
 	$(GOLINT) run -c .golangci.yml
 
+.PHONY: gen
+gen:
+	go get -u github.com/mailru/easyjson/...
+	easyjson pkg/model/model.go
+
 .PHONY: test
 test: dep # Run unit tests
 	go test -short ./...

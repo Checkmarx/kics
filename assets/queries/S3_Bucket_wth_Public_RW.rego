@@ -10,11 +10,11 @@ CxPolicy [ result ] {
                 "foundKye": 		acl,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "public-read"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"acl",
+                "keyExpectedValue": "private",
+                "keyActualValue": 	"public-read",
                 #{metadata}
               }
 }
@@ -27,11 +27,11 @@ CxPolicy [ result ] {
                 "foundKye": 		acl,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "public-read-write"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"acl",
+                "keyExpectedValue": "private",
+                "keyActualValue": 	"public-read-write",
                 #{metadata}
               }
 }
@@ -44,11 +44,11 @@ CxPolicy [ result ] {
                 "foundKye": 		acl,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "website"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"acl",
+                "keyExpectedValue": "private",
+                "keyActualValue": 	"website",
                 #{metadata}
               }
 }

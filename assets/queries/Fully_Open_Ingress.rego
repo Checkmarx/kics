@@ -13,11 +13,11 @@ CxPolicy [ result ] {
                 "foundKye": 		rule,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_security_group_rule", name]), "ingress"],
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_security_group_rule", name]), "cidr_blocks"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"cidr_blocks",
+                "keyExpectedValue": null,
+                "keyActualValue": 	rule.cidr_blocks[key],
                 #{metadata}
               }
 }
@@ -32,11 +32,11 @@ CxPolicy [ result ] {
                 "foundKye": 		ingrs,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_security_group", name]), "ingress"],
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_security_group", name]), "ingress", "cidr_blocks"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"cidr_blocks",
+                "keyExpectedValue": null,
+                "keyActualValue": 	ingrs.cidr_blocks[key],
                 #{metadata}
               }
 }

@@ -3,18 +3,19 @@ package Cx
 SupportedResources = "$.resource.aws_api_gateway_method"
 
 CxPolicy [ result ] {
-    input.document[i].resource.aws_api_gateway_method[name].authorization = "NONE"
-    input.document[i].resource.aws_api_gateway_method[name].http_method != "OPTIONS"
+    resource = input.document[i].resource.aws_api_gateway_method[name]
+    resource.authorization = "NONE"
+    resource.http_method != "OPTIONS"
 
     result := {
-                "foundKye": 		[],
+                "foundKye": 		resource,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_api_gateway_method", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_api_gateway_method", name]), "authorization"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"authorization",
+                "keyExpectedValue": null,
+                "keyActualValue": 	"NONE",
                 #{metadata}
               }
 }

@@ -13,11 +13,11 @@ CxPolicy [ result ] {
                 "foundKye": 		pol.Statement[idx],
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", [r, name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", [r, name]), "policy", "Principal+*"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"policy",
+                "keyExpectedValue": null,
+                "keyActualValue": 	"*",
                 #{metadata}
               }
 }
@@ -33,10 +33,10 @@ CxPolicy [ result ] {
                 "foundKye": 		pol.Statement[idx],
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", [r, name]),
+                "lineSearchKey": 	[concat("+", [r, name]), "policy", "AWS"],
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"policy",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

@@ -11,10 +11,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["aws_instance", name]), "user_data"],
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"user_data",
+                "keyExpectedValue": null,
+                "keyActualValue": 	ud,
                 #{metadata}
               }
 }
@@ -28,10 +28,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["aws_instance", name]), "user_data"],
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"user_data",
+                "keyExpectedValue": null,
+                "keyActualValue": 	ud,
                 #{metadata}
               }
 }

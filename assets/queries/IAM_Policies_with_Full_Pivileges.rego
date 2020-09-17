@@ -14,10 +14,10 @@ CxPolicy [ result ] {
                 "foundKye": 		out,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", [PolicyArr[idx], name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "lineSearchKey": 	[concat("+", [PolicyArr[idx], name]), "policy", "Action"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"policy",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

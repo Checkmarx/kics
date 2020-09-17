@@ -12,10 +12,10 @@ CxPolicy [ result ] {
                 "foundKye": 		existing_log_types_set,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_eks_cluster", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "lineSearchKey": 	[concat("+", ["aws_eks_cluster", name]), "enabled_cluster_log_types"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"enabled_cluster_log_types",
+                "keyExpectedValue": "api, audit, authenticator, controllerManager, scheduler",
                 "keyActualValue": 	null,
                 #{metadata}
               }

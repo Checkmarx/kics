@@ -100,12 +100,16 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
 }
 
 func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMetadatas, query *preparedQuery) error {
-	filesInJSON := files.CombineToJSON()
+	filesInJSON, err := files.CombineToJSON()
+	if err != nil {
+		return errors.Wrap(err, "failed to combine all files to one")
+	}
+
 	filesInMap := files.ToMap()
 
 	// parsing JSON into a structured map required for OPA query
 	var inMap map[string]interface{}
-	err := json.Unmarshal([]byte(filesInJSON), &inMap)
+	err = json.Unmarshal([]byte(filesInJSON), &inMap)
 	if err != nil {
 		return errors.Wrap(err, "failed to prepare query results")
 	}

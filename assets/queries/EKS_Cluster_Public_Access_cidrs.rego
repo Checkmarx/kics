@@ -12,10 +12,10 @@ CxPolicy [ result ] {
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["aws_eks_cluster", name]), "public_access_cidrs"],
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "issueType":		"IncorrectValue",
+                "keyName":			"vpc_config.public_access_cidrs",
+                "keyExpectedValue": null,
+                "keyActualValue": 	"0.0.0.0/0",
                 #{metadata}
               }
 }
@@ -32,8 +32,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["aws_eks_cluster", name]), "vpc_config"],
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"vpc_config.public_access_cidrs",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

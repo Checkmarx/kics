@@ -11,10 +11,10 @@ CxPolicy [ result ] {
                 "foundKye": 		vars,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_lambda_function", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "lineSearchKey": 	[concat("+", ["aws_lambda_function", name]), "variables"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"environment.variables",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -29,10 +29,10 @@ CxPolicy [ result ] {
                 "foundKye": 		vars,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_lambda_function", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "lineSearchKey": 	[concat("+", ["aws_lambda_function", name]), "variables"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"environment.variables",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

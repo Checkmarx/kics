@@ -2,7 +2,9 @@ package model
 
 import (
 	"strconv"
-	"strings"
+
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 )
 
 const (
@@ -12,8 +14,6 @@ const (
 	SeverityMedium = "MEDIUM"
 	SeverityLow    = "LOW"
 	SeverityInfo   = "INFO"
-
-	emptyJSONStringLength int = 2
 )
 
 var (
@@ -74,27 +74,38 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	return c
 }
 
-func (m FileMetadatas) CombineToJSON() string {
-	retVal := "{\"document\"   :   ["
-	if len(m) > 0 {
-		for i, cur := range m {
-			cJSON := strings.TrimSpace(cur.JSONData)
-			if len(cJSON) <= emptyJSONStringLength { // empty json or string
-				continue
-			}
+//easyjson:json
+type Documents struct {
+	Documents []Document `json:"document"`
+}
 
-			curJSON := "{\"id\": \"" + strconv.Itoa(cur.ID) + "\",\n"
-			curJSON += "\"file\": \"" + cur.FileName + "\",\n"
-			curJSON += cJSON[1:]
+//easyjson:json
+type Document map[string]interface{}
 
-			retVal += curJSON + "\n"
-			if i < len(m)-1 { // not the last element
-				retVal += ",\n"
-			}
+func (m FileMetadatas) CombineToJSON() (string, error) {
+	documents := Documents{Documents: make([]Document, 0, len(m))}
+	for _, fm := range m {
+		var document Document
+		if err := document.UnmarshalJSON([]byte(fm.JSONData)); err != nil {
+			log.Err(err).
+				Msg("invalid file metadata json")
+
+			continue
 		}
+		if len(document) == 0 {
+			continue
+		}
+
+		document["id"] = strconv.Itoa(fm.ID)
+		document["file"] = fm.FileName
+
+		documents.Documents = append(documents.Documents, document)
 	}
 
-	retVal += "]}"
+	ret, err := documents.MarshalJSON()
+	if err != nil {
+		return "", errors.Wrap(err, "failed to marshall all files")
+	}
 
-	return retVal
+	return string(ret), nil
 }

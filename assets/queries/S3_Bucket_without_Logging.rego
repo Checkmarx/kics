@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"logging",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }

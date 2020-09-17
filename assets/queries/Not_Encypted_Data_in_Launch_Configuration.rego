@@ -12,11 +12,11 @@ CxPolicy [ result ] {
                 "foundKye": 		block,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_launch_configuration", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_launch_configuration", name]), block, "encrypted"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"encrypted",
+                "keyExpectedValue": true,
+                "keyActualValue": 	false,
                 #{metadata}
               }
 }

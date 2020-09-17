@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"server_side_encryption_configuration.rule.apply_server_side_encryption_by_default",
+                "keyExpectedValue": null,
                 "keyActualValue": 	null,
                 #{metadata}
               }
