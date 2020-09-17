@@ -5,7 +5,7 @@ SupportedResources = "$.resource.aws_s3_bucket"
 #default of mfa_delete is false
 CxPolicy [ result ] {
     ver := input.document[i].resource.aws_s3_bucket[name].versioning
-    not ver.mfa_delete
+    object.get(ver, "mfa_delete", "not found") == "not found"
 
     result := {
                 "foundKye": 		ver,
@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"versioning.mfa_delete",
+                "keyExpectedValue": true,
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -28,11 +28,11 @@ CxPolicy [ result ] {
                 "foundKye": 		ver,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "mfa_delete"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"versioning.mfa_delete",
+                "keyExpectedValue": true,
+                "keyActualValue": 	ver.mfa_delete,
                 #{metadata}
               }
 }

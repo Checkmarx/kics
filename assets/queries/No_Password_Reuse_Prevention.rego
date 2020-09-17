@@ -4,7 +4,7 @@ SupportedResources = "$.resource.aws_iam_account_password_policy"
 
 CxPolicy [ result ] {
     pol := input.document[i].resource.aws_iam_account_password_policy[name]
-    not pol.password_reuse_prevention
+    object.get(pol, "password_reuse_prevention", "not found") == "not found"
 
     result := {
                 "foundKye": 		pol,
@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"password_reuse_prevention",
+                "keyExpectedValue": 5,
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -27,11 +27,11 @@ CxPolicy [ result ] {
                 "foundKye": 		pol,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
+                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "password_reuse_prevention"],
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "keyName":			"password_reuse_prevention",
+                "keyExpectedValue": 5,
+                "keyActualValue": 	"false",
                 #{metadata}
               }
 }

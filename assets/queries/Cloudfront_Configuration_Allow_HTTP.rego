@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["aws_cloudfront_distribution", name]), "default_cache_behavior", "viewer_protocol_policy"],
                 "issueType":		"IncorrectValue",
-                "keyName":			"viewer_protocol_policy",
-                "keyExpectedValue": 8,
+                "keyName":			"default_cache_behavior.viewer_protocol_policy",
+                "keyExpectedValue": "https-only",
                 "keyActualValue": 	"allow-all",
                 #{metadata}
               }
@@ -29,8 +29,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	[concat("+", ["aws_cloudfront_distribution", name]), "ordered_cache_behavior", "viewer_protocol_policy"],
                 "issueType":		"IncorrectValue",
-                "keyName":			"viewer_protocol_policy",
-                "keyExpectedValue": 8,
+                "keyName":			"ordered_cache_behavior.viewer_protocol_policy",
+                "keyExpectedValue": "https-only",
                 "keyActualValue": 	"allow-all",
                 #{metadata}
               }

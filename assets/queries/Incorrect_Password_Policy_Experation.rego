@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"max_password_age",
+                "keyExpectedValue": 90,
                 "keyActualValue": 	null,
                 #{metadata}
               }
@@ -27,11 +27,11 @@ CxPolicy [ result ] {
                 "foundKye": 		expr,
                 "fileId": 			input.document[i].id,
                 "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
-                "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null,
+                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "max_password_age"],
+                "issueType":		"IncorrectValue",
+                "keyName":			"max_password_age",
+                "keyExpectedValue": 90,
+                "keyActualValue": 	expr.max_password_age,
                 #{metadata}
               }
 }

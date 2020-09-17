@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "fileName": 	    input.document[i].file,
                 "lineSearchKey": 	concat("+", ["resource", "aws_cloudwatch_log_group", name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
-                "keyExpectedValue": 8,
+                "keyName":			"retention_in_days",
+                "keyExpectedValue": 30,
                 "keyActualValue": 	null,
                 #{metadata}
               }
