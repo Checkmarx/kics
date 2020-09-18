@@ -6,32 +6,24 @@ CxPolicy [ result ] {
     pol := input.document[i].resource.aws_iam_account_password_policy[name]
     not pol.minimum_password_length
 
-    result := {
-                "foundKye": 		pol,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"minimum_password_length",
                 "keyExpectedValue": 8,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
     pol := input.document[i].resource.aws_iam_account_password_policy[name]
     pol.minimum_password_length < 8
 
-    result := {
-                "foundKye": 		pol,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "minimum_password_length"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"minimum_password_length",
                 "keyExpectedValue": 8,
-                "keyActualValue": 	pol.minimum_password_length,
-                #{metadata}
-              }
+                "keyActualValue": 	pol.minimum_password_length
+              })
 }

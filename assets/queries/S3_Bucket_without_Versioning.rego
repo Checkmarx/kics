@@ -7,17 +7,13 @@ CxPolicy [ result ] {
 	b := input.document[i].resource.aws_s3_bucket[name]
 	not b.versioning
 
-    result := {
-                "foundKye": 		b,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"versioning",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 #default of enabled is false
@@ -25,32 +21,24 @@ CxPolicy [ result ] {
 	b := input.document[i].resource.aws_s3_bucket[name]
 	object.get(b.versioning, "enabled", "not found") == "not found"
 
-    result := {
-                "foundKye": 		b,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "versioning"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"versioning.enabled",
                 "keyExpectedValue": true,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
 	v := input.document[i].resource.aws_s3_bucket[name].versioning
     v.enabled != true
 
-    result := {
-                "foundKye": 		v,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "versioning", "enabled"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"versioning.enabled",
                 "keyExpectedValue": true,
-                "keyActualValue": 	v.enabled,
-                #{metadata}
-              }
+                "keyActualValue": 	v.enabled
+              })
 }

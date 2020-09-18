@@ -14,6 +14,10 @@ const (
 	SeverityMedium = "MEDIUM"
 	SeverityLow    = "LOW"
 	SeverityInfo   = "INFO"
+
+	IssueTypeMissingAttribute   IssueType = "MissingAttribute"
+	IssueTypeRedundantAttribute IssueType = "RedundantAttribute"
+	IssueTypeIncorrectValue     IssueType = "IncorrectValue"
 )
 
 var (
@@ -27,6 +31,7 @@ var (
 
 type FileMetadataKind string
 type Severity string
+type IssueType string
 
 type FileMetadata struct {
 	ID           int
@@ -43,24 +48,31 @@ type QueryMetadata struct {
 	FileName string
 	Content  string
 	Filter   string
+	Metadata map[string]interface{}
 }
 
 type Vulnerability struct {
-	ID        int      `json:"id"`
-	ScanID    string   `db:"scan_id" json:"-"`
-	FileID    int      `db:"file_id" json:"file_id"`
-	QueryName string   `db:"query_name" json:"query_name"`
-	Severity  Severity `json:"severity"`
-	Line      int      `json:"line"`
-	Output    string   `json:"-"`
+	ID               int       `json:"id"`
+	ScanID           string    `db:"scan_id" json:"-"`
+	FileID           int       `db:"file_id" json:"file_id"`
+	QueryName        string    `db:"query_name" json:"query_name"`
+	Severity         Severity  `json:"severity"`
+	Line             int       `json:"line"`
+	IssueType        IssueType `db:"issue_type"`
+	KeyExpectedValue *string   `db:"key_expected_value"`
+	KeyActualValue   *string   `db:"key_actual_value"`
+	Output           string    `json:"-"`
 }
 
 type ResultItem struct {
-	ID        int      `json:"id"`
-	FileName  string   `db:"file_name" json:"fileName"`
-	Line      int      `json:"line"`
-	QueryName string   `db:"query_name" json:"queryName"`
-	Severity  Severity `json:"severity"`
+	ID               int       `json:"id"`
+	FileName         string    `db:"file_name" json:"fileName"`
+	Line             int       `json:"line"`
+	QueryName        string    `db:"query_name" json:"queryName"`
+	Severity         Severity  `json:"severity"`
+	IssueType        IssueType `db:"issue_type" json:"issue_type"`
+	KeyExpectedValue *string   `db:"key_expected_value" json:"key_expected_value"`
+	KeyActualValue   *string   `db:"key_actual_value" json:"key_actual_value"`
 }
 
 type FileMetadatas []FileMetadata

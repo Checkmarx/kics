@@ -9,17 +9,13 @@ CxPolicy [ result ] {
 	upper(resource.protocol) = "HTTP"
     not resource.default_action.redirect.protocol
 
-    result := {
-                "foundKye": 		resource,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", [lb[idx], name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"protocol",
                 "keyExpectedValue": "HTTPS",
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
@@ -29,15 +25,12 @@ CxPolicy [ result ] {
     upper(resource.protocol) = "HTTP"
     upper(resource.default_action.redirect.protocol) != "HTTPS"
 
-    result := {
+    result := mergeWithMetadata({
                 "foundKye" : 		resource,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", [lb[idx], name]), "default_action", "redirect", "protocol"],
+                "documentId": 		input.document[i].id,
+                "lineSearchKey":    sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"default_action.redirect.protocol",
                 "keyExpectedValue": "HTTPS",
-                "keyActualValue": 	resource.default_action.redirect.protocol,
-                #{metadata}
-              }
+                "keyActualValue": 	resource.default_action.redirect.protocol
+              })
 }

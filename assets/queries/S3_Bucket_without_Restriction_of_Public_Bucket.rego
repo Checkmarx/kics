@@ -7,32 +7,24 @@ CxPolicy [ result ] {
     pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
     not pubACL.restrict_public_buckets
 
-    result := {
-                "foundKye": 		pubACL,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket_public_access_block", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"restrict_public_buckets",
                 "keyExpectedValue": true,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
     pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
     pubACL.restrict_public_buckets == false
 
-    result := {
-                "foundKye": 		pubACL,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket_public_access_block", name]), "restrict_public_buckets"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"restrict_public_buckets",
                 "keyExpectedValue": true,
-                "keyActualValue": 	false,
-                #{metadata}
-              }
+                "keyActualValue": 	false
+              })
 }
