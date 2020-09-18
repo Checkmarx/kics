@@ -7,15 +7,11 @@ CxPolicy [ result ] {
     pol := input.document[i].resource.aws_iam_account_password_policy[name]
     pol.allow_users_to_change_password = false
 
-    result := {
-                "foundKye": 		pol,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "allow_users_to_change_password"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].allow_users_to_change_password", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"allow_users_to_change_password",
                 "keyExpectedValue": true,
-                "keyActualValue": 	false,
-                #{metadata}
-              }
+                "keyActualValue": 	false
+              })
 }

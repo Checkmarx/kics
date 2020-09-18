@@ -10,17 +10,13 @@ CxPolicy [ result ] {
     aws := out.Statement[ix].Principal.AWS
     contains(aws, "*")
 
-    result := {
-                "foundKye": 		out,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_iam_role", name]), "assume_role_policy", "Principal", "*"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"assume_role_policy",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
@@ -31,16 +27,12 @@ CxPolicy [ result ] {
     aws := out.Statement[ix].Principal.AWS
     contains(aws, "*")
 
-    result := {
-                "foundKye": 		out,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_iam_role", name]), "assume_role_policy", "Principal", "*"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
                 "issueType":		"policy",
-                "keyName":			"assume_role_policy",
                 "keyExpectedValue": 8,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 

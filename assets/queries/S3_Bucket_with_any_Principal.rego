@@ -9,17 +9,13 @@ CxPolicy [ result ] {
     pol.Statement[idx].Effect = "Allow"
     pol.Statement[idx].Principal = "*"
 
-    result := {
-                "foundKye": 		pol.Statement[idx],
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", [r, name]), "policy", "Principal+*"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("%s[%s].policy.Principal", [pl[r], name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"policy",
                 "keyExpectedValue": null,
-                "keyActualValue": 	"*",
-                #{metadata}
-              }
+                "keyActualValue": 	"*"
+              })
 }
 
 CxPolicy [ result ] {
@@ -29,15 +25,11 @@ CxPolicy [ result ] {
     pol.Statement[idx].Effect = "Allow"
     contains(pol.Statement[idx].Principal.AWS, "*")
 
-    result := {
-                "foundKye": 		pol.Statement[idx],
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", [r, name]), "policy", "AWS"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"policy",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }

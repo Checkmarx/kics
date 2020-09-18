@@ -7,15 +7,11 @@ CxPolicy [ result ] {
     bucket := input.document[i].resource.aws_s3_bucket[name]
 	not bucket.server_side_encryption_configuration.rule.apply_server_side_encryption_by_default
 
-    result := {
-                "foundKye": 		bucket,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"server_side_encryption_configuration.rule.apply_server_side_encryption_by_default",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }

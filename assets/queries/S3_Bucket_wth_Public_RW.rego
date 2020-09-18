@@ -6,49 +6,37 @@ CxPolicy [ result ] {
     acl := input.document[i].resource.aws_s3_bucket[name].acl
     acl == "public-read"
 
-    result := {
-                "foundKye": 		acl,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "public-read"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].acl", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"acl",
                 "keyExpectedValue": "private",
-                "keyActualValue": 	"public-read",
-                #{metadata}
-              }
+                "keyActualValue": 	"public-read"
+              })
 }
 
 CxPolicy [ result ] {
     acl := input.document[i].resource.aws_s3_bucket[name].acl
     acl == "public-read-write"
 
-    result := {
-                "foundKye": 		acl,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "public-read-write"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].acl", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"acl",
                 "keyExpectedValue": "private",
-                "keyActualValue": 	"public-read-write",
-                #{metadata}
-              }
+                "keyActualValue": 	"public-read-write"
+              })
 }
 
 CxPolicy [ result ] {
     acl := input.document[i].resource.aws_s3_bucket[name].acl
     acl == "website"
 
-    result := {
-                "foundKye": 		acl,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket", name]), "website"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].acl", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"acl",
                 "keyExpectedValue": "private",
-                "keyActualValue": 	"website",
-                #{metadata}
-              }
+                "keyActualValue": 	"website"
+              })
 }

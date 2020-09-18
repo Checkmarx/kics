@@ -33,6 +33,7 @@ func main() {
 	if verbose {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 	}
+	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 
 	rootCmd := &cobra.Command{
 		Use:   "inspect",

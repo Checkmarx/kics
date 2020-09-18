@@ -6,32 +6,24 @@ CxPolicy [ result ] {
     resource := input.document[i].resource.aws_cloudfront_distribution[name]
     resource.default_cache_behavior.viewer_protocol_policy = "allow-all"
 
-    result := {
-                "foundKye": 		resource.default_cache_behavior,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_cloudfront_distribution", name]), "default_cache_behavior", "viewer_protocol_policy"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"default_cache_behavior.viewer_protocol_policy",
                 "keyExpectedValue": "https-only",
-                "keyActualValue": 	"allow-all",
-                #{metadata}
-              }
+                "keyActualValue": 	"allow-all"
+              })
 }
 
 CxPolicy [ result ] {
     resource := input.document[i].resource.aws_cloudfront_distribution[name]
     resource.ordered_cache_behavior.viewer_protocol_policy = "allow-all"
 
-    result := {
-                "foundKye": 		resource.ordered_cache_behavior,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_cloudfront_distribution", name]), "ordered_cache_behavior", "viewer_protocol_policy"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"ordered_cache_behavior.viewer_protocol_policy",
                 "keyExpectedValue": "https-only",
-                "keyActualValue": 	"allow-all",
-                #{metadata}
-              }
+                "keyActualValue": 	"allow-all"
+              })
 }

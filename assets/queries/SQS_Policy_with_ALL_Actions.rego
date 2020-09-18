@@ -7,15 +7,11 @@ CxPolicy [ result ] {
     out := json.unmarshal(policy)
     out.Statement[idx].Action = "*"
 
-    result := {
-                "foundKye": 		out,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_sqs_queue_policy", name]), "Action"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_sqs_queue_policy[%s].policy.Action", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"policy",
                 "keyExpectedValue": null,
-                "keyActualValue": 	"*",
-                #{metadata}
-              }
+                "keyActualValue": 	"*"
+              })
 }

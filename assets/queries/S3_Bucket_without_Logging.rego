@@ -6,15 +6,11 @@ CxPolicy [ result ] {
     s3 := input.document[i].resource.aws_s3_bucket[name]
 	not s3.logging
 
-    result := {
-                "foundKye": 		s3,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].logging", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"logging",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
