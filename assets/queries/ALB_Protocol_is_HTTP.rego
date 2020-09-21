@@ -11,7 +11,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
+                "searchKey": 	    sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "HTTPS",
                 "keyActualValue": 	null
@@ -28,7 +28,7 @@ CxPolicy [ result ] {
     result := mergeWithMetadata({
                 "foundKye" : 		resource,
                 "documentId": 		input.document[i].id,
-                "lineSearchKey":    sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
+                "searchKey":    sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "HTTPS",
                 "keyActualValue": 	resource.default_action.redirect.protocol

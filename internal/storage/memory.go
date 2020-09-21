@@ -46,6 +46,7 @@ func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.ResultI
 			QueryName:        v.QueryName,
 			Severity:         v.Severity,
 			IssueType:        v.IssueType,
+			SearchKey:        v.SearchKey,
 			KeyExpectedValue: v.KeyExpectedValue,
 			KeyActualValue:   v.KeyActualValue,
 		}

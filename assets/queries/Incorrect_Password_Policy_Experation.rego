@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": 90,
                 "keyActualValue": 	null
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": 90,
                 "keyActualValue": 	expr.max_password_age

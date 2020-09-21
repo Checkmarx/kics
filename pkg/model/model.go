@@ -59,6 +59,7 @@ type Vulnerability struct {
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `db:"issue_type"`
+	SearchKey        string    `db:"search_key"`
 	KeyExpectedValue *string   `db:"key_expected_value"`
 	KeyActualValue   *string   `db:"key_actual_value"`
 	Output           string    `json:"-"`
@@ -71,6 +72,7 @@ type ResultItem struct {
 	QueryName        string    `db:"query_name" json:"queryName"`
 	Severity         Severity  `json:"severity"`
 	IssueType        IssueType `db:"issue_type" json:"issue_type"`
+	SearchKey        string    `db:"search_key" json:"search_key"`
 	KeyExpectedValue *string   `db:"key_expected_value" json:"key_expected_value"`
 	KeyActualValue   *string   `db:"key_actual_value" json:"key_actual_value"`
 }

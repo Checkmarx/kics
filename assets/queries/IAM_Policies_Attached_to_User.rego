@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_policy_attachment[%s].user", [name]),
+                "searchKey": 	    sprintf("aws_iam_policy_attachment[%s].user", [name]),
                 "issueType":		"RedundantAttribute",
                 "keyExpectedValue": null,
                 "keyActualValue": 	null

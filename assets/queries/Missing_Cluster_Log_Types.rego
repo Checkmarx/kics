@@ -10,9 +10,9 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_eks_cluster[%s].enabled_cluster_log_types", [name]),
+                "searchKey": 	    sprintf("aws_eks_cluster[%s].enabled_cluster_log_types", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "api, audit, authenticator, controllerManager, scheduler",
-                "keyActualValue": 	null
+                "keyActualValue": 	json.marshal(existing_log_types_set)
               })
 }

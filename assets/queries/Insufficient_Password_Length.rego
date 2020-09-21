@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": 8,
                 "keyActualValue": 	null
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": 8,
                 "keyActualValue": 	pol.minimum_password_length

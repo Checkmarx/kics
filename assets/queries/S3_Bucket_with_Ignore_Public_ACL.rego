@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].ignore_public_acls", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].ignore_public_acls", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": false,
                 "keyActualValue": 	true

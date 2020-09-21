@@ -10,7 +10,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_launch_configuration[%s].%s.encrypted", [name, block]),
+                "searchKey": 	    sprintf("aws_launch_configuration[%s].%s.encrypted", [name, block]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": true,
                 "keyActualValue": 	false
