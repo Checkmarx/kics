@@ -4,6 +4,7 @@ type SummaryItemFile struct {
 	FileName         string    `json:"file_name"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
+	SearchKey        string    `json:"search_key"`
 	KeyExpectedValue *string   `json:"key_expected_value"`
 	KeyActualValue   *string   `json:"key_actual_value"`
 }
@@ -34,6 +35,7 @@ func CreateSummary(files FileMetadatas, items []ResultItem) Summary {
 			FileName:         item.FileName,
 			Line:             item.Line,
 			IssueType:        item.IssueType,
+			SearchKey:        item.SearchKey,
 			KeyExpectedValue: item.KeyExpectedValue,
 			KeyActualValue:   item.KeyActualValue,
 		})

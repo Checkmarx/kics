@@ -12,9 +12,9 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("%s[%s].policy.Action", [resourceType[idx], name]),
+                "searchKey": 	    sprintf("%s[%s].policy.Action", [resourceType[idx], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null
+                "keyActualValue": 	policy
               })
 }

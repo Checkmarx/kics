@@ -264,8 +264,10 @@ func buildVulnerability(ctx QueryContext, v interface{}) (model.Vulnerability, e
 		Logger()
 
 	line := UndetectedVulnerabilityLine
-	if searchInfo, ok := vOjb["lineSearchKey"]; ok {
-		line = detectLine(ctx, &file, searchInfo)
+	searchKey := ""
+	if s, ok := vOjb["searchKey"]; ok {
+		searchKey = s.(string)
+		line = detectLine(ctx, &file, searchKey)
 	} else {
 		logWithFields.Warn().Msg("saving result. failed to detect line")
 	}
@@ -309,19 +311,20 @@ func buildVulnerability(ctx QueryContext, v interface{}) (model.Vulnerability, e
 		Severity:         severity,
 		Line:             line,
 		IssueType:        issueType,
+		SearchKey:        searchKey,
 		KeyExpectedValue: mustMapKeyToString(ctx, vOjb, "keyExpectedValue", true),
 		KeyActualValue:   mustMapKeyToString(ctx, vOjb, "keyActualValue", true),
 		Output:           string(output),
 	}, nil
 }
 
-func detectLine(ctx QueryContext, file *model.FileMetadata, i interface{}) int {
+func detectLine(ctx QueryContext, file *model.FileMetadata, s string) int {
 	logUndetected := func() {
 		logger.GetLoggerWithFieldsFromContext(ctx.ctx).
 			Warn().
 			Str("scanID", ctx.scanID).
 			Int("fileID", file.ID).
-			Msgf("filed to detect line, query response %v", i)
+			Msgf("filed to detect line, query response %s", s)
 	}
 
 	scanner := bufio.NewScanner(strings.NewReader(file.OriginalData))
@@ -330,7 +333,7 @@ func detectLine(ctx QueryContext, file *model.FileMetadata, i interface{}) int {
 		foundAtLeastOne       bool
 	)
 
-	keys := strings.Split(i.(string), ".")
+	keys := strings.Split(s, ".")
 	for _, key := range keys {
 		var name string
 		if parts := nameRegex.FindStringSubmatch(key); len(parts) > 1 {
@@ -353,7 +356,7 @@ func detectLine(ctx QueryContext, file *model.FileMetadata, i interface{}) int {
 		logger.GetLoggerWithFieldsFromContext(ctx.ctx).
 			Err(err).
 			Str("scanID", ctx.scanID).
-			Msgf("detecting line. scanner err for file id %d, search %v", file.ID, i)
+			Msgf("detecting line. scanner err for file id %d, search %s", file.ID, s)
 	}
 
 	if foundAtLeastOne {

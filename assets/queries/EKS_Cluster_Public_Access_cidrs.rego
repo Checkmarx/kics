@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
+                "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	"0.0.0.0/0"
@@ -24,7 +24,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
+                "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": null,
                 "keyActualValue": 	null

@@ -56,6 +56,7 @@ create table if not exists ast_ice_results
     severity           varchar(100) not null,
     line               integer default 1,
     issue_type         varchar(40)  not null,
+    search_key         varchar(255) not null,
     key_expected_value varchar(255),
     key_actual_value   varchar(255),
     output             text         not null,

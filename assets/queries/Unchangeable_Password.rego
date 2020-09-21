@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].allow_users_to_change_password", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].allow_users_to_change_password", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": true,
                 "keyActualValue": 	false
