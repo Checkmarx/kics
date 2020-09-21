@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": 5,
                 "keyActualValue": 	null
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
+                "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": 5,
                 "keyActualValue": 	"false"

@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": true,
                 "keyActualValue": 	null
@@ -22,7 +22,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": true,
                 "keyActualValue": 	false

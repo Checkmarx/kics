@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_cloudfront_distribution[%s].web_acl_id", [name]),
+                "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].web_acl_id", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": null,
                 "keyActualValue": 	null

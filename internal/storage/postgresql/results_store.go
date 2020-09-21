@@ -10,9 +10,9 @@ import (
 func (s *PostgresStorage) SaveVulnerabilities(ctx context.Context, items []model.Vulnerability) error {
 	const query = `
 INSERT INTO ast_ice_results 
-	(scan_id, file_id, query_name, severity, line, issue_type, key_expected_value, key_actual_value, output) 
+	(scan_id, file_id, query_name, severity, line, issue_type, search_key, key_expected_value, key_actual_value, output) 
 VALUES 
-	(:scan_id, :file_id, :query_name, :severity, :line, :issue_type, :key_expected_value, :key_actual_value, :output);
+	(:scan_id, :file_id, :query_name, :severity, :line, :issue_type, :search_key, :key_expected_value, :key_actual_value, :output);
 `
 
 	// todo: add all queries to one transaction
@@ -25,6 +25,7 @@ VALUES
 			"severity":           item.Severity,
 			"line":               item.Line,
 			"issue_type":         item.IssueType,
+			"search_key":         item.SearchKey,
 			"key_expected_value": item.KeyExpectedValue,
 			"key_actual_value":   item.KeyActualValue,
 			"output":             item.Output,
@@ -40,7 +41,7 @@ func (s *PostgresStorage) GetResults(ctx context.Context, scanID string) ([]mode
 	const query = `
 SELECT 
        r.id, r.line, r.query_name, UPPER(r.severity) as severity, f.file_name,
-       r.issue_type, r.key_expected_value, r.key_actual_value
+       r.issue_type, r.search_key, r.key_expected_value, r.key_actual_value
 FROM ast_ice_results r 
 INNER JOIN ast_ice_files f ON f.id = r.file_id 
 WHERE r.scan_id = $1;

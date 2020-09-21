@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_instance[%s].user_data", [name]),
+                "searchKey": 	    sprintf("aws_instance[%s].user_data", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	ud
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_instance[%s].user_data", [name]),
+                "searchKey": 	    sprintf("aws_instance[%s].user_data", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	ud

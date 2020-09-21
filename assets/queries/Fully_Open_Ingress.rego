@@ -11,7 +11,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_security_group_rule[%s].cidr_blocks", [name]),
+                "searchKey": 	    sprintf("aws_security_group_rule[%s].cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	rule.cidr_blocks[key]
@@ -26,7 +26,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
+                "searchKey": 	    sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	ingrs.cidr_blocks[key]

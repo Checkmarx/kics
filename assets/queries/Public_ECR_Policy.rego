@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_ecr_repository_policy[%s].policy", [name]),
+                "searchKey": 	    sprintf("aws_ecr_repository_policy[%s].policy", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	"*"

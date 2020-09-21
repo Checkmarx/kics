@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_eks_cluster[%s].vpc_config.endpoint_public_access", [name]),
+                "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.endpoint_public_access", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": false,
                 "keyActualValue": 	true
