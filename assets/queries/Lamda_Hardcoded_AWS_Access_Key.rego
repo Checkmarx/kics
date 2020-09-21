@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_lambda_function[%s].environment.variables", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT ACCESS KEY",
                 "keyActualValue": 	vars[var]
               })
 }
@@ -25,7 +25,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_lambda_function[%s].environment.variables", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT ACCESS KEY",
                 "keyActualValue": 	vars[var]
               })
 }

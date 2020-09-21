@@ -10,7 +10,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_instance[%s].user_data", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT ACCESS KEY",
                 "keyActualValue": 	ud
               })
 }
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_instance[%s].user_data", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT ACCESS KEY",
                 "keyActualValue": 	ud
               })
 }

@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT 0.0.0.0/0",
                 "keyActualValue": 	"0.0.0.0/0"
               })
 }
@@ -26,7 +26,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "!null",
                 "keyActualValue": 	null
               })
 }
