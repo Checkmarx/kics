@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].logging", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].logging", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": null,
                 "keyActualValue": 	null

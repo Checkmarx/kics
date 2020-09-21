@@ -12,9 +12,9 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
+                "searchKey": 	    sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null
+                "keyActualValue": 	aws
               })
 }

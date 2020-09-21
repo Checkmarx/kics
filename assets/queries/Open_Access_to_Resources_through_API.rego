@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_api_gateway_method[%s].authorization", [name]),
+                "searchKey": 	    sprintf("aws_api_gateway_method[%s].authorization", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	"NONE"

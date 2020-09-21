@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning.mfa_delete", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.mfa_delete", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": true,
                 "keyActualValue": 	null
@@ -22,7 +22,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning.mfa_delete", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.mfa_delete", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": true,
                 "keyActualValue": 	ver.mfa_delete

@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": null,
                 "keyActualValue": 	null
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": true,
                 "keyActualValue": 	null
@@ -36,7 +36,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": true,
                 "keyActualValue": 	v.enabled

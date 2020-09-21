@@ -11,7 +11,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("%s[%s].policy.Principal", [pl[r], name]),
+                "searchKey": 	    sprintf("%s[%s].policy.Principal", [pl[r], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	"*"
@@ -27,9 +27,9 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
+                "searchKey": 	    sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null
+                "keyActualValue": 	pol.Statement[idx].Principal.AWS
               })
 }

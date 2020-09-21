@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_sqs_queue_policy[%s].policy.Action", [name]),
+                "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Action", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": null,
                 "keyActualValue": 	"*"

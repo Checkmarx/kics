@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
+                "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "https-only",
                 "keyActualValue": 	"allow-all"
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy", [name]),
+                "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "https-only",
                 "keyActualValue": 	"allow-all"

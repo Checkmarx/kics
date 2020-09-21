@@ -8,7 +8,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].acl", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "private",
                 "keyActualValue": 	"public-read"
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].acl", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "private",
                 "keyActualValue": 	"public-read-write"
@@ -34,7 +34,7 @@ CxPolicy [ result ] {
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
-                "lineSearchKey": 	sprintf("aws_s3_bucket[%s].acl", [name]),
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "private",
                 "keyActualValue": 	"website"
