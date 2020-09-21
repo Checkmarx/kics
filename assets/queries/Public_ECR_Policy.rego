@@ -10,7 +10,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_ecr_repository_policy[%s].policy", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT *",
                 "keyActualValue": 	"*"
               })
 }

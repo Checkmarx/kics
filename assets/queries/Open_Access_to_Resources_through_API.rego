@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_api_gateway_method[%s].authorization", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT NONE",
                 "keyActualValue": 	"NONE"
               })
 }

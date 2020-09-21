@@ -385,6 +385,8 @@ func mapKeyToString(ctx QueryContext, m map[string]interface{}, key string, allo
 	}
 
 	switch vv := v.(type) {
+	case json.Number:
+		return prtString(vv.String()), nil
 	case string:
 		return prtString(vv), nil
 	case int, int32, int64:
@@ -397,7 +399,9 @@ func mapKeyToString(ctx QueryContext, m map[string]interface{}, key string, allo
 		if allowNil {
 			return nil, nil
 		}
-		return prtString(""), nil
+		return prtString("null"), nil
+	case bool:
+		return prtString(fmt.Sprintf("%v", vv)), nil
 	}
 
 	logger.GetLoggerWithFieldsFromContext(ctx.ctx).

@@ -22,7 +22,7 @@ CxPolicy [ result ] {
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
-                "issueType":		"MissingAttribute",
+                "issueType":		"IncorrectValue",
                 "keyExpectedValue": 5,
                 "keyActualValue": 	"false"
               })

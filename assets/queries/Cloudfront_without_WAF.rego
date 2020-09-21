@@ -10,7 +10,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].web_acl_id", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "!null",
                 "keyActualValue": 	null
               })
 }

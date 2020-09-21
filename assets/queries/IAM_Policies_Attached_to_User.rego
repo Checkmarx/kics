@@ -11,6 +11,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_iam_policy_attachment[%s].user", [name]),
                 "issueType":		"RedundantAttribute",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null
+                "keyActualValue": 	resource.user
               })
 }
