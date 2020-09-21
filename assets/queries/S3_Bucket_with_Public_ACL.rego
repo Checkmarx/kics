@@ -7,32 +7,24 @@ CxPolicy [ result ] {
     pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
     object.get(pubACL, "block_public_acls", "not found") == "not found"
 
-    result := {
-                "foundKye": 		pubACL,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_s3_bucket_public_access_block", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"block_public_acls",
                 "keyExpectedValue": true,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
 	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
     pubACL.block_public_acls == false
 
-    result := {
-                "foundKye": 		pubACL,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket_public_access_block", name]), "block_public_acls"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"block_public_acls",
                 "keyExpectedValue": true,
-                "keyActualValue": 	false,
-                #{metadata}
-              }
+                "keyActualValue": 	false
+              })
 }

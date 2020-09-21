@@ -6,15 +6,11 @@ CxPolicy [ result ] {
     resource := input.document[i].resource.aws_iam_policy_attachment[name]
     resource.user
 
-    result := {
-                "foundKye": 		resource,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_policy_attachment", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_policy_attachment[%s].user", [name]),
                 "issueType":		"RedundantAttribute",
-                "keyName":			"user",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }

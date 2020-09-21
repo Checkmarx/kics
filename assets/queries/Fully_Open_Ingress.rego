@@ -9,17 +9,13 @@ CxPolicy [ result ] {
     rule.to_port
     contains(rule.cidr_blocks[_], "0.0.0.0/0")
 
-    result := {
-                "foundKye": 		rule,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_security_group_rule", name]), "cidr_blocks"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_security_group_rule[%s].cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"cidr_blocks",
                 "keyExpectedValue": null,
-                "keyActualValue": 	rule.cidr_blocks[key],
-                #{metadata}
-              }
+                "keyActualValue": 	rule.cidr_blocks[key]
+              })
 }
 
 CxPolicy [ result ] {
@@ -28,16 +24,12 @@ CxPolicy [ result ] {
     ingrs.to_port
     contains(ingrs.cidr_blocks[_], "0.0.0.0/0")
 
-    result := {
-                "foundKye": 		ingrs,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_security_group", name]), "ingress", "cidr_blocks"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"cidr_blocks",
                 "keyExpectedValue": null,
-                "keyActualValue": 	ingrs.cidr_blocks[key],
-                #{metadata}
-              }
+                "keyActualValue": 	ingrs.cidr_blocks[key]
+              })
 }
 

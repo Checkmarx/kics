@@ -1,8 +1,11 @@
 package model
 
 type SummaryItemFile struct {
-	FileName string `json:"file_name"`
-	Line     int    `json:"line"`
+	FileName         string    `json:"file_name"`
+	Line             int       `json:"line"`
+	IssueType        IssueType `json:"issue_type"`
+	KeyExpectedValue *string   `json:"key_expected_value"`
+	KeyActualValue   *string   `json:"key_actual_value"`
 }
 
 type SummaryItem struct {
@@ -23,17 +26,19 @@ func CreateSummary(files FileMetadatas, items []ResultItem) Summary {
 			q[item.QueryName] = SummaryItem{
 				QueryName: item.QueryName,
 				Severity:  item.Severity,
-				Files: []SummaryItemFile{{
-					FileName: item.FileName,
-					Line:     item.Line,
-				}},
 			}
-			continue
 		}
 
-		tmp := q[item.QueryName]
-		tmp.Files = append(tmp.Files, SummaryItemFile{FileName: item.FileName, Line: item.Line})
-		q[item.QueryName] = tmp
+		qItem := q[item.QueryName]
+		qItem.Files = append(qItem.Files, SummaryItemFile{
+			FileName:         item.FileName,
+			Line:             item.Line,
+			IssueType:        item.IssueType,
+			KeyExpectedValue: item.KeyExpectedValue,
+			KeyActualValue:   item.KeyActualValue,
+		})
+
+		q[item.QueryName] = qItem
 	}
 
 	queries := make([]SummaryItem, 0, len(q))

@@ -8,15 +8,11 @@ CxPolicy [ result ] {
     not contains(block, "ephemeral")
     contains(block, "block_device")
 
-    result := {
-                "foundKye": 		block,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_launch_configuration", name]), block, "encrypted"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_launch_configuration[%s].%s.encrypted", [name, block]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"encrypted",
                 "keyExpectedValue": true,
-                "keyActualValue": 	false,
-                #{metadata}
-              }
+                "keyActualValue": 	false
+              })
 }

@@ -6,15 +6,11 @@ CxPolicy [ result ] {
     pol := input.document[i].resource.aws_ecr_repository_policy[name].policy
     re_match("\"Principal\"\\s*:\\s*\"*\"", pol)
 
-    result := {
-                "foundKye": 		pol,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_ecr_repository_policy", name]), "policy"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_ecr_repository_policy[%s].policy", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"policy",
                 "keyExpectedValue": null,
-                "keyActualValue": 	"*",
-                #{metadata}
-              }
+                "keyActualValue": 	"*"
+              })
 }
