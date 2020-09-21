@@ -1,7 +1,9 @@
 package query
 
 import (
+	"encoding/json"
 	"io/ioutil"
+	"os"
 	"path"
 	"regexp"
 	"strings"
@@ -13,7 +15,6 @@ import (
 
 const queryExtension = ".rego"
 const metadataFileSuffix = ".metadata.json"
-const metadataPlaceholder = "#{metadata}"
 
 type FilesystemSource struct {
 	Source string
@@ -32,7 +33,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 			if errRQ != nil {
 				log.Err(errRQ).
 					Str("fileName", f.Name()).
-					Msg("failed to read query file")
+					Msgf("failed to read query %s", f.Name())
 
 				continue
 			}
@@ -50,26 +51,46 @@ func ReadQuery(source, queryName string) (model.QueryMetadata, error) {
 		return model.QueryMetadata{}, errors.Wrapf(err, "metadata not found %s", queryName)
 	}
 
-	metadataFileName := strings.Replace(queryName, queryExtension, metadataFileSuffix, 1)
-	metadataContent, err := ioutil.ReadFile(path.Join(source, metadataFileName))
-	if err != nil {
-		return model.QueryMetadata{}, errors.Wrapf(err, "metadata not found %s", metadataFileName)
-	}
-
-	formattedMetadata := formatMetadata(string(metadataContent))
-	queryContentWithMetadata := strings.ReplaceAll(string(queryContent), metadataPlaceholder, formattedMetadata)
+	filer := getQueryFilter(string(queryContent))
+	metadata := readMetadata(source, queryName)
 
 	return model.QueryMetadata{
 		FileName: queryName,
-		Content:  queryContentWithMetadata,
-		Filter:   getQueryFilter(string(queryContent)),
+		Content:  string(queryContent),
+		Filter:   filer,
+		Metadata: metadata,
 	}, nil
 }
 
-func formatMetadata(content string) string {
-	lines := strings.Split(content, "\n")
+func readMetadata(source, queryName string) map[string]interface{} {
+	fileName := strings.Replace(queryName, queryExtension, metadataFileSuffix, 1)
+	f, err := os.Open(path.Join(source, fileName))
+	if err != nil {
+		if os.IsNotExist(err) {
+			log.Warn().
+				Str("fileName", queryName).
+				Msgf("metadata for query '%s' doesn't exist", queryName)
 
-	return strings.Join(lines[1:len(lines)-1], "\n")
+			return nil
+		}
+
+		log.Err(err).
+			Str("fileName", queryName).
+			Msgf("can't read metadata for query '%s'", queryName)
+
+		return nil
+	}
+
+	var metadata map[string]interface{}
+	if err := json.NewDecoder(f).Decode(&metadata); err != nil {
+		log.Err(err).
+			Str("fileName", queryName).
+			Msgf("can't json decode metadata for query '%s'", queryName)
+
+		return nil
+	}
+
+	return metadata
 }
 
 func getQueryFilter(query string) string {

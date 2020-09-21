@@ -7,17 +7,13 @@ CxPolicy [ result ] {
     resource.vpc_config.endpoint_public_access = true
     resource.vpc_config.public_access_cidrs[_] = "0.0.0.0/0"
 
-    result := {
-                "foundKye": 		resource.vpc_config,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_eks_cluster", name]), "public_access_cidrs"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"vpc_config.public_access_cidrs",
                 "keyExpectedValue": null,
-                "keyActualValue": 	"0.0.0.0/0",
-                #{metadata}
-              }
+                "keyActualValue": 	"0.0.0.0/0"
+              })
 }
 
 #default vaule of cidrs is "0.0.0.0/0"
@@ -26,17 +22,13 @@ CxPolicy [ result ] {
     resource.vpc_config.endpoint_public_access = true
     not resource.vpc_config.public_access_cidrs
 
-    result := {
-                "foundKye": 		resource.vpc_config,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_eks_cluster", name]), "vpc_config"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"vpc_config.public_access_cidrs",
                 "keyExpectedValue": null,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 

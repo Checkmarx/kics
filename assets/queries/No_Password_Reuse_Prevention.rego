@@ -6,33 +6,25 @@ CxPolicy [ result ] {
     pol := input.document[i].resource.aws_iam_account_password_policy[name]
     object.get(pol, "password_reuse_prevention", "not found") == "not found"
 
-    result := {
-                "foundKye": 		pol,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	concat("+", ["aws_iam_account_password_policy", name]),
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"password_reuse_prevention",
                 "keyExpectedValue": 5,
-                "keyActualValue": 	null,
-                #{metadata}
-              }
+                "keyActualValue": 	null
+              })
 }
 
 CxPolicy [ result ] {
     pol := input.document[i].resource.aws_iam_account_password_policy[name]
     pol.password_reuse_prevention = false
 
-    result := {
-                "foundKye": 		pol,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_iam_account_password_policy", name]), "password_reuse_prevention"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_iam_account_password_policy[%s].password_reuse_prevention", [name]),
                 "issueType":		"MissingAttribute",
-                "keyName":			"password_reuse_prevention",
                 "keyExpectedValue": 5,
-                "keyActualValue": 	"false",
-                #{metadata}
-              }
+                "keyActualValue": 	"false"
+              })
 }
 

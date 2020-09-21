@@ -77,7 +77,7 @@ var testCases = []testCase{
 		file:  "Cloudwatch_without_retention_days.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     15,
+				line:     7,
 				severity: model.SeverityLow,
 				name:     "Cloudwatch without retention days",
 			},
@@ -182,7 +182,7 @@ var testCases = []testCase{
 		file:  "IAM_policies_attached_to_User.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     16,
+				line:     18,
 				severity: model.SeverityLow,
 				name:     "IAM policies attached to user",
 			},
@@ -437,7 +437,7 @@ var testCases = []testCase{
 		file:  "S3_Bucket_without_Encryption_at_REST.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     2,
+				line:     12,
 				severity: model.SeverityHigh,
 				name:     "S3 bucket without encryption at REST",
 			},
@@ -583,7 +583,7 @@ func TestQueries(t *testing.T) {
 					}, nil
 				})
 
-			storage.EXPECT().SaveVulnerabilities(gomock.Eq(ctx), gomock.Any()).
+			storage.EXPECT().SaveVulnerabilities(gomock.Any(), gomock.Any()).
 				DoAndReturn(func(_ context.Context, results []model.Vulnerability) error {
 					require.Len(t, results, len(testCase.expectedResults), "Found issues and expected doesn't match")
 

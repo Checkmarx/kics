@@ -6,15 +6,11 @@ CxPolicy [ result ] {
     pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
     pubACL.ignore_public_acls == true
 
-    result := {
-                "foundKye": 		pubACL,
-                "fileId": 			input.document[i].id,
-                "fileName": 	    input.document[i].file,
-                "lineSearchKey": 	[concat("+", ["aws_s3_bucket_public_access_block", name]), "ignore_public_acls"],
+    result := mergeWithMetadata({
+                "documentId": 		input.document[i].id,
+                "lineSearchKey": 	sprintf("aws_s3_bucket_public_access_block[%s].ignore_public_acls", [name]),
                 "issueType":		"IncorrectValue",
-                "keyName":			"ignore_public_acls",
                 "keyExpectedValue": false,
-                "keyActualValue": 	true,
-                #{metadata}
-              }
+                "keyActualValue": 	true
+              })
 }
