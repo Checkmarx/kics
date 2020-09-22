@@ -13,7 +13,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal", [pl[r], name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT *",
                 "keyActualValue": 	"*"
               })
 }
@@ -29,7 +29,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT *",
                 "keyActualValue": 	pol.Statement[idx].Principal.AWS
               })
 }
