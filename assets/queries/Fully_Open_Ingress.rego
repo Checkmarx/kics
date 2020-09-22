@@ -13,7 +13,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_security_group_rule[%s].cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT 0.0.0.0/0",
                 "keyActualValue": 	rule.cidr_blocks[key]
               })
 }
@@ -28,7 +28,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT 0.0.0.0/0",
                 "keyActualValue": 	ingrs.cidr_blocks[key]
               })
 }

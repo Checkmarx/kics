@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Action", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": null,
+                "keyExpectedValue": "NOT *",
                 "keyActualValue": 	"*"
               })
 }
