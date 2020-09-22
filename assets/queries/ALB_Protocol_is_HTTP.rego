@@ -26,7 +26,6 @@ CxPolicy [ result ] {
     upper(resource.default_action.redirect.protocol) != "HTTPS"
 
     result := mergeWithMetadata({
-                "foundKye" : 		resource,
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
                 "issueType":		"IncorrectValue",
