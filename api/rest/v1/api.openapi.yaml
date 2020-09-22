@@ -45,8 +45,24 @@ components:
         queryName:
           type: string
           description: Query name
+        search_key:
+          type: string
+          description: DOM path in source file
+        key_expected_value:
+          type: string
+        key_actual_value:
+          type: string
         severity:
           $ref: '#/components/schemas/SeverityEnum'
+        issue_type:
+          $ref: '#/components/schemas/IssueTypeEnum'
+    IssueTypeEnum:
+      type: string
+      description: Issue type enum of a result.
+      enum:
+        - MissingAttribute
+        - RedundantAttribute
+        - IncorrectValue
     SeverityEnum:
       type: string
       description: Severity enum of a result.
