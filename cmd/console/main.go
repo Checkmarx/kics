@@ -114,7 +114,7 @@ func printResult(summary model.Summary) error {
 }
 
 func printResultToFile(path string, summary model.Summary) error {
-	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, os.ModePerm)
+	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
 	}
