@@ -613,7 +613,7 @@ func TestQueries(t *testing.T) {
 					return []model.QueryMetadata{q}, nil
 				})
 
-			inspector, err := engine.NewInspector(ctx, queriesSource, storage)
+			inspector, err := engine.NewInspector(ctx, queriesSource, storage, engine.DefaultVulnerabilityBuilder)
 			require.Nil(t, err)
 			require.NotNil(t, inspector)
 
