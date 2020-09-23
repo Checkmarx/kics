@@ -22,6 +22,7 @@ import (
 
 const (
 	UndetectedVulnerabilityLine = 1
+	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
@@ -279,6 +280,13 @@ func buildVulnerability(ctx QueryContext, v interface{}) (model.Vulnerability, e
 		logWithFields.Warn().Msg("saving result. failed to detect query name")
 	}
 
+	queryID := DefaultQueryID
+	if qn, err := mapKeyToString(ctx, vOjb, "id", false); err == nil {
+		queryID = *qn
+	} else {
+		logWithFields.Warn().Msg("saving result. failed to detect query id")
+	}
+
 	var severity model.Severity = model.SeverityInfo
 	if s, err := mapKeyToString(ctx, vOjb, "severity", false); err == nil {
 		su := strings.ToUpper(*s)
@@ -308,12 +316,14 @@ func buildVulnerability(ctx QueryContext, v interface{}) (model.Vulnerability, e
 		ScanID:           ctx.scanID,
 		FileID:           file.ID,
 		QueryName:        queryName,
+		QueryID:          queryID,
 		Severity:         severity,
 		Line:             line,
 		IssueType:        issueType,
 		SearchKey:        searchKey,
 		KeyExpectedValue: mustMapKeyToString(ctx, vOjb, "keyExpectedValue", true),
 		KeyActualValue:   mustMapKeyToString(ctx, vOjb, "keyActualValue", true),
+		Value:            mustMapKeyToString(ctx, vOjb, "value", true),
 		Output:           string(output),
 	}, nil
 }

@@ -53,12 +53,14 @@ create table if not exists ast_ice_results
     file_id            int          not null,
     scan_id            varchar(40)  not null,
     query_name         varchar(255) not null,
+    query_id           varchar(255) not null,
     severity           varchar(100) not null,
     line               integer default 1,
     issue_type         varchar(40)  not null,
     search_key         varchar(255) not null,
     key_expected_value varchar(255),
     key_actual_value   varchar(255),
+    value              varchar(255),
     output             text         not null,
     constraint t_results_file_fk
         foreign key (file_id)

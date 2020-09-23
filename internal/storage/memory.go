@@ -44,11 +44,13 @@ func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.ResultI
 			FileName:         m.filesByID[v.FileID].FileName,
 			Line:             v.Line,
 			QueryName:        v.QueryName,
+			QueryID:          v.QueryID,
 			Severity:         v.Severity,
 			IssueType:        v.IssueType,
 			SearchKey:        v.SearchKey,
 			KeyExpectedValue: v.KeyExpectedValue,
 			KeyActualValue:   v.KeyActualValue,
+			Value:            v.Value,
 		}
 	}
 
