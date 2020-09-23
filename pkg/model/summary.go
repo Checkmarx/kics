@@ -24,7 +24,8 @@ type Summary struct {
 
 func CreateSummary(files FileMetadatas, items []ResultItem) Summary {
 	q := make(map[string]SummaryItem, len(items))
-	for _, item := range items {
+	for i := range items {
+		item := items[i]
 		if _, ok := q[item.QueryName]; !ok {
 			q[item.QueryName] = SummaryItem{
 				QueryName: item.QueryName,

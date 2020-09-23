@@ -54,7 +54,7 @@ func main() {
 		Source: cfg.querySourcePath,
 	}
 
-	inspector, err := engine.NewInspector(ctx, querySource, store)
+	inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Inspector initialization failed")
 	}

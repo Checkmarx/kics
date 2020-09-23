@@ -12,7 +12,8 @@ func (s *PostgresStorage) SaveVulnerabilities(ctx context.Context, items []model
 INSERT INTO ast_ice_results 
 	(scan_id, file_id, query_name, query_id, severity, line, issue_type, search_key, key_expected_value, key_actual_value, value, output) 
 VALUES 
-	(:scan_id, :file_id, :query_name,:query_id, :severity, :line, :issue_type, :search_key, :key_expected_value, :key_actual_value, :value, :output);
+	(:scan_id, :file_id, :query_name,:query_id, :severity, 
+	 :line, :issue_type, :search_key, :key_expected_value, :key_actual_value, :value, :output);
 `
 	for i := range items {
 		item := items[i]

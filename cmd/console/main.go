@@ -50,7 +50,7 @@ func main() {
 				Source: queryPath,
 			}
 
-			inspector, err := engine.NewInspector(ctx, querySource, store)
+			inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder)
 			if err != nil {
 				return err
 			}
