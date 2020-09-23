@@ -358,6 +358,21 @@ var testCases = []testCase{
 		file:  "Public_ECR_Policy_success.tf",
 	},
 	{
+		query: "RDS_without_Backup.rego",
+		file:  "RDS_without_Backup.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     13,
+				severity: model.SeverityMedium,
+				name:     "RDS without Backup",
+			},
+		},
+	},
+	{
+		query: "RDS_without_Backup.rego",
+		file:  "RDS_without_Backup_success.tf",
+	},
+	{
 		query: "S3_Bucket_with_Ignore_Public_ACL.rego",
 		file:  "S3_Bucket_with_Ignore_Public_ACL.tf",
 		expectedResults: []expectedResult{
@@ -521,6 +536,21 @@ var testCases = []testCase{
 	{
 		query: "SQS_Policy_with_ALL_Actions.rego",
 		file:  "SQS_Policy_with_ALL_Actions_success.tf",
+	},
+	{
+		query: "SQS_policy_with_Public_Access.rego",
+		file:  "SQS_policy_with_Public_Access.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     15,
+				severity: model.SeverityMedium,
+				name:     "SQS policy with Public Access",
+			},
+		},
+	},
+	{
+		query: "SQS_policy_with_Public_Access.rego",
+		file:  "SQS_policy_with_Public_Access_success.tf",
 	},
 	{
 		query: "Unchangeable_Password.rego",
