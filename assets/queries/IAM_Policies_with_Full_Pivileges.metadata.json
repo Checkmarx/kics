@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "IAM_policies_with_full_privileges",
   "name": "IAM policies with full privileges",
   "severity": "Medium",
   "category": null,

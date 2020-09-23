@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "IAM_role_allows_all_principals_to_assume",
   "name": "IAM role allows all principals to assume",
   "severity": "Low",
   "category": null,

@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "Lambda_hardcoded_AWS_access_key",
   "name": "Lambda hardcoded AWS access key",
   "severity": "Low",
   "category": null,

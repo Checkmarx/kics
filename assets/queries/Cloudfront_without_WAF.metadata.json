@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "Cloudfront_without_WAF",
   "name": "Cloudfront without WAF",
   "severity": "Low",
   "category": null,
