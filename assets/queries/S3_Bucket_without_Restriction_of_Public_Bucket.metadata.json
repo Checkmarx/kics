@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "S3_bucket_without_restriction_of_public_buckety",
   "name": "S3 bucket without restriction of public buckety",
   "severity": "High",
   "category": null,

@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "S3_bucket_with_any_principal",
   "name": "S3 bucket with any principal",
   "severity": "High",
   "category": null,

@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "IAM_policies_attached_to_user",
   "name": "IAM policies attached to user",
   "severity": "Low",
   "category": null,

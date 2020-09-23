@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "SQS_policy_allows_ALL_(*)_actions",
   "name": "SQS policy allows ALL (*) actions",
   "severity": "Medium",
   "category": null,
