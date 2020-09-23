@@ -55,6 +55,7 @@ type Vulnerability struct {
 	ID               int       `json:"id"`
 	ScanID           string    `db:"scan_id" json:"-"`
 	FileID           int       `db:"file_id" json:"file_id"`
+	QueryID          string    `db:"query_id" json:"query_id"`
 	QueryName        string    `db:"query_name" json:"query_name"`
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
@@ -62,6 +63,7 @@ type Vulnerability struct {
 	SearchKey        string    `db:"search_key"`
 	KeyExpectedValue *string   `db:"key_expected_value"`
 	KeyActualValue   *string   `db:"key_actual_value"`
+	Value            *string   `db:"value"`
 	Output           string    `json:"-"`
 }
 
@@ -69,12 +71,14 @@ type ResultItem struct {
 	ID               int       `json:"id"`
 	FileName         string    `db:"file_name" json:"fileName"`
 	Line             int       `json:"line"`
+	QueryID          string    `db:"query_id" json:"query_id"`
 	QueryName        string    `db:"query_name" json:"queryName"`
 	Severity         Severity  `json:"severity"`
 	IssueType        IssueType `db:"issue_type" json:"issue_type"`
 	SearchKey        string    `db:"search_key" json:"search_key"`
 	KeyExpectedValue *string   `db:"key_expected_value" json:"key_expected_value"`
 	KeyActualValue   *string   `db:"key_actual_value" json:"key_actual_value"`
+	Value            *string   `db:"value" json:"value"`
 }
 
 type FileMetadatas []FileMetadata

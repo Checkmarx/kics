@@ -7,10 +7,12 @@ type SummaryItemFile struct {
 	SearchKey        string    `json:"search_key"`
 	KeyExpectedValue *string   `json:"key_expected_value"`
 	KeyActualValue   *string   `json:"key_actual_value"`
+	Value            *string   `json:"value"`
 }
 
 type SummaryItem struct {
 	QueryName string            `json:"query_name"`
+	QueryID   string            `json:"query_id"`
 	Severity  Severity          `json:"severity"`
 	Files     []SummaryItemFile `json:"files"`
 }
@@ -26,6 +28,7 @@ func CreateSummary(files FileMetadatas, items []ResultItem) Summary {
 		if _, ok := q[item.QueryName]; !ok {
 			q[item.QueryName] = SummaryItem{
 				QueryName: item.QueryName,
+				QueryID:   item.QueryID,
 				Severity:  item.Severity,
 			}
 		}
@@ -38,6 +41,7 @@ func CreateSummary(files FileMetadatas, items []ResultItem) Summary {
 			SearchKey:        item.SearchKey,
 			KeyExpectedValue: item.KeyExpectedValue,
 			KeyActualValue:   item.KeyActualValue,
+			Value:            item.Value,
 		})
 
 		q[item.QueryName] = qItem
