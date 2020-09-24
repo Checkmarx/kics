@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "S3_bucket_without_encryption_at_REST",
   "name": "S3 bucket without encryption at REST",
   "severity": "High",
   "category": null,

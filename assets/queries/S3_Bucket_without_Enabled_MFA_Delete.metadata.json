@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "S3_bucket_without_enabled_MFA_Delete",
   "name": "S3 bucket without enabled MFA Delete",
   "severity": "High",
   "category": null,

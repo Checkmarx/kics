@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "S3_bucket_with_public_RW_access",
   "name": "S3 bucket with public RW access",
   "severity": "Info",
   "category": null,

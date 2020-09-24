@@ -45,12 +45,16 @@ components:
         queryName:
           type: string
           description: Query name
+        query_id:
+          type: string
         search_key:
           type: string
           description: DOM path in source file
         key_expected_value:
           type: string
         key_actual_value:
+          type: string
+        value:
           type: string
         severity:
           $ref: '#/components/schemas/SeverityEnum'

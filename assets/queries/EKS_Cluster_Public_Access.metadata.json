@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "EKS_cluster_public_access",
   "name": "EKS cluster public access",
   "severity": "Medium",
   "category": null,
