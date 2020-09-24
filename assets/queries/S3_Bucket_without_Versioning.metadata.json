@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "S3_bucket_without_versioning",
   "name": "S3 bucket without versioning",
   "severity": "High",
   "category": null,

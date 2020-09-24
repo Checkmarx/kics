@@ -23,6 +23,7 @@ type expectedResult struct {
 	line     int
 	severity model.Severity
 	name     string
+	value    *string
 }
 
 type testCase struct {
@@ -34,7 +35,7 @@ type testCase struct {
 var testCases = []testCase{
 	{
 		query: "ALB_Protocol_is_HTTP.rego",
-		file:  "ALB_protocol_is_HTTP.tf",
+		file:  "ALB_Protocol_is_HTTP.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     25,
@@ -50,11 +51,11 @@ var testCases = []testCase{
 	},
 	{
 		query: "ALB_Protocol_is_HTTP.rego",
-		file:  "ALB_protocol_is_HTTP_success.tf",
+		file:  "ALB_Protocol_is_HTTP_success.tf",
 	},
 	{
 		query: "Cloudfront_Configuration_Allow_HTTP.rego",
-		file:  "Cloudfront_configuration_allow_HTTP.tf",
+		file:  "Cloudfront_Configuration_Allow_HTTP.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     49,
@@ -70,11 +71,11 @@ var testCases = []testCase{
 	},
 	{
 		query: "Cloudfront_Configuration_Allow_HTTP.rego",
-		file:  "Cloudfront_configuration_allow_HTTP_success.tf",
+		file:  "Cloudfront_Configuration_Allow_HTTP_success.tf",
 	},
 	{
 		query: "Cloudwatch_without_Retention_Days.rego",
-		file:  "Cloudwatch_without_retention_days.tf",
+		file:  "Cloudwatch_without_Retention_Days.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     7,
@@ -85,7 +86,7 @@ var testCases = []testCase{
 	},
 	{
 		query: "Cloudwatch_without_Retention_Days.rego",
-		file:  "Cloudwatch_without_retention_days_success.tf",
+		file:  "Cloudwatch_without_Retention_Days_success.tf",
 	},
 	{
 		query: "Cloudfront_without_WAF.rego",
@@ -104,7 +105,7 @@ var testCases = []testCase{
 	},
 	{
 		query: "EKS_Cluster_Public_Access_cidrs.rego",
-		file:  "Eks_Cluster_Public_Access_cidrs.tf",
+		file:  "EKS_Cluster_Public_Access_cidrs.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     8,
@@ -115,11 +116,11 @@ var testCases = []testCase{
 	},
 	{
 		query: "EKS_Cluster_Public_Access_cidrs.rego",
-		file:  "Eks_Cluster_Public_Access_cidrs_success.tf",
+		file:  "EKS_Cluster_Public_Access_cidrs_success.tf",
 	},
 	{
 		query: "EKS_Cluster_Public_Access.rego",
-		file:  "Eks_Cluster_Public_Access.tf",
+		file:  "EKS_Cluster_Public_Access.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     7,
@@ -130,7 +131,7 @@ var testCases = []testCase{
 	},
 	{
 		query: "EKS_Cluster_Public_Access.rego",
-		file:  "Eks_Cluster_Public_Access_success.tf",
+		file:  "EKS_Cluster_Public_Access_success.tf",
 	},
 	{
 		query: "Fully_Open_Ingress.rego",
@@ -164,7 +165,7 @@ var testCases = []testCase{
 	},
 	{
 		query: "IAM_Policies_Allow_All.rego",
-		file:  "IAM_policies_allow_all.tf",
+		file:  "IAM_Policies_Allow_All.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     32,
@@ -175,11 +176,11 @@ var testCases = []testCase{
 	},
 	{
 		query: "IAM_Policies_Allow_All.rego",
-		file:  "IAM_policies_allow_all_success.tf",
+		file:  "IAM_Policies_Allow_All_success.tf",
 	},
 	{
 		query: "IAM_Policies_Attached_to_User.rego",
-		file:  "IAM_policies_attached_to_User.tf",
+		file:  "IAM_Policies_Attached_to_User.tf",
 		expectedResults: []expectedResult{
 			{
 				line:     18,
@@ -190,7 +191,7 @@ var testCases = []testCase{
 	},
 	{
 		query: "IAM_Policies_Attached_to_User.rego",
-		file:  "IAM_policies_attached_to_User_success.tf",
+		file:  "IAM_Policies_Attached_to_User_success.tf",
 	},
 	{
 		query: "IAM_Policies_with_Full_Pivileges.rego",
@@ -358,6 +359,22 @@ var testCases = []testCase{
 		file:  "Public_ECR_Policy_success.tf",
 	},
 	{
+		query: "RDS_without_Backup.rego",
+		file:  "RDS_without_Backup.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     13,
+				severity: model.SeverityMedium,
+				name:     "RDS without Backup",
+				value:    ptrToString("mydb"),
+			},
+		},
+	},
+	{
+		query: "RDS_without_Backup.rego",
+		file:  "RDS_without_Backup_success.tf",
+	},
+	{
 		query: "S3_Bucket_with_Ignore_Public_ACL.rego",
 		file:  "S3_Bucket_with_Ignore_Public_ACL.tf",
 		expectedResults: []expectedResult{
@@ -469,7 +486,7 @@ var testCases = []testCase{
 			{
 				line:     5,
 				severity: model.SeverityHigh,
-				name:     "S3 bucket without restriction of public buckety",
+				name:     "S3 bucket without restriction of public bucket",
 			},
 		},
 	},
@@ -500,6 +517,7 @@ var testCases = []testCase{
 				line:     4,
 				severity: model.SeverityInfo,
 				name:     "S3 bucket with public RW access",
+				value:    ptrToString("my-tf-test-bucket"),
 			},
 		},
 	},
@@ -521,6 +539,22 @@ var testCases = []testCase{
 	{
 		query: "SQS_Policy_with_ALL_Actions.rego",
 		file:  "SQS_Policy_with_ALL_Actions_success.tf",
+	},
+	{
+		query: "SQS_policy_with_Public_Access.rego",
+		file:  "SQS_policy_with_Public_Access.tf",
+		expectedResults: []expectedResult{
+			{
+				line:     15,
+				severity: model.SeverityMedium,
+				name:     "SQS policy with Public Access",
+				value:    ptrToString("examplequeue"),
+			},
+		},
+	},
+	{
+		query: "SQS_policy_with_Public_Access.rego",
+		file:  "SQS_policy_with_Public_Access_success.tf",
 	},
 	{
 		query: "Unchangeable_Password.rego",
@@ -597,6 +631,10 @@ func TestQueries(t *testing.T) {
 						require.Equal(t, item.severity, result.Severity, "Invalid severity")
 						require.Equal(t, item.name, result.QueryName, "Invalid query name")
 						require.Equal(t, fileID, result.FileID)
+						if item.value != nil {
+							require.NotNil(t, result.Value)
+							require.Equal(t, *item.value, *result.Value)
+						}
 					}
 
 					return nil
@@ -613,7 +651,7 @@ func TestQueries(t *testing.T) {
 					return []model.QueryMetadata{q}, nil
 				})
 
-			inspector, err := engine.NewInspector(ctx, queriesSource, storage)
+			inspector, err := engine.NewInspector(ctx, queriesSource, storage, engine.DefaultVulnerabilityBuilder)
 			require.Nil(t, err)
 			require.NotNil(t, inspector)
 
@@ -621,4 +659,8 @@ func TestQueries(t *testing.T) {
 			assert.Nil(t, err)
 		})
 	}
+}
+
+func ptrToString(v string) *string {
+	return &v
 }

@@ -1,13 +1,9 @@
 package engine
 
 import (
-	"bufio"
 	"context"
 	"encoding/json"
-	"fmt"
 	"regexp"
-	"strconv"
-	"strings"
 	"time"
 
 	"github.com/checkmarxDev/ice/internal/logger"
@@ -22,6 +18,7 @@ import (
 
 const (
 	UndetectedVulnerabilityLine = 1
+	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
@@ -31,6 +28,8 @@ const (
 
 var ErrNoResult = errors.New("query: not result")
 var ErrInvalidResult = errors.New("query: invalid result format")
+
+type VulnerabilityBuilder func(ctx QueryContext, v interface{}) (model.Vulnerability, error)
 
 type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
@@ -49,6 +48,7 @@ type preparedQuery struct {
 type Inspector struct {
 	queries []*preparedQuery
 	storage FilesStorage
+	vb      VulnerabilityBuilder
 }
 
 type QueryContext struct {
@@ -66,7 +66,12 @@ var (
 	}
 )
 
-func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorage) (*Inspector, error) {
+func NewInspector(
+	ctx context.Context,
+	source QueriesSource,
+	storage FilesStorage,
+	vb VulnerabilityBuilder,
+) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
@@ -131,6 +136,7 @@ func NewInspector(ctx context.Context, source QueriesSource, storage FilesStorag
 	return &Inspector{
 		queries: opaQueries,
 		storage: storage,
+		vb:      vb,
 	}, nil
 }
 
@@ -190,33 +196,38 @@ func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMe
 		query:  query,
 	}
 
-	if err := c.saveResultIfExists(queryContext, results); err != nil {
+	vulnerabilities, err := c.decodeQueryResults(queryContext, results)
+	if err != nil {
 		return errors.Wrap(err, "failed to save query result")
+	}
+
+	if err := c.storage.SaveVulnerabilities(ctx, vulnerabilities); err != nil {
+		return errors.Wrap(err, "failed to save query results")
 	}
 
 	return nil
 }
 
-func (c *Inspector) saveResultIfExists(ctx QueryContext, results rego.ResultSet) error {
+func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet) ([]model.Vulnerability, error) {
 	if len(results) == 0 {
-		return ErrNoResult
+		return nil, ErrNoResult
 	}
 
 	result := results[0].Bindings
 
 	queryResult, ok := result["result"]
 	if !ok {
-		return ErrNoResult
+		return nil, ErrNoResult
 	}
 
 	queryResultItems, ok := queryResult.([]interface{})
 	if !ok {
-		return ErrInvalidResult
+		return nil, ErrInvalidResult
 	}
 
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	for _, queryResultItem := range queryResultItems {
-		vulnerability, err := buildVulnerability(ctx, queryResultItem)
+		vulnerability, err := c.vb(ctx, queryResultItem)
 		if err != nil {
 			log.Warn().
 				Str("reason", err.Error()).
@@ -229,192 +240,5 @@ func (c *Inspector) saveResultIfExists(ctx QueryContext, results rego.ResultSet)
 		vulnerabilities = append(vulnerabilities, vulnerability)
 	}
 
-	if err := c.storage.SaveVulnerabilities(ctx.ctx, vulnerabilities); err != nil {
-		return errors.Wrap(err, "failed to save query results")
-	}
-
-	return nil
-}
-
-func buildVulnerability(ctx QueryContext, v interface{}) (model.Vulnerability, error) {
-	vOjb, ok := v.(map[string]interface{})
-	if !ok {
-		return model.Vulnerability{}, ErrInvalidResult
-	}
-
-	output, err := json.Marshal(vOjb)
-	if err != nil {
-		return model.Vulnerability{}, errors.Wrap(err, "failed to marshall query output")
-	}
-
-	fileID, err := mapKeyToString(ctx, vOjb, "documentId", false)
-	if err != nil {
-		return model.Vulnerability{}, errors.Wrap(err, "failed to recognize file id")
-	}
-
-	file, ok := ctx.files[*fileID]
-	if !ok {
-		return model.Vulnerability{}, errors.New("failed to find file from query response")
-	}
-
-	logWithFields := log.With().
-		Str("scanID", ctx.scanID).
-		Int("fileID", file.ID).
-		Str("queryName", ctx.query.metadata.FileName).
-		Logger()
-
-	line := UndetectedVulnerabilityLine
-	searchKey := ""
-	if s, ok := vOjb["searchKey"]; ok {
-		searchKey = s.(string)
-		line = detectLine(ctx, &file, searchKey)
-	} else {
-		logWithFields.Warn().Msg("saving result. failed to detect line")
-	}
-
-	queryName := DefaultQueryName
-	if qn, err := mapKeyToString(ctx, vOjb, "name", false); err == nil {
-		queryName = *qn
-	} else {
-		logWithFields.Warn().Msg("saving result. failed to detect query name")
-	}
-
-	var severity model.Severity = model.SeverityInfo
-	if s, err := mapKeyToString(ctx, vOjb, "severity", false); err == nil {
-		su := strings.ToUpper(*s)
-		var found bool
-		for _, si := range model.AllSeverities {
-			if su == string(si) {
-				severity = si
-				found = true
-				break
-			}
-		}
-
-		if !found {
-			logWithFields.Warn().Str("severity", *s).Msg("saving result. invalid severity constant value")
-		}
-	} else {
-		logWithFields.Info().Msg("saving result. failed to detect severity")
-	}
-
-	issueType := DefaultIssueType
-	if v := mustMapKeyToString(ctx, vOjb, "issueType", true); v != nil {
-		issueType = model.IssueType(*v)
-	}
-
-	return model.Vulnerability{
-		ID:               0,
-		ScanID:           ctx.scanID,
-		FileID:           file.ID,
-		QueryName:        queryName,
-		Severity:         severity,
-		Line:             line,
-		IssueType:        issueType,
-		SearchKey:        searchKey,
-		KeyExpectedValue: mustMapKeyToString(ctx, vOjb, "keyExpectedValue", true),
-		KeyActualValue:   mustMapKeyToString(ctx, vOjb, "keyActualValue", true),
-		Output:           string(output),
-	}, nil
-}
-
-func detectLine(ctx QueryContext, file *model.FileMetadata, s string) int {
-	logUndetected := func() {
-		logger.GetLoggerWithFieldsFromContext(ctx.ctx).
-			Warn().
-			Str("scanID", ctx.scanID).
-			Int("fileID", file.ID).
-			Msgf("filed to detect line, query response %s", s)
-	}
-
-	scanner := bufio.NewScanner(strings.NewReader(file.OriginalData))
-	var (
-		line, lastMatchedLine int
-		foundAtLeastOne       bool
-	)
-
-	keys := strings.Split(s, ".")
-	for _, key := range keys {
-		var name string
-		if parts := nameRegex.FindStringSubmatch(key); len(parts) > 1 {
-			key = parts[1]
-			name = parts[2]
-		}
-
-		for scanner.Scan() {
-			line++
-
-			if strings.Contains(scanner.Text(), key) && (name == "" || strings.Contains(scanner.Text(), name)) {
-				lastMatchedLine = line
-				foundAtLeastOne = true
-				break
-			}
-		}
-	}
-
-	if err := scanner.Err(); err != nil {
-		logger.GetLoggerWithFieldsFromContext(ctx.ctx).
-			Err(err).
-			Str("scanID", ctx.scanID).
-			Msgf("detecting line. scanner err for file id %d, search %s", file.ID, s)
-	}
-
-	if foundAtLeastOne {
-		return lastMatchedLine
-	}
-
-	logUndetected()
-	return UndetectedVulnerabilityLine
-}
-
-func mustMapKeyToString(ctx QueryContext, m map[string]interface{}, key string, allowNil bool) *string {
-	res, err := mapKeyToString(ctx, m, key, allowNil)
-	if err != nil {
-		log.Warn().
-			Str("reason", err.Error()).
-			Msgf("failed to get key %s in map", key)
-	}
-
-	return res
-}
-
-func mapKeyToString(ctx QueryContext, m map[string]interface{}, key string, allowNil bool) (*string, error) {
-	v, ok := m[key]
-	if !ok {
-		return nil, fmt.Errorf("key '%s' not found in map", key)
-	}
-
-	switch vv := v.(type) {
-	case json.Number:
-		return prtString(vv.String()), nil
-	case string:
-		return prtString(vv), nil
-	case int, int32, int64:
-		return prtString(fmt.Sprintf("%d", vv)), nil
-	case float32:
-		return prtString(strconv.FormatFloat(float64(vv), 'f', -1, 64)), nil
-	case float64:
-		return prtString(strconv.FormatFloat(vv, 'f', -1, 64)), nil
-	case nil:
-		if allowNil {
-			return nil, nil
-		}
-		return prtString("null"), nil
-	case bool:
-		return prtString(fmt.Sprintf("%v", vv)), nil
-	}
-
-	logger.GetLoggerWithFieldsFromContext(ctx.ctx).
-		Debug().
-		Msg("detecting line. can't format item to string")
-
-	if allowNil {
-		return nil, nil
-	}
-
-	return prtString(""), nil
-}
-
-func prtString(v string) *string {
-	return &v
+	return vulnerabilities, nil
 }

@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "Cloudwatch_without_retention_days",
   "name": "Cloudwatch without retention days",
   "severity": "Low",
   "category": null,

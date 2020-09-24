@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "Hardcoded_AWS_access_key",
   "name": "Hardcoded AWS access key",
   "severity": "Low",
   "category": null,
