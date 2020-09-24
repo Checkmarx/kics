@@ -23,6 +23,7 @@ type expectedResult struct {
 	line     int
 	severity model.Severity
 	name     string
+	value    *string
 }
 
 type testCase struct {
@@ -365,6 +366,7 @@ var testCases = []testCase{
 				line:     13,
 				severity: model.SeverityMedium,
 				name:     "RDS without Backup",
+				value:    ptrToString("mydb"),
 			},
 		},
 	},
@@ -484,7 +486,7 @@ var testCases = []testCase{
 			{
 				line:     5,
 				severity: model.SeverityHigh,
-				name:     "S3 bucket without restriction of public buckety",
+				name:     "S3 bucket without restriction of public bucket",
 			},
 		},
 	},
@@ -515,6 +517,7 @@ var testCases = []testCase{
 				line:     4,
 				severity: model.SeverityInfo,
 				name:     "S3 bucket with public RW access",
+				value:    ptrToString("my-tf-test-bucket"),
 			},
 		},
 	},
@@ -545,6 +548,7 @@ var testCases = []testCase{
 				line:     15,
 				severity: model.SeverityMedium,
 				name:     "SQS policy with Public Access",
+				value:    ptrToString("examplequeue"),
 			},
 		},
 	},
@@ -627,6 +631,10 @@ func TestQueries(t *testing.T) {
 						require.Equal(t, item.severity, result.Severity, "Invalid severity")
 						require.Equal(t, item.name, result.QueryName, "Invalid query name")
 						require.Equal(t, fileID, result.FileID)
+						if item.value != nil {
+							require.NotNil(t, result.Value)
+							require.Equal(t, *item.value, *result.Value)
+						}
 					}
 
 					return nil
@@ -651,4 +659,8 @@ func TestQueries(t *testing.T) {
 			assert.Nil(t, err)
 		})
 	}
+}
+
+func ptrToString(v string) *string {
+	return &v
 }
