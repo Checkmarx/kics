@@ -112,6 +112,11 @@ var testCases = []testCase{
 				severity: model.SeverityHigh,
 				name:     "EKS cluster public access cidrs",
 			},
+			{
+				line:     30,
+				severity: model.SeverityHigh,
+				name:     "EKS cluster public access cidrs",
+			},
 		},
 	},
 	{
@@ -142,6 +147,11 @@ var testCases = []testCase{
 				severity: model.SeverityHigh,
 				name:     "Fully open Ingress",
 			},
+			{
+				line:     105,
+				severity: model.SeverityHigh,
+				name:     "Fully open Ingress",
+			},
 		},
 	},
 	{
@@ -154,6 +164,11 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     14,
+				severity: model.SeverityLow,
+				name:     "Hardcoded AWS access key",
+			},
+			{
+				line:     41,
 				severity: model.SeverityLow,
 				name:     "Hardcoded AWS access key",
 			},
@@ -213,6 +228,11 @@ var testCases = []testCase{
 		file:  "IAM_Role_Allows_Public_Assume.tf",
 		expectedResults: []expectedResult{
 			{
+				line:     78,
+				severity: model.SeverityLow,
+				name:     "IAM role allows public assume",
+			},
+			{
 				line:     15,
 				severity: model.SeverityLow,
 				name:     "IAM role allows public assume",
@@ -243,7 +263,12 @@ var testCases = []testCase{
 		file:  "Incorrect_Password_Policy_Experation.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     1,
+				line:     12,
+				severity: model.SeverityMedium,
+				name:     "Incorrect password policy expiration",
+			},
+			{
+				line:     8,
 				severity: model.SeverityMedium,
 				name:     "Incorrect password policy expiration",
 			},
@@ -258,7 +283,12 @@ var testCases = []testCase{
 		file:  "Insufficient_Password_Length.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     1,
+				line:     13,
+				severity: model.SeverityHigh,
+				name:     "Insufficient password length",
+			},
+			{
+				line:     9,
 				severity: model.SeverityHigh,
 				name:     "Insufficient password length",
 			},
@@ -274,6 +304,11 @@ var testCases = []testCase{
 		expectedResults: []expectedResult{
 			{
 				line:     35,
+				severity: model.SeverityLow,
+				name:     "Lambda hardcoded AWS access key",
+			},
+			{
+				line:     56,
 				severity: model.SeverityLow,
 				name:     "Lambda hardcoded AWS access key",
 			},
@@ -302,6 +337,11 @@ var testCases = []testCase{
 		query: "No_Password_Reuse_Prevention.rego",
 		file:  "No_Password_Reuse_Prevention.tf",
 		expectedResults: []expectedResult{
+			{
+				line:     13,
+				severity: model.SeverityMedium,
+				name:     "No password reuse prevention",
+			},
 			{
 				line:     10,
 				severity: model.SeverityMedium,
@@ -363,6 +403,12 @@ var testCases = []testCase{
 		file:  "RDS_without_Backup.tf",
 		expectedResults: []expectedResult{
 			{
+				line:     17,
+				severity: model.SeverityMedium,
+				name:     "RDS without Backup",
+				value:    ptrToString("mydb"),
+			},
+			{
 				line:     13,
 				severity: model.SeverityMedium,
 				name:     "RDS without Backup",
@@ -394,6 +440,11 @@ var testCases = []testCase{
 		file:  "S3_Bucket_with_Public_ACL.tf",
 		expectedResults: []expectedResult{
 			{
+				line:     18,
+				severity: model.SeverityMedium,
+				name:     "S3 bucket allows public ACL",
+			},
+			{
 				line:     8,
 				severity: model.SeverityMedium,
 				name:     "S3 bucket allows public ACL",
@@ -408,6 +459,11 @@ var testCases = []testCase{
 		query: "S3_Bucket_with_Public_Policy.rego",
 		file:  "S3_Bucket_with_Public_Policy.tf",
 		expectedResults: []expectedResult{
+			{
+				line:     18,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket allows public policy",
+			},
 			{
 				line:     9,
 				severity: model.SeverityHigh,
@@ -438,6 +494,11 @@ var testCases = []testCase{
 		query: "S3_Bucket_without_Enabled_MFA_Delete.rego",
 		file:  "S3_Bucket_without_Enabled_MFA_Delete.tf",
 		expectedResults: []expectedResult{
+			{
+				line:     25,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without enabled MFA Delete",
+			},
 			{
 				line:     12,
 				severity: model.SeverityHigh,
@@ -484,7 +545,12 @@ var testCases = []testCase{
 		file:  "S3_Bucket_without_Restriction_of_Public_Bucket.tf",
 		expectedResults: []expectedResult{
 			{
-				line:     5,
+				line:     14,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without restriction of public bucket",
+			},
+			{
+				line:     11,
 				severity: model.SeverityHigh,
 				name:     "S3 bucket without restriction of public bucket",
 			},
@@ -498,6 +564,16 @@ var testCases = []testCase{
 		query: "S3_Bucket_without_Versioning.rego",
 		file:  "S3_Bucket_without_Versioning.tf",
 		expectedResults: []expectedResult{
+			{
+				line:     17,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without versioning",
+			},
+			{
+				line:     38,
+				severity: model.SeverityHigh,
+				name:     "S3 bucket without versioning",
+			},
 			{
 				line:     12,
 				severity: model.SeverityHigh,
@@ -513,6 +589,18 @@ var testCases = []testCase{
 		query: "S3_Bucket_wth_Public_RW.rego",
 		file:  "S3_Bucket_wth_Public_RW.tf",
 		expectedResults: []expectedResult{
+			{
+				line:     19,
+				severity: model.SeverityInfo,
+				name:     "S3 bucket with public RW access",
+				value:    ptrToString("my-tf-test-bucket"),
+			},
+			{
+				line:     34,
+				severity: model.SeverityInfo,
+				name:     "S3 bucket with public RW access",
+				value:    ptrToString("my-tf-test-bucket"),
+			},
 			{
 				line:     4,
 				severity: model.SeverityInfo,
@@ -544,6 +632,18 @@ var testCases = []testCase{
 		query: "SQS_policy_with_Public_Access.rego",
 		file:  "SQS_policy_with_Public_Access.tf",
 		expectedResults: []expectedResult{
+			{
+				line:     47,
+				severity: model.SeverityMedium,
+				name:     "SQS policy with Public Access",
+				value:    ptrToString("examplequeue_aws"),
+			},
+			{
+				line:     72,
+				severity: model.SeverityMedium,
+				name:     "SQS policy with Public Access",
+				value:    ptrToString("examplequeue_aws_array"),
+			},
 			{
 				line:     15,
 				severity: model.SeverityMedium,

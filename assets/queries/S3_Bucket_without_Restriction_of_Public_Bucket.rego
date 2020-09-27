@@ -5,7 +5,7 @@ SupportedResources = "$.resource.aws_s3_bucket_public_access_block"
 #default of restrict_public_buckets is false
 CxPolicy [ result ] {
     pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
-    not pubACL.restrict_public_buckets
+    object.get(pubACL, "restrict_public_buckets", "not found") == "not found"
 
     result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
