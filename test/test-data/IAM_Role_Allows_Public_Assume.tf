@@ -63,3 +63,23 @@ resource "aws_iam_instance_profile" "openshift-instance-profile" {
   name  = "${var.name_tag_prefix}-openshift-instance-profile"
   role = "${aws_iam_role.openshift-instance-role.name}"
 }
+
+resource "aws_iam_role" "openshift-instance-role2" {
+  name = "${var.name_tag_prefix}-openshift-instance-role"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "sts:AssumeRole",
+            "Principal": {
+                "Service": "ec2.amazonaws.com",
+                "AWS": "*"
+            },
+            "Sid": ""
+        }
+    ]
+}
+EOF
+}

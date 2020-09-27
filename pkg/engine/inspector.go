@@ -3,7 +3,6 @@ package engine
 import (
 	"context"
 	"encoding/json"
-	"regexp"
 	"time"
 
 	"github.com/checkmarxDev/ice/internal/logger"
@@ -59,7 +58,6 @@ type QueryContext struct {
 }
 
 var (
-	nameRegex           = regexp.MustCompile(`^([A-Za-z0-9-_]+)\[([A-Za-z0-9-_]+)]$`)
 	unsafeRegoFunctions = map[string]struct{}{
 		"http.send":   {},
 		"opa.runtime": {},
