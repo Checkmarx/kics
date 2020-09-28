@@ -28,7 +28,7 @@ resource "aws_eip" "public_http" {
   }
 }
 
-resource "aws_instance" "http2" {
+resource "aws_instance" "long_access_key" {
   for_each      = var.http_instance_names
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
