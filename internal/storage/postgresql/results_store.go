@@ -38,7 +38,7 @@ VALUES
 	return nil
 }
 
-func (s *PostgresStorage) GetResults(ctx context.Context, scanID string) ([]model.ResultItem, error) {
+func (s *PostgresStorage) GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
 	const query = `
 SELECT 
        r.id, r.line, r.query_name, r.query_id, UPPER(r.severity) as severity, f.file_name,
@@ -47,7 +47,7 @@ FROM ast_ice_results r
 INNER JOIN ast_ice_files f ON f.id = r.file_id 
 WHERE r.scan_id = $1;
 `
-	results := make([]model.ResultItem, 0)
+	results := make([]model.Vulnerability, 0)
 	if err := s.db.SelectContext(ctx, &results, query, scanID); err != nil {
 		return nil, errors.Wrap(err, "selecting results")
 	}

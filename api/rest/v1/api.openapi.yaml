@@ -36,30 +36,30 @@ components:
     ResultItem:
       type: object
       properties:
-        ID:
+        id:
           type: string
         fileName:
           type: string
-        line:
-          type: integer
+        queryID:
+          type: string
         queryName:
           type: string
           description: Query name
-        query_id:
-          type: string
-        search_key:
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        line:
+          type: integer
+        issueType:
+          $ref: '#/components/schemas/IssueTypeEnum'
+        searchKey:
           type: string
           description: DOM path in source file
-        key_expected_value:
+        expectedValue:
           type: string
-        key_actual_value:
+        actualValue:
           type: string
         value:
           type: string
-        severity:
-          $ref: '#/components/schemas/SeverityEnum'
-        issue_type:
-          $ref: '#/components/schemas/IssueTypeEnum'
     IssueTypeEnum:
       type: string
       description: Issue type enum of a result.

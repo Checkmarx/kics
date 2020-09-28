@@ -35,26 +35,8 @@ func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities [
 	return nil
 }
 
-func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.ResultItem, error) {
-	res := make([]model.ResultItem, len(m.vulnerabilities))
-	for i := range m.vulnerabilities {
-		v := m.vulnerabilities[i]
-		res[i] = model.ResultItem{
-			ID:               i,
-			FileName:         m.filesByID[v.FileID].FileName,
-			Line:             v.Line,
-			QueryName:        v.QueryName,
-			QueryID:          v.QueryID,
-			Severity:         v.Severity,
-			IssueType:        v.IssueType,
-			SearchKey:        v.SearchKey,
-			KeyExpectedValue: v.KeyExpectedValue,
-			KeyActualValue:   v.KeyActualValue,
-			Value:            v.Value,
-		}
-	}
-
-	return res, nil
+func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.Vulnerability, error) {
+	return m.vulnerabilities, nil
 }
 
 func NewMemoryStorage() *MemoryStorage {
