@@ -27,7 +27,7 @@ func NewWorker(workerName string,
 	log.Info().
 		Msgf("Create new workload, workloadAddr=%s, jobType=%s", sanitizeURL(workloadAddr), jobType)
 
-	wo, err := worker.NewZBWorker(workloadAddr, jobType, workerName, int(workTimeoutMinutes))
+	wo, err := worker.NewZBWorker(workloadAddr, jobType, workerName, workTimeoutMinutes)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to connect to scan queue")
 	}
