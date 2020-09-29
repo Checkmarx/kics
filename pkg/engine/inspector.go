@@ -115,8 +115,7 @@ func NewInspector(
 			if err != nil {
 				log.
 					Err(err).
-					Str("fileName", metadata.FileName).
-					Msgf("failed to prepare query for evaluation: %s", metadata.FileName)
+					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.FileName)
 
 				continue
 			}
@@ -129,7 +128,7 @@ func NewInspector(
 	}
 
 	log.Info().
-		Msgf("Inspector initialized with %d queries", len(opaQueries))
+		Msgf("Inspector initialized, number of queries=%d", len(opaQueries))
 
 	return &Inspector{
 		queries: opaQueries,
@@ -158,7 +157,7 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
 }
 
 func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMetadatas, query *preparedQuery) error {
-	filesInJSON, err := files.CombineToJSON()
+	filesInJSON, err := files.CombineToJSON(ctx)
 	if err != nil {
 		return errors.Wrap(err, "failed to combine all files to one")
 	}
@@ -182,10 +181,10 @@ func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMe
 		return errors.Wrap(err, "failed to evaluate query")
 	}
 
-	log.Trace().
+	logger.GetLoggerWithFieldsFromContext(ctx).
+		Trace().
 		Str("scanID", scanID).
-		Str("query", query.metadata.FileName).
-		Msgf("execution result %+v", results)
+		Msgf("Inspector executed with result %+v, query=%s", results, query.metadata.FileName)
 
 	queryContext := QueryContext{
 		ctx:    ctx,
@@ -227,10 +226,9 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, queryResultItem)
 		if err != nil {
-			log.Warn().
-				Str("reason", err.Error()).
-				Str("queryName", ctx.query.metadata.FileName).
-				Msg("can't save vulnerability")
+			logger.GetLoggerWithFieldsFromContext(ctx.ctx).
+				Err(err).
+				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.FileName)
 
 			continue
 		}

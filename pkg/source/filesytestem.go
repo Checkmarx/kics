@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 const extensionTerraform = ".tf"
@@ -57,7 +57,9 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, scanID string
 
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
-			log.Err(err).Msgf("failed to sync file %s", info.Name())
+			logger.GetLoggerWithFieldsFromContext(ctx).
+				Err(err).
+				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
 		}
 
 		return nil
