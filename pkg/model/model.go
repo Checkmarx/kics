@@ -1,10 +1,11 @@
 package model
 
 import (
+	"context"
 	"strconv"
 
+	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 const (
@@ -87,13 +88,14 @@ type Documents struct {
 //easyjson:json
 type Document map[string]interface{}
 
-func (m FileMetadatas) CombineToJSON() (string, error) {
+func (m FileMetadatas) CombineToJSON(ctx context.Context) (string, error) {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for _, fm := range m {
 		var document Document
 		if err := document.UnmarshalJSON([]byte(fm.JSONData)); err != nil {
-			log.Err(err).
-				Msg("invalid file metadata json")
+			logger.GetLoggerWithFieldsFromContext(ctx).
+				Err(err).
+				Msg("Json combiner couldn't combine jsons")
 
 			continue
 		}
