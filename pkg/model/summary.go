@@ -22,10 +22,10 @@ type Summary struct {
 	Queries      []SummaryItem `json:"queries"`
 }
 
-func CreateSummary(files FileMetadatas, items []ResultItem) Summary {
-	q := make(map[string]SummaryItem, len(items))
-	for i := range items {
-		item := items[i]
+func CreateSummary(files FileMetadatas, vulnerabilities []Vulnerability) Summary {
+	q := make(map[string]SummaryItem, len(vulnerabilities))
+	for i := range vulnerabilities {
+		item := vulnerabilities[i]
 		if _, ok := q[item.QueryName]; !ok {
 			q[item.QueryName] = SummaryItem{
 				QueryName: item.QueryName,

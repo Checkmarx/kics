@@ -20,7 +20,7 @@ type SourceProvider interface {
 
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
-	GetResults(ctx context.Context, scanID string) ([]model.ResultItem, error)
+	GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error)
 }
 
 type Service struct {
@@ -61,7 +61,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	return errors.Wrap(err, "failed to read sources")
 }
 
-func (s *Service) GetResults(ctx context.Context, scanID string) ([]model.ResultItem, error) {
+func (s *Service) GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
 	return s.Storage.GetResults(ctx, scanID)
 }
 
