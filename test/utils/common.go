@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"path"
 	"path/filepath"
+	"sort"
 	"strings"
 	"testing"
 
@@ -95,6 +96,13 @@ func readTestTerraformFile(scanID string, fileID int, fileName string) (model.Fi
 }
 
 func requireEqualVulnerabilities(t *testing.T, expected, actual []model.Vulnerability) {
+	sort.Slice(expected, func(i, j int) bool {
+		return expected[i].Line < expected[j].Line
+	})
+	sort.Slice(actual, func(i, j int) bool {
+		return actual[i].Line < actual[j].Line
+	})
+
 	require.Len(t, actual, len(expected), "Count of actual issues and expected vulnerabilities doesn't match")
 
 	for i := range expected {
