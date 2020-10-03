@@ -23,6 +23,8 @@ ICE also powers [**Checkmarx**](https://www.checkmarx.com/products/static-applic
 
 ## Installation
 
+This section describes installation procedure of ICE
+
 ## Contributing
 
 Contribution is welcome and appreciated!!
