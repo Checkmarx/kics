@@ -21,6 +21,7 @@ ICE also powers [**Checkmarx**](https://www.checkmarx.com/products/static-applic
 
 * ICE Output is currently available as CLI, JSON and references to remediation guides.
 
+## Installation
 
 ## Contributing
 
