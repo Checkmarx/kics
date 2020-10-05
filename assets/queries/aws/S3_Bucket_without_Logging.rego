@@ -11,6 +11,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].logging", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "!null",
-                "keyActualValue": 	null
+                "keyActualValue": 	"null"
               })
 }

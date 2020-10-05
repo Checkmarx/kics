@@ -12,7 +12,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("azurerm_sql_database[%s].threat_detection_policy", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "!null",
-                "keyActualValue": 	null,
+                "keyActualValue": 	"null",
               })
 }
 
