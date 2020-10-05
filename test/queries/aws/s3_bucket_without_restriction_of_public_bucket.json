@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "S3 bucket without restriction of public bucket",
+		"severity": "HIGH",
+		"line": 14
+	},
+	{
+		"queryName": "S3 bucket without restriction of public bucket",
+		"severity": "HIGH",
+		"line": 11
+	}
+]

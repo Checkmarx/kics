@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Fully open Ingress",
+		"severity": "HIGH",
+		"line": 95
+	},
+	{
+		"queryName": "Fully open Ingress",
+		"severity": "HIGH",
+		"line": 105
+	}
+]

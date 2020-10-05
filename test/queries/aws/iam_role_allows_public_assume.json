@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "IAM role allows public assume",
+		"severity": "LOW",
+		"line": 78
+	},
+	{
+		"queryName": "IAM role allows public assume",
+		"severity": "LOW",
+		"line": 15
+	}
+]
