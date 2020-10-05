@@ -63,8 +63,8 @@ type Vulnerability struct {
 	Line             int       `json:"line"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`
 	SearchKey        string    `db:"search_key" json:"searchKey"`
-	KeyExpectedValue *string   `db:"key_expected_value" json:"expectedValue"`
-	KeyActualValue   *string   `db:"key_actual_value" json:"actualValue"`
+	KeyExpectedValue string    `db:"key_expected_value" json:"expectedValue"`
+	KeyActualValue   string    `db:"key_actual_value" json:"actualValue"`
 	Value            *string   `db:"value" json:"value"`
 	Output           string    `json:"-"`
 }

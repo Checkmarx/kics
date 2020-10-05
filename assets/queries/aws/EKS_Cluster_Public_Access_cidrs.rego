@@ -27,7 +27,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "!null",
-                "keyActualValue": 	null
+                "keyActualValue": 	"null"
               })
 }
 

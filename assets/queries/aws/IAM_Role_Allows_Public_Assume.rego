@@ -31,7 +31,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": 8,
+                "keyExpectedValue": "8",
                 "keyActualValue": 	aws
               })
 }

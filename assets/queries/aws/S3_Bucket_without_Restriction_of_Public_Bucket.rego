@@ -11,8 +11,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": true,
-                "keyActualValue": 	null
+                "keyExpectedValue": "true",
+                "keyActualValue": 	"null"
               })
 }
 
@@ -24,7 +24,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].restrict_public_buckets", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": true,
-                "keyActualValue": 	false
+                "keyExpectedValue": "true",
+                "keyActualValue": 	"false"
               })
 }

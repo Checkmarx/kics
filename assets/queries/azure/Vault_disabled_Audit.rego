@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("azurerm_key_vault[%s]", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "Diagnostic exists",
-                "keyActualValue": 	null,
+                "keyActualValue": 	"null",
               })
 }
 
@@ -26,6 +26,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("azurerm_key_vault[%s]", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "Diagnostic exists",
-                "keyActualValue": 	null,
+                "keyActualValue": 	"null",
               })
 }

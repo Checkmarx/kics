@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_db_instance[%s].backup_retention_period", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "!null",
-                "keyActualValue": 	null,
+                "keyActualValue": 	"null",
                 "value":            db.name
               })
 }
@@ -25,7 +25,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_db_instance[%s].backup_retention_period", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "NOT 0",
-                "keyActualValue": 	0,
+                "keyActualValue": 	"0",
                 "value":            db.name
               })
 }

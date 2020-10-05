@@ -14,7 +14,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "HTTPS",
-                "keyActualValue": 	null
+                "keyActualValue": 	"null"
               })
 }
 

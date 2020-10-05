@@ -10,8 +10,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": 8,
-                "keyActualValue": 	null
+                "keyExpectedValue": "8",
+                "keyActualValue": 	"null"
               })
 }
 
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].minimum_password_length", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": 8,
+                "keyExpectedValue": "8",
                 "keyActualValue": 	pol.minimum_password_length
               })
 }
