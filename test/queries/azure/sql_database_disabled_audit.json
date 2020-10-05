@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "SQL Database disabled Audit",
+		"severity": "HIGH",
+		"line": 50
+	},
+	{
+		"queryName": "SQL Database disabled Audit",
+		"severity": "HIGH",
+		"line": 34
+	}
+]

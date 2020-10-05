@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "S3 bucket without enabled MFA Delete",
+		"severity": "HIGH",
+		"line": 25
+	},
+	{
+		"queryName": "S3 bucket without enabled MFA Delete",
+		"severity": "HIGH",
+		"line": 12
+	}
+]
