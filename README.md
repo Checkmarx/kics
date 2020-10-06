@@ -25,6 +25,10 @@ ICE also powers [**Checkmarx**](https://www.checkmarx.com/products/static-applic
 
 This section describes installation procedure of ICE.
 
+Running ICE as cli is done through console/main.go entry point. Path to the queries folder should be provided:
+
+-path=..\..\test\test-data
+
 ## Contributing
 
 Contribution is welcome and appreciated!!
