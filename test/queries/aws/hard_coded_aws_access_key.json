@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Hardcoded AWS access key",
+		"severity": "LOW",
+		"line": 14
+	},
+	{
+		"queryName": "Hardcoded AWS access key",
+		"severity": "LOW",
+		"line": 41
+	}
+]

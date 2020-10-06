@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ALB protocol is HTTP",
+		"severity": "HIGH",
+		"line": 25
+	},
+	{
+		"queryName": "ALB protocol is HTTP",
+		"severity": "HIGH",
+		"line": 19
+	}
+]

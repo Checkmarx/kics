@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Public Lambda via API Gateway",
+		"severity": "MEDIUM",
+		"line": 9,
+		"value": "MyHandler::handleRequest"
+	}
+]

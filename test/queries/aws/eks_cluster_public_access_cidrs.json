@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "EKS cluster public access cidrs",
+		"severity": "HIGH",
+		"line": 8
+	},
+	{
+		"queryName": "EKS cluster public access cidrs",
+		"severity": "HIGH",
+		"line": 30
+	}
+]

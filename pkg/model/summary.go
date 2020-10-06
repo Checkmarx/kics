@@ -5,8 +5,8 @@ type SummaryItemFile struct {
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
-	KeyExpectedValue *string   `json:"key_expected_value"`
-	KeyActualValue   *string   `json:"key_actual_value"`
+	KeyExpectedValue string    `json:"expected_value"`
+	KeyActualValue   string    `json:"actual_value"`
 	Value            *string   `json:"value"`
 }
 

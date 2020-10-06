@@ -11,8 +11,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.mfa_delete", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": true,
-                "keyActualValue": 	null
+                "keyExpectedValue": "true",
+                "keyActualValue": 	"null"
               })
 }
 
@@ -24,7 +24,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.mfa_delete", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": true,
+                "keyExpectedValue": "true",
                 "keyActualValue": 	ver.mfa_delete
               })
 }

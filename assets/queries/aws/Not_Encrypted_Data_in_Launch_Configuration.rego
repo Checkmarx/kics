@@ -12,7 +12,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_launch_configuration[%s].%s.encrypted", [name, block]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": true,
-                "keyActualValue": 	false
+                "keyExpectedValue": "true",
+                "keyActualValue": 	"false"
               })
 }

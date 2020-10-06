@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Unprotected S3 Storage",
+    "severity": "LOW",
+    "line": 3,
+    "value": "mybucket"
+  }
+]

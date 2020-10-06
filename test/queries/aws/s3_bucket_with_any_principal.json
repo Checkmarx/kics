@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "S3 bucket with any principal",
+		"severity": "HIGH",
+		"line": 17
+	}
+]
