@@ -1,0 +1,8 @@
+{
+  "id": "Unprotected_Queue",
+  "name": "Unprotected SQS Queue",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Unprotected SQS Queue",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue"
+}

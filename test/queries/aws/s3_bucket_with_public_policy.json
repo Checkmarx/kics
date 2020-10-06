@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "S3 bucket allows public policy",
+		"severity": "HIGH",
+		"line": 18
+	},
+	{
+		"queryName": "S3 bucket allows public policy",
+		"severity": "HIGH",
+		"line": 9
+	}
+]

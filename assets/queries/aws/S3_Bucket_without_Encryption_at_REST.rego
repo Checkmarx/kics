@@ -12,6 +12,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].server_side_encryption_configuration.rule.apply_server_side_encryption_by_default", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "!null",
-                "keyActualValue": 	null
+                "keyActualValue": 	"null"
               })
 }
