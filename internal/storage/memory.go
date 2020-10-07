@@ -25,7 +25,7 @@ func (m *MemoryStorage) SaveFile(_ context.Context, metadata *model.FileMetadata
 	return nil
 }
 
-func (m *MemoryStorage) GetFiles(_ context.Context, _, _ string) (model.FileMetadatas, error) {
+func (m *MemoryStorage) GetFiles(_ context.Context, _ string) (model.FileMetadatas, error) {
 	return m.allFiles, nil
 }
 

@@ -4,11 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"io/ioutil"
-	"os"
 	"path"
-	"path/filepath"
 	"sort"
-	"strings"
 	"testing"
 
 	"github.com/checkmarxDev/ice/pkg/engine"
@@ -25,23 +22,15 @@ import (
 const (
 	fileID = 12345
 	scanID = "testScan"
-
-	queryExtension = ".rego"
-	queriesDir     = "./../assets/queries"
-	terraformDir   = "./test-data"
-
-	expectedResultExtension = ".json"
-	expectedResultsDir      = "./queries"
 )
 
 func TestQueries(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
-	queries := loadQueries(t, queriesDir)
-	for _, q := range queries {
-		name := strings.TrimSuffix(path.Base(q), path.Ext(q))
-		t.Run(name, func(t *testing.T) {
-			expectedResultFile := strings.ReplaceAll(strings.ToLower(path.Join(expectedResultsDir, q)), queryExtension, expectedResultExtension)
+	queriesDir := loadQueriesDir(t)
+	for _, queryDir := range queriesDir {
+		t.Run(path.Base(queryDir), func(t *testing.T) {
+			expectedResultFile := path.Join(queryDir, invalidQueryExpectedResultFileName)
 			content, err := ioutil.ReadFile(expectedResultFile)
 			require.NoError(t, err, "can't read expected result file %s", expectedResultFile)
 
@@ -49,43 +38,22 @@ func TestQueries(t *testing.T) {
 			err = json.Unmarshal(content, &expectedVulnerabilities)
 			require.NoError(t, err, "can't unmarshal expected result file %s", expectedResultFile)
 
-			testQuery(t, q, terraformFile(q), expectedVulnerabilities)
+			testQuery(t, queryDir, path.Join(queryDir, invalidTerraformFileName), expectedVulnerabilities)
 		})
-		t.Run(name+"_success", func(t *testing.T) {
-			testQuery(t, q, terraformSuccessFile(q), []model.Vulnerability{})
+		t.Run(path.Base(queryDir)+"_success", func(t *testing.T) {
+			testQuery(t, queryDir, path.Join(queryDir, successTerraformFileName), []model.Vulnerability{})
 		})
 	}
 }
 
-func loadQueries(t *testing.T, dir string) []string {
-	infos := make([]string, 0)
-	err := filepath.Walk(
-		dir,
-		func(p string, f os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-
-			if f.IsDir() || !strings.HasSuffix(f.Name(), queryExtension) {
-				return nil
-			}
-
-			infos = append(infos, path.Join(filepath.Base(path.Dir(p)), f.Name()))
-			return nil
-		})
-
-	require.NoError(t, err, "can't load queries")
-	return infos
-}
-
-func testQuery(t *testing.T, queryPath, tfFilePath string, expectedVulnerabilities []model.Vulnerability) {
+func testQuery(t *testing.T, queryDir, tfFilePath string, expectedVulnerabilities []model.Vulnerability) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
 	ctx := context.TODO()
 	storage := mock.NewMockFilesStorage(ctrl)
-	storage.EXPECT().GetFiles(gomock.Eq(ctx), gomock.Eq(scanID), gomock.Any()).
-		DoAndReturn(func(ctx context.Context, scanID, filter string) (model.FileMetadatas, error) {
+	storage.EXPECT().GetFiles(gomock.Eq(ctx), gomock.Eq(scanID)).
+		DoAndReturn(func(ctx context.Context, scanID string) (model.FileMetadatas, error) {
 			f, err := readTestTerraformFile(scanID, fileID, tfFilePath)
 			require.NoError(t, err)
 
@@ -102,7 +70,7 @@ func testQuery(t *testing.T, queryPath, tfFilePath string, expectedVulnerabiliti
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries().
 		DoAndReturn(func() ([]model.QueryMetadata, error) {
-			q, err := query.ReadQuery(queriesDir, queryPath)
+			q, err := query.ReadQuery(queryDir)
 			require.NoError(t, err)
 
 			return []model.QueryMetadata{q}, nil
@@ -116,16 +84,7 @@ func testQuery(t *testing.T, queryPath, tfFilePath string, expectedVulnerabiliti
 	require.Nil(t, err)
 }
 
-func terraformFile(queryPath string) string {
-	return strings.TrimSuffix(queryPath, filepath.Ext(queryPath)) + ".tf"
-}
-
-func terraformSuccessFile(queryPath string) string {
-	return strings.TrimSuffix(queryPath, filepath.Ext(queryPath)) + "_success.tf"
-}
-
-func readTestTerraformFile(scanID string, fileID int, fileName string) (model.FileMetadata, error) {
-	filePath := path.Join(terraformDir, fileName)
+func readTestTerraformFile(scanID string, fileID int, filePath string) (model.FileMetadata, error) {
 	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		return model.FileMetadata{}, err
