@@ -35,7 +35,7 @@ type QueriesSource interface {
 }
 
 type FilesStorage interface {
-	GetFiles(ctx context.Context, scanID, filter string) (model.FileMetadatas, error)
+	GetFiles(ctx context.Context, scanID string) (model.FileMetadatas, error)
 	SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error
 }
 
@@ -51,10 +51,11 @@ type Inspector struct {
 }
 
 type QueryContext struct {
-	ctx    context.Context
-	scanID string
-	files  map[string]model.FileMetadata
-	query  *preparedQuery
+	ctx     context.Context
+	scanID  string
+	files   map[string]model.FileMetadata
+	query   *preparedQuery
+	payload map[string]interface{}
 }
 
 var (
@@ -83,7 +84,7 @@ func NewInspector(
 		default:
 			opaQuery, err := rego.New(
 				rego.Query(regoQuery),
-				rego.Module(metadata.FileName, metadata.Content),
+				rego.Module(metadata.Query, metadata.Content),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 				rego.Function1(
 					&rego.Function{
@@ -115,7 +116,7 @@ func NewInspector(
 			if err != nil {
 				log.
 					Err(err).
-					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.FileName)
+					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
 
 				continue
 			}
@@ -138,41 +139,47 @@ func NewInspector(
 }
 
 func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
-	for _, query := range c.queries {
-		files, err := c.storage.GetFiles(ctx, scanID, query.metadata.Filter)
-		if err != nil {
-			return errors.Wrap(err, "failed to query files to query")
-		}
-
-		err = c.doRun(ctx, scanID, files, query)
-		if err != nil {
-			logger.GetLoggerWithFieldsFromContext(ctx).
-				Err(err).
-				Str("scanID", scanID).
-				Msgf("inspector. query %s executed with error", query.metadata.FileName)
-		}
+	files, err := c.storage.GetFiles(ctx, scanID)
+	if err != nil {
+		return errors.Wrap(err, "failed to query files to query")
 	}
 
-	return nil
-}
-
-func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMetadatas, query *preparedQuery) error {
 	filesInJSON, err := files.CombineToJSON(ctx)
 	if err != nil {
 		return errors.Wrap(err, "failed to combine all files to one")
 	}
 
 	// parsing JSON into a structured map required for OPA query
-	var queryPayload map[string]interface{}
-	err = json.Unmarshal([]byte(filesInJSON), &queryPayload)
+	var payload map[string]interface{}
+	err = json.Unmarshal(filesInJSON, &payload)
 	if err != nil {
-		return errors.Wrap(err, "failed to prepare query results")
+		return errors.Wrap(err, "failed to prepare query payload")
 	}
 
-	ctx, cancel := context.WithTimeout(ctx, executeTimeout)
+	for _, query := range c.queries {
+		err = c.doRun(QueryContext{
+			ctx:     ctx,
+			scanID:  scanID,
+			files:   files.ToMap(),
+			query:   query,
+			payload: payload,
+		})
+		if err != nil {
+			logger.GetLoggerWithFieldsFromContext(ctx).
+				Err(err).
+				Str("scanID", scanID).
+				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
+		}
+	}
+
+	return nil
+}
+
+func (c *Inspector) doRun(ctx QueryContext) error {
+	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, executeTimeout)
 	defer cancel()
 
-	results, err := query.opaQuery.Eval(ctx, rego.EvalInput(queryPayload))
+	results, err := ctx.query.opaQuery.Eval(timeoutCtx, rego.EvalInput(ctx.payload))
 	if err != nil {
 		if topdown.IsCancel(err) {
 			return errors.Wrap(err, "query executing timeout exited")
@@ -181,24 +188,17 @@ func (c *Inspector) doRun(ctx context.Context, scanID string, files model.FileMe
 		return errors.Wrap(err, "failed to evaluate query")
 	}
 
-	logger.GetLoggerWithFieldsFromContext(ctx).
+	logger.GetLoggerWithFieldsFromContext(ctx.ctx).
 		Trace().
-		Str("scanID", scanID).
-		Msgf("Inspector executed with result %+v, query=%s", results, query.metadata.FileName)
+		Str("scanID", ctx.scanID).
+		Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
 
-	queryContext := QueryContext{
-		ctx:    ctx,
-		scanID: scanID,
-		files:  files.ToMap(),
-		query:  query,
-	}
-
-	vulnerabilities, err := c.decodeQueryResults(queryContext, results)
+	vulnerabilities, err := c.decodeQueryResults(ctx, results)
 	if err != nil {
 		return errors.Wrap(err, "failed to save query result")
 	}
 
-	if err := c.storage.SaveVulnerabilities(ctx, vulnerabilities); err != nil {
+	if err := c.storage.SaveVulnerabilities(ctx.ctx, vulnerabilities); err != nil {
 		return errors.Wrap(err, "failed to save query results")
 	}
 
@@ -228,7 +228,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 		if err != nil {
 			logger.GetLoggerWithFieldsFromContext(ctx.ctx).
 				Err(err).
-				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.FileName)
+				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
 
 			continue
 		}
