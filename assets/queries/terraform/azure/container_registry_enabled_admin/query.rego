@@ -9,7 +9,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("azurerm_container_registry[%s].admin_enabled", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "false",
-                "keyActualValue": 	"true"
+                "keyExpectedValue": "'admin_enabled' equal 'false'",
+                "keyActualValue": 	"'admin_enabled' equal 'true'"
               })
 }

@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "https-only",
-                "keyActualValue": 	"allow-all"
+                "keyExpectedValue": "'default_cache_behavior.viewer_protocol_policy' is equal 'https-only'",
+                "keyActualValue": 	"'default_cache_behavior.viewer_protocol_policy' is equal 'allow-all'"
               })
 }
 
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].ordered_cache_behavior.viewer_protocol_policy", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "https-only",
-                "keyActualValue": 	"allow-all"
+                "keyExpectedValue": "'ordered_cache_behavior.viewer_protocol_policy' is equal 'https-only'",
+                "keyActualValue": 	"'ordered_cache_behavior.viewer_protocol_policy' is equal 'allow-all'"
               })
 }

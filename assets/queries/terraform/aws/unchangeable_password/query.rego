@@ -9,7 +9,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].allow_users_to_change_password", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "true",
-                "keyActualValue": 	"false"
+                "keyExpectedValue": "'allow_users_to_change_password' is equal 'true'",
+                "keyActualValue": 	"'allow_users_to_change_password' is equal 'false'"
               })
 }

@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].logging", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null"
+                "keyExpectedValue": "'logging' exists",
+                "keyActualValue": 	"'logging' is missing"
               })
 }

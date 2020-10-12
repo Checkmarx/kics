@@ -17,8 +17,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Statement.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT *",
-                "keyActualValue":   aws,
+                "keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
+                "keyActualValue":   "'policy.Statement.Principal.AWS' is equal '*'",
                 "value":            queue_resource.name
               })
 }
@@ -40,8 +40,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Statement.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT *",
-                "keyActualValue":   aws[idx],
+                "keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
+                "keyActualValue":   "'policy.Statement.Principal.AWS' is equal '*'",
                 "value":            queue_resource.name
               })
 }
@@ -61,8 +61,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Statement.Principal", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT *",
-                "keyActualValue": 	"*",
+                "keyExpectedValue": "'policy.Statement.Principal' is not equal '*'",
+                "keyActualValue": 	"'policy.Statement.Principal' is equal '*'",
                 "value":            queue_resource.name
               })
 }
