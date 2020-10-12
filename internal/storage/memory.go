@@ -39,6 +39,10 @@ func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.Vulnera
 	return m.vulnerabilities, nil
 }
 
+func (m *MemoryStorage) GetScanSummary(_ context.Context, _ []string) ([]model.SeveritySummary, error) {
+	return nil, nil // unsupported for this storage type
+}
+
 func NewMemoryStorage() *MemoryStorage {
 	return &MemoryStorage{
 		allFiles:        make(model.FileMetadatas, 0),
