@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 )
 
@@ -53,4 +54,53 @@ WHERE r.scan_id = $1;
 	}
 
 	return results, nil
+}
+
+type scanItem struct {
+	ScanID   string         `db:"scan_id"`
+	Severity model.Severity `db:"severity"`
+	Count    int            `db:"count"`
+}
+
+func (s *PostgresStorage) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
+	if len(scanIDs) == 0 {
+		return []model.SeveritySummary{}, nil
+	}
+
+	const query = `
+SELECT scan_id, severity, count(id) 
+FROM ast_ice_results
+WHERE scan_id in (?)
+GROUP BY scan_id, severity;
+`
+	preparedQuery, args, err := sqlx.In(query, scanIDs)
+	if err != nil {
+		return nil, errors.Wrap(err, "preparing query")
+	}
+
+	var items []scanItem
+	if err := s.db.SelectContext(ctx, &items, s.db.Rebind(preparedQuery), args...); err != nil {
+		return nil, errors.Wrap(err, "selecting result")
+	}
+
+	m := make(map[string]model.SeveritySummary)
+	for _, item := range items {
+		mItem := m[item.ScanID]
+
+		mItem.ScanID = item.ScanID
+		mItem.TotalCounter += item.Count
+		mItem.SeverityCounters = append(mItem.SeverityCounters, model.SeverityCounter{
+			Severity: item.Severity,
+			Counter:  item.Count,
+		})
+
+		m[item.ScanID] = mItem
+	}
+
+	list := make([]model.SeveritySummary, 0, len(m))
+	for _, item := range m {
+		list = append(list, item)
+	}
+
+	return list, nil
 }

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/checkmarxDev/ice/internal/correlation"
 	"github.com/checkmarxDev/ice/internal/logger"
@@ -54,8 +55,39 @@ func (s *Server) getRouter() *mux.Router {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/results/{scan-id}", s.getResults).Methods(http.MethodGet)
+	router.HandleFunc("/scan-summary", s.getScanSummary).Methods(http.MethodGet)
 
 	return router
+}
+
+func (s *Server) getScanSummary(w http.ResponseWriter, r *http.Request) {
+	corrID := correlation.FromHTTPRequest(r)
+	ctx := correlation.AddToContext(r.Context(), corrID)
+
+	logger.GetLoggerWithFieldsFromContext(ctx).
+		Trace().
+		Msg("rest api. getting scans summary")
+
+	scanIDsString := r.URL.Query().Get("scan-ids")
+	if strings.TrimSpace(scanIDsString) == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	scanIDs := strings.Split(scanIDsString, ",")
+
+	summary, err := s.Service.GetScanSummary(ctx, scanIDs)
+	if err != nil {
+		logger.GetLoggerWithFieldsFromContext(ctx).
+			Err(err).
+			Str("scanIDs", scanIDsString).
+			Msg("rest api. failed to get summary")
+
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	responseJSON(ctx, w, summary)
 }
 
 func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
@@ -80,11 +112,15 @@ func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	responseJSON(ctx, w, results)
+}
+
+func responseJSON(ctx context.Context, w http.ResponseWriter, body interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	if encodeErr := json.NewEncoder(w).Encode(results); encodeErr != nil {
+	if encodeErr := json.NewEncoder(w).Encode(body); encodeErr != nil {
 		logger.GetLoggerWithFieldsFromContext(ctx).
 			Err(encodeErr).
-			Msg("rest api. failed encoding and returning results")
+			Msg("rest api. failed marshall response body")
 	}
 }

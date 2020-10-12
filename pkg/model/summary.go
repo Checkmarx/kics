@@ -1,5 +1,16 @@
 package model
 
+type SeveritySummary struct {
+	ScanID           string            `json:"scanId"`
+	SeverityCounters []SeverityCounter `json:"severityCounters"`
+	TotalCounter     int               `json:"totalCounter"`
+}
+
+type SeverityCounter struct {
+	Severity Severity `json:"severity"`
+	Counter  int      `json:"counter"`
+}
+
 type SummaryItemFile struct {
 	FileName         string    `json:"file_name"`
 	Line             int       `json:"line"`
