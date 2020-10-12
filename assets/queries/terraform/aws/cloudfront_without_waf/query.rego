@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_cloudfront_distribution[%s].web_acl_id", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null"
+                "keyExpectedValue": "'web_acl_id' exists",
+                "keyActualValue": 	"'web_acl_id' is missing"
               })
 }
 

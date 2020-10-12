@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].ignore_public_acls", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "false",
-                "keyActualValue": 	"true"
+                "keyExpectedValue": "'ignore_public_acls' is equal 'false'",
+                "keyActualValue": 	"'ignore_public_acls' is equal 'true'"
               })
 }

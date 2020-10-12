@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("azurerm_sql_database[%s].threat_detection_policy", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null",
+                "keyExpectedValue": "'threat_detection_policy' exists",
+                "keyActualValue": 	"'threat_detection_policy' is missing",
               })
 }
 
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("azurerm_sql_database[%s].threat_detection_policy.state", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "Enabled",
-                "keyActualValue": 	"Disabled",
+                "keyExpectedValue": "'threat_detection_policy.state' equal 'Enabled'",
+                "keyActualValue": 	"'threat_detection_policy.state' equal 'Disabled'",
               })
 }

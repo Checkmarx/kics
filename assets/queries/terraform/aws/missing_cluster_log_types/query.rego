@@ -10,7 +10,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_eks_cluster[%s].enabled_cluster_log_types", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "api, audit, authenticator, controllerManager, scheduler",
-                "keyActualValue": 	json.marshal(existing_log_types_set)
+                "keyExpectedValue": "'enabled_cluster_log_types' has all log types",
+                "keyActualValue": 	"'enabled_cluster_log_types' has missing log types"
               })
 }
