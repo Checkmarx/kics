@@ -73,7 +73,7 @@ func main() {
 				return err
 			}
 
-			files, err := store.GetFiles(ctx, scanID, "$.")
+			files, err := store.GetFiles(ctx, scanID)
 			if err != nil {
 				return err
 			}

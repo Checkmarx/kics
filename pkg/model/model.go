@@ -45,10 +45,8 @@ type FileMetadata struct {
 }
 
 type QueryMetadata struct {
-	ID       int
-	FileName string
+	Query    string
 	Content  string
-	Filter   string
 	Metadata map[string]interface{}
 }
 
@@ -88,7 +86,7 @@ type Documents struct {
 //easyjson:json
 type Document map[string]interface{}
 
-func (m FileMetadatas) CombineToJSON(ctx context.Context) (string, error) {
+func (m FileMetadatas) CombineToJSON(ctx context.Context) ([]byte, error) {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for _, fm := range m {
 		var document Document
@@ -111,8 +109,8 @@ func (m FileMetadatas) CombineToJSON(ctx context.Context) (string, error) {
 
 	ret, err := documents.MarshalJSON()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to marshall all files")
+		return nil, errors.Wrap(err, "failed to marshall all files")
 	}
 
-	return string(ret), nil
+	return ret, nil
 }

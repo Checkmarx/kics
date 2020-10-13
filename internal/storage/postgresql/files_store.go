@@ -29,7 +29,7 @@ VALUES
 	return nil
 }
 
-func (s *PostgresStorage) GetFiles(ctx context.Context, scanID, jPath string) (model.FileMetadatas, error) {
+func (s *PostgresStorage) GetFiles(ctx context.Context, scanID string) (model.FileMetadatas, error) {
 	var res []model.FileMetadata
 	const query = `
 SELECT 
@@ -37,9 +37,9 @@ SELECT
 FROM 
 	ast_ice_files 
 WHERE 
-	scan_id = $1 AND jsonb_path_exists(json_data, $2);
+	scan_id = $1;
 `
-	err := s.db.SelectContext(ctx, &res, query, scanID, jPath)
+	err := s.db.SelectContext(ctx, &res, query, scanID)
 
 	return res, errors.Wrap(err, "selecting files")
 }
