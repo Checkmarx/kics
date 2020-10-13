@@ -73,18 +73,18 @@ func (m *MockFilesStorage) EXPECT() *MockFilesStorageMockRecorder {
 }
 
 // GetFiles mocks base method
-func (m *MockFilesStorage) GetFiles(ctx context.Context, scanID, filter string) (model.FileMetadatas, error) {
+func (m *MockFilesStorage) GetFiles(ctx context.Context, scanID string) (model.FileMetadatas, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetFiles", ctx, scanID, filter)
+	ret := m.ctrl.Call(m, "GetFiles", ctx, scanID)
 	ret0, _ := ret[0].(model.FileMetadatas)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetFiles indicates an expected call of GetFiles
-func (mr *MockFilesStorageMockRecorder) GetFiles(ctx, scanID, filter interface{}) *gomock.Call {
+func (mr *MockFilesStorageMockRecorder) GetFiles(ctx, scanID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFiles", reflect.TypeOf((*MockFilesStorage)(nil).GetFiles), ctx, scanID, filter)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFiles", reflect.TypeOf((*MockFilesStorage)(nil).GetFiles), ctx, scanID)
 }
 
 // SaveVulnerabilities mocks base method
