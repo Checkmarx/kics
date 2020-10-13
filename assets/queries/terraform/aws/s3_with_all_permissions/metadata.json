@@ -1,0 +1,8 @@
+{
+  "id": "S3_with_All_Permissions",
+  "name": "S3 bucket with all permission",
+  "severity": "Low",
+  "category": null,
+  "descriptionText": "S3 bucket with all permission",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+}
