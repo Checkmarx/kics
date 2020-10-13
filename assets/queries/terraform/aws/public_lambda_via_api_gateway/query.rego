@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_lambda_permission[%s].source_arn", [permissionName]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT /*/*",
-                "keyActualValue": 	permissionResource.source_arn,
+                "keyExpectedValue": "'source_arn' is not equal '/*/*'",
+                "keyActualValue": 	"'source_arn' is equal '/*/*'",
                 "value":            resource.handler
               })
 }

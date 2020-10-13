@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s]", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null"
+                "keyExpectedValue": "'versioning' is equal 'true'",
+                "keyActualValue": 	"'versioning' is missing"
               })
 }
 
@@ -23,8 +23,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "true",
-                "keyActualValue": 	"null"
+                "keyExpectedValue": "'versioning' is equal 'true'",
+                "keyActualValue": 	"'versioning' is missing"
               })
 }
 
@@ -36,7 +36,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].versioning.enabled", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "true",
-                "keyActualValue": 	v.enabled
+                "keyExpectedValue": "'versioning' is equal 'true'",
+                "keyActualValue": 	"'versioning' is equal 'false'"
               })
 }

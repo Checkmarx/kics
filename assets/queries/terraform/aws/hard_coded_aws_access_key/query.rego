@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_instance[%s].user_data", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT ACCESS KEY",
-                "keyActualValue": 	ud
+                "keyExpectedValue": "'user_data' doesn't contain access key",
+                "keyActualValue": 	"'user_data' contains access key"
               })
 }
 
@@ -21,8 +21,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_instance[%s].user_data", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT ACCESS KEY",
-                "keyActualValue": 	ud
+                "keyExpectedValue": "'user_data' doesn't contain access key",
+                "keyActualValue": 	"'user_data' contains access key"
               })
 }
 

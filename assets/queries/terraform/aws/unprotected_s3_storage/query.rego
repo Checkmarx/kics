@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].server_side_encryption_configuration", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null",
+                "keyExpectedValue": "'server_side_encryption_configuration' exists",
+                "keyActualValue": 	"'server_side_encryption_configuration' is missing",
                 "value":            resource.bucket
               })
 }

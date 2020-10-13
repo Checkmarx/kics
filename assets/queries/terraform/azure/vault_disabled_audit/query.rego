@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("azurerm_key_vault[%s]", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "Diagnostic exists",
-                "keyActualValue": 	"null",
+                "keyExpectedValue": "'azurerm_monitor_diagnostic_setting' exists",
+                "keyActualValue": 	"'azurerm_monitor_diagnostic_setting' is missing",
               })
 }
 
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("azurerm_key_vault[%s]", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "Diagnostic exists",
-                "keyActualValue": 	"null",
+                "keyExpectedValue": "'azurerm_monitor_diagnostic_setting' exists",
+                "keyActualValue": 	"'azurerm_monitor_diagnostic_setting' is missing",
               })
 }

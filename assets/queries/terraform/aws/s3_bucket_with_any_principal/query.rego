@@ -11,8 +11,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal", [pl[r], name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT *",
-                "keyActualValue": 	"*"
+                "keyExpectedValue": "'policy.Statement.Principal' is not equal '*'",
+                "keyActualValue": 	"'policy.Statement.Principal' is equal '*'"
               })
 }
 
@@ -27,7 +27,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "NOT *",
-                "keyActualValue": 	pol.Statement[idx].Principal.AWS
+                "keyExpectedValue": "'policy.Statement.Principal.AWS' doesn't contain '*'",
+                "keyActualValue": 	"'policy.Statement.Principal.AWS' contains '*'"
               })
 }

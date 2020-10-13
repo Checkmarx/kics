@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_db_instance[%s].backup_retention_period", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null",
+                "keyExpectedValue": "'backup_retention_period' exists",
+                "keyActualValue": 	"'backup_retention_period' is missing",
                 "value":            db.name
               })
 }
@@ -22,8 +22,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_db_instance[%s].backup_retention_period", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "NOT 0",
-                "keyActualValue": 	"0",
+                "keyExpectedValue": "'backup_retention_period' is not equal '0'",
+                "keyActualValue": 	"'backup_retention_period' is equal '0'",
                 "value":            db.name
               })
 }
