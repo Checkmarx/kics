@@ -20,9 +20,10 @@ const (
 )
 
 var (
-	queriesPaths = [2]string{
+	queriesPaths = [3]string{
 		"../assets/queries/terraform/aws",
 		"../assets/queries/terraform/azure",
+		"../assets/queries/terraform/gcp",
 	}
 )
 

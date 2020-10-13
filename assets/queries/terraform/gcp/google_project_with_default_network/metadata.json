@@ -1,0 +1,8 @@
+{
+  "id": "Project_with_Default_Network",
+  "name": "Google project with default network",
+  "severity": "Medium",
+  "category": null,
+  "descriptionText": "Google project with default network",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/google/r/google_project.html"
+}
