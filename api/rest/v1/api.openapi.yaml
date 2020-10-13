@@ -31,8 +31,53 @@ paths:
                   $ref: '#/components/schemas/ResultItem'
         '500':
           description: Internal Server Error.
+  '/scan-summary':
+    get:
+      tags:
+        - Summary
+      summary: get summary by scan ids
+      description: Returns summary for provided scans
+      operationId: findSummariesByScanIDs
+      parameters:
+        - in: query
+          name: scan-ids
+          schema:
+            type: string
+          required: true
+          description: scan ids separated by comma
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummaryItem'
+        '400':
+          description: Bad request.
+        '500':
+          description: Internal Server Error.
 components:
   schemas:
+    SeveritySummaryItem:
+      type: object
+      properties:
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        counter:
+          type: integer
+    SummaryItem:
+      type: object
+      properties:
+        scanId:
+          type: string
+        severityCounters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SeveritySummaryItem'
+        totalCounter:
+          type: integer
     ResultItem:
       type: object
       properties:
