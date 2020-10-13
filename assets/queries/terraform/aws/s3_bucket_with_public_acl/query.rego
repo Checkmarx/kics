@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "true",
-                "keyActualValue": 	"null"
+                "keyExpectedValue": "'block_public_acls' is equal 'true'",
+                "keyActualValue": 	"'block_public_acls' is missing"
               })
 }
 
@@ -22,7 +22,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket_public_access_block[%s].block_public_acls", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "true",
-                "keyActualValue": 	"false"
+                "keyExpectedValue": "'block_public_acls' is equal 'true'",
+                "keyActualValue": 	"'block_public_acls' is equal 'false'"
               })
 }

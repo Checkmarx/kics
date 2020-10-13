@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "90",
-                "keyActualValue": 	"null"
+                "keyExpectedValue": "'max_password_age' exists",
+                "keyActualValue": 	"'max_password_age' is missing"
               })
 }
 
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "90",
-                "keyActualValue": 	expr.max_password_age
+                "keyExpectedValue": "'max_password_age' is lower 90",
+                "keyActualValue": 	"'max_password_age' is higher 90"
               })
 }

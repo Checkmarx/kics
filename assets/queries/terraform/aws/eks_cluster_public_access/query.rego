@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_eks_cluster[%s].vpc_config.endpoint_public_access", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "false",
-                "keyActualValue": 	"true"
+                "keyExpectedValue": "'vpc_config.endpoint_public_access' is equal 'false'",
+                "keyActualValue": 	"'vpc_config.endpoint_public_access' is equal 'true'"
               })
 }

@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue[%s].kms_master_key_id", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "!null",
-                "keyActualValue": 	"null",
+                "keyExpectedValue": "'kms_master_key_id' exists",
+                "keyActualValue": 	"'kms_master_key_id' is missing",
                 "value":            resource.name
               })
 }
