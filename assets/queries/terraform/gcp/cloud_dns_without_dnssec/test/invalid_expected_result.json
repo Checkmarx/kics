@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Cloud DNS without DNSSEC",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]

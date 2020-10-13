@@ -1,0 +1,8 @@
+{
+  "id": "Compute_Disk_not_Encrypted",
+  "name": "Compute disk is not encrypted",
+  "severity": "Medium",
+  "category": null,
+  "descriptionText": "Compute disk is not encrypted",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/google/r/compute_disk.html"
+}
