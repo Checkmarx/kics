@@ -21,6 +21,7 @@ type SourceProvider interface {
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
 	GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error)
+	GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error)
 }
 
 type Service struct {
@@ -63,6 +64,10 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 
 func (s *Service) GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
 	return s.Storage.GetResults(ctx, scanID)
+}
+
+func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
+	return s.Storage.GetScanSummary(ctx, scanIDs)
 }
 
 func hash(ctx context.Context, filename, content string) uint32 {
