@@ -1,0 +1,8 @@
+{
+  "id": "<ID>",
+  "name": "<QUERY_NAME>",
+  "severity": "High",
+  "category": null,
+  "descriptionText": "<TEXT>",
+  "descriptionUrl": "#"
+}
