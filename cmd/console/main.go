@@ -23,10 +23,11 @@ const scanID = "console"
 
 func main() {
 	var (
-		path       string
-		queryPath  string
-		outputPath string
-		verbose    bool
+		path        string
+		queryPath   string
+		outputPath  string
+		payloadPath string
+		verbose     bool
 	)
 
 	ctx := context.Background()
@@ -80,17 +81,24 @@ func main() {
 
 			summary := model.CreateSummary(files, result)
 
+			if payloadPath != "" {
+				if err := printToJSONFile(payloadPath, files.Combine(ctx)); err != nil {
+					return err
+				}
+			}
+
 			if outputPath != "" {
-				return printResultToFile(outputPath, summary)
+				return printToJSONFile(outputPath, summary)
 			}
 
 			return printResult(summary)
 		},
 	}
 
-	rootCmd.Flags().StringVarP(&path, "path", "p", "", "azure to file or directory to inspect")
+	rootCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to inspect")
 	rootCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
 	rootCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
+	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store queries payload")
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
 		log.Err(err).Msg("failed to add command required flags")
@@ -113,7 +121,7 @@ func printResult(summary model.Summary) error {
 	return nil
 }
 
-func printResultToFile(path string, summary model.Summary) error {
+func printToJSONFile(path string, body interface{}) error {
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
@@ -129,5 +137,5 @@ func printResultToFile(path string, summary model.Summary) error {
 	encoder := json.NewEncoder(f)
 	encoder.SetIndent("", "\t")
 
-	return encoder.Encode(summary)
+	return encoder.Encode(body)
 }

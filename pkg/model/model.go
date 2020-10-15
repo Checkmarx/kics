@@ -86,7 +86,7 @@ type Documents struct {
 //easyjson:json
 type Document map[string]interface{}
 
-func (m FileMetadatas) CombineToJSON(ctx context.Context) ([]byte, error) {
+func (m FileMetadatas) Combine(ctx context.Context) Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for _, fm := range m {
 		var document Document
@@ -107,7 +107,11 @@ func (m FileMetadatas) CombineToJSON(ctx context.Context) ([]byte, error) {
 		documents.Documents = append(documents.Documents, document)
 	}
 
-	ret, err := documents.MarshalJSON()
+	return documents
+}
+
+func (m FileMetadatas) CombineToJSON(ctx context.Context) ([]byte, error) {
+	ret, err := m.Combine(ctx).MarshalJSON()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to marshall all files")
 	}
