@@ -57,7 +57,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	queryContent, err := ioutil.ReadFile(path.Join(queryDir, queryFileName))
 	if err != nil {
-		return model.QueryMetadata{}, errors.Wrapf(err, "metadata not found %s", path.Base(queryDir))
+		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
 
 	metadata := readMetadata(queryDir)
