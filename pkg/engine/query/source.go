@@ -31,7 +31,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 				return nil
 			}
 
-			queryDirs = append(queryDirs, path.Dir(p))
+			queryDirs = append(queryDirs, filepath.Dir(p))
 			return nil
 		})
 	if err != nil {
