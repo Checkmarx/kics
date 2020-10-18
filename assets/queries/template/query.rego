@@ -2,6 +2,7 @@ package Cx
 
 CxPolicy [ result ] {
   resource := input.document[i].resource
+  resource == "<VALUE>"
 
 	result := mergeWithMetadata({
                 "documentId": 		input.document[i].id,
