@@ -1,7 +1,7 @@
 {
   "id": "S3_no_logging",
-  "name": "S3 no logging",
-  "severity": "Low",
+  "queryName": "S3 no logging",
+  "severity": "LOW",
   "category": null,
   "descriptionText": "S3 bucket without logging",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"

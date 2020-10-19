@@ -1,7 +1,7 @@
 {
   "id": "Unchangeable_password",
-  "name": "Unchangeable password",
-  "severity": "Medium",
+  "queryName": "Unchangeable password",
+  "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Unchangeable passwords in AWS password policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy"

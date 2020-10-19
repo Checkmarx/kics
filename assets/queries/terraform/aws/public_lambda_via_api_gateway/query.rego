@@ -9,14 +9,14 @@ CxPolicy [ result ] {
     principalAllowAPIGateway(permissionResource.principal)
     re_match("/\\*/\\*$", permissionResource.source_arn)
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_lambda_permission[%s].source_arn", [permissionName]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'source_arn' is not equal '/*/*'",
                 "keyActualValue": 	"'source_arn' is equal '/*/*'",
                 "value":            resource.handler
-              })
+              }
 }
 
 principalAllowAPIGateway(principal) = allow {

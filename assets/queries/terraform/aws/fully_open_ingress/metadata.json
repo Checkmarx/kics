@@ -1,7 +1,7 @@
 {
   "id": "Fully_open_Ingress",
-  "name": "Fully open Ingress",
-  "severity": "High",
+  "queryName": "Fully open Ingress",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "Security groups allow ingress from 0.0.0.0:0",
   "descriptionUrl": [

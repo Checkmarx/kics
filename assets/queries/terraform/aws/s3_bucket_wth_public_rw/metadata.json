@@ -1,7 +1,7 @@
 {
   "id": "S3_bucket_with_public_RW_access",
-  "name": "S3 bucket with public RW access",
-  "severity": "Info",
+  "queryName": "S3 bucket with public RW access",
+  "severity": "INFO",
   "category": null,
   "descriptionText": "S3 bucket with public READ/WRITE access",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete"

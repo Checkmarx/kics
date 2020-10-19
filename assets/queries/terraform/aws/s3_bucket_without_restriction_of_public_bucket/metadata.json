@@ -1,7 +1,7 @@
 {
   "id": "S3_bucket_without_restriction_of_public_bucket",
-  "name": "S3 bucket without restriction of public bucket",
-  "severity": "High",
+  "queryName": "S3 bucket without restriction of public bucket",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "S3 bucket without restriction of public bucket",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block"

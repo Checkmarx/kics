@@ -7,10 +7,8 @@ import (
 
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/open-policy-agent/opa/topdown"
-	"github.com/open-policy-agent/opa/types"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -93,32 +91,6 @@ func NewInspector(
 				rego.Query(regoQuery),
 				rego.Module(metadata.Query, metadata.Content),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
-				rego.Function1(
-					&rego.Function{
-						Name:    "mergeWithMetadata",
-						Decl:    types.NewFunction(types.Args(types.A), types.A),
-						Memoize: false,
-					},
-					func(query model.QueryMetadata) rego.Builtin1 {
-						return func(_ rego.BuiltinContext, a *ast.Term) (*ast.Term, error) {
-							var value map[string]interface{}
-							if err := ast.As(a.Value, &value); err != nil {
-								return nil, err
-							}
-
-							for k, v := range query.Metadata {
-								value[k] = v
-							}
-
-							v, err := ast.InterfaceToValue(value)
-							if err != nil {
-								return nil, err
-							}
-
-							return ast.NewTerm(v), nil
-						}
-					}(metadata),
-				),
 			).PrepareForEval(ctx)
 			if err != nil {
 				log.

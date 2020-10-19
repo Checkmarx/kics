@@ -8,11 +8,11 @@ CxPolicy [ result ] {
     contains(aws, "arn:aws:iam::")
     contains(aws, ":root")
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'assume_role_policy.Statement.Principal.AWS' contain ':root'",
                 "keyActualValue": 	"'assume_role_policy.Statement.Principal.AWS' contains ':root'"
-              })
+              }
 }

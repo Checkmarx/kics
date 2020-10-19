@@ -1,7 +1,7 @@
 {
   "id": "SQL_Database_disabled_Audit",
-  "name": "SQL Database disabled Audit",
-  "severity": "High",
+  "queryName": "SQL Database disabled Audit",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "Ensure that 'Threat Detection' is enabled for Azure SQL Database",
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/sql_database.html"
