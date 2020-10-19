@@ -1,7 +1,7 @@
 {
   "id": "S3_bucket_without_enabled_MFA_Delete",
-  "name": "S3 bucket without enabled MFA Delete",
-  "severity": "High",
+  "queryName": "S3 bucket without enabled MFA Delete",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "S3 bucket without enabled MFA Delete",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete"

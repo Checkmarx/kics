@@ -1,7 +1,7 @@
 {
   "id": "<ID>",
-  "name": "<QUERY_NAME>",
-  "severity": "High",
+  "queryName": "<QUERY_NAME>",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "<TEXT>",
   "descriptionUrl": "#"

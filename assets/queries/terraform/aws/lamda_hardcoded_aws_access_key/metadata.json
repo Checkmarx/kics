@@ -1,7 +1,7 @@
 {
   "id": "Lambda_hardcoded_AWS_access_key",
-  "name": "Lambda hardcoded AWS access key",
-  "severity": "Low",
+  "queryName": "Lambda hardcoded AWS access key",
+  "severity": "LOW",
   "category": null,
   "descriptionText": "Lambda hardcoded AWS access/secret keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function"

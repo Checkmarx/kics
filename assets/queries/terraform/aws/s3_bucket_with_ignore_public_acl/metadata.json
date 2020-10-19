@@ -1,7 +1,7 @@
 {
   "id": "S3_bucket_with_ignore_public_ACL",
-  "name": "S3 bucket with ignore public ACL",
-  "severity": "Low",
+  "queryName": "S3 bucket with ignore public ACL",
+  "severity": "LOW",
   "category": null,
   "descriptionText": "S3 bucket with ignore public ACL",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block"

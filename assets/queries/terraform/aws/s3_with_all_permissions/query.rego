@@ -9,14 +9,14 @@ CxPolicy [ result ] {
     is_string(action)
     contains(action, "*")
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].policy.Statement.Action", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
                 "keyActualValue": 	"'policy.Statement.Action' contain '*'",
                 "value":            resource.bucket
-              })
+              }
 }
 
 CxPolicy [ result ] {
@@ -28,12 +28,12 @@ CxPolicy [ result ] {
     is_array(action)
     contains(action[_], "*")
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_s3_bucket[%s].policy.Statement.Action", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
                 "keyActualValue": 	"'policy.Statement.Action' contain '*'",
                 "value":            resource.bucket
-              })
+              }
 }

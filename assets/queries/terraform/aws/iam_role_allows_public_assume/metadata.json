@@ -1,7 +1,7 @@
 {
   "id": "IAM_role_allows_public_assume",
-  "name": "IAM role allows public assume",
-  "severity": "Low",
+  "queryName": "IAM role allows public assume",
+  "severity": "LOW",
   "category": null,
   "descriptionText": "IAM role allows All services or principals to assume it",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role"

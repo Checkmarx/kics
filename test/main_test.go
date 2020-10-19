@@ -13,10 +13,10 @@ const (
 	queryFileName    = "query.rego"
 	metadataFileName = "metadata.json"
 
-	invalidTerraformFileName = "test/invalid.tf"
-	successTerraformFileName = "test/success.tf"
+	invalidTerraformFileName = "test/negative.tf"
+	successTerraformFileName = "test/positive.tf"
 
-	invalidQueryExpectedResultFileName = "test/invalid_expected_result.json"
+	invalidQueryExpectedResultFileName = "test/negative_expected_result.json"
 )
 
 var (

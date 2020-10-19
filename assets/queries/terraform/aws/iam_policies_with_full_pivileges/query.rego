@@ -8,11 +8,11 @@ CxPolicy [ result ] {
 	out.Statement[ix].Effect = "Allow"
     out.Statement[ix].Action = ["*"]
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Action", [resourceType[idx], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
                 "keyActualValue": 	"'policy.Statement.Action' contains '*'"
-              })
+              }
 }

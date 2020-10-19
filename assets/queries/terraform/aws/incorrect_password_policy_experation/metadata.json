@@ -1,7 +1,7 @@
 {
   "id": "Incorrect_password_policy_expiration",
-  "name": "Incorrect password policy expiration",
-  "severity": "Medium",
+  "queryName": "Incorrect password policy expiration",
+  "severity": "MEDIUM",
   "category": null,
   "descriptionText": "No password exeration policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy"
