@@ -24,15 +24,23 @@ type Storage interface {
 	GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error)
 }
 
+type Tracker interface {
+	TrackFileFound()
+	TrackFileParse()
+}
+
 type Service struct {
 	SourceProvider SourceProvider
 	Storage        Storage
 	Parser         *parser.TerraformParser
 	Inspector      *engine.Inspector
+	Tracker        Tracker
 }
 
 func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	if err := s.SourceProvider.GetSources(ctx, scanID, func(ctx context.Context, filename string, rc io.ReadCloser) error {
+		s.Tracker.TrackFileFound()
+
 		content, err := ioutil.ReadAll(rc)
 		if err != nil {
 			return errors.Wrap(err, "failed to read file content")
@@ -51,6 +59,10 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 			FileName:     filename,
 			JSONHash:     hash(ctx, filename, jsonContent),
 		})
+
+		if err == nil {
+			s.Tracker.TrackFileParse()
+		}
 
 		return errors.Wrap(err, "failed to save file content")
 	}); err != nil {

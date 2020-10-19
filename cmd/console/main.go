@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/checkmarxDev/ice/internal/storage"
+	"github.com/checkmarxDev/ice/internal/tracker"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/ice"
@@ -21,7 +22,7 @@ import (
 
 const scanID = "console"
 
-func main() {
+func main() { // nolint:funlen
 	var (
 		path        string
 		queryPath   string
@@ -51,7 +52,8 @@ func main() {
 				Source: queryPath,
 			}
 
-			inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder)
+			t := &tracker.CITracker{}
+			inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder, t)
 			if err != nil {
 				return err
 			}
@@ -63,6 +65,7 @@ func main() {
 				Storage:        store,
 				Parser:         parser.NewDefault(),
 				Inspector:      inspector,
+				Tracker:        t,
 			}
 
 			if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
@@ -79,7 +82,14 @@ func main() {
 				return err
 			}
 
-			summary := model.CreateSummary(files, result)
+			counters := model.Counters{
+				ScannedFiles:           t.FoundFiles,
+				FailedToScanFiles:      t.FoundFiles - t.ParsedFiles,
+				TotalQueries:           t.LoadedQueries,
+				FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
+			}
+
+			summary := model.CreateSummary(counters, result)
 
 			if payloadPath != "" {
 				if err := printToJSONFile(payloadPath, files.Combine(ctx)); err != nil {
@@ -88,10 +98,20 @@ func main() {
 			}
 
 			if outputPath != "" {
-				return printToJSONFile(outputPath, summary)
+				if err := printToJSONFile(outputPath, summary); err != nil {
+					return err
+				}
 			}
 
-			return printResult(summary)
+			if err := printResult(summary); err != nil {
+				return err
+			}
+
+			if len(summary.FailedQueries) > 0 {
+				os.Exit(1)
+			}
+
+			return nil
 		},
 	}
 
@@ -105,13 +125,16 @@ func main() {
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
-		log.Err(err).Msg("failed to execute main command")
+		os.Exit(-1)
 	}
 }
 
 func printResult(summary model.Summary) error {
-	fmt.Printf("Scanned files: %d\n", summary.ScannedFiles)
-	for _, q := range summary.Queries {
+	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
+	fmt.Printf("Files failed to scan: %d\n", summary.FailedToScanFiles)
+	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
+	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
+	for _, q := range summary.FailedQueries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
 		for _, f := range q.Files {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
