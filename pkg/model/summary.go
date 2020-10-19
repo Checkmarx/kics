@@ -11,7 +11,7 @@ type SeverityCounter struct {
 	Counter  int      `json:"counter"`
 }
 
-type SummaryItemFile struct {
+type FailedFile struct {
 	FileName         string    `json:"file_name"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
@@ -21,24 +21,31 @@ type SummaryItemFile struct {
 	Value            *string   `json:"value"`
 }
 
-type SummaryItem struct {
-	QueryName string            `json:"query_name"`
-	QueryID   string            `json:"query_id"`
-	Severity  Severity          `json:"severity"`
-	Files     []SummaryItemFile `json:"files"`
+type FailedQuery struct {
+	QueryName string       `json:"query_name"`
+	QueryID   string       `json:"query_id"`
+	Severity  Severity     `json:"severity"`
+	Files     []FailedFile `json:"files"`
+}
+
+type Counters struct {
+	ScannedFiles           int `json:"files_scanned"`
+	FailedToScanFiles      int `json:"files_failed_to_scan"`
+	TotalQueries           int `json:"queries_total"`
+	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
 }
 
 type Summary struct {
-	ScannedFiles int           `json:"scanned_files"`
-	Queries      []SummaryItem `json:"queries"`
+	Counters
+	FailedQueries []FailedQuery `json:"queries"`
 }
 
-func CreateSummary(files FileMetadatas, vulnerabilities []Vulnerability) Summary {
-	q := make(map[string]SummaryItem, len(vulnerabilities))
+func CreateSummary(counters Counters, vulnerabilities []Vulnerability) Summary {
+	q := make(map[string]FailedQuery, len(vulnerabilities))
 	for i := range vulnerabilities {
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryName]; !ok {
-			q[item.QueryName] = SummaryItem{
+			q[item.QueryName] = FailedQuery{
 				QueryName: item.QueryName,
 				QueryID:   item.QueryID,
 				Severity:  item.Severity,
@@ -46,7 +53,7 @@ func CreateSummary(files FileMetadatas, vulnerabilities []Vulnerability) Summary
 		}
 
 		qItem := q[item.QueryName]
-		qItem.Files = append(qItem.Files, SummaryItemFile{
+		qItem.Files = append(qItem.Files, FailedFile{
 			FileName:         item.FileName,
 			Line:             item.Line,
 			IssueType:        item.IssueType,
@@ -59,13 +66,13 @@ func CreateSummary(files FileMetadatas, vulnerabilities []Vulnerability) Summary
 		q[item.QueryName] = qItem
 	}
 
-	queries := make([]SummaryItem, 0, len(q))
+	queries := make([]FailedQuery, 0, len(q))
 	for _, i := range q {
 		queries = append(queries, i)
 	}
 
 	return Summary{
-		ScannedFiles: len(files),
-		Queries:      queries,
+		Counters:      counters,
+		FailedQueries: queries,
 	}
 }

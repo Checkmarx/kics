@@ -39,6 +39,11 @@ type FilesStorage interface {
 	SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error
 }
 
+type Tracker interface {
+	TrackQueryLoad()
+	TrackQueryExecution()
+}
+
 type preparedQuery struct {
 	opaQuery rego.PreparedEvalQuery
 	metadata model.QueryMetadata
@@ -48,6 +53,7 @@ type Inspector struct {
 	queries []*preparedQuery
 	storage FilesStorage
 	vb      VulnerabilityBuilder
+	tracker Tracker
 }
 
 type QueryContext struct {
@@ -70,6 +76,7 @@ func NewInspector(
 	source QueriesSource,
 	storage FilesStorage,
 	vb VulnerabilityBuilder,
+	tracker Tracker,
 ) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
@@ -121,6 +128,8 @@ func NewInspector(
 				continue
 			}
 
+			tracker.TrackQueryLoad()
+
 			opaQueries = append(opaQueries, &preparedQuery{
 				opaQuery: opaQuery,
 				metadata: metadata,
@@ -135,6 +144,7 @@ func NewInspector(
 		queries: opaQueries,
 		storage: storage,
 		vb:      vb,
+		tracker: tracker,
 	}, nil
 }
 
@@ -169,7 +179,11 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
 				Err(err).
 				Str("scanID", scanID).
 				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
+
+			continue
 		}
+
+		c.tracker.TrackQueryExecution()
 	}
 
 	return nil

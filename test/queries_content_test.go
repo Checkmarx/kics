@@ -8,6 +8,7 @@ import (
 	"path"
 	"testing"
 
+	"github.com/checkmarxDev/ice/internal/tracker"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/mock"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
@@ -120,6 +121,7 @@ func testQueryHasGoodReturnParams(t *testing.T, queryDir string) {
 
 			return model.Vulnerability{}, nil
 		},
+		&tracker.NullTracker{},
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

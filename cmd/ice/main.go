@@ -10,6 +10,7 @@ import (
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/internal/rest"
 	"github.com/checkmarxDev/ice/internal/storage/postgresql"
+	"github.com/checkmarxDev/ice/internal/tracker"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/ice"
@@ -54,7 +55,7 @@ func main() {
 		Source: cfg.querySourcePath,
 	}
 
-	inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder)
+	inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
 	if err != nil {
 		log.Fatal().Err(err).Msg("Inspector initialization failed")
 	}
@@ -64,6 +65,7 @@ func main() {
 		Storage:        store,
 		Parser:         parser.NewDefault(),
 		Inspector:      inspector,
+		Tracker:        &tracker.NullTracker{},
 	}
 
 	var servicesWg sync.WaitGroup
