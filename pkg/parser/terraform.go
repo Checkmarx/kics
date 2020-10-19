@@ -64,7 +64,14 @@ func (p *TerraformParser) doParse(content []byte, fileName string) (json string,
 	file, diagnostics := hclsyntax.ParseConfig(content, fileName, hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
 	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
-		return "", 0, errors.Wrap(diagnostics.Errs()[0], "failed to parse file")
+		err := diagnostics.Errs()[0]
+		line := 0
+
+		if e, ok := err.(*hcl.Diagnostic); ok {
+			line = e.Subject.Start.Line
+		}
+
+		return "", line, errors.Wrap(err, "failed to parse file")
 	}
 
 	return p.convertFunc(file)
