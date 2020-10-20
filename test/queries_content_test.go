@@ -126,6 +126,13 @@ func testQueryHasGoodReturnParams(t *testing.T, queryDir string) {
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
+	inspector.EnableCoverageReport()
+
 	err = inspector.Inspect(ctx, scanID)
 	require.Nil(t, err)
+
+	report := inspector.GetCoverageReport()
+	if report.Coverage < 100 {
+		t.Logf("Query '%s' has not full coverage. Want 100%%. Has %d%%", path.Base(queryDir), int(report.Coverage))
+	}
 }

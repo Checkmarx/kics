@@ -1,7 +1,7 @@
 {
   "id": "EKS_cluster_public_access_cidrs",
-  "name": "EKS cluster public access cidrs",
-  "severity": "High",
+  "queryName": "EKS cluster public access cidrs",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "Amazon EKS public endpoint is enables and accessible to all: 0.0.0.0/0\"",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster"

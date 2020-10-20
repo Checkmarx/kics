@@ -1,7 +1,7 @@
 {
   "id": "SQS_policy_with_Public_Access",
-  "name": "SQS policy with Public Access",
-  "severity": "Medium",
+  "queryName": "SQS policy with Public Access",
+  "severity": "MEDIUM",
   "category": null,
   "descriptionText": "SQS policy with public access",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue"

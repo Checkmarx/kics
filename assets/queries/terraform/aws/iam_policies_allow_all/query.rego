@@ -7,11 +7,11 @@ CxPolicy [ result ] {
     out.Statement[ix].Effect = "Allow"
     out.Statement[ix].Resource = "*"
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Resource", [resourceType[idx], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Resource' not equal '*'",
                 "keyActualValue": 	"'policy.Statement.Resource' equal '*'"
-              })
+              }
 }
