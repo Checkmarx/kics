@@ -1,6 +1,6 @@
 {
   "id": "Unprotected_S3_Storage",
-  "name": "Unprotected S3 Storage",
+  "queryName": "Unprotected S3 Storage",
   "severity": "LOW",
   "category": null,
   "descriptionText": "Unprotected S3 Storage",

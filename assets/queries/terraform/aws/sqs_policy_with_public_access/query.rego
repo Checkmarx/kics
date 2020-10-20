@@ -13,14 +13,14 @@ CxPolicy [ result ] {
     queue_name := trim_prefix(trim_suffix(resource.queue_url, ".id}"), "${aws_sqs_queue.")
     queue_resource := input.document[j].resource.aws_sqs_queue[queue_name]
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Statement.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
                 "keyActualValue":   "'policy.Statement.Principal.AWS' is equal '*'",
                 "value":            queue_resource.name
-              })
+              }
 }
 
 CxPolicy [ result ] {
@@ -36,14 +36,14 @@ CxPolicy [ result ] {
     queue_name := trim_prefix(trim_suffix(resource.queue_url, ".id}"), "${aws_sqs_queue.")
     queue_resource := input.document[j].resource.aws_sqs_queue[queue_name]
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Statement.Principal.AWS", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
                 "keyActualValue":   "'policy.Statement.Principal.AWS' is equal '*'",
                 "value":            queue_resource.name
-              })
+              }
 }
 
 CxPolicy [ result ] {
@@ -57,13 +57,13 @@ CxPolicy [ result ] {
     queue_name := trim_prefix(trim_suffix(resource.queue_url, ".id}"), "${aws_sqs_queue.")
     queue_resource := input.document[j].resource.aws_sqs_queue[queue_name]
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Statement.Principal", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Principal' is not equal '*'",
                 "keyActualValue": 	"'policy.Statement.Principal' is equal '*'",
                 "value":            queue_resource.name
-              })
+              }
 }
 

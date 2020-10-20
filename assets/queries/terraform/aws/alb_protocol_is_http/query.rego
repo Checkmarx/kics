@@ -7,13 +7,13 @@ CxPolicy [ result ] {
 	upper(resource.protocol) = "HTTP"
     not resource.default_action.redirect.protocol
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "'default_action.redirect.protocol' is equal 'HTTPS'",
                 "keyActualValue": 	"'default_action.redirect.protocol' is missing"
-              })
+              }
 }
 
 CxPolicy [ result ] {
@@ -23,11 +23,11 @@ CxPolicy [ result ] {
     upper(resource.protocol) = "HTTP"
     upper(resource.default_action.redirect.protocol) != "HTTPS"
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'default_action.redirect.protocol' is equal 'HTTPS'",
                 "keyActualValue": 	sprintf("'default_action.redirect.protocol' is equal '%s'", [resource.default_action.redirect.protocol])
-              })
+              }
 }

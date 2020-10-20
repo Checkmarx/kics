@@ -1,7 +1,7 @@
 {
   "id": "Dataset_is_public",
-  "name": "Dataset is public",
-  "severity": "High",
+  "queryName": "Dataset is public",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "Dataset is public",
   "descriptionUrl": "https://www.terraform.io/docs/providers/google/r/bigquery_dataset.html"

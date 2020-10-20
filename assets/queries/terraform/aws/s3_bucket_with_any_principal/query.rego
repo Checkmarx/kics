@@ -7,13 +7,13 @@ CxPolicy [ result ] {
     pol.Statement[idx].Effect = "Allow"
     pol.Statement[idx].Principal = "*"
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal", [pl[r], name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Principal' is not equal '*'",
                 "keyActualValue": 	"'policy.Statement.Principal' is equal '*'"
-              })
+              }
 }
 
 CxPolicy [ result ] {
@@ -23,11 +23,11 @@ CxPolicy [ result ] {
     pol.Statement[idx].Effect = "Allow"
     contains(pol.Statement[idx].Principal.AWS, "*")
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "'policy.Statement.Principal.AWS' doesn't contain '*'",
                 "keyActualValue": 	"'policy.Statement.Principal.AWS' contains '*'"
-              })
+              }
 }

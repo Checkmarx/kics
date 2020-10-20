@@ -5,13 +5,13 @@ CxPolicy [ result ] {
     vars = resource.environment.variables
     re_match("[A-Za-z0-9/+=]{40}", vars[var])
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_lambda_function[%s].environment.variables", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'environment.variables' doesn't contain access key",
                 "keyActualValue": 	"'environment.variables' contains access key"
-              })
+              }
 }
 
 CxPolicy [ result ] {
@@ -19,11 +19,11 @@ CxPolicy [ result ] {
     vars = resource.environment.variables
     re_match("[A-Z0-9]{20}", vars[var])
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_lambda_function[%s].environment.variables", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'environment.variables' doesn't contain access key",
                 "keyActualValue": 	"'environment.variables' contains access key"
-              })
+              }
 }

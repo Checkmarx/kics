@@ -8,9 +8,9 @@ import (
 	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
+	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/open-policy-agent/opa/topdown"
-	"github.com/open-policy-agent/opa/types"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -54,6 +54,9 @@ type Inspector struct {
 	storage FilesStorage
 	vb      VulnerabilityBuilder
 	tracker Tracker
+
+	enableCoverageReport bool
+	coverageReport       cover.Report
 }
 
 type QueryContext struct {
@@ -93,32 +96,6 @@ func NewInspector(
 				rego.Query(regoQuery),
 				rego.Module(metadata.Query, metadata.Content),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
-				rego.Function1(
-					&rego.Function{
-						Name:    "mergeWithMetadata",
-						Decl:    types.NewFunction(types.Args(types.A), types.A),
-						Memoize: false,
-					},
-					func(query model.QueryMetadata) rego.Builtin1 {
-						return func(_ rego.BuiltinContext, a *ast.Term) (*ast.Term, error) {
-							var value map[string]interface{}
-							if err := ast.As(a.Value, &value); err != nil {
-								return nil, err
-							}
-
-							for k, v := range query.Metadata {
-								value[k] = v
-							}
-
-							v, err := ast.InterfaceToValue(value)
-							if err != nil {
-								return nil, err
-							}
-
-							return ast.NewTerm(v), nil
-						}
-					}(metadata),
-				),
 			).PrepareForEval(ctx)
 			if err != nil {
 				log.
@@ -189,17 +166,44 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
 	return nil
 }
 
+func (c *Inspector) EnableCoverageReport() {
+	c.enableCoverageReport = true
+}
+
+func (c *Inspector) GetCoverageReport() cover.Report {
+	return c.coverageReport
+}
+
 func (c *Inspector) doRun(ctx QueryContext) error {
 	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, executeTimeout)
 	defer cancel()
 
-	results, err := ctx.query.opaQuery.Eval(timeoutCtx, rego.EvalInput(ctx.payload))
+	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
+
+	var cov *cover.Cover
+	if c.enableCoverageReport {
+		cov = cover.New()
+		options = append(options, rego.EvalQueryTracer(cov))
+	}
+
+	results, err := ctx.query.opaQuery.Eval(timeoutCtx, options...)
 	if err != nil {
 		if topdown.IsCancel(err) {
 			return errors.Wrap(err, "query executing timeout exited")
 		}
 
 		return errors.Wrap(err, "failed to evaluate query")
+	}
+
+	if c.enableCoverageReport && cov != nil {
+		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
+		if parseErr != nil {
+			return errors.Wrap(parseErr, "failed to parse coverage module")
+		}
+
+		c.coverageReport = cov.Report(map[string]*ast.Module{
+			ctx.query.metadata.Query: module,
+		})
 	}
 
 	logger.GetLoggerWithFieldsFromContext(ctx.ctx).

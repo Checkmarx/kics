@@ -5,11 +5,11 @@ CxPolicy [ result ] {
     out := json.unmarshal(policy)
     out.Statement[idx].Action = "*"
 
-    result := mergeWithMetadata({
+    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_sqs_queue_policy[%s].policy.Action", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'policy.Statement.Action' is not equal '*'",
                 "keyActualValue": 	"'policy.Statement.Action' is equal '*'"
-              })
+              }
 }

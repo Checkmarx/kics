@@ -1,7 +1,7 @@
 {
   "id": "S3_bucket_with_any_principal",
-  "name": "S3 bucket with any principal",
-  "severity": "High",
+  "queryName": "S3 bucket with any principal",
+  "severity": "HIGH",
   "category": null,
   "descriptionText": "S3 bucket allows actions with any Principal",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy"

@@ -1,7 +1,7 @@
 {
   "id": "Hardcoded_AWS_access_key",
-  "name": "Hardcoded AWS access key",
-  "severity": "Low",
+  "queryName": "Hardcoded AWS access key",
+  "severity": "LOW",
   "category": null,
   "descriptionText": "Hard-coded AWS access key / secret key exists in EC2 user data",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance"
