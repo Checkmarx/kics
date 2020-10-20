@@ -28,6 +28,7 @@ resource "aws_cloudfront_distribution" "this" {
   enabled         = true
   is_ipv6_enabled = true
   comment         = var.site_domain
+  web_acl_id      = "test"
 
   aliases = [var.site_domain]
 

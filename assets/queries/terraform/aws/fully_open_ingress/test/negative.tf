@@ -87,24 +87,13 @@ resource "aws_security_group" "default" {
   }
 }
 
-resource "aws_security_group_rule" "somename" {
+resource "aws_security_group_rule" "ingress" {
   type              = "ingress"
   from_port         = "3306"
   to_port           = "3306"
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["${aws_vpc.web_vpc.cidr_block}"]
   security_group_id = aws_security_group.default.id
-}
-
-resource "aws_security_group" "ingress_inside" {
-  ingress {
-    type              = "ingress"
-    from_port         = "3306"
-    to_port           = "3306"
-    protocol          = "tcp"
-    cidr_blocks       = ["0.0.0.0/0"]
-    security_group_id = aws_security_group.default.id
-  }
 }
 
 resource "aws_security_group_rule" "egress" {

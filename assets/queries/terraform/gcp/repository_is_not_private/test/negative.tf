@@ -3,7 +3,8 @@ resource "github_repository" "example" {
   name        = "example"
   description = "My awesome codebase"
 
-  private = false
+  private = true
+  visibility = "private"
 
   template {
     owner = "github"

@@ -12,7 +12,6 @@ resource "aws_ecr_repository_policy" "foopolicy" {
         {
             "Sid": "new policy",
             "Effect": "Allow",
-            "Principal": "*",
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",

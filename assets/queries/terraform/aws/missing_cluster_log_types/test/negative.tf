@@ -6,7 +6,7 @@ variable "cluster_name" {
 resource "aws_eks_cluster" "example" {
   depends_on = [aws_cloudwatch_log_group.example]
 
-  enabled_cluster_log_types = ["api", "audit"]
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
   name                      = var.cluster_name
 
   # ... other configuration ...

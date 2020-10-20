@@ -23,18 +23,18 @@ EOF
 
 //  This policy allows an instance to forward logs to CloudWatch, and
 //  create the Log Stream or Log Group if it doesn't exist.
-resource "aws_iam_role" "openshift-policy-forward-logs" {
+resource "aws_iam_policy" "openshift-policy-forward-logs" {
   name        = "${var.name_tag_prefix}-openshift-instance-forward-logs"
   path        = "/"
   description = "Allows an instance to forward logs to CloudWatch"
 
-  assume_role_policy = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Principal": {
-        "AWS": "arn:aws:iam::root"
+        "AWS": "arn:aws:iam::some_role"
       },
       "Effect": "Allow",
       "Action": [

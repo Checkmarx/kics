@@ -14,7 +14,5 @@ resource "aws_eks_cluster" "example" {
 
 resource "aws_cloudwatch_log_group" "example" {
   name              = "/aws/eks/${var.cluster_name}/cluster"
-  retention_in_days = 7
-
   # ... potentially other configuration ...
 }

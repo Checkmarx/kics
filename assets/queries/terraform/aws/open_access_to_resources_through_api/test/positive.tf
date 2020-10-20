@@ -12,6 +12,6 @@ resource "aws_api_gateway_resource" "MyDemoResource" {
 resource "aws_api_gateway_method" "MyDemoMethod" {
   rest_api_id   = aws_api_gateway_rest_api.MyDemoAPI.id
   resource_id   = aws_api_gateway_resource.MyDemoResource.id
-  http_method   = "OPTIONS"
+  http_method   = "GET"
   authorization = "NONE"
 }

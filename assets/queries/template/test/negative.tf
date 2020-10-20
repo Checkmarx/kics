@@ -1,1 +1,1 @@
-#this is a problematic code where the query should report a result(s)
+#this code is a correct code for which the query should not find any result

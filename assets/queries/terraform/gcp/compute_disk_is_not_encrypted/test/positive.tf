@@ -1,3 +1,7 @@
+// comment
+// comment
+// comment
+// comment
 resource "google_compute_disk" "default" {
   name  = "test-disk"
   type  = "pd-ssd"
@@ -7,7 +11,4 @@ resource "google_compute_disk" "default" {
     environment = "dev"
   }
   physical_block_size_bytes = 4096
-  disk_encryption_key {
-    raw_key = "test"
-  }
 }
