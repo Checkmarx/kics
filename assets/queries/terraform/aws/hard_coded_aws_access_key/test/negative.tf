@@ -11,7 +11,7 @@ resource "aws_instance" "http" {
     aws_security_group.web.id,
   ]
   subnet_id = aws_subnet.http.id
-  user_data = "1234567890123456789012345678901234567890$"
+  user_data = file("scripts/first-boot-http.sh")
   tags = {
     Name = each.key
   }
@@ -27,21 +27,4 @@ resource "aws_eip" "public_http" {
     Name = "public-http-${each.key}"
   }
 }
-
-resource "aws_instance" "long_access_key" {
-  for_each      = var.http_instance_names
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  key_name      = aws_key_pair.user_key.key_name
-  vpc_security_group_ids = [
-    aws_security_group.administration.id,
-    aws_security_group.web.id,
-  ]
-  subnet_id = aws_subnet.http.id
-  user_data = "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890$"
-  tags = {
-    Name = each.key
-  }
-}
-
 

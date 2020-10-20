@@ -7,5 +7,5 @@ resource "aws_s3_bucket_public_access_block" "example" {
 
   block_public_acls   = true
   block_public_policy = true
-  ignore_public_acls  = false
+  ignore_public_acls  = true
 }

@@ -8,7 +8,7 @@ resource "aws_iam_role_policy" "apigateway_cloudwatch_logging" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["*"],
+      "Action": ["some:action"],
       "Resource": "*"
     }
   ]

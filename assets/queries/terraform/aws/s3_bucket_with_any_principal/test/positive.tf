@@ -12,7 +12,10 @@ resource "aws_s3_bucket_policy" "b" {
   "Statement": [
     {
       "Sid": "IPAllow",
-      "Effect": "Deny",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
       "Action": "s3:*",
       "Resource": "arn:aws:s3:::my_tf_test_bucket/*",
       "Condition": {

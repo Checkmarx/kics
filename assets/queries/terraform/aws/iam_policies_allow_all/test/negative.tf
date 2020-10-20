@@ -29,7 +29,7 @@ resource "aws_iam_user_policy" "userpolicy" {
         "cloudwatch:*"
       ],
       "Effect": "Allow",
-      "Resource": "*"
+      "Resource": "SomeResource"
     }
   ]
 }

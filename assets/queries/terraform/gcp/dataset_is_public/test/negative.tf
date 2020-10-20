@@ -11,6 +11,11 @@ resource "google_bigquery_dataset" "dataset" {
 
   access {
     role          = "OWNER"
-    special_group = "allAuthenticatedUsers"
+    user_by_email = google_service_account.bqowner.email
+  }
+
+  access {
+    role   = "READER"
+    domain = "hashicorp.com"
   }
 }

@@ -8,6 +8,10 @@ resource "aws_s3_bucket" "b" {
     Environment = "Dev"
   }
 
+  logging {
+    target_bucket = "logs"
+  }
+
   versioning {
     mfa_delete = true
   }

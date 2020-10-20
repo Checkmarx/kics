@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "s3Bucket" {
 	  "Statement": [
 		{
 		  "Action": [
-			"s3:putObject"
+			"s3:*"
 		  ],
 		  "Effect": "Allow",
 		  "Resource": "arn:aws:s3:::S3B_181355/*",

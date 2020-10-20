@@ -46,7 +46,7 @@ resource "aws_cloudfront_distribution" "this" {
 
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "allow-all"
     min_ttl                = 0
     default_ttl            = 0
     max_ttl                = 0
@@ -73,31 +73,10 @@ resource "aws_cloudfront_distribution" "this" {
     default_ttl            = 900
     max_ttl                = 900
     compress               = true
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "allow-all"
   }
 
   # Cache behavior with precedence 1
-  ordered_cache_behavior {
-    path_pattern     = "wp-includes/*"
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = "alb"
-
-    forwarded_values {
-      query_string = true
-      headers      = ["Host"]
-
-      cookies {
-        forward = "all"
-      }
-    }
-
-    min_ttl                = 3600
-    default_ttl            = 3600
-    max_ttl                = 3600
-    compress               = true
-    viewer_protocol_policy = "redirect-to-https"
-  }
   price_class = var.cf_price_class
   tags        = var.tags
   restrictions {
