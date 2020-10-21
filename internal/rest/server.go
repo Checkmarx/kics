@@ -101,7 +101,7 @@ func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
 		Str("scanID", scanID).
 		Msg("rest api. getting scan results")
 
-	results, err := s.Service.GetResults(ctx, scanID)
+	results, err := s.Service.GetVulnerabilities(ctx, scanID)
 	if err != nil {
 		logger.GetLoggerWithFieldsFromContext(ctx).
 			Err(err).

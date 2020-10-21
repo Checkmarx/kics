@@ -13,98 +13,55 @@ import (
 	"github.com/checkmarxDev/ice/pkg/engine/mock"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
 
-const (
-	fileID = 12345
-	scanID = "testScan"
-)
-
 func TestQueries(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
-	queriesDir := loadQueriesDir(t)
-	for _, queryDir := range queriesDir {
-		t.Run(path.Base(queryDir), func(t *testing.T) {
-			expectedResultFile := path.Join(queryDir, invalidQueryExpectedResultFileName)
-			content, err := ioutil.ReadFile(expectedResultFile)
-			require.NoError(t, err, "can't read expected result file %s", expectedResultFile)
+	queries := loadQueries(t)
+	for _, entry := range queries {
+		t.Run(path.Base(entry.dir)+"_positive", func(t *testing.T) {
+			content, err := ioutil.ReadFile(entry.ExpectedPositiveResultFile())
+			require.NoError(t, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile())
 
 			var expectedVulnerabilities []model.Vulnerability
 			err = json.Unmarshal(content, &expectedVulnerabilities)
-			require.NoError(t, err, "can't unmarshal expected result file %s", expectedResultFile)
+			require.NoError(t, err, "can't unmarshal expected result file %s", entry.ExpectedPositiveResultFile())
 
-			testQuery(t, queryDir, path.Join(queryDir, invalidTerraformFileName), expectedVulnerabilities)
+			testQuery(t, entry, entry.PositiveFile(), expectedVulnerabilities)
 		})
-		t.Run(path.Base(queryDir)+"_success", func(t *testing.T) {
-			testQuery(t, queryDir, path.Join(queryDir, successTerraformFileName), []model.Vulnerability{})
+		t.Run(path.Base(entry.dir)+"_negative", func(t *testing.T) {
+			testQuery(t, entry, entry.NegativeFile(), []model.Vulnerability{})
 		})
 	}
 }
 
-func testQuery(t *testing.T, queryDir, tfFilePath string, expectedVulnerabilities []model.Vulnerability) {
+func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerabilities []model.Vulnerability) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
 	ctx := context.TODO()
-	storage := mock.NewMockFilesStorage(ctrl)
-	storage.EXPECT().GetFiles(gomock.Eq(ctx), gomock.Eq(scanID)).
-		DoAndReturn(func(ctx context.Context, scanID string) (model.FileMetadatas, error) {
-			f, err := readTestTerraformFile(scanID, fileID, tfFilePath)
-			require.NoError(t, err)
-
-			return model.FileMetadatas{f}, nil
-		})
-
-	storage.EXPECT().SaveVulnerabilities(gomock.Any(), gomock.Any()).
-		DoAndReturn(func(_ context.Context, results []model.Vulnerability) error {
-			requireEqualVulnerabilities(t, expectedVulnerabilities, results)
-
-			return nil
-		})
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries().
 		DoAndReturn(func() ([]model.QueryMetadata, error) {
-			q, err := query.ReadQuery(queryDir)
+			q, err := query.ReadQuery(entry.dir)
 			require.NoError(t, err)
 
 			return []model.QueryMetadata{q}, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, storage, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
+	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
-	err = inspector.Inspect(ctx, scanID)
+	vulnerabilities, err := inspector.Inspect(ctx, scanID, getParsedFile(t, filePath))
 	require.Nil(t, err)
-}
-
-func readTestTerraformFile(scanID string, fileID int, filePath string) (model.FileMetadata, error) {
-	content, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return model.FileMetadata{}, err
-	}
-
-	jsonContent, err := parser.NewDefault().Parse(filePath, content)
-	if err != nil {
-		return model.FileMetadata{}, err
-	}
-
-	return model.FileMetadata{
-		ID:           fileID,
-		ScanID:       scanID,
-		JSONData:     jsonContent,
-		OriginalData: string(content),
-		Kind:         model.KindTerraform,
-		FileName:     filePath,
-		JSONHash:     0,
-	}, nil
+	requireEqualVulnerabilities(t, expectedVulnerabilities, vulnerabilities)
 }
 
 func requireEqualVulnerabilities(t *testing.T, expected, actual []model.Vulnerability) {
@@ -124,7 +81,7 @@ func requireEqualVulnerabilities(t *testing.T, expected, actual []model.Vulnerab
 
 		expectedItem := expected[i]
 		actualItem := actual[i]
-		require.Equal(t, fileID, actualItem.FileID)
+		require.LessOrEqual(t, fileID, actualItem.FileID)
 		require.Equal(t, scanID, actualItem.ScanID)
 		require.Equal(t, expectedItem.Line, actualItem.Line, "Not corrected detected line")
 		require.Equal(t, expectedItem.Severity, actualItem.Severity, "Invalid severity")

@@ -1,4 +1,4 @@
-package parser
+package terraform
 
 import (
 	"testing"
@@ -18,13 +18,14 @@ resource "aws_s3_bucket" "b" {
   }
 }
 `
-	want = `{"resource":{"aws_s3_bucket":{"b":{"bucket":"S3B_541","tags":{"Environment":"Dev","Name":"My bucket"}}}}}`
 )
 
 func Test_Parser(t *testing.T) {
 	parser := NewDefault()
-	str, err := parser.Parse("test.tf", []byte(have))
+	document, err := parser.Parse("test.tf", []byte(have))
 
 	require.NoError(t, err)
-	require.Equal(t, want, str)
+	require.Len(t, document, 1)
+	require.Contains(t, document[0], "resource")
+	require.Contains(t, document[0]["resource"], "aws_s3_bucket")
 }

@@ -2,11 +2,9 @@ package ice
 
 import (
 	"context"
-	"hash/fnv"
 	"io"
 	"io/ioutil"
 
-	"github.com/checkmarxDev/ice/internal/logger"
 	"github.com/checkmarxDev/ice/pkg/engine"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/checkmarxDev/ice/pkg/parser"
@@ -15,12 +13,13 @@ import (
 )
 
 type SourceProvider interface {
-	GetSources(ctx context.Context, scanID string, sink source.Sink) error
+	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
 }
 
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
-	GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error)
+	SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error
+	GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error)
 	GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error)
 }
 
@@ -32,63 +31,66 @@ type Tracker interface {
 type Service struct {
 	SourceProvider SourceProvider
 	Storage        Storage
-	Parser         *parser.TerraformParser
+	Parser         *parser.Parser
 	Inspector      *engine.Inspector
 	Tracker        Tracker
 }
 
 func (s *Service) StartScan(ctx context.Context, scanID string) error {
-	if err := s.SourceProvider.GetSources(ctx, scanID, func(ctx context.Context, filename string, rc io.ReadCloser) error {
-		s.Tracker.TrackFileFound()
+	var files model.FileMetadatas
+	if err := s.SourceProvider.GetSources(
+		ctx,
+		scanID,
+		s.Parser.SupportedExtensions(),
+		func(ctx context.Context, filename string, rc io.ReadCloser) error {
+			s.Tracker.TrackFileFound()
 
-		content, err := ioutil.ReadAll(rc)
-		if err != nil {
-			return errors.Wrap(err, "failed to read file content")
-		}
+			content, err := ioutil.ReadAll(rc)
+			if err != nil {
+				return errors.Wrap(err, "failed to read file content")
+			}
 
-		jsonContent, err := s.Parser.Parse(filename, content)
-		if err != nil {
-			return errors.Wrap(err, "failed to parse file content")
-		}
+			documents, kind, err := s.Parser.Parse(filename, content)
+			if err != nil {
+				return errors.Wrap(err, "failed to parse file content")
+			}
 
-		err = s.Storage.SaveFile(ctx, &model.FileMetadata{
-			ScanID:       scanID,
-			JSONData:     jsonContent,
-			OriginalData: string(content),
-			Kind:         model.KindTerraform,
-			FileName:     filename,
-			JSONHash:     hash(ctx, filename, jsonContent),
-		})
+			for _, document := range documents {
+				file := model.FileMetadata{
+					ScanID:       scanID,
+					Document:     document,
+					OriginalData: string(content),
+					Kind:         kind,
+					FileName:     filename,
+				}
 
-		if err == nil {
-			s.Tracker.TrackFileParse()
-		}
+				err = s.Storage.SaveFile(ctx, &file)
+				if err == nil {
+					files = append(files, file)
+					s.Tracker.TrackFileParse()
+				}
+			}
 
-		return errors.Wrap(err, "failed to save file content")
-	}); err != nil {
+			return errors.Wrap(err, "failed to save file content")
+		},
+	); err != nil {
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	err := s.Inspector.Inspect(ctx, scanID)
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files)
+	if err != nil {
+		return errors.Wrap(err, "failed to inspect files")
+	}
 
-	return errors.Wrap(err, "failed to read sources")
+	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
+
+	return errors.Wrap(err, "failed to save vulnerabilities")
 }
 
-func (s *Service) GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
-	return s.Storage.GetResults(ctx, scanID)
+func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
+	return s.Storage.GetVulnerabilities(ctx, scanID)
 }
 
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
-}
-
-func hash(ctx context.Context, filename, content string) uint32 {
-	h := fnv.New32a()
-	if _, err := h.Write([]byte(content)); err != nil {
-		logger.GetLoggerWithFieldsFromContext(ctx).
-			Err(err).
-			Str("fileName", filename).
-			Msgf("saving file. failed to create file hash")
-	}
-	return h.Sum32()
 }
