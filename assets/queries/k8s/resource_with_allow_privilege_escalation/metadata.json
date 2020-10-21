@@ -1,0 +1,8 @@
+{
+  "id": "Resource_With_Allow_Privilege_Escalation",
+  "queryName": "Resource With Allow Privilege Escalation",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Minimize the admission of privileged resources",
+  "descriptionUrl": "#"
+}

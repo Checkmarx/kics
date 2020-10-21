@@ -35,7 +35,7 @@ func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities [
 	return nil
 }
 
-func (m *MemoryStorage) GetResults(_ context.Context, _ string) ([]model.Vulnerability, error) {
+func (m *MemoryStorage) GetVulnerabilities(_ context.Context, _ string) ([]model.Vulnerability, error) {
 	return m.vulnerabilities, nil
 }
 

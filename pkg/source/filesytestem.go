@@ -7,10 +7,9 @@ import (
 	"strings"
 
 	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/pkg/errors"
 )
-
-const extensionTerraform = ".tf"
 
 type FileSystemSourceProvider struct {
 	Path string
@@ -18,14 +17,14 @@ type FileSystemSourceProvider struct {
 
 var ErrNotSupportedFile = errors.New("invalid file format")
 
-func (s *FileSystemSourceProvider) GetSources(ctx context.Context, scanID string, sink Sink) error {
+func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
 	fileInfo, err := os.Stat(s.Path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
 	}
 
 	if !fileInfo.IsDir() {
-		if filepath.Ext(s.Path) != extensionTerraform {
+		if !extensions.Include(filepath.Ext(s.Path)) {
 			return ErrNotSupportedFile
 		}
 
@@ -46,7 +45,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, scanID string
 			return nil
 		}
 
-		if filepath.Ext(path) != extensionTerraform {
+		if !extensions.Include(filepath.Ext(path)) {
 			return nil
 		}
 
