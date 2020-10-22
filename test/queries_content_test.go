@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io/ioutil"
-	"os"
 	"path"
 	"testing"
 
@@ -13,11 +12,15 @@ import (
 	"github.com/checkmarxDev/ice/pkg/engine/mock"
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
+)
+
+const (
+	fileID = 12345
+	scanID = "test_scan"
 )
 
 var (
@@ -34,70 +37,34 @@ var (
 func TestQueriesContent(t *testing.T) {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
-	queriesDir := loadQueriesDir(t)
+	queries := loadQueries(t)
 
-	for _, queryDir := range queriesDir {
-		t.Run(path.Base(queryDir), func(t *testing.T) {
-			testQueryHasAllRequiredFiles(t, queryDir)
-			testQueryHasGoodReturnParams(t, queryDir)
+	for _, entry := range queries {
+		t.Run(path.Base(entry.dir), func(t *testing.T) {
+			testQueryHasAllRequiredFiles(t, entry)
+			testQueryHasGoodReturnParams(t, entry)
 		})
 	}
 }
 
-func testQueryHasAllRequiredFiles(t *testing.T, queryDir string) {
-	require.FileExists(t, path.Join(queryDir, queryFileName))
-	require.FileExists(t, path.Join(queryDir, metadataFileName))
-	require.FileExists(t, path.Join(queryDir, invalidTerraformFileName))
-	require.FileExists(t, path.Join(queryDir, invalidQueryExpectedResultFileName))
-	require.FileExists(t, path.Join(queryDir, successTerraformFileName))
+func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
+	require.FileExists(t, path.Join(entry.dir, queryFileName))
+	require.FileExists(t, path.Join(entry.dir, metadataFileName))
+	require.FileExists(t, entry.PositiveFile())
+	require.FileExists(t, entry.NegativeFile())
+	require.FileExists(t, entry.ExpectedPositiveResultFile())
 }
 
-func testQueryHasGoodReturnParams(t *testing.T, queryDir string) {
+func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	scanID := "test_scan"
-	fileID := 1
 	ctx := context.Background()
-
-	storage := mock.NewMockFilesStorage(ctrl)
-	storage.EXPECT().GetFiles(gomock.Eq(ctx), gomock.Eq(scanID)).
-		DoAndReturn(func(ctx context.Context, scanID string) (model.FileMetadatas, error) {
-			filePath := path.Join(queryDir, invalidTerraformFileName)
-			f, err := os.Open(filePath)
-			if err != nil {
-				return nil, err
-			}
-
-			content, err := ioutil.ReadAll(f)
-			if err != nil {
-				return nil, err
-			}
-
-			jsonContent, err := parser.NewDefault().Parse(filePath, content)
-			if err != nil {
-				return nil, err
-			}
-
-			return []model.FileMetadata{
-				{
-					ID:           fileID,
-					ScanID:       scanID,
-					JSONData:     jsonContent,
-					OriginalData: string(content),
-					Kind:         model.KindTerraform,
-					FileName:     filePath,
-					JSONHash:     0,
-				},
-			}, nil
-		})
-	storage.EXPECT().SaveVulnerabilities(gomock.Any(), gomock.Any()).
-		Return(nil)
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries().
 		DoAndReturn(func() ([]model.QueryMetadata, error) {
-			q, err := query.ReadQuery(queryDir)
+			q, err := query.ReadQuery(entry.dir)
 
 			return []model.QueryMetadata{q}, err
 		})
@@ -105,7 +72,6 @@ func testQueryHasGoodReturnParams(t *testing.T, queryDir string) {
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		storage,
 		func(ctx engine.QueryContext, v interface{}) (model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
@@ -114,7 +80,7 @@ func testQueryHasGoodReturnParams(t *testing.T, queryDir string) {
 				_, ok := m[requiredProperty]
 				require.True(t, ok, fmt.Sprintf(
 					"query '%s' doesn't include paramert '%s' in response",
-					path.Base(queryDir),
+					path.Base(entry.dir),
 					requiredProperty,
 				))
 			}
@@ -128,11 +94,11 @@ func testQueryHasGoodReturnParams(t *testing.T, queryDir string) {
 
 	inspector.EnableCoverageReport()
 
-	err = inspector.Inspect(ctx, scanID)
+	_, err = inspector.Inspect(ctx, scanID, getParsedFile(t, entry.PositiveFile()))
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()
 	if report.Coverage < 100 {
-		t.Logf("Query '%s' has not full coverage. Want 100%%. Has %d%%", path.Base(queryDir), int(report.Coverage))
+		t.Logf("Query '%s' has not full coverage. Want 100%%. Has %d%%", path.Base(entry.dir), int(report.Coverage))
 	}
 }

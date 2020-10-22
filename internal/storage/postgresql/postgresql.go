@@ -40,8 +40,7 @@ create table if not exists public.ast_ice_files
     orig_data   text   not null,
     kind        text   not null,
     file_name   text   not null,
-    create_date timestamp default now(),
-    json_hash   bigint
+    create_date timestamp default now()
 );
 
 create index if not exists ast_ice_files_scan_id on ast_ice_files (scan_id);

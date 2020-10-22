@@ -1,15 +1,15 @@
 package model
 
 import (
-	"context"
+	"sort"
 	"strconv"
-
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/pkg/errors"
+	"strings"
 )
 
 const (
-	KindTerraform FileMetadataKind = "TF"
+	KindTerraform FileKind = "TF"
+	KindJSON      FileKind = "JSON"
+	KindYAML      FileKind = "YAML"
 
 	SeverityHigh   = "HIGH"
 	SeverityMedium = "MEDIUM"
@@ -30,18 +30,17 @@ var (
 	}
 )
 
-type FileMetadataKind string
+type FileKind string
 type Severity string
 type IssueType string
 
 type FileMetadata struct {
-	ID           int
+	ID           int    `db:"id"`
 	ScanID       string `db:"scan_id"`
-	JSONData     string `db:"json_data"`
-	OriginalData string `db:"orig_data"`
-	Kind         FileMetadataKind
-	FileName     string `db:"file_name"`
-	JSONHash     uint32 `db:"json_hash"`
+	Document     Document
+	OriginalData string   `db:"orig_data"`
+	Kind         FileKind `db:"kind"`
+	FileName     string   `db:"file_name"`
 }
 
 type QueryMetadata struct {
@@ -67,6 +66,29 @@ type Vulnerability struct {
 	Output           string    `json:"-"`
 }
 
+type Extensions map[string]struct{}
+
+func (e Extensions) Include(ext string) bool {
+	_, b := e[ext]
+
+	return b
+}
+
+func (e Extensions) MatchedFilesRegex() string {
+	if len(e) == 0 {
+		return "NO_MATCHED_FILES"
+	}
+
+	var parts []string
+	for ext := range e {
+		parts = append(parts, "\\"+ext)
+	}
+
+	sort.Strings(parts)
+
+	return "(.*)(" + strings.Join(parts, "|") + ")$"
+}
+
 type FileMetadatas []FileMetadata
 
 func (m FileMetadatas) ToMap() map[string]FileMetadata {
@@ -86,35 +108,18 @@ type Documents struct {
 //easyjson:json
 type Document map[string]interface{}
 
-func (m FileMetadatas) Combine(ctx context.Context) Documents {
+func (m FileMetadatas) Combine() Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for _, fm := range m {
-		var document Document
-		if err := document.UnmarshalJSON([]byte(fm.JSONData)); err != nil {
-			logger.GetLoggerWithFieldsFromContext(ctx).
-				Err(err).
-				Msg("Json combiner couldn't combine jsons")
-
-			continue
-		}
-		if len(document) == 0 {
+		if len(fm.Document) == 0 {
 			continue
 		}
 
-		document["id"] = strconv.Itoa(fm.ID)
-		document["file"] = fm.FileName
+		fm.Document["id"] = strconv.Itoa(fm.ID)
+		fm.Document["file"] = fm.FileName
 
-		documents.Documents = append(documents.Documents, document)
+		documents.Documents = append(documents.Documents, fm.Document)
 	}
 
 	return documents
-}
-
-func (m FileMetadatas) CombineToJSON(ctx context.Context) ([]byte, error) {
-	ret, err := m.Combine(ctx).MarshalJSON()
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to marshall all files")
-	}
-
-	return ret, nil
 }

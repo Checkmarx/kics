@@ -1,10 +1,10 @@
 package converter
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 
+	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/zclconf/go-cty/cty"
@@ -15,28 +15,21 @@ import (
 // This file is attributed to https://github.com/tmccombs/hcl2json.
 // convertBlock() is manipulated for combining the both blocks and labels for one given resource.
 
-type jsonObj map[string]interface{}
-
 // DefaultConverted an hcl File to a toJson serializable object
 // This assumes that the body is a hclsyntax.Body
-var DefaultConverted = func(file *hcl.File) (string, int, error) {
+var DefaultConverted = func(file *hcl.File) (model.Document, int, error) {
 	c := converter{bytes: file.Bytes}
 	body, err := c.convertBody(file.Body.(*hclsyntax.Body))
 
 	if err != nil {
 		if er, ok := err.(*hcl.Diagnostic); ok && er.Subject != nil {
-			return "", er.Subject.Start.Line, err
+			return nil, er.Subject.Start.Line, err
 		}
 
-		return "", 0, err
+		return nil, 0, err
 	}
 
-	jsonBody, err := json.Marshal(body)
-	if err != nil {
-		return "", 0, err
-	}
-
-	return string(jsonBody), 0, nil
+	return body, 0, nil
 }
 
 type converter struct {
@@ -47,9 +40,9 @@ func (c *converter) rangeSource(r hcl.Range) string {
 	return string(c.bytes[r.Start.Byte:r.End.Byte])
 }
 
-func (c *converter) convertBody(body *hclsyntax.Body) (jsonObj, error) {
+func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) {
 	var err error
-	out := make(jsonObj)
+	out := make(model.Document)
 	for key, value := range body.Attributes {
 		out[key], err = c.convertExpression(value.Expr)
 		if err != nil {
@@ -67,7 +60,7 @@ func (c *converter) convertBody(body *hclsyntax.Body) (jsonObj, error) {
 	return out, nil
 }
 
-func (c *converter) convertBlock(block *hclsyntax.Block, out jsonObj) error {
+func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document) error {
 	var key = block.Type
 	value, err := c.convertBody(block.Body)
 	if err != nil {
@@ -77,12 +70,12 @@ func (c *converter) convertBlock(block *hclsyntax.Block, out jsonObj) error {
 	for _, label := range block.Labels {
 		if inner, exists := out[key]; exists {
 			var ok bool
-			out, ok = inner.(jsonObj)
+			out, ok = inner.(model.Document)
 			if !ok {
 				return fmt.Errorf("unable to convert Block to JSON: %v.%v", block.Type, strings.Join(block.Labels, "."))
 			}
 		} else {
-			obj := make(jsonObj)
+			obj := make(model.Document)
 			out[key] = obj
 			out = obj
 		}
@@ -122,7 +115,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		}
 		return list, nil
 	case *hclsyntax.ObjectConsExpr:
-		m := make(jsonObj)
+		m := make(model.Document)
 		for _, item := range value.Items {
 			key, err := c.convertKey(item.KeyExpr)
 			if err != nil {

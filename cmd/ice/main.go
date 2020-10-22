@@ -15,6 +15,9 @@ import (
 	"github.com/checkmarxDev/ice/pkg/engine/query"
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/checkmarxDev/ice/pkg/parser"
+	jsonParser "github.com/checkmarxDev/ice/pkg/parser/json"
+	terraformParser "github.com/checkmarxDev/ice/pkg/parser/terraform"
+	yamlParser "github.com/checkmarxDev/ice/pkg/parser/yaml"
 	"github.com/checkmarxDev/ice/pkg/source"
 	"github.com/checkmarxDev/ice/pkg/worker"
 	"github.com/checkmarxDev/ice/pkg/worker/handler"
@@ -55,15 +58,21 @@ func main() {
 		Source: cfg.querySourcePath,
 	}
 
-	inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
 	if err != nil {
 		log.Fatal().Err(err).Msg("Inspector initialization failed")
 	}
 
+	combinedParser := parser.NewBuilder().
+		Add(&jsonParser.Parser{}).
+		Add(&yamlParser.Parser{}).
+		Add(terraformParser.NewDefault()).
+		Build()
+
 	service := &ice.Service{
 		SourceProvider: filesSource,
 		Storage:        store,
-		Parser:         parser.NewDefault(),
+		Parser:         combinedParser,
 		Inspector:      inspector,
 		Tracker:        &tracker.NullTracker{},
 	}

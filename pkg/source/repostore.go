@@ -12,12 +12,11 @@ import (
 
 	internalcontext "github.com/checkmarxDev/ice/internal/context"
 	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/checkmarxDev/ice/pkg/model"
 	repo "github.com/checkmarxDev/repostore/pkg/api/v1"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )
-
-const fileRegex = `(.*)\.tf$`
 
 type RepostoreSourceProvider struct {
 	restAddr string
@@ -39,14 +38,16 @@ func NewRepostoreSourceProvider(
 	}, nil
 }
 
-func (s *RepostoreSourceProvider) GetSources(ctx context.Context, scanID string, sink Sink) error {
-	return s.doGetSources(ctx, scanID, sink)
-}
-
-func (s *RepostoreSourceProvider) doGetSources(ctx context.Context, scanID string, sink Sink) error {
+func (s *RepostoreSourceProvider) GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink Sink) error {
 	ctx = internalcontext.ForwardContext(ctx)
 	var wg sync.WaitGroup
-	stream, err := s.client.ListCommitFiles(ctx, &repo.ListCommitFilesRequest{Commit: &repo.Commit{Id: scanID}, Regex: fileRegex})
+	stream, err := s.client.ListCommitFiles(
+		ctx,
+		&repo.ListCommitFilesRequest{
+			Commit: &repo.Commit{Id: scanID},
+			Regex:  extensions.MatchedFilesRegex(),
+		},
+	)
 	if err != nil {
 		return err
 	}

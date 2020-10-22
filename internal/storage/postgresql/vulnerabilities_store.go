@@ -39,7 +39,7 @@ VALUES
 	return nil
 }
 
-func (s *PostgresStorage) GetResults(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
+func (s *PostgresStorage) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
 	const query = `
 SELECT 
        r.id, r.line, r.query_name, r.query_id, UPPER(r.severity) as severity, f.file_name,
