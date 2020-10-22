@@ -34,11 +34,6 @@ type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
 }
 
-type FilesStorage interface {
-	GetFiles(ctx context.Context, scanID string) (model.FileMetadatas, error)
-	SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error
-}
-
 type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
@@ -51,7 +46,6 @@ type preparedQuery struct {
 
 type Inspector struct {
 	queries []*preparedQuery
-	storage FilesStorage
 	vb      VulnerabilityBuilder
 	tracker Tracker
 
@@ -64,7 +58,7 @@ type QueryContext struct {
 	scanID  string
 	files   map[string]model.FileMetadata
 	query   *preparedQuery
-	payload map[string]interface{}
+	payload model.Documents
 }
 
 var (
@@ -77,7 +71,6 @@ var (
 func NewInspector(
 	ctx context.Context,
 	source QueriesSource,
-	storage FilesStorage,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
 ) (*Inspector, error) {
@@ -119,37 +112,27 @@ func NewInspector(
 
 	return &Inspector{
 		queries: opaQueries,
-		storage: storage,
 		vb:      vb,
 		tracker: tracker,
 	}, nil
 }
 
-func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
-	files, err := c.storage.GetFiles(ctx, scanID)
+func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.FileMetadatas) ([]model.Vulnerability, error) {
+	combinedFiles := files.Combine()
+
+	_, err := json.Marshal(combinedFiles)
 	if err != nil {
-		return errors.Wrap(err, "failed to query files to query")
+		return nil, err
 	}
 
-	filesInJSON, err := files.CombineToJSON(ctx)
-	if err != nil {
-		return errors.Wrap(err, "failed to combine all files to one")
-	}
-
-	// parsing JSON into a structured map required for OPA query
-	var payload map[string]interface{}
-	err = json.Unmarshal(filesInJSON, &payload)
-	if err != nil {
-		return errors.Wrap(err, "failed to prepare query payload")
-	}
-
+	var vulnerabilities []model.Vulnerability
 	for _, query := range c.queries {
-		err = c.doRun(QueryContext{
+		vuls, err := c.doRun(QueryContext{
 			ctx:     ctx,
 			scanID:  scanID,
 			files:   files.ToMap(),
 			query:   query,
-			payload: payload,
+			payload: combinedFiles,
 		})
 		if err != nil {
 			logger.GetLoggerWithFieldsFromContext(ctx).
@@ -160,10 +143,12 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string) error {
 			continue
 		}
 
+		vulnerabilities = append(vulnerabilities, vuls...)
+
 		c.tracker.TrackQueryExecution()
 	}
 
-	return nil
+	return vulnerabilities, nil
 }
 
 func (c *Inspector) EnableCoverageReport() {
@@ -174,7 +159,7 @@ func (c *Inspector) GetCoverageReport() cover.Report {
 	return c.coverageReport
 }
 
-func (c *Inspector) doRun(ctx QueryContext) error {
+func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, executeTimeout)
 	defer cancel()
 
@@ -189,16 +174,16 @@ func (c *Inspector) doRun(ctx QueryContext) error {
 	results, err := ctx.query.opaQuery.Eval(timeoutCtx, options...)
 	if err != nil {
 		if topdown.IsCancel(err) {
-			return errors.Wrap(err, "query executing timeout exited")
+			return nil, errors.Wrap(err, "query executing timeout exited")
 		}
 
-		return errors.Wrap(err, "failed to evaluate query")
+		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
 
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {
-			return errors.Wrap(parseErr, "failed to parse coverage module")
+			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
 		}
 
 		c.coverageReport = cov.Report(map[string]*ast.Module{
@@ -211,16 +196,7 @@ func (c *Inspector) doRun(ctx QueryContext) error {
 		Str("scanID", ctx.scanID).
 		Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
 
-	vulnerabilities, err := c.decodeQueryResults(ctx, results)
-	if err != nil {
-		return errors.Wrap(err, "failed to save query result")
-	}
-
-	if err := c.storage.SaveVulnerabilities(ctx.ctx, vulnerabilities); err != nil {
-		return errors.Wrap(err, "failed to save query results")
-	}
-
-	return nil
+	return c.decodeQueryResults(ctx, results)
 }
 
 func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet) ([]model.Vulnerability, error) {

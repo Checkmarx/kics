@@ -14,6 +14,9 @@ import (
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/checkmarxDev/ice/pkg/parser"
+	jsonParser "github.com/checkmarxDev/ice/pkg/parser/json"
+	terraformParser "github.com/checkmarxDev/ice/pkg/parser/terraform"
+	yamlParser "github.com/checkmarxDev/ice/pkg/parser/yaml"
 	"github.com/checkmarxDev/ice/pkg/source"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -53,17 +56,23 @@ func main() { // nolint:funlen
 			}
 
 			t := &tracker.CITracker{}
-			inspector, err := engine.NewInspector(ctx, querySource, store, engine.DefaultVulnerabilityBuilder, t)
+			inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
 			if err != nil {
 				return err
 			}
 
 			filesSource := &source.FileSystemSourceProvider{Path: path}
 
+			combinedParser := parser.NewBuilder().
+				Add(&jsonParser.Parser{}).
+				Add(&yamlParser.Parser{}).
+				Add(terraformParser.NewDefault()).
+				Build()
+
 			service := &ice.Service{
 				SourceProvider: filesSource,
 				Storage:        store,
-				Parser:         parser.NewDefault(),
+				Parser:         combinedParser,
 				Inspector:      inspector,
 				Tracker:        t,
 			}
@@ -72,7 +81,7 @@ func main() { // nolint:funlen
 				return scanErr
 			}
 
-			result, err := store.GetResults(ctx, scanID)
+			result, err := store.GetVulnerabilities(ctx, scanID)
 			if err != nil {
 				return err
 			}
@@ -92,7 +101,7 @@ func main() { // nolint:funlen
 			summary := model.CreateSummary(counters, result)
 
 			if payloadPath != "" {
-				if err := printToJSONFile(payloadPath, files.Combine(ctx)); err != nil {
+				if err := printToJSONFile(payloadPath, files.Combine()); err != nil {
 					return err
 				}
 			}
