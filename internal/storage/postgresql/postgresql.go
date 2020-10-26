@@ -33,9 +33,9 @@ func createTables(db *sqlx.DB) error {
 	const query = `
 create table if not exists public.ast_ice_files
 (
-    id          serial not null
+    id          uuid not null 
         constraint t_data_pkey primary key,
-	scan_id varchar(40) not null,
+	scan_id     varchar(40) not null,
     json_data   jsonb  not null,
     orig_data   text   not null,
     kind        text   not null,
@@ -49,7 +49,7 @@ create table if not exists ast_ice_results
 (
     id                 serial       not null
         constraint t_results_pkey primary key,
-    file_id            int          not null,
+    file_id            uuid          not null,
     scan_id            varchar(40)  not null,
     query_name         varchar(255) not null,
     query_id           varchar(255) not null,

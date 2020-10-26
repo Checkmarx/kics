@@ -2,7 +2,6 @@ package model
 
 import (
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -35,7 +34,7 @@ type Severity string
 type IssueType string
 
 type FileMetadata struct {
-	ID           int    `db:"id"`
+	ID           string `db:"id"`
 	ScanID       string `db:"scan_id"`
 	Document     Document
 	OriginalData string   `db:"orig_data"`
@@ -52,7 +51,7 @@ type QueryMetadata struct {
 type Vulnerability struct {
 	ID               int       `json:"id"`
 	ScanID           string    `db:"scan_id" json:"-"`
-	FileID           int       `db:"file_id" json:"-"`
+	FileID           string    `db:"file_id" json:"-"`
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
 	QueryName        string    `db:"query_name" json:"queryName"`
@@ -94,7 +93,7 @@ type FileMetadatas []FileMetadata
 func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	c := make(map[string]FileMetadata, len(m))
 	for _, i := range m {
-		c[strconv.Itoa(i.ID)] = i
+		c[i.ID] = i
 	}
 
 	return c
@@ -115,7 +114,7 @@ func (m FileMetadatas) Combine() Documents {
 			continue
 		}
 
-		fm.Document["id"] = strconv.Itoa(fm.ID)
+		fm.Document["id"] = fm.ID
 		fm.Document["file"] = fm.FileName
 
 		documents.Documents = append(documents.Documents, fm.Document)
