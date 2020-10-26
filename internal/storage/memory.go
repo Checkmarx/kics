@@ -8,20 +8,11 @@ import (
 
 type MemoryStorage struct {
 	vulnerabilities []model.Vulnerability
-
-	allFiles  model.FileMetadatas
-	filesByID map[int]*model.FileMetadata
-	fileIndex int
+	allFiles        model.FileMetadatas
 }
 
 func (m *MemoryStorage) SaveFile(_ context.Context, metadata *model.FileMetadata) error {
 	m.allFiles = append(m.allFiles, *metadata)
-	m.allFiles[m.fileIndex].ID = m.fileIndex
-
-	m.filesByID[m.fileIndex] = metadata
-	m.filesByID[m.fileIndex].ID = m.fileIndex
-
-	m.fileIndex++
 	return nil
 }
 
@@ -46,7 +37,6 @@ func (m *MemoryStorage) GetScanSummary(_ context.Context, _ []string) ([]model.S
 func NewMemoryStorage() *MemoryStorage {
 	return &MemoryStorage{
 		allFiles:        make(model.FileMetadatas, 0),
-		filesByID:       make(map[int]*model.FileMetadata),
 		vulnerabilities: make([]model.Vulnerability, 0),
 	}
 }
