@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -86,7 +87,7 @@ func getParsedFile(t *testing.T, filePath string) model.FileMetadatas {
 	files := make([]model.FileMetadata, 0, len(documents))
 	for i, document := range documents {
 		files = append(files, model.FileMetadata{
-			ID:           fileID + i,
+			ID:           strconv.Itoa(fileID + i),
 			ScanID:       scanID,
 			Document:     document,
 			OriginalData: string(content),

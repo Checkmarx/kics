@@ -21,12 +21,13 @@ func (s *PostgresStorage) SaveFile(ctx context.Context, file *model.FileMetadata
 
 	const query = `
 INSERT INTO ast_ice_files 
-	(scan_id, json_data, orig_data, kind, file_name) 
+	(id, scan_id, json_data, orig_data, kind, file_name) 
 VALUES 
-	(:scan_id, :json_data, :orig_data, :kind, :file_name);
+	(:id, :scan_id, :json_data, :orig_data, :kind, :file_name);
 `
 
 	if _, err := s.db.NamedExecContext(ctx, query, map[string]interface{}{
+		"id":        file.ID,
 		"scan_id":   file.ScanID,
 		"json_data": jsonData,
 		"orig_data": file.OriginalData,

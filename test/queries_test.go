@@ -81,7 +81,6 @@ func requireEqualVulnerabilities(t *testing.T, expected, actual []model.Vulnerab
 
 		expectedItem := expected[i]
 		actualItem := actual[i]
-		require.LessOrEqual(t, fileID, actualItem.FileID)
 		require.Equal(t, scanID, actualItem.ScanID)
 		require.Equal(t, expectedItem.Line, actualItem.Line, "Not corrected detected line")
 		require.Equal(t, expectedItem.Severity, actualItem.Severity, "Invalid severity")

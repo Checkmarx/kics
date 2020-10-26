@@ -9,6 +9,7 @@ import (
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/checkmarxDev/ice/pkg/parser"
 	"github.com/checkmarxDev/ice/pkg/source"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 )
 
@@ -57,6 +58,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 
 			for _, document := range documents {
 				file := model.FileMetadata{
+					ID:           uuid.New().String(),
 					ScanID:       scanID,
 					Document:     document,
 					OriginalData: string(content),
