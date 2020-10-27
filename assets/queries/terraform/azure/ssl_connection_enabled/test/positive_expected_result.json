@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "SSL Connection Enabled",
+		"severity": "HIGH",
+		"line": 17
+	},
+	{
+		"queryName": "SSL Connection Enabled",
+		"severity": "HIGH",
+		"line": 21
+	}
+]
