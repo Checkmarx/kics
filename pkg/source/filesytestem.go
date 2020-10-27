@@ -12,23 +12,44 @@ import (
 )
 
 type FileSystemSourceProvider struct {
-	Path string
+	path     string
+	excludes map[string]os.FileInfo
 }
 
 var ErrNotSupportedFile = errors.New("invalid file format")
 
+func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
+	ex := make(map[string]os.FileInfo, len(excludes))
+	for _, exclude := range excludes {
+		info, err := os.Stat(exclude)
+		if err != nil {
+			if os.IsNotExist(err) {
+				continue
+			}
+
+			return nil, errors.Wrap(err, "failed to open excluded file")
+		}
+		ex[info.Name()] = info
+	}
+
+	return &FileSystemSourceProvider{
+		path:     path,
+		excludes: ex,
+	}, nil
+}
+
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
-	fileInfo, err := os.Stat(s.Path)
+	fileInfo, err := os.Stat(s.path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
 	}
 
 	if !fileInfo.IsDir() {
-		if !extensions.Include(filepath.Ext(s.Path)) {
+		if !extensions.Include(filepath.Ext(s.path)) {
 			return ErrNotSupportedFile
 		}
 
-		c, errOpenFile := os.Open(s.Path)
+		c, errOpenFile := os.Open(s.path)
 		if errOpenFile != nil {
 			return errors.Wrap(errOpenFile, "failed to open path")
 		}
@@ -36,12 +57,16 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 		return sink(ctx, fileInfo.Name(), c)
 	}
 
-	err = filepath.Walk(s.Path, func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk(s.path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 
 		if info.IsDir() {
+			return nil
+		}
+
+		if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
 			return nil
 		}
 

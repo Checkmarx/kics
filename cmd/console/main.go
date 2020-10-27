@@ -25,7 +25,7 @@ import (
 
 const scanID = "console"
 
-func main() { // nolint:funlen
+func main() { // nolint:funlen,gocyclo
 	var (
 		path        string
 		queryPath   string
@@ -61,7 +61,15 @@ func main() { // nolint:funlen
 				return err
 			}
 
-			filesSource := &source.FileSystemSourceProvider{Path: path}
+			var excludeFiles []string
+			if payloadPath != "" {
+				excludeFiles = append(excludeFiles, payloadPath)
+			}
+
+			filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
+			if err != nil {
+				return err
+			}
 
 			combinedParser := parser.NewBuilder().
 				Add(&jsonParser.Parser{}).
