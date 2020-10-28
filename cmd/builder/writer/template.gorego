@@ -1,0 +1,43 @@
+package Cx
+{{ range $rule := . }} {{ $paths := $rule.ResourcePaths }}
+{{ if eq $rule.IssueType "IncorrectValue" }}
+CxPolicy [ result ] {
+    resource := input.document[i].{{ $rule.ResourceType }}
+    resource.{{ $paths.SearchPath }} == "{{ $rule.ActualValue }}"
+
+    result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("{{ $paths.PathWithVars }}", [{{ $paths.Vars }}]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue": "'{{ $paths.Path }}' is equal '{{ $rule.ExpectedValue }}'",
+                "keyActualValue": 	"'{{ $paths.Path }}' is equal '{{ $rule.ActualValue }}'"
+              }
+}
+{{ else if eq $rule.IssueType "RedundantAttribute" }}
+CxPolicy [ result ] {
+    resource := input.document[i].{{ $rule.ResourceType }}
+    resource.{{ $paths.SearchPath }}
+
+    result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("{{ $paths.PathWithVars }}", [{{ $paths.Vars }}]),
+                "issueType":		"RedundantAttribute",
+                "keyExpectedValue": "'{{ $paths.Path }}' is redundant",
+                "keyActualValue": 	"'{{ $paths.Path }}' exists"
+              }
+}
+{{ else if eq $rule.IssueType "MissingAttribute" }}
+CxPolicy [ result ] {
+    resource := input.document[i].{{ $rule.ResourceType }}
+    not resource.{{ $paths.SearchPath }}
+
+    result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("{{ $paths.PathWithVars }}", [{{ $paths.Vars }}]),
+                "issueType":		"MissingAttribute",
+                "keyExpectedValue": "'{{ $paths.Path }}' exists",
+                "keyActualValue": 	"'{{ $paths.Path }}' is missing"
+              }
+}
+{{ end }}
+{{ end }}

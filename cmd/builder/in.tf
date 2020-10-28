@@ -1,16 +1,16 @@
 //some message in commit
 resource "aws_s3_bucket" "b_website" {
-  bucket = "my-tf-test-bucket"
+  bucket = "my-tf-test-bucket" //RedundantAttribute
   acl = "website" //IncorrectValue, expected "private"
 
-  //IncorrectValue
+  //IncorrectValue, RedundantAttribute
   tags = {
     Name = "My bucket"
     Environment = "Dev" //IncorrectValue
   }
 
   versioning {
-    enabled = true //IncorrectValue, expected "false"
+    enabled = true //MissingAttribute, IncorrectValue, expected "false"
   }
 }
 

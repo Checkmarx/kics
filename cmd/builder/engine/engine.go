@@ -175,9 +175,12 @@ func (e *Engine) addRule(walkHistory []WalkHistoryItem, comment comment_parser.C
 	msgLower := strings.ToLower(comment.Value())
 	for _, issueType := range model.AllIssueTypes {
 		if strings.Contains(msgLower, strings.ToLower(string(issueType))) {
+			cp := make([]WalkHistoryItem, len(walkHistory)-1)
+			copy(cp, walkHistory[1:])
+
 			r := Rule{
 				ResourceType: walkHistory[0].Name,
-				WalkHistory:  walkHistory[1:],
+				WalkHistory:  cp,
 				IssueType:    issueType,
 			}
 
