@@ -54,12 +54,19 @@ func (p *Parser) rangePosition(rng hcl.Range) (start, end int) {
 	return start, end
 }
 
-func (p *Parser) leadCommentStarts(before int) int {
-	for i := before - 1; i >= 0; i-- {
+func (p *Parser) leadCommentStarts(before int) (i int) {
+	defer func() {
+		if i != before && i-1 >= 0 && p.tokens[i-1].Type != hclsyntax.TokenNewline {
+			i += 1
+		}
+	}()
+
+	for i = before - 1; i >= 0; i-- {
 		if p.tokens[i].Type != hclsyntax.TokenComment {
 			return i + 1
 		}
 	}
+
 	return 0
 }
 

@@ -13,7 +13,7 @@ type RegoWriter struct {
 }
 
 func NewRegoWriter() (*RegoWriter, error) {
-	tmpl, err := template.ParseFiles(filepath.Join("./cmd/builder/writer/template.rego"))
+	tmpl, err := template.ParseFiles(filepath.Join("./cmd/builder/writer/template.gorego"))
 	if err != nil {
 		return nil, err
 	}
