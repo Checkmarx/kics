@@ -41,8 +41,8 @@ func main() { // nolint:funlen,gocyclo
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 
 	rootCmd := &cobra.Command{
-		Use:   "inspect",
-		Short: "Security inspect tool for Terraform files",
+		Use:   "iacScanner",
+		Short: "Security inspect tool for Infrastructure as Code files",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 			if verbose {
