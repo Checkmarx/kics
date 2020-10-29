@@ -90,7 +90,7 @@ func (s *RepostoreSourceProvider) loadContent(scanID, location string) (io.ReadC
 	if err != nil {
 		return nil, err
 	}
-	u.Path = path.Join("code", scanID, location)
+	u.Path = path.Join("files", scanID, location)
 
 	response, err := http.Get(u.String()) //nolint
 	if err != nil {
