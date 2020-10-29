@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "reme SSL Enforce Disabled",
+		"severity": "HIGH",
+		"line": 18
+	},
+	{
+		"queryName": "reme SSL Enforce Disabled",
+		"severity": "HIGH",
+		"line": 22
+	}
+]
