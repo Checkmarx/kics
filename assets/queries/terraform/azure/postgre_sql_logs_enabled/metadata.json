@@ -1,0 +1,8 @@
+{
+  "id": "postgre_sql_logs_enabled",
+  "queryName": "PostgreSQL Logs Enabled",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Ensure server parameter 'log_checkpoints' is set to 'ON' for PostgreSQL Database Server",
+  "descriptionUrl": "https://docs.bridgecrew.io/docs/bc_azr_networking_11"
+}

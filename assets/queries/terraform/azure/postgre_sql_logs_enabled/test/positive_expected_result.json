@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "PostgreSQL Logs Enabled",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "PostgreSQL Logs Enabled",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "PostgreSQL Logs Enabled",
+		"severity": "MEDIUM",
+		"line": 19
+	}
+]
