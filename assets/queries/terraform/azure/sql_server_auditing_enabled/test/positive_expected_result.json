@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SQL Server Auditing Enabled",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]
