@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "reme Connection Throttling",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "reme Connection Throttling",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "reme Connection Throttling",
+		"severity": "MEDIUM",
+		"line": 19
+	}
+]
