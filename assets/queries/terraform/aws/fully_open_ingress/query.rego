@@ -12,7 +12,8 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_security_group_rule[%s].cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "One of 'rule.cidr_blocks' not equal '0.0.0.0/0'",
-                "keyActualValue": 	"One of 'rule.cidr_blocks' is equal '0.0.0.0/0'"
+                "keyActualValue": 	"One of 'rule.cidr_blocks' is equal '0.0.0.0/0'",
+                "value":            "rule.cidr_blocks[_]"
               }
 }
 
@@ -27,7 +28,8 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "One of 'ingress.cidr_blocks' not equal '0.0.0.0/0'",
-                "keyActualValue": 	"One of 'ingress.cidr_blocks' equal '0.0.0.0/0'"
+                "keyActualValue": 	"One of 'ingress.cidr_blocks' equal '0.0.0.0/0'",
+                "value":            "ingress.cidr_blocks[_]"
               }
 }
 
