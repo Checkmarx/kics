@@ -5,7 +5,7 @@ CxPolicy [ result ] {
     rule.type == "ingress"
     rule.from_port
     rule.to_port
-    contains(rule.cidr_blocks[_], "0.0.0.0/0")
+    contains(rule.cidr_blocks[idx], "0.0.0.0/0")
 
     result := {
                 "documentId": 		input.document[i].id,
@@ -13,7 +13,7 @@ CxPolicy [ result ] {
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "One of 'rule.cidr_blocks' not equal '0.0.0.0/0'",
                 "keyActualValue": 	"One of 'rule.cidr_blocks' is equal '0.0.0.0/0'",
-                "value":            "rule.cidr_blocks[_]"
+                "value":            rule.cidr_blocks[idx]
               }
 }
 
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 	ingrs := input.document[i].resource.aws_security_group[name].ingress
     ingrs.from_port
     ingrs.to_port
-    contains(ingrs.cidr_blocks[_], "0.0.0.0/0")
+    contains(ingrs.cidr_blocks[idx], "0.0.0.0/0")
 
     result := {
                 "documentId": 		input.document[i].id,
@@ -29,7 +29,7 @@ CxPolicy [ result ] {
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "One of 'ingress.cidr_blocks' not equal '0.0.0.0/0'",
                 "keyActualValue": 	"One of 'ingress.cidr_blocks' equal '0.0.0.0/0'",
-                "value":            "ingress.cidr_blocks[_]"
+                "value":            ingrs.cidr_blocks[idx]
               }
 }
 
