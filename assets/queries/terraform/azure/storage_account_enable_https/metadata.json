@@ -1,0 +1,8 @@
+{
+  "id": "storage_account_enable_https",
+  "queryName": "Storage Account Enable HTTPS",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure that 'Secure transfer required' is enabled for Storage Accounts",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account"
+}
