@@ -28,10 +28,10 @@ var (
 		SeverityInfo,
 	}
 
-	AllIssueTypes = []IssueType{
-		IssueTypeMissingAttribute,
-		IssueTypeRedundantAttribute,
-		IssueTypeIncorrectValue,
+	AllIssueTypesAsString = []string{
+		string(IssueTypeMissingAttribute),
+		string(IssueTypeRedundantAttribute),
+		string(IssueTypeIncorrectValue),
 	}
 )
 
