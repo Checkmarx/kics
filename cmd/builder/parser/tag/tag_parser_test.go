@@ -69,6 +69,27 @@ func TestParseTags(t *testing.T) {
 			},
 		})
 	})
+
+	t.Run("all_attributes", func(t *testing.T) {
+		tags, err := Parse("// Test:\"r=*,resource=['a','b','c'],any_key,upper,lower,con=<=,con2=>\"", []string{"Test"})
+		require.NoError(t, err)
+		assertEqualTags(t, tags, []Tag{
+			{
+				Name: "Test",
+				Attributes: map[string]interface{}{
+					"r": "*",
+					"resource": []interface{}{
+						"a", "b", "c",
+					},
+					"any_key": nil,
+					"upper":   nil,
+					"lower":   nil,
+					"con":     "<=",
+					"con2":    ">",
+				},
+			},
+		})
+	})
 }
 
 func assertEqualTags(t *testing.T, actual, expected []Tag) {

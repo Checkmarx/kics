@@ -121,8 +121,15 @@ func parseValue(sc *scanner.Scanner) (interface{}, error) {
 		sc.Next()
 		return parseString(sc)
 	case '*':
-		sc.Next()
-		return "*", nil
+		r := sc.Next()
+		return string(r), nil
+	case '<', '>':
+		r := sc.Next()
+		if sc.Peek() == '=' {
+			sc.Next()
+			return string(r) + "=", nil
+		}
+		return string(r), nil
 	case '!':
 		sc.Next()
 		if sc.Peek() == '=' {
