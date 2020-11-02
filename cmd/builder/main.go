@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/checkmarxDev/ice/cmd/builder/comment_parser"
 	"github.com/checkmarxDev/ice/cmd/builder/engine"
+	"github.com/checkmarxDev/ice/cmd/builder/parser/comment"
 	"github.com/checkmarxDev/ice/cmd/builder/writer"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
@@ -82,7 +82,7 @@ func saveFile(filePath string, content []byte) error {
 	return f.Close()
 }
 
-func parseFile(filePath string) (*hcl.File, *comment_parser.Parser, error) {
+func parseFile(filePath string) (*hcl.File, *comment.Parser, error) {
 	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		return nil, nil, err
@@ -95,7 +95,7 @@ func parseFile(filePath string) (*hcl.File, *comment_parser.Parser, error) {
 		return nil, nil, diags.Errs()[0]
 	}
 
-	commentParser, err := comment_parser.NewParser(content, fileName)
+	commentParser, err := comment.NewParser(content, fileName)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -1,4 +1,4 @@
-package comment_parser
+package comment
 
 import (
 	"github.com/hashicorp/hcl/v2"
@@ -20,7 +20,7 @@ func NewParser(src []byte, filename string) (*Parser, error) {
 	}, nil
 }
 
-func (p *Parser) ParseCommentsForNode(rg hcl.Range) (Comment, Comment) {
+func (p *Parser) ParseCommentsForNode(rg hcl.Range) (startComment, leadComment Comment) {
 	start, end := p.rangePosition(rg)
 	startLeadComment := p.leadCommentStarts(start)
 	endLineComment := p.lineCommentEnds(end)
@@ -57,7 +57,7 @@ func (p *Parser) rangePosition(rng hcl.Range) (start, end int) {
 func (p *Parser) leadCommentStarts(before int) (i int) {
 	defer func() {
 		if i != before && i-1 >= 0 && p.tokens[i-1].Type != hclsyntax.TokenNewline {
-			i += 1
+			i++
 		}
 	}()
 
@@ -90,7 +90,7 @@ type Comment struct {
 }
 
 func (c Comment) IsEmpty() bool {
-	return len(c.value) == 0
+	return c.value == ""
 }
 
 func (c Comment) Value() string {

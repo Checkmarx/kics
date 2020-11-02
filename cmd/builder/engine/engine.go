@@ -2,117 +2,147 @@ package engine
 
 import (
 	"fmt"
-	"regexp"
 	"strings"
 
-	"github.com/checkmarxDev/ice/cmd/builder/comment_parser"
+	build "github.com/checkmarxDev/ice/cmd/builder/model"
+	commentParser "github.com/checkmarxDev/ice/cmd/builder/parser/comment"
+	tagParser "github.com/checkmarxDev/ice/cmd/builder/parser/tag"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
 	"github.com/zclconf/go-cty/cty"
-	ctyconvert "github.com/zclconf/go-cty/cty/convert"
+	ctyConvert "github.com/zclconf/go-cty/cty/convert"
 )
+
+const resourceLabelsCount = 2
 
 type Engine struct {
-	commentParser *comment_parser.Parser
-	rules         []Rule
+	commentParser *commentParser.Parser
+	conditions    []build.Condition
 }
 
-type infoType string
-
-const (
-	InfoTypePath         infoType = "PATH"
-	InfoTypeResourceName infoType = "RESOURCE_NAME"
-)
-
-type Rule struct {
-	ResourceType  string
-	WalkHistory   []WalkHistoryItem
-	IssueType     model.IssueType
-	ActualValue   string
-	ExpectedValue string
-}
-
-type WalkHistoryItem struct {
-	InfoType infoType
-	Name     string
-}
-
-func New(commentParser *comment_parser.Parser) *Engine {
+func New(parser *commentParser.Parser) *Engine {
 	return &Engine{
-		commentParser: commentParser,
+		commentParser: parser,
 	}
 }
 
-func (e *Engine) Run(body *hclsyntax.Body) ([]Rule, error) {
-	e.rules = make([]Rule, 0)
-	e.walkBody(body, []WalkHistoryItem{})
+func (e *Engine) Run(body *hclsyntax.Body) ([]build.Rule, error) {
+	e.conditions = make([]build.Condition, 0)
+	if err := e.walkBody(body, []build.PathItem{}); err != nil {
+		return nil, err
+	}
 
-	return e.rules, nil
+	rules := make([]build.Rule, 0)
+	conditionGroups := make(map[string][]build.Condition)
+	for _, condition := range e.conditions {
+		group, ok := condition.AttrAsString("group")
+		if !ok {
+			rules = append(rules, build.Rule{
+				Conditions: []build.Condition{condition},
+			})
+			continue
+		}
+
+		conditionGroups[group] = append(conditionGroups[group], condition)
+	}
+
+	for _, conditionGroup := range conditionGroups {
+		rules = append(rules, build.Rule{
+			Conditions: conditionGroup,
+		})
+	}
+	return rules, nil
 }
 
-func (e *Engine) walkBody(body *hclsyntax.Body, walkHistory []WalkHistoryItem) {
+func (e *Engine) walkBody(body *hclsyntax.Body, walkHistory []build.PathItem) error {
 	for _, attribute := range body.Attributes {
-		e.walkAttribute(attribute, walkHistory)
+		if err := e.walkAttribute(attribute, walkHistory); err != nil {
+			return err
+		}
 	}
 
 	for _, block := range body.Blocks {
-		e.walkBlock(block, walkHistory)
+		if err := e.walkBlock(block, walkHistory); err != nil {
+			return err
+		}
 	}
+
+	return nil
 }
 
-func (e *Engine) walkBlock(block *hclsyntax.Block, walkHistory []WalkHistoryItem) {
-	walkHistory = append(walkHistory, WalkHistoryItem{InfoType: InfoTypePath, Name: block.Type})
-	if len(block.Labels) == 2 {
-		walkHistory = append(walkHistory, WalkHistoryItem{InfoType: InfoTypePath, Name: block.Labels[0]})
-		walkHistory = append(walkHistory, WalkHistoryItem{InfoType: InfoTypeResourceName, Name: block.Labels[1]})
+func (e *Engine) walkBlock(block *hclsyntax.Block, walkHistory []build.PathItem) error {
+	if len(block.Labels) == resourceLabelsCount {
+		walkHistory = append(walkHistory,
+			build.PathItem{Type: build.PathTypeResource, Name: block.Type},
+			build.PathItem{Type: build.PathTypeResourceType, Name: block.Labels[0]},
+			build.PathItem{Type: build.PathTypeResourceName, Name: block.Type},
+		)
+	} else {
+		walkHistory = append(walkHistory, build.PathItem{Type: build.PathTypeDefault, Name: block.Type})
 	}
 
 	e.checkComment(block.Range(), walkHistory, nil)
 
-	e.walkBody(block.Body, walkHistory)
+	return e.walkBody(block.Body, walkHistory)
 }
 
-func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []WalkHistoryItem) {
-	walkHistory = append(walkHistory, WalkHistoryItem{InfoType: InfoTypePath, Name: attr.Name})
+func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.PathItem) error {
+	walkHistory = append(walkHistory, build.PathItem{Type: build.PathTypeDefault, Name: attr.Name})
 
-	switch attr.Expr.(type) {
+	switch exp := attr.Expr.(type) {
 	case *hclsyntax.TemplateExpr,
 		*hclsyntax.TemplateWrapExpr,
 		*hclsyntax.LiteralValueExpr,
 		*hclsyntax.ScopeTraversalExpr:
 
-		v := e.expToString(attr.Expr)
+		v, err := e.expToString(attr.Expr)
+		if err != nil {
+			return err
+		}
+
 		e.checkComment(attr.Range(), walkHistory, &v)
 	case *hclsyntax.ObjectConsExpr:
 		e.checkComment(attr.Range(), walkHistory, nil)
 
-		if oc, ok := attr.Expr.(*hclsyntax.ObjectConsExpr); ok {
-			for _, item := range oc.Items {
-				e.walkConstantItem(item, walkHistory)
+		for _, item := range exp.Items {
+			if err := e.walkConstantItem(item, walkHistory); err != nil {
+				return err
 			}
 		}
 	default:
 		e.checkComment(attr.Range(), walkHistory, nil)
 	}
+
+	return nil
 }
 
-func (e *Engine) expToString(expr hclsyntax.Expression) string {
+func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 	switch t := expr.(type) {
 	case *hclsyntax.LiteralValueExpr:
-		s, _ := ctyconvert.Convert(t.Val, cty.String) // todo: add error handling
-		return s.AsString()
+		s, err := ctyConvert.Convert(t.Val, cty.String)
+		if err != nil {
+			return "", err
+		}
+		return s.AsString(), nil
 	case *hclsyntax.TemplateExpr:
 		if t.IsStringLiteral() {
-			v, _ := t.Value(nil) // todo: add error handling
-			return v.AsString()
+			v, err := t.Value(nil)
+			if err != nil {
+				return "", err
+			}
+			return v.AsString(), nil
 		}
 		var builder strings.Builder
 		for _, part := range t.Parts {
-			builder.WriteString(e.expToString(part))
+			s, err := e.expToString(part)
+			if err != nil {
+				return "", err
+			}
+			builder.WriteString(s)
 		}
-		return builder.String()
+		return builder.String(), nil
 	case *hclsyntax.TemplateWrapExpr:
 		return e.expToString(t.Wrapped)
 	case *hclsyntax.ObjectConsKeyExpr:
@@ -128,119 +158,62 @@ func (e *Engine) expToString(expr hclsyntax.Expression) string {
 			case hcl.TraverseIndex:
 				items = append(items, tt.Key.AsString())
 			}
-
 		}
-		return strings.Join(items, ".")
+		return strings.Join(items, "."), nil
 	}
 
-	return "" // todo: return error here
+	return "", fmt.Errorf("can't convert expression %T to string", expr)
 }
 
-func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []WalkHistoryItem) {
-	k := e.expToString(item.KeyExpr)
-	walkHistory = append(walkHistory, WalkHistoryItem{InfoType: InfoTypePath, Name: k})
+func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []build.PathItem) error {
+	k, err := e.expToString(item.KeyExpr)
+	if err != nil {
+		return err
+	}
 
-	v := e.expToString(item.ValueExpr)
+	walkHistory = append(walkHistory, build.PathItem{Type: build.PathTypeDefault, Name: k})
+
+	v, err := e.expToString(item.ValueExpr)
+	if err != nil {
+		return err
+	}
+
 	e.checkComment(item.ValueExpr.Range(), walkHistory, &v)
+
+	return nil
 }
 
-func (e *Engine) checkComment(rg hcl.Range, walkHistory []WalkHistoryItem, actualValue *string) {
+func (e *Engine) checkComment(rg hcl.Range, walkHistory []build.PathItem, actualValue *string) {
 	leadComment, endLineComment := e.commentParser.ParseCommentsForNode(rg)
-	if e.isSupportedComment(leadComment) {
+	if !leadComment.IsEmpty() {
 		e.addRule(walkHistory, leadComment, actualValue)
 	}
-	if e.isSupportedComment(endLineComment) {
+	if !endLineComment.IsEmpty() {
 		e.addRule(walkHistory, endLineComment, actualValue)
 	}
 }
 
-func (e *Engine) isSupportedComment(comment comment_parser.Comment) bool {
-	if comment.IsEmpty() {
-		return false
+func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Comment, actualValue *string) {
+	tags, err := tagParser.Parse(comment.Value(), model.AllIssueTypesAsString)
+	if err != nil {
+		log.Err(err).Msgf("line %d: failed to parse comment '%s'", comment.Line(), comment.Value())
+		return
 	}
 
-	msgLower := strings.ToLower(comment.Value())
-	for _, issueType := range model.AllIssueTypes {
-		if strings.Contains(msgLower, strings.ToLower(string(issueType))) {
-			return true
-		}
+	if len(tags) == 0 {
+		return
 	}
 
-	return false
-}
+	cp := make([]build.PathItem, len(walkHistory))
+	copy(cp, walkHistory)
 
-var expectedRegex = regexp.MustCompile(`expected[ ]?"(.*)"`)
-
-func (e *Engine) addRule(walkHistory []WalkHistoryItem, comment comment_parser.Comment, actualValue *string) {
-	msgLower := strings.ToLower(comment.Value())
-	for _, issueType := range model.AllIssueTypes {
-		if strings.Contains(msgLower, strings.ToLower(string(issueType))) {
-			cp := make([]WalkHistoryItem, len(walkHistory)-1)
-			copy(cp, walkHistory[1:])
-
-			r := Rule{
-				ResourceType: walkHistory[0].Name,
-				WalkHistory:  cp,
-				IssueType:    issueType,
-			}
-
-			if issueType == model.IssueTypeIncorrectValue {
-				if actualValue == nil {
-					log.Error().Msgf("line %d: invalid comment 'IncorrectValue' position (should be only new valuable field)", comment.Line())
-					continue
-				}
-				r.ActualValue = *actualValue
-
-				if expectedRegex.MatchString(comment.Value()) {
-					parts := expectedRegex.FindStringSubmatch(comment.Value())
-					r.ExpectedValue = parts[1]
-				} else {
-					log.Info().Msgf("line %d: comment 'IncorrectValue' without expected value", comment.Line())
-				}
-			}
-
-			e.rules = append(e.rules, r)
-		}
-	}
-}
-
-type ResourcePaths struct {
-	Vars         string
-	Path         string
-	PathWithVars string
-	SearchPath   string
-}
-
-func (r Rule) ResourcePaths() ResourcePaths {
-	var (
-		vars                              []string
-		varsPath, searchPath, withoutVars string
-	)
-	index := 0
-	for _, item := range r.WalkHistory {
-		switch item.InfoType {
-		case InfoTypePath:
-			if len(searchPath) > 0 {
-				searchPath += "."
-				varsPath += "."
-				withoutVars += "."
-			}
-			searchPath += item.Name
-			varsPath += item.Name
-			withoutVars += item.Name
-		case InfoTypeResourceName:
-			v := fmt.Sprintf("var%d", index)
-			vars = append(vars, v)
-			varsPath += "[%s]"
-			searchPath += fmt.Sprintf("[%s]", v)
-			index++
-		}
-	}
-
-	return ResourcePaths{
-		Vars:         strings.Join(vars, ", "),
-		PathWithVars: varsPath,
-		Path:         withoutVars,
-		SearchPath:   searchPath,
+	for _, t := range tags {
+		e.conditions = append(e.conditions, build.Condition{
+			Line:       comment.Line(),
+			IssueType:  model.IssueType(t.Name),
+			Path:       cp,
+			Value:      actualValue,
+			Attributes: t.Attributes,
+		})
 	}
 }
