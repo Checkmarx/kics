@@ -6,6 +6,7 @@ require (
 	github.com/checkmarxDev/repostore v1.0.3
 	github.com/checkmarxDev/scans v1.5.5
 	github.com/golang/mock v1.4.4
+	github.com/google/uuid v1.1.2
 	github.com/gorilla/mux v1.8.0
 	github.com/hashicorp/hcl/v2 v2.7.0
 	github.com/jmoiron/sqlx v1.2.0
