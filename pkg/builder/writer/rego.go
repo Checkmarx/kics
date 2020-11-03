@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
-	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -64,7 +63,7 @@ func NewRegoWriter() (*RegoWriter, error) {
 				return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", "))) // nolint:gosec
 			},
 		}).
-		ParseFiles(filepath.Join("./pkg/builder/writer/template.gorego"))
+		ParseFiles("./pkg/builder/writer/template.gorego")
 	if err != nil {
 		return nil, err
 	}
