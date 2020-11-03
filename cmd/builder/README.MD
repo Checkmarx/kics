@@ -5,6 +5,77 @@ The query auto-generation tool generates queries by examples: its input is an ex
 when there is a special remarks mark lines with security issues; 
 its output is query source in REGO format.
 
+#### Example
+
+##Terraform file with security issues marked with comments:
+```
+resource "aws_lb_listener" "front_end" {
+  load_balancer_arn = aws_lb.front_end.arn
+  port              = "80"
+  protocol          = "HTTP" //IncorrectValue:"group=rule1,upper,resource=['aws_lb_listener','aws_alb_listener']"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "80"
+      protocol    = "HTTP" //IncorrectValue:"group=rule1,upper,condition=!=,val=HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+resource "aws_alb_listener" "front_end" {
+  load_balancer_arn = aws_lb.front_end.arn
+  port              = "8080"
+  protocol          = "HTTP" //IncorrectValue:"group=rule2,upper,resource=['aws_lb_listener','aws_alb_listener']"
+
+  default_action {
+    redirect {
+      protocol = "any" //MissingAttribute:"group=rule2"
+    }
+  }
+}
+```
+##Auto-generatedQuery in REGO format:
+```
+package Cx
+
+CxPolicy [ result ] {
+    document := input.document[i]
+    block := document.resource
+    blockTypes := {"aws_alb_listener", "aws_lb_listener"}
+
+    upper(block[blockTypes[blockIndex]][name].protocol) == "HTTP"
+    upper(block[blockTypes[blockIndex]][name].default_action.redirect.protocol) != "HTTPS"
+
+    result := {
+                "documentId": 		document.id,
+                "searchKey": 	    sprintf("%s[%s].default_action.redirect.protocol", [blockTypes[blockIndex], name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue": "'default_action.redirect.protocol' should be valid",
+                "keyActualValue": 	"'default_action.redirect.protocol' is invalid"
+              }
+}
+
+CxPolicy [ result ] {
+    document := input.document[i]
+    block := document.resource
+    blockTypes := {"aws_lb_listener", "aws_alb_listener"}
+
+    upper(block[blockTypes[blockIndex]][name].protocol) == "HTTP"
+    not block[blockTypes[blockIndex]][name].default_action.redirect.protocol
+
+    result := {
+                "documentId": 		document.id,
+                "searchKey": 	    sprintf("%s[%s].default_action.redirect.protocol", [blockTypes[blockIndex], name]),
+                "issueType":		"MissingAttribute",
+                "keyExpectedValue": "'default_action.redirect.protocol' should be valid",
+                "keyActualValue": 	"'default_action.redirect.protocol' is invalid"
+              }
+}
+```
+
 #### How to run
 ```
 go run cmd/builder/main.go -i ./cmd/builder/example.tf -o ./out.rego
