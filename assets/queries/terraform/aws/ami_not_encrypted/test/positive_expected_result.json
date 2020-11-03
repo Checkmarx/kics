@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "AmiNotEcrypted",
+		"queryName": "Ami Not Encrypted",
 		"severity": "HIGH",
 		"line": 7
 	},
 	{
-		"queryName": "AmiNotEcrypted",
+		"queryName": "Ami Not Encrypted",
 		"severity": "HIGH",
 		"line": 21
 	},
 	{
-		"queryName": "AmiNotEcrypted",
+		"queryName": "Ami Not Encrypted",
 		"severity": "HIGH",
 		"line": 29
 	}
