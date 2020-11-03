@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"io/ioutil"
 	"os"
+	"path"
 
 	"github.com/checkmarxDev/ice/pkg/builder/engine"
 	"github.com/checkmarxDev/ice/pkg/builder/writer"
@@ -25,8 +27,12 @@ func main() {
 		Use:   "inspect",
 		Short: "Tool to build new query from example file",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			e := engine.New()
-			rules, err := e.Run(inPath)
+			content, err := ioutil.ReadFile(inPath)
+			if err != nil {
+				return err
+			}
+
+			rules, err := engine.Run(content, path.Base(inPath))
 			if err != nil {
 				return err
 			}
@@ -36,12 +42,12 @@ func main() {
 				return err
 			}
 
-			content, err := regoWriter.Render(rules)
+			outContent, err := regoWriter.Render(rules)
 			if err != nil {
 				return err
 			}
 
-			return saveFile(outPath, content)
+			return saveFile(outPath, outContent)
 		},
 	}
 
