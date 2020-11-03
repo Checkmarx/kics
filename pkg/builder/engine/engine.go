@@ -2,6 +2,8 @@ package engine
 
 import (
 	"fmt"
+	"io/ioutil"
+	"path"
 	"strings"
 
 	build "github.com/checkmarxDev/ice/pkg/builder/model"
@@ -22,15 +24,20 @@ type Engine struct {
 	conditions    []build.Condition
 }
 
-func New(parser *commentParser.Parser) *Engine {
-	return &Engine{
-		commentParser: parser,
-	}
+func New() *Engine {
+	return &Engine{}
 }
 
-func (e *Engine) Run(body *hclsyntax.Body) ([]build.Rule, error) {
+func (e *Engine) Run(inPath string) ([]build.Rule, error) {
+	file, cp, err := e.parseFile(inPath)
+	if err != nil {
+		return nil, err
+	}
+
+	e.commentParser = cp
+
 	e.conditions = make([]build.Condition, 0)
-	if err := e.walkBody(body, []build.PathItem{}); err != nil {
+	if err := e.walkBody(file.Body.(*hclsyntax.Body), []build.PathItem{}); err != nil {
 		return nil, err
 	}
 
@@ -54,6 +61,27 @@ func (e *Engine) Run(body *hclsyntax.Body) ([]build.Rule, error) {
 		})
 	}
 	return rules, nil
+}
+
+func (e *Engine) parseFile(filePath string) (*hcl.File, *commentParser.Parser, error) {
+	content, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	fileName := path.Base(filePath)
+
+	file, diags := hclsyntax.ParseConfig(content, fileName, hcl.Pos{Byte: 0, Line: 1, Column: 1})
+	if diags != nil && diags.HasErrors() {
+		return nil, nil, diags.Errs()[0]
+	}
+
+	cp, err := commentParser.NewParser(content, fileName)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return file, cp, nil
 }
 
 func (e *Engine) walkBody(body *hclsyntax.Body, walkHistory []build.PathItem) error {
