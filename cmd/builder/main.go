@@ -6,9 +6,9 @@ import (
 	"os"
 	"path"
 
-	"github.com/checkmarxDev/ice/cmd/builder/engine"
-	"github.com/checkmarxDev/ice/cmd/builder/parser/comment"
-	"github.com/checkmarxDev/ice/cmd/builder/writer"
+	"github.com/checkmarxDev/ice/pkg/builder/engine"
+	"github.com/checkmarxDev/ice/pkg/builder/parser/comment"
+	"github.com/checkmarxDev/ice/pkg/builder/writer"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"

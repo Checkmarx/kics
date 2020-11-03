@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	build "github.com/checkmarxDev/ice/cmd/builder/model"
-	commentParser "github.com/checkmarxDev/ice/cmd/builder/parser/comment"
-	tagParser "github.com/checkmarxDev/ice/cmd/builder/parser/tag"
+	build "github.com/checkmarxDev/ice/pkg/builder/model"
+	commentParser "github.com/checkmarxDev/ice/pkg/builder/parser/comment"
+	tagParser "github.com/checkmarxDev/ice/pkg/builder/parser/tag"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
