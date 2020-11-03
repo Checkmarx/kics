@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/agext/levenshtein v1.2.2 // indirect
+	github.com/agnivade/levenshtein v1.1.0
 	github.com/checkmarxDev/repostore v1.0.3
 	github.com/checkmarxDev/scans v1.5.4
 	github.com/golang/mock v1.4.3
