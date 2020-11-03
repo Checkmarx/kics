@@ -1,0 +1,8 @@
+{
+  "id": "check_secret_expiration_is_set",
+  "queryName": "Check Secret Expiration Is Set",
+  "severity": "HIGH",
+  "category": "Key Management",
+  "descriptionText": "Ensure that the expiration date is set on all secrets",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret"
+}
