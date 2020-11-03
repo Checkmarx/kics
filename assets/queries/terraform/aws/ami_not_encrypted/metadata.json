@@ -1,6 +1,6 @@
 {
   "id": "AmiNotEcrypted",
-  "queryName": "AmiNotEcrypted",
+  "queryName": "Ami Not Ecrypted",
   "severity": "HIGH",
   "category": "Encryption & Key Management",
   "descriptionText": "AWS AMI Encryption is not enabled",
