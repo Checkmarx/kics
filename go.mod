@@ -3,6 +3,7 @@ module github.com/checkmarxDev/ice
 go 1.14
 
 require (
+	github.com/agnivade/levenshtein v1.1.0
 	github.com/checkmarxDev/repostore v1.0.3
 	github.com/checkmarxDev/scans v1.5.5
 	github.com/golang/mock v1.4.4
