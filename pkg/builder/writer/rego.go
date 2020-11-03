@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	build "github.com/checkmarxDev/ice/cmd/builder/model"
+	build "github.com/checkmarxDev/ice/pkg/builder/model"
 	"github.com/checkmarxDev/ice/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -64,7 +64,7 @@ func NewRegoWriter() (*RegoWriter, error) {
 				return template.HTML(fmt.Sprintf("sprintf(\"%s\", [%s])", format, strings.Join(vars, ", "))) // nolint:gosec
 			},
 		}).
-		ParseFiles(filepath.Join("./cmd/builder/writer/template.gorego"))
+		ParseFiles(filepath.Join("./pkg/builder/writer/template.gorego"))
 	if err != nil {
 		return nil, err
 	}
