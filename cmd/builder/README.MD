@@ -7,7 +7,7 @@ its output is query source in REGO format.
 
 #### Example
 
-##Terraform file with security issues marked with comments:
+##### Terraform file with security issues marked with comments:
 ```
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.front_end.arn
@@ -37,7 +37,7 @@ resource "aws_alb_listener" "front_end" {
   }
 }
 ```
-##Auto-generatedQuery in REGO format:
+##### Auto-generatedQuery in REGO format:
 ```
 package Cx
 
@@ -104,6 +104,4 @@ Supported comment:
   * `regex` - use `re_match` for a condition, should be provided with a regex pattern as an attribute value
   * `condition` - to set a custom condition, by default we use `==`
   * `val` - to set custom condition value, by default we use the value from the provided terraform file
-
-
 
