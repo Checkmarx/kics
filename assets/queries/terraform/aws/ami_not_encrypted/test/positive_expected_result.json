@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "AmiNotEcrypted",
+		"severity": "HIGH",
+		"line": 7
+	},
+	{
+		"queryName": "AmiNotEcrypted",
+		"severity": "HIGH",
+		"line": 21
+	},
+	{
+		"queryName": "AmiNotEcrypted",
+		"severity": "HIGH",
+		"line": 29
+	}
+]
