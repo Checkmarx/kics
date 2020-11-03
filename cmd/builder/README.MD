@@ -1,5 +1,10 @@
 # Tool for query auto generation
 
+#### What does this tool do
+The query auto-generation tool generates queries by examples: its input is an example of a source file with security issues, 
+when there is a special remarks mark lines with security issues; 
+its output is query source in REGO format.
+
 #### How to run
 ```
 go run cmd/builder/main.go -i ./cmd/builder/example.tf -o ./out.rego
