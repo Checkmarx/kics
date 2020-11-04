@@ -2,7 +2,7 @@
 
 #### What does this tool do
 The query auto-generation tool generates queries by examples: its input is an example of a source file with security issues, 
-when there is a special remarks mark lines with security issues; 
+when there is a special comment marks lines with security issues; 
 its output is query source in REGO format.
 
 #### Example
