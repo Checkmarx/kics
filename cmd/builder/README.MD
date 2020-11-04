@@ -1,4 +1,4 @@
-# Tool for query auto generation
+# Query by Example - the tool for query auto-generation
 
 #### What does this tool do
 The query auto-generation tool generates queries by examples: its input is an example of a source file with security issues, 
