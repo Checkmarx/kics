@@ -27,6 +27,12 @@ var (
 		SeverityLow,
 		SeverityInfo,
 	}
+
+	AllIssueTypesAsString = []string{
+		string(IssueTypeMissingAttribute),
+		string(IssueTypeRedundantAttribute),
+		string(IssueTypeIncorrectValue),
+	}
 )
 
 type FileKind string
