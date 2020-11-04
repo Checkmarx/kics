@@ -3,7 +3,7 @@
 #### What does this tool do
 The query auto-generation tool generates queries by examples: its input is an example of a source file with security issues, 
 when there is a special comment marks lines with security issues; 
-its output is query source in REGO format.
+its output is a query source in REGO format.
 
 #### Example
 
@@ -37,7 +37,7 @@ resource "aws_alb_listener" "front_end" {
   }
 }
 ```
-##### Auto-generatedQuery in REGO format:
+##### Auto-generated Query in REGO format:
 ```
 package Cx
 
