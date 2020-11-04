@@ -1,6 +1,6 @@
 module github.com/checkmarxDev/ice
 
-go 1.14
+go 1.15
 
 require (
 	github.com/agnivade/levenshtein v1.1.0
