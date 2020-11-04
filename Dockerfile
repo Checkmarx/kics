@@ -1,4 +1,4 @@
-FROM golang:1.13.7-alpine3.11 as build_env
+FROM golang:1.15.3-alpine3.12 as build_env
 
 ARG GIT_USER
 ARG GIT_TOKEN
