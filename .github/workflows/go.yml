@@ -1,0 +1,41 @@
+name: Go
+
+on:
+  push:
+    branches: [ test-eli-ci-change ]
+  pull_request:
+    branches: [ test-eli-ci-change ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    
+    - name: Config Go private modules access
+      run: |
+        echo "export GOPRIVATE=github.com/checkmarxDev/*" >> $BASH_ENV
+        git config --global url."https://${{ secrets.GITHUB_USER }}:${{ secrets.GITHUB_TOKEN }}@github.com".insteadOf "https://github.com"
+
+    - name: Get dependencies
+      run: |
+        go get -v -t -d ./...
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+
+    - name: Build
+      run: go build -v .
+
+    - name: Test
+      run: go test -v .
