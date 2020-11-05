@@ -1,0 +1,8 @@
+{
+  "id": "ssl_connection_enabled",
+  "queryName": "SSL Connection Enabled",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Ensure 'Enforce SSL connection' is set to 'ENABLED' for MySQL Database Server",
+  "descriptionUrl": "https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fe802a67a-daf5-4436-9ea6-f6d821dd0c5d"
+}
