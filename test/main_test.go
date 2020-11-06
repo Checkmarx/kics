@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"testing"
@@ -52,17 +53,36 @@ func (q queryEntry) ExpectedPositiveResultFile() string {
 	return path.Join(q.dir, "test/positive_expected_result.json")
 }
 
+func getQueriesPaths(t *testing.T, path string) []string {
+	queryDirs := make([]string, 0)
+	err := filepath.Walk(path,
+		func(p string, f os.FileInfo, err error) error {
+			require.Nil(t, err)
+
+			if f.IsDir() || f.Name() != "query.rego" {
+				return nil
+			}
+
+			queryDirs = append(queryDirs, filepath.Dir(p))
+
+			return nil
+		})
+
+	require.Nil(t, err)
+
+	return queryDirs
+}
+
 func loadQueries(t *testing.T) []queryEntry {
 	var queriesDir []queryEntry
-	for queriesPath, kind := range queriesPaths {
-		fs, err := ioutil.ReadDir(queriesPath)
-		require.Nil(t, err)
 
-		for _, f := range fs {
-			require.True(t, f.IsDir(), "expected directory, actual file %s", f.Name())
+	for queriesPath, kind := range queriesPaths {
+		var queriesDirPaths = getQueriesPaths(t, queriesPath)
+
+		for _, path := range queriesDirPaths {
 
 			queriesDir = append(queriesDir, queryEntry{
-				dir:  path.Join(queriesPath, f.Name()),
+				dir:  path,
 				kind: kind,
 			})
 		}
