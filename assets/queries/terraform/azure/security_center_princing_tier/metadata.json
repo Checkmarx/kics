@@ -1,0 +1,8 @@
+{
+  "id": "security_center_princing_tier",
+  "queryName": "Security Center Princing Tier",
+  "severity": "MEDIUM",
+  "category": "Operational Efficiency",
+  "descriptionText": "Make sure that the 'Standard' pricing tiers were selected.",
+  "descriptionUrl": "https://docs.bridgecrew.io/docs/ensure-standard-pricing-tier-is-selected"
+}
