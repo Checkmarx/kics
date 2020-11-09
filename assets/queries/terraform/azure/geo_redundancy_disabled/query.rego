@@ -21,7 +21,7 @@ CxPolicy [ result ] {
     result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("azurerm_postgresql_server[%s].resource.storage_profile", [var0]),
-                "issueType":		"IncorrectValue",
+                "issueType":		"MissingAttribute",
                 "keyExpectedValue": sprintf("'azurerm_postgresql_server.%s.resource.storage_profile.geo_redundant_backup' does not exist", [var0]),
                 "keyActualValue": 	sprintf("'azurerm_postgresql_server.%s.resource.storage_profile.geo_redundant_backup' exists and equals 'Enabled'", [var0])
               }
