@@ -1,6 +1,6 @@
 {
-  "id": "ssl_enforce_disabled",
-  "queryName": "SSL Enforce Disabled",
+  "id": "ssl_enforce_is_disabled",
+  "queryName": "SSL Enforce Is Disabled",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "Make sure that foor PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",

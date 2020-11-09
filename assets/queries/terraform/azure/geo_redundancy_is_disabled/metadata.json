@@ -3,6 +3,6 @@
   "queryName": "Geo Redundancy Is Disabled",
   "severity": "HIGH",
   "category": "Backup and Disaster Recovery",
-  "descriptionText": "Make sure that on PostgreSQL Geo Redundant Backups is disabled",
+  "descriptionText": "Make sure that on PostgreSQL Geo Redundant Backups is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server"
 }
