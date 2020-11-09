@@ -53,9 +53,9 @@ func (q queryEntry) ExpectedPositiveResultFile() string {
 	return path.Join(q.dir, "test/positive_expected_result.json")
 }
 
-func getQueriesPaths(t *testing.T, path string) []string {
+func getQueriesPaths(t *testing.T, queriesPath string) []string {
 	queryDirs := make([]string, 0)
-	err := filepath.Walk(path,
+	err := filepath.Walk(queriesPath,
 		func(p string, f os.FileInfo, err error) error {
 			require.Nil(t, err)
 
@@ -79,10 +79,9 @@ func loadQueries(t *testing.T) []queryEntry {
 	for queriesPath, kind := range queriesPaths {
 		var queriesDirPaths = getQueriesPaths(t, queriesPath)
 
-		for _, path := range queriesDirPaths {
-
+		for _, queriesDirPath := range queriesDirPaths {
 			queriesDir = append(queriesDir, queryEntry{
-				dir:  path,
+				dir:  queriesDirPath,
 				kind: kind,
 			})
 		}
