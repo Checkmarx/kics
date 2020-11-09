@@ -1,8 +1,0 @@
-{
-  "id": "reme_check_key_expiration_is_set",
-  "queryName": "reme Check Key Expiration Is Set",
-  "severity": "HIGH",
-  "category": "Key Management",
-  "descriptionText": "Ensure that the expiration date is set on all keys",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/set-an-expiration-date-on-all-keys"
-}
