@@ -1,8 +1,0 @@
-{
-  "id": "reme_connection_throttling",
-  "queryName": "reme Connection Throttling",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Ensure server parameter 'connection_throttling' is set to 'ON' for PostgreSQL Database Server",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/bc_azr_networking_13"
-}
