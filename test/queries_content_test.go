@@ -25,7 +25,7 @@ const (
 
 var (
 	requiredProperties = []string{
-		"documentId",
+		"fileId",
 		"searchKey",
 		"issueType",
 		"issueType",
@@ -72,10 +72,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx engine.QueryContext, v interface{}) (model.Vulnerability, error) {
-			m, ok := v.(map[string]interface{})
-			require.True(t, ok)
-
+		func(ctx engine.QueryContext, m map[string]interface{}) (model.Vulnerability, error) {
 			for _, requiredProperty := range requiredProperties {
 				_, ok := m[requiredProperty]
 				require.True(t, ok, fmt.Sprintf(

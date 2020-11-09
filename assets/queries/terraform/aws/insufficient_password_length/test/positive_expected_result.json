@@ -2,11 +2,11 @@
 	{
 		"queryName": "Insufficient password length",
 		"severity": "HIGH",
-		"line": 13
+		"line": 9
 	},
 	{
 		"queryName": "Insufficient password length",
 		"severity": "HIGH",
-		"line": 9
+		"line": 13
 	}
 ]

@@ -36,7 +36,7 @@ func easyjsonC80ae7adDecodeGithubComCheckmarxDevIcePkgModel(in *jlexer.Lexer, ou
 			continue
 		}
 		switch key {
-		case "document":
+		case "file":
 			if in.IsNull() {
 				in.Skip()
 				out.Documents = nil
@@ -74,7 +74,7 @@ func easyjsonC80ae7adEncodeGithubComCheckmarxDevIcePkgModel(out *jwriter.Writer,
 	first := true
 	_ = first
 	{
-		const prefix string = ",\"document\":"
+		const prefix string = ",\"file\":"
 		out.RawString(prefix[1:])
 		if in.Documents == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 			out.RawString("null")

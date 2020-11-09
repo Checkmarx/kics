@@ -9,6 +9,7 @@ import (
 
 	"github.com/checkmarxDev/ice/internal/correlation"
 	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/checkmarxDev/ice/internal/rest/model"
 	"github.com/checkmarxDev/ice/pkg/ice"
 	"github.com/gorilla/mux"
 
@@ -101,7 +102,7 @@ func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
 		Str("scanID", scanID).
 		Msg("rest api. getting scan results")
 
-	results, err := s.Service.GetVulnerabilities(ctx, scanID)
+	vulnerabilities, err := s.Service.GetVulnerabilities(ctx, scanID)
 	if err != nil {
 		logger.GetLoggerWithFieldsFromContext(ctx).
 			Err(err).
@@ -112,7 +113,7 @@ func (s *Server) getResults(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	responseJSON(ctx, w, results)
+	responseJSON(ctx, w, model.BuildResultItems(vulnerabilities))
 }
 
 func responseJSON(ctx context.Context, w http.ResponseWriter, body interface{}) {

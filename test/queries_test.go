@@ -29,19 +29,19 @@ func TestQueries(t *testing.T) {
 			content, err := ioutil.ReadFile(entry.ExpectedPositiveResultFile())
 			require.NoError(t, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile())
 
-			var expectedVulnerabilities []model.Vulnerability
-			err = json.Unmarshal(content, &expectedVulnerabilities)
+			var keysToMatch []map[string]interface{}
+			err = json.Unmarshal(content, &keysToMatch)
 			require.NoError(t, err, "can't unmarshal expected result file %s", entry.ExpectedPositiveResultFile())
 
-			testQuery(t, entry, entry.PositiveFile(), expectedVulnerabilities)
+			testQuery(t, entry, entry.PositiveFile(), keysToMatch)
 		})
 		t.Run(name+"_negative", func(t *testing.T) {
-			testQuery(t, entry, entry.NegativeFile(), []model.Vulnerability{})
+			testQuery(t, entry, entry.NegativeFile(), nil)
 		})
 	}
 }
 
-func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerabilities []model.Vulnerability) {
+func testQuery(t *testing.T, entry queryEntry, filePath string, keysToMatch []map[string]interface{}) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
@@ -62,33 +62,33 @@ func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerab
 
 	vulnerabilities, err := inspector.Inspect(ctx, scanID, getParsedFile(t, filePath))
 	require.Nil(t, err)
-	requireEqualVulnerabilities(t, expectedVulnerabilities, vulnerabilities)
+	requireVulnerabilitiesHasKeys(t, keysToMatch, vulnerabilities)
 }
 
-func requireEqualVulnerabilities(t *testing.T, expected, actual []model.Vulnerability) {
-	sort.Slice(expected, func(i, j int) bool {
-		return expected[i].Line < expected[j].Line
-	})
+func requireVulnerabilitiesHasKeys(t *testing.T, objects []map[string]interface{}, actual []model.Vulnerability) {
 	sort.Slice(actual, func(i, j int) bool {
 		return actual[i].Line < actual[j].Line
 	})
 
-	require.Len(t, actual, len(expected), "Count of actual issues and expected vulnerabilities doesn't match")
+	require.Len(t, actual, len(objects), "Count of actual issues and expected vulnerabilities doesn't match")
 
-	for i := range expected {
+	actualJSON, err := json.Marshal(actual)
+	require.NoError(t, err)
+
+	var actualObjects []map[string]interface{}
+	err = json.Unmarshal(actualJSON, &actualObjects)
+	require.NoError(t, err)
+
+	for i, object := range objects {
 		if i > len(actual)-1 {
-			t.Fatalf("Not enough results detected, expected %d, found %d", len(expected), len(actual))
+			t.Fatalf("Not enough results detected, expected %d, found %d", len(objects), len(actual))
 		}
 
-		expectedItem := expected[i]
-		actualItem := actual[i]
-		require.Equal(t, scanID, actualItem.ScanID)
-		require.Equal(t, expectedItem.Line, actualItem.Line, "Not corrected detected line")
-		require.Equal(t, expectedItem.Severity, actualItem.Severity, "Invalid severity")
-		require.Equal(t, expectedItem.QueryName, actualItem.QueryName, "Invalid query name")
-		if expectedItem.Value != nil {
-			require.NotNil(t, actualItem.Value)
-			require.Equal(t, *expectedItem.Value, *actualItem.Value)
+		actualItem := actualObjects[i]
+
+		for key, value := range object {
+			require.Contains(t, actualItem, key)
+			require.Equal(t, value, actualItem[key])
 		}
 	}
 }

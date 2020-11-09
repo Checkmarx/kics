@@ -2,11 +2,11 @@
 	{
 		"queryName": "S3 bucket without restriction of public bucket",
 		"severity": "HIGH",
-		"line": 14
+		"line": 11
 	},
 	{
 		"queryName": "S3 bucket without restriction of public bucket",
 		"severity": "HIGH",
-		"line": 11
+		"line": 14
 	}
 ]

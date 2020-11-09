@@ -2,11 +2,11 @@
 	{
 		"queryName": "SQL Database disabled Audit",
 		"severity": "HIGH",
-		"line": 50
+		"line": 34
 	},
 	{
 		"queryName": "SQL Database disabled Audit",
 		"severity": "HIGH",
-		"line": 34
+		"line": 50
 	}
 ]

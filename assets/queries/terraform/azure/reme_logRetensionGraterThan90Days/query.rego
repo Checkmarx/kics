@@ -1,46 +1,67 @@
 package Cx
 
 CxPolicy [ result ] {
-    resource := input.document[i].resource.azurerm_network_watcher_flow_log[name]
+    resource := input.file[i].resource.azurerm_network_watcher_flow_log[name]
 
 	var := resource.retention_policy.days
 	var < 90
     
     result := {
-                "documentId": 		input.document[i].id,
+                "fileId": 		    input.file[i].id,
                 "searchKey": 	    sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.days", [name]),
                 "issueType":		"WrongValue",
                 "keyExpectedValue": sprintf("'%s.retention_policy.days' is bigger than 90)",[name]),
                 "keyActualValue": 	sprintf("'retention_policy.days' is bigger than 90 [%d])",[var]),
+                "line":             "COMPUTED",
+                "queryId":          data.id,
+                "queryName":        data.queryName,
+                "severity":         data.severity,
+                "category":         data.category,
+                "descriptionText":  data.descriptionText,
+                "descriptionUrl":   data.descriptionUrl
               }
 }
 
 CxPolicy [ result ] {
-    resource := input.document[i].resource.azurerm_network_watcher_flow_log[name]
+    resource := input.file[i].resource.azurerm_network_watcher_flow_log[name]
 
 	not resource.retention_policy
     
     result := {
-                "documentId": 		input.document[i].id,
+                "fileId": 		    input.file[i].id,
                 "searchKey": 	    sprintf("azurerm_network_watcher_flow_log[%s]", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": sprintf("'%s.retention_policy' exists)",[name]),
-                "keyActualValue": 	sprintf("'%s.retention_policy' doesn't exist)",[name])
+                "keyActualValue": 	sprintf("'%s.retention_policy' doesn't exist)",[name]),
+                "line":             "COMPUTED",
+                "queryId":          data.id,
+                "queryName":        data.queryName,
+                "severity":         data.severity,
+                "category":         data.category,
+                "descriptionText":  data.descriptionText,
+                "descriptionUrl":   data.descriptionUrl
               }
 }
 
 CxPolicy [ result ] {
-    resource := input.document[i].resource.azurerm_network_watcher_flow_log[name]
+    resource := input.file[i].resource.azurerm_network_watcher_flow_log[name]
 
 	resource.retention_policy
     enabled := resource.retention_policy.enabled
     not enabled
         
     result := {
-                "documentId": 		input.document[i].id,
+                "fileId": 		    input.file[i].id,
                 "searchKey": 	    sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.enabled", [name]),
                 "issueType":		"WrongValue",
                 "keyExpectedValue": sprintf("'%s.retention_policy' should be enabled)",[name]),
-                "keyActualValue": 	sprintf("'%s.retention_policy' is disabled)",[name])
+                "keyActualValue": 	sprintf("'%s.retention_policy' is disabled)",[name]),
+                "line":             "COMPUTED",
+                "queryId":          data.id,
+                "queryName":        data.queryName,
+                "severity":         data.severity,
+                "category":         data.category,
+                "descriptionText":  data.descriptionText,
+                "descriptionUrl":   data.descriptionUrl
               }
 }

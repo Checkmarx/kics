@@ -10,6 +10,7 @@ import (
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
+	"github.com/open-policy-agent/opa/storage/inmem"
 	"github.com/open-policy-agent/opa/topdown"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -28,7 +29,7 @@ const (
 var ErrNoResult = errors.New("query: not result")
 var ErrInvalidResult = errors.New("query: invalid result format")
 
-type VulnerabilityBuilder func(ctx QueryContext, v interface{}) (model.Vulnerability, error)
+type VulnerabilityBuilder func(ctx QueryContext, v map[string]interface{}) (model.Vulnerability, error)
 
 type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
@@ -85,8 +86,11 @@ func NewInspector(
 		case <-ctx.Done():
 			return nil, nil
 		default:
+			store := inmem.NewFromObject(metadata.Metadata)
+
 			opaQuery, err := rego.New(
 				rego.Query(regoQuery),
+				rego.Store(store),
 				rego.Module(metadata.Query, metadata.Content),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 			).PrepareForEval(ctx)
@@ -125,9 +129,9 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 		return nil, err
 	}
 
-	var vulnerabilities []model.Vulnerability
+	var allVulnerabilities []model.Vulnerability
 	for _, query := range c.queries {
-		vuls, err := c.doRun(QueryContext{
+		vulnerabilities, err := c.doRun(QueryContext{
 			ctx:     ctx,
 			scanID:  scanID,
 			files:   files.ToMap(),
@@ -143,12 +147,12 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 			continue
 		}
 
-		vulnerabilities = append(vulnerabilities, vuls...)
+		allVulnerabilities = append(allVulnerabilities, vulnerabilities...)
 
 		c.tracker.TrackQueryExecution()
 	}
 
-	return vulnerabilities, nil
+	return allVulnerabilities, nil
 }
 
 func (c *Inspector) EnableCoverageReport() {
@@ -218,11 +222,16 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	for _, queryResultItem := range queryResultItems {
-		vulnerability, err := c.vb(ctx, queryResultItem)
+		item, ok := queryResultItem.(map[string]interface{})
+		if !ok {
+			continue
+		}
+
+		vulnerability, err := c.vb(ctx, item)
 		if err != nil {
 			logger.GetLoggerWithFieldsFromContext(ctx.ctx).
 				Err(err).
-				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
+				Msgf("Inspector can't build vulnerability, query=%s", ctx.query.metadata.Query)
 
 			continue
 		}

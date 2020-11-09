@@ -55,20 +55,23 @@ type QueryMetadata struct {
 }
 
 type Vulnerability struct {
-	ID               int       `json:"id"`
+	ID               int       `db:"id" json:"id"`
 	ScanID           string    `db:"scan_id" json:"-"`
-	FileID           string    `db:"file_id" json:"-"`
+	FileID           string    `db:"file_id" json:"fileId"`
 	FileName         string    `db:"file_name" json:"fileName"`
-	QueryID          string    `db:"query_id" json:"queryID"`
+	QueryID          string    `db:"query_id" json:"queryId"`
 	QueryName        string    `db:"query_name" json:"queryName"`
-	Severity         Severity  `json:"severity"`
-	Line             int       `json:"line"`
+	Severity         Severity  `db:"severity" json:"severity"`
+	Line             int       `db:"line" json:"line"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`
 	SearchKey        string    `db:"search_key" json:"searchKey"`
-	KeyExpectedValue string    `db:"key_expected_value" json:"expectedValue"`
-	KeyActualValue   string    `db:"key_actual_value" json:"actualValue"`
+	KeyExpectedValue string    `db:"key_expected_value" json:"keyExpectedValue"`
+	KeyActualValue   string    `db:"key_actual_value" json:"keyActualValue"`
 	Value            *string   `db:"value" json:"value"`
-	Output           string    `json:"-"`
+	Category         string    `db:"category" json:"category"`
+	DescriptionText  string    `db:"description_text" json:"descriptionText"`
+	DescriptionURL   string    `db:"description_url" json:"descriptionUrl"`
+	Output           string    `db:"output" json:"-"`
 }
 
 type Extensions map[string]struct{}
@@ -107,7 +110,7 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 
 //easyjson:json
 type Documents struct {
-	Documents []Document `json:"document"`
+	Documents []Document `json:"file"`
 }
 
 //easyjson:json
