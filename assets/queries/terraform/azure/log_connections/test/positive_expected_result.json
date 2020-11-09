@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "reme Log Connections",
+		"queryName": "Log Connections",
 		"severity": "MEDIUM",
 		"line": 5
 	},
 	{
-		"queryName": "reme Log Connections",
+		"queryName": "Log Connections",
 		"severity": "MEDIUM",
 		"line": 12
 	},
 	{
-		"queryName": "reme Log Connections",
+		"queryName": "Log Connections",
 		"severity": "MEDIUM",
 		"line": 19
 	}
