@@ -1,8 +1,0 @@
-{
-  "id": "reme_ssl_enforce_disabled",
-  "queryName": "reme SSL Enforce Disabled",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Ensure 'Enforce SSL connection' is set to 'ENABLED' for PostgreSQL Database Server",
-  "descriptionUrl": "https://github.com/hashicorp/terraform-foundational-policies-library/blob/master/cis/azure/databases/README.md#cis-413-ensure-enforce-ssl-connection-is-set-to-enabled-for-postgresql-database-server"
-}
