@@ -1,0 +1,8 @@
+{
+  "id": "postgre_sql_log_checkpoints_is_on",
+  "queryName": "PostgreSQL Logs Checkpoints Is On",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration"
+}
