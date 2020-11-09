@@ -1,8 +1,0 @@
-{
-  "id": "sql_auditing_retention",
-  "queryName": "SQL Auditing Retention",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Ensure that 'Auditing' Retention is 'greater than 90 days' for SQL servers.",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/bc_azr_logging_3"
-}
