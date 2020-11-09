@@ -1,0 +1,8 @@
+{
+  "id": "sql_server_auditing_is_enabled",
+  "queryName": "SQL Server Auditing Is Enabled",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure that for SQL Servers, 'Auditing' is set to 'On'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server"
+}
