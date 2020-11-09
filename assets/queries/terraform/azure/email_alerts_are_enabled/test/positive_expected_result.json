@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Email Alerts Enabled",
+		"queryName": "Email Alerts Are Enabled",
 		"severity": "MEDIUM",
 		"line": 4
 	}
