@@ -1,0 +1,8 @@
+{
+  "id": "log_retention_is_greater_than_90_days",
+  "queryName": "Log Retention Is Greater Than 90 Days",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Flow logs enable capturing information about IP traffic flowing in and out of the network security groups. Network Security Group Flow Logs must be enabled with retention period greater than or equal to 90 days. This is important, because these logs are used to check for anomalies and give information of suspected breaches",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log"
+}
