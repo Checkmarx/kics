@@ -1,0 +1,52 @@
+[
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 8
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 22
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 36
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 50
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 64
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 78
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 92
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 106
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 120
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 134
+	}
+]
