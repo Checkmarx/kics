@@ -12,7 +12,14 @@ CxPolicy [ result ] {
                 "searchKey": 	    {{ searchKey $rule }},
                 "issueType":		"{{ (lastCondition $rule).IssueType }}",
                 "keyExpectedValue": "'{{ innerKey $rule }}' should be valid",
-                "keyActualValue": 	"'{{ innerKey $rule }}' is invalid"
+                "keyActualValue": 	"'{{ innerKey $rule }}' is invalid",
+                "line":             "COMPUTED",
+                "queryId":          data.id,
+                "queryName":        data.queryName,
+                "severity":         data.severity,
+                "category":         data.category,
+                "descriptionText":  data.descriptionText,
+                "descriptionUrl":   data.descriptionUrl
               }
 }
 {{ end }}
