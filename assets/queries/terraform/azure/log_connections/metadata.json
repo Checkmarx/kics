@@ -1,0 +1,8 @@
+{
+  "id": "log_connections",
+  "queryName": "Log Connections",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration"
+}

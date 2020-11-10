@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "SQL Audit Retention",
+		"severity": "MEDIUM",
+		"line": 11
+	},
+	{
+		"queryName": "SQL Audit Retention",
+		"severity": "MEDIUM",
+		"line": 29
+	},
+	{
+		"queryName": "SQL Audit Retention",
+		"severity": "MEDIUM",
+		"line": 47
+	},
+	{
+		"queryName": "SQL Audit Retention",
+		"severity": "MEDIUM",
+		"line": 67
+	}
+]

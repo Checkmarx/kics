@@ -1,8 +1,0 @@
-{
-  "id": "email_alerts_enabled",
-  "queryName": "Email Alerts Enabled",
-  "severity": "MEDIUM",
-  "category": "Monitoring",
-  "descriptionText": "Ensure that 'Send email notification for high severity alerts' is set to 'On'",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/bc_azr_general_4"
-}

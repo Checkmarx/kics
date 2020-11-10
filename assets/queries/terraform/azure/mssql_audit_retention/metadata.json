@@ -1,0 +1,8 @@
+{
+  "id": "mssql_audit_retention",
+  "queryName": "MSSQL Audit Retention",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure that for MSSQL Server, the Auditing Retention is greater than 90 days",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server"
+}
