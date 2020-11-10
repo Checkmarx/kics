@@ -1,0 +1,25 @@
+package Cx
+{{ range $rule := . }}
+CxPolicy [ result ] {
+    document := input.document[i]
+    {{- template "resource" $rule }}
+    {{- range $condition := $rule.Conditions }}
+    {{ unescape (condition $rule.Block $condition) }}
+    {{- end }}
+
+    result := {
+                "documentId": 		document.id,
+                "searchKey": 	    {{ searchKey $rule }},
+                "issueType":		"{{ (lastCondition $rule).IssueType }}",
+                "keyExpectedValue": "'{{ innerKey $rule }}' should be valid",
+                "keyActualValue": 	"'{{ innerKey $rule }}' is invalid"
+              }
+}
+{{ end }}
+
+{{ define "resource" }}
+    block := document.{{ .Block.Name }}
+    {{- if not .Block.All }}
+    blockTypes := {{ unescape (regoValue .Block.List) }}
+    {{- end }}
+{{ end }}

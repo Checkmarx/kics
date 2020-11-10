@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"io/ioutil"
-	"path"
 	"sort"
+	"strings"
 	"testing"
 
 	"github.com/checkmarxDev/ice/internal/tracker"
@@ -24,7 +24,8 @@ func TestQueries(t *testing.T) {
 
 	queries := loadQueries(t)
 	for _, entry := range queries {
-		t.Run(path.Base(entry.dir)+"_positive", func(t *testing.T) {
+		name := strings.TrimPrefix(entry.dir, "../assets/queries/")
+		t.Run(name+"_positive", func(t *testing.T) {
 			content, err := ioutil.ReadFile(entry.ExpectedPositiveResultFile())
 			require.NoError(t, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile())
 
@@ -34,7 +35,7 @@ func TestQueries(t *testing.T) {
 
 			testQuery(t, entry, entry.PositiveFile(), expectedVulnerabilities)
 		})
-		t.Run(path.Base(entry.dir)+"_negative", func(t *testing.T) {
+		t.Run(name+"_negative", func(t *testing.T) {
 			testQuery(t, entry, entry.NegativeFile(), []model.Vulnerability{})
 		})
 	}

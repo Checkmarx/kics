@@ -1,30 +1,26 @@
 module github.com/checkmarxDev/ice
 
-go 1.14
+go 1.15
 
 require (
-	github.com/agext/levenshtein v1.2.2 // indirect
+	github.com/agnivade/levenshtein v1.1.0
 	github.com/checkmarxDev/repostore v1.0.3
-	github.com/checkmarxDev/scans v1.5.4
-	github.com/golang/mock v1.4.3
-	github.com/google/uuid v1.1.1
-	github.com/gorilla/mux v1.7.5-0.20200711200521-98cb6bf42e08
-	github.com/hashicorp/hcl/v2 v2.6.0
+	github.com/checkmarxDev/scans v1.5.5
+	github.com/golang/mock v1.4.4
+	github.com/google/uuid v1.1.2
+	github.com/gorilla/mux v1.8.0
+	github.com/hashicorp/hcl/v2 v2.7.0
 	github.com/jmoiron/sqlx v1.2.0
-	github.com/kylelemons/godebug v1.1.0 // indirect
-	github.com/lib/pq v1.7.0
+	github.com/lib/pq v1.8.0
 	github.com/mailru/easyjson v0.7.6
-	github.com/open-policy-agent/opa v0.23.2
+	github.com/open-policy-agent/opa v0.24.0
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.19.0
-	github.com/spf13/cobra v1.0.0
-	github.com/spf13/viper v1.7.0
+	github.com/rs/zerolog v1.20.0
+	github.com/spf13/cobra v1.1.1
+	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.6.1
-	github.com/zclconf/go-cty v1.6.1
-	golang.org/x/sys v0.0.0-20200724161237-0e2f3a69832c // indirect
-	google.golang.org/appengine v1.6.6 // indirect
-	google.golang.org/genproto v0.0.0-20200726014623-da3ae01ef02d // indirect
-	google.golang.org/grpc v1.30.0
+	github.com/zclconf/go-cty v1.7.0
+	google.golang.org/grpc v1.33.1
 	google.golang.org/protobuf v1.25.0
-	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )

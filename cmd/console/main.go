@@ -25,7 +25,7 @@ import (
 
 const scanID = "console"
 
-func main() { // nolint:funlen
+func main() { // nolint:funlen,gocyclo
 	var (
 		path        string
 		queryPath   string
@@ -41,8 +41,8 @@ func main() { // nolint:funlen
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 
 	rootCmd := &cobra.Command{
-		Use:   "inspect",
-		Short: "Security inspect tool for Terraform files",
+		Use:   "iacScanner",
+		Short: "Security inspect tool for Infrastructure as Code files",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 			if verbose {
@@ -61,7 +61,15 @@ func main() { // nolint:funlen
 				return err
 			}
 
-			filesSource := &source.FileSystemSourceProvider{Path: path}
+			var excludeFiles []string
+			if payloadPath != "" {
+				excludeFiles = append(excludeFiles, payloadPath)
+			}
+
+			filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
+			if err != nil {
+				return err
+			}
 
 			combinedParser := parser.NewBuilder().
 				Add(&jsonParser.Parser{}).
@@ -124,10 +132,10 @@ func main() { // nolint:funlen
 		},
 	}
 
-	rootCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to inspect")
+	rootCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to scan")
 	rootCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
 	rootCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
-	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store queries payload")
+	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
 		log.Err(err).Msg("failed to add command required flags")

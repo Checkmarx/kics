@@ -1,0 +1,8 @@
+{
+  "id": "AmiNotEncrypted",
+  "queryName": "Ami Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption & Key Management",
+  "descriptionText": "AWS AMI Encryption is not enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami"
+}
