@@ -1,8 +1,0 @@
-{
-  "id": "sql_server_auditing_enabled",
-  "queryName": "SQL Server Auditing Enabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Ensure that 'Auditing' is set to 'On' for SQL servers",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/bc_azr_logging_2"
-}

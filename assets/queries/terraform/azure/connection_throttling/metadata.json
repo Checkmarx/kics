@@ -1,0 +1,8 @@
+{
+  "id": "connection_throttling",
+  "queryName": "Connection Throttling",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure that for PostgreSQL server, Connection Throttling is set",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration"
+}

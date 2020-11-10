@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Log Retention Is Greater Than 90 Days",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "Log Retention Is Greater Than 90 Days",
+		"severity": "MEDIUM",
+		"line": 23
+	},
+	{
+		"queryName": "Log Retention Is Greater Than 90 Days",
+		"severity": "MEDIUM",
+		"line": 27
+	},
+	{
+		"queryName": "Log Retention Is Greater Than 90 Days",
+		"severity": "MEDIUM",
+		"line": 43
+	}
+]

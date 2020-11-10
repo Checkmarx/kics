@@ -1,8 +1,0 @@
-{
-  "id": "reme_security_center_princing_tier",
-  "queryName": "reme Security Center Princing Tier",
-  "severity": "MEDIUM",
-  "category": "Operational Efficiency",
-  "descriptionText": "Ensure that standard pricing tiers are selected.",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/ensure-standard-pricing-tier-is-selected"
-}

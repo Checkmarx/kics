@@ -1,8 +1,0 @@
-{
-  "id": "reme_geo_redundancy_disabled",
-  "queryName": "reme Geo Redundancy Disabled",
-  "severity": "HIGH",
-  "category": "Backup and Disaster Recovery",
-  "descriptionText": "Ensure that Geo Redundant Backups is enabled on PostgreSQL",
-  "descriptionUrl": "https://docs.accurics.com/projects/accurics-terrascan/en/latest/policies/#azurerm_postgresql_server"
-}

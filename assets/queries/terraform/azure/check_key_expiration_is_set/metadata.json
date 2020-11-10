@@ -1,0 +1,8 @@
+{
+  "id": "check_key_expiration_is_set",
+  "queryName": "Check Key Expiration Is Set",
+  "severity": "HIGH",
+  "category": "Key Management",
+  "descriptionText": "Make sure that for all keys the expiration date is set",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key"
+}
