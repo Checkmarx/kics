@@ -30,11 +30,12 @@ nav:
 
 # Theme
 theme:
-  name: spacelab
-  # nav_style: dark
-  logo: img/logo-terraform.svg
-  favicon: img/favicon.ico
-
+  name: flatly
+  logo: img/logo-kics-horizontal.png
+  favicon: img/cloud-hex.ico
+  include_sidebar: false
+  sticky_navigation: true
+  
 # Plugins
 plugins:
   - search
