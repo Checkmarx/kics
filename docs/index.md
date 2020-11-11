@@ -1,8 +1,11 @@
-## Welcome
+<img alt="KICS - Keep Infrastructure as Code Secure" src="img/logo-kics-horizontal.png" width="250">  
+by <img alt="Checkmarx" src="img/logo-cx-horizontal.png" width="100">
+
+---
 
 KICS (pronounced as 'kick-s') is an open source solution for static code analysis of Infrastructure as Code.
 
-Cloud Infrastructure as Code Security (or in short CICS, or just KICS) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
+**K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
 It is as simple as running a CLI tool, making it easy to integrate into any project CI.
 
@@ -15,7 +18,7 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Ansible" src="img/logo-ansible.png" width="150">
 
-More solutions, such as AWS CloudFormation are planned to be added [soon](roadmap.md).
+More solutions, such as AWS CloudFormation are on the [roadmap](roadmap.md).
 
 
 ## Getting Started
