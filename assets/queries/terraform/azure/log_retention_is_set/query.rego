@@ -5,7 +5,7 @@ CxPolicy [ result ] {
 	name := lower(resource.name)
 	value := upper(resource.value)
 
-    name == "log_connections"
+    name == "log_retention"
     value != "ON"
 
     result := {
