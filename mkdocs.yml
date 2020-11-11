@@ -1,6 +1,6 @@
 # Project
 site_name: KICS
-site_url: http://www.igormarkov.com
+site_url: http://www.kics.io
 site_description: >-
   Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.
 copyright:  >-
