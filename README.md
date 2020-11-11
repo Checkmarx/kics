@@ -1,50 +1,45 @@
-Checkmarx Infrastructure as Code Scanning Engine (ICE)
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo-kics-horizontal.png" width="250">  
 
-**ICE** is a infrastructure-as-code Engine that scans infrastructure provisioned using [Terraform](https://terraform.io/).
+---
 
-ICE identifies security vulnerabilties and misconfigurations that may expose IaC files owners to cyber attacks.
+KICS (pronounced as 'kick-s') is an open source solution for static code analysis of Infrastructure as Code.
 
-ICE also powers [**Checkmarx**](https://www.checkmarx.com/products/static-application-security-testing  ) SAST product, the security-first platform that streamlines code security throughout DevSecOps lifecycle. 
+**K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
-## **Table of contents**
+It is as simple as running a CLI tool, making it easy to integrate into any project CI.
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
+#### Supported Platforms
 
-## Features
-
-* ICE scans terraform files and leverages over 40 built-in queries that cover security and compliance best practices for AWS, Azure and Google Cloud.
-
-* ICE users can create their own customer queries to support specific use-cases and prevent unique attack scenarios.
+KICS scans and detects issues in [Terraform](https://terraform.io/) infrastructure as code projects.  
+More solutions, such as AWS CloudFormation are on the [roadmap](docs/roadmap.md).
 
 
-* ICE Output is currently available as CLI, JSON and references to remediation guides.
+## Getting Started
 
-## Installation
+Setting up and using KICS is super-easy.
 
-This section describes installation procedure of ICE.
+- First, see how to [install and get KICS running](docs/getting-started.md).
+- Next, check how you can easily [integrate it into your CI](docs/integrations.md) for any project.
+- Eventually, [explore the output results format](docs/results.md) and quickly fix the issues detected.
 
-To have a fully working environment to use and develop in ICE you will need:
+## How it Works
 
-1. Download and install Go: https://golang.org/dl/
-2. Install VS Code (or another IDE of your choosing): https://code.visualstudio.com/Download
-3. Inside VS Code, install the following extensions:
- - Go
- - Open Policy Agent
- - Git Lens 
-4. Install PostgreSQL: https://www.postgresql.org/download/ (optional, not needed for CLI usage)
-5. Clone the repository of ICE to VS Code: https://github.com/CheckmarxDev/ice
-6. Test if the application is running properly by running in the terminal, in the root of the project:
+What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
 
-go run ./cmd/console/main.go -p assets/queries/terraform
+- Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
+- Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
-## Contributing
+## Contribution
 
-Contribution is welcome and appreciated!!
+KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
+[Check out how](docs/contribution.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-Start by reviewing the [contribution guidelines](CONTRIBUTING.md)
+## More
 
-Looking to contribute new scanning queries? Learn how to do it here
+[KICS public documentation](docs/index.md) has all the project aspects covered.
 
+**Keep Infrastructure as Code Secure!**
 
+---
+
+&copy; 2020 Checkmarx Ltd. All Rights Reserved.
