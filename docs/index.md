@@ -1,5 +1,4 @@
 <img alt="KICS - Keep Infrastructure as Code Secure" src="img/logo-kics-horizontal.png" width="250">  
-by <img alt="Checkmarx" src="img/logo-cx-horizontal.png" width="100">
 
 ---
 
