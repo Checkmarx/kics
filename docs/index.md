@@ -2,7 +2,7 @@
 
 ---
 
-KICS (pronounced as 'kick-s') is an open source solution for static code analysis of Infrastructure as Code.
+**KICS** (pronounced as 'kick-s') or **Kicscan** is an open source solution for static code analysis of Infrastructure as Code.
 
 **K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
@@ -41,7 +41,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
 [Check out how](contribution.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-- [How can I help?!](docs/contribution.md)
+- [How can I help?!](contribution.md)
 - [Take me to the repo on GitHub!](https://github.com/CheckmarxDev/ice/)
 
 ## About the Project

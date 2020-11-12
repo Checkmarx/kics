@@ -2,7 +2,9 @@
 
 ---
 
-KICS (pronounced as 'kick-s') is an open source solution for static code analysis of Infrastructure as Code.
+<a href="http://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
+
+**KICS** (pronounced as 'kick-s') or **Kicscan** is an open source solution for static code analysis of Infrastructure as Code.
 
 **K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
@@ -36,7 +38,9 @@ KICS is a true community project. It's built as an open source from day one, and
 
 ## More
 
-[KICS public documentation](docs/index.md) has all the project aspects covered.
+<a href="http://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
+
+[KICS public documentation](http://www.kics.io/) has all the project aspects covered.
 
 **Keep Infrastructure as Code Secure!**
 
