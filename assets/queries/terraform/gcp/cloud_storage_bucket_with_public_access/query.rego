@@ -13,7 +13,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_storage_bucket_iam_member[%s].member", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'member' not equal to 'allUsers' or 'allAuthenticatedUsers'",
+                "keyExpectedValue": "'member' not equal to 'allUsers' nor 'allAuthenticatedUsers'",
                 "keyActualValue": 	sprintf("'member' equal to '%s'", [iam_member.member])
               }
 }
@@ -30,7 +30,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_storage_bucket_iam_member[%s].members", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "None of the 'members' equal to 'allUsers' or 'allAuthenticatedUsers'",
+                "keyExpectedValue": "None of the 'members' equal to 'allUsers' nor 'allAuthenticatedUsers'",
                 "keyActualValue": 	"One of the 'members' equal to 'allUsers' or 'allAuthenticatedUsers'"
               }
 }
