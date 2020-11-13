@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Default VPC Exist",
+		"severity": "HIGH",
+		"line": 4
+	},
+	{
+		"queryName": "Default VPC Exist",
+		"severity": "HIGH",
+		"line": 11
+	}
+]

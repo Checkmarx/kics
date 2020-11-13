@@ -1,0 +1,8 @@
+{
+  "id": "default_vpc_exist",
+  "queryName": "Default VPC Exist",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Avoid creating resources in default VPC",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc"
+}
