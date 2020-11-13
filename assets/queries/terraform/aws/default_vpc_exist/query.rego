@@ -14,7 +14,7 @@ CxPolicy [ result ] {
 }
 CxPolicy [ result ] {
   aws_vpc := input.document[i].resource.aws_vpc[name]
-  aws_vpc.is_default
+  aws_vpc["default"]
 
 	result := {
                 "documentId": 		input.document[i].id,
