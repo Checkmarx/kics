@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "AWS GuardDuty Detector",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+]
