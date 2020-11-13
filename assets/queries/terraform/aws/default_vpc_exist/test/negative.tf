@@ -1,1 +1,10 @@
-#this code is a correct code for which the query should not find any result
+resource "aws_vpc" "main" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "main"
+  }
+}
+
+
