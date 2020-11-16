@@ -1,0 +1,8 @@
+{
+  "id": "aws_redshift_cluster_logging_disabled",
+  "queryName": "AWS Redshift Cluster Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure Logging is enabled for Redshift Cluster",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable"
+}
