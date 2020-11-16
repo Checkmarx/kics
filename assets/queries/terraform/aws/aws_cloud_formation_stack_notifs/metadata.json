@@ -1,0 +1,8 @@
+{
+  "id": "cloudFormationStackNotifs",
+  "queryName": "Aws Cloud Formation Stack Notifs",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Enable AWS CloudFormation Stack Notifications",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack"
+}
