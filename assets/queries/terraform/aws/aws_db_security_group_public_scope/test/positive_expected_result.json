@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "aws db security group no public scope",
+		"severity": "HIGH",
+		"line": 5
+	}
+]
