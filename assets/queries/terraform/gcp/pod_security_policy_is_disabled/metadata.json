@@ -1,6 +1,6 @@
 {
-  "id": "Pod_Security_Policy_Enabled",
-  "queryName": "Pod Security Policy is Enabled",
+  "id": "Pod_Security_Policy_Disabled",
+  "queryName": "Pod Security Policy is Disabled",
   "severity": "HIGH",
   "category": "Operational Efficiency",
   "descriptionText": "Kubernetes Clusters must have Pod Security Policy controller enabled, which means there must be a 'pod_security_policy_config' with the 'enabled' attribute equal to true",
