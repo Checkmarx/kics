@@ -1,6 +1,6 @@
 {
-  "id": "log_connections_is_set",
-  "queryName": "Log Connections Is Set",
+  "id": "log_connections_is_not_set",
+  "queryName": "Log Connections Is Not Set",
   "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'",
