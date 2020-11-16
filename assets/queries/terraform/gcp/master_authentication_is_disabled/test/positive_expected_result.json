@@ -1,0 +1,37 @@
+[
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 2
+	},
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 18
+	},
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 33
+	},
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 48
+	},
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 62
+	},
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 78
+	},
+	{
+		"queryName": "Master Authentication is Disabled",
+		"severity": "HIGH",
+		"line": 94
+	}
+]
