@@ -3,7 +3,7 @@ resource "google_storage_bucket" "foo" {
   location = "EU"
 
   versioning = {
-    enabled = "false"
+    enabled = false
   }
 }
 

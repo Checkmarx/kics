@@ -19,7 +19,7 @@ CxPolicy [ result ] {
   
   resource := input.document[i].resource.google_storage_bucket[name]
   
-  resource.versioning.enabled == "false"
+  resource.versioning.enabled == false
 
 	result := {
                 "documentId": 		input.document[i].id,
