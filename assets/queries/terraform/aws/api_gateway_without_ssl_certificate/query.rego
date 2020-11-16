@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
   result := {
                 "documentId": 		  input.document[i].id,
-                "searchKey": 	      sprintf("aws_api_gateway_stage[%s].client_certificate_id", [name]),
+                "searchKey": 	      sprintf("aws_api_gateway_stage[%s]", [name]),
                 "issueType":		    "MissingAttribute",
                 "keyExpectedValue": "Attribute 'client_certificate_id' is set",
                 "keyActualValue": 	"Attribute 'client_certificate_id' is undefined"
