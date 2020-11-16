@@ -1,6 +1,6 @@
 {
   "id": "Volume_Clusters_Encrypted",
-  "queryName": "Volume Clusters Encrypted",
+  "queryName": "Volume Clusters Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "The value on AWS Volume Cluster Encryptation must be true",
