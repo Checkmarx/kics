@@ -3,6 +3,6 @@
   "queryName": "SQL Database Instance with SSL Disabled",
   "severity": "HIGH",
   "category": "Encryption & Key Management",
-  "descriptionText": "Cloud SQL Dtabase Instance with SSL disabled for incoming connections",
+  "descriptionText": "Cloud SQL Database Instance with SSL disabled for incoming connections",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl"
 }
