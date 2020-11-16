@@ -1,6 +1,6 @@
 {
-  "id": "Client_Certificate_Enabled",
-  "queryName": "Client Certificate is Enabled",
+  "id": "Client_Certificate_Disabled",
+  "queryName": "Client Certificate is Disabled",
   "severity": "HIGH",
   "category": "Identity & Access Management",
   "descriptionText": "Kubernetes Clusters must be created with Client Certificate enabled, which means 'master_auth' must have 'client_certificate_config' with the attribute 'issue_client_certificate' equal to true",
