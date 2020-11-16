@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Stackdriver Monitoring is Disabled",
+		"severity": "HIGH",
+		"line": 2
+	},
+	{
+		"queryName": "Stackdriver Monitoring is Disabled",
+		"severity": "HIGH",
+		"line": 13
+	}
+]
