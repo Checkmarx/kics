@@ -21,6 +21,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_vpc[%s].default", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'aws_vpc.default' is false",
-                "keyActualValue":  "'aws_default_vpc' exists"
+                "keyActualValue":  "'aws_vpc.default' is true"
               }
 }
