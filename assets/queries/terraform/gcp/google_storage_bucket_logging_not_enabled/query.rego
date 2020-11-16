@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_storage_bucket[%s]", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "should have logging enable",
-                "keyActualValue": 	"dont existe logging"
+                "keyExpectedValue": "'resource.logging' is set",
+                "keyActualValue": "'resource.logging' is undefined"
               }
 }
 
