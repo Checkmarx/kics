@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Metrics not enabled",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+	,
+	{
+		"queryName": "Metrics not enabled",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]
