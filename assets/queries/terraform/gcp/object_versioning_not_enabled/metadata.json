@@ -1,0 +1,8 @@
+{
+  "id": "ObjectVersioningNotEnabled",
+  "queryName": "Object Versioning Not Enabled",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "Object Versioning Not Enabled on Cloud Storage Bucket",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#enabled"
+}

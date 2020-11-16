@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "Log Connections",
+		"queryName": "Log Retention Is Not Set",
 		"severity": "MEDIUM",
 		"line": 5
 	},
 	{
-		"queryName": "Log Connections",
+		"queryName": "Log Retention Is Not Set",
 		"severity": "MEDIUM",
 		"line": 12
 	},
 	{
-		"queryName": "Log Connections",
+		"queryName": "Log Retention Is Not Set",
 		"severity": "MEDIUM",
 		"line": 19
 	}
