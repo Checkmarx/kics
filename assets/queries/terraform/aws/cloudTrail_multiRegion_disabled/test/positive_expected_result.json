@@ -2,12 +2,12 @@
 	{
 		"queryName": "CloudTrail MultiRegion Disabled",
 		"severity": "MEDIUM",
-		"line": 2
+		"line": 3
 	}
 ,
 	{
 		"queryName": "CloudTrail MultiRegion Disabled",
 		"severity": "MEDIUM",
-		"line": 10
+		"line": 8
 	}
 ]

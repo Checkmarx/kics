@@ -1,6 +1,6 @@
 {
   "id": "aws_cloudtrail",
-  "queryName": "CloudTrail MultiRegion Enabled",
+  "queryName": "CloudTrail MultiRegion Disabled",
   "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "Check if MultiRegion is Enabled",

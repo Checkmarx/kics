@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  ctMultiRegion := input.document[i].resource.aws_cloudtrail[name]
+  ctMultiRegion := input.document[i].resource.aws_cloudtrail[name].is_multi_region_trail
   enabled := ctMultiRegion.is_multi_region_trail
 
 	result := {
