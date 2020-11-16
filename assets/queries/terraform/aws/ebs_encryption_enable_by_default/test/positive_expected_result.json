@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Ebs Encryption is false",
+		"severity": "HIGH",
+		"line": 2
+	}
+]

@@ -1,0 +1,8 @@
+{
+  "id": "Ebs_Encryption_Enable_by_Default",
+  "queryName": "Ebs Encryption is false",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "Ebs Encryptionby must be true or with default value (true)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_encryption_by_default"
+}
