@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Cloud Storage Bucket With Public Access",
+		"severity": "HIGH",
+		"line": 4
+	},
+	{
+		"queryName": "Cloud Storage Bucket With Public Access",
+		"severity": "HIGH",
+		"line": 17
+	}
+]
