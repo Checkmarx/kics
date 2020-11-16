@@ -1,0 +1,8 @@
+{
+  "id": "IAM_Binding_Check_No_Gmail_Accounts",
+  "queryName": "IAM Binding Check No Gmail Accounts",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "Gmail accounts are being used instead of corporate credentials",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding"
+}
