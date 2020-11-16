@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "db security group higher than 256",
+		"queryName": "db security group lower than 256",
 		"severity": "HIGH",
 		"line": 5
 	}

@@ -1,8 +1,8 @@
 {
-  "id": "db_security_group_higher_than_256",
-  "queryName": "db security group higher than 256",
+  "id": "db_security_group_lower_than_256",
+  "queryName": "db security group lower than 256",
   "severity": "HIGH",
   "category": "Network Security",
-  "descriptionText": "db security cidr must be higher than 256 (/24)",
+  "descriptionText": "db security cidr must be lower than 256 (/24)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group"
 }
