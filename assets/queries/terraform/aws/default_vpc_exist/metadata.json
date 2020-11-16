@@ -1,8 +1,8 @@
 {
   "id": "default_vpc_exist",
-  "queryName": "Default VPC Exist",
+  "queryName": "Default VPC Exists",
   "severity": "MEDIUM",
-  "category": null,
-  "descriptionText": "Avoid creating resources in default VPC",
+  "category": "Logging",
+  "descriptionText": "Provides a resource to manage the default AWS VPC in the current region",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc"
 }

@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_default_vpc[%s]", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'aws_default_vpc' exist",
-                "keyActualValue":  "'aws_default_vpc' does not exist"
+                "keyExpectedValue": "'aws_default_vpc' should not exist",
+                "keyActualValue":   "'aws_default_vpc' exists"
               }
 }
 CxPolicy [ result ] {
@@ -21,6 +21,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("aws_vpc[%s].default", [name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "'aws_vpc.default' is false",
-                "keyActualValue":  "'aws_vpc.default' is true"
+                "keyActualValue":  "'aws_default_vpc' exists"
               }
 }
