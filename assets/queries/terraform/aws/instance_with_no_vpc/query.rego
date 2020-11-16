@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		   input.document[i].id,
                 "searchKey": 	       sprintf("aws_instance[%s].vpc_security_group_ids", [name]),
                 "issueType":		     "MissingAttribute",
-                "keyExpectedValue":  "Attribute 'vpc_security_group_ids' is defined",
+                "keyExpectedValue":  "Attribute 'vpc_security_group_ids' is set",
                 "keyActualValue": 	 "Attribute 'vpc_security_group_ids' is undefined"
             }
 }
