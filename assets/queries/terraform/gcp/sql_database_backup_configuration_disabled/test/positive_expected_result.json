@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "SQL Database BackupConfiguration Disabled",
+		"severity": "HIGH",
+		"line": 6
+	},
+	{
+		"queryName": "SQL Database BackupConfiguration Disabled",
+		"severity": "HIGH",
+		"line": 17
+	},
+	{
+		"queryName": "SQL Database BackupConfiguration Disabled",
+		"severity": "HIGH",
+		"line": 30
+	}
+]
