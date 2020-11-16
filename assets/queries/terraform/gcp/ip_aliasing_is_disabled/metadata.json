@@ -1,6 +1,6 @@
 {
-  "id": "IP_Aliasing_Enabled",
-  "queryName": "IP_Aliasing_is_Enabled",
+  "id": "IP_Aliasing_Disabled",
+  "queryName": "IP_Aliasing_is_Disabled",
   "severity": "HIGH",
   "category": "Operational Efficiency",
   "descriptionText": "Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribut 'ip_allocation_policy' must be defined and, if defined, the attribute 'networking_mode' must be VPC_NATIVE ",
