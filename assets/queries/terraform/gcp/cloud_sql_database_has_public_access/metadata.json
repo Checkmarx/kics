@@ -1,0 +1,8 @@
+{
+  "id": "Cloud_SQL_DB_has_public_access",
+  "queryName": "Cloud SQL DB has public access",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Cloud SQL DB has public access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance"
+}
