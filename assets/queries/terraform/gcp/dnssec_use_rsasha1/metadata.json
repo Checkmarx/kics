@@ -3,6 +3,6 @@
   "queryName": "Dnssec Use Rsasha1",
   "severity": "HIGH",
   "category": "Encryption & Key Management",
-  "descriptionText": "Checks if, within the 'dnssec_config' block, the 'default_key_specs' block exists with the 'algorithm' field different from 'rsasha1'",
+  "descriptionText": "Checks if, within the 'dnssec_config' block, the 'default_key_specs' block exists with the 'algorithm' field is 'rsasha1' which is bad.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_managed_zone#algorithm"
 }
