@@ -1,0 +1,8 @@
+{
+  "id": "api_gateway_tracing",
+  "queryName": "API Gateway Tracing",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Xray Tracing is not enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#xray_tracing_enabled"
+}

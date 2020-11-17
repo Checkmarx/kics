@@ -1,0 +1,8 @@
+{
+  "id": "GKE_Basic_Auth_Disabled",
+  "queryName": "GKE Basic Authentication is disabled",
+  "severity": "HIGH",
+  "category": "Identity & Access Management",
+  "descriptionText": "GCP - Google Kubernetes Engine (GKE) Basic Authentication is disabled, which means the username and password provided in the master_auth block must be empty",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster"
+}
