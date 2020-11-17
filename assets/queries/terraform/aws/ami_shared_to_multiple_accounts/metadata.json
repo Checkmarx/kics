@@ -1,0 +1,8 @@
+{
+  "id": "ami_shared_to_multiple_accounts",
+  "queryName": "AMI Shared To Multiple Accounts",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Limits access to AWS AMIs by checking if attribute account_id has launch permission for the attribute image_id",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ami_launch_permission"
+}
