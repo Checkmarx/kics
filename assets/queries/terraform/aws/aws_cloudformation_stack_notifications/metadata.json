@@ -1,6 +1,6 @@
 {
-  "id": "cloudFormationStackNotifs",
-  "queryName": "Aws Cloud Formation Stack Notifs",
+  "id": "aws_cloud_formation_stack_notifications",
+  "queryName": "AWS CloudFormation Stack Notifs",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Enable AWS CloudFormation Stack Notifications",
