@@ -12,7 +12,7 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 #### Supported Platforms
 
-<img alt="Terraform" src="docs/img/logo-terraform.svg" width="150">&nbsp;&nbsp;&nbsp;<img alt="Docker" src="docs/img/logo-docker.png" width="150">
+<img alt="Terraform" src="docs/img/logo-terraform.svg" width="150">&nbsp;&nbsp;&nbsp;<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">
 
 KICS scans and detects issues in [Terraform](https://terraform.io/) and [Kubernetes](https://kubernetes.io/) infrastructure as code projects.  
 More solutions, such as AWS CloudFormation are on the [roadmap](docs/roadmap.md).
