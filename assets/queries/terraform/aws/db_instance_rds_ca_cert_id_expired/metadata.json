@@ -1,0 +1,8 @@
+{
+  "id": "DB_Instance_Rds_Ca_Cert_Id_Expired",
+  "queryName": "CA certificate Identifier is outdated",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "The CA certificate Identifier must be rds-ca-2019",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#storage_encrypted"
+}
