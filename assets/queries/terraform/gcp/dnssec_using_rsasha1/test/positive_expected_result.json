@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Dnssec Use Rsasha1",
+		"queryName": "DNSSEC Using RSASHA1",
 		"severity": "HIGH",
 		"line": 11
 	}
