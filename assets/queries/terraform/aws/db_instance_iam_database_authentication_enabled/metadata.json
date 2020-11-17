@@ -1,0 +1,8 @@
+{
+  "id": "db_instance_iam_database_authentication_not_enabled",
+  "queryName": "Iam Databse Auth Enabled is false",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "Iam Databse Auth Enabled must be configured to true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#iam_database_authentication_enabled"
+}

@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Iam Databse Auth Enabled is false",
+		"severity": "HIGH",
+		"line": 11
+	}
+]
