@@ -1,0 +1,8 @@
+{
+  "id": "aws_cloudformation_in_use",
+  "queryName": "AWS CloudFormation In Use",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "AWS CloudFormation Not In Use",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack"
+}

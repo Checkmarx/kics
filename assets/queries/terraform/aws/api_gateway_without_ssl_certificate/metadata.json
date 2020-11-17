@@ -1,5 +1,5 @@
 {
-  "id": "apiGatewaySslCertificate",
+  "id": "api_gateway_without_ssl_certificate",
   "queryName": "Api Gateway Without Ssl Certificate",
   "severity": "MEDIUM",
   "category": "Network security",
