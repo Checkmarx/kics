@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Log Disconnections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "Log Disconnections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "Log Disconnections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 19
+	}
+]

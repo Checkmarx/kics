@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "API Gateway Tracing",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "API Gateway Tracing",
+		"severity": "MEDIUM",
+		"line": 8
+	}
+]

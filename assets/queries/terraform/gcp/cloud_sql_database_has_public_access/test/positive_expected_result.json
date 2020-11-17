@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Cloud SQL DB has public access",
+		"severity": "HIGH",
+		"line": 6
+	},
+	{
+		"queryName": "Cloud SQL DB has public access",
+		"severity": "HIGH",
+		"line": 26
+	},
+	{
+		"queryName": "Cloud SQL DB has public access",
+		"severity": "HIGH",
+		"line": 44
+	},
+	{
+		"queryName": "Cloud SQL DB has public access",
+		"severity": "HIGH",
+		"line": 60
+	}
+]
