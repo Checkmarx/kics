@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Cloud Trail Multi Region Disabled",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+,
+	{
+		"queryName": "Cloud Trail Multi Region Disabled",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]
