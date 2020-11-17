@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "db security group IsPublicIp",
+		"severity": "HIGH",
+		"line": 5
+	}
+]
