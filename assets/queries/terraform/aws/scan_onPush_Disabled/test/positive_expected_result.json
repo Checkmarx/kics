@@ -8,6 +8,6 @@
 	{
 		"queryName": "Image is not scanned",
 		"severity": "MEDIUM",
-		"line": 1
+		"line": 11
 	}
 ]

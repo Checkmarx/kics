@@ -6,7 +6,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_cloudtrail[%s].name", [name]),
+                "searchKey": 	    sprintf("aws_ecr_repository[%s].image_scanning_configuration.scan_on_push", [name]),
                 "issueType":		"IncorrectValued",
                 "keyExpectedValue": "Image Scanned",
                 "keyActualValue": 	"Image not scanned",
@@ -20,7 +20,7 @@ CxPolicy [ result ] {
   
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_cloudtrail[%s].name", [name]),
+                "searchKey": 	    sprintf("aws_ecr_repository[%s]", [name]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "image_scanning_configuration is available",
                 "keyActualValue": 	"image_scanning_configuration is missing",
