@@ -1,8 +1,9 @@
-resource "aws_cloudwatch_log_group" "yada" {
-  name = "Yada"
+resource "aws_api_gateway_stage" "example" {
+  depends_on = [aws_cloudwatch_log_group.example]
 
-  tags = {
-    Environment = "production"
-    Application = "serviceA"
-  }
+  stage_name = "prod"
+}
+
+resource "aws_cloudwatch_log_group" "example2" {
+  name              = "Xpto"
 }

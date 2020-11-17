@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "API Gateway Name",
+		"queryName": "API Gateway without Cloudwatch Log",
 		"severity": "MEDIUM",
 		"line": 1
 	}

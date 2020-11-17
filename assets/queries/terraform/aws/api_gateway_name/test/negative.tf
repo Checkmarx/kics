@@ -1,6 +1,13 @@
-resource "aws_api_gateway_integration" "test" {
-  rest_api_id = aws_api_gateway_rest_api.test.id
-  resource_id = aws_api_gateway_resource.test.id
-  http_method = aws_api_gateway_method.test.http_method
-  type        = "MOCK"
+resource "aws_api_gateway_stage" "example" {
+  depends_on = [aws_cloudwatch_log_group.example]
+
+  stage_name = "prod"
+}
+
+resource "aws_cloudwatch_log_group" "example" {
+  name              = "prod"
+}
+
+resource "aws_cloudwatch_log_group" "example2" {
+  name              = "Xpto"
 }
