@@ -1,0 +1,77 @@
+[
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 18
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 27
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 36
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 45
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 53
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 61
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 79
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 89
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 99
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 109
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 119
+	},
+	{
+		"queryName": "Shielded VM is Disabled",
+		"severity": "MEDIUM",
+		"line": 129
+	}
+]
