@@ -1,0 +1,8 @@
+{
+  "id": "enable_logging",
+  "queryName": "Logging Not Enabled",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "Enables Logging for the trail",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_logging"
+}
