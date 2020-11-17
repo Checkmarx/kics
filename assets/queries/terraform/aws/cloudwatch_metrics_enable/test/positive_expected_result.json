@@ -2,12 +2,12 @@
 	{
 		"queryName": "Metrics not enabled",
 		"severity": "MEDIUM",
-		"line": 1
+		"line": 7
 	}
 	,
 	{
 		"queryName": "Metrics not enabled",
 		"severity": "MEDIUM",
-		"line": 1
+		"line": 18
 	}
 ]
