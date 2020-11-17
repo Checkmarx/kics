@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Aws Cloud Formation Without Stack Policy",
+		"queryName": "AWS Cloud Formation Without Stack Policy",
 		"severity": "MEDIUM",
 		"line": 1
 	}
