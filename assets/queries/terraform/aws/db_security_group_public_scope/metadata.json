@@ -1,0 +1,8 @@
+{
+  "id": "aws_db_security_group_no_public_scope",
+  "queryName": "AWS DB Security Group with Public Scope",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "The CIDR must be diferent than 0.0.0.0/0",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group"
+}
