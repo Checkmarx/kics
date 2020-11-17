@@ -1,1 +1,9 @@
-#this is a problematic code where the query should report a result(s)
+resource "aws_cloudformation_stack" "network" {
+
+  name = "networking-stack"
+
+  parameters = {
+    VPCCidr = "10.0.0.0/16"
+  }
+
+}
