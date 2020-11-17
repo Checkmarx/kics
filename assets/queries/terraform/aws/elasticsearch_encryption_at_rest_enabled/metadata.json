@@ -1,0 +1,8 @@
+{
+  "id": "ElasticSearch_Not_Encrypted_At_Rest",
+  "queryName": "ElasticSearch Not Encrypted At Rest",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Check if ElasticSearch encryption is disabled at Rest",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain"
+}
