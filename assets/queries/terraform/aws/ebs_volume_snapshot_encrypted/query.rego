@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_ebs_snapshot[%s].encrypted", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "One of 'aws_ebs_snapshot.encrypted' is 'true'",
-                "keyActualValue": 	"One of 'aws_ebs_snapshot.encrypted' is 'false'"
+                "keyExpectedValue": "'aws_ebs_snapshot.encrypted' is true",
+                "keyActualValue": "'aws_ebs_snapshot.encrypted' is false"
               }
 }

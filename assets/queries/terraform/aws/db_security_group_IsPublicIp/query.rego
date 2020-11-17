@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_db_security_group[%s].ingress.cidr", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'aws_db_security_group.ingress.cidr' == 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12",
-                "keyActualValue": 	"'aws_db_security_group.ingress.cidr' = 0.0.0.0/0"
+                "keyExpectedValue": sprintf("'aws_db_security_group[%s].ingress.cidr' is [10.0.0.0/8] or [192.168.0.0/16] or [172.16.0.0/12]", [name]),
+                "keyActualValue": sprintf("'aws_db_security_group[%s].ingress.cidr' is [%s]", [name, resource.cidr])
               }
 }
 

@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Ebs Encryption is false",
+		"queryName": "EBS without Encryption",
 		"severity": "HIGH",
 		"line": 2
 	}

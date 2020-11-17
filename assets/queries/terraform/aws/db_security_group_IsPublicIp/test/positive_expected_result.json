@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "db security group IsPublicIp",
+		"queryName": "DB Security Group Has Public IP",
 		"severity": "HIGH",
 		"line": 5
 	}

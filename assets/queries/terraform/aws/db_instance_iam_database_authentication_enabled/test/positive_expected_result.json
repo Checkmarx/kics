@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Iam Databse Auth Enabled is false",
+		"queryName": "IAM Database Auth Not Enabled",
 		"severity": "HIGH",
 		"line": 11
 	}

@@ -1,6 +1,6 @@
 {
-  "id": "Volume Snapshot Not Encrypted",
-  "queryName": "Volume_Snapshot_Not_Encrypted",
+  "id": "Volume_Snapshot_Not_Encrypted",
+  "queryName": "Volume Snapshot Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "The value on AWS Volume Snapshot Encryptation must be true",

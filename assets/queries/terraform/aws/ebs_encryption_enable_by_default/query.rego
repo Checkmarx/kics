@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_ebs_encryption_by_default[%s].enabled", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "One of 'aws_ebs_encryption_by_default.encrypted' is 'true'",
-                "keyActualValue": 	"One of 'aws_ebs_encryption_by_default.encrypted' is 'false'"
+                "keyExpectedValue": "'aws_ebs_encryption_by_default.encrypted' is true",
+                "keyActualValue": "aws_ebs_encryption_by_default.encrypted' is false"
               }
 }
