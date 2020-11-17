@@ -1,0 +1,8 @@
+{
+  "id": "Db_Instance_Auto_Minor_Version_Upgrade_Is_Set_To_False",
+  "queryName": "Auto Minor Version Upgrade Is Set To False",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "RDS Instance Auto Minor Version Upgrade feature in Aws Db Instance must be true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#auto_minor_version_upgrade"
+}
