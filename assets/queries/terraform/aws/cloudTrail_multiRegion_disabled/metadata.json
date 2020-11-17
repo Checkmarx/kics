@@ -1,5 +1,5 @@
 {
-  "id": "aws_cloudtrail",
+  "id": "cloud_trail_multi_region_disabled",
   "queryName": "Cloud Trail Multi Region Disabled",
   "severity": "MEDIUM",
   "category": "Logging",
