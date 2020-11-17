@@ -1,6 +1,6 @@
 {
-  "id": "DnssecUseRsasha1",
-  "queryName": "Dnssec Use Rsasha1",
+  "id": "dnssec_using_rsasha1",
+  "queryName": "DNSSEC Using RSASHA1",
   "severity": "HIGH",
   "category": "Encryption & Key Management",
   "descriptionText": "Checks if, within the 'dnssec_config' block, the 'default_key_specs' block exists with the 'algorithm' field is 'rsasha1' which is bad.",
