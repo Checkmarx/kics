@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "DB Instance Storage Not Encrypted",
+		"severity": "HIGH",
+		"line": 12
+	},
+	{
+		"queryName": "DB Instance Storage Not Encrypted",
+		"severity": "HIGH",
+		"line": 15
+	}
+]
