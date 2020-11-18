@@ -5,11 +5,11 @@ CxPolicy [ result ] {
   resource.metrics_enabled == false
 
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_api_gateway_method_settings[%s].settings", [name]),
-                "issueType":		"IncorrectValue", 
-                "keyExpectedValue": "metrics_enabled is true",
-                "keyActualValue": 	"metrics_enabled is false"
+                "documentId": input.document[i].id,
+                "searchKey": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled", [name]),
+                "issueType": "IncorrectValue", 
+                "keyExpectedValue": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled is true", [name]),
+                "keyActualValue": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled is false", [name])
               }
 }
 
@@ -18,9 +18,9 @@ CxPolicy [ result ] {
   object.get(resource, "metrics_enabled", "undefined") == "undefined"
     
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_api_gateway_method_settings[%s].settings", [name]),
-                "issueType":		"MissingAttribute",
+                "documentId": input.document[i].id,
+                "searchKey": sprintf("aws_api_gateway_method_settings[%s].settings", [name]),
+                "issueType": "MissingAttribute",
                 "keyExpectedValue": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled is defined", [name]),
                 "keyActualValue": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled is undefined", [name])
               }
