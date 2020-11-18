@@ -9,11 +9,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/checkmarxDev/ice/pkg/parser"
-	jsonParser "github.com/checkmarxDev/ice/pkg/parser/json"
-	terraformParser "github.com/checkmarxDev/ice/pkg/parser/terraform"
-	yamlParser "github.com/checkmarxDev/ice/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/stretchr/testify/require"
 )
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/worker/handler"
+	"github.com/Checkmarx/kics/internal/logger"
+	"github.com/Checkmarx/kics/pkg/worker/handler"
 	api "github.com/checkmarxDev/scans/pkg/api/workflow"
 	"github.com/checkmarxDev/scans/pkg/workflow/worker"
 	"github.com/pkg/errors"

@@ -1,6 +1,6 @@
 package model
 
-import "github.com/checkmarxDev/ice/pkg/model"
+import "github.com/Checkmarx/kics/pkg/model"
 
 type PathItemType string
 

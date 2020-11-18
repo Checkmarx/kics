@@ -5,8 +5,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/checkmarxDev/ice/internal/correlation"
-	"github.com/checkmarxDev/ice/internal/logger"
+	"github.com/Checkmarx/kics/internal/correlation"
+	"github.com/Checkmarx/kics/internal/logger"
 	"github.com/stretchr/testify/assert"
 )
 

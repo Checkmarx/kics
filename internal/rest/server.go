@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/checkmarxDev/ice/internal/correlation"
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/ice"
+	"github.com/Checkmarx/kics/internal/correlation"
+	"github.com/Checkmarx/kics/internal/logger"
+	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/gorilla/mux"
 
 	"github.com/rs/zerolog/log"
@@ -17,7 +17,7 @@ import (
 
 type Server struct {
 	Port    string
-	Service *ice.Service
+	Service *kics.Service
 }
 
 func (s *Server) ListenAndServe(ctx context.Context) error {

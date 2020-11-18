@@ -21,7 +21,7 @@ test: dep # Run unit tests
 
 .PHONY: dockerise
 dockerise:
-	docker build --build-arg GIT_USER=$(GITHUB_USER) --build-arg GIT_TOKEN=$(GITHUB_TOKEN) -t "ice:${IMAGE_TAG}" .
+	docker build --build-arg GIT_USER=$(GITHUB_USER) --build-arg GIT_TOKEN=$(GITHUB_TOKEN) -t "kics:${IMAGE_TAG}" .
 
 .PHONY: mock
 mock:

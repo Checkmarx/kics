@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/checkmarxDev/ice/pkg/builder/engine"
-	"github.com/checkmarxDev/ice/pkg/builder/writer"
+	"github.com/Checkmarx/kics/pkg/builder/engine"
+	"github.com/Checkmarx/kics/pkg/builder/writer"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"

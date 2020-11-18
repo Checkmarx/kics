@@ -6,7 +6,7 @@ package mock
 
 import (
 	context "context"
-	model "github.com/checkmarxDev/ice/pkg/model"
+	model "github.com/Checkmarx/kics/pkg/model"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )

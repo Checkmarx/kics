@@ -10,9 +10,9 @@ import (
 	"strings"
 	"sync"
 
-	internalcontext "github.com/checkmarxDev/ice/internal/context"
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/model"
+	internalcontext "github.com/Checkmarx/kics/internal/context"
+	"github.com/Checkmarx/kics/internal/logger"
+	"github.com/Checkmarx/kics/pkg/model"
 	repo "github.com/checkmarxDev/repostore/pkg/api/v1"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"

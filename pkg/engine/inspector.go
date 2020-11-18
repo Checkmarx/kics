@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/Checkmarx/kics/internal/logger"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"

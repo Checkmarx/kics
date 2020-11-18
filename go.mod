@@ -1,4 +1,4 @@
-module github.com/checkmarxDev/ice
+module github.com/Checkmarx/kics
 
 go 1.15
 

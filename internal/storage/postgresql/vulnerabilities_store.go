@@ -3,7 +3,7 @@ package postgresql
 import (
 	"context"
 
-	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 )

@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: ICE Results API
+  title: KICS Results API
   description: TBD
   version: 1.0.0
 tags:

@@ -7,26 +7,26 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/internal/rest"
-	"github.com/checkmarxDev/ice/internal/storage/postgresql"
-	"github.com/checkmarxDev/ice/internal/tracker"
-	"github.com/checkmarxDev/ice/pkg/engine"
-	"github.com/checkmarxDev/ice/pkg/engine/query"
-	"github.com/checkmarxDev/ice/pkg/ice"
-	"github.com/checkmarxDev/ice/pkg/parser"
-	jsonParser "github.com/checkmarxDev/ice/pkg/parser/json"
-	terraformParser "github.com/checkmarxDev/ice/pkg/parser/terraform"
-	yamlParser "github.com/checkmarxDev/ice/pkg/parser/yaml"
-	"github.com/checkmarxDev/ice/pkg/source"
-	"github.com/checkmarxDev/ice/pkg/worker"
-	"github.com/checkmarxDev/ice/pkg/worker/handler"
+	"github.com/Checkmarx/kics/internal/logger"
+	"github.com/Checkmarx/kics/internal/rest"
+	"github.com/Checkmarx/kics/internal/storage/postgresql"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/parser"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/source"
+	"github.com/Checkmarx/kics/pkg/worker"
+	"github.com/Checkmarx/kics/pkg/worker/handler"
 	_ "github.com/lib/pq"
 	"github.com/rs/zerolog/log"
 )
 
 const (
-	appName = "ice"
+	appName = "kics"
 )
 
 func main() {
@@ -69,7 +69,7 @@ func main() {
 		Add(terraformParser.NewDefault()).
 		Build()
 
-	service := &ice.Service{
+	service := &kics.Service{
 		SourceProvider: filesSource,
 		Storage:        store,
 		Parser:         combinedParser,
@@ -107,7 +107,7 @@ func main() {
 	log.Info().Msg("service Ended")
 }
 
-func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error, service *ice.Service) {
+func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error, service *kics.Service) {
 	if cfg.restPort == "" {
 		log.Info().Msgf("%s is not provided, will not expose REST", iceRESTPortEnvField)
 		return
@@ -124,7 +124,7 @@ func initRESTServer(ctx context.Context, cfg *config, wg *sync.WaitGroup, errCha
 	}()
 }
 
-func initWorker(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error, service *ice.Service) {
+func initWorker(ctx context.Context, cfg *config, wg *sync.WaitGroup, errChan chan error, service *kics.Service) {
 	// TODO service have a reason to live without work from queue ? if not we should fail the service.
 	if cfg.workflowBrokerAddress == "" {
 		log.Info().Msgf("%s is not provided, will not take work from message queue", workflowBrokerAddressEnvField)

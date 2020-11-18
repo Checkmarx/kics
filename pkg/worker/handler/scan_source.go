@@ -3,16 +3,16 @@ package handler
 import (
 	"context"
 
-	"github.com/checkmarxDev/ice/internal/correlation"
-	"github.com/checkmarxDev/ice/internal/logger"
-	"github.com/checkmarxDev/ice/pkg/ice"
+	"github.com/Checkmarx/kics/internal/correlation"
+	"github.com/Checkmarx/kics/internal/logger"
+	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/checkmarxDev/scans/pkg/api/scans"
 	"github.com/checkmarxDev/scans/pkg/api/workflow"
 	"google.golang.org/protobuf/proto"
 )
 
 type ScanHandler struct {
-	Scanner *ice.Service
+	Scanner *kics.Service
 }
 
 func (s *ScanHandler) Handler(msg *workflow.Message) <-chan StatusInfo {

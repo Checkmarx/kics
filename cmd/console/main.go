@@ -7,17 +7,17 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/checkmarxDev/ice/internal/storage"
-	"github.com/checkmarxDev/ice/internal/tracker"
-	"github.com/checkmarxDev/ice/pkg/engine"
-	"github.com/checkmarxDev/ice/pkg/engine/query"
-	"github.com/checkmarxDev/ice/pkg/ice"
-	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/checkmarxDev/ice/pkg/parser"
-	jsonParser "github.com/checkmarxDev/ice/pkg/parser/json"
-	terraformParser "github.com/checkmarxDev/ice/pkg/parser/terraform"
-	yamlParser "github.com/checkmarxDev/ice/pkg/parser/yaml"
-	"github.com/checkmarxDev/ice/pkg/source"
+	"github.com/Checkmarx/kics/internal/storage"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -77,7 +77,7 @@ func main() { // nolint:funlen,gocyclo
 				Add(terraformParser.NewDefault()).
 				Build()
 
-			service := &ice.Service{
+			service := &kics.Service{
 				SourceProvider: filesSource,
 				Storage:        store,
 				Parser:         combinedParser,

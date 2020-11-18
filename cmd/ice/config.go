@@ -40,7 +40,7 @@ func loadConfig() *config {
 	viper.SetDefault(logLevelEnvField, logLevelDefault)
 	viper.SetDefault(iceRESTPortEnvField, iceRESTPortDefault)
 	viper.SetDefault(workflowBrokerAddressEnvField, "127.0.0.1:26500")
-	viper.SetDefault(workJobTypeEnvField, "ice-runner")
+	viper.SetDefault(workJobTypeEnvField, "kics-runner")
 	viper.SetDefault(workTimeoutMinutesEnvField, "600")
 	viper.SetDefault(repostoreRestAddressEnvField, "http://localhost:30302")
 	viper.SetDefault(repostoreGRPCAddressEnvField, "localhost:3333")

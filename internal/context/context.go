@@ -3,7 +3,7 @@ package context
 import (
 	"context"
 
-	"github.com/checkmarxDev/ice/internal/correlation"
+	"github.com/Checkmarx/kics/internal/correlation"
 )
 
 func ForwardContext(ctx context.Context) context.Context {

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/checkmarxDev/ice/internal/correlation"
+	"github.com/Checkmarx/kics/internal/correlation"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"

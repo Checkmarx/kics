@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/checkmarxDev/ice/internal/correlation"
+	"github.com/Checkmarx/kics/internal/correlation"
 	"github.com/stretchr/testify/assert"
 )
 
