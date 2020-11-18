@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_ecr_repository[%s].image_scanning_configuration.scan_on_push", [name]),
                 "issueType":		"IncorrectValued",
-                "keyExpectedValue": "Image Scanned",
-                "keyActualValue": 	"Image not scanned",
+                "keyExpectedValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration.scan_on_push is true", [name]),
+                "keyActualValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration.scan_on_push is false", [name]),
                 "enabled" : imageScan.scan_on_push
               }
 }
@@ -22,7 +22,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_ecr_repository[%s]", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "image_scanning_configuration is available",
-                "keyActualValue": 	"image_scanning_configuration is missing",
+                "keyExpectedValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration is defined", [name]),
+                "keyActualValue": sprintf("aws_ecr_repository[%s].image_scanning_configuration is undefined", [name]),
               }
 }
