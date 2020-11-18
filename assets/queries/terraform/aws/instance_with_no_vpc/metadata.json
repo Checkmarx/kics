@@ -1,5 +1,5 @@
 {
-  "id": "instanceWithNoVpc",
+  "id": "instance_with_no_vpc",
   "queryName": "Instance With No Vpc",
   "severity": "MEDIUM",
   "category": "Network security",

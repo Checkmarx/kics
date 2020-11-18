@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "AWS CloudFormation In Use",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]
