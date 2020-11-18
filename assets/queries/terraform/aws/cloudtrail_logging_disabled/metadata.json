@@ -1,6 +1,6 @@
 {
-  "id": "enable_logging",
-  "queryName": "Logging Not Enabled",
+  "id": "cloudtrail_logging_disabled",
+  "queryName": "CloudTrail Logging Disabled",
   "severity": "HIGH",
   "category": "Logging",
   "descriptionText": "Enables Logging for the trail",
