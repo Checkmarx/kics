@@ -3,6 +3,6 @@
   "queryName": "OS Login isn't Enabled",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "Gets if the oslogin is enabled",
+  "descriptionText": "Verifies that the oslogin is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_project_metadata#metadata"
 }
