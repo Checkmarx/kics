@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Public Storage Account",
+		"severity": "HIGH",
+		"line": 11
+	},
+	{
+		"queryName": "Public Storage Account",
+		"severity": "HIGH",
+		"line": 28
+	},
+	{
+		"queryName": "Public Storage Account",
+		"severity": "HIGH",
+		"line": 43
+	},
+	{
+		"queryName": "Public Storage Account",
+		"severity": "HIGH",
+		"line": 48
+	}
+]
