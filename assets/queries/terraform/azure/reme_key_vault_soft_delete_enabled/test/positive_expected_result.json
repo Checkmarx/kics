@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Key Vault Soft Delete is Enabled",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+	{
+		"queryName": "Key Vault Soft Delete is Enabled",
+		"severity": "MEDIUM",
+		"line": 12
+	}
+]
