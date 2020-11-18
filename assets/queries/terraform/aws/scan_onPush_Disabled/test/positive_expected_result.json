@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Image is not scanned",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+	,
+	{
+		"queryName": "Image is not scanned",
+		"severity": "MEDIUM",
+		"line": 11
+	}
+]

@@ -1,0 +1,8 @@
+{
+  "id": "scan_onPush_Disabled",
+  "queryName": "Image is not scanned",
+  "severity": "MEDIUM",
+  "category": "Data Security",
+  "descriptionText": "Checks if the Image has been scanned",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push"
+}
