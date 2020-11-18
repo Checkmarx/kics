@@ -3,5 +3,10 @@
 		"queryName": "AWS Elasticsearch Domain Slow Logs",
 		"severity": "MEDIUM",
 		"line": 6
+	},
+	{
+		"queryName": "AWS Elasticsearch Domain Slow Logs",
+		"severity": "MEDIUM",
+		"line": 14
 	}
 ]
