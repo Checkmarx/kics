@@ -1,0 +1,8 @@
+{
+  "id": "enable_node_auto_upgrade",
+  "queryName": "Enable Node Auto Upgrade",
+  "severity": "HIGH",
+  "category": "Operational Efficiency",
+  "descriptionText": "Checks if 'auto_upgrade' nodes is enabled for Kubernetes Clusters.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#auto_upgrade"
+}

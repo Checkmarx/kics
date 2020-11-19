@@ -1,0 +1,8 @@
+{
+  "id": "SQL_Database_BackupConfiguration_Disabled",
+  "queryName": "SQL Database Backup Configuration Disabled",
+  "severity": "HIGH",
+  "category": "Backup & Disaster Recovery",
+  "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance"
+}
