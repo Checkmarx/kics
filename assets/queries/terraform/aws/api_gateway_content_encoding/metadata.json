@@ -1,0 +1,8 @@
+{
+  "id": "api_gateway_content_encoding",
+  "queryName": "API Gateway Content Encoding",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Enable Content Encoding through the attribute 'minimum_compression_size'. This value should be greater than -1 and smaller than 10485760",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api"
+}

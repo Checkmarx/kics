@@ -1,0 +1,19 @@
+[
+	{
+		"queryName": "API Gateway Content Encoding",
+		"severity": "MEDIUM",
+		"line": 1
+	},
+
+	{
+		"queryName": "API Gateway Content Encoding",
+		"severity": "MEDIUM",
+		"line": 17
+	},
+
+	{
+		"queryName": "API Gateway Content Encoding",
+		"severity": "MEDIUM",
+		"line": 28
+	}
+]
