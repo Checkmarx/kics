@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_container_node_pool[%s].management.auto_repair", [name]),
                 "issueType":		"IncorrectValue", 
-                "keyExpectedValue": "'google_container_node_pool.management' is true",
-                "keyActualValue": 	"'google_container_node_pool.management' is false"
+                "keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair is true", [name]),
+                "keyActualValue": sprintf("google_container_node_pool[%s].management.auto_repair is false", [name])
               }
 }
 
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_container_node_pool[%s].management", [name]),
                 "issueType":		"MissingAttribute", 
-                "keyExpectedValue": "'google_container_node_pool.management' is true",
-                "keyActualValue": 	"'google_container_node_pool.management' is undefined"
+                "keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair is defined", [name]),
+                "keyActualValue": sprintf("google_container_node_pool[%s].management.auto_repair is undefined", [name])
               }
 }
