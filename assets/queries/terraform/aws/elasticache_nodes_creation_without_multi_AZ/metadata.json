@@ -1,0 +1,8 @@
+{
+  "id": "ElastiCache_Nodes_Are_Not_Created_Across_Multi_AZ",
+  "queryName": "ElastiCache Nodes Are Not Created Across Multi AZ",
+  "severity": "MEDIUM",
+  "category": "High Availability",
+  "descriptionText": "Check if ElastiCache nodes are not being created across multi AZ",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster"
+}
