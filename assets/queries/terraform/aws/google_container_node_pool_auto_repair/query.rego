@@ -1,0 +1,29 @@
+package Cx
+
+CxPolicy [ result ] {
+  nodePool := input.document[i].resource.google_container_node_pool[name]
+  nodePool.management.auto_repair == false
+ 
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("google_container_node_pool[%s].management.auto_repair", [name]),
+                "issueType":		"IncorrectValue", 
+                "keyExpectedValue": "'google_container_node_pool.management' is true",
+                "keyActualValue": 	"'google_container_node_pool.management' is false"
+              }
+}
+
+CxPolicy [ result ] {
+  nodePool := input.document[i].resource.google_container_node_pool[name]
+  object.get(nodePool, "management", "undefined") == "undefined"
+ 
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("google_container_node_pool[%s].management", [name]),
+                "issueType":		"MissingAttribute", 
+                "keyExpectedValue": "'google_container_node_pool.management' is true",
+                "keyActualValue": 	"'google_container_node_pool.management' is undefined"
+              }
+}

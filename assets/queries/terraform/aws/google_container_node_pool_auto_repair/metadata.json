@@ -1,0 +1,8 @@
+{
+  "id": "google_container_node_pool_auto_repair",
+  "queryName": "Google Container Node Pool Auto Repair",
+  "severity": "MEDIUM",
+  "category": "Operational Efficiency",
+  "descriptionText": "Verifies if Google Conatiner Node Pool Auto Repair is Enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool"
+}
