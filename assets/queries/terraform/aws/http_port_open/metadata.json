@@ -1,5 +1,5 @@
 {
-  "id": "htttp_port_open",
+  "id": "http_port_open",
   "queryName": "HTTP port open",
   "severity": "HIGH",
   "category": "Network Ports Security",
