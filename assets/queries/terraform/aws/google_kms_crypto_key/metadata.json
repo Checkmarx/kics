@@ -1,6 +1,6 @@
 {
   "id": "google_kms_crypto_key",
-  "queryName": "Google Kms Crypto Key",
+  "queryName": "Google KMS Crypto Key Rotation Period",
   "severity": "MEDIUM",
   "category": "Encryption & Key Management",
   "descriptionText": "Make sure Encryption keys changes after 90 days",
