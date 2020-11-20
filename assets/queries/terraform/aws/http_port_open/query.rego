@@ -2,13 +2,16 @@ package Cx
 
 CxPolicy [ result ] {
   resource := input.document[i].resource.aws_security_group[name].ingress
-  resource.from_port == 80
+  resource.cidr_blocks[i] == "0.0.0.0/0"
+  portNumber := 80
+  resource.from_port <= portNumber
+  resource.to_port >= portNumber
 
 	result := {
                 "documentId": 		  input.document[i].id,
-                "searchKey": 	      sprintf("aws_security_group[%s].ingress.from_port", [name]),
+                "searchKey": 	      sprintf("aws_security_group[%s].ingress", [name]),
                 "issueType":		    "IncorrectValue",
-                "keyExpectedValue": sprintf("aws_security_group[%s].ingress.from_port doesn't open the http port", [name]),
-                "keyActualValue": 	sprintf("aws_security_group[%s].ingress.from_port opens the http port", [name]),
+                "keyExpectedValue": sprintf("aws_security_group[%s].ingress doesn't open the http port", [name]),
+                "keyActualValue": 	sprintf("aws_security_group[%s].ingressopens the http port", [name]),
               }
 }

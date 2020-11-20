@@ -5,9 +5,10 @@ resource "aws_security_group" "http_positive_tcp_1" {
 
   ingress {
     description = "HTTP port open"
-    from_port   = 80
-    to_port     = 80
+    from_port   = 78
+    to_port     = 91
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -17,8 +18,9 @@ resource "aws_security_group" "http_positive_udp_1" {
 
   ingress {
     description = "HTTP port open"
-    from_port   = 80
-    to_port     = 80
+    from_port   = 60
+    to_port     = 85
     protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

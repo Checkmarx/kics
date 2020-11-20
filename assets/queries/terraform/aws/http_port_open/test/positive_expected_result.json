@@ -2,11 +2,11 @@
 	{
 		"queryName": "HTTP port open",
 		"severity": "HIGH",
-		"line": 8
+		"line": 6
 	},
 	{
 		"queryName": "HTTP port open",
 		"severity": "HIGH",
-		"line": 20
+		"line": 19
 	}
 ]

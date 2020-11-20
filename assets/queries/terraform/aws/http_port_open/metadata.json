@@ -3,6 +3,6 @@
   "queryName": "HTTP port open",
   "severity": "HIGH",
   "category": "Network Ports Security",
-  "descriptionText": "HTTP port is opent to the internet",
+  "descriptionText": "HTTP port is open to the internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
 }
