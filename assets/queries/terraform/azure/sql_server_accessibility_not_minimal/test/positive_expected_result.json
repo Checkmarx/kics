@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "SQL Server Accessibility is Not Minimal",
+		"severity": "MEDIUM",
+		"line": 20
+	},
+	{
+		"queryName": "SQL Server Accessibility is Not Minimal",
+		"severity": "MEDIUM",
+		"line": 28
+	}
+]
