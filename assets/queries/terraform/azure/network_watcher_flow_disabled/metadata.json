@@ -1,0 +1,8 @@
+{
+  "id": "network_watcher_flow_disabled",
+  "queryName": "Network Watcher Flow Disabled",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Check if enable field in the resource azurerm_network_watcher_flow_log is false.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log"
+}
