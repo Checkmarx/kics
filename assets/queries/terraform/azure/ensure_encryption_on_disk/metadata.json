@@ -1,0 +1,8 @@
+{
+  "id": "ensure_encryption_on_disk",
+  "queryName": "Ensure Encryption on Disk",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure that the encryption is active on the disk",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk#encryption_settings"
+}
