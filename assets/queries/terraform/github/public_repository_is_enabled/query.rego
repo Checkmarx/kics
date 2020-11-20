@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("github_repository[%s]", [example]),
+                "searchKey": 	    sprintf("github_repository[%s].private", [example]),
                 "issueType":		"IncorrectValue", 
                 "keyExpectedValue": "Attribute 'private' is true",
                 "keyActualValue": 	"Attribute 'private' is false"
@@ -34,7 +34,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("github_repository[%s]", [example]),
+                "searchKey": 	    sprintf("github_repository[%s].visibility", [example]),
                 "issueType":		"IncorrectValue", 
                 "keyExpectedValue": "Attribute 'visibility' is 'private'",
                 "keyActualValue": 	"Attribute 'visibility' is 'public'"
