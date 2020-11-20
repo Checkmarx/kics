@@ -1,0 +1,8 @@
+{
+  "id": "IAM_Password_Without_Valid_Minimum_Length",
+  "queryName": "IAM Password Without Valid Minimum Length",
+  "severity": "MEDIUM",
+  "category": "IAM",
+  "descriptionText": "Check if IAM account password has the required minimum length",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy"
+}
