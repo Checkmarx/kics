@@ -8,8 +8,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_compute_disk[%s]", [name]),
                 "issueType":		"MissingAttribute", 
-                "keyExpectedValue": "Attribute 'disk_encryption_key' is defined",
-                "keyActualValue": 	"Attribute 'disk_encryption_key' is undefined"
+                "keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is defined", [name]),
+                "keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is undefined", [name]),
               }
 }
 
@@ -22,8 +22,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_compute_disk[%s].disk_encryption_key", [name]),
                 "issueType":		"MissingAttribute", 
-                "keyExpectedValue": "Attribute 'disk_encryption_key.sha256' is defined",
-                "keyActualValue": 	"Attribute 'disk_encryption_key.sha256' is undefined"
+                "keyExpectedValue": sprintf("'google_compute_disk[%s].disk_encryption_key.sha256' is defined", [name]),
+                "keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key' is undefined", [name]),
               }
 }
 
