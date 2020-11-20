@@ -1,0 +1,8 @@
+{
+  "id": "Legacy_Authorization_Enabled",
+  "queryName": "Legacy Authorization is Enabled",
+  "severity": "HIGH",
+  "category": "Identity & Access Management",
+  "descriptionText": "Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'enable_legacy_abac' must not be true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster"
+}

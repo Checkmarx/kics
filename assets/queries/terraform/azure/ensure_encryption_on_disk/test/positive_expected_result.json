@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Ensure Encryption on Disk",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "Ensure Encryption on Disk",
+		"severity": "MEDIUM",
+		"line": 18
+	}
+]

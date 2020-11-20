@@ -1,0 +1,8 @@
+{
+  "id": "role_assignment_of_guest_users",
+  "queryName": "Role Assignment Of Guest Users",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "There is a role assignment for guest user",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment"
+}
