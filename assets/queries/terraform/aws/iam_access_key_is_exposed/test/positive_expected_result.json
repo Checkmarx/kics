@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "IAM Access Key Is Exposed",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+	{
+		"queryName": "IAM Access Key Is Exposed",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]
