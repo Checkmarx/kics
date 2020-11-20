@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "SSH' (TCP:22) in Public Scope",
+		"severity": "HIGH",
+		"line": 11
+	},
+
+	{
+		"queryName": "SSH' (TCP:22) in Public Scope",
+		"severity": "HIGH",
+		"line": 37
+	}
+
+]
