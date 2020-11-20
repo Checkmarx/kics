@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey":      sprintf("azurerm_cosmosdb_account[%s]", [name]),
                 "issueType":		"MissingAttribute", 
-                "keyExpectedValue": sprintf("azurerm_cosmosdb_account[%s].tags is defined'",
-                "keyActualValue": sprintf("azurerm_cosmosdb_account[%s].tags is undefined'"
+                "keyExpectedValue": sprintf("azurerm_cosmosdb_account[%s].tags is defined'", [name]),
+                "keyActualValue": sprintf("azurerm_cosmosdb_account[%s].tags is undefined'", [name])
               }
 }
