@@ -17,5 +17,5 @@ resource "aws_cloudwatch_log_group" "yada2" {
     Application = "serviceA"
   }
 
-  retention_in_days = 1
+  retention_in_days = 0
 }
