@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "Google Compute SSL Policy Weak Chiper Suits is Enabled",
+		"queryName": "Google Compute SSL Policy Weak Chipher Suits is Enabled",
 		"severity": "MEDIUM",
 		"line": 3
 	},
 	{
-		"queryName": "Google Compute SSL Policy Weak Chiper Suits is Enabled",
+		"queryName": "Google Compute SSL Policy Weak Chipher Suits is Enabled",
 		"severity": "MEDIUM",
 		"line": 8
 	}
