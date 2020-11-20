@@ -1,0 +1,8 @@
+{
+  "id": "redis_publicly_accessible",
+  "queryName": "Redis Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule"
+}
