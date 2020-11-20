@@ -56,7 +56,7 @@ func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerab
 			return []model.QueryMetadata{q}, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
+	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
