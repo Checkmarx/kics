@@ -6,7 +6,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("google_container_cluster[%s]", [primary]),
+                "searchKey": 	    sprintf("google_container_cluster[%s].enable_legacy_abac", [primary]),
                 "issueType":		"IncorrectValue", 
                 "keyExpectedValue": "Attribute 'enable_legacy_abac' is false",
                 "keyActualValue": 	"Attribute 'enable_legacy_abac' is true"

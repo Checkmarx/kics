@@ -2,6 +2,6 @@
 	{
 		"queryName": "Legacy Authorization is Enabled",
 		"severity": "HIGH",
-		"line": 2
+		"line": 6
 	}
 ]
