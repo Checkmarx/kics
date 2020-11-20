@@ -1,0 +1,8 @@
+{
+  "id": "AWS_Config_Configuration_Aggregator_All_Regions_Not_Enabled",
+  "queryName": "AWS Config Configuration Aggregator All Regions Not Enabled",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator#all_regions"
+}
