@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Default Network Acess is Allowed",
+		"severity": "MEDIUM",
+		"line": 38
+	}
+]
