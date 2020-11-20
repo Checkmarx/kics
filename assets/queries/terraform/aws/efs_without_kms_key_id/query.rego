@@ -9,7 +9,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_efs_file_system[%s]", [name]),
                 "issueType":		   "MissingAttribute",
-                "keyExpectedValue": "'aws_efs_file_system.kms_key_id' is 'defined'",
-                "keyActualValue": 	"'aws_efs_file_system.kms_key_id' is 'undefined'"
+                "keyExpectedValue": sprintf("aws_efs_file_system[%s].kms_key_id' is defined'", [name]),
+                "keyActualValue": 	sprintf("aws_efs_file_system[%s].kms_key_id' is undefined", [name])
               }
 }
