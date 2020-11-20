@@ -7,11 +7,11 @@
 	{
 		"queryName": "Public Repository is Enabled",
 		"severity": "MEDIUM",
-		"line": 12
+		"line": 16
 	},
 	{
 		"queryName": "Public Repository is Enabled",
 		"severity": "MEDIUM",
-		"line": 24
+		"line": 29
 	}
 ]
