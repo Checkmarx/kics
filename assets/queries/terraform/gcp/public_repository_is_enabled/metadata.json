@@ -1,0 +1,8 @@
+{
+  "id": "Public_Repository_Enabled",
+  "queryName": "Public Repository is Enabled",
+  "severity": "MEDIUM",
+  "category": "Identity & Access Management",
+  "descriptionText": "Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/github/r/repository.html"
+}
