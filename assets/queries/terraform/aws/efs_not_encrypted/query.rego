@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy [ result ] {
 
-  efs= input.document[i].resource.aws_efs_file_system[name]
+  efs := input.document[i].resource.aws_efs_file_system[name]
   not efs.encrypted
   
    result := {
