@@ -8,7 +8,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_compute_subnetwork[%s]", [name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "'google_compute_subnetwork.log_config' should be defined",
-                "keyActualValue": 	"'google_compute_subnetwork.log_config' is undefined",
+                "keyExpectedValue": sprintf("'google_compute_subnetwork[%s].log_config' is defined", [name]),
+                "keyActualValue": sprintf("'google_compute_subnetwork[%s].log_config' is undefined", [name]),
               }
 } 

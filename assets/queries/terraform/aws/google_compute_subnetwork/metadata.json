@@ -1,6 +1,6 @@
 {
   "id": "google_compute_subnetwork",
-  "queryName": "Google Compute Subnetwork Logs is Disabled",
+  "queryName": "Google Compute Subnetwork Logs are Disabled",
   "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "This query checks if logs are enabled for google compute subnetwork",
