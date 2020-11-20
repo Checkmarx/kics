@@ -1,6 +1,6 @@
 {
-  "id": "Default_Network_Acess_Allowed",
-  "queryName": "Default Network Acess is Allowed",
+  "id": "Default_Network_Access_Allowed",
+  "queryName": "Default Network Access is Allowed",
   "severity": "MEDIUM",
   "category": "Network Security",
   "descriptionText": "Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'",
