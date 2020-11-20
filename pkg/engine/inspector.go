@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/logger"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
@@ -135,8 +134,7 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 			payload: combinedFiles,
 		})
 		if err != nil {
-			logger.GetLoggerWithFieldsFromContext(ctx).
-				Err(err).
+			log.Err(err).
 				Str("scanID", scanID).
 				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
 
@@ -191,8 +189,7 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 		})
 	}
 
-	logger.GetLoggerWithFieldsFromContext(ctx.ctx).
-		Trace().
+	log.Trace().
 		Str("scanID", ctx.scanID).
 		Msgf("Inspector executed with result %+v, query=%s", results, ctx.query.metadata.Query)
 
@@ -220,8 +217,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, queryResultItem)
 		if err != nil {
-			logger.GetLoggerWithFieldsFromContext(ctx.ctx).
-				Err(err).
+			log.Err(err).
 				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
 
 			continue

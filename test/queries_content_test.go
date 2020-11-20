@@ -87,7 +87,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 			return model.Vulnerability{}, nil
 		},
-		&tracker.NullTracker{},
+		&tracker.CITracker{},
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
