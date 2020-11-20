@@ -1,0 +1,8 @@
+{
+  "id": "DB_Instance_Publicly_Accessible",
+  "queryName": "DB Instance Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "The feature Publicly Accessible must be false",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#publicly_accessible"
+}
