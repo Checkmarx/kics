@@ -2,8 +2,8 @@ package Cx
 
 
 isSSH(currentFromPort, currentToPort) = allow {
-     currentFromPort == 22
-     currentToPort == 22
+     currentFromPort <= 22
+     currentToPort >= 22
      allow = true
 }
 
@@ -35,10 +35,10 @@ CxPolicy [ result ] {
   
 
   result := {
-                "documentId": 		    input.document[i].id,
+                "documentId": 	   input.document[i].id,
                 "searchKey": 	        sprintf("aws_security_group[%s].ingress.cidr", [name]),
-                "issueType":		     "IncorrectValue",
-                "keyExpectedValue":   sprintf("aws_security_group[%s].ingress.cidr is not public", [name]),
-                "keyActualValue": 	  sprintf("aws_security_group[%s].ingress.cidr is public", [name]),
+                "issueType":		   "IncorrectValue",
+                "keyExpectedValue":   sprintf("aws_security_group[%s] SSH' (Port:22) is not public", [name]),
+                "keyActualValue": 	   sprintf("aws_security_group[%s] SSH' (Port:22) is public", [name]),
             }
 }
