@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("aws_efs_file_system[%s]", [name]),
                 "issueType":		   "IncorrectValue",
-                "keyExpectedValue": "'aws_efs_file_system.encrypted' is 'true'",
-                "keyActualValue": 	"'aws_efs_file_system.encrypted' is 'false'"
+                "keyExpectedValue": sprintf("aws_efs_file_system[%s].encrypted' is true", [name]),
+                "keyActualValue": sprintf("aws_efs_file_system[%s].encrypted' is false", [name])
               }
 }
 
