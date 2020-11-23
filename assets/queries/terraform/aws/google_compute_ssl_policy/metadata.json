@@ -1,6 +1,6 @@
 {
   "id": "google_compute_ssl_policy",
-  "queryName": "Google Compute SSL Policy Weak Chipher Suits is Enabled",
+  "queryName": "Google Compute SSL Policy Weak Cipher Suits is Enabled",
   "severity": "MEDIUM",
   "category": "Encryption & Key Management",
   "descriptionText": "This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers",
