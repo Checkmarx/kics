@@ -12,7 +12,7 @@ CxPolicy [ result ] {
                 "documentId": 		  input.document[i].id,
                 "searchKey": 	      sprintf("aws_security_group[%s].ingress", [name]),
                 "issueType":		    "IncorrectValue",
-                "keyExpectedValue": sprintf("aws_security_group[%s].ingress doesn't open the remote desktop port", [name]),
-                "keyActualValue": 	sprintf("aws_security_group[%s].ingress opens the remote desktop port", [name]),
+                "keyExpectedValue": sprintf("aws_security_group[%s].ingress doesn't open the remote desktop port (%s)", [name, portNumber]),
+                "keyActualValue": 	sprintf("aws_security_group[%s].ingress opens the remote desktop port (%s)", [name, portNumber]),
               }
 }
