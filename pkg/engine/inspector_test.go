@@ -1,7 +1,6 @@
 package engine
 
 import (
-	"context"
 	"fmt"
 	"testing"
 
@@ -35,12 +34,9 @@ func TestMapKeyToString(t *testing.T) {
 		},
 	}
 
-	ctx := QueryContext{
-		ctx: context.Background(),
-	}
 	for i, testCase := range testCases {
 		t.Run(fmt.Sprintf("mapKeyToString-%d", i), func(t *testing.T) {
-			v, err := mapKeyToString(ctx, map[string]interface{}{"key": testCase.payload}, "key", false)
+			v, err := mapKeyToString(map[string]interface{}{"key": testCase.payload}, "key", false)
 			require.Nil(t, err)
 			require.Equal(t, testCase.expected, *v)
 		})
