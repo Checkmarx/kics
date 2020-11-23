@@ -21,7 +21,7 @@ nav:
     - Results: results.md
   - Queries: queries.md
   - Architecture: architecture.md
-  - Contribution: contribution.md
+  - Contribution: CONTRIBUTING.md
   - Project:
     - Roadmap: roadmap.md
     - Plans: 'https://github.com/CheckmarxDev/ice/projects'
