@@ -45,7 +45,7 @@ KICS is a true community project. It's built as an open source from day one, and
 - [Take me to the repo on GitHub!](https://github.com/CheckmarxDev/ice/)
 
 - [How can I help?!](contribution.md)
-- [Take me to the repo on GitHub!](https://github.com/CheckmarxDev/ice/)
+- [Take me to the repo on GitHub!](https://github.com/Checkmarx/kics/)
 
 ## About the Project
 
@@ -60,5 +60,5 @@ Now, Software <span style="color: #5FBB46">**=**</span> **Security**.
 Looking for more info? Explore KICS project in details:
 
 - [Roadmap](roadmap.md)
-- [Project plans](https://github.com/CheckmarxDev/ice/projects)
-- [Issues](https://github.com/CheckmarxDev/ice/issues)
+- [Project plans](https://github.com/Checkmarx/kics/projects)
+- [Issues](https://github.com/Checkmarx/kics/issues)

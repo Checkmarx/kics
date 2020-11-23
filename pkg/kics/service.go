@@ -1,14 +1,14 @@
-package ice
+package kics
 
 import (
 	"context"
 	"io"
 	"io/ioutil"
 
-	"github.com/checkmarxDev/ice/pkg/engine"
-	"github.com/checkmarxDev/ice/pkg/model"
-	"github.com/checkmarxDev/ice/pkg/parser"
-	"github.com/checkmarxDev/ice/pkg/source"
+	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser"
+	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 )

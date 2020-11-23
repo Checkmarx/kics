@@ -3,7 +3,7 @@ package json
 import (
 	"bytes"
 
-	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	"gopkg.in/yaml.v3"
 )
 

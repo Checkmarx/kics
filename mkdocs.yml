@@ -9,7 +9,7 @@ copyright:  >-
 
 # Repo
 repo_name: GitHub
-repo_url: https://github.com/CheckmarxDev/ice/
+repo_url: https://github.com/Checkmarx/kics/
 
 
 # Navigation
@@ -24,8 +24,8 @@ nav:
   - Contribution: CONTRIBUTING.md
   - Project:
     - Roadmap: roadmap.md
-    - Plans: 'https://github.com/CheckmarxDev/ice/projects'
-    - Issues: 'https://github.com/CheckmarxDev/ice/issues'
+    - Plans: 'https://github.com/Checkmarx/kics/projects'
+    - Issues: 'https://github.com/Checkmarx/kics/issues'
   - About: about.md
 
 # Theme

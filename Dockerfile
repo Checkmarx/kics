@@ -27,15 +27,15 @@ COPY . .
 
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o bin/ice cmd/ice/main.go cmd/ice/config.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o bin/kics cmd/kics/main.go cmd/kics/config.go
 
 #runtime image
 FROM alpine:3.11.3
 
 RUN apk add --no-cache  git
 
-COPY --from=build_env /app/bin/ice /app/bin/ice
+COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets /app/assets
 
 # Command to run the executable
-ENTRYPOINT ["/app/bin/ice"]
+ENTRYPOINT ["/app/bin/kics"]

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"path/filepath"
 
-	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 type kindParser interface {

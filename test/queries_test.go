@@ -8,11 +8,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/checkmarxDev/ice/internal/tracker"
-	"github.com/checkmarxDev/ice/pkg/engine"
-	"github.com/checkmarxDev/ice/pkg/engine/mock"
-	"github.com/checkmarxDev/ice/pkg/engine/query"
-	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/mock"
+	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -56,7 +56,7 @@ func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerab
 			return []model.QueryMetadata{q}, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.NullTracker{})
+	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 

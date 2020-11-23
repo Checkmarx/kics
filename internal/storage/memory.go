@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 
-	"github.com/checkmarxDev/ice/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 type MemoryStorage struct {
