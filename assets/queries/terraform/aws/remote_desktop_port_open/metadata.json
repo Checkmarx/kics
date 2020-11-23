@@ -1,0 +1,8 @@
+{
+  "id": "remote_desktop_port_open",
+  "queryName": "Remote Desktop Port Open",
+  "severity": "HIGH",
+  "category": "Network Ports Security",
+  "descriptionText": "The remote desktop port is open",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+}
