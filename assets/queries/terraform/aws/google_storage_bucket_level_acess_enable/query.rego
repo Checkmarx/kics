@@ -19,7 +19,7 @@ CxPolicy [ result ] {
     
 	result := {
                 "documentId": input.document[i].id,
-                "searchKey": sprintf("google_storage_bucket[%s].uniform_bucket_level_access", [name]),
+                "searchKey": sprintf("google_storage_bucket[%s]", [name]),
                 "issueType": "MissingAttribute",
                 "keyExpectedValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is defined", [name]),
                 "keyActualValue": sprintf("google_storage_bucket[%s].uniform_bucket_level_access is undefined", [name])
