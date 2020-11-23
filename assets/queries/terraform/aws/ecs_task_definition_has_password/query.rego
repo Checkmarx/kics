@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_ecs_task_definition[%s].container_definitions.environment.name", [name]),
+                "searchKey": 	    sprintf("%s", [env.name]),
                 "issueType":		"IncorrectValue", 
                 "keyExpectedValue": "'container_definitions.environment.name' dosen't have value password",
                 "keyActualValue": 	"'container_definitions.environment.name' has value password"
