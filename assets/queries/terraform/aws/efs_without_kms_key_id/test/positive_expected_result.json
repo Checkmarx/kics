@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EFS Without KMS Key ID",
+		"severity": "HIGH",
+		"line": 1
+	}
+]
