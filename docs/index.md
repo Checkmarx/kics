@@ -39,14 +39,15 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 ## Contribution
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
-[Check out how](contribution.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
+[Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-- [How can I help?!](contribution.md)
+- [How can I help?!](CONTRIBUTING.md)
 - [Take me to the repo on GitHub!](https://github.com/CheckmarxDev/ice/)
 
 ## About the Project
 
-The [KICS project](about.md) is powered by [Checkmarx](https://www.checkmarx.com/), global leader of Application Security Testing.
+The KICS project is powered by [Checkmarx](https://www.checkmarx.com/), global leader of Application Security Testing.  
+[Read more](about.md) about **Infrastructure as Code**, **Infrastructure as Code Testing** and Checkmarx.
 
 KICS will always stay an open source and free project for the benefit of global software industry community.  
 We believe that when **Software is Everywhere, Security is Everything**.  
