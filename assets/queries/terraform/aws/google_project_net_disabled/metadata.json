@@ -3,6 +3,6 @@
   "queryName": "Google Project Auto Create Network is Disabled",
   "severity": "MEDIUM",
   "category": "Network Security",
-  "descriptionText": "See If Google Project Auto Create Network is Disabled",
+  "descriptionText": "Verifies if the Google Project Auto Create Network is Disabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project"
 }
