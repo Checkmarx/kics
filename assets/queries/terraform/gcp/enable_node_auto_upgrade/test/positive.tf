@@ -1,0 +1,43 @@
+resource "google_container_node_pool" "np1" {
+  name       = "my-node-pool"
+  location   = "us-central1-a"
+  cluster    = google_container_cluster.primary.name
+  node_count = 3
+
+  timeouts {
+    create = "30m"
+    update = "20m"
+  }
+}
+
+resource "google_container_node_pool" "np2" {
+  name       = "my-node-pool"
+  location   = "us-central1-a"
+  cluster    = google_container_cluster.primary.name
+  node_count = 3
+
+  management {
+
+  }
+
+  timeouts {
+    create = "30m"
+    update = "20m"
+  }
+}
+
+resource "google_container_node_pool" "np3" {
+  name       = "my-node-pool"
+  location   = "us-central1-a"
+  cluster    = google_container_cluster.primary.name
+  node_count = 3
+
+  management {
+    auto_upgrade = false
+  }
+
+  timeouts {
+    create = "30m"
+    update = "20m"
+  }
+}

@@ -44,6 +44,9 @@ KICS is a true community project. It's built as an open source from day one, and
 - [How can I help?!](CONTRIBUTING.md)
 - [Take me to the repo on GitHub!](https://github.com/CheckmarxDev/ice/)
 
+- [How can I help?!](contribution.md)
+- [Take me to the repo on GitHub!](https://github.com/CheckmarxDev/ice/)
+
 ## About the Project
 
 The KICS project is powered by [Checkmarx](https://www.checkmarx.com/), global leader of Application Security Testing.  

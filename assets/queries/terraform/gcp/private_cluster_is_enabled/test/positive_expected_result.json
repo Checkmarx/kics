@@ -1,0 +1,37 @@
+[
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 2
+	},
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 17
+	},
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 31
+	},
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 45
+	},
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 59
+	},
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 74
+	},
+	{
+		"queryName": "Private Cluster is Disabled",
+		"severity": "HIGH",
+		"line": 89
+	}
+]

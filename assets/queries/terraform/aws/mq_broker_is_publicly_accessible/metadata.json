@@ -1,0 +1,8 @@
+{
+  "id": "MQ_Broker_Is_Publicly_Accessible",
+  "queryName": "MQ Broker Is Publicly Accessible",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if any MQ Broker is not publicly accessible",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker"
+}

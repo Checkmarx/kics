@@ -1,0 +1,8 @@
+{
+  "id": "Amazon_Organizations_SCPs_All_Features_Not_Enabled",
+  "queryName": "Amazon Organizations SCPs All Features Not Enabled",
+  "severity": "MEDIUM",
+  "category": "IAM",
+  "descriptionText": "Check if the Amazon Organizations' policies ensure that all features are enabled to achieve full control over the use of AWS services and actions across multiple AWS accounts using Service Control Policies (SCPs).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy"
+}

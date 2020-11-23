@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "DB Security Group Lower than 256",
+		"severity": "HIGH",
+		"line": 5
+	}
+]

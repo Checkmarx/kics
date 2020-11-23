@@ -1,0 +1,8 @@
+{
+  "id": "default_vpc_exist",
+  "queryName": "Default VPC Exists",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "It isn't recommended to use resources in default VPC",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc"
+}

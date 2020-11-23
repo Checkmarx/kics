@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Public Repository is Enabled",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+	{
+		"queryName": "Public Repository is Enabled",
+		"severity": "MEDIUM",
+		"line": 16
+	},
+	{
+		"queryName": "Public Repository is Enabled",
+		"severity": "MEDIUM",
+		"line": 29
+	}
+]

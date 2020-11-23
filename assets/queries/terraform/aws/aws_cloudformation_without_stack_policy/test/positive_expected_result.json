@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "AWS CloudFormation Without Stack Policy",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]

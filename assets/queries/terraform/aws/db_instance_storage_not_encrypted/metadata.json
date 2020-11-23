@@ -1,0 +1,8 @@
+{
+  "id": "db_instance_storage_not_encrypted",
+  "queryName": "DB Instance Storage Not Encrypted",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "The parameter storage_encrypted in aws_db_instance must be true (the default is false)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#storage_encrypted"
+}
