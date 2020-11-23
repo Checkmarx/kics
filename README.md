@@ -26,7 +26,7 @@ Setting up and using KICS is super-easy.
 
 ## How it Works
 
-What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
+What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by :
 
 - Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
 - Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
