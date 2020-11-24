@@ -1,0 +1,8 @@
+{
+  "id": "IAM_role_with_full_privileges",
+  "queryName": "IAM Role With Full Privileges",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM role policie that allow full administrative privileges (for all resources)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role"
+}
