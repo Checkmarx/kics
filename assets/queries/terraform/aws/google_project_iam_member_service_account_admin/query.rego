@@ -11,15 +11,15 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_project_iam_member[%s].role", [name]),
                 "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("google_project_iam_member[%s].role is admin", [name]),
-				        "keyActualValue": sprintf("google_project_iam_member[%s].role is not admin", [name]),
+                "keyExpectedValue": sprintf("google_project_iam_member[%s].role is not admin", [name]),
+				        "keyActualValue": sprintf("google_project_iam_member[%s].role is admin", [name]),
               }
 }
 
 
 CxPolicy [ result ] {
   projectIam := input.document[i].resource.google_project_iam_member[name]
-  containsArray(projectIam.members,"serviceAccount:")
+  inArray(projectIam.members,"serviceAccount:")
   contains(projectIam.role, "roles/iam.serviceAccountAdmin")
   
 
@@ -27,12 +27,12 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("google_project_iam_member[%s].role", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("google_project_iam_member[%s].role is admin", [name]),
-				        "keyActualValue": sprintf("google_project_iam_member[%s].role is not admin", [name]),
+                "keyExpectedValue": sprintf("google_project_iam_member[%s].role is not admin", [name]),
+				        "keyActualValue": sprintf("google_project_iam_member[%s].role is admin", [name]),
               }
 }
 
 
-containsArray(array, elem) = true {
-  startswith(array[_],elem)
-} else = false { true }
+inArray(array, elem) = true {
+startswith(array[_],elem)
+}
