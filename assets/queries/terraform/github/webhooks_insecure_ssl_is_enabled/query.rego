@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy [ result ] {
   webhook := input.document[i].resource.github_organization_webhook[name]
-  webhool.configuation.insecure_ssl == true
+  webhook.configuration.insecure_ssl == true
 
 	result := {
                 "documentId": 		input.document[i].id,
