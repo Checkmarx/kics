@@ -6,7 +6,7 @@ ARG GIT_TOKEN
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
 
-ENV GOPRIVATE=github.com/checkmarxDev/*
+ENV GOPRIVATE=github.com/Checkmarx/*
 
 RUN apk add --no-cache git \
      && git config \
