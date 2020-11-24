@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDP Access Is Not Restricted",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "RDP Access Is Not Restricted",
+		"severity": "MEDIUM",
+		"line": 24
+	}
+]
