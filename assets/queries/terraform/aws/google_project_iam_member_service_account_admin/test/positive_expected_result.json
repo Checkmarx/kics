@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "Google Project Iam member Service Account has no role Admin",
+		"queryName": "Google Project IAM Member Service Account has Admin Role",
 		"severity": "MEDIUM",
 		"line": 3
 	},
 	{
-		"queryName": "Google Project Iam member Service Account has no role Admin",
+		"queryName": "Google Project IAM Member Service Account has Admin Role",
 		"severity": "MEDIUM",
 		"line": 9
 	}
