@@ -1,0 +1,27 @@
+[
+	{
+		"queryName": "Using Default Service Account",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+	{
+		"queryName": "Using Default Service Account",
+		"severity": "MEDIUM",
+		"line": 46
+	},
+	{
+		"queryName": "Using Default Service Account",
+		"severity": "MEDIUM",
+		"line": 73
+	},
+	{
+		"queryName": "Using Default Service Account",
+		"severity": "MEDIUM",
+		"line": 100
+	},
+	{
+		"queryName": "Using Default Service Account",
+		"severity": "MEDIUM",
+		"line": 127
+	}
+]
