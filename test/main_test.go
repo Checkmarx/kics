@@ -24,10 +24,11 @@ const (
 
 var (
 	queriesPaths = map[string]model.FileKind{
-		"../assets/queries/terraform/aws":   model.KindTerraform,
-		"../assets/queries/terraform/azure": model.KindTerraform,
-		"../assets/queries/terraform/gcp":   model.KindTerraform,
-		"../assets/queries/k8s":             model.KindYAML,
+		"../assets/queries/terraform/aws":        model.KindTerraform,
+		"../assets/queries/terraform/azure":      model.KindTerraform,
+		"../assets/queries/terraform/gcp":        model.KindTerraform,
+		"../assets/queries/k8s":                  model.KindYAML,
+		"../assets/queries/terraform/kubernetes": model.KindTerraform,
 	}
 )
 
