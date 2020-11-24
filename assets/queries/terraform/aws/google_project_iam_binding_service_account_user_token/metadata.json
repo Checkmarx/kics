@@ -1,8 +1,8 @@
 {
   "id": "google_project_iam_binding_service_account_user_token",
-  "queryName": "Google Project Iam Binding Service Account Has No Role Token Creator or Account User",
+  "queryName": "Google Project IAM Binding Service Account Has No Role Token Creator or Account User",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",
-  "descriptionText": "Verifies if Google Project Iam Binding Service Account does not have the role of Account User or Token Creator",
+  "descriptionText": "Verifies if Google Project IAM Binding Service Account does not have the role of Account User or Token Creator",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding"
 }
