@@ -1,0 +1,8 @@
+{
+  "id": "vm_not_attached_to_network",
+  "queryName": "VM Not Attached To Network",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "No Network Security Group is attached to the Virtual Machine",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids"
+}
