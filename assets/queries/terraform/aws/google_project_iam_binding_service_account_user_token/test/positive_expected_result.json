@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Google Project Iam Binding Service Account Has No Role Token Creator or Account User",
+		"severity": "MEDIUM",
+		"line": 3
+	},
+	{
+		"queryName": "Google Project Iam Binding Service Account Has No Role Token Creator or Account User",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Google Project Iam Binding Service Account Has No Role Token Creator or Account User",
+		"severity": "MEDIUM",
+		"line": 19
+	},
+	{
+		"queryName": "Google Project Iam Binding Service Account Has No Role Token Creator or Account User",
+		"severity": "MEDIUM",
+		"line": 29
+	}
+]
