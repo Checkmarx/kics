@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Insecure SSL Is Enabled For GitHub Organization Webhook",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]
