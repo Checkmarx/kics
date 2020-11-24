@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IAM Role With Full Privileges",
+		"severity": "HIGH",
+		"line": 9
+	}
+]
