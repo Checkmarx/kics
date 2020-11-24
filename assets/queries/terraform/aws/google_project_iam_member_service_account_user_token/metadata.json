@@ -1,8 +1,8 @@
 {
   "id": "google_project_iam_member_service_account_user_token",
-  "queryName": "Google Poject Iam Member Service Account Has No Role Token Creator or Account User",
+  "queryName": "Google Project IAM Member Service Account has Token Creator or Account User Role",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",
-  "descriptionText": "Verifies if Google Poject Iam Member Service Account does not have the role of Account User or Token Creator",
+  "descriptionText": "Verifies if Google Poject IAM Member Service Account doesn't have a Account User or Token Creator associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member"
 }
