@@ -1,0 +1,15 @@
+[
+	{
+		"queryName": "Container Read-Only Root Filesystem Is False",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+
+
+        {
+		"queryName": "Container Read-Only Root Filesystem Is False",
+		"severity": "MEDIUM",
+		"line": 69
+	}
+
+]
