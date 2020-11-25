@@ -9,7 +9,7 @@ const (
 	KindTerraform FileKind = "TF"
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
-	KindDOCKER    FileKind = "DOCKER"
+	KindDOCKER    FileKind = "DOCKERFILE"
 
 	SeverityHigh   = "HIGH"
 	SeverityMedium = "MEDIUM"

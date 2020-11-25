@@ -24,6 +24,5 @@ COPY . /
 RUN echo hello`
 	doc, err := p.Parse("Dockerfile", []byte(sample))
 	require.NoError(t, err)
-	require.Len(t, doc, 3)
-	require.Contains(t, doc[0]["resource"], "from")
+	require.Len(t, doc, 1)
 }

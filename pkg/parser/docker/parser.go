@@ -23,7 +23,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
 	com, err := dockerfile.ParseReader(bytes.NewReader(fileContent))
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to parse dockerfile")
+		return nil, errors.Wrap(err, "Failed to parse Dockerfile")
 	}
 
 	doc := &model.Document{}
@@ -33,11 +33,11 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	j, err := json.Marshal(resource)
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to Marshal dockerfile")
+		return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
 	}
 
 	if err := json.Unmarshal(j, &doc); err != nil {
-		return nil, errors.Wrap(err, "Failed to Unmarshal dockerfile")
+		return nil, errors.Wrap(err, "Failed to Unmarshal Dockerfile")
 	}
 
 	documents = append(documents, *doc)
@@ -52,5 +52,5 @@ func (p *Parser) GetKind() model.FileKind {
 
 //SupportedExtensions returns Dockerfile extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{"", ".dockerfile"}
+	return []string{"Dockerfile", ".dockerfile"}
 }

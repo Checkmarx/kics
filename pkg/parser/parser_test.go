@@ -39,6 +39,16 @@ martin:
 	require.Len(t, docs, 1)
 	require.Contains(t, docs[0], "martin")
 	require.Equal(t, model.KindYAML, kind)
+
+	docs, kind, err = p.Parse("Dockerfile", []byte(`
+	FROM foo
+	COPY . /
+	RUN echo hello
+`))
+
+	require.NoError(t, err)
+	require.Len(t, docs, 1)
+	require.Equal(t, model.KindDOCKER, kind)
 }
 
 func TestParser_Empty(t *testing.T) {
@@ -57,6 +67,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
+		Add(&dockerParser.Parser{}).
 		Build()
 
 	extensions := p.SupportedExtensions()
@@ -64,4 +75,6 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, ".json")
 	require.Contains(t, extensions, ".tf")
 	require.Contains(t, extensions, ".yaml")
+	require.Contains(t, extensions, ".dockerfile")
+	require.Contains(t, extensions, "Dockerfile")
 }
