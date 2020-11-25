@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Container Has Allowed Capabilities",
+		"severity": "MEDIUM",
+		"line": 13
+	}
+]
