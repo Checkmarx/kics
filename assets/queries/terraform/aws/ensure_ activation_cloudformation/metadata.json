@@ -1,0 +1,8 @@
+{
+  "id": "stack_retention_is_disabled",
+  "queryName": "Stack Retention is Disabled",
+  "severity": "Medium",
+  "category": null,
+  "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack_set_instance#stack_set_name"
+}
