@@ -42,7 +42,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 <a href="http://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
-[KICS public documentation](http://www.kics.io/) has all the project aspects covered.
+[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
 
 **Keep Infrastructure as Code Secure!**
 
