@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy [ result ] {
   resource := input.document[i].resource
-  stack := resource.aws_cloudformation_stack_set_instance.example[name]
+  stack := resource.aws_cloudformation_stack_set_instance[name]
   object.get(stack, "retain_stack", "undefined") == "undefined"
 
 	result := {
@@ -17,7 +17,7 @@ CxPolicy [ result ] {
 
 CxPolicy [ result ] {
   resource := input.document[i].resource
-  stack := resource.aws_cloudformation_stack_set_instance.example[name]
+  stack := resource.aws_cloudformation_stack_set_instance[name]
   stack.retain_stack == false
   
 	  result := {
