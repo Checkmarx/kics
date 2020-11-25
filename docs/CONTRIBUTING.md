@@ -4,7 +4,7 @@ We would like to THANK YOU for considering contributing to KICS!
 
 ## Contribution Options
 
-TBD
+TBD TBD TBD
 
 ## Get Started!
 
