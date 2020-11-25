@@ -11,6 +11,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
@@ -28,6 +29,7 @@ var (
 		"../assets/queries/terraform/azure": model.KindTerraform,
 		"../assets/queries/terraform/gcp":   model.KindTerraform,
 		"../assets/queries/k8s":             model.KindYAML,
+		"../assets/queries/dockerfile":      model.KindDOCKER,
 	}
 )
 
@@ -79,6 +81,7 @@ func getParsedFile(t *testing.T, filePath string) model.FileMetadatas {
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
+		Add(&dockerParser.Parser{}).
 		Build()
 
 	documents, kind, err := combinedParser.Parse(filePath, content)
