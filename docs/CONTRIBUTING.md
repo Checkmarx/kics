@@ -34,9 +34,9 @@ Follow the instructions below to setup local KICS development environment.
 ```
     $ git add .
     $ git commit
-    $ git push origin name-of-your-issue
+    $ git push --set-upstream origin name-of-your-issue
 ```
-6. Submit a pull request through GitHub website.
+6. Submit a pull request on GitHub website.
 
 ## Pull Request Guidelines
 
