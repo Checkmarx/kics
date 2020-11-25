@@ -13,11 +13,13 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
 <img alt="Terraform" src="img/logo-terraform.svg" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+<!--
+<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Ansible" src="img/logo-ansible.png" width="150">
+-->
 
-More solutions, such as AWS CloudFormation are on the [roadmap](roadmap.md).
+More solutions, such as Docker, Ansible, AWS CloudFormation and others are on the [roadmap](roadmap.md).
 
 
 ## Getting Started

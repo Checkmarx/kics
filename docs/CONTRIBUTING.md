@@ -4,7 +4,13 @@ We would like to THANK YOU for considering contributing to KICS!
 
 ## Contribution Options
 
-TBD TBD TBD
+Good news! You don't have to contribute code.  
+There are plenty of ways you can contribute to KICS project:
+
+- Reporting new bugs or issues
+- Help triaging issues
+- Improving and translating the documentation 
+- Volunteer to maintain the project
 
 ## Get Started!
 
@@ -13,7 +19,7 @@ Follow the instructions below to setup local KICS development environment.
 1. Fork the `kics` repo on GitHub.
 2. Clone your fork locally:
 ```
-    $ git clone terrascan.git
+    $ git clone https://github.com/Checkmarx/kics.git
 ```
 3. Create a branch for local development:
 ```
