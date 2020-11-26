@@ -26,7 +26,7 @@ resource "google_compute_instance" "serial_port_enabled" {
 
   metadata = {
     #... some other metadata
-    serial-port-enable = "TRUE"
+    serial-port-enable = true
   }
 
   metadata_startup_script = "echo hi > /test.txt"
