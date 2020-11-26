@@ -1,0 +1,8 @@
+{
+  "id": "COPY_instead_of_ADD",
+  "queryName": "COPY instead of ADD",
+  "severity": "LOW",
+  "category": "Image",
+  "descriptionText": "Should use COPY instead of ADD unless, running a tar file",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#add"
+}
