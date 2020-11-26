@@ -34,6 +34,17 @@ TBD
 ```
 -->
 
+## CLI Options
+
+```txt
+-h, --help                  help for iacScanner
+-o, --output-path string    file path to store result in json format
+-p, --path string           path to file or directory to scan
+-d, --payload-path string   file path to store source internal representation in JSON format
+-q, --queries-path string   path to directory with queries (default "./assets/queries")
+-v, --verbose               verbose scan
+```
+
 ## Next Steps
 
 - Check how you can easily [integrate it into your CI](integrations.md) for any project.
