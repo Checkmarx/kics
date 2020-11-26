@@ -12,6 +12,6 @@ CxPolicy [ result ] {
                 "searchKey": 	      sprintf("aws_security_group[%s].ingress", [name]),
                 "issueType":		    "IncorrectValue",
                 "keyExpectedValue": sprintf("aws_security_group[%s].ingress doesn't open the ssh port", [name]),
-                "keyActualValue": 	sprintf("aws_security_group[%s].ingress opens the ssh port", [name]),
+                "keyActualValue": 	sprintf("aws_security_group[%s].ingress does open the ssh port", [name]),
               }
 }
