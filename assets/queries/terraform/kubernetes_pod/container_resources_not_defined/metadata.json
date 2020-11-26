@@ -1,0 +1,8 @@
+{
+  "id": "container_resources_not_defined",
+  "queryName": "Container Resources Not Defined",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Kubernetes container should have resource limitations defined such as CPU and memory",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "container_host_pid_is_true",
+  "queryName": "Container Host Pid Is True",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Minimize the admission of containers wishing to share the host process ID namespace",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_pid"
+}
