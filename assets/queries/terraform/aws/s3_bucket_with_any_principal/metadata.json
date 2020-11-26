@@ -2,7 +2,7 @@
   "id": "S3_bucket_with_any_principal",
   "queryName": "S3 bucket with any principal",
   "severity": "HIGH",
-  "category": null,
-  "descriptionText": "S3 bucket allows actions with any Principal",
+  "category": "Identity and Access Management",
+  "descriptionText": "S3 Buckets must not allow Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when there are All Principals",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy"
 }

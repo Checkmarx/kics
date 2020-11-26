@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Container Host Pid Is True",
+		"severity": "MEDIUM",
+		"line": 8
+	}
+]

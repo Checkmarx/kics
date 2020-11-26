@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Container Resources Not Defined",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+
+        {
+		"queryName": "Container Resources Not Defined",
+		"severity": "MEDIUM",
+		"line": 73
+	}
+]

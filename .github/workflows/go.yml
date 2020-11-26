@@ -9,11 +9,7 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-    - name: Config Go private modules access
-      run: |
-        git config --global url."https://${{ secrets.GIT_USER }}:${{ secrets.GIT_TOKEN }}@github.com".insteadOf "https://github.com"
-    - uses: actions/checkout@v2
-      
+    
     - name: Cache dependencies
       uses: actions/cache@v2
       with:
@@ -21,14 +17,13 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
-      
-    - name: golangci-lint
+          
+    - uses: actions/checkout@v2   
+    - name: golangci-lint 
       uses: golangci/golangci-lint-action@v2
       with:
         # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
         version: v1.29
-      env:
-        GOPRIVATE: github.com/checkmarxDev/*
 
   unit-tests:
     name: unit-tests
@@ -48,15 +43,9 @@ jobs:
       uses: actions/checkout@v2
       with:
           persist-credentials: false
-    
-    - name: Config Go private modules access
-      run: |
-        git config --global url."https://${{ secrets.GIT_USER }}:${{ secrets.GIT_TOKEN }}@github.com".insteadOf "https://github.com"
           
     - name: Run Go mod tidy
       run: go mod tidy
-      env:
-          GOPRIVATE: github.com/checkmarxDev/*      
           
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -66,17 +55,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
-    #- name: Test
-    #  run: go test ./... -coverprofile cover.out
-    #  env:
-    #      GOPRIVATE: github.com/checkmarxDev/*
-
     - name: Test
       run: |
         go mod vendor
         go test -mod=vendor -v ./... -count=1 -coverprofile cover.out
-      env:
-          GOPRIVATE: github.com/checkmarxDev/*         
       
     - name: Check if total coverage is greater then 0
       run: |

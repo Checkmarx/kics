@@ -1,0 +1,8 @@
+{
+  "id": "container_has_allowed_capabilities",
+  "queryName": "Container Has Allowed Capabilities",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Kubernetes Pod should not have extra capabilities allowed",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities-1"
+}
