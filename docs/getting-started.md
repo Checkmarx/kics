@@ -1,17 +1,56 @@
 ## Installation
 
-This section describes installation procedure of KICS.
+This section describes the installation steps for getting KICS up and running.
 
-To have a fully working environment to use and develop in KICS you will need:
+<!--
+#### Default
+-->
 
-1. Download and install Go: https://golang.org/dl/
-2. Install VS Code (or another IDE of your choosing): https://code.visualstudio.com/Download
-3. Inside VS Code, install the following extensions:
- - Go
- - Open Policy Agent
- - Git Lens 
-4. Install PostgreSQL: https://www.postgresql.org/download/ (optional, not needed for CLI usage)
-5. Clone the repository of KICS to VS Code: https://github.com/Checkmarx/kics
-6. Test if the application is running properly by running in the terminal, in the root of the project:
+1. Download and install Go from [https://golang.org/dl/](https://golang.org/dl/)  
+1. Clone the repository:  
+   ```
+   git clone https://github.com/Checkmarx/kics.git
+   ```  
+   ```
+   cd kics
+   ```
+1. Kick a scan!  
+   ```
+   go run ./cmd/console/main.go -p <path-of-your-project-to-scan> -o <output-results.json>
+   ```
 
-go run ./cmd/console/main.go -p assets/queries/terraform
+<!--
+#### Release
+
+```
+TBD
+```
+
+#### Docker
+
+KICS is also available as a Docker image and can be used as follows
+```
+TBD
+```
+-->
+
+## CLI Options
+
+```txt
+-h, --help                  help for iacScanner
+-o, --output-path string    file path to store result in json format
+-p, --path string           path to file or directory to scan
+-d, --payload-path string   file path to store source internal representation in JSON format
+-q, --queries-path string   path to directory with queries (default "./assets/queries")
+-v, --verbose               verbose scan
+```
+
+## Next Steps
+
+- Check how you can easily [integrate it into your CI](integrations.md) for any project.
+- [Explore the output results format](results.md) and quickly fix the issues detected.
+
+
+## Contribution
+
+Want to go the next mile and contribute? [You're welcome!](contribution.md)
