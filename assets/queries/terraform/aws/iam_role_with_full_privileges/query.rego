@@ -10,17 +10,12 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-<<<<<<< HEAD
                 "searchKey": 	    sprintf("aws_iam_role[%s].assume_role_policy.Statement.Action", [name]),
-=======
-                "searchKey": 	    sprintf("%s", [statements.Action]),
->>>>>>> 5acc8f25c499973cdcfea6c2a114a8c10c216fd5
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": "'assume_role_policy.Statement.Action' doesn't contain '*'",
                 "keyActualValue": 	"'assume_role_policy.Statement.Action' contains '*'"    
               }
 }
-<<<<<<< HEAD
 
 CxPolicy [ result ] {
   resource := input.document[i].resource.aws_iam_role[name]
@@ -38,5 +33,3 @@ CxPolicy [ result ] {
                 "keyActualValue": 	"'assume_role_policy.Statement.Action' is equal '*'"    
               }
 }
-=======
->>>>>>> 5acc8f25c499973cdcfea6c2a114a8c10c216fd5
