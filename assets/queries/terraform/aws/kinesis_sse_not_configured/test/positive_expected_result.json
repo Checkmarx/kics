@@ -1,0 +1,42 @@
+[
+	{
+		"queryName": "Kinesis SSE Not Configured",
+		"severity": "HIGH",
+		"line": 12
+	},
+
+
+        {
+		"queryName": "Kinesis SSE Not Configured",
+		"severity": "HIGH",
+		"line": 21
+	},
+
+
+
+    {
+		"queryName": "Kinesis SSE Not Configured",
+		"severity": "HIGH",
+		"line": 36
+	},
+
+
+
+        {
+		"queryName": "Kinesis SSE Not Configured",
+		"severity": "HIGH",
+		"line": 51
+	},
+
+
+
+    {
+		"queryName": "Kinesis SSE Not Configured",
+		"severity": "HIGH",
+		"line": 62
+	}
+
+
+
+]
+

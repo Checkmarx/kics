@@ -1,0 +1,8 @@
+{
+  "id": "Root_Account_Has_Associated_Active_Access_Keys",
+  "queryName": "Root Account Has Associated Active Access Keys",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "The AWS Root Account must not have active access keys associated, which means if there are access keys associated to the Root Account, they must be inactive.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key"
+}
