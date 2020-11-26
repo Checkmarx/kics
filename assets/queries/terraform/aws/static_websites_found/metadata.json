@@ -1,0 +1,8 @@
+{
+  "id": "static_websites_found",
+  "queryName": "Static Websites Found",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Checks if any static websties are hosted on buckets",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#website"
+}
