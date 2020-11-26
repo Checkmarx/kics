@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Logging Disabled For Key Vault",
+		"severity": "HIGH",
+		"line": 3
+	},
+	{
+		"queryName": "Logging Disabled For Key Vault",
+		"severity": "HIGH",
+		"line": 11
+	},
+	{
+		"queryName": "Logging Disabled For Key Vault",
+		"severity": "HIGH",
+		"line": 35
+	},
+	{
+		"queryName": "Logging Disabled For Key Vault",
+		"severity": "HIGH",
+		"line": 59
+	}
+]
