@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Ingress Target Has Service Not Defined in Pod",
+		"severity": "HIGH",
+		"line": 35
+	}
+]
