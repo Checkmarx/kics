@@ -1,0 +1,61 @@
+[
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 1
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 1
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 7
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 17
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 27
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 35
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 43
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 43
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 51
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 51
+	}
+]
