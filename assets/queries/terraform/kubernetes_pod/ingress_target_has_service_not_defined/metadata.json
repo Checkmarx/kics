@@ -1,7 +1,7 @@
 {
   "id": "ingress_target_has_service_not_defined",
   "queryName": "Ingress Target Has Service Not Defined in Pod",
-  "severity": "HIGH",
+  "severity": "LOW",
   "category": "Networking",
   "descriptionText": "The app name, in Kubernetes Pod, must be defined in Kubernetes Ingress",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/ingress"
