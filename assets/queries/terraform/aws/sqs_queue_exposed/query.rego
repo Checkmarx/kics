@@ -4,10 +4,7 @@ CxPolicy [ result ] {
   resource := input.document[i].resource.aws_sqs_queue[name]
   policy := json_unmarshal(resource.policy)
   statement = policy.Statement[_]
-  check_role(statement, "*") == true
-  statements := [ statement | statement := replace_if_needed(policy.Statement[_]) ]
-  expected := object.union(policy, {"Statement": statements})
-  
+  check_role(statement, "*") == true 
 
 	result := {
                 "documentId": 		  input.document[i].id,
@@ -26,16 +23,6 @@ json_unmarshal(s) = result {
 json_unmarshal(s) = result {
 	s != null
 	result := json.unmarshal(s)
-}
-
-replace_if_needed(statement) = value {
-	check_role(statement, "*") == true
-    value := object.union(statement, { "Principal": "##principal###" })
-}
-
-replace_if_needed(statement) = value {
-	not check_role(statement, "*")
-    value := statement
 }
 
 check_role(s, p) = true {
