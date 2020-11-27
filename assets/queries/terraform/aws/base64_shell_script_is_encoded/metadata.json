@@ -1,0 +1,8 @@
+{
+  "id": "base64_shell_script_is_encoded",
+  "queryName": "Base64 Shell Script Is Encoded",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "Base64 Shell Script must be encoded",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64"
+}
