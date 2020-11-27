@@ -1,0 +1,8 @@
+{
+  "id": "kms_key_no_deletion_window",
+  "queryName": "KMS Key No Deletion Window",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "AWS KMS Key should have a valid deletion window",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key"
+}
