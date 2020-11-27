@@ -9,7 +9,7 @@
         {
 		"queryName": "Container Read-Only Root Filesystem Is False",
 		"severity": "MEDIUM",
-		"line": 69
+		"line": 74
 	}
 
 ]
