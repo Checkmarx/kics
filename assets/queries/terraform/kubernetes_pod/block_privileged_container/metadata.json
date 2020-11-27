@@ -1,0 +1,8 @@
+{
+  "id": "block_privileged_container",
+  "queryName": "Block Privileged Container",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "Do not allow container as privileged.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#privileged"
+}
