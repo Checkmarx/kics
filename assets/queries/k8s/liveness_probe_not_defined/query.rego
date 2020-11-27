@@ -5,15 +5,18 @@ CxPolicy [ result ] {
    exists_containers := object.get(spec, "containers", "undefined") != "undefined"
    exists_containers
    
-   containers := spec.containers
-   exists_liveness_probe := object.get(containers[_], "livenessProbe", "undefined") != "undefined"
-   exists_liveness_probe
+   containers := spec.containers[name]
+   not exists_liveness_probe(containers)
    
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    "spec.containers.livenessProbe",
+                "searchKey": 	    sprintf("spec.containers[%d].livenessProbe", [name]),
                 "issueType":		   "MissingAttribute",
-                "keyExpectedValue": "spec.containers.livenessProbe is undefined",
-                "keyActualValue": 	"spec.containers.livenessProbe is defined"
+                "keyExpectedValue": sprintf("spec.containers[%d].livenessProbe is defined", [name]),
+                "keyActualValue": 	sprintf("spec.containers[%d].livenessProbe is undefined", [name])
               }
+}
+
+exists_liveness_probe(container) = true {
+	container.livenessProbe != null
 }

@@ -2,6 +2,6 @@
 	{
 		"queryName": "Liveness Probe Is Not Defined",
 		"severity": "MEDIUM",
-		"line": 15
+		"line": 7
 	}
 ]
