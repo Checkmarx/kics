@@ -8,5 +8,10 @@
 		"queryName": "ELB Using Weak Ciphers",
 		"severity": "HIGH",
 		"line": 63
+	},
+	{
+		"queryName": "ELB Using Weak Ciphers",
+		"severity": "HIGH",
+		"line": 74
 	}
 ]

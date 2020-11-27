@@ -49,7 +49,7 @@ resource "aws_load_balancer_policy" "wu-tang-ssl" {
   }
 
   policy_attribute {
-    name  = "DHE-DSS-AES128-SHA"
+    name  = "TLS_RSA_ARCFOUR_128_SHA1"
     value = "true"
   }
 }
@@ -60,7 +60,18 @@ resource "aws_load_balancer_policy" "wu-tang-ssl2" {
   policy_type_name   = "SSLNegotiationPolicyType"
 
   policy_attribute {
-    name  = "CAMELLIA128-SHA"
+    name  = "DES-CBC3-SHA"
+    value = "true"
+  }
+}
+
+resource "aws_load_balancer_policy" "wu-tang-ssl3" {
+  load_balancer_name = aws_elb.wu-tang.name
+  policy_name        = "wu-tang-ssl"
+  policy_type_name   = "SSLNegotiationPolicyType"
+
+  policy_attribute {
+    name  = "TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384"
     value = "true"
   }
 }
