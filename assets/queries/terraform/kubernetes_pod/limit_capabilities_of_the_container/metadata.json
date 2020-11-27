@@ -1,0 +1,8 @@
+{
+  "id": "limit_capabilities_of_the_container",
+  "queryName": "Limit Capabilities Of The Container",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "List of capabilities removed from the Container.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities"
+}
