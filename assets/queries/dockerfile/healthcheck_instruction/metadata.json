@@ -1,0 +1,8 @@
+{
+  "id": "Healthcheck_instruction",
+  "queryName": "Healthcheck Instruction",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#healthcheck"
+}
