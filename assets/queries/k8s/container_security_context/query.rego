@@ -6,6 +6,7 @@ CxPolicy [ result ] {
     
     spec := document.spec
     
+    document.kind == "Pod"
     not spec.securityContext
 
 	result := {
