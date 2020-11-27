@@ -1,0 +1,8 @@
+{
+  "id": "default_service_account",
+  "queryName": "Default Service Account",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Default service accounts should not be actively used",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+}
