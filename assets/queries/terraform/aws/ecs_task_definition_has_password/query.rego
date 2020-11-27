@@ -12,7 +12,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("%s", [env.name]),
                 "issueType":		"IncorrectValue", 
                 "keyExpectedValue": "'container_definitions.environment.name' doesn't have password value",
-                "keyActualValue": 	"'container_definitions.environment.name' has password password"
+                "keyActualValue": 	"'container_definitions.environment.name' has password value"
               }
 }
 
