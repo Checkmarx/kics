@@ -1,0 +1,8 @@
+{
+  "id": "Secrets_env",
+  "queryName": "Secrets Env",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Scan Dockerfile to ensure that there are no secrets stored",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#env"
+}
