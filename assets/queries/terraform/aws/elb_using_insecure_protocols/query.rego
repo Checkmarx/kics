@@ -29,6 +29,6 @@ CxPolicy [ result ] {
 }
 
 check_vulnerability(val) {
-	insecure_protocols = {"Protocol-SSLv3", "Protocol-TLSv1"}
-    val == insecure_protocols[_]
+	insecure_protocols = {"Protocol-SSLv2", "Protocol-SSLv3", "Protocol-TLSv1", "Protocol-TLSv1.1"}
+  val == insecure_protocols[_]
 }
