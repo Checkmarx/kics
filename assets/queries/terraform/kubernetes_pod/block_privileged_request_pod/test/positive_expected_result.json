@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Block Privileged Request Pod Security Policy",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]
