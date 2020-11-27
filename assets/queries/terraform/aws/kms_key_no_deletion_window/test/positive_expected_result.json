@@ -8,12 +8,6 @@
 	{
 		"queryName": "KMS Key No Deletion Window",
 		"severity": "HIGH",
-		"line": 20
-	},
-
-	{
-		"queryName": "KMS Key No Deletion Window",
-		"severity": "HIGH",
-		"line": 31
+		"line": 18
 	}
 ]
