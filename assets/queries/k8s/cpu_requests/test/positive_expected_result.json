@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "CPU Requests",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]
