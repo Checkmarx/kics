@@ -1,0 +1,8 @@
+{
+  "id": "launch_configuration_is_not_encrypted",
+  "queryName": "Launch Configuration Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption & Key Management",
+  "descriptionText": "Launch Configuration must be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted"
+}
