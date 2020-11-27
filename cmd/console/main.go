@@ -41,8 +41,8 @@ func main() { // nolint:funlen,gocyclo
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 
 	rootCmd := &cobra.Command{
-		Use:   "iacScanner",
-		Short: "Security inspect tool for Infrastructure as Code files",
+		Use:   "kics",
+		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 			if verbose {
@@ -101,7 +101,7 @@ func main() { // nolint:funlen,gocyclo
 
 			counters := model.Counters{
 				ScannedFiles:           t.FoundFiles,
-				FailedToScanFiles:      t.FoundFiles - t.ParsedFiles,
+				ParsedFiles:            t.ParsedFiles,
 				TotalQueries:           t.LoadedQueries,
 				FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
 			}
@@ -124,7 +124,7 @@ func main() { // nolint:funlen,gocyclo
 				return err
 			}
 
-			if len(summary.FailedQueries) > 0 {
+			if summary.FailedToExecuteQueries > 0 {
 				os.Exit(1)
 			}
 
@@ -148,10 +148,10 @@ func main() { // nolint:funlen,gocyclo
 
 func printResult(summary model.Summary) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
-	fmt.Printf("Files failed to scan: %d\n", summary.FailedToScanFiles)
+	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
 	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
-	for _, q := range summary.FailedQueries {
+	for _, q := range summary.Queries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
 		for _, f := range q.Files {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
