@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Container Security Context",
+		"severity": "LOW",
+		"line": 5
+	},
+
+	{
+		"queryName": "Container Security Context",
+		"severity": "LOW",
+		"line": 6
+	}
+]
