@@ -1,0 +1,8 @@
+{
+  "id": "memory_limits_not_defined",
+  "queryName": "Memory Limits Not Defined",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "It's important to specify a memory limits.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#limits"
+}
