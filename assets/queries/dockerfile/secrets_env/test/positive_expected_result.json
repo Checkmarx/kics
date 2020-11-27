@@ -1,7 +1,17 @@
 [
 	{
-		"queryName": "<QUERY_NAME>",
-		"severity": "HIGH",
-		"line": 0
+		"queryName": "Secrets Env",
+		"severity": "MEDIUM",
+		"line": 4
+	},
+	{
+		"queryName": "Secrets Env",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "Secrets Env",
+		"severity": "MEDIUM",
+		"line": 6
 	}
 ]
