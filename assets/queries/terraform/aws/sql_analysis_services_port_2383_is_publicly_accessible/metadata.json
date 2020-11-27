@@ -1,0 +1,8 @@
+{
+  "id": "SQL Analysis services Port 2383 (TCP) is publicly accessible",
+  "queryName": "SQL_Analysis_Services_Port_2383_(TCP)_is_Publicly_Accessible",
+  "severity": "MEDIUM",
+  "category": "Network Ports Security",
+  "descriptionText": "Check if port 2383 on TCP is publicly accessible by checking the CIDR block range that can access it.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+}

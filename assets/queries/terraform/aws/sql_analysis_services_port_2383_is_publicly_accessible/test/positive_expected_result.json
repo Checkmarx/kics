@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SQL_Analysis_Services_Port_2383_(TCP)_is_Publicly_Accessible",
+		"severity": "MEDIUM",
+		"line": 11
+	}
+]
