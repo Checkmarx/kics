@@ -1,0 +1,8 @@
+{
+  "id": "ssh_port_open",
+  "queryName": "SSH port open",
+  "severity": "HIGH",
+  "category": "Network Ports Security",
+  "descriptionText": "SSH port is open to the internet",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+}
