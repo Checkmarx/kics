@@ -17,3 +17,5 @@ archives:
     replacements:
       amd64: x64
       386: x32
+    files:
+      - assets/queries
