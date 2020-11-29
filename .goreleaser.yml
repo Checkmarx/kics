@@ -10,12 +10,11 @@ builds:
     goarch:
       - amd64
 archives:
-  builds:
-  - default
+  builds: [kics]
   format_overrides:
-      - goos: windows
+    - goos: windows
         format: zip
   replacements:
-      amd64: x64
-      386: x32
+    amd64: x64
+    386: x32
       
