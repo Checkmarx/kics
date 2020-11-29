@@ -1,0 +1,9 @@
+project_name: kics
+
+builds:
+  - main: ./cmd/console/main.go
+    id: "cli"
+    binary: cli
+    goos:
+      - linux
+      - windows 
