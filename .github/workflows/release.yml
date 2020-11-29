@@ -22,13 +22,6 @@ jobs:
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
-        builds:
-          - main: ./cmd/console/main.go
-            id: "cli"
-            binary: cli
-            goos:
-              - linux
-              - windows 
         with:
           version: latest
           args: release --rm-dist
