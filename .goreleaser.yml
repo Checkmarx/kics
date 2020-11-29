@@ -10,8 +10,7 @@ builds:
       - amd64
 archives:
   -
-    builds:
-    - default
+    builds: [kics]
     format_overrides:
       - goos: windows
         format: zip
