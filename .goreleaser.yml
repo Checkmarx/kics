@@ -3,19 +3,18 @@ project_name: kics
 builds:
   - main: ./cmd/console/main.go
     id: "cli"
-    binary: cli
+    binary: kics
     goos:
       - linux
       - windows 
     goarch:
       - amd64
 archives:
-  builds:
-  - default
+  builds: [kics]
   format_overrides:
-      - goos: windows
-        format: zip
+    - goos: windows
+      format: zip
   replacements:
-      amd64: x64
-      386: x32
+    amd64: x64
+    386: x32
       
