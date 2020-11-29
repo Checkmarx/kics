@@ -9,3 +9,13 @@ builds:
       - windows 
     goarch:
       - amd64
+archives:
+  builds:
+  - default
+  format_overrides:
+      - goos: windows
+        format: zip
+  replacements:
+      amd64: x64
+      386: x32
+      
