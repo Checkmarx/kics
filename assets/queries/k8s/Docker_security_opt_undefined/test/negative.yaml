@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  example:
+    image: example:latest
+    deploy:
+      replicas: 1
+    security_opt:
+      - label:user:USER
+      - label:role:ROLE

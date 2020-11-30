@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Docker Security_Opt Undefined",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]
