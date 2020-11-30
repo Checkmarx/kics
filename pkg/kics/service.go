@@ -59,8 +59,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 			}
 
 			for _, document := range documents {
-
-				_, err := json.Marshal(document)
+				_, err = json.Marshal(document)
 				if err != nil {
 					log.Err(err).Msgf("failed to marshal document %s", document)
 					continue
