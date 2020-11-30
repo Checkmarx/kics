@@ -1,0 +1,8 @@
+{
+  "id": "Docker_no_privileged_mode",
+  "queryName": "Docker No Privileged mode",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "The Privileged is missing or is false",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+}

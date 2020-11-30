@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Docker No Privileged mode",
+		"severity": "HIGH",
+		"line": 1
+	}
+]
