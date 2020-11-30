@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "List of capabilities removed from the Container.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities"
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
 }

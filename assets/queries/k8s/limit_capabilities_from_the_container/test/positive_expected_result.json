@@ -2,6 +2,6 @@
 	{
 		"queryName": "Limit Capabilities Of The Container",
 		"severity": "MEDIUM",
-		"line": 13
+		"line": 5
 	}
 ]
