@@ -5,7 +5,7 @@ There are multiple ways to get KICS up and running:
 
 #### Docker
 
-KICS is also available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
+KICS is available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
 
 ```
 docker pull checkmarx/kics:latest  
@@ -26,16 +26,14 @@ Our security queries will be included in the ZIP files and tarballs, so that you
 
 So all you need is:
 
-1. Go to KICS [releases](https://github.com/Checkmarx/kics/releases/latest)
-2. Click on latest release
-3. Download KICS binaries based on your OS
-4. Extract files
-5. Run kics executable with the cli options as decribed below (note that kics exe should be located in the same folder as queries files)
+1. Go to [KICS releases](https://github.com/Checkmarx/kics/releases/latest)
+1. Download KICS binaries based on your OS
+1. Extract files
+1. Run kics executable with the cli options as decribed below (note that kics binary should be located in the same folder as queries folder)
+   ```
+   ./kics -p <path-of-your-project-to-scan> -o <output-results.json>
 
-```
-./kics -p <path-of-your-project-to-scan> -o <output-results.json>
-
-```
+   ```
 
 #### Build from Sources
 
@@ -56,7 +54,7 @@ So all you need is:
 #### CLI Options
 
 ```txt
--h, --help                  help for iacScanner
+-h, --help                  help
 -o, --output-path string    file path to store result in json format
 -p, --path string           path to file or directory to scan
 -d, --payload-path string   file path to store source internal representation in JSON format
