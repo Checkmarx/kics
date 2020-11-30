@@ -22,8 +22,6 @@ This section describes the installation steps for getting KICS up and running.
 
 #### Release
 
-```
-
 KICS release process is pretty straightforward.
 When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
 Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries
@@ -41,13 +39,11 @@ kics.exe -p <path-of-your-project-to-scan> -o <output-results.json>
 
 ```
 
-```
-
 #### Docker
 
 KICS is also available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
 
-``txt
+```
 docker pull checkmarx/kics:latest  
 docker run -v {​​​​path_to_local_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```
