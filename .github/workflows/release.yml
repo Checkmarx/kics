@@ -41,3 +41,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: checkmarx/kics
           tag_with_ref: true
+          tags: latest 
