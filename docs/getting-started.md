@@ -19,12 +19,26 @@ This section describes the installation steps for getting KICS up and running.
    go run ./cmd/console/main.go -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
-<!--
+
 #### Release
 
 ```
-TBD
+
+KICS release process is pretty straightforward.
+When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
+Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries
+
+So all you need is:
+
+1. Go to KICS releases
+2. Click on latest release
+3. Download KICS binaries based on your OS
+4. Extract files
+5. Run kics executable with the cli options as decribed below
+
 ```
+
+<!--
 
 #### Docker
 
