@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": null,
   "descriptionText": "List of capabilities removed from the PSP.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#required_drop_capabilities"
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }
