@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Set Image Pull Policy Of The Container To Always",
+		"severity": "LOW",
+		"line": 9
+	}
+]
