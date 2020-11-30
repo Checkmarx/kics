@@ -33,7 +33,7 @@ So all you need is:
 5. Run kics executable with the cli options as decribed below (note that kics exe should be located in the same folder as queries files)
 
 ```
-kics.exe -p <path-of-your-project-to-scan> -o <output-results.json>
+./kics -p <path-of-your-project-to-scan> -o <output-results.json>
 
 ```
 
