@@ -30,9 +30,10 @@ So all you need is:
 1. Download KICS binaries based on your OS
 1. Extract files
 1. Run kics executable with the cli options as decribed below (note that kics binary should be located in the same folder as queries folder)  
-   ```
-   ./kics -p <path-of-your-project-to-scan> -o <output-results.json>
-   ```
+
+```
+./kics -p <path-of-your-project-to-scan> -o <output-results.json>
+```
 
 #### Build from Sources
 
