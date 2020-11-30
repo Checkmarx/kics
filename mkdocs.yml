@@ -32,7 +32,7 @@ nav:
 theme:
   name: flatly
   logo: img/logo-kics-horizontal.png
-  favicon: img/cloud-hex.ico
+  favicon: img/favicon.ico
   include_sidebar: true
   sticky_navigation: true
   

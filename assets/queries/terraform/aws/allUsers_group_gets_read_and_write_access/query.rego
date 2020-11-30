@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy [ result ] {
    resource := input.document[i].resource.aws_s3_bucket[name]
-   role = "public-read-write"
+   role = "authenticated-read"
    resource.acl == role
    
    result := {

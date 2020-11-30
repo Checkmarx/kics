@@ -1,8 +1,8 @@
 {
-  "id": "allUsers_group_gets_read_and_write_access",
-  "queryName": "All Users Group Gets Read And Write Access",
+  "id": "all_Auth_Users_gets_read_access",
+  "queryName": "All Auth Users Gets Read Access",
   "severity": "HIGH",
   "category": "IAM",
-  "descriptionText": "It's not recommended to allow read and write access for all user groups.",
+  "descriptionText": "The acl feature must be private",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl"
 }

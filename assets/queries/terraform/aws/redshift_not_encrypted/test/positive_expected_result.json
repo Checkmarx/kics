@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Redshift Not Encrypted",
+		"severity": "HIGH",
+		"line": 1
+	},
+	{
+		"queryName": "Redshift Not Encrypted",
+		"severity": "HIGH",
+		"line": 17
+	}
+]

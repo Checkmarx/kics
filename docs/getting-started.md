@@ -53,4 +53,4 @@ TBD
 
 ## Contribution
 
-Want to go the next mile and contribute? [You're welcome!](contribution.md)
+Want to go the next mile and contribute? [You're welcome!](CONTRIBUTING.md)

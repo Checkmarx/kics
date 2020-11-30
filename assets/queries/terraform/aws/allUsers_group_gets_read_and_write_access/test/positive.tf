@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "b" {
   bucket = "my-tf-test-bucket"
-  acl    = "public-read-write"
+  acl    = "authenticated-read"
 
   tags = {
     Name        = "My bucket"
