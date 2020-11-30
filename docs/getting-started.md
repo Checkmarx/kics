@@ -30,7 +30,7 @@ Our security queries will be included in the ZIP files and tarballs, so that you
 
 So all you need is:
 
-1. Go to KICS releases
+1. Go to KICS [releases](https://github.com/Checkmarx/kics/releases)
 2. Click on latest release
 3. Download KICS binaries based on your OS
 4. Extract files
@@ -45,7 +45,7 @@ kics.exe -p <path-of-your-project-to-scan> -o <output-results.json>
 
 #### Docker
 
-KICS is also available as a Docker image and can be used as follows:  
+KICS is also available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
 
 ``txt
 docker pull checkmarx/kics:latest  
