@@ -37,6 +37,11 @@ So all you need is:
 5. Run kics executable with the cli options as decribed below
 
 ```
+kics.exe -p <path-of-your-project-to-scan> -o <output-results.json>
+
+```
+
+```
 
 <!--
 
