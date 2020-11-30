@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  example:
+    image: example:latest
+    deploy:
+      replicas: 1
+    cap_add:
+      - ALL
+    cap_drop:
+      - NET_ADMIN
+      - SYS_ADMIN

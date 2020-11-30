@@ -1,0 +1,8 @@
+{
+  "id": "Docker_cap_add_drop_undefined",
+  "queryName": "Docker Cap Add Or Cap Drop are undefined",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "The Docker Cap Add Or Cap Drop should be present in docker-compose.yml",
+  "descriptionUrl": "https://docs.docker.com/compose/compose-file/#cap_add-cap_drop"
+}
