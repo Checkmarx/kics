@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "It's important to specify a memory request.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#memory"
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
 }

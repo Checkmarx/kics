@@ -2,6 +2,6 @@
 	{
 		"queryName": "Memory Requests Is Not Defined",
 		"severity": "MEDIUM",
-		"line": 13
+		"line": 6
 	}
 ]
