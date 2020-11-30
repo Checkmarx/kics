@@ -19,20 +19,34 @@ This section describes the installation steps for getting KICS up and running.
    go run ./cmd/console/main.go -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
-<!--
+
 #### Release
 
+KICS release process is pretty straightforward.
+When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
+Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries
+
+So all you need is:
+
+1. Go to KICS [releases](https://github.com/Checkmarx/kics/releases)
+2. Click on latest release
+3. Download KICS binaries based on your OS
+4. Extract files
+5. Run kics executable with the cli options as decribed below
+
 ```
-TBD
+kics.exe -p <path-of-your-project-to-scan> -o <output-results.json>
+
 ```
 
 #### Docker
 
-KICS is also available as a Docker image and can be used as follows
+KICS is also available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
+
 ```
-TBD
+docker pull checkmarx/kics:latest  
+docker run -v {​​​​path_to_local_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```
--->
 
 ## CLI Options
 
