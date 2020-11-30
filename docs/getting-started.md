@@ -43,15 +43,14 @@ kics.exe -p <path-of-your-project-to-scan> -o <output-results.json>
 
 ```
 
-<!--
-
 #### Docker
 
-KICS is also available as a Docker image and can be used as follows
+KICS is also available as a Docker image and can be used as follows:  
+
+``txt
+docker pull checkmarx/kics:latest  
+docker run -v {​​​​path_to_local_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```
-TBD
-```
--->
 
 ## CLI Options
 
