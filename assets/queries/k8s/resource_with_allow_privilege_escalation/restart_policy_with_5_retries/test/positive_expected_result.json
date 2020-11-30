@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Restart Policy With 5 Retries",
+		"severity": "MEDIUM",
+		"line": 13
+	}
+]

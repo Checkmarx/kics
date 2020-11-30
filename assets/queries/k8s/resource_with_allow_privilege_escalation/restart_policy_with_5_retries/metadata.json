@@ -1,0 +1,8 @@
+{
+  "id": "restart_policy_with_5_retries",
+  "queryName": "Restart Policy With 5 Retries",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "It's important that the restart policy is 'on-failure' up to 5 attempts",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/commandline/run/#restart-policies---restart"
+}
