@@ -13,7 +13,7 @@ import (
 type Parser struct {
 }
 
-// Resource Seperates the list of commands by file
+// Resource Separates the list of commands by file
 type Resource struct {
 	CommandList []dockerfile.Command `json:"resource"`
 }
