@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "SQL_Analysis_Services_Port_2383_(TCP)_is_Publicly_Accessible",
+		"queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
 		"severity": "MEDIUM",
 		"line": 11
 	}

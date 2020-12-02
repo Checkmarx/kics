@@ -10,3 +10,4 @@ resource "aws_security_group" "allow_tls" {
     protocol    = "tcp"
     cidr_blocks = [aws_vpc.main.cidr_block]
   }
+  }
