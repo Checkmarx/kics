@@ -50,7 +50,7 @@ type Parser struct {
 }
 
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
-	ext := filepath.Ext(filePath) //Its here that i need to verify
+	ext := filepath.Ext(filePath)
 	if ext == "" {
 		ext = filepath.Base(filePath)
 	}
