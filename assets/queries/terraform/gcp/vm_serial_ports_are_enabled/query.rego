@@ -34,7 +34,8 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
   metadata := input.document[i].resource.google_compute_project_metadata_item[name]
   metadata.key == "serial-port-enable"
-  lower(metadata.value) == "true"
+  
+  isTrue(metadata.value)
 
 	result := {
                 "documentId": 		input.document[i].id,
@@ -46,5 +47,16 @@ CxPolicy [ result ] {
 }
 
 serialPortEnabled(metadata) = true {
-  lower(object.get(metadata,"serial-port-enable","undefined")) == "true"
+  serial_enabled := object.get(metadata,"serial-port-enable","undefined")
+  isTrue(serial_enabled)
+}
+
+isTrue(value) = true {
+  is_string(value)
+  lower(value) == "true"
+}
+
+isTrue(value) = true {
+  is_boolean(value)
+  value
 }

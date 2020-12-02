@@ -5,7 +5,17 @@ CxPolicy [ result ] {
 
   org_policy.type == "SERVICE_CONTROL_POLICY"
   
-  result := check_all_features(org_policy,name)
+  content := json.unmarshal(org_policy.content)
+
+  checkStatements(content.Statement)
+
+  result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("aws_organizations_policy[%s].content", [name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue": "Statements allow all policy actions in all resources",
+                "keyActualValue": 	"Some or all statements don't allow all policy actions in all resources"
+              }
 
 }
 
@@ -14,46 +24,30 @@ CxPolicy [ result ] {
 
   not org_policy.type # default is SERVICE_CONTROL_POLICY
   
-  result := check_all_features(org_policy,name)
+  content := json.unmarshal(org_policy.content)
+
+  checkStatements(content.Statement)
+
+  result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("aws_organizations_policy[%s].content", [name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue": "Statements allow all policy actions in all resources",
+                "keyActualValue": 	"Some or all statements don't allow all policy actions in all resources"
+              }
 
 }
 
-check_all_features(resource,id) = result {
-
-  content := json.unmarshal(resource.content)
-
-  is_statement_array := is_array(content.Statement)
-
-  statements := content.Statement
-  
-  some j
+checkStatements(statements) = true {
+	is_array(statements)  
+     some j
     	statement := statements[j]
   		not policy_check(statement,"*","Allow","*")
-
-  result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_organizations_policy[%s].content", [id]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": "Statements allow all policy actions in all resources",
-                "keyActualValue": 	"Some or all statements don't allow all policy actions in all resources"
-              }
 }
 
-check_all_features(resource,id) = result {
-
-  content := json.unmarshal(resource.content)
-
-  is_statement_string := is_object(content.Statement)
-
-  not policy_check(content.Statement,"*","Allow","*")
-
-  result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_organizations_policy[%s].content", [id]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": "Statements allow all policy actions in all resources",
-                "keyActualValue": 	"Some or all statements don't allow all policy actions in all resources"
-              }
+checkStatements(statement) = true {
+	not is_array(statement)
+    not policy_check(statement,"*","Allow","*")
 }
 
 policy_check(statement,action,effect,resource) = true {

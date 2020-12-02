@@ -26,6 +26,7 @@ resource "google_compute_instance" "some_metadata" {
 
   metadata = {
     #... some other metadata
+    serial-port-enable = "FALSE"
   }
 
   metadata_startup_script = "echo hi > /test.txt"
@@ -38,6 +39,7 @@ resource "google_compute_instance" "some_metadata" {
 resource "google_compute_project_metadata" "more_metadata" {
   metadata = {
     #... some other metadata
+    serial-port-enable = false
   }
 }
 

@@ -43,7 +43,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-- [How can I help?!](contribution.md)
+- [How can I help?!](CONTRIBUTING.md)
 - [Take me to the repo on GitHub!](https://github.com/Checkmarx/kics/)
 
 ## About the Project
