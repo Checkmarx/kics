@@ -1,0 +1,8 @@
+{
+  "id": "memcached_disabled",
+  "queryName": "Memcached Disabled",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "Check if the Memcached is disabled on the ElastiCache",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine"
+}
