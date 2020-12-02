@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 
@@ -33,6 +34,7 @@ func main() { // nolint:funlen,gocyclo
 		outputPath  string
 		payloadPath string
 		verbose     bool
+		logFile     bool
 	)
 
 	ctx := context.Background()
@@ -41,16 +43,28 @@ func main() { // nolint:funlen,gocyclo
 	}
 	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 
+	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
+	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
+
 	rootCmd := &cobra.Command{
 		Use:   "kics",
 		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 			if verbose {
-				log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
-			} else {
-				log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+				consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 			}
+
+			if logFile {
+				file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+				if err != nil {
+					return err
+				}
+				fileLogger = zerolog.ConsoleWriter{Out: file, NoColor: true}
+			}
+
+			mw := io.MultiWriter(consoleLogger, fileLogger)
+			log.Logger = log.Output(mw)
 
 			querySource := &query.FilesystemSource{
 				Source: queryPath,
@@ -139,6 +153,7 @@ func main() { // nolint:funlen,gocyclo
 	rootCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
+	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "Log to file info.log")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
 		log.Err(err).Msg("failed to add command required flags")
 	}
