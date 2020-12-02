@@ -8,10 +8,5 @@
 		"queryName": "Secrets Env",
 		"severity": "MEDIUM",
 		"line": 5
-	},
-	{
-		"queryName": "Secrets Env",
-		"severity": "MEDIUM",
-		"line": 6
 	}
 ]

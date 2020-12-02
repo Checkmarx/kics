@@ -7,21 +7,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource.Value[0]]),
-                "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "Dockerfile doesn't contain secrets",
-                "keyActualValue": 	"Dockerfile contains secrets"
-              }
-}
-
-CxPolicy [ result ] {
-  resource := input.document[i].resource[j]
-  resource.Cmd == "arg"
-  checkSecret(resource) == true
-
-	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource.Value[0]]),
+                "searchKey": 	    sprintf("ENV=%s", [resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": "Dockerfile doesn't contain secrets",
                 "keyActualValue": 	"Dockerfile contains secrets"
@@ -35,7 +21,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource.Value[0]]),
+                "searchKey": 	    sprintf("LABEL=%s", [resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": "Dockerfile doesn't contain secrets",
                 "keyActualValue": 	"Dockerfile contains secrets"
