@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
@@ -75,6 +76,7 @@ func main() { // nolint:funlen,gocyclo
 				Add(&jsonParser.Parser{}).
 				Add(&yamlParser.Parser{}).
 				Add(terraformParser.NewDefault()).
+				Add(&dockerParser.Parser{}).
 				Build()
 
 			service := &kics.Service{
