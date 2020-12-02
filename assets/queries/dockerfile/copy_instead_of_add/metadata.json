@@ -1,6 +1,6 @@
 {
-  "id": "COPY_instead_of_ADD",
-  "queryName": "COPY instead of ADD",
+  "id": "Copy_instead_of_add",
+  "queryName": "Copy Instead of Add",
   "severity": "LOW",
   "category": "Image",
   "descriptionText": "Should use COPY instead of ADD unless, running a tar file",

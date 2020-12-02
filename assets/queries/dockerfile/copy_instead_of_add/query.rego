@@ -6,7 +6,7 @@ CxPolicy [ result ] {
   
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource["Value"][0]]),
+                "searchKey": 	    sprintf("%s", [resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": "Using Command COPY",
                 "keyActualValue": 	"Using Command ADD"
@@ -14,8 +14,8 @@ CxPolicy [ result ] {
 }
 
 check(com, nextCom) = true{
-  com["Cmd"] == "add"
-  not nextCom["Cmd"] == "run"
-  value := nextCom["Value"][_]
+  com.Cmd == "add"
+  not nextCom.Cmd == "run"
+  value := nextCom.Value[_]
   not contains(value, "tar")
 }
