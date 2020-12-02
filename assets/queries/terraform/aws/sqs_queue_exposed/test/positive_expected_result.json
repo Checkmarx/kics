@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SQS Queue Exposed",
+		"severity": "HIGH",
+		"line": 13
+	}
+]
