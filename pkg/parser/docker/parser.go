@@ -15,7 +15,7 @@ type Parser struct {
 
 // Resource Separates the list of commands by file
 type Resource struct {
-	CommandList []dockerfile.Command `json:"resource"`
+	CommandList []dockerfile.Command `json:"command"`
 }
 
 // Parse - parses dockerfile to Json
