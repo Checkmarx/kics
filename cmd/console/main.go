@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -41,7 +42,7 @@ func main() { // nolint:funlen,gocyclo
 	if verbose {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 	}
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
@@ -60,7 +61,7 @@ func main() { // nolint:funlen,gocyclo
 				if err != nil {
 					return err
 				}
-				fileLogger = zerolog.ConsoleWriter{Out: file, NoColor: true}
+				fileLogger = customConsoleWriter(zerolog.ConsoleWriter{Out: file, NoColor: true})
 			}
 
 			mw := io.MultiWriter(consoleLogger, fileLogger)
@@ -174,6 +175,9 @@ func printResult(summary model.Summary) error {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
 		}
 	}
+	log.
+		Info().
+		Msg("Inspector stopped\n")
 
 	return nil
 }
@@ -195,4 +199,24 @@ func printToJSONFile(path string, body interface{}) error {
 	encoder.SetIndent("", "\t")
 
 	return encoder.Encode(body)
+}
+
+func customConsoleWriter(fileLogger zerolog.ConsoleWriter) zerolog.ConsoleWriter {
+	fileLogger.FormatLevel = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
+	}
+
+	fileLogger.FormatFieldName = func(i interface{}) string {
+		return fmt.Sprintf("%s:", i)
+	}
+
+	fileLogger.FormatErrFieldName = func(i interface{}) string {
+		return "ERROR:"
+	}
+
+	fileLogger.FormatFieldValue = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("%s", i))
+	}
+
+	return fileLogger
 }
