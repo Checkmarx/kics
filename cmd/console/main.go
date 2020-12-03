@@ -61,7 +61,7 @@ func main() { // nolint:funlen,gocyclo
 				if err != nil {
 					return err
 				}
-				fileLogger = customConsoleWriter(zerolog.ConsoleWriter{Out: file, NoColor: true})
+				fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
 			}
 
 			mw := io.MultiWriter(consoleLogger, fileLogger)
@@ -201,7 +201,7 @@ func printToJSONFile(path string, body interface{}) error {
 	return encoder.Encode(body)
 }
 
-func customConsoleWriter(fileLogger zerolog.ConsoleWriter) zerolog.ConsoleWriter {
+func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
 	fileLogger.FormatLevel = func(i interface{}) string {
 		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
 	}
@@ -218,5 +218,5 @@ func customConsoleWriter(fileLogger zerolog.ConsoleWriter) zerolog.ConsoleWriter
 		return strings.ToUpper(fmt.Sprintf("%s", i))
 	}
 
-	return fileLogger
+	return *fileLogger
 }
