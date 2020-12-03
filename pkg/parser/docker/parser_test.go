@@ -52,23 +52,23 @@ func TestParser_Parse(t *testing.T) {
 		case 0:
 			require.NoError(t, err)
 			require.Len(t, doc, 1)
-			require.Len(t, doc[0]["resource"], 3)
-			require.Contains(t, doc[0]["resource"].([]interface{})[1].(map[string]interface{})["Cmd"], "copy")
-			require.Contains(t, doc[0]["resource"].([]interface{})[2].(map[string]interface{})["Value"].([]interface{})[0], "echo hello")
+			require.Len(t, doc[0]["command"], 3)
+			require.Contains(t, doc[0]["command"].([]interface{})[1].(map[string]interface{})["Cmd"], "copy")
+			require.Contains(t, doc[0]["command"].([]interface{})[2].(map[string]interface{})["Value"].([]interface{})[0], "echo hello")
 		case 1:
 			require.NoError(t, err)
 			require.Len(t, doc, 1)
-			require.Len(t, doc[0]["resource"], 6)
-			require.Contains(t, doc[0]["resource"].([]interface{})[3].(map[string]interface{})["Cmd"], "healthcheck")
-			require.Contains(t, doc[0]["resource"].([]interface{})[4].(map[string]interface{})["SubCmd"], "add")
-			require.Contains(t, doc[0]["resource"].([]interface{})[3].(map[string]interface{})["Value"].([]interface{})[1], "echo hi")
+			require.Len(t, doc[0]["command"], 6)
+			require.Contains(t, doc[0]["command"].([]interface{})[3].(map[string]interface{})["Cmd"], "healthcheck")
+			require.Contains(t, doc[0]["command"].([]interface{})[4].(map[string]interface{})["SubCmd"], "add")
+			require.Contains(t, doc[0]["command"].([]interface{})[3].(map[string]interface{})["Value"].([]interface{})[1], "echo hi")
 		case 2:
 			require.NoError(t, err)
 			require.Len(t, doc, 1)
-			require.Len(t, doc[0]["resource"], 5)
-			require.Contains(t, doc[0]["resource"].([]interface{})[4].(map[string]interface{})["Value"].([]interface{})[0], "https://github.com")
-			require.Contains(t, doc[0]["resource"].([]interface{})[4].(map[string]interface{})["Cmd"], "run")
-			require.Contains(t, doc[0]["resource"].([]interface{})[1].(map[string]interface{})["Value"].([]interface{})[0], "CGO_ENABLED")
+			require.Len(t, doc[0]["command"], 5)
+			require.Contains(t, doc[0]["command"].([]interface{})[4].(map[string]interface{})["Value"].([]interface{})[0], "https://github.com")
+			require.Contains(t, doc[0]["command"].([]interface{})[4].(map[string]interface{})["Cmd"], "run")
+			require.Contains(t, doc[0]["command"].([]interface{})[1].(map[string]interface{})["Value"].([]interface{})[0], "CGO_ENABLED")
 		}
 	}
 }
