@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Kubernetes Image Host Port is Specified",
+		"severity": "LOW",
+		"line": 12
+	}
+]
