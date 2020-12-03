@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "Log Connections Is Not Set",
+		"queryName": "Log Duration Is Not Set",
 		"severity": "MEDIUM",
 		"line": 6
 	},
 	{
-		"queryName": "Log Connections Is Not Set",
+		"queryName": "Log Duration Is Not Set",
 		"severity": "MEDIUM",
 		"line": 13
 	},
 	{
-		"queryName": "Log Connections Is Not Set",
+		"queryName": "Log Duration Is Not Set",
 		"severity": "MEDIUM",
 		"line": 20
 	}
