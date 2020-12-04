@@ -3,6 +3,7 @@ package Cx
 CxPolicy [ result ] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 	policy := input.document[i].resource[pl[r]][name].policy
+    validate_json(policy)
     pol := json.unmarshal(policy)
     pol.Statement[idx].Effect = "Allow"
     pol.Statement[idx].Principal = "*"
@@ -19,6 +20,7 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 	policy := input.document[i].resource[pl[r]][name].policy
+    validate_json(policy)
     pol := json.unmarshal(policy)
     pol.Statement[idx].Effect = "Allow"
     contains(pol.Statement[idx].Principal.AWS, "*")
@@ -30,4 +32,8 @@ CxPolicy [ result ] {
                 "keyExpectedValue": sprintf("%s[%s].policy.Principal.AWS doesn't contain '*'", [pl[r], name]),
                 "keyActualValue": 	sprintf("%s[%s].policy.Principal.AWS contains '*'", [pl[r], name])
               }
+}
+
+validate_json(string) = true {
+	not startswith(string, "$")
 }

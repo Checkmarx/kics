@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+		"severity": "MEDIUM",
+		"line": 11
+	}
+]
