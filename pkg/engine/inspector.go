@@ -107,7 +107,7 @@ func NewInspector(
 	}
 
 	log.Info().
-		Msgf("Inspector initialized, number of queries=%d", len(opaQueries))
+		Msgf("Inspector initialized, number of queries=%d\n", len(opaQueries))
 
 	return &Inspector{
 		queries: opaQueries,

@@ -1,0 +1,8 @@
+{
+  "id": "Redis_Cache_Allows_Non_SSL_Connections",
+  "queryName": "Redis Cache Allows Non SSL Connections",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Check if any Redis Cache resource allows non-SSL connections.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache"
+}

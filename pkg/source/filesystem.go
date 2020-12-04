@@ -45,7 +45,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 	}
 
 	if !fileInfo.IsDir() {
-		if !extensions.Include(filepath.Ext(s.path)) {
+		if !extensions.Include(filepath.Ext(s.path)) && !extensions.Include(filepath.Base(s.path)) {
 			return ErrNotSupportedFile
 		}
 
@@ -70,7 +70,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			return nil
 		}
 
-		if !extensions.Include(filepath.Ext(path)) {
+		if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
 			return nil
 		}
 

@@ -1,0 +1,8 @@
+{
+  "id": "Kube_Dashboard_Is_Enabled",
+  "queryName": "Kube Dashboard Is Enabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if the Kubernetes Dashboard is enabled.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster"
+}

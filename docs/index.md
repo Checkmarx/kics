@@ -13,11 +13,13 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
 <img alt="Terraform" src="img/logo-terraform.svg" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+<!--
+<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Ansible" src="img/logo-ansible.png" width="150">
+-->
 
-More solutions, such as AWS CloudFormation are on the [roadmap](roadmap.md).
+More solutions, such as Docker, Ansible, AWS CloudFormation and others are on the [roadmap](roadmap.md).
 
 
 ## Getting Started
@@ -41,7 +43,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-- [How can I help?!](contribution.md)
+- [How can I help?!](CONTRIBUTING.md)
 - [Take me to the repo on GitHub!](https://github.com/Checkmarx/kics/)
 
 ## About the Project

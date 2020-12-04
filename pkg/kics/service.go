@@ -2,6 +2,7 @@ package kics
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"io/ioutil"
 
@@ -11,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 )
 
 type SourceProvider interface {
@@ -57,6 +59,12 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 			}
 
 			for _, document := range documents {
+				_, err = json.Marshal(document)
+				if err != nil {
+					log.Err(err).Msgf("failed to marshal content in file: %s", filename)
+					continue
+				}
+
 				file := model.FileMetadata{
 					ID:           uuid.New().String(),
 					ScanID:       scanID,

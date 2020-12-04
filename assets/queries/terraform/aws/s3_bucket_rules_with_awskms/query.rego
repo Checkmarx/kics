@@ -10,10 +10,10 @@ CxPolicy [ result ] {
   
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("server_side_encryption_configuration[%s].%s.sse_algorithm", [name, ssecName]),
+                "searchKey": 	    sprintf("server_side_encryption_configuration.%s.%s.sse_algorithm", [bucket, ssecName]),
                 "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("server_side_encryption_configuration[%s].%s.sse_algorithm is AES256", [name, ssecName]),
-                "keyActualValue": 	sprintf("server_side_encryption_configuration[%s].%s.sse_algorithm is %s", [name, ssecName, algorithm.sse_algorithm] )
+                "keyExpectedValue": sprintf("server_side_encryption_configuration.%s.%s.sse_algorithm is AES256", [bucket, ssecName]),
+                "keyActualValue": 	sprintf("server_side_encryption_configuration.%s.%s.sse_algorithm is %s", [bucket, ssecName, algorithm.sse_algorithm] )
               }
 }
 
@@ -26,10 +26,10 @@ CxPolicy [ result ] {
   
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("server_side_encryption_configuration[%s].%s.km_master_key_id", [name, ssecName]),
+                "searchKey": 	    sprintf("server_side_encryption_configuration.%s.%s.kms_master_key_id", [bucket, ssecName]),
                 "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("server_side_encryption_configuration[%s].%s.km_master_key_id is undefined", [name, ssecName]),
-                "keyActualValue": sprintf("server_side_encryption_configuration[%s].%s.km_master_key_id is defined", [name, ssecName])
+                "keyExpectedValue": sprintf("server_side_encryption_configuration.%s.%s.kms_master_key_id is undefined", [bucket, ssecName]),
+                "keyActualValue": sprintf("server_side_encryption_configuration.%s.%s.kms_master_key_id is defined", [bucket, ssecName])
               }
 }
 

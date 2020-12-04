@@ -3,6 +3,7 @@ package Cx
 CxPolicy [ result ] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 	policy := input.document[i].resource[pl[r]][name].policy
+    validate_json(policy)
     pol := json.unmarshal(policy)
     pol.Statement[idx].Effect = "Allow"
     pol.Statement[idx].Principal = "*"
@@ -11,14 +12,15 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal", [pl[r], name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'policy.Statement.Principal' is not equal '*'",
-                "keyActualValue": 	"'policy.Statement.Principal' is equal '*'"
+                "keyExpectedValue": sprintf("%s[%s].policy.Principal is not equal to '*'", [pl[r], name]),
+                "keyActualValue": 	sprintf("%s[%s].policy.Principal is equal to '*'", [pl[r], name])
               }
 }
 
 CxPolicy [ result ] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 	policy := input.document[i].resource[pl[r]][name].policy
+    validate_json(policy)
     pol := json.unmarshal(policy)
     pol.Statement[idx].Effect = "Allow"
     contains(pol.Statement[idx].Principal.AWS, "*")
@@ -26,8 +28,12 @@ CxPolicy [ result ] {
     result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
-                "issueType":		"MissingAttribute",
-                "keyExpectedValue": "'policy.Statement.Principal.AWS' doesn't contain '*'",
-                "keyActualValue": 	"'policy.Statement.Principal.AWS' contains '*'"
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue": sprintf("%s[%s].policy.Principal.AWS doesn't contain '*'", [pl[r], name]),
+                "keyActualValue": 	sprintf("%s[%s].policy.Principal.AWS contains '*'", [pl[r], name])
               }
+}
+
+validate_json(string) = true {
+	not startswith(string, "$")
 }

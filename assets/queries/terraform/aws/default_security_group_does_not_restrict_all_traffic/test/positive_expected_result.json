@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Default Security Group Does Not Restrict All Traffic",
+		"severity": "HIGH",
+		"line": 1
+	},
+	{
+		"queryName": "Default Security Group Does Not Restrict All Traffic",
+		"severity": "HIGH",
+		"line": 13
+	},
+	{
+		"queryName": "Default Security Group Does Not Restrict All Traffic",
+		"severity": "HIGH",
+		"line": 24
+	},
+	{
+		"queryName": "Default Security Group Does Not Restrict All Traffic",
+		"severity": "HIGH",
+		"line": 24
+	}
+]

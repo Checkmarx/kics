@@ -1,0 +1,8 @@
+{
+  "id": "AKS_Network_Policy_Is_Not_Properly_Configured",
+  "queryName": "AKS Network Policy Is Not Properly Configured",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if the Azure Kubernetes Service doesn't have the proper network policy configuration.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster"
+}
