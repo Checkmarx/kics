@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Containers should not have CAP_SYS_ADMIN Linux capability",
-  "descriptionUrl": "https://jamesdefabia.github.io/docs/user-guide/containers/"
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
 }
