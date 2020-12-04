@@ -1,0 +1,8 @@
+{
+  "id": "allowed_capabilities_psp",
+  "queryName": "Allowed Capabilities PSP",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "PodSecurityPolicy should not have allowed capabilities",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}
