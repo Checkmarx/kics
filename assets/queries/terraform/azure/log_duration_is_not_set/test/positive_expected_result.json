@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Log Duration Is Not Set",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "Log Duration Is Not Set",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Log Duration Is Not Set",
+		"severity": "MEDIUM",
+		"line": 20
+	}
+]
