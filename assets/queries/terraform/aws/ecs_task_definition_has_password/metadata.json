@@ -1,0 +1,8 @@
+{
+  "id": "ECS_task_definition_has_password",
+  "queryName": "ECS Task Definition File has Password",
+  "category": "Data Security",
+  "severity": "HIGH",
+  "descriptionText": "ECS Task Definition File must not contain Password",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition"
+}
