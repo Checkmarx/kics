@@ -3,16 +3,19 @@ package Cx
 CxPolicy [ result ] {
     document := input.document[i]
     specInfo := getSpecInfo(document)
+
+    metadata := document.metadata
     
     spec := document.spec
     
     document.kind == "Pod"
-    not spec.securityContext
+    
+    object.get(spec, "securityContext", "undefined") == "undefined"
 
 	result := {
                 "documentId": 		  input.document[i].id,
                 "issueType":		  "MissingAttribute",
-                "searchKey": 	      sprintf("%s", [specInfo.path]),
+                "searchKey": 	      sprintf("metadata.name=%s.%s", [metadata.name, specInfo.path]),
                 "keyExpectedValue":   sprintf("Pod has a security context applied in document[%d]",[i]),
                 "keyActualValue": 	  sprintf("Pod has not a security context applied in document[%d]",[i])
               }
@@ -22,6 +25,8 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
     document := input.document[i]
     specInfo := getSpecInfo(document)
+
+    metadata := document.metadata
 
     containers := document.spec.containers
     
@@ -33,7 +38,7 @@ CxPolicy [ result ] {
 	result := {
                 "documentId": 		  input.document[i].id,
                 "issueType":		  "MissingAttribute",
-                "searchKey": 	      sprintf("%s.containers", [specInfo.path]),
+                "searchKey": 	      sprintf("metadata.name=%s.%s.containers", [metadata.name, specInfo.path]),
                 "keyExpectedValue":   sprintf("All containers have a security context applied in document[%d]",[i]),
                 "keyActualValue": 	  sprintf("All or some containers have not a security context applied in document[%d]",[i])
               }
