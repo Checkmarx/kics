@@ -1,0 +1,8 @@
+{
+  "id": "allowed_capabilities",
+  "queryName": "Allowed Capabilities",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "Containers should not have added capability",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+}
