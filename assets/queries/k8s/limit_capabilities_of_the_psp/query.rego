@@ -1,8 +1,10 @@
 package Cx
 
 CxPolicy [ result ] {
-   metadata := input.document[i].metadata
-   spec := input.document[i].spec
+   document := input.document
+   metadata := document[i].metadata
+   spec := document[i].spec
+   document[i].kind == "PodSecurityPolicy"
    requiredDropCapabilities := object.get(spec, "requiredDropCapabilities", "undefined") != "undefined"
    not requiredDropCapabilities 
    
