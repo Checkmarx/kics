@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s", [policyStat.Principal.AWS]),
                 "issueType":		"IncorrectValue", 
-                "keyExpectedValue": "'Statement.Principal.AWS' doesn't contain '*'",
-                "keyActualValue": 	"'Statement.Principal' contains '*'"
+                "keyExpectedValue": "'Statement.Principal.AWS' contains '*'",
+                "keyActualValue": 	"'Statement.Principal.AWS' doesn't contains '*'"
               }
 }
