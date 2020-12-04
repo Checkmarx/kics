@@ -17,7 +17,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
@@ -88,7 +87,7 @@ func main() { // nolint:funlen,gocyclo
 			}
 
 			combinedParser := parser.NewBuilder().
-				Add(&jsonParser.Parser{}).
+				// Add(&jsonParser.Parser{}).
 				Add(&yamlParser.Parser{}).
 				Add(terraformParser.NewDefault()).
 				Add(&dockerParser.Parser{}).
@@ -175,6 +174,9 @@ func printResult(summary model.Summary) error {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
 		}
 	}
+	log.
+		Info().
+		Msgf("\n\nFiles scanned: %d\nParsed files: %d\nQueries loaded: %d\nQueries failed to execute: %d\n", summary.ScannedFiles, summary.ParsedFiles, summary.TotalQueries, summary.FailedToExecuteQueries)
 	log.
 		Info().
 		Msg("Inspector stopped\n")
