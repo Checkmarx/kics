@@ -3,20 +3,19 @@ package Cx
 CxPolicy [ result ] {
     document := input.document[i]
     specInfo := getSpecInfo(document)
+    metadata := document.metadata
 
     containers := document.spec.containers
     
-    lengthContainers := count(containers)
     
-    count({x | containers[x]; object.get(containers[x]["resources"]["limits"], "cpu", "undefined") != "undefined" }) != lengthContainers
-
-
-	result := {
-                "documentId": 		  input.document[i].id,
-                "issueType":		   "MissingAttribute",
-                "searchKey": 	      sprintf("%s.containers", [specInfo.path]),
-                "keyExpectedValue": sprintf("All containers have CPU limits in document[%d]",[i]),
-                "keyActualValue": 	sprintf("All or some containers have not CPU limits in document[%d]",[i])
+    object.get(containers[index]["resources"]["limits"], "cpu", "undefined") == "undefined"
+ 
+    result := {
+                "documentId":        input.document[i].id,
+                "issueType":         "MissingAttribute",
+                "searchKey":         sprintf("metadata.name=%s.%s.containers.name=%s.limits", [metadata.name, specInfo.path, containers[index].name]),
+                "keyExpectedValue":  sprintf("%s.containers.name=%s. does have CPU limits",[specInfo.path, containers[index].name]),
+                "keyActualValue":    sprintf("%s.containers.name=%s. doesn't have CPU limits",[specInfo.path, containers[index].name]),
               }
 }
 
