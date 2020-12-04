@@ -51,6 +51,9 @@ type Parser struct {
 
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
 	ext := filepath.Ext(filePath)
+	if ext == "" {
+		ext = filepath.Base(filePath)
+	}
 	if p, ok := c.parsers[ext]; ok {
 		obj, err := p.Parse(filePath, fileContent)
 		if err != nil {

@@ -2,7 +2,9 @@ package Cx
 
 CxPolicy [ result ] {
     resource := input.document[i].resource.aws_s3_bucket[name]
-    out := json.unmarshal(resource.policy)
+    policy := resource.policy
+    validate_json(policy)
+    out := json.unmarshal(policy)
     out.Statement[ix].Effect = "Allow"
     action := out.Statement[ix].Action
 
@@ -21,7 +23,9 @@ CxPolicy [ result ] {
 
 CxPolicy [ result ] {
     resource := input.document[i].resource.aws_s3_bucket[name]
-    out := json.unmarshal(resource.policy)
+    policy := resource.policy
+    validate_json(policy)
+    out := json.unmarshal(policy)
     out.Statement[ix].Effect = "Allow"
     action := out.Statement[ix].Action
 
@@ -36,4 +40,8 @@ CxPolicy [ result ] {
                 "keyActualValue": 	"'policy.Statement.Action' contain '*'",
                 "value":            resource.bucket
               }
+}
+
+validate_json(string) = true {
+	not startswith(string, "$")
 }

@@ -4,8 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -14,7 +16,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
@@ -32,24 +34,37 @@ func main() { // nolint:funlen,gocyclo
 		outputPath  string
 		payloadPath string
 		verbose     bool
+		logFile     bool
 	)
 
 	ctx := context.Background()
 	if verbose {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 	}
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+
+	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
+	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 
 	rootCmd := &cobra.Command{
-		Use:   "iacScanner",
-		Short: "Security inspect tool for Infrastructure as Code files",
+		Use:   "kics",
+		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 			if verbose {
-				log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
-			} else {
-				log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+				consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 			}
+
+			if logFile {
+				file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+				if err != nil {
+					return err
+				}
+				fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
+			}
+
+			mw := io.MultiWriter(consoleLogger, fileLogger)
+			log.Logger = log.Output(mw)
 
 			querySource := &query.FilesystemSource{
 				Source: queryPath,
@@ -72,9 +87,10 @@ func main() { // nolint:funlen,gocyclo
 			}
 
 			combinedParser := parser.NewBuilder().
-				Add(&jsonParser.Parser{}).
+				// Add(&jsonParser.Parser{}).
 				Add(&yamlParser.Parser{}).
 				Add(terraformParser.NewDefault()).
+				Add(&dockerParser.Parser{}).
 				Build()
 
 			service := &kics.Service{
@@ -101,7 +117,7 @@ func main() { // nolint:funlen,gocyclo
 
 			counters := model.Counters{
 				ScannedFiles:           t.FoundFiles,
-				FailedToScanFiles:      t.FoundFiles - t.ParsedFiles,
+				ParsedFiles:            t.ParsedFiles,
 				TotalQueries:           t.LoadedQueries,
 				FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
 			}
@@ -124,7 +140,7 @@ func main() { // nolint:funlen,gocyclo
 				return err
 			}
 
-			if len(summary.FailedQueries) > 0 {
+			if summary.FailedToExecuteQueries > 0 {
 				os.Exit(1)
 			}
 
@@ -137,6 +153,7 @@ func main() { // nolint:funlen,gocyclo
 	rootCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
+	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "Log to file info.log")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
 		log.Err(err).Msg("failed to add command required flags")
 	}
@@ -148,15 +165,24 @@ func main() { // nolint:funlen,gocyclo
 
 func printResult(summary model.Summary) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
-	fmt.Printf("Files failed to scan: %d\n", summary.FailedToScanFiles)
+	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
 	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
-	for _, q := range summary.FailedQueries {
+	for _, q := range summary.Queries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
 		for _, f := range q.Files {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
 		}
 	}
+	log.
+		Info().
+		Msgf("\n\nFiles scanned: %d\n"+
+			"Parsed files: %d\nQueries loaded: %d\n"+
+			"Queries failed to execute: %d\n",
+			summary.ScannedFiles, summary.ParsedFiles, summary.TotalQueries, summary.FailedToExecuteQueries)
+	log.
+		Info().
+		Msg("Inspector stopped\n")
 
 	return nil
 }
@@ -178,4 +204,24 @@ func printToJSONFile(path string, body interface{}) error {
 	encoder.SetIndent("", "\t")
 
 	return encoder.Encode(body)
+}
+
+func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
+	fileLogger.FormatLevel = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
+	}
+
+	fileLogger.FormatFieldName = func(i interface{}) string {
+		return fmt.Sprintf("%s:", i)
+	}
+
+	fileLogger.FormatErrFieldName = func(i interface{}) string {
+		return "ERROR:"
+	}
+
+	fileLogger.FormatFieldValue = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("%s", i))
+	}
+
+	return *fileLogger
 }

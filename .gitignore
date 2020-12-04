@@ -17,3 +17,6 @@
 /vendor
 /site
 
+# Log Files
+
+*.log

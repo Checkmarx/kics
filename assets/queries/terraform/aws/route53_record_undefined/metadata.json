@@ -1,0 +1,8 @@
+{
+  "id": "route53_record_undefined",
+  "queryName": "Route53 Record Undefined",
+  "severity": "HIGH",
+  "category": "DNS Management",
+  "descriptionText": "Check if Record is set",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record"
+}
