@@ -5,7 +5,7 @@ CxPolicy [ result ] {
   jsonPolicy := json.unmarshal(resource.policy)
   policyStat := jsonPolicy.Statement[_]
   policyStat.Effect == "Allow"
-  policyStat.Principal.AWS == "*"
+  not policyStat.Principal.AWS == "*"
 
 	result := {
                 "documentId": 		input.document[i].id,
