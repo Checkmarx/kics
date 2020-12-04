@@ -1,0 +1,8 @@
+{
+  "id": "IAM_policy_full_privileges",
+  "queryName": "IAM Policy Full Privileges",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "IAM policies shouldn't allow full administrative privileges",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html"
+}
