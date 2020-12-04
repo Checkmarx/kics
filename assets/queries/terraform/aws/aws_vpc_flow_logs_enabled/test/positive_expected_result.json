@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "VPC Flow Logs are not Enabled",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]
