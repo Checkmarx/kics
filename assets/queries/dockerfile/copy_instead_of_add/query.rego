@@ -1,8 +1,8 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i].resource[j]
-  check(resource, input.document[i].resource[j+1]) == true
+  resource := input.document[i].command[j]
+  check(resource, input.document[i].command[j+1]) == true
   
 	result := {
                 "documentId": 		input.document[i].id,
