@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Kubernetes Service Account Binding is Default",
+		"severity": "HIGH",
+		"line": 11
+	}
+]

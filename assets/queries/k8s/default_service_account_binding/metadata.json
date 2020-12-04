@@ -1,0 +1,8 @@
+{
+  "id": "Default_Service_Account_Binding",
+  "queryName": "Kubernetes Service Account Binding is Default",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "The default namespace should not be used",
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+}
