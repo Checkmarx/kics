@@ -1,23 +1,17 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i].resource
-  awsSnsTopic := resource.aws_sns_topic[name_sns_topic]
-  awsSnsTopicArn := sprintf("${aws_sns_topic.%s.arn}", [name_sns_topic])
-  awsSubTopic := resource.aws_sns_topic_subscription
-  contains(awsSubTopic,awsSnsTopicArn) == false
-
- 
+  resource := input.document[i].resource.aws_sns_topic[name]
+  jsonPolicy := json.unmarshal(resource.policy)
+  policyStat := jsonPolicy.Statement[_]
+  policyStat.Effect == "Allow"
+  policyStat.Principal.AWS == "*"
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_sns_topic[%s]", [name_sns_topic]),
+                "searchKey": 	    sprintf("%s", [policyStat.Principal.AWS]),
                 "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("aws_sns_topic[%s] arn is the same as subscription arn", [name_sns_topic]),
-				        "keyActualValue": sprintf("aws_sns_topic[%s] arn is not the same as subscription arn", [name_sns_topic]),
+                "keyExpectedValue": "'Statement.Principal.AWS' doesn't contain '*'",
+                "keyActualValue": 	"'Statement.Principal' contains '*'"
               }
 }
-
-contains(array, elem) = true {
-  array[_].topic_arn == elem
-} else = false { true }

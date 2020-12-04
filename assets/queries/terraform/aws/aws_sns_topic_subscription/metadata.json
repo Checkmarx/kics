@@ -3,6 +3,6 @@
   "queryName": "SNS Topic is Publicly Accessible For Subscription",
   "severity": "MEDIUM",
   "category": "Network Security",
-  "descriptionText": "This query checks if SNS Topic is Accessible For subscription by comparing the arn from sns topic to the sns topic subscription",
+  "descriptionText": "This query checks if SNS Topic is Accessible For Subscription",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic"
 }

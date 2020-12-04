@@ -2,6 +2,6 @@
 	{
 		"queryName": "SNS Topic is Publicly Accessible For Subscription",
 		"severity": "MEDIUM",
-		"line": 1
+		"line": 9
 	}
 ]
