@@ -6,7 +6,7 @@ policy = <<EOF
 {
 "Action": "*",
 "Principal": {
-  "AWS": "*"
+  "AWS": "arn:aws:iam::##account_number##:root"
 },
 "Effect": "Allow",
 "Sid": ""

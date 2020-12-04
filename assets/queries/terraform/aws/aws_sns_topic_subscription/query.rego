@@ -5,13 +5,13 @@ CxPolicy [ result ] {
   jsonPolicy := json.unmarshal(resource.policy)
   policyStat := jsonPolicy.Statement[_]
   policyStat.Effect == "Allow"
-  not policyStat.Principal.AWS == "*"
+  policyStat.Principal.AWS == "*"
 
 	result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s", [policyStat.Principal.AWS]),
                 "issueType":		"IncorrectValue", 
-                "keyExpectedValue": "'Statement.Principal.AWS' contains '*'",
-                "keyActualValue": 	"'Statement.Principal.AWS' doesn't contains '*'"
+                "keyExpectedValue": "'Statement.Principal.AWS' doesn't contain '*'",
+                "keyActualValue": 	"'Statement.Principal.AWS' contains '*'"
               }
 }
