@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "StatefulSet Has No PodAntiAffinity",
+		"severity": "LOW",
+		"line": 23
+	},
+	{
+		"queryName": "StatefulSet Has No PodAntiAffinity",
+		"severity": "LOW",
+		"line": 53
+	}
+]
