@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "S3 Bucket Acess Allowed All",
+		"queryName": "S3 Bucket Access Allowed All",
 		"severity": "HIGH",
 		"line": 5
 	}
