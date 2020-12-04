@@ -1,0 +1,8 @@
+{
+  "id": "rds_cluster_storage_not_encrypted",
+  "queryName": "RDS Cluster Storage Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Check if RDS Cluster Storage isn't encrypted. Happens when 'kms_key_id' field is false or undefined and 'engine_mode' field null or \"\".",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#storage_encrypted"
+}
