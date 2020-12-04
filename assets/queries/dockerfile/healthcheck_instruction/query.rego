@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i].resource
+  resource := input.document[i].command
   not contains(resource, "healthcheck")
 
 	result := {
