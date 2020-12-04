@@ -176,7 +176,10 @@ func printResult(summary model.Summary) error {
 	}
 	log.
 		Info().
-		Msgf("\n\nFiles scanned: %d\nParsed files: %d\nQueries loaded: %d\nQueries failed to execute: %d\n", summary.ScannedFiles, summary.ParsedFiles, summary.TotalQueries, summary.FailedToExecuteQueries)
+		Msgf("\n\nFiles scanned: %d\n"+
+			"Parsed files: %d\nQueries loaded: %d\n"+
+			"Queries failed to execute: %d\n",
+			summary.ScannedFiles, summary.ParsedFiles, summary.TotalQueries, summary.FailedToExecuteQueries)
 	log.
 		Info().
 		Msg("Inspector stopped\n")
