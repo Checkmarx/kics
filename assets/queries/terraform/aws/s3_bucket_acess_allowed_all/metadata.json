@@ -1,8 +1,0 @@
-{
-  "id": "s3_bucket_acess_allowed_all",
-  "queryName": "S3 Bucket Acess Allowed All",
-  "severity": "HIGH",
-  "category": "S3",
-  "descriptionText": "Checks if the S3 bucket is accesible for all users",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
-}
