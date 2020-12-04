@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Allow Privilege Escalation PSP",
+		"severity": "MEDIUM",
+		"line": 9
+	},
+
+	{
+		"queryName": "Allow Privilege Escalation PSP",
+		"severity": "MEDIUM",
+		"line": 32
+	}
+]

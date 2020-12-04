@@ -1,0 +1,8 @@
+{
+  "id": "allow_privilege_escalation_psp",
+  "queryName": "Allow Privilege Escalation PSP",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "PodSecurityPolicy should not allow privilege escalation",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}
