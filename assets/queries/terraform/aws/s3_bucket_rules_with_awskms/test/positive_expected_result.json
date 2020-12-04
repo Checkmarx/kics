@@ -2,6 +2,6 @@
 	{
 		"queryName": "S3 Bucket Rules With Master Key Id Null",
 		"severity": "HIGH",
-		"line": 1
+		"line": 7
 	}
 ]
