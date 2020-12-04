@@ -1,0 +1,8 @@
+{
+  "id": "Metadata_Label_Is_Invalid",
+  "queryName": "Metadata Label Is Invalid",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Check if any label in the metadata is invalid.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"
+}
