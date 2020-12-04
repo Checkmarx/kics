@@ -3,12 +3,14 @@ package Cx
 CxPolicy [ result ] {
     document := input.document[i]
     
-    not document.metadata.namespace
+    metadata = document.metadata
 
-	result := {
-                "documentId": 		  input.document[i].id,
-                "issueType":		  "MissingAttribute",
-                "searchKey": 	      "metadata",
+    object.get(metadata, "namespace", "undefined") == "undefined"
+
+   	result := {
+                "documentId": 		   input.document[i].id,
+                "issueType":		     "MissingAttribute",
+                "searchKey": 	        sprintf("metadata.name=%s", [metadata.name]),
                 "keyExpectedValue":   sprintf("Namespace is set in document[%d]",[i]),
                 "keyActualValue": 	  sprintf("Namespace is not set in document[%d]",[i])
               }
@@ -18,12 +20,13 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
     document := input.document[i]
     
-    document.metadata.namespace == "default"
+    metadata = document.metadata
+    metadata.namespace == "default"
 
-	result := {
-                "documentId": 		  input.document[i].id,
-                "issueType":		  "IncorrectValue",
-                "searchKey": 	      "metadata.namespace",
+	  result := {
+                "documentId": 		   input.document[i].id,
+                "issueType":		     "IncorrectValue",
+                "searchKey": 	        sprintf("metadata.name=%s.namespace", [metadata.name]),
                 "keyExpectedValue":   sprintf("Default namespace is not used in document[%d]",[i]),
                 "keyActualValue": 	  sprintf("Default namespace is used in document[%d]",[i])
               }
