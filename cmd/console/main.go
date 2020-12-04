@@ -4,8 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -33,13 +35,17 @@ func main() { // nolint:funlen,gocyclo
 		outputPath  string
 		payloadPath string
 		verbose     bool
+		logFile     bool
 	)
 
 	ctx := context.Background()
 	if verbose {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 	}
-	zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+
+	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
+	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 
 	rootCmd := &cobra.Command{
 		Use:   "kics",
@@ -47,10 +53,19 @@ func main() { // nolint:funlen,gocyclo
 		RunE: func(cmd *cobra.Command, args []string) error {
 			store := storage.NewMemoryStorage()
 			if verbose {
-				log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
-			} else {
-				log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+				consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 			}
+
+			if logFile {
+				file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+				if err != nil {
+					return err
+				}
+				fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
+			}
+
+			mw := io.MultiWriter(consoleLogger, fileLogger)
+			log.Logger = log.Output(mw)
 
 			querySource := &query.FilesystemSource{
 				Source: queryPath,
@@ -139,6 +154,7 @@ func main() { // nolint:funlen,gocyclo
 	rootCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
+	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "Log to file info.log")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
 		log.Err(err).Msg("failed to add command required flags")
 	}
@@ -159,6 +175,9 @@ func printResult(summary model.Summary) error {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
 		}
 	}
+	log.
+		Info().
+		Msg("Inspector stopped\n")
 
 	return nil
 }
@@ -180,4 +199,24 @@ func printToJSONFile(path string, body interface{}) error {
 	encoder.SetIndent("", "\t")
 
 	return encoder.Encode(body)
+}
+
+func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
+	fileLogger.FormatLevel = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
+	}
+
+	fileLogger.FormatFieldName = func(i interface{}) string {
+		return fmt.Sprintf("%s:", i)
+	}
+
+	fileLogger.FormatErrFieldName = func(i interface{}) string {
+		return "ERROR:"
+	}
+
+	fileLogger.FormatFieldValue = func(i interface{}) string {
+		return strings.ToUpper(fmt.Sprintf("%s", i))
+	}
+
+	return *fileLogger
 }
