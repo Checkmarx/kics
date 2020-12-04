@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i].resource[j]
+  resource := input.document[i].command[j]
   resource.Cmd == "env" 
   checkSecret(resource) == true
 
@@ -15,7 +15,7 @@ CxPolicy [ result ] {
 }
 
 CxPolicy [ result ] {
-  resource := input.document[i].resource[j]
+  resource := input.document[i].command[j]
   resource.Cmd == "label"
   checkSecret(resource) == true
 
