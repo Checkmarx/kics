@@ -2,6 +2,6 @@
 	{
 		"queryName": "Base64 Private Key Is Encoded",
 		"severity": "HIGH",
-		"line": 1
+		"line": 5
 	}
 ]
