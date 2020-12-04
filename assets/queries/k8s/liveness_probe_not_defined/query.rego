@@ -1,22 +1,18 @@
 package Cx
 
 CxPolicy [ result ] {
-   spec := input.document[i].spec
-   exists_containers := object.get(spec, "containers", "undefined") != "undefined"
-   exists_containers
-   
-   containers := spec.containers[name]
-   not exists_liveness_probe(containers)
-   
+   document := input.document[i]
+   spec := document.spec
+   metadata := document.metadata
+   containers := spec.containers
+   exists_liveness_probe = object.get(containers[index], "livenessProbe", "undefined") == "undefined"
+   exists_liveness_probe
+	
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("spec.containers[%d].livenessProbe", [name]),
+                "searchKey":        sprintf("metadata.name=%s.spec.containers[%d].name=%s", [metadata.name, index, containers[index].name]),
                 "issueType":		   "MissingAttribute",
-                "keyExpectedValue": sprintf("spec.containers[%d].livenessProbe is defined", [name]),
-                "keyActualValue": 	sprintf("spec.containers[%d].livenessProbe is undefined", [name])
-              }
-}
-
-exists_liveness_probe(container) = true {
-	container.livenessProbe != null
+                "keyExpectedValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s is defined", [metadata.name, index, containers[index].name]),
+                "keyActualValue": 	sprintf("metadata.name=%s.spec.containers[%d].name=%s is undefined", [metadata.name, index, containers[index].name])
+             } 
 }
