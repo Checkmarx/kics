@@ -8,7 +8,7 @@ CxPolicy [ result ] {
     metadata := document.metadata
     metadata.name == "default"
     
-    object.get(document.metadata, "automountServiceAccountToken", "undefined") == "undefined"
+    object.get(metadata, "automountServiceAccountToken", "undefined") == "undefined"
 
 	  result := {
                 "documentId": 		    input.document[i].id,
