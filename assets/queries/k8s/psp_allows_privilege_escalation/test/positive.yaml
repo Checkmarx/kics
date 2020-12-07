@@ -44,4 +44,4 @@ spec:
   supplementalGroups:
     rule: 'RunAsAny'
   fsGroup:
-    rule: 'RunAsAny'    
+    rule: 'RunAsAny'
