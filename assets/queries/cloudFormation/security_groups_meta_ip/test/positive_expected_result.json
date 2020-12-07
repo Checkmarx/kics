@@ -3,10 +3,5 @@
 		"queryName": "Security Groups With Meta Ip",
 		"severity": "HIGH",
 		"line": 11
-	},
-	{
-		"queryName": "Security Groups With Meta Ip",
-		"severity": "HIGH",
-		"line": 11
 	}
 ]
