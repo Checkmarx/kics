@@ -1,22 +1,22 @@
 [
 	{
-		"queryName": "volume_mount_with_OS_directory_write_permissions",
-		"severity": "Medium",
+		"queryName": "volume mount with OS directory write permissions",
+		"severity": "MEDIUM",
 		"line": 13
 	},
 	{
-		"queryName": "volume_mount_with_OS_directory_write_permissions",
-		"severity": "Medium",
+		"queryName": "volume mount with OS directory write permissions",
+		"severity": "MEDIUM",
 		"line": 39
 	},
 	{
-		"queryName": "volume_mount_with_OS_directory_write_permissions",
-		"severity": "Medium",
+		"queryName": "volume mount with OS directory write permissions",
+		"severity": "MEDIUM",
 		"line": 11
 	},
 	{
-		"queryName": "volume_mount_with_OS_directory_write_permissions",
-		"severity": "Medium",
+		"queryName": "volume mount with OS directory write permissions",
+		"severity": "MEDIUM",
 		"line": 37
 	}
 ]
