@@ -1,0 +1,8 @@
+{
+  "id": "SATokenSecrets",
+  "queryName": "SATokenSecrets",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "A Service Account Token with access to secrets (get, list, watch) would allow the workload to get thesecrets present in a namespace or cluster.",
+  "descriptionUrl": "#"
+}

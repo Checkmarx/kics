@@ -1,0 +1,155 @@
+{
+	"document": [
+		{
+			"category": null,
+			"descriptionText": "A Service Account Token with access to secrets (get, list, watch) would allow the workload to get thesecrets present in a namespace or cluster.",
+			"descriptionUrl": "#",
+			"file": "assets/queries/k8s/saTokenSecret/metadata.json",
+			"id": "bf8ba814-633a-4f1d-9275-88e129298f45",
+			"queryName": "SATokenSecrets",
+			"severity": "MEDIUM"
+		},
+		{
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"kind": "ClusterRole",
+			"metadata": {
+				"name": "secret-reader1"
+			},
+			"rules": [
+				{
+					"verbs": [
+						"update"
+					],
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"secrets"
+					]
+				}
+			],
+			"id": "d3d2e280-aa57-4712-ab85-b05a59032234",
+			"file": "assets/queries/k8s/saTokenSecret/test/negative.yaml"
+		},
+		{
+			"kind": "Role",
+			"metadata": {
+				"name": "pod-reader1",
+				"namespace": "default"
+			},
+			"rules": [
+				{
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"secrets"
+					],
+					"verbs": [
+						"update"
+					]
+				}
+			],
+			"id": "afe1b64a-2dc7-48d4-84f1-94514b38536b",
+			"file": "assets/queries/k8s/saTokenSecret/test/negative.yaml",
+			"apiVersion": "rbac.authorization.k8s.io/v1"
+		},
+		{
+			"file": "assets/queries/k8s/saTokenSecret/test/positive.yaml",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"kind": "ClusterRole",
+			"metadata": {
+				"name": "secret-reader1"
+			},
+			"rules": [
+				{
+					"resources": [
+						"secrets"
+					],
+					"verbs": [
+						"get",
+						"watch",
+						"list"
+					],
+					"apiGroups": [
+						""
+					]
+				}
+			],
+			"id": "eb7311b9-ba44-46f6-833e-4c2746ed9f50"
+		},
+		{
+			"rules": [
+				{
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"secrets"
+					],
+					"verbs": [
+						"update",
+						"list"
+					]
+				}
+			],
+			"id": "f06d34c1-92df-47c5-b2b0-09931622a510",
+			"file": "assets/queries/k8s/saTokenSecret/test/positive.yaml",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"kind": "Role",
+			"metadata": {
+				"namespace": "default",
+				"name": "pod-reader1"
+			}
+		},
+		{
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"kind": "Role",
+			"metadata": {
+				"namespace": "default",
+				"name": "pod-and-pod-logs-reader1"
+			},
+			"rules": [
+				{
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"pods",
+						"pods/log"
+					],
+					"verbs": [
+						"get",
+						"list"
+					]
+				}
+			],
+			"id": "693c6105-56d4-4c79-bae7-5c3727774405",
+			"file": "assets/queries/k8s/saTokenSecret/test/positive.yaml"
+		},
+		{
+			"metadata": {
+				"namespace": "default",
+				"name": "pod-and-pod-logs-reader2"
+			},
+			"rules": [
+				{
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"pods",
+						"pods/log"
+					],
+					"verbs": [
+						"*"
+					]
+				}
+			],
+			"id": "13018dbe-37a5-433b-ba19-3bd268461dc5",
+			"file": "assets/queries/k8s/saTokenSecret/test/positive.yaml",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"kind": "Role"
+		}
+	]
+}

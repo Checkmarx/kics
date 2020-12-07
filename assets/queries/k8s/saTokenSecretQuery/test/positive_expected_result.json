@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "SATokenSecrets",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "SATokenSecrets",
+		"severity": "MEDIUM",
+		"line": 22
+	},
+	{
+		"queryName": "SATokenSecrets",
+		"severity": "MEDIUM",
+		"line": 32
+	},
+	{
+		"queryName": "SATokenSecrets",
+		"severity": "MEDIUM",
+		"line": 42
+	}
+]
