@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Allowed Capabilities PSP",
+		"queryName": "PSP Has Allowed Capabilities",
 		"severity": "MEDIUM",
 		"line": 10
 	}

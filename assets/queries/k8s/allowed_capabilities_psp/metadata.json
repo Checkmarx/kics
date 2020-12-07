@@ -1,6 +1,6 @@
 {
   "id": "allowed_capabilities_psp",
-  "queryName": "Allowed Capabilities PSP",
+  "queryName": "PSP Has Allowed Capabilities",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "PodSecurityPolicy should not have allowed capabilities",
