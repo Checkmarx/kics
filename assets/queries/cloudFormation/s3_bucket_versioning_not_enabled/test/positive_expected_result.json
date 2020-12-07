@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "S3 Bucket Versioning Not Enabled",
+		"severity": "MEDIUM",
+		"line": 27
+	}
+]

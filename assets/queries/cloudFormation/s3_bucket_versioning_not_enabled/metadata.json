@@ -1,0 +1,8 @@
+{
+  "id": "S3_Bucket_Versioning_Not_Enabled",
+  "queryName": "S3 Bucket Versioning Not Enabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "S3 bucket versioning should be setted as enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html"
+}
