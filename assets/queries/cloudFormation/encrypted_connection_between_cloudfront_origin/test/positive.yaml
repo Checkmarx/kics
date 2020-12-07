@@ -42,4 +42,4 @@ Resources:
               OriginReadTimeout: integer-value
         Tags:
           - Key: string-value
-            Value: string-value 
+            Value: string-value
