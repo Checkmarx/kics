@@ -16,9 +16,6 @@ spec:
   - name: log-aggregator
     image: images.my-company.example/log-aggregator:v6
     resources:
-      requests:
-        memory: "64Mi"
-        cpu: "250m"
       limits:
         memory: "128Mi"
         cpu: "500m"
