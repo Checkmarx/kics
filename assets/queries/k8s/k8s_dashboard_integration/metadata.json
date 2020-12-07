@@ -1,0 +1,8 @@
+{
+  "id": "k8s_dashboard_integration",
+  "queryName": "K8s Dashboard Integration",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "It's important not to allow the implementation of the k8s dashboard.",
+  "descriptionUrl": "https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml"
+}
