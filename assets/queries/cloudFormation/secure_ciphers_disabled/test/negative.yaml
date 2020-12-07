@@ -20,6 +20,6 @@ Resources:
               OriginReadTimeout: 30
       Tags:
         - Key: name
-          Value: example 
+          Value: example
       ViewerCertificate:
         CloudFrontDefaultCertificate: true
