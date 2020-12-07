@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Containers Running As Root",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]
