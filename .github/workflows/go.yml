@@ -9,22 +9,19 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-    
     - name: Cache dependencies
       uses: actions/cache@v2
       with:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          ${{ runner.os }}-go-
-          
+          ${{ runner.os }}-go-      
     - uses: actions/checkout@v2   
     - name: golangci-lint 
       uses: golangci/golangci-lint-action@v2
       with:
         # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
         version: v1.29
-
   unit-tests:
     name: unit-tests
     strategy:
@@ -33,20 +30,16 @@ jobs:
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-
     - name: Set up Go 1.x
       uses: actions/setup-go@v2
       with:
         go-version: ${{ matrix.go-version }}
-
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
       with:
           persist-credentials: false
-          
     - name: Run Go mod tidy
       run: go mod tidy
-          
     - name: Cache dependencies
       uses: actions/cache@v2
       with:
@@ -54,16 +47,13 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
-
     - name: Test
       run: |
         go mod vendor
         go test -mod=vendor -v ./... -count=1 -coverprofile cover.out
-    
     - name: CodeCov
       run: |
         bash <(curl -s https://codecov.io/bash) -f cover.out
-      
     - name: Check if total coverage is greater then 0
       run: |
         CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
@@ -71,11 +61,9 @@ jobs:
         var=$(awk 'BEGIN{ print "'$CODE_COV'"<"'$EXPECTED_CODE_COV'" }')   
         if [ "$var" -eq 1 ];then
           echo "Your code coverage is too low. Coverage precentage is: $CODE_COV"
-   
           exit 1
         else
           echo "Your code coverage test passed! Coverage precentage is: $CODE_COV"
-          
           exit 0
         fi
 
