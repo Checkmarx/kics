@@ -45,7 +45,7 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["pods"]
-  verbs: 
+  verbs:
     - "get"
     - "watch"
     - "c*e"
