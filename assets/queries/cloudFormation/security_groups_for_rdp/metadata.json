@@ -1,0 +1,8 @@
+{
+  "id": "security_groups_for_rdp",
+  "queryName": "Security Groups For RDP",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Security Groups does not allow 0.0.0.0/0 for rdp (port:3389)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
+}
