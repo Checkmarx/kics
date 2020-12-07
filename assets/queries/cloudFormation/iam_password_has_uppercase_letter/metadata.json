@@ -1,0 +1,8 @@
+{
+  "id": "IAM_password_has_uppercase_letter",
+  "queryName": "IAM Password Has Uppercase Letter",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM user resource Login Profile Password should have at least one uppercase letter",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user"
+}
