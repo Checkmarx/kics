@@ -55,7 +55,7 @@ spec:
           mountPath: /data/redis
   volumes:
     - name: redis-storage
-      hostPath: 
+      hostPath:
         path: /var/redis/data
 ---
 apiVersion: v1
@@ -72,7 +72,7 @@ spec:
           mountPath: /data/redis
   volumes:
     - name: redis-storage
-      hostPath: 
+      hostPath:
         path: /var/redis/data
 ---
 apiVersion: apps/v1
