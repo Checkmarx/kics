@@ -1,6 +1,6 @@
 {
   "id": "Default_Service_Account_Binding",
-  "queryName": "Kubernetes Service Account Binding is Default",
+  "queryName": "Role Binding To Default Service Account",
   "severity": "HIGH",
   "category": null,
   "descriptionText": "The default namespace should not be used",

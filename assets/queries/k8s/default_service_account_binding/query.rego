@@ -11,8 +11,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	   sprintf("subjects.name=%s", [subjects[c].name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("subjects.name=%s is not default", [subjects[c].name]),
-                "keyActualValue": 	sprintf("subjects.name=%s is default", [subjects[c].name])
+                "keyExpectedValue": "subjects.kind=ServiceAccount.name is not default",
+                "keyActualValue": "subjects.kind=ServiceAccount.name is default"
               }
 }
 

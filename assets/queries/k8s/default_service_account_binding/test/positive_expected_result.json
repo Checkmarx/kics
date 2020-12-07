@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Kubernetes Service Account Binding is Default",
+		"queryName": "Role Binding To Default Service Account",
 		"severity": "HIGH",
 		"line": 11
 	}
