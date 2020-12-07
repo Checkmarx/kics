@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Service Account Name Undefined Or Empty",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "Service Account Name Undefined Or Empty",
+		"severity": "MEDIUM",
+		"line": 35
+	},
+	{
+		"queryName": "Service Account Name Undefined Or Empty",
+		"severity": "MEDIUM",
+		"line": 58
+	}
+]
