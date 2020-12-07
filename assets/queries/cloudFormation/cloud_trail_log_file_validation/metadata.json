@@ -1,0 +1,8 @@
+{
+  "id": "Cloud_trail_log_file_validation",
+  "queryName": "Cloud Trail Log File Validation",
+  "severity": "LOW",
+  "category": "Logging",
+  "descriptionText": "CloudTrail log file validation should be enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-enablelogfilevalidation"
+}

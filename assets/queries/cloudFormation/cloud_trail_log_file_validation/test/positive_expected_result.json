@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Cloud Trail Log File Validation",
+		"severity": "LOW",
+		"line": 62
+	},
+	{
+		"queryName": "Cloud Trail Log File Validation",
+		"severity": "LOW",
+		"line": 76
+	}
+]
