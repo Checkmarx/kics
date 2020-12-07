@@ -55,7 +55,8 @@ spec:
           mountPath: /data/redis
   volumes:
     - name: redis-storage
-      hostPath: /var/redis/data
+      hostPath: 
+        path: /var/redis/data
 ---
 apiVersion: v1
 kind: Pod
@@ -71,7 +72,8 @@ spec:
           mountPath: /data/redis
   volumes:
     - name: redis-storage
-      hostPath: /var/redis/data
+      hostPath: 
+        path: /var/redis/data
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -133,3 +135,34 @@ spec:
           hostPath:
             path: /var/local/static
             type: DirectoryOrCreate
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-001
+  namespace: default
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-002
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/boot"
