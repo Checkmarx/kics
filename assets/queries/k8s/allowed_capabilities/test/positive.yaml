@@ -10,7 +10,7 @@ spec:
       allowPrivilegeEscalation: false
       capabilities:
            add: ["NET_ADMIN", "SYS_TIME"]
-                
+
     resources:
       requests:
         memory: "64Mi"
@@ -43,7 +43,7 @@ spec:
       allowPrivilegeEscalation: false
       capabilities:
            add: ["NET_ADMIN", "SYS_TIME"]
-                
+
     resources:
       requests:
         memory: "64Mi"
