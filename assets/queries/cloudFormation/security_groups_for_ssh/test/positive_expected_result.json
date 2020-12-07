@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Security Groups For SSH",
+		"severity": "HIGH",
+		"line": 15
+	}
+]
