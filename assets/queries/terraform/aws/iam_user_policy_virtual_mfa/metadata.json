@@ -1,0 +1,8 @@
+{
+  "id": "IAM_user_policy_virtual_mfa",
+  "queryName": "IAM User Policy Virtual Mfa",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "Check if the root user is authenticated with MFA",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html"
+}
