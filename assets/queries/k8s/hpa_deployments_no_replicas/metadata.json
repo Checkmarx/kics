@@ -1,0 +1,8 @@
+{
+  "id": "hpa_deployments_no_replicas",
+  "queryName": "HPA Deployments No Replicas",
+  "severity": "LOW",
+  "category": "Pod",
+  "descriptionText": "Confirm that the HPA doesn't have any static replicas in the deployment",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/"
+}
