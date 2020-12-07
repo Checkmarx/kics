@@ -1,5 +1,5 @@
 {
-  "id": "allowed_capabilities_psp",
+  "id": "psp_has_allowed_capabilities",
   "queryName": "PSP Has Allowed Capabilities",
   "severity": "MEDIUM",
   "category": null,
