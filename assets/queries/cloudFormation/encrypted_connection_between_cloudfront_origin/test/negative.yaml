@@ -1,0 +1,23 @@
+#this code is a correct code for which the query should not find any result
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  cloudfrontdistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        CacheBehaviors:
+          - LambdaFunctionAssociations:
+              - EventType: string-value
+                LambdaFunctionARN: string-value
+        DefaultCacheBehavior:
+          LambdaFunctionAssociations:
+            - EventType: string-value
+              LambdaFunctionARN: string-value
+        IPV6Enabled: boolean-value
+        Origins:
+          - CustomOriginConfig:
+              OriginKeepaliveTimeout: integer-value
+              OriginReadTimeout: integer-value
+      Tags:
+        - Key: string-value
+          Value: string-value

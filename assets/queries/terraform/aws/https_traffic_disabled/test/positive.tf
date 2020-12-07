@@ -78,7 +78,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_positive_2" {
     path_pattern     = "/content/immutable/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = local.s3_origin_id
+    target_origin_id = "myS3Origin"
 
     forwarded_values {
       query_string = false

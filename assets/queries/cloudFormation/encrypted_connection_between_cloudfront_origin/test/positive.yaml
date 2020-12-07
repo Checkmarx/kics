@@ -1,0 +1,45 @@
+#this is a problematic code where the query should report a result(s)
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  cloudfrontdistribution_1:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        CacheBehaviors:
+          - LambdaFunctionAssociations:
+              - EventType: string-value
+                LambdaFunctionARN: string-value
+        DefaultCacheBehavior:
+          ViewerProtocolPolicy: allow-all
+          LambdaFunctionAssociations:
+            - EventType: string-value
+              LambdaFunctionARN: string-value
+        IPV6Enabled: boolean-value
+        Origins:
+          - CustomOriginConfig:
+              OriginKeepaliveTimeout: integer-value
+              OriginReadTimeout: integer-value
+      Tags:
+        - Key: string-value
+          Value: string-value
+  cloudfrontdistribution_2:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        CacheBehaviors:
+          ViewerProtocolPolicy: allow-all
+          LambdaFunctionAssociations:
+              - EventType: string-value
+                LambdaFunctionARN: string-value
+        DefaultCacheBehavior:
+          LambdaFunctionAssociations:
+            - EventType: string-value
+              LambdaFunctionARN: string-value
+        IPV6Enabled: boolean-value
+        Origins:
+          - CustomOriginConfig:
+              OriginKeepaliveTimeout: integer-value
+              OriginReadTimeout: integer-value
+        Tags:
+          - Key: string-value
+            Value: string-value 
