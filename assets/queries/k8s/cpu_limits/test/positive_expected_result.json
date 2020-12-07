@@ -3,5 +3,11 @@
 		"queryName": "CPU Limits",
 		"severity": "MEDIUM",
 		"line": 10
+	},
+
+	{
+		"queryName": "CPU Limits",
+		"severity": "MEDIUM",
+		"line": 15
 	}
 ]
