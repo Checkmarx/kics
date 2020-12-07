@@ -14,8 +14,8 @@ CxPolicy [ result ] {
                 "documentId":        input.document[i].id,
                 "issueType":         "MissingAttribute",
                 "searchKey":         sprintf("metadata.name=%s.%s.containers.name=%s.resources.requests", [metadata.name, specInfo.path, containers[index].name]),
-                "keyExpectedValue":  sprintf("%s.containers.name=%s. does have CPU requests",[specInfo.path, containers[index].name]),
-                "keyActualValue":    sprintf("%s.containers.name=%s. doesn't have CPU requests",[specInfo.path, containers[index].name])
+                "keyExpectedValue":  sprintf("%s.containers.name=%s does have CPU requests",[specInfo.path, containers[index].name]),
+                "keyActualValue":    sprintf("%s.containers.name=%s doesn't have CPU requests",[specInfo.path, containers[index].name])
               }
 }
 
@@ -34,8 +34,8 @@ CxPolicy [ result ] {
                 "documentId":        input.document[i].id,
                 "issueType":         "MissingAttribute",
                 "searchKey":         sprintf("metadata.name=%s.%s.containers.name=%s.resources", [metadata.name, specInfo.path, containers[index].name]),
-                "keyExpectedValue":  sprintf("%s.containers.name=%s. does have requests defined",[specInfo.path, containers[index].name]),
-                "keyActualValue":    sprintf("%s.containers.name=%s. doesn't have requests defined",[specInfo.path, containers[index].name])
+                "keyExpectedValue":  sprintf("%s.containers.name=%s does have requests defined",[specInfo.path, containers[index].name]),
+                "keyActualValue":    sprintf("%s.containers.name=%s doesn't have requests defined",[specInfo.path, containers[index].name])
               }
 }
 
@@ -53,8 +53,8 @@ CxPolicy [ result ] {
                 "documentId":        input.document[i].id,
                 "issueType":         "MissingAttribute",
                 "searchKey":         sprintf("metadata.name=%s.%s.containers.name=%s", [metadata.name, specInfo.path, containers[index].name]),
-                "keyExpectedValue":  sprintf("%s.containers.name=%s. does have resources defined",[specInfo.path, containers[index].name]),
-                "keyActualValue":    sprintf("%s.containers.name=%s. doesn't have resources defined",[specInfo.path, containers[index].name])
+                "keyExpectedValue":  sprintf("%s.containers.name=%s does have resources defined",[specInfo.path, containers[index].name]),
+                "keyActualValue":    sprintf("%s.containers.name=%s doesn't have resources defined",[specInfo.path, containers[index].name])
               }
 }
 
