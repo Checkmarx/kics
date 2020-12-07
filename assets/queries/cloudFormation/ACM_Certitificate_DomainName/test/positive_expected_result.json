@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Verify_ACM_Certificate_DomainName",
+		"severity": "LOW",
+		"line": 16
+	}
+]
