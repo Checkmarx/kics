@@ -59,6 +59,10 @@ jobs:
       run: |
         go mod vendor
         go test -mod=vendor -v ./... -count=1 -coverprofile cover.out
+    
+    - name: CodeCov
+      run: |
+        bash <(curl -s https://codecov.io/bash) -f cover.out
       
     - name: Check if total coverage is greater then 0
       run: |
