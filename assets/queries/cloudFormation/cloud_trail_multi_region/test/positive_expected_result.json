@@ -2,11 +2,11 @@
 	{
 		"queryName": "Cloud Trail Multi Region",
 		"severity": "MEDIUM",
-		"line": 68
+		"line": 62
 	},
 	{
 		"queryName": "Cloud Trail Multi Region",
 		"severity": "MEDIUM",
-		"line": 82
+		"line": 76
 	}
 ]
