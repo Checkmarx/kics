@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Security Groups With Exhibited Admin Ports",
+		"severity": "HIGH",
+		"line": 15
+	}
+]
