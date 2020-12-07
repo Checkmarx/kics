@@ -1,0 +1,8 @@
+{
+  "id": "statefulsets_headless_servicename",
+  "queryName": "StatefulSets Headless serviceName",
+  "severity": "LOW",
+  "category": "Pod",
+  "descriptionText": "Check if the StatefulSets have a headless serviceName",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
+}

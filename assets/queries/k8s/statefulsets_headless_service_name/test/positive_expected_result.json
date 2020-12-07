@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "StatefulSets Headless serviceName",
+		"severity": "LOW",
+		"line": 12
+	},
+	{
+		"queryName": "StatefulSets Headless serviceName",
+		"severity": "LOW",
+		"line": 22
+	}
+]
