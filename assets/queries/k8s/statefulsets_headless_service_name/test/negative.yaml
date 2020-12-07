@@ -20,9 +20,9 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx 
+      app: nginx
   serviceName: "nginx"
-  replicas: 3 
+  replicas: 3
   template:
     metadata:
       labels:
