@@ -1,0 +1,8 @@
+{
+  "id": "IAM_password_has_number",
+  "queryName": "IAM Password Has Number",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM user resource Login Profile Password should have at least one number",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user"
+}
