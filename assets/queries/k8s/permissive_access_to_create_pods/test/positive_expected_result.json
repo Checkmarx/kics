@@ -1,0 +1,31 @@
+[{
+        "queryName": "Permissive Access to Create Pods",
+        "severity": "LOW",
+        "line": 12
+    },
+    {
+        "queryName": "Permissive Access to Create Pods",
+        "severity": "LOW",
+        "line": 21
+    },
+    {
+        "queryName": "Permissive Access to Create Pods",
+        "severity": "LOW",
+        "line": 30
+    },
+    {
+        "queryName": "Permissive Access to Create Pods",
+        "severity": "LOW",
+        "line": 39
+    },
+    {
+        "queryName": "Permissive Access to Create Pods",
+        "severity": "LOW",
+        "line": 51
+    },
+    {
+        "queryName": "Permissive Access to Create Pods",
+        "severity": "LOW",
+        "line": 60
+    }
+]
