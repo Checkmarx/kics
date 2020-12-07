@@ -7,21 +7,21 @@ Resources:
       DistributionConfig:
         CacheBehaviors:
           - LambdaFunctionAssociations:
-              - EventType: string-value
-                LambdaFunctionARN: string-value
+              - EventType: viewer-request
+                LambdaFunctionARN: examp
         DefaultCacheBehavior:
           ViewerProtocolPolicy: allow-all
           LambdaFunctionAssociations:
-            - EventType: string-value
-              LambdaFunctionARN: string-value
-        IPV6Enabled: boolean-value
+            - EventType: viewer-request
+              LambdaFunctionARN: examp
+        IPV6Enabled: true
         Origins:
           - CustomOriginConfig:
-              OriginKeepaliveTimeout: integer-value
-              OriginReadTimeout: integer-value
+              OriginKeepaliveTimeout: 60
+              OriginReadTimeout: 30
       Tags:
-        - Key: string-value
-          Value: string-value
+        - Key: name
+          Value: example
   cloudfrontdistribution_2:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -29,17 +29,17 @@ Resources:
         CacheBehaviors:
           ViewerProtocolPolicy: allow-all
           LambdaFunctionAssociations:
-              - EventType: string-value
-                LambdaFunctionARN: string-value
+            - EventType: viewer-request
+              LambdaFunctionARN: examp
         DefaultCacheBehavior:
           LambdaFunctionAssociations:
-            - EventType: string-value
-              LambdaFunctionARN: string-value
-        IPV6Enabled: boolean-value
+            - EventType: viewer-request
+              LambdaFunctionARN: examp
+        IPV6Enabled: true
         Origins:
           - CustomOriginConfig:
-              OriginKeepaliveTimeout: integer-value
-              OriginReadTimeout: integer-value
+              OriginKeepaliveTimeout: 60
+              OriginReadTimeout: 30
         Tags:
-          - Key: string-value
-            Value: string-value
+        - Key: name
+          Value: example
