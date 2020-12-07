@@ -1,6 +1,6 @@
 {
-  "id": "allow_privilege_escalation_psp",
-  "queryName": "Allow Privilege Escalation PSP",
+  "id": "psp_allows_privilege_escalation",
+  "queryName": "PSP Allows Privilege Escalation",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "PodSecurityPolicy should not allow privilege escalation",
