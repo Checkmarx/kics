@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Privilege Escalation Allowed",
+		"severity": "HIGH",
+		"line": 10
+	},
+
+	{
+		"queryName": "Privilege Escalation Allowed",
+		"severity": "HIGH",
+		"line": 22
+	}
+]
