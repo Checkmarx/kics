@@ -3,6 +3,6 @@
   "queryName": "Non Kube System Pod With Host Mount",
   "severity": "MEDIUM",
   "category": null,
-  "descriptionText": "Ensure pods outside of kube-system do not have access to node volume",
-  "descriptionUrl": "#"
+  "descriptionText": "A non kube-system workload should not have hostPath mounted",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }
