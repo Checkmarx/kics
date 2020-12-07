@@ -7,7 +7,7 @@ spec:
   - name: app
     image: images.my-company.example/app:v4
     securityContext:
-      allowPrivilegeEscalation: true          
+      allowPrivilegeEscalation: true
     resources:
       requests:
         memory: "64Mi"
