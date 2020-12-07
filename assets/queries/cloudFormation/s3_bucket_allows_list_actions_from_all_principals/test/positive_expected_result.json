@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "S3 Bucket Allows List Action From All Principals",
+		"severity": "HIGH",
+		"line": 33
+	},
+	{
+		"queryName": "S3 Bucket Allows List Action From All Principals",
+		"severity": "HIGH",
+		"line": 42
+	},
+	{
+		"queryName": "S3 Bucket Allows List Action From All Principals",
+		"severity": "HIGH",
+		"line": 50
+	},
+	{
+		"queryName": "S3 Bucket Allows List Action From All Principals",
+		"severity": "HIGH",
+		"line": 87
+	}
+]
