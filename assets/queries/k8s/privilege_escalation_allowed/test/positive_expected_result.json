@@ -8,6 +8,6 @@
 	{
 		"queryName": "Privilege Escalation Allowed",
 		"severity": "HIGH",
-		"line": 22
+		"line": 21
 	}
 ]
