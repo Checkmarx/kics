@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Containers dont have NET_RAW or ALL as Drop Capabilities",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Containers dont have NET_RAW or ALL as Drop Capabilities",
+		"severity": "MEDIUM",
+		"line": 57
+	}
+]
