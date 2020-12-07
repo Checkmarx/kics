@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/Checkmarx/kics/branch/master/graph/badge.svg?token=SN0NO4H46G)](https://codecov.io/gh/Checkmarx/kics)
+
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo-kics-horizontal.png" width="250">  
 
 ---
