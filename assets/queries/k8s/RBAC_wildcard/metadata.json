@@ -1,0 +1,8 @@
+{
+  "id": "RBAC_wildcard_in_rules",
+  "queryName": "RBAC_wildcard_in_rules",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Kubernetes Roles and ClusterRoles should not use wildcards in rules (objects or actions)",
+  "descriptionUrl": "https://gsl.dome9.com/D9.K8S.IAM.34.html"
+}

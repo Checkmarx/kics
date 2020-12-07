@@ -1,0 +1,125 @@
+{
+	"document": [
+		{
+			"kind": "ClusterRole",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"metadata": {
+				"namespace": "opa",
+				"name": "configmap-modifier"
+			},
+			"rules": [
+				{
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"configmaps"
+					],
+					"verbs": [
+						"update",
+						"patch"
+					]
+				}
+			],
+			"id": "5b85179e-86e2-42d7-bf80-89f73af8a197",
+			"file": "assets/queries/k8s/RBAC_wildcard/test/negative.yaml"
+		},
+		{
+			"kind": "Role",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"metadata": {
+				"namespace": "opa",
+				"name": "configmap-modifier"
+			},
+			"rules": [
+				{
+					"apiGroups": [
+						""
+					],
+					"resources": [
+						"searchmaps"
+					],
+					"verbs": [
+						"create",
+						"patch"
+					]
+				}
+			],
+			"id": "b777bf81-ecba-4a6e-8614-5feee416e0de",
+			"file": "assets/queries/k8s/RBAC_wildcard/test/negative.yaml"
+		},
+		{
+			"file": "assets/queries/k8s/RBAC_wildcard/test/positive.yaml",
+			"kind": "ClusterRole",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"metadata": {
+				"namespace": "rbac1",
+				"name": "configmap-modifier"
+			},
+			"rules": [
+				{
+					"resources": [
+						"configmaps"
+					],
+					"verbs": [
+						"*"
+					],
+					"apiGroups": [
+						"*"
+					]
+				}
+			],
+			"id": "4eb59fb5-1e78-4582-a07d-0b5cb6883a52"
+		},
+		{
+			"metadata": {
+				"namespace": "rbac2",
+				"name": "configmap-modifier1"
+			},
+			"rules": [
+				{
+					"resources": [
+						"*"
+					],
+					"verbs": [
+						"*"
+					],
+					"apiGroups": [
+						"*"
+					]
+				}
+			],
+			"id": "98429a50-1bc9-49bd-8a68-da28f62e89f1",
+			"file": "assets/queries/k8s/RBAC_wildcard/test/positive.yaml",
+			"kind": "Role",
+			"apiVersion": "rbac.authorization.k8s.io/v1"
+		},
+		{
+			"kind": "Role",
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"metadata": {
+				"namespace": "rbac3",
+				"name": "configmap-modifier2"
+			},
+			"rules": [
+				{
+					"operations": [
+						"CREATE",
+						"UPDATE"
+					],
+					"apiGroups": [
+						"*"
+					],
+					"apiVersions": [
+						"*"
+					],
+					"resources": [
+						"*"
+					]
+				}
+			],
+			"id": "38c3955f-f38f-423d-834f-fe5e87fc67e9",
+			"file": "assets/queries/k8s/RBAC_wildcard/test/positive.yaml"
+		}
+	]
+}
