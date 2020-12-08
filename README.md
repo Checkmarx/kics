@@ -1,5 +1,7 @@
 [![codecov](https://codecov.io/gh/Checkmarx/kics/branch/master/graph/badge.svg?token=SN0NO4H46G)](https://codecov.io/gh/Checkmarx/kics)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ceddb5b1b37d4edfa56440842c6248a4)](https://www.codacy.com/gh/Checkmarx/kics/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Checkmarx/kics&amp;utm_campaign=Badge_Grade)
+
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo-kics-horizontal.png" width="250">  
 
 ---
