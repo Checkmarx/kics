@@ -1,0 +1,9 @@
+{
+  "id": "cloudfront_distribution_looging_disabled",
+  "queryName": "cloudfront_distribution_looging_disabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+
+  "descriptionText": "Ensure AWS CloudFront distribution with access logging is enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html"
+}

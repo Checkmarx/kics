@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "cloudfront_distribution_looging_disabled",
+		"severity": "MEDIUM",
+		"line": 19
+	}
+]
