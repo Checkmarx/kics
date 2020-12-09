@@ -41,6 +41,7 @@ CxPolicy [ result ] {
     selector := document.spec.selector
 
     some j
+        is_string(selector[j])
         contains(selector[j],keyword)
 
 

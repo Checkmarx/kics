@@ -1,0 +1,48 @@
+package Cx
+
+CxPolicy [ result ] {
+  metadata := input.document[i].metadata
+  spec := input.document[i].spec
+  object.get(spec, "serviceAccountName", "undefined") == "undefined"
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("metadata.name=%s.spec", [metadata.name]),
+                "issueType":		"MissingAttribute",
+                "keyExpectedValue":  sprintf("metadata.name=%s.spec.serviceAccountName is defined", [metadata.name]),
+                "keyActualValue": 	 sprintf("metadata.name=%s.spec.serviceAccountName is undefined", [metadata.name])
+              }
+}
+
+CxPolicy [ result ] {
+  metadata := input.document[i].metadata
+  spec := input.document[i].spec
+  spec.serviceAccountName == null
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("metadata.name=%s.spec.serviceAccountName", [metadata.name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue":  sprintf("metadata.name=%s.spec.serviceAccountName is not null", [metadata.name]),
+                "keyActualValue": 	 sprintf("metadata.name=%s.spec.serviceAccountName is null", [metadata.name])
+              }
+}
+
+CxPolicy [ result ] {
+  metadata := input.document[i].metadata
+  spec := input.document[i].spec
+  checkAction(spec.serviceAccountName)
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("metadata.name=%s.spec.serviceAccountName", [metadata.name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue":  sprintf("metadata.name=%s.spec.serviceAccountName is not empty", [metadata.name]),
+                "keyActualValue": 	 sprintf("metadata.name=%s.spec.serviceAccountName is empty", [metadata.name])
+              }
+}
+
+checkAction(action) = true {
+	is_string(action)
+	count(action) == 0
+}

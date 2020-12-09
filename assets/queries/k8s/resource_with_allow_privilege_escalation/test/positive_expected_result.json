@@ -8,5 +8,15 @@
 		"queryName": "Resource With Allow Privilege Escalation",
 		"severity": "MEDIUM",
 		"line": 41
+	},
+	{
+		"queryName": "Resource With Allow Privilege Escalation",
+		"severity": "MEDIUM",
+		"line": 64
+	},
+	{
+		"queryName": "Resource With Allow Privilege Escalation",
+		"severity": "MEDIUM",
+		"line": 84
 	}
 ]
