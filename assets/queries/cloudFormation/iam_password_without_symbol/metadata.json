@@ -1,6 +1,6 @@
 {
-  "id": "IAM_password_has_symbol",
-  "queryName": "IAM Password Has Symbol",
+  "id": "IAM_password_without_symbol",
+  "queryName": "IAM Password Without Symbol",
   "severity": "MEDIUM",
   "category": "Security, Identity, & Compliance",
   "descriptionText": "IAM user resource Login Profile Password should have at least one symbol",

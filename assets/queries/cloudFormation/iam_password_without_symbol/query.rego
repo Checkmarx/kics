@@ -10,6 +10,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("Resources.%s.Properties.LoginProfile.Password", [name]),
                 "issueType":		"IncorrectValue",  
                 "keyExpectedValue": "'Resources.Properties.LoginProfile.Password' contains symbol",
-                "keyActualValue": 	"'Resources.Properties.LoginProfile.Password' dosent contains symbol"
+                "keyActualValue": 	"'Resources.Properties.LoginProfile.Password' doesnt contain symbol"
               }
 }
