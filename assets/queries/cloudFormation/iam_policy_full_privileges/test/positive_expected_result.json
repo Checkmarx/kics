@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "IAM Policy Full Privileges",
+		"severity": "HIGH",
+		"line": 10
+	},
+	{
+		"queryName": "IAM Policy Full Privileges",
+		"severity": "HIGH",
+		"line": 23
+	}
+]

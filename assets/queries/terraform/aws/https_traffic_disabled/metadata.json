@@ -1,0 +1,8 @@
+{
+  "id": "https_traffic_disabled",
+  "queryName": "HTTPS Traffic Disabled",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution"
+}

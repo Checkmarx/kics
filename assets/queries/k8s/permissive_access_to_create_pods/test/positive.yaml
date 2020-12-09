@@ -1,0 +1,60 @@
+#this is a problematic code where the query should report a result(s)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secret-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs:
+    - "get"
+    - "watch"
+    - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: secret-reader2
+rules:
+- apiGroups: [""]
+  resources: ["*"]
+  verbs: ["get", "watch", "create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secret-reader3
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: secret-reader4
+rules:
+- apiGroups: [""]
+  resources: ["*"]
+  verbs: ["get", "watch", "*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secret-reader5
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs:
+    - "get"
+    - "watch"
+    - "c*e"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secret-reader6
+rules:
+- apiGroups: [""]
+  resources: ["p*ds"]
+  verbs: ["get", "watch", "create"]

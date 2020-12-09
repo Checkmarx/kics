@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "ECS Task Definition File has Password",
+		"severity": "HIGH",
+		"line": 30
+	}
+]

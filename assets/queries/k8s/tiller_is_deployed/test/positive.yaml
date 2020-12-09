@@ -1,0 +1,35 @@
+--- 
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  labels: 
+    app: helm
+    name: tiller
+  name: tiller-deploy
+spec: 
+  containers: 
+    - 
+      image: tiller-image
+      name: tiller-v1
+  template: 
+    metadata: 
+      labels: 
+        app: helm
+        name: tiller
+    spec: 
+      containers: 
+        - 
+          args: 
+            - "--listen=10.7.2.8:44134"
+          image: tiller-image
+          name: tiller-v2
+          ports: 
+            - 
+              containerPort: 44134
+              name: tiller
+              protocol: TCP
+            - 
+              containerPort: 44135
+              name: http
+              protocol: TCP
+      serviceAccountName: tiller

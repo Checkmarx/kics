@@ -1,0 +1,8 @@
+{
+  "id": "psp_allows_sharing_host_pid",
+  "queryName": "PSP Allows Sharing Host PID",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Pod Security Policy allows containers to share the host process ID namespace",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}

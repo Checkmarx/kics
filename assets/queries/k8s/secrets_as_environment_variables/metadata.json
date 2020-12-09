@@ -1,0 +1,8 @@
+{
+  "id": "secrets_as_environment_variables",
+  "queryName": "Secrets As Environment Variables",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Container should not use secrets as environment variables",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables"
+}

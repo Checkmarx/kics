@@ -1,0 +1,8 @@
+{
+  "id": "container_read_only_root_filesystem_is_false",
+  "queryName": "Container Read-Only Root Filesystem Is False",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Container's root filesystem should be read-only",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#read_only_root_filesystem"
+}

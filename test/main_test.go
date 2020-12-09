@@ -29,6 +29,7 @@ var (
 		"../assets/queries/terraform/azure": model.KindTerraform,
 		"../assets/queries/terraform/gcp":   model.KindTerraform,
 		"../assets/queries/k8s":             model.KindYAML,
+		"../assets/queries/cloudFormation":  model.KindYAML,
 		// "../assets/queries/dockerfile":               model.KindDOCKER,
 		"../assets/queries/terraform/github":         model.KindTerraform,
 		"../assets/queries/terraform/kubernetes_pod": model.KindTerraform,

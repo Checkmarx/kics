@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS Cluster Storage Not Encrypted",
+		"severity": "HIGH",
+		"line": 1
+	},
+	{
+		"queryName": "RDS Cluster Storage Not Encrypted",
+		"severity": "HIGH",
+		"line": 16
+	}
+]
