@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "DynamoDB with AWS Owned CMK",
+		"severity": "HIGH",
+		"line": 0
+	}
+]
