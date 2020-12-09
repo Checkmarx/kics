@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "Root Containers Admitted",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "Root Containers Admitted",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Root Containers Admitted",
+		"severity": "MEDIUM",
+		"line": 27
+	},
+	{
+		"queryName": "Root Containers Admitted",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Root Containers Admitted",
+		"severity": "MEDIUM",
+		"line": 32
+	},
+	{
+		"queryName": "Root Containers Admitted",
+		"severity": "MEDIUM",
+		"line": 37
+	}
+]

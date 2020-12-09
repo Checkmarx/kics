@@ -1,0 +1,8 @@
+{
+  "id": "Tiller_(Helm_v2)_Is_Deployed",
+  "queryName": "Tiller (Helm v2) Is Deployed",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "Check if Tiller is deployed.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/"
+}

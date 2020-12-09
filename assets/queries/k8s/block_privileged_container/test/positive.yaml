@@ -10,3 +10,16 @@ spec:
       privileged: true
       capabilities:
         add: ["NET_ADMIN", "SYS_TIME"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-demo-5
+spec:
+  initContainers:
+  - name: sec-ctx-4
+    image: gcr.io/google-samples/node-hello:1.0
+    securityContext:
+      privileged: true
+      capabilities:
+        add: ["NET_ADMIN", "SYS_TIME"]
