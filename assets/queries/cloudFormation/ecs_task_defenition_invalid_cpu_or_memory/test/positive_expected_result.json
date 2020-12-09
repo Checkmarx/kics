@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ECS Task Defenition Invalid Cpu or Memory",
+		"severity": "LOW",
+		"line": 27
+	},
+	{
+		"queryName": "ECS Task Defenition Invalid Cpu or Memory",
+		"severity": "LOW",
+		"line": 53
+	}
+]
