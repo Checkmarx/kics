@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "geo_restriction_disable",
+		"severity": "LOW",
+		"line": 13
+	}
+]
