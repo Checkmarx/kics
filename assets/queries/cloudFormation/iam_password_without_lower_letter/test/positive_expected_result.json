@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IAM Password Without Lower Letter",
-		"severity": "MEDIUM",
-		"line": 9
-	}
-]
