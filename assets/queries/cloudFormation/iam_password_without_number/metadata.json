@@ -1,6 +1,6 @@
 {
-  "id": "IAM_password_has_number",
-  "queryName": "IAM Password Has Number",
+  "id": "IAM_password_without_number",
+  "queryName": "IAM Password Without Number",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
   "descriptionText": "IAM user resource Login Profile Password should have at least one number",

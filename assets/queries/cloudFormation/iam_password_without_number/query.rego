@@ -10,6 +10,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("Resources.%s.Properties.LoginProfile.Password", [name]),
                 "issueType":		"IncorrectValue",  
                 "keyExpectedValue": "'Resources.Properties.LoginProfile.Password' contains number",
-                "keyActualValue": 	"'Resources.Properties.LoginProfile.Password' dosent contain number"
+                "keyActualValue": 	"'Resources.Properties.LoginProfile.Password' doesn't contain number"
               }
 }
