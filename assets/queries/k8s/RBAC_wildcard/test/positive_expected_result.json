@@ -1,36 +1,36 @@
 [
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 7
 	},
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 9
 	},
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 20
 	},
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 19
 	},
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 31
 	},
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 18
 	},
 	{
-		"queryName": "RBAC wildcard in rules",
+		"queryName": "RBAC_wildcard_in_rules",
 		"severity": "LOW",
 		"line": 29
 	}
