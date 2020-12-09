@@ -1,6 +1,6 @@
 {
-  "id": "volume_mount_with_OS_directory_write_permissions",
-  "queryName": "volume mount with OS directory write permissions",
+  "id": "Volume_Mount_with_OS_Directory_Write_Permissions",
+  "queryName": "Volume Mount with OS Directory Write Permissions",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Containers can mount sensitive folders from the hosts, giving them potentially dangerous access to critical host configurations and binaries.",
