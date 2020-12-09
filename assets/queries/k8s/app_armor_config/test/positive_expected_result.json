@@ -1,21 +1,21 @@
 [
 	{
-		"queryName": "app_armor_config",
+		"queryName": "Missing_App_Armor_Config",
 		"severity": "LOW",
 		"line": 5
 	},
 	{
-		"queryName": "app_armor_config",
+		"queryName": "Missing_App_Armor_Config",
 		"severity": "LOW",
 		"line": 27
 	},
 	{
-		"queryName": "app_armor_config",
+		"queryName": "Missing_App_Armor_Config",
 		"severity": "LOW",
 		"line": 39
 	},
 	{
-		"queryName": "app_armor_config",
+		"queryName": "Missing_App_Armor_Config",
 		"severity": "LOW",
 		"line": 16
 	}
