@@ -1,6 +1,6 @@
 {
-  "id": "Cloud_trail_log_file_validation",
-  "queryName": "Cloud Trail Log File Validation",
+  "id": "Cloud_trail_log_file_validation_disabled",
+  "queryName": "Cloud Trail Log File Validation Disabled",
   "severity": "LOW",
   "category": "Logging",
   "descriptionText": "CloudTrail log file validation should be enabled",
