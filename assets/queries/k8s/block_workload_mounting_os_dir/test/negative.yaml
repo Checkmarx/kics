@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-elasticsearch
+  namespace: kube-system
+  labels:
+    k8s-app: fluentd-logging
+spec:
+  selector:
+    matchLabels:
+      name: fluentd-elasticsearch
+  template:
+    metadata:
+      labels:
+        name: fluentd-elasticsearch
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+        - name: fluentd-elasticsearch
+          image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+          resources:
+            limits:
+              cpu: 500m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: optmount
+              mountPath: /opt
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: optmount
+          hostPath:
+            path: /opt
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-empty-dir
+  namespace: kube-system
+spec:
+  containers:
+    - name: redis
+      image: redis
+      volumeMounts:
+        - name: redis-storage
+          mountPath: /data/redis
+  volumes:
+    - name: redis-storage
+      emptyDir: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-tmp-dir
+spec:
+  containers:
+    - name: redis
+      image: redis
+      volumeMounts:
+        - name: redis-storage-tmp
+          mountPath: /data/redis
+  volumes:
+    - name: redis-storage-tmp
+      hostPath:
+        path: /tmp/redis-storage
+        type: DirectoryOrCreate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: static-page-dir
+              mountPath: /var/www/app/static
+      volumes:
+        - name: static-page-dir
+          hostPath:
+            path: /tmp/static
+            type: DirectoryOrCreate

@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "StatefulSet Requests Storage",
+		"severity": "LOW",
+		"line": 33
+	},
+	{
+		"queryName": "StatefulSet Requests Storage",
+		"severity": "LOW",
+		"line": 66
+	},
+	{
+		"queryName": "StatefulSet Requests Storage",
+		"severity": "LOW",
+		"line": 73
+	}
+]

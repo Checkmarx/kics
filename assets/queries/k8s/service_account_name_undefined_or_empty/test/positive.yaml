@@ -1,0 +1,67 @@
+#this is a problematic code where the query should report a result(s)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+    - mountPath: /var/run/secrets/tokens
+      name: vault-token
+  volumes:
+  - name: vault-token
+    projected:
+      sources:
+      - serviceAccountToken:  
+          path: vault-token
+          expirationSeconds: 7200
+          audience: vault
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx2
+spec:
+  containers:
+  - image: nginx2
+    name: nginx2
+    volumeMounts:
+    - mountPath: /var/run/secrets/tokens
+      name: vault-token
+  serviceAccountName: 
+  volumes:
+  - name: vault-token
+    projected:
+      sources:
+      - serviceAccountToken:
+          path: vault-token
+          expirationSeconds: 7200
+          audience: vault
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx3
+spec:
+  containers:
+  - image: nginx3
+    name: nginx3
+    volumeMounts:
+    - mountPath: /var/run/secrets/tokens
+      name: vault-token
+  serviceAccountName: ""
+  volumes:
+  - name: vault-token
+    projected:
+      sources:
+      - serviceAccountToken:
+          path: vault-token
+          expirationSeconds: 7200
+          audience: vault
+
