@@ -1,6 +1,6 @@
 {
-  "id": "IAM_password_has_lower_letter",
-  "queryName": "IAM Password Has Lower Letter",
+  "id": "IAM_password_without_lower_letter",
+  "queryName": "IAM Password Without Lower Letter",
   "severity": "MEDIUM",
   "category": "Security, Identity, & Compliance",
   "descriptionText": "IAM user resource Login Profile Password should have lowercase letter",
