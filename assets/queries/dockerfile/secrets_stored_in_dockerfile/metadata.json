@@ -1,6 +1,6 @@
 {
-  "id": "Secrets_env",
-  "queryName": "Secrets Env",
+  "id": "Secrets_stored_in_dockerfile",
+  "queryName": "Secrets Stored In Dockerfile",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Scan Dockerfile to ensure that there are no secrets stored",

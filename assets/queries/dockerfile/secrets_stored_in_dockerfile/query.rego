@@ -9,8 +9,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("ENV=%s", [resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "Dockerfile doesn't contain secrets",
-                "keyActualValue": 	"Dockerfile contains secrets"
+                "keyExpectedValue": sprintf("'%s %s' doesn't exist", [resource.Cmd, resource.Value[0]]),
+                "keyActualValue": 	sprintf("'%s %s' exists", [resource.Cmd, resource.Value[0]])
               }
 }
 
@@ -23,8 +23,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("LABEL=%s", [resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "Dockerfile doesn't contain secrets",
-                "keyActualValue": 	"Dockerfile contains secrets"
+                "keyExpectedValue": sprintf("'%s %s' doesn't exist", [resource.Cmd, resource.Value[0]]),
+                "keyActualValue": 	sprintf("'%s %s' exists", [resource.Cmd, resource.Value[0]])
               }
 }
 
