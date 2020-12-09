@@ -1,6 +1,6 @@
 {
-  "id": "IAM_password_has_uppercase_letter",
-  "queryName": "IAM Password Has Uppercase Letter",
+  "id": "IAM_password_without_uppercase_letter",
+  "queryName": "IAM Password Without Uppercase Letter",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
   "descriptionText": "IAM user resource Login Profile Password should have at least one uppercase letter",

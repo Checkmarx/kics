@@ -10,6 +10,6 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("Resources.%s.Properties.LoginProfile.Password", [name]),
                 "issueType":		"IncorrectValue",  
                 "keyExpectedValue": "'Resources.Properties.LoginProfile.Password' contains uppercase letter",
-                "keyActualValue": 	"'Resources.Properties.LoginProfile.Password' dosent contains uppercase letter"
+                "keyActualValue": 	"'Resources.Properties.LoginProfile.Password' doesnt contains uppercase letter"
               }
 }
