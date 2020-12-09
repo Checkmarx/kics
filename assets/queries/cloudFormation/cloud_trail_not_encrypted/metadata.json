@@ -1,6 +1,6 @@
 {
-  "id": "Cloud_trail_encrypted_kms",
-  "queryName": "Cloud Trail Encrypted Kms",
+  "id": "Cloud_trail_not_encrypted",
+  "queryName": "Cloud Trail Not Encrypted",
   "severity": "HIGH",
   "category": "Logging",
   "descriptionText": "Logs delivered by CloudTrail should be encrypted using KMS",
