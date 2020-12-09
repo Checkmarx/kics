@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "IAM User Policy Virtual Mfa",
+		"queryName": "IAM User Policy Virtual MFA",
 		"severity": "HIGH",
 		"line": 18
 	}
