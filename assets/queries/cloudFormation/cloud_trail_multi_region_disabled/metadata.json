@@ -1,6 +1,6 @@
 {
-  "id": "Cloud_trail_multi_region",
-  "queryName": "Cloud Trail Multi Region",
+  "id": "Cloud_trail_multi_region_disabled",
+  "queryName": "Cloud Trail Multi Region Disabled",
   "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "AWS CloudTrail should have IsMultiRegionTrail set to true",
