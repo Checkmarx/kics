@@ -2,6 +2,11 @@
 	{
 		"queryName": "Kubernetes Image should use digest",
 		"severity": "LOW",
-		"line": 9
+		"line": 8
+	},
+	{
+		"queryName": "Kubernetes Image should use digest",
+		"severity": "LOW",
+		"line": 19
 	}
 ]

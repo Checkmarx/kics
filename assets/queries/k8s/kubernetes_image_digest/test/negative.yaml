@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: uses-private-image
-      image: $PRIVATE_IMAGE_NAME
+      image: image@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb
       imagePullPolicy: Always
       command: [ "echo", "SUCCESS" ]

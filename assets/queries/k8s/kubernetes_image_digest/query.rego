@@ -5,16 +5,34 @@ CxPolicy [ result ] {
   metadata:= document.metadata
   spec := document.spec
   containers := spec.containers
-  not containers[c].imagePullPolicy == "Always"
+  image := containers[c].image
+  not contains(image, "@")
     
 	
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	   sprintf("metadata.name=%s.spec.containers.name=%s.imagePullPolicy", [metadata.name, containers[c].name]),
+                "searchKey": 	   sprintf("metadata.name=%s.spec.containers.name=%s.image", [metadata.name, containers[c].name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("spec[%s].containers[%s].imagePullPolicy is Always", [metadata.name, containers[c].name]),
-                "keyActualValue": 	sprintf("spec[%s].containers[%s].imagePullPolicy is not Always", [metadata.name, containers[c].name])
+                "keyExpectedValue": sprintf("spec[%s].containers[%s].image has '@'", [metadata.name, containers[c].name]),
+                "keyActualValue": 	sprintf("spec[%s].containers[%s].image doesn't have '@'", [metadata.name, containers[c].name])
               }
 }
 
+CxPolicy [ result ] {
+	document := input.document[i]
+  metadata:= document.metadata
+  spec := document.spec
+  containers := spec.containers
+  object.get(containers[k],"image","undefined") == "undefined"
+    
+	
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	   sprintf("metadata.name=%s.spec.containers", [metadata.name]),
+                "issueType":		"MissingAttribute",
+                "keyExpectedValue": sprintf("spec[%s].containers[%s] is Defined", [metadata.name, containers[c].name]),
+                "keyActualValue": 	sprintf("spec[%s].containers[%s] is Undefined", [metadata.name, containers[c].name])
+              }
+}
