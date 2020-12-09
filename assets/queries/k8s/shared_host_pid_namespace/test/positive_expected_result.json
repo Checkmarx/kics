@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Shared Host PID Namespace",
+		"severity": "HIGH",
+		"line": 6
+	}
+]

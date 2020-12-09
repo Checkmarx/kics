@@ -1,0 +1,280 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: prometheus
+    chart: prometheus-11.1.2
+    component: node-exporter
+    heritage: Helm
+    release: exporter
+  name: exporter-prometheus-node-exporter
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: prometheus
+      component: node-exporter
+      release: exporter
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        chart: prometheus-11.1.2
+        component: node-exporter
+        heritage: Helm
+        release: exporter
+    spec:
+      containers:
+        - args:
+            - --path.procfs=/host/proc
+            - --path.sysfs=/host/sys
+          image: prom/node-exporter:v0.18.1
+          imagePullPolicy: IfNotPresent
+          name: prometheus-node-exporter
+          ports:
+            - containerPort: 9100
+              hostPort: 9100
+              name: metrics
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /host/proc
+              name: proc
+              readOnly: true
+            - mountPath: /host/sys
+              name: sys
+              readOnly: true
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      hostPID: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccount: exporter-prometheus-node-exporter
+      serviceAccountName: exporter-prometheus-node-exporter
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+            type: ""
+        - name: sys
+          hostPath:
+            path: /sys
+            type: ""
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-elasticsearch
+  namespace: logs
+  labels:
+    k8s-app: fluentd-logging
+spec:
+  selector:
+    matchLabels:
+      name: fluentd-elasticsearch
+  template:
+    metadata:
+      labels:
+        name: fluentd-elasticsearch
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+        - name: fluentd-elasticsearch
+          image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+          resources:
+            limits:
+              cpu: 500m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log
+            - name: varlibdockercontainers
+              mountPath: /var/lib/docker/containers
+              readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: static-page-dir
+              mountPath: /var/www/app/static
+      volumes:
+        - name: static-page-dir
+          hostPath:
+            path: /var/local/static
+            type: DirectoryOrCreate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-undefined-ns
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: static-page-dir
+              mountPath: /var/www/app/static
+      volumes:
+        - name: static-page-dir
+          hostPath:
+            path: /root/local/static
+            type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-memcache
+  namespace: memcache
+spec:
+  containers:
+    - name: redis
+      image: redis
+      volumeMounts:
+        - name: redis-storage
+          mountPath: /data/redis
+  volumes:
+    - name: redis-storage
+      hostPath:
+        path: /var/redis/data
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: web-server-pod
+spec:
+  volumes:
+    - name: nginx-host-config
+      hostPath:
+        path: "/etc/nginx"
+  containers:
+    - name: nginx-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/etc/nginx"
+          name: nginx-host-config
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: malicious-pod
+  namespace: default
+spec:
+  containers:
+    - name: evil-container
+      image: alpine
+      volumeMounts:
+        - name: rootdir
+          mountPath: /
+  volumes:
+    - name: rootdir
+      hostPath:
+        path: /
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dood
+spec:
+  containers:
+    - name: docker-cmds
+      image: docker:1.12.6
+      command: ["docker", "run", "-p", "80:80", "httpd:latest"]
+      resources:
+        requests:
+          cpu: 10m
+          memory: 256Mi
+      volumeMounts:
+        - mountPath: /var/run
+          name: docker-sock
+  volumes:
+    - name: docker-sock
+      hostPath:
+        path: /var/run
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-001
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/dev/tty1"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-002
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/boot"

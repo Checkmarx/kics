@@ -1,0 +1,8 @@
+{
+  "id": "shared_host_ipc_namespace",
+  "queryName": "Shared Host IPC Namespace",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "Container should not share the host IPC namespace",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}

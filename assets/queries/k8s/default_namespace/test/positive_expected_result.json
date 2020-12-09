@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Default Namespace",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+
+	{
+		"queryName": "Default Namespace",
+		"severity": "MEDIUM",
+		"line": 36
+	}
+]

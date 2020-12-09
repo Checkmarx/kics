@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "PSP Allows Sharing Host IPC",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]

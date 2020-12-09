@@ -1,0 +1,8 @@
+{
+  "id": "S3_Bucket_Allows_Put_Or_Restore_Actions_From_All_Principals",
+  "queryName": "S3 Bucket Allows Put Or Restore Actions From All Principals",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "S3 Buckets must not allow Put or Restore Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Put or Restore, for all Principals.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html"
+}
