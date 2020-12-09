@@ -2,6 +2,21 @@
 	{
 		"queryName": "DynamoDB with AWS Owned CMK",
 		"severity": "HIGH",
-		"line": 0
+		"line": 4
+	},
+	{
+		"queryName": "DynamoDB with AWS Owned CMK",
+		"severity": "HIGH",
+		"line": 62
+	},
+	{
+		"queryName": "DynamoDB with AWS Owned CMK",
+		"severity": "HIGH",
+		"line": 24
+	},
+	{
+		"queryName": "DynamoDB with AWS Owned CMK",
+		"severity": "HIGH",
+		"line": 43
 	}
 ]

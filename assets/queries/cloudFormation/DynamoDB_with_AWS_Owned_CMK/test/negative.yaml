@@ -42,7 +42,7 @@ resources:
               - "kms:GenerateDataKeyWithoutPlaintext"
             Resource: "*"
 
-  DynamoDBOnDemandTable:
+  DynamoDBOnDemandTable1:
     Type: "AWS::DynamoDB::Table"
     Properties:
       TableName: "dynamodb-kms"
