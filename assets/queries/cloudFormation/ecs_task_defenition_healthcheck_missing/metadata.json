@@ -1,0 +1,8 @@
+{
+  "id": "ECS_task_defenition_healthcheck_missing",
+  "queryName": "ECS Task Defenition HealthCheck Missing",
+  "severity": "LOW",
+  "category": "Operational",
+  "descriptionText": "The HealthCheck property specifies an object representing a container health check",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html"
+}

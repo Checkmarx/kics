@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "ECS Task Defenition HealthCheck Missing",
+		"severity": "LOW",
+		"line": 22
+	}
+]
