@@ -3,6 +3,6 @@
   "queryName": "Role Binding To Default Service Account",
   "severity": "HIGH",
   "category": null,
-  "descriptionText": "The default namespace should not be used",
+  "descriptionText": "No role nor cluster role should bind to a default service account",
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
 }
