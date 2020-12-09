@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Secrets Env",
+		"severity": "MEDIUM",
+		"line": 4
+	},
+	{
+		"queryName": "Secrets Env",
+		"severity": "MEDIUM",
+		"line": 5
+	}
+]
