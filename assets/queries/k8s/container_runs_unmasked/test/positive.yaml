@@ -14,7 +14,7 @@ spec:
 #    - pathPrefix: "/some/path"                     # Example of how to allow a specific host path
 #      readOnly: true
   allowPrivilegeEscalation: false                   # Disallow privilege escalation to any special capabilities
-  allowedProcMountTypes: [Unmasked] 
+  allowedProcMountTypes: [Unmasked]
   fsGroup:                                          # disallow root fsGroups for volume mounts
     rule: MustRunAs
     ranges:
