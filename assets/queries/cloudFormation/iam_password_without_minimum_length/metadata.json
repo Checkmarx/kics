@@ -1,6 +1,6 @@
 {
-  "id": "IAM_password_without_min_length",
-  "queryName": "IAM Password Without Min Length",
+  "id": "IAM_password_without_minimum_length",
+  "queryName": "IAM Password Without Minimum Length",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
   "descriptionText": "IAM user resource Login Profile Password should have at least 14 characters",
