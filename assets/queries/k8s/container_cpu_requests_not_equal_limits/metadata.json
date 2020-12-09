@@ -1,0 +1,8 @@
+{
+  "id": "Container_CPU_Requests_Not_Equal_Limits",
+  "queryName": "Container CPU Requests Not Equal Limits",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "A Pod's Containers must have the same CPU requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.cpu' must equal 'limits.cpu', and both be defined.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+}
