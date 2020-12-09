@@ -1,0 +1,8 @@
+{
+  "id": "block_privileged_container",
+  "queryName": "Block Privileged Container",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "Do not allow container as privileged.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers"
+}

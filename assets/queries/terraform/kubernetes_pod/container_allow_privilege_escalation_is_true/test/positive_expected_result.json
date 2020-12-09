@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Container Allow Privileg Escalation Is True",
+		"queryName": "Container Allow Privilege Escalation Is True",
 		"severity": "MEDIUM",
 		"line": 11
 	}

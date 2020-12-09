@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Service Account Token Automount Not Disabled",
+		"severity": "MEDIUM",
+		"line": 5
+	}
+]

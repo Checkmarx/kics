@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Block Privileged Container",
+		"severity": "HIGH",
+		"line": 10
+	},
+	{
+		"queryName": "Block Privileged Container",
+		"severity": "HIGH",
+		"line": 23
+	}
+]

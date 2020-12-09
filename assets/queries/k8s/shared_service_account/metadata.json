@@ -1,0 +1,8 @@
+{
+  "id": "shared_service_account",
+  "queryName": "Shared Service Account",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "A Service Account token is shared between workloads",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+}

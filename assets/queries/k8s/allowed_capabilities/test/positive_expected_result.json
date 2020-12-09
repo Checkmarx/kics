@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Allowed Capabilities",
+		"severity": "HIGH",
+		"line": 12
+	},
+	{
+		"queryName": "Allowed Capabilities",
+		"severity": "HIGH",
+		"line": 45
+	}
+]

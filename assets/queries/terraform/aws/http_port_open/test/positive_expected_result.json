@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "HTTP port open",
+		"severity": "HIGH",
+		"line": 6
+	},
+	{
+		"queryName": "HTTP port open",
+		"severity": "HIGH",
+		"line": 19
+	}
+]

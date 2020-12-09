@@ -1,0 +1,8 @@
+{
+  "id": "Root_Containers_Admitted",
+  "queryName": "Root Containers Admitted",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Containers must not be allowed to run with root privileges, which means the attributes 'privileged','allowPrivilegeEscalation' and 'readOnlyRootFilesystem' must be set to false, 'runAsUser.rule' must be set to 'MustRunAsNonRoot', and adding the root group must be forbidden",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}
