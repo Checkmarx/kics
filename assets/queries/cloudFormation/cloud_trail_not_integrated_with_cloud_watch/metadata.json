@@ -1,6 +1,6 @@
 {
-  "id": "Cloud_trail_integrated_with_cloud_watch",
-  "queryName": "Cloud Trail Integrated With Cloud Watch",
+  "id": "Cloud_trail_not_integrated_with_cloud_watch",
+  "queryName": "Cloud Trail Not Integrated With Cloud Watch",
   "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "CloudTrail should be integrated with CloudWatch",
