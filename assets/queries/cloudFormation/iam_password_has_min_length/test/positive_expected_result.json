@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IAM Password Has Min Length",
-		"severity": "MEDIUM",
-		"line": 9
-	}
-]
