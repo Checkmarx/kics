@@ -1,0 +1,8 @@
+{
+  "id": "default_namespace",
+  "queryName": "Default Namespace",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "The default namespace should not be used",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+}

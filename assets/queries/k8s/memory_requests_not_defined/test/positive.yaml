@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-demo
+  namespace: mem-example
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    resources:
+      limits:
+        memory: "200Mi"
+      requests:
+        cpu: "0.5"
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-demo-1
+  namespace: mem-example
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    resources:
+      limits:
+        memory: "200Mi"
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-demo-2
+  namespace: mem-example
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-demo-3
+  namespace: mem-example
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+  volumes:
+    - name: sec-ctx-vol
+      emptyDir: { }
