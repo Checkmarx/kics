@@ -1,0 +1,8 @@
+{
+  "id": "Container_Runs_Unmasked",
+  "queryName": "Container Runs Unmasked",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Check if a container has full access (unmasked) to the host’s /proc command, which would allow to retrieve sensitive information and possibly change the kernel parameters in runtime.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#allowedprocmounttypes"
+}

@@ -1,0 +1,91 @@
+#this code is a correct code for which the query should not find any result
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  annotations:
+    kubernetes.io/description: 'restricted psp for all standard use-cases'
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default
+    seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default
+  name: restricted
+spec:
+#  allowedCapabilities:
+#    - NET_BIND_SERVICE                             # useful if a workload needs a low port. but by default it's commented out
+#  allowedHostPaths:
+#    - pathPrefix: "/some/path"                     # Example of how to allow a specific host path
+#      readOnly: true
+  allowPrivilegeEscalation: false                   # Disallow privilege escalation to any special capabilities
+  allowedProcMountTypes: [Default]                            # Disallow full /proc mounts, only allow the "default" masked /proc
+  fsGroup:                                          # disallow root fsGroups for volume mounts
+    rule: MustRunAs
+    ranges:
+      - max: 65535
+        min: 1
+  hostIPC: false                                    # disallow sharing the host IPC namespace
+  hostNetwork: false                                # disallow host networking
+  hostPID: false                                    # disallow sharing the host process ID namespace
+  hostPorts:                                        # disallow low host ports (this seems to only apply to eth0 on EKS)
+    - max: 65535
+      min: 1025
+  privileged: false                                 # disallow privileged pods
+  readOnlyRootFilesystem: true                      # change default from 'false' to 'true'
+  requiredDropCapabilities:                         # Drop all privileges in the Linux kernel
+    - AUDIT_CONTROL
+    - AUDIT_READ
+    - AUDIT_WRITE
+    - BLOCK_SUSPEND
+    - CHOWN
+    - DAC_OVERRIDE
+    - DAC_READ_SEARCH
+    - FOWNER
+    - FSETID
+    - IPC_LOCK
+    - IPC_OWNER
+    - KILL
+    - LEASE
+    - LINUX_IMMUTABLE
+    - MAC_ADMIN
+    - MAC_OVERRIDE
+    - MKNOD
+    - NET_ADMIN
+    - NET_BIND_SERVICE
+    - NET_BROADCAST
+    - NET_RAW
+    - SETGID
+    - SETFCAP
+    - SETPCAP
+    - SETUID
+    - SYS_ADMIN
+    - SYS_BOOT
+    - SYS_CHROOT
+    - SYS_MODULE
+    - SYS_NICE
+    - SYS_PACCT
+    - SYS_PTRACE
+    - SYS_RAWIO
+    - SYS_RESOURCE
+    - SYS_TIME
+    - SYS_TTY_CONFIG
+    - SYSLOG
+    - WAKE_ALARM
+  runAsGroup:                                       # disallow GID 0 for pods (block root group)
+    rule: MustRunAs
+    ranges:
+      - max: 65535
+        min: 1
+  runAsUser:                                        # disallow UID 0 for pods
+    rule: MustRunAsNonRoot
+  seLinux:                                          # Harness for SELinux
+    rule: RunAsAny
+  supplementalGroups:                               # restrict supplemental GIDs to be non-zero (non-root)
+    rule: MustRunAs
+    ranges:
+    - max: 65535
+      min: 1
+  volumes:                                          # allow only these volume types
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - projected
+  - secret
+#   - hostPath                                      # Host paths are disallowed by default.
+#   - persistentVolumeClaim                         # If you use statefulsets, you'll need this one.
