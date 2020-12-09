@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Copy Instead of Add",
+		"queryName": "Add Instead of Copy",
 		"severity": "LOW",
 		"line": 8
 	}
