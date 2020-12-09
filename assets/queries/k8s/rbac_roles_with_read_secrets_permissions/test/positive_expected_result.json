@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RBAC Roles with Read Secrets Permissions",
+		"severity": "MEDIUM",
+		"line": 9
+	},
+	{
+		"queryName": "RBAC Roles with Read Secrets Permissions",
+		"severity": "MEDIUM",
+		"line": 18
+	}
+]

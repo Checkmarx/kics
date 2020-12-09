@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "PSP Allows Sharing Host PID",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]
