@@ -1,6 +1,6 @@
 {
-  "id": "set_image_pull_policy_of_the_container_to_always",
-  "queryName": "Set Image Pull Policy Of The Container To Always",
+  "id": "set_image_pull_policy_of_the_container_is_not_always",
+  "queryName": "Set Image Pull Policy Of The Container Is Not Always",
   "severity": "LOW",
   "category": null,
   "descriptionText": "Image Pull Policy of the container must be defined and set to Always",
