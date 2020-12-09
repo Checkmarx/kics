@@ -3,5 +3,15 @@
 		"queryName": "Docker Daemon Socket is Exposed to Containers",
 		"severity": "LOW",
 		"line": 15
+	},
+	{
+		"queryName": "Docker Daemon Socket is Exposed to Containers",
+		"severity": "LOW",
+		"line": 21
+	},
+	{
+		"queryName": "Docker Daemon Socket is Exposed to Containers",
+		"severity": "LOW",
+		"line": 61
 	}
 ]
