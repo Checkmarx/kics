@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tiller-deploy
+  labels:
+    app: helm
+    name: tiller
+spec:
+  type: ClusterIP
+  selector:
+    app: helm
+    name: tiller
+  ports:
+  - name: tiller
+    port: 44134
+    protocol: TCP
+    targetPort: tiller

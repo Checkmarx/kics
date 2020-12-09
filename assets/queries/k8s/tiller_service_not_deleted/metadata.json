@@ -1,0 +1,8 @@
+{
+  "id": "Tiller_Service_Is_Not_Deleted",
+  "queryName": "Tiller Service Is Not Deleted",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "Check if there is any Tiller Service present",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service"
+}

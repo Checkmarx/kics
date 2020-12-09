@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Memory Requests Is Not Defined",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "Memory Requests Is Not Defined",
+		"severity": "MEDIUM",
+		"line": 25
+	},
+	{
+		"queryName": "Memory Requests Is Not Defined",
+		"severity": "MEDIUM",
+		"line": 42
+	},
+	{
+		"queryName": "Memory Requests Is Not Defined",
+		"severity": "MEDIUM",
+		"line": 56
+	}
+]
