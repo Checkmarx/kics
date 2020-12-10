@@ -7,11 +7,11 @@
 	{
 		"queryName": "Docker Daemon Socket is Exposed to Containers",
 		"severity": "LOW",
-		"line": 21
+		"line": 43
 	},
 	{
 		"queryName": "Docker Daemon Socket is Exposed to Containers",
 		"severity": "LOW",
-		"line": 54
+		"line": 67
 	}
 ]

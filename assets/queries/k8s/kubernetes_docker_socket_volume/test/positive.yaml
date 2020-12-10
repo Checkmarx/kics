@@ -18,17 +18,30 @@ spec:
 ---
 
 apiVersion: v1
-kind: Service
+kind: ReplicationController
 metadata:
-  name: default-subdomain
+  name: node-manager
+  labels:
+    name: node-manager
 spec:
-  selector:
-    name: busybox
-  clusterIP: None
-  ports:
-  - name: foo
-    port: 1234
-    targetPort: 1234
+    selector:
+      name: node-manager
+    template:
+      metadata:
+        labels:
+          name: node-manager
+      spec:
+          containers:
+          - image: k8s.gcr.io/test-webserver
+            name: test-container
+            volumeMounts:
+            - mountPath: /test-pd
+              name: test-volume
+          volumes:
+          - name: test-volume
+            hostPath:
+              path: /var/run/docker.sock
+              type: Directory
 
 ---
 
