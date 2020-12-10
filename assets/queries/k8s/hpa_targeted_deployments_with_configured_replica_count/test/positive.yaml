@@ -24,29 +24,12 @@ spec:
           requests:
             cpu: 200m
 ---
-
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
 metadata:
-  name: php-apache-2
+  name: php-apache
 spec:
-  selector:
-    matchLabels:
-      run: php-apache
-  minreplicas: 1
-  maxreplicas: 10
-  template:
-    metadata:
-      labels:
-        run: php-apache
-    spec:
-      containers:
-      - name: php-apache
-        image: k8s.gcr.io/hpa-example
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 200m
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: php-apache-1
