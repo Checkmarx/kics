@@ -3,6 +3,6 @@
   "queryName": "Cap Drop Any Capabilities",
   "severity": "LOW",
   "category": null,
-  "descriptionText": "Sees if Kubernetes Drop All exists",
+  "descriptionText": "Sees if Kubernetes Drop exists",
   "descriptionUrl": "https://kubesec.io/basics/containers-securitycontext-capabilities-drop-index-all/"
 }
