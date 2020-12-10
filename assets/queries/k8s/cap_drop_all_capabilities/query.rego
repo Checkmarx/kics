@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("metadata.name=%s.spec.containers.name=%s.securityContext.capabilities.drop", [metadata.name, containers[c].name]),
                 "issueType":		"IncorrectValue",
-				        "keyExpectedValue": sprintf("spec.containers[%s].securityContext.capabilities.drop is not Defined", [metadata.name, containers[c].name]),
-                "keyActualValue": 	sprintf("spec.containers[%s].securityContext.capabilities.drop", [metadata.name, containers[c].name])
+				        "keyExpectedValue": sprintf("spec.containers[%s].securityContext.capabilities.drop is not 'ALL'", [metadata.name, containers[c].name]),
+                "keyActualValue": 	sprintf("spec.containers[%s].securityContext.capabilities.drop is 'ALL'", [metadata.name, containers[c].name])
               }
 }
 
