@@ -37,7 +37,7 @@ CxPolicy [ result ] {
 
 is_OS_Dir(mountPath) = result {
       hostSensitiveDir = {"/bin", "/sbin","/boot","/cdrom","/dev","/etc","/home","/lib","/media","/proc","/root","/run","/seLinux","/srv","/usr","/var"}
-   	  result  = listcontains(hostSensitiveDir, mountPath)
+   	  result  = startswith( mountPath,hostSensitiveDir[_])
 } else = result {
       result  =  mountPath == "/"
 
