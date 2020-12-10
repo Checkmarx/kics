@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Vulnerable_Default_SSL_Certificate",
+		"severity": "HIGH",
+		"line": 8
+	}
+]
