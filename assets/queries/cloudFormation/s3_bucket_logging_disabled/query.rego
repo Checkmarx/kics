@@ -1,0 +1,16 @@
+package Cx
+
+CxPolicy [ result ] {
+  resource := input.document[i].Resources[name]
+  resource.Type == "AWS::S3::Bucket"
+  prop := resource.Properties
+  object.get(prop, "LoggingConfiguration", "not found") == "not found"
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("Resources.%s.Properties", [name]),
+                "issueType":		"MissingAttribute",  #"MissingAttribute" / "RedundantAttribute"
+                "keyExpectedValue": sprintf("'Resources.%s.Properties' has property 'LoggingConfiguration'", [name]),
+                "keyActualValue": 	sprintf("'Resources.%s.Properties' doesn't have property 'LoggingConfiguration'", [name])
+              }
+}
