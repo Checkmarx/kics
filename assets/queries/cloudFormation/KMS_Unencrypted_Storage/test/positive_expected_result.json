@@ -1,26 +1,26 @@
 [
 	{
-		"queryName": "KMS Unencrypted Storage",
+		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
 		"line": 137
 	},
 	{
-		"queryName": "KMS Unencrypted Storage",
+		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
 		"line": 55
 	},
 	{
-		"queryName": "KMS Unencrypted Storage",
+		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
 		"line": 95
 	},
 	{
-		"queryName": "KMS Unencrypted Storage",
+		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
 		"line": 137
 	},
 	{
-		"queryName": "KMS Unencrypted Storage",
+		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
 		"line": 55
 	}
