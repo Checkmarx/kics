@@ -4,5 +4,5 @@
   "severity": "LOW",
   "category": null,
   "descriptionText": "Ensure that the cluster-admin role is only used where required (RBAC)",
-  "descriptionUrl": "feature/block_cluster_admin_rolebinding"
+  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles"
 }
