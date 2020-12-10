@@ -1,0 +1,8 @@
+{
+  "id": "cap_drop_all_capabilities",
+  "queryName": "Cap Drop All Capabilities",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Sees if Kubernetes Drop All is on",
+  "descriptionUrl": "https://kubesec.io/basics/containers-securitycontext-capabilities-drop-index-all/"
+}
