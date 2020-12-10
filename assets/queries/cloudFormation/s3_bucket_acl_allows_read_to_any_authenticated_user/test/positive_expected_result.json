@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+		"severity": "HIGH",
+		"line": 7
+	},
+	{
+		"queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+		"severity": "HIGH",
+		"line": 21
+	},
+	{
+		"queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+		"severity": "HIGH",
+		"line": 36
+	},
+	{
+		"queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+		"severity": "HIGH",
+		"line": 54
+	}
+]
