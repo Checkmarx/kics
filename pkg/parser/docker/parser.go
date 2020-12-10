@@ -6,6 +6,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/asottile/dockerfile"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 )
 
@@ -23,6 +24,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
 	com, err := dockerfile.ParseReader(bytes.NewReader(fileContent))
 	if err != nil {
+		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "Failed to parse Dockerfile")
 	}
 
@@ -33,10 +35,12 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	j, err := json.Marshal(resource)
 	if err != nil {
+		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
 	}
 
 	if err := json.Unmarshal(j, &doc); err != nil {
+		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "Failed to Unmarshal Dockerfile")
 	}
 

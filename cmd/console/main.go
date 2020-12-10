@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -20,6 +21,7 @@ import (
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
+	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -28,6 +30,17 @@ import (
 const scanID = "console"
 
 func main() { // nolint:funlen,gocyclo
+
+	err := sentry.Init(sentry.ClientOptions{
+		Dsn: "https://a9194c7a568744d392ab5fd9cde6708a@o489127.ingest.sentry.io/5550779",
+	})
+	if err != nil {
+		log.Err(err).Msg("failed to initialize sentry")
+	}
+
+	// Flush buffered events before the program terminates.
+	defer sentry.Flush(2 * time.Second)
+
 	var (
 		path        string
 		queryPath   string
@@ -58,6 +71,7 @@ func main() { // nolint:funlen,gocyclo
 			if logFile {
 				file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 				if err != nil {
+					sentry.CaptureException(err)
 					return err
 				}
 				fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
@@ -73,6 +87,7 @@ func main() { // nolint:funlen,gocyclo
 			t := &tracker.CITracker{}
 			inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
 			if err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 
@@ -83,6 +98,7 @@ func main() { // nolint:funlen,gocyclo
 
 			filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
 			if err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 
@@ -102,16 +118,19 @@ func main() { // nolint:funlen,gocyclo
 			}
 
 			if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
+				sentry.CaptureException(scanErr)
 				return scanErr
 			}
 
 			result, err := store.GetVulnerabilities(ctx, scanID)
 			if err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 
 			files, err := store.GetFiles(ctx, scanID)
 			if err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 
@@ -132,11 +151,13 @@ func main() { // nolint:funlen,gocyclo
 
 			if outputPath != "" {
 				if err := printToJSONFile(outputPath, summary); err != nil {
+					sentry.CaptureException(err)
 					return err
 				}
 			}
 
 			if err := printResult(summary); err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 
@@ -155,10 +176,12 @@ func main() { // nolint:funlen,gocyclo
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "Log to file info.log")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
+		sentry.CaptureException(err)
 		log.Err(err).Msg("failed to add command required flags")
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
+		sentry.CaptureException(err)
 		os.Exit(-1)
 	}
 }
@@ -190,10 +213,12 @@ func printResult(summary model.Summary) error {
 func printToJSONFile(path string, body interface{}) error {
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
+		sentry.CaptureException(err)
 		return err
 	}
 	defer func() {
 		if err := f.Close(); err != nil {
+			sentry.CaptureException(err)
 			log.Err(err).Msgf("failed to close file %s", path)
 		}
 

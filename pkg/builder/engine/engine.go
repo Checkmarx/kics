@@ -8,6 +8,7 @@ import (
 	commentParser "github.com/Checkmarx/kics/pkg/builder/parser/comment"
 	tagParser "github.com/Checkmarx/kics/pkg/builder/parser/tag"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/getsentry/sentry-go"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
@@ -25,6 +26,7 @@ type Engine struct {
 func Run(src []byte, filename string) ([]build.Rule, error) {
 	cp, err := commentParser.NewParser(src, filename)
 	if err != nil {
+		sentry.CaptureException(err)
 		return nil, err
 	}
 
@@ -46,6 +48,7 @@ func Run(src []byte, filename string) ([]build.Rule, error) {
 func (e *Engine) Run(body *hclsyntax.Body) ([]build.Rule, error) {
 	e.conditions = make([]build.Condition, 0)
 	if err := e.walkBody(body, []build.PathItem{}); err != nil {
+		sentry.CaptureException(err)
 		return nil, err
 	}
 
@@ -74,12 +77,14 @@ func (e *Engine) Run(body *hclsyntax.Body) ([]build.Rule, error) {
 func (e *Engine) walkBody(body *hclsyntax.Body, walkHistory []build.PathItem) error {
 	for _, attribute := range body.Attributes {
 		if err := e.walkAttribute(attribute, walkHistory); err != nil {
+			sentry.CaptureException(err)
 			return err
 		}
 	}
 
 	for _, block := range body.Blocks {
 		if err := e.walkBlock(block, walkHistory); err != nil {
+			sentry.CaptureException(err)
 			return err
 		}
 	}
@@ -114,6 +119,7 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
 
 		v, err := e.expToString(attr.Expr)
 		if err != nil {
+			sentry.CaptureException(err)
 			return err
 		}
 
@@ -123,6 +129,7 @@ func (e *Engine) walkAttribute(attr *hclsyntax.Attribute, walkHistory []build.Pa
 
 		for _, item := range exp.Items {
 			if err := e.walkConstantItem(item, walkHistory); err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 		}
@@ -138,6 +145,7 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 	case *hclsyntax.LiteralValueExpr:
 		s, err := ctyConvert.Convert(t.Val, cty.String)
 		if err != nil {
+			sentry.CaptureException(err)
 			return "", err
 		}
 		return s.AsString(), nil
@@ -145,6 +153,7 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 		if t.IsStringLiteral() {
 			v, err := t.Value(nil)
 			if err != nil {
+				sentry.CaptureException(err)
 				return "", err
 			}
 			return v.AsString(), nil
@@ -153,6 +162,7 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 		for _, part := range t.Parts {
 			s, err := e.expToString(part)
 			if err != nil {
+				sentry.CaptureException(err)
 				return "", err
 			}
 			builder.WriteString(s)
@@ -183,6 +193,7 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []build.PathItem) error {
 	k, err := e.expToString(item.KeyExpr)
 	if err != nil {
+		sentry.CaptureException(err)
 		return err
 	}
 
@@ -190,6 +201,7 @@ func (e *Engine) walkConstantItem(item hclsyntax.ObjectConsItem, walkHistory []b
 
 	v, err := e.expToString(item.ValueExpr)
 	if err != nil {
+		sentry.CaptureException(err)
 		return err
 	}
 
@@ -211,6 +223,7 @@ func (e *Engine) checkComment(rg hcl.Range, walkHistory []build.PathItem, actual
 func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Comment, actualValue *string) {
 	tags, err := tagParser.Parse(comment.Value(), model.AllIssueTypesAsString)
 	if err != nil {
+		sentry.CaptureException(err)
 		log.Err(err).Msgf("line %d: failed to parse comment '%s'", comment.Line(), comment.Value())
 		return
 	}

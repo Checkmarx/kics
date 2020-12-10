@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -24,6 +25,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
 			if err != nil {
+				sentry.CaptureException(err)
 				return err
 			}
 
@@ -35,6 +37,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 			return nil
 		})
 	if err != nil {
+		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "failed to get query Source")
 	}
 
@@ -42,6 +45,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	for _, queryDir := range queryDirs {
 		query, errRQ := ReadQuery(queryDir)
 		if errRQ != nil {
+			sentry.CaptureException(errRQ)
 			log.Err(errRQ).
 				Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
 
@@ -57,6 +61,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	queryContent, err := ioutil.ReadFile(path.Join(queryDir, queryFileName))
 	if err != nil {
+		sentry.CaptureException(err)
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
 
@@ -72,6 +77,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 func readMetadata(queryDir string) map[string]interface{} {
 	f, err := os.Open(path.Join(queryDir, metadataFileName))
 	if err != nil {
+		sentry.CaptureException(err)
 		if os.IsNotExist(err) {
 			log.Warn().
 				Msgf("Queries provider can't find metadata, query=%s", path.Base(queryDir))
@@ -87,6 +93,7 @@ func readMetadata(queryDir string) map[string]interface{} {
 
 	var metadata map[string]interface{}
 	if err := json.NewDecoder(f).Decode(&metadata); err != nil {
+		sentry.CaptureException(err)
 		log.Err(err).
 			Msgf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir))
 

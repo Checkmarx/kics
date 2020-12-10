@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/getsentry/sentry-go"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/zclconf/go-cty/cty"
@@ -22,6 +23,7 @@ var DefaultConverted = func(file *hcl.File) (model.Document, int, error) {
 	body, err := c.convertBody(file.Body.(*hclsyntax.Body))
 
 	if err != nil {
+		sentry.CaptureException(err)
 		if er, ok := err.(*hcl.Diagnostic); ok && er.Subject != nil {
 			return nil, er.Subject.Start.Line, err
 		}
@@ -46,6 +48,7 @@ func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) {
 	for key, value := range body.Attributes {
 		out[key], err = c.convertExpression(value.Expr)
 		if err != nil {
+			sentry.CaptureException(err)
 			return nil, err
 		}
 	}
@@ -53,6 +56,7 @@ func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) {
 	for _, block := range body.Blocks {
 		err = c.convertBlock(block, out)
 		if err != nil {
+			sentry.CaptureException(err)
 			return nil, err
 		}
 	}
@@ -109,6 +113,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		for _, ex := range value.Exprs {
 			elem, err := c.convertExpression(ex)
 			if err != nil {
+				sentry.CaptureException(err)
 				return nil, err
 			}
 			list = append(list, elem)
@@ -119,10 +124,12 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		for _, item := range value.Items {
 			key, err := c.convertKey(item.KeyExpr)
 			if err != nil {
+				sentry.CaptureException(err)	
 				return nil, err
 			}
 			m[key], err = c.convertExpression(item.ValueExpr)
 			if err != nil {
+				sentry.CaptureException(err)
 				return nil, err
 			}
 		}
@@ -148,6 +155,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) {
 		// safe because the value is just the string
 		v, err := t.Value(nil)
 		if err != nil {
+			sentry.CaptureException(err)
 			return "", err
 		}
 		return v.AsString(), nil
@@ -156,6 +164,7 @@ func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) {
 	for _, part := range t.Parts {
 		s, err := c.convertStringPart(part)
 		if err != nil {
+			sentry.CaptureException(err)
 			return "", err
 		}
 		builder.WriteString(s)
@@ -168,6 +177,7 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 	case *hclsyntax.LiteralValueExpr:
 		s, err := ctyconvert.Convert(v.Val, cty.String)
 		if err != nil {
+			sentry.CaptureException(err)
 			return "", err
 		}
 		return s.AsString(), nil
@@ -192,11 +202,13 @@ func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) 
 	builder.WriteString("}")
 	trueResult, err := c.convertStringPart(expr.TrueResult)
 	if err != nil {
+		sentry.CaptureException(err)
 		return "", nil
 	}
 	builder.WriteString(trueResult)
 	falseResult, err := c.convertStringPart(expr.FalseResult)
 	if err != nil {
+		sentry.CaptureException(err)
 		return "", nil
 	}
 	if len(falseResult) > 0 {
@@ -221,6 +233,7 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
 	builder.WriteString("}")
 	templ, err := c.convertStringPart(expr.ValExpr)
 	if err != nil {
+		sentry.CaptureException(err)
 		return "", err
 	}
 	builder.WriteString(templ)

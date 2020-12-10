@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -27,6 +28,7 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 				continue
 			}
 
+			sentry.CaptureException(err)
 			return nil, errors.Wrap(err, "failed to open excluded file")
 		}
 		ex[info.Name()] = info
@@ -41,6 +43,7 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
+		sentry.CaptureException(err)
 		return errors.Wrap(err, "failed to open path")
 	}
 
@@ -51,6 +54,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 
 		c, errOpenFile := os.Open(s.path)
 		if errOpenFile != nil {
+			sentry.CaptureException(errOpenFile)
 			return errors.Wrap(errOpenFile, "failed to open path")
 		}
 
@@ -59,6 +63,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 
 	err = filepath.Walk(s.path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
+			sentry.CaptureException(err)
 			return err
 		}
 
@@ -76,11 +81,13 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 
 		c, err := os.Open(path)
 		if err != nil {
+			sentry.CaptureException(err)
 			return errors.Wrap(err, "failed to open file")
 		}
 
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
+			sentry.CaptureException(err)
 			log.Err(err).
 				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
 		}
