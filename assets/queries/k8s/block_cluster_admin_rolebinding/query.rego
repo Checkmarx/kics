@@ -10,7 +10,7 @@ CxPolicy [ result ] {
     "documentId": input.document[i].id,
     "searchKey": sprintf("metadata.name=%s.roleRef.name=cluster-admin", [metadata.name]),
     "issueType": "IncorrectValue",
-    "keyExpectedValue": "Ensure that the cluster-admin role is only used where required (RBAC)",
+    "keyExpectedValue": sprintf("Resource name '%s' of kind '%s' isn't binding 'cluster-admin' role with superuser permissions", [metadata.name, resource.kind]),
     "keyActualValue": sprintf("Resource name '%s' of kind '%s' is binding 'cluster-admin' role with superuser permissions", [metadata.name, resource.kind])
   }
 }
