@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "CDN_bad_configuration",
+		"queryName": "CDN_missing_configuration",
 		"severity": "LOW",
 		"line": 6
 	}
