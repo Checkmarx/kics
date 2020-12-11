@@ -22,7 +22,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: pod-test-3
-  annotations: 
+  annotations:
     seccomp.security.alpha.kubernetes.io/defaultProfileName: 'rntim/dfl'
 spec:
   containers:
