@@ -7,6 +7,6 @@
 	{
 		"queryName": "ElastiCache with disabled Transit Encryption",
 		"severity": "HIGH",
-		"line": 365
+		"line": 364
 	}
 ]
