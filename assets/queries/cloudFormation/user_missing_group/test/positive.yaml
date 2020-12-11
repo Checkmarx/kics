@@ -22,7 +22,7 @@ Resources:
               - sqs:*
               NotResource:
               - !GetAtt myqueue.Arn
-        Tags: 
+        Tags:
           - QAUser
         UserName: TestUser
 ---
@@ -51,6 +51,6 @@ Resources:
               - sqs:*
               NotResource:
               - !GetAtt myqueue.Arn
-        Tags: 
+        Tags:
           - QAUser
         UserName: TestUser

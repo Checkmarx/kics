@@ -3,8 +3,8 @@ Description: A sample template
 Resources:
 addUserToGroup2:
 Type: AWS::IAM::User
-Properties: 
-  Groups: 
+Properties:
+  Groups:
     QAGroup
   LoginProfile:
       Password: myP@ssW0rd
@@ -24,6 +24,6 @@ Properties:
           - sqs:*
           NotResource:
           - !GetAtt myqueue.Arn
-  Tags: 
+  Tags:
     - QAUser
   UserName: TestUser
