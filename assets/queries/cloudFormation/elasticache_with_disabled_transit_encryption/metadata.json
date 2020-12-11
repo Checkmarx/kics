@@ -1,6 +1,6 @@
 {
   "id": "ElastiCache_with_Disabled_Transit_Encryption",
-  "queryName": "ElastiCache with disabled Transit_Encryption",
+  "queryName": "ElastiCache with disabled Transit Encryption",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at transit enabled",
