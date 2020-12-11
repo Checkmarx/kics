@@ -2,7 +2,7 @@
   "id": "liveness_probe_is_not_defined",
   "queryName": "Liveness Probe Is Not Defined",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "High Availability",
   "descriptionText": "Liveness Probe must be defined.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-tcp-liveness-probe"
 }
