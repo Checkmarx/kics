@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Containers Security Context Capabilities Drop All",
+		"queryName": "All Not Listed as Drop Capability for Containers",
 		"severity": "MEDIUM",
 		"line": 22
 	}
