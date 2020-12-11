@@ -10,7 +10,7 @@ require (
 	github.com/google/uuid v1.1.2
 	github.com/hashicorp/hcl/v2 v2.7.0
 	github.com/mailru/easyjson v0.7.6
-	github.com/moby/buildkit v0.7.2 // indirect
+	github.com/moby/buildkit v0.7.2
 	github.com/open-policy-agent/opa v0.24.0
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.20.0
