@@ -1,0 +1,8 @@
+{
+  "id": "EC2_Subnet_MapPublicIpOnLaunch_Is_True",
+  "queryName": "EC2 Subnet MapPublicIpOnLaunch Is True",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "EC2 Subnet MapPublicIpOnLaunch feature should be false",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html"
+}
