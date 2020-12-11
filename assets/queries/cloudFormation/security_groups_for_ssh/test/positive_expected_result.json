@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Security Groups For SSH",
+		"queryName": "Security Group Unrestricted Access To SSH",
 		"severity": "HIGH",
 		"line": 15
 	}
