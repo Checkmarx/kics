@@ -1,0 +1,29 @@
+Type: AWS::Neptune::DBCluster
+Properties: 
+  AssociatedRoles: 
+    - DBClusterRole
+  AvailabilityZones: 
+    - String
+  BackupRetentionPeriod: Integer
+  DBClusterIdentifier: String
+  DBClusterParameterGroupName: String
+  DBSubnetGroupName: String
+  DeletionProtection: Boolean
+  EnableCloudwatchLogsExports: 
+    - String
+  EngineVersion: String
+  IamAuthEnabled: Boolean
+  KmsKeyId: String
+  Port: Integer
+  PreferredBackupWindow: String
+  PreferredMaintenanceWindow: String
+  RestoreToTime: String
+  RestoreType: String
+  SnapshotIdentifier: String
+  SourceDBClusterIdentifier: String
+  StorageEncrypted: True
+  Tags: 
+    - Tag
+  UseLatestRestorableTime: Boolean
+  VpcSecurityGroupIds: 
+    - String

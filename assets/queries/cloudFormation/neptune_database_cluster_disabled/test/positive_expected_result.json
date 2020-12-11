@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Neptune Database Cluster Disabled",
+		"severity": "MEDIUM",
+		"line": 24
+	}
+]
