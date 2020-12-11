@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Security Groups should not have port in (20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)",
-  "descriptionUrl": "https://gsl.dome9.com/D9.AWS.NET.23.html"
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
 }
