@@ -17,12 +17,12 @@
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 52
+		"line": 127
 	},
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 72
+		"line": 52
 	}
 
 ]
