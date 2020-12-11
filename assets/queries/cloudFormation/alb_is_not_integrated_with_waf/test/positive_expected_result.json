@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ALB Is Not Integrated With WAF",
+		"severity": "MEDIUM",
+		"line": 3
+	},
+	{
+		"queryName": "ALB Is Not Integrated With WAF",
+		"severity": "MEDIUM",
+		"line": 18
+	}
+]
