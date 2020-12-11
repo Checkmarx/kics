@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Cap Drop Any Capabilities",
+		"queryName": "Containers Security Context Capabilities Drop Any",
 		"severity": "LOW",
 		"line": 21
 	}
