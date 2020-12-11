@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "StatefulSets Headless serviceName",
+		"queryName": "StatefulSets Without Service Name",
 		"severity": "LOW",
 		"line": 12
 	},
 	{
-		"queryName": "StatefulSets Headless serviceName",
+		"queryName": "StatefulSets Without Service Name",
 		"severity": "LOW",
 		"line": 22
 	}
