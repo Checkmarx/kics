@@ -2,7 +2,7 @@
   "id": "Kubernetes_Host_Ports",
   "queryName": "Kubernetes Image Host Port is Specified",
   "severity": "LOW",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Sees if Kubernetes Image Host Port is Specified",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
 }
