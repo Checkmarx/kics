@@ -6,77 +6,29 @@ CxPolicy [ result ] {
    kind := document[i].kind
    check_kind(kind)
    
-   labels := metadata.labels
-   label_name := "k8s-app"
-   labels[label_name] == "kubernetes-dashboard"
+   spec := input.document[i].spec
+   template_spec := spec.template.spec
+   containers := template_spec.containers
+	
+   check_image_content(containers[j])
    
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey":      sprintf("metadata.name=%s", [metadata.name]),
+                "searchKey":      sprintf("metadata.name=%s.spec.template.spec.containers[%d].image", [metadata.name, j]),
                 "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("metadata.name=%s.labels[%s] has not kubernetes-dashboard deployed", [metadata.name, label_name]),
-                "keyActualValue": 	sprintf("metadata.name=%s.labels[%s] has kubernetes-dashboard deployed", [metadata.name, label_name])
+                "keyExpectedValue": sprintf("metadata.name=%s.spec.template.spec.containers[%d].image has not kubernetes-dashboard deployed", [metadata.name]),
+                "keyActualValue": 	sprintf("metadata.name=%s.spec.template.spec.containers[%d].image has kubernetes-dashboard deployed", [metadata.name, j])
               }
-}
-
-CxPolicy [ result ] {
-   document := input.document
-   metadata := document[i].metadata
-   kind := document[i].kind
-   check_kind(kind)
-   
-   rules := document[i].rules[_].resourceNames[_]
-   
-   contains(rules, "kubernetes-dashboard")
-   
-   result := {
-                "documentId": 		input.document[i].id,
-                "searchKey":      sprintf("metadata.name=%s.rules", [metadata.name]),
-                "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("None of the metadata.name=%s.rules has kubernetes-dashboard deployed", [metadata.name]),
-                "keyActualValue": 	sprintf("One of the metadata.name=%s.rules has kubernetes-dashboard deployed", [metadata.name])
-              }
-}
-
-CxPolicy [ result ] {
-   document := input.document
-   metadata := document[i].metadata
-   kind := document[i].kind
-   check_kind(kind)
-   
-   roleRef := document[i].roleRef.name
-   
-   contains(roleRef, "kubernetes-dashboard")
-   
-   result := {
-                "documentId": 		input.document[i].id,
-                "searchKey":      sprintf("metadata.name=%s.roleRef", [metadata.name]),
-                "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("metadata.name=%s.roleRef has kubernetes-dashboard deployed", [metadata.name]),
-                "keyActualValue": 	sprintf("metadata.name=%s.roleRef has kubernetes-dashboard deployed", [metadata.name])
-              }
-}
-
-check_kind(kind) {
-	kind == "Secret"
-}
-
-check_kind(kind) {
-	kind == "ServiceAccount"
 }
 
 check_kind(kind) {
 	kind == "Deployment"
 }
 
-check_kind(kind) {
-	kind == "Service"
+check_image_content(containers) {
+  contains(containers.image, "kubernetes-dashboard")
 }
 
-check_kind(kind) {
-	kind == "Role"
-}
-
-check_kind(kind) {
-	kind == "RoleBinding"
+check_image_content(containers) {
+  contains(containers.image, "kubernetesui")
 }
