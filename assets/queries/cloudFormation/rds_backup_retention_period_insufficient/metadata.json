@@ -1,6 +1,6 @@
 {
   "id": "RDS_Backup_Retention_Peroid_Insufficient",
-  "queryName": "RDS Backup Retention Peroid Insufficient",
+  "queryName": "RDS Backup Retention Period Insufficient",
   "severity": "MEDIUM",
   "category": "Backup and Disaster Recovery",
   "descriptionText": "AWS RDS backup retention policy should be at least 7 days",

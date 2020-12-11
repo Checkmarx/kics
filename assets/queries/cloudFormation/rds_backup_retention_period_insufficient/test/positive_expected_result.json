@@ -1,21 +1,21 @@
 [
 	{
-		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"queryName": "RDS Backup Retention Period Insufficient",
 		"severity": "MEDIUM",
 		"line": 53
 	},
 	{
-		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"queryName": "RDS Backup Retention Period Insufficient",
 		"severity": "MEDIUM",
 		"line": 146
 	},
 	{
-		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"queryName": "RDS Backup Retention Period Insufficient",
 		"severity": "MEDIUM",
 		"line": 171
 	},
 	{
-		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"queryName": "RDS Backup Retention Period Insufficient",
 		"severity": "MEDIUM",
 		"line": 231
 	}
