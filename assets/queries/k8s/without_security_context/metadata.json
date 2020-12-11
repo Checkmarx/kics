@@ -1,6 +1,6 @@
 {
-  "id": "container_security_context",
-  "queryName": "Container Security Context",
+  "id": "without_security_context",
+  "queryName": "Pod or Container Without Security Context",
   "severity": "LOW",
   "category": null,
   "descriptionText": "A security context defines privilege and access control settings for a Pod or Container",
