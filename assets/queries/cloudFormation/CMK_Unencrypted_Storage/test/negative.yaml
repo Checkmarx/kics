@@ -31,17 +31,14 @@ Resources:
       DBInstanceClass: !Ref DBInstanceType
       SourceDBInstanceIdentifier: !Ref SourceDBInstanceIdentifier
       SourceRegion: !Ref SourceRegion
-      KmsKeyId: !Ref MyKey 
-      StorageEncrypted: true                      
+      KmsKeyId: !Ref MyKey
+      StorageEncrypted: true            
 
 ---
 
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  AWS CloudFormation Sample Template AuroraServerlessDBCluster: Sample template
-  showing how to create an Amazon Aurora Serverless DB cluster. **WARNING** This
-  template creates an Amazon Aurora DB cluster. You will be billed for the AWS
-  resources used if you create a stack from this template.
+  AWS CloudFormation Sample Template 
 Parameters:
   DBUsername:
     NoEcho: 'true'
