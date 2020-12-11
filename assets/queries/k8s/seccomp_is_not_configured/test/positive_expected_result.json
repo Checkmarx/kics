@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Seccomp Profile Is Not Configured",
+		"severity": "MEDIUM",
+		"line": 4
+	},
+	{
+		"queryName": "Seccomp Profile Is Not Configured",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Seccomp Profile Is Not Configured",
+		"severity": "MEDIUM",
+		"line": 24
+	},
+	{
+		"queryName": "Seccomp Profile Is Not Configured",
+		"severity": "MEDIUM",
+		"line": 43
+	}
+]
