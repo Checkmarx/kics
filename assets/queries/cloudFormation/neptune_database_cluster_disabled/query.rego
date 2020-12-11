@@ -11,7 +11,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    "Properties.StorageEncrypted",
                 "issueType":		"IncorrectValue",  
-                "keyExpectedValue": "'Resources.Properties.DistributionConfig.WebACLId' is defined",
-                "keyActualValue": 	"'Resources.Properties.DistributionConfig.WebACLId' is undefined"
+                "keyExpectedValue": "'Properties.StorageEncrypted' is True",
+                "keyActualValue": 	"'Properties.StorageEncrypted' is False"
               }
 }
