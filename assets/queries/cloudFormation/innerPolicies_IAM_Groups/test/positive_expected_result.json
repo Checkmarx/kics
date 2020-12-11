@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "iam_group_inline_policies",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]
