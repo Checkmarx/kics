@@ -2,7 +2,7 @@
   "id": "KMS_Unencrypted_Storage",
   "queryName": "KMS Unencrypted Storage",
   "severity": "HIGH",
-  "category": null,
-  "descriptionText": "<TEXT>",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure that storage is encrypted by KMS on instances that, based on their name, might host a database. ",
   "descriptionUrl": "#"
 }
