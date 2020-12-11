@@ -28,7 +28,7 @@ CxPolicy [ result ] { #Resource Type Any DB and KmsKeyId is undefined
   object.get( properties ,"KmsKeyId", "undefined") == "undefined"
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("resources.%s.properties;", [key]),
+                "searchKey": 	    sprintf("Resources.%s.properties;", [key]),
                 "issueType":		"MissingAttribute", 
                 "keyExpectedValue": sprintf("Resources.%s.properties.KmsKeyId should be defined with AWS-Managed CMK",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.properties.KmsKeyId is undefined",[key])
@@ -44,7 +44,7 @@ CxPolicy [ result ] { #Resource with name containing DB and KmsKeyId is undefine
   object.get( properties ,"KmsKeyId", "undefined") == "undefined"
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("resources.%s.properties;", [key]),
+                "searchKey": 	    sprintf("Resources.%s.properties;", [key]),
                 "issueType":		"MissingAttribute", 
                 "keyExpectedValue": sprintf("Resources.%s.properties.KmsKeyId should be defined with AWS-Managed CMK",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.properties.KmsKeyId is undefined",[key])
@@ -63,7 +63,7 @@ CxPolicy [ result ] { # DBTypes any DB, but without storage encrypted is undefin
    
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("resources.%s.properties;", [key]),
+                "searchKey": 	    sprintf("Resources.%s.properties;", [key]),
                 "issueType":		"MissingAttribute", 
                 "keyExpectedValue": sprintf("Resources.%s.properties.StorageEncrypted should be defined",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.properties.StorageEncrypted is undefined",[key])
@@ -82,7 +82,7 @@ CxPolicy [ result ] {
    
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("resources.%s.properties;", [key]),
+                "searchKey": 	    sprintf("Resources.%s.properties;", [key]),
                 "issueType":		"MissingAttribute", 
                 "keyExpectedValue": sprintf("Resources.%s.properties.StorageEncrypted should be defined",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.properties.StorageEncrypted is undefined",[key])
@@ -119,7 +119,7 @@ CxPolicy [ result ] {
    
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("resources.%s.properties;", [key]),
+                "searchKey": 	    sprintf("Resources.%s.properties;", [key]),
                 "issueType":		"MissingAttribute", 
                 "keyExpectedValue": sprintf("Resources.%s.properties.KmsKeyId should be defined with AWS-Managed CMK",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.properties.KmsKeyId is undefined",[key])

@@ -2,27 +2,27 @@
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 137
+		"line": 127
 	},
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 55
+		"line": 52
 	},
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 95
+		"line": 88
 	},
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 137
+		"line": 52
 	},
 	{
 		"queryName": "CMK Unencrypted Storage",
 		"severity": "HIGH",
-		"line": 55
+		"line": 72
 	}
 
 ]
