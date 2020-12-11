@@ -1,0 +1,8 @@
+{
+  "id": "user_missing_group",
+  "queryName": "user_missing_group",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "A user should belong to a group",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy"
+}
