@@ -1,0 +1,8 @@
+{
+  "id": "RUN_cd_instead_of_workdir",
+  "queryName": "RUN cd Instead Of Workdir",
+  "severity": "MEDIUM",
+  "category": "Filesystem",
+  "descriptionText": "Use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir"
+}
