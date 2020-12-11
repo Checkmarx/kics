@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "WORKDIR Path Not Absolute",
+		"severity": "HIGH",
+		"line": 5
+	}
+]
