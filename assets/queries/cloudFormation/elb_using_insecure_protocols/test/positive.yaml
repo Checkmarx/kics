@@ -11,7 +11,7 @@ Resources:
             InstanceProtocol: HTTP
             LoadBalancerPort: '443'
             Protocol: HTTPS
-            PolicyNames: 
+            PolicyNames:
             - My-SSLNegotiation-Policy
             SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
           HealthCheck:
@@ -27,7 +27,7 @@ Resources:
             - Name: Protocol-SSLv2
               Value: ELBSecurityPolicy-TLS-1-2-2017-01
             - Name: Reference-Security-Policy
-              Value: ELBSecurityPolicy-TLS-1-2-2017-01 
+              Value: ELBSecurityPolicy-TLS-1-2-2017-01
           - PolicyName: My-SSLNegotiation-Policy2
             PolicyType: SSLNegotiationPolicyType
             Attributes:
