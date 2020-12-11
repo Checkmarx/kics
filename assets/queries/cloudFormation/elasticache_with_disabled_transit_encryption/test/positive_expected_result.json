@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ElastiCache with disabled Transit Encryption",
+		"severity": "HIGH",
+		"line": 67
+	},
+	{
+		"queryName": "ElastiCache with disabled Transit Encryption",
+		"severity": "HIGH",
+		"line": 365
+	}
+]

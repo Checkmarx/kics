@@ -1,0 +1,315 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'State: ElastiCache redis, a cloudonaut.io template'
+Mappings:
+  EngineVersionMap:
+    '3.2.6':
+      CacheParameterGroupFamily: 'redis3.2'
+    '4.0.10':
+      CacheParameterGroupFamily: 'redis4.0'
+    '5.0.0':
+      CacheParameterGroupFamily: 'redis5.0'
+    '5.0.3':
+      CacheParameterGroupFamily: 'redis5.0'
+    '5.0.4':
+      CacheParameterGroupFamily: 'redis5.0'
+    '5.0.5':
+      CacheParameterGroupFamily: 'redis5.0'
+    '5.0.6':
+      CacheParameterGroupFamily: 'redis5.0'
+    '6.x':
+      CacheParameterGroupFamily: 'redis6.x'
+Conditions:
+  HasKmsKey: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
+  HasZone: !Not [!Equals [!Ref ParentZoneStack, '']]
+  HasSSHBastionSecurityGroup: !Not [!Equals [!Ref ParentSSHBastionStack, '']]
+  HasAlertTopic: !Not [!Equals [!Ref ParentAlertStack, '']]
+  HasAuthToken: !Not [!Equals [!Ref AuthToken, '']]
+  HasSnapshotName: !Not [!Equals [!Ref SnapshotName, '']]
+  HasAutomaticFailoverEnabled: !Not [!Equals [!Ref NumReplicas, 0]]
+  HasCPUUtilizationThresholdAndAlertTopic: !And [!Not [!Equals [!Ref CPUUtilizationThreshold, '']], !Condition HasAlertTopic]
+  HasDatabaseMemoryUsagePercentageThresholdAndAlertTopic: !And [!Not [!Equals [!Ref DatabaseMemoryUsagePercentageThreshold, '']], !Condition HasAlertTopic]
+  HasSwapUsageThresholdAndAlertTopic: !And [!Not [!Equals [!Ref SwapUsageThreshold, '']], !Condition HasAlertTopic]
+  HasEvictionsThresholdAndAlertTopic: !And [!Not [!Equals [!Ref EvictionsThreshold, '']], !Condition HasAlertTopic]
+  HasReplicationLagThresholdAndAlertTopic: !And [!Not [!Equals [!Ref ReplicationLagThreshold, '']], !Condition HasAlertTopic]
+Resources:
+  RecordSet:
+    Condition: HasZone
+    Type: 'AWS::Route53::RecordSet'
+    Properties:
+      HostedZoneId:
+        'Fn::ImportValue': !Sub '${ParentZoneStack}-HostedZoneId'
+      Name: !Sub
+      - '${SubDomainName}.${HostedZoneName}'
+      - SubDomainName: !Ref SubDomainName
+        HostedZoneName:
+          'Fn::ImportValue': !Sub '${ParentZoneStack}-HostedZoneName'
+      ResourceRecords:
+      - !GetAtt 'ReplicationGroup.PrimaryEndPoint.Address'
+      TTL: 60
+      Type: CNAME
+  CacheParameterGroup:
+    Type: 'AWS::ElastiCache::ParameterGroup'
+    Properties:
+      CacheParameterGroupFamily: !FindInMap [EngineVersionMap, !Ref EngineVersion, CacheParameterGroupFamily]
+      Description: !Ref 'AWS::StackName'
+      Properties: {}
+  CacheSubnetGroupName:
+    Type: 'AWS::ElastiCache::SubnetGroup'
+    Properties:
+      Description: !Ref 'AWS::StackName'
+      SubnetIds: !Split
+      - ','
+      - 'Fn::ImportValue': !Sub '${ParentVPCStack}-SubnetsPrivate'
+  SecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: !Ref 'AWS::StackName'
+      VpcId:
+        'Fn::ImportValue': !Sub '${ParentVPCStack}-VPC'
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 6379
+        ToPort: 6379
+        SourceSecurityGroupId:
+          'Fn::ImportValue': !Sub '${ParentClientStack}-ClientSecurityGroup'
+  SecurityGroupInSSHBastion:
+    Type: 'AWS::EC2::SecurityGroupIngress'
+    Condition: HasSSHBastionSecurityGroup
+    Properties:
+      GroupId: !Ref SecurityGroup
+      IpProtocol: tcp
+      FromPort: 6379
+      ToPort: 6379
+      SourceSecurityGroupId:
+        'Fn::ImportValue': !Sub '${ParentSSHBastionStack}-SecurityGroup'
+  ReplicationGroup:
+    DeletionPolicy: Snapshot
+    UpdateReplacePolicy: Snapshot
+    Type: AWS::ElastiCache::ReplicationGroup
+    Properties:
+      ReplicationGroupDescription: !Ref 'AWS::StackName'
+      AtRestEncryptionEnabled: true
+      AuthToken: !If [HasAuthToken, !Ref AuthToken, !Ref 'AWS::NoValue']
+      AutomaticFailoverEnabled: !If [HasAutomaticFailoverEnabled, true, false]
+      CacheNodeType: !Ref CacheNodeType
+      CacheParameterGroupName: !Ref CacheParameterGroup
+      CacheSubnetGroupName: !Ref CacheSubnetGroupName
+      Engine: redis
+      EngineVersion: !Ref EngineVersion
+      KmsKeyId: !If [HasKmsKey, {'Fn::ImportValue': !Sub '${ParentKmsKeyStack}-KeyId'}, !Ref 'AWS::NoValue']
+      NotificationTopicArn: !If [HasAlertTopic, {'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'}, !Ref 'AWS::NoValue']
+      NumNodeGroups: !Ref NumShards
+      ReplicasPerNodeGroup: !Ref NumReplicas
+      PreferredMaintenanceWindow: 'sat:07:00-sat:08:00'
+      SecurityGroupIds:
+      - !Ref SecurityGroup
+      SnapshotName: !If [HasSnapshotName, !Ref SnapshotName, !Ref 'AWS::NoValue']
+      SnapshotRetentionLimit: !Ref SnapshotRetentionLimit
+      SnapshotWindow: '00:00-03:00'
+      TransitEncryptionEnabled: true
+    UpdatePolicy:
+      UseOnlineResharding: true
+  Node1CPUUtilizationTooHighAlarm:
+    Condition: HasCPUUtilizationThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average CPU utilization over last 10 minutes higher than ${CPUUtilizationThreshold}%'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: CPUUtilization
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref CPUUtilizationThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-001'
+  Node2CPUUtilizationTooHighAlarm:
+    Condition: HasCPUUtilizationThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average CPU utilization over last 10 minutes higher than ${CPUUtilizationThreshold}%'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: CPUUtilization
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref CPUUtilizationThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-002'
+  Node1EngineCPUUtilizationTooHighAlarm:
+    Condition: HasCPUUtilizationThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average engine CPU utilization over last 10 minutes higher than ${CPUUtilizationThreshold}%'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: EngineCPUUtilization
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref CPUUtilizationThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-001'
+  Node2EngineCPUUtilizationTooHighAlarm:
+    Condition: HasCPUUtilizationThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average engine CPU utilization over last 10 minutes higher than ${CPUUtilizationThreshold}%'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: EngineCPUUtilization
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref CPUUtilizationThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-002'
+  Node1DatabaseMemoryUsagePercentageTooHighAlarm:
+    Condition: HasDatabaseMemoryUsagePercentageThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average memory usage over last 10 minutes higher than ${DatabaseMemoryUsagePercentageThreshold}, performance may suffer'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: DatabaseMemoryUsagePercentage
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref DatabaseMemoryUsagePercentageThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-001'
+  Node2DatabaseMemoryUsagePercentageTooHighAlarm:
+    Condition: HasDatabaseMemoryUsagePercentageThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average memory usage over last 10 minutes higher than ${DatabaseMemoryUsagePercentageThreshold}, performance may suffer'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: DatabaseMemoryUsagePercentage
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref DatabaseMemoryUsagePercentageThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-002'
+  Node1SwapUsageTooHighAlarm:
+    Condition: HasSwapUsageThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average swap usage over last 10 minutes higher than ${SwapUsageThreshold} bytes, performance may suffer'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: SwapUsage
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref SwapUsageThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-001'
+  Node2SwapUsageTooHighAlarm:
+    Condition: HasSwapUsageThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average swap usage over last 10 minutes higher than ${SwapUsageThreshold} bytes, performance may suffer'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: SwapUsage
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref SwapUsageThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-002'
+  Node1EvictionsTooHighAlarm:
+    Condition: HasEvictionsThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average evictions over last 10 minutes higher than ${EvictionsThreshold}, cache hit ratio may suffer'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: Evictions
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref EvictionsThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-001'
+  Node2EvictionsTooHighAlarm:
+    Condition: HasEvictionsThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average evictions over last 10 minutes higher than ${EvictionsThreshold}, cache hit ratio may suffer'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: Evictions
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref EvictionsThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-002'
+  Node1ReplicationLagTooHighAlarm:
+    Condition: HasReplicationLagThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average replication lag over last 10 minutes higher than ${ReplicationLagThreshold} seconds'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: ReplicationLag
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref ReplicationLagThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-001'
+  Node2ReplicationLagTooHighAlarm:
+    Condition: HasReplicationLagThresholdAndAlertTopic
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmDescription: !Sub 'Average replication lag over last 10 minutes higher than ${ReplicationLagThreshold} seconds'
+      Namespace: 'AWS/ElastiCache'
+      MetricName: ReplicationLag
+      Statistic: Average
+      Period: 600
+      EvaluationPeriods: 1
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: !Ref ReplicationLagThreshold
+      AlarmActions:
+      - 'Fn::ImportValue': !Sub '${ParentAlertStack}-TopicARN'
+      Dimensions:
+      - Name: CacheClusterId
+        Value: !Sub '${ReplicationGroup}-002'
