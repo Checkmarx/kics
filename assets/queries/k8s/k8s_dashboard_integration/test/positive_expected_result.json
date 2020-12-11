@@ -2,11 +2,11 @@
 	{
 		"queryName": "K8s Dashboard Integration",
 		"severity": "LOW",
-		"line": 19
+		"line": 22
 	},
 	{
 		"queryName": "K8s Dashboard Integration",
 		"severity": "LOW",
-		"line": 60
+		"line": 67
 	}
 ]

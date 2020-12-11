@@ -4,16 +4,16 @@ CxPolicy [ result ] {
    document := input.document
    metadata := document[i].metadata
    
-   spec := get_spec_info(document[i]).spec
-   containers := spec.containers
+   specInfo := get_spec_info(document[i]) 
+   containers := specInfo.spec.containers
    check_image_content(containers[j])
    
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey":      sprintf("metadata.name=%s.spec.template.spec.containers[%d].image", [metadata.name, j]),
+                "searchKey":      sprintf("metadata.name=%s.%s.containers.name=%s.image", [metadata.name, specInfo.path, containers[j].name]),
                 "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("metadata.name=%s.spec.template.spec.containers[%d].image has not kubernetes-dashboard deployed", [metadata.name, j]),
-                "keyActualValue": 	sprintf("metadata.name=%s.spec.template.spec.containers[%d].image has kubernetes-dashboard deployed", [metadata.name, j])
+                "keyExpectedValue": sprintf("metadata.name=%s.%s.containers.name=%s.image has not kubernetes-dashboard deployed", [metadata.name, specInfo.path, containers[j].name]),
+                "keyActualValue": 	sprintf("metadata.name=%s.%s.containers.name=%s.image has kubernetes-dashboard deployed", [metadata.name, specInfo.path, containers[j].name])
              }
 }
 
@@ -21,16 +21,16 @@ CxPolicy [ result ] {
    document := input.document
    metadata := document[i].metadata
    
-   spec := get_spec_info(document[i]).spec
-   init_containers := spec.initContainers
+   specInfo := get_spec_info(document[i])
+   init_containers := specInfo.spec.initContainers
    check_image_content(init_containers[j])
    
    result := {
                 "documentId": 		input.document[i].id,
-                "searchKey":      sprintf("metadata.name=%s.spec.template.spec.initContainers[%d].image", [metadata.name, j]),
+                "searchKey":      sprintf("metadata.name=%s.%s.initContainers.name=%s.image", [metadata.name, specInfo.path, init_containers[j].name]),
                 "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("metadata.name=%s.spec.template.spec.initContainers[%d].image has not kubernetes-dashboard deployed", [metadata.name, j]),
-                "keyActualValue": 	sprintf("metadata.name=%s.spec.template.spec.initContainers[%d].image has kubernetes-dashboard deployed", [metadata.name, j])
+                "keyExpectedValue": sprintf("metadata.name=%s.%s.initContainers.name=%s.image has not kubernetes-dashboard deployed", [metadata.name, specInfo.path, init_containers[j].name]),
+                "keyActualValue": 	sprintf("metadata.name=%s.%s.initContainers.name=%s.image has kubernetes-dashboard deployed", [metadata.name, specInfo.path, init_containers[j].name])
              }
 }
 
