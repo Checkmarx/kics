@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Liveness Probe must be defined.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#liveness_probe"
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-tcp-liveness-probe"
 }
