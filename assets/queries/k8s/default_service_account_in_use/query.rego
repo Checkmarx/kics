@@ -8,7 +8,7 @@ CxPolicy [ result ] {
     metadata := document.metadata
     metadata.name == "default"
     
-    object.get(metadata, "automountServiceAccountToken", "undefined") == "undefined"
+    object.get(document, "automountServiceAccountToken", "undefined") == "undefined"
 
 	  result := {
                 "documentId": 		    input.document[i].id,
@@ -28,13 +28,13 @@ CxPolicy [ result ] {
     metadata := document.metadata
     metadata.name == "default" 
     
-    metadata.automountServiceAccountToken == true
+    document.automountServiceAccountToken == true
 	   
     result := {
                 "documentId": 		    input.document[i].id,
                 "issueType":		      "IncorrectValue",
                 "searchKey": 	        sprintf("metadata.name=%s.automountServiceAccountToken", [metadata.name]),
-                "keyExpectedValue":   sprintf("metadata.name=%s has automountServiceAccountToken set a false", [metadata.name]),
-                "keyActualValue": 	  sprintf("metadata.name=%s has automountServiceAccountToken set a true", [metadata.name])
+                "keyExpectedValue":   sprintf("metadata.name=%s has automountServiceAccountToken set to false", [metadata.name]),
+                "keyActualValue": 	  sprintf("metadata.name=%s has automountServiceAccountToken set to true", [metadata.name])
               }
 }

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: default
-  automountServiceAccountToken: false
+automountServiceAccountToken: false
 spec:
   containers:
   - name: app
