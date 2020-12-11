@@ -6,7 +6,7 @@ Resources:
       RetentionPeriodHours: 24
       ShardCount: 1
       StreamEncryption:
-            EncryptionType: KMS 
+            EncryptionType: KMS
             KeyId: !Ref myKey
       Tags:
         - Key: Name
