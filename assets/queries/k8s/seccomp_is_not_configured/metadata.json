@@ -1,0 +1,8 @@
+{
+  "id": "Seccomp_Profile_Is_Not_Configured",
+  "queryName": "Seccomp Profile Is Not Configured",
+  "severity": "MEDIUM",
+  "category": "Privileges",
+  "descriptionText": "Check if any resource does not configure Seccomp default profile properly",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#seccomp"
+}

@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ECS No Load Balancer Attached",
+		"severity": "HIGH",
+		"line": 7
+	},
+	{
+		"queryName": "ECS No Load Balancer Attached",
+		"severity": "HIGH",
+		"line": 25
+	}
+]

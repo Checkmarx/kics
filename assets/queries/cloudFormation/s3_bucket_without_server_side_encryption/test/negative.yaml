@@ -1,0 +1,15 @@
+#this code is a correct code for which the query should not find any result
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 bucket with default encryption
+Resources:
+  EncryptedS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName:
+        'Fn::Sub': 'encryptedbucket-${AWS::Region}-${AWS::AccountId}'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: KMS-KEY-ARN
+    DeletionPolicy: Delete

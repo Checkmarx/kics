@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Redshift Cluster Publicly Accessible",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "Redshift Cluster Publicly Accessible",
+		"severity": "MEDIUM",
+		"line": 18
+	}
+]
