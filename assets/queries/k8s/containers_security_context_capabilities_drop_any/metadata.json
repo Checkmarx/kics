@@ -2,7 +2,7 @@
   "id": "containers_security_context_capabilities_drop_any",
   "queryName": "Containers Security Context Capabilities Drop Any",
   "severity": "LOW",
-  "category": null,
+  "category": "Privileges",
   "descriptionText": "Sees if Kubernetes Drop Capabilities exists to ensure containers security context",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
 }
