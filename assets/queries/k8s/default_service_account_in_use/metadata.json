@@ -1,6 +1,6 @@
 {
-  "id": "default_service_account",
-  "queryName": "Default Service Account",
+  "id": "default_service_account_in_use",
+  "queryName": "Default Service Account In Use",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Default service accounts should not be actively used",
