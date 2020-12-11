@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Containers Security Context Capabilities Drop All",
+		"severity": "MEDIUM",
+		"line": 22
+	}
+]
