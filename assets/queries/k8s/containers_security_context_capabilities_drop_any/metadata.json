@@ -1,6 +1,6 @@
 {
   "id": "containers_security_context_capabilities_drop_any",
-  "queryName": "Containers Security Context Capabilities Drop Any",
+  "queryName": "No Drop Capabilities for Containers",
   "severity": "LOW",
   "category": "Privileges",
   "descriptionText": "Sees if Kubernetes Drop Capabilities exists to ensure containers security context",
