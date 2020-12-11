@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IAM policies without groups",
+		"severity": "LOW",
+		"line": 25
+	}
+]
