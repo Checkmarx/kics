@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "RUN cd Instead Of Workdir",
-		"severity": "MEDIUM",
-		"line": 3
-	}
-]
