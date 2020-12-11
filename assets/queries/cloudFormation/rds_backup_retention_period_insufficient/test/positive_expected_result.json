@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"severity": "MEDIUM",
+		"line": 53
+	},
+	{
+		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"severity": "MEDIUM",
+		"line": 146
+	},
+	{
+		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"severity": "MEDIUM",
+		"line": 171
+	},
+	{
+		"queryName": "RDS Backup Retention Peroid Insufficient",
+		"severity": "MEDIUM",
+		"line": 231
+	}
+]

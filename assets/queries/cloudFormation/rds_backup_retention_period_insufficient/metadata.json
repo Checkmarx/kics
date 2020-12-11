@@ -1,0 +1,8 @@
+{
+  "id": "RDS_Backup_Retention_Peroid_Insufficient",
+  "queryName": "RDS Backup Retention Peroid Insufficient",
+  "severity": "MEDIUM",
+  "category": "Backup and Disaster Recovery",
+  "descriptionText": "AWS RDS backup retention policy should be at least 7 days",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html"
+}
