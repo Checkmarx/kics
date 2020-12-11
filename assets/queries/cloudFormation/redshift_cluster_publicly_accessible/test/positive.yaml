@@ -1,24 +1,24 @@
 #this is a problematic code where the query should report a result(s)
 Resources:
-  myCluster: 
+  myCluster:
     Type: "AWS::Redshift::Cluster"
     Properties:
       DBName: "mydb"
       MasterUsername: "master"
-      MasterUserPassword: 
+      MasterUserPassword:
         Ref: "MasterUserPassword"
       NodeType: "ds2.xlarge"
       ClusterType: "single-node"
       Tags:
         - Key: foo
           Value: bar
-  myCluster2: 
+  myCluster2:
     Type: "AWS::Redshift::Cluster"
     Properties:
       PubliclyAccessible: true
       DBName: "mydb"
       MasterUsername: "master"
-      MasterUserPassword: 
+      MasterUserPassword:
         Ref: "MasterUserPassword"
       NodeType: "ds2.xlarge"
       ClusterType: "single-node"
