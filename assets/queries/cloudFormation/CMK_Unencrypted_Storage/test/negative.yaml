@@ -32,7 +32,7 @@ Resources:
       SourceDBInstanceIdentifier: !Ref SourceDBInstanceIdentifier
       SourceRegion: !Ref SourceRegion
       KmsKeyId: !Ref MyKey
-      StorageEncrypted: true            
+      StorageEncrypted: true
 
 ---
 
