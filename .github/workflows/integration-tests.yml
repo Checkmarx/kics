@@ -24,7 +24,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${GITHUB_SHA::8}
+        key: ${{ runner.os }}-buildx-
         restore-keys: |
           ${{ runner.os }}-buildx-
     - name: Build 
@@ -45,5 +45,7 @@ jobs:
       run: |
         docker image ls
     - name: Run docker image
+      uses: actions/checkout@v2
       run: |
+        ls
         docker run -v "./assets/queries":/path kics:latest -p "/path" -o "/path/results.json"
