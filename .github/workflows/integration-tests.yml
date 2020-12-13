@@ -19,7 +19,7 @@ jobs:
           persist-credentials: false
     - name: Build docker image
       run: |
-        docker build -t kics
+        docker build -t kics .
     - name: Run docker image
       run: |
         docker run -v ./assets/queries:/path kics -p "/path" -o "/path/results.json"
