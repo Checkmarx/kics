@@ -1,0 +1,25 @@
+name: integration-tests
+
+on:
+  push:
+    branches: [ add-integration-tests-ci ]
+
+jobs:
+  integration-tests:
+    name: integration-tests
+    strategy:
+      matrix:
+        go-version: [1.15.x]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+      with:
+          persist-credentials: false
+    - name: Build docker image
+      run: |
+        docker build -t kics
+    - name: Run docker image
+      run: |
+        docker run -v ./assets/queries:/path kics -p "/path" -o "/path/results.json"
