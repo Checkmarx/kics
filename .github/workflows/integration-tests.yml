@@ -46,4 +46,4 @@ jobs:
         docker image ls
     - name: Run docker image
       run: |
-        docker run -v assets/queries:/path kics:latest -p "/path" -o "/path/results.json"
+        docker run -v "./assets/queries":/path kics:latest -p "/path" -o "/path/results.json"
