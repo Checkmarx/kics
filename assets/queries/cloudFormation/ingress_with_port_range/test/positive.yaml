@@ -46,4 +46,4 @@ Resources:
       GroupId:
         Fn::GetAtt:
         - TargetSG
-        - GroupId 
+        - GroupId
