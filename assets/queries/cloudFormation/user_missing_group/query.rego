@@ -20,7 +20,7 @@ CxPolicy [result] {
   groups != []
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties", [name]),
+                "searchKey": 	    sprintf("Resources.%s.Properties.Groups", [name]),
                 "issueType":		"IncorrectValue",  
                 "keyExpectedValue": "'Resources.Properties.Groups' should contain groups",
                 "keyActualValue": 	"'Resources.Properties.Groups' is empty"

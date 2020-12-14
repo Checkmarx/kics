@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "user_missing_group",
+		"queryName": "IAM User With No Group",
 		"severity": "LOW",
 		"line": 6
 	},
 	{
-		"queryName": "user_missing_group",
+		"queryName": "IAM User With No Group",
 		"severity": "LOW",
-		"line": 34
+		"line": 35
 	}
 ]
