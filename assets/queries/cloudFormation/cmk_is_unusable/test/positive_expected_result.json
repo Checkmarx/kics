@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "CMK Is Unusable",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "CMK Is Unusable",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "CMK Is Unusable",
+		"severity": "MEDIUM",
+		"line": 54
+	}
+]
