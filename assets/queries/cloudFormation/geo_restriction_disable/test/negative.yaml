@@ -11,5 +11,8 @@ Resources:
         Restrictions:
           GeoRestriction:
             RestrictionType: whitelist
+            Locations:
+            - AQ
+            - CV
         ViewerCertificate:
           CloudFrontDefaultCertificate: 'true'
