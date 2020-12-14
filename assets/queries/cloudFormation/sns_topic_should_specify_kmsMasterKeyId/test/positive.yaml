@@ -1,0 +1,10 @@
+Type: AWS::SNS::Topic
+Properties:
+  ContentBasedDeduplication: Boolean
+  DisplayName: String
+  FifoTopic: Boolean
+  Subscription:
+    - Subscription
+  Tags:
+    - Tag
+  TopicName: String
