@@ -36,7 +36,7 @@ jobs:
         file: ./Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: false
-        tags:  kics:${{ GITHUB_SHA }}
+        tags:  kics:${{ github.sha }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
     - name: Image digest
@@ -46,7 +46,7 @@ jobs:
         docker image ls
     - name: Run docker image
       run: |
-        time docker run -v ${PWD}/assets/queries:/path kics:${{ GITHUB_SHA }} -p "/path" -o "/path/results.json"
+        time docker run -v ${PWD}/assets/queries:/path kics:${{ github.sha }} -p "/path" -o "/path/results.json"
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
