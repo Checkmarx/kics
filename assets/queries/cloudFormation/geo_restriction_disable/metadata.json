@@ -3,6 +3,6 @@
   "queryName": "Geo Restriction Disabled",
   "severity": "LOW",
   "category": "Network Security",
-  "descriptionText": " geo restriction feature must be enabled, to restrict or allow users in specific locations accessing web application content",
+  "descriptionText": "Geo Restriction feature must be enabled, to restrict or allow users in specific locations accessing web application content",
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html"
 }
