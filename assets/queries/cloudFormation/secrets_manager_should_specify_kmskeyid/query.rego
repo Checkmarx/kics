@@ -9,7 +9,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    "Properties",
+                "searchKey": 	    "Properties.KmsKeyId",
                 "issueType":		"MissingValue",  
                 "keyExpectedValue": "'Properties.KmsKeyId' is defined",
                 "keyActualValue": 	"'Properties.KmsKeyId' is undefined"
