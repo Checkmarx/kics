@@ -32,7 +32,7 @@ Resources:
       Properties:
         Path: "/"
         LoginProfile:
-         Password: 
+         Password:
          - !Ref Default
          PasswordResetRequired: false
         Policies:
