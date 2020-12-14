@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EFS not encrypted",
+		"severity": "HIGH",
+		"line": 49
+	}
+]
