@@ -6,7 +6,7 @@ Resources:
       Properties:
         Path: "/"
         LoginProfile:
-         Password: 
+         Password:
          - !Ref NoEcho
          PasswordResetRequired: false
         Policies:
@@ -33,7 +33,7 @@ Resources:
       Properties:
         Path: "/"
         LoginProfile:
-         Password: 
+         Password:
          - !Ref secretsmanager
          PasswordResetRequired: false
         Policies:
