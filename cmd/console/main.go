@@ -71,7 +71,6 @@ func main() { // nolint:funlen,gocyclo
 			if logFile {
 				file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 				if err != nil {
-					sentry.CaptureException(err)
 					return err
 				}
 				fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
@@ -87,7 +86,6 @@ func main() { // nolint:funlen,gocyclo
 			t := &tracker.CITracker{}
 			inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
 			if err != nil {
-				sentry.CaptureException(err)
 				return err
 			}
 
@@ -98,7 +96,6 @@ func main() { // nolint:funlen,gocyclo
 
 			filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
 			if err != nil {
-				sentry.CaptureException(err)
 				return err
 			}
 
@@ -118,19 +115,16 @@ func main() { // nolint:funlen,gocyclo
 			}
 
 			if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
-				sentry.CaptureException(scanErr)
 				return scanErr
 			}
 
 			result, err := store.GetVulnerabilities(ctx, scanID)
 			if err != nil {
-				sentry.CaptureException(err)
 				return err
 			}
 
 			files, err := store.GetFiles(ctx, scanID)
 			if err != nil {
-				sentry.CaptureException(err)
 				return err
 			}
 
@@ -151,13 +145,11 @@ func main() { // nolint:funlen,gocyclo
 
 			if outputPath != "" {
 				if err := printToJSONFile(outputPath, summary); err != nil {
-					sentry.CaptureException(err)
 					return err
 				}
 			}
 
 			if err := printResult(summary); err != nil {
-				sentry.CaptureException(err)
 				return err
 			}
 
@@ -182,6 +174,7 @@ func main() { // nolint:funlen,gocyclo
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
+		log.Err(err).Msg("failed to run application")
 		os.Exit(-1)
 	}
 }
@@ -213,12 +206,10 @@ func printResult(summary model.Summary) error {
 func printToJSONFile(path string, body interface{}) error {
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
-		sentry.CaptureException(err)
 		return err
 	}
 	defer func() {
 		if err := f.Close(); err != nil {
-			sentry.CaptureException(err)
 			log.Err(err).Msgf("failed to close file %s", path)
 		}
 

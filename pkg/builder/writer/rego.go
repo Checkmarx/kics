@@ -65,7 +65,6 @@ func NewRegoWriter() (*RegoWriter, error) {
 		}).
 		ParseFiles("./pkg/builder/writer/template.gorego")
 	if err != nil {
-		sentry.CaptureException(err)
 		return nil, err
 	}
 
@@ -76,7 +75,6 @@ func (w *RegoWriter) Render(rules []build.Rule) ([]byte, error) {
 	wr := bytes.NewBuffer(nil)
 
 	if err := w.tmpl.Execute(wr, format(rules)); err != nil {
-		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "failed to render")
 	}
 

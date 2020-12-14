@@ -25,7 +25,6 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
 			if err != nil {
-				sentry.CaptureException(err)
 				return err
 			}
 
@@ -37,7 +36,6 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 			return nil
 		})
 	if err != nil {
-		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "failed to get query Source")
 	}
 
@@ -61,7 +59,6 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	queryContent, err := ioutil.ReadFile(path.Join(queryDir, queryFileName))
 	if err != nil {
-		sentry.CaptureException(err)
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
 

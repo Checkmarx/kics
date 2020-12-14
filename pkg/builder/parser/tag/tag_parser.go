@@ -7,8 +7,6 @@ import (
 	"strconv"
 	"strings"
 	"text/scanner"
-
-	"github.com/getsentry/sentry-go"
 )
 
 type Tag struct {
@@ -34,7 +32,6 @@ func Parse(s string, supportedNames []string) ([]Tag, error) {
 
 			tag, err := parseTag(cleanSi, supportedName)
 			if err != nil {
-				sentry.CaptureException(err)
 				return nil, err
 			}
 
@@ -75,7 +72,6 @@ func parseTag(s, name string) (Tag, error) {
 				sc.Next()
 				value, err := parseValue(sc)
 				if err != nil {
-					sentry.CaptureException(err)
 					return Tag{}, err
 				}
 				t.Attributes[ident] = value
@@ -83,7 +79,6 @@ func parseTag(s, name string) (Tag, error) {
 				sc.Next()
 				arg, err := parseArgs(sc)
 				if err != nil {
-					sentry.CaptureException(err)
 					return Tag{}, err
 				}
 				t.Attributes[ident] = arg
@@ -106,7 +101,6 @@ func parseArray(sc *scanner.Scanner) ([]interface{}, error) {
 	for {
 		value, err := parseValue(sc)
 		if err != nil {
-			sentry.CaptureException(err)
 			return result, err
 		}
 		result = append(result, value)
@@ -181,7 +175,6 @@ func parseArgs(sc *scanner.Scanner) (map[string]interface{}, error) {
 		}
 		value, err := parseValue(sc)
 		if err != nil {
-			sentry.CaptureException(err)
 			return result, err
 		}
 		result[name] = value
@@ -206,7 +199,6 @@ func parseString(sc *scanner.Scanner) (string, error) {
 		if ch == '\\' {
 			s, err := parseEscape(sc)
 			if err != nil {
-				sentry.CaptureException(err)
 				return "", err
 			}
 			buf.WriteString(s)
@@ -253,11 +245,9 @@ func checkType(s string) interface{} {
 		return false
 	default:
 		if i, err := strconv.ParseInt(s, 10, 64); err == nil {
-			sentry.CaptureException(err)
 			return i
 		}
 		if f, err := strconv.ParseFloat(s, 64); err == nil {
-			sentry.CaptureException(err)
 			return f
 		}
 

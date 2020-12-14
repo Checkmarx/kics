@@ -76,7 +76,6 @@ func NewInspector(
 ) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
-		sentry.CaptureException(err)
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
@@ -124,7 +123,6 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 
 	_, err := json.Marshal(combinedFiles)
 	if err != nil {
-		sentry.CaptureException(err)
 		return nil, err
 	}
 
@@ -176,7 +174,6 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 
 	results, err := ctx.query.opaQuery.Eval(timeoutCtx, options...)
 	if err != nil {
-		sentry.CaptureException(err)
 		if topdown.IsCancel(err) {
 			return nil, errors.Wrap(err, "query executing timeout exited")
 		}
@@ -187,7 +184,6 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {
-			sentry.CaptureException(parseErr)
 			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
 		}
 
@@ -212,13 +208,11 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 
 	queryResult, ok := result["result"]
 	if !ok {
-		sentry.CaptureException(ErrNoResult)
 		return nil, ErrNoResult
 	}
 
 	queryResultItems, ok := queryResult.([]interface{})
 	if !ok {
-		sentry.CaptureException(ErrInvalidResult)
 		return nil, ErrInvalidResult
 	}
 
