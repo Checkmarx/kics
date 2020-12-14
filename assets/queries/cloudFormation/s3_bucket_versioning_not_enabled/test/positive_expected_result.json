@@ -2,6 +2,11 @@
 	{
 		"queryName": "S3 Bucket Versioning Not Enabled",
 		"severity": "MEDIUM",
-		"line": 27
+		"line": 5
+	},
+	{
+		"queryName": "S3 Bucket Versioning Not Enabled",
+		"severity": "MEDIUM",
+		"line": 53
 	}
 ]
