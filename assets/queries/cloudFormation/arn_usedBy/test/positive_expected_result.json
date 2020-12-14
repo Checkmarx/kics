@@ -1,0 +1,21 @@
+[
+	{
+		"queryName": "Unused_Certificate_ACM",
+		"severity": "MEDIUM",
+		"line": 4
+	},{
+		"queryName": "Unused_Certificate_ACM",
+		"severity": "MEDIUM",
+		"line": 33
+	},
+	{
+		"queryName": "Unused_Certificate_ACM",
+		"severity": "MEDIUM",
+		"line": 51
+	},
+	{
+		"queryName": "Unused_Certificate_ACM",
+		"severity": "MEDIUM",
+		"line": 69
+	}
+]
