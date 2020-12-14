@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Auto Scaling Group With No Associated ELB",
+		"severity": "MEDIUM",
+		"line": 28
+	},
+	{
+		"queryName": "Auto Scaling Group With No Associated ELB",
+		"severity": "MEDIUM",
+		"line": 60
+	},
+	{
+		"queryName": "Auto Scaling Group With No Associated ELB",
+		"severity": "MEDIUM",
+		"line": 87
+	}
+]
