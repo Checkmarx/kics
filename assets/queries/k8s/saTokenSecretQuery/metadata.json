@@ -3,6 +3,6 @@
   "queryName": "ServiceAccount_Access_Secrets",
   "severity": "MEDIUM",
   "category": null,
-  "descriptionText": "Role and Clusters, when binded, should not use get, list or watch as verbs",
+  "descriptionText": "Roles and ClusterRoles, when binded, should not use get, list or watch as verbs",
   "descriptionUrl": "#"
 }
