@@ -3,24 +3,24 @@ AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   myLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
-    Properties: 
+    Properties:
       LaunchTemplateName: !Sub ${AWS::StackName}-launch-template
-      LaunchTemplateData: 
-        BlockDeviceMappings: 
+      LaunchTemplateData:
+        BlockDeviceMappings:
           - Ebs:
               VolumeSize: 22
               VolumeType: gp2
               DeleteOnTermination: true
               Encrypted: true
             DeviceName: /dev/xvdcz
-        CreditSpecification: 
+        CreditSpecification:
           CpuCredits: Unlimited
         ImageId: ami-02354e95b39ca8dec
         InstanceType: t2.micro
         KeyName: my-key-pair-useast1
-        Monitoring: 
+        Monitoring:
           Enabled: true
-        SecurityGroupIds: 
+        SecurityGroupIds:
           - sg-7c227019
           - sg-903004f8
   myASG:
@@ -37,9 +37,9 @@ Resources:
       VPCZoneIdentifier:
         - !Ref myPublicSubnet1
         - !Ref myPublicSubnet2
-      MetricsCollection: 
+      MetricsCollection:
         - Granularity: "1Minute"
-          Metrics: 
+          Metrics:
             - "GroupMinSize"
             - "GroupMaxSize"
       Tags:
@@ -57,16 +57,16 @@ Resources:
       MaxSize: "6"
       DesiredCapacity: "2"
       HealthCheckGracePeriod: 300
-      LoadBalancerNames: 
+      LoadBalancerNames:
       LaunchTemplate:
         LaunchTemplateId: !Ref myLaunchTemplate
         Version: !GetAtt myLaunchTemplate.LatestVersionNumber
       VPCZoneIdentifier:
         - !Ref myPublicSubnet1
         - !Ref myPublicSubnet2
-      MetricsCollection: 
+      MetricsCollection:
         - Granularity: "1Minute"
-          Metrics: 
+          Metrics:
             - "GroupMinSize"
             - "GroupMaxSize"
       Tags:
@@ -91,9 +91,9 @@ Resources:
       VPCZoneIdentifier:
         - !Ref myPublicSubnet1
         - !Ref myPublicSubnet2
-      MetricsCollection: 
+      MetricsCollection:
         - Granularity: "1Minute"
-          Metrics: 
+          Metrics:
             - "GroupMinSize"
             - "GroupMaxSize"
       Tags:
