@@ -51,5 +51,3 @@ Resources:
             Status: Enabled
       VersioningConfiguration:
         Status: Suspended
-
-  
