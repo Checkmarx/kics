@@ -61,14 +61,14 @@ CxPolicy [ result ] {
 getIAMProfile(profileRef) = profile {
   is_string(profileRef)
   profile := {
-    profileRef: object.get(input.document[_].Resources,profileRef,"undefined")
+    profileRef: object.get(input.document[0].Resources,profileRef,"undefined")
   }
 } else = profile {
   is_object(profileRef)
   object.get(profileRef,"Ref","undefined") != "undefined"
   ref := object.get(profileRef,"Ref","undefined")
   profile := {
-    ref: object.get(input.document[_].Resources, ref, "undefined")
+    ref: object.get(input.document[0].Resources, ref, "undefined")
   }
 } else = {}
 

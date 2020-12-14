@@ -36,7 +36,6 @@ apiVersion: v5
 kind: Pod
 metadata:
   name: hello-apparmor5
-  annotations:
 spec:
   containers:
   - name: hello5
