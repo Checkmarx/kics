@@ -2,9 +2,10 @@ package Cx
 
 CxPolicy [ result ] {
 	resource := input.document[i].Resources[name]
-    resource.Type == "AWS::KMS::Key"
-    resource.Properties.Enabled == true
-    object.get(resource.Properties, "EnableKeyRotation", "undefined") == "undefined"
+  resource.Type == "AWS::KMS::Key"
+  resource.Properties.Enabled == true
+  object.get(resource.Properties, "PendingWindowInDays", "undefined") == "undefined"
+  object.get(resource.Properties, "EnableKeyRotation", "undefined") == "undefined"
 
 	result := {
                 "documentId": 		input.document[i].id,
@@ -17,9 +18,10 @@ CxPolicy [ result ] {
 
 CxPolicy [ result ] {
 	resource := input.document[i].Resources[name]
-    resource.Type == "AWS::KMS::Key"
-    resource.Properties.Enabled == true
-    resource.Properties.EnableKeyRotation == false
+  resource.Type == "AWS::KMS::Key"
+  resource.Properties.Enabled == true
+  object.get(resource.Properties, "PendingWindowInDays", "undefined") == "undefined"
+  resource.Properties.EnableKeyRotation == false
 
 	result := {
                 "documentId": 		input.document[i].id,
