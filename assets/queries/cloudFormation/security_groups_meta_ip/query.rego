@@ -7,7 +7,7 @@ CxPolicy [ result ] {
    
       result := {
                 "documentId": 		input.document[i].id,
-                "searchKey":      sprintf("Resources.%s.Properties", [name]),
+                "searchKey":      sprintf("Resources.%s.Properties.SecurityGroupIngress.CidrIp", [name]),
                 "issueType":		   "IncorrectValue",
                 "keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress has 0.0.0.0/0", [name]),
                 "keyActualValue": 	sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has 0.0.0.0/0", [name])
