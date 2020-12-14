@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Vulnerable_Default_SSL_Certificate",
+		"queryName": "Vulnerable Default SSL Certificate",
 		"severity": "HIGH",
 		"line": 8
 	}
