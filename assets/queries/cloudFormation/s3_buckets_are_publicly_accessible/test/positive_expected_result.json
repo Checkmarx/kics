@@ -3,11 +3,6 @@
 	{
 		"queryName": "S3 Buckets Are Publicly Accessible",
 		"severity": "HIGH",
-		"line": 13
-	},
-	{
-		"queryName": "S3 Buckets Are Publicly Accessible",
-		"severity": "HIGH",
-		"line": 29
+		"line": 5
 	}
 ]
