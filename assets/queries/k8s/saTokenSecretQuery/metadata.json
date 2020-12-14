@@ -2,7 +2,7 @@
   "id": "ServiceAccount_Allows_Access_Secrets",
   "queryName": "ServiceAccount_Allows_Access_Secrets",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "Roles and ClusterRoles, when binded, should not use get, list or watch as verbs",
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
 }
