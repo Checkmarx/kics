@@ -1,42 +1,72 @@
+#Vulnerable Role
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: assembly-prod
+  name: testRoleVulnerable
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: testRoleBinding
+  namespace: bindingTestWithBinding
+subjects:
+- kind: ServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: testRoleVulnerable
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: assembly-prod
+  name: testRoleVulnerable2
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: testRoleBinding
+  namespace: bindingTestWithBinding2
+subjects:
+- kind: ServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: testRoleVulnerable2
+  apiGroup: rbac.authorization.k8s.io
+---
+# Vulnerable Cluster Role
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  # "namespace" omitted since ClusterRoles are not namespaced
-  name: secret-reader1
+  name: testClusterRoleVulnerable
 rules:
 - apiGroups: [""]
-  #
-  # at the HTTP level, the name of the resource for accessing Secret
-  # objects is "secrets"
-  resources: ["secrets"]
-  verbs: ["get", "watch", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: default
-  name: pod-reader1
-rules:
-- apiGroups: [""] # "" indicates the core API group
   resources: ["secrets"]
   verbs: ["update", "list"]
 ---
+kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
 metadata:
-  namespace: default
-  name: pod-and-pod-logs-reader1
-rules:
-- apiGroups: [""]
-  resources: ["pods", "pods/log"]
-  verbs: ["get", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: default
-  name: pod-and-pod-logs-reader2
-rules:
-- apiGroups: [""]
-  resources: ["pods", "pods/log"]
-  verbs: ["*"]
+  name: bindingTestClusterRoleWithBinding
+  namespace: bindingTestClusterRoleWithBindingNamespace
+subjects:
+- kind: ServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: testClusterRoleVulnerable
+  apiGroup: rbac.authorization.k8s.io

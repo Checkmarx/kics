@@ -1,22 +1,120 @@
+# Vulnerable Role Without Binding
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: assembly-prod
+  name: testRoleWithoutBindingVulnerable
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+---
+# Vulnerable Role With Binding Not Service Account
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: assembly-prod
+  name: testRoleWithBindingVulnerableNotSA
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: bindingNotSATestRoleWithBindingVulnerable
+  namespace: bindingNotSATestRoleWithBindingVulnerableNamespace
+subjects:
+- kind: NotServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: testRoleWithBindingVulnerableNotSA
+  apiGroup: rbac.authorization.k8s.io
+---
+# Safe Role With Binding
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: assembly-prod
+  name: testRoleWithBindingSafe
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["update"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: bindingtestRoleWithBindingSafe
+  namespace: bindingtestRoleWithBindingSafeNamespace
+subjects:
+- kind: ServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: testRoleWithBindingSafe
+  apiGroup: rbac.authorization.k8s.io
+---
+# Vulnerable Cluster Role Without Binding
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  # "namespace" omitted since ClusterRoles are not namespaced
-  name: secret-reader1
+  name: testClusterRoleWithoutBindingVulnerable
 rules:
 - apiGroups: [""]
-  #
-  # at the HTTP level, the name of the resource for accessing Secret
-  # objects is "secrets"
   resources: ["secrets"]
-  verbs: ["update"]
+  verbs: ["get", "watch", "list"]
 ---
+# Vulnerable Cluster Role With Binding Not Service Account
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   namespace: default
-  name: pod-reader1
+  name: testClusterRoleWithBindingVulnerableNotSA
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: bindingNotSATestClusterRoleWithBindingVulnerable
+  namespace: bindingNotSATestClusterRoleWithBindingVulnerableNamespace
+subjects:
+- kind: NotServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: testClusterRoleWithBindingVulnerableNotSA
+  apiGroup: rbac.authorization.k8s.io
+---
+# Safe ClusterRole With Binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: default
+  name: testClusterRoleWithBindingSafe
 rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["secrets"]
   verbs: ["update"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: bindingTestClusterRoleWithBindingSafe
+  namespace: bindingTestClusterRoleWithBindingSafeNamespace
+subjects:
+- kind: NotServiceAccount
+  name: testsa
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: testClusterRoleWithBindingSafe
+  apiGroup: rbac.authorization.k8s.io

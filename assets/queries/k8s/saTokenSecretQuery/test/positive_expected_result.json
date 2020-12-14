@@ -1,22 +1,17 @@
 [
 	{
-		"queryName": "SATokenSecrets",
+		"queryName": "ServiceAccount_Access_Secrets",
 		"severity": "MEDIUM",
-		"line": 12
+		"line": 10
 	},
 	{
-		"queryName": "SATokenSecrets",
+		"queryName": "ServiceAccount_Access_Secrets",
 		"severity": "MEDIUM",
-		"line": 22
+		"line": 34
 	},
 	{
-		"queryName": "SATokenSecrets",
+		"queryName": "ServiceAccount_Access_Secrets",
 		"severity": "MEDIUM",
-		"line": 32
-	},
-	{
-		"queryName": "SATokenSecrets",
-		"severity": "MEDIUM",
-		"line": 42
+		"line": 58
 	}
 ]

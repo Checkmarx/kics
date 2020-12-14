@@ -1,8 +1,8 @@
 {
-  "id": "SATokenSecrets",
-  "queryName": "SATokenSecrets",
+  "id": "ServiceAccount_Access_Secrets",
+  "queryName": "ServiceAccount_Access_Secrets",
   "severity": "MEDIUM",
   "category": null,
-  "descriptionText": "A Service Account Token with access to secrets (get, list, watch) would allow the workload to get thesecrets present in a namespace or cluster.",
+  "descriptionText": "Role and Clusters, when binded, should not use get, list or watch as verbs",
   "descriptionUrl": "#"
 }
