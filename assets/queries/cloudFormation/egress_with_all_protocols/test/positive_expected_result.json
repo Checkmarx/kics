@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "AWS Security Group Egress With All Protocols",
+		"severity": "MEDIUM",
+		"line": 14
+	},
+
+	{
+		"queryName": "AWS Security Group Egress With All Protocols",
+		"severity": "MEDIUM",
+		"line": 21
+	}
+]
