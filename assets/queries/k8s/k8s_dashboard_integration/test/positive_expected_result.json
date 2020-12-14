@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "K8s Dashboard Integration",
+		"queryName": "Dashboard Is Enabled",
 		"severity": "LOW",
 		"line": 22
 	},
 	{
-		"queryName": "K8s Dashboard Integration",
+		"queryName": "Dashboard Is Enabled",
 		"severity": "LOW",
 		"line": 67
 	}
