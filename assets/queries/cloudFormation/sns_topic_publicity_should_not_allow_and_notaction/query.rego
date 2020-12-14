@@ -12,10 +12,9 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Properties.PolicyDocument.Statement.Sid=%s",[statements[k].Sid]),
-                #"searchKey": 	    "Properties.PolicyDocument.Statement",   
+                "searchKey": 	    sprintf("Properties.PolicyDocument.Statement.Sid=%s",[statements[k].Sid]),   
                 "issueType":		"IncorrectValue",  
-                "keyExpectedValue": "Properties.PolicyDocument.Statement' does not have Effect=Allow and NotAction Defined ",
-                "keyActualValue": 	"Properties.PolicyDocument.Statement' has NotAction defined"
+                "keyExpectedValue": sprintf("Properties.PolicyDocument.Statement.Sid[%s] has Effect 'Allow' and Action",[statements[k].Sid]),
+                "keyActualValue": 	sprintf("Properties.PolicyDocument.Statement.Sid[%s] has Effect 'Allow' and NotAction",[statements[k].Sid]),
               }
 }
