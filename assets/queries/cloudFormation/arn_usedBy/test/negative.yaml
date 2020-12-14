@@ -2,16 +2,16 @@ AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   sample4:
     Type: AWS::CertificateManager::Certificate
-    Properties: 
+    Properties:
       CertificateAuthorityArn: String
       CertificateTransparencyLoggingPreference: String
       DomainName: String
-      DomainValidationOptions: 
+      DomainValidationOptions:
         - DomainValidationOption
-      SubjectAlternativeNames: 
+      SubjectAlternativeNames:
         - String
-      Tags: 
+      Tags:
         - Tag
       ValidationMethod: String
-    InUseBy: 
+    InUseBy:
     - "arn:aws:cloudfront::111122223333:distribution/E12KXPQHVLSYVC"
