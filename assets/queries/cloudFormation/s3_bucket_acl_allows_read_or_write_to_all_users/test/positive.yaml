@@ -6,8 +6,6 @@ Resources:
     Properties:
       AccessControl: PublicReadWrite
       BucketName: jenkins-artifacts
-      WebsiteConfiguration:
-        Status: Enabled
       Tags:
         - Key: CostCenter
           Value: ITEngineering
