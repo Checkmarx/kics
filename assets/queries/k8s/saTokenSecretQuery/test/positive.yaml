@@ -6,7 +6,7 @@ metadata:
   name: testRoleVulnerable
 rules:
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["secrets"]
   verbs: ["get", "watch", "list"]
 ---
 kind: RoleBinding
@@ -30,7 +30,7 @@ metadata:
   name: testRoleVulnerable2
 rules:
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["secrets"]
   verbs: ["*"]
 ---
 kind: RoleBinding

@@ -6,7 +6,7 @@ CxPolicy [result] {
     
     validKind := ["Role","ClusterRole"]
     ruleTaint := ["get","watch","list","*"]
-    resourcesTaint := ["secrets","pods"]
+    resourcesTaint := ["secrets"]
     
     kind := document.kind
     contains(validKind,kind)
