@@ -1,0 +1,8 @@
+{
+  "id": "iam_user_missing_PasswordResetRequired",
+  "queryName": "user IAM missing PasswordResetRequired",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "IAM User Login Profile should exist and have PasswordResetRequired property set to true",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html"
+}
