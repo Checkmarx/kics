@@ -60,7 +60,7 @@ Outputs:
   WebsiteURL:
     Value:
       Fn::GetAtt:
-        - StaticPage01
+        - StaticPage03
         - WebsiteURL
     Description: URL for website hosted on S3
   S3BucketSecureURL:
@@ -69,6 +69,6 @@ Outputs:
         - ""
         - - https://
           - Fn::GetAtt:
-              - StaticPage01
+              - StaticPage03
               - DomainName
     Description: Name of S3 bucket to hold website content
