@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Log Metric And Alarm Does Not Exist for IAM Policy Changes",
+		"severity": "MEDIUM",
+		"line": 33
+	}
+]
