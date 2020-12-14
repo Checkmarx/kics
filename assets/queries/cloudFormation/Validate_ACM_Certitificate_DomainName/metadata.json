@@ -1,8 +1,8 @@
 {
   "id": "Verify_ACM_Certificate_DomainName",
-  "queryName": "Verify_ACM_Certificate_DomainName",
+  "queryName": "Wildcard In ACM Certificate Domain Name",
   "severity": "LOW",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "ACM Certificate should not use wildcards (*) in the domain name",
   "descriptionUrl": "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html"
 }

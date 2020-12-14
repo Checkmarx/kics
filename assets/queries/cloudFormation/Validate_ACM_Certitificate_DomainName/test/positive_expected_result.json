@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Verify_ACM_Certificate_DomainName",
+		"queryName": "Wildcard In ACM Certificate Domain Name",
 		"severity": "LOW",
 		"line": 16
 	}
