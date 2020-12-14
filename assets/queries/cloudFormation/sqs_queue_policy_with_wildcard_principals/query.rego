@@ -7,15 +7,15 @@ CxPolicy [ result ] {
 	document.Resources[queuePolicyName].Type == "AWS::SQS::QueuePolicy"
 	queuePolicy := document.Resources[queuePolicyName]
 
-    some stmt
-    resultData := isUnsafeStatement(queuePolicy.Properties.PolicyDocument.Statement[stmt])
+  some stmt
+  resultData := isUnsafeStatement(queuePolicy.Properties.PolicyDocument.Statement[stmt])
 
 	result := {
                 "documentId": 		document.id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.PolicyDocument.Statement.%s", [queuePolicyName, resultData[1]]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement[*].Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]", [queuePolicyName]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.PolicyDocument.Statement[*].Principal has wildcards, Effect is Allow and Action contains %s", [queuePolicyName, resultData[0]])
+                "keyActualValue": 	sprintf("Resources.%s.Properties.PolicyDocument.Statement[%s].Principal has wildcards, Effect is Allow and Action contains %s", [queuePolicyName, stmt, resultData[0]])
               }
 }
 
