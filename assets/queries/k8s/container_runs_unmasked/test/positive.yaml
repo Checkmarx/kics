@@ -9,7 +9,7 @@ metadata:
   name: restricted
 spec:
   allowPrivilegeEscalation: false                   # Disallow privilege escalation to any special capabilities
-  allowedProcMountTypes: 
+  allowedProcMountTypes:
     - Unmasked
   fsGroup:                                          # disallow root fsGroups for volume mounts
     rule: MustRunAs

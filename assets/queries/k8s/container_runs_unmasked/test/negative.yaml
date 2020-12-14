@@ -9,8 +9,8 @@ metadata:
   name: restricted
 spec:
   allowPrivilegeEscalation: false                   # Disallow privilege escalation to any special capabilities
-  allowedProcMountTypes: 
-    - Default                    # Disallow full /proc mounts, only allow the "default" masked /proc
+  allowedProcMountTypes:
+    - Default                                       # Disallow full /proc mounts, only allow the "default" masked /proc
   fsGroup:                                          # disallow root fsGroups for volume mounts
     rule: MustRunAs
     ranges:
