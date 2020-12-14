@@ -3,7 +3,7 @@ package Cx
 CxPolicy [ result ] {
 
   resource := input.document[i].Resources[name]
-
+  resource.Type == "AWS::S3::Bucket"
   not resource.Properties.VersioningConfiguration
 
 
@@ -19,7 +19,7 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
 
   resource := input.document[i].Resources[name]
-
+  resource.Type == "AWS::S3::Bucket"
   resource.Properties.VersioningConfiguration.Status == "Suspended"  
 
 
