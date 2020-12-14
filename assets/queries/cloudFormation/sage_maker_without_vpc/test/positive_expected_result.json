@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SageMaker Without VPC",
+		"severity": "HIGH",
+		"line": 4
+	}
+]

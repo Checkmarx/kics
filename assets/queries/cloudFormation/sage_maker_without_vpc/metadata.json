@@ -1,0 +1,8 @@
+{
+  "id": "sage_maker_without_vpc",
+  "queryName": "SageMaker Without VPC",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "SageMaker must have the VPC defined.",
+  "descriptionUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown"
+}
