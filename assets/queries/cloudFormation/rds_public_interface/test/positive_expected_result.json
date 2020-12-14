@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS Public Interface",
+		"severity": "HIGH",
+		"line": 58
+	},
+	{
+		"queryName": "RDS Public Interface",
+		"severity": "HIGH",
+		"line": 82
+	}
+]
