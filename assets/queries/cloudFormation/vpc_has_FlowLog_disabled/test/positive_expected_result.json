@@ -2,6 +2,6 @@
 	{
 		"queryName": "VPC Has FlowLog Disabled",
 		"severity": "MEDIUM",
-		"line": 53
+		"line": 34
 	}
 ]
