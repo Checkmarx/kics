@@ -1,11 +1,11 @@
 Type: AWS::SNS::Topic
-Properties: 
+Properties:
   ContentBasedDeduplication: Boolean
   DisplayName: String
   FifoTopic: Boolean
   KmsMasterKeyId: String
-  Subscription: 
+  Subscription:
     - Subscription
-  Tags: 
+  Tags:
     - Tag
   TopicName: String
