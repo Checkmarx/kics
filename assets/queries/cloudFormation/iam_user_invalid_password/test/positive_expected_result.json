@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "user IAM invalid password",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]
