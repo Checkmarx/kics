@@ -3,6 +3,7 @@ package Cx
 CxPolicy [ result ] {
 	  document := input.document[i]
     metadata:= document.metadata
+    lower(document.kind) == "service"
     spec := document.spec
     lower(spec.type) == "nodeport"
 	
