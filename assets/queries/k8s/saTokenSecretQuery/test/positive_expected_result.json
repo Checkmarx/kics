@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "ServiceAccount_Allows_Access_Secrets",
+		"queryName": "ServiceAccount Allows Access Secrets",
 		"severity": "MEDIUM",
 		"line": 10
 	},
 	{
-		"queryName": "ServiceAccount_Allows_Access_Secrets",
+		"queryName": "ServiceAccount Allows Access Secrets",
 		"severity": "MEDIUM",
 		"line": 34
 	},
 	{
-		"queryName": "ServiceAccount_Allows_Access_Secrets",
+		"queryName": "ServiceAccount Allows Access Secrets",
 		"severity": "MEDIUM",
 		"line": 58
 	}
