@@ -67,5 +67,3 @@ Resources:
         - Tag
       ValidationMethod: String
     InUseBy: []
-    
-

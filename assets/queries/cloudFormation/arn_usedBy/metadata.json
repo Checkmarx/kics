@@ -3,6 +3,6 @@
   "queryName": "Unused_Certificate_ACM",
   "severity": "MEDIUM",
   "category": null,
-  "descriptionText": "ACM should not have associated unused certificates.",
+  "descriptionText": "ACM should not have associated unused certificates",
   "descriptionUrl": "https://docs.aws.amazon.com/acm/latest/APIReference/API_CertificateDetail.html"
 }
