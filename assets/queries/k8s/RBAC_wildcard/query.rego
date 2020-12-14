@@ -14,7 +14,7 @@ CxPolicy [result]  {
                 "searchKey": 	    sprintf("metadata.name=%s.rules.apiGroups", [metadata.name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": sprintf("metadata.name[%s].rules.apiGroups shouldn't contain value: '%s'", [metadata.name, notExpectedKey]),
-                "keyActualValue": 	sprintf("metadata.name[%s].rules.apiGroups contain value: '%s'", [metadata.name, notExpectedKey])
+                "keyActualValue": 	sprintf("metadata.name[%s].rules.apiGroups contains value: '%s'", [metadata.name, notExpectedKey])
               }
 
 }
@@ -32,7 +32,7 @@ CxPolicy [result]  {
                 "searchKey": 	    sprintf("metadata.name=%s.rules.resources", [metadata.name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": sprintf("metadata.name[%s].rules.resources shouldn't contain value: '%s'", [metadata.name, notExpectedKey]),
-                "keyActualValue": 	sprintf("metadata.name[%s].rules.resources contain value: '%s'", [metadata.name, notExpectedKey])
+                "keyActualValue": 	sprintf("metadata.name[%s].rules.resources contains value: '%s'", [metadata.name, notExpectedKey])
               }
 
 }
@@ -50,7 +50,7 @@ CxPolicy [result]  {
                 "searchKey": 	    sprintf("metadata.name=%s.rules.verbs", [metadata.name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": sprintf("metadata.name[%s].rules.verbs shouldn't contain value: '%s'", [metadata.name, notExpectedKey]),
-                "keyActualValue": 	sprintf("metadata.name[%s].rules.verbs contain value: '%s'", [metadata.name, notExpectedKey])
+                "keyActualValue": 	sprintf("metadata.name[%s].rules.verbs contains value: '%s'", [metadata.name, notExpectedKey])
               }
 }
 
