@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "IAM policies without groups",
+		"queryName": "IAM policies without Groups",
 		"severity": "LOW",
 		"line": 25
 	}

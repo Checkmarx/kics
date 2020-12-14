@@ -1,6 +1,6 @@
 {
   "id": "iam_policies_without_groups",
-  "queryName": "IAM policies without groups",
+  "queryName": "IAM policies without Groups",
   "severity": "LOW",
   "category": null,
   "descriptionText": "IAM policy should not apply directly to users.  Should be on group",
