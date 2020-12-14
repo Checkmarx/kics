@@ -1,0 +1,11 @@
+Type: AWS::SecretsManager::Secret
+Properties: 
+  Description: String
+  GenerateSecretString: 
+    GenerateSecretString
+  KmsKeyId: String
+  Name: String
+  SecretString: 
+    String
+  Tags: 
+    - Tag

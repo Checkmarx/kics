@@ -1,0 +1,8 @@
+{
+  "id": "secrets_manager_should_specify_kmskeyid",
+  "queryName": "Secrets Manager Should Specify KmsKeyId",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html"
+}

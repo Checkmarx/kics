@@ -1,0 +1,10 @@
+Type: AWS::SecretsManager::Secret
+Properties: 
+  Description: String
+  GenerateSecretString: 
+    GenerateSecretString
+  Name: String
+  SecretString: 
+    String
+  Tags: 
+    - Tag
