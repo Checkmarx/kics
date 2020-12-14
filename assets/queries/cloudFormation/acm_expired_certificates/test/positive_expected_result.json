@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "ACM Expired Certificates",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]

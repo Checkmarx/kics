@@ -1,0 +1,8 @@
+{
+  "id": "acm_expired_certificates",
+  "queryName": "ACM Expired Certificates",
+  "severity": "Medium",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure that the expired certificates are remove from the ACM",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html"
+}
