@@ -8,6 +8,7 @@ CxPolicy [ result ] {
   some j
   input.document[j].kind == "StatefulSet"
   input.document[j].spec.selector.matchLabels == input.document[j].spec.template.metadata.labels
+  metadata.name == input.document[j].spec.serviceName
 
   
 	result := {
