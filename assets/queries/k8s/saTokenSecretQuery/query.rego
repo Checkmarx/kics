@@ -26,8 +26,8 @@ CxPolicy [result] {
                 "documentId":        input.document[i].id,
                 "searchKey":         sprintf("metadata.name=%s.rules.verbs", [metadata.name]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue":  sprintf("The resources %s should not contain the following verbs: [%s]", [resources,rules]),
-                "keyActualValue":    sprintf("The resources %s should contain the following verbs: [%s]", [resources,rules])
+                "keyExpectedValue":  sprintf("The %s.rules.verbs should not contain the following verbs: [%s]", [metadata.name,rules]),
+                "keyActualValue":    sprintf("The %s.rules.verbs contain the following verbs: [%s]", [metadata.name,rules])
               }
 }
 
