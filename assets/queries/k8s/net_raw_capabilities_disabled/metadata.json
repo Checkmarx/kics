@@ -1,0 +1,8 @@
+{
+  "id": "NET_RAW_Capabilities_Disabled",
+  "queryName": "NET_RAW Capabilities Disabled",
+  "severity": "MEDIUM",
+  "category": "Privileges",
+  "descriptionText": "Containers need to have NET_RAW or All as drop capabilities",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}

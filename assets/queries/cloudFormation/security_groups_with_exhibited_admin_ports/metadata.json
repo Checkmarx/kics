@@ -1,0 +1,8 @@
+{
+  "id": "security_groups_with_exhibited_admin_ports",
+  "queryName": "Security Groups With Exhibited Admin Ports",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Security Groups should not have port in (20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
+}

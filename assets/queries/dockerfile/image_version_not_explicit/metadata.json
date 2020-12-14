@@ -1,0 +1,8 @@
+{
+  "id": "Image_version_not_explicit",
+  "queryName": "Image Version Not Explicit",
+  "severity": "MEDIUM",
+  "category": "Versioning",
+  "descriptionText": "Always tag the version of an image explicitly",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from"
+}
