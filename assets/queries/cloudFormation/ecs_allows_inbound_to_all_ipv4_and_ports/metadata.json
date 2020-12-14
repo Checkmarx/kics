@@ -1,0 +1,8 @@
+{
+  "id": "ECS_Service_Allows_Inbound_To_All_IPv4_And_Ports",
+  "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "ECS Service's security group should not allow unrestricted access to all ports from all IPv4 addresses",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html#create-a-base-security-group"
+}
