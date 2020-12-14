@@ -1,0 +1,8 @@
+{
+  "id": "security_group_rule_without_description",
+  "queryName": "AWS Security Group Rule Without Description",
+  "severity": "LOW",
+  "category": "null",
+  "descriptionText": "AWS Security Group Rule should have description defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
+}

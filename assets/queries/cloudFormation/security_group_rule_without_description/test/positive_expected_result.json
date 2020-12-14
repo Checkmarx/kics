@@ -1,0 +1,31 @@
+[
+	{
+		"queryName": "AWS Security Group Rule Without Description",
+		"severity": "LOW",
+		"line": 4
+	},
+
+	{
+		"queryName": "AWS Security Group Rule Without Description",
+		"severity": "LOW",
+		"line": 7
+	},
+
+	{
+		"queryName": "AWS Security Group Rule Without Description",
+		"severity": "LOW",
+		"line": 12
+	},
+
+	{
+		"queryName": "AWS Security Group Rule Without Description",
+		"severity": "LOW",
+		"line": 19
+	},
+
+	{
+		"queryName": "AWS Security Group Rule Without Description",
+		"severity": "LOW",
+		"line": 33
+	}
+]
