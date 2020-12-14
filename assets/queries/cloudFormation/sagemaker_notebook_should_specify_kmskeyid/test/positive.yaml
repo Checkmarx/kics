@@ -1,0 +1,19 @@
+Type: AWS::SageMaker::NotebookInstance
+Properties: 
+  AcceleratorTypes: 
+    - String
+  AdditionalCodeRepositories: 
+    - String
+  DefaultCodeRepository: String
+  DirectInternetAccess: String
+  InstanceType: String
+  LifecycleConfigName: String
+  NotebookInstanceName: String
+  RoleArn: String
+  RootAccess: String
+  SecurityGroupIds: 
+    - String
+  SubnetId: String
+  Tags: 
+    - Tag
+  VolumeSizeInGB: Integer
