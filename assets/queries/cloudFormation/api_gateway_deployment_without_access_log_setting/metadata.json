@@ -1,0 +1,8 @@
+{
+  "id": "api_gateway_deployment_without_access_log_setting",
+  "queryName": "API Gateway Deployment Without Access Log Setting",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "API Gateway Deployment should have access log setting defined when connected to an API Gateway Stage.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html"
+}
