@@ -30,7 +30,7 @@ CxPolicy [ result ] {
       result := {
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
-                "issueType":		   "MissingAttribute",
+                "issueType":		   "IncorrectValue",
                 "keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy is %s", [name, tls]),
                 "keyActualValue": 	sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls])
               }
