@@ -1,8 +1,0 @@
-{
-  "id": "api_gateway_v2_stage_without_api_gateway_usage_plan_associated",
-  "queryName": "API Gateway V2 Stage Without API Gateway UsagePlan Associated",
-  "severity": "LOW",
-  "category": null,
-  "descriptionText": "API Gateway V2 Stage should have API Gateway UsagePlan defined and associated.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-stage.html"
-}
