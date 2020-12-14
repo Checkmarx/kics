@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Viewer Protocol Only HTTPS Compliant",
+		"severity": "HIGH",
+		"line": 13
+	}
+	,
+	{
+		"queryName": "Viewer Protocol Only HTTPS Compliant",
+		"severity": "HIGH",
+		"line": 30
+	}
+]
