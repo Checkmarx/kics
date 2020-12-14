@@ -1,9 +1,9 @@
 #this is a problematic code where the query should report a result(s)
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  Description": "AWS CloudFormation Sample Template for creating an Amazon RDS DB instance: 
-  Sample template showing how to create a DB instance with Enhanced Monitoring enabled. 
-  **WARNING** This template creates an RDS DB instance. You will be billed for the AWS 
+  Description": "AWS CloudFormation Sample Template for creating an Amazon RDS DB instance:
+  Sample template showing how to create a DB instance with Enhanced Monitoring enabled.
+  **WARNING** This template creates an RDS DB instance. You will be billed for the AWS
   resources used if you create a stack from this template.
 Parameters:
   DBInstanceID:
