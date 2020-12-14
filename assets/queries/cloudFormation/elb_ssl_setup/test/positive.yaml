@@ -25,4 +25,4 @@ Resources:
             PolicyType: SSLNegotiationPolicyType
             Attributes:
             - Name: Reference-Security-Policy
-              Value: ELBSecurityPolicy-TLS-1-2-2017-01 
+              Value: ELBSecurityPolicy-TLS-1-2-2017-01
