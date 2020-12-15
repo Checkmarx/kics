@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Use of apk upgrade",
+		"severity": "HIGH",
+		"line": 3
+	},
+	{
+		"queryName": "Use of apk upgrade",
+		"severity": "HIGH",
+		"line": 10
+	}
+]
