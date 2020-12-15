@@ -3,7 +3,7 @@ Description: Creating Amplify App
 Resources:
      NewAmpApp-2:
         Type: AWS::Amplify::App
-        Properties: 
+        Properties:
           AccessToken: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
           BuildSpec: String
           CustomHeaders: String
@@ -32,7 +32,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
     Type: AWS::Amplify::App
-    Properties: 
+    Properties:
       AccessToken: !Ref ParentAccessToken
       BuildSpec: String
       CustomHeaders: String
@@ -53,7 +53,7 @@ Parameters:
 Resources:
   NewAmpApp-4:
     Type: AWS::Amplify::App
-    Properties: 
+    Properties:
       AccessToken: !Ref ParentAccessToken
       BuildSpec: String
       CustomHeaders: String

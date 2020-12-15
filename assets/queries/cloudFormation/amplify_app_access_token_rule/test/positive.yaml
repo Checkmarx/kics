@@ -3,19 +3,16 @@ Description: Creating Amplify App
 Resources:
   NewAmpApp:
     Type: AWS::Amplify::App
-    Properties: 
+    Properties:
       AccessToken: YijQ3kFCn8xZFVWbZtKoZSxFFXWYqPK6zbXIG9AESs2aQXiJWskHvVHY73vkhUjR8c8nHjMDBIdFlhitn1dLnAXW3skAqPz7DDj41fyxCYUgSBFfLanYeXcHOXy5DBDLo6etRbzvqobt7qspM29rFAMe7T4P9nBcB2WOUzFtdtKvRVVB1ewSCPchWwqsnQ2ESVIodkvEEG3axWXBUGgjF0aSTzKQ4TG5z1KhW9hFGRQQNLWS913rftXU34G41gz
       BuildSpec: String
       CustomHeaders: String
-      CustomRules: 
-        - CustomRule
       Description: String
       EnableBranchAutoDeletion: True
       IAMServiceRole: String
       Name: String
       OauthToken: String
       Repository: String
-      
 ---
 AWSTemplateFormatVersion: 2010-09-09
 Description: Creating Amplify App
@@ -27,7 +24,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
     Type: AWS::Amplify::App
-    Properties: 
+    Properties:
       AccessToken: !Ref ParentAccessToken
       BuildSpec: String
       CustomHeaders: String
