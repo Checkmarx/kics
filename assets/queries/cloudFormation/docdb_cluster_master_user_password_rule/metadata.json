@@ -1,0 +1,8 @@
+{
+  "id": "DocDB_Cluster_Master_User_Password_Rule",
+  "queryName": "DocDB Cluster Master User Password Rule",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "DocDB DB Cluster master user password must not be in a plain text string or referenced in a parameter as a default value.",
+  "descriptionUrl": "#"
+}

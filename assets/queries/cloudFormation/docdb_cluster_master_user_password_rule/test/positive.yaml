@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Resources:
+  NewAmpApp:
+    Type:  AWS::DocDB::DBCluster
+    Properties: 
+      AvailabilityZones: 
+        - String
+      BackupRetentionPeriod: Integer
+      DBClusterIdentifier: String
+      DBClusterParameterGroupName: String
+      DBSubnetGroupName: String
+      DeletionProtection: true
+      EnableCloudwatchLogsExports: 
+        - String
+      EngineVersion: String
+      KmsKeyId: String
+      MasterUsername: admin
+      MasterUserPassword: 'asDjskjs73!!'
+      Port: Integer
+      PreferredBackupWindow: String
+      PreferredMaintenanceWindow: String
+      SnapshotIdentifier: String
+      StorageEncrypted: true
+      VpcSecurityGroupIds: 
+        - String
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+    Default: 'asDjskjs73!'
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username!'
+Resources:
+  NewAmpApp-1:
+    Type: AWS::DocDB::DBCluster
+    Properties: 
+      AvailabilityZones: 
+        - String
+      BackupRetentionPeriod: Integer
+      DBClusterIdentifier: String
+      DBClusterParameterGroupName: String
+      DBSubnetGroupName: String
+      DeletionProtection: Boolean
+      EnableCloudwatchLogsExports: 
+        - String
+      EngineVersion: String
+      KmsKeyId: String
+      MasterUsername: String
+      MasterUserPassword: !Ref ParentMasterPassword
+      Port: Integer
+      PreferredBackupWindow: String
+      PreferredMaintenanceWindow: String
+      SnapshotIdentifier: String
+      StorageEncrypted: Boolean
+      VpcSecurityGroupIds: 
+        - String
+
+
