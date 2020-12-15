@@ -1,6 +1,6 @@
 {
   "id": "Unused_Certificate_ACM",
-  "queryName": "Unused_Certificate_ACM",
+  "queryName": "Unused Certificate ACM",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "ACM should not have associated unused certificates",
