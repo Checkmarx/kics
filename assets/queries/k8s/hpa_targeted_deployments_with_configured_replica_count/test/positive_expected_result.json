@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "HPA Targeted Deployments With Configured Replica Count",
+		"severity": "LOW",
+		"line": 10
+	}
+]

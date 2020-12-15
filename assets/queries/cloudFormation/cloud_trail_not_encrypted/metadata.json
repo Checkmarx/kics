@@ -1,0 +1,8 @@
+{
+  "id": "Cloud_trail_not_encrypted",
+  "queryName": "Cloud Trail Not Encrypted",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "Logs delivered by CloudTrail should be encrypted using KMS",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-kmskeyid"
+}
