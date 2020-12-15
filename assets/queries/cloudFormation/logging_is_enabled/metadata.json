@@ -1,6 +1,6 @@
 {
   "id": "cloudfront_distribution_looging_disabled",
-  "queryName": "cloudfront_distribution_looging_disabled",
+  "queryName": "cloudfront distribution looging disabled",
   "severity": "MEDIUM",
   "category": "Network Security",
 
