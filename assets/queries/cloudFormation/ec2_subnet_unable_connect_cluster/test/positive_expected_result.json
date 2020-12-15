@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EC2 vulnerable public subnet",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]
