@@ -27,19 +27,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const scanID = "console"
+const (
+	scanID   = "console"
+	timeMult = 2
+)
 
 func main() { // nolint:funlen,gocyclo
-
 	err := sentry.Init(sentry.ClientOptions{
 		Dsn: "https://a9194c7a568744d392ab5fd9cde6708a@o489127.ingest.sentry.io/5550779",
 	})
 	if err != nil {
 		log.Err(err).Msg("failed to initialize sentry")
 	}
-
-	// Flush buffered events before the program terminates.
-	defer sentry.Flush(2 * time.Second)
 
 	var (
 		path        string
@@ -63,6 +62,8 @@ func main() { // nolint:funlen,gocyclo
 		Use:   "kics",
 		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			defer sentry.Flush(timeMult * time.Second)
+
 			store := storage.NewMemoryStorage()
 			if verbose {
 				consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
