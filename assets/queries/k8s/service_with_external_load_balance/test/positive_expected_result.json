@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Service With External Load Balance",
+		"severity": "MEDIUM",
+		"line": 5
+	}
+]

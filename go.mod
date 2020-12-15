@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/agnivade/levenshtein v1.1.0
 	github.com/asottile/dockerfile v3.1.0+incompatible
+	github.com/getsentry/sentry-go v0.9.0
 	github.com/golang/mock v1.4.4
 	github.com/google/go-cmp v0.5.0 // indirect
 	github.com/google/uuid v1.1.2

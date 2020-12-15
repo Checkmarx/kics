@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]
