@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "cloudfront_distribution_looging_disabled",
+		"queryName": "cloudfront distribution looging disabled",
 		"severity": "MEDIUM",
 		"line": 19
 	}
