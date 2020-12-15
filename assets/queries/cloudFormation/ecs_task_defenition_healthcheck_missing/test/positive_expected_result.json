@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "ECS Task Defenition HealthCheck Missing",
+		"queryName": "ECS Task Definition HealthCheck Missing",
 		"severity": "LOW",
 		"line": 22
 	}
