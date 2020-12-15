@@ -3,7 +3,7 @@ Description: "Router53"
 Resources:
   HostedZone:
     Type: AWS::Route53::HostedZone
-    Properties: 
+    Properties:
       Name: "HostedZone"
   RecordSet:
     Type: AWS::Route53::RecordSet
