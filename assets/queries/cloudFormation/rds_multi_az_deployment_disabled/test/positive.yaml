@@ -108,7 +108,7 @@ Resources:
     Condition: Is-EC2-Classic
     Properties:
       DBSecurityGroupIngress:
-        - EC2SecurityGroupName: 
+        - EC2SecurityGroupName:
             Ref: EC2SecurityGroup
       GroupDescription: database access
   MasterDB:
