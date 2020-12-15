@@ -124,7 +124,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		for _, item := range value.Items {
 			key, err := c.convertKey(item.KeyExpr)
 			if err != nil {
-				sentry.CaptureException(err)	
+				sentry.CaptureException(err)
 				return nil, err
 			}
 			m[key], err = c.convertExpression(item.ValueExpr)
