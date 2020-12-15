@@ -3,7 +3,7 @@ package Cx
 CxPolicy [ result ] {
   resource := input.document[i].Resources[name]
   resource.Type == "AWS::CloudTrail::Trail"
-  object.get(resource.Properties , "EnableLogFileValidation", "not found") == "not found"
+  object.get(resource.Properties , "EnableLogFileValidation", "undefined") == "undefined"
 
 	result := {
                 "documentId": 		input.document[i].id,
@@ -17,7 +17,7 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
   resource := input.document[i].Resources[name]
   resource.Type == "AWS::CloudTrail::Trail"
-  object.get(resource.Properties , "EnableLogFileValidation", "not found") == false
+  object.get(resource.Properties , "EnableLogFileValidation", "undefined") == false
 
 	result := {
                 "documentId": 		input.document[i].id,
