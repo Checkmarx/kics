@@ -3,22 +3,28 @@ package Cx
 CxPolicy [ result ] {
   resource := input.document[i].Resources[name]
   resource.Type == "AWS::CloudTrail::Trail"
-  checkFileValidation(resource)
+  object.get(resource.Properties , "EnableLogFileValidation", "not found") == "not found"
 
 	result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties", [name]),
                 "issueType":		"MissingAttribute",  
-                "keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' should be true", [name]),
-                "keyActualValue": 	sprintf("'Resources.%s.Properties.EnableLogFileValidation' is not true", [name])
+                "keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' exists", [name]),
+                "keyActualValue": 	sprintf("'Resources.%s.Properties.EnableLogFileValidation' is missing", [name])
               }
 }
 
-checkFileValidation(cltr) {
-	object.get(cltr.Properties , "EnableLogFileValidation", "not found") == "not found"
-}
+CxPolicy [ result ] {
+  resource := input.document[i].Resources[name]
+  resource.Type == "AWS::CloudTrail::Trail"
+  object.get(resource.Properties , "EnableLogFileValidation", "not found") == false
 
-checkFileValidation(cltr) {
-	object.get(cltr.Properties , "EnableLogFileValidation", "not found") == false
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("Resources.%s.Properties.EnableLogFileValidation", [name]),
+                "issueType":		"IncorrectValue",  
+                "keyExpectedValue": sprintf("'Resources.%s.Properties.EnableLogFileValidation' is true", [name]),
+                "keyActualValue": 	sprintf("'Resources.%s.Properties.EnableLogFileValidation' is not true", [name])
+              }
 }
 
