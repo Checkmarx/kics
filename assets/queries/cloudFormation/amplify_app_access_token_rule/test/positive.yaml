@@ -4,7 +4,7 @@ Resources:
   NewAmpApp:
     Type: AWS::Amplify::App
     Properties:
-      AccessToken: YijQ3kFCn8xZFVWbZtKoZSxFFXWYqPK6zbXIG9AESs2aQXiJWskHvVHY73vkhUjR8c8nHjMDBIdFlhitn1dLnAXW3skAqPz7DDj41fyxCYUgSBFfLanYeXcHOXy5DBDLo6etRbzvqobt7qspM29rFAMe7T4P9nBcB2WOUzFtdtKvRVVB1ewSCPchWwqsnQ2ESVIodkvEEG3axWXBUGgjF0aSTzKQ4TG5z1KhW9hFGRQQNLWS913rftXU34G41gz
+      AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ
       BuildSpec: String
       CustomHeaders: String
       Description: String
@@ -20,7 +20,7 @@ Parameters:
   ParentAccessToken:
     Description: 'Access Token'
     Type: String
-    Default: 'YijQ3kFCn8xZFVWbZtKoZSxFFXWYqPK6zbXIG9AESs2aQXiJWskHvVHY73vkhUjR8c8nHjMDBIdFlhitn1dLnAXW3skAqPz7DDj41fyxCYUgSBFfLanYeXcHOXy5DBDLo6etRbzvqobt7qspM29rFAMe7T4P9nBcB2WOUzFtdtKvRVVB1ewSCPchWwqsnQ2ESVIodkvEEG3axWXBUGgjF0aSTzKQ4TG5z1KhW9hFGRQQNLWS913rftXU34G41gz'
+    Default: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ'
 Resources:
   NewAmpApp-1:
     Type: AWS::Amplify::App
