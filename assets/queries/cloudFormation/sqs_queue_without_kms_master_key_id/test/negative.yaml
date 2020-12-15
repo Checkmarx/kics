@@ -1,6 +1,6 @@
-Resources: 
-  MyQueue: 
+Resources:
+  MyQueue:
     Type: AWS::SQS::Queue
-    Properties: 
+    Properties:
       QueueName: "SampleQueue"
       KmsMasterKeyId: wewewewewewe
