@@ -1,6 +1,6 @@
 {
   "id": "statefulsets_headless_servicename",
-  "queryName": "StatefulSets Without Headless Service Name",
+  "queryName": "StatefulSets Without Service Name",
   "severity": "LOW",
   "category": "High Availability",
   "descriptionText": "Check if the StatefulSets have a headless 'serviceName'",

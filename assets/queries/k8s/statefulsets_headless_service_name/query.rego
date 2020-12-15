@@ -12,10 +12,10 @@ CxPolicy [ result ] {
 
   
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("metadata.name=%s.clusterIP", [metadata.name]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("metadata.name=%s.clusterIP creates a Headless Service", [metadata.name]),
-                "keyActualValue": 	sprintf("metadata.name=%s.clusterIP doesn't creates a Headless Service", [metadata.name]),
+                "documentId": 		  input.document[i].id,
+                "searchKey": 	      sprintf("metadata.name=%s.spec.serviceName", [metadata.name]),
+                "issueType":		    "IncorrectValue",
+                "keyExpectedValue": sprintf("metadata.name=%s.spec.serviceName refers to a Headless Service", [metadata.name]),
+                "keyActualValue": 	sprintf("metadata.name=%s.spec.serviceName doesn't refers to a Headless Service", [metadata.name]),
               }
 }

@@ -1,7 +1,7 @@
 [
 	{
-		"queryName": "StatefulSets Without Headless Service Name",
+		"queryName": "StatefulSets Without Service Name",
 		"severity": "LOW",
-		"line": 12
+		"line": 24
 	}
 ]
