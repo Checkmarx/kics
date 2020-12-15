@@ -1,0 +1,26 @@
+[{
+        "queryName": "S3 Bucket Without SSL Enforcement",
+        "severity": "HIGH",
+        "line": 4
+    },
+    {
+        "queryName": "S3 Bucket Without SSL Enforcement",
+        "severity": "HIGH",
+        "line": 46
+    },
+    {
+        "queryName": "S3 Bucket Without SSL Enforcement",
+        "severity": "HIGH",
+        "line": 99
+    },
+    {
+        "queryName": "S3 Bucket Without SSL Enforcement",
+        "severity": "HIGH",
+        "line": 144
+    },
+    {
+        "queryName": "S3 Bucket Without SSL Enforcement",
+        "severity": "HIGH",
+        "line": 152
+    }
+]

@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "IAM User Has Policies",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "IAM User Has Policies",
+		"severity": "MEDIUM",
+		"line": 14
+	}
+]
