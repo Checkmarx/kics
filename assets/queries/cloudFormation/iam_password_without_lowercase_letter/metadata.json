@@ -1,0 +1,8 @@
+{
+  "id": "IAM_password_without_lowercase_letter",
+  "queryName": "IAM Password Without Lowercase Letter",
+  "severity": "MEDIUM",
+  "category": "Security, Identity, & Compliance",
+  "descriptionText": "IAM user resource Login Profile Password should have lowercase letter",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user"
+}

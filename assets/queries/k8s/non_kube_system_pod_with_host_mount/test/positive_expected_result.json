@@ -2,31 +2,41 @@
 	{
 		"queryName": "Non Kube System Pod With Host Mount",
 		"severity": "MEDIUM",
-		"line": 39
+		"line": 40
 	},
 	{
 		"queryName": "Non Kube System Pod With Host Mount",
 		"severity": "MEDIUM",
-		"line": 42
+		"line": 43
 	},
 	{
 		"queryName": "Non Kube System Pod With Host Mount",
 		"severity": "MEDIUM",
-		"line": 58
+		"line": 59
 	},
 	{
 		"queryName": "Non Kube System Pod With Host Mount",
 		"severity": "MEDIUM",
-		"line": 74
+		"line": 76
 	},
 	{
 		"queryName": "Non Kube System Pod With Host Mount",
 		"severity": "MEDIUM",
-		"line": 103
+		"line": 106
 	},
 	{
 		"queryName": "Non Kube System Pod With Host Mount",
 		"severity": "MEDIUM",
-		"line": 133
+		"line": 136
+	},
+	{
+		"queryName": "Non Kube System Pod With Host Mount",
+		"severity": "MEDIUM",
+		"line": 153
+	},
+	{
+		"queryName": "Non Kube System Pod With Host Mount",
+		"severity": "MEDIUM",
+		"line": 168
 	}
 ]
