@@ -1,6 +1,6 @@
 {
-  "id": "ECS Task_defenition_invalid_cpu_or_memory",
-  "queryName": "ECS Task Defenition Invalid Cpu or Memory",
+  "id": "ECS_Task_definition_invalid_cpu_or_memory",
+  "queryName": "ECS Task Definition Invalid Cpu or Memory",
   "severity": "LOW",
   "category": "Operational",
   "descriptionText": "In ECS Task Definition of FARGATE launch type if you specify an invalid CPU or Memory value, you will receive an error",
