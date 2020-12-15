@@ -3,8 +3,7 @@ Description: "Internet access and root access for Creating Notebook Instances"
 Resources:
   Notebook:
     Type: AWS::SageMaker::NotebookInstance
-    Properties: 
+    Properties:
       DirectInternetAccess: "Enabled"
       InstanceType: "ml.c4.2xlarge"
       RoleArn: "role"
-        
