@@ -49,13 +49,9 @@ CxPolicy [  result ]  {
 }
 
 
-
-
-
-hasSecretManager(str, document) = true {
+hasSecretManager(str, document) {
 	selectedSecret :=  strings.replace_n({"${":"","}":""}, regex.find_n(`\${\w+}`,str,1)[0])
-    document[selectedSecret].Type == "AWS::SecretsManager::Secret"
-    result := true
-}else = false { true }
+  document[selectedSecret].Type == "AWS::SecretsManager::Secret"
+}
 
 
