@@ -3,6 +3,6 @@
   "queryName": "S3 Bucket Logging Disabled",
   "severity": "MEDIUM",
   "category": "Logging",
-  "descriptionText": "S3 Bucket should have server access logging enabled",
+  "descriptionText": "Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig"
 }
