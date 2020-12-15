@@ -1,0 +1,8 @@
+{
+  "id": "PSP_Allows_Containers_To_Share_The_Host_Network_Namespace",
+  "queryName": "PSP Allows Containers To Share The Host Network Namespace",
+  "severity": "HIGH",
+  "category": "Networking",
+  "descriptionText": "Check if Pod Security Policies allow containers to share the host network namespace.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+}

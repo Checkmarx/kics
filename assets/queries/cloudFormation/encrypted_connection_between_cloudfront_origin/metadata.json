@@ -1,0 +1,8 @@
+{
+  "id": "encrypted_connection_between_cloudfront_origin",
+  "queryName": "Encrypted Connection Between CloudFront Origin",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html"
+}
