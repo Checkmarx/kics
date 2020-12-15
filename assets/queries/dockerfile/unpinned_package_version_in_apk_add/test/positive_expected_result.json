@@ -7,16 +7,16 @@
 	{
 		"queryName": "Unpinned Package Version in Apk Add",
 		"severity": "MEDIUM",
-		"line": 12
-	},
-	{
-		"queryName": "Unpinned Package Version in Apk Add",
-		"severity": "MEDIUM",
 		"line": 13
 	},
 	{
 		"queryName": "Unpinned Package Version in Apk Add",
 		"severity": "MEDIUM",
-		"line": 15
+		"line": 14
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 16
 	}
 ]

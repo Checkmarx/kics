@@ -8,7 +8,6 @@ COPY templates/index.html /usr/src/app/templates/
 EXPOSE 5000
 CMD ["python", "/usr/src/app/app.py"]
 
-
 FROM alpine:3.1
 RUN apk add py-pip=7.1.2-r0
 RUN sudo pip install --upgrade pip
