@@ -4,7 +4,7 @@ CxPolicy [ result ] {
   resource := input.document[i].Resources[name]
   resource.Type == "AWS::S3::Bucket"
   prop := resource.Properties
-  object.get(prop, "LoggingConfiguration", "not found") == "not found"
+  object.get(prop, "LoggingConfiguration", "undefined") == "undefined"
 
 	result := {
                 "documentId": 		input.document[i].id,
