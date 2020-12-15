@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "MEDIUM",
+		"line": 3
+	},
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]
