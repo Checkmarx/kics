@@ -1,5 +1,5 @@
 {
-  "id": "statefulsets_headless_servicename",
+  "id": "statefulsets_without_servicename",
   "queryName": "StatefulSets Without Service Name",
   "severity": "LOW",
   "category": "High Availability",
