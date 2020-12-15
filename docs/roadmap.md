@@ -20,6 +20,7 @@ Status keys <br>
 :evergreen_tree: - completed <br>
 
 ## Long term roadmap
+* Queries - add metadata of remediation advice 
 * Hombrew support for eaiser Mac deployment
 * Azure Resource Manager
 * Google Cloud Deployment Manager
