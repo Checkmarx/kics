@@ -1,0 +1,8 @@
+{
+  "id": "pin_versions_in_gem_install",
+  "queryName": "Pin Versions In Gem Install",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+}
