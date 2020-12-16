@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "DMS Endpoint Mongo Db Settings Password Rule",
+		"severity": "MEDIUM",
+		"line": 15
+	},
+	{
+		"queryName": "DMS Endpoint Mongo Db Settings Password Rule",
+		"severity": "MEDIUM",
+		"line":80
+	}
+]
