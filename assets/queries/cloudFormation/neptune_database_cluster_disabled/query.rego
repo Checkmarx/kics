@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i]
+  resource := input.document[i].Resources[name]
   resource.Type == "AWS::Neptune::DBCluster"
   properties := resource.Properties
   properties.StorageEncrypted == false
@@ -9,9 +9,9 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    "Properties.StorageEncrypted",
+                "searchKey": 	    sprintf("Resources.%s.Properties.StorageEncrypted",[name]),
                 "issueType":		"IncorrectValue",  
-                "keyExpectedValue": "'Properties.StorageEncrypted' is True",
-                "keyActualValue": 	"'Properties.StorageEncrypted' is False"
+                "keyExpectedValue": sprintf("Resources.%s.Properties.StorageEncrypted is True",[name]),
+                "keyActualValue": 	sprintf("Resources.%s.Properties.StorageEncrypted is False",[name])
               }
 }

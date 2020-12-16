@@ -2,6 +2,6 @@
 	{
 		"queryName": "Neptune Database Cluster Disabled",
 		"severity": "MEDIUM",
-		"line": 24
+		"line": 28
 	}
 ]
