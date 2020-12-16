@@ -2,11 +2,11 @@
 	{
 		"queryName": "DMS Endpoint Password Rule",
 		"severity": "MEDIUM",
-		"line": 7
+		"line":22
 	},
 	{
 		"queryName": "DMS Endpoint Password Rule",
 		"severity": "MEDIUM",
-		"line":62
+		"line":38
 	}
 ]
