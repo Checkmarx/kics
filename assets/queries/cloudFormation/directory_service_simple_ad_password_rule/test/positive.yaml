@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+    Default: ''
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username!'
+Resources:
+  NewAmpApp-1:
+      Type: AWS::DirectoryService::SimpleAD
+      Properties: 
+          CreateAlias: true
+          Description: String
+          EnableSso: true
+          Name: String
+          Password: !Ref ParentMasterPassword
+          ShortName: String
+          Size: String
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Resources:
+  NewAmpApp:
+      Type: AWS::DirectoryService::SimpleAD
+      Properties: 
+          CreateAlias: true
+          Description: String
+          EnableSso: true
+          Name: String
+          Password: 'asDjskjs73!!'
+          ShortName: String
+          Size: String
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+    Default: 'asDjskjs73!'
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username!'
+Resources:
+  NewAmpApp-1:
+      Type: AWS::DirectoryService::SimpleAD
+      Properties: 
+          CreateAlias: true
+          Description: String
+          EnableSso: true
+          Name: String
+          Password: !Ref ParentMasterPassword
+          ShortName: String
+          Size: String
+
