@@ -6,7 +6,7 @@ CxPolicy [ result ] {
 	some c
   commands[c].Cmd == "run"
   some j
-  startswith(commands[c].Value[j], "apt ")
+  contains(commands[c].Value[j], "apt ")
 
 	result := {
                 "documentId": 		document.id,
