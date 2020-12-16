@@ -3,29 +3,29 @@ Description: Creating DBCluster
 Resources:
   NewAmpApp:
     Type: AWS::DMS::Endpoint
-    Properties: 
+    Properties:
       CertificateArn: String
       DatabaseName: String
       EndpointIdentifier: String
       EndpointType: String
       EngineName: String
       ExtraConnectionAttributes: String
-      KafkaSettings: 
+      KafkaSettings:
         KafkaSettings
-      KinesisSettings: 
+      KinesisSettings:
         KinesisSettings
       KmsKeyId: String
-      MongoDbSettings: 
+      MongoDbSettings:
         MongoDbSettings
-      NeptuneSettings: 
+      NeptuneSettings:
         NeptuneSettings
       Password: 'asDjskjs73!!'
       Port: Integer
-      S3Settings: 
+      S3Settings:
         S3Settings
       ServerName: String
       SslMode: String
-      Tags: 
+      Tags:
         - Tag
       Username: String
 ---
@@ -43,29 +43,28 @@ Parameters:
 Resources:
   NewAmpApp-1:
     Type: AWS::DMS::Endpoint
-    Properties: 
+    Properties:
       CertificateArn: String
       DatabaseName: String
       EndpointIdentifier: String
       EndpointType: String
       EngineName: String
       ExtraConnectionAttributes: String
-      KafkaSettings: 
+      KafkaSettings:
         KafkaSettings
-      KinesisSettings: 
+      KinesisSettings:
         KinesisSettings
       KmsKeyId: String
-      MongoDbSettings: 
+      MongoDbSettings:
         MongoDbSettings
-      NeptuneSettings: 
+      NeptuneSettings:
         NeptuneSettings
       Password: !Ref ParentMasterPassword
       Port: Integer
-      S3Settings: 
+      S3Settings:
         S3Settings
       ServerName: String
       SslMode: String
-      Tags: 
+      Tags:
         - Tag
       Username: String
-
