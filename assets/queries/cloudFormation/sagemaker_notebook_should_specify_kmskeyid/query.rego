@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i]
+  resource := input.document[i].Resources[name]
   resource.Type == "AWS::SageMaker::NotebookInstance"
   properties := resource.Properties
   object.get(properties, "KmsKeyId", "undefined") == "undefined"
@@ -9,9 +9,9 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    "Properties.KmsKeyId",
+                "searchKey": 	    sprintf("Resources.%s.Properties",[name]),
                 "issueType":		"MissingAttribute",  
-                "keyExpectedValue": "Properties.KmsKeyId' is defined",
-                "keyActualValue": 	"Properties.KmsKeyId' is undefined"
+                "keyExpectedValue": sprintf("Resources.%s.Properties.KmsKeyId' is defined",[name]),
+                "keyActualValue": 	sprintf("Resources.%s.Properties.KmsKeyId' is undefined",[name]),
               }
 }
