@@ -12,7 +12,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
       Type: AWS::DirectoryService::SimpleAD
-      Properties: 
+      Properties:
           CreateAlias: true
           Description: String
           EnableSso: true
@@ -26,7 +26,7 @@ Description: Creating DBCluster
 Resources:
   NewAmpApp:
       Type: AWS::DirectoryService::SimpleAD
-      Properties: 
+      Properties:
           CreateAlias: true
           Description: String
           EnableSso: true
@@ -49,7 +49,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
       Type: AWS::DirectoryService::SimpleAD
-      Properties: 
+      Properties:
           CreateAlias: true
           Description: String
           EnableSso: true
