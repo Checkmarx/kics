@@ -58,7 +58,7 @@ type QueryMetadata struct {
 type Vulnerability struct {
 	ID               int       `json:"id"`
 	ScanID           string    `db:"scan_id" json:"-"`
-	SimilarityID     int       `db:"similarity_id" json:"similarityID"`
+	SimilarityID     string    `db:"similarity_id" json:"similarityID"`
 	FileID           string    `db:"file_id" json:"-"`
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
@@ -124,8 +124,6 @@ func (m FileMetadatas) Combine() Documents {
 
 		fm.Document["id"] = fm.ID
 		fm.Document["file"] = fm.FileName
-		// TODO
-		// fm.Document["similarityID"] =
 
 		documents.Documents = append(documents.Documents, fm.Document)
 	}

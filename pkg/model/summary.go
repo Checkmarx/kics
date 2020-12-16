@@ -13,6 +13,7 @@ type SeverityCounter struct {
 
 type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
+	SimilarityID     string    `json:"similarity_id"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
@@ -56,6 +57,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability) Summary {
 		qItem := q[item.QueryName]
 		qItem.Files = append(qItem.Files, VulnerableFile{
 			FileName:         item.FileName,
+			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			IssueType:        item.IssueType,
 			SearchKey:        item.SearchKey,
