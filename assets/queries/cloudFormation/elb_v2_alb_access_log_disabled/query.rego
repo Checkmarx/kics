@@ -15,11 +15,11 @@ CxPolicy [ result ] {
 }
 
 checkLbaAttr(prop){
-	object.get(prop, "LoadBalancerAttributes", "not found") == "not found"
+	object.get(prop, "LoadBalancerAttributes", "undefined") == "undefined"
 }
 
 checkLbaAttr(prop) {
-	not object.get(prop, "LoadBalancerAttributes", "not found") == "not found"
+	not object.get(prop, "LoadBalancerAttributes", "undefined") == "undefined"
     contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
 }
 
