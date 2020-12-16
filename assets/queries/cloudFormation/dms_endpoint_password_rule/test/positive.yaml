@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Resources:
+  NewAmpApp:
+    Type: AWS::DMS::Endpoint
+    Properties: 
+      CertificateArn: String
+      DatabaseName: String
+      EndpointIdentifier: String
+      EndpointType: String
+      EngineName: String
+      ExtraConnectionAttributes: String
+      KafkaSettings: 
+        KafkaSettings
+      KinesisSettings: 
+        KinesisSettings
+      KmsKeyId: String
+      MongoDbSettings: 
+        MongoDbSettings
+      NeptuneSettings: 
+        NeptuneSettings
+      Password: 'asDjskjs73!!'
+      Port: Integer
+      S3Settings: 
+        S3Settings
+      ServerName: String
+      SslMode: String
+      Tags: 
+        - Tag
+      Username: String
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+    Default: 'asDjskjs73!'
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username!'
+Resources:
+  NewAmpApp-1:
+    Type: AWS::DMS::Endpoint
+    Properties: 
+      CertificateArn: String
+      DatabaseName: String
+      EndpointIdentifier: String
+      EndpointType: String
+      EngineName: String
+      ExtraConnectionAttributes: String
+      KafkaSettings: 
+        KafkaSettings
+      KinesisSettings: 
+        KinesisSettings
+      KmsKeyId: String
+      MongoDbSettings: 
+        MongoDbSettings
+      NeptuneSettings: 
+        NeptuneSettings
+      Password: !Ref ParentMasterPassword
+      Port: Integer
+      S3Settings: 
+        S3Settings
+      ServerName: String
+      SslMode: String
+      Tags: 
+        - Tag
+      Username: String
+
