@@ -1,0 +1,8 @@
+{
+  "id": "amazonMQ_broker_without_encryption_options",
+  "queryName": "AmazonMQ Broker Without EncryptionOptions",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-encryptionoptions",
+  "descriptionUrl": "AmazonMQ Broker should be Encryption Options defined"
+}
