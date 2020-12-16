@@ -3,6 +3,9 @@ package Cx
 CxPolicy [ result ] {
    document := input.document
    resources := document[i].Resources[name]
+   
+   resources.Type == "AWS::EC2::SecurityGroup"
+   
    properties := resources.Properties
    properties.SecurityGroupEgress[j].IpProtocol == "ALL"
    properties.SecurityGroupEgress[j].CidrIp == "0.0.0.0/0"
