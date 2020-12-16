@@ -124,7 +124,7 @@ func (m FileMetadatas) Combine() Documents {
 
 		fm.Document["id"] = fm.ID
 		fm.Document["file"] = fm.FileName
-		//TODO
+		// TODO
 		// fm.Document["similarityID"] =
 
 		documents.Documents = append(documents.Documents, fm.Document)

@@ -1,6 +1,6 @@
 package engine
 
-func computeSimilarityID(filePath string, queryID string, searchKey string) int {
+func computeSimilarityID(filePath, queryID, searchKey string) int {
 
 	var stringNode string = filePath + queryID + searchKey
 
