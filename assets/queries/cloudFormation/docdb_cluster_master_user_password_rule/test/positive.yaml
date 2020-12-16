@@ -3,15 +3,15 @@ Description: Creating DBCluster
 Resources:
   NewAmpApp:
     Type:  AWS::DocDB::DBCluster
-    Properties: 
-      AvailabilityZones: 
+    Properties:
+      AvailabilityZones:
         - String
       BackupRetentionPeriod: Integer
       DBClusterIdentifier: String
       DBClusterParameterGroupName: String
       DBSubnetGroupName: String
       DeletionProtection: true
-      EnableCloudwatchLogsExports: 
+      EnableCloudwatchLogsExports:
         - String
       EngineVersion: String
       KmsKeyId: String
@@ -22,7 +22,7 @@ Resources:
       PreferredMaintenanceWindow: String
       SnapshotIdentifier: String
       StorageEncrypted: true
-      VpcSecurityGroupIds: 
+      VpcSecurityGroupIds:
         - String
 ---
 AWSTemplateFormatVersion: 2010-09-09
@@ -39,15 +39,15 @@ Parameters:
 Resources:
   NewAmpApp-1:
     Type: AWS::DocDB::DBCluster
-    Properties: 
-      AvailabilityZones: 
+    Properties:
+      AvailabilityZones:
         - String
       BackupRetentionPeriod: Integer
       DBClusterIdentifier: String
       DBClusterParameterGroupName: String
       DBSubnetGroupName: String
       DeletionProtection: Boolean
-      EnableCloudwatchLogsExports: 
+      EnableCloudwatchLogsExports:
         - String
       EngineVersion: String
       KmsKeyId: String
@@ -58,7 +58,5 @@ Resources:
       PreferredMaintenanceWindow: String
       SnapshotIdentifier: String
       StorageEncrypted: Boolean
-      VpcSecurityGroupIds: 
+      VpcSecurityGroupIds:
         - String
-
-
