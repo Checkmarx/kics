@@ -1,6 +1,6 @@
 {
-  "id": "security_groups_not_vpc",
-  "queryName": "Security Groups Not VPC",
+  "id": "security_groups_do_not_have_vpc",
+  "queryName": "Security Groups Do Not Have VPC",
   "severity": "MEDIUM",
   "category": "Network Security",
   "descriptionText": "Security Groups must have VPC.",
