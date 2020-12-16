@@ -1,6 +1,6 @@
 {
-  "id": "default_security_groups_deny_traffic",
-  "queryName": "Default Security Groups Deny Traffic",
+  "id": "default_security_groups_allow_traffic",
+  "queryName": "Default Security Groups Allow Traffic",
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Security Groups set as default must be denied traffic.",

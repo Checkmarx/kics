@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "Default Security Groups Deny Traffic",
-		"severity": "HIGH",
-		"line": 16
-	}
-]
