@@ -20,11 +20,14 @@ type Resource struct {
 
 //Command is the struct for each dockerfile command
 type Command struct {
-	Cmd      string
-	SubCmd   string
-	Flags    []string
-	Value    []string
-	Original string
+	Cmd       string
+	SubCmd    string
+	Flags     []string
+	Value     []string
+	Original  string
+	StartLine int
+	EndLine   int
+	JSON      bool
 }
 
 // Parse - parses dockerfile to Json
@@ -37,8 +40,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		return nil, errors.Wrap(err, "Failed to parse Dockerfile")
 	}
 
-	// var commands []Command
-	fromValue := ""
+	fromValue := "args"
 	from := make(map[string][]Command)
 
 	for _, child := range parsed.AST.Children {
@@ -48,9 +50,11 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		}
 
 		cmd := Command{
-			Cmd:      child.Value,
-			Original: child.Original,
-			Flags:    child.Flags,
+			Cmd:       child.Value,
+			Original:  child.Original,
+			Flags:     child.Flags,
+			StartLine: child.StartLine,
+			EndLine:   child.EndLine,
 		}
 
 		if child.Next != nil && len(child.Next.Children) > 0 {
@@ -58,11 +62,11 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 			child = child.Next.Children[0]
 		}
 
+		cmd.JSON = child.Attributes["json"]
 		for n := child.Next; n != nil; n = n.Next {
 			cmd.Value = append(cmd.Value, n.Value)
 		}
 
-		// commands = append(commands, cmd)
 		from[fromValue] = append(from[fromValue], cmd)
 	}
 
