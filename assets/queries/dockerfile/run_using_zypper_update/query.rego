@@ -19,17 +19,17 @@ CxPolicy [ result ] {
 }
 
 isZypperUnsafeCommand(command){
-  startswith(command, "zypper update")
+  contains(command, "zypper update")
 }
 
 isZypperUnsafeCommand(command){
-  startswith(command, "zypper dist-upgrade")
+  contains(command, "zypper dist-upgrade")
 }
 
 isZypperUnsafeCommand(command){
-  startswith(command, "zypper dup")
+  contains(command, "zypper dup")
 }
 
 isZypperUnsafeCommand(command){
-  startswith(command, "zypper up")
+  contains(command, "zypper up")
 }
