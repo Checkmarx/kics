@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "EC2 network ACL overlapping ports",
+		"severity": "HIGH",
+		"line": 18
+	},
+	{
+		"queryName": "EC2 network ACL overlapping ports",
+		"severity": "HIGH",
+		"line": 30
+	},
+	{
+		"queryName": "EC2 network ACL overlapping ports",
+		"severity": "HIGH",
+		"line": 42
+	},
+	{
+		"queryName": "EC2 network ACL overlapping ports",
+		"severity": "HIGH",
+		"line": 54
+	},
+	{
+		"queryName": "EC2 network ACL overlapping ports",
+		"severity": "HIGH",
+		"line": 78
+	},
+	{
+		"queryName": "EC2 network ACL overlapping ports",
+		"severity": "HIGH",
+		"line": 90
+	}
+]
