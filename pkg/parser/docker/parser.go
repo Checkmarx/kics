@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/asottile/dockerfile"
+	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/pkg/errors"
 )
 
@@ -15,21 +15,60 @@ type Parser struct {
 
 // Resource Separates the list of commands by file
 type Resource struct {
-	CommandList []dockerfile.Command `json:"command"`
+	CommandList map[string][]Command `json:"command"`
+}
+
+//Command is the struct for each dockerfile command
+type Command struct {
+	Cmd      string
+	SubCmd   string
+	Flags    []string
+	Value    []string
+	Original string
 }
 
 // Parse - parses dockerfile to Json
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
-	com, err := dockerfile.ParseReader(bytes.NewReader(fileContent))
+	reader := bytes.NewReader(fileContent)
+
+	parsed, err := parser.Parse(reader)
 	if err != nil {
 		return nil, errors.Wrap(err, "Failed to parse Dockerfile")
 	}
 
-	doc := &model.Document{}
+	// var commands []Command
+	fromValue := ""
+	from := make(map[string][]Command)
 
+	for _, child := range parsed.AST.Children {
+
+		if child.Value == "from" {
+			fromValue = child.Next.Value
+		}
+
+		cmd := Command{
+			Cmd:      child.Value,
+			Original: child.Original,
+			Flags:    child.Flags,
+		}
+
+		if child.Next != nil && len(child.Next.Children) > 0 {
+			cmd.SubCmd = child.Next.Children[0].Value
+			child = child.Next.Children[0]
+		}
+
+		for n := child.Next; n != nil; n = n.Next {
+			cmd.Value = append(cmd.Value, n.Value)
+		}
+
+		// commands = append(commands, cmd)
+		from[fromValue] = append(from[fromValue], cmd)
+	}
+
+	doc := &model.Document{}
 	var resource Resource
-	resource.CommandList = com
+	resource.CommandList = from
 
 	j, err := json.Marshal(resource)
 	if err != nil {
