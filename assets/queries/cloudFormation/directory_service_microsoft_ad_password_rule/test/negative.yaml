@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+    Default: ''
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username!'
+Resources:
+  NewAmpApp-1:
+      Type: AWS::DirectoryService::MicrosoftAD
+      Properties: 
+          CreateAlias: true
+          Edition: String
+          EnableSso: true
+          Name: String
+          Password: !Ref ParentMasterPassword
+          ShortName: String
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating DBCluster
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username'
+Resources:
+  NewAmpApp-1:
+     Type: AWS::DirectoryService::MicrosoftAD
+        Properties: 
+          CreateAlias: true
+          Edition: String
+          EnableSso: true
+          Name: String
+          Password: !Ref ParentMasterPassword
+          ShortName: String
+---      
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating Amplify App
+Resources:
+    NewAmpApp-2:
+        Type: AWS::DirectoryService::MicrosoftAD
+        Properties: 
+            CreateAlias: true
+            Edition: String
+            EnableSso: true
+            Name: String
+            Password:  !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
+            ShortName: String
+    MyAmpAppSecretManagerRotater:
+        Type: AWS::SecretsManager::Secret
+        Properties:
+          Description: 'This is my amp app instance secret'
+          GenerateSecretString:
+            SecretStringTemplate: '{"username": "admin"}'
+            GenerateStringKey: 'password'
+            PasswordLength: 16
+            ExcludeCharacters: '"@/\'
