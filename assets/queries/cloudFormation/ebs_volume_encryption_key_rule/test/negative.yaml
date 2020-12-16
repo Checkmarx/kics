@@ -28,4 +28,4 @@ Resources:
           - Key: MyTag
             Value: TagValue
         KmsKeyId: !Ref MyKey
-      DeletionPolicy: Snapshot   
+      DeletionPolicy: Snapshot
