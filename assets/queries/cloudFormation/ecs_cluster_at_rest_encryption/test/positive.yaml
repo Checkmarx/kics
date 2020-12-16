@@ -60,7 +60,7 @@ Resources:
             SourcePath: /var/lib/docker/vfs/dir/
           Name: my-vol
           EFSVolumeConfiguration:
-               TransitEncryption: DISABLED 
+               TransitEncryption: DISABLED
                TransitEncryptionPort: 8080
   service:
     Type: AWS::ECS::Service
