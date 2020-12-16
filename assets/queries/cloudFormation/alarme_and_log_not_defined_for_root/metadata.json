@@ -1,0 +1,8 @@
+{
+  "id": "Alarme_And_Log_Not_Defined_For_root",
+  "queryName": "Alarme And Log Not Defined For Root",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and an alarm should exist for usage of 'root' account",
+  "descriptionUrl": "https://aws.amazon.com/blogs/security/how-to-receive-notifications-when-your-aws-accounts-root-access-keys-are-used/"
+}
