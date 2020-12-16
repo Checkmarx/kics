@@ -12,7 +12,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
       Type: AWS::DirectoryService::MicrosoftAD
-      Properties: 
+      Properties:
           CreateAlias: true
           Edition: String
           EnableSso: true
@@ -33,20 +33,20 @@ Parameters:
 Resources:
   NewAmpApp-1:
      Type: AWS::DirectoryService::MicrosoftAD
-        Properties: 
+        Properties:
           CreateAlias: true
           Edition: String
           EnableSso: true
           Name: String
           Password: !Ref ParentMasterPassword
           ShortName: String
----      
+---
 AWSTemplateFormatVersion: 2010-09-09
 Description: Creating Amplify App
 Resources:
     NewAmpApp-2:
         Type: AWS::DirectoryService::MicrosoftAD
-        Properties: 
+        Properties:
             CreateAlias: true
             Edition: String
             EnableSso: true

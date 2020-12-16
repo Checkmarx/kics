@@ -12,7 +12,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
       Type: AWS::DirectoryService::SimpleAD
-      Properties: 
+      Properties:
           CreateAlias: true
           Edition: String
           EnableSso: true
@@ -25,13 +25,13 @@ Description: Creating DBCluster
 Resources:
   NewAmpApp:
       Type: AWS::DirectoryService::MicrosoftAD
-      Properties: 
+      Properties:
           CreateAlias: true
           Edition: String
           EnableSso: true
           Name: String
           Password: 'asDjskjs73!!'
-          ShortName: String     
+          ShortName: String
 ---
 AWSTemplateFormatVersion: 2010-09-09
 Description: Creating DBCluster
@@ -47,7 +47,7 @@ Parameters:
 Resources:
   NewAmpApp-1:
       Type: AWS::DirectoryService::MicrosoftAD
-      Properties: 
+      Properties:
           CreateAlias: true
           EnableSso: true
           Edition: String
