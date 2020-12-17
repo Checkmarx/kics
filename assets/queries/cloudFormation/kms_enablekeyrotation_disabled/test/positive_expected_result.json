@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Kms EnableKeyRotation Disabled",
+		"severity": "MEDIUM",
+		"line": 8
+	}
+]
