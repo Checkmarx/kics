@@ -2,6 +2,7 @@ package Cx
 
 CxPolicy [result] {
   resource := input.document[i].Resources[name]
+  resource.Type == "AWS::CloudFront::Distribution"
   properties := input.document[i].Resources[name].Properties[j]
   distributionConfig := properties.Enabled
   expectedvalue := "false"
