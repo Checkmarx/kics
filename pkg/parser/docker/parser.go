@@ -18,7 +18,7 @@ type Resource struct {
 	CommandList map[string][]Command `json:"command"`
 }
 
-//Command is the struct for each dockerfile command
+// Command is the struct for each dockerfile command
 type Command struct {
 	Cmd       string
 	SubCmd    string
@@ -44,7 +44,6 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	from := make(map[string][]Command)
 
 	for _, child := range parsed.AST.Children {
-
 		if child.Value == "from" {
 			fromValue = child.Next.Value
 		}
