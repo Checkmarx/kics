@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "APT-GET Not Avoiding Additional Packages",
+		"severity": "INFO",
+		"line": 2
+	},
+	{
+		"queryName": "APT-GET Not Avoiding Additional Packages",
+		"severity": "INFO",
+		"line": 3
+	}
+]
