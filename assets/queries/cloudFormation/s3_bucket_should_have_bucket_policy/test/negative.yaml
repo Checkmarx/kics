@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: DOC-EXAMPLE-BUCKET
+  SampleBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties: 
+      Bucket: DOC-EXAMPLE-BUCKET
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource:
+              'Fn::Join':
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: DOC-EXAMPLE-BUCKET
+                  - /*
+            Principal: '*'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'
