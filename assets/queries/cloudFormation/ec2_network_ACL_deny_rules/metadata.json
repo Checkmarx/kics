@@ -1,0 +1,8 @@
+{
+  "id": "ec2_network_ACL_denied_traffic",
+  "queryName": "EC2 network ACL denied traffic",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "The deny rules defined for the selected AWS Network ACL are declared ineffective",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
+}
