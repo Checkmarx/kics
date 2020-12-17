@@ -2,9 +2,10 @@ package Cx
 
 CxPolicy [result] {
   resource := input.document[i].Resources[name]
+  resource.Type == "AWS::CloudFront::Distribution"
   certificateSource := input.document[i].Resources[name].Properties.DistributionConfig.ViewerCertificate.certificateSource
   expectedvalue := "cloudfront"
-  certificateSource == expectedvalue
+  contains(certificateSource,expectedvalue)
   result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.certificateSource", [name]),
