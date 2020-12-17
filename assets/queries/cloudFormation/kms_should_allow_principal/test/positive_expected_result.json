@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Kms Should Allow * as Principal",
+		"severity": "MEDIUM",
+		"line": 14
+	}
+]

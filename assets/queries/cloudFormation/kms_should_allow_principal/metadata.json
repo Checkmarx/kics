@@ -1,0 +1,8 @@
+{
+  "id": "kms_should_allow_principal",
+  "queryName": "Kms Should Allow * as Principal",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Kms Should not allow Principal parameter to be set as *",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html"
+}
