@@ -8,7 +8,6 @@ Resources:
           EnableBranchAutoDeletion: true
           IAMServiceRole: String
           Name: NewAmpApp
-          OauthToken: String
           Repository: String
           OauthToken: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
      MyAmpAppSecretManagerRotater:
@@ -38,7 +37,6 @@ Resources:
       EnableBranchAutoDeletion: true
       IAMServiceRole: String
       Name: NewAmpApp
-      OauthToken: String
       Repository: String
       OauthToken: !Ref ParentPassword
 
@@ -62,6 +60,5 @@ Resources:
       EnableBranchAutoDeletion: true
       IAMServiceRole: String
       Name: NewAmpApp
-      OauthToken: String
       Repository: String
       OauthToken: !Ref ParentPassword
