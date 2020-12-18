@@ -1,0 +1,8 @@
+{
+  "id": "iot_policy_allows_resource",
+  "queryName": "IoT Policy Allows Resource as *",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "IoT Policy should not allow Resource to be set as *",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html"
+}
