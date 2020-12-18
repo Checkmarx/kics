@@ -1,0 +1,8 @@
+{
+  "id": "Apt Get Install Pin Version Not Defined",
+  "queryName": "Apt Get Install Pin Version Not Defined",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "When installing a package, its pin version should be defined",
+  "descriptionUrl": "https://github.com/hadolint/hadolint/wiki/DL3008"
+}
