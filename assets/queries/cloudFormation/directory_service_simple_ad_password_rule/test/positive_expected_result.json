@@ -2,11 +2,17 @@
 	{
 		"queryName": "Directory Service Simple AD Password Rule",
 		"severity": "MEDIUM",
-		"line": 7
+		"line": 5
 	},
 	{
 		"queryName": "Directory Service Simple AD Password Rule",
 		"severity": "MEDIUM",
-		"line":34
+		"line":30
+	},
+	{
+		"queryName": "Directory Service Simple AD Password Rule",
+		"severity": "MEDIUM",
+		"line":18
 	}
+	
 ]

@@ -1,5 +1,3 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating DBCluster
 Parameters:
   ParentMasterPassword:
     Description: 'Password'
@@ -21,8 +19,6 @@ Resources:
           ShortName: String
           Size: String
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating DBCluster
 Parameters:
   ParentMasterPassword:
     Description: 'Password'
@@ -43,8 +39,6 @@ Resources:
           ShortName: String
           Size: String
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating Amplify App
 Resources:
     NewAmpApp-2:
         Type: AWS::DirectoryService::SimpleAD
