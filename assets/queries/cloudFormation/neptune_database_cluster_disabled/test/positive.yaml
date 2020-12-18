@@ -3,7 +3,7 @@ Description: A sample template
 Resources:
   NeptuneDBCluster:
     Type: AWS::Neptune::DBCluster
-    Properties: 
+    Properties:
       AssociatedRoles:
         - DBClusterRole
       AvailabilityZones:
