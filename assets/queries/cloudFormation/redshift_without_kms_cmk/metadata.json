@@ -1,0 +1,8 @@
+{
+  "id": "redshift_without_kms_cmk",
+  "queryName": "AWS Redshift Cluster Without KMS CMK",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "AWS Redshift Cluster should have KMS CMK defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html"
+}
