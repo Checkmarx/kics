@@ -12,7 +12,7 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		document.id,
-                "searchKey": 	    sprintf("RUN={{%s}}", [commands[img][c].Value[j]]),
+                "searchKey": 	    sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "RUN instructions should not use 'zypper update'",
                 "keyActualValue": 	sprintf("RUN instruction is invoking the '%s'", [commands[img][c].Value[j]])
