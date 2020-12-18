@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ElastiCache with disabled at Rest Encryption",
+		"severity": "HIGH",
+		"line": 4
+	},
+	{
+		"queryName": "ElastiCache with disabled at Rest Encryption",
+		"severity": "HIGH",
+		"line": 33
+	}
+]
