@@ -2,12 +2,18 @@ package json
 
 import (
 	"bytes"
+	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
 type Parser struct {
+}
+
+type Teste struct {
+	Arr []map[string]interface{} `json:"playbooks"`
 }
 
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
@@ -22,6 +28,15 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		doc = &model.Document{}
 	}
 
+	if documents == nil {
+		var err error
+		documents, err = playbookParser(fileContent)
+		if err != nil {
+			return nil, errors.Wrap(err, "Failed to Parse Dockerfile")
+		}
+
+	}
+
 	return documents, nil
 }
 
@@ -31,4 +46,33 @@ func (p *Parser) SupportedExtensions() []string {
 
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
+}
+
+func playbookParser(fileContent []byte) ([]model.Document, error) {
+	doc := &model.Document{}
+	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
+	arr := make([]map[string]interface{}, 0)
+	var tt Teste
+	var documents []model.Document
+	for dec.Decode(&arr) == nil {
+		if doc != nil {
+			for _, key := range arr {
+				tt.Arr = append(tt.Arr, key)
+			}
+
+			j, err := json.Marshal(tt)
+			if err != nil {
+				return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
+			}
+
+			if err := json.Unmarshal(j, &doc); err != nil {
+				return nil, errors.Wrap(err, "Failed to Unmarshal Dockerfile")
+			}
+			documents = append(documents, *doc)
+		}
+		doc = &model.Document{}
+		arr = make([]map[string]interface{}, 0)
+	}
+
+	return documents, nil
 }

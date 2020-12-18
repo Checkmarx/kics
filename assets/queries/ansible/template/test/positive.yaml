@@ -1,0 +1,64 @@
+# demo_setup.yml
+- hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: Provision a set of instances
+      ec2:
+         key_name: my_key
+         group: test
+         instance_type: t2.micro
+         image: "{{ ami_id }}"
+         wait: true
+         exact_count: 5
+         count_tag:
+            Name: Demo
+         instance_tags:
+            Name: Demo
+      register: ec2
+    - name: Add all instance public IPs to host group
+      add_host: hostname={{ item.public_ip }} groups=ec2hosts
+      loop: "{{ ec2.instances }}"
+
+    - name: Provision a set of instances
+      ec2:
+        key_name: my_key
+        group: test
+        instance_type: t2.micro
+        image: "{{ ami_id }}"
+        wait: true
+        exact_count: 5
+        count_tag:
+            Name: Demo
+        instance_tags:
+            Name: Demo
+      register: ec2
+    - name: Add all instance public IPs to host group
+      add_host: hostname={{ item.public_ip }} groups=ec2hosts
+      loop: "{{ ec2.instances }}"
+
+- hosts: localhost
+  tasks:
+    - amazon.aws.s3_bucket:
+        name: mys3bucket
+        state: present
+    # Create a simple s3 bucket on Ceph Rados Gateway
+    - amazon.aws.s3_bucket:
+        name: mys3bucket
+        s3_url: http://your-ceph-rados-gateway-server.xxx
+        ceph: true
+    # Remove an s3 bucket and any keys it contains
+    - amazon.aws.s3_bucket:
+        name: mys3bucket
+        state: absent
+        force: yes
+    # Create a bucket, add a policy from a file, enable requester pays, enable versioning and tag
+    - amazon.aws.s3_bucket:
+        name: mys3bucket
+        policy: "{{ lookup('file','policy.json') }}"
+        requester_pays: yes
+        versioning: yes
+        tags:
+          example: tag1
+          another: tag2
+    - name: including other tasks
+      include_tasks: ./negative.yaml
