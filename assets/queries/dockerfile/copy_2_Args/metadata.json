@@ -1,0 +1,8 @@
+{
+  "id": "Copy With More Than 2 Arguments Not Ending With Slash",
+  "severity": "HIGH",
+  "queryName": "Copy With More Than 2 Arguments Not Ending With Slash",
+  "category": "Filesystem",
+  "descriptionText": "When copy has more than two arguments, the last one should end with a slash",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#copy"
+}
