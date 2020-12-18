@@ -18,4 +18,4 @@ check_security_groups_ingress(group) {
 	group.SecurityGroupIngress[_].CidrIp == "0.0.0.0/0"
    group.SecurityGroupIngress[_].FromPort == 0
    group.SecurityGroupIngress[_].ToPort == 65535
-}
+} 

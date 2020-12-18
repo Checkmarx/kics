@@ -5,4 +5,4 @@
   "category": "Network Security",
   "descriptionText": "Security Groups does not allow 0.0.0.0/0 for all ports and protocols.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
-}
+} 
