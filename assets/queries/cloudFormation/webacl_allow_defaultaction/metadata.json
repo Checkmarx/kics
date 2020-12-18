@@ -1,0 +1,8 @@
+{
+  "id": "webacl_allow_defaultaction",
+  "queryName": "WebAcl ALLOW DefaultAction",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "WebAcl DefaultAction should not be ALLOW",
+  "descriptionUrl": "https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-default-action.html"
+}
