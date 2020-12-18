@@ -1,0 +1,8 @@
+{
+  "id": "kinesis_stream_without_sse",
+  "queryName": "AWS Kinesis Stream Without SSE",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "AWS Kinesis Stream should have SSE (Server Side Encryption) defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html"
+}
