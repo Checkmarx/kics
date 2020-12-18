@@ -1,5 +1,3 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating DMS EndPoint
 Parameters:
   ParentMasterPassword:
     Description: 'Password'
@@ -52,8 +50,6 @@ Resources:
         - Tag
       Username: String
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating DMS EndPoint
 Parameters:
   ParentMasterPassword:
     Description: 'Password'
@@ -104,8 +100,6 @@ Resources:
         - Tag
       Username: String
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating DMS EndPoint
 Resources:
     NewAmpApp-2:
     Type: AWS::DMS::Endpoint
