@@ -1,6 +1,6 @@
 Description: "Basic Hosting entities test.  We need models to create endpoint configs."
-Mappings: 
-  RegionMap: 
+Mappings:
+  RegionMap:
     "us-west-2":
       "NullTransformer": "123456789012.dkr.ecr.us-west-2.amazonaws.com/mymodel:latest"
     "us-east-2":
@@ -39,27 +39,27 @@ Resources:
         Image: !FindInMap [RegionMap, !Ref "AWS::Region", "NullTransformer"]
       ExecutionRoleArn: !GetAtt ExecutionRole.Arn
 
-  ExecutionRole: 
+  ExecutionRole:
     Type: "AWS::IAM::Role"
-    Properties: 
-      AssumeRolePolicyDocument: 
+    Properties:
+      AssumeRolePolicyDocument:
         Version: "2012-10-17"
-        Statement: 
-          - 
+        Statement:
+          -
             Effect: "Allow"
-            Principal: 
-              Service: 
+            Principal:
+              Service:
                 - "sagemaker.amazonaws.com"
-            Action: 
+            Action:
               - "sts:AssumeRole"
       Path: "/"
-      Policies: 
-        - 
+      Policies:
+        -
           PolicyName: "root"
-          PolicyDocument: 
+          PolicyDocument:
             Version: "2012-10-17"
-            Statement: 
-              - 
+            Statement:
+              -
                 Effect: "Allow"
                 Action: "*"
                 Resource: "*"
