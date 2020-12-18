@@ -1,0 +1,8 @@
+{
+    "id": "s3_bucket_without_server_side_encryption",
+    "queryName": "S3 Bucket Without Server Side Encryption",
+    "severity": "HIGH",
+    "category": "Encryption and Key Management",
+    "descriptionText": "S3 Buckets should have server-side encryption at rest enabled to protect sensitive data",
+    "descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/user-guide/default-bucket-encryption.html"
+}

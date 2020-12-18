@@ -1,0 +1,15 @@
+[
+	{
+		"queryName": "Authentication Without MFA",
+		"severity": "HIGH",
+		"line": 5
+	},
+
+
+	{
+		"queryName": "Authentication Without MFA",
+		"severity": "HIGH",
+		"line": 31
+	}
+
+]

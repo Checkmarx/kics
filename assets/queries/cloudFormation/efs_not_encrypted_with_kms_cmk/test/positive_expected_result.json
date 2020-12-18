@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EFS not encrypted with KMS CMK",
+		"severity": "HIGH",
+		"line": 82
+	}
+]

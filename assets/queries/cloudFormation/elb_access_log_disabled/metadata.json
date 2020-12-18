@@ -1,0 +1,8 @@
+{
+  "id": "ELB_access_log_disabled",
+  "queryName": "ELB Access Log Disabled",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "ELB should have have access log enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html"
+}

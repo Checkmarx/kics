@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IAM Password Without Symbol",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]
