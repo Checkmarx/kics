@@ -1,8 +1,0 @@
-{
-  "id": "tcp_port_2484_is_exposed_to_entire_public_network",
-  "queryName": "TCP Port 2484 Is Exposed To Entire Public Network",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "ORACLE DB SSL TCP:2484 is exposed to the entire public network",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule"
-}
