@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Amplify App OAuth Token Rule",
+		"severity": "MEDIUM",
+		"line": 19
+	},
+	{
+		"queryName": "Amplify App OAuth Token Rule",
+		"severity": "MEDIUM",
+		"line": 38
+	}
+]
