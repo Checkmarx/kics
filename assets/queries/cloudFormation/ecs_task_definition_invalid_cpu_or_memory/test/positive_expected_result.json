@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ECS Task Definition Invalid CPU or Memory",
+		"severity": "LOW",
+		"line": 27
+	},
+	{
+		"queryName": "ECS Task Definition Invalid CPU or Memory",
+		"severity": "LOW",
+		"line": 53
+	}
+]
