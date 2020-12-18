@@ -10,6 +10,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/source"
+	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -61,6 +62,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 			for _, document := range documents {
 				_, err = json.Marshal(document)
 				if err != nil {
+					sentry.CaptureException(err)
 					log.Err(err).Msgf("failed to marshal content in file: %s", filename)
 					continue
 				}
