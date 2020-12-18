@@ -1,0 +1,8 @@
+{
+  "id": "tcp_or_udp_protocol_network_acl_entry_allows_all_ports",
+  "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+  "severity": "MEDIUM",
+  "category": "null",
+  "descriptionText": "TCP/UDP protocol AWS Network ACL Entry should not allow all ports",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-portrange"
+}
