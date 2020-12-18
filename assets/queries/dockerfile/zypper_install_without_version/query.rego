@@ -3,19 +3,20 @@ package Cx
 CxPolicy [ result ] {
 	document := input.document[i]
   commands = document.command
+  some img
 	some c
-  commands[c].Cmd == "run"
+  commands[img][c].Cmd == "run"
   some j
 
-  isZypperInstall(commands[c].Value[j])
-  not isZypperInstallWithVersion(commands[c].Value[j])
+  isZypperInstall(commands[img][c].Value[j])
+  not isZypperInstallWithVersion(commands[img][c].Value[j])
 
 	result := {
                 "documentId": 		document.id,
-                "searchKey": 	    sprintf("RUN=%s", [commands[c].Value[j]]),
+                "searchKey": 	    sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "The package version should always be specified when using zypper install",
-                "keyActualValue": 	sprintf("No version is specified in '%s'", [commands[c].Value[j]])
+                "keyActualValue": 	sprintf("No version is specified in '%s'", [commands[img][c].Value[j]])
               }
 }
 
