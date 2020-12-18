@@ -1,0 +1,37 @@
+[
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 7
+	},
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 9
+	},
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 20
+	},
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 19
+	},
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 31
+	},
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 18
+	},
+	{
+		"queryName": "RBAC Wildcard In Rule",
+		"severity": "LOW",
+		"line": 29
+	}
+]
