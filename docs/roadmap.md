@@ -1,16 +1,26 @@
-## Roadmap
+# KICS Roadmap
 
-Milestone 1 - November 2020 <br>
-Terraform <br>
-250 queries <br>
-Delivery: CLI | Docker <br>
+| Status | Milestone | ETA |
+| :---: | :--- | :---: |
+| :evergreen_tree: | **Milestone 1** | November 2020 |
+|  | Terraform support |  |
+|  | 50 queries |  |
+|  | Delivery: CLI & Docker |  |
+| :herb: | **Milestone 2** | December 2020 |
+| :herb: | Adding support for K8S |  |
+| :herb: | Adding support for Docker |  |
+| :herb: | Desiging an official logo for KICS |  |
+| :seedling:| **Milestone 3** | January 2021 |
+|  | Adding support for Ansible |  |
+| | Adding support for AWS Cloud Formation |  |
 
-Milestone 2 - December 2020  <br>
-Terrafrom  <br>
-K8S  <br>
-Docker  <br>
-Official Logo (+ t-shirts)  <br>
+Status keys <br>
+:seedling: - not started <br>
+:herb: - in-progress <br>
+:evergreen_tree: - completed <br>
 
-Milestone 3 <br>
-Ansible <br>
-AWS Cloud Formation <br>
+## Long term roadmap
+* Queries - add metadata of remediation advice 
+* Homebrew support for easier Mac deployment
+* Azure Resource Manager
+* Google Cloud Deployment Manager

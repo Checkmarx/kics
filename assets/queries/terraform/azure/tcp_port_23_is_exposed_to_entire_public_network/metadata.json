@@ -1,8 +1,0 @@
-{
-  "id": "tcp_port_23_is_exposed_to_entire_public_network",
-  "queryName": "TCP Port 23 is Exposed To Entire Public Network",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "Telnet TCP:23 is exposed to the entire public network",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule"
-}

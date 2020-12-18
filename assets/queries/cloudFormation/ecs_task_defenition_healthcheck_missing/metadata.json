@@ -1,0 +1,8 @@
+{
+  "id": "ECS_task_definition_healthcheck_missing",
+  "queryName": "ECS Task Definition HealthCheck Missing",
+  "severity": "LOW",
+  "category": "Operational",
+  "descriptionText": "Amazon ECS must have the HealthCheck property defined to give more control over monitoring the health of tasks",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html"
+}
