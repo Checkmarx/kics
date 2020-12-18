@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IoT Policy Allows Action as *",
+		"severity": "MEDIUM",
+		"line": 11
+	}
+]
