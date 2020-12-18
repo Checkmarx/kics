@@ -1,0 +1,8 @@
+{
+  "id": "EFS_without_tags",
+  "queryName": "EFS without tags",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Amazon Elastic Filesystem should have filesystem tags associated",
+  "descriptionUrl": "https://docs.aws.amazon.com/efs/latest/ug/manage-fs-tags.html"
+}
