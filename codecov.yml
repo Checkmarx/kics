@@ -1,0 +1,13 @@
+# https://docs.codecov.io/docs/pull-request-comments
+# To disable the comment, simply set the comment to false in your codecov.yml
+comment: false
+
+coverage:
+  status:
+    project:
+      default:
+        # number you can specify a target of an exact coverage number such as 75% or 100%
+        target: 25%
+        # Allow the coverage to drop by X%, and posting a success status.
+        threshold: 5%
+    patch: off

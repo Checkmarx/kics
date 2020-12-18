@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Empty Roles For ECS Cluster Task Definitions",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+	{
+		"queryName": "Empty Roles For ECS Cluster Task Definitions",
+		"severity": "MEDIUM",
+		"line": 25
+	},
+	{
+		"queryName": "Empty Roles For ECS Cluster Task Definitions",
+		"severity": "MEDIUM",
+		"line": 42
+	}
+]
