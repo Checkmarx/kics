@@ -1,15 +1,15 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: A sample template
 Resources:
-  SecretsManagerSecret:  
+  SecretsManagerSecret:
     Type: AWS::SecretsManager::Secret
-    Properties: 
+    Properties:
       Description: String
-      GenerateSecretString: 
+      GenerateSecretString:
         GenerateSecretString
       KmsKeyId: String
       Name: String
-      SecretString: 
+      SecretString:
         String
-      Tags: 
+      Tags:
         - Tag

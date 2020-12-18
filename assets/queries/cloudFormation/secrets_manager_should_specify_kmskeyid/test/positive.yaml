@@ -3,12 +3,12 @@ Description: A sample template
 Resources:
   SecretsManagerSecret:
     Type: AWS::SecretsManager::Secret
-    Properties: 
+    Properties:
       Description: String
-      GenerateSecretString: 
+      GenerateSecretString:
         GenerateSecretString
       Name: String
-      SecretString: 
+      SecretString:
         String
-      Tags: 
+      Tags:
         - Tag
