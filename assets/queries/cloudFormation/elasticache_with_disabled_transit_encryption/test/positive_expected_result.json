@@ -2,11 +2,11 @@
 	{
 		"queryName": "ElastiCache with disabled Transit Encryption",
 		"severity": "HIGH",
-		"line": 67
+		"line": 6
 	},
 	{
 		"queryName": "ElastiCache with disabled Transit Encryption",
 		"severity": "HIGH",
-		"line": 364
+		"line": 54
 	}
 ]
