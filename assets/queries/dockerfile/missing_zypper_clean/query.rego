@@ -3,21 +3,22 @@ package Cx
 CxPolicy [ result ] {
 	document := input.document[i]
   commands = document.command
-	some c
-  commands[c].Cmd == "run"
+  some img
+  some c
+  commands[img][c].Cmd == "run"
 
   some j
-  command := commands[c].Value[j]
+  command := commands[img][c].Value[j]
 
   commandHasZypperUsage(command)
 
-  not hasCleanAfterInstall(commands, c, j)
+  not hasCleanAfterInstall(commands[img], c, j)
 	result := {
                 "documentId": 		document.id,
-                "searchKey": 	    sprintf("RUN=%s", [commands[c].Value[j]]),
+                "searchKey": 	    sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": "There should be a zypper clean after a zypper usage",
-                "keyActualValue": 	sprintf("The command '%s' does not have a zypper clean after it", [commands[c].Value[j]])
+                "keyActualValue": 	sprintf("The command '%s' does not have a zypper clean after it", [commands[img][c].Value[j]])
               }
 }
 
