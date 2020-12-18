@@ -6,7 +6,7 @@ Resources:
     Properties:
       ApiKeyRequired: false
       RestApiId: !Ref MyApi
-      ResourceId: !GetAtt 
+      ResourceId: !GetAtt
         - MyApi
         - RootResourceId
       HttpMethod: GET
@@ -25,7 +25,7 @@ Resources:
     Type: 'AWS::ApiGateway::Method'
     Properties:
       RestApiId: !Ref MyApi
-      ResourceId: !GetAtt 
+      ResourceId: !GetAtt
         - MyApi
         - RootResourceId
       HttpMethod: GET
