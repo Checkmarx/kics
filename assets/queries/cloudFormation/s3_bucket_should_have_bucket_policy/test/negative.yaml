@@ -8,7 +8,7 @@ Resources:
       BucketName: DOC-EXAMPLE-BUCKET
   SampleBucketPolicy:
     Type: AWS::S3::BucketPolicy
-    Properties: 
+    Properties:
       Bucket: DOC-EXAMPLE-BUCKET
       PolicyDocument:
         Statement:

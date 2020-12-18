@@ -30,7 +30,7 @@ Resources:
                   - 'http://example.net/*'
   SampleBucketPolicy2:
     Type: AWS::S3::BucketPolicy
-    Properties: 
+    Properties:
       Bucket: DOC-EXAMPLE-BUCKET-FAIL2
       PolicyDocument:
         Statement:
