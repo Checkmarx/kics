@@ -1,0 +1,8 @@
+{
+  "id": "congito_userpool_without_mfa",
+  "queryName": "AWS Cognito UserPool Without MFA",
+  "severity": "MEDIUM",
+  "category": "null" ,
+  "descriptionText": "AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html"
+}
