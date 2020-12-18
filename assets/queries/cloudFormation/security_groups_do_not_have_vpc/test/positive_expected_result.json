@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Security Groups Do Not Have VPC",
+		"severity": "MEDIUM",
+		"line": 16
+	}
+]
