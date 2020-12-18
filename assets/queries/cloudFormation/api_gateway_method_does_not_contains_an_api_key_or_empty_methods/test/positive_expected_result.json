@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+	{
+		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+		"severity": "MEDIUM",
+		"line": 26
+	},
+	{
+		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+		"severity": "MEDIUM",
+		"line": 31
+	}
+]
