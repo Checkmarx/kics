@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  command := input.document[i].command[j]
+  command := input.document[i].command[name][_]
   command.Cmd == "run"
   
   # Split the commands (e.g., RUN command1 && command2 && command3)
@@ -10,7 +10,7 @@ CxPolicy [ result ] {
 	
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+                "searchKey": 	    sprintf("FROM={{%s}}.{{%s}}", [name, command.Original]),
                 "issueType":		"IncorrectValue", 
                 "keyExpectedValue": "'RUN' does not contain 'apk add' command without '--no-cache' switch",
                 "keyActualValue": 	"'RUN' contains 'apk add' command without '--no-cache' switch"
