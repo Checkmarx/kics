@@ -1,6 +1,6 @@
 {
   "id": "iam_group_inline_policies",
-  "queryName": "iam_group_inline_policies",
+  "queryName": "IAM Group Inline Policies",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
   "descriptionText": "IAM Groups should not use inline policies and instead use managed policies. If a group is deleted, the inline policy is also deleted",
