@@ -2,6 +2,16 @@
 	{
 		"queryName": "Log Metric And Alarm Does Not Exist for IAM Policy Changes",
 		"severity": "MEDIUM",
-		"line": 33
+		"line": 31
+	},
+	{
+		"queryName": "Log Metric And Alarm Does Not Exist for IAM Policy Changes",
+		"severity": "MEDIUM",
+		"line": 71
+	},
+	{
+		"queryName": "Log Metric And Alarm Does Not Exist for IAM Policy Changes",
+		"severity": "MEDIUM",
+		"line": 98
 	}
 ]

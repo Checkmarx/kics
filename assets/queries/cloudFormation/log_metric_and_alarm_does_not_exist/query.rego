@@ -2,7 +2,47 @@ package Cx
 
 CxPolicy [ result ] {
 
-  allEvents = ["($.eventName=DeleteGroupPolicy)","($.eventName=DeleteRolePolicy)", "($.eventName=DeleteUserPolicy)", "($.eventName=PutGroupPolicy)", "($.eventName=PutRolePolicy)", "($.eventName=PutUserPolicy)", "($.eventName=CreatePolicy)", "($.eventName=DeletePolicy)", "($.eventName=CreatePolicyVersion)", "($.eventName=DeletePolicyVersion)", "($.eventName=AttachRolePolicy)", "($.eventName=DetachRolePolicy)","($.eventName=AttachUserPolicy)","($.eventName=DetachUserPolicy)","($.eventName=AttachGroupPolicy)","($.eventName=DetachGroupPolicy)"]
+	resourceMetricFilter := input.document[i].Resources
+    some name
+    resourceMetricFilter[name].Type == "AWS::Logs::MetricFilter"
+    
+    resourceAlarm := input.document[i].Resources
+    some nameAlarm
+    resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
+   
+    checkAlarm(resourceMetricFilter[name].Properties.MetricTransformations[index].MetricNamespace, resourceAlarm[nameAlarm].Properties)
+
+    result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	     sprintf("Resources.%s.Properties.MetricTransformations.MetricNamespace", [name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue":  sprintf("'Resources.%s.Properties.MetricTransformations[%d].MetricNamespace' should have a valid Namespace in 'AWS::CloudWatch::Alarm')", [name, index]),
+                "keyActualValue": 	sprintf("'Resources.%s.FilterPattern.MetricTransformations[%d].MetricNamespace' doesn't have a valid Namespace in 'AWS::CloudWatch::Alarm')", [name, index]),
+            }
+}
+CxPolicy [ result ] {
+
+	resourceMetricFilter := input.document[i].Resources
+   
+    resourceAlarm := input.document[i].Resources
+    some nameAlarm
+    resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
+   
+    resourceSNS := input.document[i].Resources
+    some nameSNS
+    resourceSNS[nameSNS].Type == "AWS::SNS::Topic"
+   
+    checkTopic(resourceAlarm[nameAlarm].Properties.AlarmActions[index], nameSNS)
+
+    result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	     sprintf("Resources.%s.Properties.AlarmActions.Ref", [nameAlarm]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue":  sprintf("'Resources.%s.Properties.AlarmActions[%d].Ref' should have a valid resource with 'AWS::SNS::Topic' type)", [nameAlarm, index]),
+                "keyActualValue": 	sprintf("'Resources.%s.FilterPattern.AlarmActions[%d].Ref' doesn't have a valid resource with 'AWS::SNS::Topic' type)", [nameAlarm, index]),
+            }
+}
+CxPolicy [ result ] {
 
 	resourceMetricFilter := input.document[i].Resources
     some name
@@ -12,38 +52,23 @@ CxPolicy [ result ] {
     some nameAlarm
     resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
     
-    checkAlarm(resourceMetricFilter[name].Properties, resourceAlarm[nameAlarm].Properties)
     
-    removeInitialBrack := replace(resourceMetricFilter[name].Properties.FilterPattern, "{", "")
-    removeLastBrack := replace(removeInitialBrack, "}", "")
-    filterPatternSplitted := split(removeLastBrack, "||")
+	not regex.match("{\\(\\$\\.eventName=DeleteGroupPolicy\\) *\\|\\| *\\(\\$\\.eventName=DeleteRolePolicy\\) *\\|\\| *\\(\\$\\.eventName=DeleteUserPolicy\\) *\\|\\| *\\(\\$\\.eventName=PutGroupPolicy\\) *\\|\\| *\\(\\$\\.eventName=PutRolePolicy\\) *\\|\\| *\\(\\$\\.eventName=PutUserPolicy\\) *\\|\\| *\\(\\$\\.eventName=CreatePolicy\\) *\\|\\| *\\(\\$\\.eventName=DeletePolicy\\) *\\|\\| *\\(\\$\\.eventName=CreatePolicyVersion\\) *\\|\\| *\\(\\$\\.eventName=DeletePolicyVersion\\) *\\|\\| *\\(\\$\\.eventName=AttachRolePolicy\\) *\\|\\| *\\(\\$\\.eventName=DetachRolePolicy\\) *\\|\\| *\\(\\$\\.eventName=AttachUserPolicy\\) *\\|\\| *\\(\\$\\.eventName=DetachUserPolicy\\) *\\|\\| *\\(\\$\\.eventName=AttachGroupPolicy\\) *\\|\\| *\\(\\$\\.eventName=DetachGroupPolicy\\)}",
+    	resourceMetricFilter[name].Properties.FilterPattern)
 
-    not contains(filterPatternSplitted, allEvents) 
 
     result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	     sprintf("Resources.%s.Properties.FilterPattern", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue":  sprintf("'Resources.%s.Properties.FilterPattern' should have the right specification, i.g('($.eventName=DeleteGroupPolicy)')", [name]),
+                "keyExpectedValue":  sprintf("'Resources.%s.Properties.FilterPattern' should have the right specification')", [name]),
                 "keyActualValue": 	sprintf("'Resources.%s.FilterPattern' does not have the right specification", [name])
             }
 }
-
 checkAlarm(metricFilter, resourceAlarm) = true {
-    resourceAlarm.Namespace != metricFilter.MetricTransformations[_].MetricNamespace
+    resourceAlarm.Namespace != metricFilter
 }
 
-checkAlarm(metricFilter, resourceAlarm) = true {
-    checkSNS(resourceAlarm.AlarmActions[_].Ref)
-}
-
-checkSNS(alarmRef) = true {
-    resourceSNS := input.document[i].Resources
-    some nameSNS
-    resourceSNS[nameSNS].Type == "AWS::SNS::Topic"
-    alarmRef != nameSNS
-}
-
-contains (array, string) = true {
-	array[a] == string[b]
+checkTopic(resourceAlarm, nameSNS) = true {
+    resourceAlarm.Ref != nameSNS
 }
