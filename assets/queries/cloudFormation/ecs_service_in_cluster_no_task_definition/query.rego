@@ -72,12 +72,14 @@ isInCluster(service) = true {
 
 existsTaskDefinition(taskDefName) = taskDef {
   is_string(taskDefName)
+  input.document[_].Resource[taskDefName].Type == "AWS::ECS::TaskDefinition"
   taskDef := input.document[_].Resource[taskDefName]
 } else = taskDef {
   is_object(taskDefName)
   object.get(taskDefName,"Ref","undefined") != "undefined"
   ref := object.get(taskDefName,"Ref","undefined")
-  taskDef := object.get(input.document[_].Resources, ref, null)
+  input.document[_].Resource[ref].Type == "AWS::ECS::TaskDefinition"
+  taskDef := input.document[_].Resource[ref]
 } else = null
 
 hasTaskRole(taskDef) = true {
