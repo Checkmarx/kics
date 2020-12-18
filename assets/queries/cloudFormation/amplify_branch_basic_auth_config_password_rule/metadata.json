@@ -1,0 +1,8 @@
+{
+  "id": "amplify_branch_basic_auth_config_password_rule",
+  "queryName": "Amplify Branch Basic Auth Config Password Rule",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Amplify Branch BasicAuthConfig Password must not be a plaintext string or a Ref to a Parameter with a Default value.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-basicauthconfig"
+}
