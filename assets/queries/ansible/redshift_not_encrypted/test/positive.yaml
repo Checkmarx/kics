@@ -1,0 +1,20 @@
+temp:
+  - name: Basic cluster provisioning example
+    community.aws.redshift:
+      identifier: tf-redshift-cluster
+      db_name: mydb
+      username: foo
+      password: Mustbe8characters
+      node_type: dc1.large
+      cluster_type: single-node
+---
+temp:
+  - name: Basic cluster provisioning example2
+    community.aws.redshift:
+      identifier: tf-redshift-cluster
+      db_name: mydb
+      username: foo
+      password: Mustbe8characters
+      node_type: dc1.large
+      cluster_type: single-node
+      encrypted: true
