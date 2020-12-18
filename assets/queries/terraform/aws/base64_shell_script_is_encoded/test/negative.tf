@@ -8,7 +8,7 @@ resource "aws_launch_configuration" "as_conf" {
   }
 }
 
-resource "aws_launch_configuration" "as_conf" {
+resource "aws_launch_configuration" "as_conf2" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"
@@ -19,7 +19,7 @@ resource "aws_launch_configuration" "as_conf" {
   }
 }
 
-resource "aws_launch_configuration" "as_conf" {
+resource "aws_launch_configuration" "as_conf3" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"
@@ -30,7 +30,7 @@ resource "aws_launch_configuration" "as_conf" {
   }
 }
 
-resource "aws_launch_configuration" "as_conf" {
+resource "aws_launch_configuration" "as_conf4" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"

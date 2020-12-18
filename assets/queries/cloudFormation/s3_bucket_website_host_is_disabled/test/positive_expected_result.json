@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "S3 Bucket Website Host Is Disabled",
+		"severity": "HIGH",
+		"line": 5
+	},
+	{
+		"queryName": "S3 Bucket Website Host Is Disabled",
+		"severity": "HIGH",
+		"line": 14
+	}
+]
