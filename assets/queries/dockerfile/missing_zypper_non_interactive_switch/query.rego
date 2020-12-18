@@ -3,21 +3,22 @@ package Cx
 CxPolicy [ result ] {
 	document := input.document[i]
   commands = document.command
+  some img
 	some c
-  commands[c].Cmd == "run"
+  commands[img][c].Cmd == "run"
 
   some j
-  command := commands[c].Value[j]
+  command := commands[img][c].Value[j]
 
   commandHasZypperUsage(command)
   not commandHasNonInteractiveSwitch(command)
 
 	result := {
                 "documentId": 		document.id,
-                "searchKey": 	    sprintf("RUN=%s", [commands[c].Value[j]]),
+                "searchKey": 	    sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "zypper usages should have the non-interactive switch activated",
-                "keyActualValue": 	sprintf("The command '%s' does not have the non-interactive switch activated (-y | --no-confirm)", [commands[c].Value[j]])
+                "keyActualValue": 	sprintf("The command '%s' does not have the non-interactive switch activated (-y | --no-confirm)", [commands[img][c].Original])
               }
 }
 
