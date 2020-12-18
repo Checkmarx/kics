@@ -1,22 +1,22 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: VPC function.
 Resources:
-  Function: 
+  Function:
     Type: AWS::Lambda::Function
-    Properties: 
+    Properties:
       Handler: index.handler
       Role: arn:aws:iam::123456789012:role/lambda-role
-      Code: 
+      Code:
         S3Bucket: my-bucket
         S3Key: function.zip
       Runtime: nodejs12.x
       Timeout: 5
       TracingConfig:
         Mode: Active
-      VpcConfig: 
-        SecurityGroupIds: 
+      VpcConfig:
+        SecurityGroupIds:
           - sg-085912345678492fb
-        SubnetIds: 
+        SubnetIds:
           - subnet-071f712345678e7c8
           - subnet-07fd123456788a036
       Tags:
