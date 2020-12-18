@@ -1,0 +1,8 @@
+{
+  "id": "rds_db_cluster_with_storage_encrypted_disabled",
+  "queryName": "RDS DBCluster With Storage Encrypted Disabled",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "RDS DBInstance should have storage encrypted set to true",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted"
+}
