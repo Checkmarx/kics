@@ -9,7 +9,7 @@ CxPolicy [ result ] {
     isLowUID(spec)
 
     metadata := document.metadata
-    result := checkContainersOverride(spec,"",metadata)
+    result := checkContainersOverride(spec,"",metadata, input.document[i].id)
 }
 
 CxPolicy [ result ] {
@@ -21,7 +21,7 @@ CxPolicy [ result ] {
     isSetUID(spec) != true
 
     metadata := document.metadata
-    result := checkContainersSet(spec,"",metadata)
+    result := checkContainersSet(spec,"",metadata, input.document[i].id)
 }
 
 CxPolicy [ result ] {
@@ -33,7 +33,7 @@ CxPolicy [ result ] {
     isLowUID(spec)
 
     metadata := document.metadata
-    result := checkContainersOverride(spec,"spec.jobTemplate.spec.template.",metadata)
+    result := checkContainersOverride(spec,"spec.jobTemplate.spec.template.",metadata, input.document[i].id)
 }
 
 CxPolicy [ result ] {
@@ -45,7 +45,7 @@ CxPolicy [ result ] {
     isSetUID(spec) != true
 
     metadata := document.metadata
-    result := checkContainersSet(spec,"spec.jobTemplate.spec.template.",metadata)
+    result := checkContainersSet(spec,"spec.jobTemplate.spec.template.",metadata, input.document[i].id)
 }
 CxPolicy [ result ] {
     document := input.document[i]
@@ -57,7 +57,7 @@ CxPolicy [ result ] {
     isSetUID(spec) != true
 
     metadata := document.metadata
-    result := checkContainersSet(spec,"spec.template.",metadata)
+    result := checkContainersSet(spec,"spec.template.",metadata, input.document[i].id)
 }
 
 CxPolicy [ result ] {
@@ -70,28 +70,28 @@ CxPolicy [ result ] {
     isLowUID(spec)
 
     metadata := document.metadata
-    result := checkContainersOverride(spec,"spec.template.",metadata)
+    result := checkContainersOverride(spec,"spec.template.",metadata, input.document[i].id)
 }
 
 CxPolicy [ result ] {
     document := input.document[i]
     object.get(document,"kind","undefined") != "Pod"
-    object.get(document,"kind","undefined") != "CronJob"
+    object.get(document,"kind","undefined") != "CronJob" 
 
     spec := document.spec.template.spec
 
     isSetUID(spec) != true
 
     metadata := document.metadata
-    result := checkContainersSet(spec,"spec.template.",metadata)
+    result := checkContainersSet(spec,"spec.template.",metadata, input.document[i].id)
 }
 
 #if there are no containers to override low UID setting
-checkContainersOverride(spec,path,metadata) = result {
+checkContainersOverride(spec,path,metadata, id) = result {
     object.get(spec,"containers","undefined") == "undefined"
     
     result := {
-                "documentId": 		input.document[i].id,
+                "documentId": 		id,
                 "searchKey": 	    sprintf("metadata.name=%s.%sspec.securityContext.runAsUser",[metadata.name,path]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": sprintf("'%sspec.securityContext.runAsUser' is higher or equal to 10000",[path]),
@@ -100,14 +100,14 @@ checkContainersOverride(spec,path,metadata) = result {
 }
 
 #if there are containers and one of them has also low UID setting
-checkContainersOverride(spec,path,metadata) = result {
+checkContainersOverride(spec,path,metadata, id) = result {
     containers := object.get(spec,"containers","undefined")
     containers != "undefined"
 
     some j
       isLowUID(containers[j])
       result := {
-                  "documentId": 		input.document[i].id,
+                  "documentId": 		id,
                   "searchKey": 	    sprintf("metadata.name=%s.%sspec.containers",[metadata.name,path]),
                   "issueType":		"IncorrectValue",
                   "keyExpectedValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is higher or equal to 10000",[path,j]),
@@ -116,13 +116,13 @@ checkContainersOverride(spec,path,metadata) = result {
 }
 
 #if there are containers and one of them doesn't override low UID setting
-checkContainersSet(spec,path,metadata) = result {
+checkContainersSet(spec,path,metadata, id) = result {
     containers := object.get(spec,"containers","undefined")
     containers != "undefined"
     some j
       isSetUID(containers[j]) != true
       result := {
-                  "documentId": 		input.document[i].id,
+                  "documentId": 		id,
                   "searchKey": 	    sprintf("metadata.name=%s.%sspec.containers",[metadata.name,path]),
                   "issueType":		"MissingAttribute",
                   "keyExpectedValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is set and higher or equal to 10000",[path,j]),
@@ -131,14 +131,14 @@ checkContainersSet(spec,path,metadata) = result {
 }
 
 #if there are containers and one of them doesn't override low UID setting
-checkContainersSet(spec,path,metadata) = result {
+checkContainersSet(spec,path,metadata, id) = result {
     containers := object.get(spec,"containers","undefined")
     containers != "undefined"
 
     some j
       isSetUID(containers[j]) != true
       result := {
-                  "documentId": 		input.document[i].id,
+                  "documentId": 		id,
                   "searchKey": 	    sprintf("metadata.name=%s.%sspec.containers",[metadata.name,path]),
                   "issueType":		"MissingAttribute",
                   "keyExpectedValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is set and higher or equal to 10000",[path,j]),
@@ -152,6 +152,4 @@ isLowUID(spec) {
 
 isSetUID(spec) = true {
   object.get(spec.securityContext,"runAsUser","undefined") != "undefined"
-} else = false {
-  true
 }
