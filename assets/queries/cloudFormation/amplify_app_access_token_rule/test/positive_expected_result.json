@@ -8,5 +8,10 @@
 		"queryName": "Amplify App Access Token Rule",
 		"severity": "MEDIUM",
 		"line":23
+	},
+	{
+		"queryName": "Amplify App Access Token Rule",
+		"severity": "MEDIUM",
+		"line":5
 	}
 ]

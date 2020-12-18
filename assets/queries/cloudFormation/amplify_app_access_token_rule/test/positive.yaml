@@ -1,5 +1,3 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating Amplify App
 Resources:
   NewAmpApp:
     Type: AWS::Amplify::App
@@ -26,6 +24,24 @@ Resources:
     Type: AWS::Amplify::App
     Properties:
       AccessToken: !Ref ParentAccessToken
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: true
+      IAMServiceRole: String
+      Name: NewAmpApp
+      OauthToken: String
+      Repository: String
+---
+Parameters:
+  ParentUserToken:
+    Description: 'UserToken'
+    Type: String
+Resources:
+  NewAmpApp-1:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ
       BuildSpec: String
       CustomHeaders: String
       Description: String
