@@ -1,0 +1,8 @@
+{
+  "id": "containers_security_context_capabilities_drop_all",
+  "queryName": "All Not Listed as Drop Capability for Containers",
+  "severity": "MEDIUM",
+  "category": "Privileges",
+  "descriptionText": "Sees if Kubernetes Drop All is on to ensure containers security context",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+}
