@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "When installing a package, its pin version should be defined",
-  "descriptionUrl": "https://github.com/hadolint/hadolint/wiki/DL3008"
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
 }
