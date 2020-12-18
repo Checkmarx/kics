@@ -8,5 +8,10 @@
 		"queryName": "DocDB Cluster Master User Password Rule",
 		"severity": "MEDIUM",
 		"line":19
+	},
+	{
+		"queryName": "DocDB Cluster Master User Password Rule",
+		"severity": "MEDIUM",
+		"line":81
 	}
 ]
