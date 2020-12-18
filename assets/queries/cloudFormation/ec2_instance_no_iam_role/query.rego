@@ -21,7 +21,7 @@ CxPolicy [ result ] {
   
   object.get(resource.Properties,"IamInstanceProfile","undefined") != "undefined"
 
-  iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile)
+  iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
 
   emptyProfile(iamProfile)
 
@@ -40,7 +40,7 @@ CxPolicy [ result ] {
   
   object.get(resource.Properties,"IamInstanceProfile","undefined") != "undefined"
 
-  iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile)
+  iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
 
   emptyProfile(iamProfile) == false
 
@@ -58,17 +58,17 @@ CxPolicy [ result ] {
               }
 }
 
-getIAMProfile(profileRef) = profile {
+getIAMProfile(profileRef, res) = profile {
   is_string(profileRef)
   profile := {
-    profileRef: object.get(input.document[_].Resources,profileRef,"undefined")
+    profileRef: object.get(res,profileRef,"undefined")
   }
 } else = profile {
   is_object(profileRef)
   object.get(profileRef,"Ref","undefined") != "undefined"
   ref := object.get(profileRef,"Ref","undefined")
   profile := {
-    ref: object.get(input.document[_].Resources, ref, "undefined")
+    ref: object.get(res, ref, "undefined")
   }
 } else = {}
 
