@@ -2,11 +2,16 @@
 	{
 		"queryName": "Directory Service Microsoft AD Password Rule",
 		"severity": "MEDIUM",
-		"line": 7
+		"line": 14
 	},
 	{
 		"queryName": "Directory Service Microsoft AD Password Rule",
 		"severity": "MEDIUM",
-		"line":33
+		"line":25
+	},
+	{
+		"queryName": "Directory Service Microsoft AD Password Rule",
+		"severity": "MEDIUM",
+		"line":32
 	}
 ]
