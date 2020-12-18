@@ -2,7 +2,7 @@
   "id": "sqs_queue_policy_with_wildcard_principals",
   "queryName": "SQS Queue Policy With Wildcard Principals",
   "severity": "HIGH",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Checks for dangerous permissions in Action statements in an SQS Queue Policy. This is deemed a potential security risk as it would allow various attacks to the queue.",
-  "descriptionUrl": "#"
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html"
 }
