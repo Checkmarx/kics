@@ -3,6 +3,7 @@ package Cx
 CxPolicy [ result ] {
    resource := input.document[i].resource.aws_launch_configuration[name]
    user_data := resource.user_data_base64
+   not user_data == null
    contains(user_data, "LS0tLS1CR")
    
    result := {
