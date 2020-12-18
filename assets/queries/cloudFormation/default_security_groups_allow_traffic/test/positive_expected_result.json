@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Default Security Groups Allow Traffic",
+		"severity": "HIGH",
+		"line": 16
+	}
+]

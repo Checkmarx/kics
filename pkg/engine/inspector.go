@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -90,6 +91,7 @@ func NewInspector(
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 			).PrepareForEval(ctx)
 			if err != nil {
+				sentry.CaptureException(err)
 				log.
 					Err(err).
 					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
@@ -134,6 +136,7 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 			payload: combinedFiles,
 		})
 		if err != nil {
+			sentry.CaptureException(err)
 			log.Err(err).
 				Str("scanID", scanID).
 				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
@@ -217,6 +220,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, queryResultItem)
 		if err != nil {
+			sentry.CaptureException(err)
 			log.Err(err).
 				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
 
