@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Internet access and root access for Creating Notebook Instances"
+Resources:
+  Notebook:
+    Type: AWS::SageMaker::NotebookInstance
+    Properties:
+      DirectInternetAccess: "Enabled"
+      InstanceType: "ml.c4.2xlarge"
+      RoleArn: "role"

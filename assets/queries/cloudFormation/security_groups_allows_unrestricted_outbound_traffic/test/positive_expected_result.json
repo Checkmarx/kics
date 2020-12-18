@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+		"severity": "HIGH",
+		"line": 16
+	}
+]
