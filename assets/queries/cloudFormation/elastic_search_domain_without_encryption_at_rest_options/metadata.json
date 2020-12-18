@@ -1,0 +1,8 @@
+{
+  "id": "elastic_search_domain_without_encryption_at_rest_options",
+  "queryName": "Elastic Search Domain Without EncryptionAtRestOptions",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Elastic Search Domain should have encrypt data at rest.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-encryptionatrestoptions"
+}

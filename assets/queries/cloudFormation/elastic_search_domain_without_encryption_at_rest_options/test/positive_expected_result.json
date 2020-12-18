@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Elastic Search Domain Without EncryptionAtRestOptions",
+		"severity": "MEDIUM",
+		"line": 15
+	},
+	{
+		"queryName": "Elastic Search Domain Without EncryptionAtRestOptions",
+		"severity": "MEDIUM",
+		"line": 43
+	}
+]
