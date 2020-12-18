@@ -45,7 +45,7 @@ Resources:
   ExecutionRole:
     Type: "AWS::IAM::Role"
     Properties:
-      AssumeRolePolicyDocument: 
+      AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
           -
@@ -59,9 +59,9 @@ Resources:
       Policies:
         -
           PolicyName: "root"
-          PolicyDocument: 
+          PolicyDocument:
             Version: "2012-10-17"
-            Statement: 
+            Statement:
               -
                 Effect: "Allow"
                 Action: "*"
