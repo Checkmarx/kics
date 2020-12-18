@@ -1,0 +1,8 @@
+{
+  "id": "Service_Type_Is_Nodeport",
+  "queryName": "Service Type is NodePort",
+  "severity": "LOW",
+  "category": "Networking",
+  "descriptionText": "Service type should not be NodePort",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/"
+}
