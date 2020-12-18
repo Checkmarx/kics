@@ -22,4 +22,3 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 127.0.0.1/33
-          
