@@ -4,16 +4,16 @@ Resources:
   NeptuneDBCluster:
     Type: AWS::Neptune::DBCluster
     Properties: 
-      AssociatedRoles: 
+      AssociatedRoles:
         - DBClusterRole
-      AvailabilityZones: 
+      AvailabilityZones:
         - String
       BackupRetentionPeriod: Integer
       DBClusterIdentifier: String
       DBClusterParameterGroupName: String
       DBSubnetGroupName: String
       DeletionProtection: Boolean
-      EnableCloudwatchLogsExports: 
+      EnableCloudwatchLogsExports:
         - String
       EngineVersion: String
       IamAuthEnabled: Boolean
@@ -26,8 +26,8 @@ Resources:
       SnapshotIdentifier: String
       SourceDBClusterIdentifier: String
       StorageEncrypted: false
-      Tags: 
+      Tags:
         - Tag
       UseLatestRestorableTime: Boolean
-      VpcSecurityGroupIds: 
+      VpcSecurityGroupIds:
         - String
