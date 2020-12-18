@@ -3,7 +3,7 @@ package Cx
 CxPolicy [ result ] {
   resource := input.document[i].resource.aws_ecs_task_definition[name]
   resourceDefinition = resource.container_definitions
-  resourceJson = json.unmarshal(resourceDefinition)
+  resourceJson = json_unmarshal(resourceDefinition)
   env = resourceJson.containerDefinitions[_].environment[_]
   contains(upper(env.name), upper("password"))
 
@@ -16,3 +16,12 @@ CxPolicy [ result ] {
               }
 }
 
+json_unmarshal(s) = result {
+	s == null
+	result := json.unmarshal("{}")
+}
+
+json_unmarshal(s) = result {
+	s != null
+	result := json.unmarshal(s)
+}

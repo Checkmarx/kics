@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -81,6 +82,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
+			sentry.CaptureException(err)
 			log.Err(err).
 				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
 		}
