@@ -2,6 +2,6 @@
 	{
 		"queryName": "AWS Lambda Function Without Tags",
 		"severity": "MEDIUM",
-		"line": 51
+		"line": 50
 	}
 ]
