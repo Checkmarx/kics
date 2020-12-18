@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: A sample template
 Resources:
-  SageMakerNotebookInstance:    
+  SageMakerNotebookInstance: 
     Type: AWS::SageMaker::NotebookInstance
-    Properties: 
-      AcceleratorTypes: 
+    Properties:
+      AcceleratorTypes:
         - String
-      AdditionalCodeRepositories: 
+      AdditionalCodeRepositories:
         - String
       DefaultCodeRepository: String
       DirectInternetAccess: String
@@ -16,9 +16,9 @@ Resources:
       NotebookInstanceName: String
       RoleArn: String
       RootAccess: String
-      SecurityGroupIds: 
+      SecurityGroupIds:
         - String
       SubnetId: String
-      Tags: 
+      Tags:
         - Tag
       VolumeSizeInGB: Integer
