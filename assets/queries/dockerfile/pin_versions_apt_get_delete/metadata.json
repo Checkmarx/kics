@@ -1,0 +1,8 @@
+{
+  "id": "Apt Get Install Lists Were Not Deleted",
+  "queryName": "Apt Get Install Lists Were Not Deleted",
+  "severity": "INFO",
+  "category": "Package Management",
+  "descriptionText": "After using apt-get install, it is needed to delete apt get lists",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+}
