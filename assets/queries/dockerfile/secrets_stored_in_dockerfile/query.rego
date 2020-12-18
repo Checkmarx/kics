@@ -1,13 +1,13 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i].command[j]
+  resource := input.document[i].command[name][_]
   resource.Cmd == "env" 
   checkSecret(resource) == true
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("ENV=%s", [resource.Value[0]]),
+                "searchKey": 	    sprintf("FROM={{%s}}.ENV={{%s}}", [name, resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": sprintf("'%s %s' doesn't exist", [resource.Cmd, resource.Value[0]]),
                 "keyActualValue": 	sprintf("'%s %s' exists", [resource.Cmd, resource.Value[0]])
@@ -15,13 +15,13 @@ CxPolicy [ result ] {
 }
 
 CxPolicy [ result ] {
-  resource := input.document[i].command[j]
+  resource := input.document[i].command[name][_]
   resource.Cmd == "label"
   checkSecret(resource) == true
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("LABEL=%s", [resource.Value[0]]),
+                "searchKey": 	    sprintf("FROM={{%s}}.LABEL={{%s}}", [name, resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": sprintf("'%s %s' doesn't exist", [resource.Cmd, resource.Value[0]]),
                 "keyActualValue": 	sprintf("'%s %s' exists", [resource.Cmd, resource.Value[0]])
