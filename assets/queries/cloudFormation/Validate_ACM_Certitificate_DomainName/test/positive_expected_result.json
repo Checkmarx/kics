@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Wildcard In ACM Certificate Domain Name",
+		"severity": "LOW",
+		"line": 16
+	}
+]
