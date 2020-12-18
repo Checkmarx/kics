@@ -6,7 +6,7 @@ Resources:
     Properties:
       ApiKeyRequired: true
       RestApiId: !Ref MyApi
-      ResourceId: !GetAtt 
+      ResourceId: !GetAtt
         - MyApi
         - RootResourceId
       HttpMethod: ""
