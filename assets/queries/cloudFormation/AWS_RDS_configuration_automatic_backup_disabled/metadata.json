@@ -3,6 +3,6 @@
   "queryName": "AWS RDS Configuration Automatic Backup Disabled",
   "severity": "LOW",
   "category": "Backup and Disaster Recovery",
-  "descriptionText": "Make sure the AWS RDS configuration has automatic backup configured, if result. If the result is equal to 0 there is no backup, if it is bigger than one, then there is",
+  "descriptionText": "Make sure the AWS RDS configuration has automatic backup configured. If the retention period is equal to 0 there is no backup",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-rds.html"
 }
