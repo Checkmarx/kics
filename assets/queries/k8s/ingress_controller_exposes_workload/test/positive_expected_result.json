@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Ingress Controller Exposes Workload",
+		"severity": "MEDIUM",
+		"line": 31
+	}
+]

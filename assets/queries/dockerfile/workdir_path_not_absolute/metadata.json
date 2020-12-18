@@ -1,0 +1,8 @@
+{
+  "id": "WORKDIR_path_not_absolute",
+  "queryName": "WORKDIR Path Not Absolute",
+  "severity": "HIGH",
+  "category": "Image",
+  "descriptionText": "For clarity and reliability, you should always use absolute paths for your WORKDIR",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir"
+}

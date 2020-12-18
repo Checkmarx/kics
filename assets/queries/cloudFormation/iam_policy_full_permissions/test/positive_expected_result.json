@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "IAM Policy Grants Full Permissions",
+		"severity": "LOW",
+		"line": 13
+	},
+	{
+		"queryName": "IAM Policy Grants Full Permissions",
+		"severity": "LOW",
+		"line": 26
+	}
+]
