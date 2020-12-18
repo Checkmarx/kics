@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "API Gateway Exposed To The Public Internet",
+		"severity": "HIGH",
+		"line": 5
+	},
+	{
+		"queryName": "API Gateway Exposed To The Public Internet",
+		"severity": "HIGH",
+		"line": 11
+	}
+]

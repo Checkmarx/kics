@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EC2 Subnet MapPublicIpOnLaunch Is True",
+		"severity": "HIGH",
+		"line": 8
+	}
+]
