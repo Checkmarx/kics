@@ -6,7 +6,7 @@
 
 ---
 
-<a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
+<a href="https://kics.io" title="kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
 **KICS** (pronounced as 'kick-s') or **Kicscan** is an open source solution for static code analysis of Infrastructure as Code.
 
@@ -44,7 +44,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 ## More
 
-<a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
+<a href="https://kics.io" title="kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
 [KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
 
