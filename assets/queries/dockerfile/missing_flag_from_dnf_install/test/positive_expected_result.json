@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Missing Flag From dnf install",
+		"severity": "MEDIUM",
+		"line": 1
+	},
+	{
+		"queryName": "Missing Flag From dnf install",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]
