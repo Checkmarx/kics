@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "RDS Public Virtual Interface",
+		"severity": "HIGH",
+		"line": 7
+	},
+	{
+		"queryName": "RDS Public Virtual Interface",
+		"severity": "HIGH",
+		"line": 55
+	},
+	{
+		"queryName": "RDS Public Virtual Interface",
+		"severity": "HIGH",
+		"line": 64
+	}
+]

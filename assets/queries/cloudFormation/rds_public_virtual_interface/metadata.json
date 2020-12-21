@@ -1,0 +1,8 @@
+{
+  "id": "RDS_Public_Virtual_Interface",
+  "queryName": "RDS Public Virtual Interface",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Amazon RDS databases wit direct connect virtual interfaces must not have public interfaces, which means the IP Address in its Security Group must not match prefixes advertised by Amazon.",
+  "descriptionUrl": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/WorkingWithVirtualInterfaces.html"
+}
