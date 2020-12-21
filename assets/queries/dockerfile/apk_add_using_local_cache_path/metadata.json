@@ -1,0 +1,8 @@
+{
+  "id": "apk_add_using_local_cache_path",
+  "queryName": "Apk Add Using Local Cache Path",
+  "severity": "INFO",
+  "category": "Package Management",
+  "descriptionText": "When installing packages, use the '--no-cache' switch to avoid the need to use '--update' and remove '/var/cache/apk/*'",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+}
