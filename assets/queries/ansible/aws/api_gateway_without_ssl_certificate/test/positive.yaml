@@ -1,4 +1,4 @@
-- name: update API 
+- name: update API
   aws_api_gateway:
     api_id: 'abc123321cba'
     state: present
