@@ -1,0 +1,8 @@
+{
+  "id": "api_gateway_method_does_not_contains_an_api_key_or_empty_methods",
+  "queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Api Gateway Method should have an API key or empty methods.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html"
+}

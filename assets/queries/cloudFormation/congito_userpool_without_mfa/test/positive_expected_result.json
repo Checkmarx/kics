@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "AWS Cognito UserPool Without MFA",
+		"severity": "MEDIUM",
+		"line": 14
+	},
+
+	{
+		"queryName": "AWS Cognito UserPool Without MFA",
+		"severity": "MEDIUM",
+		"line": 8
+	}
+]
