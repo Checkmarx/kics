@@ -1,0 +1,8 @@
+{
+  "id": "RUN_using_sudo",
+  "queryName": "Run Using Sudo",
+  "severity": "HIGH",
+  "category": "User Management",
+  "descriptionText": "Avoid RUN with sudo command as it leads to unpredictable behavior",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+}

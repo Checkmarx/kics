@@ -1,0 +1,8 @@
+{
+  "id": "missing_zypper_clean",
+  "queryName": "Missing zypper clean",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Reduce layer and image size by deleting unneeded caches after running zypper",
+  "descriptionUrl": "#"
+}
