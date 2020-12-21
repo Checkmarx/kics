@@ -1,5 +1,5 @@
 {
-  "id": "sagemaker_endpoint_config_should_specify_ kmskeyid",
+  "id": "sagemaker_endpoint_config_should_specify_kmskeyid",
   "queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
   "severity": "MEDIUM",
   "category": null,
