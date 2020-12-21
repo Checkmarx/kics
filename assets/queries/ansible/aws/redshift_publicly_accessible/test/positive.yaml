@@ -1,0 +1,25 @@
+---
+- name: Basic cluster provisioning example04
+  community.aws.redshift:
+    command: create
+    node_type: ds1.xlarge
+    identifier: new_cluster
+    username: cluster_admin
+    password: 1nsecur3
+    publicly_accessible: yes
+- name: Basic cluster provisioning example05
+  community.aws.redshift:
+    command: create
+    node_type: ds1.xlarge
+    identifier: new_cluster
+    username: cluster_admin
+    password: 1nsecur3
+    publicly_accessible: True
+- name: Basic cluster provisioning example06
+  redshift:
+    command: create
+    node_type: ds1.xlarge
+    identifier: new_cluster
+    username: cluster_admin
+    password: 1nsecur3
+    publicly_accessible: Yes

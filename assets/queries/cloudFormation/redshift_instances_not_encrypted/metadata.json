@@ -1,0 +1,8 @@
+{
+  "id": "redshift_instances_not_encrypted",
+  "queryName": "AWS Redshift Cluster Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "AWS Redshift Cluster should be encrypted",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html"
+}
