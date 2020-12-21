@@ -23,7 +23,7 @@ CxPolicy [result] {
    result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties", [name]),
-                "issueType":		"IncorrectValue",  
+                "issueType":		"MissingAttribute",  
                 "keyExpectedValue": sprintf("'Resources.%s.Properties' should be configured with LoginProfile with PasswordResetRequired property set to true",[name]),
                 "keyActualValue": 	sprintf("'Resources.%s.Properties' does not include LoginProfile",[name])
               }
@@ -37,7 +37,7 @@ CxPolicy [result] {
   result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.LoginProfile", [name]),
-                "issueType":		"IncorrectValue",  
+                "issueType":		"MissingAttribute",  
                 "keyExpectedValue": sprintf("'Resources.%s.Properties.LoginProfile' should also include PasswordResetRequired property set to true",[name]),
                 "keyActualValue": 	sprintf("'Resources.%s.Properties.LoginProfile' contains only Password property",[name])
               }
