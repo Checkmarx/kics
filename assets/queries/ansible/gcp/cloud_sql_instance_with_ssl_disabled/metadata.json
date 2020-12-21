@@ -1,0 +1,8 @@
+{
+  "id": "cloud_sql_instance_with_ssl_disabled",
+  "queryName": "Cloud SQL Instance With SSL Disabled",
+  "severity": "HIGH",
+  "category": "Encryption & Key Management",
+  "descriptionText": "Cloud SQL Database Instance with SSL disabled for incoming connections",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/require_ssl"
+}

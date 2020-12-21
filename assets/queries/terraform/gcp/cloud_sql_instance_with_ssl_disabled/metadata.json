@@ -1,6 +1,6 @@
 {
-  "id": "SQLDatabaseSSLDisabled",
-  "queryName": "SQL Database Instance with SSL Disabled",
+  "id": "cloud_sql_instance_with_ssl_disabled",
+  "queryName": "Cloud SQL Instance With SSL Disabled",
   "severity": "HIGH",
   "category": "Encryption & Key Management",
   "descriptionText": "Cloud SQL Database Instance with SSL disabled for incoming connections",
