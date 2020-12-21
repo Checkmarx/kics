@@ -1,6 +1,6 @@
 {
   "id": "Ansible_Redshift_Publicly_Accessible",
-  "queryName": "Ansible Redshift Publicly Accessible",
+  "queryName": "Redshift Publicly Accessible",
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Check if 'publicly_accessible' field is true (default is false)",

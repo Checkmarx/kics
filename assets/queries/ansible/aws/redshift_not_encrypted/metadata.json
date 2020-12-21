@@ -1,6 +1,6 @@
 {
   "id": "ansible_redshift_not_encrypted",
-  "queryName": "Ansible Redshift Not Encrypted",
+  "queryName": "Redshift Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "Check if 'encrypted' field is false or undefined (default is false)",
