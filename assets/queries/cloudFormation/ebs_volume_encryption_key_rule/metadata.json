@@ -2,7 +2,7 @@
   "id": "ebs_volume_encryption_key_rule",
   "queryName": "EBS Volume Encryption Key Rule",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "EBS Volume should specify a KmsKeyId value",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html"
 }
