@@ -1,0 +1,8 @@
+{
+  "id": "yum_clean_all_missing",
+  "queryName": "Yum Clean All Missing",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Need to use 'yum clean all' after using a yum command",
+  "descriptionUrl": "#"
+}
