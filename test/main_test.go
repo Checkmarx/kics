@@ -31,8 +31,6 @@ var (
 		"../assets/queries/k8s":                      model.KindYAML,
 		"../assets/queries/cloudFormation":           model.KindYAML,
 		"../assets/queries/ansible/aws":              model.KindYAML,
-		"../assets/queries/ansible/azure":            model.KindYAML,
-		"../assets/queries/ansible/gcp":              model.KindYAML,
 		"../assets/queries/dockerfile":               model.KindDOCKER,
 		"../assets/queries/terraform/github":         model.KindTerraform,
 		"../assets/queries/terraform/kubernetes_pod": model.KindTerraform,
