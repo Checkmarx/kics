@@ -5,7 +5,7 @@ CxPolicy [ result ] {
   tasks := getTasks(document)
   task := tasks[t]
   awsApiGateway := task["community.aws.aws_api_gateway"]
-  awsApiGateway.tracing_enabled == "disable"
+  awsApiGateway.tracing_enabled == false
   clusterName := task.name
 
     result := {
