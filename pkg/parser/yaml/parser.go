@@ -12,8 +12,8 @@ import (
 type Parser struct {
 }
 
-type Teste struct {
-	Arr []map[string]interface{} `json:"playbooks"`
+type Playbooks struct {
+	Tasks []map[string]interface{} `json:"playbooks"`
 }
 
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
@@ -52,15 +52,15 @@ func playbookParser(fileContent []byte) ([]model.Document, error) {
 	doc := &model.Document{}
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 	arr := make([]map[string]interface{}, 0)
-	var tt Teste
+	var playBooks Playbooks
 	var documents []model.Document
 	for dec.Decode(&arr) == nil {
 		if doc != nil {
 			for _, key := range arr {
-				tt.Arr = append(tt.Arr, key)
+				playBooks.Tasks = append(playBooks.Tasks, key)
 			}
 
-			j, err := json.Marshal(tt)
+			j, err := json.Marshal(playBooks)
 			if err != nil {
 				return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
 			}
