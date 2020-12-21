@@ -2,6 +2,6 @@
 	{
 		"queryName": "Sns Topic Should Specify KmsMasterKeyId Attribute",
 		"severity": "MEDIUM",
-		"line": 2
+		"line": 5
 	}
 ]

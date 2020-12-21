@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [ result ] {
-  resource := input.document[i]
+  resource := input.document[i].Resources[name]
   resource.Type == "AWS::SNS::Topic"
   properties := resource.Properties
   object.get(properties, "KmsMasterKeyId", "undefined") == "undefined"
@@ -9,9 +9,9 @@ CxPolicy [ result ] {
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    "Properties.KmsMasterKeyId",
+                "searchKey": 	    sprintf("Resources.%s.Properties.KmsMasterKeyId",[name]),
                 "issueType":		"MissingAttribute",  
-                "keyExpectedValue": "Properties.KmsMasterKeyId' is defined",
-                "keyActualValue": 	"Properties.KmsMasterKeyId' is undefined"
+                "keyExpectedValue": sprintf("Resources.%s.Properties.KmsMasterKeyId is defined",[name]),
+                "keyActualValue": 	sprintf("Resources.%s.Properties.KmsMasterKeyId is undefined",[name])
               }
 }
