@@ -1,0 +1,8 @@
+{
+  "id": "refreshToken_is_exposed",
+  "queryName": "RefreshToken Is Exposed",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "RefreshToken is a plaintext string, also does not started with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:' or does not ended with '}}'",
+  "descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration"
+}
