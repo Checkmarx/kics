@@ -1,6 +1,6 @@
 {
-  "id": "viewer_protocol_only_https_compliant",
-  "queryName": "Viewer Protocol Only HTTPS Compliant",
+  "id": "viewer_protocol_policy_allows_http_protocol",
+  "queryName": "Viewer Protocol Policy Allows HTTP Protocol",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "Ensure that the Viewer Protocol is only HTTPS Compliant",

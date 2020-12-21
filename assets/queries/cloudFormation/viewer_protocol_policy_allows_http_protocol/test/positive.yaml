@@ -27,10 +27,10 @@ Resources:
     Properties:
       DistributionConfig:
         CacheBehaviors:
-          ViewerProtocolPolicy: allow-all
-          LambdaFunctionAssociations:
-            - EventType: viewer-request
-              LambdaFunctionARN: examp
+          - ViewerProtocolPolicy: allow-all
+            LambdaFunctionAssociations:
+              - EventType: viewer-request
+                LambdaFunctionARN: examp
         DefaultCacheBehavior:
           LambdaFunctionAssociations:
             - EventType: viewer-request

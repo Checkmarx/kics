@@ -16,11 +16,12 @@ CxPolicy [ result ] {
 
 CxPolicy [ result ] {
   resources := input.document[i].Resources[name]
-  resources.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy != "https-only"
+  resources.Properties.DistributionConfig.CacheBehaviors[_].ViewerProtocolPolicy != "https-only"
+
 
 	result := {
                 "documentId": 		    input.document[i].id,
-                "searchKey": 	        sprintf("Resources.%s.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy", [name]),
+                "searchKey": 	        sprintf("Resources.%s.Properties.DistributionConfig.CacheBehaviors", [name]),
                 "issueType":		      "IncorrectValue",
                 "keyExpectedValue":   sprintf("Resources.%s.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'https-only'", [name]),
                 "keyActualValue": 	  sprintf("Resources.%s.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only'", [name])
