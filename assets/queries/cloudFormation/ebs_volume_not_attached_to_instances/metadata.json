@@ -1,0 +1,8 @@
+{
+  "id": "ebs_volume_not_attached_to_instances",
+  "queryName": "EBS Volume Not Attached To Instances",
+  "severity": "MEDIUM",
+  "category": "Operational",
+  "descriptionText": "EBS Volumes that are unattached to instances may contain sensitive data",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html"
+}
