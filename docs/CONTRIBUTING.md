@@ -37,9 +37,9 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
 1. Make your changes locally.
 1. Validate your changes to reassure they meet project quality and contribution standards:  
    ```
-   golint .
-   go mod vendor
-   go test -mod=vendor -v ./...    
+   golint . 
+   go mod vendor 
+   go test -mod=vendor -v ./...     
    ```
 1. Commit your changes and push your branch to GitHub:  
    ```
