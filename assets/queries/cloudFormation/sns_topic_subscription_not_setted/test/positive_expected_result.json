@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SNS Topic Subscription Not Setted",
+  		"severity": "LOW",
+		"line": 6
+	}
+]

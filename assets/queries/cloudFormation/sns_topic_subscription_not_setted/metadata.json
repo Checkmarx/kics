@@ -1,0 +1,8 @@
+{
+  "id": "SNS_Topic_Subscription_Not_Setted",
+  "queryName": "SNS Topic Subscription Not Setted",
+  "severity": "LOW",
+  "category": "Monitoring",
+  "descriptionText": "Ensure appropriate subscribers to each SNS topic",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription"
+}
