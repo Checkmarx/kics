@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EBS Volume Not Attached To Instances",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]

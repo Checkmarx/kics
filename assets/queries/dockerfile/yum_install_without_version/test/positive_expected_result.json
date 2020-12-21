@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "yum install Without Version",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+]
