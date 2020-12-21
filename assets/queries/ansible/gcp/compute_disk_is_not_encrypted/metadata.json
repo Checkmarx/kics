@@ -1,0 +1,8 @@
+{
+  "id": "Ansible_Compute_Disk_not_Encrypted",
+  "queryName": "Compute disk is not encrypted",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Compute disk is not encrypted",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/google/r/compute_disk.html"
+}
