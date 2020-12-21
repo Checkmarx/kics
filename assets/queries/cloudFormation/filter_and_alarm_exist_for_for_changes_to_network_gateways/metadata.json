@@ -1,0 +1,8 @@
+{
+  "id": "Filter_And_Alarm_Exist_For_S3_Changes_To_Network_Gateways",
+  "queryName": "Filter And Alarm Not Exists For Changes To Network Gateways",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and alarm should exist for Changes to Network Gateways",
+  "descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html"
+}
