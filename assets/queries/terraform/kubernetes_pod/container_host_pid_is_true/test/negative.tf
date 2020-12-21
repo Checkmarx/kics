@@ -71,7 +71,7 @@ resource "kubernetes_pod" "test2" {
 
     container {
       image = "nginx:1.7.9"
-      name  = "example
+      name  = "example"
 
 
       env {

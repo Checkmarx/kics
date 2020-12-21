@@ -1,0 +1,8 @@
+{
+  "id": "CMK_Is_Unusable",
+  "queryName": "CMK Is Unusable",
+  "severity": "MEDIUM",
+  "category": "Operational",
+  "descriptionText": "AWS Key Management Service (KMS) must only possess usable Customer Master Keys (CMK), which means the CMKs must have the attribute 'Enabled' set to true and the attribute 'PendingWindowInDays' must be undefined.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html"
+}
