@@ -18,7 +18,7 @@ Resources:
           - !Ref type
       RegionalCertificateArn: !Ref certificateArn
       SecurityPolicy: "TLS_1_0"
-Outputs:  
+Outputs:
   DomainName:
     Value: !Ref myDomainName
 
@@ -43,6 +43,6 @@ Resources:
         Types:
           - !Ref type
       RegionalCertificateArn: !Ref certificateArn
-Outputs:  
+Outputs:
   DomainName:
     Value: !Ref myDomainName
