@@ -1,0 +1,8 @@
+{
+  "id": "y_switch_avoid_manual_input",
+  "queryName": "Y Switch Avoid Manual Input",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Need to use -y to avoid manual input 'yum install -y <package>'",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+}
