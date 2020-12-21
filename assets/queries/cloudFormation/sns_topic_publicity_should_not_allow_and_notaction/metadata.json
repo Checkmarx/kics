@@ -2,7 +2,7 @@
   "id": "sns_topic_publicity_should_not_allow_and_notaction",
   "queryName": "SNS Topic Publicity Should not have Allow and NotAction",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity & Access Management",
   "descriptionText": "SNS topic Publicity Should not have Allow and NotAction at the same time, if it has Allow it should have Action",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-sns-policy"
 }
