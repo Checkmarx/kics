@@ -1,0 +1,8 @@
+{
+  "id": "Filter_And_Alarm_Exist_For_AWS_Management_Console_Authentication_Failures",
+  "queryName": "Filter And Alarm Not Exists For AWS Management Console Authentication Failures",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and alarm should exist for AWS Management Console Authentication Failures",
+  "descriptionUrl": "https://kb.securestate.vmware.com/monitor-console-auth-failures.html"
+}

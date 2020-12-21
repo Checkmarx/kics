@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Filter And Alarm Not Exists For AWS Management Console Authentication Failures",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Filter And Alarm Not Exists For AWS Management Console Authentication Failures",
+		"severity": "MEDIUM",
+		"line": 71
+	},
+	{
+		"queryName": "Filter And Alarm Not Exists For AWS Management Console Authentication Failures",
+		"severity": "MEDIUM",
+		"line": 98
+	}
+]
