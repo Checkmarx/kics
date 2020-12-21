@@ -1,0 +1,8 @@
+{
+  "id": "load_balancer_ssh_is_too_exposed",
+  "queryName": "Load Balancer SSH Is Too Exposed",
+  "severity": "HIGH",
+  "category": "Network Ports Security",
+  "descriptionText": "The load balancer of the application with SSH connection is too exposed to the pulic internet.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html"
+}
