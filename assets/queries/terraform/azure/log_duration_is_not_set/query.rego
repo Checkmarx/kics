@@ -16,7 +16,7 @@ CxPolicy [ result ] {
                 "documentId": 		  input.document[i].id,
                 "searchKey": 	      sprintf("azurerm_postgresql_configuration[%s].value", [x]),
                 "issueType":		    "IncorrectValue",
-                "keyExpectedValue": sprintf("'azurerm_postgresql_configuration.%s.value' should be 'ON'", [x]),
+                "keyExpectedValue": sprintf("'azurerm_postgresql_configuration.%s.value' is 'ON'", [x]),
                 "keyActualValue": 	sprintf("'azurerm_postgresql_configuration.%s.value' is 'OFF'", [x])
               }
 }
