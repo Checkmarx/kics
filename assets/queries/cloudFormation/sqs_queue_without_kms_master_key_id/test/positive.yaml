@@ -1,0 +1,5 @@
+Resources:
+  MyQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "SampleQueue"
