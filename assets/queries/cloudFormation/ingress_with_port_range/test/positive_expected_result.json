@@ -2,12 +2,12 @@
 	{
 		"queryName": "AWS Security Group Ingress With Port Range",
 		"severity": "MEDIUM",
-		"line": 8
+		"line": 11
 	},
 
 	{
 		"queryName": "AWS Security Group Ingress With Port Range",
 		"severity": "MEDIUM",
-		"line": 37
+		"line": 40
 	}
 ]
