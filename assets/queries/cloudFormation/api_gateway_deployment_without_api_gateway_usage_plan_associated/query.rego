@@ -38,11 +38,11 @@ check_resources_type(resource) {
 } 
 
 settings_are_equal(resource, restApiId, stageName) {
-  resource[_].Type == "AWS::ApiGateway::UsagePlan"
-  find_api_stages(resource[_].Properties.ApiStages, restApiId, stageName)
+  resource[i].Type == "AWS::ApiGateway::UsagePlan"
+  find_api_stages(resource[i].Properties.ApiStages, restApiId, stageName)
 } 
 
 find_api_stages(apiStages, restApiId, stageName) {
-  apiStages[_].ApiId == restApiId
-  apiStages[_].Stage == stageName
+  apiStages[i].ApiId == restApiId
+  apiStages[i].Stage == stageName
 }
