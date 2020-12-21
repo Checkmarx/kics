@@ -1,8 +1,0 @@
-{
-  "id": "Unpinned_Package_Version_in_Apk_Add",
-  "queryName": "Unpinned Package Version in Apk Add",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
-}
