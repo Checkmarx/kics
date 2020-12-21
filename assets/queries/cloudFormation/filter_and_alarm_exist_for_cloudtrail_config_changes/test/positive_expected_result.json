@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Filter And Alarm Not Exists For CloudTrail Configuration Changes",
+  		"severity": "LOW",
+		"line": 31
+	},
+	{
+		"queryName": "Filter And Alarm Not Exists For CloudTrail Configuration Changes",
+  		"severity": "LOW",
+		"line": 71
+	},
+	{
+		"queryName": "Filter And Alarm Not Exists For CloudTrail Configuration Changes",
+  		"severity": "LOW",
+		"line": 98
+	}
+]
