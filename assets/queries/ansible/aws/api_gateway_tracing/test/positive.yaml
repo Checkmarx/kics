@@ -1,0 +1,16 @@
+- name: Setup AWS API Gateway setup on AWS and deploy API definition
+  community.aws.aws_api_gateway:
+    swagger_file: my_api.yml
+    stage: production
+    cache_enabled: true
+    cache_size: '1.6'
+    tracing_enabled: disable
+    endpoint_type: false
+    state: present
+- name: Setup AWS API Gateway setup on AWS and deploy API definition without endpoint_type
+  community.aws.aws_api_gateway:
+    swagger_file: my_api.yml
+    stage: production
+    cache_enabled: true
+    cache_size: '1.6'
+    state: present
