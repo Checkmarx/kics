@@ -1,0 +1,17 @@
+---
+- name: foo
+  amazon.aws.ec2_snapshot:
+    instance_id: i-12345678
+    device_name: /dev/sdb1
+    encrypted: true
+    snapshot_tags:
+        frequency: hourly
+        source: /data
+- name: foo2
+  amazon.aws.ec2_snapshot:
+    instance_id: i-12345678
+    device_name: /dev/sdb1
+    encrypted: yes
+    snapshot_tags:
+        frequency: hourly
+        source: /data

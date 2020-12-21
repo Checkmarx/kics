@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Volume Snapshot Not Encrypted",
+		"severity": "HIGH",
+		"line": 6
+	},
+	{
+		"queryName": "Volume Snapshot Not Encrypted",
+		"severity": "HIGH",
+		"line": 14
+	},
+	{
+		"queryName": "Volume Snapshot Not Encrypted",
+		"severity": "HIGH",
+		"line": 19
+	}
+]
