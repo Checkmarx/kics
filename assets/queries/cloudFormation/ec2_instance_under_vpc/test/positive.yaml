@@ -24,7 +24,7 @@ Resources:
       Tags:
           - Key: Name
             Value: !Sub ${AWS::StackName}-Public-A
-  Ec2Instance:
+  Ec2Instance-01:
     Type: AWS::EC2::Instance
     Properties:
       ImageId:
@@ -40,7 +40,7 @@ Resources:
             SubnetId: !Ref PublicSubnetA
 ---
 Resources:
-  Ec2Instance:
+  Ec2Instance-02:
     Type: AWS::EC2::Instance
     Properties:
       ImageId:

@@ -7,6 +7,6 @@
 	{
 		"queryName": "Ec2 Instance Under VPC",
 		"severity": "MEDIUM",
-		"line": 29
+		"line": 45
 	}
 ]
