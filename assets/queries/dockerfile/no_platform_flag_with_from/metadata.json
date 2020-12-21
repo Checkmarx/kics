@@ -1,0 +1,8 @@
+{
+  "id": "no_platform_flag_with_from",
+  "queryName": "No Platform Flag With FROM",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Don't use --platform flag with FROM",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from"
+}

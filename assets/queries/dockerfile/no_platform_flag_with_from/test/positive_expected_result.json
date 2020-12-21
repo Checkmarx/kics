@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "No Platform Flag With FROM",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]
