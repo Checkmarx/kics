@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "AWS Redshift Cluster Without KMS CMK",
+		"severity": "HIGH",
+		"line": 6
+	}
+]

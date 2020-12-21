@@ -1,0 +1,8 @@
+{
+  "id": "Empty_Roles_For_ECS_Cluster_Task_Definitions",
+  "queryName": "Empty Roles For ECS Cluster Task Definitions",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Check if any ECS cluster has not defined proper roles for services' task definitions.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html"
+}

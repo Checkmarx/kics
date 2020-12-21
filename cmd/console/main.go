@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -20,14 +21,25 @@ import (
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
+	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
-const scanID = "console"
+const (
+	scanID   = "console"
+	timeMult = 2
+)
 
 func main() { // nolint:funlen,gocyclo
+	err := sentry.Init(sentry.ClientOptions{
+		Dsn: "https://a9194c7a568744d392ab5fd9cde6708a@o489127.ingest.sentry.io/5550779",
+	})
+	if err != nil {
+		log.Err(err).Msg("failed to initialize sentry")
+	}
+
 	var (
 		path        string
 		queryPath   string
@@ -50,6 +62,8 @@ func main() { // nolint:funlen,gocyclo
 		Use:   "kics",
 		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			defer sentry.Flush(timeMult * time.Second)
+
 			store := storage.NewMemoryStorage()
 			if verbose {
 				consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
@@ -155,10 +169,13 @@ func main() { // nolint:funlen,gocyclo
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "Log to file info.log")
 	if err := rootCmd.MarkFlagRequired("path"); err != nil {
+		sentry.CaptureException(err)
 		log.Err(err).Msg("failed to add command required flags")
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
+		sentry.CaptureException(err)
+		log.Err(err).Msg("failed to run application")
 		os.Exit(-1)
 	}
 }
