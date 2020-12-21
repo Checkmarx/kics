@@ -1,0 +1,8 @@
+{
+    "id": "s3_bucket_without_ssl_enforcement",
+    "queryName": "S3 Bucket Without SSL Enforcement",
+    "severity": "HIGH",
+    "category": "Encryption and Key Management",
+    "descriptionText": "S3 Buckets should enforce encryption of data transfers using Secure Sockets Layer (SSL)",
+    "descriptionUrl": "https://aws.amazon.com/premiumsupport/knowledge-center/s3-bucket-policy-for-config-rule/"
+}

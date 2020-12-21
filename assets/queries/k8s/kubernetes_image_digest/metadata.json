@@ -1,0 +1,8 @@
+{
+  "id": "Kubernetes_Image_Digest",
+  "queryName": "Kubernetes Image should use digest",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Sees if Kubernetes image has digest on",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+}
