@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Yum Update Disabled",
+		"severity": "HIGH",
+		"line": 5
+	}
+]

@@ -1,0 +1,8 @@
+{
+  "id": "yum_update_disabled",
+  "queryName": "Yum Update Disabled",
+  "severity": "HIGH",
+  "category": "Package Management",
+  "descriptionText": "Do not use yum update",
+  "descriptionUrl": "https://docs.docker.com/engine/install/centos/#upgrade-docker-engine-1"
+}
