@@ -10,7 +10,7 @@ Resources:
             yum:
               httpd: []
           files:
-            /var/www/html/index.html: 
+            /var/www/html/index.html:
               source:
                 Fn::Join:
                   - ""
