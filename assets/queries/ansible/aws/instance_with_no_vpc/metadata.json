@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Network Security",
   "descriptionText": "Instance should be configured in VPC (Virtual Private Cloud)",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html"
 }
