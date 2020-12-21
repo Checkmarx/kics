@@ -1,0 +1,8 @@
+{
+  "id": "elb_ssl_setup",
+  "queryName": "ELB SSL Setup",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Check if the ELB is setup with SSL for secure communication",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html"
+}
