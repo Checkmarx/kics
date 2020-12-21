@@ -7,7 +7,7 @@ CxPolicy [ result ] {
   gcpContainer := task["google.cloud.gcp_container_node_pool"]
   containerName := task.name
 	
-  object.get(gcpContainer.management, "auto_repair", "undefined") == "undefined"
+  object.get(gcpContainer, "management", "undefined") == "undefined"
 
     result := {
                 "documentId":       input.document[i].id,
