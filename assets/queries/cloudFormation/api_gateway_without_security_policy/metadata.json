@@ -1,0 +1,8 @@
+{
+  "id": "api_gateway_without_security_policy",
+  "queryName": "API Gateway Without Security Policy",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "API Gateway should have a Security Policy defined and use TLS 1.2.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-securitypolicy"
+}
