@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Network Security",
   "descriptionText": "Type of Endpoint Configuration is Private",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html"
 }
