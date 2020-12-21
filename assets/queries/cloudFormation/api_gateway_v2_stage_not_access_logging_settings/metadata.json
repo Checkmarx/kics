@@ -1,6 +1,6 @@
 {
-  "id": "api_gateway_v2_stage_not_access_logging_settings",
-  "queryName": "API Gateway V2 Stage Not Access Logging Settings",
+  "id": "api_gateway_v2_stage_access_logging_settings_not_defined",
+  "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "API Gateway V2 Stage should have Access Logging Settings defined.",

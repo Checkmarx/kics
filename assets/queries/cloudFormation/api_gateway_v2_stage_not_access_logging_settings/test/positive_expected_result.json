@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "API Gateway V2 Stage Not Access Logging Settings",
+		"queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
 		"severity": "MEDIUM",
 		"line": 6
 	}
