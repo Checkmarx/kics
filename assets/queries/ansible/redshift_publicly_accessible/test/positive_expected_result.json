@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "Ansible_Redshift_Publicly_Accessible",
+		"queryName": "Ansible Redshift Publicly Accessible",
 		"severity": "HIGH",
 		"line": 9
 	},
 	{
-		"queryName": "Ansible_Redshift_Publicly_Accessible",
+		"queryName": "Ansible Redshift Publicly Accessible",
 		"severity": "HIGH",
 		"line": 17
 	},
 	{
-		"queryName": "Ansible_Redshift_Publicly_Accessible",
+		"queryName": "Ansible Redshift Publicly Accessible",
 		"severity": "HIGH",
 		"line": 25
 	}
