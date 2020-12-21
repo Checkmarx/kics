@@ -1,0 +1,8 @@
+{
+  "id": "missing_version_specification_in_dnf_install",
+  "queryName": "Missing Version Specification In dnf install",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Specifying a package version allows to reduce failures due to unanticipated changes in required packages.",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+}

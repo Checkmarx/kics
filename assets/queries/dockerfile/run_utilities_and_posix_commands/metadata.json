@@ -1,0 +1,8 @@
+{
+  "id": "Run_utilities_and_posix_commands",
+  "queryName": "Run Utilities And POSIX Commands",
+  "severity": "INFO",
+  "category": "Package Management",
+  "descriptionText": "Some POSIX commands and interactive utilities shouldn't run inside a Docker Container",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+}
