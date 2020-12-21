@@ -1,0 +1,8 @@
+{
+  "id": "IAM User Has Policies",
+  "queryName": "IAM User Has Policies",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM User should embed managed policies instead of inline policies",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html"
+}

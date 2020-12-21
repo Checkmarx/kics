@@ -1,0 +1,8 @@
+{
+  "id": "S3_Bucket_Website_Host_Is_Disabled",
+  "queryName": "S3 Bucket Website Host Is Disabled",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Is dangerous disabling a block public access settings in bucket or write a bucket policy that grants public read access",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html"
+}
