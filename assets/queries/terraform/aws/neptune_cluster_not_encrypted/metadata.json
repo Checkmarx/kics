@@ -1,0 +1,8 @@
+{
+  "id": "Neptune_Cluster_not_encrypted",
+  "queryName": "Neptune Cluster not encrypted",
+  "severity": "MEDIUM",
+  "category": "neptune",
+  "descriptionText": "Check if Neptune Cluster Storage is securely encypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#storage_encrypted"
+}
