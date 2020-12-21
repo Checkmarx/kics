@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "WebAcl ALLOW DefaultAction",
+		"severity": "HIGH",
+		"line": 8
+	}
+]

@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Volume Mount with OS Directory Write Permissions",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Volume Mount with OS Directory Write Permissions",
+		"severity": "MEDIUM",
+		"line": 39
+	},
+	{
+		"queryName": "Volume Mount with OS Directory Write Permissions",
+		"severity": "MEDIUM",
+		"line": 11
+	},
+	{
+		"queryName": "Volume Mount with OS Directory Write Permissions",
+		"severity": "MEDIUM",
+		"line": 37
+	}
+]

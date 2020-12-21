@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS Automatic Minor Upgrades Disabled",
+		"severity": "MEDIUM",
+		"line": 58
+	},
+	{
+		"queryName": "RDS Automatic Minor Upgrades Disabled",
+		"severity": "MEDIUM",
+		"line": 82
+	}
+]

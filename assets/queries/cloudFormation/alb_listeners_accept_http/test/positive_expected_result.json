@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ALB Listeners Accept HTTP",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "ALB Listeners Accept HTTP",
+		"severity": "MEDIUM",
+		"line": 25
+	}
+]

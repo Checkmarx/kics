@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Route53 Without Record Set",
+		"severity": "HIGH",
+		"line": 4
+	}
+]
