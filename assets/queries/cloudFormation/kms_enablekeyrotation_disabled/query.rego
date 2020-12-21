@@ -27,7 +27,7 @@ CxPolicy [ result ] {
 	result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.EnableKeyRotation",[name]),   
-                "issueType":		"MissingValue",  
+                "issueType":		"MissingAttribute",  
                 "keyExpectedValue": sprintf("Resources.%s.Properties.EnableKeyRotation is defined",[name]),
                 "keyActualValue": 	sprintf("Resources.%s.Properties.EnableKeyRotation is undefined",[name]),
               }

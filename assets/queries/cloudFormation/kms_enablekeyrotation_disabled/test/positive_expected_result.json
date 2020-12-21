@@ -3,5 +3,10 @@
 		"queryName": "Kms EnableKeyRotation Disabled",
 		"severity": "MEDIUM",
 		"line": 8
+	},
+	{
+		"queryName": "Kms EnableKeyRotation Disabled",
+		"severity": "MEDIUM",
+		"line": 51
 	}
 ]
