@@ -1,0 +1,8 @@
+{
+  "id": "Filter_And_Alarm_Exist_For_Customer_Master_Key_Events",
+  "queryName": "Filter And Alarm Not Exists For Customer Master Key Events",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and alarm should exist dor Customer Master Key Events",
+  "descriptionUrl": "https://asecure.cloud/a/disabled_deleted_cmks/"
+}
