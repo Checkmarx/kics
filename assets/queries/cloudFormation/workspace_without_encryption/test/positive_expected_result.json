@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Workspace Without Encryption",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "Workspace Without Encryption",
+		"severity": "MEDIUM",
+		"line": 29
+	}
+]

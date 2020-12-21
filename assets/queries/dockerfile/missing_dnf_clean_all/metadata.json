@@ -1,0 +1,8 @@
+{
+  "id": "missing_dnf_clean_all",
+  "queryName": "Missing dnf clean all",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Cached package data should be cleaned after installation to reduce image size",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+}
