@@ -17,7 +17,7 @@ nav:
   - Home: index.md
   - Install:
     - Getting Started: getting-started.md
-    - Integrations: integrations.md
+#    - Integrations: integrations.md
     - Results: results.md
   - Queries: queries.md
   - Architecture: architecture.md
@@ -31,8 +31,8 @@ nav:
 # Theme
 theme:
   name: flatly
-  logo: img/logo-kics-horizontal.png
-  favicon: img/favicon.ico
+  logo: img/kics.ico
+  favicon: img/logo/kics-logo-text.png
   include_sidebar: true
   sticky_navigation: true
   
