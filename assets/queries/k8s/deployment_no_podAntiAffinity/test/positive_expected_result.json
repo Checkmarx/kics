@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Deployment Has No PodAntiAffinity",
+		"severity": "LOW",
+		"line": 19
+	},
+	{
+		"queryName": "Deployment Has No PodAntiAffinity",
+		"severity": "LOW",
+		"line": 39
+	}
+]

@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]

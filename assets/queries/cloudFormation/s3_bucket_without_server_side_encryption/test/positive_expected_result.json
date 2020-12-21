@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "S3 Bucket Without Server Side Encryption",
+		"severity": "HIGH",
+		"line": 5
+	}
+]

@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Run Using dnf update",
+		"severity": "HIGH",
+		"line": 2
+	}
+]

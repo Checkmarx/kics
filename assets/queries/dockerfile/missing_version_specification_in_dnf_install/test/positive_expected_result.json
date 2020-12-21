@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Missing Version Specification In dnf install",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+]
