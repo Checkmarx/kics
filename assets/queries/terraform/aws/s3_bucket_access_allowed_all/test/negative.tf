@@ -2,7 +2,7 @@
 resource "aws_s3_bucket" "b" {
   bucket = "my_tf_test_bucket"
 
-    policy = <<POLICY
+  policy = <<POLICY
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "b" {
       "Effect": "Deny",
       "Principal": "*",
       "Action": "*",
-      "Resource": "arn:aws:s3:::my_tf_test_bucket/*",
+      "Resource": "arn:aws:s3:::my_tf_test_bucket/*"
     }
   ]
 }

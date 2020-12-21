@@ -1,0 +1,8 @@
+{
+  "id": "k8s_dashboard_integration",
+  "queryName": "Dashboard Is Enabled",
+  "severity": "LOW",
+  "category": "Cloud Assets Management",
+  "descriptionText": "If not needed, disabling the dashboard can prevent from being used as an attack vector",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/"
+}

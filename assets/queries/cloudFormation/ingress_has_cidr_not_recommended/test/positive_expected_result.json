@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "AWS Security Group Ingress Has CIDR Not Recommended",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+
+	{
+		"queryName": "AWS Security Group Ingress Has CIDR Not Recommended",
+		"severity": "MEDIUM",
+		"line": 43
+	}
+]

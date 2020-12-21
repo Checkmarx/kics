@@ -1,0 +1,8 @@
+{
+  "id": "alb_listeners_accept_http",
+  "queryName": "ALB Listeners Accept HTTP",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "All Application Load Balancers (ALB) should block connection requests over HTTP",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-protocol"
+}
