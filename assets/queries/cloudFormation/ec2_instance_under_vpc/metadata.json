@@ -1,0 +1,8 @@
+{
+  "id": "ec2_instance_under_vpc",
+  "queryName": "Ec2 Instance Under VPC",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "EC2 Instances should be configured under a vpc network. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html"
+}
