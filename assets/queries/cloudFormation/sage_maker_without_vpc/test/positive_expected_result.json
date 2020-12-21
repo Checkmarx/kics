@@ -2,6 +2,6 @@
 	{
 		"queryName": "SageMaker Notebook Not Placed In VPC",
 		"severity": "HIGH",
-		"line": 4
+		"line": 7
 	}
 ]

@@ -11,7 +11,6 @@ Resources:
       RootAccess: Enabled
       SecurityGroupIds: 
         - !GetAtt VpcSecurityGroup.GroupId
-      SubnetId: !Ref PrivateSubnet1
       DirectInternetAccess: Disabled
       AdditionalCodeRepositories: !If 
         - CreateCodeRepo
@@ -19,6 +18,15 @@ Resources:
         - !Ref 'AWS::NoValue'
       LifecycleConfigName: !GetAtt NotebookStartConfig.NotebookInstanceLifecycleConfigName
       VolumeSizeInGB: !Ref EbsVolumeSize
+      Tags:
+        - Key: Name
+          Value: !Ref 'AWS::StackName'  
+  Vpc:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
       Tags:
         - Key: Name
           Value: !Ref 'AWS::StackName'
