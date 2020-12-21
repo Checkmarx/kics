@@ -1,0 +1,8 @@
+{
+  "id": "gamelift_fleet_ec2inboundpermissions_with_port_range",
+  "queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+  "severity": "MEDIUM",
+  "category": "Network Security" ,
+  "descriptionText": "AWS GameLift Fleet EC2InboundPermissions should have a single port",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html"
+}
