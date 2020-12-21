@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "AWS Security Group Egress With Port Range",
+		"severity": "MEDIUM",
+		"line": 17
+	},
+
+	{
+		"queryName": "AWS Security Group Egress With Port Range",
+		"severity": "MEDIUM",
+		"line": 25
+	}
+]
