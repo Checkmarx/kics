@@ -1,0 +1,8 @@
+{
+  "id": "ansible_efs_is_not_encrypted",
+  "queryName": "EFS Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Elastic File System (EFS) must be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#encrypted"
+}
