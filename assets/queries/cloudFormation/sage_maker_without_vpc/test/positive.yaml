@@ -9,10 +9,10 @@ Resources:
       InstanceType: !Ref NotebookInstanceType
       RoleArn: !GetAtt ExecutionRole.Arn
       RootAccess: Enabled
-      SecurityGroupIds: 
+      SecurityGroupIds:
         - !GetAtt VpcSecurityGroup.GroupId
       DirectInternetAccess: Disabled
-      AdditionalCodeRepositories: !If 
+      AdditionalCodeRepositories: !If
         - CreateCodeRepo
         - [!GetAtt CodeRepo.CodeRepositoryName]
         - !Ref 'AWS::NoValue'
@@ -20,7 +20,7 @@ Resources:
       VolumeSizeInGB: !Ref EbsVolumeSize
       Tags:
         - Key: Name
-          Value: !Ref 'AWS::StackName'  
+          Value: !Ref 'AWS::StackName'
   Vpc:
     Type: 'AWS::EC2::VPC'
     Properties:
