@@ -2,39 +2,60 @@ package Cx
 
 CxPolicy [ result ] {
  	resourcePolicy := input.document[indexPolicy].Resources[namePolicy]
-	policyProperties := [policyProperties | resourcePolicy.Type == "AWS::IAM::Policy"; policyProperties = resourcePolicy.Properties.PolicyDocument]
-	policyStatements := policyProperties[_].Statement[index]
+
     
   resourceBucket := input.document[indexBucket].Resources[nameBucket]
-  bucketProperties := [bucketProperties | resourceBucket.Type == "AWS::S3::Bucket"; bucketProperties = resourceBucket.Properties]
+  resourceBucket.Type == "AWS::S3::Bucket"
+
+policyStatements := [policyStatement | 	resourcePolicy := input.document[_].Resources[_]
+                                        resourcePolicy.Type == "AWS::S3::BucketPolicy"
+                                        checkRef(resourcePolicy.Properties.Bucket, nameBucket)
+                                        policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]]
 
  	checkPolicyConfiguration(policyStatements)
-  checkPublicAccessBlockConfiguration(bucketProperties)
   
+	publicAccessBlockConfiguration := resourceBucket.Properties.PublicAccessBlockConfiguration
+	publicAccessBlockConfiguration.RestrictPublicBuckets == false
+
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration", [nameBucket]),
+                "searchKey": 	    sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets", [nameBucket]),
                 "issueType":		"IncorrectValue",  
-                "keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration' is setted and configuration has value true",
-                "keyActualValue": 	"'Resources.Properties.PublicAccessBlockConfiguration' is not setted or configuration has value false "
+                "keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets' is true",
+                "keyActualValue": 	"'Resources.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets' is false"
                 }
 }
 
-checkPublicAccessBlockConfiguration(bucketProperties) = true {
-	checkAccess(bucketProperties[_].PublicAccessBlockConfiguration)
-}
-checkAccess(property){
-	property != null
-	property.RestrictPublicBuckets != true
-}
-checkAccess(property){
-	property != null
-    property.IgnorePublicAcls != true
+CxPolicy [ result ] {
+ 	resourcePolicy := input.document[indexPolicy].Resources[namePolicy]
+    
+  	resourceBucket := input.document[indexBucket].Resources[nameBucket]
+  	resourceBucket.Type == "AWS::S3::Bucket"
+
+	policyStatements := [policyStatement | 	resourcePolicy := input.document[_].Resources[_]
+                                        resourcePolicy.Type == "AWS::S3::BucketPolicy"
+                                        checkRef(resourcePolicy.Properties.Bucket, nameBucket)
+                                        policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]]
+
+ 	checkPolicyConfiguration(policyStatements)
+  
+	publicAccessBlockConfiguration := resourceBucket.Properties.PublicAccessBlockConfiguration
+	publicAccessBlockConfiguration.IgnorePublicAcls == false
+
+	result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls", [nameBucket]),
+                "issueType":		"IncorrectValue",  
+                "keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls' is true",
+                "keyActualValue": 	"'Resources.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls' is false"
+                }
 }
 
-checkPolicyConfiguration(policyProperties) {
-    policyProperties.Effect == "Allow"
-    checkPolicy(policyProperties)
+
+checkPolicyConfiguration(policyStatements) {
+    some p
+    policyStatements[p].Effect == "Allow"
+    checkPolicy(policyStatements[p])
 }
 checkPolicy(policyProperty) {
  	policyProperty.Principal == "*"
@@ -46,5 +67,10 @@ checkPolicy(policyProperty) {
     policyProperty.Principal.AWS[_] == "*"
 }  
 
-
+checkRef(obj, name) {
+	obj.Ref == name
+}
+checkRef(obj, name) {
+	obj == name
+}
 

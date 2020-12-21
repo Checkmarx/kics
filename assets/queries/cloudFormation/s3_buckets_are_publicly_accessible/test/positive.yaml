@@ -7,9 +7,10 @@ Resources:
         BlockPublicPolicy: false
         IgnorePublicAcls: true
         RestrictPublicBuckets: false
-  BucketBackupPolicy:
-    Type: AWS::IAM::Policy
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
     Properties:
+      Bucket: !Ref Bucket
       PolicyDocument:
         Statement:
         - Effect: Allow
@@ -18,7 +19,33 @@ Resources:
             - "*"
           Action: s3:GetObject
           Resource: arn:aws:s3:::DOC-EXAMPLE-BUCKET/*
-      PolicyName: BucketBackupPolicy
-      Roles:
-      - Ref: WorkItemBucketBackupRole
-  
+          Condition:
+            StringLike:
+              'aws:Referer':
+                - 'http://www.example.com/*'
+                - 'http://example.net/*'
+  Bucket2:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: true
+  BucketPolicy2:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref Bucket2
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            AWS:
+            - "*"
+          Action: s3:GetObject
+          Resource: arn:aws:s3:::DOC-EXAMPLE-BUCKET/*
+          Condition:
+            StringLike:
+              'aws:Referer':
+                - 'http://www.example.com/*'
+                - 'http://example.net/*'

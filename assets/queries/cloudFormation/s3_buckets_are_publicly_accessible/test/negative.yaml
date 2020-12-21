@@ -7,9 +7,10 @@ Resources:
         BlockPublicPolicy: false
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-  BucketBackupPolicy:
-    Type: AWS::IAM::Policy
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
     Properties:
+      Bucket: !Ref Bucket
       PolicyDocument:
         Statement:
         - Effect: Allow
@@ -19,7 +20,8 @@ Resources:
             - arn:aws:iam::111122223333:user/Fabio
           Action: s3:GetObject
           Resource: arn:aws:s3:::DOC-EXAMPLE-BUCKET/*
-      PolicyName: BucketBackupPolicy
-      Roles:
-      - Ref: WorkItemBucketBackupRole
-
+          Condition:
+            StringLike:
+              'aws:Referer':
+                - 'http://www.example.com/*'
+                - 'http://example.net/*'
