@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "zypper install Without Version",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+]
