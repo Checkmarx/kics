@@ -32,7 +32,7 @@ CxPolicy[result] {
     result := {
         "documentId":        document.id,
         "searchKey":         sprintf("name=%s.{{%s}}.validate_certs", [task.name, modules[index]]),
-        "issueType":         "MissingAttribute",
+        "issueType":         "IncorrectValue",
         "keyExpectedValue":  sprintf("%s.validate_certs is set to yes", [modules[index]]),
         "keyActualValue": 	 sprintf("%s.validate_certs is not set to yes", [modules[index]])
     }
