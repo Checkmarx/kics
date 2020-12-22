@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "The value on AWS Volume Cluster Encryption must be true",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#encrypted"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_vol_module.html#parameter-encrypted"
 }
