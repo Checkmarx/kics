@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "Directory Service Simple AD Password Rule",
+		"queryName": "Directory Service Simple AD Password Exposed",
 		"severity": "MEDIUM",
 		"line": 5
 	},
 	{
-		"queryName": "Directory Service Simple AD Password Rule",
+		"queryName": "Directory Service Simple AD Password Exposed",
 		"severity": "MEDIUM",
 		"line":30
 	},
 	{
-		"queryName": "Directory Service Simple AD Password Rule",
+		"queryName": "Directory Service Simple AD Password Exposed",
 		"severity": "MEDIUM",
 		"line":18
 	}
