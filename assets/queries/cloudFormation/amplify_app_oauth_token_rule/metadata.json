@@ -1,8 +1,8 @@
 {
   "id": "amplify_app_basic_auth_config_password_rule",
-  "queryName": "Amplify App OAuth Token Rule",
+  "queryName": "Amplify App OAuth Token Exposed",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Amplify App OAuth Token must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html"
 }
