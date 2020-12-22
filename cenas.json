@@ -1,0 +1,18 @@
+{
+	"document": [
+		{
+			"playbooks": [
+				{
+					"amazon.aws.aws_s3": {
+						"bucket": "mybucket",
+						"mode": "create",
+						"permission": "authenticated-read"
+					},
+					"name": "Create an empty bucket2"
+				}
+			],
+			"id": "0d5d3dc8-e656-4bdd-a6d0-75fd9e225dee",
+			"file": "cenas.yaml"
+		}
+	]
+}
