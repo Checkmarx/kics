@@ -1,80 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
-  KeyName:
-    Type: AWS::EC2::KeyPair::KeyName
-    Description: Name of an existing EC2 KeyPair to enable SSH access to the ECS instances.
   VpcId:
     Type: AWS::EC2::VPC::Id
     Description: Select a VPC that allows instances access to the Internet.
   SubnetId:
     Type: List<AWS::EC2::Subnet::Id>
     Description: Select at two subnets in your selected VPC.
-  DesiredCapacity:
-    Type: Number
-    Default: '1'
-    Description: Number of instances to launch in your ECS cluster.
-  MaxSize:
-    Type: Number
-    Default: '1'
-    Description: Maximum number of instances that can be launched in your ECS cluster.
-  InstanceType:
-    Description: EC2 instance type
-    Type: String
-    Default: t2.micro
-    AllowedValues:
-      - t2.micro
-      - t2.small
-      - t2.medium
-      - t2.large
-      - m3.medium
-      - m3.large
-      - m3.xlarge
-      - m3.2xlarge
-      - m4.large
-      - m4.xlarge
-      - m4.2xlarge
-      - m4.4xlarge
-      - m4.10xlarge
-      - c4.large
-      - c4.xlarge
-      - c4.2xlarge
-      - c4.4xlarge
-      - c4.8xlarge
-      - c3.large
-      - c3.xlarge
-      - c3.2xlarge
-      - c3.4xlarge
-      - c3.8xlarge
-      - r3.large
-      - r3.xlarge
-      - r3.2xlarge
-      - r3.4xlarge
-      - r3.8xlarge
-      - i2.xlarge
-      - i2.2xlarge
-      - i2.4xlarge
-      - i2.8xlarge
-    ConstraintDescription: Please choose a valid instance type.
-Mappings:
-  AWSRegionToAMI:
-    us-east-1:
-      AMIID: ami-09bee01cc997a78a6
-    us-east-2:
-      AMIID: ami-0a9e12068cb98a01d
-    us-west-1:
-      AMIID: ami-0fa6c8d131a220017
-    us-west-2:
-      AMIID: ami-078c97cf1cefd1b38
-    eu-west-1:
-      AMIID: ami-0c9ef930279337028
-    eu-central-1:
-      AMIID: ami-065c1e34da68f2b02
-    ap-northeast-1:
-      AMIID: ami-02265963d1614d04d
-    ap-southeast-1:
-      AMIID: ami-0b68661b29b9e058c
-    ap-southeast-2:
-      AMIID: ami-00e4b147599c13588
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -112,7 +43,7 @@ Resources:
     Properties:
       LogGroupName: !Join ['-', [ECSLogGroup, !Ref 'AWS::StackName']]
       RetentionInDays: 14
-  taskdefinition:
+  TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Join ['', [!Ref 'AWS::StackName', -ecs-demo-app]]
@@ -136,11 +67,7 @@ Resources:
       - Name: busybox
         Cpu: 10
         Command: ['/bin/sh -c "while true; do echo ''<html> <head> <title>Amazon ECS
-            Sample App</title> <style>body {margin-top: 40px; background-color: #333;}
-            </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon
-            ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now
-            running on a container in Amazon ECS.</p>'' > top; /bin/date > date ;
-            echo ''</div></body></html>'' > bottom; cat top date bottom > /usr/local/apache2/htdocs/index.html
+            Sample App</title></head><body></body></html>'' > bottom; cat top date bottom > /usr/local/apache2/htdocs/index.html
             ; sleep 1; done"']
         EntryPoint: [sh, -c]
         Essential: false
@@ -205,8 +132,8 @@ Resources:
       VPCZoneIdentifier: !Ref 'SubnetId'
       LaunchConfigurationName: !Ref 'ContainerInstances'
       MinSize: '1'
-      MaxSize: !Ref 'MaxSize'
-      DesiredCapacity: !Ref 'DesiredCapacity'
+      MaxSize: 4
+      DesiredCapacity: 2
     CreationPolicy:
       ResourceSignal:
         Timeout: PT15M
@@ -216,11 +143,11 @@ Resources:
   ContainerInstances:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
-      ImageId: !FindInMap [AWSRegionToAMI, !Ref 'AWS::Region', AMIID]
+      ImageId: ami-09bee01cc997a78a6
       SecurityGroups: [!Ref 'EcsSecurityGroup']
-      InstanceType: !Ref 'InstanceType'
+      InstanceType: t2.small
       IamInstanceProfile: !Ref 'EC2InstanceProfile'
-      KeyName: !Ref 'KeyName'
+      KeyName: my-ssh-key
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash -xe
@@ -291,7 +218,7 @@ Resources:
       Namespace: AWS/ApplicationELB
       Dimensions:
         - Name: LoadBalancer
-          Value: !GetAtt 
+          Value: !GetAtt
             - ECSALB
             - LoadBalancerFullName
       ComparisonOperator: GreaterThanThreshold
@@ -338,13 +265,3 @@ Resources:
     Properties:
       Path: /
       Roles: [!Ref 'EC2Role']
-Outputs:
-  ecsservice:
-    Value: !Ref 'service'
-  ecscluster:
-    Value: !Ref 'ECSCluster'
-  ECSALB:
-    Description: Your ALB DNS URL
-    Value: !Join ['', [!GetAtt [ECSALB, DNSName]]]
-  taskdef:
-    Value: !Ref 'taskdefinition'
