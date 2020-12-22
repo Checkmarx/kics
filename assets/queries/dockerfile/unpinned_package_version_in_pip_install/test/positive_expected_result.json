@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 3
+	},
+	{
+		"queryName": "Unpinned Package Version in Apk Add",
+		"severity": "MEDIUM",
+		"line": 14
+	}
+]
