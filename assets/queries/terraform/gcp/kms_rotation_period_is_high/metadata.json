@@ -1,6 +1,6 @@
 {
-  "id": "KMS_Rotation_Period_365_Days",
-  "queryName": "KMS Rotation Period 365 Days",
+  "id": "KMS_Rotation_Period_Is_Higher_Than_365_Days",
+  "queryName": "KMS Rotation Period Is Higher Than 365 Days",
   "severity": "HIGH",
   "category": "Encryption & Key Management",
   "descriptionText": "Check that keys aren't the same for a period greater than 365 days.",
