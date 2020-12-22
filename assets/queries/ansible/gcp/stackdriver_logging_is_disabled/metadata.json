@@ -1,0 +1,8 @@
+{
+  "id": "Stackdriver_Logging_Disabled",
+  "queryName": "Stackdriver Logging is Disabled",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'logging_service' must be defined and different from 'none'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html"
+}
