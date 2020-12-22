@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "user IAM invalid password",
+		"queryName": "IAM User LoginProfile Password Is In Plaintext",
 		"severity": "MEDIUM",
 		"line": 9
 	}
