@@ -9,6 +9,5 @@
         failover_priority: 0
     database_account_offer_type: Standard
     tags:
-      - myTags: {
-                  't1': 't1'
-                }
+        t1: t1
+        t2: t2
