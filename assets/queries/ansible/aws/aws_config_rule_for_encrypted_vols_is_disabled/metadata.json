@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
   "descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_config_rule_module.html#parameter-source/identifier"
 }
