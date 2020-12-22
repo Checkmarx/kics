@@ -1,6 +1,6 @@
 {
   "id": "amplify_app_access_token_rule",
-  "queryName": "Amplify App Access Token Rule",
+  "queryName": "Amplify App Access Token Exposed",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
   "descriptionText": "Amplify App Access Token must not be in a plain text string or referenced in a parameter as a default value.",
