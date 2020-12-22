@@ -2,7 +2,7 @@
   "id": "api_gateway_deployment_without_api_gateway_usage_plan_associated",
   "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
   "severity": "LOW",
-  "category": null,
+  "category": "Monitoring",
   "descriptionText": "API Gateway Deployment should have API Gateway UsagePlan defined and associated.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html"
 }
