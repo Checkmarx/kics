@@ -29,7 +29,7 @@ CxPolicy [ result ] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only", [storageAccountName]),
-                "issueType":        "MissingAttribute",
+                "issueType":        "WrongValue",
                 "keyExpectedValue": "azure.azcollection.azure_rm_storageaccount should have https_only set to true",
                 "keyActualValue":   "azure.azcollection.azure_rm_storageaccount does has https_only set to false"
               }
