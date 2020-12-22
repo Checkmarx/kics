@@ -12,7 +12,7 @@ Resources:
           InstanceProtocol: HTTP
           LoadBalancerPort: '443'
           Protocol: HTTPS
-          PolicyNames: 
+          PolicyNames:
           - My-SSLNegotiation-Policy
           SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
         HealthCheck:
@@ -107,7 +107,7 @@ Resources:
       - Id: !Ref Instance01
         Port: 443
       - Id: !Ref Instance02
-        Port: 443  
+        Port: 443
       Tags:
         - Key: Name
           Value: t10-networklb-target
