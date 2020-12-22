@@ -10,7 +10,7 @@ CxPolicy[result] {
     result := {
         "documentId": document.id,
         "searchKey": sprintf("name=%s.{{community.aws.rds_instance}}", [task.name]),
-        "issueType": "IncorrectValue",
+        "issueType": "MissingAttribute",
         "keyExpectedValue": "RDS instance ca_certificate_identifier should be defined",
         "keyActualValue": "RDS instance ca_certificate_identifier is undefined"
     }
