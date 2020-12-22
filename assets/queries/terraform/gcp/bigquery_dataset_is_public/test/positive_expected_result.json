@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Dataset is public",
+		"queryName": "BigQuery Dataset Is Public",
 		"severity": "HIGH",
 		"line": 14
 	}
