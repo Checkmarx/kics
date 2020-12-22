@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "All Users Group Gets Read Access",
+		"severity": "HIGH",
+		"line": 6
+	},
+	{
+		"queryName": "All Users Group Gets Read Access",
+		"severity": "HIGH",
+		"line": 11
+	}
+]
