@@ -1,0 +1,8 @@
+{
+  "id": "user_data_contains_rsa_private_key",
+  "queryName": "User Data Contains RSA Private Key",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "User Data contains an encoded RSA Private Key",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html"
+}

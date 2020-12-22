@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "User Data Contains RSA Private Key",
+		"severity": "HIGH",
+		"line": 1
+	}
+]
