@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "Amplify Branch Basic Auth Config Password Rule",
+		"queryName": "Amplify Branch Basic Auth Config Password Exposed",
 		"severity": "MEDIUM",
 		"line": 26
 	},
 	{
-		"queryName": "Amplify Branch Basic Auth Config Password Rule",
+		"queryName": "Amplify Branch Basic Auth Config Password Exposed",
 		"severity": "MEDIUM",
 		"line": 18
 	}
