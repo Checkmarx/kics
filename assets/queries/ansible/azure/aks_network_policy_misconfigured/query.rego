@@ -22,6 +22,22 @@ CxPolicy[result] {
     task := tasks[t]
 
     object.get(task.azure_rm_aks, "network_profile", "undefined") == "undefined"
+
+    result := {
+        "documentId": document.id,
+        "searchKey": sprintf("name=%s.azure_rm_aks", [task.name]),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": "Azure AKS cluster network profile should be defined",
+        "keyActualValue": "Azure AKS cluster network profile is undefined"
+    }
+}
+
+CxPolicy[result] {
+    document := input.document[i]
+    tasks := getTasks(document)
+    task := tasks[t]
+
+    object.get(task.azure_rm_aks, "network_profile", "undefined") == "undefined"
     object.get(task.azure_rm_aks.network_profile, "network_policy", "undefined") == "undefined"
 
     result := {
