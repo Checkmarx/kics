@@ -104,7 +104,7 @@ jobs:
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Run docker image
       run: |
-        time docker run -v ${PWD}/assets/queries:/path kics:${{ github.sha }} -p "/path" -o "/path/results.json"
+        time docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} -p "/path" -o "/path/results.json"
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
