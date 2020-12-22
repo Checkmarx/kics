@@ -1,0 +1,8 @@
+{
+  "id": "ansible_ssl_enforce_is_disabled",
+  "queryName": "SSL Enforce Is Disabled",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server"
+}
