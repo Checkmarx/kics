@@ -1,8 +1,8 @@
 {
   "id": "directory_service_simple_ad_password_rule",
-  "queryName": "Directory Service Simple AD Password Rule",
+  "queryName": "Directory Service Simple AD Password Exposed",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "DirectoryService SimpleAD password must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html"
 }
