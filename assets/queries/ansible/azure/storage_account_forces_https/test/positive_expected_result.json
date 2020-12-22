@@ -1,0 +1,47 @@
+[
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 3
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 15
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 24
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 33
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 42
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 51
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 60
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 69
+	},
+	{
+		"queryName": "Storage Account Forces HTTPS",
+		"severity": "HIGH",
+		"line": 78
+	}
+]
