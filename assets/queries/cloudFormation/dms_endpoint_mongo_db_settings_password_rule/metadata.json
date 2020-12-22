@@ -1,0 +1,8 @@
+{
+  "id": "dms_endpoint_mongo_db_settings_password_rule",
+  "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "DMS Endpoint MongoDbSettings Password must not be a plaintext string or a Ref to a Parameter with a Default value.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html"
+}
