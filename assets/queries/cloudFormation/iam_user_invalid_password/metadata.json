@@ -1,8 +1,8 @@
 {
   "id": "iam_user_invalid_password",
-  "queryName": "user IAM invalid password",
+  "queryName": "IAM User LoginProfile Password Is In Plaintext",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity & Access Management",
   "descriptionText": "IAM User LoginProfile Password must not be a plaintext string",
   "descriptionUrl": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html"
 }
