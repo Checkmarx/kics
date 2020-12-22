@@ -28,10 +28,6 @@ Parameters:
     Description: 'Password'
     Type: String
     Default: 'asDjskjs73!'
-  ParentMasterUsername:
-    Description: 'username'
-    Type: String
-    Default: 'username!'
 Resources:
   NewAmpApp1:
     Type: AWS::DocDB::DBCluster
@@ -57,11 +53,6 @@ Resources:
       VpcSecurityGroupIds:
         - String
 ---
-Parameters:
-  ParentMasterUsername:
-    Description: 'username'
-    Type: String
-    Default: 'username!'
 Resources:
   NewAmpApp03:
     Type:  AWS::DocDB::DBCluster

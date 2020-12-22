@@ -1,12 +1,8 @@
 Parameters:
   ParentMasterPassword:
-    Description:'Password'
-    Type:String
-    Default:''
-  ParentMasterUsername:
-    Description:'username'
-    Type:String
-    Default:'username!'
+    Description: 'Password'
+    Type: String
+    Default: ''
 Resources:
   NewAmpApp1:
     Type: AWS::DocDB::DBCluster
@@ -36,10 +32,6 @@ Parameters:
   ParentMasterPassword:
     Description: 'Password'
     Type: String
-  ParentMasterUsername:
-    Description:'username'
-    Type: String
-    Default: 'username!'
 Resources:
   NewAmpApp1:
     Type: AWS::DocDB::DBCluster
@@ -80,7 +72,7 @@ Resources:
      MyAmpAppSecretManagerRotater:
         Type: AWS::SecretsManager::Secret
         Properties:
-          Description:'This is my amp app instance secret'
+          Description: 'This is my amp app instance secret'
           GenerateSecretString:
             SecretStringTemplate: '{"username":"admin"}'
             GenerateStringKey: 'password'
