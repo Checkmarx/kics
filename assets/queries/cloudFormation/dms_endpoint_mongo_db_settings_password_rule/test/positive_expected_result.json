@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "DMS Endpoint Mongo Db Settings Password Rule",
+		"queryName": "DMS Endpoint MongoDB Settings Password Exposed",
 		"severity": "MEDIUM",
 		"line": 13
 	},
 	{
-		"queryName": "DMS Endpoint Mongo Db Settings Password Rule",
+		"queryName": "DMS Endpoint MongoDB Settings Password Exposed",
 		"severity": "MEDIUM",
 		"line":76
 	},
 	{
-		"queryName": "DMS Endpoint Mongo Db Settings Password Rule",
+		"queryName": "DMS Endpoint MongoDB Settings Password Exposed",
 		"severity": "MEDIUM",
 		"line":37
 	}
