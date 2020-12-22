@@ -7,12 +7,13 @@ CxPolicy [ result ] {
   elasticsearchBody = elasticsearch["ec2_elasticsearch"]
   elasticsearchName = elasticsearchBody.name
   not is_disabled(elasticsearchBody.encryption_at_rest_enabled)
+    object.get(elasticsearchBody, "encryption_at_rest_kms_key_id" , "undefined") == "undefined"
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("name={{%s}}.{{encryption_at_rest_enabled}}", [elasticsearchName]),
+                "searchKey": 	    sprintf("name={{%s}}.{{encryption_at_rest_kms_key_id}}", [elasticsearchName]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("name={{%s}}.encryption_at_rest_enabled should be enabled", [elasticsearchName]),
-                "keyActualValue": 	sprintf("name={{%s}}.encryption_at_rest_enabled is disabled", [elasticsearchName])
+                "keyExpectedValue": sprintf("name={{%s}}.encryption_at_rest_kms_key_id should be defined", [elasticsearchName]),
+                "keyActualValue": 	sprintf("name={{%s}}.encryption_at_rest_kms_key_id is undefined", [elasticsearchName])
               }
 }
 
