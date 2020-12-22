@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IAM Managed Policy Applied to a User",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]
