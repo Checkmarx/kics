@@ -1,0 +1,8 @@
+{
+  "id": "use_json_in_cmd_and_entrypoint_arguments",
+  "queryName": "Use JSON In CMD And ENTRYPOINT Arguments",
+  "severity": "MEDIUM",
+  "category": "Runtime",
+  "descriptionText": "Ensure that we are using JSON in the CMD and ENTRYPOINT Arguments",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#entrypoint"
+}

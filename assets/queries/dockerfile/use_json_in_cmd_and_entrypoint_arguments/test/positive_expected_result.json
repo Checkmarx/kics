@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Use JSON In CMD And ENTRYPOINT Arguments",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "Use JSON In CMD And ENTRYPOINT Arguments",
+		"severity": "MEDIUM",
+		"line": 11
+	}
+]
