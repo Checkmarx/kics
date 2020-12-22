@@ -5,7 +5,7 @@ CxPolicy[result] {
     tasks := getTasks(document)
     task := tasks[t]
 
-    arrContains(["calico", "azure"], task.azure_rm_aks.network_profile.network_policy)
+    not isValidNetworkPolicy(task.azure_rm_aks.network_profile.network_policy)
 
     result := {
         "documentId": document.id,
@@ -41,6 +41,10 @@ getTasks(document) = result {
     count(result) != 0
 }
 
-arrContains(arr, item) {
-    arr[_] = item
+isValidNetworkPolicy(policy) = true{
+    policy = "calico"
+} else = true {
+    policy = "azure"
+} else = false {
+    true
 }
