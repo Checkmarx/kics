@@ -1,8 +1,8 @@
 {
   "id": "vm_with_full_cloud_access",
-  "queryName": "VM with Full Cloud Access",
+  "queryName": "VM With Full Cloud Access",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#scopes"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html#parameter-service_accounts/scopes"
 }
