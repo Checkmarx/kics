@@ -1,5 +1,5 @@
 Resources:
-     NewAmpApp-2:
+     NewAmpApp:
         Type: AWS::Amplify::App
         Properties:
           AccessToken: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
@@ -26,7 +26,7 @@ Parameters:
     Description: 'Access Token'
     Type: String
 Resources:
-  NewAmpApp-1:
+  NewAmp:
     Type: AWS::Amplify::App
     Properties:
       AccessToken: !Ref ParentAccessToken
@@ -45,7 +45,7 @@ Parameters:
     Type: String
     Default: ""
 Resources:
-  NewAmpApp-4:
+  AmpApp:
     Type: AWS::Amplify::App
     Properties:
       AccessToken: !Ref ParentAccessToken

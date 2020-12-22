@@ -18,7 +18,7 @@ Parameters:
     Type: String
     Default: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ'
 Resources:
-  NewAmpApp-1:
+  AmpApp:
     Type: AWS::Amplify::App
     Properties:
       AccessToken: !Ref ParentAccessToken
@@ -36,7 +36,7 @@ Parameters:
     Description: 'UserToken'
     Type: String
 Resources:
-  NewAmpApp-1:
+  NewApp:
     Type: AWS::Amplify::App
     Properties:
       AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ
