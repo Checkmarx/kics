@@ -5,7 +5,7 @@ CxPolicy[result] {
     tasks := getTasks(document)
     task := tasks[t]
 
-    isAnsibleTrue(task["amazon.aws.ec2_vol"].encrypted)
+    isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
 
     result := {
         "documentId": document.id,
@@ -40,10 +40,10 @@ getTasks(document) = result {
     count(result) != 0
 }
 
-isAnsibleTrue(answer) {
-    lower(answer) == "yes"
+isAnsibleFalse(answer) {
+    lower(answer) == "no"
 } else {
-    lower(answer) == "true"
+    lower(answer) == "false"
 } else {
-	answer == true
+	answer == false
 }
