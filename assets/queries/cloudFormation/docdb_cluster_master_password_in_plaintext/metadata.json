@@ -1,8 +1,8 @@
 {
-  "id": "DocDB_Cluster_Master_User_Password_Rule",
-  "queryName": "DocDB Cluster Master User Password Rule",
+  "id": "docdb_cluster_master_password_in_plaintext",
+  "queryName": "DocDB cluster master password in plaintext",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "DocDB DB Cluster master user password must not be in a plain text string or referenced in a parameter as a default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html"
 }

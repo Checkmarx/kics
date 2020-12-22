@@ -33,7 +33,7 @@ Parameters:
     Type: String
     Default: 'username!'
 Resources:
-  NewAmpApp-1:
+  NewAmpApp1:
     Type: AWS::DocDB::DBCluster
     Properties:
       AvailabilityZones:
@@ -63,7 +63,7 @@ Parameters:
     Type: String
     Default: 'username!'
 Resources:
-  NewAmpApp-03:
+  NewAmpApp03:
     Type:  AWS::DocDB::DBCluster
     Properties:
       AvailabilityZones:
