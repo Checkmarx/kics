@@ -17,8 +17,7 @@ Mappings:
     t2.micro:
       Arch: HVM64
     m1.small:
-      Arch: HVM64
-      
+      Arch: HVM64      
   AWSRegionArch2AMI:
     us-east-1:
       HVM64: ami-0ff8a91507f77f867
