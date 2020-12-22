@@ -1,0 +1,8 @@
+{
+  "id": "ansible_S3_bucket_without_versioning",
+  "queryName": "S3 bucket without versioning",
+  "severity": "HIGH",
+  "category": null,
+  "descriptionText": "S3 bucket without versioning",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-versioning"
+}
