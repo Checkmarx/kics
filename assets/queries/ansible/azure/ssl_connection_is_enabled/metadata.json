@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Make sure that for MySQL Database Server, 'Enforce SSL connection' is enabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_mysqlserver_module.html"
 }
