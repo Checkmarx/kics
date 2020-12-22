@@ -1,5 +1,3 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating Amplify App
 Resources:
      NewAmpApp-2:
         Type: AWS::Amplify::App
@@ -23,8 +21,6 @@ Resources:
             PasswordLength: 16
             ExcludeCharacters: '"@/\'
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating Amplify App
 Parameters:
   ParentAccessToken:
     Description: 'Access Token'
@@ -43,8 +39,6 @@ Resources:
       OauthToken: String
       Repository: String
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating Amplify App
 Parameters:
   ParentAccessToken:
     Description: 'Access Token'

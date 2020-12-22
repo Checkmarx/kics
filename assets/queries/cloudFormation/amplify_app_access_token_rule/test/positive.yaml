@@ -12,8 +12,6 @@ Resources:
       OauthToken: String
       Repository: String
 ---
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating Amplify App
 Parameters:
   ParentAccessToken:
     Description: 'Access Token'
