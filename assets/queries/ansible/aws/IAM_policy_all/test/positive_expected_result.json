@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Allow all IAM policies",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]

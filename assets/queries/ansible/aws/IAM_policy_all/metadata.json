@@ -1,0 +1,8 @@
+{
+  "id": "Allow_all_IAM_policies",
+  "queryName": "Allow all IAM policies",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "IAM policies allow all ('*') in a statement action",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html"
+}
