@@ -51,5 +51,7 @@ getTasks(document) = result {
 isAnsibleTrue(answer) {
  	lower(answer) == "yes"
 } else {
+	lower(answer) == "true"
+} else {
 	answer == true
 }
