@@ -2,7 +2,7 @@
   "id": "lambda_permission_principal_is_wildcard",
   "queryName": "Lambda Permission Principal Is Wildcard",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Lambda Permission Principal should not be wildcard.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html"
 }
