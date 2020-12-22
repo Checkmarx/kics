@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "VM Not Attached To Network",
+		"severity": "HIGH",
+		"line": 5
+	}
+]
