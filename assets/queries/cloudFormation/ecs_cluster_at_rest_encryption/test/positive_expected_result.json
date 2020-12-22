@@ -2,6 +2,11 @@
 	{
 		"queryName": "ECS Cluster at Rest Encryption",
 		"severity": "HIGH",
-		"line": 58
+		"line": 37
+	},
+	{
+		"queryName": "ECS Cluster at Rest Encryption",
+		"severity": "HIGH",
+		"line": 135
 	}
 ]
