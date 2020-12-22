@@ -10,7 +10,7 @@ CxPolicy[result] {
         "searchKey": sprintf("name=%s.{{community.aws.rds_instance}}.publicly_accessible", [task.name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "community.aws.rds_instance.publicly_accessible should be false",
-        "keyActualValue": "community.aws.rds_instance.publicly_accessible.publicly_accessible is true"
+        "keyActualValue": "community.aws.rds_instance.publicly_accessible is true"
     }
 }
 
@@ -38,7 +38,7 @@ CxPolicy[result] {
         "searchKey": sprintf("name=%s.{{community.aws.rds}}.publicly_accessible", [task.name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "community.aws.rds.publicly_accessible should be false",
-        "keyActualValue": "community.aws.rds.publicly_accessible.publicly_accessible is true"
+        "keyActualValue": "community.aws.rds.publicly_accessible is true"
     }
 }
 
