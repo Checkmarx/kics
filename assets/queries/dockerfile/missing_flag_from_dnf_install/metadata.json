@@ -3,6 +3,6 @@
   "queryName": "Missing Flag From dnf install",
   "severity": "MEDIUM",
   "category": "Package Management",
-  "descriptionText": "The -y or --assumeyes flag should be added when invoking dnf install. If omitted, it can cause the command to fail during the build process, because dnf would expect manual input.",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+  "descriptionText": "The '-y' or '--assumeyes' flag should be added when invoking dnf install. If omitted, it can cause the command to fail during the build process, because dnf would expect manual input.",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
 }

@@ -2,7 +2,7 @@
 	{
 		"queryName": "Missing Flag From dnf install",
 		"severity": "MEDIUM",
-		"line": 1
+		"line": 2
 	},
 	{
 		"queryName": "Missing Flag From dnf install",
