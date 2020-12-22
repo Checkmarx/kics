@@ -105,9 +105,9 @@ getTasks(document) = result {
 }
 
 isAnsibleFalse(answer) {
- 	lower(answer) == "no"
+	lower(answer) == "no"
 } else {
-        lower(answer) == "false"
+	lower(answer) == "false"
 } else {
 	answer == false
 }
