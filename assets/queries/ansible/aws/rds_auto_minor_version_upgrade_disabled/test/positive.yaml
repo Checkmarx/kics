@@ -27,7 +27,7 @@
     instance_type: db.m1.small
     username: mysql_admin
     password: 1nsecure
-    auto_minor_version_upgrade: false
+    auto_minor_version_upgrade: "False"
     tags:
       Environment: testing
       Application: cms
