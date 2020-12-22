@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "Elastic File System (EFS) must be encrypted",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#encrypted"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html#parameter-encrypt"
 }
