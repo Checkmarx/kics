@@ -1,0 +1,6 @@
+---
+- name: Update IAM policy on an existing KMS key
+  community.aws.aws_kms:
+    alias: my-kms-key
+    policy: {'Id': 'auto-ebs-2', 'Statement': [{'Action': ['kms:Encrypt', 'kms:Decrypt', 'kms:ReEncrypt*', 'kms:GenerateDataKey*', 'kms:CreateGrant', 'kms:DescribeKey'], 'Condition': {'StringEquals': {'kms:CallerAccount': '111111111111', 'kms:ViaService': 'ec2.ap-southeast-2.amazonaws.com'}}, 'Effect': 'Allow', 'Principal': {'AWS': '*'}, 'Resource': '*', 'Sid': 'Allow access through EBS for all principals in the account that are authorized to use EBS'}, {'Action': ['kms:Describe*', 'kms:Get*', 'kms:List*', 'kms:RevokeGrant'], 'Effect': 'Allow', 'Principal': {'AWS': 'arn:aws:iam::111111111111:root'}, 'Resource': '*', 'Sid': 'Allow direct access to key metadata to the account'}], 'Version': '2012-10-17'}
+    state: present
