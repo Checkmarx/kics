@@ -1,5 +1,5 @@
 Resources:
-     NewAmpApp-2:
+     NewAmpApp:
         Type: AWS::Amplify::App
         Properties:
           BuildSpec: String
@@ -32,17 +32,20 @@ Parameters:
     Description: 'Username'
     Type: String
 Resources:
-  NewAmpApp-1:
-    Type: AWS::Amplify::App
+  NewAmpApp1:
+    Type: AWS::Amplify::Branch
     Properties:
+      AppId: String
+      BranchName: String
       BuildSpec: String
-      CustomHeaders: String
       Description: String
-      EnableBranchAutoDeletion: true
-      IAMServiceRole: String
-      Name: NewAmpApp
-      OauthToken: String
-      Repository: String
+      EnableAutoBuild: Boolean
+      EnablePerformanceMode: Boolean
+      EnablePullRequestPreview: Boolean
+      EnvironmentVariables:
+        - EnvironmentVariable
+      PullRequestEnvironmentName: String
+      Stage: String
       BasicAuthConfig:
         EnableBasicAuth: true
         Password: !Ref ParentPassword
@@ -59,17 +62,20 @@ Parameters:
     Type: String
     Default: ""
 Resources:
-  NewAmpApp-4:
-    Type: AWS::Amplify::App
+  NewAmpApp4:
+    Type: AWS::Amplify::Branch
     Properties:
+      AppId: String
+      BranchName: String
       BuildSpec: String
-      CustomHeaders: String
       Description: String
-      EnableBranchAutoDeletion: true
-      IAMServiceRole: String
-      Name: NewAmpApp
-      OauthToken: String
-      Repository: String
+      EnableAutoBuild: Boolean
+      EnablePerformanceMode: Boolean
+      EnablePullRequestPreview: Boolean
+      EnvironmentVariables:
+        - EnvironmentVariable
+      PullRequestEnvironmentName: String
+      Stage: String
       BasicAuthConfig:
         EnableBasicAuth: true
         Password: !Ref ParentPassword
