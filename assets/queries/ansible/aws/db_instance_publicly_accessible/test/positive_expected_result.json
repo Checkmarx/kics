@@ -1,12 +1,17 @@
 [
 	{
-		"queryName": "Redshift Publicly Accessible",
+		"queryName": "RDS Publicly Accessible",
 		"severity": "HIGH",
-		"line": 10
+		"line": 11
 	},
 	{
-		"queryName": "Redshift Publicly Accessible",
+		"queryName": "RDS Publicly Accessible",
 		"severity": "HIGH",
-		"line": 21
+		"line": 25
+	},
+	{
+		"queryName": "RDS Publicly Accessible",
+		"severity": "HIGH",
+		"line": 35
 	}
 ]
