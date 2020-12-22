@@ -1,0 +1,6 @@
+- name: ssh_keys_blocked
+  google.cloud.gcp_compute_instance:
+    metadata:
+      block-project-ssh-keys: yes
+    zone: us-central1-a
+    auth_kind: serviceaccount

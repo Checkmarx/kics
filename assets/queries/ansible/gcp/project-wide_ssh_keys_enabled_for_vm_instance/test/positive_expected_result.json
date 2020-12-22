@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+		"severity": "MEDIUM",
+		"line": 4
+	},
+	{
+		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+		"severity": "MEDIUM",
+		"line": 9
+	},
+	{
+		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+		"severity": "MEDIUM",
+		"line": 15
+	}
+]
