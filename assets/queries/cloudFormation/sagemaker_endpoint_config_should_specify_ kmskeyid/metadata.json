@@ -1,0 +1,8 @@
+{
+  "id": "sagemaker_endpoint_config_should_specify_kmskeyid",
+  "queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "KmsKeyId attribute should be defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html"
+}

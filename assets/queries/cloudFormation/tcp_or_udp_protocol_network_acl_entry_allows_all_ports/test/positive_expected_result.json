@@ -1,0 +1,25 @@
+[
+	{
+		"queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+		"severity": "MEDIUM",
+		"line": 18
+	},
+
+	{
+		"queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+		"severity": "MEDIUM",
+		"line": 29
+	},
+
+	{
+		"queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+		"severity": "MEDIUM",
+		"line": 33
+	},
+
+	{
+		"queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+		"severity": "MEDIUM",
+		"line": 49
+	}
+]

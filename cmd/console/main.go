@@ -33,9 +33,7 @@ const (
 )
 
 func main() { // nolint:funlen,gocyclo
-	err := sentry.Init(sentry.ClientOptions{
-		Dsn: "https://a9194c7a568744d392ab5fd9cde6708a@o489127.ingest.sentry.io/5550779",
-	})
+	err := sentry.Init(sentry.ClientOptions{})
 	if err != nil {
 		log.Err(err).Msg("failed to initialize sentry")
 	}

@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Neptune Cluster not encrypted",
+		"severity": "MEDIUM",
+		"line": 1
+	},
+	{
+		"queryName": "Neptune Cluster not encrypted",
+		"severity": "MEDIUM",
+		"line": 19
+	}
+]

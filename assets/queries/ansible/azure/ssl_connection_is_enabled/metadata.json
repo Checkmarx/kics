@@ -1,0 +1,8 @@
+{
+  "id": "ansible_ssl_connection_is_enabled",
+  "queryName": "SSL Connection Is Enabled",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Make sure that for MySQL Database Server, 'Enforce SSL connection' is enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_mysqlserver_module.html"
+}
