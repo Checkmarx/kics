@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Check if both start and end 'ip_address' are equal to 0.0.0.0 (any IP).",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html"
 }
