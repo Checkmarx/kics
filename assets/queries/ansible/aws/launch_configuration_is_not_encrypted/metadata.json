@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Encryption & Key Management",
   "descriptionText": "Launch Configuration must be encrypted",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html#parameter-volumes/encrypted"
 }
