@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "Amplify App Basic Auth Config Password Rule",
+		"queryName": "Amplify App Basic Auth Config Password Exposed",
 		"severity": "MEDIUM",
 		"line": 23
 	},
 	{
-		"queryName": "Amplify App Basic Auth Config Password Rule",
+		"queryName": "Amplify App Basic Auth Config Password Exposed",
 		"severity": "MEDIUM",
 		"line": 15
 	}
