@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Redshift Publicly Accessible",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "Redshift Publicly Accessible",
+		"severity": "HIGH",
+		"line": 17
+	},
+	{
+		"queryName": "Redshift Publicly Accessible",
+		"severity": "HIGH",
+		"line": 25
+	}
+]

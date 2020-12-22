@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+
+	{
+		"queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]
