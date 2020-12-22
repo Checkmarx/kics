@@ -1,0 +1,8 @@
+{
+  "id": "RDS_ca_cert_id_expired",
+  "queryName": "RDS CA certificate identifier is expired",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "The CA certificate Identifier must be rds-ca-2019",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-ca_certificate_identifier"
+}

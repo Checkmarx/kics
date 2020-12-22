@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS CA certificate identifier is expired",
+		"severity": "HIGH",
+		"line": 10
+	},
+	{
+		"queryName": "RDS CA certificate identifier is expired",
+		"severity": "HIGH",
+		"line": 12
+	}
+]
