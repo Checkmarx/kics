@@ -1,5 +1,5 @@
 ---
-- name: Community - create minimal aurora instance in default VPC and default subnet group
+- name: community - create minimal aurora instance in default VPC and default subnet group
   community.aws.rds_instance:
     engine: aurora
     db_instance_identifier: ansible-test-aurora-db-instance
@@ -8,7 +8,7 @@
     username: "{{ username }}"
     cluster_id: ansible-test-cluster
     auto_minor_version_upgrade: false
-- name: Community - Create a DB instance using the default AWS KMS encryption key
+- name: community - Create a DB instance using the default AWS KMS encryption key
   community.aws.rds_instance:
     id: test-encrypted-db
     state: present
@@ -18,24 +18,41 @@
     username: "{{ username }}"
     password: "{{ password }}"
     allocated_storage: "{{ allocated_storage }}"
-- name: Create a DB instance using the default AWS KMS encryption key01
-  rds_instance:
-    id: test-encrypted-db
-    state: present
-    engine: mariadb
-    storage_encrypted: True
-    db_instance_class: db.t2.medium
-    username: "{{ username }}"
-    password: "{{ password }}"
-    allocated_storage: "{{ allocated_storage }}"
+- name: community - Basic mysql provisioning example
+  community.aws.rds:
+    command: create
+    instance_name: new-database
+    db_engine: MySQL
+    size: 10
+    instance_type: db.m1.small
+    username: mysql_admin
+    password: 1nsecure
+    auto_minor_version_upgrade: false
+    tags:
+      Environment: testing
+      Application: cms
+- name: Create basic AWS DB instance01
+  rds:
+    command: create
+    instance_name: new-database
+    db_engine: MySQL
+    size: 10
+    instance_type: db.m1.small
+    username: mysql_admin
+    password: 1nsecure
     auto_minor_version_upgrade: no
-- name: Create a DB instance using the default AWS KMS encryption key02
-  rds_instance:
-    id: test-encrypted-db
-    state: present
-    engine: mariadb
-    storage_encrypted: True
-    db_instance_class: db.t2.medium
-    username: "{{ username }}"
-    password: "{{ password }}"
-    allocated_storage: "{{ allocated_storage }}"
+    tags:
+      Environment: testing
+      Application: cms
+- name: Create basic AWS DB instance02
+  rds:
+    command: create
+    instance_name: new-database
+    db_engine: MySQL
+    size: 10
+    instance_type: db.m1.small
+    username: mysql_admin
+    password: 1nsecure
+    tags:
+      Environment: testing
+      Application: cms
