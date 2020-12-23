@@ -1,9 +1,9 @@
 FROM busybox
 RUN apt-get install python
----
+
 FROM busybox2
 RUN apt-get install  -y -t python
----
+
 FROM busybox3
 RUN apt-get update && apt-get install -y \
     python-qt4 \
