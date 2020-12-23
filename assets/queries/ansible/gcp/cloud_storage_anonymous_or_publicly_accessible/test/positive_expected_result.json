@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Cloud Storage Anonymous or Publicly Accessible",
+		"severity": "MEDIUM",
+		"line": 11
+	},
+	{
+		"queryName": "Cloud Storage Anonymous or Publicly Accessible",
+		"severity": "MEDIUM",
+		"line": 22
+	},
+	{
+		"queryName": "Cloud Storage Anonymous or Publicly Accessible",
+		"severity": "MEDIUM",
+		"line": 28
+	}
+]
