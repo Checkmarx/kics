@@ -1,8 +1,8 @@
 {
   "id": "Ansible_Compute_Disk_not_Encrypted",
-  "queryName": "Compute disk is not encrypted",
+  "queryName": "Compute Disk Is Not Encrypted",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "Compute disk is not encrypted",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_disk_module.html#parameter-disk_encryption_key"
 }
