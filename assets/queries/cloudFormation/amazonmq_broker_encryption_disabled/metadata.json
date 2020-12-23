@@ -1,6 +1,6 @@
 {
-  "id": "amazonMQ_broker_without_encryption_options",
-  "queryName": "AmazonMQ Broker Without EncryptionOptions",
+  "id": "amazonmq_broker_encryption_disabled",
+  "queryName": "AmazonMQ Broker Encryption Disabled",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "AmazonMQ Broker should be Encryption Options defined",
