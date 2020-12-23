@@ -14,7 +14,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "After using apt-get install, it is needed to delete apt get lists",
+                "keyExpectedValue": "After using apt-get install, it is needed to delete apt-get lists",
                 "keyActualValue": 	"After using apt-get install, the apt-get lists were not deleted"
               }
 }
