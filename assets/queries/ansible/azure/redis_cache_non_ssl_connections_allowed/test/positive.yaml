@@ -1,0 +1,5 @@
+- name: Non SSl Allowed
+  azure_rm_rediscache:
+      resource_group: myResourceGroup
+      name: myRedis
+      enable_non_ssl_port: yes
