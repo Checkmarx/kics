@@ -2,7 +2,7 @@
 	{
 		"queryName": "EMR Cluster Without Security Configuration",
 		"severity": "MEDIUM",
-		"line": 69
+		"line": 18
 	},
 	{
 		"queryName": "EMR Cluster Without Security Configuration",
