@@ -4,11 +4,11 @@ CxPolicy [ result ] {
 	resource := input.document[i].command[name][_]
 
   resource.Cmd == "run"
- 	
+
   values := resource.Value[0]
-    
+
   hasCacheFlag(values)
-    
+
 	result := {
     			    "documentId": 		input.document[i].id,
               "searchKey": 	    sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
@@ -20,10 +20,10 @@ CxPolicy [ result ] {
 
 hasCacheFlag(values){
 	commands = split(values,"&&")
-    
+
 	some i
-    	instruction = trim_space(commands[i])
-      startswith(instruction, "pip")
-      contains(instruction, "install")
-      not contains(instruction, "--no-cache-dir")
+    instruction := commands[i]
+    contains(instruction, "pip")
+    contains(instruction, "install")
+    not contains(instruction, "--no-cache-dir")
 }
