@@ -20,7 +20,7 @@ CxPolicy [ result ] {
 
 is_disabled(value) = true {
       negativeValue = { "False",false,"false","No","no"}
-   	  value=negativeValue[_]
+   	  value==negativeValue[_]
 } else = false {
      true
 
