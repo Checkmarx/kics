@@ -1,5 +1,5 @@
 {
-  "id": "VMWithFullCloudAccess",
+  "id": "vm_with_full_cloud_access",
   "queryName": "VM with Full Cloud Access",
   "severity": "HIGH",
   "category": "Access Control",

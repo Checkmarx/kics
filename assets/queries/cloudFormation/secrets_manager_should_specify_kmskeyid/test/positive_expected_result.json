@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Secrets Manager Should Specify KmsKeyId",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]

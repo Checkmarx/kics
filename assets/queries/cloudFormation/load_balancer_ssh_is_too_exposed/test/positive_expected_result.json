@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Load Balancer SSH Is Too Exposed",
+		"severity": "HIGH",
+		"line": 24
+	},
+	{
+		"queryName": "Load Balancer SSH Is Too Exposed",
+		"severity": "HIGH",
+		"line": 71
+	}
+]

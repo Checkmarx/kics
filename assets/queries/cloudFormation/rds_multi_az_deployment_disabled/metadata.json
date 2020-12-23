@@ -1,0 +1,8 @@
+{
+  "id": "RDS_Multi-AZ_Deployment_Disabled",
+  "queryName": "RDS Multi-AZ Deployment Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup and Disaster Recovery",
+  "descriptionText": "AWS RDS Instance should have a multi-az deployment",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+}

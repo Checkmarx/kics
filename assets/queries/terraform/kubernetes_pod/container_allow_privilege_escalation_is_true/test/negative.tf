@@ -73,7 +73,7 @@ resource "kubernetes_pod" "test2" {
       allow_privilege_escalation = false 
 
       image = "nginx:1.7.9"
-      name  = "example
+      name  = "example"
 
 
       env {
