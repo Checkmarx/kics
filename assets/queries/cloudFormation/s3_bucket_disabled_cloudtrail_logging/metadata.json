@@ -1,6 +1,6 @@
 {
-  "id": "S3_bucket_logging_is_disabled_Cloudtrail",
-  "queryName": "S3 Bucket Logging Is Disabled Cloudtrail",
+  "id": "s3_bucket_disabled_cloudtrail_logging",
+  "queryName": "S3 bucket disabled cloudtrail logging",
   "severity": "HIGH",
   "category": "Logging",
   "descriptionText": "Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail",
