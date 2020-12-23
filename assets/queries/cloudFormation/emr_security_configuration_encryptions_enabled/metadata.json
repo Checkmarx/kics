@@ -2,7 +2,7 @@
   "id": "emr_security_configuration_encryptions_enabled",
   "queryName": "EMR Security Configuration Encryptions Enabled",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html"
 }

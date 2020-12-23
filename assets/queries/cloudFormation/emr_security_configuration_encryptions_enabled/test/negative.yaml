@@ -16,7 +16,7 @@ Resources:
                  AwsKmsKey: arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 ---
 Resources:
-  EMRSecurityConfiguration-01:
+  EMRSecurityConfiguration01:
     Type: AWS::EMR::SecurityConfiguration
     Properties:
        Name: String
@@ -29,7 +29,7 @@ Resources:
                  AwsKmsKey: arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 ---
 Resources:
-  EMRSecurityConfiguration-02:
+  EMRSecurityConfiguration02:
     Type: AWS::EMR::SecurityConfiguration
     Properties:
        Name: String
