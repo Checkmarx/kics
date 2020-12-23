@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "ELB With Security Group Without Outbound Rules",
+		"severity": "MEDIUM",
+		"line": 5
+	}
+]

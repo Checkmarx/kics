@@ -1,0 +1,8 @@
+{
+  "id": "run_using_dnf_update",
+  "queryName": "Run Using dnf update",
+  "severity": "HIGH",
+  "category": "Package Management",
+  "descriptionText": "Command 'dnf update' should not be used, as it can cause inconsistencies between builds and fails in updated packages",
+  "descriptionUrl": "#"
+}
