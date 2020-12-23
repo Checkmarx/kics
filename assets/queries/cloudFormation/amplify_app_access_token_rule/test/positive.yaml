@@ -1,0 +1,50 @@
+Resources:
+  NewAmpApp:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: True
+      IAMServiceRole: String
+      Name: String
+      OauthToken: String
+      Repository: String
+---
+Parameters:
+  ParentAccessToken:
+    Description: 'Access Token'
+    Type: String
+    Default: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ'
+Resources:
+  AmpApp:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: !Ref ParentAccessToken
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: true
+      IAMServiceRole: String
+      Name: NewAmpApp
+      OauthToken: String
+      Repository: String
+---
+Parameters:
+  ParentUserToken:
+    Description: 'UserToken'
+    Type: String
+Resources:
+  NewApp:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: true
+      IAMServiceRole: String
+      Name: NewAmpApp
+      OauthToken: String
+      Repository: String

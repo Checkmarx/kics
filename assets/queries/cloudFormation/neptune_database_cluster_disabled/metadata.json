@@ -1,0 +1,8 @@
+{
+  "id": "neptune_database_cluster_disabled",
+  "queryName": "Neptune Database Cluster Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Neptune database cluster storage should have encryption enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html"
+}

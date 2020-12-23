@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Amplify App Access Token Exposed",
+		"severity": "MEDIUM",
+		"line": 19
+	},
+	{
+		"queryName": "Amplify App Access Token Exposed",
+		"severity": "MEDIUM",
+		"line":42
+	},
+	{
+		"queryName": "Amplify App Access Token Exposed",
+		"severity": "MEDIUM",
+		"line":5
+	}
+]
