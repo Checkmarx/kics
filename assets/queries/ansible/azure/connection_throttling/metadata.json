@@ -1,0 +1,8 @@
+{
+  "id": "ansible_connection_throttling",
+  "queryName": "Connection Throttling",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Make sure that for PostgreSQL server, Connection Throttling is set",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html"
+}

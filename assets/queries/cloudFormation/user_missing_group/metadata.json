@@ -1,0 +1,8 @@
+{
+  "id": "user_IAM_missing_group",
+  "queryName": "IAM User With No Group",
+  "severity": "LOW",
+  "category": "Identity & Access Management",
+  "descriptionText": "A IAM user should belong to a group",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy"
+}

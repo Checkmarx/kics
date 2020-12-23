@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "CMKs Rotation Disabled",
+		"severity": "HIGH",
+		"line": 5
+	},
+	{
+		"queryName": "CMKs Rotation Disabled",
+		"severity": "HIGH",
+		"line": 31
+	}
+]

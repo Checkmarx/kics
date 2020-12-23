@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "AWS SQS Queue Policy Allows NotAction",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]

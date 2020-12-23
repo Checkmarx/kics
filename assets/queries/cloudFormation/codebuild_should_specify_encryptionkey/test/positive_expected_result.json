@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "CodeBuild Should Specify EncryptionKey",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]

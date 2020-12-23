@@ -1,0 +1,11 @@
+---
+- name: create a instance
+  google.cloud.gcp_compute_instance:
+    name: test_object
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_accounts:
+        - scopes:
+            - cloud-platform
+    state: present

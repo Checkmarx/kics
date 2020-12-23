@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Cloud SQL Instance With SSL Disabled",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "Cloud SQL Instance With SSL Disabled",
+		"severity": "HIGH",
+		"line": 24
+	},
+	{
+		"queryName": "Cloud SQL Instance With SSL Disabled",
+		"severity": "HIGH",
+		"line": 44
+	}
+]

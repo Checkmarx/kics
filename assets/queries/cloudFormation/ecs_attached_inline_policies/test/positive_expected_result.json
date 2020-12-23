@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Inline Policies Are Attached To ECS Service",
+		"severity": "HIGH",
+		"line": 8
+	}
+]
