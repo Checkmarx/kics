@@ -2,7 +2,7 @@
   "id": "amazonmq_broker_encryption_disabled",
   "queryName": "AmazonMQ Broker Encryption Disabled",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "AmazonMQ Broker should be Encryption Options defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-encryptionoptions"
 }

@@ -5,8 +5,7 @@ CxPolicy [ result ] {
   resource = document[i].Resources[name]
   resource.Type == "AWS::AmazonMQ::Broker"
   properties := resource.Properties
-  exists_eo := object.get(properties, "EncryptionOptions", "undefined") != "undefined"
-  not exists_eo
+  object.get(properties, "EncryptionOptions", "undefined") == "undefined"
   
       result := {
                 "documentId": 		input.document[i].id,
