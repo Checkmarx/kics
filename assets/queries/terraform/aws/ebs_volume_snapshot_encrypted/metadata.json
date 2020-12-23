@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "The value on AWS Volume Snapshot Encryptation must be true",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#encrypted"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ebs_snapshot#encrypted"
 }
