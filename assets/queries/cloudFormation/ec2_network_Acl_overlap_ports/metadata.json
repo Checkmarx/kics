@@ -2,7 +2,7 @@
   "id": "ec2_network_ACL_overlapping_ports",
   "queryName": "EC2 network ACL overlapping ports",
   "severity": "HIGH",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "NetworkACL Entries are reusing or overlapping ports which may create ineffective rules",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html"
 }

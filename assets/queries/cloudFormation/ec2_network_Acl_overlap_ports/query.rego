@@ -15,8 +15,11 @@ CxPolicy [result] {
   
   from2 := prop2.Properties.PortRange.From
   to2 := prop2.Properties.PortRange.To
-	
-  overlap([from1, to1], [from2, to2])
+  
+  range1 := numbers.range(from1, to1)
+  range2 := numbers.range(from2, to2)
+  
+  check_overlap(range1, range2)
   
   result := {
                 "documentId": 		input.document[i].id,
@@ -27,25 +30,8 @@ CxPolicy [result] {
               }
   
  }
-overlap(pair1,pair2){
-  	pair1[0] <= pair2[0]
-    pair1[1] > pair2[1]
-}
-overlap(pair1,pair2){
-  	pair1[0] > pair2[0]
-    pair1[1] <= pair2[1]
-}
-overlap(pair1,pair2){
-  	pair1[0] > pair2[0]
-    pair1[0] <= pair2[1]
-    pair1[1] > pair2[1]
-}
-overlap(pair1,pair2){
-  	pair1[0] < pair2[0]
-    pair1[1] >= pair2[0]
-    pair1[1] < pair2[1]
-}
-overlap(pair1,pair2){
-  	pair1[0] = pair2[0]
-    pair1[1] = pair2[1]
+ 
+check_overlap(range1, range2) {
+    some j,k
+    range1[j] = range2[k]
 }
