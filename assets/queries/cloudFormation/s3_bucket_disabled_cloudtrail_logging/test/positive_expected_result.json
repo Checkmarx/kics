@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "S3 bucket disabled cloudtrail logging",
+		"queryName": "S3 Bucket Disabled Cloudtrail Logging",
 		"severity": "HIGH",
 		"line": 7
 	}
