@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "AKS Network Policy Misconfigured",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "AKS Network Policy Misconfigured",
+		"severity": "MEDIUM",
+		"line": 24
+	}
+]

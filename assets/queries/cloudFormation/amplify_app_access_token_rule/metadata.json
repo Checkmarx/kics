@@ -1,0 +1,8 @@
+{
+  "id": "amplify_app_access_token_rule",
+  "queryName": "Amplify App Access Token Exposed",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Amplify App Access Token must not be in a plain text string or referenced in a parameter as a default value.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html"
+}

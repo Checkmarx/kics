@@ -1,0 +1,33 @@
+#this is a problematic code where the query should report a result(s)
+- name: create a bucket1
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module1
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    default_object_acl:
+      bucket: bucketName1
+      entity: allUsers
+      role: READER
+- name: create a bucket2
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module2
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    acl:
+      bucket: bucketName2
+      entity: allAuthenticatedUsers
+    default_object_acl:
+      bucket: bucketName2
+      entity: allUsers
+      role: READER
+- name: create a bucket3
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module3
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present

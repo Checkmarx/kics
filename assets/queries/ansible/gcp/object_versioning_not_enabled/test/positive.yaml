@@ -1,0 +1,17 @@
+---
+- name: create a bucket
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+- name: create a second bucket
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    versioning:
+      enabled: no

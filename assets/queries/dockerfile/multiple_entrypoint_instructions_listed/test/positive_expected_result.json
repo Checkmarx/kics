@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Multiple ENTRYPOINT Instructions Listed",
+		"severity": "HIGH",
+		"line": 6
+	}
+]
