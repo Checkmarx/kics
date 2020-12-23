@@ -2,7 +2,7 @@
   "id": "ansible_allUsers_group_gets_read_access",
   "queryName": "All Users Group Gets Read Access",
   "severity": "HIGH",
-  "category": "IAM",
+  "category": "Identity and Access Management",
   "descriptionText": "It's not recommended to allow read access for all user groups.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission"
 }
