@@ -1,0 +1,8 @@
+{
+  "id": "Azurerm_Container_Registry_With_No_Locks",
+  "queryName": "Azurerm Container Registry With No Locks",
+  "severity": "HIGH",
+  "category": "Azure Container Services",
+  "descriptionText": "Azurerm Container Registry Must Contain Associated Locks ",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html"
+}
