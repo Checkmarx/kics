@@ -1,16 +1,14 @@
 package Cx
 
 CxPolicy [ result ] {
- 	resourcePolicy := input.document[indexPolicy].Resources[namePolicy]
+   
+    resourceBucket := input.document[indexBucket].Resources[nameBucket]
+    resourceBucket.Type == "AWS::S3::Bucket"
 
-    
-  resourceBucket := input.document[indexBucket].Resources[nameBucket]
-  resourceBucket.Type == "AWS::S3::Bucket"
-
-policyStatements := [policyStatement | 	resourcePolicy := input.document[_].Resources[_]
-                                        resourcePolicy.Type == "AWS::S3::BucketPolicy"
-                                        checkRef(resourcePolicy.Properties.Bucket, nameBucket)
-                                        policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]]
+    policyStatements := [policyStatement | 	resourcePolicy := input.document[_].Resources[_]
+                                            resourcePolicy.Type == "AWS::S3::BucketPolicy"
+                                            checkRef(resourcePolicy.Properties.Bucket, nameBucket)
+                                            policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]]
 
  	checkPolicyConfiguration(policyStatements)
   
@@ -27,15 +25,14 @@ policyStatements := [policyStatement | 	resourcePolicy := input.document[_].Reso
 }
 
 CxPolicy [ result ] {
- 	resourcePolicy := input.document[indexPolicy].Resources[namePolicy]
-    
+   
   	resourceBucket := input.document[indexBucket].Resources[nameBucket]
   	resourceBucket.Type == "AWS::S3::Bucket"
 
 	policyStatements := [policyStatement | 	resourcePolicy := input.document[_].Resources[_]
-                                        resourcePolicy.Type == "AWS::S3::BucketPolicy"
-                                        checkRef(resourcePolicy.Properties.Bucket, nameBucket)
-                                        policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]]
+                                            resourcePolicy.Type == "AWS::S3::BucketPolicy"
+                                            checkRef(resourcePolicy.Properties.Bucket, nameBucket)
+                                            policyStatement := resourcePolicy.Properties.PolicyDocument.Statement[_]]
 
  	checkPolicyConfiguration(policyStatements)
   
