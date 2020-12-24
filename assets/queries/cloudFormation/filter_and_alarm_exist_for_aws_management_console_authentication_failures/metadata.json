@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Monitoring",
   "descriptionText": "A log metric filter and alarm should exist for AWS Management Console Authentication Failures",
-  "descriptionUrl": "https://kb.securestate.vmware.com/monitor-console-auth-failures.html"
+  "descriptionUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html"
 }
