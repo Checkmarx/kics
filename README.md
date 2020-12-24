@@ -1,8 +1,6 @@
 [![codecov](https://codecov.io/gh/Checkmarx/kics/branch/master/graph/badge.svg?token=SN0NO4H46G)](https://codecov.io/gh/Checkmarx/kics)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ceddb5b1b37d4edfa56440842c6248a4)](https://www.codacy.com/gh/Checkmarx/kics/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Checkmarx/kics&amp;utm_campaign=Badge_Grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/checkmarx/kics/badge)](https://www.codefactor.io/repository/github/checkmarx/kics)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Checkmarx_kics&metric=alert_status)](https://sonarcloud.io/dashboard?id=Checkmarx_kics)
-[![Gitter](https://badges.gitter.im/kics-dev/community.svg)](https://gitter.im/kics-dev/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-logo-donkey.png" width="250">  
 
@@ -34,7 +32,7 @@ Setting up and using KICS is super-easy.
 
 ## How it Works
 
-What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
+What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by :
 
 - Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
 - Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
