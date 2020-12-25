@@ -8,6 +8,8 @@
 
 <img alt="Checkmarx" src="../img/logo-cx-horizontal.png" width="200">
 
+Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
+
 ---
 
 ## What is Infrastructure as Code
