@@ -18,7 +18,7 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 #### Supported Platforms
 
-<img alt="Terraform" src="docs/img/logo-terraform.svg" width="150">&nbsp;&nbsp;&nbsp;<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
+<img alt="Terraform" src="docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](docs/roadmap.md).
 
@@ -47,7 +47,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 <a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
-[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
+[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keep Infrastructure as Code Secure!**
