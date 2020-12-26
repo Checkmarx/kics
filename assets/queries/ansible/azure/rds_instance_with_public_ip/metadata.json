@@ -1,0 +1,8 @@
+{
+  "id": "ansible_rds_instance_has_public_interface",
+  "queryName": "RDS Instance has Public Interface",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "RDS should not be defined with public interface",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-publicly_accessible"
+}

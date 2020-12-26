@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "RDS Instance has Public Interface",
+		"severity": "HIGH",
+		"line": 9
+	}
+]
