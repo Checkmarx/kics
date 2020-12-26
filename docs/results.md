@@ -1,4 +1,4 @@
-### Results
+## Results
 
 KICS results are output in clear and simple JSON format. Example:
 ```json
