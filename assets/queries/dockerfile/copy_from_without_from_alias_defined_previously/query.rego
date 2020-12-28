@@ -6,6 +6,7 @@ CxPolicy [ result ] {
   resource.Cmd == "copy"
   
   contains(resource.Flags[x],"--from=")
+  resource.Flags[x] != "--from=0"
   aux_split := split(resource.Flags[x], "=")
   
   not isPreviousAlias(resource.StartLine, aux_split[1])
