@@ -1,0 +1,14 @@
+---
+- name: example using security group rule descriptions
+  amazon.aws.ec2_group:
+    name: awsEc2
+    description: sg with rule descriptions
+    vpc_id: vpc-xxxxxxxx
+    profile: "{{ aws_profile }}"
+    region: us-east-1
+    rules:
+      - proto: tcp
+        ports:
+        - 2383
+        cidr_ip: aws_vpc.main.cidr_block
+        rule_desc: allow all on port 2383
