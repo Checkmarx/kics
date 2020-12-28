@@ -1,6 +1,6 @@
 {
-  "id": "rds_db_cluster_with_storage_encrypted_disabled",
-  "queryName": "RDS DBCluster With Storage Encrypted Disabled",
+  "id": "rds_db_cluster_storage_encryption_disabled",
+  "queryName": "RDS DBCluster Storage Encryption Disabled",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "RDS DBInstance should have storage encrypted set to true",

@@ -1,54 +1,54 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Creates RDS Cluster
 Resources:
-  RDSCluster: 
-    Properties: 
-      DBClusterParameterGroupName: 
+  RDSCluster:
+    Properties:
+      DBClusterParameterGroupName:
         Ref: RDSDBClusterParameterGroup
-      DBSubnetGroupName: 
+      DBSubnetGroupName:
         Ref: DBSubnetGroup
       Engine: aurora
-      MasterUserPassword: 
+      MasterUserPassword:
         Ref: password
-      MasterUsername: 
+      MasterUsername:
         Ref: username
-      StorageEncrypted: true  
+      StorageEncrypted: true
     Type: "AWS::RDS::DBCluster"
-  RDSDBClusterParameterGroup: 
-    Properties: 
+  RDSDBClusterParameterGroup:
+    Properties:
       Description: "CloudFormation Sample Aurora Cluster Parameter Group"
       Family: aurora5.6
-      Parameters: 
+      Parameters:
         time_zone: US/Eastern
     Type: "AWS::RDS::DBClusterParameterGroup"
-  RDSDBInstance1: 
-    Properties: 
-      AvailabilityZone: 
+  RDSDBInstance1:
+    Properties:
+      AvailabilityZone:
         Fn::GetAtt:
           - Subnet1
           - AvailabilityZone
-      DBClusterIdentifier: 
+      DBClusterIdentifier:
         Ref: RDSCluster
       DBInstanceClass: db.r3.xlarge
-      DBParameterGroupName: 
+      DBParameterGroupName:
         Ref: RDSDBParameterGroup
-      DBSubnetGroupName: 
+      DBSubnetGroupName:
         Ref: DBSubnetGroup
       Engine: aurora
       PubliclyAccessible: "true"
     Type: "AWS::RDS::DBInstance"
-  RDSDBInstance2: 
-    Properties: 
-      AvailabilityZone: 
+  RDSDBInstance2:
+    Properties:
+      AvailabilityZone:
         Fn::GetAtt:
           - Subnet2
           - AvailabilityZone
-      DBClusterIdentifier: 
+      DBClusterIdentifier:
         Ref: RDSCluster
       DBInstanceClass: db.r3.xlarge
-      DBParameterGroupName: 
+      DBParameterGroupName:
         Ref: RDSDBParameterGroup
-      DBSubnetGroupName: 
+      DBSubnetGroupName:
         Ref: DBSubnetGroup
       Engine: aurora
       PubliclyAccessible: "true"

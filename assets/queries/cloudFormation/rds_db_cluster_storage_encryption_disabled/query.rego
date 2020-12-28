@@ -5,8 +5,8 @@ CxPolicy [ result ] {
   resource = document[i].Resources[name]
   resource.Type == "AWS::RDS::DBCluster"
   properties := resource.Properties
-  properties.StorageEncrypted == false  
-  
+  properties.StorageEncrypted == false
+
       result := {
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("Resources.%s.Properties.StorageEncrypted", [name]),
@@ -21,9 +21,9 @@ CxPolicy [ result ] {
   resource = document[i].Resources[name]
   resource.Type == "AWS::RDS::DBCluster"
   properties := resource.Properties
-  exists_se := object.get(properties, "StorageEncrypted", "undefined") != "undefined"  
+  exists_se := object.get(properties, "StorageEncrypted", "undefined") != "undefined"
   not exists_se
-  
+
       result := {
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("Resources.%s.Properties.StorageEncrypted", [name]),
