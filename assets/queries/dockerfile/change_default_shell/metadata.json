@@ -1,8 +1,0 @@
-{
-  "id": "change_default_shell",
-  "queryName": "Change Default Shell",
-  "severity": "MEDIUM",
-  "category": "Defaults",
-  "descriptionText": "Use the command SHELL to overridde the default shell",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#shell"
-}
