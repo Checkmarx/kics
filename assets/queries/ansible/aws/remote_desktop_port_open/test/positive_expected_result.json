@@ -18,5 +18,10 @@
 		"queryName": "Remote Desktop Port Open",
 		"severity": "HIGH",
 		"line": 51
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 66
 	}
 ]
