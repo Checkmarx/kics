@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Last User Is 'root'",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+]
