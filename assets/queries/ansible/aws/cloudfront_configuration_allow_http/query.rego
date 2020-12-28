@@ -4,9 +4,9 @@ CxPolicy [ result ] {
   document := input.document[i]
   tasks := getTasks(document)
   task := tasks[t]
-  redshiftCluster := task["community.aws.cloudfront_distribution"]
+  cloudfrontDistribution := task["community.aws.cloudfront_distribution"]
 
-  redshiftCluster.default_cache_behavior.viewer_protocol_policy = "allow-all"
+  cloudfrontDistribution.default_cache_behavior.viewer_protocol_policy = "allow-all"
 
   result := {
                 "documentId":       document.id,
