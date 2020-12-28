@@ -1,6 +1,6 @@
-- name: example ec2 group
-  ec2_group:
-    name: example
+- name: example ec2 group2
+  ec2_group1:
+    name: example1
     description: an example EC2 group
     vpc_id: 12345
     region: eu-west-1a
@@ -10,16 +10,12 @@
       - proto: tcp
         from_port: 80
         to_port: 80
-        cidr_ip: 10.0.0.0/8
-      - proto: icmp
-        from_port: 8 # icmp type, -1 = any type
-        to_port:  -1 # icmp subtype, -1 = any subtype
-        cidr_ip: 10.0.0.0/8
-    rules_egress:
+        cidr_ip: 10.1.1.1/32
+  rules_egress:
       - proto: tcp
         from_port: 80
         to_port: 80
-        cidr_ip: 10.0.0.0/8
+        cidr_ip: 10.1.1.1/32
         group_name: example-other
         # description to use if example-other needs to be created
         group_desc: other example EC2 group
