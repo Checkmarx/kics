@@ -7,11 +7,6 @@
 	{
 		"queryName": "Google Compute SSL Policy Weak Cipher Suits is Enabled",
 		"severity": "MEDIUM",
-		"line": 2
-	},
-	{
-		"queryName": "Google Compute SSL Policy Weak Cipher Suits is Enabled",
-		"severity": "MEDIUM",
 		"line": 19
 	}
 ]

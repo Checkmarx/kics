@@ -10,8 +10,6 @@
     service_account_file: "/tmp/auth.pem"
     state: present
 
----
-
 - name: create a SSL policy2
   google.cloud.gcp_compute_ssl_policy:
     name: test_object2
