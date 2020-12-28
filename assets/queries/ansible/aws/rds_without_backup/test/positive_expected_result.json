@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "RDS without Backup",
+		"queryName": "RDS Without Backup",
 		"severity": "MEDIUM",
 		"line": 10
 	},
 	{
-		"queryName": "RDS without Backup",
+		"queryName": "RDS Without Backup",
 		"severity": "MEDIUM",
 		"line": 12
 	}
