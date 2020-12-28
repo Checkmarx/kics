@@ -1,0 +1,8 @@
+{
+  "id": "sql_database_backup_configuration_disabled",
+  "queryName": "SQL Database Backup Configuration Disabled",
+  "severity": "HIGH",
+  "category": "Backup & Disaster Recovery",
+  "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/backup_configuration/enabled"
+}
