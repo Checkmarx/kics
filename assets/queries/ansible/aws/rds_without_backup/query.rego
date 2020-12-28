@@ -30,7 +30,7 @@ CxPolicy [ result ] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.rds_instance}}.backup_retention_period", [instanceName]),
-                "issueType":        "WrongValue",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.rds_instance should have the property 'backup_retention_period' greater than 0",
                 "keyActualValue":   "community.aws.rds_instance has the property 'password_reuse_prevent' assigned to 0"
               }
