@@ -1,0 +1,8 @@
+#this code is a correct code for which the query should not find any result
+- name: Simple GET operation
+  amazon.aws.aws_s3:
+    bucket: mybucket
+    object: /my/desired/key.txt
+    dest: /usr/local/myfile.txt
+    mode: list
+    permission: private

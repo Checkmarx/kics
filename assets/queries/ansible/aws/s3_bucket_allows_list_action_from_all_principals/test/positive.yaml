@@ -1,0 +1,8 @@
+#this is a problematic code where the query should report a result(s)
+- name: Simple GET operation
+  amazon.aws.aws_s3:
+    bucket: mybucket
+    object: /my/desired/key.txt
+    dest: /usr/local/myfile.txt
+    mode: list
+    permission: public-read-write
