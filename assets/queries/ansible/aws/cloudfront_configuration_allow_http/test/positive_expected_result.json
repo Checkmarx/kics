@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Cloudfront configuration allow HTTP",
+		"severity": "HIGH",
+		"line": 20
+	}
+]
