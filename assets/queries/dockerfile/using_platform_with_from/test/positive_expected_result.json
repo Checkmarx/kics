@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "No Platform Flag With FROM",
+		"queryName": "Using Platform with FROM",
 		"severity": "MEDIUM",
 		"line": 6
 	}

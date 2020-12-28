@@ -1,6 +1,6 @@
 {
-  "id": "no_platform_flag_with_from",
-  "queryName": "No Platform Flag With FROM",
+  "id": "using_platform_with_from",
+  "queryName": "Using Platform with FROM",
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "Don't use --platform flag with FROM",
