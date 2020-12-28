@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "BatchJobDefinition"
-Resources: 
+Resources:
   JobDefinition:
     Type: AWS::Batch::JobDefinition
     Properties:
