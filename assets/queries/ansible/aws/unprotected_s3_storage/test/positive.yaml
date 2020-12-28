@@ -1,4 +1,4 @@
-- name: Create a simple s3 bucket 
+- name: Create a simple s3 bucket
   amazon.aws.s3_bucket:
     name: mys3bucket
     state: present
