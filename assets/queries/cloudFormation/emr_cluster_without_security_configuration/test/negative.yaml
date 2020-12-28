@@ -51,7 +51,7 @@ Resources:
           - Sid: Enable IAM User Permissions
             Effect: Allow
             Principal:
-              AWS: !GetAtt 
+              AWS: !GetAtt
                 - emrEc2Role
                 - Arn
             Action: 'kms:*'
@@ -59,7 +59,7 @@ Resources:
           - Sid: Enable IAM User Permissions
             Effect: Allow
             Principal:
-              AWS: !Join 
+              AWS: !Join
                 - ''
                 - - 'arn:aws:iam::'
                   - !Ref 'AWS::AccountId'
@@ -116,6 +116,6 @@ Resources:
         - !Ref emrEc2Role
 Outputs:
   keyArn:
-    Value: !GetAtt 
+    Value: !GetAtt
       - key
       - Arn
