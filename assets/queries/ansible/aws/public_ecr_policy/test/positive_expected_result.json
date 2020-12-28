@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Public ECR policy",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]
