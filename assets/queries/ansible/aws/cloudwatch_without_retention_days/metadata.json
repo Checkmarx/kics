@@ -1,0 +1,8 @@
+{
+  "id": "Cloudwatch_without_retention_days",
+  "queryName": "Cloudwatch without retention days",
+  "severity": "LOW",
+  "category": null,
+  "descriptionText": "Cloudwatch log groups without retention days specified",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudwatchlogs_log_group_module.html"
+}
