@@ -5,10 +5,9 @@ CxPolicy [ result ] {
   resource = document[i].Resources[name]
   resource.Type == "AWS::Elasticsearch::Domain"
   properties := resource.Properties
-  
-  exists_encryptionAtRestOptions := object.get(properties, "EncryptionAtRestOptions", "undefined") != "undefined"
-  not exists_encryptionAtRestOptions
-  
+
+  object.get(properties, "EncryptionAtRestOptions", "undefined") == "undefined"
+
       result := {
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("Resources.%s.Properties.EncryptionAtRestOptions", [name]),
@@ -23,9 +22,9 @@ CxPolicy [ result ] {
   resource = document[i].Resources[name]
   resource.Type == "AWS::Elasticsearch::Domain"
   properties := resource.Properties
-  
-  checks_encryption_at_rest_options(properties.EncryptionAtRestOptions)
-  
+
+  properties.EncryptionAtRestOptions.Enabled != true
+
       result := {
                 "documentId": 		input.document[i].id,
                 "searchKey":        sprintf("Resources.%s.Properties.EncryptionAtRestOptions", [name]),
@@ -33,8 +32,4 @@ CxPolicy [ result ] {
                 "keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is enabled", [name]),
                 "keyActualValue": 	sprintf("Resources.%s.Properties.EncryptionAtRestOptions is disabled", [name])
               }
-}
-
-checks_encryption_at_rest_options(encryptionAtRestOptions) {
-	encryptionAtRestOptions.Enabled != true
 }

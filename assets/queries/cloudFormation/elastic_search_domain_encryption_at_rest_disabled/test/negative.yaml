@@ -12,7 +12,7 @@ Resources:
         InstanceType: "m3.medium.elasticsearch"
         DedicatedMasterType: "m3.medium.elasticsearch"
         DedicatedMasterCount: "3"
-      EncryptionAtRestOptions: 
+      EncryptionAtRestOptions:
         Enabled: true
       EBSOptions:
         EBSEnabled: true
