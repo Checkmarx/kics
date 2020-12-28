@@ -1,0 +1,154 @@
+---
+- name: foo1
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example1
+        priority: 100
+        direction: Inbound
+        access: Deny
+        protocol: TCP
+        source_port_range: "*"
+        destination_port_range: 23
+        source_address_prefix: "*"
+        destination_address_prefix: "*"
+- name: foo2
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example2
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: Icmp
+        source_port_range: "*"
+        destination_port_range: 23-24
+        source_address_prefix: "*"
+        destination_address_prefix: "*"
+- name: foo3
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example3
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: TCP
+        source_port_range: "*"
+        destination_port_range: 8-174
+        source_address_prefix: "0.0.0.0"
+        destination_address_prefix: "*"
+- name: foo4
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example4
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: TCP
+        source_port_range: "*"
+        destination_port_range: 23-196
+        source_address_prefix: 192.168.0.0
+        destination_address_prefix: "*"
+- name: foo5
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example5
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: TCP
+        source_port_range: "*"
+        destination_port_range: 23
+        source_address_prefix: /1
+        destination_address_prefix: "*"
+- name: foo6
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example6
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: *
+        source_port_range: "*"
+        destination_port_range: 43
+        source_address_prefix: /0
+        destination_address_prefix: "*"
+- name: foo7
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example7
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: Icmp
+        source_port_range: "*"
+        destination_port_range: 23
+        source_address_prefix: internet
+        destination_address_prefix: "*"
+- name: foo8
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example8
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: *
+        source_port_range: "*"
+        destination_port_range: 22, 24,49-67
+        source_address_prefix: any
+        destination_address_prefix: "*"
+- name: foo9
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example9
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: Icmp
+        source_port_range: "*"
+        destination_port_range: 23
+        source_address_prefix: /0
+        destination_address_prefix: "*"
+- name: foo10
+  azure_rm_securitygroup:
+    resource_group: myResourceGroup
+    name: mysecgroup
+    rules:
+      - name: example10
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: TCP
+        source_port_range: "*"
+        destination_port_range:
+          - 23
+          - 69
+        source_address_prefix: 0.0.1.0
+        destination_address_prefix: "*"
+      - name: example11
+        priority: 100
+        direction: Inbound
+        access: Allow
+        protocol: TCP
+        source_port_range: "*"
+        destination_port_range:
+          - 2
+          - 310
+        source_address_prefix: 0.0.0.0
+        destination_address_prefix: "*"

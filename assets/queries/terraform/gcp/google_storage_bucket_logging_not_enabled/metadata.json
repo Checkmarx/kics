@@ -1,8 +1,0 @@
-{
-  "id": "Googlestoragebucketloggingnotenabled",
-  "queryName": "Google storage bucket logging not enabled",
-  "severity": "HIGH",
-  "category": "Logging",
-  "descriptionText": "Google storage bucket with logging not enabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#log_bucket"
-}
