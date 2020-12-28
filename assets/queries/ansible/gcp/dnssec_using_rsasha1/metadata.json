@@ -1,0 +1,8 @@
+{
+  "id": "dnssec_using_rsasha1",
+  "queryName": "DNSSEC Using RSASHA1",
+  "severity": "HIGH",
+  "category": "Encryption & Key Management",
+  "descriptionText": "DNSSEC should not use the RSASHA1 algorithm",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_dns_managed_zone_module.html#return-dnssecConfig/defaultKeySpecs/algorithm"
+}

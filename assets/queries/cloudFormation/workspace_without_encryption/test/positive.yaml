@@ -1,0 +1,29 @@
+#this is a problematic code where the query should report a result(s)
+Resources:
+  MyWorkSpace:
+    Type: AWS::WorkSpaces::Workspace
+    Properties:
+      BundleId: !FindInMap
+        - WSTypeMap
+        - !Ref 'WorkstationType'
+        - BundleId
+      DirectoryId: !FindInMap
+        - WSTypeMap
+        - !Ref 'WorkstationType'
+        - DirectoryId
+      UserName: !Ref 'UserName'
+---
+Resources:
+  MyWorkSpace2:
+    Type: AWS::WorkSpaces::Workspace
+    Properties:
+      BundleId: !FindInMap
+        - WSTypeMap
+        - !Ref 'WorkstationType'
+        - BundleId
+      DirectoryId: !FindInMap
+        - WSTypeMap
+        - !Ref 'WorkstationType'
+        - DirectoryId
+      UserName: !Ref 'UserName'
+      UserVolumeEncryptionEnabled: false

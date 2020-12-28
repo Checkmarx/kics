@@ -1,0 +1,8 @@
+{
+  "id": "Ansible_Redshift_Publicly_Accessible",
+  "queryName": "Redshift Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Check if 'publicly_accessible' field is true (default is false)",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html"
+}

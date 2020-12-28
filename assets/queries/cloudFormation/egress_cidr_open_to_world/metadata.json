@@ -1,0 +1,8 @@
+{
+  "id": "egress_cidr_open_to_world",
+  "queryName": "AWS Security Group Egress CIDR Open To World",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "AWS Security Group Egress CIDR should not be open to the world",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html"
+}

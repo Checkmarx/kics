@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]

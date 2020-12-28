@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "S3 Bucket Disabled Cloudtrail Logging",
+		"severity": "HIGH",
+		"line": 7
+	}
+]

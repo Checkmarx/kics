@@ -1,0 +1,8 @@
+{
+  "id": "aws_lambda_functions_with_unique_iam_roles",
+  "queryName": "AWS Lambda Functions With Unique IAM Roles",
+  "severity": "MEDIUM",
+  "category": "Compute",
+  "descriptionText": "AWS Lambda Functions should not share IAM roles to ensure they will have the minimum privileges needed to perform the required tasks",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html"
+}

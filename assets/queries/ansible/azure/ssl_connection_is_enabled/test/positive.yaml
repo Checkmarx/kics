@@ -1,0 +1,26 @@
+---
+- name: Create (or update) MySQL Server
+  azure.azcollection.azure_rm_mysqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    version: 5.6
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) MySQL Server2
+  azure.azcollection.azure_rm_mysqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: false
+    version: 5.6
+    admin_username: cloudsa
+    admin_password: password
