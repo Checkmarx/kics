@@ -1,6 +1,6 @@
 {
   "id": "Filter_And_Alarm_Exist_For_Unauthorized_API_Calls",
-  "queryName": "Filter And Alarm Not Exists For Unauthorized API Calls",
+  "queryName": "Filter And Alarm Do Not Exists For Unauthorized API Calls",
   "severity": "MEDIUM",
   "category": "Monitoring",
   "descriptionText": "A log metric filter and alarm should exist for Unauthorized API Calls",
