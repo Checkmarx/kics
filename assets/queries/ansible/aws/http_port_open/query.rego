@@ -84,6 +84,25 @@ CxPolicy [ result ] {
               }
 }
 
+CxPolicy [ result ] {
+    document := input.document[i]
+    tasks := getTasks(document)
+    task := tasks[t]
+    ports := task["amazon.aws.ec2_group"].rules[index].ports[_]
+    cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
+    cidr == "0.0.0.0/0"
+  	portNumber := 80
+    ports == portNumber
+
+	result := {
+                "documentId": 		  input.document[i].id,
+                "searchKey": 	      sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules.ports", [task.name]),
+                "issueType":		    "IncorrectValue",
+                "keyExpectedValue": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules.ports doesn't open the remote desktop port (%s)", [task.name, portNumber]),
+                "keyActualValue": 	sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules.ports opens the remote desktop port (%s)", [task.name, portNumber]),
+              }
+}
+
 
 getTasks(document) = result {
     result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
