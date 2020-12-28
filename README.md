@@ -5,7 +5,7 @@
 [![Gitter](https://badges.gitter.im/kics-dev/community.svg)](https://gitter.im/kics-dev/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-logo-donkey.png" width="250">  
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/xmas-donkey.png" width="250">  
 
 ---
 
