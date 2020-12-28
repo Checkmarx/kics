@@ -92,7 +92,7 @@ CxPolicy [ result ] {
     cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
     cidr == "0.0.0.0/0"
   	portNumber := 22
-    ports == 22
+    ports == portNumber
 
 	result := {
                 "documentId": 		  input.document[i].id,
