@@ -23,5 +23,5 @@
                          "aws:SourceArn": "${aws_sns_topic.example.arn}"
                        }
                      }
-                  } 
+                  }
                  ] }'
