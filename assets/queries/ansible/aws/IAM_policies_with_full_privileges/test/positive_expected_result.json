@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "IAM policies with full privileges",
+		"queryName": "IAM Policies With Full Privileges",
 		"severity": "MEDIUM",
 		"line": 8
 	}
