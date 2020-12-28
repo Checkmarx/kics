@@ -5,12 +5,12 @@ Resources:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: DOC-EXAMPLE-BUCKET
+      BucketName: docexamplebucket
   SampleBucketPolicy:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
       Bucket:
-        Ref: DOC-EXAMPLE-BUCKET-FAIL
+        Ref: docexamplebucketfail
       PolicyDocument:
         Statement:
           - Action:
@@ -20,7 +20,7 @@ Resources:
               'Fn::Join':
                 - ''
                 - - 'arn:aws:s3:::'
-                  - Ref: DOC-EXAMPLE-BUCKET
+                  - Ref: docexamplebucket
                   - /*
             Principal: '*'
             Condition:
@@ -31,7 +31,7 @@ Resources:
   SampleBucketPolicy2:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: DOC-EXAMPLE-BUCKET-FAIL2
+      Bucket: docexamplebucket2
       PolicyDocument:
         Statement:
           - Action:
@@ -41,7 +41,7 @@ Resources:
               'Fn::Join':
                 - ''
                 - - 'arn:aws:s3:::'
-                  - Ref: DOC-EXAMPLE-BUCKET
+                  - Ref: docexamplebucket
                   - /*
             Principal: '*'
             Condition:

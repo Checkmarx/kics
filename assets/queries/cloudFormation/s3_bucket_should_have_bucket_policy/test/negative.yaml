@@ -5,11 +5,11 @@ Resources:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: DOC-EXAMPLE-BUCKET
+      BucketName: docexamplebucket
   SampleBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: DOC-EXAMPLE-BUCKET
+      Bucket: docexamplebucket
       PolicyDocument:
         Statement:
           - Action:
@@ -19,7 +19,7 @@ Resources:
               'Fn::Join':
                 - ''
                 - - 'arn:aws:s3:::'
-                  - Ref: DOC-EXAMPLE-BUCKET
+                  - Ref: docexamplebucket
                   - /*
             Principal: '*'
             Condition:
