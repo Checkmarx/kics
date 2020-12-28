@@ -7,7 +7,7 @@ CxPolicy [ result ] {
   ec2_instance = instanceList["ec2_group"]
   ec2_instanceName = ec2_instance.name 
   count(ec2_instance.rules) > 0
-  elements := { elem | elem :=  ec2_instance.rules[j];  checkOver256(ec2_instance.rules[j].cidr_ip)}
+  elements := { elem | elem :=  ec2_instance.rules[j];  isPublicScope(ec2_instance.rules[j].cidr_ip)}
   count(elements) > 0
   values := concat(",", {e|e:=elements[p].cidr_ip;true})
   result := {
