@@ -36,7 +36,7 @@ Resources:
 Outputs:
   InstanceId:
     Description: InstanceId of the newly created RDS Instance
-    Value: !Ref MyDBSmall                         
+    Value: !Ref MyDBSmall
 
 ---
 
@@ -77,4 +77,4 @@ Resources:
 Outputs:
   InstanceId:
     Description: InstanceId of the newly created RDS Instance
-    Value: !Ref MyDBSmall 
+    Value: !Ref MyDBSmall1
