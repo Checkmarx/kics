@@ -10,10 +10,6 @@ Resources:
           - Effect: Allow
             Action:
             - iot:Connect
-            Resource: "*"
-          - Effect: Deny
-            Action:
-            - sqs:*
-            NotResource:
-            - !GetAtt myqueue.Arn
+            Resource:
+            - arn:aws:iot:us-east-1:123456789012:client/client1
         PolicyName: PolicyName

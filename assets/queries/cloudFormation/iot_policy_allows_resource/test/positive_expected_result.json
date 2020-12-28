@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IoT Policy Allows Resource as *",
-		"severity": "MEDIUM",
-		"line": 13
-	}
-]
