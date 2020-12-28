@@ -1,8 +1,8 @@
 {
-  "id": "iot_policy_allows_action",
-  "queryName": "IoT Policy Allows Action as *",
+  "id": "iot_policy_allows_wildcard_action",
+  "queryName": "IoT Policy Allows Action as Wildcard",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "IoT Policy should not allow Action to be set as *",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html"
 }
