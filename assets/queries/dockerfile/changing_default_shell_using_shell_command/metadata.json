@@ -3,6 +3,6 @@
   "queryName": "Changing Default Shell Using SHELL Command",
   "severity": "MEDIUM",
   "category": "Defaults",
-  "descriptionText": "Using the command SHELL to overridde the default shell instead of the RUN command",
+  "descriptionText": "Using the command SHELL to override the default shell instead of the RUN command",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#shell"
 }
