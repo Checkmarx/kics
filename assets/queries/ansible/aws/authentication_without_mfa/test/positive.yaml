@@ -1,0 +1,12 @@
+- name: Assume an existing role
+  community.aws.sts_assume_role:
+    mfa_serial_number: "{{ mfa_devices.mfa_devices[0].serial_number }}"
+    role_arn: "arn:aws:iam::123456789012:role/someRole"
+    role_session_name: "someRoleSession"
+  register: assumed_role
+
+- name: Hello
+  sts_assume_role:
+    role_arn: "arn:aws:iam::123456789012:role/someRole"
+    role_session_name: "someRoleSession"
+  register: assumed_role
