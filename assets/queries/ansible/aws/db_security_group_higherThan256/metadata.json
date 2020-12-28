@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "DB Security CIDR must be lower than 256 (/24)",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_security_groups"
 }
