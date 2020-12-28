@@ -1,0 +1,8 @@
+{
+  "id": "unix_ports_out_of_range",
+  "queryName": "UNIX Ports Out Of Range",
+  "severity": "HIGH",
+  "category": "Networking",
+  "descriptionText": "Exposing UNIX ports out of range from 0 to 65535",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#expose"
+}

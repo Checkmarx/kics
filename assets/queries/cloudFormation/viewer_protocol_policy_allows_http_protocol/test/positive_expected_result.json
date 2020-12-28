@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Viewer Protocol Policy Allows HTTP Protocol",
+		"severity": "HIGH",
+		"line": 13
+	}
+	,
+	{
+		"queryName": "Viewer Protocol Policy Allows HTTP Protocol",
+		"severity": "HIGH",
+		"line": 29
+	}
+]
