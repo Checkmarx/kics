@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "HTTP Port Open",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "HTTP Port Open",
+		"severity": "HIGH",
+		"line": 25
+	},
+	{
+		"queryName": "HTTP Port Open",
+		"severity": "HIGH",
+		"line": 38
+	},
+	{
+		"queryName": "HTTP Port Open",
+		"severity": "HIGH",
+		"line": 51
+	}
+]
