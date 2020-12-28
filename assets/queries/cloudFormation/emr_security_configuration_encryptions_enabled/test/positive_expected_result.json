@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "EMR Security Configuration Encryptions Enabled",
+		"severity": "MEDIUM",
+		"line": 26
+	},
+	{
+		"queryName": "EMR Security Configuration Encryptions Enabled",
+		"severity": "MEDIUM",
+		"line": 9
+	},
+	{
+		"queryName": "EMR Security Configuration Encryptions Enabled",
+		"severity": "MEDIUM",
+		"line": 35
+	},
+	{
+		"queryName": "EMR Security Configuration Encryptions Enabled",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "EMR Security Configuration Encryptions Enabled",
+		"severity": "MEDIUM",
+		"line": 36
+	},
+	{
+		"queryName": "EMR Security Configuration Encryptions Enabled",
+		"severity": "MEDIUM",
+		"line": 25
+	}
+]
