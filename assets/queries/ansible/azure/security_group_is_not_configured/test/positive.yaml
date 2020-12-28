@@ -11,14 +11,14 @@
     virtual_network_name: myVirtualNetwork2
     name: mySubnet2
     address_prefix_cidr: "10.1.0.0/24"
-    security_group: 
+    security_group:
 - name: Create a subnet3
   azure_rm_subnet:
     resource_group: myResourceGroup3
     virtual_network_name: myVirtualNetwork3
     name: mySubnet3
     address_prefix_cidr: "10.1.0.0/24"
-    security_group_name: 
+    security_group_name:
 - name: Create a subnet4
   azure_rm_subnet:
     resource_group: myResourceGroup4
