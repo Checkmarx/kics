@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Unchangeable password",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "Unchangeable password",
+		"severity": "HIGH",
+		"line": 21
+	}
+]

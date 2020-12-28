@@ -1,0 +1,8 @@
+{
+  "id": "Unchangeable_password",
+  "queryName": "Unchangeable password",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Unchangeable passwords in AWS password policy",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html"
+}
