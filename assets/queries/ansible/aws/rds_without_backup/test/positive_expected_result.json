@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS Without Backup",
+		"severity": "MEDIUM",
+		"line": 10
+	},
+	{
+		"queryName": "RDS Without Backup",
+		"severity": "MEDIUM",
+		"line": 12
+	}
+]
