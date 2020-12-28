@@ -1,21 +1,21 @@
 [
 	{
-		"queryName": "Fully open Ingress",
+		"queryName": "Fully Open Ingress",
 		"severity": "HIGH",
 		"line": 14
 	},
 	{
-		"queryName": "Fully open Ingress",
+		"queryName": "Fully Open Ingress",
 		"severity": "HIGH",
 		"line": 28
 	},
 	{
-		"queryName": "Fully open Ingress",
+		"queryName": "Fully Open Ingress",
 		"severity": "HIGH",
 		"line": 41
 	},
 	{
-		"queryName": "Fully open Ingress",
+		"queryName": "Fully Open Ingress",
 		"severity": "HIGH",
 		"line": 55
 	}
