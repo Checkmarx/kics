@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Yum Update Disabled",
+		"queryName": "Yum Update Enabled",
 		"severity": "HIGH",
 		"line": 5
 	}
