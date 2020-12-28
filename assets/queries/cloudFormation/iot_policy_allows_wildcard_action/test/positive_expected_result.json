@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "IoT Policy Allows Action as *",
+		"queryName": "IoT Policy Allows Action as Wildcard",
 		"severity": "MEDIUM",
 		"line": 11
 	}
