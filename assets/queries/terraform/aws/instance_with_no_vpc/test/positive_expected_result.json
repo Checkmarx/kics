@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Instance With No Vpc",
+		"queryName": "Instance With No VPC",
 		"severity": "MEDIUM",
 		"line": 1
 	}

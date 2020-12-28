@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS DBCluster Storage Encryption Disabled",
+		"severity": "MEDIUM",
+		"line": 12
+	},
+	{
+		"queryName": "RDS DBCluster Storage Encryption Disabled",
+		"severity": "MEDIUM",
+		"line": 61
+	}
+]
