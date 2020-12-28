@@ -3,6 +3,19 @@ Resources:
   myDistribution1:
     Type: AWS::CloudFront::Distribution
     Properties:
+      DefaultCacheBehavior:
+        AllowedMethods:
+        - GET
+        - HEAD
+        - OPTIONS
+        TargetOriginId: myS3Origin
+        ForwardedValues:
+          QueryString: 'false'
+          Cookies:
+            Forward: none
+        TrustedSigners:
+        - 1234567890EX
+        ViewerProtocolPolicy: allow-all
       DistributionConfig:
         Origins:
         - DomainName: mybucket.s3.amazonaws.com
@@ -18,6 +31,19 @@ Resources:
   myDistribution2:
     Type: AWS::CloudFront::Distribution
     Properties:
+      DefaultCacheBehavior:
+        AllowedMethods:
+        - GET
+        - HEAD
+        - OPTIONS
+        TargetOriginId: myS3Origin
+        ForwardedValues:
+          QueryString: 'false'
+          Cookies:
+            Forward: none
+        TrustedSigners:
+        - 1234567890EX
+        ViewerProtocolPolicy: allow-all
       DistributionConfig:
         Origins:
         - DomainName: mybucket.s3.amazonaws.com

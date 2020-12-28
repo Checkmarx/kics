@@ -16,3 +16,16 @@ Resources:
           IncludeCookies: 'false'
           Bucket: mylogs.s3.amazonaws.com
           Prefix: myprefix
+    DefaultCacheBehavior:
+      AllowedMethods:
+      - GET
+      - HEAD
+      - OPTIONS
+      TargetOriginId: myS3Origin
+      ForwardedValues:
+        QueryString: 'false'
+        Cookies:
+          Forward: none
+      TrustedSigners:
+      - 1234567890EX
+      ViewerProtocolPolicy: allow-all

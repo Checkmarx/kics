@@ -1,8 +1,0 @@
-{
-  "id": "cloudfront_distribution_looging_is_disabled",
-  "queryName": "CloudFront Distribution Logging is Disabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Ensure AWS CloudFront distribution with access logging is enabled",
-  "descriptionUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html"
-}
