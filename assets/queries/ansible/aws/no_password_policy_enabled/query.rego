@@ -6,9 +6,8 @@ CxPolicy[result] {
     tasks := getTasks(document)
     task := tasks[t]
 
-    modules := {"community.aws.iam_password_policy", "iam_password_policy"}
-    
-    count({index | object.get(task, modules[index], "undefined") == "undefined"}) == 2
+    object.get(task, "community.aws.iam_password_policy", "undefined") == "undefined"
+    object.get(task, "iam_password_policy", "undefined") == "undefined"
 
 
     result := {
