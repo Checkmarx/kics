@@ -2,7 +2,7 @@
   "id": "cloudfront_minimum_protocol_tls1.2",
   "queryName": "CloudFront Minimum Protocol TLS1.2",
   "severity": "HIGH",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "CloudFront Minimum Protocol version should be higher than TLS1.2",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html"
 }
