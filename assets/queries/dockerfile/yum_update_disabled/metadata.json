@@ -1,6 +1,6 @@
 {
   "id": "yum_update_disabled",
-  "queryName": "Yum Update Disabled",
+  "queryName": "Yum Update Enabled",
   "severity": "HIGH",
   "category": "Package Management",
   "descriptionText": "Yum update is being used",
