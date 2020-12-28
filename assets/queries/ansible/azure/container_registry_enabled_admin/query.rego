@@ -12,7 +12,7 @@ CxPolicy [ result ] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_containerregistry}}.admin_user_enabled", [containerRegName]),
-                "issueType":        "WrongValue",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "azure.azcollection.azure_rm_containerregistry.admin_user_enabled should be false or undefined (defaults to false)",
                 "keyActualValue":   "azure.azcollection.azure_rm_containerregistry.admin_user_enabled is true"
               }
