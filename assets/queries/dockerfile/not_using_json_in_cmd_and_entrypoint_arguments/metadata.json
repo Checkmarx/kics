@@ -1,6 +1,6 @@
 {
-  "id": "use_json_in_cmd_and_entrypoint_arguments",
-  "queryName": "Use JSON In CMD And ENTRYPOINT Arguments",
+  "id": "not_using_json_in_cmd_and_entrypoint_arguments",
+  "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
   "severity": "MEDIUM",
   "category": "Runtime",
   "descriptionText": "Ensure that we are using JSON in the CMD and ENTRYPOINT Arguments",
