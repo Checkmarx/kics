@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 25
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 39
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 53
+	}
+]
