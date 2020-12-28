@@ -14,7 +14,7 @@ CxPolicy [ result ] {
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.rds_instance}}", [instanceName]),
                 "issueType":        "MissingAttribute",
                 "keyExpectedValue": "community.aws.rds_instance should have the property 'backup_retention_period' greater than 0",
-                "keyActualValue":   "community.aws.rds_instance has the property 'password_reuse_prevent' unassigned"
+                "keyActualValue":   "community.aws.rds_instance has the property 'backup_retention_period' unassigned"
               }
 }
 
@@ -32,7 +32,7 @@ CxPolicy [ result ] {
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.rds_instance}}.backup_retention_period", [instanceName]),
                 "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.rds_instance should have the property 'backup_retention_period' greater than 0",
-                "keyActualValue":   "community.aws.rds_instance has the property 'password_reuse_prevent' assigned to 0"
+                "keyActualValue":   "community.aws.rds_instance has the property 'backup_retention_period' assigned to 0"
               }
 }
 
