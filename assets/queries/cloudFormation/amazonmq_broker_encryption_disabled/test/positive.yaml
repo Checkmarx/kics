@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Create a basic ActiveMQ broker"
-Resources: 
+Resources:
   BasicBroker:
     Type: "AWS::AmazonMQ::Broker"
-    Properties: 
+    Properties:
       AutoMinorVersionUpgrade: "false"
       BrokerName: MyBasicBroker
       DeploymentMode: SINGLE_INSTANCE
@@ -11,12 +11,12 @@ Resources:
       EngineVersion: "5.15.0"
       HostInstanceType: mq.t2.micro
       PubliclyAccessible: "true"
-      Users: 
-        - 
+      Users:
+        -
           ConsoleAccess: "true"
-          Groups: 
+          Groups:
             - MyGroup
-          Password: 
-            Ref: "BrokerPassword"            
-          Username: 
+          Password:
+            Ref: "BrokerPassword"
+          Username:
             Ref: "BrokerUsername"
