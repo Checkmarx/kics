@@ -11,9 +11,9 @@ CxPolicy [ result ] {
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.sns_topic}}", [snsTopicName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "community.aws.redshift.encrypted should be undefined",
-                "keyActualValue":   "community.aws.redshift.encrypted is defined"
+                "issueType":        "IncorrectValue",
+                "keyExpectedValue": "community.aws.sns_topic.subscriptions should be undefined",
+                "keyActualValue": "community.aws.sns_topic.subscriptions is defined"
               }
 }
 
@@ -29,9 +29,9 @@ CxPolicy [ result ] {
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{sns_topic}}", [snsTopicName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "community.aws.redshift.encrypted should be undefined",
-                "keyActualValue":   "community.aws.redshift.encrypted is defined"
+                "issueType":        "IncorrectValue",
+                "keyExpectedValue": "sns_topic.subscriptions should be undefined",
+                "keyActualValue": "sns_topic.subscriptions is defined"
               }
 }
 
