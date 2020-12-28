@@ -1,8 +1,8 @@
 {
-  "id": "kms_should_allow_principal",
-  "queryName": "Kms Should Allow * as Principal",
+  "id": "kms_allows_wildcard_principal",
+  "queryName": "KMS allows wildcard principal",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Kms Should not allow Principal parameter to be set as *",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html"
 }

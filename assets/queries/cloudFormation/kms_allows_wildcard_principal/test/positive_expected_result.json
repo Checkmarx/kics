@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "KMS allows wildcard principal",
+		"severity": "MEDIUM",
+		"line": 14
+	}
+]
