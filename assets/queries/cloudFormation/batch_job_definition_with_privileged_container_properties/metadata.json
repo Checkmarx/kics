@@ -1,0 +1,8 @@
+{
+  "id": "batch_job_definition_with_privileged_container_properties",
+  "queryName": "Batch Job Definition With Privileged Container Properties",
+  "severity": "HIGH",
+  "category": "Privileges",
+  "descriptionText": "Batch Job Definition should not have Privileged Container Properties",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
+}

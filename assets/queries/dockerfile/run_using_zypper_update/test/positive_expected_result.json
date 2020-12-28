@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Run Using zypper update",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+]
