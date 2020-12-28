@@ -46,9 +46,12 @@ else = containing {
     containing = true
 }
 
-isAccessibleFromEntireNetwork(resource) = accessible {
-	endswith(resource.source_address_prefix, "/0")
-    accessible = true
+isPrivateNetwork(resource) = private {
+     privateIPs = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"] 
+     
+     resource.source_address_prefix == privateIPs[j]
+     
+     private = true
 }
 
 isAllowed(resource) = allowed {
@@ -129,7 +132,7 @@ CxPolicy [ result ] {
 
 #############	Checks
 	isAllowed(resource)
-    isAccessibleFromEntireNetwork(resource)
+    isPrivateNetwork(resource)
     containsDestinationPort(portNumber, resource)
     isTCPorUDP(protocol)
     
