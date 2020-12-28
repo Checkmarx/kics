@@ -1,0 +1,24 @@
+- name: Password policy for AWS account v3
+  community.aws.iam_password_policy:
+    state: present
+    min_pw_length: 14
+    require_symbols: true
+    require_numbers: true
+    require_uppercase: true
+    require_lowercase: true
+    allow_pw_change: true
+    pw_max_age: 60
+    pw_reuse_prevent: 5
+    pw_expire: true
+- name: Password policy for AWS account v4
+  iam_password_policy:
+    state: present
+    min_pw_length: 14
+    require_symbols: true
+    require_numbers: true
+    require_uppercase: true
+    require_lowercase: true
+    allow_pw_change: true
+    pw_max_age: 60
+    pw_reuse_prevent: 5
+    pw_expire: true
