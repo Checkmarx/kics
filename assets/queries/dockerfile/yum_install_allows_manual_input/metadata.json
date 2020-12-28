@@ -1,6 +1,6 @@
 {
-  "id": "y_switch_avoid_manual_input",
-  "queryName": "Y Switch Avoid Manual Input",
+  "id": "yum_install_allows_manual_input",
+  "queryName": "Yum Install Allows Manual Input",
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "Need to use -y to avoid manual input 'yum install -y <package>'",
