@@ -1,0 +1,8 @@
+{
+  "id": "not_encrypted_data_in_launch_configuration",
+  "queryName": "Not Encrypted Data In Launch Configuration",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "AWS Autoscaling Launch Configurations should have encryption enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html"
+}
