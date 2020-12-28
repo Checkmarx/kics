@@ -1,6 +1,6 @@
 {
-  "id": "cloudformation_in_use",
-  "queryName": "AWS CloudFormation In Use",
+  "id": "cloudformation_without_template",
+  "queryName": "AWS CloudFormation Without Template",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "AWS CloudFormation should have a template defined through the attribute template, template_url or attribute template_body",
