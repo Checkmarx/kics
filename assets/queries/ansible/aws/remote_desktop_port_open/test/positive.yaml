@@ -24,7 +24,6 @@
         - proto: tcp
           ports: 3389
           cidr_ip: 0.0.0.0/0
-          rule_desc: allow all on port 3389
 
 - name: example ec2 group3
   amazon.aws.ec2_group:
@@ -38,7 +37,6 @@
         - proto: tcp
           ports: 3380-3450
           cidr_ip: 0.0.0.0/0
-          rule_desc: allow all from port 3380 to 3450
 
 - name: example ec2 group4
   amazon.aws.ec2_group:
@@ -54,4 +52,3 @@
             - 80
             - 3380-3450
           cidr_ip: 0.0.0.0/0
-          rule_desc: allow all from port 3380 to 3450
