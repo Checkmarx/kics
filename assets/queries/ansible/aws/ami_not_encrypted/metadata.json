@@ -1,0 +1,8 @@
+{
+  "id": "ami_not_encrypted",
+  "queryName": "Ami Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption & Key Management",
+  "descriptionText": "AWS AMI Encryption is not enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_ami_module.html"
+} 
