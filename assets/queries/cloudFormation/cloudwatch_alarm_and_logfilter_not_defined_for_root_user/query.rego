@@ -10,7 +10,7 @@ CxPolicy [ result ] {
     some nameAlarm
     resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
    
-    checkAlarm(resourceMetricFilter[name].Properties.MetricTransformations[index].MetricNamespace, resourceAlarm[nameAlarm].Properties)
+    resourceMetricFilter[name].Properties.MetricTransformations[index].MetricNamespace != resourceAlarm[nameAlarm].Properties.Namespace
 
     result := {
                 "documentId": 		input.document[i].id,
@@ -20,6 +20,7 @@ CxPolicy [ result ] {
                 "keyActualValue": 	sprintf("'Resources.%s.FilterPattern.MetricTransformations[%d].MetricNamespace' doesn't have a valid Namespace in 'AWS::CloudWatch::Alarm')", [name, index]),
             }
 }
+
 CxPolicy [ result ] {
 
 	resourceMetricFilter := input.document[i].Resources
@@ -32,7 +33,7 @@ CxPolicy [ result ] {
     some nameSNS
     resourceSNS[nameSNS].Type == "AWS::SNS::Topic"
    
-    checkTopic(resourceAlarm[nameAlarm].Properties.AlarmActions[index], nameSNS)
+    resourceAlarm[nameAlarm].Properties.AlarmActions[index].Ref != nameSNS
 
     result := {
                 "documentId": 		input.document[i].id,
@@ -53,7 +54,7 @@ CxPolicy [ result ] {
     resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
     
     
-	not regex.match("{ *\\$\\.userIdentity\\.type *= *Root *&& *\\$\\.userIdentity\\.invokedBy NOT EXISTS *&& *\\$\\.eventType *!= *AwsServiceEvent *}",
+	not regex.match("{ *\\$\\.userIdentity\\.type *= *\"?Root\"? *&& *\\$\\.userIdentity\\.invokedBy NOT EXISTS *&& *\\$\\.eventType *!= *\"?AwsServiceEvent\"? *}",
     	resourceMetricFilter[name].Properties.FilterPattern)
 
 
@@ -65,10 +66,5 @@ CxPolicy [ result ] {
                 "keyActualValue": 	sprintf("'Resources.%s.FilterPattern' does not have the right specification", [name])
             }
 }
-checkAlarm(metricFilter, resourceAlarm) = true {
-    resourceAlarm.Namespace != metricFilter
-}
 
-checkTopic(resourceAlarm, nameSNS) = true {
-    resourceAlarm.Ref != nameSNS
-}
+
