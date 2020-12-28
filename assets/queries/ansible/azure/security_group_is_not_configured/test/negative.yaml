@@ -1,0 +1,8 @@
+#this code is a correct code for which the query should not find any result
+- name: Create a subnet
+  azure_rm_subnet:
+    resource_group: myResourceGroup
+    virtual_network_name: myVirtualNetwork
+    name: mySubnet
+    address_prefix_cidr: "10.1.0.0/24"
+    security_group: mySecurityGroup

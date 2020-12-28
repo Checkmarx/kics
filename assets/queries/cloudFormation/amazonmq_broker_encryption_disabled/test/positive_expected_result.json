@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "AmazonMQ Broker Encryption Disabled",
+		"severity": "MEDIUM",
+		"line": 6
+	}
+]

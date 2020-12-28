@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "CloudFormation Specifying Credentials Not Safe",
+		"severity": "HIGH",
+		"line": 33
+	},
+	{
+		"queryName": "CloudFormation Specifying Credentials Not Safe",
+		"severity": "HIGH",
+		"line": 35
+	},
+	{
+		"queryName": "CloudFormation Specifying Credentials Not Safe",
+		"severity": "HIGH",
+		"line": 71
+	}
+]

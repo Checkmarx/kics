@@ -1,0 +1,8 @@
+{
+  "id": "ansible_storage_account_forces_https",
+  "queryName": "Storage Account Not Forcing HTTPS",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "See that Storage Accounts forces the use of HTTPS",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-https_only"
+}

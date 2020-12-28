@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EC2 Network ACL Ineffective Denied Traffic",
+		"severity": "MEDIUM",
+		"line": 17
+	}
+]

@@ -1,0 +1,8 @@
+{
+  "id": "gem_install_without_version",
+  "queryName": "Gem Install Without Version",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+}

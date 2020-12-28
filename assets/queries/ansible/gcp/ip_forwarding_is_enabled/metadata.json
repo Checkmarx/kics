@@ -1,0 +1,8 @@
+{
+  "id": "IP_Forwarding_Enabled",
+  "queryName": "IP Forwarding is Enabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'can_ip_forward' must not be true",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html"
+}

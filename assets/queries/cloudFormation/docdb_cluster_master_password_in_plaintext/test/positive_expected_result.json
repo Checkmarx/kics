@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "DocDB cluster master password in plaintext",
+		"severity": "MEDIUM",
+		"line": 17
+	},
+	{
+		"queryName": "DocDB cluster master password in plaintext",
+		"severity": "MEDIUM",
+		"line": 30
+	},
+	{
+		"queryName": "DocDB cluster master password in plaintext",
+		"severity": "MEDIUM",
+		"line": 72
+	}
+]

@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS DBInstance With Deletion Protection Disabled",
+		"severity": "LOW",
+		"line": 34
+	},
+	{
+		"queryName": "RDS DBInstance With Deletion Protection Disabled",
+		"severity": "LOW",
+		"line": 72
+	}
+]

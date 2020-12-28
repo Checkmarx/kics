@@ -1,0 +1,14 @@
+---
+- name: create a instance
+  google.cloud.gcp_sql_instance:
+    name: "{{resource_name}}-2"
+    settings:
+      backup_configuration:
+        binary_log_enabled: yes
+        enabled: yes
+      tier: db-n1-standard-1
+    region: us-central1
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present

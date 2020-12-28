@@ -1,0 +1,8 @@
+{
+  "id": "Run_using_wget_and_curl",
+  "queryName": "Run Using 'wget' and 'curl'",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+}

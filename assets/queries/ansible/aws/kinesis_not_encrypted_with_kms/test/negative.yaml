@@ -1,0 +1,10 @@
+- name: Encrypt Kinesis Stream test-stream. v6
+  community.aws.kinesis_stream:
+    name: test-stream
+    state: present
+    shards: 1
+    encryption_state: enabled
+    encryption_type: KMS
+    key_id: alias/aws/kinesis
+    wait: yes
+    wait_timeout: 600
