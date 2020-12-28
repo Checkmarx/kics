@@ -2,7 +2,7 @@
   "id": "cloudformation_specifying_credentials_not_safe",
   "queryName": "CloudFormation Specifying Credentials Not Safe",
   "severity": "HIGH",
-  "category": null,
+  "category": "Data Security",
   "descriptionText": "Specifying credentials in the template itself is probably not safe to do.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-authentication.html"
 }
