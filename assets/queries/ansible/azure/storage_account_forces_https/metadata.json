@@ -1,6 +1,6 @@
 {
   "id": "ansible_storage_account_forces_https",
-  "queryName": "Storage Account Forces HTTPS",
+  "queryName": "Storage Account Not Forcing HTTPS",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "See that Storage Accounts forces the use of HTTPS",
