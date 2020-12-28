@@ -1,8 +1,0 @@
-{
-  "id": "ssh_port_open",
-  "queryName": "SSH Port Open",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "SSH port is open to the internet",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module"
-}
