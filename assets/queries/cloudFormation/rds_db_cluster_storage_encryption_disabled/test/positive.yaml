@@ -5,13 +5,10 @@ Resources:
     Properties:
       DBClusterParameterGroupName:
         Ref: RDSDBClusterParameterGroup
-      DBSubnetGroupName:
-        Ref: DBSubnetGroup
+      DBSubnetGroupName: DBSubnetGroup
       Engine: aurora
-      MasterUserPassword:
-        Ref: password
-      MasterUsername:
-        Ref: username
+      MasterUserPassword: password
+      MasterUsername: username
       StorageEncrypted: false
     Type: "AWS::RDS::DBCluster"
   RDSDBClusterParameterGroup:
@@ -41,8 +38,7 @@ Resources:
       DBInstanceClass: db.r3.xlarge
       DBParameterGroupName:
         Ref: RDSDBParameterGroup
-      DBSubnetGroupName:
-        Ref: DBSubnetGroup
+      DBSubnetGroupName: DBSubnetGroup
       Engine: aurora
       PubliclyAccessible: "true"
     Type: "AWS::RDS::DBInstance"
@@ -61,26 +57,23 @@ Resources:
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Creates RDS Cluster
 Resources:
-  RDSCluster_:
+  RDSCluster:
     Properties:
       DBClusterParameterGroupName:
         Ref: RDSDBClusterParameterGroup
-      DBSubnetGroupName:
-        Ref: DBSubnetGroup
+      DBSubnetGroupName: DBSubnetGroup
       Engine: aurora
-      MasterUserPassword:
-        Ref: password
-      MasterUsername:
-        Ref: username
+      MasterUserPassword: password
+      MasterUsername: username
     Type: "AWS::RDS::DBCluster"
-  RDSDBClusterParameterGroup_:
+  RDSDBClusterParameterGroup:
     Properties:
       Description: "CloudFormation Sample Aurora Cluster Parameter Group"
       Family: aurora5.6
       Parameters:
         time_zone: US/Eastern
     Type: "AWS::RDS::DBClusterParameterGroup"
-  RDSDBInstance1_:
+  RDSDBInstance1:
     Properties:
       AvailabilityZone: eu-west-1b
       DBClusterIdentifier:
@@ -92,7 +85,7 @@ Resources:
       Engine: aurora
       PubliclyAccessible: "true"
     Type: "AWS::RDS::DBInstance"
-  RDSDBInstance2_:
+  RDSDBInstance2:
     Properties:
       AvailabilityZone: eu-west-1b
       DBClusterIdentifier:
@@ -104,7 +97,7 @@ Resources:
       Engine: aurora
       PubliclyAccessible: "true"
     Type: "AWS::RDS::DBInstance"
-  RDSDBParameterGroup_:
+  RDSDBParameterGroup:
     Type: 'AWS::RDS::DBParameterGroup'
     Properties:
       Description: CloudFormation Sample Aurora Parameter Group
