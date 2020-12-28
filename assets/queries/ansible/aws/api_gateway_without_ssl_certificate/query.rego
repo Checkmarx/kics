@@ -26,7 +26,7 @@ CxPolicy[result] {
     
     modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
     
-    task[modules[index]].validate_certs != "yes"
+    not isTrueOrYes(task[modules[index]].validate_certs)
 
     
     result := {
@@ -44,4 +44,11 @@ getTasks(document) = result {
 } else = result {
     result := [body | playbook := document.playbooks[_]; body := playbook ]  
     count(result) != 0
+}
+
+isTrueOrYes(attribute) = allow {
+    possibilities := {"yes", true}
+    attribute == possibilities[j]
+    
+	allow = true
 }
