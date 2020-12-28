@@ -1,6 +1,6 @@
 {
   "id": "cloudformation_stack_notifications",
-  "queryName": "AWS CloudFormation Stack Notifications",
+  "queryName": "AWS CloudFormation Stack Notifications Disabled",
   "severity": "MEDIUM",
   "category": "Monitoring",
   "descriptionText": "AWS CloudFormation should have stack notifications enabled",
