@@ -1,0 +1,8 @@
+---
+- name: Create a Firewall rule for Azure Cache for Redis
+  azure_rm_rediscachefirewallrule:
+      resource_group: myResourceGroup
+      cache_name: myRedisCache
+      name: myRule
+      start_ip_address: 1.2.3.4
+      end_ip_address: 2.3.4.5

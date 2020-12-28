@@ -1,0 +1,8 @@
+{
+  "id": "emr_cluster_without_security_configuration",
+  "queryName": "EMR Cluster Without Security Configuration",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "EMR Cluster should have security configuration defined.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-securityconfiguration"
+}

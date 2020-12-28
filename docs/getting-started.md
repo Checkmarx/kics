@@ -12,11 +12,7 @@ docker pull checkmarx/kics:latest
 docker run -v {​​​​path_to_local_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```  
 
-You can provide your own path to the queries directory, otherwise the default directory will be used (default: *./assets/queries*)
-
-```txt
--q, --queries-path string   path to directory with queries (default "./assets/queries" - built in the image)
-```  
+You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.
 
 ### Binary
 
@@ -30,10 +26,9 @@ So all you need is:
 1. Download KICS binaries based on your OS
 1. Extract files
 1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)  
-
-```
-./kics -p <path-of-your-project-to-scan> -o <output-results.json>
-```
+   ```
+   ./kics -p <path-of-your-project-to-scan> -o <output-results.json>
+   ```
 
 ### Build from Sources
 

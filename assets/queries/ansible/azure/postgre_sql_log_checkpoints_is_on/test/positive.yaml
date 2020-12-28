@@ -1,0 +1,37 @@
+---
+- name: Update PostgreSQL Server setting
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: log_checkpoints
+    value: off
+- name: Update PostgreSQL Server setting2
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: log_checkpoints
+    value: Off
+- name: Update PostgreSQL Server setting3
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: log_checkpoints
+    value: OFF
+- name: Update PostgreSQL Server setting4
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: log_checkpoints
+    value: "off"
+- name: Update PostgreSQL Server setting5
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: log_checkpoints
+    value: "Off"
+- name: Update PostgreSQL Server setting6
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: log_checkpoints
+    value: "OFF"

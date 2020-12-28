@@ -1,0 +1,8 @@
+{
+  "id": "ad_admin_not_configured_for_sql_server",
+  "queryName": "AD Admin Not Configured For SQL Server",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "The Active Directory Administrator is not configured for a SQL server",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlserver_module.html#parameter-ad_user"
+}

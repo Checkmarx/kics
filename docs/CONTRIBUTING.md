@@ -107,3 +107,5 @@ The following templates will be used when [creating a new issue](https://github.
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
+
+Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
