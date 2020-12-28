@@ -57,7 +57,7 @@ Resources:
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Creates RDS Cluster
 Resources:
-  RDSCluster:
+  RDSCluster1:
     Properties:
       DBClusterParameterGroupName:
         Ref: RDSDBClusterParameterGroup
