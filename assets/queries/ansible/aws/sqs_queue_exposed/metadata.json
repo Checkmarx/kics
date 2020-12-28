@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Checks if the SQS Queue is exposed",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#policy"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#parameter-policy"
 }
