@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "AWS Lambda Functions Tracing Disabled",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "AWS Lambda Functions Tracing Disabled",
+		"severity": "MEDIUM",
+		"line": 40
+	}
+]

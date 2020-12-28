@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Compute Disk Is Not Encrypted",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]

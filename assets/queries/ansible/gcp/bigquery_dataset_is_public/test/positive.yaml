@@ -1,0 +1,12 @@
+---
+- name: create a dataset
+  google.cloud.gcp_bigquery_dataset:
+    name: my_example_dataset
+    access:
+        - special_group: allAuthenticatedUsers
+    dataset_reference:
+      dataset_id: my_example_dataset
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present

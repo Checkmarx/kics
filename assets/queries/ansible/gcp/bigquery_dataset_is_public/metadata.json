@@ -1,0 +1,8 @@
+{
+  "id": "bigquery_dataset_is_public",
+  "queryName": "BigQuery Dataset Is Public",
+  "severity": "HIGH",
+  "category": "Identity & Access Management",
+  "descriptionText": "BigQuery dataset is anonymously or publicly accessible",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_bigquery_dataset_module.html#parameter-access/special_group"
+}

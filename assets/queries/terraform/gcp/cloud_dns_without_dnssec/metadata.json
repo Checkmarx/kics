@@ -1,8 +1,8 @@
 {
-  "id": "Cloud_DNS_without_DNNSEC",
+  "id": "cloud_dns_without_dnssec",
   "queryName": "Cloud DNS without DNSSEC",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Cloud DNS without DNSSEC",
   "descriptionUrl": "https://www.terraform.io/docs/providers/google/d/dns_managed_zone.html"
 }
