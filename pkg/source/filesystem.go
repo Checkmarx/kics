@@ -86,7 +86,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			log.Err(err).
 				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
 		}
-
+		c.Close()
 		return nil
 	})
 
