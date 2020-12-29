@@ -1,5 +1,5 @@
 - name: example ec2 group2
-  ec2_group1:
+  ec2_group:
     name: example1
     description: an example EC2 group
     vpc_id: 12345
