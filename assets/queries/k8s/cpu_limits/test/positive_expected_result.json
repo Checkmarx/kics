@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "CPU Limits",
+		"queryName": "CPU Limits Not Set",
 		"severity": "MEDIUM",
 		"line": 10
 	},
 
 	{
-		"queryName": "CPU Limits",
+		"queryName": "CPU Limits Not Set",
 		"severity": "MEDIUM",
 		"line": 15
 	}

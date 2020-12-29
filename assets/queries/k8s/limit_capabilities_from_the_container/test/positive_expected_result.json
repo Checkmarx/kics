@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Limit Capabilities Of The Container",
+		"queryName": "Not Limited Capabilities For Container",
 		"severity": "MEDIUM",
 		"line": 11
 	}
