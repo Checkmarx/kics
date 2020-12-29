@@ -1,0 +1,8 @@
+{
+  "id": "sbd_dmain_declared_as_a_resource",
+  "queryName": "SDB Domain Declared As A Resource",
+  "severity": "LOW",
+  "category": "Operational",
+  "descriptionText": "SimpleDb Domain resource should not be declared",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html"
+}
