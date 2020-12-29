@@ -7,15 +7,15 @@ CxPolicy [ result ] {
   policyBody = firstPolicy["community.aws.iam_password_policy"]
   policyName = firstPolicy.name
 
-   not policyBody.min_pw_length
+  not getName(policyBody)
 
 
 	result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("name={{%s}}.{{community.aws.iam_password_policy}}", [policyName]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "'min_pw_length' is set and no less than 8",
-                "keyActualValue": 	"'min_pw_length' is undefined"
+                "keyExpectedValue": "'min_pw_length/minimum_password_length' is set and no less than 8",
+                "keyActualValue": 	"'min_pw_length/minimum_password_length' is undefined"
               }
 }
 
@@ -26,18 +26,26 @@ CxPolicy [ result ] {
   policyBody = firstPolicy["community.aws.iam_password_policy"]
   policyName = firstPolicy.name
 
-
-  to_number(policyBody.min_pw_length) < 8
+  variableName = getName(policyBody)
+  to_number(policyBody[variableName]) < 8
 
 	result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("name={{%s}}.{{community.aws.iam_password_policy}}.{{min_pw_length}}", [policyName]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'min_pw_length' is set and no less than 8",
-                "keyActualValue": 	"'min_pw_length' is less than 8"
+                "keyExpectedValue": sprintf("'%s' is set and no less than 8",[variableName]),
+                "keyActualValue": 	sprintf("'%s' is less than 8",[variableName])
               }
 }
 
+
+getName(policyBody) = "min_pw_length"{
+  object.get(policyBody,"min_pw_length","undefined") != "undefined"
+}else = "minimum_password_length"{
+   object.get(policyBody,"minimum_password_length","undefined") != "undefined"
+}else = false {
+  true
+}
 
 getTasks(document) = result {
     result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
