@@ -25,8 +25,8 @@ result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.AuthenticationConfiguration.ClientSecret",  [name]),
                 "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' does not started with '{{resolve:secretsmanager:' or does not started with '{{resolve:ssm-secure:'", [name]),
-                "keyActualValue": 	sprintf("'Resources.%s.Properties.ClientSecret' started with '{{resolve:secretsmanager:' our started with '{{resolve:ssm-secure:'", [name]),
+                "keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' starts with '{{resolve:secretsmanager:' or starts with '{{resolve:ssm-secure:'", [name]),
+                "keyActualValue": 	sprintf("'Resources.%s.Properties.ClientSecret' did not start with '{{resolve:secretsmanager:' or did not start with '{{resolve:ssm-secure:'", [name]),
               }
 }
 
