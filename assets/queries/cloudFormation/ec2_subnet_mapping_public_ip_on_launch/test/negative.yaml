@@ -5,8 +5,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       MapPublicIpOnLaunch: false
-      VpcId:
-        Ref: myVPC
+      VpcId: myVPC
       CidrBlock: 10.0.0.0/24
       AvailabilityZone: "us-east-1a"
       Tags:

@@ -8,12 +8,11 @@ CxPolicy [result]  {
   result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.MapPublicIpOnLaunch", [name]),
-                "issueType":		"IncorrectValue",  
+                "issueType":		"IncorrectValue",
                 "keyExpectedValue": sprintf("'Resources.%s.Properties.MapPublicIpOnLaunch' should be false",[name]),
                 "keyActualValue": 	sprintf("'Resources.%s.Properties.MapPublicIpOnLaunch' is true",[name])
               }
 }
 checkState(map) = true {
-	map == 
-  true
+	map == true
 }
