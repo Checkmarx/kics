@@ -12,7 +12,7 @@
 	{
 		"queryName": "IAM Database Auth Not Enabled",
 		"severity": "HIGH",
-		"line": 25
+		"line": 24
 	},
 	{
 		"queryName": "IAM Database Auth Not Enabled",
