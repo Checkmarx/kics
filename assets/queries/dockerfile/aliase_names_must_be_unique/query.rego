@@ -4,28 +4,30 @@ CxPolicy [ result ] {
 
     resource := input.document[i].command[name][com]
     resource.Cmd == "from"
-    
-    count(resource.Value) == 3
-    resource.Value[1] == "as"
-    
-    nameAlias := resource.Value[2]
-    
-    some alias
-    	aliasResource := input.document[i].command[name][alias]
-    	aliasResource != resource 
-        aliasResource.Cmd == "from"
-        count(aliasResource.Value) == 3
-        aliasResource.Value[0] == resource.Value[0]
-        aliasResource.Value[2] == nameAlias
-        
-        
-    	
+
+    idx := getIndex(resource.Value)
+
+    nameAlias := resource.Value[idx]
+
+    aliasResource := input.document[i].command[name2][alias]
+    aliasResource != resource
+    aliasResource.Cmd == "from"
+    idx_2 := getIndex(aliasResource.Value)
+    aliasResource.Value[idx_2] == nameAlias
+
+
+
 
 	result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource.Original]),
+                "searchKey": 	    sprintf("FROM={{%s}}", [aliasResource.Value[idx_2]]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "Different froms cant have the same alias defined",
-                "keyActualValue": 	"Different froms have the same alias defined"
+                "keyExpectedValue": "Different FROM commands don't have the same alias defined",
+                "keyActualValue": 	sprintf("Different FROM commands with with the same alias '%s' defined", [aliasResource.Value[idx_2]])
               }
+}
+
+getIndex(val) = idx {
+	val[i] == "as"
+    idx = i+1
 }
