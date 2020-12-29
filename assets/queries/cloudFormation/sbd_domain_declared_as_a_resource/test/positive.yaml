@@ -7,5 +7,5 @@ Resources:
       Name: "HostedZone"
   SBDDomain:
     Type: AWS::SDB::Domain
-    Properties: 
+    Properties:
       Description: "Some information"
