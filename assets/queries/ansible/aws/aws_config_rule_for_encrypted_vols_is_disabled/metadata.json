@@ -1,5 +1,5 @@
 {
-  "id": "Ansible_AWS_Config_Rule_For_Encrypted_Volumes_Is_Disabled",
+  "id": "aws_config_rule_for_encrypted_volumes_is_disabled",
   "queryName": "AWS Config Rule For Encrypted Volumes Is Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
