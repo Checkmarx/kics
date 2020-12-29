@@ -29,16 +29,16 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId:
-      Fn::FindInMap:
-            - "RegionMap"
-            - Ref: "AWS::Region"
-            - "AMI"
+       Fn::FindInMap:
+             - "RegionMap"
+             - Ref: "AWS::Region"
+             - "AMI"
       KeyName:
-      Ref: "KeyName"
+       Ref: "KeyName"
       NetworkInterfaces:
-        -   AssociatePublicIpAddress: "true"
-            DeviceIndex: 0
-            SubnetId: !Ref PublicSubnetA
+        - AssociatePublicIpAddress: true
+          DeviceIndex: "0"
+          SubnetId: !Ref PublicSubnetA
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -52,4 +52,4 @@ Resources:
     Properties:
       RouteTableId: !Ref PublicRouteTable
       DestinationCidrBlock: 172.16.0.0/24
-      GatewayId: !Ref InternetGateway
+      GatewayId: !Ref InternetGateway 
