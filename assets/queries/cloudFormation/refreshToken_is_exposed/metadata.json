@@ -3,6 +3,6 @@
   "queryName": "RefreshToken Is Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
-  "descriptionText": "RefreshToken is a plaintext string, also does not started with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:' or does not ended with '}}'",
+  "descriptionText": "Alexa ASK Skill AuthenticationConfiguration RefreshToken must be a plaintext string, start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:' and end with '}}'.",
   "descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration"
 }
