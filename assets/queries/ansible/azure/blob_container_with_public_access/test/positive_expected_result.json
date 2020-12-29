@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Blob Container With Public Access",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "Blob Container With Public Access",
+		"severity": "HIGH",
+		"line": 17
+	}
+]

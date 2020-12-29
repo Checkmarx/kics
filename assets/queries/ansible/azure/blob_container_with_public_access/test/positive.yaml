@@ -1,0 +1,18 @@
+- name: Create container foo and upload a file
+  azure_rm_storageblob:
+    resource_group: myResourceGroup
+    storage_account_name: clh0002
+    container: foo
+    blob: graylog.png
+    src: ./files/graylog.png
+    content_type: 'application/image'
+    public_access: blob
+- name: Create container foo2 and upload a file
+  azure_rm_storageblob:
+    resource_group: myResourceGroup
+    storage_account_name: clh0002
+    container: foo2
+    blob: graylog.png
+    src: ./files/graylog.png
+    public_access: container
+    content_type: 'application/image'
