@@ -7,6 +7,6 @@
 	{
 		"queryName": "ELBv2 ALB Access Log Disabled",
 		"severity": "MEDIUM",
-		"line": 32
+		"line": 53
 	}
 ]
