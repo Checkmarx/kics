@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "KMS allows wildcard principal",
+		"queryName": "KMS Allows Wildcard Principal",
 		"severity": "MEDIUM",
 		"line": 14
 	}
