@@ -26,7 +26,7 @@ CxPolicy [result] {
   object.get(rds_instanceBody,"enable_iam_database_authentication","undefined") == "undefined"
   result := {
                 "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("name={{%s}}.enable_iam_database_authentication", [rds_instanceName]),
+                "searchKey": 	    sprintf("name={{%s}}", [rds_instanceName]),
                 "issueType":		"MissingAttribute",
                 "keyExpectedValue": sprintf("{{%s}}.enable_iam_database_authentication should be defined", [rds_instanceName]),
                 "keyActualValue": 	sprintf("{{%s}}.enable_iam_database_authentication is undefined", [rds_instanceName])
