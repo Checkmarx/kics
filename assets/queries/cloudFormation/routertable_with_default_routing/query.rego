@@ -15,7 +15,7 @@ CxPolicy [result ]  {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.DestinationCidrBlock", [key]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.DestinationCidrBlock is diferent to the default value",[key]),
+                "keyExpectedValue": sprintf("Resources.%s.Properties.DestinationCidrBlock is different from the default value",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.Properties.DestinationCidrBlock is 0.0.0.0/0",[key])
               }
 }
@@ -35,7 +35,7 @@ CxPolicy [result ]  {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties", [key]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.GatewayId should be defined",[key]),
+                "keyExpectedValue": sprintf("Resources.%s.Properties.GatewayId is defined",[key]),
                 "keyActualValue": 	sprintf("Resources.%s.Properties.GatewayId is undefined",[key])
               }
 }
