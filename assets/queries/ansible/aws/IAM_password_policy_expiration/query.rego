@@ -21,7 +21,7 @@ CxPolicy [ result ] {
 
 issueType(str) = "MissingAttribute" {
 	str == ""
-} else = "WrongValue" {
+} else = "IncorrectValue" {
 	true
 }
 
