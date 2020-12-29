@@ -2,6 +2,6 @@
 	{
 		"queryName": "AWS Lambda Functions With Full Privileges",
 		"severity": "HIGH",
-		"line": 94
+		"line": 70
 	}
 ]

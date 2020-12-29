@@ -12,17 +12,6 @@ Parameters:
     AllowedValues:
     - t2.micro
     - m1.small
-Mappings:
-  AWSInstanceType2Arch:
-    t2.micro:
-      Arch: HVM64
-    m1.small:
-      Arch: HVM64
-      
-  AWSRegionArch2AMI:
-    us-east-1:
-      HVM64: ami-0ff8a91507f77f867
-      HVMG2: ami-0a584ac55a7631c0c
 Resources:
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -54,25 +43,12 @@ Resources:
       Handler: index.handler
       Role: !GetAtt LambdaExecutionRole.Arn
       Code:
-        ZipFile: !Sub |
-          var response = require('cfn-response');
-          exports.handler = function(event, context) {
-             var responseData = {Value: event.ResourceProperties.List};
-             responseData.Value.push(event.ResourceProperties.AppendedItem);
-             response.send(event, context, response.SUCCESS, responseData);
-          };
+        ZipFile: |
       Runtime: nodejs8.10
   MyEC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId:
-        Fn::FindInMap:
-        - AWSRegionArch2AMI
-        - Ref: AWS::Region
-        - Fn::FindInMap:
-          - AWSInstanceType2Arch
-          - Ref: InstanceType
-          - Arch
+      ImageId: ami-0ff8a91507f77f867
       SecurityGroupIds: !GetAtt AllSecurityGroups.Value
       InstanceType:
         Ref: InstanceType
@@ -98,12 +74,3 @@ Resources:
             Action:
             - iam:ChangePassword
             Resource: arn:aws:iam::account-ID-without-hyphens:user/Bob
-Outputs:
-  AllSecurityGroups:
-    Description: Security Groups that are associated with the EC2 instance
-    Value:
-      Fn::Join:
-      - ", "
-      - Fn::GetAtt:
-        - AllSecurityGroups
-        - Value
