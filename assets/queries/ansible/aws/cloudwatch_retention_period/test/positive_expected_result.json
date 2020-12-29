@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "AWS CloudWatch Retention Period",
+		"queryName": "CloudWatch Retention Period",
 		"severity": "MEDIUM",
 		"line": 2
 	},
 
 	{
-		"queryName": "AWS CloudWatch Retention Period",
+		"queryName": "CloudWatch Retention Period",
 		"severity": "MEDIUM",
 		"line": 7
 	}
