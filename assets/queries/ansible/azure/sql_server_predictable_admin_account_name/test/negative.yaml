@@ -1,0 +1,8 @@
+#this code is a correct code for which the query should not find any result
+- name: Create (or update) SQL Server
+  azure_rm_sqlserver:
+    resource_group: myResourceGroup
+    name: server_name
+    location: westus
+    admin_username: mylogin
+    admin_password: Testpasswordxyz12!
