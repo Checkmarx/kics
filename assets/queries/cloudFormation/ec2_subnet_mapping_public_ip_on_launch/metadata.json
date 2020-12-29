@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Network Security",
   "descriptionText": "EC2 Subnet should not have MapPublicIpOnLaunch set to true",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Subnet.html"
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch"
 }
