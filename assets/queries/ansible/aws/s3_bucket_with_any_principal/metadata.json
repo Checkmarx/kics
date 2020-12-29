@@ -1,0 +1,8 @@
+{
+  "id": "S3_Bucket_With_Any_Principal",
+  "queryName": "S3 Bucket With Any Principal",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "S3 Buckets must not allow Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html"
+}
