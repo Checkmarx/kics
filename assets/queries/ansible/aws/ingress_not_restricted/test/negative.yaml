@@ -20,4 +20,3 @@
         from_port: 80
         to_port: 80
         cidr_ipv6: 2001:DB8:8086:6502::/32
-        
