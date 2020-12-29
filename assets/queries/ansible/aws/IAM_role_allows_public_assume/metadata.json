@@ -1,8 +1,0 @@
-{
-  "id": "IAM_role_allows_public_assume",
-  "queryName": "IAM role allows public assume",
-  "severity": "LOW",
-  "category": null,
-  "descriptionText": "IAM role allows All services or principals to assume it",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html"
-}
