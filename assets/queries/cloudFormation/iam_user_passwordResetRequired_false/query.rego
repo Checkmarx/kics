@@ -4,8 +4,7 @@ CxPolicy [result] {
   resource := input.document[i].Resources[name]
   resource.Type == "AWS::IAM::User"
   loginProfile := resource.Properties.LoginProfile
-  loginProfile != []
-  loginProfile != null
+  loginProfile.Password
   loginProfile.PasswordResetRequired == false
    result := {
                 "documentId": 		input.document[i].id,
