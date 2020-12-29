@@ -1,0 +1,6 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  CFNKeys:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: Root
