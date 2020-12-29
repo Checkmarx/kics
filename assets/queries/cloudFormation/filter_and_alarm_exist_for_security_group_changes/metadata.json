@@ -1,6 +1,6 @@
 {
-  "id": "Filter_And_Alarm_Exist_For_Security_Group_Changes",
-  "queryName": "Filter And Alarm Not Exists For Security Group Changes",
+  "id": "Filter_And_Alarm_Does_Not_Exist_For_Security_Group_Changes",
+  "queryName": "Filter And Alarm Does Not Exists For Security Group Changes",
   "severity": "MEDIUM",
   "category": "Monitoring",
   "descriptionText": "A log metric filter and alarm should exist for Security Group Changes",
