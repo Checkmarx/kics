@@ -12,6 +12,6 @@
 	{
 		"queryName": "IP Aliasing is Disabled",
 		"severity": "HIGH",
-		"line": 48
+		"line": 50
 	}
 ]
