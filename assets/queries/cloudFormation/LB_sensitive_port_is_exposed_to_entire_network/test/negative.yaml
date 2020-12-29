@@ -1,0 +1,128 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyLoadBalancer:
+      Type: AWS::ElasticLoadBalancing::LoadBalancer
+      Properties:
+        AvailabilityZones:
+        - "us-east-2a"
+        CrossZone: true
+        Scheme: internet-facing
+        Listeners:
+        - InstancePort: '80'
+          InstanceProtocol: HTTP
+          LoadBalancerPort: '443'
+          Protocol: HTTPS
+          PolicyNames:
+          - My-SSLNegotiation-Policy
+          SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
+        HealthCheck:
+          Target: HTTP:80/
+          HealthyThreshold: '2'
+          UnhealthyThreshold: '3'
+          Interval: '10'
+          Timeout: '5'
+        SecurityGroups:
+          [ !Ref LBSecGroup ]
+        Policies:
+        - PolicyName: My-SSLNegotiation-Policy
+          PolicyType: SSLNegotiationPolicyType
+          Attributes:
+          - Name: Reference-Security-Policy
+            Value: ELBSecurityPolicy-TLS-1-2-2017-01
+  LBSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http and ssh
+        VpcId: my-vpc
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 127.0.0.1/32
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 127.0.0.1/33
+        SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+---
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  Instance01:
+    Description: "instance 01"
+    Type: String
+  Instance02:
+    Description: "instance 02"
+    Type: String
+  MySubnet:
+    Description: "My subnet"
+    Type: List
+Resources:
+  NetworkLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: t10-networkloadbalancer
+      Scheme: internet-facing
+      Subnets: !Ref MySubnet
+      SecurityGroups:
+        [ !Ref LBSecGroupV2 ]
+      Type: network
+      Tags:
+        - Key: Name
+          Value: t10-networklb
+  LBSecGroupV2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http and ssh
+        VpcId: my-vpc
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 127.0.0.1/32
+        - IpProtocol: all
+          FromPort: 77
+          ToPort: 77
+          CidrIp: 127.0.0.1/0
+        SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+  NetworkLoadBalancerTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: t10-networklb-target
+      Port: 443
+      Protocol: TCP
+      VpcId: t10-vpc-id
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 60
+      Targets:
+      - Id: !Ref Instance01
+        Port: 443
+      - Id: !Ref Instance02
+        Port: 443
+      Tags:
+        - Key: Name
+          Value: t10-networklb-target
+  NetworkLoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+      - Type: forward
+        TargetGroupArn: !Ref NetworkLoadBalancerTargetGroup
+      LoadBalancerArn: !Ref NetworkLoadBalancer
+      Port: '443'
+      Protocol: TCP
+  NetworkLoadBalancerListenerCert:
+    Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
+    Properties:
+      Certificates:
+        - CertificateArn: arn:aws:acm:eu-west-1:xxxaccountxxx:certificate/123456....
+      ListenerArn: !Ref NetworkLoadBalancerListener
