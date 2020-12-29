@@ -1,0 +1,35 @@
+#this is a problematic code where the query should report a result(s)
+- name: Create a subnet1
+  azure_rm_subnet:
+    resource_group: myResourceGroup1
+    virtual_network_name: myVirtualNetwork1
+    name: mySubnet1
+    address_prefix_cidr: "10.1.0.0/24"
+- name: Create a subnet2
+  azure_rm_subnet:
+    resource_group: myResourceGroup2
+    virtual_network_name: myVirtualNetwork2
+    name: mySubnet2
+    address_prefix_cidr: "10.1.0.0/24"
+    security_group:
+- name: Create a subnet3
+  azure_rm_subnet:
+    resource_group: myResourceGroup3
+    virtual_network_name: myVirtualNetwork3
+    name: mySubnet3
+    address_prefix_cidr: "10.1.0.0/24"
+    security_group_name:
+- name: Create a subnet4
+  azure_rm_subnet:
+    resource_group: myResourceGroup4
+    virtual_network_name: myVirtualNetwork4
+    name: mySubnet4
+    address_prefix_cidr: "10.1.0.0/24"
+    security_group: ""
+- name: Create a subnet5
+  azure_rm_subnet:
+    resource_group: myResourceGroup5
+    virtual_network_name: myVirtualNetwork5
+    name: mySubnet5
+    address_prefix_cidr: "10.1.0.0/24"
+    security_group_name: ""

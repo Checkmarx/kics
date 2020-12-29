@@ -1,0 +1,8 @@
+{
+  "id": "ami_shared_to_multiple_accounts",
+  "queryName": "AMI Shared To Multiple Accounts",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Limits access to AWS AMIs by checking if more than one account is using the same image",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_ami_module.html"
+}
