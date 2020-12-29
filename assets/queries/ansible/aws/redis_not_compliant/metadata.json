@@ -1,0 +1,8 @@
+{
+  "id": "redis_not_compliant",
+  "queryName": "Redis Not Compliant",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "Check if the redis version is compliant with the necessary AWS PCI DSS requirements",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html"
+}
