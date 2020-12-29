@@ -1,6 +1,6 @@
 ## Queries
 
-KICS Queries are written in OPA (Rego).
+KICS queries are written in OPA (Rego).
 
 ```json
 CxPolicy [ result ] {
