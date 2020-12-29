@@ -31,7 +31,7 @@ CxPolicy [ result ] {
   result := {
               "documentId":       input.document[i].id,
               "searchKey":        sprintf("name={{%s}}.{{community.aws.efs}}.encrypt", [fsName]),
-              "issueType":        "WrongValue",
+              "issueType":        "IncorrectValue",
               "keyExpectedValue": "community.aws.efs.encrypt should be set to true",
               "keyActualValue":   "community.aws.efs.encrypt is set to false"
             }
