@@ -61,4 +61,5 @@ Looking for more info? Explore KICS project in details:
 - [Project plans](https://github.com/Checkmarx/kics/projects)
 - [Issues](https://github.com/Checkmarx/kics/issues)
 
+Join the chat [on Gitter](https://gitter.im/kics-dev/community).  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

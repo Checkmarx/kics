@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Access Key Is Not Rotated Within 90 Days",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]
