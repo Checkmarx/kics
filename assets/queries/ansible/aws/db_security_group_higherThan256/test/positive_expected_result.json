@@ -3,10 +3,5 @@
 		"queryName": "DB Security Group Lower than 256",
 		"severity": "HIGH",
 		"line": 22
-	},
-	{
-		"queryName": "DB Security Group Lower than 256",
-		"severity": "HIGH",
-		"line": 54
 	}
 ]
