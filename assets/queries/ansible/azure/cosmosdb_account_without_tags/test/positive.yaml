@@ -1,0 +1,10 @@
+---
+- name: Create Cosmos DB Account - min
+  azure_rm_cosmosdbaccount:
+    resource_group: myResourceGroup
+    name: myDatabaseAccount
+    location: westus
+    geo_rep_locations:
+      - name: southcentralus
+        failover_priority: 0
+    database_account_offer_type: Standard
