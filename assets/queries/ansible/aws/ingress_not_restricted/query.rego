@@ -7,7 +7,8 @@ CxPolicy[result] {
     
     task["amazon.aws.ec2_group"].rules[index].from_port == 0
     task["amazon.aws.ec2_group"].rules[index].to_port == 0
-    task["amazon.aws.ec2_group"].rules[index].proto == -1
+    
+    not isvalidProto(task["amazon.aws.ec2_group"].rules[index])
     
     cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
     isEntireNetwork(cidr)
@@ -29,7 +30,8 @@ CxPolicy[result] {
     
     task["amazon.aws.ec2_group"].rules[index].from_port == 0
     task["amazon.aws.ec2_group"].rules[index].to_port == 0
-    task["amazon.aws.ec2_group"].rules[index].proto == -1
+
+    not isvalidProto(task["amazon.aws.ec2_group"].rules[index])
     
     cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
     isEntireNetwork(cidr)
@@ -69,6 +71,24 @@ isEntireNetwork(cidr) = allow {
 
     cidrs = {"0.0.0.0/0", "::/0"}
     cidr == cidrs[j]
+
+    allow = true
+}
+
+isvalidProto(proto) {
+    isString := is_string(proto)
+    protos = {"tcp", "udp", "icmp", "icmpv6"}
+    
+    proto = protos[j]
+
+    allow = true
+}
+
+isvalidProto(proto) {
+    isString := is_number(proto)
+    protos = {1, 6, 17, 58}
+
+    proto = protos[j]
 
     allow = true
 }
