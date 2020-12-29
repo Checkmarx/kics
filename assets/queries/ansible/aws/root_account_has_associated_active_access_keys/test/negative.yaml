@@ -1,0 +1,11 @@
+#this code is a correct code for which the query should not find any result
+- name: Create two new IAM users with API keys
+  community.aws.iam:
+    iam_type: user
+    name: "{{ root }}"
+    state: present
+    password: "{{ temp_pass }}"
+    access_key_state: inactive
+  loop:
+    - jcleese
+    - mpython
