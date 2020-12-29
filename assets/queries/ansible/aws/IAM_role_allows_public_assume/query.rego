@@ -14,7 +14,7 @@ CxPolicy [result] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [clusterName]),
-                "issueType":        "RedundantAttribute",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
                 "keyActualValue":   "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains '*'"
               }
@@ -35,7 +35,7 @@ CxPolicy [result] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [clusterName]),
-                "issueType":        "RedundantAttribute",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
                 "keyActualValue":   "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains '*'"
               }
