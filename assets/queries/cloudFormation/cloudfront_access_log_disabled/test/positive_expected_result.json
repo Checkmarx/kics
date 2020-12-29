@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "CloudFront Distribution Access Log Disabled",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "CloudFront Distribution Access Log Disabled",
+		"severity": "MEDIUM",
+		"line": 58
+	}
+]

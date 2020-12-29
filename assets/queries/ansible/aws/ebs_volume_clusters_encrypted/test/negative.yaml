@@ -1,0 +1,15 @@
+---
+- name: foo
+  amazon.aws.ec2_vol:
+    instance: XXXXXX
+    volume_size: 50
+    volume_type: gp2
+    device_name: /dev/xvdf
+    encrypted: true
+- name: foo2
+  amazon.aws.ec2_vol:
+    instance: XXXXXX
+    volume_size: 50
+    volume_type: gp2
+    device_name: /dev/xvdf
+    encrypted: yes

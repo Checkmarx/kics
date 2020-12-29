@@ -1,0 +1,22 @@
+#this is a problematic code where the query should report a result(s)
+- name: create a instance
+  google.cloud.gcp_compute_instance:
+    name: test_object
+    machine_type: n1-standard-1
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    labels:
+      environment: production
+    network_interfaces:
+    - network: "{{ network }}"
+      access_configs:
+      - name: External NAT
+        nat_ip: "{{ address }}"
+        type: ONE_TO_ONE_NAT
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    can_ip_forward: yes

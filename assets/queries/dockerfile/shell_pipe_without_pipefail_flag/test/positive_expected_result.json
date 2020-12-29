@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Shell Running A Pipe Without Pipefail Flag",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+	{
+		"queryName": "Shell Running A Pipe Without Pipefail Flag",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]

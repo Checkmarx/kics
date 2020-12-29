@@ -1,0 +1,8 @@
+#this code is a correct code for which the query should not find any result
+- name: Create (or update) Firewall Rule
+  azure_rm_sqlfirewallrule:
+    resource_group: myResourceGroup
+    server_name: firewallrulecrudtest-6285
+    name: firewallrulecrudtest-5370
+    start_ip_address: 172.28.10.136
+    end_ip_address: 172.28.10.138

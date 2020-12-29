@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "All Auth Users Get Read Access",
+		"severity": "HIGH",
+		"line": 3
+	}
+]

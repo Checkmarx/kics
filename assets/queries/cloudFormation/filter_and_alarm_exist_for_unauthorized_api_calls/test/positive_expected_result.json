@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Filter And Alarm Do Not Exists For Unauthorized API Calls",
+  		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Filter And Alarm Do Not Exists For Unauthorized API Calls",
+  		"severity": "MEDIUM",
+		"line": 71
+	},
+	{
+		"queryName": "Filter And Alarm Do Not Exists For Unauthorized API Calls",
+  		"severity": "MEDIUM",
+		"line": 98
+	}
+]

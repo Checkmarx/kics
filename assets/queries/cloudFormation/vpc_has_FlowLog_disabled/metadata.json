@@ -1,0 +1,8 @@
+{
+  "id": "VPC_Has_FlowLog_Disabled",
+  "queryName": "VPC Has FlowLog Disabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "VPC Hasn´t any FlowLog associated",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html"
+}

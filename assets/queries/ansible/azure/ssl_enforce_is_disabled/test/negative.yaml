@@ -1,0 +1,97 @@
+---
+- name: Create (or update) PostgreSQL Server
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: yes
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server2
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: Yes
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server3
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: true
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server4
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: True
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server5
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: "yes"
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server6
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: "Yes"
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server7
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: "true"
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server8
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: "True"
+    admin_username: cloudsa
+    admin_password: password

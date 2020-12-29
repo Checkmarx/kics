@@ -1,6 +1,6 @@
-## About KICS Project
+<img alt="KICS - Keep Infrastructure as Code Secure" src="../img/logo/kics-logo-donkey.png" width="250">
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="../img/logo-kics-vertical.png" width="250">
+---
 
 ## About Checkmarx
 
@@ -8,11 +8,13 @@
 
 <img alt="Checkmarx" src="../img/logo-cx-horizontal.png" width="200">
 
+Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com) or join the chat [on Gitter](https://gitter.im/kics-dev/community).
+
 ---
 
 ## What is Infrastructure as Code
 
-Infrastructure as Code (IaC) is the creation, provisioning and configuration of software-defined compute (SDC), networkand storage infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
+Infrastructure as Code (IaC) is the creation, provisioning and configuration of software-defined compute (SDC), network and storage infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
 
 IaC automates the manual tasks usually associated with computing infrastructure configuration and implementation.
 By doing this, you can:
@@ -44,3 +46,7 @@ Main Benefits of Infrastructure as Code:
 Infrastructure as Code testing examines configuration definitions and scripts used to instantiate infrastructure to ensure the resulting resources are secure.
 
 IaC security testing tools must be able to consume configuration files and scripts in relevant formats, apply tests to ensure conformance with common configuration hardening standards (i.e., Center for Internet Security Benchmarks and many others), identify security issues associated with specific operational environments, identify embedded secrets, and perform other tests supporting organization-specific standards and compliance requirements. Optionally, tools can automatically remediate errors (e.g., changing read/write permissions on storage resources). This capability specifically examines IaC testing in the context of the development process, however tools may also support examination of deployed production instances and responding to issues identified in those systems.
+
+---
+
+<img alt="KICS - Keep Infrastructure as Code Secure" src="../img/logo/kics-donkey.png" width="250">  

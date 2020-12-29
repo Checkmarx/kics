@@ -1,0 +1,15 @@
+---
+- name: Create (or update) Firewall Rule
+  azure.azcollection.azure_rm_sqlfirewallrule:
+    resource_group: myResourceGroup
+    server_name: firewallrulecrudtest-6285
+    name: firewallrulecrudtest-5370
+    start_ip_address: 0.0.0.0
+    end_ip_address: 255.255.255.255
+- name: Create (or update) Firewall Rule2
+  azure.azcollection.azure_rm_sqlfirewallrule:
+    resource_group: myResourceGroup
+    server_name: firewallrulecrudtest-6285
+    name: firewallrulecrudtest-5370
+    start_ip_address: 0.0.0.0
+    end_ip_address: 0.0.0.0
