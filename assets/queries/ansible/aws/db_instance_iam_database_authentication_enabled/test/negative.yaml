@@ -26,6 +26,7 @@
     id: "{{ instance_id }}"
     state: absent
     skip_final_snapshot: True
+    enable_iam_database_authentication: true
 
 - name: remove the DB instance with a final snapshot
   community.aws.rds_instance:
