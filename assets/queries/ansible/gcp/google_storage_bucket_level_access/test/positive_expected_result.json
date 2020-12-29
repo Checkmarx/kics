@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Google Storage Bucket Level Access is Enabled",
+		"severity": "MEDIUM",
+		"line": 8
+	}
+]

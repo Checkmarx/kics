@@ -1,0 +1,18 @@
+- name: create a bucket
+  google.cloud.gcp_storage_bucket:
+    name: "{{ resource_name }}"
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+  register: bucketfalse
+
+- name: create a bucket access control
+  google.cloud.gcp_storage_bucket_access_control:
+    bucket: "{{ bucket }}"
+    entity: user-alexstephen@google.com
+    role: WRITER
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
