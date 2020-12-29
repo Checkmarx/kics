@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "ClientSecret is Exposed",
-		"severity": "MEDIUM",
-		"line": 17
-	}
-]

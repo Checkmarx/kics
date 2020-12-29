@@ -1,8 +1,0 @@
-{
-  "id": "clientsecret_is_exposed",
-  "queryName": "ClientSecret is Exposed",
-  "severity": "MEDIUM",
-  "category": null,
-  "descriptionText": "ClientScret is a plaintext string, also does not started with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
-  "descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration"
-}
