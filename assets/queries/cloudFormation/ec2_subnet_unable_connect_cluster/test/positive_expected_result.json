@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "EC2 vulnerable public subnet",
+		"queryName": "EC2 subnet mapping public IP on launch",
 		"severity": "MEDIUM",
 		"line": 7
 	}

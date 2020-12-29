@@ -1,8 +1,8 @@
 {
-  "id": "ec2_vulnerable_public_subnet",
-  "queryName": "EC2 vulnerable public subnet",
+  "id": "ec2_subnet_mapping_public_ip_on_launch",
+  "queryName": "EC2 subnet mapping public IP on launch",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "EC2 Subnet should not have MapPublicIpOnLaunch set to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Subnet.html"
 }

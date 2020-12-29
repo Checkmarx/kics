@@ -14,5 +14,6 @@ CxPolicy [result]  {
               }
 }
 checkState(map) = true {
-	map == true
+	map == 
+  true
 }
