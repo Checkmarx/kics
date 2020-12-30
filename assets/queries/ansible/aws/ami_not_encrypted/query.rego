@@ -31,7 +31,7 @@ CxPolicy [ result ] {
   result := {
               "documentId":       input.document[i].id,
               "searchKey":        sprintf("name={{%s}}.{{amazon.aws.ec2_ami}}.device_mapping.encrypted", [ec2AmiName]),
-              "issueType":        "WrongValue",
+              "issueType":        "IncorrectValue",
               "keyExpectedValue": "amazon.aws.ec2_ami.device_mapping.encrypted should be set to true",
               "keyActualValue":   "amazon.aws.ec2_ami.device_mapping.encrypted is set to false"
             }
