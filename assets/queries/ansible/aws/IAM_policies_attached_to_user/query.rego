@@ -5,14 +5,13 @@ CxPolicy [  result ] {
   tasks := getTasks(document)
   task := tasks[t]
   awsApiGateway := task["community.aws.iam_managed_policy"]
-  contains(awsApiGateway.state, "present")
-  type := awsApiGateway.iam_type
-  contains(type,"user")
+  checkState(awsApiGateway)
+  lower(awsApiGateway.iam_type) == "user"
   clusterName := task.name
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.iam_type", [clusterName]),
-                "issueType":        "RedundantAttribute",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.iam_managed_policy.iam_type should be configured with group or role",
                 "keyActualValue":   "community.aws.iam_managed_policy.iam_type is configured with user"
               }
@@ -24,4 +23,10 @@ getTasks(document) = result {
 } else = result {
     result := [body | playbook := document.playbooks[_]; body := playbook ]  
     count(result) != 0
+}
+
+checkState(awsApiGateway){
+contains(awsApiGateway.state, "present")
+}else{
+object.get(awsApiGateway, "state", "undefined") == "undefined"
 }
