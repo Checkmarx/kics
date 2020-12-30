@@ -26,14 +26,22 @@ issueType(str) = "MissingAttribute" {
 }
 
 checkAllowPass(pwPolicy) = ".allow_pw_change" {
-	pwPolicy.allow_pw_change == false
+	isFalse(pwPolicy.allow_pw_change)
 } else = ".allow_password_change" {
-	pwPolicy.allow_password_change == false
+	isFalse(pwPolicy.allow_password_change)
 } else = "" {
 	not pwPolicy.allow_pw_change
     not pwPolicy.allow_password_change
 } else = "none" {
 	true
+}
+
+isFalse(answer) {
+lower(answer) == "no"
+} else {
+lower(answer) == "false"
+} else {
+answer == false
 }
 
 getTasks(document) = result {
