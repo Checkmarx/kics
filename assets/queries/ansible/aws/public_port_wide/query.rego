@@ -18,7 +18,7 @@ CxPolicy[result] {
         "documentId":        document.id,
         "searchKey":         sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
         "issueType":         "IncorrectValue",
-        "keyExpectedValue":  sprintf("amazon.aws.ec2_group.rules[%d] has not public port wide", [index]),
+        "keyExpectedValue":  sprintf("amazon.aws.ec2_group.rules[%d] doesn't have public port wide", [index]),
         "keyActualValue": 	 sprintf("amazon.aws.ec2_group.rules[%d] has public port wide", [index])
     }
 }
@@ -41,7 +41,7 @@ CxPolicy[result] {
         "documentId":        document.id,
         "searchKey":         sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
         "issueType":         "IncorrectValue",
-        "keyExpectedValue":  sprintf("amazon.aws.ec2_group.rules[%d] has not public port wide", [index]),
+        "keyExpectedValue":  sprintf("amazon.aws.ec2_group.rules[%d] doesn't have public port wide", [index]),
         "keyActualValue": 	 sprintf("amazon.aws.ec2_group.rules[%d] has public port wide", [index])
     }
 }
