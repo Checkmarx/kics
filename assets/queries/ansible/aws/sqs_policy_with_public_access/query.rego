@@ -7,8 +7,9 @@ CxPolicy [ result ] {
   task := tasks[t]
   sqsPolicy := task["community.aws.sqs_queue"]
   sqsPolicyName := task.name
-  contains(sqsPolicy.policy.Statement[_].Principal,"*")
-
+  contains(sqsPolicy.policy.Statement[_].Principal, "*")
+  contains(sqsPolicy.policy.Statement[_].Effect , "Allow")
+  contains(sqsPolicy.policy.Statement[_].Action ,"*")
 
 	result := {
                 "documentId": 		  input.document[i].id,
@@ -24,7 +25,9 @@ CxPolicy [ result] {
   task := tasks[t]
   sqsPolicy := task["community.aws.sqs_queue"]
   sqsPolicyName := task.name
-  contains(sqsPolicy.policy.Statement[_].Principal[j].AWS,"*")
+  contains(sqsPolicy.policy.Statement[_].Effect , "Allow")
+  contains(sqsPolicy.policy.Statement[_].Action ,"*")
+  checkPrincipal(sqsPolicy.policy.Statement[_].Principal[j])
 
 
 	result := {
@@ -42,4 +45,10 @@ getTasks(document) = result {
 } else = result {
     result := [body | playbook := document.playbooks[_]; body := playbook ]  
     count(result) != 0
+}
+
+checkPrincipal(principal){
+  contains(principal.AWS,"*")
+}else{
+  contains(principal.AWS[k],"*")
 }
