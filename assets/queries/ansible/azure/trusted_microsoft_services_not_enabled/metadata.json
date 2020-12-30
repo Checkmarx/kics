@@ -3,6 +3,6 @@
   "queryName": "Trusted Microsoft Services Not Enabled",
   "severity": "HIGH",
   "category": "Network Security",
-  "descriptionText": "Ensure 'Trusted Microsoft Services' is enabled for Storage Account access.",
+  "descriptionText": "Ensure Trusted Microsoft Services have Storage Account access.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls/bypass"
 }
