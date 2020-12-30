@@ -8,11 +8,13 @@
 
 <img alt="Checkmarx" src="../img/logo-cx-horizontal.png" width="200">
 
+Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com) or join the chat [on Gitter](https://gitter.im/kics-dev/community).
+
 ---
 
 ## What is Infrastructure as Code
 
-Infrastructure as Code (IaC) is the creation, provisioning and configuration of software-defined compute (SDC), networkand storage infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
+Infrastructure as Code (IaC) is the creation, provisioning and configuration of software-defined compute (SDC), network and storage infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
 
 IaC automates the manual tasks usually associated with computing infrastructure configuration and implementation.
 By doing this, you can:

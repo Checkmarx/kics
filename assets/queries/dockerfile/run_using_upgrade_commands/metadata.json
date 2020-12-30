@@ -1,0 +1,8 @@
+{
+  "id": "run_using_upgrade_commands",
+  "queryName": "Run Using Upgrade Commands",
+  "severity": "HIGH",
+  "category": "Package Management",
+  "descriptionText": "Commands 'apt-get upgrade' and 'apt-get dist-upgrade' should not be used",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+}

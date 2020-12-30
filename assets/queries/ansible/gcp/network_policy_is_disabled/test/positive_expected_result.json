@@ -1,0 +1,27 @@
+[
+	{
+		"queryName": "Network Policy is Disabled",
+		"severity": "HIGH",
+		"line": 3
+	},
+	{
+		"queryName": "Network Policy is Disabled",
+		"severity": "HIGH",
+		"line": 21
+	},
+	{
+		"queryName": "Network Policy is Disabled",
+		"severity": "HIGH",
+		"line": 54
+	},
+	{
+		"queryName": "Network Policy is Disabled",
+		"severity": "HIGH",
+		"line": 73
+	},
+	{
+		"queryName": "Network Policy is Disabled",
+		"severity": "HIGH",
+		"line": 96
+	}
+]

@@ -1,0 +1,8 @@
+{
+  "id": "Cloud_Storage_Anonymous_Or_Publicly_Accessible",
+  "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+  "severity": "MEDIUM",
+  "category": "Identity & Access Management",
+  "descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the attribute 'entity' must not be 'allUsers' or 'allAuthenticatedUsers'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html"
+}

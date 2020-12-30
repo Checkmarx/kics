@@ -1,8 +1,0 @@
-{
-  "id": "all_Auth_Users_gets_read_access",
-  "queryName": "All Auth Users Gets Read Access",
-  "severity": "HIGH",
-  "category": "IAM",
-  "descriptionText": "The acl feature must be private",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl"
-}

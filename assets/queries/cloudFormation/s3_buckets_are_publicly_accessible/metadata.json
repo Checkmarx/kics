@@ -1,0 +1,8 @@
+{
+  "id": "S3_Buckets_Are_Publicly_Accessible",
+  "queryName": "S3 Buckets Are Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "The S3 Bucket should not have the (accessPublicBlock empty or accessPublicBlock.ignorePublicAcls = false or accessPublicBlock.restrictPublicBuckets = false ) and ( policy.Statement contain [Effect='Allow' and (Principal='*' or Principal.AWS='*')])",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html"
+}

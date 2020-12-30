@@ -1,0 +1,11 @@
+- name: Create IAM Managed Policy
+  community.aws.iam_managed_policy:
+    policy_name: "ManagedPolicy"
+    policy:
+      Version: "2012-10-17"
+      Statement:
+      - Effect: "Allow"
+        Action: ["*"]
+        Resource: "*"
+    make_default: false
+    state: present

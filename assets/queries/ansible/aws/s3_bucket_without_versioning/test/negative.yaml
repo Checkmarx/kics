@@ -1,0 +1,10 @@
+---
+- name: foo
+  amazon.aws.s3_bucket:
+    name: mys3bucket
+    policy: "{{ lookup('file','policy.json') }}"
+    requester_pays: yes
+    versioning: yes
+    tags:
+      example: tag1
+      another: tag2

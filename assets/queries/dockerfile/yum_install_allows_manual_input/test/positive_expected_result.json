@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]

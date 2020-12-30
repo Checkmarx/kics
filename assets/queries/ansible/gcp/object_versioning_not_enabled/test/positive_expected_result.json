@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Object Versioning Not Enabled",
+		"severity": "HIGH",
+		"line": 3
+	},
+	{
+		"queryName": "Object Versioning Not Enabled",
+		"severity": "HIGH",
+		"line": 17
+	}
+]

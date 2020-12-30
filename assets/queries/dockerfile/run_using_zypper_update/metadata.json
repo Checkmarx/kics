@@ -1,0 +1,8 @@
+{
+  "id": "run_using_zypper_update",
+  "queryName": "Run Using zypper update",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "`zypper update` should not be used. Can cause inconsistencies between builds, producing problems for application developers",
+  "descriptionUrl": "#"
+}

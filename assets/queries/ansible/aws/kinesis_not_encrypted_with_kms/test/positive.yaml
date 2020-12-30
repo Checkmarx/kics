@@ -1,0 +1,52 @@
+- name: Encrypt Kinesis Stream test-stream.
+  community.aws.kinesis_stream:
+    name: test-stream
+    state: present
+    shards: 1
+    encryption_type: KMS
+    key_id: alias/aws/kinesis
+    wait: yes
+    wait_timeout: 600
+  register: test_stream
+- name: Encrypt Kinesis Stream test-stream. v2
+  community.aws.kinesis_stream:
+    name: test-stream
+    state: present
+    shards: 1
+    encryption_state: disabled
+    encryption_type: KMS
+    key_id: alias/aws/kinesis
+    wait: yes
+    wait_timeout: 600
+  register: test_stream
+- name: Encrypt Kinesis Stream test-stream. v3
+  community.aws.kinesis_stream:
+    name: test-stream
+    state: present
+    shards: 1
+    encryption_state: enabled
+    key_id: alias/aws/kinesis
+    wait: yes
+    wait_timeout: 600
+  register: test_stream
+- name: Encrypt Kinesis Stream test-stream. v4
+  community.aws.kinesis_stream:
+    name: test-stream
+    state: present
+    shards: 1
+    encryption_state: enabled
+    encryption_type: NONE
+    key_id: alias/aws/kinesis
+    wait: yes
+    wait_timeout: 600
+  register: test_stream
+- name: Encrypt Kinesis Stream test-stream. v5
+  community.aws.kinesis_stream:
+    name: test-stream
+    state: present
+    shards: 1
+    encryption_state: enabled
+    encryption_type: KMS
+    wait: yes
+    wait_timeout: 600
+  register: test_stream
