@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "documentId": 		document.id,
                 "searchKey": 	    sprintf("name=%s.{{community.aws.ecs_ecr}}.policy.Statement.Principal='*'", [task.name]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "'Statement.Principal' dosen't contain '*'",
-                "keyActualValue": 	"'Statement.Principal' contains '*'"
+                "keyExpectedValue": "'Statement.Principal' isn't '*'",
+                "keyActualValue": 	"'Statement.Principal' is '*'"
               }
 }
 
