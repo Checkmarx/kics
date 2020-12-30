@@ -1,8 +1,8 @@
 {
   "id": "Cloudfront_without_WAF",
-  "queryName": "Cloudfront without WAF",
+  "queryName": "Cloudfront Without WAF",
   "severity": "LOW",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "CloudFront Distribution without WAF enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html"
 }
