@@ -1,17 +1,17 @@
 package Cx
 
 CxPolicy [ result ] {
-	password := ["password", "PASSWORD"]
+  password := ["password", "pw", "pass"]
   document := input.document[i]
   tasks := getTasks(document)
   task := tasks[t]
   cont := task["community.aws.ecs_taskdefinition"].containers[j]
-  not object.get(cont.env[_], password[s], "undefined") == "undefined"
-
+  # not object.get(cont.env[_], password[s], "undefined") == "undefined"
+  checkPassword(cont.env, password)
 
 	result := {
                 "documentId": 		document.id,
-                "searchKey": 	    sprintf("name=%s.{{community.aws.ecs_taskdefinition}}.containers.name={{%s}}.env.%s", [task.name, cont.name, password[s]]),
+                "searchKey": 	    sprintf("name=%s.{{community.aws.ecs_taskdefinition}}.containers.name={{%s}}.env", [task.name, cont.name]),
                 "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": "'community.aws.ecs_taskdefinition.containers.env' doesn't have 'password' value",
                 "keyActualValue": 	"'community.aws.ecs_taskdefinition.containers.env' has 'password' value"
@@ -27,3 +27,7 @@ getTasks(document) = result {
     count(result) != 0
 }
 
+checkPassword(env, password) = teste {
+  teste := [x | env[idx][j]; upper(j) == upper(password[_]); x = j]
+  count(teste) > 0
+}
