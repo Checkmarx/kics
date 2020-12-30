@@ -5,7 +5,7 @@ getFieldName(field) = name {
   name = ["AWS::ElasticLoadBalancingV2::LoadBalancer", "AWS::ElasticLoadBalancing::LoadBalancer"]
 }
 
-getResource(document, field) = resource {
+getResource(document) = resource {
   theResource := document.Resources
   theResource[getName(theResource)]
   resource = theResource
@@ -134,12 +134,9 @@ CxPolicy [ result ] {
     [61621, "Cassandra OpsCenter"]
   ]
 
-  # Category/service used
-  field = getFieldName("Network Ports Security")
-
   #############	document and resource
   document := getDocument([])[i]
-  resource := getResource(document, field)
+  resource := getResource(document)
   name = getName(resource)
   elbType := getELBType(name, resource)
   securityGroupName = getSecurityGroupName(resource)
