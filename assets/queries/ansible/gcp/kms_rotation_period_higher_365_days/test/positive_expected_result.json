@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "KMS Rotation Period Is Higher Than 365 Days",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "KMS Rotation Period Is Higher Than 365 Days",
+		"severity": "HIGH",
+		"line": 11
+	}
+]
