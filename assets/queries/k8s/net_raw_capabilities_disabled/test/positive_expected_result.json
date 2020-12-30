@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "NET_RAW Capabilities Disabled",
+		"queryName": "NET_RAW Capabilities Disabled for PodSecurityPolicy",
 		"severity": "MEDIUM",
 		"line": 13
 	},
 	{
-		"queryName": "NET_RAW Capabilities Disabled",
+		"queryName": "NET_RAW Capabilities Disabled for PodSecurityPolicy",
 		"severity": "MEDIUM",
 		"line": 57
 	}

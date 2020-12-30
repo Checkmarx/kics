@@ -2,7 +2,7 @@
   "id": "shared_host_pid_namespace",
   "queryName": "Shared Host PID Namespace",
   "severity": "HIGH",
-  "category": null,
+  "category": "Privileges",
   "descriptionText": "Container should not share the host process ID namespace",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }

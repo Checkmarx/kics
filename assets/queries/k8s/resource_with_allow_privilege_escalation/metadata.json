@@ -2,7 +2,7 @@
   "id": "Resource_With_Allow_Privilege_Escalation",
   "queryName": "Resource With Allow Privilege Escalation",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Privileges",
   "descriptionText": "Minimize the admission of privileged resources",
-  "descriptionUrl": "#"
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }
