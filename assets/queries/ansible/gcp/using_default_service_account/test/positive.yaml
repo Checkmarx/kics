@@ -1,0 +1,116 @@
+#this is a problematic code where the query should report a result(s)
+- name: create a instance1
+  google.cloud.gcp_compute_instance:
+    name: test_object1
+    machine_type: n1-standard-1
+    disks:
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ disk }}"
+    - auto_delete: 'true'
+      interface: NVME
+      type: SCRATCH
+      initialize_params:
+        disk_type: local-ssd
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    labels:
+      environment: production
+    network_interfaces:
+    - network: "{{ network }}"
+      access_configs:
+      - name: External NAT
+        nat_ip: "{{ address }}"
+        type: ONE_TO_ONE_NAT
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    state: present
+- name: create a instance2
+  google.cloud.gcp_compute_instance:
+    name: test_object2
+    machine_type: n1-standard-1
+    disks:
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ disk }}"
+    - auto_delete: 'true'
+      interface: NVME
+      type: SCRATCH
+      initialize_params:
+        disk_type: local-ssd
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    labels:
+      environment: production
+    network_interfaces:
+    - network: "{{ network }}"
+      access_configs:
+      - name: External NAT
+        nat_ip: "{{ address }}"
+        type: ONE_TO_ONE_NAT
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_email: ""
+    state: present
+- name: create a instance3
+  google.cloud.gcp_compute_instance:
+    name: test_object3
+    machine_type: n1-standard-1
+    disks:
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ disk }}"
+    - auto_delete: 'true'
+      interface: NVME
+      type: SCRATCH
+      initialize_params:
+        disk_type: local-ssd
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    labels:
+      environment: production
+    network_interfaces:
+    - network: "{{ network }}"
+      access_configs:
+      - name: External NAT
+        nat_ip: "{{ address }}"
+        type: ONE_TO_ONE_NAT
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_email: "admin"
+    state: present
+- name: create a instance4
+  google.cloud.gcp_compute_instance:
+    name: test_object4
+    machine_type: n1-standard-1
+    disks:
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ disk }}"
+    - auto_delete: 'true'
+      interface: NVME
+      type: SCRATCH
+      initialize_params:
+        disk_type: local-ssd
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    labels:
+      environment: production
+    network_interfaces:
+    - network: "{{ network }}"
+      access_configs:
+      - name: External NAT
+        nat_ip: "{{ address }}"
+        type: ONE_TO_ONE_NAT
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_email: "admin@developer.gserviceaccount.com"
+    state: present

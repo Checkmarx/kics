@@ -1,0 +1,23 @@
+- name: Create (or update) PostgreSQL Server
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    admin_username: cloudsa
+    admin_password: password
+- name: Create (or update) PostgreSQL Server2
+  azure.azcollection.azure_rm_postgresqlserver:
+    resource_group: myResourceGroup
+    name: testserver
+    sku:
+      name: B_Gen5_1
+      tier: Basic
+    location: eastus
+    storage_mb: 1024
+    enforce_ssl: no
+    admin_username: cloudsa
+    admin_password: password

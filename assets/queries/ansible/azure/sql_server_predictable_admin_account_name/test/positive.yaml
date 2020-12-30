@@ -1,0 +1,22 @@
+#this is a problematic code where the query should report a result(s)
+- name: Create (or update) SQL Server1
+  azure_rm_sqlserver:
+    resource_group: myResourceGroup
+    name: server_name1
+    location: westus
+    admin_username: ""
+    admin_password: Testpasswordxyz12!
+- name: Create (or update) SQL Server2
+  azure_rm_sqlserver:
+    resource_group: myResourceGroup
+    name: server_name2
+    location: westus
+    admin_username:
+    admin_password: Testpasswordxyz12!
+- name: Create (or update) SQL Server3
+  azure_rm_sqlserver:
+    resource_group: myResourceGroup
+    name: server_name3
+    location: westus
+    admin_username: admin
+    admin_password: Testpasswordxyz12!

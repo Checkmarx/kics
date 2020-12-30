@@ -1,0 +1,8 @@
+{
+  "id": "api_gateway_endpoint_config_private",
+  "queryName": "API Gateway Endpoint Config is Private",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Type of Endpoint Configuration is Private",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html"
+}

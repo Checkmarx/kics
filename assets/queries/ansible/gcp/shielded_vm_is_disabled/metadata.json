@@ -1,0 +1,8 @@
+{
+  "id": "Shielded_VM_Disabled",
+  "queryName": "Shielded VM is Disabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shielded_instance_config' must be defined and its sub attributes 'enable_secure_boot', 'enable_vtpm' and 'enable_integrity_monitoring' must be set to true",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html"
+}

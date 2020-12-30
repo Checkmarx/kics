@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EC2 Subnet Mapping Public IP On Launch",
+		"severity": "MEDIUM",
+		"line": 7
+	}
+]

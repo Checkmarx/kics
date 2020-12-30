@@ -1,0 +1,31 @@
+---
+- name: foo
+  community.aws.rds_instance:
+    id: test-encrypted-db
+    state: present
+    engine: mariadb
+    storage_encrypted: True
+    db_instance_class: db.t2.medium
+    username: "{{ username }}"
+    password: "{{ password }}"
+    allocated_storage: "{{ allocated_storage }}"
+- name: foo2
+  community.aws.rds_instance:
+    id: test-encrypted-db
+    state: present
+    engine: mariadb
+    storage_encrypted: yes
+    db_instance_class: db.t2.medium
+    username: "{{ username }}"
+    password: "{{ password }}"
+    allocated_storage: "{{ allocated_storage }}"
+- name: foo3
+  community.aws.rds_instance:
+    id: test-encrypted-db
+    state: present
+    engine: mariadb
+    kms_key_id: sup3rstr0ngK3y
+    db_instance_class: db.t2.medium
+    username: "{{ username }}"
+    password: "{{ password }}"
+    allocated_storage: "{{ allocated_storage }}"

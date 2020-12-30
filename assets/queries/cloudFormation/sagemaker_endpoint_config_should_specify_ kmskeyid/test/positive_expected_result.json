@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
+		"severity": "MEDIUM",
+		"line": 28
+	}
+]

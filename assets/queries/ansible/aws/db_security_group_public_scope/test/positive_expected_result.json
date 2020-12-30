@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "AWS DB Security Group with Public Scope",
+		"severity": "HIGH",
+		"line": 22
+	},
+	{
+		"queryName": "AWS DB Security Group with Public Scope",
+		"severity": "HIGH",
+		"line": 54
+	}
+]

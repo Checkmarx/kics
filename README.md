@@ -1,8 +1,11 @@
 [![codecov](https://codecov.io/gh/Checkmarx/kics/branch/master/graph/badge.svg?token=SN0NO4H46G)](https://codecov.io/gh/Checkmarx/kics)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ceddb5b1b37d4edfa56440842c6248a4)](https://www.codacy.com/gh/Checkmarx/kics/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Checkmarx/kics&amp;utm_campaign=Badge_Grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/checkmarx/kics/badge)](https://www.codefactor.io/repository/github/checkmarx/kics)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Checkmarx_kics&metric=alert_status)](https://sonarcloud.io/dashboard?id=Checkmarx_kics)
+[![Gitter](https://badges.gitter.im/kics-dev/community.svg)](https://gitter.im/kics-dev/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-logo-donkey.png" width="250">  
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/xmas-donkey.png" width="250">  
 
 ---
 
@@ -16,10 +19,9 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 #### Supported Platforms
 
-<img alt="Terraform" src="docs/img/logo-terraform.svg" width="150">&nbsp;&nbsp;&nbsp;<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">
+<img alt="Terraform" src="docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
 
-KICS scans and detects issues in [Terraform](https://terraform.io/) and [Kubernetes](https://kubernetes.io/) infrastructure as code projects.  
-More solutions, such as AWS CloudFormation are on the [roadmap](docs/roadmap.md).
+Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](docs/roadmap.md).
 
 
 ## Getting Started
@@ -46,7 +48,9 @@ KICS is a true community project. It's built as an open source from day one, and
 
 <a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
-[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
+[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.  
+Join the chat [on Gitter](https://gitter.im/kics-dev/community).  
+Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keep Infrastructure as Code Secure!**
 

@@ -1,0 +1,8 @@
+{
+  "id": "port_is_exposed_to_entire_network",
+  "queryName": "Port Is Exposed To Wide Private Network",
+  "severity": "MEDIUM",
+  "category": "Network Ports Security",
+  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for wide private network in either TCP or UDP protocol",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule"
+}

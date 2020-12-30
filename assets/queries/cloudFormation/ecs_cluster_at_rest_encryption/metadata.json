@@ -1,0 +1,8 @@
+{
+  "id": "ecs_cluster_at_rest_encryption",
+  "queryName": "ECS Cluster at Rest Encryption",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure that AWS ECS clusters are encrypted. Data encryption at rest, prevents unauthorized users from accessing sensitive data on your AWS ECS clusters and associated cache storage systems.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html"
+}

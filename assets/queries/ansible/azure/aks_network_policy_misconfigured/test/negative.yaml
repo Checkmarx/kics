@@ -1,0 +1,43 @@
+---
+- name: Create a managed Azure Container Services (AKS) instance01
+  azure_rm_aks:
+    name: myAKS
+    location: eastus
+    resource_group: myResourceGroup
+    dns_prefix: akstest
+    kubernetes_version: 1.14.6
+    network_profile:
+      network_policy: calico
+    linux_profile:
+      admin_username: azureuser
+      ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+    service_principal:
+      client_id: "cf72ca99-f6b9-4004-b0e0-bee10c521948"
+      client_secret: "Password123!"
+    agent_pool_profiles:
+      - name: default
+        count: 5
+        vm_size: Standard_D2_v2
+    tags:
+      Environment: Production
+- name: Create a managed Azure Container Services (AKS) instance02
+  azure_rm_aks:
+    name: myAKS
+    location: eastus
+    resource_group: myResourceGroup
+    dns_prefix: akstest
+    kubernetes_version: 1.14.6
+    network_profile:
+      network_policy: azure
+    linux_profile:
+      admin_username: azureuser
+      ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+    service_principal:
+      client_id: "cf72ca99-f6b9-4004-b0e0-bee10c521948"
+      client_secret: "Password123!"
+    agent_pool_profiles:
+      - name: default
+        count: 5
+        vm_size: Standard_D2_v2
+    tags:
+      Environment: Production

@@ -1,0 +1,19 @@
+#this is a problematic code where the query should report a result(s)
+- name: create ad sp
+  azure_ad_serviceprincipal:
+    app_id: "{{ app_id }}"
+    state: present
+    tenant: "{{ tenant_id }}"
+    ad_user: admin
+- name: create ad sp2
+  azure_ad_serviceprincipal:
+    app_id: "{{ app_id2 }}"
+    state: present
+    tenant: "{{ tenant_id2 }}"
+    ad_user: ""
+- name: create ad sp3
+  azure_ad_serviceprincipal:
+    app_id: "{{ app_id3 }}"
+    state: present
+    tenant: "{{ tenant_id3 }}"
+    ad_user:
