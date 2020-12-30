@@ -10,10 +10,27 @@ CxPolicy [ result ] {
 
   result := {
                 "documentId":       document.id,
-                "searchKey":        sprintf("name=%s.{{community.aws.ecs_ecr}}.policy.Statement.Principal", [task.name]),
+                "searchKey":        sprintf("name=%s.{{community.aws.ecs_ecr}}.policy", [task.name]),
+                "issueType":		"IncorrectValue",
+                "keyExpectedValue": "'policy.Principal' is not equal '*'",
+                "keyActualValue": 	"'policy.Principal' is equal '*'"
+              }
+}
+
+CxPolicy [ result ] {
+  document := input.document[i]
+  tasks := getTasks(document)
+  task := tasks[t]
+  cloudwatchlogs := task["community.aws.ecs_ecr"]
+  pol := cloudwatchlogs.policy
+  re_match("\"Principal\"\\ *:\\ *\"\\*\"", pol)
+
+  result := {
+                "documentId":       document.id,
+                "searchKey":        sprintf("name=%s.{{community.aws.ecs_ecr}}.policy", [task.name]),
                 "issueType":		"MissingAttribute",
-                "keyExpectedValue": "'retention_in_days' equal 30",
-                "keyActualValue": 	"'retention_in_days' is missing"
+                "keyExpectedValue": "'policy.Principal' is not equal '*'",
+                "keyActualValue": 	"'policy.Principal' is equal '*'"
               }
 }
 
