@@ -7,11 +7,16 @@
 	{
 		"queryName": "VPC Changes Without Alarms",
   		"severity": "MEDIUM",
-		"line": 71
+		"line": 69
 	},
 	{
 		"queryName": "VPC Changes Without Alarms",
   		"severity": "MEDIUM",
-		"line": 98
+		"line": 97
+	},
+	{
+		"queryName": "VPC Changes Without Alarms",
+  		"severity": "MEDIUM",
+		"line": 120
 	}
 ]
