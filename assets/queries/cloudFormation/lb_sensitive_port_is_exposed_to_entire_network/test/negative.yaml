@@ -36,31 +36,103 @@ Resources:
         VpcId: my-vpc
         SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 50
-          ToPort: 80
-          CidrIp: 127.0.0.1/0
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 127.0.0.1/32
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
+          CidrIp: 127.0.0.1/33
+        SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+---
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  MySubnets:
+    Description: "My subnet"
+    Type: List<String>
+Resources:
+  ApplicationLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: ip-target-alb
+      Subnets: !Ref MySubnets
+      SecurityGroups:
+        - !Ref ALBSecGroup
+      Tags:
+        - Key: Name
+          Value: ip-target-alb
+  ALBSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http and ssh
+        VpcId: my-vpc
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 127.0.0.1/32
+        - IpProtocol: all
+          FromPort: 77
+          ToPort: 77
           CidrIp: 127.0.0.1/0
         SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
-
+  HTTPALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref ApplicationLoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+          - Type: forward
+            TargetGroupArn: !Ref IPTargetGroup
+  IPTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+        VpcId: my-vpc
+        Port: 80
+        Protocol: HTTP
+        TargetType: ip
+        Matcher:
+            HttpCode: 200
+        HealthCheckIntervalSeconds: 10
+        HealthCheckPath: /health/check
+        HealthCheckProtocol: HTTP
+        HealthCheckTimeoutSeconds: 5
+        HealthyThresholdCount: 2
+        UnhealthyThresholdCount: 2
+  TestListenerRule1:
+    Type: "AWS::ElasticLoadBalancingV2::ListenerRule"
+    Properties:
+        Priority: "1"
+        ListenerArn: !Ref HTTPALBListener
+        Conditions:
+          - Field: "host-header"
+            Values:
+              - "test1.checkmarx.com"
+        Actions:
+          - Type: "forward"
+            TargetGroupArn: !Ref IPTargetGroup
+            Order: 1
+            ForwardConfig:
+                TargetGroups:
+                  - TargetGroupArn: !Ref IPTargetGroup
+                    Weight: 1
+                TargetGroupStickinessConfig:
+                    Enabled: false
 ---
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
-  Instance01:
-    Description: "instance 01"
-    Type: String
-  Instance02:
-    Description: "instance 02"
-    Type: String
   MySubnet:
     Description: "My subnet"
-    Type: List
+    Type: List<String>
 Resources:
   NetworkLoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -68,31 +140,43 @@ Resources:
       Name: t10-networkloadbalancer
       Scheme: internet-facing
       Subnets: !Ref MySubnet
-      SecurityGroups:
-        [ !Ref LBSecGroupV2 ]
       Type: network
       Tags:
         - Key: Name
           Value: t10-networklb
-  LBSecGroupV2:
+  InstancesSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
         GroupDescription: Allow http and ssh
         VpcId: my-vpc
         SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
+          FromPort: 22
+          ToPort: 22
           CidrIp: 127.0.0.1/32
         - IpProtocol: all
-          FromPort: 150
-          ToPort: 180
+          FromPort: 77
+          ToPort: 77
           CidrIp: 127.0.0.1/0
         SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+  EC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.2xlarge
+      SecurityGroups: [!Ref 'InstancesSecGroup']
+      KeyName: my-rsa-key
+      ImageId: ami-79fd7eee
+  EC2Instance02:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.2xlarge
+      SecurityGroups: [!Ref 'InstancesSecGroup']
+      KeyName: my-rsa-key
+      ImageId: ami-79fd7eee
   NetworkLoadBalancerTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -104,9 +188,9 @@ Resources:
         - Key: deregistration_delay.timeout_seconds
           Value: 60
       Targets:
-      - Id: !Ref Instance01
+      - Id: !Ref EC2Instance01
         Port: 443
-      - Id: !Ref Instance02
+      - Id: !Ref EC2Instance02
         Port: 443
       Tags:
         - Key: Name
