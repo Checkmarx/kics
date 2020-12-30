@@ -11,8 +11,8 @@ CxPolicy [ result ] {
                 "documentId": 		  input.document[i].id,
                 "searchKey":        sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version", [task.name]),
                 "issueType":		    "IncorrectValue",
-                "keyExpectedValue": sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version is compliant with the requirements", [task.name]),
-                "keyActualValue":   sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version isn't compliant with the requirements", [task.name])
+                "keyExpectedValue": sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version is compliant with the AWS PCI DSS requirements", [task.name]),
+                "keyActualValue":   sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version isn't compliant with the AWS PCI DSS requirements", [task.name])
               }
 }
 
