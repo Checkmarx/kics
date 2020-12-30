@@ -1,16 +1,16 @@
 [
 	{
-		"queryName": "No password reuse prevention",
+		"queryName": "No Password Reuse Prevention",
 		"severity": "MEDIUM",
 		"line": 3
 	},
 	{
-		"queryName": "No password reuse prevention",
+		"queryName": "No Password Reuse Prevention",
 		"severity": "MEDIUM",
 		"line": 23
 	},
 	{
-		"queryName": "No password reuse prevention",
+		"queryName": "No Password Reuse Prevention",
 		"severity": "MEDIUM",
 		"line": 26
 	}
