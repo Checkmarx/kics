@@ -1,0 +1,7 @@
+- name: start an instance with a cpu_options
+  community.aws.ec2_instance:
+    name: "public-cpuoption-instance"
+    vpc_subnet_id: subnet-5ca1ab1e
+    tags:
+      Environment: Testing
+    user_data: "1234567890123456789012345678901234567890$"
