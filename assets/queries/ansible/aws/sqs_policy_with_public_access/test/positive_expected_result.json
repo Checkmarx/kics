@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "SQS policy with Public Access",
+		"severity": "MEDIUM",
+		"line": 16
+	},
+	{
+		"queryName": "SQS policy with Public Access",
+		"severity": "MEDIUM",
+		"line": 35
+	}
+]
