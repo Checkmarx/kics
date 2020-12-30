@@ -24,7 +24,7 @@ Resources:
       Threshold: 1
       ComparisonOperator: GreaterThanOrEqualToThreshold
       AlarmActions:
-        - Ref: SnsTopic
+        - SnsTopic
       TreatMissingData: notBreaching
   MetricFilter:
     Type: 'AWS::Logs::MetricFilter'
