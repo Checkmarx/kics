@@ -18,19 +18,6 @@
     username: "{{ username }}"
     password: "{{ password }}"
     allocated_storage: "{{ allocated_storage }}"
-- name: community - Basic mysql provisioning example
-  community.aws.rds:
-    command: create
-    instance_name: new-database
-    db_engine: MySQL
-    size: 10
-    instance_type: db.m1.small
-    username: mysql_admin
-    password: 1nsecure
-    auto_minor_version_upgrade: "False"
-    tags:
-      Environment: testing
-      Application: cms
 - name: Create basic AWS DB instance01
   rds:
     command: create

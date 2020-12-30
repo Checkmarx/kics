@@ -17,11 +17,6 @@
 	{
 		"queryName": "RDS Auto Minor Version Upgrade Disabled",
 		"severity": "HIGH",
-		"line": 43
-	},
-	{
-		"queryName": "RDS Auto Minor Version Upgrade Disabled",
-		"severity": "HIGH",
-		"line": 48
+		"line": 35
 	}
 ]
