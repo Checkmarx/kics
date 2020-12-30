@@ -2,7 +2,7 @@
   "id": "Cloudfront_without_WAF",
   "queryName": "Cloudfront without WAF",
   "severity": "LOW",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "CloudFront Distribution without WAF enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution"
 }
