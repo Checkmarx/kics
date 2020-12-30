@@ -7,11 +7,16 @@
 	{
 		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
   		"severity": "MEDIUM",
-		"line": 71
+		"line": 69
 	},
 	{
 		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
   		"severity": "MEDIUM",
-		"line": 98
+		"line": 97
+	},
+	{
+		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+  		"severity": "MEDIUM",
+		"line": 120
 	}
 ]

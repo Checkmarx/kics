@@ -22,7 +22,7 @@ Resources:
       Threshold: 1
       ComparisonOperator: GreaterThanOrEqualToThreshold
       AlarmActions:
-        - Ref: SnsTopic
+        - SnsTopic
       TreatMissingData: notBreaching
   MetricFilter:
     Type: 'AWS::Logs::MetricFilter'
@@ -58,7 +58,7 @@ Resources:
       Threshold: 1
       ComparisonOperator: GreaterThanOrEqualToThreshold
       AlarmActions:
-        - Ref: SnsTopic2
+        - SnsTopic2
       TreatMissingData: notBreaching
   MetricFilter2:
     Type: 'AWS::Logs::MetricFilter'
@@ -94,10 +94,44 @@ Resources:
       EvaluationPeriods: 1
       Threshold: 1
       ComparisonOperator: GreaterThanOrEqualToThreshold
-      AlarmActions:
-        - Ref: SnsTopicFake
+      AlarmActions: []
       TreatMissingData: notBreaching
   MetricFilter3:
+    Type: 'AWS::Logs::MetricFilter'
+    Properties:
+      LogGroupName: ''
+      FilterPattern: >-
+        { $.userIdentity.type = Root && $.userIdentity.invokedBy NOT EXISTS && $.eventType != AwsServiceEvent }
+      MetricTransformations:
+        - MetricValue: '1'
+          MetricNamespace: CloudTrailMetrics
+          MetricName: IAMPolicyEventCount
+---
+Resources:
+  SnsTopic4:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      Subscription:
+        - Endpoint: email@example.com
+          Protocol: email
+      TopicName: alarm-action
+  CloudWatchAlarm4:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmName: iam_policy_changes
+      AlarmDescription: >-
+        A CloudWatch Alarm that triggers when changes are made to IAM policies.
+        Events include IAM policy creation/deletion/update operations as well as
+        attaching/detaching policies from IAM users, roles or groups.
+      MetricName: IAMPolicyEventCount
+      Namespace: CloudTrailMetrics
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+  MetricFilter4:
     Type: 'AWS::Logs::MetricFilter'
     Properties:
       LogGroupName: ''
