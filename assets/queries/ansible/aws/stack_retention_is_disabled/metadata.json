@@ -1,0 +1,8 @@
+{
+  "id": "stack_retention_is_disabled",
+  "queryName": "Stack Retention is Disabled",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html"
+}
