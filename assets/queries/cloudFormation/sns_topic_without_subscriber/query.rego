@@ -5,7 +5,7 @@ CxPolicy [ result ] {
     resourceSNS := input.document[i].Resources
     some nameSNS
     resourceSNS[nameSNS].Type == "AWS::SNS::Topic"
-   
+
     not resourceSNS[nameSNS].Properties.Subscription
 
     result := {

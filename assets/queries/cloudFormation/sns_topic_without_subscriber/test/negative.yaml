@@ -4,4 +4,7 @@ Resources:
   SnsTopic:
     Type: 'AWS::SNS::Topic'
     Properties:
+      Subscription:
+        - Endpoint: email@example.com
+          Protocol: email
       TopicName: alarm-action

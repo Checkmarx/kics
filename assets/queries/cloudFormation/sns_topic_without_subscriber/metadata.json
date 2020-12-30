@@ -1,6 +1,6 @@
 {
-  "id": "SNS_Topic_Subscription_Not_Setted",
-  "queryName": "SNS Topic Subscription Not Setted",
+  "id": "sns_topic_without_subscriber",
+  "queryName": "SNS Topic Without Subscriber",
   "severity": "LOW",
   "category": "Monitoring",
   "descriptionText": "Ensure appropriate subscribers to each SNS topic",
