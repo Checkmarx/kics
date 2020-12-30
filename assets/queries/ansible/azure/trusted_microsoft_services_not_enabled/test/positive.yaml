@@ -1,0 +1,48 @@
+- name: configure firewall and virtual networks
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    network_acls:
+      bypass: Metrics
+      default_action: Deny
+      virtual_network_rules:
+        - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
+          action: Allow
+      ip_rules:
+        - value: 1.2.3.4
+          action: Allow
+        - value: 123.234.123.0/24
+          action: Allow
+- name: configure firewall and virtual networks2
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0003
+    type: Standard_RAGRS
+    network_acls:
+      default_action: Deny
+      bypass: Metrics,Logging
+      virtual_network_rules:
+        - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
+          action: Allow
+      ip_rules:
+        - value: 1.2.3.4
+          action: Allow
+        - value: 123.234.123.0/24
+          action: Allow
+- name: configure firewall and virtual networks3
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0004
+    type: Standard_RAGRS
+    network_acls:
+      default_action: Deny
+      bypass: ""
+      virtual_network_rules:
+        - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
+          action: Allow
+      ip_rules:
+        - value: 1.2.3.4
+          action: Allow
+        - value: 123.234.123.0/24
+          action: Allow

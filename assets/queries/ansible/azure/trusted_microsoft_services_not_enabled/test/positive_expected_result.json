@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Trusted Microsoft Services Not Enabled",
+		"severity": "HIGH",
+		"line": 7
+	},
+	{
+		"queryName": "Trusted Microsoft Services Not Enabled",
+		"severity": "HIGH",
+		"line": 24
+	},
+	{
+		"queryName": "Trusted Microsoft Services Not Enabled",
+		"severity": "HIGH",
+		"line": 40
+	}
+]
