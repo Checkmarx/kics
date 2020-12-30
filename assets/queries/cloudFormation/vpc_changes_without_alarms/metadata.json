@@ -1,5 +1,5 @@
 {
-  "id": "Filter_And_Alarm_Exist_For_VPC_Changes",
+  "id": "vpc_changes_without_alarms",
   "queryName": "VPC Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",
