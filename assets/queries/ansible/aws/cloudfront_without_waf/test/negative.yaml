@@ -6,4 +6,4 @@
       Name: example distribution
       Project: example project
       Priority: '1'
-    web_acl_id: "teste"
+    web_acl_id: my-web-acl-id
