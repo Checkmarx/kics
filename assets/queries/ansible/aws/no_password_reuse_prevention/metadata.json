@@ -1,8 +1,8 @@
 {
   "id": "ansible_No_password_reuse_prevention",
-  "queryName": "No password reuse prevention",
+  "queryName": "No Password Reuse Prevention",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Password policy `password_reuse_prevention` doesn't exist or is equal to 0",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html#parameter-pw_reuse_prevent"
 }
