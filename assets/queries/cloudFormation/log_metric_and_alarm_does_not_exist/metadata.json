@@ -1,8 +1,0 @@
-{
-  "id": "Log_Metric_And_Alarm_Does_Not_Exist",
-  "queryName": "Log Metric And Alarm Does Not Exist for IAM Policy Changes",
-  "severity": "MEDIUM",
-  "category": "Monitoring",
-  "descriptionText": "A log metric filter and alarm should exist for IAM policy changes",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html"
-}
