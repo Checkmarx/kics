@@ -2,16 +2,11 @@
 	{
 		"queryName": "RDS Publicly Accessible",
 		"severity": "HIGH",
-		"line": 11
+		"line": 12
 	},
 	{
 		"queryName": "RDS Publicly Accessible",
 		"severity": "HIGH",
-		"line": 25
-	},
-	{
-		"queryName": "RDS Publicly Accessible",
-		"severity": "HIGH",
-		"line": 35
+		"line": 22
 	}
 ]

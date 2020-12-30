@@ -18,20 +18,6 @@ CxPolicy[result] {
     document := input.document[i]
     tasks := getTasks(document)
     task := tasks[t]
-    isAnsibleTrue(task.rds.publicly_accessible)
-    result := {
-        "documentId": document.id,
-        "searchKey": sprintf("name=%s.rds.publicly_accessible", [task.name]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("module's parameter rds.publicly_accessible should be false in task: '%s'", [task.name]),
-        "keyActualValue": sprintf("module's parameter rds.publicly_accessible is true in task: '%s'", [task.name])
-    }
-}
-
-CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
     isAnsibleTrue(task["community.aws.rds"].publicly_accessible)
     result := {
         "documentId": document.id,
