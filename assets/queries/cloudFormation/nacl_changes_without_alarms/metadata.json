@@ -1,6 +1,6 @@
 {
-  "id": "Filter_And_Alarm_Exist_For_Changes_To_NACL",
-  "queryName": "Filter And Alarm Not Exists For Changes To NACL",
+  "id": "nacl_changes_without_alarms",
+  "queryName": "NACL Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",
   "descriptionText": "A log metric filter and alarm should exist for changes to Network Access Control Lists",
