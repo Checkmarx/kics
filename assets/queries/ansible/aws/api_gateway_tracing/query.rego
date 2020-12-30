@@ -5,16 +5,24 @@ CxPolicy [ result ] {
   tasks := getTasks(document)
   task := tasks[t]
   awsApiGateway := task["community.aws.aws_api_gateway"]
-  awsApiGateway.tracing_enabled == false
+  isFalse(awsApiGateway.tracing_enabled)
   clusterName := task.name
 
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.aws_api_gateway}}.tracing_enabled", [clusterName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": "community.aws.aws_api_gateway.tracing_enabled should be enable",
-                "keyActualValue":   "community.aws.aws_api_gateway.tracing_enabled is disable"
+                "keyExpectedValue": "community.aws.aws_api_gateway.tracing_enabled should be enabled",
+                "keyActualValue":   "community.aws.aws_api_gateway.tracing_enabled is disabled"
               }
+}
+
+isFalse(answer) {
+lower(answer) == "no"
+} else {
+lower(answer) == "false"
+} else {
+answer == false
 }
 
 getTasks(document) = result {
