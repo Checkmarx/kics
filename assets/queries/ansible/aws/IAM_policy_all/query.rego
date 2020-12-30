@@ -13,7 +13,7 @@ CxPolicy [  result ] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.policy.Statement.Resource", [clusterName]),
-                "issueType":        "MissingValue",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Resource not equal '*'",
                 "keyActualValue":   "community.aws.iam_managed_policy.policy.Statement.Resource equal '*'"
               }
@@ -33,7 +33,7 @@ CxPolicy [result] {
   result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [clusterName]),
-                "issueType":        "IncorrectAttribute",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
                 "keyActualValue":   "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains ':root'"
               }
@@ -48,17 +48,17 @@ getTasks(document) = result {
 }
 
 json_unmarshal(s) = result {
-	s == null
-	result := json.unmarshal("{}")
+    s == null
+    result := json.unmarshal("{}")
 }
 
 json_unmarshal(s) = result {
-	s != null
-	result := json.unmarshal(s)
+    s != null
+    result := json.unmarshal(s)
 }
 
 checkState(awsApiGateway){
-contains(awsApiGateway.state, "present")
+    contains(awsApiGateway.state, "present")
 }else{
-object.get(awsApiGateway, "state", "undefined") == "undefined"
+    object.get(awsApiGateway, "state", "undefined") == "undefined"
 }
