@@ -23,7 +23,7 @@
     key_name: default
     security_groups: ['group', 'group2' ]
     instance_type: t1.micro
-    user_data: 
+    user_data:
     volumes:
     - device_name: /dev/sda1
       volume_size: 100
