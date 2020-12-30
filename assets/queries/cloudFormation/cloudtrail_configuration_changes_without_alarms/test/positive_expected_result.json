@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Cloudtrail Configuration Changes Without Alarms",
+  		"severity": "LOW",
+		"line": 31
+	},
+	{
+		"queryName": "Cloudtrail Configuration Changes Without Alarms",
+  		"severity": "LOW",
+		"line": 71
+	},
+	{
+		"queryName": "Cloudtrail Configuration Changes Without Alarms",
+  		"severity": "LOW",
+		"line": 98
+	}
+]

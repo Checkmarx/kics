@@ -5,12 +5,12 @@ CxPolicy [ result ] {
 	resourceMetricFilter := input.document[i].Resources
     some name
     resourceMetricFilter[name].Type == "AWS::Logs::MetricFilter"
-    
+
     resourceAlarm := input.document[i].Resources
     some nameAlarm
     resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
-   
-    checkAlarm(resourceMetricFilter[name].Properties.MetricTransformations[index].MetricNamespace, resourceAlarm[nameAlarm].Properties)
+
+	resourceMetricFilter[name].Properties.MetricTransformations[index].MetricNamespace != resourceAlarm[nameAlarm].Properties.Namespace
 
     result := {
                 "documentId": 		input.document[i].id,
@@ -23,16 +23,16 @@ CxPolicy [ result ] {
 CxPolicy [ result ] {
 
 	resourceMetricFilter := input.document[i].Resources
-   
+
     resourceAlarm := input.document[i].Resources
     some nameAlarm
     resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
-   
+
     resourceSNS := input.document[i].Resources
     some nameSNS
     resourceSNS[nameSNS].Type == "AWS::SNS::Topic"
-   
-    checkTopic(resourceAlarm[nameAlarm].Properties.AlarmActions[index], nameSNS)
+
+	resourceAlarm[nameAlarm].Properties.AlarmActions[index].Ref != nameSNS
 
     result := {
                 "documentId": 		input.document[i].id,
@@ -47,12 +47,12 @@ CxPolicy [ result ] {
 	resourceMetricFilter := input.document[i].Resources
     some name
     resourceMetricFilter[name].Type == "AWS::Logs::MetricFilter"
-    
+
     resourceAlarm := input.document[i].Resources
     some nameAlarm
     resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
-    
-    
+
+
 	not regex.match("{ *\\(\\$\\.eventName *= *CreateTrail\\) *\\|\\| *\\(\\$\\.eventName *= *UpdateTrail\\) *\\|\\| *\\(\\$\\.eventName *= *DeleteTrail\\) *\\|\\| *\\(\\$\\.eventName *= *StartLogging\\) *\\|\\| *\\(\\$\\.eventName *= *StopLogging\\) *}",
     	resourceMetricFilter[name].Properties.FilterPattern)
 
@@ -64,11 +64,4 @@ CxPolicy [ result ] {
                 "keyExpectedValue":  sprintf("'Resources.%s.Properties.FilterPattern' should have the right specification')", [name]),
                 "keyActualValue": 	sprintf("'Resources.%s.FilterPattern' does not have the right specification", [name])
             }
-}
-checkAlarm(metricFilter, resourceAlarm) = true {
-    resourceAlarm.Namespace != metricFilter
-}
-
-checkTopic(resourceAlarm, nameSNS) = true {
-    resourceAlarm.Ref != nameSNS
 }
