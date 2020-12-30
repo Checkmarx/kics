@@ -1,21 +1,27 @@
 package Cx
 
-CxPolicy [  result ] {
+CxPolicy [result] {
   document := input.document[i]
   tasks := getTasks(document)
   task := tasks[t]
-  awsApiGateway := task["community.aws.lambda"]
-  contains(awsApiGateway.state, "present")
-  role := awsApiGateway.role
-  endswith(role, "/*")
+  lambda := task["lambda_policy"]
+  lambda.action == "lambda:InvokeFunction"
+  principalAllowAPIGateway(lambda.principal)
+  re_match("/\\*/\\*$", lambda.source_arn)
   clusterName := task.name
   result := {
                 "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{community.aws.lambda}}.role", [clusterName]),
-                "issueType":        "MissingValue",
-                "keyExpectedValue": "community.aws.lambda.role shoud not contain /* Instead, it should be defined for the pretended access to any other AWS resource",
-                "keyActualValue":   "community.aws.lambda.role contains /*"
+                "searchKey":        sprintf("name={{%s}}.{{lambda_policy}}.source_arn", [clusterName]),
+                "issueType":        "IncorrectValue",
+                "keyExpectedValue": "lambda_policy.source_arn should not be equal to '/*/*'",
+                "keyActualValue":   "lambda_policy.source_arn is equal to '/*/*'"
               }
+}
+
+principalAllowAPIGateway(principal) {
+	principal == "*"
+} else {
+	principal == "apigateway.amazonaws.com"
 }
 
 getTasks(document) = result {

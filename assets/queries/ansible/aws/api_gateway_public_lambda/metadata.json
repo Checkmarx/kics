@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Allowing to run lambda function using public API Gateway",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html"
+  "descriptionUrl": "https://docs.ansible.com/ansible/2.4/lambda_policy_module.html"
 }

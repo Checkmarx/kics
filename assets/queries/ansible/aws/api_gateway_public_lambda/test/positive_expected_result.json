@@ -2,6 +2,6 @@
 	{
 		"queryName": "Public Lambda via API Gateway",
 		"severity": "MEDIUM",
-		"line": 7
+		"line": 9
 	}
 ]
