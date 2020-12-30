@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 2
+	},
+
+	{
+		"queryName": "No Password Policy Enabled",
+		"severity": "HIGH",
+		"line": 16
+	}
+]
