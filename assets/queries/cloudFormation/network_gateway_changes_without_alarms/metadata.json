@@ -1,6 +1,6 @@
 {
-  "id": "Filter_And_Alarm_Exist_For_S3_Changes_To_Network_Gateways",
-  "queryName": "Filter And Alarm Not Exists For Changes To Network Gateways",
+  "id": "network_gateway_changes_without_alarms",
+  "queryName": "Network Gateway Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",
   "descriptionText": "A log metric filter and alarm should exist for Changes to Network Gateways",
