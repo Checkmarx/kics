@@ -3,6 +3,6 @@
   "queryName": "CloudTrail Logging Disabled",
   "severity": "HIGH",
   "category": "Logging",
-  "descriptionText": "Checks if we have enabled the login in the CloudTrail",
+  "descriptionText": "Checks if we have enabled logging in the CloudTrail",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html#parameter-enable_logging"
 }
