@@ -5,7 +5,7 @@ CxPolicy [result] {
   tasks := getTasks(document)
   task := tasks[t]
   lambda := task["lambda_policy"]
-  lambda.action == "lambda:InvokeFunction"
+  lambdaAction(lambda.action)
   principalAllowAPIGateway(lambda.principal)
   re_match("/\\*/\\*$", lambda.source_arn)
   clusterName := task.name
@@ -17,6 +17,13 @@ CxPolicy [result] {
                 "keyActualValue":   "lambda_policy.source_arn is equal to '/*/*'"
               }
 }
+
+lambdaAction(action){
+  action == "lambda:*"
+} else {
+  action == "lambda:InvokeFunction"
+}
+
 
 principalAllowAPIGateway(principal) {
 	principal == "*"
