@@ -10,7 +10,7 @@ Resources:
           ToPort: 8080
           CidrIp: 127.0.0.1/32
           IpProtocol: tcp
-        - IpProtocol: all
+        - IpProtocol: tcp
           FromPort: 6379
           ToPort: 6379
           CidrIp: 127.0.0.1/0
@@ -42,9 +42,9 @@ Resources:
           CidrIp: 127.0.0.1/32
         - ToPort: 1434
           CidrIp: 127.0.0.1/0
-          IpProtocol: all
+          IpProtocol: tcp
           FromPort: 1433
-        - IpProtocol: all
+        - IpProtocol: tcp
           FromPort: 150
           ToPort: 180
           CidrIp: 127.0.0.1/0
@@ -79,10 +79,10 @@ Resources:
           CidrIp: 0.0.0.0/0
           IpProtocol: tcp
           FromPort: 80
-        - ToPort: 180
+        - ToPort: 9000
           CidrIp: 127.0.0.1/0
-          IpProtocol: all
-          FromPort: 150
+          IpProtocol: tcp
+          FromPort: 9000
   EC2Instance03:
     Type: AWS::EC2::Instance
     Properties:

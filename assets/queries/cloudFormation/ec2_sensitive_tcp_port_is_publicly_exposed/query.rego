@@ -65,7 +65,7 @@ CxPolicy [ result ] {
     [11215, "Memcached SSL"],
     [27017, "Mongo"],
     [27018, "Mongo Web Portal"],
-    [61620, "Cassandra OpsCenter"]
+    [61620, "Cassandra OpsCenter"],
     [61621, "Cassandra OpsCenter"]
   ]
 
