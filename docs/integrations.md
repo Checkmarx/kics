@@ -14,10 +14,10 @@ Here you can see it in action ;)
 
 <img src="img/kics_scan_github_actions.png" width="850">  
 
-Visit the KICS GitHub Action project here:
+Visit the KICS GitHub Action project to get more details:
 
 https://github.com/marketplace/actions/kics-github-action
 
-and read about the example usage here:
+and take a look at example usage:
 
 https://github.com/marketplace/actions/kics-github-action#example-usage
