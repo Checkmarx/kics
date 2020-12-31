@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "S3 Bucket Without Encryption",
+		"severity": "HIGH",
+		"line": 3
+	},
+	{
+		"queryName": "S3 Bucket Without Encryption",
+		"severity": "HIGH",
+		"line": 10
+	}
+]

@@ -1,0 +1,12 @@
+---
+- name: Create s3 bucket
+  amazon.aws.s3_bucket:
+    name: mys3bucket
+    state: present
+- name: Create s3 bucket 02
+  amazon.aws.s3_bucket:
+    name: mys3bucket 02
+    state: present
+    encryption: "none"
+
+
