@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: 2010-09-09T00:00:00Z
+Resources:
+  UnsafeSecGroup01:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http and ssh
+      VpcId: my-vpc
+      SecurityGroupIngress:
+        - FromPort: 8080
+          ToPort: 8080
+          CidrIp: 127.0.0.1/32
+          IpProtocol: tcp
+        - IpProtocol: all
+          FromPort: 6379
+          ToPort: 6379
+          CidrIp: 127.0.0.1/0
+      SecurityGroupEgress:
+        - FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+  EC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-79fd7eee
+      InstanceType: t3.medium
+      SecurityGroups:
+        - UnsafeSecGroup01
+      KeyName: my-new-rsa-key
+---
+AWSTemplateFormatVersion: 2010-09-09T00:00:00Z
+Resources:
+  UnsafeSecGroup02:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http and ssh
+      VpcId: my-vpc
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 127.0.0.1/32
+        - ToPort: 1434
+          CidrIp: 127.0.0.1/0
+          IpProtocol: all
+          FromPort: 1433
+        - IpProtocol: all
+          FromPort: 150
+          ToPort: 180
+          CidrIp: 127.0.0.1/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+  EC2Instance02:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.medium
+      SecurityGroups:
+        - UnsafeSecGroup02
+      KeyName: my-new-rsa-key
+      ImageId: ami-79fd7eee
+---
+AWSTemplateFormatVersion: 2010-09-09T00:00:00Z
+Resources:
+  UnsafeSecGroup03:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      GroupDescription: Allow http and ssh
+      VpcId: my-vpc
+      SecurityGroupIngress:
+        - ToPort: 80
+          CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: 80
+        - ToPort: 180
+          CidrIp: 127.0.0.1/0
+          IpProtocol: all
+          FromPort: 150
+  EC2Instance03:
+    Type: AWS::EC2::Instance
+    Properties:
+      SecurityGroups:
+        - UnsafeSecGroup03
+      KeyName: my-new-rsa-key
+      ImageId: ami-79fd7eee
+      InstanceType: t3.medium
