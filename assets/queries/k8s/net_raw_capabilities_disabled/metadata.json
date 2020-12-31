@@ -1,5 +1,5 @@
 {
-  "id": "NET_RAW_Capabilities_Disabled",
+  "id": "net_raw_capabilities_disabled",
   "queryName": "NET_RAW Capabilities Disabled for PodSecurityPolicy",
   "severity": "MEDIUM",
   "category": "Privileges",
