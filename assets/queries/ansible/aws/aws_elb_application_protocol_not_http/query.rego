@@ -12,7 +12,7 @@ CxPolicy [ result ] {
 
   result := {
                 "documentId":       document.id,
-                "searchKey":        sprintf("{{community.aws.elb_application_lb}}.name=%s.listeners.Protocol=%s", [clusterName, applicationLb.listeners[index].Protocol]),
+                "searchKey":        sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners.Protocol=%s", [task.name, applicationLb.listeners[index].Protocol]),
                 "issueType":        "IncorrectValue",
                 "keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
                 "keyActualValue":   "'aws_elb_application_lb' Protocol it's not 'HTTP'"
@@ -31,7 +31,7 @@ CxPolicy [ result ] {
 
   result := {
                 "documentId":       document.id,
-                "searchKey":        sprintf("{{community.aws.elb_application_lb}}.name=%s.listeners", [clusterName]),
+                "searchKey":        sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners", [task.name]),
                 "issueType":        "MissingAttribute",
                 "keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
                 "keyActualValue":   "'aws_elb_application_lb' Protocol is missing"
