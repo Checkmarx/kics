@@ -1,8 +1,8 @@
 {
   "id": "Cloudfront_configuration_allow_HTTP",
-  "queryName": "Cloudfront configuration allow HTTP",
+  "queryName": "Cloudfront Configuration Allows HTTP",
   "severity": "HIGH",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Cloudfront distribution allows HTTP, it should be https-only or redirect-to-https",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html"
 }
