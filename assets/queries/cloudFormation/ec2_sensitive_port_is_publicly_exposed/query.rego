@@ -1,33 +1,18 @@
 package Cx
 
-getFieldName(field) = name {
-  upper(field) == "NETWORK PORTS SECURITY"
-  name = ["AWS::EC2::Instance"]
-}
-
-getResource(document) = resource {
-  theResource := document.Resources
-  theResource[getName(theResource)]
-  resource = theResource
-}
-
-getDocument([]) = document {
-  document := input.document
-}
-
-getSecurityGroup(resource, groupName) = securityGroup {
-  group = resource[securityGroupName]
+getSecurityGroup(allResources, groupName) = securityGroup {
+  group = allResources[groupName]
   group.Type = "AWS::EC2::SecurityGroup"
   securityGroup = group
 }
 
-getSecurityGroupName(resource) = name {
-  name = resource[_].Properties.SecurityGroups[_]
+getSecurityGroupName(allResources) = name {
+  name = allResources[_].Properties.SecurityGroups[_]
 }
 
 getName(resource) = name {
   subResource = resource[theName]
-  subResource.Type == getFieldName("NETWORK PORTS SECURITY")[_]
+  subResource.Type == "AWS::EC2::Instance"
   name = theName
 }
 
@@ -124,11 +109,9 @@ CxPolicy [ result ] {
   ]
 
   #############	document and resource
-  document := getDocument([])[i]
-  resource := getResource(document)
-  name = getName(resource)
-  securityGroupName = getSecurityGroupName(resource)
-  securityGroup = getSecurityGroup(resource, securityGroupName)
+  allResources := input.document[i].Resources
+  securityGroupName = [ key | secGroup := allResources[key]; secGroup.Type == "AWS::EC2::SecurityGroup"; count(secGroup.Properties.SecurityGroupIngress) > 0][m]
+  securityGroup = allResources[securityGroupName]
   ingress := getIngress(securityGroup)[n]
 
   #############	get relevant fields
@@ -148,7 +131,7 @@ CxPolicy [ result ] {
     "documentId": input.document[i].id,
     "searchKey": sprintf("Resources.%s.SecurityGroupIngress", [securityGroupName]),
     "issueType": "IncorrectValue",
-    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance %s", [portName, protocol, portNumber, name]),
-    "keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance %s", [portName, protocol, portNumber, name])
+    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance", [portName, protocol, portNumber]),
+    "keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance", [portName, protocol, portNumber])
   }
 }

@@ -129,36 +129,6 @@ Resources:
                     Enabled: false
 ---
 AWSTemplateFormatVersion: 2010-09-09
-Resources:
-  InstancesSecGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-        GroupDescription: Allow http and ssh
-        VpcId: my-vpc
-        SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 127.0.0.1/32
-        - IpProtocol: all
-          FromPort: 150
-          ToPort: 180
-          CidrIp: 127.0.0.1/0
-        SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-  MyLonelyEC2Instance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t3.medium
-      SecurityGroups:
-      - !Ref 'InstancesSecGroup'
-      KeyName: my-new-rsa-key
-      ImageId: ami-79fd7eee
----
-AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   MySubnet:
     Description: "My subnet"
