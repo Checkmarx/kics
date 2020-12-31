@@ -1,0 +1,9 @@
+- name: Create container foo and upload a file
+  azure_rm_storageblob:
+    resource_group: myResourceGroup
+    storage_account_name: clh0002
+    container: foo
+    blob: graylog.png
+    src: ./files/graylog.png
+    content_type: 'application/image'
+# access mode defaults to private
