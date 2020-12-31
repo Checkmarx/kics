@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Authentication Failure Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Authentication Failure Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Authentication Failure Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "Authentication Failure Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]
