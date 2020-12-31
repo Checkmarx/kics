@@ -12,7 +12,7 @@ https://docs.github.com/en/free-pro-team@latest/actions/quickstart
 
 Here you can see it in action ;)
 
-<img src="img/kics_scan_github_actions.png" width="850">  
+<img src="../img/kics_scan_github_actions.png" width="850">  
 
 Visit the KICS GitHub Action project to get more details:
 
