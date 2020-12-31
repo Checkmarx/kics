@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Cloudfront configuration allow HTTP",
+		"queryName": "Cloudfront Configuration Allows HTTP",
 		"severity": "HIGH",
 		"line": 20
 	}
