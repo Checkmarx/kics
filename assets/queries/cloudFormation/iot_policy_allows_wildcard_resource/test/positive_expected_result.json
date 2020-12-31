@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IoT Policy Allows Wildcard Resource",
+		"severity": "MEDIUM",
+		"line": 13
+	}
+]

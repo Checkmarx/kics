@@ -1,8 +1,8 @@
 {
-  "id": "Allow_all_IAM_policies",
-  "queryName": "Allow all IAM policies",
+  "id": "IAM_policies_allow_all",
+  "queryName": "IAM policies allows all ('*') in policy statement",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "IAM policies allow all ('*') in a statement action",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy"
 }

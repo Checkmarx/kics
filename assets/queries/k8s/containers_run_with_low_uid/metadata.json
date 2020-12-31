@@ -2,7 +2,7 @@
   "id": "Container_Running_With_Low_UID",
   "queryName": "Container Running With Low UID",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Privileges",
   "descriptionText": "Check if containers are running with low UID, which might cause conflicts with the host's user table.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
 }

@@ -2,7 +2,7 @@
   "id": "Open_access_to_resources_through_API",
   "queryName": "Open access to resources through API",
   "severity": "LOW",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Open access to back-end resources through API",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method"
 }

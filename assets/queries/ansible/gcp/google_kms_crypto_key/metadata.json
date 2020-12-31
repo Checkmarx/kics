@@ -1,0 +1,8 @@
+{
+  "id": "google_kms_crypto_key",
+  "queryName": "Google KMS Crypto Key Rotation Period",
+  "severity": "MEDIUM",
+  "category": "Encryption & Key Management",
+  "descriptionText": "Make sure Encryption keys changes after 90 days",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html"
+} 

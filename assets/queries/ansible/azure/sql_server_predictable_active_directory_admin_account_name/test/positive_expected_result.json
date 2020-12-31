@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "SQL Server Predictable Active Directory Account Name",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+	{
+		"queryName": "SQL Server Predictable Active Directory Account Name",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "SQL Server Predictable Active Directory Account Name",
+		"severity": "MEDIUM",
+		"line": 19
+	}
+]

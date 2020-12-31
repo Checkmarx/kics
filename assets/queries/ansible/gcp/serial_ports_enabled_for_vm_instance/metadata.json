@@ -1,0 +1,8 @@
+{
+  "id": "Serial_Ports_Are_Enabled_For_VM_Instances",
+  "queryName": "Serial Ports Are Enabled For VM Instances",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if serial ports are enabled in Google Compute Engine VM instances",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html"
+}

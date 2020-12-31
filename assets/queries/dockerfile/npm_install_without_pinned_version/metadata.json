@@ -1,0 +1,8 @@
+{
+  "id": "NPM_Install_Command_Without_Pinned_Version",
+  "queryName": "NPM Install Command Without Pinned Version",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Check if packages installed by npm are pinning a specific version.",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+}

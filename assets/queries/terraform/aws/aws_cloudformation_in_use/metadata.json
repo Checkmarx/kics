@@ -2,7 +2,7 @@
   "id": "aws_cloudformation_in_use",
   "queryName": "AWS CloudFormation In Use",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Operational",
   "descriptionText": "AWS CloudFormation should have a template defined through the attribute template_url or attribute template_body",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack"
 }

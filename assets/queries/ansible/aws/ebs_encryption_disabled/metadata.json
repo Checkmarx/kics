@@ -1,0 +1,8 @@
+{
+  "id": "EBS_encryption_disabled",
+  "queryName": "EBS encryption disabled",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "EBS Encryption should be enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_vol_module.html#parameter-encrypted"
+}

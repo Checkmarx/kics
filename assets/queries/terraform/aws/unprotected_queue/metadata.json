@@ -2,7 +2,7 @@
   "id": "Unprotected_Queue",
   "queryName": "Unprotected SQS Queue",
   "severity": "LOW",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "Unprotected SQS Queue",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue"
 }

@@ -1,0 +1,8 @@
+{
+  "id": "service_does not_target_pod",
+  "queryName": "Service Does Not Target Pod",
+  "severity": "LOW",
+  "category": "Networking",
+  "descriptionText": "Service should Target a Pod",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/"
+}

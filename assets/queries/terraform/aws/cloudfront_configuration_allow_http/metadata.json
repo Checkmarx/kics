@@ -2,7 +2,7 @@
   "id": "Cloudfront_configuration_allow_HTTP",
   "queryName": "Cloudfront configuration allow HTTP",
   "severity": "HIGH",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Cloudfront distribution allows HTTP, it should be https-only or redirect-to-https",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#viewer_protocol_policy"
 }

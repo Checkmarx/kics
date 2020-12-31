@@ -1,0 +1,8 @@
+{
+  "id": "ec2_subnet_mapping_public_ip_on_launch",
+  "queryName": "EC2 Subnet Mapping Public IP On Launch",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "EC2 Subnet should not have MapPublicIpOnLaunch set to true",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch"
+}

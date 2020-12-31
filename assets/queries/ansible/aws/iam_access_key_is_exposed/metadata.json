@@ -1,0 +1,8 @@
+{
+  "id": "IAM_Access_Key_Is_Exposed",
+  "queryName": "IAM Access Key Is Exposed",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Check if IAM Access Key is active for some user besides 'root'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_module.html"
+}

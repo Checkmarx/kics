@@ -2,7 +2,7 @@
   "id": "Container_Registry_enabled_Admin",
   "queryName": "Admin user is enabled for Container Registry",
   "severity": "HIGH",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Admin user is enabled for Container Registry",
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/container_registry.html"
 }
