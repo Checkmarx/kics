@@ -1,5 +1,5 @@
 ---
-- name: Create a DB instance using the default AWS KMS encryption key 
+- name: Create a DB instance using the default AWS KMS encryption key
   community.aws.rds_instance:
     id: test-encrypted-db
     state: present
