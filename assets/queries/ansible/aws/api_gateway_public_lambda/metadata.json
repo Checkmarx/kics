@@ -1,6 +1,6 @@
 {
   "id": "public_lambda_via_api_gateway",
-  "queryName": "Public Lambda via API Gateway",
+  "queryName": "public lambda via api gateway",
   "severity": "MEDIUM",
   "category": null,
   "descriptionText": "Allowing to run lambda function using public API Gateway",
