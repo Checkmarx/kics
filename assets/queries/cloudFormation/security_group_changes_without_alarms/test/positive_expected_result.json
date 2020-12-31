@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Security Group Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Security Group Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Security Group Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "Security Group Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]
