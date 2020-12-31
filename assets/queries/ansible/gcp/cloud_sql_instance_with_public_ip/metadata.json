@@ -1,0 +1,8 @@
+{
+  "id": "cloud_sql_instance_with_public_ip",
+  "queryName": "Cloud SQL Instance With Public IP",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "GCP SQL Instance should have IPv4 disabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/ipv4_enabled"
+}
