@@ -4,9 +4,7 @@ CxPolicy [ result ] {
   document := input.document[i]
   tasks := getTasks(document)
   task := tasks[t]
-  policy := json_unmarshal(task["community.aws.sqs_queue"].policy)
-  statement = policy.Statement[_]
-  check_role(statement, "*") == true 
+  task["community.aws.sqs_queue"].policy.Statement.Principal == "*"
 
 	result := {
                 "documentId": 		  input.document[i].id,
@@ -21,20 +19,6 @@ getTasks(document) = result {
     result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
     count(result) != 0
 } else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]  
+    result := [body | playbook := document.playbooks[_]; body := playbook ]
     count(result) != 0
-}
-
-json_unmarshal(s) = result {
-	s == null
-	result := json.unmarshal("{}")
-}
-
-json_unmarshal(s) = result {
-	s != null
-	result := json.unmarshal(s)
-}
-
-check_role(s, p) = true {
-    s.Principal == p
 }

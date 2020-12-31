@@ -1,4 +1,4 @@
-- name: Create SQS queue with policy
+- name: example
   community.aws.sqs_queue:
     name: my-queue
     region: ap-southeast-2
@@ -7,21 +7,15 @@
     maximum_message_size: 1024
     delivery_delay: 30
     receive_message_wait_time: 20
-    policy:  '{
-                "Version": "2012-10-17",
-                "Id": "sqspolicy",
-                "Statement":
-                [
-                  {
-                     "Sid":   "First",
-                     "Effect":  "Allow",
-                     "Principal": "*",
-                     "Action": "sqs:SendMessage",
-                     "Resource": "${aws_sqs_queue.q.arn}",
-                     "Condition": {
-                       "ArnEquals": {
-                         "aws:SourceArn": "${aws_sns_topic.example.arn}"
-                       }
-                     }
-                  }
-                 ] }'
+    policy:
+      Version: '2012-10-17'
+      Id: sqspolicy
+      Statement:
+        Sid : First
+        Effect : Allow
+        Principal : '*'
+        Action: sqs:SendMessage
+        Resource:  ${aws_sqs_queue.q.arn}
+        Condition:
+          ArnEquals:
+          aws:SourceArn: ${aws_sns_topic.example.arn}

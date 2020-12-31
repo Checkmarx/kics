@@ -2,6 +2,6 @@
 	{
 		"queryName": "SQS Queue Exposed",
 		"severity": "HIGH",
-		"line": 18
+		"line": 16
 	}
 ]
