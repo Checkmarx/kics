@@ -19,7 +19,7 @@ CxPolicy [ result ] {
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value", [pgConfigName]),
-                "issueType":        "WrongValue",
+                "issueType":        "IncorrectValue",
                 "keyExpectedValue": "azure.azcollection.azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_connections'",
                 "keyActualValue":   "azure.azcollection.azure_rm_postgresqlconfiguration.value if 'OFF'"
               }
