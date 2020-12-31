@@ -1,5 +1,0 @@
----
-- amazon.aws.s3_bucket:
-    name: mys3bucket
-    state: present
-    encryption: "aws:kms"

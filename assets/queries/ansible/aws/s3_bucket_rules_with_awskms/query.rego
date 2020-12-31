@@ -12,7 +12,7 @@ CxPolicy [ result ] {
 
     result := {
             "documentId": document.id,
-            "searchKey": sprintf("name=%s.{{amazon.aws.s3_bucket}}.encryption", [s3_bucket.name]),
+            "searchKey": sprintf("name=%s.{{amazon.aws.s3_bucket}}.encryption", [tasks[t].name]),
             "issueType": "MissingAttribute",
             "keyExpectedValue": "amazon.aws.s3_bucket.encryption_key_id is defined",
             "keyActualValue": "amazon.aws.s3_bucket.encryption_key_id is undefined"
@@ -31,7 +31,7 @@ CxPolicy [ result ] {
 
     result := {
             "documentId": document.id,
-            "searchKey": sprintf("name=%s.{{amazon.aws.s3_bucket}}.encryption", [s3_bucket.name]),
+            "searchKey": sprintf("name=%s.{{amazon.aws.s3_bucket}}.encryption", [tasks[t].name]),
             "issueType": "IncorrectValue",
             "keyExpectedValue": "amazon.aws.s3_bucket.encryption_key_id is defined",
             "keyActualValue": "amazon.aws.s3_bucket.encryption_key_id is empty or null"
