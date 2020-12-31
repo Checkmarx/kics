@@ -1,0 +1,27 @@
+[
+	{
+		"queryName": "EC2 Sensitive TCP Port Is Publicly Exposed",
+		"severity": "HIGH",
+		"line": 8
+	},
+	{
+		"queryName": "EC2 Sensitive TCP Port Is Publicly Exposed",
+		"severity": "HIGH",
+		"line": 38
+	},
+	{
+		"queryName": "EC2 Sensitive TCP Port Is Publicly Exposed",
+		"severity": "HIGH",
+		"line": 38
+	},
+	{
+		"queryName": "EC2 Sensitive TCP Port Is Publicly Exposed",
+		"severity": "HIGH",
+		"line": 38
+	},
+	{
+		"queryName": "EC2 Sensitive TCP Port Is Publicly Exposed",
+		"severity": "HIGH",
+		"line": 77
+	}
+]

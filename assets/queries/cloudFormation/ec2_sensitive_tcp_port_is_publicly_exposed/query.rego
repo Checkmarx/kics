@@ -1,41 +1,7 @@
 package Cx
 
-getSecurityGroup(allResources, groupName) = securityGroup {
-  group = allResources[groupName]
-  group.Type = "AWS::EC2::SecurityGroup"
-  securityGroup = group
-}
-
-getSecurityGroupName(allResources) = name {
-  name = allResources[_].Properties.SecurityGroups[_]
-}
-
-getName(resource) = name {
-  subResource = resource[theName]
-  subResource.Type == "AWS::EC2::Instance"
-  name = theName
-}
-
 getIngress(securityGroup) = ingress {
   ingress = securityGroup.Properties.SecurityGroupIngress
-}
-
-getProtocol(ingress) = protocol {
-  protocol = ingress.IpProtocol
-}
-
-getProtocolList(protocol) = list {
-  upper(protocol) == ["-1", "ALL"][_]
-  list = ["TCP","UDP","Icmp","icmpv6"]
-} else = list {
-  upper(protocol) == "TCP"
-  list = ["TCP"]
-} else = list {
-  upper(protocol) == "UDP"
-  list = ["UDP"]
-} else = list {
-  upper(protocol) == "ICMP"
-  list = ["Icmp"]
 }
 
 isAccessibleFromEntireNetwork(ingress) {
@@ -110,28 +76,29 @@ CxPolicy [ result ] {
 
   #############	document and resource
   allResources := input.document[i].Resources
-  securityGroupName = [ key | secGroup := allResources[key]; secGroup.Type == "AWS::EC2::SecurityGroup"; count(secGroup.Properties.SecurityGroupIngress) > 0][m]
+  securityGroupName = [key | secGroup := allResources[key]; secGroup.Type == "AWS::EC2::SecurityGroup"; count(secGroup.Properties.SecurityGroupIngress) > 0][m]
   securityGroup = allResources[securityGroupName]
   ingress := getIngress(securityGroup)[n]
 
   #############	get relevant fields
   portNumber = portNumbers[j][0]
   portName = portNumbers[j][1]
+  upper(ingress.IpProtocol) == ["TCP", "ALL"][k]
 
-  protocolList = getProtocolList(getProtocol(ingress))
-  protocol = protocolList[k]
+  #protocolList = getProtocolList(getProtocol(ingress))
+  #protocol = protocolList[k]
 
   #############	Checks
   isAccessibleFromEntireNetwork(ingress)
   containsDestinationPort(portNumber, ingress)
-  isTCPorUDP(protocol)
+  #isTCPorUDP(protocol)
 
   #############	Result
   result := {
     "documentId": input.document[i].id,
     "searchKey": sprintf("Resources.%s.SecurityGroupIngress", [securityGroupName]),
     "issueType": "IncorrectValue",
-    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance", [portName, protocol, portNumber]),
-    "keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance", [portName, protocol, portNumber])
+    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance", [portName, "TCP", portNumber]),
+    "keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance", [portName, "TCP", portNumber])
   }
 }
