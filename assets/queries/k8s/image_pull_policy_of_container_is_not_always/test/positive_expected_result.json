@@ -2,6 +2,6 @@
 	{
 		"queryName": "Image Pull Policy Of The Container Is Not Set To Always",
 		"severity": "LOW",
-		"line": 5
+		"line": 9
 	}
 ]
