@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "S3 Bucket Without Logging",
+		"severity": "LOW",
+		"line": 5
+	}
+]
