@@ -1,6 +1,6 @@
 {
   "id": "RDS_ca_cert_id_expired",
-  "queryName": "RDS CA certificate identifier is expired",
+  "queryName": "RDS CA Certificate Identifier Is Expired",
   "severity": "HIGH",
   "category": "Data Security",
   "descriptionText": "The CA certificate Identifier must be rds-ca-2019",
