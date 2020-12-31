@@ -6,9 +6,13 @@ This provides you an ability to integrate KICS scans and apply KICS vulnerabilit
 Use KICS GitHub action from the marketplace:
 go to https://github.com/marketplace/actions/kics-github-action
 
-You can read about GitHub actions integration in the official GitHub documentation:
+and read about GitHub actions integration in the official GitHub documentation:
 
 https://docs.github.com/en/free-pro-team@latest/actions/quickstart
+
+Here you can see it in action ;)
+
+<img alt="KICS GitHub Action Example" src="docs/img/kics_scan_github_actions.png" width="250">  
 
 Visit the KICS GitHub Action project here:
 
