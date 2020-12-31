@@ -18,6 +18,6 @@ Visit the KICS GitHub Action project to get more details:
 
 https://github.com/marketplace/actions/kics-github-action
 
-and take a look at example usage:
+and take a look at the example usage shown above:
 
 https://github.com/marketplace/actions/kics-github-action#example-usage
