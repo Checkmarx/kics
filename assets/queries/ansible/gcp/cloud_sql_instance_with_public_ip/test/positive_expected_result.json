@@ -2,6 +2,6 @@
 	{
 		"queryName": "Cloud SQL Instance With Public IP",
 		"severity": "HIGH",
-		"line": 12
+		"line": 13
 	}
 ]

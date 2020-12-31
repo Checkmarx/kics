@@ -5,6 +5,7 @@ CxPolicy [ result ] {
   tasks := getTasks(document)
   task := tasks[t]
   instance := task["google.cloud.gcp_sql_instance"]
+  contains(instance.database_version, "SQLSERVER")
   settings := instance.settings
   ip_configuration := settings.ip_configuration
 
