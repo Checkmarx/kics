@@ -3,6 +3,6 @@
   "queryName": "CloudTrail Logging Disabled",
   "severity": "HIGH",
   "category": "Logging",
-  "descriptionText": "Enables Logging for the trail",
+  "descriptionText": "Checks if we have enabled the login in the CloudTrail",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_logging"
 }

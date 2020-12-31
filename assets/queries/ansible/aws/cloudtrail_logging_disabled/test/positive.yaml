@@ -1,4 +1,4 @@
-- name: pause logging the trail we just created
+- name: example
   community.aws.cloudtrail:
     state: present
     name: default
