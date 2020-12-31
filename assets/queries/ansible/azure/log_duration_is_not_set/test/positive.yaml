@@ -1,0 +1,36 @@
+- name: example1
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name:  log_duration
+    value: off
+- name: example2
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name:  log_duration
+    value: Off
+- name: example3
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name:  log_duration
+    value: OFF
+- name: example4
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name:  log_duration
+    value: "off"
+- name: example5
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name:  log_duration
+    value: "Off"
+- name: example6
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name:  log_duration
+    value: "OFF"

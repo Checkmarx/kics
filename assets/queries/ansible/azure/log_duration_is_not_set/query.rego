@@ -13,15 +13,15 @@ CxPolicy [ result ] {
   is_string(pgConfig.value)
   value := upper(pgConfig.value)
 
-  name == "log_disconnections"
+  name == "log_duration"
   value != "ON"
 
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value", [pgConfigName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": "azure.azcollection.azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_disconnections'",
-                "keyActualValue":   "azure.azcollection.azure_rm_postgresqlconfiguration.value if 'OFF'"
+                "keyExpectedValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value should be 'ON' for 'log_duration'", [pgConfigName]),
+                "keyActualValue":   sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value is 'OFF' for 'log_duration'", [pgConfigName])
               }
 }
 
