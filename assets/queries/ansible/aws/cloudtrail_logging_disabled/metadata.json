@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Logging",
   "descriptionText": "Checks if we have enabled logging in the CloudTrail",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_logging"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html#parameter-enable_logging"
 }
