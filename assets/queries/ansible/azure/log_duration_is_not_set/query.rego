@@ -20,8 +20,8 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value", [pgConfigName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value should be 'ON' when name is 'log_duration'", [pgConfigName]),
-                "keyActualValue":   sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value if 'OFF'", [pgConfigName])
+                "keyExpectedValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value should be 'ON' for 'log_duration'", [pgConfigName]),
+                "keyActualValue":   sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value is 'OFF' for 'log_duration'", [pgConfigName])
               }
 }
 
