@@ -1,8 +1,8 @@
 {
   "id": "CosmosDB_Account_Ip_Range_Filter_Not_Setted",
-  "queryName": "CosmosDB Account Ip Range Filter Not Setted",
+  "queryName": "CosmosDB Account Ip Range Filter Not Set",
   "severity": "HIGH",
   "category": "Network Security",
-  "descriptionText": "The ip range must be defined",
+  "descriptionText": "The ip range filter should be defined",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html#parameter-ip_range_filter"
 }
