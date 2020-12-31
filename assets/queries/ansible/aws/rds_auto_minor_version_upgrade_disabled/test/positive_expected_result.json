@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS Auto Minor Version Upgrade Disabled",
+		"severity": "HIGH",
+		"line": 10
+	},
+	{
+		"queryName": "RDS Auto Minor Version Upgrade Disabled",
+		"severity": "HIGH",
+		"line": 12
+	}
+]
