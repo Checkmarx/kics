@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "IAM Policy Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "IAM Policy Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "IAM Policy Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "IAM Policy Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]
