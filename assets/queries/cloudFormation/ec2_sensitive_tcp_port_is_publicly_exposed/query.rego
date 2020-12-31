@@ -85,13 +85,9 @@ CxPolicy [ result ] {
   portName = portNumbers[j][1]
   upper(ingress.IpProtocol) == ["TCP", "ALL"][k]
 
-  #protocolList = getProtocolList(getProtocol(ingress))
-  #protocol = protocolList[k]
-
   #############	Checks
   isAccessibleFromEntireNetwork(ingress)
   containsDestinationPort(portNumber, ingress)
-  #isTCPorUDP(protocol)
 
   #############	Result
   result := {
