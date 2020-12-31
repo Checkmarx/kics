@@ -2,12 +2,12 @@
 	{
 		"queryName": "ALB protocol is HTTP",
 		"severity": "HIGH",
-		"line": 11
+		"line": 12
 	},
 	{
 		"queryName": "ALB protocol is HTTP",
 		"severity": "HIGH",
-		"line": 29
+		"line": 31
 	}
 
 ]

@@ -1,5 +1,6 @@
 ---
-- community.aws.elb_application_lb:
+- name: my_elb_application
+  community.aws.elb_application_lb:
     name: myelb
     security_groups:
       - sg-12345678

@@ -1,5 +1,6 @@
 ---
-- community.aws.elb_application_lb:
+- name: my_elb_application
+  community.aws.elb_application_lb:
     name: myelb
     security_groups:
       - sg-12345678
@@ -18,7 +19,8 @@
           - Type: forward # Required.
             TargetGroupName: # Required. The name of the target group
     state: present
-- community.aws.elb_application_lb:
+- name: my_elb_application2
+  community.aws.elb_application_lb:
     name: myelb2
     security_groups:
       - sg-12345678
