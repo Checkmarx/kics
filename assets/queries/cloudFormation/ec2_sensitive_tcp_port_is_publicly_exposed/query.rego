@@ -15,11 +15,6 @@ containsDestinationPort(port, ingress) {
   port == numbers.range(ingress.FromPort, ingress.ToPort)[_]
 }
 
-isTCPorUDP(protocol) {
-  tcpUdp = ["TCP","UDP"]
-  upper(protocol) == tcpUdp[_]
-}
-
 CxPolicy [ result ] {
   #############	inputs
   # List of ports
@@ -27,13 +22,11 @@ CxPolicy [ result ] {
     [22, "SSH"],
     [23, "Telnet"],
     [25, "SMTP"],
-    [53, "DNS"],
     [110, "POP3"],
     [135, "MSSQL Debugger"],
     [137, "NetBIOS Name Service"],
     [138, "NetBIOS Datagram Service"],
     [139, "NetBIOS Session Service"],
-    [161, "SNMP"],
     [389, "LDAP"],
     [445, "Microsoft-DS"],
     [636, "LDAP SSL"],
@@ -42,6 +35,7 @@ CxPolicy [ result ] {
     [1521, "Oracl DB"],
     [2382, "SQL Server Analysis"],
     [2383, "SQL Server Analysis"],
+    [2483, "Oracle DB SSL"],
     [2484, "Oracle DB SSL"],
     [3000, "Prevalent known internal port"],
     [3020, "CIFS / SMB"],
@@ -71,6 +65,7 @@ CxPolicy [ result ] {
     [11215, "Memcached SSL"],
     [27017, "Mongo"],
     [27018, "Mongo Web Portal"],
+    [61620, "Cassandra OpsCenter"]
     [61621, "Cassandra OpsCenter"]
   ]
 
@@ -83,7 +78,7 @@ CxPolicy [ result ] {
   #############	get relevant fields
   portNumber = portNumbers[j][0]
   portName = portNumbers[j][1]
-  upper(ingress.IpProtocol) == ["TCP", "ALL"][k]
+  upper(ingress.IpProtocol) == "TCP"
 
   #############	Checks
   isAccessibleFromEntireNetwork(ingress)

@@ -15,11 +15,6 @@ containsDestinationPort(port, ingress) {
   port == numbers.range(ingress.FromPort, ingress.ToPort)[_]
 }
 
-isTCPorUDP(protocol) {
-  tcpUdp = ["TCP","UDP"]
-  upper(protocol) == tcpUdp[_]
-}
-
 CxPolicy [ result ] {
   #############	inputs
   # List of ports
