@@ -34,12 +34,12 @@ CxPolicy [ result ] {
               }
 }
 
-checkFalse(uppercase){
-lower(uppercase) == "no"
+checkFalse(lowercase){
+lower(lowercase) == "no"
 } else {
-lower(uppercase) == "false"
+lower(lowercase) == "false"
 } else {
-uppercase == false
+lowercase == false
 }
 
 
