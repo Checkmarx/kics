@@ -2,6 +2,6 @@
 	{
 		"queryName": "User Data Shell Script Is Encoded",
 		"severity": "HIGH",
-		"line": 1
+		"line": 9
 	}
 ]
