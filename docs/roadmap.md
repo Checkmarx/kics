@@ -26,5 +26,5 @@
 * Google Cloud Deployment Manager
 
 Have an idea?  
-Join the chat [on Gitter](https://gitter.im/kics-dev/community).  
+Join the chat [on Gitter](https://gitter.im/kics-io/community).  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
