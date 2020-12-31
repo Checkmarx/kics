@@ -1,0 +1,42 @@
+[
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 37
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 37
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 73
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 73
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 138
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 138
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 264
+	},
+	{
+		"queryName": "LB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 264
+	}
+]
