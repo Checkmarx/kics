@@ -1,0 +1,8 @@
+{
+  "id": "storage_account_tls_version",
+  "queryName": "Storage Account TLS Version",
+  "severity": "MEDIUM",
+  "category": "Storage",
+  "descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-minimum_tls_version"
+}
