@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Network Gateway Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Network Gateway Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Network Gateway Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "Network Gateway Changes Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]

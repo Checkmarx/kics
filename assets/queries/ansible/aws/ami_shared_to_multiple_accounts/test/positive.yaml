@@ -1,0 +1,12 @@
+- name: Update AMI Launch Permissions, making it public
+  amazon.aws.ec2_ami:
+    image_id: "{{ instance.image_id }}"
+    state: present
+    launch_permissions:
+      group_names: ['all']
+- name: Allow AMI to be launched by another account
+  amazon.aws.ec2_ami:
+    image_id: "{{ instance.image_id }}"
+    state: present
+    launch_permissions:
+      user_ids: ['123456789012', '121212']

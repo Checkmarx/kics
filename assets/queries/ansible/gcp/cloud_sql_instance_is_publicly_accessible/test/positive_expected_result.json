@@ -2,16 +2,16 @@
 	{
 		"queryName": "Cloud SQL DB Is Publicly Accessible",
 		"severity": "HIGH",
-		"line": 15
+		"line": 18
 	},
 	{
 		"queryName": "Cloud SQL DB Is Publicly Accessible",
 		"severity": "HIGH",
-		"line": 28
+		"line": 31
 	},
 	{
 		"queryName": "Cloud SQL DB Is Publicly Accessible",
 		"severity": "HIGH",
-		"line": 39
+		"line": 42
 	}
 ]

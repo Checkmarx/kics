@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Yum Clean All Missing",
+		"severity": "MEDIUM",
+		"line": 3
+	}
+]

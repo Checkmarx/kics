@@ -1,0 +1,8 @@
+{
+  "id": "db_security_group_lower_than_256",
+  "queryName": "DB Security Group Lower than 256",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "DB Security CIDR must be lower than 256 (/24)",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module"
+}

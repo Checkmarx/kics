@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Root Account Has Associated Active Access Keys",
+		"severity": "HIGH",
+		"line": 3
+	}
+]

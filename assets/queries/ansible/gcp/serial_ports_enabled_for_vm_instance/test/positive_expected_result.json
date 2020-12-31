@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Serial Ports Are Enabled For VM Instances",
+		"severity": "MEDIUM",
+		"line": 4
+	}
+]

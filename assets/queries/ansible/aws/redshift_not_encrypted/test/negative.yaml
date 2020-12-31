@@ -1,5 +1,5 @@
 ---
-- name: Basic cluster provisioning example1
+- name: Basic cluster provisioning example
   community.aws.redshift:
     identifier: tf-redshift-cluster
     db_name: mydb

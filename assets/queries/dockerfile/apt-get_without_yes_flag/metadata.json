@@ -1,0 +1,8 @@
+{
+  "id": "APT-GET_Missing_'-y'_To_Avoid_Manual_Input",
+  "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+  "severity": "MEDIUM",
+  "category": "Package Management",
+  "descriptionText": "Check if apt-get calls use the flag -y to avoid user manual input.",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+}

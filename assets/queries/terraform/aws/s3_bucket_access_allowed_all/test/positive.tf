@@ -5,7 +5,6 @@ resource "aws_s3_bucket" "b" {
     policy = <<POLICY
 {
   "Version": "2012-10-17",
-  "Id": "sqspolicy",
   "Statement": [
     {
       "Sid": "IPAllow",

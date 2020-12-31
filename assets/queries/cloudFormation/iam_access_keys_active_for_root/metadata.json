@@ -1,0 +1,8 @@
+{
+  "id": "IAM_Access_Keys_Associated_To_Root_Account",
+  "queryName": "IAM Access Keys Associated To Root Account",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "Check if the root user has any access keys associated to it.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html"
+}

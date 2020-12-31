@@ -1,0 +1,5 @@
+- name: create cloudwatchlogs log group
+  community.aws.cloudwatchlogs_log_group:
+    state: present
+    log_group_name: test-log-group
+    tags: { "Name": "test-log-group", "Env" : "QA" }

@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Lambda Permission Principal Is Wildcard",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]

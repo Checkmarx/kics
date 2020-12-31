@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "RefreshToken Is Exposed",
+		"severity": "MEDIUM",
+		"line": 18
+	}
+
+]

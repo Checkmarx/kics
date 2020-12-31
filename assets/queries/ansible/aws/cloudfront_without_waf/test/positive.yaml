@@ -1,0 +1,8 @@
+- name: create a basic distribution with defaults and tags
+  community.aws.cloudfront_distribution:
+    state: present
+    default_origin_domain_name: www.my-cloudfront-origin.com
+    tags:
+      Name: example distribution
+      Project: example project
+      Priority: '1'

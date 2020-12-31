@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Service Does Not Target Pod",
+		"severity": "LOW",
+		"line": 14
+	},
+	{
+		"queryName": "Service Does Not Target Pod",
+		"severity": "LOW",
+		"line": 25
+	}
+]

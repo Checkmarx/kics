@@ -1,0 +1,5 @@
+- name: example
+  community.aws.cloudtrail:
+    state: present
+    name: default
+    enable_logging: false

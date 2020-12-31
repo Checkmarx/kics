@@ -1,0 +1,8 @@
+{
+  "id": "IAM_Password_Without_Valid_Minimum_Length",
+  "queryName": "IAM Password Without Valid Minimum Length",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if IAM account password has the required minimum length",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html"
+}

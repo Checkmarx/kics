@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EC2 Instance Has Hardcoded Access Key",
+		"severity": "LOW",
+		"line": 7
+	}
+]

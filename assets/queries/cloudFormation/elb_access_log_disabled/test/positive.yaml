@@ -27,6 +27,10 @@ Resources:
           Attributes:
             - Name: Reference-Security-Policy
               Value: ELBSecurityPolicy-TLS-1-2-2017-01
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A simple EC2 instance
+Resources:
   MyLoadBalancer2:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:

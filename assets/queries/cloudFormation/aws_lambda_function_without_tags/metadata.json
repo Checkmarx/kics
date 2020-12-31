@@ -1,0 +1,8 @@
+{
+  "id": "aws_lambda_function_without_tags",
+  "queryName": "AWS Lambda Function Without Tags",
+  "severity": "MEDIUM",
+  "category": "Compute",
+  "descriptionText": "AWS Lambda Functions must have associated tags.",
+  "descriptionUrl": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html#how-to-tag-console"
+}

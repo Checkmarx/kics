@@ -1,0 +1,8 @@
+{
+  "id": "s3_bucket_disabled_cloudtrail_logging",
+  "queryName": "S3 Bucket Disabled Cloudtrail Logging",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable when the Service used is CloudTrail",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig"
+}

@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "Run Using Upgrade Commands",
+		"severity": "HIGH",
+		"line": 2
+	},
+
+	{
+		"queryName": "Run Using Upgrade Commands",
+		"severity": "HIGH",
+		"line": 6
+	}
+]

@@ -17,7 +17,7 @@ nav:
   - Home: index.md
   - Install:
     - Getting Started: getting-started.md
-#    - Integrations: integrations.md
+    - Integrations: integrations.md
     - Results: results.md
   - Queries: queries.md
   - Architecture: architecture.md

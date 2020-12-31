@@ -1,0 +1,21 @@
+- name: Basic AMI Creation
+  amazon.aws.ec2_ami:
+    instance_id: i-xxxxxx
+    device_mapping:
+      device_name: /dev/sda
+      encrypted: no
+    wait: yes
+    name: newtest
+    tags:
+      Name: newtest
+      Service: TestService
+- name: Basic AMI Creation2
+  amazon.aws.ec2_ami:
+    instance_id: i-xxxxxx
+    device_mapping:
+      device_name: /dev/sda
+    wait: yes
+    name: newtest
+    tags:
+      Name: newtest
+      Service: TestService

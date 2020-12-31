@@ -1,0 +1,23 @@
+[
+	{
+		"queryName": "Unprotected SQS Queue",
+		"severity": "LOW",
+		"line": 2
+	},
+	{
+		"queryName": "Unprotected SQS Queue",
+		"severity": "LOW",
+		"line": 16
+	},
+	{
+		"queryName": "Unprotected SQS Queue",
+		"severity": "LOW",
+		"line": 22
+	},
+	{
+		"queryName": "Unprotected SQS Queue",
+		"severity": "LOW",
+		"line": 29
+	}
+]
+

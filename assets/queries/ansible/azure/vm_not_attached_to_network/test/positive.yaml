@@ -1,0 +1,9 @@
+---
+- name: Create a VM with a custom image
+  azure_rm_virtualmachine:
+    resource_group: myResourceGroup
+    name: testvm001
+    vm_size: Standard_DS1_v2
+    admin_username: adminUser
+    admin_password: password01
+    image: customimage001
