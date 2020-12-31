@@ -1,0 +1,8 @@
+{
+  "id": "missing_user_instruction",
+  "queryName": "Missing USER Instruction",
+  "severity": "HIGH",
+  "category": "Container",
+  "descriptionText": "A user should be specified in the dockerfile, otherwise the image will run as root",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user"
+}
