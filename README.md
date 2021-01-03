@@ -16,7 +16,7 @@
 
 **K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
-It is as simple as running a CLI tool, making it easy to integrate into any project CI.
+It is as simple as running a CLI tool, making it easy to integrate into any project CI flow.
 
 #### Supported Platforms
 
