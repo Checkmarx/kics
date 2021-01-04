@@ -12,3 +12,4 @@ services:
       context: ./
       dockerfile: Dockerfile
     command: -p /path/ -v
+    
