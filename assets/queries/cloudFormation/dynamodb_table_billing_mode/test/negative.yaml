@@ -16,7 +16,7 @@ Resources:
         -
           AttributeName: "NumberOfSongs"
           AttributeType: "N"
-      KeySchema: 
+      KeySchema:
         -
           AttributeName: "Album"
           KeyType: "HASH"
@@ -126,8 +126,8 @@ Resources:
             -
               AttributeName: "Sales"
               KeyType: "RANGE"
-          Projection: 
-            NonKeyAttributes: 
+          Projection:
+            NonKeyAttributes:
               - "Album"
               - "Artist"
             ProjectionType: "INCLUDE"

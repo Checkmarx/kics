@@ -3,7 +3,7 @@ Resources:
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      AttributeDefinitions: 
+      AttributeDefinitions:
         -
           AttributeName: "Album"
           AttributeType: "S"
@@ -50,7 +50,7 @@ Resources:
               AttributeName: "Sales"
               KeyType: "RANGE"
           Projection:
-            NonKeyAttributes: 
+            NonKeyAttributes:
               - "Album"
               - "Artist"
             ProjectionType: "INCLUDE"
