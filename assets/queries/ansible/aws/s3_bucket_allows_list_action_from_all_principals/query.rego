@@ -7,6 +7,7 @@ CxPolicy [ result ] {
   bucket := task["amazon.aws.s3_bucket"]
   bucketName := task.name
   
+  bucket.policy.Statement[_].Effect == "Allow"
   contains(lower(bucket.policy.Statement[_].Action), "list")
   bucket.policy.Statement[_].Principal == "*"
 
@@ -14,8 +15,8 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [bucketName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": "amazon.aws.s3_bucket does not allow List Action From All Principals",
-                "keyActualValue":   "amazon.aws.s3_bucket allows List Action From All Principals"
+                "keyExpectedValue": sprintf("amazon.aws.s3_bucket[%s] does not allow List Action From All Principals", [bucketName]),
+                "keyActualValue":   sprintf("amazon.aws.s3_bucket[%s] allows List Action From All Principals", [bucketName])
               }
 }
 
