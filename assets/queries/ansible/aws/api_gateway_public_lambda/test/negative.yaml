@@ -1,0 +1,9 @@
+- name: Lambda S3 event notification
+  lambda_policy:
+    state: "{{ state | default('present') }}"
+    function_name: functionName
+    alias: Dev
+    statement_id: lambda-s3-myBucket-create-data-log
+    action: lambda:InvokeFunction
+    principal: s3.amazonaws.com
+    source_arn: arn:aws:s3:eu-central-1:123456789012:bucketname

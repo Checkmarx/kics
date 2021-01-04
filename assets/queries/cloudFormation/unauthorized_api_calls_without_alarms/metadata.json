@@ -1,0 +1,8 @@
+{
+  "id": "unauthorized_api_calls_without_alarms",
+  "queryName": "Unauthorized API Calls Without Alarms",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and alarm should exist for Unauthorized API Calls",
+  "descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html"
+}

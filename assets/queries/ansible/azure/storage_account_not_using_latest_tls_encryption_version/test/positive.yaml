@@ -1,0 +1,15 @@
+---
+- name: Create an account with kind of FileStorage
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: c1h0002
+    type: Premium_LRS
+    kind: FileStorage
+    minimum_tls_version: TLS1_0
+    tags:
+      testing: testing
+- name: remove account, if it exists
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    state: absent

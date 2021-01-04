@@ -1,8 +1,8 @@
 {
   "id": "limit_capabilities_of_the_container",
-  "queryName": "Limit Capabilities Of The Container",
+  "queryName": "Not Limited Capabilities For Container",
   "severity": "MEDIUM",
-  "category": null,
-  "descriptionText": "List of capabilities removed from the Container.",
+  "category": "Privileges",
+  "descriptionText": "Limit the capabilities for a Container.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
 }

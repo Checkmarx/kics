@@ -1,0 +1,8 @@
+{
+  "id": "s3_bucket_with_public_access",
+  "queryName": "S3 Bucket With Public Access",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "S3 Bucket allows public access",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission"
+}

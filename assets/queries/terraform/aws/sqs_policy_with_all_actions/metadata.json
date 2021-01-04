@@ -2,7 +2,7 @@
   "id": "SQS_policy_allows_ALL_actions",
   "queryName": "SQS policy allows ALL (*) actions",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "SQS policy allows ALL (*) actions",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy"
 }

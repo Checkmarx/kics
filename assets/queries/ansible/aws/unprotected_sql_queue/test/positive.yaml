@@ -1,0 +1,33 @@
+- name: Create SQS queue with redrive policy
+  community.aws.sqs_queue:
+    name: my-queue
+    region: ap-southeast-2
+    default_visibility_timeout: 120
+    message_retention_period: 86400
+    maximum_message_size: 1024
+    delivery_delay: 30
+    receive_message_wait_time: 20
+    policy: "{{ json_dict }}"
+    redrive_policy:
+      maxReceiveCount: 5
+      deadLetterTargetArn: arn:aws:sqs:eu-west-1:123456789012:my-dead-queue
+
+- name: Drop redrive policy
+  community.aws.sqs_queue:
+    name: my-queue
+    region: ap-southeast-2
+    redrive_policy: {}
+
+- name: Create FIFO queue
+  community.aws.sqs_queue:
+    name: fifo-queue
+    region: ap-southeast-2
+    queue_type: fifo
+    content_based_deduplication: yes
+
+- name: Tag queue
+  community.aws.sqs_queue:
+    name: fifo-queue
+    region: ap-southeast-2
+    tags:
+      example: SomeValue

@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "S3 Bucket With Public Access",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "S3 Bucket With Public Access",
+		"severity": "MEDIUM",
+		"line": 11
+	}
+]

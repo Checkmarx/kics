@@ -1,8 +1,0 @@
-{
-  "id": "Filter_And_Alarm_Not_Exists_For_AWS_Config_Configuration",
-  "queryName": "Filter And Alarm Not Exists For AWS Config Configuration",
-  "severity": "MEDIUM",
-  "category": "Monitoring",
-  "descriptionText": "A log metric filter and alarm should exist for AWS Config Configuration",
-  "descriptionUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html"
-}

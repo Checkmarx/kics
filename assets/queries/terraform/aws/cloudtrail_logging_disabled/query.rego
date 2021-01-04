@@ -5,10 +5,10 @@ CxPolicy [ result ] {
   resource.enable_logging == false
 
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_cloudtrail.%s.enable_logging", [name]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": "enable_logging is true",
-                "keyActualValue": 	"enable_logging is false"
+                "documentId": 		  input.document[i].id,
+                "searchKey": 	      sprintf("aws_cloudtrail.%s.enable_logging", [name]),
+                "issueType":		    "IncorrectValue",
+                "keyExpectedValue": sprintf("aws_cloudtrail.%s.enable_logging is true", [name]),
+                "keyActualValue": 	sprintf("aws_cloudtrail.%s.enable_logging is false", [name])
               }
 }

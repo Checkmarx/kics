@@ -1,0 +1,8 @@
+{
+  "id": "https_traffic_disabled",
+  "queryName": "HTTPS Traffic Disabled",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html"
+}

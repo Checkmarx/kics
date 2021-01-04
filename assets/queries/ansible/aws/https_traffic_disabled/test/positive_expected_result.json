@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "HTTPS Traffic Disabled",
+		"severity": "HIGH",
+		"line": 20
+	}
+	,
+	{
+		"queryName": "HTTPS Traffic Disabled",
+		"severity": "HIGH",
+		"line": 50
+	}
+]

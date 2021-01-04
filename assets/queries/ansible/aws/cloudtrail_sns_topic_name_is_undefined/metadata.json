@@ -1,0 +1,8 @@
+{
+  "id": "CloudTrail_SNS_Topic_Name_Is_Undefined",
+  "queryName": "CloudTrail SNS Topic Name Is Undefined",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Check if there is a CloudTrail resource that doesn't have the appropriate SNS topic name to notify the log file delivery",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html"
+}

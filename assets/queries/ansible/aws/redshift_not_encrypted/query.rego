@@ -6,7 +6,7 @@ CxPolicy [ result ] {
   task := tasks[t]
   redshiftCluster := task["community.aws.redshift"]
   clusterName := task.name
-	
+
   object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
 
     result := {
@@ -40,7 +40,7 @@ getTasks(document) = result {
     result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
     count(result) != 0
 } else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]  
+    result := [body | playbook := document.playbooks[_]; body := playbook ]
     count(result) != 0
 }
 

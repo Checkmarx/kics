@@ -1,0 +1,11 @@
+---
+- name: create a bucket
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    logging:
+      log_bucket: a_bucket_for_logs
+      log_object_prefix: log

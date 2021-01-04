@@ -1,0 +1,8 @@
+{
+  "id": "update_instruction_alone",
+  "queryName": "Update Instruction Alone",
+  "severity": "MEDIUM",
+  "category": "Image",
+  "descriptionText": "Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+}

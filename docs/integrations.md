@@ -1,13 +1,16 @@
 ## Integrations
 
-For effective and secure continuous delivery of a cloud native project, it's advised to integrate KICS into your project CI pipeline.  
+You can integrate KICS into your CI with Github Actions. 
+This provides you the ability to integrate KICS scans and apply KICS vulnerabilities and miconfiguration checks to your infrastructure as code (IaC)
 
-In a nutshell, a typical CI process would looke something like the following:
+Use KICS GitHub action from the [marketplace](https://github.com/marketplace/actions/kics-github-action)
 
-1. Deploy KICS.
-1. Clone your project source code repo.
-1. Run KICS on the project source code.
-1. Parse the [output results](results.md).
-1. Pass or fail the build based on the results.
+and read about GitHub actions integration in the official GitHub [documentation](https://docs.github.com/en/free-pro-team@latest/actions/quickstart)
 
-For specific instructions see the [getting started page](getting-started.md).
+Here you can see it in action ;)
+
+<img src="../img/kics_scan_github_actions.png" width="850">  
+
+Visit the [KICS GitHub Action project](https://github.com/marketplace/actions/kics-github-action) to get more details
+
+and take a look at the [example usage](https://github.com/marketplace/actions/kics-github-action#example-usage) shown above

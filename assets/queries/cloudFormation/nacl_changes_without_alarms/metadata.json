@@ -1,0 +1,8 @@
+{
+  "id": "nacl_changes_without_alarms",
+  "queryName": "NACL Changes Without Alarms",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and alarm should exist for changes to Network Access Control Lists",
+  "descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html"
+}

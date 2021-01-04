@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "EBS encryption disabled",
+		"severity": "HIGH",
+		"line": 5
+	},
+	{
+		"queryName": "EBS encryption disabled",
+		"severity": "HIGH",
+		"line": 12
+	},
+	{
+		"queryName": "EBS encryption disabled",
+		"severity": "HIGH",
+		"line": 19
+	},
+	{
+		"queryName": "EBS encryption disabled",
+		"severity": "HIGH",
+		"line": 24
+	}
+]

@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Alexa Skill Plaintext Clientsecret",
+		"severity": "MEDIUM",
+		"line": 17
+	}
+]
