@@ -30,7 +30,7 @@ CxPolicy[result] {
     
     attr := object.get(task[modules[index]], attributes[j], "undefined")
     attr != "undefined"
-    isNoOrFalse(attr)
+    not isYesOrTrue(attr)
     
     
     result := {
@@ -50,7 +50,7 @@ getTasks(document) = result {
     count(result) != 0
 }
 
-isNoOrFalse(attribute) {
-	options := {"no", false}
+isYesOrTrue(attribute) {
+	options := {"yes", true}
 	attribute == options[j]
 }
