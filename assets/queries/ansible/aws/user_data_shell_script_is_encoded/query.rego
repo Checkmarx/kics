@@ -10,7 +10,7 @@ CxPolicy [ result ] {
 
   result := {
           "documentId": document.id,
-          "searchKey": sprintf("name=%s.{{community.aws.ec2_lc}}.user_data", [task.name]),
+          "searchKey": sprintf("name={{%s}}.{{community.aws.ec2_lc}}.user_data", [task.name]),
           "issueType": "IncorrectValue",
           "keyExpectedValue": sprintf("name=%s.{{community.aws.ec2_lc}}.user_data is not shell script", [task.name]),
           "keyActualValue": sprintf("name=%s.{{community.aws.ec2_lc}}.user_data is shell script", [task.name]),
