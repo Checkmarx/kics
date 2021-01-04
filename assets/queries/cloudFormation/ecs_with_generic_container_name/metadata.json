@@ -1,0 +1,8 @@
+{
+  "id": "ecs_with_generic_container_name",
+  "queryName": "ECS Task Definition With Generic Container Name",
+  "severity": "LOW",
+  "category": "Operational",
+  "descriptionText": "Amazon ECS should have Container Name with the name that we need to check",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html"
+}
