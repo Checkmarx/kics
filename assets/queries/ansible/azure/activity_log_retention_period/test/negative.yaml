@@ -11,7 +11,7 @@
       - Action
     retention_policy:
       enabled: True
-      days: 100
+      days: 380
     storage_account:
       resource_group: myResourceGroup
       name: myStorageAccount

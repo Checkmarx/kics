@@ -26,14 +26,16 @@ CxPolicy [ result ] {
   monitorName := task.name
   retentionPolicy := azureMonitor.retention_policy
   isAnsibleTrue(retentionPolicy.enabled)
-  retentionPolicy.days <= 90
+  retentionPolicy.days < 365
+  retentionPolicy.days > 0
+
 
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{azure_rm_monitorlogprofile}}.retention_policy.days", [monitorName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": "azure_rm_monitorlogprofile.retention_policy.days is greater than 90 days",
-                "keyActualValue":   "azure_rm_monitorlogprofile.retention_policy.days is lesser than 90 days"
+                "keyExpectedValue": "azure_rm_monitorlogprofile.retention_policy.days is greater than 365 days or 0",
+                "keyActualValue":   "azure_rm_monitorlogprofile.retention_policy.days is lesser than 365 days or differnt than 0"
               }
 }
 
