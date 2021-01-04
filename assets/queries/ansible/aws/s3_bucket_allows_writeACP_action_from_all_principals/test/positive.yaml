@@ -8,4 +8,4 @@
       Statement:
       - Effect: Allow
         Action: WriteACP
-        Principal: "*" 
+        Principal: "*"
