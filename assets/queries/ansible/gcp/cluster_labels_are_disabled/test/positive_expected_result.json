@@ -3,5 +3,15 @@
 		"queryName": "Cluster Labels are Disabled",
 		"severity": "HIGH",
 		"line": 2
+	},
+	{
+		"queryName": "Cluster Labels are Disabled",
+		"severity": "HIGH",
+		"line": 31
+	},
+	{
+		"queryName": "Cluster Labels are Disabled",
+		"severity": "HIGH",
+		"line": 47
 	}
 ]

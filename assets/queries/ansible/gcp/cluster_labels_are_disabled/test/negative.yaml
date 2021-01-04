@@ -13,4 +13,4 @@
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
     state: present
-    resource_labels:
+    resource_labels: label1
