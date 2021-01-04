@@ -44,7 +44,7 @@ CxPolicy[result] {
     }
 }
 
-getTasks(document) = result {
+getTasks(document) {
     result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
     count(result) != 0
 } else = result {
@@ -52,13 +52,17 @@ getTasks(document) = result {
     count(result) != 0
 }
 
-isSSH(currentFromPort, currentToPort) = allow {
+isSSH(currentFromPort, currentToPort) {
      currentFromPort <= 22
      currentToPort >= 22
-     allow = true
 }
 
-isPrivate(cidr) = allow {
+isSSH(currentFromPort, currentToPort) {
+     currentFromPort == -1
+     currentToPort == -1
+}
+
+isPrivate(cidr) {
      isArray := is_array(cidr)
      
      privateIPs = ["192.120.0.0/16", "75.132.0.0/16", "79.32.0.0/8", "64:ff9b::/96", "2607:F8B0::/32"]
@@ -66,16 +70,12 @@ isPrivate(cidr) = allow {
      cidrLength := count(cidr)
      
      count({x | cidr[x]; cidr[x] == privateIPs[j]}) == cidrLength
-     
-     allow = true
 }
 
-isPrivate(cidr) = allow {
+isPrivate(cidr) {
      isString := is_string(cidr)
      
      privateIPs = ["192.120.0.0/16", "75.132.0.0/16", "79.32.0.0/8", "64:ff9b::/96", "2607:F8B0::/32"]
     
      cidr == privateIPs[j]
-     
-     allow = true
 }
