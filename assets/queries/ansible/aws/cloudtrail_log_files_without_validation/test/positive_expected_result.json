@@ -1,0 +1,13 @@
+[
+	{
+		"queryName": "CloudTrail Log Files Without Validation",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+
+	{
+		"queryName": "CloudTrail Log Files Without Validation",
+		"severity": "MEDIUM",
+		"line": 21
+	}
+]

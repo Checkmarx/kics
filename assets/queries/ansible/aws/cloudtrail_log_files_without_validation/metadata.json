@@ -1,0 +1,8 @@
+{
+  "id": "cloudtrail_log_files_without_validation",
+  "queryName": "CloudTrail Log Files Without Validation",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "CloudTrail Log Files should have validation enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html"
+} 
