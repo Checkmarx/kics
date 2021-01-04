@@ -1,0 +1,8 @@
+{
+  "id": "unused_vpc",
+  "queryName": "Unused VPC",
+  "severity": "LOW",
+  "category": "Operational",
+  "descriptionText": "VPCs must have resources attached to them",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html"
+}
