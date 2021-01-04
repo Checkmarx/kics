@@ -35,7 +35,7 @@ CxPolicy [ result ] {
                 "searchKey":        sprintf("name={{%s}}.{{azure_rm_monitorlogprofile}}.retention_policy.days", [monitorName]),
                 "issueType":        "IncorrectValue",
                 "keyExpectedValue": "azure_rm_monitorlogprofile.retention_policy.days is greater than 365 days or 0",
-                "keyActualValue":   "azure_rm_monitorlogprofile.retention_policy.days is lesser than 365 days or differnt than 0"
+                "keyActualValue":   "azure_rm_monitorlogprofile.retention_policy.days is lesser than 365 days or different than 0"
               }
 }
 
