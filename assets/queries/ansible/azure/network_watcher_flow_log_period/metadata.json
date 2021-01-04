@@ -1,0 +1,8 @@
+{
+  "id": "network_watcher_flow_log_period",
+  "queryName": "Network Security Group Flow Log Retention Period",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Ensures Network Security Group Flow Log Retention Period is greater than 90 days",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html"
+}
