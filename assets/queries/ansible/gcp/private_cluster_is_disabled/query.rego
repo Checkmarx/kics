@@ -13,8 +13,8 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [clusterName]),
                 "issueType":        "MissingAttribute",
-                "keyExpectedValue": "google.cloud.gcp_container_cluster.private_cluster_config is defined",
-                "keyActualValue":   "google.cloud.gcp_container_cluster.private_cluster_config is undefined"
+                "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config is defined", [clusterName]),
+                "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config is undefined", [clusterName])
               }
 }
 
@@ -31,8 +31,8 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config", [clusterName]),
                 "issueType":        "MissingAttribute",
-                "keyExpectedValue": "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_nodes is defined",
-                "keyActualValue":   "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_nodes is undefined"
+                "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is defined", [clusterName]),
+                "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is undefined", [clusterName])
               }
 }
 
@@ -49,8 +49,8 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config", [clusterName]),
                 "issueType":        "MissingAttribute",
-                "keyExpectedValue": "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_endpoint is defined",
-                "keyActualValue":   "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_endpoint is undefined"
+                "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is defined", [clusterName]),
+                "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is undefined", [clusterName])
               }
 }
 
@@ -66,8 +66,8 @@ CxPolicy [ result ] {
               "documentId":       input.document[i].id,
               "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_endpoint", [clusterName]),
               "issueType":        "IncorrectValue",
-              "keyExpectedValue": "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_endpoint is true",
-              "keyActualValue":   "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_endpoint is false"
+              "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is true", [clusterName]),
+              "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is false", [clusterName])
             }
 }
 
@@ -83,8 +83,8 @@ CxPolicy [ result ] {
               "documentId":       input.document[i].id,
               "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_nodes", [clusterName]),
               "issueType":        "IncorrectValue",
-              "keyExpectedValue": "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_nodes is true",
-              "keyActualValue":   "google.cloud.gcp_container_cluster.private_cluster_config.enable_private_nodes is false"
+              "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is true", [clusterName]),
+              "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is false", [clusterName])
             }
 }
 
