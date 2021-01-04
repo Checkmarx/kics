@@ -2,11 +2,6 @@
 	{
 		"queryName": "S3 Bucket With Any Principal",
 		"severity": "HIGH",
-		"line": 3
-	},
-	{
-		"queryName": "S3 Bucket With Any Principal",
-		"severity": "HIGH",
-		"line": 10
+		"line": 8
 	}
 ]

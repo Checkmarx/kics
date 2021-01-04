@@ -1,15 +1,11 @@
 #this is a problematic code where the query should report a result(s)
-- name: Simple GET operation1
-  amazon.aws.aws_s3:
-    bucket: mybucket1
-    object: /my/desired/key.txt
-    dest: /usr/local/myfile.txt
-    mode: get
-    permission: public-read-write
-- name: Simple GET operation2
-  amazon.aws.aws_s3:
-    bucket: mybucket2
-    object: /my/desired/key.txt
-    dest: /usr/local/myfile.txt
-    mode: get
-    permission: public-read
+- name: Bucket
+  amazon.aws.s3_bucket:
+    name: mys3bucket
+    state: present
+    policy:
+      Version: "2020-10-07"
+      Statement:
+      - Effect: Allow
+        Action: GetObject
+        Principal: "*"
