@@ -9,4 +9,4 @@
             - 'AWS::S3::Bucket'
     source:
         owner: AWS
-        identifier: 'S3_BUCKET_PUBLIC_WRITE_PROHIBITED'
+        identifier: 'ENCRYPTED_VOLUMES'

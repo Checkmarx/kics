@@ -7,7 +7,7 @@ CxPolicy [ result ] {
   configRule := task["community.aws.aws_config_rule"]
   configRuleName := task.name
 
-  upper(configRule.source.identifier) == "ENCRYPTED_VOLUMES"
+  not upper(configRule.source.identifier) == "ENCRYPTED_VOLUMES"
 
   result := {
                 "documentId":       input.document[i].id,
