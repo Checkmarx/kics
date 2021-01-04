@@ -1,0 +1,8 @@
+{
+  "id": "codebuild_not_encrypted",
+  "queryName": "CodeBuild Not Encrypted",
+  "severity": "null",
+  "category": "Encryption and Key Management",
+  "descriptionText": "CodeBuild Project should be encrypted",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_codebuild_module.html"
+}
