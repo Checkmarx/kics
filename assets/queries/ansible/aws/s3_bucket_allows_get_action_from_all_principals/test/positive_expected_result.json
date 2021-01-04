@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "S3 Bucket Allows Get Action From All Principals",
+		"severity": "HIGH",
+		"line": 8
+	}
+]
