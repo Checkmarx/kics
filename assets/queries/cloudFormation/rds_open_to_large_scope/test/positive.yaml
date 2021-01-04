@@ -1,10 +1,10 @@
 #this is a problematic code where the query should report a result(s)
-Resources: 
-  DBinstance1: 
+Resources:
+  DBinstance1:
     Type: AWS::RDS::DBInstance
-    Properties: 
-      DBSecurityGroups: 
-        - 
+    Properties:
+      DBSecurityGroups:
+        -
           Ref: "DbSecurity"
       AllocatedStorage: "5"
       DBInstanceClass: "db.t3.small"
@@ -12,19 +12,19 @@ Resources:
       MasterUsername: "YourName"
       MasterUserPassword: "YourPassword"
     DeletionPolicy: "Snapshot"
-  DbSecurity: 
+  DbSecurity:
     Type: AWS::RDS::DBSecurityGroup
-    Properties: 
+    Properties:
       GroupDescription: "Ingress for Amazon EC2 security group"
-      DBSecurityGroupIngress: 
+      DBSecurityGroupIngress:
         CIDRIP: 1.2.3.4/23
 ---
-Resources: 
-  DBinstance2: 
+Resources:
+  DBinstance2:
     Type: AWS::RDS::DBInstance
-    Properties: 
-      DBSecurityGroups: 
-        - 
+    Properties:
+      DBSecurityGroups:
+        -
           Ref: "DbSecurityByEC2SecurityGroup1"
       AllocatedStorage: "5"
       DBInstanceClass: "db.t3.small"
@@ -32,19 +32,19 @@ Resources:
       MasterUsername: "YourName"
       MasterUserPassword: "YourPassword"
     DeletionPolicy: "Snapshot"
-  DbSecurityByEC2SecurityGroup1: 
+  DbSecurityByEC2SecurityGroup1:
     Type: AWS::EC2::SecurityGroup
-    Properties: 
+    Properties:
       GroupDescription: "Ingress for Amazon EC2 security group"
-      SecurityGroupIngress: 
+      SecurityGroupIngress:
         CidrIp: 1.2.3.4/23
 ---
-Resources: 
-  DBinstance3: 
+Resources:
+  DBinstance3:
     Type: AWS::RDS::DBInstance
-    Properties: 
-      DBSecurityGroups: 
-        - 
+    Properties:
+      DBSecurityGroups:
+        -
           Ref: "DbSecurityByEC2SecurityGroup2"
       AllocatedStorage: "5"
       DBInstanceClass: "db.t3.small"
@@ -52,9 +52,9 @@ Resources:
       MasterUsername: "YourName"
       MasterUserPassword: "YourPassword"
     DeletionPolicy: "Snapshot"
-  DbSecurityByEC2SecurityGroup2: 
+  DbSecurityByEC2SecurityGroup2:
     Type: AWS::EC2::SecurityGroup
-    Properties: 
+    Properties:
       GroupDescription: "Ingress for Amazon EC2 security group"
-      SecurityGroupIngress: 
+      SecurityGroupIngress:
         CidrIpv6: 2001:db8:a::123/64

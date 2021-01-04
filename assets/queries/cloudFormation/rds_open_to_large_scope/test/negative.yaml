@@ -1,10 +1,10 @@
 #this code is a correct code for which the query should not find any result
-Resources: 
-  DBinstance: 
+Resources:
+  DBinstance:
     Type: AWS::RDS::DBInstance
-    Properties: 
-      DBSecurityGroups: 
-        - 
+    Properties:
+      DBSecurityGroups:
+        -
           Ref: "DbSecurityByEC2SecurityGroup"
       AllocatedStorage: "5"
       DBInstanceClass: "db.t3.small"
@@ -12,9 +12,9 @@ Resources:
       MasterUsername: "YourName"
       MasterUserPassword: "YourPassword"
     DeletionPolicy: "Snapshot"
-  DbSecurityByEC2SecurityGroup: 
+  DbSecurityByEC2SecurityGroup:
     Type: AWS::RDS::DBSecurityGroup
-    Properties: 
+    Properties:
       GroupDescription: "Ingress for Amazon EC2 security group"
-      DBSecurityGroupIngress: 
+      DBSecurityGroupIngress:
         CIDRIP: 1.2.3.4/28
