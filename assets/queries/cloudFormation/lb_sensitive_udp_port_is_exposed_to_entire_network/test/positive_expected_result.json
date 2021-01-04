@@ -1,0 +1,27 @@
+[
+	{
+		"queryName": "LB Sensitive UDP Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 20
+	},
+	{
+		"queryName": "LB Sensitive UDP Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 20
+	},
+	{
+		"queryName": "LB Sensitive UDP Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 20
+	},
+	{
+		"queryName": "LB Sensitive UDP Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 113
+	},
+	{
+		"queryName": "LB Sensitive UDP Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 113
+	}
+]
