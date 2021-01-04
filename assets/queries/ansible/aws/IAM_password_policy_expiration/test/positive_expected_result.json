@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Incorrect password policy expiration",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+	{
+		"queryName": "Incorrect password policy expiration",
+		"severity": "MEDIUM",
+		"line": 21
+	},
+	{
+		"queryName": "Incorrect password policy expiration",
+		"severity": "MEDIUM",
+		"line": 33
+	}
+]

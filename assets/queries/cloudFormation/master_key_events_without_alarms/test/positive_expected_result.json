@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Master Key Events Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Master Key Events Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Master Key Events Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "Master Key Events Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]

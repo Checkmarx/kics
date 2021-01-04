@@ -2,7 +2,7 @@
   "id": "Insufficient_password_length",
   "queryName": "Insufficient password length",
   "severity": "HIGH",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Unsafe Password length policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy"
 }

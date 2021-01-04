@@ -1,0 +1,8 @@
+{
+  "id": "RDP_Access_Is_Not_Restricted",
+  "queryName": "RDP Access Is Not Restricted",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html"
+}

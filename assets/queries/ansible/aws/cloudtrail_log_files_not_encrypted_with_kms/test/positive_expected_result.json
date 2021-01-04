@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "CloudTrail Log Files Not Encrypted With KMS",
+		"severity": "MEDIUM",
+		"line": 2
+	}
+
+]

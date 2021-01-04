@@ -1,0 +1,34 @@
+- name: note that encrypted volumes are only supported in >= Ansible 2.4
+  community.aws.ec2_lc:
+    name: special
+    image_id: ami-XXX
+    key_name: default
+    security_groups: ['group', 'group2' ]
+    instance_type: t1.micro
+    volumes:
+    - device_name: /dev/sda1
+      volume_size: 100
+      volume_type: io1
+      iops: 3000
+      delete_on_termination: true
+      encrypted: no
+- name: note that encrypted volumes are only supported in >= Ansible 2.4 v2
+  ec2_lc:
+    name: special
+    image_id: ami-XXX
+    key_name: default
+    security_groups: ['group', 'group2' ]
+    instance_type: t1.micro
+    volumes:
+    - device_name: /dev/sda1
+      volume_size: 100
+      volume_type: io1
+      iops: 3000
+      delete_on_termination: true
+- name: note that encrypted volumes are only supported in >= Ansible 2.4 v3
+  ec2_lc:
+    name: special
+    image_id: ami-XXX
+    key_name: default
+    security_groups: ['group', 'group2' ]
+    instance_type: t1.micro

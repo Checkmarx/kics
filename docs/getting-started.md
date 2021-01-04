@@ -7,9 +7,11 @@ There are multiple ways to get KICS up and running:
 
 KICS is available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
 
+To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see CLI Options section below)
+
 ```txt
 docker pull checkmarx/kics:latest  
-docker run -v {​​​​path_to_local_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
+docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```  
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.

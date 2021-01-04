@@ -1,0 +1,8 @@
+{
+  "id": "ec2_sensitive_udp_port_is_publicly_exposed",
+  "queryName": "EC2 Sensitive UDP Port Is Publicly Exposed",
+  "severity": "HIGH",
+  "category": "Network Ports Security",
+  "descriptionText": "The EC2 instance has a sensitive port connection exposed to the entire internet.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
+}

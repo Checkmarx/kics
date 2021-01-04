@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IAM Access Keys Associated To Root Account",
+		"severity": "HIGH",
+		"line": 6
+	}
+]

@@ -2,7 +2,7 @@
   "id": "Unprotected_S3_Storage",
   "queryName": "Unprotected S3 Storage",
   "severity": "LOW",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "Unprotected S3 Storage",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
 }

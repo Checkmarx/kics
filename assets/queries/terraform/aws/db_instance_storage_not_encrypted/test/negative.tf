@@ -22,5 +22,5 @@ resource "aws_db_instance" "default2" {
   password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
   iam_database_authentication_enabled = false
-  ms_key_id = "${aws_kms_key.my_key.key_id}"
+  kms_key_id = "${aws_kms_key.my_key.key_id}"
 }

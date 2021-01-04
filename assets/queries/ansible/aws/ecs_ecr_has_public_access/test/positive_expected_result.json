@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "ECS ECR has Public Access",
+		"severity": "HIGH",
+		"line": 9
+	}
+]

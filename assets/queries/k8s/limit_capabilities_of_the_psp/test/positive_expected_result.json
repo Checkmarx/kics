@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Limit The Capabilities From The PSP",
+		"queryName": "Not Limited Capabilities For Pod Security Policy",
 		"severity": "HIGH",
 		"line": 10
 	}

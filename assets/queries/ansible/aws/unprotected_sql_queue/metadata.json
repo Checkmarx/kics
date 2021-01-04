@@ -1,0 +1,8 @@
+{
+  "id": "unprotected_sql_queue",
+  "queryName": "Unprotected SQS Queue",
+  "severity": "LOW",
+  "category": "Encryption and Key Management",
+  "descriptionText": " SQS Queue should be protected with CMK encryption",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#ansible-collections-community-aws-sqs-queue-module"
+}

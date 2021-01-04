@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "Default Namespace",
+		"queryName": "Using Default Namespace",
 		"severity": "MEDIUM",
 		"line": 5
 	},
 
 	{
-		"queryName": "Default Namespace",
+		"queryName": "Using Default Namespace",
 		"severity": "MEDIUM",
 		"line": 36
 	}

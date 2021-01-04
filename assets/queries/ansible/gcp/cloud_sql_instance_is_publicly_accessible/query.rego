@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy [result] {
-  playbooks := input.document[i].playbooks
+  playbooks := getTasks(input.document[i])
   sql_instance := playbooks[j]
   instance := sql_instance["google.cloud.gcp_sql_instance"]
   settings := instance.settings
@@ -22,7 +22,7 @@ CxPolicy [result] {
 }
 
 CxPolicy [result] {
-  playbooks := input.document[i].playbooks
+  playbooks := getTasks(input.document[i])
   sql_instance := playbooks[j]["google.cloud.gcp_sql_instance"]
   settings := sql_instance.settings
   ip_configuration := settings.ip_configuration
@@ -40,7 +40,7 @@ CxPolicy [result] {
 }
 
 CxPolicy [ result ] {
-  playbooks := input.document[i].playbooks
+  playbooks := getTasks(input.document[i])
   sql_instance := playbooks[j]["google.cloud.gcp_sql_instance"]
   settings := sql_instance.settings
 
@@ -60,3 +60,10 @@ isTrue(attribute) {
 } else {
   attribute == true
 } else = false
+
+getTasks(document) = result {
+  result := document.playbooks[0].tasks
+} else = result {
+  object.get(document.playbooks[0],"tasks","undefined") == "undefined"
+  result := document.playbooks
+}
