@@ -7,7 +7,7 @@
 [![Documentation](https://img.shields.io/badge/docs-viewdocs-blue.svg?style=flat-square "Viewdocs")](https://docs.kics.io/)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/xmas-donkey.png" width="250">  
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-logo-donkey.png" width="250">  
 
 ---
 
