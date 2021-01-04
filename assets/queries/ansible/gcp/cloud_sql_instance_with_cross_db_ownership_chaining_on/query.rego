@@ -16,7 +16,7 @@ CxPolicy [ result ] {
                 "searchKey": 	    sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags", [task.name]),
                 "issueType":		"IncorrectValue",
                 "keyExpectedValue": "cloud_gcp_sql_instance.settings.database_flags are correct",
-                "keyActualValue": 	"cloud_gcp_sql_instance.settings.database_flags[0].name is 'cross db ownership chaining' and cloud_gcp_sql_instance.settings.database_flags[0].value is 'on'"
+                "keyActualValue": "cloud_gcp_sql_instance.settings.database_flags.name is 'cross db ownership chaining' and cloud_gcp_sql_instance.settings.database_flags.value is 'on'"
               }
 }
 
@@ -28,8 +28,8 @@ getTasks(document) = result {
 }
 
 check_database_flags_content(database_flags) {
-	database_flags[0].name == "cross db ownership chaining"
-	database_flags[0].value == "on"
+	database_flags[x].name == "cross db ownership chaining"
+	database_flags[x].value == "on"
 }
 
 check_database_flags_content(database_flags) {
