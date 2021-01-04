@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  kics:
+    platform: linux
+    image: checkmarx/kics
+    container_name: kics
+    hostname: kics
+    volumes:
+      - ./:/path/
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: -p /path/ -v
