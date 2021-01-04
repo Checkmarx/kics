@@ -2,7 +2,7 @@
   "id": "api_gateway_with_open_access",
   "queryName": "API Gateway With Open Access",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "API Gateway Method should restrict an authorization type, except for the HTTP OPTIONS method.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html"
 }
