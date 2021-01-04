@@ -1,0 +1,11 @@
+#this is a problematic code where the query should report a result(s)
+- name: Bucket
+  amazon.aws.s3_bucket:
+    name: mys3bucket
+    state: present
+    policy:
+      Version: "2020-10-07"
+      Statement:
+      - Effect: Allow
+        Action: PutObject
+        Principal: "*"
