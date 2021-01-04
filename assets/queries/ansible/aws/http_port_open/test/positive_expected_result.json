@@ -23,5 +23,15 @@
 		"queryName": "HTTP Port Open",
 		"severity": "HIGH",
 		"line": 66
+	},
+	{
+		"queryName": "HTTP Port Open",
+		"severity": "HIGH",
+		"line": 81
+	},
+	{
+		"queryName": "HTTP Port Open",
+		"severity": "HIGH",
+		"line": 96
 	}
 ]
