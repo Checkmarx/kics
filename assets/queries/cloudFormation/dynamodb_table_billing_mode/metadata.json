@@ -1,0 +1,8 @@
+{
+  "id": "dynamodb_table_billing_mode",
+  "queryName": "DynamoDB Table Billing Mode",
+  "severity": "LOW",
+  "category": "Cloud Assets Management",
+  "descriptionText": "Checks if DynamoDB Table Billing Mode is set to either PAY_PER_REQUEST or PROVISIONED",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef"
+}

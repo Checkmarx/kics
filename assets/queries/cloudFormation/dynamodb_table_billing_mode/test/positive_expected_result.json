@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "DynamoDB Table Billing Mode",
+		"severity": "LOW",
+		"line": 13
+	}
+]
