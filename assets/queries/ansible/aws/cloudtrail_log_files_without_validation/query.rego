@@ -6,9 +6,8 @@ CxPolicy[result] {
     task := tasks[t]
     
     modules := {"community.aws.cloudtrail", "cloudtrail"}
-    attributes := {"enable_log_file_validation", "log_file_validation_enabled"}
-    
-    object.get(task[modules[index]], attributes[j], "undefined") == "undefined"
+    object.get(task[modules[index]], "enable_log_file_validation", "undefined") == "undefined"
+    object.get(task[modules[index]], "log_file_validation_enabled", "undefined") == "undefined"
     
     result := {
         "documentId":        document.id,
