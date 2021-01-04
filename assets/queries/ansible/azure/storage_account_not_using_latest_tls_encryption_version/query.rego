@@ -23,7 +23,7 @@ CxPolicy[result] {
     task := tasks[t]
 
     tls_version := task["azure_rm_storageaccount"].minimum_tls_version
-    not IsLatestVersion(tls_version)
+    not tls_version == "TLS1_2"
 
     result := {
         "documentId": document.id,
@@ -40,10 +40,4 @@ getTasks(document) = result {
 } else = result {
     result := [body | playbook := document.playbooks[_]; body := playbook ]
     count(result) != 0
-}
-
-IsLatestVersion(version) {
-	version == "TLS1_2"
-} else {
-	version == true
 }

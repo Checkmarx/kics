@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Storage Account Not Using Latest TLS Encryption Version",
+		"severity": "MEDIUM",
+		"line": 8
+	},
+	{
+		"queryName": "Storage Account Not Using Latest TLS Encryption Version",
+		"severity": "MEDIUM",
+		"line": 12
+	}
+]
