@@ -1,0 +1,8 @@
+{
+  "id": "ec2_public_instance_exposed_through_subnet",
+  "queryName": "EC2 Public Instance Exposed Through Subnet",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "EC2 instances with public IP addresses shouldn't allow for unrestricted traffic to their subnets",
+  "descriptionUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+}
