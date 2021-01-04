@@ -19,4 +19,4 @@ CxPolicy [ result ] {
 
 containsBilling(array, elem) = true {
   lower(array[_]) == lower(elem)
-} else = false { true }
+}

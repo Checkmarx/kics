@@ -10,12 +10,6 @@ Resources:
         -
           AttributeName: "Artist"
           AttributeType: "S"
-        -
-          AttributeName: "Sales"
-          AttributeType: "N"
-        -
-          AttributeName: "NumberOfSongs"
-          AttributeType: "N"
       BillingMode: "PayPal"
       KeySchema:
         -
@@ -25,47 +19,3 @@ Resources:
           AttributeName: "Artist"
           KeyType: "RANGE"
       TableName: "myTableName"
-      GlobalSecondaryIndexes:
-        -
-          IndexName: "myGSI"
-          KeySchema:
-            -
-              AttributeName: "Sales"
-              KeyType: "HASH"
-            -
-              AttributeName: "Artist"
-              KeyType: "RANGE"
-          Projection:
-            NonKeyAttributes:
-              - "Album"
-              - "NumberOfSongs"
-            ProjectionType: "INCLUDE"
-        -
-          IndexName: "myGSI2"
-          KeySchema:
-            -
-              AttributeName: "NumberOfSongs"
-              KeyType: "HASH"
-            -
-              AttributeName: "Sales"
-              KeyType: "RANGE"
-          Projection:
-            NonKeyAttributes:
-              - "Album"
-              - "Artist"
-            ProjectionType: "INCLUDE"
-      LocalSecondaryIndexes:
-        -
-          IndexName: "myLSI"
-          KeySchema:
-            -
-              AttributeName: "Album"
-              KeyType: "HASH"
-            -
-              AttributeName: "Sales"
-              KeyType: "RANGE"
-          Projection:
-            NonKeyAttributes:
-              - "Artist"
-              - "NumberOfSongs"
-            ProjectionType: "INCLUDE"
