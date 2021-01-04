@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Cloud SQL Instance With Local Infile On",
+		"severity": "HIGH",
+		"line": 12
+	}
+]
