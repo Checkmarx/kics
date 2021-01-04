@@ -2,7 +2,7 @@
   "id": "S3_bucket_allows_public_policy",
   "queryName": "S3 bucket allows public policy",
   "severity": "HIGH",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "S3 bucket allows public policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block"
 }

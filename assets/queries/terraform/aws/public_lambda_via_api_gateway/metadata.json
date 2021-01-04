@@ -2,7 +2,7 @@
   "id": "Public_Lambda_via_API_Gateway",
   "queryName": "Public Lambda via API Gateway",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "Allowing to run lambda function using public API Gateway",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission"
 }

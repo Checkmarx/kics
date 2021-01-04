@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Secure Ciphers Not Used",
+		"severity": "HIGH",
+		"line": 14
+	}
+]

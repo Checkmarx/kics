@@ -1,8 +1,8 @@
 {
-  "id": "NET_RAW_Capabilities_Disabled_Minimized",
+  "id": "net_raw_capabilities_disabled_minimized",
   "queryName": "NET_RAW Capabilities Disabled Minimized",
   "severity": "HIGH",
-  "category": "Network Security",
+  "category": "Privileges",
   "descriptionText": "Containers need to have NET_RAW or All as Security Context",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }

@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "NACL Changes Without Alarms",
+  		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "NACL Changes Without Alarms",
+  		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "NACL Changes Without Alarms",
+  		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "NACL Changes Without Alarms",
+  		"severity": "MEDIUM",
+		"line": 120
+	}
+]

@@ -1,0 +1,25 @@
+---
+- name: community - Create a DB instance using the default AWS KMS encryption key
+  community.aws.rds_instance:
+    id: test-encrypted-db
+    state: present
+    engine: mariadb
+    storage_encrypted: True
+    db_instance_class: db.t2.medium
+    username: "{{ username }}"
+    password: "{{ password }}"
+    allocated_storage: "{{ allocated_storage }}"
+    publicly_accessible: Yes
+- name: community - Basic mysql provisioning example
+  community.aws.rds:
+    command: create
+    instance_name: new-database
+    db_engine: MySQL
+    size: 10
+    instance_type: db.m1.small
+    username: mysql_admin
+    password: 1nsecure
+    publicly_accessible: "true"
+    tags:
+      Environment: testing
+      Application: cms

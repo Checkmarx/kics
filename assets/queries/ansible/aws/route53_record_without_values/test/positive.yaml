@@ -1,0 +1,22 @@
+---
+- name: Use a routing policy to distribute traffic02
+  community.aws.route53:
+    state: present
+    zone: foo.com
+    record: www.foo.com
+    type: CNAME
+    value:
+    ttl: 30
+    identifier: "host1@www"
+    weight: 100
+    health_check: "d994b780-3150-49fd-9205-356abdd42e75"
+- name: Use a routing policy to distribute traffic03
+  community.aws.route53:
+    state: present
+    zone: foo.com
+    record: www.foo.com
+    type: CNAME
+    ttl: 30
+    identifier: "host1@www"
+    weight: 100
+    health_check: "d994b780-3150-49fd-9205-356abdd42e75"

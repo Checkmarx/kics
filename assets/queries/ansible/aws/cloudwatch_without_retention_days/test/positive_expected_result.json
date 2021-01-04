@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Cloudwatch Without Retention Days",
+		"severity": "LOW",
+		"line": 2
+	}
+]

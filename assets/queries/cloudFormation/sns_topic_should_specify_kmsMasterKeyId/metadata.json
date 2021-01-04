@@ -1,6 +1,6 @@
 {
   "id": "sns_topic_should_specify_kmsMasterKeyId",
-  "queryName": "Sns Topic Should Specify KmsMasterKeyId Attribute",
+  "queryName": "SNS Topic Should Specify KmsMasterKeyId Attribute",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
   "descriptionText": "KmsMasterKeyId attribute should not be undefined",

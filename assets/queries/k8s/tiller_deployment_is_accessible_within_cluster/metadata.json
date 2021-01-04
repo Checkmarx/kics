@@ -2,7 +2,7 @@
   "id": "Tiller_Deployment_Is_Accessible_From_Within_The_Cluster",
   "queryName": "Tiller Deployment Is Accessible From Within The Cluster",
   "severity": "HIGH",
-  "category": "Cloud Assets Management",
+  "category": "Networking",
   "descriptionText": "Check if any Tiller Deployment container allows access from within the cluster.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/"
 }

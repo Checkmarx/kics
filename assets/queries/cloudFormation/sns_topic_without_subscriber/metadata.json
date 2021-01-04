@@ -1,0 +1,8 @@
+{
+  "id": "sns_topic_without_subscriber",
+  "queryName": "SNS Topic Without Subscriber",
+  "severity": "LOW",
+  "category": "Monitoring",
+  "descriptionText": "Ensure appropriate subscribers to each SNS topic",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription"
+}

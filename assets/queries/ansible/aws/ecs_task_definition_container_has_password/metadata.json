@@ -1,0 +1,8 @@
+{
+  "id": "ECS_task_definition_container_has_password",
+  "queryName": "ECS Task Definition Container has Password",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "It's not recommend to use plaintext environment variables for sensitive information, such as credential data.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_environment"
+}

@@ -2,7 +2,7 @@
     "id": "statefulset_requests_storage",
     "queryName": "StatefulSet Requests Storage",
     "severity": "LOW",
-    "category": "Operational",
+    "category": "Filesystem",
     "descriptionText": "A StatefulSet requests volume storage.",
-    "descriptionUrl": "#"
+    "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
 }

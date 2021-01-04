@@ -2,7 +2,7 @@
   "id": "Public_ECR_policy",
   "queryName": "Public ECR policy",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Public ECR policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy"
 }

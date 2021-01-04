@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "IAM policies allows all ('*') in policy statement",
+		"severity": "MEDIUM",
+		"line": 9
+	}
+]

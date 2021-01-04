@@ -2,7 +2,7 @@
   "id": "Non_Kube_System_Pod_With_Host_Mount",
   "queryName": "Non Kube System Pod With Host Mount",
   "severity": "MEDIUM",
-  "category": "Operational",
+  "category": "Access Control",
   "descriptionText": "A non kube-system workload should not have hostPath mounted",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }

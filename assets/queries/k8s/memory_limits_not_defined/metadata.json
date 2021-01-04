@@ -1,8 +1,8 @@
 {
   "id": "memory_limits_is_not_defined",
-  "queryName": "Memory Limits Is Not Defined",
+  "queryName": "Memory Limits Are Not Defined",
   "severity": "MEDIUM",
-  "category": "Cloud Assets Management",
-  "descriptionText": "It's important to specify a memory limits.",
+  "category": "Resources Limiting",
+  "descriptionText": "Memory limits should be specified",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
 }

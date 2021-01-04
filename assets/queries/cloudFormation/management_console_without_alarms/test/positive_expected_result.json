@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Management Console Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Management Console Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Management Console Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "Management Console Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]

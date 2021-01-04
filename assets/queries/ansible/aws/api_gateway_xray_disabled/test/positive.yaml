@@ -1,0 +1,19 @@
+---
+- name: Setup AWS API Gateway setup on AWS and deploy API definition
+  community.aws.aws_api_gateway:
+    swagger_file: my_api.yml
+    stage: production
+    cache_enabled: true
+    cache_size: '1.6'
+    tracing_enabled: false
+    endpoint_type: EDGE
+    state: present
+- name: Update API definition to deploy new version
+  community.aws.aws_api_gateway:
+    api_id: 'abc123321cba'
+    swagger_file: my_api.yml
+    deploy_desc: Make auth fix available.
+    cache_enabled: true
+    cache_size: '1.6'
+    endpoint_type: EDGE
+    state: present

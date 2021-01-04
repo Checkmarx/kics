@@ -1,8 +1,8 @@
 {
   "id": "psp_has_allowed_capabilities",
-  "queryName": "PSP Has Allowed Capabilities",
+  "queryName": "PSP With Added Capabilities",
   "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "PodSecurityPolicy should not have allowed capabilities",
+  "category": "Privileges",
+  "descriptionText": "PodSecurityPolicy should not have added capabilities",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }

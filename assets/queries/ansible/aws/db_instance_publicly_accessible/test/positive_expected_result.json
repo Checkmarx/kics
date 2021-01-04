@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "RDS Publicly Accessible",
+		"severity": "HIGH",
+		"line": 12
+	},
+	{
+		"queryName": "RDS Publicly Accessible",
+		"severity": "HIGH",
+		"line": 22
+	}
+]

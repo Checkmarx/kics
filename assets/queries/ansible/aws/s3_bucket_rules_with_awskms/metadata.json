@@ -1,0 +1,8 @@
+{
+  "id": "s3_bucket_rules_with_master_ley_id_null",
+  "queryName": "S3 Bucket Rules With Master Key Id Null",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-encryption_key_id"
+}
