@@ -6,7 +6,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/checkmarx/kics)](https://github.com/checkmarx/kics/releases)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/xmas-donkey.png" width="250">  
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-logo-donkey.png" width="250">  
 
 ---
 
