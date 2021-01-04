@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Identity and Access Management",
   "descriptionText": "S3 Buckets must not allow Put Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html"
 }
