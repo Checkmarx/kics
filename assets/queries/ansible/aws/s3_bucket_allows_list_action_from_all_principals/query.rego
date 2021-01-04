@@ -4,18 +4,18 @@ CxPolicy [ result ] {
   document := input.document[i]
   tasks := getTasks(document)
   task := tasks[t]
-  bucket := task["amazon.aws.aws_s3"]
+  bucket := task["amazon.aws.s3_bucket"]
   bucketName := task.name
   
-  contains(bucket.mode, "list")
-  contains(bucket.permission, "public")
+  contains(lower(bucket.policy.Statement[_].Action), "list")
+  bucket.policy.Statement[_].Principal == "*"
 
     result := {
                 "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{amazon.aws.aws_s3}}", [bucketName]),
+                "searchKey":        sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [bucketName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": "amazon.aws.aws_s3 does not allow List Action From All Principals",
-                "keyActualValue":   "amazon.aws.aws_s3 allows List Action From All Principals"
+                "keyExpectedValue": "amazon.aws.s3_bucket does not allow List Action From All Principals",
+                "keyActualValue":   "amazon.aws.s3_bucket allows List Action From All Principals"
               }
 }
 

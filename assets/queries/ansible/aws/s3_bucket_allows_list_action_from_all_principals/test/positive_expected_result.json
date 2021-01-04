@@ -2,6 +2,6 @@
 	{
 		"queryName": "S3 Bucket Allows List Action From All Principals",
 		"severity": "HIGH",
-		"line": 3
+		"line": 8
 	}
 ]
