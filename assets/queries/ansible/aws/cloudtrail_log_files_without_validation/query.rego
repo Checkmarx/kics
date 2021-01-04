@@ -6,15 +6,15 @@ CxPolicy[result] {
     task := tasks[t]
     
     modules := {"community.aws.cloudtrail", "cloudtrail"}
+    attributes := {"enable_log_file_validation", "log_file_validation_enabled"}
     
-    object.get(task[modules[index]], "enable_log_file_validation", "undefined") == "undefined"
-    object.get(task[modules[index]], "log_file_validation_enabled", "undefined") == "undefined"
+    object.get(task[modules[index]], attributes[j], "undefined") == "undefined"
     
     result := {
         "documentId":        document.id,
         "searchKey":         sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
         "issueType":         "MissingAttribute",
-        "keyExpectedValue":  sprintf("%s.enable_log_file_validation or %s.log_file_validation_enabled is set", [modules[index], modules[index]]),
+        "keyExpectedValue":  sprintf("%s.enable_log_file_validation or %s.log_file_validation_enabled is defined", [modules[index], modules[index]]),
         "keyActualValue": 	 sprintf("%s.enable_log_file_validation and %s.log_file_validation_enabled are undefined", [modules[index], modules[index]])
     }
 }
@@ -51,6 +51,6 @@ getTasks(document) = result {
 }
 
 isYesOrTrue(attribute) {
-	options := {"yes", true}
+	options := {"yes", true, "true"}
 	attribute == options[j]
 }
