@@ -15,8 +15,8 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [bucketName]),
                 "issueType":        "IncorrectValue",
-                "keyExpectedValue": sprintf("amazon.aws.s3_bucket does not allow Get Action From All Principals", [bucketName]),
-                "keyActualValue":   sprintf("amazon.aws.s3_bucket allows Get Action From All Principals", [bucketName])
+                "keyExpectedValue": sprintf("amazon.aws.s3_bucket[%s] does not allow Get Action From All Principals", [bucketName]),
+                "keyActualValue":   sprintf("amazon.aws.s3_bucket[%s] allows Get Action From All Principals", [bucketName])
               }
 }
 
