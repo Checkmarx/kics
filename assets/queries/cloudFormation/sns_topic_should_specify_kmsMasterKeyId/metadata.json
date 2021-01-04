@@ -2,7 +2,7 @@
   "id": "sns_topic_should_specify_kmsMasterKeyId",
   "queryName": "Sns Topic Should Specify KmsMasterKeyId Attribute",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "KmsMasterKeyId attribute should not be undefined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html"
 }

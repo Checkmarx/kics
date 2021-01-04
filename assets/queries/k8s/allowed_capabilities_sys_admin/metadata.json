@@ -2,7 +2,7 @@
   "id": "allowed_capabilities_sys_admin",
   "queryName": "Allowed Capabilities Sys Admin",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Containers should not have CAP_SYS_ADMIN Linux capability",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
 }

@@ -2,7 +2,7 @@
   "id": "limit_capabilities_of_the_container",
   "queryName": "Limit Capabilities Of The Container",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Cloud Assets Management",
   "descriptionText": "List of capabilities removed from the Container.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
 }

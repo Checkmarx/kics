@@ -2,7 +2,7 @@
   "id": "cpu_limits",
   "queryName": "CPU Limits",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Operational",
   "descriptionText": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
 }

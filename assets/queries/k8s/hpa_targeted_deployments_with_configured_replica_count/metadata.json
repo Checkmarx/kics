@@ -2,7 +2,7 @@
   "id": "hpa_targeted_deployments_with_configured_replica_count",
   "queryName": "HPA Targeted Deployments With Configured Replica Count",
   "severity": "LOW",
-  "category": null,
+  "category": "Operational",
   "descriptionText": "Deployments targeted by HorizontalPodAutoscaler should not have a statically configured replica count set",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/"
 }

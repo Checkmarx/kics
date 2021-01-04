@@ -2,7 +2,7 @@
   "id": "limit_the_capabilities_from_the_psp",
   "queryName": "Limit The Capabilities From The PSP",
   "severity": "HIGH",
-  "category": null,
+  "category": "Cloud Assets Management",
   "descriptionText": "List of capabilities removed from the PSP.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }

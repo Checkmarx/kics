@@ -2,7 +2,7 @@
   "id": "cpu_requests",
   "queryName": "CPU Requests",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Operational",
   "descriptionText": "CPU requests should be set to ensure the sum of the resource requests of the scheduled Containers is less than the capacity of the node",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#"
 }

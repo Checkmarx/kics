@@ -2,7 +2,7 @@
     "id": "statefulset_requests_storage",
     "queryName": "StatefulSet Requests Storage",
     "severity": "LOW",
-    "category": null,
+    "category": "Operational",
     "descriptionText": "A StatefulSet requests volume storage.",
     "descriptionUrl": "#"
 }
