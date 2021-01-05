@@ -1,5 +1,5 @@
 {
-  "id": "google_container_node_pool_auto_repair",
+  "id": "google_container_node_pool_auto_repair_disabled",
   "queryName": "Google Container Node Pool Auto Repair is Disabled",
   "severity": "MEDIUM",
   "category": "Operational Efficiency",
