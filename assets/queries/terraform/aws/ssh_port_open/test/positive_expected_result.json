@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "SSH port open",
+		"queryName": "SSH Port Open",
 		"severity": "HIGH",
 		"line": 6
 	},
 	{
-		"queryName": "SSH port open",
+		"queryName": "SSH Port Open",
 		"severity": "HIGH",
 		"line": 19
 	}

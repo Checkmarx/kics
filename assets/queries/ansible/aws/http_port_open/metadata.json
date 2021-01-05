@@ -4,5 +4,5 @@
   "severity": "HIGH",
   "category": "Network Ports Security",
   "descriptionText": "HTTP port is open to the internet",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module"
 }

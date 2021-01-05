@@ -1,6 +1,6 @@
 {
   "id": "ssh_port_open",
-  "queryName": "SSH port open",
+  "queryName": "SSH Port Open",
   "severity": "HIGH",
   "category": "Network Ports Security",
   "descriptionText": "SSH port is open to the internet",

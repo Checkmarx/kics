@@ -8,8 +8,8 @@
     aws_access_key: ACCESS
     rules:
       - proto: tcp
-        from_port: 3380
-        to_port: 3450
+        from_port: 67
+        to_port: 82
         cidr_ip: 0.0.0.0/0
 
 - name: example ec2 group2
@@ -22,7 +22,7 @@
       aws_access_key: ACCESS
       rules:
         - proto: tcp
-          ports: 3389
+          ports: 80
           cidr_ip: 0.0.0.0/0
 
 - name: example ec2 group3
@@ -35,7 +35,7 @@
       aws_access_key: ACCESS
       rules:
         - proto: tcp
-          ports: 3380-3450
+          ports: 79-90
           cidr_ip: 0.0.0.0/0
 
 - name: example ec2 group4
@@ -49,8 +49,8 @@
       rules:
         - proto: tcp
           ports:
-            - 80
-            - 3380-3450
+            - 100
+            - 70-90
           cidr_ip: 0.0.0.0/0
 
 - name: example ec2 group5
@@ -64,13 +64,13 @@
       rules:
         - proto: tcp
           ports:
-            - 3389
-            - 10-50
+            - 80
+            - 30-31
           cidr_ip: 0.0.0.0/0
 
 - name: example ec2 group6
   amazon.aws.ec2_group:
-    name: example1
+    name: example
     description: an example EC2 group
     vpc_id: 12345
     region: eu-west-1
@@ -79,12 +79,12 @@
     rules:
       - proto: tcp
         from_port: -1
-        to_port: 25
+        to_port: 82
         cidr_ip: 0.0.0.0/0
 
 - name: example ec2 group7
   amazon.aws.ec2_group:
-    name: example1
+    name: example
     description: an example EC2 group
     vpc_id: 12345
     region: eu-west-1
@@ -92,6 +92,6 @@
     aws_access_key: ACCESS
     rules:
       - proto: tcp
-        from_port: 15
+        from_port: 67
         to_port: -1
         cidr_ip: 0.0.0.0/0
