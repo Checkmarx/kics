@@ -1,0 +1,20 @@
+- name: My project v2
+  community.aws.aws_codebuild:
+    description: My nice little project
+    service_role: "arn:aws:iam::123123:role/service-role/code-build-service-role"
+    source:
+        type: CODEPIPELINE
+        buildspec: ''
+    artifacts:
+        namespaceType: NONE
+        packaging: NONE
+        type: CODEPIPELINE
+        name: my_project
+    environment:
+        computeType: BUILD_GENERAL1_SMALL
+        privilegedMode: "true"
+        image: "aws/codebuild/docker:17.09.0"
+        type: LINUX_CONTAINER
+    encryption_key: "arn:aws:kms:us-east-1:123123:alias/aws/s3"
+    region: us-east-1
+    state: present
