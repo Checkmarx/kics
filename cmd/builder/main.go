@@ -30,7 +30,7 @@ func main() {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cleanInPath := cleanPath(inPath)
 			cleanOutPath := cleanPath(outPath)
-			content, err := ioutil.ReadFile(inPath)
+			content, err := ioutil.ReadFile(cleanInPath)
 			if err != nil {
 				return err
 			}
