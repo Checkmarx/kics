@@ -12,7 +12,7 @@ CxPolicy [ result ] {
                 "searchKey": 	      sprintf("name={{%s}}.{{community.aws.cloudtrail}}.is_multi_region_trail", [task.name]),
                 "issueType":		    "IncorrectValue",
                 "keyExpectedValue": sprintf("name={{%s}}.{{community.aws.cloudtrail}}.is_multi_region_trail is true", [task.name]),
-                "keyActualValue": 	sprintf("name={{%s}}.{{community.aws.cloudtrail}}.is_multi_region_trail is true", [task.name]),
+                "keyActualValue": 	sprintf("name={{%s}}.{{community.aws.cloudtrail}}.is_multi_region_trail is false", [task.name]),
               }
 }
 
