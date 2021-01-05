@@ -1,0 +1,8 @@
+{
+  "id": "aks_logging_to_azure_monitoring_disabled",
+  "queryName": "AKS Logging To Azure Monitoring Disabled",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Azure Container Service (AKS) instance should have logging enabled to Azure Monitoring",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html"
+}
