@@ -1,0 +1,8 @@
+{
+  "id": "lambda_without_xray_tracing",
+  "queryName": "Lambda Without X-Ray Tracing",
+  "severity": "LOW",
+  "category": "Logging",
+  "descriptionText": "Lambda should have X-Ray tracing enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html"
+}
