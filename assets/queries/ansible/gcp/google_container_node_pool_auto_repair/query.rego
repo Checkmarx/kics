@@ -13,7 +13,7 @@ CxPolicy [ result ] {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_node_pool}}", [containerName]),
                 "issueType":        "MissingAttribute",
-                "keyExpectedValue": "google.cloud.gcp_container_node_pool.gcpContainer.management should be set to true",
+                "keyExpectedValue": "google.cloud.gcp_container_node_pool.gcpContainer.management should be defined",
                 "keyActualValue":   "google.cloud.gcp_container_node_pool.gcpContainer.management is undefined"
               }
 }
