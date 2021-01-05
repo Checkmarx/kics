@@ -1,0 +1,8 @@
+{
+  "id": "log_min_duration_statement_wrong_value",
+  "queryName": "Log Min Duration Statement Wrong Value",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "PostgreSQL database 'log_min_duration_statement' flag isn't set to '-1'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags"
+}
