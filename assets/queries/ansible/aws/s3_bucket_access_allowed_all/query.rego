@@ -4,11 +4,10 @@ CxPolicy [ result ] {
   document := input.document[i]
   tasks := getTasks(document)
   task := tasks[t]
-  policy := json_unmarshal(task["amazon.aws.s3_bucket"].policy)
+  policy := task["amazon.aws.s3_bucket"].policy
   statement = policy.Statement[_]
-  check_role(statement.Principal, "*") == true
-  check_role(statement.Effect, "Allow") == true
-  check_role(statement.Action, "*") == true
+  statement.Principal == "*"
+  statement.Effect == "Allow" 
 
 	result := {
                 "documentId": 		  input.document[i].id,
@@ -25,18 +24,4 @@ getTasks(document) = result {
 } else = result {
     result := [body | playbook := document.playbooks[_]; body := playbook ]
     count(result) != 0
-}
-
-json_unmarshal(s) = result {
-	s == null
-	result := json.unmarshal("{}")
-}
-
-json_unmarshal(s) = result {
-	s != null
-	result := json.unmarshal(s)
-}
-
-check_role(s, p) = true {
-    s == p
 }

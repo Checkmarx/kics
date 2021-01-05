@@ -2,7 +2,7 @@
   "id": "s3_bucket_access_allowed_all",
   "queryName": "S3 Bucket Access Allowed All",
   "severity": "HIGH",
-  "category": "S3",
+  "category": "Identity and Access Management",
   "descriptionText": "Checks if the S3 bucket is accessible for all users",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#ansible-collections-amazon-aws-s3-bucket-module"
 }
