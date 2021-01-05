@@ -1,0 +1,8 @@
+{
+  "id": "cloudformation_without_template",
+  "queryName": "AWS CloudFormation Without Template",
+  "severity": "MEDIUM",
+  "category": "Cloud Assets Management",
+  "descriptionText": "AWS CloudFormation should have a template defined through the attribute template, template_url or attribute template_body",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html"
+}
