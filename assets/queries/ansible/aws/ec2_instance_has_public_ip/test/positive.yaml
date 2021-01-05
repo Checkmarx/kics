@@ -1,0 +1,24 @@
+- name: example
+  amazon.aws.ec2:
+    key_name: mykey
+    instance_type: t2.micro
+    count: 3
+    vpc_subnet_id: subnet-29e63245
+    assign_public_ip: yes
+- name: Create an ec2 launch template
+  community.aws.ec2_launch_template:
+    name: "my_template"
+    image_id: "ami-04b762b4289fba92b"
+    key_name: my_ssh_key
+    instance_type: t2.micro
+    network_interfaces:
+      associate_public_ip_address: true
+- name: start an instance with a public IP address
+  community.aws.ec2_instance:
+    name: "public-compute-instance"
+    key_name: "prod-ssh-key"
+    vpc_subnet_id: subnet-5ca1ab1e
+    instance_type: c5.large
+    security_group: default
+    network:
+      assign_public_ip: true
