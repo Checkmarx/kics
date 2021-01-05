@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"io"
+	"io/ioutil"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -47,16 +48,13 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
-			var content io.Writer
-			var t []byte
-			if _, err := io.Copy(content, rc); err != nil {
-				return errors.Wrap(err, "failed to read file content")
-			}
-			if _, err := content.Write(t); err != nil {
+
+			content, err := ioutil.ReadFile(filename)
+			if err != nil {
 				return errors.Wrap(err, "failed to read file content")
 			}
 
-			documents, kind, err := s.Parser.Parse(filename, t)
+			documents, kind, err := s.Parser.Parse(filename, content)
 			if err != nil {
 				return errors.Wrap(err, "failed to parse file content")
 			}
@@ -73,7 +71,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 					ID:           uuid.New().String(),
 					ScanID:       scanID,
 					Document:     document,
-					OriginalData: string(t),
+					OriginalData: string(content),
 					Kind:         kind,
 					FileName:     filename,
 				}

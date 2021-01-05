@@ -28,14 +28,14 @@ func main() {
 		Use:   "inspect",
 		Short: "Tool to build new query from example file",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			inPath = cleanPath(inPath)
-			outPath = cleanPath(outPath)
+			cleanInPath := cleanPath(inPath)
+			cleanOutPath := cleanPath(outPath)
 			content, err := ioutil.ReadFile(inPath)
 			if err != nil {
 				return err
 			}
 
-			rules, err := engine.Run(content, path.Base(inPath))
+			rules, err := engine.Run(content, path.Base(cleanInPath))
 			if err != nil {
 				return err
 			}
@@ -50,7 +50,7 @@ func main() {
 				return err
 			}
 
-			return saveFile(outPath, outContent)
+			return saveFile(cleanOutPath, outContent)
 		},
 	}
 
