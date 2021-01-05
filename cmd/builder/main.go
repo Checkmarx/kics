@@ -80,14 +80,14 @@ func saveFile(filePath string, content []byte) error {
 	return f.Close()
 }
 
-func cleanPath(path string) string {
-	if path == "" {
+func cleanPath(pathInput string) string {
+	if pathInput == "" {
 		return ""
 	}
-	path = filepath.Clean(path)
-	if !filepath.IsAbs(path) {
-		path = filepath.Clean(string(os.PathSeparator) + path)
-		path, _ = filepath.Rel(string(os.PathSeparator), path)
+	pathInput = filepath.Clean(pathInput)
+	if !filepath.IsAbs(pathInput) {
+		pathInput = filepath.Clean(string(os.PathSeparator) + pathInput)
+		pathInput, _ = filepath.Rel(string(os.PathSeparator), pathInput)
 	}
-	return filepath.Clean(path)
+	return filepath.Clean(pathInput)
 }
