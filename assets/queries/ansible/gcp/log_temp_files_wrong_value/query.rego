@@ -14,8 +14,8 @@ CxPolicy [ result ] {
                 "documentId": 		document.id,
                 "searchKey": 	    sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags", [task.name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags sets the log_temp_files to 1", [task.name]),
-                "keyActualValue":   sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags sets the log_temp_files to 0", [task.name])
+                "keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags sets the log_temp_files to 0", [task.name]),
+                "keyActualValue":   sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags doesn't set the log_temp_files to 0", [task.name])
               }
 }
 
