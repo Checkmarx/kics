@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  SecretsManagerSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: String
+      GenerateSecretString:
+        GenerateSecretString
+      Name: String
+      SecretString:
+        String
+      Tags:
+        - Tag

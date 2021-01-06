@@ -1,0 +1,60 @@
+#this is a problematic code where the query should report a result(s)
+Resources:
+  DBinstance1:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBSecurityGroups:
+        -
+          Ref: "DbSecurity"
+      AllocatedStorage: "5"
+      DBInstanceClass: "db.t3.small"
+      Engine: "MySQL"
+      MasterUsername: "YourName"
+      MasterUserPassword: "YourPassword"
+    DeletionPolicy: "Snapshot"
+  DbSecurity:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Ingress for Amazon EC2 security group"
+      DBSecurityGroupIngress:
+        CIDRIP: 1.2.3.4/23
+---
+Resources:
+  DBinstance2:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBSecurityGroups:
+        -
+          Ref: "DbSecurityByEC2SecurityGroup1"
+      AllocatedStorage: "5"
+      DBInstanceClass: "db.t3.small"
+      Engine: "MySQL"
+      MasterUsername: "YourName"
+      MasterUserPassword: "YourPassword"
+    DeletionPolicy: "Snapshot"
+  DbSecurityByEC2SecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Ingress for Amazon EC2 security group"
+      SecurityGroupIngress:
+        CidrIp: 1.2.3.4/23
+---
+Resources:
+  DBinstance3:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBSecurityGroups:
+        -
+          Ref: "DbSecurityByEC2SecurityGroup2"
+      AllocatedStorage: "5"
+      DBInstanceClass: "db.t3.small"
+      Engine: "MySQL"
+      MasterUsername: "YourName"
+      MasterUserPassword: "YourPassword"
+    DeletionPolicy: "Snapshot"
+  DbSecurityByEC2SecurityGroup2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Ingress for Amazon EC2 security group"
+      SecurityGroupIngress:
+        CidrIpv6: 2001:db8:a::123/64

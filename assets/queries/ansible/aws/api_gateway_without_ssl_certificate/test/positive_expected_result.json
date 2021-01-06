@@ -1,0 +1,25 @@
+[
+	{
+		"queryName": "API Gateway Without SSL Certificate",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+
+	{
+		"queryName": "API Gateway Without SSL Certificate",
+		"severity": "MEDIUM",
+		"line": 8
+	},
+
+	{
+		"queryName": "API Gateway Without SSL Certificate",
+		"severity": "MEDIUM",
+		"line": 21
+	},
+
+	{
+		"queryName": "API Gateway Without SSL Certificate",
+		"severity": "MEDIUM",
+		"line": 23
+	}
+]

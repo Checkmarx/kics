@@ -2,7 +2,7 @@
   "id": "iam_policy_on_user",
   "queryName": "IAM Policy On User",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "IAM policies should be applied to groups and not to users",
   "descriptionUrl": "#"
 }

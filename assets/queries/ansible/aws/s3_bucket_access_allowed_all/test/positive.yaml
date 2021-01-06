@@ -1,0 +1,15 @@
+- name: Create a simple s3 bucket with a policy
+  amazon.aws.s3_bucket:
+    name: mys3bucket
+    policy:
+      Version: "2012-10-17"
+      Id: "sqspolicy"
+      Statement:
+      - Sid: First
+        Effect: Allow
+        Principal: "*"
+        Action: "*"
+        Resource: ${aws_sqs_queue.q.arn}
+        Condition:
+          ArnEquals:
+            aws:SourceArn: ${aws_sns_topic.example.arn}

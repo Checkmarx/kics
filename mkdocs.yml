@@ -31,8 +31,8 @@ nav:
 # Theme
 theme:
   name: flatly
-  logo: img/logo-kics-horizontal.png
-  favicon: img/favicon.ico
+  logo: img/kics.ico
+  favicon: img/logo/kics-logo-text.png
   include_sidebar: true
   sticky_navigation: true
   

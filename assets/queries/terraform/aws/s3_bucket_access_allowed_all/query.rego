@@ -6,14 +6,13 @@ CxPolicy [ result ] {
   statement = policy.Statement[_]
   check_role(statement.Principal, "*") == true
   check_role(statement.Effect, "Allow") == true
-  check_role(statement.Action, "*") == true
-    
+
 	result := {
                 "documentId": 		  input.document[i].id,
-                "searchKey": 	      sprintf("aws_s3_bucket[%s].policy", [name]),
+                "searchKey": 	      sprintf("aws_s3_bucket[%s].policy.Statement", [name]),
                 "issueType":		    "IncorrectValue",
-                "keyExpectedValue": sprintf("aws_s3_bucket[%s].policy doesn't make the bucket accessible to all AWS Accounts", [name]),
-                "keyActualValue": 	sprintf("aws_s3_bucket[%s].policy does make the bucket accessible to all AWS Accounts", [name]),
+                "keyExpectedValue": sprintf("aws_s3_bucket[%s].policy.Statement doesn't make the bucket accessible to all AWS Accounts", [name]),
+                "keyActualValue": 	sprintf("aws_s3_bucket[%s].policy.Statement does make the bucket accessible to all AWS Accounts", [name]),
               }
 }
 

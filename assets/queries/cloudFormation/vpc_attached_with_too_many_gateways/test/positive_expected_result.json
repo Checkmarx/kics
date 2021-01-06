@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "VPC Attached With Too Many Gateways",
+		"severity": "LOW",
+		"line": 3
+	}
+]

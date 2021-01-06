@@ -1,0 +1,8 @@
+{
+  "id": "aws_cloudformation_without_template",
+  "queryName": "AWS CloudFormation Without Template",
+  "severity": "MEDIUM",
+  "category": "Cloud Assets Management",
+  "descriptionText": "AWS CloudFormation should have a template defined through the attribute template_url or attribute template_body",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack"
+}

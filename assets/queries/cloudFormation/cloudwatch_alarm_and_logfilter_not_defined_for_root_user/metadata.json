@@ -1,0 +1,8 @@
+{
+  "id": "cloudwatch_alarm_and_logfilter_not_defined_for_root_user",
+  "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "A log metric filter and an alarm should be defined for monitoring the usage of the root account",
+  "descriptionUrl": "https://aws.amazon.com/blogs/security/how-to-receive-notifications-when-your-aws-accounts-root-access-keys-are-used/"
+}

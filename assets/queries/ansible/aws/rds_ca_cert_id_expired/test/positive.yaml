@@ -1,0 +1,20 @@
+---
+- name: create minimal aurora instance in default VPC and default subnet group
+  community.aws.rds_instance:
+    engine: aurora
+    db_instance_identifier: ansible-test-aurora-db-instance
+    instance_type: db.t2.small
+    password: "{{ password }}"
+    username: "{{ username }}"
+    cluster_id: ansible-test-cluster
+    ca_certificate_identifier: rds-ca-2015
+- name: create a DB instance using the default AWS KMS encryption key
+  community.aws.rds_instance:
+    id: test-encrypted-db
+    state: present
+    engine: mariadb
+    storage_encrypted: True
+    db_instance_class: db.t2.medium
+    username: "{{ username }}"
+    password: "{{ password }}"
+    allocated_storage: "{{ allocated_storage }}"

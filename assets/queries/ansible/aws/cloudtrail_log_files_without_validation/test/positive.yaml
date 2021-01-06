@@ -1,0 +1,27 @@
+- name: create multi-region trail with validation and tags
+  community.aws.cloudtrail:
+    state: present
+    name: default
+    s3_bucket_name: mylogbucket
+    region: us-east-1
+    is_multi_region_trail: true
+    cloudwatch_logs_role_arn: "arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role"
+    cloudwatch_logs_log_group_arn: "arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*"
+    kms_key_id: "alias/MyAliasName"
+    tags:
+      environment: dev
+      Name: default
+- name: create multi-region trail with validation and tags v7
+  community.aws.cloudtrail:
+    state: present
+    name: default
+    s3_bucket_name: mylogbucket
+    region: us-east-1
+    is_multi_region_trail: true
+    enable_log_file_validation: false
+    cloudwatch_logs_role_arn: "arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role"
+    cloudwatch_logs_log_group_arn: "arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*"
+    kms_key_id: "alias/MyAliasName"
+    tags:
+      environment: dev
+      Name: default

@@ -1,0 +1,37 @@
+[
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 9
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 25
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 38
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 51
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 66
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 81
+	},
+	{
+		"queryName": "Remote Desktop Port Open",
+		"severity": "HIGH",
+		"line": 96
+	}
+]

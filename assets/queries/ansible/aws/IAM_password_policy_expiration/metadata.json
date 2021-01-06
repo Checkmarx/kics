@@ -1,0 +1,8 @@
+{
+  "id": "Incorrect_password_policy_expiration",
+  "queryName": "Incorrect password policy expiration",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "No password expiration policy",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html"
+}

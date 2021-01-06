@@ -2,7 +2,7 @@
   "id": "EFS_not_encrypted",
   "queryName": "EFS not encrypted",
   "severity": "HIGH",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "Amazon Elastic Filesystem should have filesystem encryption enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/efs/latest/ug/encryption.html"
 }

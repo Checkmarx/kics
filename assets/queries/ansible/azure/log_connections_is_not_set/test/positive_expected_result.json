@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "Log Connections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 7
+	},
+	{
+		"queryName": "Log Connections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Log Connections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 19
+	},
+	{
+		"queryName": "Log Connections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 25
+	},
+	{
+		"queryName": "Log Connections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Log Connections Is Not Set",
+		"severity": "MEDIUM",
+		"line": 37
+	}
+]

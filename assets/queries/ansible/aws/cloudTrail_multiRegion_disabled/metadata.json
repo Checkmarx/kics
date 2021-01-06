@@ -1,0 +1,8 @@
+{
+  "id": "cloud_trail_multi_region_disabled",
+  "queryName": "Cloud Trail Multi Region Disabled",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "Check if MultiRegion is Enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html#parameter-is_multi_region_trail"
+}

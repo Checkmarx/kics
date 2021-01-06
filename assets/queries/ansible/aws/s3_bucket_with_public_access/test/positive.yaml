@@ -1,0 +1,11 @@
+---
+- name: Create an empty bucket
+  amazon.aws.aws_s3:
+    bucket: mybucket
+    mode: create
+    permission: public-read
+- name: Create an empty bucket 01
+  amazon.aws.aws_s3:
+    bucket: mybucket 01
+    mode: create
+    permission: public-read-write

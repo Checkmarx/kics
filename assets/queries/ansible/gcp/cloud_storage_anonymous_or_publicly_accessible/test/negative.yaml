@@ -1,0 +1,11 @@
+#this code is a correct code for which the query should not find any result
+- name: create a bucket
+  google.cloud.gcp_storage_bucket:
+    name: ansible-storage-module
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    acl:
+      bucket: bucketName
+      entity: group-example@googlegroups.com

@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "HPA Targets a invalid object",
+		"queryName": "HPA Targets Invalid Object",
 		"severity": "LOW",
 		"line": 12
 	}

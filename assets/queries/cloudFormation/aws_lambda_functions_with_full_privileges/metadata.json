@@ -1,0 +1,8 @@
+{
+  "id": "aws_lambda_functions_with_full_privileges",
+  "queryName": "AWS Lambda Functions With Full Privileges",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "AWS Lambda Functions should not have roles with policies granting full administrative privileges.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-lambda.html"
+}

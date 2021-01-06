@@ -1,0 +1,8 @@
+{
+  "id": "ansible_efs_is_not_encrypted",
+  "queryName": "EFS Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Elastic File System (EFS) must be encrypted",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html#parameter-encrypt"
+}

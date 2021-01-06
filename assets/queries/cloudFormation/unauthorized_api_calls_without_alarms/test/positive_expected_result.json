@@ -1,0 +1,22 @@
+[
+	{
+		"queryName": "Unauthorized API Calls Without Alarms",
+		"severity": "MEDIUM",
+		"line": 31
+	},
+	{
+		"queryName": "Unauthorized API Calls Without Alarms",
+		"severity": "MEDIUM",
+		"line": 69
+	},
+	{
+		"queryName": "Unauthorized API Calls Without Alarms",
+		"severity": "MEDIUM",
+		"line": 97
+	},
+	{
+		"queryName": "Unauthorized API Calls Without Alarms",
+		"severity": "MEDIUM",
+		"line": 120
+	}
+]

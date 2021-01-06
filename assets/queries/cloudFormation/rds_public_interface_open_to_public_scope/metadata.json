@@ -1,0 +1,8 @@
+{
+  "id": "RDS_Public_Interface_Open_To_Public_Scope",
+  "queryName": "RDS Public Interface Open To Public Scope",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Amazon RDS must not have a public interface open to a public scope, which means the IP Address in its Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html"
+}

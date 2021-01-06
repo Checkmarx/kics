@@ -1,0 +1,9 @@
+name: Create an account with kind of FileStorage
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: c1h0002
+    type: Premium_LRS
+    kind: FileStorage
+    minimum_tls_version: TLS1_2
+    tags:
+      testing: testing

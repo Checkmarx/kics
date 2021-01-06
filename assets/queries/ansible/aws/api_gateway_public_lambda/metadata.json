@@ -1,0 +1,8 @@
+{
+  "id": "public_lambda_via_api_gateway",
+  "queryName": "Public Lambda via API Gateway",
+  "severity": "MEDIUM",
+  "category": null,
+  "descriptionText": "Allowing to run lambda function using public API Gateway",
+  "descriptionUrl": "https://docs.ansible.com/ansible/2.4/lambda_policy_module.html"
+}

@@ -1,0 +1,7 @@
+- name: example ec2 group
+  community.aws.cloudwatchlogs_log_group:
+    log_group_name: test-log-group
+- name: example2 ec2 group
+  community.aws.cloudwatchlogs_log_group:
+    log_group_name: test-log-group
+    retention: 111111

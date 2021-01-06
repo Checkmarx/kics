@@ -3,7 +3,7 @@ package Cx
 CxPolicy [ result ] {
 	resource := input.document[i].resource.aws_db_instance[name]
     not resource.storage_encrypted
-    not resource.ms_key_id 
+    not resource.kms_key_id
 
 	result := {
                 "documentId": 		input.document[i].id,

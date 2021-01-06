@@ -1,0 +1,8 @@
+{
+  "id": "public_storage_account",
+  "queryName": "Public Storage Account",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Check if 'network_acls' is open to public.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls"
+}

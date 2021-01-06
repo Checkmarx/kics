@@ -1,0 +1,13 @@
+- name: oslogin-enabled
+  google.cloud.gcp_compute_instance:
+    metadata:
+      enable-oslogin: yes
+    zone: us-central1-a
+    auth_kind: serviceaccount
+- name: oslogin-missing
+  google.cloud.gcp_compute_instance:
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    zone: us-central1-a
+    auth_kind: serviceaccount

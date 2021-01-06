@@ -2,6 +2,7 @@ package Cx
 
 CxPolicy [ result ] {
     document := input.document[i]
+    document.kind == "PodSecurityPolicy"
     metadata := document.metadata
     spec := document.spec
     containers := spec.containers

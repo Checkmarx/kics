@@ -1,0 +1,37 @@
+---
+- name: create a node pool
+  google.cloud.gcp_container_node_pool:
+    name: my-pool
+    initial_node_count: 4
+    cluster: "{{ cluster }}"
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    management:
+      auto_repair: no
+
+- name: create a node pool2
+  google.cloud.gcp_container_node_pool:
+    name: my-pool
+    initial_node_count: 4
+    cluster: "{{ cluster }}"
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    management:
+      auto_repair: false
+
+- name: create a node pool3
+  google.cloud.gcp_container_node_pool:
+    name: my-pool
+    initial_node_count: 4
+    cluster: "{{ cluster }}"
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present

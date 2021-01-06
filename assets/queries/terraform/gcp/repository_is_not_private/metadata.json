@@ -2,7 +2,7 @@
   "id": "Repository_is_Public",
   "queryName": "Repository is public",
   "severity": "HIGH",
-  "category": null,
+  "category": "Vulnerability and Threat Management",
   "descriptionText": "Repository is public",
   "descriptionUrl": "https://www.terraform.io/docs/providers/github/r/repository.html"
 }

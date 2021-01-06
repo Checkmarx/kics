@@ -1,0 +1,8 @@
+{
+  "id": "route53_record_undefined",
+  "queryName": "Route53 Record Undefined",
+  "severity": "HIGH",
+  "category": "DNS Management",
+  "descriptionText": "Route53 Record should have a list of records",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/route53_module.html#parameter-value"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "CMK_Unencrypted_Storage",
+  "queryName": "CMK Unencrypted Storage",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure that storage is encrypted by KMS on instances that, based on their name, might host a database. ",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html"
+}

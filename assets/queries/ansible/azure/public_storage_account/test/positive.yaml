@@ -1,0 +1,19 @@
+- name: configure firewall and virtual networks
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    network_acls:
+      bypass: AzureServices,Metrics
+      default_action: Deny
+      ip_rules:
+        - value: 0.0.0.0/0
+          action: Allow
+- name: configure firewall and more virtual networks
+  azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0003
+    type: Standard_RAGRS
+    network_acls:
+      bypass: AzureServices,Metrics
+      default_action: Allow

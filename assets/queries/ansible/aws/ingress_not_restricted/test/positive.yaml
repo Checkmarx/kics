@@ -1,0 +1,38 @@
+- name: example ec2 group
+  amazon.aws.ec2_group:
+    name: example
+    description: an example EC2 group
+    vpc_id: 12345
+    region: eu-west-1
+    rules:
+      - proto: -1
+        from_port: 0
+        to_port: 0
+        cidr_ip: 0.0.0.0/0
+      - proto: all
+        from_port: 0
+        to_port: 0
+        cidr_ip: 0.0.0.0/0
+      - proto: 12121
+        from_port: 0
+        to_port: 0
+        cidr_ip: 0.0.0.0/0
+- name: example ec2 group v2
+  amazon.aws.ec2_group:
+    name: example
+    description: an example EC2 group
+    vpc_id: 12345
+    region: eu-west-1
+    rules:
+      - proto: -1
+        from_port: 0
+        to_port: 0
+        cidr_ipv6: ::/0
+      - proto: all
+        from_port: 0
+        to_port: 0
+        cidr_ipv6: ::/0
+      - proto: 121212
+        from_port: 0
+        to_port: 0
+        cidr_ipv6: ::/0

@@ -1,0 +1,8 @@
+{
+  "id": "routertable_with_default_routing",
+  "queryName": "RouterTable with Default Routing",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "NAT gateways are recommended, and not the default route which permits all traffic, in Route Tables.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html"
+}

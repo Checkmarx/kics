@@ -2,7 +2,7 @@
   "id": "Block_Workload_Mounting_OS_Directory",
   "queryName": "Block Workload Mounting OS Directory",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Privileges",
   "descriptionText": "Workload is mounting a volume with sensitive OS Directory",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
 }

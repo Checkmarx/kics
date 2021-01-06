@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Admin User Is Enabled for Container Registry",
+		"severity": "HIGH",
+		"line": 7
+	},
+	{
+		"queryName": "Admin User Is Enabled for Container Registry",
+		"severity": "HIGH",
+		"line": 17
+	}
+]

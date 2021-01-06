@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "AWS CloudFormation Stack Notifications",
+		"queryName": "AWS CloudFormation Stack Notifications Disabled",
 		"severity": "MEDIUM",
 		"line": 1
 	}

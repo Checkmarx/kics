@@ -1,0 +1,8 @@
+{
+  "id": "ecr_image_tag_not_immutable",
+  "queryName": "ECR Image Tag Not Immutable",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "ECR should have an image tag immutable",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_ecr_module.html"
+}

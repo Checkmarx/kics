@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "SNS Topic Without Subscriber",
+  		"severity": "LOW",
+		"line": 6
+	}
+]

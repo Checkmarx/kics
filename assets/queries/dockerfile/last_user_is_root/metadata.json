@@ -1,0 +1,8 @@
+{
+  "id": "Last_user_is_root",
+  "queryName": "Last User Is 'root'",
+  "severity": "MEDIUM",
+  "category": "User Magement",
+  "descriptionText": "Leaving the last user as root can cause security risks. Change to another user after running the commands the need privileges",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user"
+}

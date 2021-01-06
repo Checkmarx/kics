@@ -2,7 +2,7 @@
     "id": "permissive_access_to_create_pods",
     "queryName": "Permissive Access to Create Pods",
     "severity": "LOW",
-    "category": null,
+    "category": "Access Control",
     "descriptionText": "The permission to create pods in a cluster should be restricted because it allows privilege escalation.",
     "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#privilege-escalation-prevention-and-bootstrapping"
 }

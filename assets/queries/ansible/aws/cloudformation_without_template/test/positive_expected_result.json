@@ -1,0 +1,25 @@
+[
+	{
+		"queryName": "AWS CloudFormation Without Template",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+
+	{
+		"queryName": "AWS CloudFormation Without Template",
+		"severity": "MEDIUM",
+		"line": 15
+	},
+
+	{
+		"queryName": "AWS CloudFormation Without Template",
+		"severity": "MEDIUM",
+		"line":  30
+	},
+
+	{
+		"queryName": "AWS CloudFormation Without Template",
+		"severity": "MEDIUM",
+		"line":  40
+	}
+]

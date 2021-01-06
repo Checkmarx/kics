@@ -3,6 +3,6 @@
   "queryName": "SQS Queue Exposed",
   "severity": "HIGH",
   "category": "Network Security",
-  "descriptionText": "Checks if the SQS Queue is exposed and update them",
+  "descriptionText": "Checks if the SQS Queue is exposed",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#policy"
 }

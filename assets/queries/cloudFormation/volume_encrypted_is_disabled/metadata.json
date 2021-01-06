@@ -1,0 +1,8 @@
+{
+  "id": "volume_encrypted_is_disabled",
+  "queryName": "Volume Encryption Is Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "EBS volumes should be encrypted",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html"
+}

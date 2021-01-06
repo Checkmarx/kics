@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "ELB Access Log Disabled",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "ELB Access Log Disabled",
+		"severity": "MEDIUM",
+		"line": 61
+	}
+]

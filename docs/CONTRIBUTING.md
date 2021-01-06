@@ -37,7 +37,13 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
 1. Make your changes locally.
 1. Validate your changes to reassure they meet project quality and contribution standards:  
    ```
-   fancy local command goes here
+   golint .
+   ```  
+   ```
+   go mod vendor
+   ```  
+   ```
+   go test -mod=vendor -v ./...
    ```
 1. Commit your changes and push your branch to GitHub:  
    ```
@@ -101,3 +107,6 @@ The following templates will be used when [creating a new issue](https://github.
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
+
+Join the chat [on Gitter](https://gitter.im/kics-io/community).  
+Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

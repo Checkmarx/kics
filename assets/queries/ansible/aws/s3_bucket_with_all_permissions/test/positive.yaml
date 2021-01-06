@@ -1,0 +1,14 @@
+---
+- name: Create s3 bucket
+  amazon.aws.s3_bucket:
+    name: mys3bucket
+    policy:
+      Id: "id113"
+      Version: "2012-10-17"
+      Statement:
+      - Action: "s3:*"
+        Effect: "Allow"
+        Resource: "arn:aws:s3:::S3B_181355/*"
+        Principal: "*"
+    requester_pays: yes
+    versioning: yes
