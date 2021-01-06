@@ -1,0 +1,8 @@
+{
+  "id": "gke_master_authorized_networks_disabled",
+  "queryName": "GKE Master Authorized Networks Disabled",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Master authorized networks must be enabled in GKE clusters",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-master_authorized_networks_config/enabled"
+}

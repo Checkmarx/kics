@@ -3,35 +3,33 @@ package Cx
 CxPolicy [ result ] {
   	document := input.document[i]
   	task := getTasks(document)[t]
-    s3_bucket := task["s3_bucket"]
+    s3_bucket := task["amazon.aws.s3_bucket"]
 
     policy := s3_bucket.policy
-    json_policy := json.unmarshal(policy)
-    json_policy.Statement[ix].Effect = "Allow"
+    policy.Statement[ix].Effect = "Allow"
 
-    action := json_policy.Statement[ix].Action
+    action := policy.Statement[ix].Action
     is_string(action)
-    contains(action[_], "*")
+    contains(action, "*")
 
 	result := {
                 "documentId": 		document.id,
-                "searchKey":        sprintf("name={{%s}}.{{s3_bucket}}.policy", [task.name]),
+                "searchKey":        sprintf("name={{%s}}.{{s3_bucket}}.policy.Statement", [task.name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-                "keyActualValue": 	"'policy.Statement.Action' contains '*'",
+                "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'Effect' is 'Allow'",
+                "keyActualValue": 	"'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",
               }
 }
 
 CxPolicy [ result ] {
   	document := input.document[i]
   	task := getTasks(document)[t]
-    s3_bucket := task["s3_bucket"]
+    s3_bucket := task["amazon.aws.s3_bucket"]
 
     policy := s3_bucket.policy
-    json_policy := json.unmarshal(policy)
-    json_policy.Statement[ix].Effect = "Allow"
+    policy.Statement[ix].Effect = "Allow"
 
-    action := json_policy.Statement[ix].Action
+    action := policy.Statement[ix].Action
     is_array(action)
     contains(action[_], "*")
 
@@ -39,8 +37,8 @@ CxPolicy [ result ] {
                 "documentId": 		document.id,
                 "searchKey":        sprintf("name={{%s}}.{{s3_bucket}}.policy", [task.name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-                "keyActualValue": 	"'policy.Statement.Action' contains '*'",
+                "keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'Effect' is 'Allow'",
+                "keyActualValue": 	"'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",
               }
 }
 

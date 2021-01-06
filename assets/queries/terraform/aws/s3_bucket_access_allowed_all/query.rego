@@ -6,7 +6,6 @@ CxPolicy [ result ] {
   statement = policy.Statement[_]
   check_role(statement.Principal, "*") == true
   check_role(statement.Effect, "Allow") == true
-  check_role(statement.Action, "*") == true
 
 	result := {
                 "documentId": 		  input.document[i].id,
