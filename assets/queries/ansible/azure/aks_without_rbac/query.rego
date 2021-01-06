@@ -41,6 +41,6 @@ getTasks(document) = result {
 }
 
 isYesOrTrue(attribute) {
-   options := {"yes", true, yes, "true"}
+   options := {"yes", true, "true"}
    lower(attribute) == lower(options[j])
 }
