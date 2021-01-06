@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Compute Instance Is Publicly Accessible",
+		"severity": "HIGH",
+		"line": 4
+	}
+]
