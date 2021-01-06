@@ -11,7 +11,7 @@ CxPolicy[result] {
         "documentId":        document.id,
         "searchKey":         sprintf("name=%s.{{azure_rm_aks}}", [task.name]),
         "issueType":         "MissingAttribute",
-        "keyExpectedValue":  "azure_rm_aks.enable_rbac is set",
+        "keyExpectedValue":  "azure_rm_aks.enable_rbac is defined",
         "keyActualValue": 	 "azure_rm_aks.enable_rbac is undefined"
     }
 }
@@ -41,6 +41,6 @@ getTasks(document) = result {
 }
 
 isYesOrTrue(attribute) {
-   options := {"yes", true}
-   attribute == options[j]
+   options := {"yes", true, yes, "true"}
+   lower(attribute) == lower(options[j])
 }
