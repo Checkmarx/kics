@@ -49,6 +49,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
+
 			content, err := ioutil.ReadAll(rc)
 			if err != nil {
 				return errors.Wrap(err, "failed to read file content")
@@ -60,30 +61,33 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 			}
 
 			var sem = semaphore.NewWeighted(int64(10))
-			ctxSem := context.Background()
-			for _, document := range documents {
-				if err := sem.Acquire(ctxSem, 1); err != nil {
+			ctx2 := context.Background()
+			for _, document := range documents { // Here is the problem
+				if err := sem.Acquire(ctx2, 1); err != nil {
 					// handle error and maybe break
 				}
 				go func() {
-					checkMarshal(document, filename)
+					_, err = json.Marshal(document)
+					if err != nil {
+						sentry.CaptureException(err)
+						log.Err(err).Msgf("failed to marshal content in file: %s", filename)
+					}
+					file := model.FileMetadata{
+						ID:           uuid.New().String(),
+						ScanID:       scanID,
+						Document:     document,
+						OriginalData: string(content),
+						Kind:         kind,
+						FileName:     filename,
+					}
+
+					err = s.Storage.SaveFile(ctx, &file)
+					if err == nil {
+						files = append(files, file)
+						s.Tracker.TrackFileParse()
+					}
 					sem.Release(1)
 				}()
-
-				file := model.FileMetadata{
-					ID:           uuid.New().String(),
-					ScanID:       scanID,
-					Document:     document,
-					OriginalData: string(content),
-					Kind:         kind,
-					FileName:     filename,
-				}
-
-				err = s.Storage.SaveFile(ctx, &file)
-				if err == nil {
-					files = append(files, file)
-					s.Tracker.TrackFileParse()
-				}
 			}
 
 			return errors.Wrap(err, "failed to save file content")
@@ -108,12 +112,4 @@ func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]mode
 
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
-}
-
-func checkMarshal(document model.Document, filename string) {
-	_, err := json.Marshal(document)
-	if err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).Msgf("failed to marshal content in file: %s", filename)
-	}
 }
