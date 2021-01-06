@@ -14,6 +14,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	"golang.org/x/sync/semaphore"
 )
 
 type SourceProvider interface {
@@ -48,8 +49,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
-
-			content, err := ioutil.ReadFile(filename)
+			content, err := ioutil.ReadAll(rc)
 			if err != nil {
 				return errors.Wrap(err, "failed to read file content")
 			}
@@ -59,13 +59,16 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 				return errors.Wrap(err, "failed to parse file content")
 			}
 
+			var sem = semaphore.NewWeighted(int64(10))
+			ctxSem := context.Background()
 			for _, document := range documents {
-				_, err = json.Marshal(document)
-				if err != nil {
-					sentry.CaptureException(err)
-					log.Err(err).Msgf("failed to marshal content in file: %s", filename)
-					continue
+				if err := sem.Acquire(ctxSem, 1); err != nil {
+					// handle error and maybe break
 				}
+				go func() {
+					checkMarshal(document, filename)
+					sem.Release(1)
+				}()
 
 				file := model.FileMetadata{
 					ID:           uuid.New().String(),
@@ -105,4 +108,12 @@ func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]mode
 
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
+}
+
+func checkMarshal(document model.Document, filename string) {
+	_, err := json.Marshal(document)
+	if err != nil {
+		sentry.CaptureException(err)
+		log.Err(err).Msgf("failed to marshal content in file: %s", filename)
+	}
 }

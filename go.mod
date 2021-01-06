@@ -17,6 +17,7 @@ require (
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.6.1
 	github.com/zclconf/go-cty v1.7.1
+Denial of Service Resource Exhaustion at pkg/kics/service.go #1399	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )
 
