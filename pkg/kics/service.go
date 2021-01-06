@@ -14,7 +14,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
-	"golang.org/x/sync/semaphore"
 )
 
 type SourceProvider interface {
@@ -41,6 +40,10 @@ type Service struct {
 	Tracker        Tracker
 }
 
+const (
+	MAX_ITEMS_DOCUMENTS = 20
+)
+
 func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
@@ -60,18 +63,15 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 				return errors.Wrap(err, "failed to parse file content")
 			}
 
-			var sem = semaphore.NewWeighted(int64(10))
-			ctx2 := context.Background()
-			for _, document := range documents { // Here is the problem
-				if err := sem.Acquire(ctx2, 1); err != nil {
-					// handle error and maybe break
-				}
-				go func() {
+			if len(documents) <= MAX_ITEMS_DOCUMENTS {
+				for _, document := range documents {
 					_, err = json.Marshal(document)
 					if err != nil {
 						sentry.CaptureException(err)
 						log.Err(err).Msgf("failed to marshal content in file: %s", filename)
+						continue
 					}
+
 					file := model.FileMetadata{
 						ID:           uuid.New().String(),
 						ScanID:       scanID,
@@ -86,8 +86,9 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 						files = append(files, file)
 						s.Tracker.TrackFileParse()
 					}
-					sem.Release(1)
-				}()
+				}
+			} else {
+				return errors.Wrap(err, "Documents are too big")
 			}
 
 			return errors.Wrap(err, "failed to save file content")
