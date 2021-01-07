@@ -27,7 +27,7 @@ CxPolicy [ result ] {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("Resources.%s.Properties.DeploymentConfiguration", [name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.DeploymentConfiguration have at least 1 task running", [name]),
+                "keyExpectedValue": sprintf("Resources.%s.Properties.DeploymentConfiguration has at least 1 task running", [name]),
                 "keyActualValue": 	sprintf("Resources.%s.Properties.DeploymentConfiguration must have at least 1 task running", [name])
               }
 }
