@@ -18,7 +18,7 @@ jobs:
       - name: 'Get Previous tag'
         uses: oprypin/find-latest-tag@v1
         with:
-          repository: ${{ github.repository }} 
+          repository: ${{ github.repository }}
           releases-only: true
         id: previoustag
       - name: 'Get next minor version'
