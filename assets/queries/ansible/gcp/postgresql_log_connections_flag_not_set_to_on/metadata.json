@@ -1,0 +1,8 @@
+{
+  "id": "postgresql_log_connections_flag_not_set_to_on",
+  "queryName": "PostgreSQL log_connections Flag Not Set To ON",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "PostgreSQL database instance should have a 'log_connections' flag with its value set to 'on'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags"
+}
