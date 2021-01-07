@@ -17,7 +17,6 @@ CxPolicy [ result ] {
     msk_cluster := input.document[i].resource.aws_msk_cluster[name]
 
     msk_cluster.logging_info
-    msk_cluster.logging_info.broker_logs
     
     not msk_cluster.logging_info.broker_logs["cloudwatch_logs"]
     not msk_cluster.logging_info.broker_logs["firehose"]
