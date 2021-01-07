@@ -212,7 +212,7 @@ func format(rules []build.Rule) []RegoRule {
 
 func createBlock(rule build.Rule) Block { // nolint:gocyclo
 	result := Block{}
-	resultName(rule, result)
+	result = resultName(rule, result)
 
 	resources := make(map[string]struct{}, len(rule.Conditions))
 	for _, condition := range rule.Conditions {
@@ -262,11 +262,12 @@ func switchFunction(v interface{}, result Block, resources map[string]struct{}) 
 	return resources, result
 }
 
-func resultName(rule build.Rule, result Block) {
+func resultName(rule build.Rule, result Block) Block {
 	for _, pathItem := range rule.Conditions[len(rule.Conditions)-1].Path {
 		if pathItem.Type == build.PathTypeResource {
 			result.Name = pathItem.Name
 			break
 		}
 	}
+	return result
 }
