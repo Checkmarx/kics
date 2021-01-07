@@ -69,7 +69,8 @@ func main() { // nolint:funlen,gocyclo
 			}
 
 			if generateID {
-				_, err = fmt.Printf(uuid.New().String())
+				_, err = fmt.Println(uuid.New().String())
+				os.Exit(0)
 				return err
 			}
 
