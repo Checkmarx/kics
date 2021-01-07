@@ -39,3 +39,7 @@ theme:
 # Plugins
 plugins:
   - search
+  
+google_analytics:
+  - UA-186818347-2
+  - auto
