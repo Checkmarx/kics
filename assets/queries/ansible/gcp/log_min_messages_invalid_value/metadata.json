@@ -1,0 +1,8 @@
+{
+  "id": "log_min_messages_invalid_value",
+  "queryName": "Log Min Messages Invalid Value",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "PostgreSQL database 'log_min_messages' flag isn't set to a valid value",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags"
+}
