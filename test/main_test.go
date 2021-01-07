@@ -28,14 +28,14 @@ var (
 		"../assets/queries/terraform/aws":            model.KindTerraform,
 		"../assets/queries/terraform/azure":          model.KindTerraform,
 		"../assets/queries/terraform/gcp":            model.KindTerraform,
-		"../assets/queries/k8s":                      model.KindYAML,
+		"../assets/queries/terraform/github":         model.KindTerraform,
+		"../assets/queries/terraform/kubernetes_pod": model.KindTerraform,
 		"../assets/queries/cloudFormation":           model.KindYAML,
+		"../assets/queries/k8s":                      model.KindYAML,
 		"../assets/queries/ansible/aws":              model.KindYAML,
 		"../assets/queries/ansible/gcp":              model.KindYAML,
 		"../assets/queries/ansible/azure":            model.KindYAML,
 		"../assets/queries/dockerfile":               model.KindDOCKER,
-		"../assets/queries/terraform/github":         model.KindTerraform,
-		"../assets/queries/terraform/kubernetes_pod": model.KindTerraform,
 	}
 )
 
@@ -60,26 +60,36 @@ func (q queryEntry) ExpectedPositiveResultFile() string {
 	return path.Join(q.dir, "test/positive_expected_result.json")
 }
 
-func loadQueries(t *testing.T) []queryEntry {
-	var queriesDir []queryEntry
-	for queriesPath, kind := range queriesPaths {
-		fs, err := ioutil.ReadDir(queriesPath)
-		require.Nil(t, err)
-
-		for _, f := range fs {
-			require.True(t, f.IsDir(), "expected directory, actual file %s", f.Name())
-
-			queriesDir = append(queriesDir, queryEntry{
-				dir:  path.Join(queriesPath, f.Name()),
-				kind: kind,
-			})
-		}
-	}
+func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind) []queryEntry {
+	queriesDir = append(queriesDir, queryEntry{
+		dir:  dirName,
+		kind: kind,
+	})
 
 	return queriesDir
 }
 
-func getParsedFile(t *testing.T, filePath string) model.FileMetadatas {
+func loadQueries(tb testing.TB) []queryEntry {
+	var queriesDir []queryEntry
+
+	for queriesPath, kind := range queriesPaths {
+		fs, err := ioutil.ReadDir(queriesPath)
+		require.Nil(tb, err)
+
+		for _, f := range fs {
+			f.Name()
+			if f.IsDir() && f.Name() != "test" {
+				queriesDir = appendQueries(queriesDir, path.Join(queriesPath, f.Name()), kind)
+			} else {
+				queriesDir = appendQueries(queriesDir, queriesPath, kind)
+				break
+			}
+		}
+	}
+	return queriesDir
+}
+
+func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
 	content, err := ioutil.ReadFile(filePath)
 	require.NoError(t, err)
 

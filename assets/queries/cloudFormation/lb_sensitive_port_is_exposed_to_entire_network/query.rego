@@ -1,5 +1,31 @@
 package Cx
 
+isAccessibleFromEntireNetwork(ingress) {
+  endswith(ingress.CidrIp, "/0")
+}
+
+getProtocolList(protocol) = list {
+  upper(protocol) == ["-1", "ALL"][_]
+  list = ["TCP","UDP"]
+} else = list {
+  upper(protocol) == "TCP"
+  list = ["TCP"]
+} else = list {
+  upper(protocol) == "UDP"
+  list = ["UDP"]
+}
+
+getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
+  protocols[_] == ["-1", "ALL"][_]
+  portsMap = object.union(tcpPortsMap, udpPortsMap)
+} else = portsMap {
+  protocols[_] == "UDP"
+  portsMap = udpPortsMap
+} else = portsMap {
+  protocols[_] == "TCP"
+  portsMap = tcpPortsMap
+}
+
 getELBType(elb) = type {
   object.get(elb.Properties, "Type", "unspecified") != "unspecified"
   type = elb.Properties.Type
@@ -14,7 +40,8 @@ getELBType(elb) = type {
 CxPolicy[result] {
   #############	inputs
   # List of ports
-  portNumbers =	{
+  # Dictionary of TCP ports
+  tcpPortsMap =	{
     22: "SSH",
     23: "Telnet",
     25: "SMTP",
@@ -59,10 +86,27 @@ CxPolicy[result] {
     11211: "Memcached",
     11214: "Memcached SSL",
     11215: "Memcached SSL",
-    27017: "MongoDB",
-    27018: "MongoDB Web Portal",
+    27017: "Mongo",
+    27018: "Mongo Web Portal",
     61620: "Cassandra OpsCenter",
     61621: "Cassandra OpsCenter"
+  }
+
+  # Dictionary of UDP ports
+  udpPortsMap =	{
+    53: "DNS",
+    137: "NetBIOS Name Service",
+    138: "NetBIOS Datagram Service",
+    139: "NetBIOS Session Service",
+    161: "SNMP",
+    389: "LDAP",
+    1434: "MSSQL Browser",
+    2483: "Oracle DB SSL",
+    2484: "Oracle DB SSL",
+    5432: "PostgreSQL",
+    11211: "Memcached",
+    11214: "Memcached SSL",
+    11215: "Memcached SSL"
   }
 
   #############	document and resource
@@ -81,22 +125,25 @@ CxPolicy[result] {
   secGroup := securityGroupList[k]
   ingress := secGroup.properties.Properties.SecurityGroupIngress[l]
 
-  #############	get relevant fields
-  upper(ingress.IpProtocol) == "TCP"
+  protocols := getProtocolList(ingress.IpProtocol)
+  protocol := protocols[m]
+  portsMap = getProtocolPorts(protocols, tcpPortsMap, udpPortsMap)
 
   #############	Checks
-  endswith(ingress.CidrIp, "/0")
+  isAccessibleFromEntireNetwork(ingress)
+
+  # is in ports range
   portRange := numbers.range(ingress.FromPort, ingress.ToPort)
-  portNumbers[portRange[idx]]
+  portsMap[portRange[idx]]
   portNumber = portRange[idx]
-  portName := portNumbers[portNumber]
+  portName := portsMap[portNumber]
 
   ##############	Result
   result := {
     "documentId": input.document[i].id,
     "searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup["name"]]),
     "issueType": "IncorrectValue",
-    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer %s", [portName, "TCP", portNumber, elbType, elb["name"]]),
-    "keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer %s", [portName, "TCP", portNumber, elbType, elb["name"]])
+    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer %s", [portName, protocol, portNumber, elbType, elb["name"]]),
+    "keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer %s", [portName, protocol, portNumber, elbType, elb["name"]])
   }
 }
