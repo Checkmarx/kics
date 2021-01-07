@@ -34,19 +34,6 @@ CxPolicy [ result ] {
 
 CxPolicy [ result ] {
     msk_cluster := input.document[i].resource.aws_msk_cluster[name]
-    msk_cluster.logging_info
-    not msk_cluster.logging_info.broker_logs
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("msk_cluster[%s].logging_info", [name]),
-                "issueType":		"MissingAttribute",
-                "keyExpectedValue": "Should exists 'rule.logging_info.broker_logs'",
-                "keyActualValue": 	"'rule.logging_info.broker_logs' does not exists"
-              }
-}
-
-CxPolicy [ result ] {
-    msk_cluster := input.document[i].resource.aws_msk_cluster[name]
     not msk_cluster.logging_info
     result := {
                 "documentId": 		input.document[i].id,

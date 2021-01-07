@@ -1,7 +1,7 @@
 {
   "id": "MSKClusterNotLogging",
   "queryName": "MSK Cluster logging is not enabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "Ensure MSK Cluster Logging is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster#broker_logs"
