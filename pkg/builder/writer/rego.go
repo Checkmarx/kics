@@ -28,6 +28,10 @@ type RegoRule struct {
 	build.Rule
 }
 
+const (
+	stringValue = "\"%s\""
+)
+
 func NewRegoWriter() (*RegoWriter, error) {
 	tmpl, err := template.New("template.gorego").
 		Funcs(template.FuncMap{
@@ -132,16 +136,16 @@ func regoValueToString(i interface{}) string {
 	case float32:
 		return strconv.FormatFloat(float64(v), 'f', 6, 32)
 	case string:
-		return fmt.Sprintf("\"%s\"", v)
+		return fmt.Sprintf(stringValue, v)
 	case *string:
 		if v == nil {
 			return "\"\""
 		}
-		return fmt.Sprintf("\"%s\"", *v)
+		return fmt.Sprintf(stringValue, *v)
 	case []string:
 		sts := make([]string, 0, len(v))
 		for _, vi := range v {
-			sts = append(sts, fmt.Sprintf("\"%s\"", vi))
+			sts = append(sts, fmt.Sprintf(stringValue, vi))
 		}
 
 		return fmt.Sprintf("{%s}", strings.Join(sts, ", "))
@@ -171,21 +175,26 @@ func conditionKey(block Block, c build.Condition, withBlockPrefix, pathOnly bool
 				key += "[name]"
 			}
 		case build.PathTypeDefault:
-			if _, ok := c.Attr("any_key"); ok && i == len(c.Path)-1 {
-				if !pathOnly {
-					key += "[key]"
-				}
-				continue
-			}
-
-			if key != "" {
-				key += "."
-			}
-
-			key += pathItem.Name
+			key = buildDefaultType(c, i, pathOnly, pathItem, key)
 		}
 	}
 
+	return key
+}
+
+func buildDefaultType(c build.Condition, i int, pathOnly bool, pathItem build.PathItem, key string) string {
+	if _, ok := c.Attr("any_key"); ok && i == len(c.Path)-1 {
+		if !pathOnly {
+			key += "[key]"
+		}
+		return key
+	}
+
+	if key != "" {
+		key += "."
+	}
+
+	key += pathItem.Name
 	return key
 }
 
@@ -203,12 +212,7 @@ func format(rules []build.Rule) []RegoRule {
 
 func createBlock(rule build.Rule) Block { // nolint:gocyclo
 	result := Block{}
-	for _, pathItem := range rule.Conditions[len(rule.Conditions)-1].Path {
-		if pathItem.Type == build.PathTypeResource {
-			result.Name = pathItem.Name
-			break
-		}
-	}
+	resultName(rule, result)
 
 	resources := make(map[string]struct{}, len(rule.Conditions))
 	for _, condition := range rule.Conditions {
@@ -226,24 +230,7 @@ func createBlock(rule build.Rule) Block { // nolint:gocyclo
 
 			continue
 		}
-
-		switch vv := v.(type) {
-		case string:
-			if vv == "*" {
-				result.All = true
-			}
-			resources[vv] = struct{}{}
-		case []string:
-			for _, vi := range vv {
-				resources[vi] = struct{}{}
-			}
-		case []interface{}:
-			for _, vi := range vv {
-				if vvi, ok := vi.(string); ok {
-					resources[vvi] = struct{}{}
-				}
-			}
-		}
+		resources, result = switchFunction(v, result, resources)
 	}
 
 	result.List = make([]string, 0, len(resources))
@@ -252,4 +239,34 @@ func createBlock(rule build.Rule) Block { // nolint:gocyclo
 	}
 
 	return result
+}
+
+func switchFunction(v interface{}, result Block, resources map[string]struct{}) (map[string]struct{}, Block) {
+	switch vv := v.(type) {
+	case string:
+		if vv == "*" {
+			result.All = true
+		}
+		resources[vv] = struct{}{}
+	case []string:
+		for _, vi := range vv {
+			resources[vi] = struct{}{}
+		}
+	case []interface{}:
+		for _, vi := range vv {
+			if vvi, ok := vi.(string); ok {
+				resources[vvi] = struct{}{}
+			}
+		}
+	}
+	return resources, result
+}
+
+func resultName(rule build.Rule, result Block) {
+	for _, pathItem := range rule.Conditions[len(rule.Conditions)-1].Path {
+		if pathItem.Type == build.PathTypeResource {
+			result.Name = pathItem.Name
+			break
+		}
+	}
 }
