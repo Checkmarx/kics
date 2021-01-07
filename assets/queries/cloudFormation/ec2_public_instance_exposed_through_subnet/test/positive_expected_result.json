@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "EC2 Public Instance Exposed Through Subnet",
+		"severity": "HIGH",
+		"line": 28
+	}
+]
