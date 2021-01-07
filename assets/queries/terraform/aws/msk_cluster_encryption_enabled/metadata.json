@@ -1,0 +1,8 @@
+{
+  "id": "MSKClusterEncryptionNotEnabled",
+  "queryName": "MSK Cluster encryption is not enabled",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Ensure MSK Cluster encryption in rest and transit is enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster#encryption_info"
+}
