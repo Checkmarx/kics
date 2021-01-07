@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "Activity Log Retention Period",
+		"severity": "MEDIUM",
+		"line": 13
+	},
+	{
+		"queryName": "Activity Log Retention Period",
+		"severity": "MEDIUM",
+		"line": 20
+	},
+	{
+		"queryName": "Activity Log Retention Period",
+		"severity": "MEDIUM",
+		"line": 46
+	}
+]

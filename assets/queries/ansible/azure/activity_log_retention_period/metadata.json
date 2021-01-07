@@ -1,0 +1,8 @@
+{
+  "id": "activity_log_retention_period",
+  "queryName": "Activity Log Retention Period",
+  "severity": "MEDIUM",
+  "category": "Monitoring",
+  "descriptionText": "Ensure that Activity Log Retention is set 365 days or greater",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html"
+}
