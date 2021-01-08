@@ -6,11 +6,6 @@ type SeveritySummary struct {
 	TotalCounter     int              `json:"totalCounter"`
 }
 
-// type SeverityCounter struct {
-// 	Severity Severity `json:"severity"`
-// 	Counter  int      `json:"counter"`
-// }
-
 type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
 	Line             int       `json:"line"`
