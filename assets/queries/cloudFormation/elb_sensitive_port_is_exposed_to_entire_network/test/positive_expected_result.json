@@ -1,0 +1,27 @@
+[
+	{
+		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 37
+	},
+	{
+		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 73
+	},
+	{
+		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 149
+	},
+	{
+		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 234
+	},
+	{
+		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+		"severity": "HIGH",
+		"line": 234
+	}
+]

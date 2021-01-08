@@ -1,0 +1,8 @@
+{
+  "id": "d6fae5b6-ada9-46c0-8b36-3108a2a2f77b",
+  "queryName": "Log Temp Files Wrong Value",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "PostgreSQL database 'log_temp_files' flag isn't set to '0'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags"
+}

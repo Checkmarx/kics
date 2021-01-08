@@ -3,6 +3,6 @@
   "queryName": "EC2 Sensitive TCP Port Is Publicly Exposed",
   "severity": "HIGH",
   "category": "Network Ports Security",
-  "descriptionText": "The EC2 instance has a sensitive port connection exposed to the entire internet.",
+  "descriptionText": "The EC2 instance has a sensitive port connection exposed to the entire network",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
 }

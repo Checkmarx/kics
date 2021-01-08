@@ -1,0 +1,8 @@
+{
+  "id": "594f54e7-f744-45ab-93e4-c6dbaf6cd571",
+  "queryName": "Unprotected S3 Storage",
+  "severity": "LOW",
+  "category": "Encryption and Key Management",
+  "descriptionText": "AWS S3 Storage should be protected with SSE (Server-Side Encryption)",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html"
+}

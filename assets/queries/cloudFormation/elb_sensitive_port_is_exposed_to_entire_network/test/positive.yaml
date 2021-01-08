@@ -75,9 +75,9 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 127.0.0.1/32
-        - IpProtocol: all
-          FromPort: 150
-          ToPort: 180
+        - IpProtocol: tcp
+          FromPort: 6379
+          ToPort: 6379
           CidrIp: 127.0.0.1/0
         SecurityGroupEgress:
         - IpProtocol: tcp
@@ -129,36 +129,6 @@ Resources:
                     Enabled: false
 ---
 AWSTemplateFormatVersion: 2010-09-09
-Resources:
-  InstancesSecGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-        GroupDescription: Allow http and ssh
-        VpcId: my-vpc
-        SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 127.0.0.1/32
-        - IpProtocol: all
-          FromPort: 150
-          ToPort: 180
-          CidrIp: 127.0.0.1/0
-        SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-  MyLonelyEC2Instance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t3.medium
-      SecurityGroups:
-      - !Ref 'InstancesSecGroup'
-      KeyName: my-new-rsa-key
-      ImageId: ami-79fd7eee
----
-AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   MySubnet:
     Description: "My subnet"
@@ -181,9 +151,9 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 127.0.0.1/32
-        - IpProtocol: all
-          FromPort: 150
-          ToPort: 180
+        - IpProtocol: tcp
+          FromPort: 636
+          ToPort: 636
           CidrIp: 127.0.0.1/0
         SecurityGroupEgress:
         - IpProtocol: tcp
@@ -256,19 +226,19 @@ Resources:
       Tags:
         - Key: Name
           Value: t10-networklb
-  ELBInstancesSecGroup:
+  ELBInstanceSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
         GroupDescription: Allow http and ssh
         VpcId: my-vpc
         SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 80
+          FromPort: 81
           ToPort: 80
           CidrIp: 127.0.0.1/32
-        - IpProtocol: all
-          FromPort: 150
-          ToPort: 180
+        - IpProtocol: tcp
+          FromPort: 27017
+          ToPort: 27018
           CidrIp: 127.0.0.1/0
         SecurityGroupEgress:
         - IpProtocol: tcp
@@ -280,7 +250,7 @@ Resources:
     Properties:
       InstanceType: t3.2xlarge
       SecurityGroups:
-      - !Ref 'ELBInstancesSecGroup'
+      - !Ref 'ELBInstanceSecGroup'
       KeyName: my-rsa-key
       ImageId: ami-79fd7eee
   EC2Instance02:
@@ -288,7 +258,7 @@ Resources:
     Properties:
       InstanceType: t3.2xlarge
       SecurityGroups:
-      - !Ref 'ELBInstancesSecGroup'
+      - !Ref 'ELBInstanceSecGroup'
       KeyName: my-rsa-key
       ImageId: ami-79fd7eee
   NetworkLoadBalancerTargetGroup:

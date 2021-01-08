@@ -22,14 +22,14 @@ Resources:
           Interval: '10'
           Timeout: '5'
         SecurityGroups:
-          [ !Ref LBSecGroup ]
+          [ !Ref LBNegativeSecGroup01 ]
         Policies:
         - PolicyName: My-SSLNegotiation-Policy
           PolicyType: SSLNegotiationPolicyType
           Attributes:
           - Name: Reference-Security-Policy
             Value: ELBSecurityPolicy-TLS-1-2-2017-01
-  LBSecGroup:
+  LBNegativeSecGroup01:
     Type: AWS::EC2::SecurityGroup
     Properties:
         GroupDescription: Allow http and ssh
@@ -42,7 +42,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
-          CidrIp: 127.0.0.1/33
+          CidrIp: 127.0.0.1/32
         SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: 22
@@ -61,11 +61,11 @@ Resources:
       Name: ip-target-alb
       Subnets: !Ref MySubnets
       SecurityGroups:
-        - !Ref ALBSecGroup
+        - !Ref ALBNegativeSecGroup
       Tags:
         - Key: Name
           Value: ip-target-alb
-  ALBSecGroup:
+  ALBNegativeSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
         GroupDescription: Allow http and ssh
@@ -75,7 +75,7 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 127.0.0.1/32
-        - IpProtocol: all
+        - IpProtocol: tcp
           FromPort: 77
           ToPort: 77
           CidrIp: 127.0.0.1/0
@@ -144,7 +144,7 @@ Resources:
       Tags:
         - Key: Name
           Value: t10-networklb
-  InstancesSecGroup:
+  InstancesNegativeSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
         GroupDescription: Allow http and ssh
@@ -154,7 +154,7 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 127.0.0.1/32
-        - IpProtocol: all
+        - IpProtocol: tcp
           FromPort: 77
           ToPort: 77
           CidrIp: 127.0.0.1/0
@@ -167,14 +167,14 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.2xlarge
-      SecurityGroups: [!Ref 'InstancesSecGroup']
+      SecurityGroups: [!Ref 'InstancesNegativeSecGroup']
       KeyName: my-rsa-key
       ImageId: ami-79fd7eee
   EC2Instance02:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.2xlarge
-      SecurityGroups: [!Ref 'InstancesSecGroup']
+      SecurityGroups: [!Ref 'InstancesNegativeSecGroup']
       KeyName: my-rsa-key
       ImageId: ami-79fd7eee
   NetworkLoadBalancerTargetGroup:
