@@ -1,0 +1,94 @@
+- name: Create an AKS instance v0
+  azure_rm_aks:
+    name: myAKS
+    resource_group: myResourceGroup
+    location: eastus
+    dns_prefix: akstest
+    kubernetes_version: 1.14.6
+    linux_profile:
+      admin_username: azureuser
+      ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+    service_principal:
+      client_id: "cf72ca99-f6b9-4004-b0e0-bee10c521948"
+      client_secret: "Password1234!"
+    agent_pool_profiles:
+      - name: default
+        count: 1
+        vm_size: Standard_DS1_v2
+        type: VirtualMachineScaleSets
+        max_count: 3
+        min_count: 1
+    enable_rbac: yes
+- name: Create an AKS instance
+  azure_rm_aks:
+    name: myAKS
+    resource_group: myResourceGroup
+    location: eastus
+    dns_prefix: akstest
+    kubernetes_version: 1.14.6
+    linux_profile:
+      admin_username: azureuser
+      ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+    service_principal:
+      client_id: "cf72ca99-f6b9-4004-b0e0-bee10c521948"
+      client_secret: "Password1234!"
+    agent_pool_profiles:
+      - name: default
+        count: 1
+        vm_size: Standard_DS1_v2
+        type: VirtualMachineScaleSets
+        max_count: 3
+        min_count: 1
+    enable_rbac: yes
+    addon:
+      http_application_routing:
+        enabled: yes
+- name: Create an AKS instance v3
+  azure_rm_aks:
+    name: myAKS
+    resource_group: myResourceGroup
+    location: eastus
+    dns_prefix: akstest
+    kubernetes_version: 1.14.6
+    linux_profile:
+      admin_username: azureuser
+      ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+    service_principal:
+      client_id: "cf72ca99-f6b9-4004-b0e0-bee10c521948"
+      client_secret: "Password1234!"
+    agent_pool_profiles:
+      - name: default
+        count: 1
+        vm_size: Standard_DS1_v2
+        type: VirtualMachineScaleSets
+        max_count: 3
+        min_count: 1
+    enable_rbac: yes
+    addon:
+      monitoring:
+        log_analytics_workspace_resource_id: "qwqeqe"
+- name: Create an AKS instance v9
+  azure_rm_aks:
+    name: myAKS
+    resource_group: myResourceGroup
+    location: eastus
+    dns_prefix: akstest
+    kubernetes_version: 1.14.6
+    linux_profile:
+      admin_username: azureuser
+      ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA...
+    service_principal:
+      client_id: "cf72ca99-f6b9-4004-b0e0-bee10c521948"
+      client_secret: "Password1234!"
+    agent_pool_profiles:
+      - name: default
+        count: 1
+        vm_size: Standard_DS1_v2
+        type: VirtualMachineScaleSets
+        max_count: 3
+        min_count: 1
+    enable_rbac: yes
+    addon:
+      monitoring:
+        log_analytics_workspace_resource_id: "qwqeqe"
+        enabled: no

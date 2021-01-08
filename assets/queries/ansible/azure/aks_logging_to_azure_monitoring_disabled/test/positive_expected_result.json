@@ -1,0 +1,25 @@
+[
+	{
+		"queryName": "AKS Logging To Azure Monitoring Disabled",
+		"severity": "MEDIUM",
+		"line": 2
+	},
+
+	{
+		"queryName": "AKS Logging To Azure Monitoring Disabled",
+		"severity": "MEDIUM",
+		"line": 43
+	},
+
+	{
+		"queryName": "AKS Logging To Azure Monitoring Disabled",
+		"severity": "MEDIUM",
+		"line": 68
+	},
+
+	{
+		"queryName": "AKS Logging To Azure Monitoring Disabled",
+		"severity": "MEDIUM",
+		"line": 94
+	}
+]
