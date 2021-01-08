@@ -1,5 +1,5 @@
 {
-  "id": "MSKClusterEncryptionNotEnabled",
+  "id": "6db52fa6-d4da-4608-908a-89f0c59e743e",
   "queryName": "MSK Cluster encryption is not enabled",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
