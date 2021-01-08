@@ -1,5 +1,5 @@
 {
-  "id": "s3_bucket_without_encryption",
+  "id": "9f4cc182-a67b-44b0-b3ef-e2ac17d66591",
   "queryName": "S3 Bucket Without Encryption",
   "severity": "HIGH",
   "category": "Network Security",
