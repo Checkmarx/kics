@@ -70,8 +70,11 @@ func main() { // nolint:funlen,gocyclo
 
 			if generateID {
 				_, err = fmt.Println(uuid.New().String())
+				if err != nil {
+					log.Err(err).Msg("failed to get uuid")
+					os.Exit(-1)
+				}
 				os.Exit(0)
-				return err
 			}
 
 			if logFile {
