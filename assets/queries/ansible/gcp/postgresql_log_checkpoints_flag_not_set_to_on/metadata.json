@@ -1,5 +1,5 @@
 {
-  "id": "postgresql_log_checkpoints_flag_not_set_to_on",
+  "id": "89afe3f0-4681-4ce3-89ed-896cebd4277c",
   "queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
   "severity": "HIGH",
   "category": "Network Security",
