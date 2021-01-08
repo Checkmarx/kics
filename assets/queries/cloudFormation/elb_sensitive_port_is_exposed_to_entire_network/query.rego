@@ -37,6 +37,16 @@ getELBType(elb) = type {
   type = "application"
 }
 
+getLinkedSecGroupList(elb, resources) = elbSecGroupName {
+  object.get(elb.Properties, "SecurityGroups", "unspecified") != "unspecified"
+  elbSecGroupName = elb.Properties.SecurityGroups
+} else = ec2SecGroup {
+  ec2InstanceList := [ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE")]
+  ec2Instance := ec2InstanceList[i]
+  object.get(ec2Instance.Properties, "SecurityGroups", "unspecified") != "unspecified"
+  ec2SecGroup = ec2Instance.Properties.SecurityGroups
+}
+
 CxPolicy[result] {
   #############	inputs
   # List of ports
@@ -117,16 +127,18 @@ CxPolicy[result] {
 
   elb := loadBalancerList[j]
   elbType := getELBType(elb.properties)
+  elbSecGroupList := getLinkedSecGroupList(elb.properties, resources)
 
   securityGroupList = [{"name": key, "properties": secGroup}|
                        secGroup := resources[key];
                        contains(secGroup.Type, "SecurityGroup")]
 
   secGroup := securityGroupList[k]
-  ingress := secGroup.properties.Properties.SecurityGroupIngress[l]
+  secGroup["name"] == elbSecGroupList[l]
+  ingress := secGroup.properties.Properties.SecurityGroupIngress[m]
 
   protocols := getProtocolList(ingress.IpProtocol)
-  protocol := protocols[m]
+  protocol := protocols[n]
   portsMap = getProtocolPorts(protocols, tcpPortsMap, udpPortsMap)
 
   #############	Checks
