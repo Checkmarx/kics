@@ -56,6 +56,20 @@ func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerab
 			return []model.QueryMetadata{q}, nil
 		})
 
+	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+		DoAndReturn(func(string) (string, error) {
+			q, err := getPlatform("commonQuery")
+			require.NoError(t, err)
+			return q, nil
+		})
+
+	queriesSource.EXPECT().GetGenericQuery(entry.dir).
+		DoAndReturn(func(string) (string, error) {
+			q, err := getPlatform(entry.dir)
+			require.NoError(t, err)
+			return q, nil
+		})
+
 	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
@@ -63,6 +77,52 @@ func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerab
 	vulnerabilities, err := inspector.Inspect(ctx, scanID, getParsedFile(t, filePath))
 	require.Nil(t, err)
 	requireEqualVulnerabilities(t, expectedVulnerabilities, vulnerabilities)
+}
+
+func getPlatform(platform string) (string, error) {
+	var genericPath = "..\\assets\\queries\\generic\\"
+	var content = "package generic.common"
+	var err error
+
+	if strings.Contains(platform, "commonQuery") {
+		content, err := ioutil.ReadFile(genericPath + "common\\library.rego")
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "ansible") {
+		content, err := ioutil.ReadFile(genericPath + "ansible\\library.rego")
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "cloudformation") {
+		content, err := ioutil.ReadFile(genericPath + "cloudformation\\library.rego")
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "dockerfile") {
+		content, err := ioutil.ReadFile(genericPath + "dockerfile\\library.rego")
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "k8s") {
+		content, err := ioutil.ReadFile(genericPath + "k8s\\library.rego")
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "terraform") {
+		content, err := ioutil.ReadFile(genericPath + "terraform\\library.rego")
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	}
+
+	return content, err
 }
 
 func requireEqualVulnerabilities(t *testing.T, expected, actual []model.Vulnerability) {

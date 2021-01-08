@@ -6,6 +6,8 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"runtime"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
@@ -18,6 +20,64 @@ const metadataFileName = "metadata.json"
 
 type FilesystemSource struct {
 	Source string
+}
+
+var (
+	_, b, _, _ = runtime.Caller(0)
+	basepath   = filepath.Dir(b)
+)
+
+func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
+
+	var genericPath = filepath.Join(basepath, "..\\..\\..\\assets\\queries\\generic\\")
+	var content = "package generic.common"
+	var err error
+
+	if strings.Contains(platform, "commonQuery") {
+		path, _ := filepath.Abs(genericPath + "\\common\\library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "ansible") {
+		path, _ := filepath.Abs(genericPath + "\\ansible\\library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "cloudformation") {
+		path, _ := filepath.Abs(genericPath + "\\cloudformation\\library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "dockerfile") {
+		path, _ := filepath.Abs(genericPath + "\\dockerfile\\library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "k8s") {
+		path, _ := filepath.Abs(genericPath + "\\k8s\\library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "terraform") {
+		path, _ := filepath.Abs(genericPath + "\\terraform\\library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	}
+
+	return content, err
 }
 
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {

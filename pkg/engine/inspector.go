@@ -32,6 +32,7 @@ type VulnerabilityBuilder func(ctx QueryContext, v interface{}) (model.Vulnerabi
 
 type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
+	GetGenericQuery(platform string) (string, error)
 }
 
 type Tracker interface {
@@ -79,14 +80,34 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
+	commonGeneralQuery, err := source.GetGenericQuery("commonQuery")
+	if err != nil {
+		sentry.CaptureException(err)
+		log.
+			Err(err).
+			Msgf("Inspector failed to get general query, query=%s", "common")
+	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
+
+		platformGeneralQuery, _ := source.GetGenericQuery(metadata.Query)
+		if err != nil {
+			sentry.CaptureException(err)
+			log.
+				Err(err).
+				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
+
+			continue
+		}
+
 		select {
 		case <-ctx.Done():
 			return nil, nil
 		default:
 			opaQuery, err := rego.New(
 				rego.Query(regoQuery),
+				rego.Module("Common", commonGeneralQuery),
+				rego.Module("Generic", platformGeneralQuery),
 				rego.Module(metadata.Query, metadata.Content),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 			).PrepareForEval(ctx)
