@@ -1,5 +1,5 @@
 {
-  "id": "compute_instance_is_publicly_accessible",
+  "id": "829f1c60-2bab-44c6-8a21-5cd9d39a2c82",
   "queryName": "Compute Instance Is Publicly Accessible",
   "severity": "HIGH",
   "category": "Network Security",
