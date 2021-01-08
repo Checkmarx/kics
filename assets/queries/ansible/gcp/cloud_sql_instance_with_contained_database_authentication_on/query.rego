@@ -29,10 +29,16 @@ getTasks(document) = result {
 
 check_database_flags_content(database_flags) {
 	database_flags[x].name == "contained database authentication"
-	database_flags[x].value == "on"
+    isAnsibleValue(database_flags[x].value)
 }
 
 check_database_flags_content(database_flags) {
 	database_flags.name == "contained database authentication"
-	database_flags.value == "on"
+    isAnsibleValue(database_flags.value)
+}
+
+isAnsibleValue(answer) {
+ 	lower(answer) == "on"
+} else {
+	answer == 1
 }
