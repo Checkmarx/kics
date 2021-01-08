@@ -1,5 +1,5 @@
 {
-  "id": "RDS_Backup_Retention_Peroid_Insufficient",
+  "id": "e649a218-d099-4550-86a4-1231e1fcb60d",
   "queryName": "RDS Backup Retention Period Insufficient",
   "severity": "MEDIUM",
   "category": "Backup and Disaster Recovery",

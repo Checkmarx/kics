@@ -1,5 +1,5 @@
 {
-  "id": "s3_bucket_rules_with_master_ley_id_null",
+  "id": "309edc5b-5a59-42b4-a357-d4d098311fd4",
   "queryName": "S3 Bucket Rules With Master Key Id Null",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

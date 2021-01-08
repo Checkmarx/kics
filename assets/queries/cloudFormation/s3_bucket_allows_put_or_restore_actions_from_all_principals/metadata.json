@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_Allows_Put_Or_Restore_Actions_From_All_Principals",
+  "id": "456b00a3-1072-4149-9740-6b8bb60251b0",
   "queryName": "S3 Bucket Allows Put Or Restore Actions From All Principals",
   "severity": "HIGH",
   "category": "Identity and Access Management",

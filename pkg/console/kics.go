@@ -168,7 +168,7 @@ func analyse(analyseArgs analyseOptions) error {
 		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
 	}
 
-	summary := model.CreateSummary(counters, result)
+	summary := model.CreateSummary(counters, result, scanID)
 
 	if analyseArgs.payloadPath != "" {
 		if err := printToJSONFile(analyseArgs.payloadPath, files.Combine()); err != nil {
@@ -182,7 +182,7 @@ func analyse(analyseArgs analyseOptions) error {
 		}
 	}
 
-	if err := printResult(summary); err != nil {
+	if err := printResult(&summary); err != nil {
 		return err
 	}
 

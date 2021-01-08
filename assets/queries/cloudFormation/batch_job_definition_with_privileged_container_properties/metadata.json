@@ -1,5 +1,5 @@
 {
-  "id": "batch_job_definition_with_privileged_container_properties",
+  "id": "76ddf32c-85b1-4808-8935-7eef8030ab36",
   "queryName": "Batch Job Definition With Privileged Container Properties",
   "severity": "HIGH",
   "category": "Privileges",

@@ -1,5 +1,5 @@
 {
-  "id": "AKS_Network_Policy_Misconfigured",
+  "id": "8c3bedf1-c570-4c3b-b414-d068cd39a00c",
   "queryName": "AKS Network Policy Misconfigured",
   "severity": "MEDIUM",
   "category": "Network Security",

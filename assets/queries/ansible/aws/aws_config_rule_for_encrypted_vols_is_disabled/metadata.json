@@ -1,5 +1,5 @@
 {
-  "id": "aws_config_rule_for_encrypted_volumes_is_disabled",
+  "id": "7674a686-e4b1-4a95-83d4-1fd53c623d84",
   "queryName": "AWS Config Rule For Encrypted Volumes Is Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

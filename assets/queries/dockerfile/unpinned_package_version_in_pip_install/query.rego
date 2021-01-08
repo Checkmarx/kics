@@ -17,5 +17,5 @@ CxPolicy [ result ] {
     "issueType": "IncorrectValue",
     "keyExpectedValue": "RUN instruction with 'pip install <package>' should use package pinning form 'pip install <package>=<version>'",
     "keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [instruction.Value[0]])
-  } 
+  }
 }

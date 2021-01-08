@@ -1,5 +1,5 @@
 {
-  "id": "IAM_password_without_uppercase_letter",
+  "id": "83957b81-39c1-4191-8e12-671d2ce14354",
   "queryName": "IAM Password Without Uppercase Letter",
   "severity": "MEDIUM",
   "category": "IAM",

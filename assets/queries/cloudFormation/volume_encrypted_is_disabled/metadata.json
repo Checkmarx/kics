@@ -1,5 +1,5 @@
 {
-  "id": "volume_encrypted_is_disabled",
+  "id": "80b7ac3f-d2b7-4577-9b10-df7913497162",
   "queryName": "Volume Encryption Is Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

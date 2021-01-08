@@ -1,5 +1,5 @@
 {
-  "id": "security_groups_do_not_have_vpc",
+  "id": "493d9591-6249-47bf-8dc0-5c10161cc558",
   "queryName": "Security Groups Do Not Have VPC",
   "severity": "MEDIUM",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "ecs_cluster_at_rest_encryption",
+  "id": "6c131358-c54d-419b-9dd6-1f7dd41d180c",
   "queryName": "ECS Cluster at Rest Encryption",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

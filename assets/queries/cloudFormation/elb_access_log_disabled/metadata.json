@@ -1,5 +1,5 @@
 {
-  "id": "ELB_access_log_disabled",
+  "id": "ee12ad32-2863-4c0f-b13f-28272d115028",
   "queryName": "ELB Access Log Disabled",
   "severity": "MEDIUM",
   "category": "Logging",

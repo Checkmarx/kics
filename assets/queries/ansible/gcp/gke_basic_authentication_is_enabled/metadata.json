@@ -1,5 +1,5 @@
 {
-  "id": "GKE_Basic_Authentication_Enabled",
+  "id": "344bf8ab-9308-462b-a6b2-697432e40ba1",
   "queryName": "GKE Basic Authentication is Enabled",
   "severity": "HIGH",
   "category": "Identity & Access Management",

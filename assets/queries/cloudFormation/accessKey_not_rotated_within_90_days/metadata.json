@@ -1,5 +1,5 @@
 {
-  "id": "Access_Key_Is_Not_Rotated_Within_90_Days",
+  "id": "800fa019-49dd-421b-9042-7331fdd83fa2",
   "queryName": "Access Key Is Not Rotated Within 90 Days",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

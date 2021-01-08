@@ -1,5 +1,5 @@
 {
-  "id": "Verify_ACM_Certificate_DomainName",
+  "id": "cc8b294f-006f-4f8f-b5bb-0a9140c33131",
   "queryName": "Wildcard In ACM Certificate Domain Name",
   "severity": "LOW",
   "category": "Encryption and Key Management",

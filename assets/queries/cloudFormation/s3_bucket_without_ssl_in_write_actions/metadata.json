@@ -1,5 +1,5 @@
 {
-    "id": "s3_bucket_without_ssl_in_write_actions",
+    "id": "38c64e76-c71e-4d92-a337-60174d1de1c9",
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "HIGH",
     "category": "Encryption and Key Management",

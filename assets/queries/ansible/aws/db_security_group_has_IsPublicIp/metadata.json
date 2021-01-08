@@ -1,5 +1,5 @@
 {
-  "id": "DB_Security_Group_Has_Public_IP",
+  "id": "5330b503-3319-44ff-9b1c-00ee873f728a",
   "queryName": "DB Security Group Has Public IP",
   "severity": "HIGH",
   "category": "Network Security",

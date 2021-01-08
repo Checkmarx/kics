@@ -1,5 +1,5 @@
 {
-  "id": "congito_userpool_without_mfa",
+  "id": "74a18d1a-cf02-4a31-8791-ed0967ad7fdc",
   "queryName": "AWS Cognito UserPool Without MFA",
   "severity": "MEDIUM",
   "category": "Identity and Access Management" ,

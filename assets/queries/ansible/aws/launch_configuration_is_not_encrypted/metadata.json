@@ -1,5 +1,5 @@
 {
-  "id": "ansible_launch_configuration_is_not_encrypted",
+  "id": "72f36805-91d7-4187-9712-603b9cd0768f",
   "queryName": "Launch Configuration Is Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption & Key Management",

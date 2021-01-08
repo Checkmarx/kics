@@ -1,5 +1,5 @@
 {
-  "id": "security_groups_unrestricted_access_to_ssh",
+  "id": "6e856af2-62d7-4ba2-adc1-73b62cef9cc1",
   "queryName": "Security Group Unrestricted Access To SSH",
   "severity": "HIGH",
   "category": "Network Security",

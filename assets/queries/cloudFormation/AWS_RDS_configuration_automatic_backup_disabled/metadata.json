@@ -1,5 +1,5 @@
 {
-  "id": "AWS_RDS_configuration_automatic_backup_disabled",
+  "id": "8c415f6f-7b90-4a27-a44a-51047e1506f9",
   "queryName": "AWS RDS Configuration Automatic Backup Disabled",
   "severity": "LOW",
   "category": "Backup and Disaster Recovery",

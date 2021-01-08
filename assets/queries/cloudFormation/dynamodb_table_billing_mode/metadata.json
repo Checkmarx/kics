@@ -1,5 +1,5 @@
 {
-  "id": "dynamodb_table_billing_mode",
+  "id": "c333e906-8d8b-4275-b999-78b6318f8dc6",
   "queryName": "DynamoDB Table Billing Mode",
   "severity": "LOW",
   "category": "Cloud Assets Management",

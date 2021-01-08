@@ -1,5 +1,5 @@
 {
-  "id": "Auto_Scaling_Group_With_No_Associated_ELB",
+  "id": "ad21e616-5026-4b9d-990d-5b007bfe679c",
   "queryName": "Auto Scaling Group With No Associated ELB",
   "severity": "MEDIUM",
   "category": "Operational",

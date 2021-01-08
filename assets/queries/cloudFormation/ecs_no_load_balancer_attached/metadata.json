@@ -1,5 +1,5 @@
 {
-  "id": "ECS_No_Load_Balancer_Attached",
+  "id": "fb2b0ecf-1492-491a-a70d-ba1df579175d",
   "queryName": "ECS No Load Balancer Attached",
   "severity": "HIGH",
   "category": "Network Security",

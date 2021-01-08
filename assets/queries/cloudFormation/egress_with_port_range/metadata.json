@@ -1,5 +1,5 @@
 {
-  "id": "egress_with_port_range",
+  "id": "dae9c373-8287-462f-8746-6f93dad93610",
   "queryName": "AWS Security Group Egress With Port Range",
   "severity": "MEDIUM",
   "category": "Network Security",

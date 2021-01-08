@@ -1,5 +1,5 @@
 {
-  "id": "lambda_permission_badly_configured",
+  "id": "9b83114b-b2a1-4534-990d-06da015e47aa",
   "queryName": "Lambda Permission Badly Configured",
   "severity": "LOW",
   "category": "Identity and Access Management",

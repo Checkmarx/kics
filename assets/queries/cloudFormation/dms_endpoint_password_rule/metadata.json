@@ -1,5 +1,5 @@
 {
-  "id": "dms_endpoint_password_rule",
+  "id": "5f700072-b7ce-4e84-b3f3-497bf1c24a4d",
   "queryName": "DMS Endpoint Password Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

@@ -1,5 +1,5 @@
 {
-  "id": "iam_user_invalid_password",
+  "id": "06adef8c-c284-4de7-aad2-af43b07a8ca1",
   "queryName": "IAM User LoginProfile Password Is In Plaintext",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

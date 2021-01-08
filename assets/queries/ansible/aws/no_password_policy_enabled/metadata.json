@@ -1,8 +1,8 @@
 {
-  "id": "no_password_policy_enabled",
+  "id": "1b1bacf3-25c7-40b1-b7de-95696670b8d3",
   "queryName": "No Password Policy Enabled",
   "severity": "HIGH",
   "category": "Identity and Access Management",
   "descriptionText": "IAM password policies should be set",
   "descriptionUrl": "https://docs.ansible.com/ansible/2.9_ja/modules/iam_password_policy_module.html"
-} 
+}

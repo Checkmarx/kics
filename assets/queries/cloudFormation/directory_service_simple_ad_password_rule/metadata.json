@@ -1,5 +1,5 @@
 {
-  "id": "directory_service_simple_ad_password_rule",
+  "id": "6685d912-d81f-4cfa-95ad-e316ea31c989",
   "queryName": "Directory Service Simple AD Password Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

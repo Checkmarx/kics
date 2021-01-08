@@ -1,5 +1,5 @@
 {
-  "id": "ebs_volume_not_attached_to_instances",
+  "id": "1819ac03-542b-4026-976b-f37addd59f3b",
   "queryName": "EBS Volume Not Attached To Instances",
   "severity": "MEDIUM",
   "category": "Operational",
