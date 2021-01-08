@@ -1,5 +1,5 @@
 {
-  "id": "ECS_Service_Admin_Role_Present",
+  "id": "7db727c1-1720-468e-b80e-06697f71e09e",
   "queryName": "ECS Service Admin Role is Present",
   "severity": "HIGH",
   "category": "Identity and Access Management",

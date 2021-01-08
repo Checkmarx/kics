@@ -1,5 +1,5 @@
 {
-  "id": "sage_maker_without_vpc",
+  "id": "9c7028d9-04c2-45be-b8b2-1188ccaefb36",
   "queryName": "SageMaker Notebook Not Placed In VPC",
   "severity": "HIGH",
   "category": "Network Security",

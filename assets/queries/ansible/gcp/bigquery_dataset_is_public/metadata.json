@@ -1,5 +1,5 @@
 {
-  "id": "bigquery_dataset_is_public",
+  "id": "2263b286-2fe9-4747-a0ae-8b4768a2bbd2",
   "queryName": "BigQuery Dataset Is Public",
   "severity": "HIGH",
   "category": "Identity & Access Management",

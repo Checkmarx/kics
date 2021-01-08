@@ -1,5 +1,5 @@
 {
-  "id": "CosmosDB_Account_Ip_Range_Filter_Not_Setted",
+  "id": "e8c80448-31d8-4755-85fc-6dbab69c2717",
   "queryName": "CosmosDB Account IP Range Filter Not Set",
   "severity": "HIGH",
   "category": "Network Security",

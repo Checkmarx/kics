@@ -1,5 +1,5 @@
 {
-  "id": "Cloud_Storage_Anonymous_Or_Publicly_Accessible",
+  "id": "086031e1-9d4a-4249-acb3-5bfe4c363db2",
   "queryName": "Cloud Storage Anonymous or Publicly Accessible",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

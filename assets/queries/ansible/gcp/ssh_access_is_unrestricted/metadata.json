@@ -1,5 +1,5 @@
 {
-  "id": "SSH_Access_Is_Not_Restricted_From_The_Internet",
+  "id": "b2fbf1df-76dd-4d78-a6c0-e538f4a9b016",
   "queryName": "SSH Access Is Not Restricted From The Internet",
   "severity": "MEDIUM",
   "category": "Network Security",

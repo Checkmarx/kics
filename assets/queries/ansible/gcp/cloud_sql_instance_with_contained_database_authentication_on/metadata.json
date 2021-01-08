@@ -1,5 +1,5 @@
 {
-  "id": "cloud_sql_instance_with_contained_database_authentication_on",
+  "id": "6d34aff3-fdd2-460c-8190-756a3b4969e8",
   "queryName": "Cloud SQL Instance With Contained Database Authentication On",
   "severity": "HIGH",
   "category": "Network Security",

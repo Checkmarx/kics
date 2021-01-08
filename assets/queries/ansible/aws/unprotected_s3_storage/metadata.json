@@ -1,5 +1,5 @@
 {
-  "id": "unprotected_s3_storage",
+  "id": "594f54e7-f744-45ab-93e4-c6dbaf6cd571",
   "queryName": "Unprotected S3 Storage",
   "severity": "LOW",
   "category": "Encryption and Key Management",

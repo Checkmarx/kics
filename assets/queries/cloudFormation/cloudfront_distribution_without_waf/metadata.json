@@ -1,5 +1,5 @@
 {
-  "id": "cloudfront_distribution_without_waf",
+  "id": "0f139403-303f-467c-96bd-e717e6cfd62d",
   "queryName": "CloudFront Distribution Without WAF",
   "severity": "MEDIUM",
   "category": "Network Security",

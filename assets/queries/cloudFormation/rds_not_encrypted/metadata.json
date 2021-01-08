@@ -1,5 +1,5 @@
 {
-  "id": "rds_not_encrypted",
+  "id": "5beacce3-4020-4a3d-9e1d-a36f953df630",
   "queryName": "AWS RDS DB Instance Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

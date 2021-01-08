@@ -1,5 +1,5 @@
 {
-  "id": "amazonmq_broker_encryption_disabled",
+  "id": "316278b3-87ac-444c-8f8f-a733a28da60f",
   "queryName": "AmazonMQ Broker Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "route_table_changes_without_alarms",
+  "id": "7b347a63-e143-43eb-9f7a-753a24d70a38",
   "queryName": "Route Table Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",

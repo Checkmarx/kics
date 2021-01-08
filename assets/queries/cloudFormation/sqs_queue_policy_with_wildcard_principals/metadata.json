@@ -1,5 +1,5 @@
 {
-  "id": "sqs_queue_policy_with_wildcard_principals",
+  "id": "9b6a3f5b-5fd6-40ee-9bc0-ed604911212d",
   "queryName": "SQS Queue Policy With Wildcard Principals",
   "severity": "HIGH",
   "category": "Network Security",

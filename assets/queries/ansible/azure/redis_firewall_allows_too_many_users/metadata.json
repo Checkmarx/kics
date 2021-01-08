@@ -1,5 +1,5 @@
 {
-  "id": "Firewall_Rule_Allows_Too_Many_Hosts_To_Access_Redis_Cache",
+  "id": "69f72007-502e-457b-bd2d-5012e31ac049",
   "queryName": "Firewall Rule Allows Too Many Hosts To Access Redis Cache",
   "severity": "MEDIUM",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "Redshift_Cluster_Publicly_Accessible",
+  "id": "bdf8dcb4-75df-4370-92c4-606e4ae6c4d3",
   "queryName": "Redshift Cluster Publicly Accessible",
   "severity": "MEDIUM",
   "category": "Network Security",

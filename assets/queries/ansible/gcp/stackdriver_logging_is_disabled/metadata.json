@@ -1,5 +1,5 @@
 {
-  "id": "Stackdriver_Logging_Disabled",
+  "id": "19c9e2a0-fc33-4264-bba1-e3682661e8f7",
   "queryName": "Stackdriver Logging is Disabled",
   "severity": "HIGH",
   "category": "Logging",

@@ -1,5 +1,5 @@
 {
-  "id": "EC2_Subnet_MapPublicIpOnLaunch_Is_True",
+  "id": "6c9fb2ca-7912-4610-bdb4-7c39f8e31ca9",
   "queryName": "EC2 Subnet MapPublicIpOnLaunch Is True",
   "severity": "HIGH",
   "category": "Network Security",

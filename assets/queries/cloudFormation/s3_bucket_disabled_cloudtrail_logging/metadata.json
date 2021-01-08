@@ -1,5 +1,5 @@
 {
-  "id": "s3_bucket_disabled_cloudtrail_logging",
+  "id": "c3ce69fd-e3df-49c6-be78-1db3f802261c",
   "queryName": "S3 Bucket Disabled Cloudtrail Logging",
   "severity": "HIGH",
   "category": "Logging",

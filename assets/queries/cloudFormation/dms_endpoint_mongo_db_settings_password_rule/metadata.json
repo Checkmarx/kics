@@ -1,5 +1,5 @@
 {
-  "id": "dms_endpoint_mongo_db_settings_password_rule",
+  "id": "f988a17f-1139-46a3-8928-f27eafd8b024",
   "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

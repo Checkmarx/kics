@@ -1,5 +1,5 @@
 {
-  "id": "rds_db_instance_with_deletion_protection_disabled",
+  "id": "2c161e58-cb52-454f-abea-6470c37b5e6e",
   "queryName": "RDS DBInstance With Deletion Protection Disabled",
   "severity": "LOW",
   "category": "Backup and Disaster Recovery",

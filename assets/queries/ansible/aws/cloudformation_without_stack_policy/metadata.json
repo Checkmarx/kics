@@ -1,5 +1,5 @@
 {
-  "id": "cloudformation_without_stack_policy",
+  "id": "ffe0fd52-7a8b-4a5c-8fc7-49844418e6c9",
   "queryName": "AWS CloudFormation Without Stack Policy",
   "severity": "MEDIUM",
   "category": "Operational Efficiency",

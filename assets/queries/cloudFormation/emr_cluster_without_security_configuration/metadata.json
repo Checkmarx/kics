@@ -1,5 +1,5 @@
 {
-  "id": "emr_cluster_without_security_configuration",
+  "id": "48af92a5-c89b-4936-bc62-1086fe2bab23",
   "queryName": "EMR Cluster Without Security Configuration",
   "severity": "MEDIUM",
   "category": "Network Security",

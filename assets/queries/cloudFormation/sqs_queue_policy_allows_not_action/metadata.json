@@ -1,5 +1,5 @@
 {
-  "id": "sqs_queue_policy_allows_not_action",
+  "id": "4fbfee74-8186-40d5-a24e-4baa76a855de",
   "queryName": "AWS SQS Queue Policy Allows NotAction",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

@@ -1,5 +1,5 @@
 {
-  "id": "security_groups_with_exhibited_admin_ports",
+  "id": "cdbb0467-2957-4a77-9992-7b55b29df7b7",
   "queryName": "Security Groups With Exhibited Admin Ports",
   "severity": "HIGH",
   "category": "Network Security",

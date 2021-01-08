@@ -1,5 +1,5 @@
 {
-  "id": "api_gateway_deployment_without_api_gateway_usage_plan_associated",
+  "id": "783860a3-6dca-4c8b-81d0-7b62769ccbca",
   "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
   "severity": "LOW",
   "category": "Monitoring",

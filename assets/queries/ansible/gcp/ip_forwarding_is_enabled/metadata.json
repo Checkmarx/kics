@@ -1,5 +1,5 @@
 {
-  "id": "IP_Forwarding_Enabled",
+  "id": "11bd3554-cd56-4257-8e25-7aaf30cf8f5f",
   "queryName": "IP Forwarding is Enabled",
   "severity": "MEDIUM",
   "category": "Network Security",

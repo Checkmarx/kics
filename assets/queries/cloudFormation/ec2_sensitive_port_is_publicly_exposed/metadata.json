@@ -1,5 +1,5 @@
 {
-  "id": "ec2_sensitive_port_is_publicly_exposed",
+  "id": "494b03d3-bf40-4464-8524-7c56ad0700ed",
   "queryName": "EC2 Sensitive Port Is Publicly Exposed",
   "severity": "HIGH",
   "category": "Network Ports Security",

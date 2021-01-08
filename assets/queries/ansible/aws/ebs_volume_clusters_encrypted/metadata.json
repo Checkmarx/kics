@@ -1,5 +1,5 @@
 {
-  "id": "Ansible_Volume_Clusters_Encrypted",
+  "id": "5255c3db-448b-4f9b-a087-a568fe290a76",
   "queryName": "Volume Clusters Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

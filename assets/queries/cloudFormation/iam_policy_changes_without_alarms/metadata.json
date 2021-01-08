@@ -1,5 +1,5 @@
 {
-  "id": "iam_policy_changes_without_alarms",
+  "id": "515f4046-9ddb-4263-8745-42ad66e4f5ea",
   "queryName": "IAM Policy Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",
