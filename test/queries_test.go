@@ -25,7 +25,9 @@ func BenchmarkQueries(b *testing.B) {
 	queries := loadQueries(b)
 	for _, entry := range queries {
 		b.ResetTimer()
-		benchmarkPositiveandNegativeQueries(b, entry)
+		for n := 0; n < b.N; n++ {
+			benchmarkPositiveandNegativeQueries(b, entry)
+		}
 	}
 }
 
