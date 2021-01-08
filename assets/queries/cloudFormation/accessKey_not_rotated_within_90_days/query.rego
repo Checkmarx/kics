@@ -1,15 +1,15 @@
 package Cx
 
 CxPolicy [ result ] {
-	document := input.document[i]
-  not hasAccessKeyRotationRule(document)
+	resource := input.document[i].Resources[name]
+  not hasAccessKeyRotationRule(resource)
 
 	result := {
-                "documentId": 		document.id,
-                "searchKey": 	    "Resources",
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("Resources.%s",[name]),
                 "issueType":		"MissingAttribute", 
-                "keyExpectedValue": "Resources has a ConfigRule defining rotation period on AccessKeys.",
-                "keyActualValue": 	"Resources doesn't have a ConfigRule defining rotation period on AccessKeys."
+                "keyExpectedValue": sprintf("Resources.%s has a ConfigRule defining rotation period on AccessKeys.",[name]),
+                "keyActualValue": 	sprintf("Resources.%s doesn't have a ConfigRule defining rotation period on AccessKeys.",[name])
               }
 }
 
@@ -23,7 +23,7 @@ CxPolicy [ result ] {
 	
   result := {
                 "documentId": 		document.id,
-                "searchKey": 	    "Resources.%s.Properties",
+                "searchKey": 	    sprintf("Resources.%s.Properties",[name]),
                 "issueType":		"MissingAttribute", 
                 "keyExpectedValue": sprintf("Resources.%s.InputParameters is defined and contains 'maxAccessKeyAge' key.",[name]),
                 "keyActualValue": 	sprintf("Resources.%s.InputParameters is undefined.",[name])
@@ -49,8 +49,7 @@ CxPolicy [ result ] {
               }
 }
 
-hasAccessKeyRotationRule(document) {
-    configRule := document.Resources[_]
+hasAccessKeyRotationRule(configRule) {
     configRule.Type == "AWS::Config::ConfigRule"
     configRule.Properties.Source.SourceIdentifier == "ACCESS_KEYS_ROTATED"
 } else = false

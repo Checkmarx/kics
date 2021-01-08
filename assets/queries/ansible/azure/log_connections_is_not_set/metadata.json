@@ -1,5 +1,5 @@
 {
-  "id": "ansible_log_connections_is_not_set",
+  "id": "7b47138f-ec0e-47dc-8516-e7728fe3cc17",
   "queryName": "Log Connections Is Not Set",
   "severity": "MEDIUM",
   "category": "Logging",

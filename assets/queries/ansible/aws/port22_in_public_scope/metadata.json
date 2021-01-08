@@ -1,5 +1,5 @@
 {
-  "id": "port22_in_public_scope",
+  "id": "57ced4b9-6ba4-487b-8843-b65562b90c77",
   "queryName": "SSH' (TCP:22) in Public Scope",
   "severity": "HIGH",
   "category": "Network Ports Security",

@@ -1,0 +1,50 @@
+---
+- name: Create a log profile
+  azure_rm_monitorlogprofile:
+    name: myProfile
+    location: eastus
+    locations:
+      - eastus
+      - westus
+    categories:
+      - Write
+      - Action
+    retention_policy:
+      enabled: False
+    storage_account:
+      resource_group: myResourceGroup
+      name: myStorageAccount
+  register: output
+
+- name: Create a log profile2
+  azure_rm_monitorlogprofile:
+    name: myProfile
+    location: eastus
+    locations:
+      - eastus
+      - westus
+    categories:
+      - Write
+      - Action
+    storage_account:
+      resource_group: myResourceGroup
+      name: myStorageAccount
+  register: output
+
+- name: Create a log profile3
+  azure_rm_monitorlogprofile:
+    name: myProfile
+    location: eastus
+    locations:
+      - eastus
+      - westus
+    categories:
+      - Write
+      - Action
+    retention_policy:
+      enabled: True
+      days: 50
+    storage_account:
+      resource_group: myResourceGroup
+      name: myStorageAccount
+  register: output

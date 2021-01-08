@@ -1,5 +1,5 @@
 {
-  "id": "IAM_Access_Key_Is_Exposed",
+  "id": "7f79f858-fbe8-4186-8a2c-dfd0d958a40f",
   "queryName": "IAM Access Key Is Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

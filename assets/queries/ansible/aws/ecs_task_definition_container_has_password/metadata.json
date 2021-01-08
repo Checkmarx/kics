@@ -1,5 +1,5 @@
 {
-  "id": "ECS_task_definition_container_has_password",
+  "id": "7fdc2bf3-6bc0-4cb3-84c5-cfd041c0f892",
   "queryName": "ECS Task Definition Container has Password",
   "severity": "HIGH",
   "category": "Data Security",

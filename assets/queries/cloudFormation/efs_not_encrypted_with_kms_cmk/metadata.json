@@ -1,8 +1,8 @@
 {
-  "id": "EFS_not_encrypted_with_KMS_CMK",
+  "id": "6d087495-2a42-4735-abf7-02ef5660a7e6",
   "queryName": "EFS not encrypted with KMS CMK",
   "severity": "HIGH",
-  "category": null,
+  "category": "Encryption and Key Management",
   "descriptionText": "Amazon Elastic Filesystem should have filesystem encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
   "descriptionUrl": "https://docs.aws.amazon.com/efs/latest/ug/encryption.html"
 }

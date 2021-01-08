@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "RDS Open to Large Scope",
+		"severity": "HIGH",
+		"line": 19
+	},
+	{
+		"queryName": "RDS Open to Large Scope",
+		"severity": "HIGH",
+		"line": 39
+	},
+	{
+		"queryName": "RDS Open to Large Scope",
+		"severity": "HIGH",
+		"line": 59
+	}
+]

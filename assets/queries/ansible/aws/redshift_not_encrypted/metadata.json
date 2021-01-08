@@ -1,5 +1,5 @@
 {
-  "id": "ansible_redshift_not_encrypted",
+  "id": "6a647814-def5-4b85-88f5-897c19f509cd",
   "queryName": "Redshift Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

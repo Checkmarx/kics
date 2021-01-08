@@ -1,8 +1,8 @@
 {
-    "id": "workspace_without_encryption",
+    "id": "89827c57-5a8a-49eb-9731-976a606d70db",
     "queryName": "Workspace Without Encryption",
     "severity": "MEDIUM",
-    "category": null,
+    "category": "Encryption and Key Management",
     "descriptionText": "Workspaces should have encryption enabled",
     "descriptionUrl": "#"
 }

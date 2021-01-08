@@ -1,5 +1,5 @@
 {
-  "id": "encrypted_connection_between_cloudfront_origin",
+  "id": "a5366a50-932f-4085-896b-41402714a388",
   "queryName": "Encrypted Connection Between CloudFront Origin",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

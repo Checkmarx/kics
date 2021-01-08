@@ -1,0 +1,7 @@
+- name: create immutable ecr-repo
+  community.aws.ecs_ecr:
+    name: super/cool
+- name: create immutable ecr-repo v2
+  community.aws.ecs_ecr:
+    name: super/cool
+    image_tag_mutability: mutable

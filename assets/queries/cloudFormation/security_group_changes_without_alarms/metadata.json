@@ -1,5 +1,5 @@
 {
-  "id": "security_group_changes_without_alarms",
+  "id": "4539759c-a609-4632-90e6-08385b90b4d9",
   "queryName": "Security Group Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",

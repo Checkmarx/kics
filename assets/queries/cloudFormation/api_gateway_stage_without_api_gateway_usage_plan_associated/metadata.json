@@ -1,8 +1,8 @@
 {
-  "id": "api_gateway_v2_stage_without_api_gateway_usage_plan_associated",
+  "id": "7f8f1b60-43df-4c28-aa21-fb836dbd8071",
   "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
   "severity": "LOW",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "API Gateway Stage should have API Gateway UsagePlan defined and associated.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html"
 }

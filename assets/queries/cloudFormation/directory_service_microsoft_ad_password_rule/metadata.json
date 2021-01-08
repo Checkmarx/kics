@@ -1,8 +1,8 @@
 {
-  "id": "directory_service_microsoft_ad_password_rule",
+  "id": "06b9f52a-8cd5-459b-bdc6-21a22521e1be",
   "queryName": "Directory Service Microsoft AD Password Rule",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Identity and Access Management",
   "descriptionText": "Directory Service Microsoft AD password must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html"
 }

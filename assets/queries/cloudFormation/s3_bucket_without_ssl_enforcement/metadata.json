@@ -1,5 +1,5 @@
 {
-    "id": "s3_bucket_without_ssl_enforcement",
+    "id": "5a5899e1-2df1-476a-8437-2cd54a7ed37e",
     "queryName": "S3 Bucket Without SSL Enforcement",
     "severity": "HIGH",
     "category": "Encryption and Key Management",

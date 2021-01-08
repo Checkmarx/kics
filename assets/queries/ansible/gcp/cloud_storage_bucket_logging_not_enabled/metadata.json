@@ -1,5 +1,5 @@
 {
-  "id": "cloud_storage_bucket_logging_not_enabled",
+  "id": "507df964-ad97-4035-ab14-94a82eabdfdd",
   "queryName": "Cloud Storage Bucket Logging Not Enabled",
   "severity": "HIGH",
   "category": "Logging",

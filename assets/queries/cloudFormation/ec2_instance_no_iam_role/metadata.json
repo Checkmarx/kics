@@ -1,5 +1,5 @@
 {
-  "id": "AWS EC2 Instance Has No IAM Role",
+  "id": "f914357d-8386-4d56-9ba6-456e5723f9a6",
   "queryName": "AWS EC2 Instance Has No IAM Role",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

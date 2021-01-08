@@ -1,5 +1,5 @@
 {
-  "id": "ingress_with_all_protocols",
+  "id": "1a427b25-2e9e-4298-9530-0499a55e736b",
   "queryName": "AWS Security Group Ingress With All Protocols",
   "severity": "MEDIUM",
   "category": "Network Security",

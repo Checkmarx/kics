@@ -1,5 +1,5 @@
 {
-  "id": "api_gateway_deployment_without_access_log_setting",
+  "id": "06ec63e3-9f72-4fe2-a218-2eb9200b8db5",
   "queryName": "API Gateway Deployment Without Access Log Setting",
   "severity": "MEDIUM",
   "category": "Logging",

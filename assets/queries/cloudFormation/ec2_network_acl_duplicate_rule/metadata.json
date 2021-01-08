@@ -1,0 +1,8 @@
+{
+  "id": "045ddb54-cfc5-4abb-9e05-e427b2bc96fe",
+  "queryName": "EC2 Network ACL Duplicate Rule",
+  "severity": "LOW",
+  "category": "Network Security",
+  "descriptionText": "A Network ACL's rule numbers cannot be repeated unless one is egress and the other is ingress",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-rulenumber"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "905f4741-f965-45c1-98db-f7a00a0e5c73",
+  "queryName": "SNS Topic is Publicly Accessible For Subscription",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "This query checks if SNS Topic is Accessible For Subscription",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sns_topic_module.html"
+}

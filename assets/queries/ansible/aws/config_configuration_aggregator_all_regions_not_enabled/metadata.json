@@ -1,5 +1,5 @@
 {
-  "id": "AWS_Config_Configuration_Aggregator_All_Regions_Not_Enabled",
+  "id": "a2fdf451-89dd-451e-af92-bf6c0f4bab96",
   "queryName": "AWS Config Configuration Aggregator All Regions Not Enabled",
   "severity": "HIGH",
   "category": "Logging",

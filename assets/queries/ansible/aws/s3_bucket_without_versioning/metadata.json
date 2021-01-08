@@ -1,5 +1,5 @@
 {
-  "id": "ansible_S3_bucket_without_versioning",
+  "id": "9232306a-f839-40aa-b3ef-b352001da9a5",
   "queryName": "S3 Bucket Without Versioning",
   "severity": "HIGH",
   "category": "Logging",

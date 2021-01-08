@@ -1,0 +1,26 @@
+---
+- name: create a cluster
+  google.cloud.gcp_container_cluster:
+    name: my-cluster
+    location: us-central1-a
+    auth_kind: serviceaccount
+    master_authorized_networks_config:
+      cidr_blocks:
+        - cidr_block: 192.0.2.0/24
+      enabled: no
+    state: present
+- name: create a second cluster
+  google.cloud.gcp_container_cluster:
+    name: my-second-cluster
+    location: us-central1-a
+    auth_kind: serviceaccount
+    master_authorized_networks_config:
+      cidr_blocks:
+        - cidr_block: 192.0.2.0/24
+    state: present
+- name: create a third cluster
+  google.cloud.gcp_container_cluster:
+    name: my-third-cluster
+    location: us-central1-a
+    auth_kind: serviceaccount
+    state: present

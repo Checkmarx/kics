@@ -1,0 +1,8 @@
+{
+  "id": "7674a686-e4b1-4a95-83d4-1fd53c623d84",
+  "queryName": "AWS Config Rule For Encrypted Volumes Is Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption and Key Management",
+  "descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_config_rule_module.html#parameter-source/identifier"
+}

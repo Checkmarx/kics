@@ -1,5 +1,5 @@
 {
-  "id": "iot_policy_allows_wildcard_resource",
+  "id": "be5b230d-4371-4a28-a441-85dc760e2aa3",
   "queryName": "IoT Policy Allows Wildcard Resource",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

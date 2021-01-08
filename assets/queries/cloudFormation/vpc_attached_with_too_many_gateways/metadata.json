@@ -1,0 +1,8 @@
+{
+  "id": "97e94d17-e2c7-4109-a53b-6536ac1bb64e",
+  "queryName": "VPC Attached With Too Many Gateways",
+  "severity": "LOW",
+  "category": "Operational",
+  "descriptionText": "The number of gateways approaches or goes beyond the limit in a particular VPC",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html"
+}

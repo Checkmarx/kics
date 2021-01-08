@@ -1,5 +1,5 @@
 {
-  "id": "secrets_manager_should_specify_kmskeyid",
+  "id": "c8ae9ba9-c2f7-4e5c-b32e-a4b7712d4d22",
   "queryName": "Secrets Manager Should Specify KmsKeyId",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

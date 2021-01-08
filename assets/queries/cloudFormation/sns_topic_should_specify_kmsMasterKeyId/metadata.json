@@ -1,5 +1,5 @@
 {
-  "id": "sns_topic_should_specify_kmsMasterKeyId",
+  "id": "9d13b150-a2ab-42a1-b6f4-142e41f81e52",
   "queryName": "SNS Topic Should Specify KmsMasterKeyId Attribute",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

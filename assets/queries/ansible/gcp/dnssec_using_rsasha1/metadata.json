@@ -1,5 +1,5 @@
 {
-  "id": "dnssec_using_rsasha1",
+  "id": "6cf4c3a7-ceb0-4475-8892-3745b84be24a",
   "queryName": "DNSSEC Using RSASHA1",
   "severity": "HIGH",
   "category": "Encryption & Key Management",

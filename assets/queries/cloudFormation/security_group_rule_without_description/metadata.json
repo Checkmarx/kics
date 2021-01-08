@@ -1,5 +1,5 @@
 {
-  "id": "security_group_rule_without_description",
+  "id": "5e6c9c68-8a82-408e-8749-ddad78cbb9c5",
   "queryName": "AWS Security Group Rule Without Description",
   "severity": "LOW",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "trusted_microsoft_services_not_enabled",
+  "id": "1bc398a8-d274-47de-a4c8-6ac867b353de",
   "queryName": "Trusted Microsoft Services Not Enabled",
   "severity": "HIGH",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "ansible_sqlserver_with_public_access",
+  "id": "e433692a-773e-41b4-a269-4b4605309f15",
   "queryName": "SQLServer with Public Access",
   "severity": "HIGH",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "cloudfront_distribution_access_log_disabled",
+  "id": "de77cd9f-0e8b-46cc-b4a4-b6b436838642",
   "queryName": "CloudFront Distribution Access Log Disabled",
   "severity": "MEDIUM",
   "category": "Logging",

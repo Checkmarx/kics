@@ -1,5 +1,5 @@
 {
-  "id": "ansible_db_instance_storage_not_encrypted",
+  "id": "7dfb316c-a6c2-454d-b8a2-97f147b0c0ff",
   "queryName": "DB Instance Storage Not Encrypted",
   "severity": "HIGH",
   "category": "Data Security",

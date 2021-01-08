@@ -1,5 +1,5 @@
 {
-  "id": "ansible_default_security_group_does_not_restrict_all_traffic",
+  "id": "8010e17a-00e9-4635-a692-90d6bcec68bd",
   "queryName": "Default Security Group Does Not Restrict All Traffic",
   "severity": "HIGH",
   "category": "Network Ports Security",

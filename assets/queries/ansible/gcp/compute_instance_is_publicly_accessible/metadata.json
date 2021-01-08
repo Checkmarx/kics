@@ -1,0 +1,8 @@
+{
+  "id": "829f1c60-2bab-44c6-8a21-5cd9d39a2c82",
+  "queryName": "Compute Instance Is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Compute instances shouldn't be accessible from the Internet.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html#parameter-network_interfaces/access_configs"
+}

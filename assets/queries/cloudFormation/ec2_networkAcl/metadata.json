@@ -1,8 +1,8 @@
 {
-  "id": "ec2_permissive_network_Acl_protocols",
+  "id": "03879981-efa2-47a0-a818-c843e1441b88",
   "queryName": "EC2 permissive network Acl protocols",
   "severity": "MEDIUM",
-  "category": null,
+  "category": "Network Security",
   "descriptionText": "To avoid opening all ports for Allow rules, EC2 NetworkACL Entry Protocol should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code).",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
 }

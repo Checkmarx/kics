@@ -1,5 +1,5 @@
 {
-  "id": "sns_topic_without_subscriber",
+  "id": "ae53ce91-42b5-46bf-a84f-9a13366a4f13",
   "queryName": "SNS Topic Without Subscriber",
   "severity": "LOW",
   "category": "Monitoring",

@@ -1,5 +1,5 @@
 {
-  "id": "ElastiCache_with_Disabled_at_Rest_Encryption",
+  "id": "e4ee3903-9225-4b6a-bdfb-e62dbadef821",
   "queryName": "ElastiCache with disabled at Rest Encryption",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
