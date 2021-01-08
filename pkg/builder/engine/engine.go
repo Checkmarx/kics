@@ -177,9 +177,9 @@ func (e *Engine) expToString(expr hclsyntax.Expression) (string, error) {
 	return "", fmt.Errorf("can't convert expression %T to string", expr)
 }
 
-func (e *Engine) buildString(Parts []hclsyntax.Expression) (strings.Builder, error) {
+func (e *Engine) buildString(parts []hclsyntax.Expression) (strings.Builder, error) {
 	var builder strings.Builder
-	for _, part := range Parts {
+	for _, part := range parts {
 		s, err := e.expToString(part)
 		if err != nil {
 			return strings.Builder{}, err
