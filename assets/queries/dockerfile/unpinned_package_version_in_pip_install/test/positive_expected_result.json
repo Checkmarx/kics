@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "Unpinned Package Version in Apk Add",
+		"queryName": "Unpinned Package Version in Pip Install",
 		"severity": "MEDIUM",
 		"line": 3
 	},
 	{
-		"queryName": "Unpinned Package Version in Apk Add",
+		"queryName": "Unpinned Package Version in Pip Install",
 		"severity": "MEDIUM",
 		"line": 14
 	}
