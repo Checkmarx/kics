@@ -1,5 +1,5 @@
 {
-  "id": "gamelift_fleet_ec2inboundpermissions_with_port_range",
+  "id": "43356255-495d-4148-ad8d-f6af5eac09dd",
   "queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
   "severity": "MEDIUM",
   "category": "Network Security" ,

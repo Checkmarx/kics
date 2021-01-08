@@ -1,5 +1,5 @@
 {
-  "id": "IAM User Has Policies",
+  "id": "edc95c10-7366-4f30-9b4b-f995c84eceb5",
   "queryName": "IAM User Has Policies",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

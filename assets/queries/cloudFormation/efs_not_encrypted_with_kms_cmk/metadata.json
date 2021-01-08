@@ -1,5 +1,5 @@
 {
-  "id": "EFS_not_encrypted_with_KMS_CMK",
+  "id": "6d087495-2a42-4735-abf7-02ef5660a7e6",
   "queryName": "EFS not encrypted with KMS CMK",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "tcp_or_udp_protocol_network_acl_entry_allows_all_ports",
+  "id": "f57f849c-883b-4cb7-85e7-f7b199dff163",
   "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
   "severity": "MEDIUM",
   "category": "Network Security",

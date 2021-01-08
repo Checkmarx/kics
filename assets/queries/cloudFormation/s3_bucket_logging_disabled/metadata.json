@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_logging_disabled",
+  "id": "4552b71f-0a2a-4bc4-92dd-ed7ec1b4674c",
   "queryName": "S3 Bucket Logging Disabled",
   "severity": "MEDIUM",
   "category": "Logging",

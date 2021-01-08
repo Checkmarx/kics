@@ -1,5 +1,5 @@
 {
-  "id": "sqs_queue_exposed",
+  "id": "86b0efa7-4901-4edd-a37a-c034bec6645a",
   "queryName": "SQS Queue Exposed",
   "severity": "HIGH",
   "category": "Network Security",

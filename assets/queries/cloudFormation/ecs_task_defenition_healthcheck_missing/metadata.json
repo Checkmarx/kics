@@ -1,5 +1,5 @@
 {
-  "id": "ECS_task_definition_healthcheck_missing",
+  "id": "d24389b4-b209-4ff0-8345-dc7a4569dcdd",
   "queryName": "ECS Task Definition HealthCheck Missing",
   "severity": "LOW",
   "category": "Operational",

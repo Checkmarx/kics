@@ -1,5 +1,5 @@
 {
-  "id": "ansible_sqlserver_ingress_from_any_ip",
+  "id": "f4e9ff70-0f3b-4c50-a713-26cbe7ec4039",
   "queryName": "SQLServer Ingress from Any IP",
   "severity": "HIGH",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "aws_db_security_group_no_public_scope",
+  "id": "0956aedf-6a7a-478b-ab56-63e2b19923ad",
   "queryName": "AWS DB Security Group with Public Scope",
   "severity": "HIGH",
   "category": "Network Security",

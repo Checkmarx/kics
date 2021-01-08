@@ -1,5 +1,5 @@
 {
-  "id": "api_gateway_exposed_to_the_public_internet",
+  "id": "4a8daf95-709d-4a36-9132-d3e19878fa34",
   "queryName": "API Gateway Exposed To The Public Internet",
   "severity": "HIGH",
   "category": "Network Security",

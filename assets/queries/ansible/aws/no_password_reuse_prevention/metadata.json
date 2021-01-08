@@ -1,5 +1,5 @@
 {
-  "id": "ansible_No_password_reuse_prevention",
+  "id": "6f5f5444-1422-495f-81ef-24cefd61ed2c",
   "queryName": "No Password Reuse Prevention",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

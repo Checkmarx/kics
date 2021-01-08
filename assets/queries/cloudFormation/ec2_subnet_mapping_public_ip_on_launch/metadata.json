@@ -1,5 +1,5 @@
 {
-  "id": "ec2_subnet_mapping_public_ip_on_launch",
+  "id": "b3de4e4c-14be-4159-b99d-9ad194365e4c",
   "queryName": "EC2 Subnet Mapping Public IP On Launch",
   "severity": "MEDIUM",
   "category": "Network Security",

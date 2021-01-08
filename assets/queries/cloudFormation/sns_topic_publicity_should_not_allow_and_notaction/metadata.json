@@ -1,5 +1,5 @@
 {
-  "id": "sns_topic_publicity_should_not_allow_and_notaction",
+  "id": "818f38ed-8446-4132-9c03-474d49e10195",
   "queryName": "SNS Topic Publicity Should not have Allow and NotAction",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

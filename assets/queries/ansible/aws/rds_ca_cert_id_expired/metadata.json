@@ -1,5 +1,5 @@
 {
-  "id": "RDS_ca_cert_id_expired",
+  "id": "5eccd62d-8b4d-46d3-83ea-1879f3cbd3ce",
   "queryName": "RDS CA Certificate Identifier Is Expired",
   "severity": "HIGH",
   "category": "Data Security",

@@ -1,5 +1,5 @@
 {
-  "id": "user_IAM_missing_group",
+  "id": "06933df4-0ea7-461c-b9b5-104d27390e0e",
   "queryName": "IAM User With No Group",
   "severity": "LOW",
   "category": "Identity & Access Management",

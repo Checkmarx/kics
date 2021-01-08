@@ -1,5 +1,5 @@
 {
-  "id": "sqs_queue_without_kams_master_key_id",
+  "id": "12726829-93ed-4d51-9cbe-13423f4299e1",
   "queryName": "AWS SQS Queue Without KMS Master Key Id",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "elastic_search_domain_encryption_at_rest_disabled",
+  "id": "86a248ab-0e01-4564-a82a-878303e253bb",
   "queryName": "Elastic Search Domain Encryption At Rest Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

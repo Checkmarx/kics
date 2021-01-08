@@ -1,5 +1,5 @@
 {
-  "id": "ansible_ssl_enforce_is_disabled",
+  "id": "961ce567-a16d-4d7d-9027-f0ec2628a555",
   "queryName": "SSL Enforce Is Disabled",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

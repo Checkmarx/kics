@@ -1,5 +1,5 @@
 {
-  "id": "IAM_Password_Without_Valid_Minimum_Length",
+  "id": "8bc2168c-1723-4eeb-a6f3-a1ba614b9a6d",
   "queryName": "IAM Password Without Valid Minimum Length",
   "severity": "MEDIUM",
   "category": "Network Security",

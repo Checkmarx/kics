@@ -1,5 +1,5 @@
 {
-  "id": "kms_enablekeyrotation_disabled",
+  "id": "235ca980-eb71-48f4-9030-df0c371029eb",
   "queryName": "KMS EnableKeyRotation Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "rds_instance_storage_not_encrypted",
+  "id": "b4e3a555-1e42-49b2-b8c2-37f778c3c16e",
   "queryName": "RDS Instance Storage Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

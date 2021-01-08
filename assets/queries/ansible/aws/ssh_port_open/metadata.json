@@ -1,5 +1,5 @@
 {
-  "id": "ssh_port_open",
+  "id": "6bed6995-2d43-41e3-ac33-730a2aa1887a",
   "queryName": "SSH Port Open",
   "severity": "HIGH",
   "category": "Network Ports Security",

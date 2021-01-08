@@ -1,5 +1,5 @@
 {
-  "id": "kms_allows_wildcard_principal",
+  "id": "f6049677-ec4a-43af-8779-5190b6d03cba",
   "queryName": "KMS Allows Wildcard Principal",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

@@ -1,5 +1,5 @@
 {
-  "id": "amplify_app_basic_auth_config_password_rule",
+  "id": "03b38885-8f4e-480c-a0e4-12c1affd15db",
   "queryName": "Amplify App OAuth Token Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

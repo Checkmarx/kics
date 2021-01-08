@@ -1,5 +1,5 @@
 {
-  "id": "ecs_without_running_tasks",
+  "id": "79d745f0-d5f3-46db-9504-bef73e9fd528",
   "queryName": "ECS Service Without Running Tasks",
   "severity": "MEDIUM",
   "category": "Operational",

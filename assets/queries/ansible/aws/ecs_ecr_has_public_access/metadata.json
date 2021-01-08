@@ -1,5 +1,5 @@
 {
-  "id": "ECS_ecr_has_public_access",
+  "id": "51a47be0-e593-4e89-b763-9507a74287c1",
   "queryName": "ECS ECR has Public Access",
   "severity": "HIGH",
   "category": "Data Security",

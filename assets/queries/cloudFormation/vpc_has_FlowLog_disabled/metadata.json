@@ -1,5 +1,5 @@
 {
-  "id": "VPC_Has_FlowLog_Disabled",
+  "id": "f6d299d2-21eb-41cc-b1e1-fe12d857500b",
   "queryName": "VPC Has FlowLog Disabled",
   "severity": "MEDIUM",
   "category": "Network Security",

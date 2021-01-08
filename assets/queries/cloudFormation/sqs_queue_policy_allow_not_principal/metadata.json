@@ -1,5 +1,5 @@
 {
-  "id": "sqs_queue_policy_allow_not_principal",
+  "id": "4a8fc9a2-2b2f-4b3f-aa8d-401425872034",
   "queryName": "SQS Queue Policy Allow Not Principal",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

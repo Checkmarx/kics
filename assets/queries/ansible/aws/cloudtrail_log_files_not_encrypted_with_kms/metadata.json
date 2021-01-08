@@ -1,5 +1,5 @@
 {
-  "id": "cloudtrail_log_files_not_encrypted_with_kms",
+  "id": "f5587077-3f57-4370-9b4e-4eb5b1bac85b",
   "queryName": "CloudTrail Log Files Not Encrypted With KMS",
   "severity": "MEDIUM",
   "category": "Logging",

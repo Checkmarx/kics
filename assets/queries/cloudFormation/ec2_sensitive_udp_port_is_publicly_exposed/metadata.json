@@ -1,5 +1,5 @@
 {
-  "id": "ec2_sensitive_udp_port_is_publicly_exposed",
+  "id": "8bf09d2f-5268-4001-9fb1-484d5cd789b6",
   "queryName": "EC2 Sensitive UDP Port Is Publicly Exposed",
   "severity": "HIGH",
   "category": "Network Ports Security",

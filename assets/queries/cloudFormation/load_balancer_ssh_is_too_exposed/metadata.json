@@ -1,5 +1,5 @@
 {
-  "id": "load_balancer_ssh_is_too_exposed",
+  "id": "4ad1f3ab-841f-45b6-ab5a-3cad7875c99b",
   "queryName": "Load Balancer SSH Is Too Exposed",
   "severity": "HIGH",
   "category": "Network Ports Security",
