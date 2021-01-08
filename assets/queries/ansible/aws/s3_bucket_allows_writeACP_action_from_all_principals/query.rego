@@ -5,7 +5,8 @@ CxPolicy [ result ] {
   tasks := getTasks(document)
   task := tasks[t]
   bucket := task["amazon.aws.s3_bucket"]
-  bucketName := task.name
+  taskName := task.name
+  bucketName := bucket.name
 
   bucket.policy.Statement[_].Effect == "Allow"
   contains(lower(bucket.policy.Statement[_].Action), "write")
@@ -14,7 +15,7 @@ CxPolicy [ result ] {
 
     result := {
                 "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [bucketName]),
+                "searchKey":        sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [taskName]),
                 "issueType":        "IncorrectValue",
                 "keyExpectedValue": sprintf("amazon.aws.s3_bucket[%s] does not allow WriteACP Action From All Principals", [bucketName]),
                 "keyActualValue":   sprintf("amazon.aws.s3_bucket[%s] allows WriteACP Action From All Principals", [bucketName])
