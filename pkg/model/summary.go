@@ -1,15 +1,15 @@
 package model
 
 type SeveritySummary struct {
-	ScanID           string            `json:"scanId"`
-	SeverityCounters []SeverityCounter `json:"severityCounters"`
-	TotalCounter     int               `json:"totalCounter"`
+	ScanID           string           `json:"scanId"`
+	SeverityCounters map[Severity]int `json:"severityCounters"`
+	TotalCounter     int              `json:"totalCounter"`
 }
 
-type SeverityCounter struct {
-	Severity Severity `json:"severity"`
-	Counter  int      `json:"counter"`
-}
+// type SeverityCounter struct {
+// 	Severity Severity `json:"severity"`
+// 	Counter  int      `json:"counter"`
+// }
 
 type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
@@ -39,10 +39,14 @@ type Counters struct {
 type Summary struct {
 	Counters
 	Queries []VulnerableQuery `json:"queries"`
+	SeveritySummary
 }
 
-func CreateSummary(counters Counters, vulnerabilities []Vulnerability) Summary {
+func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string) Summary {
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
+	severitySummary := SeveritySummary{
+		ScanID: scanID,
+	}
 	for i := range vulnerabilities {
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryName]; !ok {
@@ -68,12 +72,17 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability) Summary {
 	}
 
 	queries := make([]VulnerableQuery, 0, len(q))
+	sevs := map[Severity]int{"INFO": 0, "LOW": 0, "MEDIUM": 0, "HIGH": 0}
 	for _, i := range q {
 		queries = append(queries, i)
+		sevs[i.Severity] += len(i.Files)
+		severitySummary.TotalCounter += len(i.Files)
 	}
+	severitySummary.SeverityCounters = sevs
 
 	return Summary{
-		Counters: counters,
-		Queries:  queries,
+		Counters:        counters,
+		Queries:         queries,
+		SeveritySummary: severitySummary,
 	}
 }
