@@ -189,12 +189,12 @@ func printResult(summary *model.Summary) error {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
 		}
 	}
-	fmt.Printf("Kicks Summary\n")
-	fmt.Printf("TOTAL: %d\n", summary.SeveritySummary.TotalCounter)
-	fmt.Printf("INFO: %d\n", summary.SeveritySummary.SeverityCounters["INFO"])
-	fmt.Printf("LOW: %d\n", summary.SeveritySummary.SeverityCounters["LOW"])
-	fmt.Printf("MEDIUM: %d\n", summary.SeveritySummary.SeverityCounters["MEDIUM"])
+	fmt.Printf("Results Summary\n")
 	fmt.Printf("HIGH: %d\n", summary.SeveritySummary.SeverityCounters["HIGH"])
+	fmt.Printf("MEDIUM: %d\n", summary.SeveritySummary.SeverityCounters["MEDIUM"])
+	fmt.Printf("LOW: %d\n", summary.SeveritySummary.SeverityCounters["LOW"])
+	fmt.Printf("INFO: %d\n", summary.SeveritySummary.SeverityCounters["INFO"])
+	fmt.Printf("TOTAL: %d\n", summary.SeveritySummary.TotalCounter)
 	log.
 		Info().
 		Msgf("\n\nFiles scanned: %d\n"+
