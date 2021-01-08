@@ -1,6 +1,6 @@
 {
-  "id": "lb_sensitive_tcp_port_is_exposed_to_entire_network",
-  "queryName": "LB Sensitive TCP Port Is Exposed To Entire Network",
+  "id": "elb_sensitive_tcp_port_is_exposed_to_entire_network",
+  "queryName": "ELB Sensitive TCP Port Is Exposed To Entire Network",
   "severity": "HIGH",
   "category": "Network Ports Security",
   "descriptionText": "The load balancer of the application with a sensitive TCP port connection is exposed to the entire internet.",
