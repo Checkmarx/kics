@@ -2,6 +2,6 @@
 	{
 		"queryName": "Azurerm Container Registry With No Locks",
 		"severity": "HIGH",
-		"line": 3
+		"line": 5
 	}
 ]
