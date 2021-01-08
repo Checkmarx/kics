@@ -29,55 +29,55 @@ var (
 
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 
-	var genericPath = filepath.Join(basepath, "..\\..\\..\\assets\\queries\\generic\\")
+	var genericPath = filepath.Join(basepath, "../../../assets/queries/generic/")
 	var content = "package generic.common"
-	var err error
+	var error error
 
 	if strings.Contains(platform, "commonQuery") {
-		path, _ := filepath.Abs(genericPath + "\\common\\library.rego")
-		content, err := ioutil.ReadFile(path)
+		pathToLib := filepath.FromSlash(genericPath + "/common/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "ansible") {
-		path, _ := filepath.Abs(genericPath + "\\ansible\\library.rego")
-		content, err := ioutil.ReadFile(path)
+		pathToLib := filepath.FromSlash(genericPath + "/ansible/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "cloudformation") {
-		path, _ := filepath.Abs(genericPath + "\\cloudformation\\library.rego")
-		content, err := ioutil.ReadFile(path)
+		pathToLib := filepath.FromSlash(genericPath + "/cloudformation/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "dockerfile") {
-		path, _ := filepath.Abs(genericPath + "\\dockerfile\\library.rego")
-		content, err := ioutil.ReadFile(path)
+		pathToLib := filepath.FromSlash(genericPath + "/dockerfile/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "k8s") {
-		path, _ := filepath.Abs(genericPath + "\\k8s\\library.rego")
-		content, err := ioutil.ReadFile(path)
+		pathToLib := filepath.FromSlash(genericPath + "/k8s/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "terraform") {
-		path, _ := filepath.Abs(genericPath + "\\terraform\\library.rego")
-		content, err := ioutil.ReadFile(path)
+		pathToLib := filepath.FromSlash(genericPath + "/terraform/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	}
 
-	return content, err
+	return content, error
 }
 
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
