@@ -75,12 +75,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 					Kind:         kind,
 					FileName:     filename,
 				}
-
-				err = s.Storage.SaveFile(ctx, &file)
-				if err == nil {
-					files = append(files, file)
-					s.Tracker.TrackFileParse()
-				}
+				files = s.saveToFile(ctx, &file, files)
 			}
 
 			return errors.Wrap(err, "failed to save file content")
@@ -105,4 +100,13 @@ func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]mode
 
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
+}
+
+func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata, files model.FileMetadatas) model.FileMetadatas {
+	err := s.Storage.SaveFile(ctx, file)
+	if err == nil {
+		files = append(files, *file)
+		s.Tracker.TrackFileParse()
+	}
+	return files
 }
