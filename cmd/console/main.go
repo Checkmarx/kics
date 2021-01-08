@@ -22,6 +22,7 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -45,6 +46,7 @@ func main() { // nolint:funlen,gocyclo
 		payloadPath string
 		verbose     bool
 		logFile     bool
+		generateID  bool
 	)
 
 	ctx := context.Background()
@@ -62,9 +64,17 @@ func main() { // nolint:funlen,gocyclo
 		RunE: func(cmd *cobra.Command, args []string) error {
 			defer sentry.Flush(timeMult * time.Second)
 
-			store := storage.NewMemoryStorage()
 			if verbose {
 				consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
+			}
+
+			if generateID {
+				_, err = fmt.Println(uuid.New().String())
+				if err != nil {
+					log.Err(err).Msg("failed to get uuid")
+					os.Exit(-1)
+				}
+				os.Exit(0)
 			}
 
 			if logFile {
@@ -104,6 +114,8 @@ func main() { // nolint:funlen,gocyclo
 				Add(terraformParser.NewDefault()).
 				Add(&dockerParser.Parser{}).
 				Build()
+
+			store := storage.NewMemoryStorage()
 
 			service := &kics.Service{
 				SourceProvider: filesSource,
@@ -165,11 +177,8 @@ func main() { // nolint:funlen,gocyclo
 	rootCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	rootCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	rootCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
-	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "Log to file info.log")
-	if err := rootCmd.MarkFlagRequired("path"); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).Msg("failed to add command required flags")
-	}
+	rootCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	rootCmd.Flags().BoolVarP(&generateID, "generate-id", "g", false, "generate uuid for query")
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
