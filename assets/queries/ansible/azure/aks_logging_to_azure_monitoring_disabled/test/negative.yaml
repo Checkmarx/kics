@@ -19,6 +19,7 @@
         max_count: 3
         min_count: 1
     enable_rbac: yes
-    monitoring:
-      log_analytics_workspace_resource_id: "qwqeqe"
-      enabled: yes
+    addon:
+      monitoring:
+        log_analytics_workspace_resource_id: "qwqeqe"
+        enabled: yes
