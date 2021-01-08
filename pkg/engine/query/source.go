@@ -28,10 +28,10 @@ var (
 )
 
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
-
-	var genericPath = filepath.Join(basepath, "../../../assets/queries/generic/")
+	var basePath = "../../../assets/queries/generic/"
+	var genericPath = filepath.Join(basepath, basePath)
 	var content = "package generic.common"
-	var error error
+	var errorMessage error
 
 	if strings.Contains(platform, "commonQuery") {
 		pathToLib := filepath.FromSlash(genericPath + "/common/library.rego")
@@ -77,7 +77,7 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 		return string(content), err
 	}
 
-	return content, error
+	return content, errorMessage
 }
 
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {

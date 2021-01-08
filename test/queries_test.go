@@ -117,7 +117,7 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 func getPlatform(platform string) (string, error) {
 	var genericPath = "../assets/queries/generic/"
 	var content = "package generic.common"
-	var err error
+	var errorMessage error
 
 	if strings.Contains(platform, "commonQuery") {
 		path := filepath.FromSlash(genericPath + "common/library.rego")
@@ -163,7 +163,7 @@ func getPlatform(platform string) (string, error) {
 		return string(content), err
 	}
 
-	return content, err
+	return content, errorMessage
 }
 
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability) {

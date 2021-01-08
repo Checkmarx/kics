@@ -78,7 +78,6 @@ func loadQueries(tb testing.TB) []queryEntry {
 		require.Nil(tb, err)
 
 		for _, f := range fs {
-
 			f.Name()
 			if f.IsDir() && f.Name() != "test" {
 				queriesDir = appendQueries(queriesDir, filepath.FromSlash(path.Join(queriesPath, f.Name())), kind)
