@@ -44,7 +44,7 @@ So all you need is:
    ```
 1. Kick a scan!  
    ```
-   go run ./cmd/console/*.go -p <path-of-your-project-to-scan> -o <output-results.json>
+   go run ./cmd/console/main.go -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
 

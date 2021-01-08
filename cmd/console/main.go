@@ -4,15 +4,11 @@ import (
 	"context"
 	"os"
 
+	console "github.com/Checkmarx/kics/pkg/console"
 	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-)
-
-const (
-	scanID   = "console"
-	timeMult = 2
 )
 
 func main() { // nolint:funlen,gocyclo
@@ -42,7 +38,18 @@ func main() { // nolint:funlen,gocyclo
 		Use:   "kics",
 		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return startKics(ctx, path, queryPath, outputPath, payloadPath, verbose, logFile, version)
+			flags := console.InitOptions{
+				Ctx:         ctx,
+				Path:        path,
+				QueryPath:   queryPath,
+				OutputPath:  outputPath,
+				PayloadPath: payloadPath,
+				Verbose:     verbose,
+				LogFile:     logFile,
+				Version:     version,
+			}
+
+			return console.Init(flags)
 		},
 	}
 
