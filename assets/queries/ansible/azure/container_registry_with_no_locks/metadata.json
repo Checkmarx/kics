@@ -1,5 +1,5 @@
 {
-  "id": "Azurerm_Container_Registry_With_No_Locks",
+  "id": "581dae78-307d-45d5-aae4-fe2b0db267a5",
   "queryName": "Azurerm Container Registry With No Locks",
   "severity": "HIGH",
   "category": "Azure Container Services",

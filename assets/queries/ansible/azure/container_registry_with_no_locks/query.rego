@@ -7,15 +7,15 @@ CxPolicy [ result ]  {
 
   	taskContainerRegistry := task["azure_rm_containerregistry"]
 
-	not xpto(taskContainerRegistry)
+	not checkLocks(taskContainerRegistry)
 
 
 		result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("name=%s.{{azure_rm_containerregistry}}.resource_group", [task.name]),
-                "issueType":		  "MissingAttribute",
-                "keyExpectedValue": "'azure_rm_containerregistry.resource_group' has lock associated",
-                "keyActualValue": "'azure_rm_containerregistry.resource_group' has no lock associated"
+                "issueType":		  "IncorrectValue",
+                "keyExpectedValue": "'azure_rm_containerregistry.resource_group' lock used should referring to an one that exists",
+                "keyActualValue": "'azure_rm_containerregistry.resource_group' lock used is referring to an one that doesn't exist"
               }
 }
 
@@ -28,7 +28,7 @@ getTasks(document) = result {
     count(result) != 0
 }
 
-xpto(taskContainerRegistry) {
+checkLocks(taskContainerRegistry) {
 	document2 := input.document[x]
   	taskLock := getTasks(document2)[t2]["azure_rm_lock"]
 	contains(taskLock, taskContainerRegistry.resource_group)
