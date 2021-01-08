@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"io/ioutil"
+	"path/filepath"
 	"sort"
 	"strings"
 	"testing"
@@ -80,42 +81,48 @@ func testQuery(t *testing.T, entry queryEntry, filePath string, expectedVulnerab
 }
 
 func getPlatform(platform string) (string, error) {
-	var genericPath = "..\\assets\\queries\\generic\\"
+	var genericPath = "../assets/queries/generic/"
 	var content = "package generic.common"
 	var err error
 
 	if strings.Contains(platform, "commonQuery") {
-		content, err := ioutil.ReadFile(genericPath + "common\\library.rego")
+		path := filepath.FromSlash(genericPath + "common/library.rego")
+		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "ansible") {
-		content, err := ioutil.ReadFile(genericPath + "ansible\\library.rego")
+		path := filepath.FromSlash(genericPath + "ansible/library.rego")
+		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "cloudformation") {
-		content, err := ioutil.ReadFile(genericPath + "cloudformation\\library.rego")
+		path := filepath.FromSlash(genericPath + "cloudformation/library.rego")
+		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "dockerfile") {
-		content, err := ioutil.ReadFile(genericPath + "dockerfile\\library.rego")
+		path := filepath.FromSlash(genericPath + "dockerfile/library.rego")
+		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "k8s") {
-		content, err := ioutil.ReadFile(genericPath + "k8s\\library.rego")
+		path := filepath.FromSlash(genericPath + "k8s/library.rego")
+		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "terraform") {
-		content, err := ioutil.ReadFile(genericPath + "terraform\\library.rego")
+		path := filepath.FromSlash(genericPath + "terraform/library.rego")
+		content, err := ioutil.ReadFile(path)
 		if err != nil {
 			log.Err(err)
 		}
