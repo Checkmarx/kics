@@ -82,7 +82,7 @@ func loadQueries(tb testing.TB) []queryEntry {
 			if f.IsDir() && f.Name() != "test" {
 				queriesDir = appendQueries(queriesDir, filepath.FromSlash(path.Join(queriesPath, f.Name())), kind)
 			} else {
-				queriesDir = appendQueries(queriesDir, queriesPath, kind)
+				queriesDir = appendQueries(queriesDir, filepath.FromSlash(queriesPath), kind)
 				break
 			}
 		}
