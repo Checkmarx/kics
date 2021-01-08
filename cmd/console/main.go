@@ -146,7 +146,7 @@ func main() { // nolint:funlen,gocyclo
 				FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
 			}
 
-			summary := model.CreateSummary(counters, result)
+			summary := model.CreateSummary(counters, result, scanID)
 
 			if payloadPath != "" {
 				if err := printToJSONFile(payloadPath, files.Combine()); err != nil {
@@ -160,7 +160,7 @@ func main() { // nolint:funlen,gocyclo
 				}
 			}
 
-			if err := printResult(summary); err != nil {
+			if err := printResult(&summary); err != nil {
 				return err
 			}
 
@@ -187,17 +187,23 @@ func main() { // nolint:funlen,gocyclo
 	}
 }
 
-func printResult(summary model.Summary) error {
+func printResult(summary *model.Summary) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
-	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
+	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
 	for _, q := range summary.Queries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
 		for _, f := range q.Files {
 			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
 		}
 	}
+	fmt.Printf("\nResults Summary:\n")
+	fmt.Printf("HIGH: %d\n", summary.SeveritySummary.SeverityCounters["HIGH"])
+	fmt.Printf("MEDIUM: %d\n", summary.SeveritySummary.SeverityCounters["MEDIUM"])
+	fmt.Printf("LOW: %d\n", summary.SeveritySummary.SeverityCounters["LOW"])
+	fmt.Printf("INFO: %d\n", summary.SeveritySummary.SeverityCounters["INFO"])
+	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 	log.
 		Info().
 		Msgf("\n\nFiles scanned: %d\n"+
