@@ -55,7 +55,7 @@ jobs:
         go test -mod=vendor -v ./... -count=1 -coverprofile cover.out
     - name: CodeCov
       run: |
-        bash <(curl -s https://codecov.io/bash) -f cover.out
+        bash <(curl -s https://codecov.io/bash)
     - name: Check if total coverage is greater then 0
       run: |
         CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
