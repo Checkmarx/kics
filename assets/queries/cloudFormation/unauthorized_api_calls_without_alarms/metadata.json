@@ -1,5 +1,5 @@
 {
-  "id": "unauthorized_api_calls_without_alarms",
+  "id": "f2c3e10b-84a0-4fbe-9b7e-a8e4e51c07ce",
   "queryName": "Unauthorized API Calls Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",

@@ -1,5 +1,5 @@
 {
-  "id": "ansible_log_disconnections_is_not_set",
+  "id": "054d07b5-941b-4c28-8eef-18989dc62323",
   "queryName": "Log Disconnections Is Not Set",
   "severity": "MEDIUM",
   "category": "Logging",

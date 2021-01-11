@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_ACL_Allows_Read_Or_Write_to_AllUsers",
+  "id": "07dda8de-d90d-469e-9b37-1aca53526ced",
   "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
   "severity": "HIGH",
   "category": "Identity and Access Management",

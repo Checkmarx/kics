@@ -1,5 +1,5 @@
 {
-  "id": "storage_account_not_using_latest_tls_encryption_version",
+  "id": "c62746cf-92d5-4649-9acf-7d48d086f2ee",
   "queryName": "Storage Account Not Using Latest TLS Encryption Version",
   "severity": "MEDIUM",
   "category": "Network Security",

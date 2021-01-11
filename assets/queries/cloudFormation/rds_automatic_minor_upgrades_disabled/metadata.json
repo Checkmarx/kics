@@ -1,5 +1,5 @@
 {
-  "id": "RDS_Automatic_Minor_Upgrades_Disabled",
+  "id": "f0104061-8bfc-4b45-8a7d-630eb502f281",
   "queryName": "RDS Automatic Minor Upgrades Disabled",
   "severity": "MEDIUM",
   "category": "Operational",

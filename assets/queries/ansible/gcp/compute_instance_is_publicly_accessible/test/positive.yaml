@@ -1,0 +1,13 @@
+- name: create a instance
+  google.cloud.gcp_compute_instance:
+    name: test_object
+    network_interfaces:
+    - network: "{{ network }}"
+      access_configs:
+      - name: External NAT
+        nat_ip: "{{ address }}"
+        type: ONE_TO_ONE_NAT
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    state: present

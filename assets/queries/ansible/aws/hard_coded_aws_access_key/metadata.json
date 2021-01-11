@@ -1,5 +1,5 @@
 {
-  "id": "EC2_Instance_Has_Hardcoded_Access_Key",
+  "id": "c2f15af3-66a0-4176-a56e-e4711e502e5c",
   "queryName": "EC2 Instance Has Hardcoded Access Key",
   "severity": "LOW",
   "category": "Encryption & Key Management",

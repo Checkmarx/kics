@@ -1,5 +1,5 @@
 {
-  "id": "IAM_password_without_numbers",
+  "id": "9cf25d62-0b96-42c8-b66d-998cd6ee5bb8",
   "queryName": "IAM Password Without Numbers",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

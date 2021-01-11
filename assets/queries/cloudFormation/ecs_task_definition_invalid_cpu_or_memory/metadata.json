@@ -1,5 +1,5 @@
 {
-  "id": "ECS_Task_definition_invalid_cpu_or_memory",
+  "id": "f4c9b5f5-68b8-491f-9e48-4f96644a1d51",
   "queryName": "ECS Task Definition Invalid CPU or Memory",
   "severity": "LOW",
   "category": "Operational",

@@ -1,5 +1,5 @@
 {
-  "id": "s3_bucket_policy_changes_without_alarms",
+  "id": "8cbddfb6-f647-43e9-a4f8-737005ef5159",
   "queryName": "S3 Bucket Policy Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",

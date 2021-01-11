@@ -1,5 +1,5 @@
 {
-  "id": "vpc_changes_without_alarms",
+  "id": "9c0acced-ee71-4dd9-a3ac-9af380416db4",
   "queryName": "VPC Changes Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",

@@ -1,5 +1,5 @@
 {
-  "id": "s3_bucket_should_have_bucket_policy",
+  "id": "37fa8188-738b-42c8-bf82-6334ea567738",
   "queryName": "S3 Bucket Should Have Bucket Policy",
   "severity": "MEDIUM",
   "category": "Storage",

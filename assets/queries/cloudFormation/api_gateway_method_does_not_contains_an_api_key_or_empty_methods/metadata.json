@@ -1,5 +1,5 @@
 {
-  "id": "api_gateway_method_does_not_contains_an_api_key_or_empty_methods",
+  "id": "3641d5b4-d339-4bc2-bfb9-208fe8d3477f",
   "queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

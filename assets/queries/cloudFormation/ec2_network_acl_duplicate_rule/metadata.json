@@ -1,5 +1,5 @@
 {
-  "id": "ec2_network_acl_duplicate_rule",
+  "id": "045ddb54-cfc5-4abb-9e05-e427b2bc96fe",
   "queryName": "EC2 Network ACL Duplicate Rule",
   "severity": "LOW",
   "category": "Network Security",

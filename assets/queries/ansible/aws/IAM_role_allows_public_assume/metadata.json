@@ -1,5 +1,5 @@
 {
-  "id": "IAM_role_allows_public_assume",
+  "id": "12a7a7ce-39d6-49dd-923d-aeb4564eb66c",
   "queryName": "IAM role allows public assume",
   "severity": "LOW",
   "category": "Identity and Access Management",

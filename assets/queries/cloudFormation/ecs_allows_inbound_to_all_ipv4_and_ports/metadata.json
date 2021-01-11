@@ -1,5 +1,5 @@
 {
-  "id": "ECS_Service_Allows_Inbound_To_All_IPv4_And_Ports",
+  "id": "e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5",
   "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
   "severity": "HIGH",
   "category": "Network Security",

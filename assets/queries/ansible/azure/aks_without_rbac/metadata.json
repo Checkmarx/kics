@@ -1,5 +1,5 @@
 {
-  "id": "aks_without_rbac",
+  "id": "149fa56c-4404-4f90-9e25-d34b676d5b39",
   "queryName": "AKS Without RBAC",
   "severity": "MEDIUM",
   "category": "Network Security",

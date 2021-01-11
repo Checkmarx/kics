@@ -1,5 +1,5 @@
 {
-  "id": "viewer_protocol_policy_allows_http_protocol",
+  "id": "31733ee2-fef0-4e87-9778-65da22a8ecf1",
   "queryName": "Viewer Protocol Policy Allows HTTP Protocol",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

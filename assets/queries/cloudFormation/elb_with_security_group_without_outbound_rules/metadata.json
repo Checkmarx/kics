@@ -1,5 +1,5 @@
 {
-  "id": "elb_with_security_group_without_outbound_rules",
+  "id": "01d5a458-a6c4-452a-ac50-054d59275b7c",
   "queryName": "ELB With Security Group Without Outbound Rules",
   "severity": "MEDIUM",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_Website_Host_Is_Disabled",
+  "id": "90501b1b-cded-4cc1-9e8b-206b85cda317",
   "queryName": "S3 Bucket Website Host Is Disabled",
   "severity": "HIGH",
   "category": "Network Security",

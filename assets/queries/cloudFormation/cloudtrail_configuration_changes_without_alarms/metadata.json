@@ -1,5 +1,5 @@
 {
-  "id": "cloudtrail_configuration_changes_without_alarms",
+  "id": "1c205547-fc40-4666-a5de-352903f4cc8b",
   "queryName": "Cloudtrail Configuration Changes Without Alarms",
   "severity": "LOW",
   "category": "Monitoring",

@@ -1,5 +1,5 @@
 {
-  "id": "sql_database_backup_configuration_disabled",
+  "id": "0c82eae2-aca0-401f-93e4-fb37a0f9e5e8",
   "queryName": "SQL Database Backup Configuration Disabled",
   "severity": "HIGH",
   "category": "Backup & Disaster Recovery",

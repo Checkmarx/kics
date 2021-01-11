@@ -1,5 +1,5 @@
 {
-  "id": "ansible_efs_is_not_encrypted",
+  "id": "727c4fd4-d604-4df6-a179-7713d3c85e20",
   "queryName": "EFS Is Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

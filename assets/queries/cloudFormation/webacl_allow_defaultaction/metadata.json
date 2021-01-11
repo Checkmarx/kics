@@ -1,5 +1,5 @@
 {
-  "id": "webacl_allow_defaultaction",
+  "id": "6d64f311-3da6-45f3-80f1-14db9771ea40",
   "queryName": "WebAcl ALLOW DefaultAction",
   "severity": "HIGH",
   "category": "Network Security",

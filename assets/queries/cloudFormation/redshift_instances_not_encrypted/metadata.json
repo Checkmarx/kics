@@ -1,5 +1,5 @@
 {
-  "id": "redshift_instances_not_encrypted",
+  "id": "3b316b05-564c-44a7-9c3f-405bb95e211e",
   "queryName": "AWS Redshift Cluster Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

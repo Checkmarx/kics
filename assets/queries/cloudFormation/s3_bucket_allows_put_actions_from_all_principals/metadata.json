@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_Allows_Put_Action_From_All_Principals",
+  "id": "f6397a20-4cf1-4540-a997-1d363c25ef58",
   "queryName": "S3 Bucket Allows Put Action From All Principals",
   "severity": "HIGH",
   "category": "Identity and Access Management",

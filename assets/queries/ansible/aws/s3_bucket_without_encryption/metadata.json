@@ -1,0 +1,8 @@
+{
+  "id": "9f4cc182-a67b-44b0-b3ef-e2ac17d66591",
+  "queryName": "S3 Bucket Without Encryption",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "S3 bucket should have encryption defined",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-encryption"
+}

@@ -1,5 +1,5 @@
 {
-  "id": "unknown_port_exposed_to_internet",
+  "id": "722b0f24-5a64-4cca-aa96-cfc26b7e3a5b",
   "queryName": "Unknown Port Exposed To Internet",
   "severity": "HIGH",
   "category": "Network Ports Security",

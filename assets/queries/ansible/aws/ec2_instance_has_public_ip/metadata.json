@@ -1,5 +1,5 @@
 {
-  "id": "ec2_instance_has_public_ip",
+  "id": "a8b0c58b-cd25-4b53-9ad0-55bca0be0bc1",
   "queryName": "EC2 Instance Has Public IP",
   "severity": "HIGH",
   "category": "Network Security",
