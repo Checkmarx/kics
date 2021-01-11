@@ -12,3 +12,62 @@
         - 2383
         cidr_ip: 0.0.0.0/0
         rule_desc: allow all on port 2383
+
+- name: example using security group rule descriptions 2
+  amazon.aws.ec2_group:
+    name: awsEc2
+    description: sg with rule descriptions
+    vpc_id: vpc-xxxxxxxx
+    profile: "{{ aws_profile }}"
+    region: us-east-1
+    rules:
+      - proto: udp
+        ports:
+        - 2383
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 2383
+
+- name: example using security group rule descriptions 3
+  amazon.aws.ec2_group:
+    name: awsEc2
+    description: sg with rule descriptions
+    vpc_id: vpc-xxxxxxxx
+    profile: "{{ aws_profile }}"
+    region: us-east-1
+    rules:
+      - proto: tcp
+        to_port: -1
+        from_port: -1
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 2383
+
+- name: example using security group rule descriptions 4
+  amazon.aws.ec2_group:
+    name: awsEc2
+    description: sg with rule descriptions
+    vpc_id: vpc-xxxxxxxx
+    profile: "{{ aws_profile }}"
+    region: us-east-1
+    rules:
+      - proto: tcp
+        ports:
+        - 2000 - 3000
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 2383
+
+- name: example using security group rule descriptions 5
+  amazon.aws.ec2_group:
+    name: awsEc2
+    description: sg with rule descriptions
+    vpc_id: vpc-xxxxxxxx
+    profile: "{{ aws_profile }}"
+    region: us-east-1
+    rules:
+      - proto: tcp
+        to_port: 3000
+        from_port: 2000
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 2383
+
+
+
