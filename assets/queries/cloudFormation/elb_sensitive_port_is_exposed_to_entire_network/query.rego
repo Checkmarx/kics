@@ -154,6 +154,7 @@ CxPolicy[result] {
   result := {
     "documentId": input.document[i].id,
     "searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup["name"]]),
+    "searchValue": sprintf("%s,%s", [protocol, portNumber]),
     "issueType": "IncorrectValue",
     "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer %s", [portName, protocol, portNumber, elbType, elb["name"]]),
     "keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer %s", [portName, protocol, portNumber, elbType, elb["name"]])

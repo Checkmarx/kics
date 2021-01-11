@@ -12,6 +12,7 @@ type VulnerableFile struct {
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
+	SearchValue      string    `json:"search_value`
 	KeyExpectedValue string    `json:"expected_value"`
 	KeyActualValue   string    `json:"actual_value"`
 	Value            *string   `json:"value"`
@@ -60,6 +61,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 			Line:             item.Line,
 			IssueType:        item.IssueType,
 			SearchKey:        item.SearchKey,
+			SearchValue:      item.SearchValue,
 			KeyExpectedValue: item.KeyExpectedValue,
 			KeyActualValue:   item.KeyActualValue,
 			Value:            item.Value,

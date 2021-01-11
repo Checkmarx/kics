@@ -120,6 +120,7 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 		require.Equal(tb, expectedItem.Line, actualItem.Line, "Not corrected detected line")
 		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity")
 		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name")
+		require.Equal(tb, expectedItem.SimilarityID, actualItem.SimilarityID, "Invalid similarityID")
 		if expectedItem.Value != nil {
 			require.NotNil(tb, actualItem.Value)
 			require.Equal(tb, *expectedItem.Value, *actualItem.Value)
