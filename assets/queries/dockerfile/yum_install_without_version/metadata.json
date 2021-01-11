@@ -1,5 +1,5 @@
 {
-  "id": "yum_install_without_version",
+  "id": "6452c424-1d92-4deb-bb18-a03e95d579c4",
   "queryName": "yum install Without Version",
   "severity": "MEDIUM",
   "category": "Package Management",

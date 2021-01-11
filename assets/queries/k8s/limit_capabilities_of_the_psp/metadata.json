@@ -1,5 +1,5 @@
 {
-  "id": "limit_the_capabilities_from_the_psp",
+  "id": "caa93370-791f-4fc6-814b-ba6ce0cb4032",
   "queryName": "Not Limited Capabilities For Pod Security Policy",
   "severity": "HIGH",
   "category": "Privileges",

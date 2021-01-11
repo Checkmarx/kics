@@ -1,5 +1,5 @@
 {
-  "id": "sql_audit_retention",
+  "id": "59acb56b-2b10-4c2c-ba38-f2223c3f5cfc",
   "queryName": "SQL Audit Retention",
   "severity": "MEDIUM",
   "category": "Logging",

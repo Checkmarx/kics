@@ -1,5 +1,5 @@
 {
-  "id": "rdp_is_exposed_to_the_internet",
+  "id": "efbf6449-5ec5-4cfe-8f15-acc51e0d787c",
   "queryName": "RDP Is Exposed To The Internet",
   "severity": "HIGH",
   "category": "Network Ports Security",

@@ -1,5 +1,5 @@
 {
-  "id": "Default_Service_Account_Binding",
+  "id": "1e749bc9-fde8-471c-af0c-8254efd2dee5",
   "queryName": "Role Binding To Default Service Account",
   "severity": "HIGH",
   "category": "Identity and Access Management",

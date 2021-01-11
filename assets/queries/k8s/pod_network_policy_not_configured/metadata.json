@@ -1,5 +1,5 @@
 {
-  "id": "Pod_Is_Not_Targeted_By_A_Proper_Network_Policy",
+  "id": "0401f71b-9c1e-4821-ab15-a955caa621be",
   "queryName": "Pod Is Not Targeted By A Proper Network Policy",
   "severity": "MEDIUM",
   "category": "Networking",

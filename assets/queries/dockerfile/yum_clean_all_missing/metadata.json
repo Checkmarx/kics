@@ -1,5 +1,5 @@
 {
-  "id": "yum_clean_all_missing",
+  "id": "00481784-25aa-4a55-8633-3136dfcf4f37",
   "queryName": "Yum Clean All Missing",
   "severity": "MEDIUM",
   "category": "Package Management",

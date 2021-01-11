@@ -1,5 +1,5 @@
 {
-  "id": "Not_encrypted_data_in_launch_configuration",
+  "id": "cde1dbc4-ea92-4414-a575-5bbbe77d093c",
   "queryName": "Not encrypted data in launch configuration",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

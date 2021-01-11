@@ -1,5 +1,5 @@
 {
-  "id": "SQL_Server_Predictable_Active_Directory_Account_Name",
+  "id": "bcd3fc01-5902-4f2a-b05a-227f9bbf5450",
   "queryName": "SQL Server Predictable Active Directory Account Name",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

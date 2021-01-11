@@ -1,5 +1,5 @@
 {
-  "id": "api_gateway_without_cloudwatch_log",
+  "id": "982aa526-6970-4c59-8b9b-2ce7e019fe36",
   "queryName": "API Gateway without Cloudwatch Log",
   "severity": "MEDIUM",
   "category": "Logging",

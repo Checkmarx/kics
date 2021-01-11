@@ -1,5 +1,5 @@
 {
-  "id": "copy_from_references_current_from_alias",
+  "id": "cdddb86f-95f6-4fc4-b5a1-483d9afceb2b",
   "queryName": "COPY '--from' References Current FROM Alias",
   "severity": "HIGH",
   "category": "Multi-stage",

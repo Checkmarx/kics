@@ -1,5 +1,5 @@
 {
-  "id": "CloudWatch_Logging_Is_Disabled",
+  "id": "7dbba512-e244-42dc-98bb-422339827967",
   "queryName": "CloudWatch Logging Is Disabled",
   "severity": "MEDIUM",
   "category": "Logging",

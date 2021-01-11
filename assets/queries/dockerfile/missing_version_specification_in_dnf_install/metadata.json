@@ -1,5 +1,5 @@
 {
-  "id": "missing_version_specification_in_dnf_install",
+  "id": "93d88cf7-f078-46a8-8ddc-178e03aeacf1",
   "queryName": "Missing Version Specification In dnf install",
   "severity": "MEDIUM",
   "category": "Package Management",

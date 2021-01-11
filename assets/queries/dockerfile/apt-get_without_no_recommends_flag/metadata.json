@@ -1,5 +1,5 @@
 {
-  "id": "APT-GET_Not_Avoiding_Additional_Packages",
+  "id": "7384dfb2-fcd1-4fbf-91cd-6c44c318c33c",
   "queryName": "APT-GET Not Avoiding Additional Packages",
   "severity": "INFO",
   "category": "Package Management",

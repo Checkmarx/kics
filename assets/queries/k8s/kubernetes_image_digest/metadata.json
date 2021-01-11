@@ -1,5 +1,5 @@
 {
-  "id": "Kubernetes_Image_Digest",
+  "id": "7c81d34c-8e5a-402b-9798-9f442630e678",
   "queryName": "Kubernetes Image Should Use Digest",
   "severity": "LOW",
   "category": "Cloud Assets Management",

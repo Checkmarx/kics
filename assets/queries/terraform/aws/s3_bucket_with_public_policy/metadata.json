@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_allows_public_policy",
+  "id": "1a4bc881-9f69-4d44-8c9a-d37d08f54c50",
   "queryName": "S3 bucket allows public policy",
   "severity": "HIGH",
   "category": "Network Security",

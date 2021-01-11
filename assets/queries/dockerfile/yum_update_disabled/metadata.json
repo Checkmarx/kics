@@ -1,5 +1,5 @@
 {
-  "id": "yum_update_disabled",
+  "id": "8f6456be-0018-46db-9ce6-b3b6dc8d34d2",
   "queryName": "Yum Update Enabled",
   "severity": "HIGH",
   "category": "Package Management",

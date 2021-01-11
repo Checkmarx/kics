@@ -1,5 +1,5 @@
 {
-  "id": "Apt Get Install Lists Were Not Deleted",
+  "id": "df746b39-6564-4fed-bf85-e9c44382303c",
   "queryName": "Apt Get Install Lists Were Not Deleted",
   "severity": "INFO",
   "category": "Package Management",

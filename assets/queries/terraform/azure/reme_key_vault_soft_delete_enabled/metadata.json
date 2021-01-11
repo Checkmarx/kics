@@ -1,5 +1,5 @@
 {
-  "id": "key_vault_soft_delete_is_enabled",
+  "id": "c6e7cce0-0549-46d9-994e-c47b82d4ac4a",
   "queryName": "Key Vault Soft Delete is Enabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
