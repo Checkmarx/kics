@@ -1,5 +1,5 @@
 {
-  "id": "statefulset_without_poddisruptionbudget",
+  "id": "1db3a5a5-bf75-44e5-9e44-c56cfc8b1ac5",
   "queryName": "StatefulSet Without PodDisruptionBudget",
   "severity": "LOW",
   "category": "High Availability",

@@ -1,5 +1,5 @@
 {
-  "id": "Compute_Disk_not_Encrypted",
+  "id": "93564a91-a8f5-424c-8955-eadcb1fbfc3a",
   "queryName": "Compute disk is not encrypted",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "rds_cluster_storage_not_encrypted",
+  "id": "3199c26c-7871-4cb3-99c2-10a59244ce7f",
   "queryName": "RDS Cluster Storage Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

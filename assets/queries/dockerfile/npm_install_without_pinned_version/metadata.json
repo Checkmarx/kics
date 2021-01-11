@@ -1,5 +1,5 @@
 {
-  "id": "NPM_Install_Command_Without_Pinned_Version",
+  "id": "e36d8880-3f78-4546-b9a1-12f0745ca0d5",
   "queryName": "NPM Install Command Without Pinned Version",
   "severity": "MEDIUM",
   "category": "Package Management",

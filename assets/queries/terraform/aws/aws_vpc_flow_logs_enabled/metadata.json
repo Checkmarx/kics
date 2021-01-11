@@ -1,5 +1,5 @@
 {
-  "id": "aws_vpc_flow_logs_enabled",
+  "id": "f83121ea-03da-434f-9277-9cd247ab3047",
   "queryName": "VPC Flow Logs are not Enabled",
   "severity": "MEDIUM",
   "category": "Logging",

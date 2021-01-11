@@ -1,5 +1,5 @@
 {
-  "id": "mssql_audit_retention",
+  "id": "9c301481-e6ec-44f7-8a49-8ec63e2969ea",
   "queryName": "MSSQL Audit Retention",
   "severity": "MEDIUM",
   "category": "Logging",

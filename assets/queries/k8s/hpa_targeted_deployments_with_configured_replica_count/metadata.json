@@ -1,5 +1,5 @@
 {
-  "id": "hpa_targeted_deployments_with_configured_replica_count",
+  "id": "5744cbb8-5946-4b75-a196-ade44449525b",
   "queryName": "HPA Targeted Deployments With Configured Replica Count",
   "severity": "LOW",
   "category": "High Availability",

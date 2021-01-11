@@ -1,5 +1,5 @@
 {
-  "id": "ServiceAccount_Allows_Access_Secrets",
+  "id": "056ac60e-fe07-4acc-9b34-8e1d51716ab9",
   "queryName": "ServiceAccount Allows Access Secrets",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

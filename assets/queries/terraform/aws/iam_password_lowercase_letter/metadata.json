@@ -1,5 +1,5 @@
 {
-  "id": "IAM_Password_Without_Lowercase_letter",
+  "id": "bbc7c137-6c7b-4fc4-984a-0c88e91fcaf9",
   "queryName": "IAM Password Without Lowercase Letter",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

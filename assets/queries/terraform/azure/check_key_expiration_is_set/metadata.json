@@ -1,5 +1,5 @@
 {
-  "id": "check_key_expiration_is_set",
+  "id": "4d080822-5ee2-49a4-8984-68f3d4c890fc",
   "queryName": "Check Key Expiration Is Set",
   "severity": "HIGH",
   "category": "Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "container_allow_privilege_escalation_is_true",
+  "id": "c878abb4-cca5-4724-92b9-289be68bd47c",
   "queryName": "Container Allow Privilege Escalation Is True",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

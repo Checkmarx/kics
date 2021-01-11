@@ -1,5 +1,5 @@
 {
-  "id": "sensitive_port_is_exposed_to_entire_network",
+  "id": "594c198b-4d79-41b8-9b36-fde13348b619",
   "queryName": "Sensitive Port Is Exposed To Entire Network",
   "severity": "HIGH",
   "category": "Network Ports Security",

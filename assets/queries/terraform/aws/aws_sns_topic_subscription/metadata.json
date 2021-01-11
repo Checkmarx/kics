@@ -1,5 +1,5 @@
 {
-  "id": "aws_sns_topic_subscription",
+  "id": "b26d2b7e-60f6-413d-a3a1-a57db24aa2b3",
   "queryName": "SNS Topic is Publicly Accessible For Subscription",
   "severity": "MEDIUM",
   "category": "Network Security",

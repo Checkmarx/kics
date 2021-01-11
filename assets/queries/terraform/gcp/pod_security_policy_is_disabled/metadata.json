@@ -1,5 +1,5 @@
 {
-  "id": "Pod_Security_Policy_Disabled",
+  "id": "9192e0f9-eca5-4056-9282-ae2a736a4088",
   "queryName": "Pod Security Policy is Disabled",
   "severity": "HIGH",
   "category": "Operational Efficiency",
