@@ -53,6 +53,7 @@ type QueryMetadata struct {
 	Query    string
 	Content  string
 	Metadata map[string]interface{}
+	Platform string
 }
 
 type Vulnerability struct {
@@ -70,6 +71,11 @@ type Vulnerability struct {
 	KeyActualValue   string    `db:"key_actual_value" json:"actualValue"`
 	Value            *string   `db:"value" json:"value"`
 	Output           string    `json:"-"`
+}
+
+type QueryConfig struct {
+	FileKind FileKind
+	Platform string
 }
 
 type Extensions map[string]struct{}

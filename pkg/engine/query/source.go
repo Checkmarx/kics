@@ -6,6 +6,8 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"runtime"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
@@ -18,6 +20,64 @@ const metadataFileName = "metadata.json"
 
 type FilesystemSource struct {
 	Source string
+}
+
+var (
+	_, b, _, _ = runtime.Caller(0)
+	basepath   = filepath.Dir(b)
+)
+
+func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
+	var basePath = "../../../assets/queries/generic/"
+	var genericPath = filepath.Join(basepath, basePath)
+	var content = "package generic.common"
+	var errorMessage error
+
+	if strings.Contains(platform, "commonQuery") {
+		pathToLib := filepath.FromSlash(genericPath + "/common/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "ansible") {
+		pathToLib := filepath.FromSlash(genericPath + "/ansible/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "cloudformation") {
+		pathToLib := filepath.FromSlash(genericPath + "/cloudformation/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "dockerfile") {
+		pathToLib := filepath.FromSlash(genericPath + "/dockerfile/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "k8s") {
+		pathToLib := filepath.FromSlash(genericPath + "/k8s/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "terraform") {
+		pathToLib := filepath.FromSlash(genericPath + "/terraform/library.rego")
+		content, err := ioutil.ReadFile(pathToLib)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	}
+
+	return content, errorMessage
 }
 
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
@@ -63,11 +123,13 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}
 
 	metadata := readMetadata(queryDir)
+	platform := getPlatform(queryDir)
 
 	return model.QueryMetadata{
 		Query:    path.Base(queryDir),
 		Content:  string(queryContent),
 		Metadata: metadata,
+		Platform: platform,
 	}, nil
 }
 
@@ -98,4 +160,22 @@ func readMetadata(queryDir string) map[string]interface{} {
 	}
 
 	return metadata
+}
+
+func getPlatform(platform string) string {
+	if strings.Contains(platform, "commonQuery") {
+		return "commonQuery"
+	} else if strings.Contains(platform, "ansible") {
+		return "ansible"
+	} else if strings.Contains(platform, "cloudFormation") {
+		return "cloudFormation"
+	} else if strings.Contains(platform, "dockerfile") {
+		return "dockerfile"
+	} else if strings.Contains(platform, "k8s") {
+		return "k8s"
+	} else if strings.Contains(platform, "terraform") {
+		return "terraform"
+	}
+
+	return "unknown"
 }
