@@ -11,4 +11,4 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    command: -p /path/ -v
+    command: -p /path/
