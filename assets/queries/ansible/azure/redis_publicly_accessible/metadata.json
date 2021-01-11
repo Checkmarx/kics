@@ -1,5 +1,5 @@
 {
-  "id": "redis_publicly_accessible",
+  "id": "0632d0db-9190-450a-8bb3-c283bffea445",
   "queryName": "Redis Publicly Accessible",
   "severity": "HIGH",
   "category": "Network Security",

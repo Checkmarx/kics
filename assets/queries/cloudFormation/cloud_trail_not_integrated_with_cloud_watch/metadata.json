@@ -1,5 +1,5 @@
 {
-  "id": "Cloud_trail_not_integrated_with_cloud_watch",
+  "id": "65d07da5-9af5-44df-8983-52d2e6f24c44",
   "queryName": "Cloud Trail Not Integrated With Cloud Watch",
   "severity": "MEDIUM",
   "category": "Logging",

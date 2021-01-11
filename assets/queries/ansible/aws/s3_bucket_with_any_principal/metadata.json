@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_With_Any_Principal",
+  "id": "c9f3e9af-ddb8-4259-9bd2-38fe6eaa5b67",
   "queryName": "S3 Bucket With Any Principal",
   "severity": "HIGH",
   "category": "Identity and Access Management",

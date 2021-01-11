@@ -1,5 +1,5 @@
 {
-    "id": "s3_bucket_without_server_side_encryption",
+    "id": "b2e8752c-3497-4255-98d2-e4ae5b46bbf5",
     "queryName": "S3 Bucket Without Server Side Encryption",
     "severity": "HIGH",
     "category": "Encryption and Key Management",

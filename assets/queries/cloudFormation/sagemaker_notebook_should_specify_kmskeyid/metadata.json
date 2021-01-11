@@ -1,5 +1,5 @@
 {
-  "id": "sagemaker_notebook_should_specify_kmskeyid",
+  "id": "80456d2e-afa8-410f-a60c-15958f6473de",
   "queryName": "Sagemaker Notebook Should Specify KmsKeyId",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

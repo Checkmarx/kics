@@ -1,5 +1,5 @@
 {
-  "id": "cloudwatch_alarm_and_logfilter_not_defined_for_root_user",
+  "id": "f90c4dd3-7d71-420d-a062-633d50e1588f",
   "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
   "severity": "MEDIUM",
   "category": "Monitoring",

@@ -1,5 +1,5 @@
 {
-  "id": "s3_bucket_with_all_permissions",
+  "id": "6a6d7e56-c913-4549-b5c5-5221e624d2ec",
   "queryName": "S3 Bucket With All Permissions",
   "severity": "LOW",
   "category": "Identity and Access Management",

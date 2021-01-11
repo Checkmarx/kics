@@ -1,5 +1,5 @@
 {
-  "id": "rds_db_cluster_storage_encryption_disabled",
+  "id": "65844ba3-03a1-40a8-b3dd-919f122e8c95",
   "queryName": "RDS DBCluster Storage Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Data Security",

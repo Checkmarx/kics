@@ -1,5 +1,5 @@
 {
-  "id": "vpc_attached_with_too_many_gateways",
+  "id": "97e94d17-e2c7-4109-a53b-6536ac1bb64e",
   "queryName": "VPC Attached With Too Many Gateways",
   "severity": "LOW",
   "category": "Operational",

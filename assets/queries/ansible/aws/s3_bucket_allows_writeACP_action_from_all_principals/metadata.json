@@ -1,0 +1,8 @@
+{
+  "id": "7529b8d2-55d7-44d2-b1cd-d7d2984a2a81",
+  "queryName": "S3 Bucket Allows Write_ACP Action From All Principals",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html"
+}

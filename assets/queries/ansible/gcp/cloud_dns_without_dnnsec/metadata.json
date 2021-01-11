@@ -1,5 +1,5 @@
 {
-  "id": "cloud_dns_without_dnssec",
+  "id": "80b15fb1-6207-40f4-a803-6915ae619a03",
   "queryName": "Cloud DNS Without DNSSEC",
   "severity": "MEDIUM",
   "category": "Network Security",

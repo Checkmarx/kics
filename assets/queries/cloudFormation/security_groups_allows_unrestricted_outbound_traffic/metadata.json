@@ -1,5 +1,5 @@
 {
-  "id": "security_groups_allows_unrestricted_outbound_traffic",
+  "id": "66f2d8f9-a911-4ced-ae27-34f09690bb2c",
   "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
   "severity": "HIGH",
   "category": "Network Security",

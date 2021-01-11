@@ -1,5 +1,5 @@
 {
-  "id": "Security_Group_Not_Configured",
+  "id": "da4f2739-174f-4cdd-b9ef-dc3f14b5931f",
   "queryName": "Security Group is Not Configured",
   "severity": "MEDIUM",
   "category": "Network Security",

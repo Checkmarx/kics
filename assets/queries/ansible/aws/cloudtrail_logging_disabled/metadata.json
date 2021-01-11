@@ -1,5 +1,5 @@
 {
-  "id": "cloudtrail_logging_disabled",
+  "id": "d4a73c49-cbaa-4c6f-80ee-d6ef5a3a26f5",
   "queryName": "CloudTrail Logging Disabled",
   "severity": "HIGH",
   "category": "Logging",

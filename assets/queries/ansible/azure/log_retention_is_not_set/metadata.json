@@ -1,5 +1,5 @@
 {
-  "id": "log_retention_is_not_set",
+  "id": "0461b4fd-21ef-4687-929e-484ee4796785",
   "queryName": "Log Retention Is Not Set",
   "severity": "MEDIUM",
   "category": "Logging",

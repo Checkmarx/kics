@@ -1,5 +1,5 @@
 {
-  "id": "route53_without_record_set",
+  "id": "24d932e1-91f0-46ea-836f-fdbd81694151",
   "queryName": "Route53 Without Record Set",
   "severity": "HIGH",
   "category": "Network Security",

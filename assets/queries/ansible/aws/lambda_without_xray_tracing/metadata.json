@@ -1,5 +1,5 @@
 {
-  "id": "lambda_without_xray_tracing",
+  "id": "71397b34-1d50-4ee1-97cb-c96c34676f74",
   "queryName": "Lambda Without X-Ray Tracing",
   "severity": "LOW",
   "category": "Logging",

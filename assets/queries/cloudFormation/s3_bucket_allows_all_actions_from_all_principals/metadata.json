@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_Allows_All_Actions_From_All_Principals",
+  "id": "4ae8af91-5108-42cb-9471-3bdbe596eac9",
   "queryName": "S3 Bucket Allows All Actions From All Principals",
   "severity": "HIGH",
   "category": "Identity and Access Management",

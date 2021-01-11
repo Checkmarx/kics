@@ -1,5 +1,5 @@
 {
-  "id": "directory_service_microsoft_ad_password_rule",
+  "id": "06b9f52a-8cd5-459b-bdc6-21a22521e1be",
   "queryName": "Directory Service Microsoft AD Password Rule",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

@@ -1,5 +1,5 @@
 {
-  "id": "aws_config_configuration_without_alarms",
+  "id": "fdd9a357-f72d-42c0-af68-78b2b63269cf",
   "queryName": "AWS Config Configuration Without Alarms",
   "severity": "MEDIUM",
   "category": "Monitoring",

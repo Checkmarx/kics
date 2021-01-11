@@ -1,5 +1,5 @@
 {
-  "id": "ansible_ssl_connection_is_enabled",
+  "id": "2a901825-0f3b-4655-a0fe-e0470e50f8e6",
   "queryName": "SSL Connection Is Enabled",
   "severity": "HIGH",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "S3_Buckets_Are_Publicly_Accessible",
+  "id": "7772bb8c-c0f3-42d4-8e4e-f1b8939ad085",
   "queryName": "S3 Buckets Are Publicly Accessible",
   "severity": "HIGH",
   "category": "Network Security",

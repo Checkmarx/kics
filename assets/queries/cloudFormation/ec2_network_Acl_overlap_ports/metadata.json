@@ -1,5 +1,5 @@
 {
-  "id": "ec2_network_ACL_overlapping_ports",
+  "id": "77b6f1e2-bde4-4a6a-ae7e-a40659ff1576",
   "queryName": "EC2 network ACL overlapping ports",
   "severity": "HIGH",
   "category": "Network Security",

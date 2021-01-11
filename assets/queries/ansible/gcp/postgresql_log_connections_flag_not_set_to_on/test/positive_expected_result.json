@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "PostgreSQL log_connections Flag Not Set To ON",
+		"severity": "HIGH",
+		"line": 5
+	},
+	{
+		"queryName": "PostgreSQL log_connections Flag Not Set To ON",
+		"severity": "HIGH",
+		"line": 16
+	}
+]

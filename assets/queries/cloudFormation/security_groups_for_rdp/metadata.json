@@ -1,5 +1,5 @@
 {
-  "id": "security_groups_unrestricted_access_to_rdp",
+  "id": "3ae83918-7ec7-4cb8-80db-b91ef0f94002",
   "queryName": "Security Group Unrestricted Access To RDP",
   "severity": "HIGH",
   "category": "Network Security",

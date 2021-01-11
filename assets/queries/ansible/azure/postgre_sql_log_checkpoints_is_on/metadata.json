@@ -1,5 +1,5 @@
 {
-  "id": "ansible_postgre_sql_log_checkpoints_is_on",
+  "id": "7ab33ac0-e4a3-418f-a673-50da4e34df21",
   "queryName": "PostgreSQL Logs Checkpoints Is On",
   "severity": "MEDIUM",
   "category": "Logging",

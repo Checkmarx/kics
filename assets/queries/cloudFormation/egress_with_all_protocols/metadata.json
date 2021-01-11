@@ -1,5 +1,5 @@
 {
-  "id": "egress_with_all_protocols",
+  "id": "ee464fc2-54a6-4e22-b10a-c6dcd2474d0c",
   "queryName": "AWS Security Group Egress With All Protocols",
   "severity": "MEDIUM",
   "category": "Network Security",

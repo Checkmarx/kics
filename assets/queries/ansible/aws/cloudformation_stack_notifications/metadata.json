@@ -1,5 +1,5 @@
 {
-  "id": "cloudformation_stack_notifications",
+  "id": "d39761d7-94ab-45b0-ab5e-27c44e381d58",
   "queryName": "AWS CloudFormation Stack Notifications Disabled",
   "severity": "MEDIUM",
   "category": "Monitoring",

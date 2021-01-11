@@ -1,5 +1,5 @@
 {
-  "id": "docdb_cluster_master_password_in_plaintext",
+  "id": "39423ce4-9011-46cd-b6b1-009edcd9385d",
   "queryName": "DocDB cluster master password in plaintext",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

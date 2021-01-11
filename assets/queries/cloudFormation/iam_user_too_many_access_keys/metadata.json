@@ -1,5 +1,5 @@
 {
-  "id": "IAM_User_Has_Too_Many_Access_Keys",
+  "id": "48677914-6fdf-40ec-80c4-2b0e94079f54",
   "queryName": "IAM User Has Too Many Access Keys",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

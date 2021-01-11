@@ -1,0 +1,17 @@
+[
+	{
+		"queryName": "MSK Cluster logging is not enabled",
+		"severity": "MEDIUM",
+		"line": 5
+	},
+	{
+		"queryName": "MSK Cluster logging is not enabled",
+		"severity": "MEDIUM",
+		"line": 8
+	},
+	{
+		"queryName": "MSK Cluster logging is not enabled",
+		"severity": "MEDIUM",
+		"line": 20
+	}
+]

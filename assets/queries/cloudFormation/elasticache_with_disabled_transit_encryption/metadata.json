@@ -1,5 +1,5 @@
 {
-  "id": "ElastiCache_with_Disabled_Transit_Encryption",
+  "id": "3b02569b-fc6f-4153-b3a3-ba91022fed68",
   "queryName": "ElastiCache with disabled Transit Encryption",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

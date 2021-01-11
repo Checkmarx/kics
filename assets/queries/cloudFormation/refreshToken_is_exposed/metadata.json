@@ -1,5 +1,5 @@
 {
-  "id": "refreshToken_is_exposed",
+  "id": "5b48c507-0d1f-41b0-a630-76817c6b4189",
   "queryName": "RefreshToken Is Exposed",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

@@ -1,0 +1,9 @@
+- name: create a instance
+  google.cloud.gcp_compute_instance:
+    name: test_object
+    network_interfaces:
+    - network: "{{ network }}"
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    state: present

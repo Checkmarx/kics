@@ -1,5 +1,5 @@
 {
-  "id": "SQL_Server_Accessibility_Not_Minimal",
+  "id": "3f23c96c-f9f5-488d-9b17-605b8da5842f",
   "queryName": "SQL Server Accessibility is Not Minimal",
   "severity": "MEDIUM",
   "category": "Network Security",

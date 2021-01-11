@@ -1,5 +1,5 @@
 {
-  "id": "Incorrect_password_policy_expiration",
+  "id": "3f2cf811-88fa-4eda-be45-7a191a18aba9",
   "queryName": "Incorrect password policy expiration",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
