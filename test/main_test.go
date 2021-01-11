@@ -26,17 +26,17 @@ const (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws":            model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/azure":          model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":            model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/github":         model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes_pod": model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/k8s":                      model.QueryConfig{FileKind: model.KindYAML, Platform: "k8s"},
-		"../assets/queries/cloudFormation":           model.QueryConfig{FileKind: model.KindYAML, Platform: "cloudFormation"},
-		"../assets/queries/ansible/aws":              model.QueryConfig{FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/ansible/gcp":              model.QueryConfig{FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/ansible/azure":            model.QueryConfig{FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/dockerfile":               model.QueryConfig{FileKind: model.KindDOCKER, Platform: "dockerfile"},
+		"../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/azure":          {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":            {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/github":         {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes_pod": {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/k8s":                      {FileKind: model.KindYAML, Platform: "k8s"},
+		"../assets/queries/cloudFormation":           {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":              {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
 	}
 )
 
