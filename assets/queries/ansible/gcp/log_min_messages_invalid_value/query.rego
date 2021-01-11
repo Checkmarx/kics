@@ -12,10 +12,10 @@ CxPolicy [ result ] {
 
   result := {
                 "documentId": 		document.id,
-                "searchKey": 	    sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags", [task.name]),
+                "searchKey": 	    sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags.log_min_messages", [task.name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags sets the log_min_messages to a valid value", [task.name]),
-                "keyActualValue":   sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags doesn't sets the log_min_messages to a valid value", [task.name])
+                "keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags sets 'log_min_messages' to a valid value", [task.name]),
+                "keyActualValue":   sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.database_flags doesn't set 'log_min_messages' to a valid value", [task.name])
               }
 }
 
