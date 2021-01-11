@@ -25,8 +25,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// InitOptions represents the flags structure
 type InitOptions struct {
-	Ctx         context.Context
 	Path        string
 	QueryPath   string
 	OutputPath  string
@@ -38,14 +38,12 @@ type InitOptions struct {
 }
 
 type analyseOptions struct {
-	ctx         context.Context
 	path        string
 	queryPath   string
 	outputPath  string
 	payloadPath string
 	verbose     bool
 	logFile     bool
-	generateID  bool
 }
 
 const (
@@ -54,7 +52,7 @@ const (
 )
 
 // Init executes kics with the given flags
-func Init(initArgs InitOptions) error {
+func Init(ctx context.Context, initArgs InitOptions) error {
 	defer sentry.Flush(timeMult * time.Second)
 
 	if initArgs.Version {
@@ -62,25 +60,37 @@ func Init(initArgs InitOptions) error {
 		return nil
 	}
 
+	if initArgs.GenerateID {
+		generateID()
+		return nil
+	}
+
 	analyseArgs := analyseOptions{
-		ctx:         initArgs.Ctx,
 		path:        initArgs.Path,
 		queryPath:   initArgs.QueryPath,
 		outputPath:  initArgs.OutputPath,
 		payloadPath: initArgs.PayloadPath,
 		verbose:     initArgs.Verbose,
 		logFile:     initArgs.LogFile,
-		generateID:  initArgs.GenerateID,
 	}
 
-	return analyse(analyseArgs)
+	return analyze(ctx, analyseArgs)
 }
 
 func getVersion() string {
 	return "Keeping Infrastructure as Code Secure v1.1.0"
 }
 
-func analyse(analyseArgs analyseOptions) error {
+func generateID() {
+	_, err := fmt.Println(uuid.New().String())
+	if err != nil {
+		log.Err(err).Msg("failed to get uuid")
+		os.Exit(-1)
+	}
+	os.Exit(0)
+}
+
+func analyze(ctx context.Context, analyseArgs analyseOptions) error {
 	fmt.Printf("Starting analysis using %s", getVersion())
 
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
@@ -88,15 +98,6 @@ func analyse(analyseArgs analyseOptions) error {
 
 	if analyseArgs.verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
-	}
-
-	if analyseArgs.generateID {
-		_, err := fmt.Println(uuid.New().String())
-		if err != nil {
-			log.Err(err).Msg("failed to get uuid")
-			os.Exit(-1)
-		}
-		os.Exit(0)
 	}
 
 	if analyseArgs.logFile {
@@ -115,7 +116,7 @@ func analyse(analyseArgs analyseOptions) error {
 	}
 
 	t := &tracker.CITracker{}
-	inspector, err := engine.NewInspector(analyseArgs.ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
 	if err != nil {
 		return err
 	}
@@ -147,16 +148,16 @@ func analyse(analyseArgs analyseOptions) error {
 		Tracker:        t,
 	}
 
-	if scanErr := service.StartScan(analyseArgs.ctx, scanID); scanErr != nil {
+	if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
 		return scanErr
 	}
 
-	result, err := store.GetVulnerabilities(analyseArgs.ctx, scanID)
+	result, err := store.GetVulnerabilities(ctx, scanID)
 	if err != nil {
 		return err
 	}
 
-	files, err := store.GetFiles(analyseArgs.ctx, scanID)
+	files, err := store.GetFiles(ctx, scanID)
 	if err != nil {
 		return err
 	}
@@ -170,16 +171,12 @@ func analyse(analyseArgs analyseOptions) error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if analyseArgs.payloadPath != "" {
-		if err := printToJSONFile(analyseArgs.payloadPath, files.Combine()); err != nil {
-			return err
-		}
+	if err := printJSON(analyseArgs.payloadPath, files.Combine()); err != nil {
+		return err
 	}
 
-	if analyseArgs.outputPath != "" {
-		if err := printToJSONFile(analyseArgs.outputPath, summary); err != nil {
-			return err
-		}
+	if err := printJSON(analyseArgs.outputPath, summary); err != nil {
+		return err
 	}
 
 	if err := printResult(&summary); err != nil {
@@ -190,5 +187,12 @@ func analyse(analyseArgs analyseOptions) error {
 		os.Exit(1)
 	}
 
+	return nil
+}
+
+func printJSON(path string, body interface{}) error {
+	if path != "" {
+		return printToJSONFile(path, body)
+	}
 	return nil
 }

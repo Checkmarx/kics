@@ -39,7 +39,6 @@ func main() { // nolint:funlen,gocyclo
 		Short: "Keeping Infrastructure as Code Secure",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			flags := console.InitOptions{
-				Ctx:         ctx,
 				Path:        path,
 				QueryPath:   queryPath,
 				OutputPath:  outputPath,
@@ -49,7 +48,7 @@ func main() { // nolint:funlen,gocyclo
 				Version:     version,
 			}
 
-			return console.Init(flags)
+			return console.Init(ctx, flags)
 		},
 	}
 
