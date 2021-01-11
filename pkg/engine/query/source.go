@@ -27,6 +27,7 @@ var (
 	basepath   = filepath.Dir(b)
 )
 
+// Gets the generic query according to the platform
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	var basePath = "../../../assets/queries/generic/"
 	var genericPath = filepath.Join(basepath, basePath)

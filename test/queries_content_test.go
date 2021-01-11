@@ -78,7 +78,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	queriesSource.EXPECT().GetGenericQuery(entry.dir).
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform(entry.dir)
+			q, err := getPlatform(entry.platform)
 			require.NoError(t, err)
 			return q, nil
 		})

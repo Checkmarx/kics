@@ -25,18 +25,18 @@ const (
 )
 
 var (
-	queriesPaths = map[string]model.FileKind{
-		filepath.FromSlash("../assets/queries/terraform/aws"):            model.KindTerraform,
-		filepath.FromSlash("../assets/queries/terraform/azure"):          model.KindTerraform,
-		filepath.FromSlash("../assets/queries/terraform/gcp"):            model.KindTerraform,
-		filepath.FromSlash("../assets/queries/terraform/github"):         model.KindTerraform,
-		filepath.FromSlash("../assets/queries/terraform/kubernetes_pod"): model.KindTerraform,
-		filepath.FromSlash("../assets/queries/k8s"):                      model.KindYAML,
-		filepath.FromSlash("../assets/queries/cloudFormation"):           model.KindYAML,
-		filepath.FromSlash("../assets/queries/ansible/aws"):              model.KindYAML,
-		filepath.FromSlash("../assets/queries/ansible/gcp"):              model.KindYAML,
-		filepath.FromSlash("../assets/queries/ansible/azure"):            model.KindYAML,
-		filepath.FromSlash("../assets/queries/dockerfile"):               model.KindDOCKER,
+	queriesPaths = map[string]model.QueryConfig{
+		"../assets/queries/terraform/aws":            model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/azure":          model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":            model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/github":         model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes_pod": model.QueryConfig{FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/k8s":                      model.QueryConfig{FileKind: model.KindYAML, Platform: "k8s"},
+		"../assets/queries/cloudFormation":           model.QueryConfig{FileKind: model.KindYAML, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":              model.QueryConfig{FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":              model.QueryConfig{FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/azure":            model.QueryConfig{FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/dockerfile":               model.QueryConfig{FileKind: model.KindDOCKER, Platform: "dockerfile"},
 	}
 )
 
@@ -45,8 +45,9 @@ func TestMain(m *testing.M) {
 }
 
 type queryEntry struct {
-	dir  string
-	kind model.FileKind
+	dir      string
+	kind     model.FileKind
+	platform string
 }
 
 func (q queryEntry) PositiveFile() string {
@@ -61,10 +62,11 @@ func (q queryEntry) ExpectedPositiveResultFile() string {
 	return path.Join(q.dir, "test/positive_expected_result.json")
 }
 
-func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind) []queryEntry {
+func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
 	queriesDir = append(queriesDir, queryEntry{
-		dir:  dirName,
-		kind: kind,
+		dir:      dirName,
+		kind:     kind,
+		platform: platform,
 	})
 
 	return queriesDir
@@ -73,16 +75,16 @@ func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind)
 func loadQueries(tb testing.TB) []queryEntry {
 	var queriesDir []queryEntry
 
-	for queriesPath, kind := range queriesPaths {
+	for queriesPath, queryConfig := range queriesPaths {
 		fs, err := ioutil.ReadDir(queriesPath)
 		require.Nil(tb, err)
 
 		for _, f := range fs {
 			f.Name()
 			if f.IsDir() && f.Name() != "test" {
-				queriesDir = appendQueries(queriesDir, filepath.FromSlash(path.Join(queriesPath, f.Name())), kind)
+				queriesDir = appendQueries(queriesDir, filepath.FromSlash(path.Join(queriesPath, f.Name())), queryConfig.FileKind, queryConfig.Platform)
 			} else {
-				queriesDir = appendQueries(queriesDir, filepath.FromSlash(queriesPath), kind)
+				queriesDir = appendQueries(queriesDir, filepath.FromSlash(queriesPath), queryConfig.FileKind, queryConfig.Platform)
 				break
 			}
 		}

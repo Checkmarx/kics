@@ -40,6 +40,11 @@ type FileKind string
 type Severity string
 type IssueType string
 
+type QueryConfig struct {
+	FileKind FileKind
+	Platform string
+}
+
 type FileMetadata struct {
 	ID           string `db:"id"`
 	ScanID       string `db:"scan_id"`

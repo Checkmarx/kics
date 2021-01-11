@@ -100,7 +100,7 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 
 	queriesSource.EXPECT().GetGenericQuery(entry.dir).
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform(entry.dir)
+			q, err := getPlatform(entry.platform)
 			require.NoError(tb, err)
 			return q, nil
 		})
@@ -133,7 +133,7 @@ func getPlatform(platform string) (string, error) {
 			log.Err(err)
 		}
 		return string(content), err
-	} else if strings.Contains(platform, "cloudformation") {
+	} else if strings.Contains(platform, "cloudFormation") {
 		path := filepath.FromSlash(genericPath + "cloudformation/library.rego")
 		content, err := ioutil.ReadFile(path)
 		if err != nil {
