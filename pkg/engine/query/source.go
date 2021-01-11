@@ -27,7 +27,6 @@ var (
 	basepath   = filepath.Dir(b)
 )
 
-// Gets the generic query according to the platform
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	var basePath = "../../../assets/queries/generic/"
 	var genericPath = filepath.Join(basepath, basePath)
@@ -124,7 +123,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}
 
 	metadata := readMetadata(queryDir)
-	platform := GetPlatform(queryDir)
+	platform := getPlatform(queryDir)
 
 	return model.QueryMetadata{
 		Query:    path.Base(queryDir),
@@ -163,7 +162,7 @@ func readMetadata(queryDir string) map[string]interface{} {
 	return metadata
 }
 
-func GetPlatform(platform string) string {
+func getPlatform(platform string) string {
 	if strings.Contains(platform, "commonQuery") {
 		return "commonQuery"
 	} else if strings.Contains(platform, "ansible") {
