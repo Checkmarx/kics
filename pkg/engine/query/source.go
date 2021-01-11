@@ -27,57 +27,36 @@ var (
 	basepath   = filepath.Dir(b)
 )
 
-func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
+// GetGenericQuery returns the library.rego for the platform passed in the argument
+func getPathToLibrary(platform string) string {
 	var basePath = "../../../assets/queries/generic/"
 	var genericPath = filepath.Join(basepath, basePath)
-	var content = "package generic.common"
-	var errorMessage error
 
-	if strings.Contains(platform, "commonQuery") {
-		pathToLib := filepath.FromSlash(genericPath + "/common/library.rego")
-		content, err := ioutil.ReadFile(pathToLib)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "ansible") {
-		pathToLib := filepath.FromSlash(genericPath + "/ansible/library.rego")
-		content, err := ioutil.ReadFile(pathToLib)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
+	if strings.Contains(platform, "ansible") {
+		return filepath.FromSlash(genericPath + "/ansible/library.rego")
 	} else if strings.Contains(platform, "cloudformation") {
-		pathToLib := filepath.FromSlash(genericPath + "/cloudformation/library.rego")
-		content, err := ioutil.ReadFile(pathToLib)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
+		return filepath.FromSlash(genericPath + "/cloudformation/library.rego")
 	} else if strings.Contains(platform, "dockerfile") {
-		pathToLib := filepath.FromSlash(genericPath + "/dockerfile/library.rego")
-		content, err := ioutil.ReadFile(pathToLib)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
+		return filepath.FromSlash(genericPath + "/dockerfile/library.rego")
 	} else if strings.Contains(platform, "k8s") {
-		pathToLib := filepath.FromSlash(genericPath + "/k8s/library.rego")
-		content, err := ioutil.ReadFile(pathToLib)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
+		return filepath.FromSlash(genericPath + "/k8s/library.rego")
 	} else if strings.Contains(platform, "terraform") {
-		pathToLib := filepath.FromSlash(genericPath + "/terraform/library.rego")
-		content, err := ioutil.ReadFile(pathToLib)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
+		return filepath.FromSlash(genericPath + "/terraform/library.rego")
 	}
 
-	return content, errorMessage
+	return filepath.FromSlash(genericPath + "/common/library.rego")
+}
+
+// GetGenericQuery returns the library.rego for the platform passed in the argument
+func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
+	pathToLib := getPathToLibrary(platform)
+	content, err := ioutil.ReadFile(pathToLib)
+
+	if err != nil {
+		log.Err(err)
+	}
+
+	return string(content), err
 }
 
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {

@@ -73,6 +73,7 @@ type Vulnerability struct {
 	Output           string    `json:"-"`
 }
 
+// QueryConfig is a struct that contains the fileKind and platform of the rego query
 type QueryConfig struct {
 	FileKind FileKind
 	Platform string
