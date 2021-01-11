@@ -1,5 +1,5 @@
 {
-  "id": "Copy With More Than 2 Arguments Not Ending With Slash",
+  "id": "6db6e0c2-32a3-4a2e-93b5-72c35f4119db",
   "severity": "HIGH",
   "queryName": "Copy With More Than 2 Arguments Not Ending With Slash",
   "category": "Filesystem",

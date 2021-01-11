@@ -1,5 +1,5 @@
 {
-  "id": "RUN_cd_instead_of_workdir",
+  "id": "f4a6bcd3-e231-4acf-993c-aa027be50d2e",
   "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
   "severity": "MEDIUM",
   "category": "Filesystem",

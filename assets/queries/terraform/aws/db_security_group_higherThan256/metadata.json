@@ -1,5 +1,5 @@
 {
-  "id": "db_security_group_lower_than_256",
+  "id": "4f615f3e-fb9c-4fad-8b70-2e9f781806ce",
   "queryName": "DB Security Group Lower than 256",
   "severity": "HIGH",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "psp_allows_sharing_host_ipc",
+  "id": "80f93444-b240-4ebb-a4c6-5c40b76c04ea",
   "queryName": "PSP Allows Sharing Host IPC",
   "severity": "MEDIUM",
   "category": "Privileges",

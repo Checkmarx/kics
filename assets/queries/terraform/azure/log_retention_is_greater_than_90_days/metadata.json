@@ -1,5 +1,5 @@
 {
-  "id": "log_retention_is_greater_than_90_days",
+  "id": "7750fcca-dd03-4d38-b663-4b70289bcfd4",
   "queryName": "Log Retention Is Greater Than 90 Days",
   "severity": "MEDIUM",
   "category": "Network Security",

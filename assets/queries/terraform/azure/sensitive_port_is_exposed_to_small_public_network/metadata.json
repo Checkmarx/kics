@@ -1,5 +1,5 @@
 {
-  "id": "port_is_exposed_to_entire_network",
+  "id": "e9dee01f-2505-4df2-b9bf-7804d1fd9082",
   "queryName": "Port Is Exposed To Small Public Network",
   "severity": "MEDIUM",
   "category": "Network Ports Security",

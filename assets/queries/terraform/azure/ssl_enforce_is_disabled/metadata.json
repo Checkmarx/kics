@@ -1,5 +1,5 @@
 {
-  "id": "ssl_enforce_is_disabled",
+  "id": "0437633b-daa6-4bbc-8526-c0d2443b946e",
   "queryName": "SSL Enforce Is Disabled",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

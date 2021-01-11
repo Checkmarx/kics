@@ -1,5 +1,5 @@
 {
-  "id": "CloudStorageBucketWithPublicAccess",
+  "id": "c010082c-76e0-4b91-91d9-6e8439e455dd",
   "queryName": "Cloud Storage Bucket With Public Access",
   "severity": "HIGH",
   "category": "Identity & Access Management",

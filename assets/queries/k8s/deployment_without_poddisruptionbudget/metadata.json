@@ -1,5 +1,5 @@
 {
-  "id": "deployment_without_poddisruptionbudget",
+  "id": "b23e9b98-0cb6-4fc9-b257-1f3270442678",
   "queryName": "Deployment Without PodDisruptionBudget",
   "severity": "LOW",
   "category": "High Availability",

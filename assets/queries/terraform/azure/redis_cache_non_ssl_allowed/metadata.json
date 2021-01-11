@@ -1,5 +1,5 @@
 {
-  "id": "Redis_Cache_Allows_Non_SSL_Connections",
+  "id": "e29a75e6-aba3-4896-b42d-b87818c16b58",
   "queryName": "Redis Cache Allows Non SSL Connections",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

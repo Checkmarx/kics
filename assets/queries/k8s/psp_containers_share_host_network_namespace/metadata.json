@@ -1,5 +1,5 @@
 {
-  "id": "PSP_Allows_Containers_To_Share_The_Host_Network_Namespace",
+  "id": "a33e9173-b674-4dfb-9d82-cf3754816e4b",
   "queryName": "PSP Allows Containers To Share The Host Network Namespace",
   "severity": "HIGH",
   "category": "Networking",

@@ -1,5 +1,5 @@
 {
-  "id": "EKS_cluster_public_access_cidrs",
+  "id": "61cf9883-1752-4768-b18c-0d57f2737709",
   "queryName": "EKS cluster public access cidrs",
   "severity": "HIGH",
   "category": "Network Security",

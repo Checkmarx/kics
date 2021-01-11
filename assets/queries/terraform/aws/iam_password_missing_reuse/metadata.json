@@ -1,5 +1,5 @@
 {
-  "id": "IAM_Password_Without_Reuse_Prevention",
+  "id": "89806cdc-9c2e-4bd1-a0dc-53f339bcfb2a",
   "queryName": "IAM Password Without Reuse Prevention",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

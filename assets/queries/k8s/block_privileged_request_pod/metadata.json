@@ -1,5 +1,5 @@
 {
-  "id": "block_privileged_request_pod",
+  "id": "c48e57d3-d642-4e0b-90db-37f807b41b91",
   "queryName": "Block Privileged Request Pod Security Policy",
   "severity": "MEDIUM",
   "category": "Privileges",

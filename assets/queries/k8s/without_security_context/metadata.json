@@ -1,5 +1,5 @@
 {
-  "id": "without_security_context",
+  "id": "a97a340a-0063-418e-b3a1-3028941d0995",
   "queryName": "Pod or Container Without Security Context",
   "severity": "LOW",
   "category": "Privileges",

@@ -1,5 +1,5 @@
 {
-  "id": "VM_CSEK_Encryption_Disabled",
+  "id": "b1d51728-7270-4991-ac2f-fc26e2695b38",
   "queryName": "VM CSEK Encryption is Disabled",
   "severity": "MEDIUM",
   "category": "Encryption & Key Management",

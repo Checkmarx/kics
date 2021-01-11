@@ -1,5 +1,5 @@
 {
-  "id": "aws_guardduty_detector",
+  "id": "704dadd3-54fc-48ac-b6a0-02f170011473",
   "queryName": "AWS GuardDuty Detector",
   "severity": "MEDIUM",
   "category": "Logging",

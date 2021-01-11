@@ -1,5 +1,5 @@
 {
-  "id": "CloudTrail SNS Topic Name Is Undefined",
+  "id": "482b7d26-0bdb-4b5f-bf6f-545826c0a3dd",
   "queryName": "CloudTrail SNS Topic Name Is Undefined",
   "severity": "MEDIUM",
   "category": "Logging",

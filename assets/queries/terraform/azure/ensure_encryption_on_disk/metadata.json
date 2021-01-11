@@ -1,5 +1,5 @@
 {
-  "id": "ensure_encryption_on_disk",
+  "id": "a99130ab-4c0e-43aa-97f8-78d4fcb30024",
   "queryName": "Ensure Encryption on Disk",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

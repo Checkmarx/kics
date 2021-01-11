@@ -1,5 +1,5 @@
 {
-  "id": "StatefulSet_Has_No_PodAntiAffinity",
+  "id": "d740d048-8ed3-49d3-b77b-6f072f3b669e",
   "queryName": "StatefulSet Has No PodAntiAffinity",
   "severity": "LOW",
   "category": "Resources Limiting",

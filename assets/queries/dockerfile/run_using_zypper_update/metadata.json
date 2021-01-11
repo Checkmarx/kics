@@ -1,8 +1,8 @@
 {
-  "id": "run_using_zypper_update",
+  "id": "d4895357-dd49-4ba5-b726-1bb81cb50989",
   "queryName": "Run Using zypper update",
   "severity": "MEDIUM",
   "category": "Package Management",
-  "descriptionText": "`zypper update` should not be used. Can cause inconsistencies between builds, producing problems for application developers",
-  "descriptionUrl": "#"
+  "descriptionText": "'zypper update' should not be used. Can cause inconsistencies between builds, producing problems for application developers",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
 }
