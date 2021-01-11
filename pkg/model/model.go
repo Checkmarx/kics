@@ -40,11 +40,6 @@ type FileKind string
 type Severity string
 type IssueType string
 
-type QueryConfig struct {
-	FileKind FileKind
-	Platform string
-}
-
 type FileMetadata struct {
 	ID           string `db:"id"`
 	ScanID       string `db:"scan_id"`
@@ -76,6 +71,11 @@ type Vulnerability struct {
 	KeyActualValue   string    `db:"key_actual_value" json:"actualValue"`
 	Value            *string   `db:"value" json:"value"`
 	Output           string    `json:"-"`
+}
+
+type QueryConfig struct {
+	FileKind FileKind
+	Platform string
 }
 
 type Extensions map[string]struct{}
