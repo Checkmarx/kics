@@ -1,6 +1,6 @@
 {
   "id": "ea0ed1c7-9aef-4464-b7c7-94c762da3640",
-  "queryName": "DB Security Group Lower than 256",
+  "queryName": "DB Security Group Higher than 256",
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "DB Security CIDR must be lower than 256 (/24)",
