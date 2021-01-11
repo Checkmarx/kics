@@ -58,6 +58,7 @@ type QueryMetadata struct {
 	Query    string
 	Content  string
 	Metadata map[string]interface{}
+	Platform string
 }
 
 type Vulnerability struct {

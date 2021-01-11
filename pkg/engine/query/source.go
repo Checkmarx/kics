@@ -124,11 +124,13 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}
 
 	metadata := readMetadata(queryDir)
+	platform := GetPlatform(queryDir)
 
 	return model.QueryMetadata{
 		Query:    path.Base(queryDir),
 		Content:  string(queryContent),
 		Metadata: metadata,
+		Platform: platform,
 	}, nil
 }
 
@@ -159,4 +161,22 @@ func readMetadata(queryDir string) map[string]interface{} {
 	}
 
 	return metadata
+}
+
+func GetPlatform(platform string) string {
+	if strings.Contains(platform, "commonQuery") {
+		return "commonQuery"
+	} else if strings.Contains(platform, "ansible") {
+		return "ansible"
+	} else if strings.Contains(platform, "cloudFormation") {
+		return "cloudFormation"
+	} else if strings.Contains(platform, "dockerfile") {
+		return "dockerfile"
+	} else if strings.Contains(platform, "k8s") {
+		return "k8s"
+	} else if strings.Contains(platform, "terraform") {
+		return "terraform"
+	}
+
+	return "unknown"
 }
