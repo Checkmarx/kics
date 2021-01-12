@@ -65,7 +65,7 @@ func main() {
 	}
 
 	fmt.Println("\n\n--- Summary ---")
-	fmt.Printf("Computed similary ids: %d\n", computedSimIDCounter)
+	fmt.Printf("Computed similarity ids: %d\n", computedSimIDCounter)
 	fmt.Printf("Files replaced: %d\n", filesReplacedCounter)
 }
 
@@ -166,17 +166,10 @@ func triggerScanAndPreComputeSimilarityID(ctx context.Context, path string) {
 	var positiveResults = make([]positiveExpectedVulnerability, 0)
 
 	for _, vuln := range vulnerabilities {
-
-		similarityID, err := engine.ComputeSimilarityID(
-			vuln.FileName,
-			vuln.QueryID,
-			vuln.SearchKey,
-			vuln.SearchValue)
-
 		computedSimIDCounter++
 
 		positiveResults = append(positiveResults, positiveExpectedVulnerability{
-			SimilarityID: *similarityID,
+			SimilarityID: vuln.SimilarityID,
 			Line:         vuln.Line,
 			QueryName:    vuln.QueryName,
 			Severity:     vuln.Severity,

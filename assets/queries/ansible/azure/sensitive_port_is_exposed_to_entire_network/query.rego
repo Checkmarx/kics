@@ -130,7 +130,7 @@ CxPolicy [ result ] {
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("name={{%s}}.{{%s}}.rules.name={{%s}}.destination_port_range", [sgName, field, ruleName]),
-                "searchValue":      sprintf("%s,%s", [protocol, portNumber]),
+                "searchValue":      sprintf("%s,%d", [protocol, portNumber]),
                 "issueType":        "IncorrectValue",
                 "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s.%s.rules", [portName, protocol, portNumber, ruleName, field]),
                 "keyActualValue":   sprintf("%s (%s:%d) is allowed in %s.%s.rules", [portName, protocol, portNumber, ruleName, field])
