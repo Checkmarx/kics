@@ -15,9 +15,9 @@ jobs:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          ${{ runner.os }}-go-      
-    - uses: actions/checkout@v2   
-    - name: golangci-lint 
+          ${{ runner.os }}-go-
+    - uses: actions/checkout@v2
+    - name: golangci-lint
       uses: golangci/golangci-lint-action@v2
       with:
         # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
@@ -47,10 +47,20 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
+    - name: Get go-junit-report module
+      run: |
+        GO111MODULE=off go get -u github.com/jstemmer/go-junit-report
     - name: Test
       run: |
         go mod vendor
-        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out
+        mkdir -p test-results
+        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code > test-results/report.xml
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1.6
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        files: test-results/**/*.xml
     - name: CodeCov
       run: |
         bash <(curl -s https://codecov.io/bash) -f cover.out
@@ -58,7 +68,7 @@ jobs:
       run: |
         CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
         EXPECTED_CODE_COV=0
-        var=$(awk 'BEGIN{ print "'$CODE_COV'"<"'$EXPECTED_CODE_COV'" }')   
+        var=$(awk 'BEGIN{ print "'$CODE_COV'"<"'$EXPECTED_CODE_COV'" }')
         if [ "$var" -eq 1 ];then
           echo "Your code coverage is too low. Coverage precentage is: $CODE_COV"
           exit 1
