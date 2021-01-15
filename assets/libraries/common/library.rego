@@ -9,14 +9,13 @@ json_unmarshal(s) = result {
     result := json.unmarshal("{}")
 }
 
- 
 json_unmarshal(s) = result {
     s != null
     result := json.unmarshal(s)
 }
 
 calc_IP_value (ip) = result {
-  ips := split(ip, ".")
+    ips := split(ip, ".")
 
     #calculate the value of an ip
     #a.b.c.d
