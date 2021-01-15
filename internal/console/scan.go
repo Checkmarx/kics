@@ -25,7 +25,7 @@ import (
 
 var scanCmd = &cobra.Command{
 	Use:   "scan",
-	Short: "Executes a scan analysis.",
+	Short: "Executes a scan analysis",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return scan()
 	},

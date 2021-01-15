@@ -8,7 +8,7 @@ import (
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Shows the kics's current version",
+	Short: "Displays the current version",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Printf("%s\n", getVersion())
 		return nil
