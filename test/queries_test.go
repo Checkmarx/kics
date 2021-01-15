@@ -115,7 +115,7 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 }
 
 func getPlatform(platform string) (string, error) {
-	var genericPath = "../assets/queries/generic/"
+	var genericPath = "../assets/libraries/"
 	var content = "package generic.common"
 	var errorMessage error
 
