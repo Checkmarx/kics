@@ -1,12 +1,10 @@
 package console
 
 import (
-	"context"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
-	"time"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -20,87 +18,44 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
-	"github.com/google/uuid"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
 )
 
-// InitOptions represents the flags structure
-type InitOptions struct {
-	Path        string
-	QueryPath   string
-	OutputPath  string
-	PayloadPath string
-	Verbose     bool
-	LogFile     bool
-	GenerateID  bool
-	Version     bool
+var scanCmd = &cobra.Command{
+	Use:   "scan",
+	Short: "Executes a scan analysis.",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return scan()
+	},
 }
 
-type analyseOptions struct {
-	path        string
-	queryPath   string
-	outputPath  string
-	payloadPath string
-	verbose     bool
-	logFile     bool
-}
+func initScanCmd() {
+	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to scan")
+	scanCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
+	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
+	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
+	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
+	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 
-const (
-	scanID   = "console"
-	timeMult = 2
-)
-
-// Init executes kics with the given flags
-func Init(ctx context.Context, initArgs InitOptions) error {
-	defer sentry.Flush(timeMult * time.Second)
-
-	if initArgs.Version {
-		fmt.Printf("%s\n", getVersion())
-		return nil
+	if err := scanCmd.MarkFlagRequired("path"); err != nil {
+		sentry.CaptureException(err)
+		log.Err(err).Msg("failed to add command required flags")
 	}
-
-	if initArgs.GenerateID {
-		generateID()
-		return nil
-	}
-
-	analyseArgs := analyseOptions{
-		path:        initArgs.Path,
-		queryPath:   initArgs.QueryPath,
-		outputPath:  initArgs.OutputPath,
-		payloadPath: initArgs.PayloadPath,
-		verbose:     initArgs.Verbose,
-		logFile:     initArgs.LogFile,
-	}
-
-	return analyze(ctx, analyseArgs)
 }
 
-func getVersion() string {
-	return "Keeping Infrastructure as Code Secure v1.1.0"
-}
-
-func generateID() {
-	_, err := fmt.Println(uuid.New().String())
-	if err != nil {
-		log.Err(err).Msg("failed to get uuid")
-		os.Exit(-1)
-	}
-	os.Exit(0)
-}
-
-func analyze(ctx context.Context, analyseArgs analyseOptions) error {
-	fmt.Printf("Starting analysis using %s", getVersion())
+func scan() error {
+	fmt.Printf("Starting analysis using %s\n", getVersion())
 
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 
-	if analyseArgs.verbose {
+	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 	}
 
-	if analyseArgs.logFile {
+	if logFile {
 		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 		if err != nil {
 			return err
@@ -112,7 +67,7 @@ func analyze(ctx context.Context, analyseArgs analyseOptions) error {
 	log.Logger = log.Output(mw)
 
 	querySource := &query.FilesystemSource{
-		Source: analyseArgs.queryPath,
+		Source: queryPath,
 	}
 
 	t := &tracker.CITracker{}
@@ -122,11 +77,11 @@ func analyze(ctx context.Context, analyseArgs analyseOptions) error {
 	}
 
 	var excludeFiles []string
-	if analyseArgs.payloadPath != "" {
-		excludeFiles = append(excludeFiles, analyseArgs.payloadPath)
+	if payloadPath != "" {
+		excludeFiles = append(excludeFiles, payloadPath)
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(analyseArgs.path, excludeFiles)
+	filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
 	if err != nil {
 		return err
 	}
@@ -171,11 +126,11 @@ func analyze(ctx context.Context, analyseArgs analyseOptions) error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printJSON(analyseArgs.payloadPath, files.Combine()); err != nil {
+	if err := printJSON(payloadPath, files.Combine()); err != nil {
 		return err
 	}
 
-	if err := printJSON(analyseArgs.outputPath, summary); err != nil {
+	if err := printJSON(outputPath, summary); err != nil {
 		return err
 	}
 
