@@ -7,7 +7,7 @@ require (
 	github.com/getsentry/sentry-go v0.9.0
 	github.com/golang/mock v1.4.4
 	github.com/google/go-cmp v0.5.0 // indirect
-	github.com/google/uuid v1.1.4
+	github.com/google/uuid v1.1.5
 	github.com/hashicorp/hcl/v2 v2.8.2
 	github.com/mailru/easyjson v0.7.6
 	github.com/moby/buildkit v0.8.1
