@@ -1,11 +1,11 @@
 [
 	{
-		"queryName": "OS Login isn't Enabled",
+		"queryName": "OSLogin isn't Enabled",
 		"severity": "HIGH",
 		"line": 3
 	},
 	{
-		"queryName": "OS Login isn't Enabled",
+		"queryName": "OSLogin isn't Enabled",
 		"severity": "HIGH",
 		"line": 9
 	}

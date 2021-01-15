@@ -1,6 +1,6 @@
 {
   "id": "d4895357-dd49-4ba5-b726-1bb81cb50989",
-  "queryName": "Run Using zypper update",
+  "queryName": "Run Using Zypper Update",
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "'zypper update' should not be used. Can cause inconsistencies between builds, producing problems for application developers",
