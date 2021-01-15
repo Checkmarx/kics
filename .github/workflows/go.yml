@@ -15,9 +15,9 @@ jobs:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          ${{ runner.os }}-go-      
-    - uses: actions/checkout@v2   
-    - name: golangci-lint 
+          ${{ runner.os }}-go-
+    - uses: actions/checkout@v2
+    - name: golangci-lint
       uses: golangci/golangci-lint-action@v2
       with:
         # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
@@ -58,7 +58,7 @@ jobs:
       run: |
         CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
         EXPECTED_CODE_COV=0
-        var=$(awk 'BEGIN{ print "'$CODE_COV'"<"'$EXPECTED_CODE_COV'" }')   
+        var=$(awk 'BEGIN{ print "'$CODE_COV'"<"'$EXPECTED_CODE_COV'" }')
         if [ "$var" -eq 1 ];then
           echo "Your code coverage is too low. Coverage precentage is: $CODE_COV"
           exit 1
@@ -102,9 +102,29 @@ jobs:
         cache-to: type=local,dest=/tmp/.buildx-cache
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
-    - name: Run docker image
+    - name: Run docker image and generate results.json
       run: |
         time docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} -p "/path" -o "/path/results.json"
+    - name: Assert queries_total > 0 in results.json
+      id: assert_queries_total
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq '.queries_total' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
+    - name: Assert files_scanned > 0 in results.json
+      id: assert_files_scanned
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq '.files_scanned' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
+    - name: Assert queries_failed_to_execute == 0 in results.json
+      id: assert_queries_failed_to_execute
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq '.queries_failed_to_execute' ${PWD}/assets/queries/results.json | xargs -i{} test {} -eq 0
+    - name: Assert files_failed_to_scan == 0 in results.json
+      id: assert_files_failed_to_scan
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json | xargs -i{} test {} -eq 0
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
