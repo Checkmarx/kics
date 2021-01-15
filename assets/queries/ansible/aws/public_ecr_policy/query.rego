@@ -12,8 +12,8 @@ CxPolicy [ result ] {
                 "documentId":       document.id,
                 "searchKey":        sprintf("name=%s.{{community.aws.ecs_ecr}}.policy", [task.name]),
                 "issueType":		"IncorrectValue",
-                "keyExpectedValue": "'policy.Principal' is not equal '*'",
-                "keyActualValue": 	"'policy.Principal' is equal '*'"
+                "keyExpectedValue": "'policy.Principal' is not equal to '*'",
+                "keyActualValue": 	"'policy.Principal' is equal to '*'"
               }
 }
 
