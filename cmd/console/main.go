@@ -250,7 +250,7 @@ func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 	}
 
 	fileLogger.FormatFieldValue = func(i interface{}) string {
-		return strings.ToUpper(fmt.Sprintf("%s", i))
+		return fmt.Sprintf("%s", i)
 	}
 
 	return *fileLogger
