@@ -12,7 +12,7 @@ type VulnerableFile struct {
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
-	SearchValue      string    `json:"search_value`
+	SearchValue      string    `json:"search_value"`
 	KeyExpectedValue string    `json:"expected_value"`
 	KeyActualValue   string    `json:"actual_value"`
 	Value            *string   `json:"value"`

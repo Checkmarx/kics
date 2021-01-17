@@ -54,12 +54,12 @@ func TestInspectorSimilarityID(t *testing.T) {
 					queryID:    "redshift_publicly_accessible",
 					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
 					sampleContent: func(queryDir string) []byte {
-						//TODO get fixture content
+						// TODO get fixture content
 						return getSampleContent(queryDir)
 					},
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					queryContent: func(queryDir string) string {
-						//TODO get fixture content
+						// TODO get fixture content
 						return getQueryContent(queryDir)
 					},
 					platform: "terraform",
@@ -88,12 +88,12 @@ func TestInspectorSimilarityID(t *testing.T) {
 					queryID:    "ANOTHER_DIFFERENT_ID",
 					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
 					sampleContent: func(queryDir string) []byte {
-						//TODO get fixture content
+						// TODO get fixture content
 						return getSampleContent(queryDir)
 					},
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					queryContent: func(queryDir string) string {
-						//TODO get fixture content
+						// TODO get fixture content
 						return getQueryContent(queryDir)
 					},
 					platform: "terraform",
