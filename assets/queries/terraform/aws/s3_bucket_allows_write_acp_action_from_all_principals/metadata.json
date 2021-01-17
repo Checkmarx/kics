@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_Allows_Write_ACP_Action_From_All_Principals",
+  "id": "64a222aa-7793-4e40-915f-4b302c76e4d4",
   "queryName": "S3 Bucket Allows Write_ACP Action From All Principals",
   "severity": "HIGH",
   "category": "Identity and Access Management",

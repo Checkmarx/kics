@@ -1,5 +1,5 @@
 {
-  "id": "Cluster_Allows_Unsafe_Sysctls",
+  "id": "9127f0d9-2310-42e7-866f-5fd9d20dcbad",
   "queryName": "Cluster Allows Unsafe Sysctls",
   "severity": "HIGH",
   "category": "Privileges",

@@ -1,5 +1,5 @@
 {
-  "id": "Deployment_Has_No_PodAntiAffinity",
+  "id": "a31b7b82-d994-48c4-bd21-3bab6c31827a",
   "queryName": "Deployment Has No PodAntiAffinity",
   "severity": "LOW",
   "category": "Resources Limiting",

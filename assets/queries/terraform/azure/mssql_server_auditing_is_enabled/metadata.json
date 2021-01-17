@@ -1,5 +1,5 @@
 {
-  "id": "mssql_server_auditing_is_enabled",
+  "id": "609839ae-bd81-4375-9910-5bce72ae7b92",
   "queryName": "MSSQL Server Auditing Is Enabled",
   "severity": "MEDIUM",
   "category": "Logging",

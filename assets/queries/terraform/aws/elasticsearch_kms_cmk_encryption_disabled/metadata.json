@@ -1,5 +1,5 @@
 {
-  "id": "ElasticSearch_Encryption_With_KMS_Is_Disabled",
+  "id": "7af2f4a3-00d9-47f3-8d15-ca0888f4e5b2",
   "queryName": "ElasticSearch Encryption With KMS Is Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

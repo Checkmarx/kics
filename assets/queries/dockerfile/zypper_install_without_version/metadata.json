@@ -1,5 +1,5 @@
 {
-  "id": "zypper_install_without_version",
+  "id": "562952e4-0348-4dea-9826-44f3a2c6117b",
   "queryName": "zypper install Without Version",
   "severity": "MEDIUM",
   "category": "Package Management",

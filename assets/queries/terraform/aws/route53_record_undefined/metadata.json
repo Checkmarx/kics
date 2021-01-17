@@ -1,5 +1,5 @@
 {
-  "id": "route53_record_undefined",
+  "id": "25db74bf-fa3b-44da-934e-8c3e005c0453",
   "queryName": "Route53 Record Undefined",
   "severity": "HIGH",
   "category": "DNS Management",

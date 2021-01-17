@@ -1,5 +1,5 @@
 {
-  "id": "oslogin_enabled",
+  "id": "32ecd6eb-0711-421f-9627-1a28d9eff217",
   "queryName": "OS Login isn't Enabled",
   "severity": "HIGH",
   "category": "Access Control",

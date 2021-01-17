@@ -1,5 +1,5 @@
 {
-  "id": "IAM_policies_allow_all",
+  "id": "575a2155-6af1-4026-b1af-d5bc8fe2a904",
   "queryName": "IAM policies allows all ('*') in policy statement",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

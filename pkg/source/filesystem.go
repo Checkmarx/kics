@@ -63,15 +63,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			return err
 		}
 
-		if info.IsDir() {
-			return nil
-		}
-
-		if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
-			return nil
-		}
-
-		if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
+		if s.checkConditions(info, extensions, path) {
 			return nil
 		}
 
@@ -91,4 +83,17 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 	})
 
 	return errors.Wrap(err, "failed to walk directory")
+}
+
+func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) bool {
+	if info.IsDir() {
+		return true
+	}
+	if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
+		return true
+	}
+	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
+		return true
+	}
+	return false
 }

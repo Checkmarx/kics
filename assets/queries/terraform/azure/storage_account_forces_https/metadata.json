@@ -1,5 +1,5 @@
 {
-  "id": "storage_account_forces_https",
+  "id": "12944ec4-1fa0-47be-8b17-42a034f937c2",
   "queryName": "Storage Account Forces HTTPS",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

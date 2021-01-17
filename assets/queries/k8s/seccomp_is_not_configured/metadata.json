@@ -1,5 +1,5 @@
 {
-  "id": "Seccomp_Profile_Is_Not_Configured",
+  "id": "f377b83e-bd07-4f48-a591-60c82b14a78b",
   "queryName": "Seccomp Profile Is Not Configured",
   "severity": "MEDIUM",
   "category": "Privileges",

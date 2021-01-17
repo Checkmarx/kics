@@ -1,5 +1,5 @@
 {
-  "id": "allowed_capabilities_sys_admin",
+  "id": "235236ee-ad78-4065-bd29-61b061f28ce0",
   "queryName": "Allowed Capabilities Sys Admin",
   "severity": "MEDIUM",
   "category": "Privileges",

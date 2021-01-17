@@ -1,5 +1,5 @@
 {
-  "id": "WORKDIR_path_not_absolute",
+  "id": "6b376af8-cfe8-49ab-a08d-f32de23661a4",
   "queryName": "WORKDIR Path Not Absolute",
   "severity": "HIGH",
   "category": "Image",

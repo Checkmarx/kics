@@ -1,5 +1,5 @@
 {
-  "id": "Volume_Mount_with_OS_Directory_Write_Permissions",
+  "id": "b7652612-de4e-4466-a0bf-1cd81f0c6063",
   "queryName": "Volume Mount with OS Directory Write Permissions",
   "severity": "MEDIUM",
   "category": "Resources Limiting",

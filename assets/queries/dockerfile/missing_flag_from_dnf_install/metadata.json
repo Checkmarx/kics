@@ -1,5 +1,5 @@
 {
-  "id": "missing_flag_from_dnf_install",
+  "id": "7ebd323c-31b7-4e5b-b26f-de5e9e477af8",
   "queryName": "Missing Flag From dnf install",
   "severity": "MEDIUM",
   "category": "Package Management",

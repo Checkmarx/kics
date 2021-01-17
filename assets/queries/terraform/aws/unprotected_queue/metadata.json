@@ -1,5 +1,5 @@
 {
-  "id": "Unprotected_Queue",
+  "id": "5520e2bc-d23f-4a38-991f-820a52bcfad1",
   "queryName": "Unprotected SQS Queue",
   "severity": "LOW",
   "category": "Encryption and Key Management",

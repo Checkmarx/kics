@@ -1,5 +1,5 @@
 {
-  "id": "liveness_probe_is_not_defined",
+  "id": "ade74944-a674-4e00-859e-c6eab5bde441",
   "queryName": "Liveness Probe Is Not Defined",
   "severity": "MEDIUM",
   "category": "High Availability",

@@ -1,5 +1,5 @@
 {
-  "id": "check_secret_expiration_is_set",
+  "id": "dfa20ffa-f476-428f-a490-424b41e91c7f",
   "queryName": "Check Secret Expiration Is Set",
   "severity": "HIGH",
   "category": "Key Management",

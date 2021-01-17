@@ -1,5 +1,5 @@
 {
-  "id": "limit_capabilities_of_the_container",
+  "id": "2f1a0619-b12b-48a0-825f-993bb6f01d58",
   "queryName": "Not Limited Capabilities For Container",
   "severity": "MEDIUM",
   "category": "Privileges",

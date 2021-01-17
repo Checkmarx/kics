@@ -1,5 +1,5 @@
 {
-  "id": "shared_host_ipc_namespace",
+  "id": "cd290efd-6c82-4e9d-a698-be12ae31d536",
   "queryName": "Shared Host IPC Namespace",
   "severity": "HIGH",
   "category": "Privileges",
