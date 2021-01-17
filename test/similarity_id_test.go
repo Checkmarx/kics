@@ -23,6 +23,7 @@ type inspectorSimilarityIDParams struct {
 	sampleContent func(queryDir string) []byte
 	queryDir      string
 	queryContent  func(queryDir string) string
+	platform      string
 }
 
 type inspectorSimilarityIDTestCase struct {
@@ -47,17 +48,21 @@ func TestInspectorSimilarityID(t *testing.T) {
 					queryContent: func(queryDir string) string {
 						return getQueryContent(queryDir)
 					},
+					platform: "terraform",
 				},
 				{
 					queryID:    "redshift_publicly_accessible",
 					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
 					sampleContent: func(queryDir string) []byte {
+						//TODO get fixture content
 						return getSampleContent(queryDir)
 					},
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					queryContent: func(queryDir string) string {
+						//TODO get fixture content
 						return getQueryContent(queryDir)
 					},
+					platform: "terraform",
 				},
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -77,17 +82,21 @@ func TestInspectorSimilarityID(t *testing.T) {
 					queryContent: func(queryDir string) string {
 						return getQueryContent(queryDir)
 					},
+					platform: "terraform",
 				},
 				{
 					queryID:    "ANOTHER_DIFFERENT_ID",
 					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
 					sampleContent: func(queryDir string) []byte {
+						//TODO get fixture content
 						return getSampleContent(queryDir)
 					},
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					queryContent: func(queryDir string) string {
+						//TODO get fixture content
 						return getQueryContent(queryDir)
 					},
+					platform: "terraform",
 				},
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -107,6 +116,8 @@ func TestInspectorSimilarityID(t *testing.T) {
 
 func runInspectorAndGetSimilarityIDs(t *testing.T, testParams inspectorSimilarityIDParams) []string {
 	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
 	ctx := context.TODO()
 
 	vulnerabilities := createInspectorAndGetVulnerabilities(ctx, t, ctrl, testParams)
@@ -120,7 +131,9 @@ func runInspectorAndGetSimilarityIDs(t *testing.T, testParams inspectorSimilarit
 
 func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB, ctrl *gomock.Controller,
 	testParams inspectorSimilarityIDParams) []model.Vulnerability {
+
 	queriesSource := mock.NewMockQueriesSource(ctrl)
+
 	queriesSource.EXPECT().GetQueries().
 		DoAndReturn(func() ([]model.QueryMetadata, error) {
 
@@ -135,8 +148,23 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB, ctr
 				Query:    testParams.queryID,
 				Content:  testParams.queryContent(testParams.queryDir),
 				Metadata: metadata,
+				Platform: testParams.platform,
 			}
 			return []model.QueryMetadata{q}, nil
+		})
+
+	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+		DoAndReturn(func(string) (string, error) {
+			q, err := getPlatform("commonQuery")
+			require.NoError(t, err)
+			return q, nil
+		})
+
+	queriesSource.EXPECT().GetGenericQuery(testParams.platform).
+		DoAndReturn(func(string) (string, error) {
+			q, err := getPlatform(testParams.platform)
+			require.NoError(t, err)
+			return q, nil
 		})
 
 	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})

@@ -17,6 +17,7 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
 
@@ -151,4 +152,56 @@ func sliceContains(s []string, str string) bool {
 		}
 	}
 	return false
+}
+
+func getPlatform(platform string) (string, error) {
+	var genericPath = "../assets/libraries/"
+	var content = "package generic.common"
+	var errorMessage error
+
+	if strings.Contains(platform, "commonQuery") {
+		path := filepath.FromSlash(genericPath + "common/library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "ansible") {
+		path := filepath.FromSlash(genericPath + "ansible/library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "cloudFormation") {
+		path := filepath.FromSlash(genericPath + "cloudformation/library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "dockerfile") {
+		path := filepath.FromSlash(genericPath + "dockerfile/library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "k8s") {
+		path := filepath.FromSlash(genericPath + "k8s/library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	} else if strings.Contains(platform, "terraform") {
+		path := filepath.FromSlash(genericPath + "terraform/library.rego")
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Err(err)
+		}
+		return string(content), err
+	}
+
+	return content, errorMessage
 }

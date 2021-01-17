@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"io/ioutil"
-	"path/filepath"
 	"sort"
 	"strings"
 	"testing"
@@ -112,58 +111,6 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 	vulnerabilities, err := inspector.Inspect(ctx, scanID, getParsedFile(tb, filePath))
 	require.Nil(tb, err)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities)
-}
-
-func getPlatform(platform string) (string, error) {
-	var genericPath = "../assets/libraries/"
-	var content = "package generic.common"
-	var errorMessage error
-
-	if strings.Contains(platform, "commonQuery") {
-		path := filepath.FromSlash(genericPath + "common/library.rego")
-		content, err := ioutil.ReadFile(path)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "ansible") {
-		path := filepath.FromSlash(genericPath + "ansible/library.rego")
-		content, err := ioutil.ReadFile(path)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "cloudFormation") {
-		path := filepath.FromSlash(genericPath + "cloudformation/library.rego")
-		content, err := ioutil.ReadFile(path)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "dockerfile") {
-		path := filepath.FromSlash(genericPath + "dockerfile/library.rego")
-		content, err := ioutil.ReadFile(path)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "k8s") {
-		path := filepath.FromSlash(genericPath + "k8s/library.rego")
-		content, err := ioutil.ReadFile(path)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "terraform") {
-		path := filepath.FromSlash(genericPath + "terraform/library.rego")
-		content, err := ioutil.ReadFile(path)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	}
-
-	return content, errorMessage
 }
 
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability) {
