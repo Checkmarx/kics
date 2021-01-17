@@ -5,10 +5,12 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/engine/query"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -92,13 +94,11 @@ func loadQueries(tb testing.TB) []queryEntry {
 func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
 	content, err := ioutil.ReadFile(filePath)
 	require.NoError(t, err)
+	return getScannableFileMetadatas(t, filePath, content)
+}
 
-	combinedParser := parser.NewBuilder().
-		Add(&jsonParser.Parser{}).
-		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
-		Build()
+func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) model.FileMetadatas {
+	combinedParser := getCombinedParser()
 
 	documents, kind, err := combinedParser.Parse(filePath, content)
 	require.NoError(t, err)
@@ -116,4 +116,37 @@ func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
 	}
 
 	return files
+}
+
+func getCombinedParser() *parser.Parser {
+	return parser.NewBuilder().
+		Add(&jsonParser.Parser{}).
+		Add(&yamlParser.Parser{}).
+		Add(terraformParser.NewDefault()).
+		Add(&dockerParser.Parser{}).
+		Build()
+}
+
+func getQueryContent(queryDir string) string {
+	fullQueryPath := filepath.Join(queryDir, query.QueryFileName)
+	return string(getFileContent(fullQueryPath))
+}
+
+func getSampleContent(queryDir string) []byte {
+	return getFileContent(queryDir)
+}
+
+func getFileContent(path string) []byte {
+	content, _ := ioutil.ReadFile(path)
+
+	return content
+}
+
+func sliceContains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+	return false
 }

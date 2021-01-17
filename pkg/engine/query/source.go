@@ -13,8 +13,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const queryFileName = "query.rego"
-const metadataFileName = "metadata.json"
+const (
+	QueryFileName    = "query.rego"
+	MetadataFileName = "metadata.json"
+)
 
 type FilesystemSource struct {
 	Source string
@@ -28,7 +30,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 				return err
 			}
 
-			if f.IsDir() || f.Name() != queryFileName {
+			if f.IsDir() || f.Name() != QueryFileName {
 				return nil
 			}
 
@@ -57,12 +59,12 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 }
 
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
-	queryContent, err := ioutil.ReadFile(path.Join(queryDir, queryFileName))
+	queryContent, err := ioutil.ReadFile(path.Join(queryDir, QueryFileName))
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
 
-	metadata := readMetadata(queryDir)
+	metadata := ReadMetadata(queryDir)
 
 	return model.QueryMetadata{
 		Query:    path.Base(queryDir),
@@ -71,8 +73,8 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}, nil
 }
 
-func readMetadata(queryDir string) map[string]interface{} {
-	f, err := os.Open(path.Join(queryDir, metadataFileName))
+func ReadMetadata(queryDir string) map[string]interface{} {
+	f, err := os.Open(path.Join(queryDir, MetadataFileName))
 	if err != nil {
 		sentry.CaptureException(err)
 		if os.IsNotExist(err) {
