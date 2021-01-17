@@ -2,6 +2,9 @@ package test
 
 import (
 	"context"
+	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -17,93 +20,110 @@ const (
 	fixtureDir = "fixtures"
 )
 
-type inspectorSimilarityIDParams struct {
-	queryID       string
-	samplePath    string
-	sampleContent func(queryDir string) []byte
-	queryDir      string
-	queryContent  func(queryDir string) string
-	platform      string
+type testCaseParamsType struct {
+	testCaseID         string
+	queryID            string
+	samplePath         string
+	sampleFixturetPath string
+	queryDir           string
+	queryFixturePath   string
+	platform           string
 }
 
-type inspectorSimilarityIDTestCase struct {
-	testCaseID       string
-	calls            []inspectorSimilarityIDParams
+type testParamsType struct {
+	queryDir      string // mandatory
+	platform      string // mandatory
+	queryID       func() string
+	samplePath    func() string
+	sampleContent func() []byte
+	queryContent  func() string
+}
+
+type testCaseType struct {
+	calls            []testParamsType
 	expectedFunction func(t *testing.T, condition bool)
 }
 
-func TestInspectorSimilarityID(t *testing.T) {
-
-	testTable := []inspectorSimilarityIDTestCase{
+var (
+	fileExtension = map[string][]string{
+		"ansible":        {".yaml", ".yml"},
+		"terraform":      {".tf"},
+		"docker":         {".dockerfile"},
+		"k8s":            {".yaml", ".yml"},
+		"cloudFormation": {".yaml", ".yml"},
+	}
+	testTable = []testCaseType{
 		{
-			testCaseID: "tc-sim01",
-			calls: []inspectorSimilarityIDParams{
-				{
-					queryID:    "redshift_publicly_accessible",
-					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
-					sampleContent: func(queryDir string) []byte {
-						return getSampleContent(queryDir)
-					},
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					queryContent: func(queryDir string) string {
-						return getQueryContent(queryDir)
-					},
+			calls: []testParamsType{
+				getTestParams(testCaseParamsType{
 					platform: "terraform",
-				},
-				{
-					queryID:    "redshift_publicly_accessible",
-					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
-					sampleContent: func(queryDir string) []byte {
-						// TODO get fixture content
-						return getSampleContent(queryDir)
-					},
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					queryContent: func(queryDir string) string {
-						// TODO get fixture content
-						return getQueryContent(queryDir)
-					},
-					platform: "terraform",
-				},
+				}),
+				getTestParams(testCaseParamsType{
+					platform:           "terraform",
+					queryDir:           "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturetPath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
+					queryFixturePath:   fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
+				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
 				require.True(t, condition)
 			},
 		},
 		{
-			testCaseID: "tc-sim02",
-			calls: []inspectorSimilarityIDParams{
-				{
-					queryID:    "redshift_publicly_accessible",
-					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
-					sampleContent: func(queryDir string) []byte {
-						return getSampleContent(queryDir)
-					},
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					queryContent: func(queryDir string) string {
-						return getQueryContent(queryDir)
-					},
+			calls: []testParamsType{
+				getTestParams(testCaseParamsType{
 					platform: "terraform",
-				},
-				{
-					queryID:    "ANOTHER_DIFFERENT_ID",
-					samplePath: "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
-					sampleContent: func(queryDir string) []byte {
-						// TODO get fixture content
-						return getSampleContent(queryDir)
-					},
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					queryContent: func(queryDir string) string {
-						// TODO get fixture content
-						return getQueryContent(queryDir)
-					},
-					platform: "terraform",
-				},
+				}),
+				getTestParams(testCaseParamsType{
+					platform:           "terraform",
+					queryDir:           "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					queryID:            "ANOTHER_DIFFERENT_ID",
+					samplePath:         "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
+					sampleFixturetPath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
+					queryFixturePath:   fmt.Sprintf("%s/tc-sim02/query.rego", fixtureDir),
+				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
 				require.False(t, condition)
 			},
 		},
+		{
+			calls: []testParamsType{
+				getTestParams(testCaseParamsType{
+					platform: "terraform",
+					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+				}),
+				getTestParams(testCaseParamsType{
+					platform:   "terraform",
+					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive.tf",
+				}),
+			},
+			expectedFunction: func(t *testing.T, condition bool) {
+				require.False(t, condition)
+			},
+		},
+		{
+			calls: []testParamsType{
+				getTestParams(testCaseParamsType{
+					platform: "cloudFormation",
+					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
+				}),
+				getTestParams(testCaseParamsType{
+					platform: "cloudFormation",
+					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
+				}),
+			},
+			expectedFunction: func(t *testing.T, condition bool) {
+				require.True(t, condition)
+			},
+		},
 	}
+)
+
+func TestInspectorSimilarityID(t *testing.T) {
 
 	for _, tc := range testTable {
 		callOneSimilarityIDS := runInspectorAndGetSimilarityIDs(t, tc.calls[0])
@@ -114,7 +134,76 @@ func TestInspectorSimilarityID(t *testing.T) {
 	}
 }
 
-func runInspectorAndGetSimilarityIDs(t *testing.T, testParams inspectorSimilarityIDParams) []string {
+func getTestQueryID(params testCaseParamsType) string {
+	var testQueryID string
+	if params.queryID == "" {
+		metadata := query.ReadMetadata(params.queryDir)
+		v := metadata["id"]
+		testQueryID = v.(string)
+	} else {
+		testQueryID = params.queryID
+	}
+	return testQueryID
+}
+
+func getTestSampleContent(params testCaseParamsType) []byte {
+	var testSampleContent []byte
+	if params.sampleFixturetPath != "" {
+		testSampleContent = getFileContent(params.sampleFixturetPath)
+	} else {
+		testSampleContent = getSampleContent(params.queryDir)
+	}
+	return testSampleContent
+}
+
+func getTestQueryContent(params testCaseParamsType) string {
+	var testSampleContent string
+	if params.queryFixturePath != "" {
+		testSampleContent = string(getFileContent(params.queryFixturePath))
+	} else {
+		testSampleContent = getQueryContent(params.queryDir)
+	}
+	return testSampleContent
+}
+
+func getSamplePath(params testCaseParamsType) string {
+	var samplePath string
+	if params.samplePath != "" {
+		samplePath = params.samplePath
+	} else {
+		extensions := fileExtension[params.platform]
+		for _, v := range extensions {
+			joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
+			_, err := os.Stat(joinedPath)
+			if err == nil {
+				samplePath = joinedPath
+				break
+			}
+		}
+	}
+	return samplePath
+}
+
+func getTestParams(params testCaseParamsType) testParamsType {
+	return testParamsType{
+		queryDir: params.queryDir,
+		queryID: func() string {
+			return getTestQueryID(params)
+		},
+		samplePath: func() string {
+			return getSamplePath(params)
+		},
+		sampleContent: func() []byte {
+			return getTestSampleContent(params)
+		},
+		queryContent: func() string {
+			return getTestQueryContent(params)
+		},
+		platform: params.platform,
+	}
+}
+
+func runInspectorAndGetSimilarityIDs(t *testing.T, testParams testParamsType) []string {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
@@ -130,7 +219,7 @@ func runInspectorAndGetSimilarityIDs(t *testing.T, testParams inspectorSimilarit
 }
 
 func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB, ctrl *gomock.Controller,
-	testParams inspectorSimilarityIDParams) []model.Vulnerability {
+	testParams testParamsType) []model.Vulnerability {
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
@@ -140,13 +229,13 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB, ctr
 			metadata := query.ReadMetadata(testParams.queryDir)
 
 			// Override metadata ID with custom QueryID for testing
-			if testParams.queryID != metadata["id"] {
+			if testParams.queryID() != metadata["id"] {
 				metadata["id"] = testParams.queryID
 			}
 
 			q := model.QueryMetadata{
-				Query:    testParams.queryID,
-				Content:  testParams.queryContent(testParams.queryDir),
+				Query:    testParams.queryID(),
+				Content:  testParams.queryContent(),
 				Metadata: metadata,
 				Platform: testParams.platform,
 			}
@@ -176,8 +265,8 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB, ctr
 		scanID,
 		getScannableFileMetadatas(
 			t,
-			testParams.samplePath,
-			testParams.sampleContent(testParams.samplePath),
+			testParams.samplePath(),
+			testParams.sampleContent(),
 		),
 	)
 	require.Nil(t, err)

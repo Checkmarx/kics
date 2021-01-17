@@ -1,7 +1,15 @@
 package Cx
+
+################################################
+# slightly changing the original query to verify
+# that similarity ID is query independant
+################################################
 CxPolicy[result] {
 	public := input.document[i].resource.aws_redshift_cluster[name]
-	object.get(public, "publicly_accessible", "undefined") == "undefined"
+
+	# change
+	field := object.get(public, "publicly_accessible", "undefined")
+	field == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,7 +22,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	public := input.document[i].resource.aws_redshift_cluster[name]
-	public.publicly_accessible == true
+
+	# change :: original query is:
+	# public.publicly_accessible == true
+	public.publicly_accessible != false
 
 	result := {
 		"documentId": input.document[i].id,

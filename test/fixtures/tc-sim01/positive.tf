@@ -1,3 +1,7 @@
+// ###########################################
+// slightly changing the original sample
+// to test that similarity ID is independant
+// ###########################################
 resource "aws_redshift_cluster" "default" {
 
   // whitespace for tests
@@ -16,6 +20,7 @@ resource "aws_redshift_cluster" "default1" {
   master_username     = "foo"
   master_password     = "Mustbe8characters"
   node_type           = "dc1.large"
+  // change new property for tests
 
   BOGUS_PROPERTY      = "CRAZY-TEST-PROPERTY"
 
