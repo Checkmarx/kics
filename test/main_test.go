@@ -139,9 +139,8 @@ func getSampleContent(queryDir string) []byte {
 	return getFileContent(queryDir)
 }
 
-func getFileContent(path string) []byte {
-	content, _ := ioutil.ReadFile(path)
-
+func getFileContent(filePath string) []byte {
+	content, _ := ioutil.ReadFile(filePath)
 	return content
 }
 
@@ -160,43 +159,43 @@ func getPlatform(platform string) (string, error) {
 	var errorMessage error
 
 	if strings.Contains(platform, "commonQuery") {
-		path := filepath.FromSlash(genericPath + "common/library.rego")
-		content, err := ioutil.ReadFile(path)
+		mFile := filepath.FromSlash(genericPath + "common/library.rego")
+		content, err := ioutil.ReadFile(mFile)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "ansible") {
-		path := filepath.FromSlash(genericPath + "ansible/library.rego")
-		content, err := ioutil.ReadFile(path)
+		mFile := filepath.FromSlash(genericPath + "ansible/library.rego")
+		content, err := ioutil.ReadFile(mFile)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "cloudFormation") {
-		path := filepath.FromSlash(genericPath + "cloudformation/library.rego")
-		content, err := ioutil.ReadFile(path)
+		mFile := filepath.FromSlash(genericPath + "cloudformation/library.rego")
+		content, err := ioutil.ReadFile(mFile)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "dockerfile") {
-		path := filepath.FromSlash(genericPath + "dockerfile/library.rego")
-		content, err := ioutil.ReadFile(path)
+		mFile := filepath.FromSlash(genericPath + "dockerfile/library.rego")
+		content, err := ioutil.ReadFile(mFile)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "k8s") {
-		path := filepath.FromSlash(genericPath + "k8s/library.rego")
-		content, err := ioutil.ReadFile(path)
+		mFile := filepath.FromSlash(genericPath + "k8s/library.rego")
+		content, err := ioutil.ReadFile(mFile)
 		if err != nil {
 			log.Err(err)
 		}
 		return string(content), err
 	} else if strings.Contains(platform, "terraform") {
-		path := filepath.FromSlash(genericPath + "terraform/library.rego")
-		content, err := ioutil.ReadFile(path)
+		mFile := filepath.FromSlash(genericPath + "terraform/library.rego")
+		content, err := ioutil.ReadFile(mFile)
 		if err != nil {
 			log.Err(err)
 		}

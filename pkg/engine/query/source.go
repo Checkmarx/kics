@@ -20,8 +20,10 @@ type FilesystemSource struct {
 }
 
 const (
-	QueryFileName     = "query.rego"
-	libraryFileName   = "library.rego"
+	// The default query file name
+	QueryFileName   = "query.rego"
+	libraryFileName = "library.rego"
+	// The default metadata file name
 	MetadataFileName  = "metadata.json"
 	librariesBasePath = "./assets/libraries/"
 )
@@ -116,6 +118,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}, nil
 }
 
+// ReadMetadata read query's metadata file inside the query directory
 func ReadMetadata(queryDir string) map[string]interface{} {
 	f, err := os.Open(path.Join(queryDir, MetadataFileName))
 	if err != nil {

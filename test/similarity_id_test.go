@@ -21,7 +21,6 @@ const (
 )
 
 type testCaseParamsType struct {
-	testCaseID         string
 	queryID            string
 	samplePath         string
 	sampleFixturetPath string
@@ -55,11 +54,11 @@ var (
 	testTable = []testCaseType{
 		{
 			calls: []testParamsType{
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform: "terraform",
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 				}),
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform:           "terraform",
 					queryDir:           "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					sampleFixturetPath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
@@ -72,11 +71,11 @@ var (
 		},
 		{
 			calls: []testParamsType{
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform: "terraform",
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 				}),
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform:           "terraform",
 					queryDir:           "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					queryID:            "ANOTHER_DIFFERENT_ID",
@@ -91,11 +90,11 @@ var (
 		},
 		{
 			calls: []testParamsType{
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform: "terraform",
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 				}),
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
 					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive.tf",
@@ -107,11 +106,11 @@ var (
 		},
 		{
 			calls: []testParamsType{
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
 					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
 				}),
-				getTestParams(testCaseParamsType{
+				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
 					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
 				}),
@@ -124,7 +123,6 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
-
 	for _, tc := range testTable {
 		callOneSimilarityIDS := runInspectorAndGetSimilarityIDs(t, tc.calls[0])
 		callTwoSimilarityIDS := runInspectorAndGetSimilarityIDs(t, tc.calls[1])
@@ -134,7 +132,7 @@ func TestInspectorSimilarityID(t *testing.T) {
 	}
 }
 
-func getTestQueryID(params testCaseParamsType) string {
+func getTestQueryID(params *testCaseParamsType) string {
 	var testQueryID string
 	if params.queryID == "" {
 		metadata := query.ReadMetadata(params.queryDir)
@@ -146,7 +144,7 @@ func getTestQueryID(params testCaseParamsType) string {
 	return testQueryID
 }
 
-func getTestSampleContent(params testCaseParamsType) []byte {
+func getTestSampleContent(params *testCaseParamsType) []byte {
 	var testSampleContent []byte
 	if params.sampleFixturetPath != "" {
 		testSampleContent = getFileContent(params.sampleFixturetPath)
@@ -156,7 +154,7 @@ func getTestSampleContent(params testCaseParamsType) []byte {
 	return testSampleContent
 }
 
-func getTestQueryContent(params testCaseParamsType) string {
+func getTestQueryContent(params *testCaseParamsType) string {
 	var testSampleContent string
 	if params.queryFixturePath != "" {
 		testSampleContent = string(getFileContent(params.queryFixturePath))
@@ -166,7 +164,7 @@ func getTestQueryContent(params testCaseParamsType) string {
 	return testSampleContent
 }
 
-func getSamplePath(params testCaseParamsType) string {
+func getSamplePath(params *testCaseParamsType) string {
 	var samplePath string
 	if params.samplePath != "" {
 		samplePath = params.samplePath
@@ -184,7 +182,7 @@ func getSamplePath(params testCaseParamsType) string {
 	return samplePath
 }
 
-func getTestParams(params testCaseParamsType) testParamsType {
+func getTestParams(params *testCaseParamsType) testParamsType {
 	return testParamsType{
 		queryDir: params.queryDir,
 		queryID: func() string {
@@ -212,35 +210,32 @@ func runInspectorAndGetSimilarityIDs(t *testing.T, testParams testParamsType) []
 	vulnerabilities := createInspectorAndGetVulnerabilities(ctx, t, ctrl, testParams)
 
 	similarityIDs := make([]string, 0, len(vulnerabilities))
-	for _, vuln := range vulnerabilities {
-		similarityIDs = append(similarityIDs, vuln.SimilarityID)
+	for i := 0; i < len(vulnerabilities); i++ {
+		similarityIDs = append(similarityIDs, vulnerabilities[i].SimilarityID)
 	}
 	return similarityIDs
 }
 
-func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB, ctrl *gomock.Controller,
-	testParams testParamsType) []model.Vulnerability {
-
+func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
+	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries().
-		DoAndReturn(func() ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries().DoAndReturn(func() ([]model.QueryMetadata, error) {
+		metadata := query.ReadMetadata(testParams.queryDir)
 
-			metadata := query.ReadMetadata(testParams.queryDir)
+		// Override metadata ID with custom QueryID for testing
+		if testParams.queryID() != metadata["id"] {
+			metadata["id"] = testParams.queryID
+		}
 
-			// Override metadata ID with custom QueryID for testing
-			if testParams.queryID() != metadata["id"] {
-				metadata["id"] = testParams.queryID
-			}
-
-			q := model.QueryMetadata{
-				Query:    testParams.queryID(),
-				Content:  testParams.queryContent(),
-				Metadata: metadata,
-				Platform: testParams.platform,
-			}
-			return []model.QueryMetadata{q}, nil
-		})
+		q := model.QueryMetadata{
+			Query:    testParams.queryID(),
+			Content:  testParams.queryContent(),
+			Metadata: metadata,
+			Platform: testParams.platform,
+		}
+		return []model.QueryMetadata{q}, nil
+	})
 
 	queriesSource.EXPECT().GetGenericQuery("commonQuery").
 		DoAndReturn(func(string) (string, error) {
