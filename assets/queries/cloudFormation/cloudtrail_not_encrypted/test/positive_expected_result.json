@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "CloudTrail Not Encrypted",
+		"severity": "HIGH",
+		"line": 62
+	}
+]

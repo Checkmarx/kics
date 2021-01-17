@@ -22,3 +22,8 @@ func (c *CITracker) TrackFileFound() {
 func (c *CITracker) TrackFileParse() {
 	c.ParsedFiles++
 }
+
+// FailedDetectLine - queries that fail to detect line are counted as failed to execute queries
+func (c *CITracker) FailedDetectLine() {
+	c.ExecutedQueries--
+}

@@ -69,6 +69,20 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return []model.QueryMetadata{q}, err
 		})
 
+	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+		DoAndReturn(func(string) (string, error) {
+			q, err := getPlatform("commonQuery")
+			require.NoError(t, err)
+			return q, nil
+		})
+
+	queriesSource.EXPECT().GetGenericQuery(entry.platform).
+		DoAndReturn(func(string) (string, error) {
+			q, err := getPlatform(entry.platform)
+			require.NoError(t, err)
+			return q, nil
+		})
+
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,

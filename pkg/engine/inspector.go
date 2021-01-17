@@ -16,7 +16,8 @@ import (
 )
 
 const (
-	UndetectedVulnerabilityLine = 1
+	// UndetectedVulnerabilityLine is the defaul line for a failed to detect line issue
+	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
@@ -32,11 +33,13 @@ type VulnerabilityBuilder func(ctx QueryContext, v interface{}) (model.Vulnerabi
 
 type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
+	GetGenericQuery(platform string) (string, error)
 }
 
 type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
+	FailedDetectLine()
 }
 
 type preparedQuery struct {
@@ -79,14 +82,33 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
+	commonGeneralQuery, err := source.GetGenericQuery("commonQuery")
+	if err != nil {
+		sentry.CaptureException(err)
+		log.
+			Err(err).
+			Msgf("Inspector failed to get general query, query=%s", "common")
+	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
+		platformGeneralQuery, _ := source.GetGenericQuery(metadata.Platform)
+		if err != nil {
+			sentry.CaptureException(err)
+			log.
+				Err(err).
+				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
+
+			continue
+		}
+
 		select {
 		case <-ctx.Done():
 			return nil, nil
 		default:
 			opaQuery, err := rego.New(
 				rego.Query(regoQuery),
+				rego.Module("Common", commonGeneralQuery),
+				rego.Module("Generic", platformGeneralQuery),
 				rego.Module(metadata.Query, metadata.Content),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 			).PrepareForEval(ctx)
@@ -143,7 +165,6 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 
 			continue
 		}
-
 		vulnerabilities = append(vulnerabilities, vuls...)
 
 		c.tracker.TrackQueryExecution()
@@ -217,6 +238,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	}
 
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
+	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, queryResultItem)
 		if err != nil {
@@ -227,7 +249,15 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 			continue
 		}
 
+		if vulnerability.Line == UndetectedVulnerabilityLine {
+			failedDetectLine = true
+		}
+
 		vulnerabilities = append(vulnerabilities, vulnerability)
+	}
+
+	if failedDetectLine {
+		c.tracker.FailedDetectLine()
 	}
 
 	return vulnerabilities, nil
