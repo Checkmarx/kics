@@ -3,6 +3,7 @@ package terraform
 import (
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
@@ -19,6 +20,16 @@ resource "aws_s3_bucket" "b" {
 }
 `
 )
+
+func TestParser_GetKind(t *testing.T) {
+	p := &Parser{}
+	require.Equal(t, model.KindTerraform, p.GetKind())
+}
+
+func TestParser_SupportedExtensions(t *testing.T) {
+	p := &Parser{}
+	require.Equal(t, []string{".tf"}, p.SupportedExtensions())
+}
 
 func Test_Parser(t *testing.T) {
 	parser := NewDefault()
