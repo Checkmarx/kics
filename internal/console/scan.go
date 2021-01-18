@@ -46,7 +46,7 @@ func initScanCmd() {
 }
 
 func scan() error {
-	fmt.Printf("Starting analysis using %s\n", getVersion())
+	fmt.Printf("Scanning with %s\n\n", getVersion())
 
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
