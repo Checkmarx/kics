@@ -92,14 +92,14 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 
 	queriesSource.EXPECT().GetGenericQuery("commonQuery").
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform("commonQuery")
+			q, err := readLibrary("commonQuery")
 			require.NoError(tb, err)
 			return q, nil
 		})
 
 	queriesSource.EXPECT().GetGenericQuery(entry.platform).
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform(entry.platform)
+			q, err := readLibrary(entry.platform)
 			require.NoError(tb, err)
 			return q, nil
 		})

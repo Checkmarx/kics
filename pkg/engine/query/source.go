@@ -20,38 +20,44 @@ type FilesystemSource struct {
 }
 
 const (
-	// The default query file name
-	QueryFileName   = "query.rego"
-	libraryFileName = "library.rego"
-	// The default metadata file name
-	MetadataFileName  = "metadata.json"
-	librariesBasePath = "./assets/libraries/"
+	// QueryFileName The default query file name
+	QueryFileName = "query.rego"
+	// MetadataFileName The default metadata file name
+	MetadataFileName = "metadata.json"
+	// LibraryFileName The default library file name
+	LibraryFileName = "library.rego"
+	// LibrariesBasePath the path to rego libraries
+	LibrariesBasePath = "./assets/libraries/"
 )
 
-var (
-	currentWorkdir, _ = os.Getwd()
-	libraryPath       = filepath.Join(currentWorkdir, librariesBasePath)
-)
+// GetPathToLibrary returns the libraries path for a given platform
+func GetPathToLibrary(platform, relativeBasePath string) string {
+	libraryPath := filepath.Join(relativeBasePath, LibrariesBasePath)
 
-func getPathToLibrary(platform string) string {
 	if strings.Contains(platform, "ansible") {
-		return filepath.FromSlash(libraryPath + "/ansible/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
 	} else if strings.Contains(platform, "cloudformation") {
-		return filepath.FromSlash(libraryPath + "/cloudformation/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
 	} else if strings.Contains(platform, "dockerfile") {
-		return filepath.FromSlash(libraryPath + "/dockerfile/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
 	} else if strings.Contains(platform, "k8s") {
-		return filepath.FromSlash(libraryPath + "/k8s/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
 	} else if strings.Contains(platform, "terraform") {
-		return filepath.FromSlash(libraryPath + "/terraform/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
 	}
 
-	return filepath.FromSlash(libraryPath + "/common/" + libraryFileName)
+	return filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 }
 
 // GetGenericQuery returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
-	pathToLib := getPathToLibrary(platform)
+	currentWorkdir, err := os.Getwd()
+
+	if err != nil {
+		log.Err(err)
+	}
+
+	pathToLib := GetPathToLibrary(platform, currentWorkdir)
 	content, err := ioutil.ReadFile(pathToLib)
 
 	if err != nil {

@@ -21,11 +21,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-const (
-	queryFileName    = "query.rego"
-	metadataFileName = "metadata.json"
-)
-
 var (
 	queriesPaths = map[string]model.QueryConfig{
 		"../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
@@ -153,54 +148,13 @@ func sliceContains(s []string, str string) bool {
 	return false
 }
 
-func getPlatform(platform string) (string, error) {
-	var genericPath = "../assets/libraries/"
-	var content = "package generic.common"
-	var errorMessage error
+func readLibrary(platform string) (string, error) {
+	pathToLib := query.GetPathToLibrary(platform, "../")
+	content, err := ioutil.ReadFile(pathToLib)
 
-	if strings.Contains(platform, "commonQuery") {
-		mFile := filepath.FromSlash(genericPath + "common/library.rego")
-		content, err := ioutil.ReadFile(mFile)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "ansible") {
-		mFile := filepath.FromSlash(genericPath + "ansible/library.rego")
-		content, err := ioutil.ReadFile(mFile)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "cloudFormation") {
-		mFile := filepath.FromSlash(genericPath + "cloudformation/library.rego")
-		content, err := ioutil.ReadFile(mFile)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "dockerfile") {
-		mFile := filepath.FromSlash(genericPath + "dockerfile/library.rego")
-		content, err := ioutil.ReadFile(mFile)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "k8s") {
-		mFile := filepath.FromSlash(genericPath + "k8s/library.rego")
-		content, err := ioutil.ReadFile(mFile)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
-	} else if strings.Contains(platform, "terraform") {
-		mFile := filepath.FromSlash(genericPath + "terraform/library.rego")
-		content, err := ioutil.ReadFile(mFile)
-		if err != nil {
-			log.Err(err)
-		}
-		return string(content), err
+	if err != nil {
+		log.Err(err)
 	}
 
-	return content, errorMessage
+	return string(content), err
 }

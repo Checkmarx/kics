@@ -21,12 +21,12 @@ const (
 )
 
 type testCaseParamsType struct {
-	queryID            string
-	samplePath         string
-	sampleFixturetPath string
-	queryDir           string
-	queryFixturePath   string
-	platform           string
+	queryID           string
+	samplePath        string
+	sampleFixturePath string
+	queryDir          string
+	queryFixturePath  string
+	platform          string
 }
 
 type testParamsType struct {
@@ -59,10 +59,10 @@ var (
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 				}),
 				getTestParams(&testCaseParamsType{
-					platform:           "terraform",
-					queryDir:           "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturetPath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
-					queryFixturePath:   fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
+					queryFixturePath:  fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -76,12 +76,12 @@ var (
 					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
 				}),
 				getTestParams(&testCaseParamsType{
-					platform:           "terraform",
-					queryDir:           "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					queryID:            "ANOTHER_DIFFERENT_ID",
-					samplePath:         "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
-					sampleFixturetPath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
-					queryFixturePath:   fmt.Sprintf("%s/tc-sim02/query.rego", fixtureDir),
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					queryID:           "ANOTHER_DIFFERENT_ID",
+					samplePath:        "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
+					queryFixturePath:  fmt.Sprintf("%s/tc-sim02/query.rego", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -146,8 +146,8 @@ func getTestQueryID(params *testCaseParamsType) string {
 
 func getTestSampleContent(params *testCaseParamsType) []byte {
 	var testSampleContent []byte
-	if params.sampleFixturetPath != "" {
-		testSampleContent = getFileContent(params.sampleFixturetPath)
+	if params.sampleFixturePath != "" {
+		testSampleContent = getFileContent(params.sampleFixturePath)
 	} else {
 		testSampleContent = getSampleContent(params.queryDir)
 	}
@@ -239,14 +239,14 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 	queriesSource.EXPECT().GetGenericQuery("commonQuery").
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform("commonQuery")
+			q, err := readLibrary("commonQuery")
 			require.NoError(t, err)
 			return q, nil
 		})
 
 	queriesSource.EXPECT().GetGenericQuery(testParams.platform).
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform(testParams.platform)
+			q, err := readLibrary(testParams.platform)
 			require.NoError(t, err)
 			return q, nil
 		})
