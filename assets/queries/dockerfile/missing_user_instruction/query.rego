@@ -1,20 +1,20 @@
 package Cx
 
-CxPolicy [ result ] {
+CxPolicy[result] {
 	resource := input.document[i].command[name]
 
-  not hasUserInstruction(resource)
+	not hasUserInstruction(resource)
 
 	result := {
-    			    "documentId": 		  input.document[i].id,
-              "searchKey": 	      sprintf("FROM={{%s}}", [name]),
-              "issueType":		    "Missing Attribute",
-              "keyExpectedValue": "The 'Dockerfile' contains the 'USER' instruction",
-              "keyActualValue": 	 "The 'Dockerfile' does not contain any 'USER' instruction"
-            }
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}", [name]),
+		"issueType": "Missing Attribute",
+		"keyExpectedValue": "The 'Dockerfile' contains the 'USER' instruction",
+		"keyActualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+	}
 }
 
 hasUserInstruction(resource) {
 	some j
-    	resource[j].Cmd == "user"
+	resource[j].Cmd == "user"
 }
