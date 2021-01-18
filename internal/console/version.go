@@ -16,5 +16,5 @@ var versionCmd = &cobra.Command{
 }
 
 func getVersion() string {
-	return "Keeping Infrastructure as Code Secure v1.1.0"
+	return "Keeping Infrastructure as Code Secure v1.1.1"
 }
