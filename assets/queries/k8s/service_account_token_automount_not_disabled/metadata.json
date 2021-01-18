@@ -1,5 +1,5 @@
 {
-  "id": "service_account_token_automount_not_disabled",
+  "id": "48471392-d4d0-47c0-b135-cdec95eb3eef",
   "queryName": "Service Account Token Automount Not Disabled",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",

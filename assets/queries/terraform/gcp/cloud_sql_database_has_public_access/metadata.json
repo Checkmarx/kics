@@ -1,5 +1,5 @@
 {
-  "id": "Cloud_SQL_DB_Is_Publicly_Accessible",
+  "id": "b187edca-b81e-4fdc-aff4-aab57db45edb",
   "queryName": "Cloud SQL DB Is Publicly Accessible",
   "severity": "HIGH",
   "category": "Network Security",

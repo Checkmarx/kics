@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_without_encryption_at_REST",
+  "id": "6726dcc0-5ff5-459d-b473-a780bef7665c",
   "queryName": "S3 bucket without encryption at REST",
   "severity": "HIGH",
   "category": "Network Security",

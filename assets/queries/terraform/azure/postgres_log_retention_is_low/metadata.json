@@ -1,5 +1,5 @@
 {
-  "id": "PostgresSQL_DB_Server_Log_Retention_Is_Low",
+  "id": "261a83f8-dd72-4e8c-b5e1-ebf06e8fe606",
   "queryName": "PostgresSQL DB Server Log Retention Is Low",
   "severity": "MEDIUM",
   "category": "Logging",

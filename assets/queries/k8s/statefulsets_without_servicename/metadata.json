@@ -1,8 +1,0 @@
-{
-  "id": "statefulsets_without_servicename",
-  "queryName": "StatefulSets Without Service Name",
-  "severity": "LOW",
-  "category": "High Availability",
-  "descriptionText": "Check if the StatefulSets have a headless 'serviceName'",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
-}

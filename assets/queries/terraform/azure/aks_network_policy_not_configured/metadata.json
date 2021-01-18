@@ -1,5 +1,5 @@
 {
-  "id": "AKS_Network_Policy_Is_Not_Properly_Configured",
+  "id": "f5342045-b935-402d-adf1-8dbbd09c0eef",
   "queryName": "AKS Network Policy Is Not Properly Configured",
   "severity": "MEDIUM",
   "category": "Network Security",

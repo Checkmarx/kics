@@ -1,5 +1,5 @@
 {
-  "id": "Kubernetes_Docker_Socket_Volume",
+  "id": "a6f34658-fdfb-4154-9536-56d516f65828",
   "queryName": "Docker Daemon Socket is Exposed to Containers",
   "severity": "LOW",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "RBAC_Roles_with_Read_Secrets_Permissions",
+  "id": "b7bca5c4-1dab-4c2c-8cbe-3050b9d59b14",
   "queryName": "RBAC Roles with Read Secrets Permissions",
   "severity": "MEDIUM",
   "category": "Access Control",

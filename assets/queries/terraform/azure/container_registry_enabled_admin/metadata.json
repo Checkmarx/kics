@@ -1,5 +1,5 @@
 {
-  "id": "Container_Registry_enabled_Admin",
+  "id": "b897dfbf-322c-45a8-b67c-1e698beeaa51",
   "queryName": "Admin user is enabled for Container Registry",
   "severity": "HIGH",
   "category": "Identity and Access Management",

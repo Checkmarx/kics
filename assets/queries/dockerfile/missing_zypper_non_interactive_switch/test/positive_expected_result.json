@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Missing zypper Non-interactive Switch",
+		"queryName": "Missing Zypper Non-interactive Switch",
 		"severity": "MEDIUM",
 		"line": 2
 	}

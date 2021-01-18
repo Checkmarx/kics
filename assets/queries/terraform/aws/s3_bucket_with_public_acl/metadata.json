@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_allows_public_ACL",
+  "id": "d0cc8694-fcad-43ff-ac86-32331d7e867f",
   "queryName": "S3 bucket allows public ACL",
   "severity": "MEDIUM",
   "category": "Network Security",

@@ -1,5 +1,5 @@
 {
-  "id": "aws_cloudwatch_retention_period",
+  "id": "ef0b316a-211e-42f1-888e-64efe172b755",
   "queryName": "AWS CloudWatch Retention Period",
   "severity": "MEDIUM",
   "category":"Logging",
