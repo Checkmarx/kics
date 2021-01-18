@@ -32,7 +32,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		var err error
 		documents, err = playbookParser(fileContent)
 		if err != nil {
-			return nil, errors.Wrap(err, "Failed to Parse Dockerfile")
+			return nil, errors.Wrap(err, "Failed to Parse Yaml")
 		}
 	}
 
@@ -58,11 +58,11 @@ func playbookParser(fileContent []byte) ([]model.Document, error) {
 			playBooks.Tasks = append(playBooks.Tasks, arr...)
 			j, err := json.Marshal(playBooks)
 			if err != nil {
-				return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
+				return nil, errors.Wrap(err, "Failed to Marshal Yaml")
 			}
 
 			if err := json.Unmarshal(j, &doc); err != nil {
-				return nil, errors.Wrap(err, "Failed to Unmarshal Dockerfile")
+				return nil, errors.Wrap(err, "Failed to Unmarshal Yaml")
 			}
 			documents = append(documents, *doc)
 		}
