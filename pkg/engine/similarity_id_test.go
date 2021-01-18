@@ -16,6 +16,7 @@ type computeSimilarityIDParams struct {
 }
 
 type computeSimilarityIDSubTest struct {
+	name             string
 	calls            []computeSimilarityIDParams
 	expectedFunction func(t *testing.T, firstHash, secondHash *string)
 }
@@ -23,6 +24,7 @@ type computeSimilarityIDSubTest struct {
 var (
 	similarityIDTests = []computeSimilarityIDSubTest{
 		{
+			name: "Changed file name",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "test.yaml",
@@ -42,6 +44,7 @@ var (
 			},
 		},
 		{
+			name: "Changed queryID",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "test.yaml",
@@ -61,6 +64,7 @@ var (
 			},
 		},
 		{
+			name: "Changed searchKey",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "test.yaml",
@@ -80,6 +84,7 @@ var (
 			},
 		},
 		{
+			name: "Changed filepath dir",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "my/filesystem/test.yaml",
@@ -99,6 +104,7 @@ var (
 			},
 		},
 		{
+			name: "No changes",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "my/directory",
@@ -118,6 +124,7 @@ var (
 			},
 		},
 		{
+			name: "Relative directory resolution",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "my/directory/../test.yaml/",
@@ -137,6 +144,7 @@ var (
 			},
 		},
 		{
+			name: "No changes, empty searchValue",
 			calls: []computeSimilarityIDParams{
 				{
 					filePath:    "../assets/queries/",
@@ -160,24 +168,28 @@ var (
 
 func TestComputeSimilarityID(t *testing.T) {
 	for _, tc := range similarityIDTests {
-		firstHash, err := ComputeSimilarityID(tc.calls[0].filePath, tc.calls[0].queryID, tc.calls[0].searchKey, tc.calls[0].searchValue)
-		require.NoError(t, err)
-		require.NotEmpty(t, *firstHash)
-		secondHash, err := ComputeSimilarityID(tc.calls[1].filePath, tc.calls[1].queryID, tc.calls[1].searchKey, tc.calls[1].searchValue)
-		require.NoError(t, err)
-		require.NotEmpty(t, *secondHash)
+		t.Run(tc.name, func(tt *testing.T) {
+			firstHash, err := ComputeSimilarityID(tc.calls[0].filePath, tc.calls[0].queryID, tc.calls[0].searchKey, tc.calls[0].searchValue)
+			require.NoError(tt, err)
+			require.NotEmpty(tt, *firstHash)
+			secondHash, err := ComputeSimilarityID(tc.calls[1].filePath, tc.calls[1].queryID, tc.calls[1].searchKey, tc.calls[1].searchValue)
+			require.NoError(tt, err)
+			require.NotEmpty(tt, *secondHash)
 
-		tc.expectedFunction(t, firstHash, secondHash)
+			tc.expectedFunction(tt, firstHash, secondHash)
+		})
 	}
 }
 
 func TestStandardizeFilePathEquals(t *testing.T) {
 	tests := []struct {
+		name             string
 		input            string
 		expectedOutput   string
 		expectedFunction func(t *testing.T, expected, actual string)
 	}{
 		{
+			name:           "Clean input",
 			input:          "my/filesystem/test.yaml",
 			expectedOutput: "my/filesystem/test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string) {
@@ -185,6 +197,7 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 			},
 		},
 		{
+			name:           "Cleanup double slashes",
 			input:          "my//filesystem///test.yaml",
 			expectedOutput: "my/filesystem/test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string) {
@@ -192,6 +205,7 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 			},
 		},
 		{
+			name:           "Cleanup double slashes and resolve relative path",
 			input:          "my//filesystem//../test.yaml",
 			expectedOutput: "my/test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string) {
@@ -199,6 +213,7 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 			},
 		},
 		{
+			name:           "Check different directory",
 			input:          "my/filesystem/other/test.yaml",
 			expectedOutput: "my/filesystem/test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string) {
@@ -208,11 +223,13 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		path := filepath.FromSlash(tc.input)
-		standardPath, err := standardizeFilePath(path)
-		require.NoError(t, err)
-		require.NotEmpty(t, standardPath)
-		tc.expectedFunction(t, tc.expectedOutput, standardPath)
+		t.Run(tc.name, func(tt *testing.T) {
+			path := filepath.FromSlash(tc.input)
+			standardPath, err := standardizeFilePath(path)
+			require.NoError(t, err)
+			require.NotEmpty(t, standardPath)
+			tc.expectedFunction(t, tc.expectedOutput, standardPath)
+		})
 	}
 }
 

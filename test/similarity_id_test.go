@@ -3,8 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"os"
-	"path/filepath"
+	"io/ioutil"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -13,6 +12,8 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/query"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
 
@@ -39,6 +40,7 @@ type testParamsType struct {
 }
 
 type testCaseType struct {
+	name             string
 	calls            []testParamsType
 	expectedFunction func(t *testing.T, condition bool)
 }
@@ -53,6 +55,7 @@ var (
 	}
 	testTable = []testCaseType{
 		{
+			name: "Changed Sample and Query SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "terraform",
@@ -70,6 +73,24 @@ var (
 			},
 		},
 		{
+			name: "Changed QueryID SimID Should Be Different",
+			calls: []testParamsType{
+				getTestParams(&testCaseParamsType{
+					platform: "terraform",
+					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+				}),
+				getTestParams(&testCaseParamsType{
+					platform: "terraform",
+					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					queryID:  "ANOTHER_DIFFERENT_ID",
+				}),
+			},
+			expectedFunction: func(t *testing.T, condition bool) {
+				require.False(t, condition)
+			},
+		},
+		{
+			name: "Changed Sample SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "terraform",
@@ -78,17 +99,32 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					queryID:           "ANOTHER_DIFFERENT_ID",
-					samplePath:        "../assets/queries/terraform/aws/redshift_publicly_accessible/test/positive.tf",
 					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
-					queryFixturePath:  fmt.Sprintf("%s/tc-sim02/query.rego", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
-				require.False(t, condition)
+				require.True(t, condition)
 			},
 		},
 		{
+			name: "Changed Query SimID Should Be Equal",
+			calls: []testParamsType{
+				getTestParams(&testCaseParamsType{
+					platform: "terraform",
+					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+				}),
+				getTestParams(&testCaseParamsType{
+					platform:         "terraform",
+					queryDir:         "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					queryFixturePath: fmt.Sprintf("%s/tc-sim03/query.rego", fixtureDir),
+				}),
+			},
+			expectedFunction: func(t *testing.T, condition bool) {
+				require.True(t, condition)
+			},
+		},
+		{
+			name: "Changed Sample Path SimID Should Be Different",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "terraform",
@@ -105,6 +141,7 @@ var (
 			},
 		},
 		{
+			name: "Unchaged CloudFormation Sample SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
@@ -123,12 +160,18 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+
 	for _, tc := range testTable {
-		callOneSimilarityIDS := runInspectorAndGetSimilarityIDs(t, tc.calls[0])
-		callTwoSimilarityIDS := runInspectorAndGetSimilarityIDs(t, tc.calls[1])
-		for _, simIDOne := range callOneSimilarityIDS {
-			tc.expectedFunction(t, sliceContains(callTwoSimilarityIDS, simIDOne))
-		}
+		t.Run(tc.name, func(tt *testing.T) {
+			callOneSimilarityIDS := runInspectorAndGetSimilarityIDs(tt, tc.calls[0])
+			require.Greater(t, len(callOneSimilarityIDS), 0)
+			callTwoSimilarityIDS := runInspectorAndGetSimilarityIDs(tt, tc.calls[1])
+			require.Greater(t, len(callTwoSimilarityIDS), 0)
+			for _, simIDOne := range callOneSimilarityIDS {
+				tc.expectedFunction(tt, sliceContains(callTwoSimilarityIDS, simIDOne))
+			}
+		})
 	}
 }
 
@@ -149,7 +192,7 @@ func getTestSampleContent(params *testCaseParamsType) []byte {
 	if params.sampleFixturePath != "" {
 		testSampleContent = getFileContent(params.sampleFixturePath)
 	} else {
-		testSampleContent = getSampleContent(params.queryDir)
+		testSampleContent = getSampleContent(params)
 	}
 	return testSampleContent
 }
@@ -162,24 +205,6 @@ func getTestQueryContent(params *testCaseParamsType) string {
 		testSampleContent = getQueryContent(params.queryDir)
 	}
 	return testSampleContent
-}
-
-func getSamplePath(params *testCaseParamsType) string {
-	var samplePath string
-	if params.samplePath != "" {
-		samplePath = params.samplePath
-	} else {
-		extensions := fileExtension[params.platform]
-		for _, v := range extensions {
-			joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
-			_, err := os.Stat(joinedPath)
-			if err == nil {
-				samplePath = joinedPath
-				break
-			}
-		}
-	}
-	return samplePath
 }
 
 func getTestParams(params *testCaseParamsType) testParamsType {
@@ -225,7 +250,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 		// Override metadata ID with custom QueryID for testing
 		if testParams.queryID() != metadata["id"] {
-			metadata["id"] = testParams.queryID
+			metadata["id"] = testParams.queryID()
 		}
 
 		q := model.QueryMetadata{

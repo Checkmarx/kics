@@ -130,13 +130,38 @@ func getQueryContent(queryDir string) string {
 	return string(getFileContent(fullQueryPath))
 }
 
-func getSampleContent(queryDir string) []byte {
-	return getFileContent(queryDir)
+func getSampleContent(params *testCaseParamsType) []byte {
+	samplePath := checkSampleExistsAndGetPath(params)
+	return getFileContent(samplePath)
 }
 
 func getFileContent(filePath string) []byte {
 	content, _ := ioutil.ReadFile(filePath)
 	return content
+}
+
+func getSamplePath(params *testCaseParamsType) string {
+	var samplePath string
+	if params.samplePath != "" {
+		samplePath = params.samplePath
+	} else {
+		samplePath = checkSampleExistsAndGetPath(params)
+	}
+	return samplePath
+}
+
+func checkSampleExistsAndGetPath(params *testCaseParamsType) string {
+	var samplePath string
+	extensions := fileExtension[params.platform]
+	for _, v := range extensions {
+		joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
+		_, err := os.Stat(joinedPath)
+		if err == nil {
+			samplePath = joinedPath
+			break
+		}
+	}
+	return samplePath
 }
 
 func sliceContains(s []string, str string) bool {
