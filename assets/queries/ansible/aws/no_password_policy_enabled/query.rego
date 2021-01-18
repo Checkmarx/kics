@@ -12,7 +12,7 @@ CxPolicy[result] {
 
     result := {
         "documentId":        document.id,
-        "searchKey":         sprintf("name=%s", [task.name]),
+        "searchKey":         sprintf("name={{%s}}", [task.name]),
         "issueType":         "MissingAttribute",
         "keyExpectedValue":  "community.aws.iam_password_policy or iam_password_policy is set",
         "keyActualValue": 	 "community.aws.iam_password_policy or iam_password_policy is not set",
@@ -25,7 +25,7 @@ CxPolicy[result] {
     task := tasks[t]
 
     modules := {"community.aws.iam_password_policy", "iam_password_policy"}
-    
+
     attributes := {"require_lowercase", "require_numbers", "require_symbols", "require_uppercase"}
 
     object.get(task[modules[index]], attributes[j], "undefined") == "undefined"
@@ -46,12 +46,12 @@ CxPolicy[result] {
     task := tasks[t]
 
     modules := {"community.aws.iam_password_policy", "iam_password_policy"}
-    
+
     attributes := {"require_lowercase", "require_numbers", "require_symbols", "require_uppercase"}
 
     attribute := object.get(task[modules[index]], attributes[j], "undefined")
     attribute != "undefined"
-    
+
     not isTrueOrYes(attribute)
 
     result := {
@@ -74,6 +74,6 @@ getTasks(document) = result {
 isTrueOrYes(attribute) = allow {
     possibilities := {"yes", true}
     attribute == possibilities[j]
-    
+
 	allow = true
 }
