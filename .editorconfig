@@ -11,7 +11,10 @@ indent_size = 2
 
 [{Makefile,go.mod,go.sum,*.go,.gitmodules}]
 indent_style = tab
-indent_size = 8
+indent_size = 4
+
+[*.rego]
+indent_size = 4
 
 [*.md]
 indent_size = 4
