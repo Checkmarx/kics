@@ -2,11 +2,57 @@ package writer
 
 import (
 	"fmt"
+	"os"
+	"strings"
 	"testing"
 
 	build "github.com/Checkmarx/kics/pkg/builder/model"
 	"github.com/stretchr/testify/require"
 )
+
+var blockElement = Block{
+	Name: "resource",
+	All:  true,
+	List: []string{"*"},
+}
+
+var pathElement = []build.PathItem{
+	{
+		Name: "resource",
+		Type: "RESOURCE",
+	},
+	{
+		Name: "aws_s3_bucket",
+		Type: "RESOURCE_TYPE",
+	},
+	{
+		Name: "resource",
+		Type: "RESOURCE_NAME",
+	},
+	{
+		Name: "values",
+		Type: "DEFAULT",
+	},
+	{
+		Name: "Environment",
+		Type: "DEFAULT",
+	},
+}
+
+var ruleElement = build.Rule{
+	Conditions: []build.Condition{
+		{
+			Line:      8,
+			IssueType: "IncorrectValue",
+			Path:      pathElement,
+			Value:     "Dev",
+			Attributes: map[string]interface{}{
+				"resource": "*",
+				"any_key":  "",
+			},
+		},
+	},
+}
 
 func TestConditionKey(t *testing.T) {
 	values := []struct {
@@ -17,37 +63,12 @@ func TestConditionKey(t *testing.T) {
 		expectedResult  string
 	}{
 		{
-			block: Block{
-				Name: "resource",
-				All:  true,
-				List: []string{"*"},
-			},
+			block: blockElement,
 			c: build.Condition{
 				Line:      8,
 				IssueType: "IncorrectValue",
-				Path: []build.PathItem{
-					{
-						Name: "resource",
-						Type: "RESOURCE",
-					},
-					{
-						Name: "aws_s3_bucket",
-						Type: "RESOURCE_TYPE",
-					},
-					{
-						Name: "resource",
-						Type: "RESOURCE_NAME",
-					},
-					{
-						Name: "values",
-						Type: "DEFAULT",
-					},
-					{
-						Name: "Environment",
-						Type: "DEFAULT",
-					},
-				},
-				Value: "Dev",
+				Path:      pathElement,
+				Value:     "Dev",
 				Attributes: map[string]interface{}{
 					"resource": "*",
 					"any_key":  "",
@@ -72,46 +93,8 @@ func TestCreateBlock(t *testing.T) {
 		expectedResult Block
 	}{
 		{
-			expectedResult: Block{
-				Name: "resource",
-				All:  true,
-				List: []string{"*"},
-			},
-			rules: build.Rule{
-				Conditions: []build.Condition{
-					{
-						Line:      8,
-						IssueType: "IncorrectValue",
-						Path: []build.PathItem{
-							{
-								Name: "resource",
-								Type: "RESOURCE",
-							},
-							{
-								Name: "aws_s3_bucket",
-								Type: "RESOURCE_TYPE",
-							},
-							{
-								Name: "resource",
-								Type: "RESOURCE_NAME",
-							},
-							{
-								Name: "values",
-								Type: "DEFAULT",
-							},
-							{
-								Name: "Environment",
-								Type: "DEFAULT",
-							},
-						},
-						Value: "Dev",
-						Attributes: map[string]interface{}{
-							"resource": "*",
-							"any_key":  "",
-						},
-					},
-				},
-			},
+			expectedResult: blockElement,
+			rules:          ruleElement,
 		},
 	}
 	for idx, value := range values {
@@ -135,41 +118,7 @@ func TestResultName(t *testing.T) {
 				All:  false,
 				List: nil,
 			},
-			rules: build.Rule{
-				Conditions: []build.Condition{
-					{
-						Line:      8,
-						IssueType: "IncorrectValue",
-						Path: []build.PathItem{
-							{
-								Name: "resource",
-								Type: "RESOURCE",
-							},
-							{
-								Name: "aws_s3_bucket",
-								Type: "RESOURCE_TYPE",
-							},
-							{
-								Name: "resource",
-								Type: "RESOURCE_NAME",
-							},
-							{
-								Name: "values",
-								Type: "DEFAULT",
-							},
-							{
-								Name: "Environment",
-								Type: "DEFAULT",
-							},
-						},
-						Value: "Dev",
-						Attributes: map[string]interface{}{
-							"resource": "*",
-							"any_key":  "",
-						},
-					},
-				},
-			},
+			rules: ruleElement,
 		},
 	}
 	for idx, value := range values {
@@ -205,6 +154,24 @@ func TestSwitchFunction(t *testing.T) {
 				"*": {},
 			},
 		},
+		{
+			result: Block{
+				Name: "resource",
+				All:  false,
+				List: nil,
+			},
+			resources: map[string]struct{}{},
+			v:         []string{"first", "second"},
+			expectedResult: Block{
+				Name: "resource",
+				All:  false,
+				List: nil,
+			},
+			expectedResource: map[string]struct{}{
+				"first":  {},
+				"second": {},
+			},
+		},
 	}
 	for idx, value := range values {
 		t.Run(fmt.Sprintf("switchFunction_%d", idx), func(t *testing.T) {
@@ -213,4 +180,244 @@ func TestSwitchFunction(t *testing.T) {
 			require.Equal(t, value.expectedResource, resourcesTest)
 		})
 	}
+}
+
+func TestRegoValueToString(t *testing.T) {
+	var emptyStringPointer *string
+	var strPointer = new(string)
+	*strPointer = "testString"
+
+	values := []struct {
+		testCase       interface{}
+		expectedResult string
+	}{
+		{
+			testCase:       true,
+			expectedResult: "true",
+		},
+		{
+			testCase:       false,
+			expectedResult: "false",
+		},
+		{
+			testCase:       int64(9223372036854775806),
+			expectedResult: "9223372036854775806",
+		},
+		{
+			testCase:       int32(2147483647),
+			expectedResult: "2147483647",
+		},
+		{
+			testCase:       float64(123456.5),
+			expectedResult: "123456.500000",
+		},
+		{
+			testCase:       float32(123.5),
+			expectedResult: "123.500000",
+		},
+		{
+			testCase:       0,
+			expectedResult: "0",
+		},
+		{
+			testCase:       "string",
+			expectedResult: "\"string\"",
+		},
+		{
+			testCase:       emptyStringPointer,
+			expectedResult: "\"\"",
+		},
+		{
+			testCase:       strPointer,
+			expectedResult: "\"testString\"",
+		},
+		{
+			testCase:       []string{"a", "b", "c"},
+			expectedResult: "{\"a\", \"b\", \"c\"}",
+		},
+		{
+			testCase:       []int{1, 2, 3},
+			expectedResult: "",
+		},
+	}
+
+	for idx, value := range values {
+		t.Run(fmt.Sprintf("regoValueToString_%d", idx), func(t *testing.T) {
+			result := regoValueToString(value.testCase)
+			require.Equal(t, value.expectedResult, result)
+		})
+	}
+}
+
+func TestCondition(t *testing.T) {
+	values := []struct {
+		block          Block
+		c              build.Condition
+		expectedResult string
+	}{
+		{
+			block: blockElement,
+			c: build.Condition{
+				Line:      8,
+				IssueType: "IncorrectValue",
+				Path:      pathElement,
+				Value:     "DEV",
+				Attributes: map[string]interface{}{
+					"resource": "*",
+					"any_key":  "",
+					"upper":    "",
+				},
+			},
+			expectedResult: "upper(block[blockType][name].values[key]) == \"DEV\"",
+		},
+		{
+			block: blockElement,
+			c: build.Condition{
+				Line:      8,
+				IssueType: "IncorrectValue",
+				Path:      pathElement,
+				Attributes: map[string]interface{}{
+					"resource":  "*",
+					"any_key":   "",
+					"lower":     "",
+					"condition": "!=",
+					"val":       "dev",
+				},
+			},
+			expectedResult: "lower(block[blockType][name].values[key]) != \"dev\"",
+		},
+		{
+			block: blockElement,
+			c: build.Condition{
+				Line:      8,
+				IssueType: "IncorrectValue",
+				Path:      pathElement,
+				Value:     "dev",
+				Attributes: map[string]interface{}{
+					"resource": "*",
+					"any_key":  "",
+					"regex":    "\\w",
+				},
+			},
+			expectedResult: "re_match(\"\\w\", block[blockType][name].values[key])",
+		},
+		{
+			block: blockElement,
+			c: build.Condition{
+				Line:      8,
+				IssueType: "MissingAttribute",
+				Path:      pathElement,
+				Attributes: map[string]interface{}{
+					"resource": "*",
+					"any_key":  "",
+				},
+			},
+			expectedResult: "not block[blockType][name].values[key]",
+		},
+		{
+			block: blockElement,
+			c: build.Condition{
+				Line:      8,
+				IssueType: "RedundantAttribute",
+				Path:      pathElement,
+				Attributes: map[string]interface{}{
+					"resource": "*",
+					"any_key":  "",
+				},
+			},
+			expectedResult: "block[blockType][name].values[key]",
+		},
+	}
+	for idx, value := range values {
+		t.Run(fmt.Sprintf("condition_%d", idx), func(t *testing.T) {
+			key := condition(value.block, value.c)
+			require.Equal(t, value.expectedResult, key)
+		})
+	}
+}
+
+func TestFormat(t *testing.T) {
+	values := []struct {
+		rule           build.Rule
+		expectedResult RegoRule
+	}{
+		{
+			rule: ruleElement,
+			expectedResult: RegoRule{
+				Block: blockElement,
+				Rule:  ruleElement,
+			},
+		},
+	}
+	for idx, value := range values {
+		t.Run(fmt.Sprintf("format_%d", idx), func(t *testing.T) {
+			result := format([]build.Rule{ruleElement})
+			require.Equal(t, []RegoRule{value.expectedResult}, result)
+		})
+	}
+}
+
+func TestRender(t *testing.T) {
+	for currentDir, err := os.Getwd(); getCurrentDirName(currentDir) != "kics"; currentDir, err = os.Getwd() {
+		if err == nil {
+			if err := os.Chdir(".."); err != nil { // this is necessary to load template file on RegoWriter
+				fmt.Printf("change path error = %v", err)
+				t.Fatal()
+			}
+		} else {
+			t.Fatal()
+		}
+	}
+	regoWriter, err := NewRegoWriter()
+	if err != nil {
+		t.Fatal()
+	}
+	values := []struct {
+		rules          []build.Rule
+		expectedResult string
+	}{
+		{
+			rules: []build.Rule{ruleElement},
+			expectedResult: `package Cx
+
+			CxPolicy [ result ] {
+					document := input.document[i]
+					block := document.resource
+			
+					block[blockType][name].values[key] == "Dev"
+			
+					result := {
+											"documentId":           document.id,
+											"searchKey":        sprintf("%s[%s].values.%s", [blockType, name, key]),
+											"issueType":            "IncorrectValue",
+											"keyExpectedValue": "'values' should be valid",
+											"keyActualValue":       "'values' is invalid"
+										}
+			}`,
+		},
+	}
+	for idx, value := range values {
+		t.Run(fmt.Sprintf("format_%d", idx), func(t *testing.T) {
+			results, err := regoWriter.Render(value.rules)
+			require.Nil(t, err)
+			require.Equal(t, removeWhiteSpaces(string(results)), removeWhiteSpaces(value.expectedResult))
+		})
+	}
+}
+
+func getCurrentDirName(path string) string {
+	dirs := strings.Split(path, string(os.PathSeparator))
+	if dirs[len(dirs)-1] == "" && len(dirs) > 1 {
+		return dirs[len(dirs)-2]
+	}
+	return dirs[len(dirs)-1]
+}
+
+func removeWhiteSpaces(str string) string {
+	str = strings.TrimSpace(str)
+	whitespaces := []string{"\r\n", "\n", " ", "\t"}
+	for _, removeSpaceChar := range whitespaces {
+		str = strings.ReplaceAll(str, removeSpaceChar, "")
+	}
+	return str
 }
