@@ -1,8 +1,0 @@
-{
-  "id": "key_vault_soft_delete_is_enabled",
-  "queryName": "Key Vault Soft Delete is Enabled",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Make sure Soft Delete is enabled for Key Vault",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault"
-}

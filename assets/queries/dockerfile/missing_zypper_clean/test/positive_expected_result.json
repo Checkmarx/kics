@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Missing zypper clean",
+		"queryName": "Missing Zypper Clean",
 		"severity": "MEDIUM",
 		"line": 2
 	}

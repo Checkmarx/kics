@@ -1,5 +1,5 @@
-  {
-  "id": "Shell_Running_A_Pipe_Without_Pipefail_Flag",
+{
+  "id": "efbf148a-67e9-42d2-ac47-02fa1c0d0b22",
   "queryName": "Shell Running A Pipe Without Pipefail Flag",
   "severity": "MEDIUM",
   "category": "Defaults",

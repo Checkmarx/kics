@@ -1,5 +1,5 @@
 {
-  "id": "kinesis_sse_not_configured",
+  "id": "5c6dd5e7-1fe0-4cae-8f81-4c122717cef3",
   "queryName": "Kinesis SSE Not Configured",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

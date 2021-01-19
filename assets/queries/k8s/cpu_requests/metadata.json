@@ -1,5 +1,5 @@
 {
-  "id": "cpu_requests",
+  "id": "ca469dd4-c736-448f-8ac1-30a642705e0a",
   "queryName": "CPU Requests Not Set",
   "severity": "MEDIUM",
   "category": "Resources Limiting",

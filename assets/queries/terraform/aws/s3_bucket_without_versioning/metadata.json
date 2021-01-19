@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_without_versioning",
+  "id": "568a4d22-3517-44a6-a7ad-6a7eed88722c",
   "queryName": "S3 bucket without versioning",
   "severity": "HIGH",
   "category": "Cloud Assets Management",

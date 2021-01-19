@@ -1,5 +1,5 @@
 {
-  "id": "Network_Policy_Is_Not_Targeting_Any_Pod",
+  "id": "85ab1c5b-014e-4352-b5f8-d7dea3bb4fd3",
   "queryName": "Network Policy Is Not Targeting Any Pod",
   "severity": "MEDIUM",
   "category": "Networking",

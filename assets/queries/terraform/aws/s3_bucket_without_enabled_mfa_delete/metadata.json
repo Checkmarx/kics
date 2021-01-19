@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_without_enabled_MFA_Delete",
+  "id": "c5b31ab9-0f26-4a49-b8aa-4cc064392f4d",
   "queryName": "S3 bucket without enabled MFA Delete",
   "severity": "HIGH",
   "category": "Network Security",

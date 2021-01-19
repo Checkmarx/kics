@@ -1,5 +1,5 @@
 {
-  "id": "MQ_Broker_Has_Disabled_General_Or_Audit_Logging",
+  "id": "31245f98-a6a9-4182-9fc1-45482b9d030a",
   "queryName": "MQ Broker Has Disabled General Or Audit Logging",
   "severity": "MEDIUM",
   "category": "Logging",

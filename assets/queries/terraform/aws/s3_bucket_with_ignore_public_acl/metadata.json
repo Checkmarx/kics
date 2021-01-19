@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_with_ignore_public_ACL",
+  "id": "4fa66806-0dd9-4f8d-9480-3174d39c7c91",
   "queryName": "S3 bucket with ignore public ACL",
   "severity": "LOW",
   "category": "Network Security",

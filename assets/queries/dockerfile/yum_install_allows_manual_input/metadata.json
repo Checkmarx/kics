@@ -1,5 +1,5 @@
 {
-  "id": "yum_install_allows_manual_input",
+  "id": "6e19193a-8753-436d-8a09-76dcff91bb03",
   "queryName": "Yum Install Allows Manual Input",
   "severity": "MEDIUM",
   "category": "Package Management",

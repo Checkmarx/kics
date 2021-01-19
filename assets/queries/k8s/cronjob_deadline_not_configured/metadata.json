@@ -1,5 +1,5 @@
 {
-  "id": "CronJob_Deadline_Not_Configured",
+  "id": "192fe40b-b1c3-448a-aba2-6cc19a300fe3",
   "queryName": "CronJob Deadline Not Configured",
   "severity": "LOW",
   "category": "Resources Limiting",

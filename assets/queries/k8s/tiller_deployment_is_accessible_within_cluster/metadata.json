@@ -1,5 +1,5 @@
 {
-  "id": "Tiller_Deployment_Is_Accessible_From_Within_The_Cluster",
+  "id": "e17fa86a-6222-4584-a914-56e8f6c87e06",
   "queryName": "Tiller Deployment Is Accessible From Within The Cluster",
   "severity": "HIGH",
   "category": "Networking",

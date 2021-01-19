@@ -1,5 +1,5 @@
 {
-  "id": "S3_bucket_with_public_RW_access",
+  "id": "38c5ee0d-7f22-4260-ab72-5073048df100",
   "queryName": "S3 bucket with public RW access",
   "severity": "INFO",
   "category": "Vulnerability and Threat Management",

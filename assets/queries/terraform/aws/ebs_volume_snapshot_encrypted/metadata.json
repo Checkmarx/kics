@@ -1,5 +1,5 @@
 {
-  "id": "Volume_Snapshot_Not_Encrypted",
+  "id": "e6b4b943-6883-47a9-9739-7ada9568f8ca",
   "queryName": "Volume Snapshot Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

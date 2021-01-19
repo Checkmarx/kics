@@ -1,5 +1,5 @@
 {
-  "id": "redshift_not_encrypted",
+  "id": "cfdcabb0-fc06-427c-865b-c59f13e898ce",
   "queryName": "Redshift Not Encrypted",
   "severity": "HIGH",
   "category": "Encryption and Key Management",

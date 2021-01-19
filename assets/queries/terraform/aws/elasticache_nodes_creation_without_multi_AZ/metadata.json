@@ -1,5 +1,5 @@
 {
-  "id": "ElastiCache_Nodes_Are_Not_Created_Across_Multi_AZ",
+  "id": "6db03a91-f933-4f13-ab38-a8b87a7de54d",
   "queryName": "ElastiCache Nodes Are Not Created Across Multi AZ",
   "severity": "MEDIUM",
   "category": "High Availability",

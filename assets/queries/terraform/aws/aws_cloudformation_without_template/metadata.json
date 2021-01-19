@@ -1,5 +1,5 @@
 {
-  "id": "aws_cloudformation_without_template",
+  "id": "91bea7b8-0c31-4863-adc9-93f6177266c4",
   "queryName": "AWS CloudFormation Without Template",
   "severity": "MEDIUM",
   "category": "Cloud Assets Management",

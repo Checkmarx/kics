@@ -1,8 +1,0 @@
-{
-  "id": "allUsers_group_gets_read_access",
-  "queryName": "All Users Group Gets Read Access",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "It's not recommended to allow read access for all user groups.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl"
-}

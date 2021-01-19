@@ -1,5 +1,5 @@
 {
-  "id": "ECS_task_definition_has_password",
+  "id": "d40210ea-64b9-4cce-a4fb-e8604f3c062c",
   "queryName": "ECS Task Definition File has Password",
   "category": "Data Security",
   "severity": "HIGH",
