@@ -7,11 +7,11 @@ There are multiple ways to get KICS up and running:
 
 KICS is available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
 
-To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see CLI Options section below)
+To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)
 
 ```txt
 docker pull checkmarx/kics:latest  
-docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
+docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
 ```  
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.
@@ -29,7 +29,7 @@ So all you need is:
 1. Extract files
 1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)  
    ```
-   ./kics -p <path-of-your-project-to-scan> -o <output-results.json>
+   ./kics scan -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
 ### Build from Sources
@@ -44,11 +44,20 @@ So all you need is:
    ```
 1. Kick a scan!  
    ```
-   go run ./cmd/console/main.go -p <path-of-your-project-to-scan> -o <output-results.json>
+   go run ./cmd/console/main.go scan -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
+### CLI Commands
 
-### CLI Options
+```txt
+generate-id Generates uuid for query
+help        Help about any command
+scan        Executes a scan analysis
+version     Displays the current version
+```
+
+
+### Scan Command Options
 
 ```txt
 -h, --help                  help
