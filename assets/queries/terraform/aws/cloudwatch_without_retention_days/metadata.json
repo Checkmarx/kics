@@ -1,5 +1,5 @@
 {
-  "id": "Cloudwatch_without_retention_days",
+  "id": "e567f072-c8b9-40ce-aff1-a67f67b5ca16",
   "queryName": "Cloudwatch without retention days",
   "severity": "LOW",
   "category": "Logging",

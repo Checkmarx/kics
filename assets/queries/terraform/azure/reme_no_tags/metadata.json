@@ -1,8 +1,0 @@
-{
-  "id": "cosmos_db_account_no_tags",
-  "queryName": "Cosmos DB Account No Tags",
-  "severity": "MEDIUM",
-  "category": "Cloud Assets Management",
-  "descriptionText": "Cosmos DB Account must have a mapping of tags.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account"
-}

@@ -1,6 +1,6 @@
 {
-  "id": "zypper_install_without_version",
-  "queryName": "zypper install Without Version",
+  "id": "562952e4-0348-4dea-9826-44f3a2c6117b",
+  "queryName": "Zypper Install Without Version",
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "Not specifying the package version can cause failures due to unanticipated changes in required packages",

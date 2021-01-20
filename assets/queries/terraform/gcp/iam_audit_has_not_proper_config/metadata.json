@@ -1,5 +1,5 @@
 {
-  "id": "IAM_Audit_Logging_Proper_Config",
+  "id": "89fe890f-b480-460c-8b6b-7d8b1468adb4",
   "queryName": "IAM Audit Logging Proper Config",
   "severity": "HIGH",
   "category": "Logging",

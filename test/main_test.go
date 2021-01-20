@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"testing"
@@ -24,18 +25,18 @@ const (
 )
 
 var (
-	queriesPaths = map[string]model.FileKind{
-		"../assets/queries/terraform/aws":            model.KindTerraform,
-		"../assets/queries/terraform/azure":          model.KindTerraform,
-		"../assets/queries/terraform/gcp":            model.KindTerraform,
-		"../assets/queries/terraform/github":         model.KindTerraform,
-		"../assets/queries/terraform/kubernetes_pod": model.KindTerraform,
-		"../assets/queries/cloudFormation":           model.KindYAML,
-		"../assets/queries/k8s":                      model.KindYAML,
-		"../assets/queries/ansible/aws":              model.KindYAML,
-		"../assets/queries/ansible/gcp":              model.KindYAML,
-		"../assets/queries/ansible/azure":            model.KindYAML,
-		"../assets/queries/dockerfile":               model.KindDOCKER,
+	queriesPaths = map[string]model.QueryConfig{
+		"../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/azure":          {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":            {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/github":         {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes_pod": {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/k8s":                      {FileKind: model.KindYAML, Platform: "k8s"},
+		"../assets/queries/cloudFormation":           {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":              {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
 	}
 )
 
@@ -44,8 +45,9 @@ func TestMain(m *testing.M) {
 }
 
 type queryEntry struct {
-	dir  string
-	kind model.FileKind
+	dir      string
+	kind     model.FileKind
+	platform string
 }
 
 func (q queryEntry) PositiveFile() string {
@@ -60,10 +62,11 @@ func (q queryEntry) ExpectedPositiveResultFile() string {
 	return path.Join(q.dir, "test/positive_expected_result.json")
 }
 
-func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind) []queryEntry {
+func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
 	queriesDir = append(queriesDir, queryEntry{
-		dir:  dirName,
-		kind: kind,
+		dir:      dirName,
+		kind:     kind,
+		platform: platform,
 	})
 
 	return queriesDir
@@ -72,16 +75,16 @@ func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind)
 func loadQueries(tb testing.TB) []queryEntry {
 	var queriesDir []queryEntry
 
-	for queriesPath, kind := range queriesPaths {
+	for queriesPath, queryConfig := range queriesPaths {
 		fs, err := ioutil.ReadDir(queriesPath)
 		require.Nil(tb, err)
 
 		for _, f := range fs {
 			f.Name()
 			if f.IsDir() && f.Name() != "test" {
-				queriesDir = appendQueries(queriesDir, path.Join(queriesPath, f.Name()), kind)
+				queriesDir = appendQueries(queriesDir, filepath.FromSlash(path.Join(queriesPath, f.Name())), queryConfig.FileKind, queryConfig.Platform)
 			} else {
-				queriesDir = appendQueries(queriesDir, queriesPath, kind)
+				queriesDir = appendQueries(queriesDir, filepath.FromSlash(queriesPath), queryConfig.FileKind, queryConfig.Platform)
 				break
 			}
 		}

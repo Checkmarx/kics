@@ -1,5 +1,5 @@
 {
-  "id": "Vault_disabled_Audit",
+  "id": "38c71c00-c177-4cd7-8d36-cd1007cdb190",
   "queryName": "Vault with disabled Audit",
   "severity": "HIGH",
   "category": "Logging",

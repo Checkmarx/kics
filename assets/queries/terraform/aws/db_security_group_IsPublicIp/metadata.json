@@ -1,8 +1,0 @@
-{
-  "id": "DB_Security_Group_Has_Public_IP",
-  "queryName": "DB Security Group Has Public IP",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "The CIDR IP must not be Public",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group"
-}

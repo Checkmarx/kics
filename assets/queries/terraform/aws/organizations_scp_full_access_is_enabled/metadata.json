@@ -1,5 +1,5 @@
 {
-  "id": "Amazon_Organizations_SCPs_All_Features_Not_Enabled",
+  "id": "5ba6229c-8057-433e-91d0-21cf13569ca9",
   "queryName": "Amazon Organizations SCPs All Features Not Enabled",
   "severity": "MEDIUM",
   "category": "IAM",

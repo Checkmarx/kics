@@ -1,5 +1,5 @@
 {
-  "id": "copy_from_without_from_alias_defined_previously",
+  "id": "68a51e22-ae5a-4d48-8e87-b01a323605c9",
   "queryName": "COPY '--from' Without FROM Alias Defined Previously",
   "severity": "MEDIUM",
   "category": "Multi-stage",

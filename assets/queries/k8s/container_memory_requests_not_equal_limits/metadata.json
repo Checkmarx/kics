@@ -1,5 +1,5 @@
 {
-  "id": "Container_Memory_Requests_Not_Equal_Limits",
+  "id": "aafa7d94-62de-4fbf-8838-b69ee217b0e6",
   "queryName": "Container Memory Requests Not Equal Limits",
   "severity": "LOW",
   "category": "Resources Limiting",

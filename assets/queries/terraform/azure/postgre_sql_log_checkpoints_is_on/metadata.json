@@ -1,5 +1,5 @@
 {
-  "id": "postgre_sql_log_checkpoints_is_on",
+  "id": "3790d386-be81-4dcf-9850-eaa7df6c10d9",
   "queryName": "PostgreSQL Logs Checkpoints Is On",
   "severity": "MEDIUM",
   "category": "Logging",

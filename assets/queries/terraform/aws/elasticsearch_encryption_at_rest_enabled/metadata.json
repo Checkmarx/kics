@@ -1,5 +1,5 @@
 {
-  "id": "ElasticSearch_Not_Encrypted_At_Rest",
+  "id": "24e16922-4330-4e9d-be8a-caa90299466a",
   "queryName": "ElasticSearch Not Encrypted At Rest",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
