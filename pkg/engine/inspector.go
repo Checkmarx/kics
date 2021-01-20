@@ -16,7 +16,8 @@ import (
 )
 
 const (
-	UndetectedVulnerabilityLine = 1
+	// UndetectedVulnerabilityLine is the defaul line for a failed to detect line issue
+	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
@@ -38,6 +39,7 @@ type QueriesSource interface {
 type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
+	FailedDetectLine()
 }
 
 type preparedQuery struct {
@@ -163,7 +165,6 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 
 			continue
 		}
-
 		vulnerabilities = append(vulnerabilities, vuls...)
 
 		c.tracker.TrackQueryExecution()
@@ -237,6 +238,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	}
 
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
+	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, queryResultItem)
 		if err != nil {
@@ -247,7 +249,15 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 			continue
 		}
 
+		if vulnerability.Line == UndetectedVulnerabilityLine {
+			failedDetectLine = true
+		}
+
 		vulnerabilities = append(vulnerabilities, vulnerability)
+	}
+
+	if failedDetectLine {
+		c.tracker.FailedDetectLine()
 	}
 
 	return vulnerabilities, nil
