@@ -360,17 +360,16 @@ func TestFormat(t *testing.T) {
 func TestRender(t *testing.T) {
 	for currentDir, err := os.Getwd(); getCurrentDirName(currentDir) != "kics"; currentDir, err = os.Getwd() {
 		if err == nil {
-			if err := os.Chdir(".."); err != nil { // this is necessary to load template file on RegoWriter
-				fmt.Printf("change path error = %v", err)
-				t.Fatal()
+			if dirErr := os.Chdir(".."); dirErr != nil { // this is necessary to load template file on RegoWriter
+				t.Fatal(dirErr)
 			}
 		} else {
-			t.Fatal()
+			t.Fatal(err)
 		}
 	}
 	regoWriter, err := NewRegoWriter()
 	if err != nil {
-		t.Fatal()
+		t.Fatal(err)
 	}
 	values := []struct {
 		rules          []build.Rule
@@ -399,7 +398,7 @@ func TestRender(t *testing.T) {
 	for idx, value := range values {
 		t.Run(fmt.Sprintf("format_%d", idx), func(t *testing.T) {
 			results, err := regoWriter.Render(value.rules)
-			require.Nil(t, err)
+			require.NoError(t, err)
 			require.Equal(t, removeWhiteSpaces(string(results)), removeWhiteSpaces(value.expectedResult))
 		})
 	}
