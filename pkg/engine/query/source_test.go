@@ -55,7 +55,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 				Source: "./assets/queries/template",
 			},
 			args: args{
-				platform: "cloudformation",
+				platform: "cloudFormation",
 			},
 			contains: "generic.cloudformation",
 			wantErr:  false,
