@@ -12,6 +12,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+type execute func() error
+
 func captureOutput(funcToExec execute) (string, error) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
