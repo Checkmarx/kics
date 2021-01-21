@@ -55,5 +55,9 @@ func TestCITracker(t *testing.T) {
 			c.TrackFileParse()
 			require.Equal(t, 1, c.ParsedFiles)
 		})
+		t.Run(fmt.Sprintf(tt.name+"_FailedDetectLine"), func(t *testing.T) {
+			c.FailedDetectLine()
+			require.Equal(t, 0, c.ExecutedQueries)
+		})
 	}
 }
