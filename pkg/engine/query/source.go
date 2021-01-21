@@ -26,15 +26,14 @@ const (
 	librariesBasePath = "./assets/libraries/"
 )
 
-var (
-	currentWorkdir, _ = os.Getwd()
-	libraryPath       = filepath.Join(currentWorkdir, librariesBasePath)
-)
-
 func getPathToLibrary(platform string) string {
+	var (
+		currentWorkdir, _ = os.Getwd()
+		libraryPath       = filepath.Join(currentWorkdir, librariesBasePath)
+	)
 	if strings.Contains(platform, "ansible") {
 		return filepath.FromSlash(libraryPath + "/ansible/" + libraryFileName)
-	} else if strings.Contains(platform, "cloudformation") {
+	} else if strings.Contains(platform, "cloudFormation") {
 		return filepath.FromSlash(libraryPath + "/cloudformation/" + libraryFileName)
 	} else if strings.Contains(platform, "dockerfile") {
 		return filepath.FromSlash(libraryPath + "/dockerfile/" + libraryFileName)
