@@ -12,12 +12,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func captureCommandOutput(cmd *cobra.Command) (string, error) {
+func captureOutput(funcToExec execute) (string, error) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 
-	err := cmd.Execute()
+	err := funcToExec()
 
 	outC := make(chan string)
 
@@ -34,11 +34,19 @@ func captureCommandOutput(cmd *cobra.Command) (string, error) {
 	return out, err
 }
 
+func captureCommandOutput(cmd *cobra.Command, args []string) (string, error) {
+	if len(args) > 0 {
+		cmd.SetArgs(args)
+	}
+
+	return captureOutput(cmd.Execute)
+}
+
 func TestGenerateIDCommand(t *testing.T) {
 	t.Run("Tests if generates a valid uuid", func(t *testing.T) {
 		validUUID := regexp.MustCompile(`(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`)
 
-		out, err := captureCommandOutput(generateIDCmd)
+		out, err := captureCommandOutput(generateIDCmd, nil)
 
 		require.NoError(t, err)
 		require.True(t, validUUID.MatchString(strings.TrimSpace(out)))
