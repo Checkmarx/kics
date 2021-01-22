@@ -5,10 +5,12 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 )
 
+// Parser represents a list of code tokens
 type Parser struct {
 	tokens hclsyntax.Tokens
 }
 
+// NewParser parser the content of a file and return a parser with its tokens
 func NewParser(src []byte, filename string) (*Parser, error) {
 	tokens, diags := hclsyntax.LexConfig(src, filename, hcl.Pos{Line: 0, Column: 0})
 	if diags != nil && diags.HasErrors() {
@@ -20,6 +22,7 @@ func NewParser(src []byte, filename string) (*Parser, error) {
 	}, nil
 }
 
+// ParseCommentsForNode returns a comment in the range given in rg, if exists
 func (p *Parser) ParseCommentsForNode(rg hcl.Range) (startComment, leadComment Comment) {
 	start, end := p.rangePosition(rg)
 	startLeadComment := p.leadCommentStarts(start)
@@ -84,19 +87,23 @@ func (p *Parser) lineCommentEnds(after int) int {
 	return len(p.tokens)
 }
 
+// Comment - struct with comment value and its position on file
 type Comment struct {
 	pos   hcl.Pos
 	value string
 }
 
+// IsEmpty returns true if comment is empty, otherwise returns false
 func (c Comment) IsEmpty() bool {
 	return c.value == ""
 }
 
+// Value returns comment value
 func (c Comment) Value() string {
 	return c.value
 }
 
+// Line returns the line comment starts
 func (c Comment) Line() int {
 	return c.pos.Line + 1
 }
