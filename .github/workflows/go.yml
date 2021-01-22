@@ -112,6 +112,11 @@ jobs:
       uses: sergeysova/jq-action@v2
       with:
         cmd: jq '.queries_total' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
+    - name: Assert total_results > 0 in results.json
+      id: assert_total_results
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq '.total_results' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
     - name: Assert files_scanned > 0 in results.json
       id: assert_files_scanned
       uses: sergeysova/jq-action@v2

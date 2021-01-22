@@ -30,6 +30,7 @@ type Counters struct {
 	ParsedFiles            int `json:"files_parsed"`
 	FailedToScanFiles      int `json:"files_failed_to_scan"`
 	TotalQueries           int `json:"queries_total"`
+	TotalResults           int `json:"total_results"`
 	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
 	FailedSimilarityID     int `json:"queries_failed_to_compute_similarity_id"`
 }

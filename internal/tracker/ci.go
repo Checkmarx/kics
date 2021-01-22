@@ -6,6 +6,7 @@ type CITracker struct {
 	FoundFiles         int
 	ParsedFiles        int
 	FailedSimilarityID int
+	TotalResults       int
 }
 
 func (c *CITracker) TrackQueryLoad() {
@@ -22,6 +23,11 @@ func (c *CITracker) TrackFileFound() {
 
 func (c *CITracker) TrackFileParse() {
 	c.ParsedFiles++
+}
+
+// TrackTotalResults - increment total results found
+func (c *CITracker) TrackTotalResults() {
+	c.TotalResults++
 }
 
 // FailedDetectLine - queries that fail to detect line are counted as failed to execute queries
