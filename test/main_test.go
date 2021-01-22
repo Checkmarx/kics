@@ -125,19 +125,19 @@ func getCombinedParser() *parser.Parser {
 		Build()
 }
 
-func getQueryContent(queryDir string) string {
+func getQueryContent(queryDir string) (string, error) {
 	fullQueryPath := filepath.Join(queryDir, query.QueryFileName)
-	return string(getFileContent(fullQueryPath))
+	content, err := getFileContent(fullQueryPath)
+	return string(content), err
 }
 
-func getSampleContent(params *testCaseParamsType) []byte {
+func getSampleContent(params *testCaseParamsType) ([]byte, error) {
 	samplePath := checkSampleExistsAndGetPath(params)
 	return getFileContent(samplePath)
 }
 
-func getFileContent(filePath string) []byte {
-	content, _ := ioutil.ReadFile(filePath)
-	return content
+func getFileContent(filePath string) ([]byte, error) {
+	return ioutil.ReadFile(filePath)
 }
 
 func getSamplePath(params *testCaseParamsType) string {
