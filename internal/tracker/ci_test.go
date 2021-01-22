@@ -9,10 +9,11 @@ import (
 
 func TestCITracker(t *testing.T) {
 	type fields struct {
-		LoadedQueries   int
-		ExecutedQueries int
-		FoundFiles      int
-		ParsedFiles     int
+		LoadedQueries      int
+		ExecutedQueries    int
+		FoundFiles         int
+		ParsedFiles        int
+		FailedSimilarityID int
 	}
 	tests := []struct {
 		name   string
@@ -21,20 +22,22 @@ func TestCITracker(t *testing.T) {
 		{
 			name: "testing_case_1",
 			fields: fields{
-				LoadedQueries:   0,
-				ExecutedQueries: 0,
-				FoundFiles:      0,
-				ParsedFiles:     0,
+				LoadedQueries:      0,
+				ExecutedQueries:    0,
+				FoundFiles:         0,
+				ParsedFiles:        0,
+				FailedSimilarityID: 0,
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		c := &CITracker{
-			LoadedQueries:   tt.fields.LoadedQueries,
-			ExecutedQueries: tt.fields.ExecutedQueries,
-			FoundFiles:      tt.fields.FoundFiles,
-			ParsedFiles:     tt.fields.ParsedFiles,
+			LoadedQueries:      tt.fields.LoadedQueries,
+			ExecutedQueries:    tt.fields.ExecutedQueries,
+			FoundFiles:         tt.fields.FoundFiles,
+			ParsedFiles:        tt.fields.ParsedFiles,
+			FailedSimilarityID: tt.fields.FailedSimilarityID,
 		}
 		t.Run(fmt.Sprintf(tt.name+"_LoadedQueries"), func(t *testing.T) {
 			c.TrackQueryLoad()
@@ -58,6 +61,10 @@ func TestCITracker(t *testing.T) {
 		t.Run(fmt.Sprintf(tt.name+"_FailedDetectLine"), func(t *testing.T) {
 			c.FailedDetectLine()
 			require.Equal(t, 0, c.ExecutedQueries)
+		})
+		t.Run(fmt.Sprintf(tt.name+"_FailedComputeSimilarityID"), func(t *testing.T) {
+			c.FailedComputeSimilarityID()
+			require.Equal(t, 1, c.FailedSimilarityID)
 		})
 	}
 }
