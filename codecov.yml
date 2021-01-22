@@ -20,4 +20,4 @@ ignore:
   - "**/mock/*.go"
   - "**/*_easyjson.go"
   - "cmd/"
-  - "internal/console/kicks.go"
+  - "internal/console/kics.go"
