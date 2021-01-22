@@ -48,8 +48,8 @@ func TestQueriesContent(t *testing.T) {
 }
 
 func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
-	require.FileExists(t, path.Join(entry.dir, queryFileName))
-	require.FileExists(t, path.Join(entry.dir, metadataFileName))
+	require.FileExists(t, path.Join(entry.dir, query.QueryFileName))
+	require.FileExists(t, path.Join(entry.dir, query.MetadataFileName))
 	require.FileExists(t, entry.PositiveFile())
 	require.FileExists(t, entry.NegativeFile())
 	require.FileExists(t, entry.ExpectedPositiveResultFile())
@@ -71,14 +71,14 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	queriesSource.EXPECT().GetGenericQuery("commonQuery").
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform("commonQuery")
+			q, err := readLibrary("commonQuery")
 			require.NoError(t, err)
 			return q, nil
 		})
 
 	queriesSource.EXPECT().GetGenericQuery(entry.platform).
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform(entry.platform)
+			q, err := readLibrary(entry.platform)
 			require.NoError(t, err)
 			return q, nil
 		})

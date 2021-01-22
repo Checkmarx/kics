@@ -20,35 +20,44 @@ type FilesystemSource struct {
 }
 
 const (
-	queryFileName     = "query.rego"
-	libraryFileName   = "library.rego"
-	metadataFileName  = "metadata.json"
-	librariesBasePath = "./assets/libraries/"
+	// QueryFileName The default query file name
+	QueryFileName = "query.rego"
+	// MetadataFileName The default metadata file name
+	MetadataFileName = "metadata.json"
+	// LibraryFileName The default library file name
+	LibraryFileName = "library.rego"
+	// LibrariesBasePath the path to rego libraries
+	LibrariesBasePath = "./assets/libraries/"
 )
 
-func getPathToLibrary(platform string) string {
-	var (
-		currentWorkdir, _ = os.Getwd()
-		libraryPath       = filepath.Join(currentWorkdir, librariesBasePath)
-	)
+// GetPathToLibrary returns the libraries path for a given platform
+func GetPathToLibrary(platform, relativeBasePath string) string {
+	libraryPath := filepath.Join(relativeBasePath, LibrariesBasePath)
+
 	if strings.Contains(platform, "ansible") {
-		return filepath.FromSlash(libraryPath + "/ansible/" + libraryFileName)
-	} else if strings.Contains(platform, "cloudFormation") {
-		return filepath.FromSlash(libraryPath + "/cloudformation/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
+	} else if strings.Contains(platform, "cloudformation") {
+		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
 	} else if strings.Contains(platform, "dockerfile") {
-		return filepath.FromSlash(libraryPath + "/dockerfile/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
 	} else if strings.Contains(platform, "k8s") {
-		return filepath.FromSlash(libraryPath + "/k8s/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
 	} else if strings.Contains(platform, "terraform") {
-		return filepath.FromSlash(libraryPath + "/terraform/" + libraryFileName)
+		return filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
 	}
 
-	return filepath.FromSlash(libraryPath + "/common/" + libraryFileName)
+	return filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 }
 
 // GetGenericQuery returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
-	pathToLib := getPathToLibrary(platform)
+	currentWorkdir, err := os.Getwd()
+
+	if err != nil {
+		log.Err(err)
+	}
+
+	pathToLib := GetPathToLibrary(platform, currentWorkdir)
 	content, err := ioutil.ReadFile(pathToLib)
 
 	if err != nil {
@@ -68,7 +77,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 				return err
 			}
 
-			if f.IsDir() || f.Name() != queryFileName {
+			if f.IsDir() || f.Name() != QueryFileName {
 				return nil
 			}
 
@@ -99,12 +108,12 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
-	queryContent, err := ioutil.ReadFile(path.Join(queryDir, queryFileName))
+	queryContent, err := ioutil.ReadFile(path.Join(queryDir, QueryFileName))
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
 
-	metadata := readMetadata(queryDir)
+	metadata := ReadMetadata(queryDir)
 	platform := getPlatform(queryDir)
 
 	return model.QueryMetadata{
@@ -115,8 +124,9 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}, nil
 }
 
-func readMetadata(queryDir string) map[string]interface{} {
-	f, err := os.Open(path.Join(queryDir, metadataFileName))
+// ReadMetadata read query's metadata file inside the query directory
+func ReadMetadata(queryDir string) map[string]interface{} {
+	f, err := os.Open(path.Join(queryDir, MetadataFileName))
 	if err != nil {
 		sentry.CaptureException(err)
 		if os.IsNotExist(err) {
