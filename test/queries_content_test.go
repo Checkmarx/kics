@@ -83,10 +83,12 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return q, nil
 		})
 
+	trk := &tracker.CITracker{}
+
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx engine.QueryContext, v interface{}) (model.Vulnerability, error) {
+		func(ctx engine.QueryContext, trk engine.Tracker, v interface{}) (model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
@@ -101,7 +103,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 			return model.Vulnerability{}, nil
 		},
-		&tracker.CITracker{},
+		trk,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
