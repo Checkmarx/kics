@@ -56,12 +56,14 @@ jobs:
       run: |
         go mod vendor
         mkdir -p test-results
-        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code > test-results/report.xml
+        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version "$(go version)" -package-name "github.com/Checkmarx/kics/test" > test-results/report.xml
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1.6
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        check_run_annotations: all tests, skipped tests
+        check_run_annotations_branch: "*"
         files: test-results/**/*.xml
     - name: CodeCov
       run: |
