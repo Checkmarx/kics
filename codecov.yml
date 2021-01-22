@@ -21,3 +21,4 @@ ignore:
   - "**/*_easyjson.go"
   - "cmd/"
   - "internal/console/kics.go"
+  - "internal/console/scan.go"
