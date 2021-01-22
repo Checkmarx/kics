@@ -90,6 +90,20 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 			return []model.QueryMetadata{q}, nil
 		})
 
+	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+		DoAndReturn(func(string) (string, error) {
+			q, err := readLibrary("commonQuery")
+			require.NoError(tb, err)
+			return q, nil
+		})
+
+	queriesSource.EXPECT().GetGenericQuery(entry.platform).
+		DoAndReturn(func(string) (string, error) {
+			q, err := readLibrary(entry.platform)
+			require.NoError(tb, err)
+			return q, nil
+		})
+
 	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)

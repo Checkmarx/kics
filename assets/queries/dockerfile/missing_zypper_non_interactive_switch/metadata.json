@@ -1,6 +1,6 @@
 {
   "id": "45e1fca5-f90e-465d-825f-c2cb63fa3944",
-  "queryName": "Missing zypper Non-interactive Switch",
+  "queryName": "Missing Zypper Non-interactive Switch",
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "Omitting the non-interactive switch causes the command to fail during the build process, because zypper would expect manual input",

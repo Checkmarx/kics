@@ -6,9 +6,10 @@ package mock
 
 import (
 	context "context"
+	reflect "reflect"
+
 	model "github.com/Checkmarx/kics/pkg/model"
 	gomock "github.com/golang/mock/gomock"
-	reflect "reflect"
 )
 
 // MockQueriesSource is a mock of QueriesSource interface
@@ -47,6 +48,21 @@ func (m *MockQueriesSource) GetQueries() ([]model.QueryMetadata, error) {
 func (mr *MockQueriesSourceMockRecorder) GetQueries() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries))
+}
+
+// GetQueries mocks base method
+func (m *MockQueriesSource) GetGenericQuery(platform string) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetGenericQuery", platform)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetQueries indicates an expected call of GetQueries
+func (mr *MockQueriesSourceMockRecorder) GetGenericQuery(platform string) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGenericQuery", reflect.TypeOf((*MockQueriesSource)(nil).GetGenericQuery), platform)
 }
 
 // MockFilesStorage is a mock of FilesStorage interface

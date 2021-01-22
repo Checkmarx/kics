@@ -53,11 +53,13 @@ type QueryMetadata struct {
 	Query    string
 	Content  string
 	Metadata map[string]interface{}
+	Platform string
 }
 
 type Vulnerability struct {
 	ID               int       `json:"id"`
 	ScanID           string    `db:"scan_id" json:"-"`
+	SimilarityID     string    `db:"similarity_id" json:"similarityID"`
 	FileID           string    `db:"file_id" json:"-"`
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
@@ -66,10 +68,17 @@ type Vulnerability struct {
 	Line             int       `json:"line"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`
 	SearchKey        string    `db:"search_key" json:"searchKey"`
+	SearchValue      string    `db:"search_value" json:"searchValue"`
 	KeyExpectedValue string    `db:"key_expected_value" json:"expectedValue"`
 	KeyActualValue   string    `db:"key_actual_value" json:"actualValue"`
 	Value            *string   `db:"value" json:"value"`
 	Output           string    `json:"-"`
+}
+
+// QueryConfig is a struct that contains the fileKind and platform of the rego query
+type QueryConfig struct {
+	FileKind FileKind
+	Platform string
 }
 
 type Extensions map[string]struct{}

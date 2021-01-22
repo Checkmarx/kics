@@ -1,8 +1,0 @@
-{
-  "id": "2a3560fe-52ca-4443-b34f-bf0ed5eb74c8",
-  "queryName": "Cloud Trail Log File Validation Disabled",
-  "severity": "LOW",
-  "category": "Logging",
-  "descriptionText": "CloudTrail log file validation should be enabled",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-enablelogfilevalidation"
-}

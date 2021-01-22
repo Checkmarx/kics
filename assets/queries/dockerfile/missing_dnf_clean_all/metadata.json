@@ -1,6 +1,6 @@
 {
   "id": "295acb63-9246-4b21-b441-7c1f1fb62dc0",
-  "queryName": "Missing dnf clean all",
+  "queryName": "Missing Dnf Clean All",
   "severity": "MEDIUM",
   "category": "Package Management",
   "descriptionText": "Cached package data should be cleaned after installation to reduce image size",

@@ -134,6 +134,7 @@ CxPolicy [ result ] {
   result := {
     "documentId": input.document[i].id,
     "searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup["name"]]),
+    "searchValue": sprintf("%s,%d", [protocol, portNumber]),
     "issueType": "IncorrectValue",
     "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance["name"]]),
     "keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance["name"]])

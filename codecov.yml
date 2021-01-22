@@ -11,3 +11,10 @@ coverage:
         # Allow the coverage to drop by X%, and posting a success status.
         threshold: 5%
     patch: off
+
+ignore:
+  - "test/"
+  - "test/*"
+  - "*/**/*_test.go"
+  - "**/*_test.go"
+  - "**/mock/*.go"
