@@ -2,10 +2,16 @@ package engine
 
 import (
 	"context"
+	"fmt"
+	"os"
 	"reflect"
+	"strings"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine/query"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -234,4 +240,111 @@ func TestInspect(t *testing.T) { //nolint
 			}
 		})
 	}
+}
+
+func TestNewInspector(t *testing.T) { // nolint
+	changeCurrentDir(t)
+	track := &tracker.CITracker{}
+	sources := &query.FilesystemSource{
+		Source: "./test/fixtures/all_auth_users_get_read_access",
+	}
+	vbs := DefaultVulnerabilityBuilder
+	opaQueries := make([]*preparedQuery, 0, 1)
+	opaQueries = append(opaQueries, &preparedQuery{
+		opaQuery: rego.PreparedEvalQuery{},
+		metadata: model.QueryMetadata{
+			Query: "all_auth_users_get_read_access",
+			Content: `package Cx
+
+CxPolicy [ result ] {
+    resource := input.document[i].resource.aws_s3_bucket[name]
+    role = "authenticated-read"
+    resource.acl == role
+
+    result := {
+                "documentId": 		input.document[i].id,
+                "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
+                "issueType":		   "IncorrectValue",
+                "keyExpectedValue": sprintf("aws_s3_bucket[%s].acl is private", [name]),
+                "keyActualValue": 	sprintf("aws_s3_bucket[%s].acl is %s", [name, role])
+            }
+}
+`,
+			Platform: "unknown",
+			Metadata: map[string]interface{}{
+				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+				"queryName":       "All Auth Users Get Read Access",
+				"severity":        "HIGH",
+				"category":        "Identity and Access Management",
+				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
+				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+			},
+		},
+	})
+
+	type args struct {
+		ctx     context.Context
+		source  QueriesSource
+		vb      VulnerabilityBuilder
+		tracker Tracker
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    *Inspector
+		wantErr bool
+	}{
+		{
+			name: "test_new_inspector",
+			args: args{
+				ctx:     context.Background(),
+				vb:      vbs,
+				tracker: track,
+				source:  sources,
+			},
+			want: &Inspector{
+				vb:      vbs,
+				tracker: track,
+				queries: opaQueries,
+			},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("NewInspector() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got.queries[0].metadata, tt.want.queries[0].metadata) {
+				t.Errorf("NewInspector() metadata = %v, want %v", got.queries[0].metadata, tt.want.queries[0].metadata)
+			}
+			if !reflect.DeepEqual(got.tracker, tt.want.tracker) {
+				t.Errorf("NewInspector() tracker = %v, want %v", got.tracker, tt.want.tracker)
+			}
+			require.NotNil(t, got.vb)
+		})
+	}
+}
+
+func changeCurrentDir(t *testing.T) {
+	for currentDir, err := os.Getwd(); getCurrentDirName(currentDir) != "kics"; currentDir, err = os.Getwd() {
+		if err == nil {
+			if err := os.Chdir(".."); err != nil {
+				fmt.Printf("change path error = %v", err)
+				t.Fatal()
+			}
+		} else {
+			t.Fatal()
+		}
+	}
+}
+
+func getCurrentDirName(path string) string {
+	dirs := strings.Split(path, string(os.PathSeparator))
+	if dirs[len(dirs)-1] == "" && len(dirs) > 1 {
+		return dirs[len(dirs)-2]
+	}
+	return dirs[len(dirs)-1]
 }
