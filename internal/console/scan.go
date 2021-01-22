@@ -122,6 +122,7 @@ func scan() error {
 		ParsedFiles:            t.ParsedFiles,
 		TotalQueries:           t.LoadedQueries,
 		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
+		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
 	summary := model.CreateSummary(counters, result, scanID)
