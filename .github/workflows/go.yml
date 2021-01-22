@@ -80,6 +80,22 @@ jobs:
           echo "Your code coverage test passed! Coverage precentage is: $CODE_COV"
           exit 0
         fi
+  security-tests:
+    name: security-tests
+    runs-on: ubuntu-latest
+    env:
+      GO111MODULE: on
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      - name: Run Gosec Security Scanner
+        uses: securego/gosec@master
+        with:
+          args: '-no-fail -fmt sarif -out results.sarif ./...'
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
   integration-tests:
     name: integration-tests
     strategy:
