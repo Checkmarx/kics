@@ -1,9 +1,9 @@
 package model
 
 type SeveritySummary struct {
-	ScanID           string           `json:"scanId"`
-	SeverityCounters map[Severity]int `json:"severityCounters"`
-	TotalCounter     int              `json:"totalCounter"`
+	ScanID           string           `json:"scan_id"`
+	SeverityCounters map[Severity]int `json:"severity_counters"`
+	TotalCounter     int              `json:"total_counter"`
 }
 
 type VulnerableFile struct {
@@ -30,7 +30,6 @@ type Counters struct {
 	ParsedFiles            int `json:"files_parsed"`
 	FailedToScanFiles      int `json:"files_failed_to_scan"`
 	TotalQueries           int `json:"queries_total"`
-	TotalResults           int `json:"total_results"`
 	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
 	FailedSimilarityID     int `json:"queries_failed_to_compute_similarity_id"`
 }

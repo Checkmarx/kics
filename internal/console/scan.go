@@ -121,7 +121,6 @@ func scan() error {
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
 		TotalQueries:           t.LoadedQueries,
-		TotalResults:           t.TotalResults,
 		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}

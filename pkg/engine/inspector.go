@@ -39,7 +39,6 @@ type QueriesSource interface {
 type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
-	TrackTotalResults()
 	FailedDetectLine()
 	FailedComputeSimilarityID()
 }
@@ -256,7 +255,6 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 		}
 
 		vulnerabilities = append(vulnerabilities, vulnerability)
-		c.tracker.TrackTotalResults()
 	}
 
 	if failedDetectLine {
