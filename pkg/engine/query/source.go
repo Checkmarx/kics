@@ -36,7 +36,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 
 	if strings.Contains(platform, "ansible") {
 		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
-	} else if strings.Contains(platform, "cloudformation") {
+	} else if strings.Contains(platform, "cloudFormation") {
 		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
 	} else if strings.Contains(platform, "dockerfile") {
 		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)

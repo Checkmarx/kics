@@ -194,6 +194,7 @@ func TestInspect(t *testing.T) {
 			want: []model.Vulnerability{
 				{
 					ID:               0,
+					SimilarityID:     "b84570a546f2064d483b5916d3bf3c6949c8cfc227a8c61fce22220b2f5d77bd",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
