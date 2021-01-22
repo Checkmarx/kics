@@ -11,6 +11,7 @@ import (
 	"github.com/pkg/errors"
 )
 
+// RetriesDefaultValue is default number of times a parser will retry to execute
 const RetriesDefaultValue = 50
 
 // Converter returns content json, error line, error

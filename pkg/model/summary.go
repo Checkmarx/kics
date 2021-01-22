@@ -1,11 +1,13 @@
 package model
 
+// SeveritySummary contains scan's result numbers, how many vulnerabities of each severity was detected
 type SeveritySummary struct {
 	ScanID           string           `json:"scanId"`
 	SeverityCounters map[Severity]int `json:"severityCounters"`
 	TotalCounter     int              `json:"totalCounter"`
 }
 
+// VulnerableFile contains information of a vulnerable file and where the vulnerability was found
 type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
 	SimilarityID     string    `json:"similarity_id"`
@@ -18,6 +20,7 @@ type VulnerableFile struct {
 	Value            *string   `json:"value"`
 }
 
+// VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
 type VulnerableQuery struct {
 	QueryName string           `json:"query_name"`
 	QueryID   string           `json:"query_id"`
@@ -25,6 +28,8 @@ type VulnerableQuery struct {
 	Files     []VulnerableFile `json:"files"`
 }
 
+// Counters refere how many files was scanned, parsed, failed to be scaned, the total of queries
+// and how many queries failed to execute
 type Counters struct {
 	ScannedFiles           int `json:"files_scanned"`
 	ParsedFiles            int `json:"files_parsed"`
@@ -33,12 +38,14 @@ type Counters struct {
 	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
 }
 
+// Summary is a report of a single scan
 type Summary struct {
 	Counters
 	Queries []VulnerableQuery `json:"queries"`
 	SeveritySummary
 }
 
+// CreateSummary creates a report for a single scan, based on its scanID
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string) Summary {
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
 	severitySummary := SeveritySummary{
