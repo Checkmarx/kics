@@ -33,7 +33,7 @@ var ErrNoResult = errors.New("query: not result")
 var ErrInvalidResult = errors.New("query: invalid result format")
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
-type VulnerabilityBuilder func(ctx QueryContext, v interface{}) (model.Vulnerability, error)
+type VulnerabilityBuilder func(ctx QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
 // QueriesSource wraps an interface that contain basic methods: GetQueries and GetGenericQuery
 // GetQueries gets all queries from a QueryMetadata list
@@ -51,6 +51,7 @@ type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
 	FailedDetectLine()
+	FailedComputeSimilarityID()
 }
 
 type preparedQuery struct {
@@ -259,7 +260,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
-		vulnerability, err := c.vb(ctx, queryResultItem)
+		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).

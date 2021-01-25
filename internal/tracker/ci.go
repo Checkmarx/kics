@@ -3,10 +3,11 @@ package tracker
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
 type CITracker struct {
-	LoadedQueries   int
-	ExecutedQueries int
-	FoundFiles      int
-	ParsedFiles     int
+	LoadedQueries      int
+	ExecutedQueries    int
+	FoundFiles         int
+	ParsedFiles        int
+	FailedSimilarityID int
 }
 
 // TrackQueryLoad adds a loaded query
@@ -32,4 +33,9 @@ func (c *CITracker) TrackFileParse() {
 // FailedDetectLine - queries that fail to detect line are counted as failed to execute queries
 func (c *CITracker) FailedDetectLine() {
 	c.ExecutedQueries--
+}
+
+// FailedComputeSimilarityID - queries that failed to compute similarity ID
+func (c *CITracker) FailedComputeSimilarityID() {
+	c.FailedSimilarityID++
 }
