@@ -12,12 +12,7 @@ import (
 )
 
 func TestParser_Parse(t *testing.T) {
-	p := NewBuilder().
-		Add(&jsonParser.Parser{}).
-		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
-		Build()
+	p := initilizeBuilder()
 
 	docs, kind, err := p.Parse("test.json", []byte(`
 {
@@ -63,12 +58,7 @@ func TestParser_Empty(t *testing.T) {
 }
 
 func TestParser_SupportedExtensions(t *testing.T) {
-	p := NewBuilder().
-		Add(&jsonParser.Parser{}).
-		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
-		Build()
+	p := initilizeBuilder()
 
 	extensions := p.SupportedExtensions()
 	require.NotNil(t, extensions)
@@ -77,4 +67,13 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, ".yaml")
 	require.Contains(t, extensions, ".dockerfile")
 	require.Contains(t, extensions, "Dockerfile")
+}
+
+func initilizeBuilder() *Parser {
+	return NewBuilder().
+		Add(&jsonParser.Parser{}).
+		Add(&yamlParser.Parser{}).
+		Add(terraformParser.NewDefault()).
+		Add(&dockerParser.Parser{}).
+		Build()
 }
