@@ -8,7 +8,7 @@
 
 <img alt="Checkmarx" src="../img/logo-cx-horizontal.png" width="200">
 
-Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com) or join the chat [on Gitter](https://gitter.im/kics-io/community).
+Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com) or join the chat [on Gitter](https://gitter.im/kics-io/community). 
 
 ---
 
