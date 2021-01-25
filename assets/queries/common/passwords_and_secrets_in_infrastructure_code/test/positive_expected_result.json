@@ -1,0 +1,32 @@
+[
+	{
+		"queryName": "Passwords And Secrets In Infrastructure Code",
+		"severity": "HIGH",
+		"line": 9
+  },
+  {
+		"queryName": "Passwords And Secrets In Infrastructure Code",
+		"severity": "HIGH",
+		"line": 29
+  },
+  {
+		"queryName": "Passwords And Secrets In Infrastructure Code",
+		"severity": "HIGH",
+		"line": 48
+  },
+  {
+		"queryName": "Passwords And Secrets In Infrastructure Code",
+		"severity": "HIGH",
+		"line": 69
+  },
+  {
+		"queryName": "Passwords And Secrets In Infrastructure Code",
+		"severity": "HIGH",
+		"line": 88
+	},
+  {
+		"queryName": "Passwords And Secrets In Infrastructure Code",
+		"severity": "HIGH",
+		"line": 118
+	}
+]
