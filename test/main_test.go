@@ -3,6 +3,7 @@ package test
 import (
 	"fmt"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"path"
 	"path/filepath"
@@ -182,4 +183,14 @@ func readLibrary(platform string) (string, error) {
 	}
 
 	return string(content), err
+}
+
+func isValidURL(toTest string) bool {
+	_, err := url.ParseRequestURI(toTest)
+	if err != nil {
+		return false
+	}
+
+	u, err := url.Parse(toTest)
+	return err == nil && u.Scheme != "" && u.Host != ""
 }
