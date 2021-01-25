@@ -25,7 +25,7 @@ type Block struct {
 	List []string
 }
 
-// RegoRule contains a block to be scanned and a rule to be aplied
+// RegoRule contains a block to be scanned and a rule to be applied
 type RegoRule struct {
 	Block Block
 	build.Rule

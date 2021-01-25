@@ -42,7 +42,7 @@ type Tracker interface {
 	TrackFileParse()
 }
 
-// Service is a struct that contais a SourceProvider to receive sources, a storage to save and retrieve scanning informations
+// Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
 // a parser to parse and provide files in format that KICS understand, a inspector that runs the scanning and a tracker to
 // update scanning numbers
 type Service struct {
