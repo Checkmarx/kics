@@ -1,80 +1,72 @@
 package Cx
 
+CxPolicy[result] {
+	document := input.document[i]
+	resource := document.Resources[key]
+	resource.Type == "AWS::DMS::Endpoint"
 
-CxPolicy [result ]  { 
+	properties := resource.Properties
+	paramName := properties.MongoDbSettings.Password
+	defaultToken := document.Parameters[paramName].Default
 
-  document := input.document[i]
-  resource := document.Resources[key]
-  resource.Type == "AWS::DMS::Endpoint"
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
+	not hasSecretManager(defaultToken, document.Resources)
 
-  properties := resource.Properties
-  paramName  := properties.MongoDbSettings.Password
-  defaultToken := document.Parameters[paramName].Default
-
-   regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`,defaultToken)
-   not hasSecretManager(defaultToken, document.Resources)
-
-  result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Parameters.%s.Default", [paramName]),
-                "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("Parameters.%s.Default is defined",[paramName]),
-                "keyActualValue": 	sprintf("Parameters.%s.Default shouldn't be defined",[paramName])
-              }
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Parameters.%s.Default", [paramName]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Parameters.%s.Default is defined", [paramName]),
+		"keyActualValue": sprintf("Parameters.%s.Default shouldn't be defined", [paramName]),
+	}
 }
 
+CxPolicy[result] {
+	document := input.document[i]
+	resource := document.Resources[key]
+	resource.Type == "AWS::DMS::Endpoint"
 
+	properties := resource.Properties
+	paramName := properties.MongoDbSettings.Password
+	object.get(document, "Parameters", "undefined") == "undefined"
 
-CxPolicy [result]  { 
+	defaultToken := paramName
 
-  document := input.document[i]
-  resource := document.Resources[key]
-  resource.Type == "AWS::DMS::Endpoint"
-
-  properties := resource.Properties
-  paramName  := properties.MongoDbSettings.Password
-  object.get(document, "Parameters", "undefined") == "undefined" 
-
-  defaultToken := paramName
-
-  regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`,defaultToken)
-  not hasSecretManager(defaultToken, document.Resources)
-  result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.MongoDbSettings.Password", [key]),
-                "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("Resources.%s.Properties.MongoDbSettings.Password must not be in plain text string",[key]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced",[key])
-              }
-
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
+	not hasSecretManager(defaultToken, document.Resources)
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.MongoDbSettings.Password", [key]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MongoDbSettings.Password must not be in plain text string", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced", [key]),
+	}
 }
-CxPolicy [result]  { 
 
-  document := input.document[i]
-  resource := document.Resources[key]
-  resource.Type == "AWS::DMS::Endpoint"
+CxPolicy[result] {
+	document := input.document[i]
+	resource := document.Resources[key]
+	resource.Type == "AWS::DMS::Endpoint"
 
-  properties := resource.Properties
-  paramName  := properties.MongoDbSettings.Password
-  object.get(document, "Parameters" , "undefined") != "undefined"
-  object.get(document.Parameters, paramName , "undefined") == "undefined"
+	properties := resource.Properties
+	paramName := properties.MongoDbSettings.Password
+	object.get(document, "Parameters", "undefined") != "undefined"
+	object.get(document.Parameters, paramName, "undefined") == "undefined"
 
-  defaultToken := paramName
+	defaultToken := paramName
 
-  regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`,defaultToken)
-  not hasSecretManager(defaultToken, document.Resources)
-  result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.MongoDbSettings.Password", [key]),
-                "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("Resources.%s.Properties.MongoDbSettings.Password must not be in plain text string",[key]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced",[key])
-              }
-
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
+	not hasSecretManager(defaultToken, document.Resources)
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.MongoDbSettings.Password", [key]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MongoDbSettings.Password must not be in plain text string", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced", [key]),
+	}
 }
 
 hasSecretManager(str, document) {
-	selectedSecret :=  strings.replace_n({"${":"","}":""}, regex.find_n(`\${\w+}`,str,1)[0])
-  document[selectedSecret].Type == "AWS::SecretsManager::Secret"
+	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])
+	document[selectedSecret].Type == "AWS::SecretsManager::Secret"
 }
-
