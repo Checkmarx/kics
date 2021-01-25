@@ -10,18 +10,15 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/engine/query"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
-)
-
-const (
-	queryFileName    = "query.rego"
-	metadataFileName = "metadata.json"
 )
 
 var (
@@ -95,13 +92,11 @@ func loadQueries(tb testing.TB) []queryEntry {
 func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
 	content, err := ioutil.ReadFile(filePath)
 	require.NoError(t, err)
+	return getScannableFileMetadatas(t, filePath, content)
+}
 
-	combinedParser := parser.NewBuilder().
-		Add(&jsonParser.Parser{}).
-		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
-		Build()
+func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) model.FileMetadatas {
+	combinedParser := getCombinedParser()
 
 	documents, kind, err := combinedParser.Parse(filePath, content)
 	require.NoError(t, err)
@@ -119,4 +114,72 @@ func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
 	}
 
 	return files
+}
+
+func getCombinedParser() *parser.Parser {
+	return parser.NewBuilder().
+		Add(&jsonParser.Parser{}).
+		Add(&yamlParser.Parser{}).
+		Add(terraformParser.NewDefault()).
+		Add(&dockerParser.Parser{}).
+		Build()
+}
+
+func getQueryContent(queryDir string) (string, error) {
+	fullQueryPath := filepath.Join(queryDir, query.QueryFileName)
+	content, err := getFileContent(fullQueryPath)
+	return string(content), err
+}
+
+func getSampleContent(params *testCaseParamsType) ([]byte, error) {
+	samplePath := checkSampleExistsAndGetPath(params)
+	return getFileContent(samplePath)
+}
+
+func getFileContent(filePath string) ([]byte, error) {
+	return ioutil.ReadFile(filePath)
+}
+
+func getSamplePath(params *testCaseParamsType) string {
+	var samplePath string
+	if params.samplePath != "" {
+		samplePath = params.samplePath
+	} else {
+		samplePath = checkSampleExistsAndGetPath(params)
+	}
+	return samplePath
+}
+
+func checkSampleExistsAndGetPath(params *testCaseParamsType) string {
+	var samplePath string
+	extensions := fileExtension[params.platform]
+	for _, v := range extensions {
+		joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
+		_, err := os.Stat(joinedPath)
+		if err == nil {
+			samplePath = joinedPath
+			break
+		}
+	}
+	return samplePath
+}
+
+func sliceContains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+	return false
+}
+
+func readLibrary(platform string) (string, error) {
+	pathToLib := query.GetPathToLibrary(platform, "../")
+	content, err := ioutil.ReadFile(pathToLib)
+
+	if err != nil {
+		log.Err(err)
+	}
+
+	return string(content), err
 }

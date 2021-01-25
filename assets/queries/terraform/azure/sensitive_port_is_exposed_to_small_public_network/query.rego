@@ -126,8 +126,8 @@ CxPolicy [ result ] {
                     [27017, "Mongo"],
                     [27018, "Mongo Web Portal"],
                     [61621, "Cassandra OpsCenter"]
-                    ]						
-    
+                    ]
+
     field = getFieldName("Network Ports Security")		# Category/service used
 
 #############	document and resource
@@ -145,11 +145,12 @@ CxPolicy [ result ] {
     isSmallPublicNetwork(resource)
     containsDestinationPort(portNumber, resource)
     isTCPorUDP(protocol)
-    
+
 #############	Result
     result := {
                 "documentId":       input.document[i].id,
                 "searchKey":        sprintf("%s[%s].destination_port_range", [field, var0]),
+                "searchValue":      sprintf("%s,%d", [protocol, portNumber]),
                 "issueType":        "IncorrectValue",
                 "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
                 "keyActualValue":   sprintf("%s (%s:%d) is allowed in %s[%s]", [portName, protocol, portNumber, field, var0])

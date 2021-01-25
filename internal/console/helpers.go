@@ -18,8 +18,9 @@ func printResult(summary *model.Summary) error {
 	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
 	for _, q := range summary.Queries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
-		for _, f := range q.Files {
-			fmt.Printf("\t%s:%d\n", f.FileName, f.Line)
+
+		for i := 0; i < len(q.Files); i++ {
+			fmt.Printf("\t%s:%d\n", q.Files[i].FileName, q.Files[i].Line)
 		}
 	}
 	fmt.Printf("\nResults Summary:\n")

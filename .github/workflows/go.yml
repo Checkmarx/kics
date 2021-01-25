@@ -17,6 +17,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
     - uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
     - name: golangci-lint
       uses: golangci/golangci-lint-action@v2
       with:
@@ -47,13 +49,25 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-go-
+    - name: Get go-junit-report module
+      run: |
+        GO111MODULE=off go get -u github.com/jstemmer/go-junit-report
     - name: Test
       run: |
         go mod vendor
-        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out
+        mkdir -p test-results
+        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version "$(go version)" -package-name "github.com/Checkmarx/kics/test" > test-results/report.xml
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1.6
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        check_run_annotations: all tests, skipped tests
+        check_run_annotations_branch: "*"
+        files: test-results/**/*.xml
     - name: CodeCov
       run: |
-        bash <(curl -s https://codecov.io/bash) -f cover.out
+        bash <(curl -s https://codecov.io/bash)
     - name: Check if total coverage is greater then 0
       run: |
         CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
@@ -110,6 +124,11 @@ jobs:
       uses: sergeysova/jq-action@v2
       with:
         cmd: jq '.queries_total' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
+    - name: Assert total_counter > 0 in results.json
+      id: assert_total_counter
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq '.total_counter' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
     - name: Assert files_scanned > 0 in results.json
       id: assert_files_scanned
       uses: sergeysova/jq-action@v2

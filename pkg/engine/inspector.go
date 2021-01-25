@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	// UndetectedVulnerabilityLine is the defaul line for a failed to detect line issue
+	// UndetectedVulnerabilityLine is the default line for a failed to detect line issue
 	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
@@ -29,7 +29,7 @@ const (
 var ErrNoResult = errors.New("query: not result")
 var ErrInvalidResult = errors.New("query: invalid result format")
 
-type VulnerabilityBuilder func(ctx QueryContext, v interface{}) (model.Vulnerability, error)
+type VulnerabilityBuilder func(ctx QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
 type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
@@ -40,6 +40,7 @@ type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
 	FailedDetectLine()
+	FailedComputeSimilarityID()
 }
 
 type preparedQuery struct {
@@ -240,7 +241,7 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
-		vulnerability, err := c.vb(ctx, queryResultItem)
+		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).
