@@ -29,7 +29,7 @@ type Condition struct {
 	Attributes map[string]interface{}
 }
 
-//Represents a list of conditions to validate a rule
+// Rule represents a list of conditions to validate a rule
 type Rule struct {
 	Conditions []Condition
 }

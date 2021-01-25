@@ -55,7 +55,7 @@ type Parser struct {
 	extensions model.Extensions
 }
 
-// parse executes a parser on the fileContent and return the file content as a Document, the file kind and
+// Parse executes a parser on the fileContent and return the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
 	ext := filepath.Ext(filePath)

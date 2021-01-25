@@ -52,10 +52,12 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 	return []model.Document{fc}, errors.Wrap(parseErr, "failed terraform parse")
 }
 
+// SupportedExtensions returns Terraform extensions
 func (p *Parser) SupportedExtensions() []string {
 	return []string{".tf"}
 }
 
+// GetKind returns terraform kind parser
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindTerraform
 }
