@@ -148,6 +148,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].ingress", [field, var0]),
 		"issueType": "IncorrectValue",
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
 	}

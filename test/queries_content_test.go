@@ -48,8 +48,8 @@ func TestQueriesContent(t *testing.T) {
 }
 
 func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
-	require.FileExists(t, path.Join(entry.dir, queryFileName))
-	require.FileExists(t, path.Join(entry.dir, metadataFileName))
+	require.FileExists(t, path.Join(entry.dir, query.QueryFileName))
+	require.FileExists(t, path.Join(entry.dir, query.MetadataFileName))
 	require.FileExists(t, entry.PositiveFile())
 	require.FileExists(t, entry.NegativeFile())
 	require.FileExists(t, entry.ExpectedPositiveResultFile())
@@ -71,22 +71,24 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	queriesSource.EXPECT().GetGenericQuery("commonQuery").
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform("commonQuery")
+			q, err := readLibrary("commonQuery")
 			require.NoError(t, err)
 			return q, nil
 		})
 
 	queriesSource.EXPECT().GetGenericQuery(entry.platform).
 		DoAndReturn(func(string) (string, error) {
-			q, err := getPlatform(entry.platform)
+			q, err := readLibrary(entry.platform)
 			require.NoError(t, err)
 			return q, nil
 		})
 
+	trk := &tracker.CITracker{}
+
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx engine.QueryContext, v interface{}) (model.Vulnerability, error) {
+		func(ctx engine.QueryContext, trk engine.Tracker, v interface{}) (model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
@@ -101,7 +103,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 			return model.Vulnerability{}, nil
 		},
-		&tracker.CITracker{},
+		trk,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
