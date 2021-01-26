@@ -1,5 +1,5 @@
 {
-  "id": "KMS_Rotation_Period_Is_Higher_Than_365_Days",
+  "id": "352271ca-842f-408a-8b24-f6f2b76eb027",
   "queryName": "KMS Rotation Period Is Higher Than 365 Days",
   "severity": "HIGH",
   "category": "Encryption & Key Management",

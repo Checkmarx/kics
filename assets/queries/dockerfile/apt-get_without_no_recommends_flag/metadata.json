@@ -1,8 +1,0 @@
-{
-  "id": "APT-GET_Not_Avoiding_Additional_Packages",
-  "queryName": "APT-GET Not Avoiding Additional Packages",
-  "severity": "INFO",
-  "category": "Package Management",
-  "descriptionText": "Check if any apt-get installs don't use '--no-install-recommends' flag to avoid installing additional packages.",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
-}

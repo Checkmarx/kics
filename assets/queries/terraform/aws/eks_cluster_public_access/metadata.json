@@ -1,5 +1,5 @@
 {
-  "id": "EKS_cluster_public_access",
+  "id": "42f4b905-3736-4213-bfe9-c0660518cda8",
   "queryName": "EKS cluster public access",
   "severity": "MEDIUM",
   "category": "Network Security",

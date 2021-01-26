@@ -1,8 +1,0 @@
-{
-  "id": "statefulset_without_poddisruptionbudget",
-  "queryName": "StatefulSet Without PodDisruptionBudget",
-  "severity": "LOW",
-  "category": "High Availability",
-  "descriptionText": "StatefulSets should be assigned with a PodDisruptionBudget to ensure high availability",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
-}

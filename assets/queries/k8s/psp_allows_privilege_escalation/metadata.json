@@ -1,5 +1,5 @@
 {
-  "id": "psp_allows_privilege_escalation",
+  "id": "87554eef-154d-411d-bdce-9dbd91e56851",
   "queryName": "PSP Allows Privilege Escalation",
   "severity": "MEDIUM",
   "category": "Privileges",

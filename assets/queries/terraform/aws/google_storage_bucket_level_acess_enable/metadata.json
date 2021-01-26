@@ -1,5 +1,5 @@
 {
-  "id": "google_storage_bucket_level_access",
+  "id": "bb0db090-5509-4853-a827-75ced0b3caa0",
   "queryName": "Google Storage Bucket Level Access is Enabled",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

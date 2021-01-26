@@ -1,5 +1,5 @@
 {
-  "id": "Neptune_Cluster_not_encrypted",
+  "id": "98d59056-f745-4ef5-8613-32bca8d40b7e",
   "queryName": "Neptune Cluster not encrypted",
   "severity": "MEDIUM",
   "category": "Encryption & Key Management",

@@ -1,5 +1,5 @@
 {
-  "id": "S3_Bucket_Allows_Delete_Action_From_All_Principals",
+  "id": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
   "queryName": "S3 Bucket Allows Delete Action From All Principals",
   "severity": "HIGH",
   "category": "Identity and Access Management",

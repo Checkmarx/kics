@@ -1,5 +1,5 @@
 {
-  "id": "google_project_iam_binding_service_account_user_token",
+  "id": "617ef6ff-711e-4bd7-94ae-e965911b1b40",
   "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
   "severity": "MEDIUM",
   "category": "Identity & Access Management",

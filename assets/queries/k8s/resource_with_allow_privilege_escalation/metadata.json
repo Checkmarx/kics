@@ -1,5 +1,5 @@
 {
-  "id": "Resource_With_Allow_Privilege_Escalation",
+  "id": "0a7c420c-4568-4cec-ba36-4d42a6f9613b",
   "queryName": "Resource With Allow Privilege Escalation",
   "severity": "MEDIUM",
   "category": "Privileges",

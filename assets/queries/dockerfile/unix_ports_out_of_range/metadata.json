@@ -1,5 +1,5 @@
 {
-  "id": "unix_ports_out_of_range",
+  "id": "71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e",
   "queryName": "UNIX Ports Out Of Range",
   "severity": "HIGH",
   "category": "Networking",

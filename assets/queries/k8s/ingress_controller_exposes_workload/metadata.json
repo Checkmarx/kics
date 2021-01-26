@@ -1,5 +1,5 @@
 {
-  "id": "ingress_controller_exposes_workload",
+  "id": "69bbc5e3-0818-4150-89cc-1e989b48f23b",
   "queryName": "Ingress Controller Exposes Workload",
   "severity": "MEDIUM",
   "category": "Networking",

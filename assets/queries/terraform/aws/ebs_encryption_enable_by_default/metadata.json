@@ -1,5 +1,5 @@
 {
-  "id": "Ebs_Encryption_Enable_by_Default",
+  "id": "3d3f6270-546b-443c-adb4-bb6fb2187ca6",
   "queryName": "EBS without Encryption",
   "severity": "HIGH",
   "category": "Data Security",

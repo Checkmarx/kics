@@ -1,49 +1,49 @@
 package Cx
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	document := input.document[i]
+	tasks := getTasks(document)
+	task := tasks[t]
 
-    isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
+	isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
 
-    result := {
-        "documentId": document.id,
-        "searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}.encrypted", [task.name]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": "AWS EBS encryption should be enabled",
-        "keyActualValue": "AWS EBS encryption is disabled"
-    }
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}.encrypted", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "AWS EBS encryption should be enabled",
+		"keyActualValue": "AWS EBS encryption is disabled",
+	}
 }
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	document := input.document[i]
+	tasks := getTasks(document)
+	task := tasks[t]
 
-    object.get(task["amazon.aws.ec2_vol"], "encrypted", "undefined") == "undefined"
+	object.get(task["amazon.aws.ec2_vol"], "encrypted", "undefined") == "undefined"
 
-    result := {
-        "documentId": document.id,
-        "searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}", [task.name]),
-        "issueType": "MissingAttribute",
-        "keyExpectedValue": "AWS EBS encryption should be defined",
-        "keyActualValue": "AWS EBS encryption is undefined"
-    }
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "AWS EBS encryption should be defined",
+		"keyActualValue": "AWS EBS encryption is undefined",
+	}
 }
 
 getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
+	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
+	count(result) != 0
 } else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
+	result := [body | playbook := document.playbooks[_]; body := playbook]
+	count(result) != 0
 }
 
 isAnsibleFalse(answer) {
-    lower(answer) == "no"
+	lower(answer) == "no"
 } else {
-    lower(answer) == "false"
+	lower(answer) == "false"
 } else {
 	answer == false
 }

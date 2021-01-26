@@ -1,5 +1,5 @@
 {
-  "id": "not_using_json_in_cmd_and_entrypoint_arguments",
+  "id": "b86987e1-6397-4619-81d5-8807f2387c79",
   "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
   "severity": "MEDIUM",
   "category": "Runtime",

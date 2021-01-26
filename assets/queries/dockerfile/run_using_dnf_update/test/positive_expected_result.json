@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Run Using dnf update",
+		"queryName": "Run Using dnf Update",
 		"severity": "HIGH",
 		"line": 2
 	}

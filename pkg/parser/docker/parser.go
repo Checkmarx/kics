@@ -3,6 +3,7 @@ package docker
 import (
 	"bytes"
 	"encoding/json"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
@@ -45,7 +46,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	for _, child := range parsed.AST.Children {
 		if child.Value == "from" {
-			fromValue = child.Next.Value
+			fromValue = strings.TrimPrefix(child.Original, "FROM ")
 		}
 
 		cmd := Command{
