@@ -63,8 +63,8 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			return err
 		}
 
-		if s.checkConditions(info, extensions, path) {
-			return nil
+		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path); shouldSkip {
+			return skipFolder
 		}
 
 		c, err := os.Open(path)
@@ -85,15 +85,18 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 	return errors.Wrap(err, "failed to walk directory")
 }
 
-func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) bool {
+func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
 	if info.IsDir() {
-		return true
+		if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
+			return true, filepath.SkipDir
+		}
+		return true, nil
 	}
 	if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
-		return true
+		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
-		return true
+		return true, nil
 	}
-	return false
+	return false, nil
 }

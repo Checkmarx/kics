@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -23,6 +24,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	path        string
+	queryPath   string
+	outputPath  string
+	payloadPath string
+	exclude     string
+	verbose     bool
+	logFile     bool
+)
+
 var scanCmd = &cobra.Command{
 	Use:   "scan",
 	Short: "Executes a scan analysis",
@@ -36,6 +47,7 @@ func initScanCmd() {
 	scanCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
+	scanCmd.Flags().StringVarP(&exclude, "exclude", "e", "", "exclude paths from analysis")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 
@@ -76,12 +88,16 @@ func scan() error {
 		return err
 	}
 
-	var excludeFiles []string
+	var excludePaths []string
 	if payloadPath != "" {
-		excludeFiles = append(excludeFiles, payloadPath)
+		excludePaths = append(excludePaths, payloadPath)
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
+	if exclude != "" {
+		excludePaths = append(excludePaths, strings.Split(exclude, ",")...)
+	}
+
+	filesSource, err := source.NewFileSystemSourceProvider(path, excludePaths)
 	if err != nil {
 		return err
 	}
