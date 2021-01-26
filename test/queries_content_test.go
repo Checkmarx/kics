@@ -32,6 +32,18 @@ var (
 		"keyExpectedValue",
 		"keyActualValue",
 	}
+
+	searchValueAllowedQueriesPath = []string{
+		"../assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network",
+		"../assets/queries/cloudFormation/ec2_sensitive_port_is_publicly_exposed",
+		"../assets/queries/cloudFormation/elb_sensitive_port_is_exposed_to_entire_network",
+		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_entire_network",
+		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_small_public_network",
+		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_entire_network",
+		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
+	}
+
+	searchValueProperty = "searchValue"
 )
 
 func TestQueriesContent(t *testing.T) {
@@ -95,9 +107,25 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			for _, requiredProperty := range requiredProperties {
 				_, ok := m[requiredProperty]
 				require.True(t, ok, fmt.Sprintf(
-					"query '%s' doesn't include paramert '%s' in response",
+					"query '%s' doesn't include parameter '%s' in response",
 					path.Base(entry.dir),
 					requiredProperty,
+				))
+			}
+
+			if sliceContains(searchValueAllowedQueriesPath, entry.dir) {
+				_, ok := m[searchValueProperty]
+				require.True(t, ok, fmt.Sprintf(
+					"query '%s' doesn't include parameter '%s' in response",
+					path.Base(entry.dir),
+					searchValueProperty,
+				))
+			} else {
+				_, ok := m[searchValueProperty]
+				require.False(t, ok, fmt.Sprintf(
+					"query '%s' should not include parameter '%s' in response",
+					path.Base(entry.dir),
+					searchValueProperty,
 				))
 			}
 
