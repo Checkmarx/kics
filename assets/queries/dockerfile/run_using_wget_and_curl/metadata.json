@@ -1,5 +1,5 @@
 {
-  "id": "Run_using_wget_and_curl",
+  "id": "fc775e75-fcfb-4c98-b2f2-910c5858b359",
   "queryName": "Run Using 'wget' and 'curl'",
   "severity": "MEDIUM",
   "category": "Package Management",

@@ -1,5 +1,5 @@
 {
-  "id": "memory_limits_is_not_defined",
+  "id": "b14d1bc4-a208-45db-92f0-e21f8e2588e9",
   "queryName": "Memory Limits Are Not Defined",
   "severity": "MEDIUM",
   "category": "Resources Limiting",

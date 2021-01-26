@@ -1,79 +1,76 @@
 package Cx
 
-
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	document := input.document[i]
+	tasks := getTasks(document)
+	task := tasks[t]
 
-    object.get(task, "community.aws.iam_password_policy", "undefined") == "undefined"
-    object.get(task, "iam_password_policy", "undefined") == "undefined"
+	object.get(task, "community.aws.iam_password_policy", "undefined") == "undefined"
+	object.get(task, "iam_password_policy", "undefined") == "undefined"
 
-
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name=%s", [task.name]),
-        "issueType":         "MissingAttribute",
-        "keyExpectedValue":  "community.aws.iam_password_policy or iam_password_policy is set",
-        "keyActualValue": 	 "community.aws.iam_password_policy or iam_password_policy is not set",
-    }
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("name={{%s}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "community.aws.iam_password_policy or iam_password_policy is set",
+		"keyActualValue": "community.aws.iam_password_policy or iam_password_policy is not set",
+	}
 }
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	document := input.document[i]
+	tasks := getTasks(document)
+	task := tasks[t]
 
-    modules := {"community.aws.iam_password_policy", "iam_password_policy"}
-    
-    attributes := {"require_lowercase", "require_numbers", "require_symbols", "require_uppercase"}
+	modules := {"community.aws.iam_password_policy", "iam_password_policy"}
 
-    object.get(task[modules[index]], attributes[j], "undefined") == "undefined"
+	attributes := {"require_lowercase", "require_numbers", "require_symbols", "require_uppercase"}
 
+	object.get(task[modules[index]], attributes[j], "undefined") == "undefined"
 
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
-        "issueType":         "MissingAttribute",
-        "keyExpectedValue":  sprintf("%s.%s is set", [modules[index], attributes[j]]),
-        "keyActualValue": 	 sprintf("%s.%s is undefined", [modules[index], attributes[j]])
-    }
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("%s.%s is set", [modules[index], attributes[j]]),
+		"keyActualValue": sprintf("%s.%s is undefined", [modules[index], attributes[j]]),
+	}
 }
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	document := input.document[i]
+	tasks := getTasks(document)
+	task := tasks[t]
 
-    modules := {"community.aws.iam_password_policy", "iam_password_policy"}
-    
-    attributes := {"require_lowercase", "require_numbers", "require_symbols", "require_uppercase"}
+	modules := {"community.aws.iam_password_policy", "iam_password_policy"}
 
-    attribute := object.get(task[modules[index]], attributes[j], "undefined")
-    attribute != "undefined"
-    
-    not isTrueOrYes(attribute)
+	attributes := {"require_lowercase", "require_numbers", "require_symbols", "require_uppercase"}
 
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name=%s.{{%s}}.%s", [task.name, modules[index], attributes[j]]),
-        "issueType":         "IncorrectValue",
-        "keyExpectedValue":  sprintf("%s.%s is set to true or yes", [modules[index], attributes[j]]),
-        "keyActualValue": 	 sprintf("%s.%s is not set to true or yes", [modules[index], attributes[j]])
-    }
+	attribute := object.get(task[modules[index]], attributes[j], "undefined")
+	attribute != "undefined"
+
+	not isTrueOrYes(attribute)
+
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("name=%s.{{%s}}.%s", [task.name, modules[index], attributes[j]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s.%s is set to true or yes", [modules[index], attributes[j]]),
+		"keyActualValue": sprintf("%s.%s is not set to true or yes", [modules[index], attributes[j]]),
+	}
 }
 
 getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
+	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
+	count(result) != 0
 } else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
+	result := [body | playbook := document.playbooks[_]; body := playbook]
+	count(result) != 0
 }
 
 isTrueOrYes(attribute) = allow {
-    possibilities := {"yes", true}
-    attribute == possibilities[j]
-    
+	possibilities := {"yes", true}
+	attribute == possibilities[j]
+
 	allow = true
 }

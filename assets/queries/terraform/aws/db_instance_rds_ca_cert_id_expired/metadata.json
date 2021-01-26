@@ -1,5 +1,5 @@
 {
-  "id": "DB_Instance_Rds_Ca_Cert_Id_Expired",
+  "id": "9f40c07e-699e-4410-8856-3ba0f2e3a2dd",
   "queryName": "CA certificate Identifier is outdated",
   "severity": "HIGH",
   "category": "Data Security",

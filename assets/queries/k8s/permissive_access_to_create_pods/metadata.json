@@ -1,5 +1,5 @@
 {
-    "id": "permissive_access_to_create_pods",
+    "id": "592ad21d-ad9b-46c6-8d2d-fad09d62a942",
     "queryName": "Permissive Access to Create Pods",
     "severity": "LOW",
     "category": "Access Control",

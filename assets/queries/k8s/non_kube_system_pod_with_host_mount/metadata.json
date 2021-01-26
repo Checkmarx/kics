@@ -1,5 +1,5 @@
 {
-  "id": "Non_Kube_System_Pod_With_Host_Mount",
+  "id": "aa8f7a35-9923-4cad-bd61-a19b7f6aac91",
   "queryName": "Non Kube System Pod With Host Mount",
   "severity": "MEDIUM",
   "category": "Access Control",

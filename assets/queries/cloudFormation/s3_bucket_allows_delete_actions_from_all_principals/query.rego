@@ -1,74 +1,74 @@
 package Cx
 
-CxPolicy [ result ] {
+CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-  resource.Type == "AWS::IAM::Role"
-  statement := resource.Properties.AssumeRolePolicyDocument.Statement[j]
+	resource.Type == "AWS::IAM::Role"
+	statement := resource.Properties.AssumeRolePolicyDocument.Statement[j]
 	statement.Effect == "Allow"
-  statement.Principal == "*"
+	statement.Principal == "*"
 	check_action(statement.Action[k])
 
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement", [name]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement allows a 'Delete' action from all principals", [name])
-              }
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement allows a 'Delete' action from all principals", [name]),
+	}
 }
 
-CxPolicy [ result ] {
+CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-  resource.Type == "AWS::IAM::Role"
-  statement := resource.Properties.AssumeRolePolicyDocument.Statement[j]
+	resource.Type == "AWS::IAM::Role"
+	statement := resource.Properties.AssumeRolePolicyDocument.Statement[j]
 	statement.Effect == "Allow"
-  statement.Principal == "*"
+	statement.Principal == "*"
 	check_action(statement.Action)
 
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement", [name]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement allows a 'Delete' action from all principals", [name])
-              }
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement allows a 'Delete' action from all principals", [name]),
+	}
 }
 
-CxPolicy [ result ] {
+CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-  resource.Type == "AWS::IAM::Policy"
-  statement := resource.Properties.PolicyDocument.Statement[j]
+	resource.Type == "AWS::IAM::Policy"
+	statement := resource.Properties.PolicyDocument.Statement[j]
 	statement.Effect == "Allow"
-  statement.Resource == "*"
+	statement.Resource == "*"
 	check_action(statement.Action[k])
 
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.PolicyDocument.Statement", [name]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals", [name])
-              }
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument.Statement", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals", [name]),
+	}
 }
 
-CxPolicy [ result ] {
+CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-  resource.Type == "AWS::IAM::Policy"
-  statement := resource.Properties.PolicyDocument.Statement[j]
+	resource.Type == "AWS::IAM::Policy"
+	statement := resource.Properties.PolicyDocument.Statement[j]
 	statement.Effect == "Allow"
-  statement.Resource == "*"
+	statement.Resource == "*"
 	check_action(statement.Action)
 
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("Resources.%s.Properties.PolicyDocument.Statement", [name]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
-                "keyActualValue": 	sprintf("Resources.%s.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals", [name])
-              }
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument.Statement", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement does not allow a 'Delete' action from all principals", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals", [name]),
+	}
 }
 
-check_action(action){
-	  is_string(action)
-    contains(lower(action), "delete")
+check_action(action) {
+	is_string(action)
+	contains(lower(action), "delete")
 }

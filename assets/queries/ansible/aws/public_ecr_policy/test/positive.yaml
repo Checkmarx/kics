@@ -1,0 +1,31 @@
+- name: set-policy as object
+  community.aws.ecs_ecr:
+    name: needs-policy-object
+    policy:
+      Version: '2008-10-17'
+      Statement:
+        - Sid: read-only
+          Effect: Allow
+          Principal: '*'
+          Action:
+            - ecr:GetDownloadUrlForLayer
+            - ecr:BatchGetImage
+            - ecr:BatchCheckLayerAvailability
+- name: set-policy as string
+  community.aws.ecs_ecr:
+    name: needs-policy-string
+    policy: >
+        {
+          "Id": "id113",
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "s3:put"
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:s3:::S3B_181355/*",
+              "Principal": "*"
+            }
+          ]
+        }

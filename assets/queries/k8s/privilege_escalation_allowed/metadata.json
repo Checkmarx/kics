@@ -1,5 +1,5 @@
 {
-  "id": "privilege_escalation_allowed",
+  "id": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d",
   "queryName": "Privilege Escalation Allowed",
   "severity": "HIGH",
   "category": "Privileges",

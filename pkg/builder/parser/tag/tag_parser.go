@@ -68,24 +68,25 @@ func parseTag(s, name string) (Tag, error) {
 			return t, nil
 		case scanner.Ident:
 			ident := sc.TokenText()
-			if sc.Peek() == '=' {
+			switch sc.Peek() {
+			case '=':
 				sc.Next()
 				value, err := parseValue(sc)
 				if err != nil {
 					return Tag{}, err
 				}
 				t.Attributes[ident] = value
-			} else if sc.Peek() == '[' {
+			case '[':
 				sc.Next()
 				arg, err := parseArgs(sc)
 				if err != nil {
 					return Tag{}, err
 				}
 				t.Attributes[ident] = arg
-			} else if sc.Peek() == ',' {
+			case ',':
 				sc.Next()
 				t.Attributes[ident] = nil
-			} else if sc.Peek() == scanner.EOF {
+			case scanner.EOF:
 				t.Attributes[ident] = nil
 			}
 		case ',':

@@ -1,5 +1,5 @@
 {
-    "id": "statefulset_requests_storage",
+    "id": "8cf4671a-cf3d-46fc-8389-21e7405063a2",
     "queryName": "StatefulSet Requests Storage",
     "severity": "LOW",
     "category": "Filesystem",

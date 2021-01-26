@@ -1,5 +1,5 @@
 {
-  "id": "API_Gateway_Has_CloudWatch_Logging_Disabled",
+  "id": "7ab2f925-4f47-4ab0-b64d-9a03d2837c22",
   "queryName": "API Gateway Has CloudWatch Logging Disabled",
   "severity": "MEDIUM",
   "category": "Logging",

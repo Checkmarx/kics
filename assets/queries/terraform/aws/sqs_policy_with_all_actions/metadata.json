@@ -1,5 +1,5 @@
 {
-  "id": "SQS_policy_allows_ALL_actions",
+  "id": "816ea8cf-d589-442d-a917-2dd0ce0e45e3",
   "queryName": "SQS policy allows ALL (*) actions",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",

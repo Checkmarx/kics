@@ -1,5 +1,5 @@
 {
-  "id": "Hardcoded_AWS_access_key",
+  "id": "d7b9d850-3e06-4a75-852f-c46c2e92240b",
   "queryName": "Hardcoded AWS access key",
   "severity": "LOW",
   "category": "Encryption and Key Management",

@@ -1,8 +1,0 @@
-{
-  "id": "Root Container Not Mounted As Read-only",
-  "queryName": "Root Container Not Mounted As Read-only",
-  "severity": "LOW",
-  "category": "Filesystem",
-  "descriptionText": "Check if the root container filesystem is not being mounted as read-only.",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
-}

@@ -1,16 +1,18 @@
 package model
 
 type SeveritySummary struct {
-	ScanID           string           `json:"scanId"`
-	SeverityCounters map[Severity]int `json:"severityCounters"`
-	TotalCounter     int              `json:"totalCounter"`
+	ScanID           string           `json:"scan_id"`
+	SeverityCounters map[Severity]int `json:"severity_counters"`
+	TotalCounter     int              `json:"total_counter"`
 }
 
 type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
+	SimilarityID     string    `json:"similarity_id"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
+	SearchValue      string    `json:"search_value"`
 	KeyExpectedValue string    `json:"expected_value"`
 	KeyActualValue   string    `json:"actual_value"`
 	Value            *string   `json:"value"`
@@ -29,6 +31,7 @@ type Counters struct {
 	FailedToScanFiles      int `json:"files_failed_to_scan"`
 	TotalQueries           int `json:"queries_total"`
 	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
+	FailedSimilarityID     int `json:"queries_failed_to_compute_similarity_id"`
 }
 
 type Summary struct {
@@ -55,9 +58,11 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		qItem := q[item.QueryName]
 		qItem.Files = append(qItem.Files, VulnerableFile{
 			FileName:         item.FileName,
+			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			IssueType:        item.IssueType,
 			SearchKey:        item.SearchKey,
+			SearchValue:      item.SearchValue,
 			KeyExpectedValue: item.KeyExpectedValue,
 			KeyActualValue:   item.KeyActualValue,
 			Value:            item.Value,
