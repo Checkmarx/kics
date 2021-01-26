@@ -151,7 +151,7 @@ func scan() error {
 		return err
 	}
 
-	elapsedStrFormat := "Scan duration %v\n"
+	elapsedStrFormat := "Scan duration: %v\n"
 	fmt.Printf(elapsedStrFormat, elapsed)
 	log.Info().Msgf(elapsedStrFormat, elapsed)
 
