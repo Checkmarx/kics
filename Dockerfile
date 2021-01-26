@@ -33,8 +33,6 @@ FROM scratch
 
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/ /app/bin/assets/
-COPY --from=build_env /etc/passwd /etc/passwd
-USER Checkmarx
 
 WORKDIR /app/bin
 
