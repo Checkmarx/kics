@@ -3,6 +3,7 @@ package Cx
 CxPolicy [ result ] {
 	resource := input.document[i].command[name]
 
+  not name == "scratch"
   not hasUserInstruction(resource)
 
 	result := {
