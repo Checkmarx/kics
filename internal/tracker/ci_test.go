@@ -7,6 +7,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+/*
+TestCITracker tests the functions [TrackQueryLoad(),TrackQueryExecution(),TrackFileFound(),
+	TrackFileParse(),TrackFileParse(),FailedDetectLine(),FailedComputeSimilarityID()]
+*/
 func TestCITracker(t *testing.T) {
 	type fields struct {
 		LoadedQueries      int

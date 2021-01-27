@@ -11,6 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them (test with nested block)
 func TestLabelsWithNestedBlock(t *testing.T) {
 	input := `
 block "label_one" "label_two" {
@@ -40,6 +41,7 @@ block "label_one" "label_two" {
 	compareTest(t, inputMarsheld, expected)
 }
 
+// TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them (test with single block)
 func TestSingleBlock(t *testing.T) {
 	input := `
 block "label_one" {
@@ -68,6 +70,7 @@ block "label_one" {
 	compareTest(t, inputMarsheld, expected)
 }
 
+// TestMultipleBlocks tests the functions [DefaultConverted] and all the methods called by them (test with multiple blocks)
 func TestMultipleBlocks(t *testing.T) {
 	input := `
 block "label_one" {
@@ -104,6 +107,7 @@ block "label_one" {
 	compareTest(t, inputMarsheld, expected)
 }
 
+// TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them
 func TestConversion(t *testing.T) { // nolint
 	const input = `
 locals {

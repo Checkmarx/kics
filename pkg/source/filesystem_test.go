@@ -12,6 +12,7 @@ import (
 	"github.com/pkg/errors"
 )
 
+// TestNewFileSystemSourceProvider tests the functions [NewFileSystemSourceProvider()] and all the methods called by them
 func TestNewFileSystemSourceProvider(t *testing.T) {
 	type args struct {
 		path     string
@@ -52,6 +53,7 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 	}
 }
 
+// TestFileSystemSourceProvider_GetSources tests the functions [GetSources()] and all the methods called by them
 func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 	type fields struct {
 		path     string
@@ -161,6 +163,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 	}
 }
 
+// TestFileSystemSourceProvider_checkConditions tests the functions [checkConditions()] and all the methods called by them
 func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	infoFile, _ := os.Stat("../../assets/queries")
 	type fields struct {

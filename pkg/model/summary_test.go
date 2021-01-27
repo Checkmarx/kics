@@ -6,6 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestCreateSummary tests the functions [CreateSummary()] and all the methods called by them
 func TestCreateSummary(t *testing.T) {
 	vulnerabilities := []Vulnerability{
 		{

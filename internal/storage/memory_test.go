@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
+// TestMemoryStorage_SaveFile tests the functions [SaveFile()]
 func TestMemoryStorage_SaveFile(t *testing.T) {
 	type fields struct {
 		vulnerabilities []model.Vulnerability
@@ -58,6 +59,7 @@ func TestMemoryStorage_SaveFile(t *testing.T) {
 	}
 }
 
+// TestMemoryStorage_SaveFile tests the functions [GetFiles(), GetVulnerabilities(), GetScanSummary()]
 func TestMemoryStorage(t *testing.T) { // nolint
 	type fields struct {
 		vulnerabilities []model.Vulnerability
@@ -179,6 +181,7 @@ func TestMemoryStorage(t *testing.T) { // nolint
 	}
 }
 
+// TestMemoryStorage_SaveVulnerabilities tests the functions [SaveVulnerabilities()]
 func TestMemoryStorage_SaveVulnerabilities(t *testing.T) {
 	type fields struct {
 		vulnerabilities []model.Vulnerability
@@ -235,6 +238,7 @@ func TestMemoryStorage_SaveVulnerabilities(t *testing.T) {
 	}
 }
 
+// TestNewMemoryStorage tests the functions [NewMemoryStorage()]
 func TestNewMemoryStorage(t *testing.T) {
 	tests := []struct {
 		name string

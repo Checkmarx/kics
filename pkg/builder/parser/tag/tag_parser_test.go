@@ -6,6 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestParseTags tests the functions [Parse()] and all the methods called by them (check for equal flags)
 func TestParseTags(t *testing.T) { // nolint
 	t.Run("empty", func(t *testing.T) {
 		tags, err := Parse("", []string{"test2"})
@@ -145,6 +146,7 @@ func TestParseTags(t *testing.T) { // nolint
 	})
 }
 
+// TestParseTags tests the functions [Parse()] and all the methods called by them (checks for errors)
 func TestParseErrorTags(t *testing.T) {
 	t.Run("invalid_token", func(t *testing.T) {
 		tags, err := Parse("// Test:[error]", []string{"Test"})

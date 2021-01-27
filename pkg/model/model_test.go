@@ -6,6 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestExtensions_MatchedFilesRegex tests the functions [MatchedFilesRegex()] and all the methods called by them
 func TestExtensions_MatchedFilesRegex(t *testing.T) {
 	var e Extensions
 	require.Equal(t, "NO_MATCHED_FILES", e.MatchedFilesRegex())
@@ -25,6 +26,7 @@ func TestExtensions_MatchedFilesRegex(t *testing.T) {
 	require.Equal(t, "(.*)(\\.tf|\\.txt)$", e.MatchedFilesRegex())
 }
 
+// TestInclude tests the functions [Include()] and all the methods called by them
 func TestInclude(t *testing.T) {
 	e := Extensions{
 		".txt": struct{}{},
@@ -33,6 +35,7 @@ func TestInclude(t *testing.T) {
 	require.Equal(t, true, e.Include(".txt"))
 }
 
+// TestFileMetadatas tests the functions [Combine(),ToMap()] and all the methods called by them
 func TestFileMetadatas(t *testing.T) {
 	m := FileMetadatas{
 		{

@@ -17,6 +17,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/source"
 )
 
+// TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them
 func TestService(t *testing.T) {
 	mockParser, mockFilesSource := createParserSourceProvider("../../assets/queries/template")
 

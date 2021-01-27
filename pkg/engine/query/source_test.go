@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/test"
 )
 
+// TestFilesystemSource_GetGenericQuery tests the functions [GetGenericQuery()] and all the methods called by them
 func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
@@ -123,6 +124,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	}
 }
 
+// TestFilesystemSource_GetQueries tests the functions [GetQueries()] and all the methods called by them
 func TestFilesystemSource_GetQueries(t *testing.T) {
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
@@ -196,7 +198,8 @@ CxPolicy [ result ] {
 	}
 }
 
-func Test_readMetadata(t *testing.T) {
+// Test_ReadMetadata tests the functions [ReadMetadata()] and all the methods called by them
+func Test_ReadMetadata(t *testing.T) {
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
@@ -239,6 +242,7 @@ func Test_readMetadata(t *testing.T) {
 	}
 }
 
+// Test_getPlatform tests the functions [getPlatform()] and all the methods called by them
 func Test_getPlatform(t *testing.T) {
 	type args struct {
 		queryPath string

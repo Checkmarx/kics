@@ -15,6 +15,7 @@ import (
 	"github.com/open-policy-agent/opa/rego"
 )
 
+// TestInspector_EnableCoverageReport tests the functions [EnableCoverageReport()] and all the methods called by them
 func TestInspector_EnableCoverageReport(t *testing.T) {
 	type fields struct {
 		queries              []*preparedQuery
@@ -57,6 +58,7 @@ func TestInspector_EnableCoverageReport(t *testing.T) {
 	}
 }
 
+// TestInspector_GetCoverageReport tests the functions [GetCoverageReport()] and all the methods called by them
 func TestInspector_GetCoverageReport(t *testing.T) {
 	coverageReports := cover.Report{
 		Coverage: 75.5,
@@ -103,6 +105,7 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 	}
 }
 
+// TestInspect tests the functions [Inspect()] and all the methods called by them
 func TestInspect(t *testing.T) { //nolint
 	ctx := context.Background()
 	opaQuery, _ := rego.New(
@@ -263,6 +266,7 @@ func TestInspect(t *testing.T) { //nolint
 	}
 }
 
+// TestNewInspector tests the functions [NewInspector()] and all the methods called by them
 func TestNewInspector(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)

@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 )
 
+// TestRun tests the functions [Run()] and all the methods called by them
 func TestRun(t *testing.T) {
 	type args struct {
 		src      []byte
@@ -95,6 +96,7 @@ func TestRun(t *testing.T) {
 	}
 }
 
+// TestEngine_BuildString tests the functions [buildString()] and all the methods called by them
 func TestEngine_BuildString(t *testing.T) {
 	type args struct {
 		parts []hclsyntax.Expression

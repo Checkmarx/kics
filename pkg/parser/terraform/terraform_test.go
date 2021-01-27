@@ -21,16 +21,19 @@ resource "aws_s3_bucket" "b" {
 `
 )
 
+// TestParser_GetKind tests the functions [GetKind()] and all the methods called by them
 func TestParser_GetKind(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, model.KindTerraform, p.GetKind())
 }
 
+// TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, []string{".tf"}, p.SupportedExtensions())
 }
 
+// Test_Parser tests the functions [Parser()] and all the methods called by them
 func Test_Parser(t *testing.T) {
 	parser := NewDefault()
 	document, err := parser.Parse("test.tf", []byte(have))

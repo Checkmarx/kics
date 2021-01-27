@@ -166,6 +166,7 @@ var (
 	}
 )
 
+// TestComputeSimilarityID tests the functions [ComputeSimilarityID()] and all the methods called by them
 func TestComputeSimilarityID(t *testing.T) {
 	for _, tc := range similarityIDTests {
 		t.Run(tc.name, func(tt *testing.T) {
@@ -181,6 +182,7 @@ func TestComputeSimilarityID(t *testing.T) {
 	}
 }
 
+// TestStandardizeFilePathEquals tests the functions [standardizeFilePath()] and all the methods called by them
 func TestStandardizeFilePathEquals(t *testing.T) {
 	tests := []struct {
 		name             string

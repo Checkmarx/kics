@@ -54,6 +54,7 @@ var ruleElement = build.Rule{
 	},
 }
 
+// TestConditionKey tests the functions [conditionKey()] and all the methods called by them
 func TestConditionKey(t *testing.T) {
 	values := []struct {
 		block           Block
@@ -87,6 +88,7 @@ func TestConditionKey(t *testing.T) {
 	}
 }
 
+// TestCreateBlock tests the functions [createBlock()] and all the methods called by them
 func TestCreateBlock(t *testing.T) {
 	values := []struct {
 		rules          build.Rule
@@ -105,6 +107,7 @@ func TestCreateBlock(t *testing.T) {
 	}
 }
 
+// TestResultName tests the functions [resultName()] and all the methods called by them
 func TestResultName(t *testing.T) {
 	values := []struct {
 		rules          build.Rule
@@ -129,6 +132,7 @@ func TestResultName(t *testing.T) {
 	}
 }
 
+// TestSwitchFunction tests the functions [switchFunction()] and all the methods called by them
 func TestSwitchFunction(t *testing.T) {
 	values := []struct {
 		v                interface{}
@@ -182,6 +186,7 @@ func TestSwitchFunction(t *testing.T) {
 	}
 }
 
+// TestRegoValueToString tests the functions [regoValueToString()] and all the methods called by them
 func TestRegoValueToString(t *testing.T) {
 	var emptyStringPointer *string
 	var strPointer = new(string)
@@ -249,6 +254,7 @@ func TestRegoValueToString(t *testing.T) {
 	}
 }
 
+// TestCondition tests the functions [condition()] and all the methods called by them
 func TestCondition(t *testing.T) {
 	values := []struct {
 		block          Block
@@ -336,6 +342,7 @@ func TestCondition(t *testing.T) {
 	}
 }
 
+// TestFormat tests the functions [format()] and all the methods called by them
 func TestFormat(t *testing.T) {
 	values := []struct {
 		rule           build.Rule
@@ -357,6 +364,7 @@ func TestFormat(t *testing.T) {
 	}
 }
 
+// TestRender tests the functions [Render()] and all the methods called by them
 func TestRender(t *testing.T) {
 	for currentDir, err := os.Getwd(); getCurrentDirName(currentDir) != "kics"; currentDir, err = os.Getwd() {
 		if err == nil {
@@ -382,9 +390,9 @@ func TestRender(t *testing.T) {
 			CxPolicy [ result ] {
 					document := input.document[i]
 					block := document.resource
-			
+
 					block[blockType][name].values[key] == "Dev"
-			
+
 					result := {
 											"documentId":           document.id,
 											"searchKey":        sprintf("%s[%s].values.%s", [blockType, name, key]),

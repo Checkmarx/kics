@@ -44,6 +44,7 @@ var conditionAttrTestCase = testCase{
 	want1: true,
 }
 
+// TestCondition_Attr tests the functions [Attr()] and all the methods called by them
 func TestCondition_Attr(t *testing.T) {
 	tests := []testCase{
 		conditionAttrTestCase,
@@ -79,6 +80,7 @@ func TestCondition_Attr(t *testing.T) {
 	}
 }
 
+// TestCondition_AttrAsString tests the functions [AttrAsString()] and all the methods called by them
 func TestCondition_AttrAsString(t *testing.T) {
 	tests := []testCase{
 		conditionAttrTestCase,

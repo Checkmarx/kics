@@ -11,6 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestParser_Parse tests the functions [Parse()] and all the methods called by them
 func TestParser_Parse(t *testing.T) {
 	p := initilizeBuilder()
 
@@ -46,6 +47,7 @@ martin:
 	require.Equal(t, model.KindDOCKER, kind)
 }
 
+// TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
 func TestParser_Empty(t *testing.T) {
 	p := NewBuilder().
 		Build()
@@ -57,6 +59,7 @@ func TestParser_Empty(t *testing.T) {
 	require.Equal(t, ErrNotSupportedFile, err)
 }
 
+// TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := initilizeBuilder()
 
