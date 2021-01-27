@@ -4,5 +4,5 @@
     "severity": "MEDIUM",
     "category": "Encryption and Key Management",
     "descriptionText": "Workspaces should have encryption enabled",
-    "descriptionUrl": "#"
+    "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html"
 }

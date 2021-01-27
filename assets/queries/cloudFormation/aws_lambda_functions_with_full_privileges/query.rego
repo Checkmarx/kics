@@ -1,33 +1,33 @@
 package Cx
 
-CxPolicy [ result ] {
+CxPolicy[result] {
 	resources := input.document[i].Resources
- 	resource := resources[name]
+	resource := resources[name]
 
-  resource.Type == "AWS::Lambda::Function"
+	resource.Type == "AWS::Lambda::Function"
 
-  # check if the role referenced in the lambda function properties is defined in the same template
-  fullRole := split(resource.Properties.Role,".")
-  role := fullRole[0]
-  resources[role]
+	# check if the role referenced in the lambda function properties is defined in the same template
+	fullRole := split(resource.Properties.Role, ".")
+	role := fullRole[0]
+	resources[role]
 
 	checkPolicies(resources[role].Properties.Policies)
 
 	result := {
-              "documentId": 	  	input.document[i].id,
-              "searchKey": 	      sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
-              "issueType":		    "IncorrectValue",
-              "keyExpectedValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument is not giving admin privileges to Resources.%s ", [role,name]),
-              "keyActualValue": 	sprintf("Resources.%s.Properties.Policies.PolicyDocument is giving admin privileges to Resources.%s ", [role,name])
-              }
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument is not giving admin privileges to Resources.%s ", [role, name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument is giving admin privileges to Resources.%s ", [role, name]),
+	}
 }
 
 checkPolicies(policies) {
-	some j,k
-   		statement := policies[j].PolicyDocument.Statement[k]
-    	statement.Effect == "Allow"
-    checkResource(statement)
-    checkAction(statement)
+	some j, k
+	statement := policies[j].PolicyDocument.Statement[k]
+	statement.Effect == "Allow"
+	checkResource(statement)
+	checkAction(statement)
 }
 
 checkResource(statement) {
@@ -35,7 +35,7 @@ checkResource(statement) {
 }
 
 checkResource(statement) {
-	endswith(statement.Resource,"*")
+	endswith(statement.Resource, "*")
 }
 
 checkAction(statement) {
@@ -43,5 +43,5 @@ checkAction(statement) {
 }
 
 checkAction(statement) {
-	endswith(statement.Action[_],"*")
+	endswith(statement.Action[_], "*")
 }
