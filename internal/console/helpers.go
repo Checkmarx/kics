@@ -17,18 +17,16 @@ func wordWrap(s, identation string, limit int) string {
 		return s
 	}
 
-	strSlice := strings.Fields(s)
-	var result string = ""
+	wordSlice := strings.Fields(s)
+	var result string
 
-	for len(strSlice) >= 1 {
-		result = result + identation + strings.Join(strSlice[:limit], " ") + "\r\n"
+	for len(wordSlice) >= 1 {
+		result = result + identation + strings.Join(wordSlice[:limit], " ") + "\r\n"
 
-		strSlice = strSlice[limit:]
-
-		if len(strSlice) < limit {
-			limit = len(strSlice)
+		wordSlice = wordSlice[limit:]
+		if len(wordSlice) < limit {
+			limit = len(wordSlice)
 		}
-
 	}
 	return result
 }
