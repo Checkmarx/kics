@@ -68,7 +68,8 @@ var printTests = []struct {
 		expectedResult: "Files scanned: 1\n" +
 			"Parsed files: 1\n" +
 			"Queries loaded: 1\n" +
-			"Queries failed to execute: 0\n\n" +
+			"Queries failed to execute: 0\n" +
+			"------------------------------------\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
 			"\tpositive.tf:25\n" +
 			"\tpositive.tf:19\n\n" +
@@ -99,11 +100,13 @@ var jsonTests = []struct {
 	},
 }
 
+var failedQueries = map[string]error{}
+
 // TestPrintResult tests the functions [printResult()] and all the methods called by them
 func TestPrintResult(t *testing.T) {
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return printResult(&testCase.caseTest) })
+			out, err := test.CaptureOutput(func() error { return printResult(&testCase.caseTest, failedQueries) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
 		})
