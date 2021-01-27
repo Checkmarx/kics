@@ -1,8 +1,6 @@
 package query
 
 import (
-	"fmt"
-	"os"
 	"reflect"
 	"strings"
 	"testing"
@@ -10,10 +8,13 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 )
 
 func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
-	changeCurrentDir(t)
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
 	type fields struct {
 		Source string
 	}
@@ -123,7 +124,9 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 }
 
 func TestFilesystemSource_GetQueries(t *testing.T) {
-	changeCurrentDir(t)
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
 
 	type fields struct {
 		Source string
@@ -193,29 +196,10 @@ CxPolicy [ result ] {
 	}
 }
 
-func changeCurrentDir(t *testing.T) {
-	for currentDir, err := os.Getwd(); getCurrentDirName(currentDir) != "kics"; currentDir, err = os.Getwd() {
-		if err == nil {
-			if err := os.Chdir(".."); err != nil {
-				fmt.Printf("change path error = %v", err)
-				t.Fatal()
-			}
-		} else {
-			t.Fatal()
-		}
-	}
-}
-
-func getCurrentDirName(path string) string {
-	dirs := strings.Split(path, string(os.PathSeparator))
-	if dirs[len(dirs)-1] == "" && len(dirs) > 1 {
-		return dirs[len(dirs)-2]
-	}
-	return dirs[len(dirs)-1]
-}
-
 func Test_readMetadata(t *testing.T) {
-	changeCurrentDir(t)
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
 	type args struct {
 		queryDir string
 	}

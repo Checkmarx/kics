@@ -2,10 +2,7 @@ package engine
 
 import (
 	"context"
-	"fmt"
-	"os"
 	"reflect"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -13,6 +10,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine/query"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
 )
@@ -266,7 +264,9 @@ func TestInspect(t *testing.T) { //nolint
 }
 
 func TestNewInspector(t *testing.T) { // nolint
-	changeCurrentDir(t)
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
 	track := &tracker.CITracker{}
 	sources := &query.FilesystemSource{
 		Source: "./test/fixtures/all_auth_users_get_read_access",
@@ -349,25 +349,4 @@ CxPolicy [ result ] {
 			require.NotNil(t, got.vb)
 		})
 	}
-}
-
-func changeCurrentDir(t *testing.T) {
-	for currentDir, err := os.Getwd(); getCurrentDirName(currentDir) != "kics"; currentDir, err = os.Getwd() {
-		if err == nil {
-			if err := os.Chdir(".."); err != nil {
-				fmt.Printf("change path error = %v", err)
-				t.Fatal()
-			}
-		} else {
-			t.Fatal()
-		}
-	}
-}
-
-func getCurrentDirName(path string) string {
-	dirs := strings.Split(path, string(os.PathSeparator))
-	if dirs[len(dirs)-1] == "" && len(dirs) > 1 {
-		return dirs[len(dirs)-2]
-	}
-	return dirs[len(dirs)-1]
 }

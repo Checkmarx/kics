@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -99,11 +100,11 @@ var jsonTests = []struct {
 }
 
 func TestPrintResult(t *testing.T) {
-	for idx, test := range printTests {
+	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := captureOutput(func() error { return printResult(&test.caseTest) })
+			out, err := test.CaptureOutput(func() error { return printResult(&testCase.caseTest) })
 			require.NoError(t, err)
-			require.Equal(t, test.expectedResult, out)
+			require.Equal(t, testCase.expectedResult, out)
 		})
 	}
 }
