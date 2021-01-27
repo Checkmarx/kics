@@ -83,7 +83,7 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 				queries:              []*preparedQuery{},
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
-				enableCoverageReport: true,
+				enableCoverageReport: false,
 				coverageReport:       coverageReports,
 			},
 			want: coverageReports,
@@ -135,6 +135,29 @@ func TestInspect(t *testing.T) { //nolint
 	opaQueries := make([]*preparedQuery, 0, 1)
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: opaQuery,
+		metadata: model.QueryMetadata{
+			Query: "add_instead_of_copy",
+			Content: `package Cx
+
+			CxPolicy [ result ] {
+			  resource := input.document[i].command[name][_]
+			  resource.Cmd == "add"
+			  not tarfileChecker(resource.Value, ".tar")
+			  not tarfileChecker(resource.Value, ".tar.")
+
+				result := {
+					"documentId": 		input.document[i].id,
+					"searchKey": 	    sprintf("{{%s}}", [resource.Original]),
+					"issueType":		"IncorrectValue",
+					"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
+					"keyActualValue": 	sprintf("'ADD' %s", [resource.Value[0]])
+					  }
+			}
+
+			tarfileChecker(cmdValue, elem) {
+			  contains(cmdValue[_], elem)
+			}`,
+		},
 	})
 
 	type fields struct {
@@ -162,7 +185,7 @@ func TestInspect(t *testing.T) { //nolint
 				queries:              opaQueries,
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
-				enableCoverageReport: false,
+				enableCoverageReport: true,
 				coverageReport:       cover.Report{},
 			},
 			args: args{
