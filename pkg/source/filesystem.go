@@ -2,6 +2,7 @@ package source
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -14,23 +15,38 @@ import (
 
 type FileSystemSourceProvider struct {
 	path     string
-	excludes map[string]os.FileInfo
+	excludes map[string][]os.FileInfo
 }
 
 var ErrNotSupportedFile = errors.New("invalid file format")
 
 func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
-	ex := make(map[string]os.FileInfo, len(excludes))
+	ex := make(map[string][]os.FileInfo, len(excludes))
 	for _, exclude := range excludes {
-		info, err := os.Stat(exclude)
-		if err != nil {
-			if os.IsNotExist(err) {
-				continue
+		var excludePaths []string
+		if strings.ContainsAny(exclude, "*?[") {
+			info, err := filepath.Glob(exclude)
+			if err != nil {
+				return nil, errors.Wrap(err, "failed to open excluded file")
 			}
-
-			return nil, errors.Wrap(err, "failed to open excluded file")
+			excludePaths = info
+		} else {
+			excludePaths = []string{exclude}
 		}
-		ex[info.Name()] = info
+		for _, excludePath := range excludePaths {
+			info, err := os.Stat(excludePath)
+			if err != nil {
+				if os.IsNotExist(err) {
+					continue
+				}
+
+				return nil, errors.Wrap(err, "failed to open excluded file")
+			}
+			if _, ok := ex[info.Name()]; !ok {
+				ex[info.Name()] = make([]os.FileInfo, 0)
+			}
+			ex[info.Name()] = append(ex[info.Name()], info)
+		}
 	}
 
 	return &FileSystemSourceProvider{
@@ -87,16 +103,27 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
 	if info.IsDir() {
-		if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
+		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+			fmt.Printf("Directory ignored: %s\n", path)
 			return true, filepath.SkipDir
 		}
 		return true, nil
 	}
-	if f, ok := s.excludes[info.Name()]; ok && os.SameFile(f, info) {
+	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+		fmt.Printf("File ignored: %s\n", path)
 		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
 		return true, nil
 	}
 	return false, nil
+}
+
+func containsFile(fileList []os.FileInfo, target os.FileInfo) bool {
+	for _, file := range fileList {
+		if os.SameFile(file, target) {
+			return true
+		}
+	}
+	return false
 }
