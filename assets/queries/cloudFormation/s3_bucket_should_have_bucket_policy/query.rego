@@ -37,8 +37,7 @@ CxPolicy [ result ] {
               }
 }
 
-
-bucketName(bucketName) = true {
+bucketName(bucketName) {
 	resource := input.document[i].Resources[name]
   	resource.Type == "AWS::S3::BucketPolicy"
   	bucket := resource.Properties.Bucket

@@ -1,8 +1,8 @@
 package Cx
 
-CxPolicy [ result ] {
-  resource := input.document[i].Resources[name]
-  resource.Type == "AWS::IAM::Policy"
+CxPolicy[result] {
+	resource := input.document[i].Resources[name]
+	resource.Type == "AWS::IAM::Policy"
 
   statements := resource.PolicyDocument.Statement
   checkPolicy(statements[s])
@@ -17,9 +17,9 @@ CxPolicy [ result ] {
 }
 
 checkPolicy(pol) {
-    pol.Effect == "Allow"
-    pol.Resource != "arn:aws:iam::aws:policy/AdministratorAccess"
-    checkAction(pol.Action)
+	pol.Effect == "Allow"
+	pol.Resource != "arn:aws:iam::aws:policy/AdministratorAccess"
+	checkAction(pol.Action)
 }
 
 checkAction(act) {

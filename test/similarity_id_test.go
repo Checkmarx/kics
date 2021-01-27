@@ -22,12 +22,12 @@ const (
 )
 
 type testCaseParamsType struct {
+	queryDir          string // mandatory - query path inside assets directory
+	platform          string // mandatory - query platform type
 	queryID           string
 	samplePath        string
 	sampleFixturePath string
-	queryDir          string
 	queryFixturePath  string
-	platform          string
 }
 
 type testParamsType struct {
@@ -35,8 +35,8 @@ type testParamsType struct {
 	platform      string // mandatory
 	queryID       func() string
 	samplePath    func() string
-	sampleContent func() []byte
-	queryContent  func() string
+	sampleContent func(t testing.TB) []byte
+	queryContent  func(t testing.TB) string
 }
 
 type testCaseType struct {
@@ -187,24 +187,28 @@ func getTestQueryID(params *testCaseParamsType) string {
 	return testQueryID
 }
 
-func getTestSampleContent(params *testCaseParamsType) []byte {
+func getTestSampleContent(params *testCaseParamsType) ([]byte, error) {
 	var testSampleContent []byte
+	var err error
 	if params.sampleFixturePath != "" {
-		testSampleContent = getFileContent(params.sampleFixturePath)
+		testSampleContent, err = getFileContent(params.sampleFixturePath)
 	} else {
-		testSampleContent = getSampleContent(params)
+		testSampleContent, err = getSampleContent(params)
 	}
-	return testSampleContent
+	return testSampleContent, err
 }
 
-func getTestQueryContent(params *testCaseParamsType) string {
+func getTestQueryContent(params *testCaseParamsType) (string, error) {
 	var testSampleContent string
+	var err error
 	if params.queryFixturePath != "" {
-		testSampleContent = string(getFileContent(params.queryFixturePath))
+		content, contentErr := getFileContent(params.queryFixturePath)
+		err = contentErr
+		testSampleContent = string(content)
 	} else {
-		testSampleContent = getQueryContent(params.queryDir)
+		testSampleContent, err = getQueryContent(params.queryDir)
 	}
-	return testSampleContent
+	return testSampleContent, err
 }
 
 func getTestParams(params *testCaseParamsType) testParamsType {
@@ -216,11 +220,15 @@ func getTestParams(params *testCaseParamsType) testParamsType {
 		samplePath: func() string {
 			return getSamplePath(params)
 		},
-		sampleContent: func() []byte {
-			return getTestSampleContent(params)
+		sampleContent: func(t testing.TB) []byte {
+			content, err := getTestSampleContent(params)
+			require.Nil(t, err)
+			return content
 		},
-		queryContent: func() string {
-			return getTestQueryContent(params)
+		queryContent: func(t testing.TB) string {
+			content, err := getTestQueryContent(params)
+			require.Nil(t, err)
+			return content
 		},
 		platform: params.platform,
 	}
@@ -255,7 +263,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 		q := model.QueryMetadata{
 			Query:    testParams.queryID(),
-			Content:  testParams.queryContent(),
+			Content:  testParams.queryContent(t),
 			Metadata: metadata,
 			Platform: testParams.platform,
 		}
@@ -286,7 +294,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		getScannableFileMetadatas(
 			t,
 			testParams.samplePath(),
-			testParams.sampleContent(),
+			testParams.sampleContent(t),
 		),
 	)
 	require.Nil(t, err)

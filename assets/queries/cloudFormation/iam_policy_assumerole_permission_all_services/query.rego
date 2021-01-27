@@ -1,9 +1,9 @@
 package Cx
 
-CxPolicy [ result ] {
-  resource := input.document[i].Resources[name]
-  resource.Type == "AWS::IAM::Policy"
-  statements := resource.PolicyDocument.Statement
+CxPolicy[result] {
+	resource := input.document[i].Resources[name]
+	resource.Type == "AWS::IAM::Policy"
+	statements := resource.PolicyDocument.Statement
 
   contains(statements[_].Action[_],"sts:AssumeRole")
 

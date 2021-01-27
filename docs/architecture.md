@@ -4,7 +4,7 @@ KICS is 100% open source is written in Golang using Open Policy Agent ([OPA](htt
 
 Golang speed, simplicity and reliability made it the perfect choice for writing KICS, while [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) as a query language, was a native choice to implement security queries. 
 
-So far have written 900+ ready-to-use queries that cover a wide range of vulnerabilities checks for AWS, GCP, Azure and other cloud providers. 
+So far have written 1000+ ready-to-use queries that cover a wide range of vulnerabilities checks for AWS, GCP, Azure and other cloud providers. 
 
 ## High Level Architecture
 
