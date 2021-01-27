@@ -9,8 +9,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type execute func() error
-
 func TestGenerateIDCommand(t *testing.T) {
 	t.Run("Tests if generates a valid uuid", func(t *testing.T) {
 		validUUID := regexp.MustCompile(test.ValidUUIDRegex)
