@@ -131,14 +131,16 @@ func NewInspector(
 			})
 		}
 	}
+	failedQueries := make(map[string]error)
 
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d\n", len(opaQueries))
 
 	return &Inspector{
-		queries: opaQueries,
-		vb:      vb,
-		tracker: tracker,
+		queries:       opaQueries,
+		vb:            vb,
+		tracker:       tracker,
+		failedQueries: failedQueries,
 	}, nil
 }
 
