@@ -6,6 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const currentVersion = "Keeping Infrastructure as Code Secure v1.1.1"
+
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Displays the current version",
@@ -16,5 +18,5 @@ var versionCmd = &cobra.Command{
 }
 
 func getVersion() string {
-	return "Keeping Infrastructure as Code Secure v1.1.1"
+	return currentVersion
 }

@@ -34,15 +34,15 @@ const (
 func GetPathToLibrary(platform, relativeBasePath string) string {
 	libraryPath := filepath.Join(relativeBasePath, LibrariesBasePath)
 
-	if strings.Contains(platform, "ansible") {
+	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
 		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
-	} else if strings.Contains(platform, "cloudformation") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
 		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
-	} else if strings.Contains(platform, "dockerfile") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
 		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
-	} else if strings.Contains(platform, "k8s") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
 		return filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
-	} else if strings.Contains(platform, "terraform") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
 		return filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
 	}
 

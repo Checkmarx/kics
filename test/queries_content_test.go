@@ -27,7 +27,7 @@ const (
 )
 
 var (
-	validUUID    = regexp.MustCompile(`(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`)
+	validUUID    = regexp.MustCompile(ValidUUIDRegex)
 	severityList = []string{"HIGH", "MEDIUM", "LOW", "INFO"}
 
 	requiredQueryResultProperties = []string{

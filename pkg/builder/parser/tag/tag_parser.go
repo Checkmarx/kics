@@ -181,7 +181,7 @@ func parseArgs(sc *scanner.Scanner) (map[string]interface{}, error) {
 		}
 		result[name] = value
 		next := sc.Next()
-		if next == ')' {
+		if next == ']' {
 			return result, nil
 		}
 		if next == ',' {
