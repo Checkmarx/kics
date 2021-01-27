@@ -4,7 +4,7 @@ CxPolicy [ result ] {
   entry1 := input.document[i].Resources[name]
   entry1.Type == "AWS::EC2::NetworkAclEntry"
 
-  entry2 := input.document[_].Resources[_]
+  entry2 := input.document[i].Resources[_]
   entry2.Type == "AWS::EC2::NetworkAclEntry"
 
   entry1 != entry2
