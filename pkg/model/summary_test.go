@@ -7,7 +7,7 @@ import (
 )
 
 func TestCreateSummary(t *testing.T) {
-	vulnerabilitys := []Vulnerability{
+	vulnerabilities := []Vulnerability{
 		{
 			ID:               1,
 			ScanID:           "scanID",
@@ -51,7 +51,7 @@ func TestCreateSummary(t *testing.T) {
 	})
 
 	t.Run("create_summary", func(t *testing.T) {
-		summary := CreateSummary(counter, vulnerabilitys, "scanID")
+		summary := CreateSummary(counter, vulnerabilities, "scanID")
 		require.Equal(t, summary, Summary{
 			Counters: counter,
 			SeveritySummary: SeveritySummary{

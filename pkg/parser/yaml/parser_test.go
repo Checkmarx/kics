@@ -33,8 +33,8 @@ martin2:
     mode: create
     permission: authenticated-read
 `, `
--name: teste
--name: teste2
+-name: test
+-name: test2
 `,
 	}
 

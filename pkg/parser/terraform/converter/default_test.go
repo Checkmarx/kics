@@ -234,9 +234,13 @@ variable "region" {
 		t.Fatal("parse bytes:", err)
 	}
 
+	// expectedValue is the value of expected["data"]["terraform_remote_state"]["remote"]["backend"] which is "s3"
+	expectedValue := v["data"].(map[string]interface{})["terraform_remote_state"].(map[string]interface{})["remote"].(map[string]interface{})["backend"] // nolint
+	// got is the value of body["data"]["terraform_remote_state"]["remote"]["backend"] and it must be "s3" in this test case
+	got := body["data"].(model.Document)["terraform_remote_state"].(model.Document)["remote"].(model.Document)["backend"]
+
 	require.Len(t, body, len(v))
-	require.Equal(t, v["data"].(map[string]interface{})["terraform_remote_state"].(map[string]interface{})["remote"].(map[string]interface{})["backend"], // nolint
-		body["data"].(model.Document)["terraform_remote_state"].(model.Document)["remote"].(model.Document)["backend"])
+	require.Equal(t, expectedValue, got)
 }
 
 func compareTest(t *testing.T, input []byte, expected string) {

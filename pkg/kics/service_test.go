@@ -18,7 +18,7 @@ import (
 )
 
 func TestService(t *testing.T) {
-	mockParser, mockFilesSource := createParserSoureceProvider("../../assets/queries/template")
+	mockParser, mockFilesSource := createParserSourceProvider("../../assets/queries/template")
 
 	type fields struct {
 		SourceProvider SourceProvider
@@ -100,7 +100,7 @@ func TestService(t *testing.T) {
 	}
 }
 
-func createParserSoureceProvider(path string) (*parser.Parser, *source.FileSystemSourceProvider) {
+func createParserSourceProvider(path string) (*parser.Parser, *source.FileSystemSourceProvider) {
 	mockParser := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
