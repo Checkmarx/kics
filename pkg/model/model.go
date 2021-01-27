@@ -13,7 +13,7 @@ const (
 	KindDOCKER    FileKind = "DOCKERFILE"
 )
 
-// Constants to describe vulnerability's level
+// Constants to describe vulnerability's severity
 const (
 	SeverityHigh   = "HIGH"
 	SeverityMedium = "MEDIUM"
@@ -47,7 +47,7 @@ var (
 // FileKind is the extension of a file
 type FileKind string
 
-// Severity is the vulnerability's level
+// Severity of the vulnerability
 type Severity string
 
 // IssueType is the issue's type string representation

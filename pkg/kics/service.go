@@ -17,15 +17,15 @@ import (
 )
 
 // SourceProvider is the interface that wraps the basic GetSources method.
-// GetSources receives context, receive ID, extensions supported and a sinc function to save sources
+// GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
 	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
 }
 
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
 // SaveFile should append metadata to a file
-// SaveVulnerabilities should append vulnerabities list to current storage
-// GetVulnerabilities should returns all vulnerabities associated a scan ID
+// SaveVulnerabilities should append vulnerabilities list to current storage
+// GetVulnerabilities should returns all vulnerabilities associated to a scan ID
 // GetScanSummary should return a list of summaries based on their scan IDs
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
@@ -35,8 +35,8 @@ type Storage interface {
 }
 
 // Tracker is the interface that wraps the basic methods: TrackFileFound and TrackFileParse
-// TrackFileFound should increments the number of files to be scanned
-// TrackFileParse should increments the number of files parsed successfully to be scanned
+// TrackFileFound should increment the number of files to be scanned
+// TrackFileParse should increment the number of files parsed successfully to be scanned
 type Tracker interface {
 	TrackFileFound()
 	TrackFileParse()
@@ -113,7 +113,7 @@ func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]mode
 	return s.Storage.GetVulnerabilities(ctx, scanID)
 }
 
-// GetScanSummary returns how many vulnerabities of each severity was found
+// GetScanSummary returns how many vulnerabilities of each severity was found
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
 }

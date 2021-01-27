@@ -29,13 +29,13 @@ const (
 // ErrNoResult - error representing when a query didn't return a result
 var ErrNoResult = errors.New("query: not result")
 
-// ErrInvalidResult - error representing when a the format of a result is invalid
+// ErrInvalidResult - error representing invalid result
 var ErrInvalidResult = errors.New("query: invalid result format")
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
-// QueriesSource wraps an interface that contain basic methods: GetQueries and GetGenericQuery
+// QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
 // GetQueries gets all queries from a QueryMetadata list
 // GetGenericQuery gets a base query based in plataform's name
 type QueriesSource interface {
@@ -43,7 +43,7 @@ type QueriesSource interface {
 	GetGenericQuery(platform string) (string, error)
 }
 
-// Tracker wraps an interface wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
+// Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
 // TrackQueryLoad increments the number of loaded queries
 // TrackQueryExecution increments the number of queries executed
 // FailedDetectLine decrements the number of queries executed

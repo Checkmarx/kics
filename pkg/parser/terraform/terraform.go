@@ -57,7 +57,7 @@ func (p *Parser) SupportedExtensions() []string {
 	return []string{".tf"}
 }
 
-// GetKind returns terraform kind parser
+// GetKind returns Terraform kind parser
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindTerraform
 }

@@ -10,7 +10,7 @@ type Parser struct {
 	tokens hclsyntax.Tokens
 }
 
-// NewParser parser the content of a file and return a parser with its tokens
+// NewParser parses the content of a file and return a parser with its tokens
 func NewParser(src []byte, filename string) (*Parser, error) {
 	tokens, diags := hclsyntax.LexConfig(src, filename, hcl.Pos{Line: 0, Column: 0})
 	if diags != nil && diags.HasErrors() {

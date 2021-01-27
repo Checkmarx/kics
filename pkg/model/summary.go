@@ -1,6 +1,6 @@
 package model
 
-// SeveritySummary contains scan's result numbers, how many vulnerabities of each severity was detected
+// SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
 type SeveritySummary struct {
 	ScanID           string           `json:"scan_id"`
 	SeverityCounters map[Severity]int `json:"severity_counters"`
@@ -28,7 +28,7 @@ type VulnerableQuery struct {
 	Files     []VulnerableFile `json:"files"`
 }
 
-// Counters refere how many files was scanned, parsed, failed to be scaned, the total of queries
+// Counters hold information about how many files were scanned, parsed, failed to be scaned, the total of queries
 // and how many queries failed to execute
 type Counters struct {
 	ScannedFiles           int `json:"files_scanned"`

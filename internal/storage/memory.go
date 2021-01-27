@@ -6,7 +6,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
-// MemoryStorage is scan's results representation
+// MemoryStorage is scans' results representation
 type MemoryStorage struct {
 	vulnerabilities []model.Vulnerability
 	allFiles        model.FileMetadatas

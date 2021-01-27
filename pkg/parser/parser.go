@@ -29,7 +29,7 @@ func (b *Builder) Add(p kindParser) *Builder {
 	return b
 }
 
-// Build prepares parsers and associate a parser to its extension and returns it
+// Build prepares parsers and associates a parser to its extension and returns it
 func (b *Builder) Build() *Parser {
 	parsers := make(map[string]kindParser, len(b.parsers))
 	extensions := make(model.Extensions, len(b.parsers))
@@ -55,7 +55,7 @@ type Parser struct {
 	extensions model.Extensions
 }
 
-// Parse executes a parser on the fileContent and return the file content as a Document, the file kind and
+// Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
 	ext := filepath.Ext(filePath)
