@@ -4,6 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	password := resource.Properties.LoginProfile.Password
 	count(password) < 14
+	is_string(password)
 
 	result := {
 		"documentId": input.document[i].id,
