@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestVersionCommand tests kics version command
 func TestVersionCommand(t *testing.T) {
 	t.Run("Tests if prints current version", func(t *testing.T) {
 		out, err := test.CaptureCommandOutput(versionCmd, nil)

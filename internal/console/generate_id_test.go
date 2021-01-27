@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestGenerateIDCommand tests kics generate ID command
 func TestGenerateIDCommand(t *testing.T) {
 	t.Run("Tests if generates a valid uuid", func(t *testing.T) {
 		validUUID := regexp.MustCompile(test.ValidUUIDRegex)

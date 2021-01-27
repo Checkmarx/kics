@@ -99,6 +99,7 @@ var jsonTests = []struct {
 	},
 }
 
+// TestPrintResult tests the functions [printResult()] and all the methods called by them
 func TestPrintResult(t *testing.T) {
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
@@ -109,6 +110,7 @@ func TestPrintResult(t *testing.T) {
 	}
 }
 
+// TestPrintToJSONFile tests the functions [printToJSONFile()] and all the methods called by them
 func TestPrintToJSONFile(t *testing.T) {
 	for idx, test := range jsonTests {
 		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
