@@ -13,16 +13,19 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// RegoWriter represents the template for a Rego rule
 type RegoWriter struct {
 	tmpl *template.Template
 }
 
+// Block represents a json block of a file for scan
 type Block struct {
 	Name string
 	All  bool
 	List []string
 }
 
+// RegoRule contains a block to be scanned and a rule to be applied
 type RegoRule struct {
 	Block Block
 	build.Rule
@@ -32,6 +35,7 @@ const (
 	stringValue = "\"%s\""
 )
 
+// NewRegoWriter initializes a default RegoWriter using builder template
 func NewRegoWriter() (*RegoWriter, error) {
 	tmpl, err := template.New("template.gorego").
 		Funcs(template.FuncMap{
@@ -75,6 +79,7 @@ func NewRegoWriter() (*RegoWriter, error) {
 	return &RegoWriter{tmpl: tmpl}, nil
 }
 
+// Render starts RegoWriter rules list passed as parameter
 func (w *RegoWriter) Render(rules []build.Rule) ([]byte, error) {
 	wr := bytes.NewBuffer(nil)
 
