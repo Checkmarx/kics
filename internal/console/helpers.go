@@ -11,11 +11,37 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func printResult(summary *model.Summary) error {
+// wordWrap Wraps text at the specified number of words
+func wordWrap(s, identation string, limit int) string {
+	if strings.TrimSpace(s) == "" {
+		return s
+	}
+
+	wordSlice := strings.Fields(s)
+	var result string
+
+	for len(wordSlice) >= 1 {
+		result = result + identation + strings.Join(wordSlice[:limit], " ") + "\r\n"
+
+		wordSlice = wordSlice[limit:]
+		if len(wordSlice) < limit {
+			limit = len(wordSlice)
+		}
+	}
+	return result
+}
+
+func printResult(summary *model.Summary, failedQueries map[string]error) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
-	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
+
+	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
+	for queryName, err := range failedQueries {
+		fmt.Printf("\t- %s:\n", queryName)
+		fmt.Printf("%s", wordWrap(err.Error(), "\t\t", 5))
+	}
+	fmt.Printf("------------------------------------\n")
 	for _, q := range summary.Queries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
 

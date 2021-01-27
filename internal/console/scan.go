@@ -147,7 +147,7 @@ func scan() error {
 		return err
 	}
 
-	if err := printResult(&summary); err != nil {
+	if err := printResult(&summary, inspector.GetFailedQueries()); err != nil {
 		return err
 	}
 
