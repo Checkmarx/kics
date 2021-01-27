@@ -11,11 +11,17 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func printResult(summary *model.Summary) error {
+func printResult(summary *model.Summary, failedQueries map[string]error) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
+
 	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
+	for k, v := range failedQueries {
+		fmt.Printf("%s :: %s\n", k, v)
+	}
+
+	fmt.Printf("\nQueries results\n\n")
 	for _, q := range summary.Queries {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
 

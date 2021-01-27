@@ -49,9 +49,10 @@ type preparedQuery struct {
 }
 
 type Inspector struct {
-	queries []*preparedQuery
-	vb      VulnerabilityBuilder
-	tracker Tracker
+	queries       []*preparedQuery
+	vb            VulnerabilityBuilder
+	tracker       Tracker
+	failedQueries map[string]error
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
@@ -164,6 +165,8 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 				Str("scanID", scanID).
 				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
 
+			c.failedQueries[query.metadata.Query] = err
+
 			continue
 		}
 		vulnerabilities = append(vulnerabilities, vuls...)
@@ -180,6 +183,11 @@ func (c *Inspector) EnableCoverageReport() {
 
 func (c *Inspector) GetCoverageReport() cover.Report {
 	return c.coverageReport
+}
+
+// GetFailedQueries returns a map of failed queries and the associated error
+func (c *Inspector) GetFailedQueries() map[string]error {
+	return c.failedQueries
 }
 
 func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
@@ -246,6 +254,10 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 			sentry.CaptureException(err)
 			log.Err(err).
 				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
+
+			if _, ok := c.failedQueries[ctx.query.metadata.Query]; !ok {
+				c.failedQueries[ctx.query.metadata.Query] = err
+			}
 
 			continue
 		}
