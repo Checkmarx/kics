@@ -37,15 +37,3 @@ jobs:
     - name: CodeCov
       run: |
         bash <(curl -s https://codecov.io/bash)
-    - name: Check if total coverage is greater then 0
-      run: |
-        CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
-        EXPECTED_CODE_COV=0
-        var=$(awk 'BEGIN{ print "'$CODE_COV'"<"'$EXPECTED_CODE_COV'" }')
-        if [ "$var" -eq 1 ];then
-          echo "Your code coverage is too low. Coverage precentage is: $CODE_COV"
-          exit 1
-        else
-          echo "Your code coverage test passed! Coverage precentage is: $CODE_COV"
-          exit 0
-        fi
