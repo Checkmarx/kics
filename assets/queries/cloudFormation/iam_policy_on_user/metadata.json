@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
   "descriptionText": "IAM policies should be applied to groups and not to users",
-  "descriptionUrl": "#"
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_IAM.html"
 }

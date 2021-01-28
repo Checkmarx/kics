@@ -1,14 +1,16 @@
 # Query by Example - the tool for query auto-generation
 
-#### What does this tool do
+## What does this tool do
+
 The query auto-generation tool generates queries by examples: its input is an example of a source file with security issues, 
-when there is a special comment marks lines with security issues; 
+when there is a special comment marks lines with security issues;
 its output is a query source in REGO format.
 
-#### Example
+## Example
 
-##### Terraform file with security issues marked with comments:
-```
+### Terraform file with security issues marked with comments
+
+```terraform
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.front_end.arn
   port              = "80"
@@ -37,8 +39,10 @@ resource "aws_alb_listener" "front_end" {
   }
 }
 ```
-##### Auto-generated Query in REGO format:
-```
+
+### Auto-generated Query in REGO format
+
+```rego
 package Cx
 
 CxPolicy [ result ] {
@@ -76,32 +80,37 @@ CxPolicy [ result ] {
 }
 ```
 
-#### How to run
-```
+## How to run
+
+```sh
 go run cmd/builder/main.go -i ./cmd/builder/example.tf -o ./out.rego
 ```
 
 Where `-i` - terraform file to parse, `-o` result query.
 
 Please ensure you have downloaded all tool dependencies, to do that please execute:
-```
+
+```sh
 go mod download
 go mod vendor
 ```
 
-### Supported Comment
+## Supported Comment
 
 The tool supports only comments which have Golang struct tag syntax, for example `// Comment:"attribute1,attribute2=value" Comment2`. (note: space is not allowed in comments attributes).
 For more example please take a look at the example files.
 
 Supported comment:
-* `MissingAttribute`
-* `RedundantAttribute`
-* `IncorrectValue`
-  * `resource` - to target a resource, can be `resource=*`, `resource=['s3_bucket','sqs_queue']`, by default resource from terraform file will be used 
-  * `any_key` - allow any element in condition, example `resosource.vars.name -> resource.vars[_]`
-  * `upper/lower` - to wrap condition, example `resosource.vars.name -> upper(resource.vars.name)`
-  * `regex` - use `re_match` for a condition, should be provided with a regex pattern as an attribute value
-  * `condition` - to set a custom condition, by default we use `==`
-  * `val` - to set custom condition value, by default we use the value from the provided terraform file
 
+*   `MissingAttribute`
+
+*   `RedundantAttribute`
+
+*   `IncorrectValue`
+    *   `resource` - to target a resource, can be `resource=*`, `resource=['s3_bucket','sqs_queue']`, by default resource from terraform file will be used 
+    *   `any_key` - allow any element in condition, example `resosource.vars.name -> resource.vars[_]`
+    *   `upper/lower` - to wrap condition, example `resosource.vars.name -> upper(resource.vars.name)`
+    *   `regex` - use `re_match` for a condition, should be provided with a regex pattern as an attribute value
+    *   `condition` - to set a custom condition, by default we use `==`
+    *   `val` - to set custom condition value, by default we use the value from the provided terraform file
+  

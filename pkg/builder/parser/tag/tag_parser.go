@@ -9,6 +9,7 @@ import (
 	"text/scanner"
 )
 
+// Tag contains the tag name reference and its atributtes
 type Tag struct {
 	Name       string
 	Attributes map[string]interface{}
@@ -180,7 +181,7 @@ func parseArgs(sc *scanner.Scanner) (map[string]interface{}, error) {
 		}
 		result[name] = value
 		next := sc.Next()
-		if next == ')' {
+		if next == ']' {
 			return result, nil
 		}
 		if next == ',' {

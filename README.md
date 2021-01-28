@@ -25,21 +25,26 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](docs/roadmap.md).
 
-
 ## Getting Started
 
 Setting up and using KICS is super-easy.
 
-- First, see how to [install and get KICS running](docs/getting-started.md).
-- Next, check how you can easily [integrate it into your CI](docs/integrations.md) for any project.
-- Eventually, [explore the output results format](docs/results.md) and quickly fix the issues detected.
+-   First, see how to [install and get KICS running](docs/getting-started.md).
+-   Next, check how you can easily [integrate it into your CI](docs/integrations.md) for any project.
+-   Eventually, [explore the output results format](docs/results.md) and quickly fix the issues detected.
 
 ## How it Works
 
 What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
 
-- Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
-- Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
+-   Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
+-   Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
+
+## Release process
+
+KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
+The nightly release will have a "nightly" prefix with the last commit hash code.
+
 
 ## Contribution
 

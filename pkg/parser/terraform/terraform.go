@@ -11,16 +11,19 @@ import (
 	"github.com/pkg/errors"
 )
 
+// RetriesDefaultValue is default number of times a parser will retry to execute
 const RetriesDefaultValue = 50
 
 // Converter returns content json, error line, error
 type Converter func(file *hcl.File) (model.Document, int, error)
 
+// Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
 	convertFunc  Converter
 	numOfRetries int
 }
 
+// NewDefault initializes a parser with Parser default values
 func NewDefault() *Parser {
 	return &Parser{
 		numOfRetries: RetriesDefaultValue,
@@ -28,6 +31,7 @@ func NewDefault() *Parser {
 	}
 }
 
+// Parse execute parser for the content in a file
 func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 	var (
 		fc        model.Document
@@ -48,10 +52,12 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 	return []model.Document{fc}, errors.Wrap(parseErr, "failed terraform parse")
 }
 
+// SupportedExtensions returns Terraform extensions
 func (p *Parser) SupportedExtensions() []string {
 	return []string{".tf"}
 }
 
+// GetKind returns Terraform kind parser
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindTerraform
 }

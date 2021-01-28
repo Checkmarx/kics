@@ -16,10 +16,17 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// SourceProvider is the interface that wraps the basic GetSources method.
+// GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
 	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
 }
 
+// Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
+// SaveFile should append metadata to a file
+// SaveVulnerabilities should append vulnerabilities list to current storage
+// GetVulnerabilities should returns all vulnerabilities associated to a scan ID
+// GetScanSummary should return a list of summaries based on their scan IDs
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
 	SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error
@@ -27,11 +34,17 @@ type Storage interface {
 	GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error)
 }
 
+// Tracker is the interface that wraps the basic methods: TrackFileFound and TrackFileParse
+// TrackFileFound should increment the number of files to be scanned
+// TrackFileParse should increment the number of files parsed successfully to be scanned
 type Tracker interface {
 	TrackFileFound()
 	TrackFileParse()
 }
 
+// Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
+// a parser to parse and provide files in format that KICS understand, a inspector that runs the scanning and a tracker to
+// update scanning numbers
 type Service struct {
 	SourceProvider SourceProvider
 	Storage        Storage
@@ -40,6 +53,7 @@ type Service struct {
 	Tracker        Tracker
 }
 
+// StartScan executes scan over the context, using the scanID as reference
 func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
@@ -94,10 +108,12 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	return errors.Wrap(err, "failed to save vulnerabilities")
 }
 
+// GetVulnerabilities returns a list of scan detected vulnerabilities
 func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
 	return s.Storage.GetVulnerabilities(ctx, scanID)
 }
 
+// GetScanSummary returns how many vulnerabilities of each severity was found
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
 }

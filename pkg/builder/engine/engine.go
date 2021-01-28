@@ -17,11 +17,13 @@ import (
 
 const resourceLabelsCount = 2
 
+// Engine contains the conditions of rules and comments positions
 type Engine struct {
 	commentParser *commentParser.Parser
 	conditions    []build.Condition
 }
 
+// Run parses files and execute engine.Run
 func Run(src []byte, filename string) ([]build.Rule, error) {
 	cp, err := commentParser.NewParser(src, filename)
 	if err != nil {
@@ -43,6 +45,7 @@ func Run(src []byte, filename string) ([]build.Rule, error) {
 	return e.Run(file.Body.(*hclsyntax.Body))
 }
 
+// Run initializes rules for Engine and returns it
 func (e *Engine) Run(body *hclsyntax.Body) ([]build.Rule, error) {
 	e.conditions = make([]build.Condition, 0)
 	if err := e.walkBody(body, []build.PathItem{}); err != nil {
