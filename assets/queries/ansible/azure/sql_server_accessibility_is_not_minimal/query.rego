@@ -4,7 +4,8 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-	rule := task.azure_rm_sqlfirewallrule
+    modules = {"azure.azcollection.azure_rm_sqlfirewallrule","azure_rm_sqlfirewallrule"}
+	rule := task[modules[index]]
 	ruleName := task.name
 
 	rule.start_ip_address == "0.0.0.0"
@@ -12,10 +13,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_sqlfirewallrule}}", [ruleName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [ruleName, modules[index]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_sqlfirewallrule.start_ip_address is different from '0.0.0.0' and azure_rm_sqlfirewallrule.end_ip_address is different from '0.0.0.0'",
-		"keyActualValue": "azure_rm_sqlfirewallrule.start_ip_address is '0.0.0.0' and azure_rm_sqlfirewallrule.end_ip_address is '0.0.0.0'",
+		"keyExpectedValue": sprintf("%s.start_ip_address is different from '0.0.0.0' and azure_rm_sqlfirewallrule.end_ip_address is different from '0.0.0.0'",[modules[index]]),
+		"keyActualValue": sprintf("%s.start_ip_address is '0.0.0.0' and azure_rm_sqlfirewallrule.end_ip_address is '0.0.0.0'",[modules[index]]),
 	}
 }
 
@@ -23,7 +24,8 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-	rule := task.azure_rm_sqlfirewallrule
+	modules = {"azure.azcollection.azure_rm_sqlfirewallrule","azure_rm_sqlfirewallrule"}
+	rule := task[modules[index]]
 	ruleName := task.name
 	startIP_value := calcValue(rule.start_ip_address)
 	endIP_value := calcValue(rule.end_ip_address)
@@ -32,10 +34,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_sqlfirewallrule}}", [ruleName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [ruleName, modules[index]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The difference between the value of 'azure_rm_sqlfirewallrule.end_ip_address' and 'azure_rm_sqlfirewallrule.start_ip_address' is lesser than 256",
-		"keyActualValue": "The difference between the value of 'azure_rm_sqlfirewallrule.end_ip_address' and 'azure_rm_sqlfirewallrule.start_ip_address' is greater than or equal to 256",
+		"keyExpectedValue": sprintf("The difference between the value of '%s' .'end_ip_address' and .'start_ip_address' is lesser than 256",[modules[index]]),
+		"keyActualValue": sprintf("The difference between the value of '%s' .'end_ip_address' and .'start_ip_address' is greater than or equal to 256",[modules[index]]),
 	}
 }
 
