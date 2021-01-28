@@ -16,7 +16,7 @@ import (
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
 type FilesystemSource struct {
-	Source string
+	Source []string
 }
 
 const (
@@ -71,21 +71,24 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
-	err := filepath.Walk(s.Source,
-		func(p string, f os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
+	var err error
+	for _, path := range s.Source {
+		err = filepath.Walk(path,
+			func(p string, f os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
 
-			if f.IsDir() || f.Name() != QueryFileName {
+				if f.IsDir() || f.Name() != QueryFileName {
+					return nil
+				}
+
+				queryDirs = append(queryDirs, filepath.Dir(p))
 				return nil
-			}
-
-			queryDirs = append(queryDirs, filepath.Dir(p))
-			return nil
-		})
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to get query Source")
+			})
+		if err != nil {
+			return nil, errors.Wrap(err, "failed to get query Source")
+		}
 	}
 
 	queries := make([]model.QueryMetadata, 0, len(queryDirs))

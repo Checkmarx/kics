@@ -17,7 +17,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		t.Fatal(err)
 	}
 	type fields struct {
-		Source string
+		Source []string
 	}
 	type args struct {
 		platform string
@@ -32,7 +32,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_terraform",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "terraform",
@@ -43,7 +43,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_common",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "common",
@@ -54,7 +54,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_cloudformation",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "cloudFormation",
@@ -65,7 +65,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_ansible",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "ansible",
@@ -76,7 +76,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_dockerfile",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "dockerfile",
@@ -87,7 +87,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_k8s",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "k8s",
@@ -98,7 +98,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_unknown",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			args: args{
 				platform: "unknown",
@@ -131,7 +131,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	}
 
 	type fields struct {
-		Source string
+		Source []string
 	}
 	tests := []struct {
 		name    string
@@ -142,7 +142,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: []string{"./assets/queries/template"},
 			},
 			want: []model.QueryMetadata{
 				{
@@ -177,7 +177,7 @@ CxPolicy [ result ] {
 		{
 			name: "get_queries_error",
 			fields: fields{
-				Source: "../no-path",
+				Source: []string{"../no-path"},
 			},
 			want:    nil,
 			wantErr: true,
@@ -194,6 +194,68 @@ CxPolicy [ result ] {
 				return
 			}
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+// Test_ReadMetadata tests the functions [GetQueries()] and all the methods called by them (Tets, getting multiple queries types)
+func TestFilesystemSource_GetQueriesByType(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+	type fields struct {
+		Source []string
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		want    int
+		wantErr bool
+	}{
+		{
+			name: "test_multiple_paths",
+			fields: fields{
+				Source: []string{
+					"test/fixtures/type-test01",
+					"test/fixtures/type-test02",
+				},
+			},
+			want:    5,
+			wantErr: false,
+		},
+		{
+			name: "test_path_type-test01",
+			fields: fields{
+				Source: []string{
+					"test/fixtures/type-test01",
+				},
+			},
+			want:    3,
+			wantErr: false,
+		},
+		{
+			name: "test_path_type-test02",
+			fields: fields{
+				Source: []string{
+					"test/fixtures/type-test02",
+				},
+			},
+			want:    2,
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &FilesystemSource{
+				Source: tt.fields.Source,
+			}
+			got, err := s.GetQueries()
+			if (err != nil) != tt.wantErr {
+				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			require.Equal(t, tt.want, len(got))
 		})
 	}
 }

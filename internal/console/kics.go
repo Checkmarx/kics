@@ -17,6 +17,7 @@ var (
 	payloadPath string
 	verbose     bool
 	logFile     bool
+	types       []string
 )
 
 var ctx = context.Background()
