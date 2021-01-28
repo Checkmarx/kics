@@ -19,5 +19,3 @@ archives:
       386: x32
     files:
       - assets/queries
-release:
-  prerelease: auto
