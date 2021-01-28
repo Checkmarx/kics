@@ -24,7 +24,7 @@ CxPolicy[result] {
 	task := tasks[t]
 
 	modules = {"azure.azcollection.azure_rm_storageaccount","azure_rm_storageaccount"}
-	tls_version := object.get(task[modules[index]], "minimum_tls_version", "undefined")
+	tls_version := task[modules[index]].minimum_tls_version
 	not tls_version == "TLS1_2"
 
 	result := {
