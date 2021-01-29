@@ -34,15 +34,15 @@ const (
 func GetPathToLibrary(platform, relativeBasePath string) string {
 	libraryPath := filepath.Join(relativeBasePath, LibrariesBasePath)
 
-	if strings.Contains(platform, "ansible") {
+	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
 		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
-	} else if strings.Contains(platform, "cloudformation") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
 		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
-	} else if strings.Contains(platform, "dockerfile") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
 		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
-	} else if strings.Contains(platform, "k8s") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
 		return filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
-	} else if strings.Contains(platform, "terraform") {
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
 		return filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
 	}
 
@@ -58,7 +58,7 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	}
 
 	pathToLib := GetPathToLibrary(platform, currentWorkdir)
-	content, err := ioutil.ReadFile(pathToLib)
+	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
 
 	if err != nil {
 		log.Err(err)
@@ -108,7 +108,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
-	queryContent, err := ioutil.ReadFile(path.Join(queryDir, QueryFileName))
+	queryContent, err := ioutil.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
@@ -126,7 +126,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 
 // ReadMetadata read query's metadata file inside the query directory
 func ReadMetadata(queryDir string) map[string]interface{} {
-	f, err := os.Open(path.Join(queryDir, MetadataFileName))
+	f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
 	if err != nil {
 		sentry.CaptureException(err)
 		if os.IsNotExist(err) {

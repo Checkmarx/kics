@@ -3,7 +3,8 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].command[name]
 
-	not hasUserInstruction(resource)
+  not name == "scratch"
+  not hasUserInstruction(resource)
 
 	result := {
 		"documentId": input.document[i].id,

@@ -12,13 +12,17 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// FileSystemSourceProvider provides a path to be scanned
+// and a list of files which will not be scanned
 type FileSystemSourceProvider struct {
 	path     string
 	excludes map[string]os.FileInfo
 }
 
+// ErrNotSupportedFile - error representing when a file format is not supported by KICS
 var ErrNotSupportedFile = errors.New("invalid file format")
 
+// NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
 func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
 	ex := make(map[string]os.FileInfo, len(excludes))
 	for _, exclude := range excludes {
@@ -39,6 +43,7 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 	}, nil
 }
 
+// GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
@@ -66,8 +71,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 		if s.checkConditions(info, extensions, path) {
 			return nil
 		}
-
-		c, err := os.Open(path)
+		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
 			return errors.Wrap(err, "failed to open file")
 		}
@@ -78,7 +82,11 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			log.Err(err).
 				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
 		}
-		c.Close()
+		if err := c.Close(); err != nil {
+			sentry.CaptureException(err)
+			log.Err(err).
+				Msgf("Filesystem couldn't close file, file=%s", info.Name())
+		}
 		return nil
 	})
 

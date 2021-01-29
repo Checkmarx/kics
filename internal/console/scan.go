@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"time"
 
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -45,9 +46,7 @@ func initScanCmd() {
 	}
 }
 
-func scan() error {
-	fmt.Printf("Scanning with %s\n\n", getVersion())
-
+func setupLogs() error {
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 
@@ -56,7 +55,7 @@ func scan() error {
 	}
 
 	if logFile {
-		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			return err
 		}
@@ -65,6 +64,17 @@ func scan() error {
 
 	mw := io.MultiWriter(consoleLogger, fileLogger)
 	log.Logger = log.Output(mw)
+	return nil
+}
+
+func scan() error {
+	fmt.Printf("Scanning with %s\n\n", getVersion())
+
+	if err := setupLogs(); err != nil {
+		return err
+	}
+
+	scanStartTime := time.Now()
 
 	querySource := &query.FilesystemSource{
 		Source: queryPath,
@@ -117,6 +127,8 @@ func scan() error {
 		return err
 	}
 
+	elapsed := time.Since(scanStartTime)
+
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -135,9 +147,13 @@ func scan() error {
 		return err
 	}
 
-	if err := printResult(&summary); err != nil {
+	if err := printResult(&summary, inspector.GetFailedQueries()); err != nil {
 		return err
 	}
+
+	elapsedStrFormat := "Scan duration: %v\n"
+	fmt.Printf(elapsedStrFormat, elapsed)
+	log.Info().Msgf(elapsedStrFormat, elapsed)
 
 	if summary.FailedToExecuteQueries > 0 {
 		os.Exit(1)
