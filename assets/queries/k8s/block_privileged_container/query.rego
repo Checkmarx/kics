@@ -3,29 +3,15 @@ package Cx
 CxPolicy[result] {
 	metadata := input.document[i].metadata
 	spec := input.document[i].spec
-	containers := spec.containers
+	types := {"initContainers", "containers"}
+	containers := spec[types[x]]
 	containers[c].securityContext.privileged == true
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers.name=%s.securityContext.privileged", [metadata.name, containers[c].name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.securityContext.privileged", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.containers.name=%s.securityContext.privileged is false", [metadata.name, containers[c].name]),
-		"keyActualValue": sprintf("spec.containers.name=%s.securityContext.privileged is true", [metadata.name, containers[c].name]),
-	}
-}
-
-CxPolicy[result] {
-	metadata := input.document[i].metadata
-	spec := input.document[i].spec
-	initContainers := spec.initContainers
-	initContainers[c].securityContext.privileged == true
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.initContainers.name=%s.securityContext.privileged", [metadata.name, initContainers[c].name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.initContainers.name=%s.securityContext.privileged is false", [metadata.name, initContainers[c].name]),
-		"keyActualValue": sprintf("spec.initContainers.name=%s.securityContext.privileged is true", [metadata.name, initContainers[c].name]),
+		"keyExpectedValue": sprintf("spec.%s.name=%s.securityContext.privileged is false", [types[x], metadata.name, containers[c].name]),
+		"keyActualValue": sprintf("spec.%s.name=%s.securityContext.privileged is true", [types[x], metadata.name, containers[c].name]),
 	}
 }
