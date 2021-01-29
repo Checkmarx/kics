@@ -4,17 +4,18 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-	storageAccount := task["azure.azcollection.azure_rm_storageaccount"]
+	modules = {"azure.azcollection.azure_rm_storageaccount","azure_rm_storageaccount"}
+	storageAccount := task[modules[index]]
 	storageAccountName := task.name
 
 	object.get(storageAccount, "https_only", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_storageaccount}}", [storageAccountName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [storageAccountName, modules[index]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azure.azcollection.azure_rm_storageaccount should have https_only set to true",
-		"keyActualValue": "azure.azcollection.azure_rm_storageaccount does not have https_only (defaults to false)",
+		"keyExpectedValue": sprintf("%s.https_only is defined",[modules[index]]),
+		"keyActualValue": sprintf("%s.https_only is undefined (defaults to false)",[modules[index]]),
 	}
 }
 
@@ -22,16 +23,17 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-	storageAccount := task["azure.azcollection.azure_rm_storageaccount"]
+	modules = {"azure.azcollection.azure_rm_storageaccount","azure_rm_storageaccount"}
+	storageAccount := task[modules[index]]
 	storageAccountName := task.name
 	not isAnsibleTrue(storageAccount.https_only)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only", [storageAccountName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.https_only", [storageAccountName, modules[index]]),
 		"issueType": "WrongValue",
-		"keyExpectedValue": "azure.azcollection.azure_rm_storageaccount should have https_only set to true",
-		"keyActualValue": "azure.azcollection.azure_rm_storageaccount does has https_only set to false",
+		"keyExpectedValue": sprintf("%s should have https_only set to true",[modules[index]]),
+		"keyActualValue": sprintf("%s has https_only set to false",[modules[index]]),
 	}
 }
 
