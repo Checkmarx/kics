@@ -107,8 +107,12 @@ func TestQueriesMetadata(t *testing.T) {
 func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	require.FileExists(t, path.Join(entry.dir, query.QueryFileName))
 	require.FileExists(t, path.Join(entry.dir, query.MetadataFileName))
-	require.FileExists(t, entry.PositiveFile())
-	require.FileExists(t, entry.NegativeFile())
+	for _, positiveFile := range entry.PositiveFiles(t) {
+		require.FileExists(t, positiveFile)
+	}
+	for _, negativeFile := range entry.NegativeFiles(t) {
+		require.FileExists(t, negativeFile)
+	}
 	require.FileExists(t, entry.ExpectedPositiveResultFile())
 }
 
@@ -167,7 +171,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	_, err = inspector.Inspect(ctx, scanID, getParsedFile(t, entry.PositiveFile()))
+	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)))
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()
