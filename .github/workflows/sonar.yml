@@ -1,13 +1,14 @@
-name: Build
+name: sonar
 on:
   push:
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+  pull_request_target:
+    types: [labeled]
 jobs:
   sonarcloud:
     name: SonarCloud
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
