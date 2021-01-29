@@ -49,7 +49,6 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] { #Resource with name containing DB and KmsKeyId is undefined
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -66,8 +65,6 @@ CxPolicy[result] { #Resource with name containing DB and KmsKeyId is undefined
 	}
 }
 
-
-
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -83,8 +80,6 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.StorageEncrypted is undefined", [key]),
 	}
 }
-
-
 
 isDBName(name) = result {
 	possibleDBs := {"couchbase", "riak", "redis", "hbase", "Oracle", "SAP Hana", "Postgres", "cassandra", "hadoop", "Mongo", "Neo4j", "DB", "SQL"}

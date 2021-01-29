@@ -21,8 +21,9 @@ attachedToInstances(volumeName) {
 	resource.Type == "AWS::EC2::VolumeAttachment"
 	refers(resource.Properties.VolumeId, volumeName)
 }
+
 refers(obj, name) {
-    obj.Ref == name
+	obj.Ref == name
 }
 
 refers(obj, name) {
