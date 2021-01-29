@@ -2,7 +2,7 @@
 	{
 		"queryName": "S3 Bucket Should Have Bucket Policy",
 		"severity": "MEDIUM",
-		"line": 12
+		"line": 8
 	},
 	{
 		"queryName": "S3 Bucket Should Have Bucket Policy",

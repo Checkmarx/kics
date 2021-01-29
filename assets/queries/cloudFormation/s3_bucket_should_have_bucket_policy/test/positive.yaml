@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: A sample template
 Resources:
-  S3Bucket:
+  S3Bucket3:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: docexamplebucket
-  SampleBucketPolicy:
+      BucketName: docexamplebucket1
+  SampleBucketPolicy5:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
       Bucket:
@@ -20,7 +20,7 @@ Resources:
               'Fn::Join':
                 - ''
                 - - 'arn:aws:s3:::'
-                  - Ref: docexamplebucket
+                  - Ref: docexamplebucket1
                   - /*
             Principal: '*'
             Condition:
@@ -28,6 +28,10 @@ Resources:
                 'aws:Referer':
                   - 'http://www.example.com/*'
                   - 'http://example.net/*'
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties: {}
   SampleBucketPolicy2:
     Type: AWS::S3::BucketPolicy
     Properties:

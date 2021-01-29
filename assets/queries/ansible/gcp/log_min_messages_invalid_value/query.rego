@@ -7,8 +7,8 @@ CxPolicy[result] {
 	instance := task["google.cloud.gcp_sql_instance"]
 	settings := instance.settings
 	database_flags := settings.database_flags
-
-	not check_database_flags_content(database_flags)
+    database_flags[x].name == "log_min_messages"
+    not check_database_flags_content(database_flags[x])
 
 	result := {
 		"documentId": document.id,
@@ -27,14 +27,6 @@ getTasks(document) = result {
 }
 
 check_database_flags_content(database_flags) {
-	database_flags[x].name == "log_min_messages"
-	cmd := ["fatal", "panic", "log", "error", "warning", "notice", "info", "debug1", "debug2", "debug3", "debug4", "debug5"]
-	some k
-	contains(database_flags[x].value, cmd[k])
-}
-
-check_database_flags_content(database_flags) {
-	database_flags.name == "log_min_messages"
 	cmd := ["fatal", "panic", "log", "error", "warning", "notice", "info", "debug1", "debug2", "debug3", "debug4", "debug5"]
 	some k
 	contains(database_flags.value, cmd[k])

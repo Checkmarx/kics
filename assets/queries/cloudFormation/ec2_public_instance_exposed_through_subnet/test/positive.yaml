@@ -1,5 +1,5 @@
 Resources:
-  myVPC:
+  myVPC_1:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: 10.0.0.0/16
@@ -12,11 +12,11 @@ Resources:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       InternetGatewayId: !Ref InternetGateway
-      VpcId: !Ref myVPC
+      VpcId: !Ref myVPC_1
   myRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
-      VpcId: !Ref myVPC
+      VpcId: !Ref myVPC_1
   myRoute:
       Type: AWS::EC2::Route
       DependsOn: VPCGatewayAttachment
@@ -28,7 +28,7 @@ Resources:
   mySubnet:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref myVPC
+      VpcId: !Ref myVPC_1
       CidrBlock: 10.0.0.0/24
       AvailabilityZone: "us-east-1a"
   mySubnetRouteTableAssociation:
