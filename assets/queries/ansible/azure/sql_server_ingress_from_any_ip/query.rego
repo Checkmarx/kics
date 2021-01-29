@@ -4,7 +4,8 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-	fwRule := task["azure.azcollection.azure_rm_sqlfirewallrule"]
+	modules = {"azure.azcollection.azure_rm_sqlfirewallrule","azure_rm_sqlfirewallrule"}
+	fwRule := task[modules[index]]
 	fwRuleName := task.name
 
 	fwRule.start_ip_address == "0.0.0.0"
@@ -12,10 +13,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_sqlfirewallrule}}.end_ip_address", [fwRuleName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.end_ip_address", [fwRuleName,modules[index]]),
 		"issueType": "WrongValue",
-		"keyExpectedValue": "azure.azcollection.azure_rm_sqlfirewallrule should not allow all IPs (range from start_ip_address to end_ip_address)",
-		"keyActualValue": "azure.azcollection.azure_rm_sqlfirewallrule should allows all IPs",
+		"keyExpectedValue": sprintf("%s should not allow all IPs (range from start_ip_address to end_ip_address)",[modules[index]]),
+		"keyActualValue": sprintf("%s should allows all IPs",[modules[index]]),
 	}
 }
 

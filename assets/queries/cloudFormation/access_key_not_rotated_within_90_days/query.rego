@@ -2,6 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
+    resource.Type == "AWS::Config::ConfigRule"
 	not hasAccessKeyRotationRule(resource)
 
 	result := {
@@ -50,7 +51,6 @@ CxPolicy[result] {
 }
 
 hasAccessKeyRotationRule(configRule) {
-	configRule.Type == "AWS::Config::ConfigRule"
 	configRule.Properties.Source.SourceIdentifier == "ACCESS_KEYS_ROTATED"
 } else = false {
 	true

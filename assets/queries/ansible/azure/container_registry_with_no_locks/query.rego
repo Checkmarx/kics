@@ -5,16 +5,18 @@ CxPolicy[result] {
 	tasks := getTasks(document)
 	task := tasks[t]
 
-	taskContainerRegistry := task.azure_rm_containerregistry
+    modules := {"azure.azcollection.azure_rm_containerregistry", "azure_rm_containerregistry"}
+
+	taskContainerRegistry := task[modules[index]]
 
 	not checkLocks(taskContainerRegistry)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{azure_rm_containerregistry}}.resource_group", [task.name]),
+		"searchKey": sprintf("name=%s.{{%s}}.resource_group", [task.name, modules[index]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'azure_rm_containerregistry.resource_group' lock used should referring to an one that exists",
-		"keyActualValue": "'azure_rm_containerregistry.resource_group' lock used is referring to an one that doesn't exist",
+		"keyExpectedValue": sprintf("%s.resource_group is referenced by an existing lock", [modules[index]]),
+		"keyActualValue": sprintf("%s.resource_group is not referenced by a lock", [modules[index]]),
 	}
 }
 
