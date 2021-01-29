@@ -118,12 +118,14 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 	sort.Slice(expected, func(i, j int) bool {
 		if expected[i].FileName != "" {
 			return strings.Compare(expected[i].FileName, expected[j].FileName) == -1 && expected[i].Line < expected[j].Line
-		} else {
-			return expected[i].Line < expected[j].Line
 		}
+		return expected[i].Line < expected[j].Line
 	})
 	sort.Slice(actual, func(i, j int) bool {
-		return strings.Compare(filepath.Base(expected[i].FileName), filepath.Base(expected[j].FileName)) == -1 && actual[i].Line < actual[j].Line
+		if expected[i].FileName != "" {
+			return strings.Compare(filepath.Base(expected[i].FileName), filepath.Base(expected[j].FileName)) == -1 && actual[i].Line < actual[j].Line
+		}
+		return actual[i].Line < actual[j].Line
 	})
 
 	require.Len(tb, actual, len(expected), "Count of actual issues and expected vulnerabilities doesn't match")

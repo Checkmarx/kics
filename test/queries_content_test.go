@@ -22,7 +22,6 @@ import (
 )
 
 const (
-	fileID = 12345
 	scanID = "test_scan"
 )
 
@@ -107,9 +106,11 @@ func TestQueriesMetadata(t *testing.T) {
 func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	require.FileExists(t, path.Join(entry.dir, query.QueryFileName))
 	require.FileExists(t, path.Join(entry.dir, query.MetadataFileName))
+	require.True(t, len(entry.PositiveFiles(t)) > 0, "No positive samples found for query %s", entry.dir)
 	for _, positiveFile := range entry.PositiveFiles(t) {
 		require.FileExists(t, positiveFile)
 	}
+	require.True(t, len(entry.NegativeFiles(t)) > 0, "No negative samples found for query %s", entry.dir)
 	for _, negativeFile := range entry.NegativeFiles(t) {
 		require.FileExists(t, negativeFile)
 	}

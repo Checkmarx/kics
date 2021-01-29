@@ -7,7 +7,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -18,23 +17,24 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		// "../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
-		// "../assets/queries/terraform/azure":          {FileKind: model.KindTerraform, Platform: "terraform"},
-		// "../assets/queries/terraform/gcp":            {FileKind: model.KindTerraform, Platform: "terraform"},
-		// "../assets/queries/terraform/github":         {FileKind: model.KindTerraform, Platform: "terraform"},
-		// "../assets/queries/terraform/kubernetes_pod": {FileKind: model.KindTerraform, Platform: "terraform"},
-		// "../assets/queries/k8s":                      {FileKind: model.KindYAML, Platform: "k8s"},
-		"../assets/queries/cloudFormation/elb_sensitive_port_is_exposed_to_entire_network": {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/ansible/aws":              {FileKind: model.KindYAML, Platform: "ansible"},
-		// "../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
-		// "../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
-		// "../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
+		"../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/azure":          {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":            {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/github":         {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes_pod": {FileKind: model.KindTerraform, Platform: "terraform"},
+		"../assets/queries/k8s":                      {FileKind: model.KindYAML, Platform: "k8s"},
+		"../assets/queries/cloudFormation":           {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":              {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
+		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
 	}
 )
 
@@ -112,9 +112,9 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 
 	parsedDocuments, kind, err := combinedParser.Parse(filePath, content)
 	require.NoError(t, err)
-	for i, document := range parsedDocuments {
+	for _, document := range parsedDocuments {
 		files = append(files, model.FileMetadata{
-			ID:           strconv.Itoa(fileID + i),
+			ID:           uuid.NewString(),
 			ScanID:       scanID,
 			Document:     document,
 			OriginalData: string(content),
