@@ -146,7 +146,7 @@ Resources:
       Subnets:
         - !Ref Subnet1
     DependsOn: GatewayAttachment
-  VPC:
+  VPC2:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: 10.0.0.0/24
