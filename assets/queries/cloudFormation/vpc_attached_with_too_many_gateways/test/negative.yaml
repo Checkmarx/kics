@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-    myVPC:
+    myVP_2:
       Type: AWS::EC2::VPC
       Properties:
         CidrBlock: 10.0.0.0/16
@@ -11,20 +11,20 @@ Resources:
       Type: AWS::EC2::VPCGatewayAttachment
       Properties:
         VpcId:
-           Ref: myVPC
+           Ref: myVPC_2
         VpnGatewayId:
            Ref: myVPNGateway
     AttachVpnGateway2:
       Type: AWS::EC2::VPCGatewayAttachment
       Properties:
         VpcId:
-           Ref: myVPC
+           Ref: myVPC_2
         VpnGatewayId:
            Ref: myVPNGateway2
     AttachVpnGateway3:
       Type: AWS::EC2::VPCGatewayAttachment
       Properties:
         VpcId:
-           Ref: myVPC
+           Ref: myVPC_2
         VpnGatewayId:
            Ref: myVPNGateway3
