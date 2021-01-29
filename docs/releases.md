@@ -14,6 +14,6 @@ Every release is packed with:
 - Binaries for Windows and Linux
 - Docker image uploaded to [DockerHub](https://hub.docker.com/r/checkmarx/kics)
 
-If waiting for a the new release it's not enough, we also provide with nightly builds that include the latest changes.
+If waiting for a new release it's not enough, we also provide nightly builds that include the latest changes.
 
 You can find our releases [here](https://github.com/Checkmarx/kics/releases)
