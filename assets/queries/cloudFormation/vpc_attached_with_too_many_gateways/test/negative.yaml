@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-    myVP_2:
+    myVPC_2:
       Type: AWS::EC2::VPC
       Properties:
         CidrBlock: 10.0.0.0/16
