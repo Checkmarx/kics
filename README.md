@@ -40,6 +40,12 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 -   Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
 -   Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
+## Release process
+
+KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
+The nightly release will have a "nightly" prefix with the last commit hash code.
+
+
 ## Contribution
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
