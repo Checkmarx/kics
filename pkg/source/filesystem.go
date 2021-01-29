@@ -2,7 +2,6 @@ package source
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -109,13 +108,13 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-			fmt.Printf("Directory ignored: %s\n", path)
+			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
 		return true, nil
 	}
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		fmt.Printf("File ignored: %s\n", path)
+		log.Info().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
