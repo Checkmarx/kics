@@ -78,10 +78,10 @@ Resources:
       RouteTableId: !Ref myRouteTable_2
   Ec2Instance_2:
     Type: AWS::EC2::Instance
-      Properties:
-        ImageId: ami-0ff8a91507f77f867
-        KeyName: !Ref Keyname
-        NetworkInterfaces:
-          - AssociatePublicIpAddress: true
-            DeviceIndex: "0"
-            SubnetId: !Ref mySubnet_2
+    Properties:
+      ImageId: ami-0ff8a91507f77f867
+      KeyName: !Ref Keyname
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: "0"
+          SubnetId: !Ref mySubnet_2
