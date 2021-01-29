@@ -20,5 +20,4 @@ archives:
     files:
       - assets/queries
       - assets/libraries
-release:
-  prerelease: auto
+      
