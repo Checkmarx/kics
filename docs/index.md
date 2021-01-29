@@ -1,4 +1,4 @@
-<img alt="KICS - Keep Infrastructure as Code Secure" src="img/logo/kics-logo-donkey.png" width="250">  
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-logo-donkey.png" width="250">  
 
 ---
 
@@ -33,13 +33,13 @@ Setting up and using KICS is super-easy.
 
 What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
 
-- Fully customizable and adjustable heuristics rules, called [queries](queries.md). These can be easily edited, extended, and added.
+- Fully customizable and adjustable heuristics rules, called [queries](queries.md). These can be easily edited, extended and added.
 - Robust but yet simple [architecture](architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
 
 ## Contribution
 
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
+KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.  
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 - [How can I help?!](CONTRIBUTING.md)

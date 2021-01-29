@@ -26,6 +26,7 @@ nav:
     - Roadmap: roadmap.md
     - Plans: 'https://github.com/Checkmarx/kics/projects'
     - Issues: 'https://github.com/Checkmarx/kics/issues'
+    - Releases: releases.md
   - About: about.md
 
 # Theme
@@ -35,7 +36,7 @@ theme:
   favicon: img/logo/kics-logo-text.png
   include_sidebar: true
   sticky_navigation: true
-  
+
 # Plugins
 plugins:
   - search
