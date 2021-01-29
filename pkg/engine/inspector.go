@@ -3,6 +3,9 @@ package engine
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"math"
+	"strings"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -160,6 +163,27 @@ func NewInspector(
 	}, nil
 }
 
+func progressBar(progress <-chan int, total float64, space int) {
+	var firstHalfPercentage, secondHalfPercentage string
+	const hundredPercent = 100
+	formmatingString := "\r[%s %" + fmt.Sprintf("%d", len(fmt.Sprintf("%d", int(total)))) + "d / %d %s]"
+	for {
+		currentProgress := <-progress
+		percentage := math.Round(float64(currentProgress) / total * hundredPercent)
+		convertedPercentage := int(math.Round(float64(space+space) / hundredPercent * percentage))
+		if percentage >= hundredPercent/2 {
+			firstHalfPercentage = strings.Repeat("=", space)
+			secondHalfPercentage = strings.Repeat("=", convertedPercentage-space) +
+				strings.Repeat(" ", 2*space-convertedPercentage)
+		} else {
+			secondHalfPercentage = strings.Repeat(" ", space)
+			firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
+				strings.Repeat(" ", space-convertedPercentage)
+		}
+		fmt.Printf(formmatingString, firstHalfPercentage, currentProgress, int(total), secondHalfPercentage)
+	}
+}
+
 // Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.FileMetadatas) ([]model.Vulnerability, error) {
 	combinedFiles := files.Combine()
@@ -170,7 +194,11 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 	}
 
 	var vulnerabilities []model.Vulnerability
-	for _, query := range c.queries {
+	currentQuery := make(chan int, 1)
+	go progressBar(currentQuery, float64(len(c.queries)), 20)
+	for idx, query := range c.queries {
+		currentQuery <- idx
+
 		vuls, err := c.doRun(QueryContext{
 			ctx:     ctx,
 			scanID:  scanID,
@@ -193,6 +221,8 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 		c.tracker.TrackQueryExecution()
 	}
 
+	fmt.Println("\r")
+	fmt.Printf("\rExecuted queries %d of %d\n", len(c.queries), len(c.queries))
 	return vulnerabilities, nil
 }
 
@@ -231,7 +261,6 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 
 		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
-
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {

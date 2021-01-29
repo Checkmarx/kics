@@ -3,6 +3,7 @@ package console
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"os"
 	"strings"
 
@@ -10,6 +11,28 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
+
+// ProgressBar prints a progress bar on console
+func ProgressBar(progress <-chan int, total float64, space int) {
+	var firstHalfPercentage, secondHalfPercentage string
+	const hundredPercent = 100
+	formmatingString := "\r[%s %" + fmt.Sprintf("%d", len(fmt.Sprintf("%d", int(total)))) + "d / %d %s]"
+	for {
+		currentProgress := <-progress
+		percentage := math.Round(float64(currentProgress) / total * hundredPercent)
+		convertedPercentage := int(math.Round(float64(space+space) / hundredPercent * percentage))
+		if percentage > hundredPercent/2 {
+			firstHalfPercentage = strings.Repeat("=", space)
+			secondHalfPercentage = strings.Repeat("=", convertedPercentage-space) +
+				strings.Repeat(" ", 2*space-convertedPercentage)
+		} else {
+			secondHalfPercentage = strings.Repeat(" ", space)
+			firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
+				strings.Repeat(" ", space-convertedPercentage)
+		}
+		fmt.Printf(formmatingString, firstHalfPercentage, currentProgress, int(total), secondHalfPercentage)
+	}
+}
 
 // wordWrap Wraps text at the specified number of words
 func wordWrap(s, identation string, limit int) string {
