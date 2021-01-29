@@ -4,7 +4,8 @@ CxPolicy[result] {
 	document := input.document[i]
 	task := getTasks(document)[t]
 
-	isAnsibleFalse(task.azure_rm_keyvault.enable_soft_delete)
+ 	keyvault := object.get(task.azure_rm_keyvault, "enable_soft_delete", "undefined")
+	isAnsibleFalse(keyvault)
 
 	result := {
 		"documentId": document.id,
@@ -19,7 +20,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	task := getTasks(document)[t]
 
-	not task.azure_rm_keyvault.enable_soft_delete
+	object.get(task.azure_rm_keyvault, "enable_soft_delete", "undefined") == "undefined"
 
 	result := {
 		"documentId": document.id,
