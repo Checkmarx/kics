@@ -19,6 +19,7 @@ archives:
       386: x32
     files:
       - assets/queries
+      - assets/libraries
 release:
   prerelease: true
 snapshot:
