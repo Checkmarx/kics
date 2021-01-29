@@ -27,11 +27,15 @@ func CaptureOutput(funcToExec execute) (string, error) {
 
 	go func() {
 		var buf bytes.Buffer
-		io.Copy(&buf, r) // nolint
+		if _, errors := io.Copy(&buf, r); errors != nil { // nolint
+			return
+		}
 		outC <- buf.String()
 	}()
 
-	w.Close()
+	if errors := w.Close(); errors != nil {
+		return "", errors
+	}
 	os.Stdout = old
 	out := <-outC
 
