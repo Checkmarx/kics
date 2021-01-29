@@ -3,8 +3,8 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-	resource.Properties.Listeners[i].InstanceProtocol != "HTTPS"
-	resource.Properties.Listeners[i].Protocol != "HTTPS"
+	resource.Properties.Listeners[_].InstanceProtocol != "HTTPS"
+	resource.Properties.Listeners[_].Protocol != "HTTPS"
 
 	result := {
 		"documentId": input.document[i].id,
