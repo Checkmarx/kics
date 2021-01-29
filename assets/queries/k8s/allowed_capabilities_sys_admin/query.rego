@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := getSpecInfo(document)
+	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
 	containers := document.spec.containers
@@ -18,16 +20,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.containers.name=%s. does not use CAP_SYS_ADMIN Linux capability", [specInfo.path, containers[index].name]),
 		"keyActualValue": sprintf("%s.containers.name=%s. uses CAP_SYS_ADMIN Linux capability", [specInfo.path, containers[index].name]),
 	}
-}
-
-getSpecInfo(document) = specInfo {
-	templates := {"job_template", "jobTemplate"}
-	spec := document.spec[templates[t]].spec.template.spec
-	specInfo := {"spec": spec, "path": sprintf("spec.%s.spec.template.spec", [templates[t]])}
-} else = specInfo {
-	spec := document.spec.template.spec
-	specInfo := {"spec": spec, "path": "spec.template.spec"}
-} else = specInfo {
-	spec := document.spec
-	specInfo := {"spec": spec, "path": "spec"}
 }
