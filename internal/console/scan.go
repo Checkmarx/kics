@@ -5,8 +5,6 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"path/filepath"
-	"strings"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/storage"
@@ -78,7 +76,7 @@ func scan() error {
 	}
 
 	scanStartTime := time.Now()
-	queryPaths, err := getQueriesPath()
+	queryPaths, err := getQueriesPath(queryPath, types)
 	if err != nil {
 		return err
 	}
@@ -104,11 +102,10 @@ func scan() error {
 	}
 
 	combinedParser := parser.NewBuilder().
-		// Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build(types)
 
 	store := storage.NewMemoryStorage()
 
@@ -174,39 +171,4 @@ func printJSON(path string, body interface{}) error {
 		return printToJSONFile(path, body)
 	}
 	return nil
-}
-
-func getQueriesPath() ([]string, error) {
-	queryPaths := make([]string, len(types))
-	queryPaths[0] = queryPath
-	for idx, typeInc := range types {
-		typeInc = strings.Trim(typeInc, " ")
-		if err := validateArguments(typeInc, getValidTypeArguments()); err != nil {
-			return []string{}, err
-		}
-		queryPaths[idx] = filepath.Clean(filepath.Join(queryPath, typeInc))
-	}
-	return queryPaths, nil
-}
-
-func validateArguments(arg, validArgs string) error {
-	if !strings.Contains(validArgs, arg) {
-		return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", arg, validArgs))
-	}
-	return nil
-}
-
-func getValidTypeArguments() string {
-	files, err := ioutil.ReadDir(filepath.Clean(queryPath))
-	if err != nil {
-		log.Err(err).Msg("failed to get type valid arguments")
-	}
-	var validArgs []string
-	for _, f := range files {
-		if f.Name() == "template" {
-			continue
-		}
-		validArgs = append(validArgs, fmt.Sprintf("%s\n  ", f.Name()))
-	}
-	return strings.Join(validArgs, "")
 }

@@ -10,6 +10,7 @@ import (
 type kindParser interface {
 	GetKind() model.FileKind
 	SupportedExtensions() []string
+	SupportedTypes() []string
 	Parse(filePath string, fileContent []byte) ([]model.Document, error)
 }
 
@@ -30,13 +31,15 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build() *Parser {
+func (b *Builder) Build(types []string) *Parser {
 	parsers := make(map[string]kindParser, len(b.parsers))
 	extensions := make(model.Extensions, len(b.parsers))
 	for _, parser := range b.parsers {
-		for _, ext := range parser.SupportedExtensions() {
-			parsers[ext] = parser
-			extensions[ext] = struct{}{}
+		if contains(types, parser.SupportedTypes()) {
+			for _, ext := range parser.SupportedExtensions() {
+				parsers[ext] = parser
+				extensions[ext] = struct{}{}
+			}
 		}
 	}
 
@@ -44,6 +47,24 @@ func (b *Builder) Build() *Parser {
 		parsers:    parsers,
 		extensions: extensions,
 	}
+}
+
+func contains(types, supportedTypes []string) bool {
+	if types[0] == "" {
+		return true
+	}
+	set := make(map[string]struct{}, len(supportedTypes))
+	for _, s := range supportedTypes {
+		set[s] = struct{}{}
+	}
+	ok := true
+	for _, item := range types {
+		_, ok = set[item]
+		if ok {
+			return ok
+		}
+	}
+	return ok
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS

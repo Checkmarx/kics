@@ -50,7 +50,7 @@ martin:
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
 func TestParser_Empty(t *testing.T) {
 	p := NewBuilder().
-		Build()
+		Build([]string{""})
 
 	doc, kind, err := p.Parse("test.json", nil)
 	require.Nil(t, doc)
@@ -78,5 +78,5 @@ func initilizeBuilder() *Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build([]string{"ansible", "dockerfile", "cloudFormation", "terraform"})
 }

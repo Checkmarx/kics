@@ -132,3 +132,142 @@ func TestPrintToJSONFile(t *testing.T) {
 		})
 	}
 }
+
+func TestValidateArguments(t *testing.T) {
+	type args struct {
+		arg       string
+		validArgs string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			name: "validate_args_error",
+			args: args{
+				arg: "dockerfiles",
+				validArgs: `ansible
+				cloudFormation
+				dockerfile
+				k8s
+				terraform`,
+			},
+			wantErr: true,
+		},
+		{
+			name: "validate_args",
+			args: args{
+				arg: "dockerfile",
+				validArgs: `ansible
+				cloudFormation
+				dockerfile
+				k8s
+				terraform`,
+			},
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := validateArguments(tt.args.arg, tt.args.validArgs)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+		})
+	}
+}
+
+func TestGetValidTypeArguments(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+	type args struct {
+		queryPath string
+	}
+	tests := []struct {
+		name string
+		want string
+		args args
+	}{
+		{
+			name: "get_valid_types",
+			want: "all_auth_users_get_read_access\n  tc-sim01\n  tc-sim02\n  tc-sim03\n  type-test01\n  type-test02\n  ",
+			args: args{
+				queryPath: "./test/fixtures",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := getValidTypeArguments(tt.args.queryPath)
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestGetQueriesPath(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+	type args struct {
+		queryPath string
+		types     []string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    []string
+		wantErr bool
+	}{
+		{
+			name: "get_queries_path",
+			args: args{
+				queryPath: "./test/fixtures",
+				types:     []string{"type-test02"},
+			},
+			want:    []string{"test/fixtures/type-test02"},
+			wantErr: false,
+		},
+		{
+			name: "get_queries_path_multiple",
+			args: args{
+				queryPath: "./test/fixtures",
+				types: []string{
+					"type-test02",
+					"type-test01",
+				},
+			},
+			want: []string{
+				"test/fixtures/type-test02",
+				"test/fixtures/type-test01",
+			},
+			wantErr: false,
+		},
+		{
+			name: "get_queries_path_multiple",
+			args: args{
+				queryPath: "./test/fixtures",
+				types: []string{
+					"type-test03",
+				},
+			},
+			want:    []string{},
+			wantErr: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := getQueriesPath(tt.args.queryPath, tt.args.types)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			require.Equal(t, tt.want, got)
+		})
+	}
+}

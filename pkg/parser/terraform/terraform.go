@@ -57,6 +57,11 @@ func (p *Parser) SupportedExtensions() []string {
 	return []string{".tf"}
 }
 
+// SupportedTypes returns types supported by this parser, which are terraform
+func (p *Parser) SupportedTypes() []string {
+	return []string{"terraform"}
+}
+
 // GetKind returns Terraform kind parser
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindTerraform

@@ -123,7 +123,7 @@ func getCombinedParser() *parser.Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build([]string{""})
 }
 
 func getQueryContent(queryDir string) (string, error) {

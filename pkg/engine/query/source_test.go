@@ -11,6 +11,58 @@ import (
 	"github.com/Checkmarx/kics/test"
 )
 
+// BenchmarkFilesystemSource_GetQueries benchmarks getQueries to see improvements
+func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		b.Fatal(err)
+	}
+	type fields struct {
+		Source []string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+	}{
+		{
+			name: "testing_all_paths",
+			fields: fields{
+				Source: []string{
+					"./assets/queries/",
+				},
+			},
+		},
+		{
+			name: "testing_single_path",
+			fields: fields{
+				Source: []string{
+					"./assets/queries/dockerfile",
+				},
+			},
+		},
+		{
+			name: "testing_multiple_path",
+			fields: fields{
+				Source: []string{
+					"./assets/queries/dockerfile",
+					"./assets/queries/terraform",
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		b.Run(tt.name, func(b *testing.B) {
+			s := &FilesystemSource{
+				Source: tt.fields.Source,
+			}
+			for n := 0; n < b.N; n++ {
+				if _, err := s.GetQueries(); err != nil {
+					b.Errorf("Error: %s", err)
+				}
+			}
+		})
+	}
+}
+
 // TestFilesystemSource_GetGenericQuery tests the functions [GetGenericQuery()] and all the methods called by them
 func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
