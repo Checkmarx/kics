@@ -79,7 +79,12 @@ func printToJSONFile(path string, body interface{}) error {
 			log.Err(err).Msgf("failed to close file %s", path)
 		}
 
-		log.Info().Str("fileName", path).Msgf("Results saved to file %s", path)
+		curDir, err := os.Getwd()
+		if err != nil {
+			log.Err(err).Msgf("failed to get current directory")
+		}
+
+		log.Info().Str("fileName", path).Msgf("Results saved to file %s", filepath.Join(curDir, path))
 	}()
 
 	encoder := json.NewEncoder(f)
