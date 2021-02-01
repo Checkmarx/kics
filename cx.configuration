@@ -1,13 +1,13 @@
 {
   "version": 1.0,
   "project": "${repo}-${branch}",
-  "team": "CxServer\R&D\SAST\KICS",
+  "team": "CxServer\\R&D\\SAST\\KICS",
   "sast": {
     "preset": "",
     "engineConfiguration": "",
     "incremental": "false",
     "forceScan" : "true",
-    "fileExcludes": "pkg\model\model_easyjson.go",
+    "fileExcludes": "pkg\\model\\model_easyjson.go",
     "folderExcludes": "test"
   }
 }
