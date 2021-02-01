@@ -1,6 +1,8 @@
 package query
 
 import (
+	"io/ioutil"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -162,7 +164,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &FilesystemSource{
-				Source: tt.fields.Source,
+				Source: filepath.FromSlash(tt.fields.Source),
 			}
 			got, err := s.GetGenericQuery(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -182,6 +184,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	require.NoError(t, err)
+
 	type fields struct {
 		Source []string
 	}
@@ -194,31 +199,18 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: []string{"./assets/queries/template"},
+				Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
 			},
 			want: []model.QueryMetadata{
 				{
-					Query: "template",
-					Content: `package Cx
-
-CxPolicy [ result ] {
-  resource := input.document[i].resource
-  resource == "<VALUE>"
-
-	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource]),
-                "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "<RESOURCE>",
-                "keyActualValue": 	resource
-              }
-}`,
+					Query:   "all_auth_users_get_read_access",
+					Content: string(contentByte),
 					Metadata: map[string]interface{}{
-						"category":        nil,
-						"descriptionText": "<TEXT>",
-						"descriptionUrl":  "#",
-						"id":              "<ID>",
-						"queryName":       "<QUERY_NAME>",
+						"category":        "Identity and Access Management",
+						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
+						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+						"queryName":       "All Auth Users Get Read Access",
 						"severity":        "HIGH",
 					},
 					Platform: "unknown",
@@ -238,7 +230,7 @@ CxPolicy [ result ] {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &FilesystemSource{
-				Source: tt.fields.Source,
+				Source: filepath.FromSlash(tt.fields.Source),
 			}
 			got, err := s.GetQueries()
 			if (err != nil) != tt.wantErr {
@@ -335,7 +327,7 @@ func Test_ReadMetadata(t *testing.T) {
 		{
 			name: "read_metadata_template",
 			args: args{
-				queryDir: "./assets/queries/template",
+				queryDir: filepath.FromSlash("./assets/queries/template"),
 			},
 			want: map[string]interface{}{
 				"category":        nil,

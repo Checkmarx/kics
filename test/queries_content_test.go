@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"path"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
@@ -170,7 +171,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 				))
 			}
 
-			if sliceContains(searchValueAllowedQueriesPath, entry.dir) {
+			if sliceContains(searchValueAllowedQueriesPath, filepath.ToSlash(entry.dir)) {
 				_, ok := m[searchValueProperty]
 				require.True(t, ok, fmt.Sprintf(
 					"query '%s' doesn't include parameter '%s' in response",

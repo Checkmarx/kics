@@ -120,7 +120,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	platform := getPlatform(queryDir)
 
 	return model.QueryMetadata{
-		Query:    path.Base(queryDir),
+		Query:    path.Base(filepath.ToSlash(queryDir)),
 		Content:  string(queryContent),
 		Metadata: metadata,
 		Platform: platform,
