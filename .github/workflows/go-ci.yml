@@ -6,7 +6,7 @@ on:
 jobs:
   lint:
     name: lint
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    #if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     runs-on: ubuntu-latest
     steps:
     - name: Cache dependencies
@@ -26,7 +26,7 @@ jobs:
         version: v1.29
   unit-tests:
     name: unit-tests
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    #if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     strategy:
       matrix:
         go-version: [1.15.x]
@@ -83,7 +83,7 @@ jobs:
         fi
   integration-tests:
     name: integration-tests
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    #if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     strategy:
       matrix:
         go-version: [1.15.x]
