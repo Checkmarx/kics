@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -194,9 +195,9 @@ func TestGetValidTypeArguments(t *testing.T) {
 	}{
 		{
 			name: "get_valid_types",
-			want: "all_auth_users_get_read_access\n  tc-sim01\n  tc-sim02\n  tc-sim03\n  type-test01\n  type-test02\n  ",
+			want: "all_auth_users_get_read_access\n  get_queries_test\n  tc-sim01\n  tc-sim02\n  tc-sim03\n  type-test01\n  type-test02\n  ",
 			args: args{
-				queryPath: "./test/fixtures",
+				queryPath: filepath.FromSlash("./test/fixtures"),
 			},
 		},
 	}
@@ -226,31 +227,31 @@ func TestGetQueriesPath(t *testing.T) {
 		{
 			name: "get_queries_path",
 			args: args{
-				queryPath: "./test/fixtures",
+				queryPath: filepath.FromSlash("./test/fixtures"),
 				types:     []string{"type-test02"},
 			},
-			want:    []string{"test/fixtures/type-test02"},
+			want:    []string{filepath.FromSlash("test/fixtures/type-test02")},
 			wantErr: false,
 		},
 		{
 			name: "get_queries_path_multiple",
 			args: args{
-				queryPath: "./test/fixtures",
+				queryPath: filepath.FromSlash("./test/fixtures"),
 				types: []string{
 					"type-test02",
 					"type-test01",
 				},
 			},
 			want: []string{
-				"test/fixtures/type-test02",
-				"test/fixtures/type-test01",
+				filepath.FromSlash("test/fixtures/type-test02"),
+				filepath.FromSlash("test/fixtures/type-test01"),
 			},
 			wantErr: false,
 		},
 		{
 			name: "get_queries_path_multiple",
 			args: args{
-				queryPath: "./test/fixtures",
+				queryPath: filepath.FromSlash("./test/fixtures"),
 				types: []string{
 					"type-test03",
 				},

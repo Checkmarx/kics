@@ -278,7 +278,7 @@ func TestNewInspector(t *testing.T) { // nolint
 
 	track := &tracker.CITracker{}
 	sources := &query.FilesystemSource{
-		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+		Source: []string{filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access")},
 	}
 	vbs := DefaultVulnerabilityBuilder
 	opaQueries := make([]*preparedQuery, 0, 1)

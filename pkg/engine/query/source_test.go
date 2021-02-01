@@ -164,7 +164,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &FilesystemSource{
-				Source: filepath.FromSlash(tt.fields.Source),
+				Source: tt.fields.Source,
 			}
 			got, err := s.GetGenericQuery(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -199,7 +199,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+				Source: []string{filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access")},
 			},
 			want: []model.QueryMetadata{
 				{
@@ -230,7 +230,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &FilesystemSource{
-				Source: filepath.FromSlash(tt.fields.Source),
+				Source: tt.fields.Source,
 			}
 			got, err := s.GetQueries()
 			if (err != nil) != tt.wantErr {
