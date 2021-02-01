@@ -3,6 +3,8 @@ package Cx
 CxPolicy[result] {
 	document := input.document[i]
 
+    checkKind(document.kind)
+
 	metadata = document.metadata
 
 	object.get(metadata, "namespace", "undefined") == "undefined"
@@ -10,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"issueType": "MissingAttribute",
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"keyExpectedValue": sprintf("Namespace is set in document[%d]", [i]),
 		"keyActualValue": sprintf("Namespace is not set in document[%d]", [i]),
 	}
@@ -19,14 +21,21 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 
+    checkKind(document.kind)
+
 	metadata = document.metadata
 	metadata.namespace == "default"
 
 	result := {
 		"documentId": input.document[i].id,
 		"issueType": "IncorrectValue",
-		"searchKey": sprintf("metadata.name=%s.namespace", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
 		"keyExpectedValue": sprintf("Default namespace is not used in document[%d]", [i]),
 		"keyActualValue": sprintf("Default namespace is used in document[%d]", [i]),
 	}
+}
+
+checkKind(kind) {
+    kinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+	kind == kinds[i]
 }

@@ -10,7 +10,7 @@ spec:
   - name: app
     image: images.my-company.example/app:v4
     securityContext:
-      allowPrivilegeEscalation: false 
+      allowPrivilegeEscalation: false
     resources:
       requests:
         memory: "64Mi"
@@ -30,3 +30,9 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
+---
+apiVersion: v1
+kind: CustomResourceDefinition
+metadata:
+  name: mongo.db.collection.com
