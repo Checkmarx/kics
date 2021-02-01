@@ -2,6 +2,7 @@ package engine
 
 import (
 	"context"
+	"io/ioutil"
 	"path/filepath"
 	"reflect"
 	"testing"
@@ -272,6 +273,9 @@ func TestNewInspector(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
+	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	require.NoError(t, err)
+
 	track := &tracker.CITracker{}
 	sources := &query.FilesystemSource{
 		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
@@ -281,23 +285,8 @@ func TestNewInspector(t *testing.T) { // nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: rego.PreparedEvalQuery{},
 		metadata: model.QueryMetadata{
-			Query: "all_auth_users_get_read_access",
-			Content: `package Cx
-
-CxPolicy [ result ] {
-    resource := input.document[i].resource.aws_s3_bucket[name]
-    role = "authenticated-read"
-    resource.acl == role
-
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
-                "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("aws_s3_bucket[%s].acl is private", [name]),
-                "keyActualValue": 	sprintf("aws_s3_bucket[%s].acl is %s", [name, role])
-            }
-}
-`,
+			Query:    "all_auth_users_get_read_access",
+			Content:  string(contentByte),
 			Platform: "unknown",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
