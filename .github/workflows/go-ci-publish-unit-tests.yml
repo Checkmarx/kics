@@ -23,4 +23,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
-          files: test-report-*.xml
+          files: **/test-report-*.xml
