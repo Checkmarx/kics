@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'metadata' does not refer any Tiller resource",
-		"keyActualValue": "'metadata' refer to a Tiller resource",
+		"keyExpectedValue": "'metadata' does not refer any to a Tiller resource",
+		"keyActualValue": "'metadata' refers to a Tiller resource",
 	}
 }
 
@@ -19,16 +19,17 @@ CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	contains(object.get(document.spec.containers[j], "image", "undefined"), "tiller")
+	types := {"initContainers", "containers"}
+	contains(object.get(document.spec[types[x]][j], "image", "undefined"), "tiller")
 
 	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'spec.containers' don't have any Tiller containers",
-		"keyActualValue": "'spec.containers' contains a Tiller container",
+		"keyExpectedValue": sprintf("'spec.containers' doesn't have any Tiller containers", [types[x]]),
+		"keyActualValue": sprintf("'spec.containers' contains a Tiller container", [types[x]]),
 	}
 }
 
@@ -43,8 +44,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.template.metadata", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'spec.template.metadata' does not refer any Tiller resource",
-		"keyActualValue": "'spec.template.metadata' refer to a Tiller resource",
+		"keyExpectedValue": "'spec.template.metadata' does not refer to any Tiller resource",
+		"keyActualValue": "'spec.template.metadata' refers to a Tiller resource",
 	}
 }
 
@@ -52,16 +53,17 @@ CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	contains(object.get(document.spec.template.spec.containers[j], "image", "undefined"), "tiller")
+	types := {"initContainers", "containers"}
+	contains(object.get(document.spec.template.spec[types[x]][j], "image", "undefined"), "tiller")
 
 	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.containers", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'spec.template.spec.containers' don't have any Tiller containers",
-		"keyActualValue": "'spec.template.spec.containers' contains a Tiller container",
+		"keyExpectedValue": sprintf("'spec.template.spec.%s' doesn't have any Tiller containers", [types[x]]),
+		"keyActualValue": sprintf("'spec.template.spec.%s' contains a Tiller container", [types[x]]),
 	}
 }
 
