@@ -52,7 +52,9 @@ jobs:
           %LocalAppData%\go-build
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          ${{ runner.os }}-go-
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
     - name: Get go-junit-report module
       env:
         GO111MODULE: off

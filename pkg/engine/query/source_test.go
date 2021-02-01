@@ -143,7 +143,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: filepath.FromSlash("./assets/queries/template"),
 			},
 			want: []model.QueryMetadata{
 				{
@@ -222,7 +222,7 @@ func Test_ReadMetadata(t *testing.T) {
 		{
 			name: "read_metadata_template",
 			args: args{
-				queryDir: "./assets/queries/template",
+				queryDir: filepath.FromSlash("./assets/queries/template"),
 			},
 			want: map[string]interface{}{
 				"category":        nil,
