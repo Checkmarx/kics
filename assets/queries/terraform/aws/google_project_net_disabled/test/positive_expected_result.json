@@ -1,13 +1,12 @@
 [
-	{
-		"queryName": "Google Project Auto Create Network is Disabled",
-		"severity": "MEDIUM",
-		"line": 8
-	},
-	{
-		"queryName": "Google Project Auto Create Network is Disabled",
-		"severity": "MEDIUM",
-		"line": 5
-	}
-
+  {
+    "queryName": "Google Project Auto Create Network Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8
+  },
+  {
+    "queryName": "Google Project Auto Create Network Is Disabled",
+    "severity": "MEDIUM",
+    "line": 5
+  }
 ]
