@@ -1,7 +1,6 @@
-#this is a problematic code where the query should report a result(s)
 resource "google_container_cluster" "primary1" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
 
   timeouts {
@@ -11,8 +10,8 @@ resource "google_container_cluster" "primary1" {
 }
 
 resource "google_container_cluster" "primary2" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
   private_cluster_config {
         enable_private_endpoint = true
@@ -25,8 +24,8 @@ resource "google_container_cluster" "primary2" {
 }
 
 resource "google_container_cluster" "primary3" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
   private_cluster_config {
         enable_private_nodes = true
@@ -39,8 +38,8 @@ resource "google_container_cluster" "primary3" {
 }
 
 resource "google_container_cluster" "primary4" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
   private_cluster_config {
 
@@ -53,8 +52,8 @@ resource "google_container_cluster" "primary4" {
 }
 
 resource "google_container_cluster" "primary5" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
   private_cluster_config {
         enable_private_endpoint = false
@@ -68,8 +67,8 @@ resource "google_container_cluster" "primary5" {
 }
 
 resource "google_container_cluster" "primary6" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
   private_cluster_config {
         enable_private_endpoint = true
@@ -83,8 +82,8 @@ resource "google_container_cluster" "primary6" {
 }
 
 resource "google_container_cluster" "primary7" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
+  name = "marcellus-wallace"
+  location = "us-central1-a"
   initial_node_count = 3
   private_cluster_config {
         enable_private_endpoint = false
