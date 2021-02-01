@@ -1,8 +1,10 @@
-name: Go Coverage Only Report
+name: Go Coverage
+
 on:
   push:
     branches:
       - master
+
 jobs:
   coverage-report:
     name: unit-tests

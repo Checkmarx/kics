@@ -1,11 +1,13 @@
-name: ci
+name: MakeDocs
+
 on:
   push:
     branches:
       - master
     paths:
       - 'docs/**'
-      - 'mkdocs.yml' 
+      - 'mkdocs.yml'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

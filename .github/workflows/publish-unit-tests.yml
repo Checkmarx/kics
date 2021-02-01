@@ -1,0 +1,25 @@
+name: publish unit tests
+
+on:
+  workflow_run:
+    workflows: ["Go CI"]
+    types:
+      - completed
+
+jobs:
+  publish-unit-test-result:
+    name: Publish unit tests results
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          path: ./test-results
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.7
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          check_run_annotations: all tests, skipped tests
+          check_run_annotations_branch: "*"
+          files: test-results/**/*.xml
