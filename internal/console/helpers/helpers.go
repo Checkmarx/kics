@@ -128,7 +128,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
 }
 
 // PrintToJSONFile prints on JSON file the summary results
-func printToJSONFile(path string, body interface{}) error {
+func PrintToJSONFile(path string, body interface{}) error {
 	f, err := os.OpenFile(filepath.Clean(path), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err

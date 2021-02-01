@@ -216,7 +216,6 @@ func (c *Inspector) Inspect(
 		wg.Wait()
 	}
 	fmt.Println("\r")
-	fmt.Printf("\rExecuted queries %d of %d\n", len(c.queries), len(c.queries))
 	return vulnerabilities, nil
 }
 

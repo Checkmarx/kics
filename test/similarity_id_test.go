@@ -296,6 +296,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.samplePath(),
 			testParams.sampleContent(t),
 		),
+		true,
 	)
 	require.Nil(t, err)
 	return vulnerabilities
