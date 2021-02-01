@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/builder/engine"
 	"github.com/Checkmarx/kics/pkg/builder/writer"
@@ -27,7 +28,7 @@ func main() {
 		Use:   "inspect",
 		Short: "Tool to build new query from example file",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			content, err := ioutil.ReadFile(inPath)
+			content, err := ioutil.ReadFile(filepath.Clean(inPath))
 			if err != nil {
 				return err
 			}
@@ -67,7 +68,7 @@ func main() {
 }
 
 func saveFile(filePath string, content []byte) error {
-	f, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(filepath.Clean(filePath), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
 	}

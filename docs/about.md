@@ -1,4 +1,4 @@
-<img alt="KICS - Keep Infrastructure as Code Secure" src="../img/logo/kics-logo-donkey.png" width="250">
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="../img/logo/kics-logo-donkey.png" width="250">
 
 ---
 
@@ -49,4 +49,4 @@ IaC security testing tools must be able to consume configuration files and scrip
 
 ---
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="../img/logo/kics-donkey.png" width="250">  
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="../img/logo/kics-donkey.png" width="250">  

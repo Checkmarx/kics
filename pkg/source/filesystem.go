@@ -71,8 +71,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 		if s.checkConditions(info, extensions, path) {
 			return nil
 		}
-
-		c, err := os.Open(path)
+		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
 			return errors.Wrap(err, "failed to open file")
 		}
@@ -83,7 +82,11 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			log.Err(err).
 				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
 		}
-		c.Close()
+		if err := c.Close(); err != nil {
+			sentry.CaptureException(err)
+			log.Err(err).
+				Msgf("Filesystem couldn't close file, file=%s", info.Name())
+		}
 		return nil
 	})
 
