@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"math"
-	"strings"
+	"sync"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
@@ -163,29 +163,13 @@ func NewInspector(
 	}, nil
 }
 
-func progressBar(progress <-chan int, total float64, space int) {
-	var firstHalfPercentage, secondHalfPercentage string
-	const hundredPercent = 100
-	formmatingString := "\r[%s %" + fmt.Sprintf("%d", len(fmt.Sprintf("%d", int(total)))) + "d / %d %s]"
-	for {
-		currentProgress := <-progress
-		percentage := math.Round(float64(currentProgress) / total * hundredPercent)
-		convertedPercentage := int(math.Round(float64(space+space) / hundredPercent * percentage))
-		if percentage >= hundredPercent/2 {
-			firstHalfPercentage = strings.Repeat("=", space)
-			secondHalfPercentage = strings.Repeat("=", convertedPercentage-space) +
-				strings.Repeat(" ", 2*space-convertedPercentage)
-		} else {
-			secondHalfPercentage = strings.Repeat(" ", space)
-			firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
-				strings.Repeat(" ", space-convertedPercentage)
-		}
-		fmt.Printf(formmatingString, firstHalfPercentage, currentProgress, int(total), secondHalfPercentage)
-	}
-}
-
 // Inspect scan files and return the a list of vulnerabilities found on the process
-func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.FileMetadatas) ([]model.Vulnerability, error) {
+func (c *Inspector) Inspect(
+	ctx context.Context,
+	scanID string,
+	files model.FileMetadatas,
+	hideProgress bool,
+) ([]model.Vulnerability, error) {
 	combinedFiles := files.Combine()
 
 	_, err := json.Marshal(combinedFiles)
@@ -194,10 +178,17 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 	}
 
 	var vulnerabilities []model.Vulnerability
-	currentQuery := make(chan int, 1)
-	go progressBar(currentQuery, float64(len(c.queries)), 20)
+	currentQuery := make(chan float64, 1)
+	var wg sync.WaitGroup
+	if !hideProgress {
+		wg.Add(1)
+		progressBar := consoleHelpers.NewProgressBar("Executed queries: ", 10, float64(len(c.queries)), currentQuery)
+		go progressBar.Start(&wg)
+	}
 	for idx, query := range c.queries {
-		currentQuery <- idx
+		if !hideProgress {
+			currentQuery <- float64(idx)
+		}
 
 		vuls, err := c.doRun(QueryContext{
 			ctx:     ctx,
@@ -220,7 +211,10 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 
 		c.tracker.TrackQueryExecution()
 	}
-
+	if !hideProgress {
+		close(currentQuery)
+		wg.Wait()
+	}
 	fmt.Println("\r")
 	fmt.Printf("\rExecuted queries %d of %d\n", len(c.queries), len(c.queries))
 	return vulnerabilities, nil

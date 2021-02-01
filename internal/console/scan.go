@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -24,6 +25,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	path        string
+	queryPath   string
+	outputPath  string
+	payloadPath string
+	verbose     bool
+	logFile     bool
+	noProgress  bool
+)
+
 var scanCmd = &cobra.Command{
 	Use:   "scan",
 	Short: "Executes a scan analysis",
@@ -39,6 +50,7 @@ func initScanCmd() {
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -59,7 +71,7 @@ func setupLogs() error {
 		if err != nil {
 			return err
 		}
-		fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
+		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
 	}
 
 	mw := io.MultiWriter(consoleLogger, fileLogger)
@@ -113,7 +125,7 @@ func scan() error {
 		Tracker:        t,
 	}
 
-	if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
+	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
 		return scanErr
 	}
 
@@ -147,7 +159,7 @@ func scan() error {
 		return err
 	}
 
-	if err := printResult(&summary, inspector.GetFailedQueries()); err != nil {
+	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries()); err != nil {
 		return err
 	}
 
@@ -164,7 +176,7 @@ func scan() error {
 
 func printJSON(path string, body interface{}) error {
 	if path != "" {
-		return printToJSONFile(path, body)
+		return consoleHelpers.PrintToJSONFile(path, body)
 	}
 	return nil
 }

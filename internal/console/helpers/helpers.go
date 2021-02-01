@@ -1,41 +1,75 @@
-package console
+package helpers
 
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"math"
 	"os"
 	"strings"
+	"sync"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
 
-// ProgressBar prints a progress bar on console
-func ProgressBar(progress <-chan int, total float64, space int) {
-	var firstHalfPercentage, secondHalfPercentage string
-	const hundredPercent = 100
-	formmatingString := "\r[%s %" + fmt.Sprintf("%d", len(fmt.Sprintf("%d", int(total)))) + "d / %d %s]"
-	for {
-		currentProgress := <-progress
-		percentage := math.Round(float64(currentProgress) / total * hundredPercent)
-		convertedPercentage := int(math.Round(float64(space+space) / hundredPercent * percentage))
-		if percentage > hundredPercent/2 {
-			firstHalfPercentage = strings.Repeat("=", space)
-			secondHalfPercentage = strings.Repeat("=", convertedPercentage-space) +
-				strings.Repeat(" ", 2*space-convertedPercentage)
-		} else {
-			secondHalfPercentage = strings.Repeat(" ", space)
-			firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
-				strings.Repeat(" ", space-convertedPercentage)
-		}
-		fmt.Printf(formmatingString, firstHalfPercentage, currentProgress, int(total), secondHalfPercentage)
+// ProgressBar represents a Progress
+// Writer is the writer output for progress bar
+type ProgressBar struct {
+	Writer   io.Writer
+	label    string
+	space    int
+	total    float64
+	progress chan float64
+}
+
+// NewProgressBar initializes a new ProgressBar
+// label is a string print before the progress bar
+// total is the progress bar target (a.k.a 100%)
+// space is the number of '=' characters on each side of the bar
+// progress is a channel updating the current executed elements
+func NewProgressBar(label string, space int, total float64, progress chan float64) ProgressBar {
+	return ProgressBar{
+		Writer:   os.Stdout,
+		label:    label,
+		space:    space,
+		total:    total,
+		progress: progress,
 	}
 }
 
-// wordWrap Wraps text at the specified number of words
-func wordWrap(s, identation string, limit int) string {
+// Start starts to print a progress bar on console
+// wg is a wait group to report when progress is done
+func (p *ProgressBar) Start(wg *sync.WaitGroup) {
+	var firstHalfPercentage, secondHalfPercentage string
+	const hundredPercent = 100
+	formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
+	defer wg.Done()
+	for {
+		currentProgress, ok := <-p.progress
+		if !ok || currentProgress >= p.total {
+			fmt.Fprintf(p.Writer, formmatingString, strings.Repeat("=", p.space), 100.0, strings.Repeat("=", p.space))
+			break
+		}
+
+		percentage := currentProgress / p.total * hundredPercent
+		convertedPercentage := int(math.Round(float64(p.space+p.space) / hundredPercent * math.Round(percentage)))
+		if percentage >= hundredPercent/2 {
+			firstHalfPercentage = strings.Repeat("=", p.space)
+			secondHalfPercentage = strings.Repeat("=", convertedPercentage-p.space) +
+				strings.Repeat(" ", 2*p.space-convertedPercentage)
+		} else {
+			secondHalfPercentage = strings.Repeat(" ", p.space)
+			firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
+				strings.Repeat(" ", p.space-convertedPercentage)
+		}
+		fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
+	}
+}
+
+// WordWrap Wraps text at the specified number of words
+func WordWrap(s, identation string, limit int) string {
 	if strings.TrimSpace(s) == "" {
 		return s
 	}
@@ -54,7 +88,8 @@ func wordWrap(s, identation string, limit int) string {
 	return result
 }
 
-func printResult(summary *model.Summary, failedQueries map[string]error) error {
+// PrintResult prints on output the summary results
+func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
@@ -62,7 +97,7 @@ func printResult(summary *model.Summary, failedQueries map[string]error) error {
 	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
 	for queryName, err := range failedQueries {
 		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", wordWrap(err.Error(), "\t\t", 5))
+		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n")
 	for _, q := range summary.Queries {
@@ -91,7 +126,8 @@ func printResult(summary *model.Summary, failedQueries map[string]error) error {
 	return nil
 }
 
-func printToJSONFile(path string, body interface{}) error {
+// PrintToJSONFile prints on JSON file the summary results
+func PrintToJSONFile(path string, body interface{}) error {
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
@@ -110,7 +146,8 @@ func printToJSONFile(path string, body interface{}) error {
 	return encoder.Encode(body)
 }
 
-func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
+// CustomConsoleWriter creates an output to print log in a files
+func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
 	fileLogger.FormatLevel = func(i interface{}) string {
 		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
 	}
