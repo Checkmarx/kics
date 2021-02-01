@@ -1,36 +1,36 @@
 [
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 1
   },
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 16
   },
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 30
   },
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 44
   },
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 58
   },
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 73
   },
   {
-    "queryName": "Private Cluster is Disabled",
+    "queryName": "Private Cluster Is Disabled",
     "severity": "HIGH",
     "line": 88
   }
