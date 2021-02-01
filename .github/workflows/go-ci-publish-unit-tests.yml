@@ -12,10 +12,10 @@ jobs:
     name: Publish unit tests results
     runs-on: ubuntu-latest
     steps:
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
         with:
-          path: ./
+          workflow: ${{ github.event.workflow_run.workflow_id }}
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
         if: always()
@@ -23,4 +23,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
-          files: test-report-*.xml
+          files: **/test-report-*.xml
