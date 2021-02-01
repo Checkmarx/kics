@@ -63,9 +63,6 @@ jobs:
     - name: Get Modules
       run: |
         go mod vendor
-    - name: Test
-      run: |
-        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1
     - name: Test and Generate Report
       run: |
         go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version ${{ matrix.go-version }} -package-name "github.com/Checkmarx/kics/test" > test-report-${{ matrix.os }}.xml
@@ -76,9 +73,11 @@ jobs:
         path: |
           test-report*.xml
     - name: CodeCov
+      if: matrix.os == 'ubuntu-latest'
       run: |
         bash <(curl -s https://codecov.io/bash)
     - name: Check if total coverage is greater then 0
+      if: matrix.os == 'ubuntu-latest'
       run: |
         CODE_COV=$(go tool cover -func cover.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
         EXPECTED_CODE_COV=0
