@@ -182,7 +182,7 @@ func (c *Inspector) Inspect(
 	var wg sync.WaitGroup
 	if !hideProgress {
 		wg.Add(1)
-		progressBar := consoleHelpers.NewProgressBar("Executed queries: ", 10, float64(len(c.queries)), currentQuery)
+		progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(len(c.queries)), currentQuery)
 		go progressBar.Start(&wg)
 	}
 	for idx, query := range c.queries {
