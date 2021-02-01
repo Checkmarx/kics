@@ -15,7 +15,7 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          path: ./test-results
+          path: ./
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
         if: always()
@@ -23,4 +23,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
-          files: test-results/**/*.xml
+          files: test-report-*.xml
