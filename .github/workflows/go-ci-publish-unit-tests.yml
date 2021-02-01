@@ -1,9 +1,9 @@
-name: publish-unit-tests
+name: go-ci-publish-unit-tests
 
 on:
   workflow_run:
     workflows:
-      - go-ci-lint-test
+      - go-ci
     types:
       - completed
 
