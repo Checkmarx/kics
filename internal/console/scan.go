@@ -45,7 +45,10 @@ var scanCmd = &cobra.Command{
 func initializeConfig(cmd *cobra.Command) error {
 	v := viper.New()
 	base := filepath.Base(cfgFile)
-	v.SetConfigName(base[:strings.LastIndex(base, ".")])
+	if strings.LastIndex(base, ".") > -1 {
+		base = base[:strings.LastIndex(base, ".")]
+	}
+	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
 	if err := v.ReadInConfig(); err != nil {
 		return err
