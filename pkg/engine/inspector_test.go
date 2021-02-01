@@ -2,6 +2,7 @@ package engine
 
 import (
 	"context"
+	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -217,7 +218,7 @@ func TestInspect(t *testing.T) { //nolint
 						},
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
-						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						FileName:     filepath.FromSlash("assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"),
 					},
 				},
 			},
@@ -227,7 +228,7 @@ func TestInspect(t *testing.T) { //nolint
 					SimilarityID:     "b84570a546f2064d483b5916d3bf3c6949c8cfc227a8c61fce22220b2f5d77bd",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+					FileName:         filepath.FromSlash("assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"),
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
 					Severity:         "INFO",
@@ -273,7 +274,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	track := &tracker.CITracker{}
 	sources := &query.FilesystemSource{
-		Source: "./test/fixtures/all_auth_users_get_read_access",
+		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
 	}
 	vbs := DefaultVulnerabilityBuilder
 	opaQueries := make([]*preparedQuery, 0, 1)
@@ -341,14 +342,14 @@ CxPolicy [ result ] {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("NewInspector() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got.queries[0].metadata, tt.want.queries[0].metadata) {
-				t.Errorf("NewInspector() metadata = %v, want %v", got.queries[0].metadata, tt.want.queries[0].metadata)
+				t.Errorf("NewInspector() metadata: got = %v,\n want = %v", got.queries[0].metadata, tt.want.queries[0].metadata)
 			}
 			if !reflect.DeepEqual(got.tracker, tt.want.tracker) {
-				t.Errorf("NewInspector() tracker = %v, want %v", got.tracker, tt.want.tracker)
+				t.Errorf("NewInspector() tracker: got = %v,\n want = %v", got.tracker, tt.want.tracker)
 			}
 			require.NotNil(t, got.vb)
 		})

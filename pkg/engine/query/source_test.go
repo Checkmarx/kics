@@ -1,6 +1,7 @@
 package query
 
 import (
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -110,7 +111,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &FilesystemSource{
-				Source: tt.fields.Source,
+				Source: filepath.FromSlash(tt.fields.Source),
 			}
 			got, err := s.GetGenericQuery(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -186,7 +187,7 @@ CxPolicy [ result ] {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := &FilesystemSource{
-				Source: tt.fields.Source,
+				Source: filepath.FromSlash(tt.fields.Source),
 			}
 			got, err := s.GetQueries()
 			if (err != nil) != tt.wantErr {
