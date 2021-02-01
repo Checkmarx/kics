@@ -1,4 +1,4 @@
-name: Go CI Integration
+name: go-ci-integration
 
 on:
   pull_request:

@@ -1,8 +1,9 @@
-name: publish unit tests
+name: publish-unit-tests
 
 on:
   workflow_run:
-    workflows: ["Go CI"]
+    workflows:
+      - go-ci-lint-test
     types:
       - completed
 

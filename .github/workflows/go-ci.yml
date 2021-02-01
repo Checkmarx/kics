@@ -1,4 +1,4 @@
-name: Go CI
+name: go-ci-lint-test
 
 on:
   pull_request:
@@ -9,20 +9,12 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
     - uses: actions/checkout@v2
       with:
           fetch-depth: 0
     - name: golangci-lint
       uses: golangci/golangci-lint-action@v2
       with:
-        # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
         version: v1.29
   unit-tests:
     name: unit-tests
