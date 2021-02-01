@@ -2,7 +2,6 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-
 	resource.Cmd == "run"
 	containsCommand(resource) == true
 
@@ -16,18 +15,5 @@ CxPolicy[result] {
 }
 
 containsCommand(cmds) {
-	commands = [
-		"shutdown",
-		"service",
-		"ps",
-		"free",
-		"top",
-		"kill",
-		"mount",
-		"ifconfig",
-		"nano",
-		"vim",
-	]
-
-	contains(cmds.Value[_], commands[_])
+	regex.match("\\b( *ps *)\\b|\\b( *shutdown *)\\b|\\b( *service *)\\b|\\b( *free *)\\b|\\b( *top *)\\b|\\b( *kill *)\\b|\\b( *mount *)\\b|\\b( *ifconfig *)\\b|\\b( *nano *)\\b|\\b( *vim *)\\b", cmds.Value[_])
 }
