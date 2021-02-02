@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"sync"
 	"time"
 
@@ -180,11 +181,12 @@ func (c *Inspector) Inspect(
 	var vulnerabilities []model.Vulnerability
 	currentQuery := make(chan float64, 1)
 	var wg sync.WaitGroup
-	if !hideProgress {
-		wg.Add(1)
-		progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(len(c.queries)), currentQuery)
-		go progressBar.Start(&wg)
+	wg.Add(1)
+	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(len(c.queries)), currentQuery)
+	if hideProgress {
+		progressBar.Writer = ioutil.Discard
 	}
+	go progressBar.Start(&wg)
 	for idx, query := range c.queries {
 		if !hideProgress {
 			currentQuery <- float64(idx)
@@ -211,10 +213,8 @@ func (c *Inspector) Inspect(
 
 		c.tracker.TrackQueryExecution()
 	}
-	if !hideProgress {
-		close(currentQuery)
-		wg.Wait()
-	}
+	close(currentQuery)
+	wg.Wait()
 	fmt.Println("\r")
 	return vulnerabilities, nil
 }

@@ -143,36 +143,50 @@ type progressBarTestArgs struct {
 }
 
 var progressBarTests = []struct {
-	name string
-	args progressBarTestArgs
-	want string
+	name              string
+	args              progressBarTestArgs
+	shouldCheckOutput bool
+	want              string
 }{
 	{
-		name: "Labeled progressbar with 5 spaces each side",
+		name: "Should return labeled progressbar with 5 spaces each side",
 		args: progressBarTestArgs{
 			label: "ProgressTest",
 			total: 100.0,
 			space: 5,
 		},
-		want: "ProgressTest[===== 100.0% =====]",
+		shouldCheckOutput: true,
+		want:              "ProgressTest[===== 100.0% =====]",
 	},
 	{
-		name: "Labeless progressbar with 5 spaces each side",
+		name: "Should return labeless progressbar with 5 spaces each side",
 		args: progressBarTestArgs{
 			label: "",
 			total: 100.0,
 			space: 5,
 		},
-		want: "[===== 100.0% =====]",
+		shouldCheckOutput: true,
+		want:              "[===== 100.0% =====]",
 	},
 	{
-		name: "Labeless progressbar with 10 spaces each side",
+		name: "Should return labeless progressbar with 10 spaces each side",
 		args: progressBarTestArgs{
 			label: "",
 			total: 100.0,
 			space: 10,
 		},
-		want: "[========== 100.0% ==========]",
+		shouldCheckOutput: true,
+		want:              "[========== 100.0% ==========]",
+	},
+	{
+		name: "Should ignore progressbar",
+		args: progressBarTestArgs{
+			label: "",
+			total: 100.0,
+			space: 10,
+		},
+		shouldCheckOutput: false,
+		want:              "",
 	},
 }
 
@@ -186,12 +200,18 @@ func TestProgressBar(t *testing.T) {
 			wg.Add(1)
 			progress := make(chan float64, 1)
 			progressBar := NewProgressBar(tt.args.label, tt.args.space, tt.args.total, progress)
-			progressBar.Writer = &out
-			go progressBar.Start(&wg)
-			for i := 0; i < 101; i++ {
-				progress <- float64(i)
+			if tt.shouldCheckOutput {
+				progressBar.Writer = &out
+			} else {
+				progressBar.Writer = ioutil.Discard
 			}
-			progress <- float64(100)
+			go progressBar.Start(&wg)
+			if tt.shouldCheckOutput {
+				for i := 0; i < 101; i++ {
+					progress <- float64(i)
+				}
+				progress <- float64(100)
+			}
 			wg.Wait()
 			splittedOut := strings.Split(out.String(), "\r")
 			require.Equal(t, tt.want, splittedOut[len(splittedOut)-1])

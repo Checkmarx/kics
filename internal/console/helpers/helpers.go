@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"math"
 	"os"
 	"path/filepath"
@@ -43,29 +44,31 @@ func NewProgressBar(label string, space int, total float64, progress chan float6
 // Start starts to print a progress bar on console
 // wg is a wait group to report when progress is done
 func (p *ProgressBar) Start(wg *sync.WaitGroup) {
-	var firstHalfPercentage, secondHalfPercentage string
-	const hundredPercent = 100
-	formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
 	defer wg.Done()
-	for {
-		currentProgress, ok := <-p.progress
-		if !ok || currentProgress >= p.total {
-			fmt.Fprintf(p.Writer, formmatingString, strings.Repeat("=", p.space), 100.0, strings.Repeat("=", p.space))
-			break
-		}
+	if p.Writer != ioutil.Discard {
+		var firstHalfPercentage, secondHalfPercentage string
+		const hundredPercent = 100
+		formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
+		for {
+			currentProgress, ok := <-p.progress
+			if !ok || currentProgress >= p.total {
+				fmt.Fprintf(p.Writer, formmatingString, strings.Repeat("=", p.space), 100.0, strings.Repeat("=", p.space))
+				break
+			}
 
-		percentage := currentProgress / p.total * hundredPercent
-		convertedPercentage := int(math.Round(float64(p.space+p.space) / hundredPercent * math.Round(percentage)))
-		if percentage >= hundredPercent/2 {
-			firstHalfPercentage = strings.Repeat("=", p.space)
-			secondHalfPercentage = strings.Repeat("=", convertedPercentage-p.space) +
-				strings.Repeat(" ", 2*p.space-convertedPercentage)
-		} else {
-			secondHalfPercentage = strings.Repeat(" ", p.space)
-			firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
-				strings.Repeat(" ", p.space-convertedPercentage)
+			percentage := currentProgress / p.total * hundredPercent
+			convertedPercentage := int(math.Round(float64(p.space+p.space) / hundredPercent * math.Round(percentage)))
+			if percentage >= hundredPercent/2 {
+				firstHalfPercentage = strings.Repeat("=", p.space)
+				secondHalfPercentage = strings.Repeat("=", convertedPercentage-p.space) +
+					strings.Repeat(" ", 2*p.space-convertedPercentage)
+			} else {
+				secondHalfPercentage = strings.Repeat(" ", p.space)
+				firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
+					strings.Repeat(" ", p.space-convertedPercentage)
+			}
+			fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
 		}
-		fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
 	}
 }
 
