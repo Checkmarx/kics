@@ -5,6 +5,8 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"path/filepath"
+	"strings"
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -23,6 +25,8 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -30,6 +34,7 @@ var (
 	queryPath   string
 	outputPath  string
 	payloadPath string
+	cfgFile     string
 	verbose     bool
 	logFile     bool
 	noProgress  bool
@@ -38,13 +43,54 @@ var (
 var scanCmd = &cobra.Command{
 	Use:   "scan",
 	Short: "Executes a scan analysis",
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		if cfgFile != "" {
+			return initializeConfig(cmd)
+		}
+		return nil
+	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return scan()
 	},
 }
 
+func initializeConfig(cmd *cobra.Command) error {
+	v := viper.New()
+	base := filepath.Base(cfgFile)
+	if strings.LastIndex(base, ".") > -1 {
+		base = base[:strings.LastIndex(base, ".")]
+	}
+	v.SetConfigName(base)
+	v.AddConfigPath(filepath.Dir(cfgFile))
+	if err := v.ReadInConfig(); err != nil {
+		return err
+	}
+	v.SetEnvPrefix("VIPER_")
+	v.AutomaticEnv()
+	bindFlags(cmd, v)
+	return nil
+}
+
+func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+	cmd.Flags().VisitAll(func(f *pflag.Flag) {
+		if strings.Contains(f.Name, "-") {
+			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
+			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "VIPER_", envVarSuffix)); err != nil {
+				log.Err(err).Msg("Failed to bind Viper flags")
+			}
+		}
+		if !f.Changed && v.IsSet(f.Name) {
+			val := v.Get(f.Name)
+			if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
+				log.Err(err).Msg("Failed to get Viper flags")
+			}
+		}
+	})
+}
+
 func initScanCmd() {
 	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to scan")
+	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
 	scanCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")

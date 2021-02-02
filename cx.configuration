@@ -7,7 +7,7 @@
     "engineConfiguration": "",
     "incremental": "false",
     "forceScan" : "true",
-    "fileExcludes": "pkg/model/model_easyjson.go",
+    "fileExcludes": "pkg/model/model_easyjson.go,*_test.go",
     "folderExcludes": "test"
   }
 }
