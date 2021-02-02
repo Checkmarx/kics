@@ -33,7 +33,7 @@ jobs:
           commit: ${{ github.event.workflow_run.head_sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
-          files: "*/**/test-report-windows*.xml"
+          files: "test-report-ubuntu-latest.xml"
       - name: Publish Windows Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
         with:
@@ -43,4 +43,4 @@ jobs:
           commit: ${{ github.event.workflow_run.head_sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
-          files: "*/**/test-report-ubuntu*.xml"
+          files: "test-report-windows-latest.xml"
