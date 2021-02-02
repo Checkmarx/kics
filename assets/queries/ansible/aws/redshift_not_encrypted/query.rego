@@ -1,52 +1,45 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-	redshiftCluster := task["community.aws.redshift"]
-	clusterName := task.name
+	module := ["redshift", "community.aws.redshift"]
+	redshiftCluster := task[module[m]]
 
+	redshiftCluster.command == "create"
 	object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.redshift}}", [clusterName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, module[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.redshift.encrypted should be set to true",
-		"keyActualValue": "community.aws.redshift.encrypted is undefined",
+		"keyExpectedValue": "redshift.encrypted should be set to true",
+		"keyActualValue": "redshift.encrypted is undefined",
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-	redshiftCluster := task["community.aws.redshift"]
-	clusterName := task.name
-	not isAnsibleTrue(redshiftCluster.encrypted)
+	module := ["redshift", "community.aws.redshift"]
+	redshiftCluster := task[module[m]]
+
+	createOrModify(redshiftCluster.command)
+	not ansLib.isAnsibleTrue(redshiftCluster.encrypted)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.redshift}}.encrypted", [clusterName]),
-		"issueType": "WrongValue",
-		"keyExpectedValue": "community.aws.redshift.encrypted should be set to true",
-		"keyActualValue": "community.aws.redshift.encrypted is set to false",
+		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, module[m]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "redshift.encrypted should be set to true",
+		"keyActualValue": "redshift.encrypted is set to false",
 	}
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
+createOrModify("create") = true
 
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
-}
+createOrModify("modify") = true
