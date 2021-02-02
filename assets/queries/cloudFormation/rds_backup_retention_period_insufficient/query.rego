@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s", [name]),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingValue",
 		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource doesn't define the minimum backup retention period of 7 days", [name]),
 		"keyActualValue": sprintf("The RDS DBCluster '%s' resource has the default backup retention period of 1 day which is less than the minimum of 7 days", [name]),
@@ -46,7 +46,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s", [name]),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingValue",
 		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource doesn't define the minimum backup retention period of 7 days", [name]),
 		"keyActualValue": sprintf("The RDS DBInstance '%s' resource has the default backup retention period of 1 day which is less than the minimum of 7 days", [name]),
