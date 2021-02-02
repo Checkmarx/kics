@@ -15,11 +15,13 @@ jobs:
       - name: Download Linux Test Report
         uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
           name: unit-tests-report-ubuntu-latest-${{ github.event.workflow_run.head.sha }}
           commit: ${{ github.event.workflow_run.head.sha }}
       - name: Download Windows Test Report
         uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
           name: unit-tests-report-windows-latest-${{ github.event.workflow_run.head.sha }}
           commit: ${{ github.event.workflow_run.head.sha }}
       - name: Publish Linux Unit Test Results
