@@ -5,14 +5,14 @@ CxPolicy[result] {
 	resource.Type == "AWS::IAM::Policy"
 
 	statements := resource.PolicyDocument.Statement
-	checkPolicy(statements[i])
+	checkPolicy(statements[s])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.PolicyDocument.Statement.Resource=%s", [name, statements[i].Resource]),
+		"searchKey": sprintf("Resources.%s.PolicyDocument.Statement.Resource=%s", [name, statements[s].Resource]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.PolicyDocument.Statement.Resource=%s' does not have full permissions or is Admin", [name, statements[i].Resource]),
-		"keyActualValue": sprintf("'Resources.%s.PolicyDocument.Statement.Resource=%s' has full permissions and is not Admin.", [name, statements[i].Resource]),
+		"keyExpectedValue": sprintf("'Resources.%s.PolicyDocument.Statement.Resource=%s' does not have full permissions or is Admin", [name, statements[s].Resource]),
+		"keyActualValue": sprintf("'Resources.%s.PolicyDocument.Statement.Resource=%s' has full permissions and is not Admin.", [name, statements[s].Resource]),
 	}
 }
 
