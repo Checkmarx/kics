@@ -1,4 +1,3 @@
-#this is a problematic code where the query should report a result(s)
 resource "aws_security_group" "tcp_positive" {
 
   ingress {

@@ -2,7 +2,8 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name].ingress
-	resource.cidr_blocks[i] == "0.0.0.0/0"
+	some j
+	resource.cidr_blocks[j] == "0.0.0.0/0"
 	portNumber := 22
 	resource.from_port <= portNumber
 	resource.to_port >= portNumber

@@ -1,4 +1,3 @@
-#this is a problematic code where the query should report a result(s)
 resource "aws_security_group" "ssh_positive_tcp_1" {
   name        = "ssh_positive_tcp_1"
   description = "Gets the ssh port open with the tcp protocol"

@@ -1,4 +1,3 @@
-#this is a problematic code where the query should report a result(s)
 resource "aws_security_group" "http_positive_tcp_1" {
   name        = "http_positive_tcp_1"
   description = "Gets the http port open with the tcp protocol"
@@ -23,4 +22,4 @@ resource "aws_security_group" "http_positive_udp_1" {
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-} 
+}

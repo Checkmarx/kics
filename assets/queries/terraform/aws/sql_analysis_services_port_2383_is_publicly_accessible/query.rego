@@ -1,12 +1,12 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].resource
-	ingress := resource.aws_security_group[name].ingress
-	ingress.cidr_blocks[i] == "0.0.0.0/0"
+	resource := input.document[i].resource.aws_security_group[name].ingress
+	some j
+	resource.cidr_blocks[j] == "0.0.0.0/0"
 	portNumber := 2383
-	ingress.from_port <= portNumber
-	ingress.to_port >= portNumber
+	resource.from_port <= portNumber
+	resource.to_port >= portNumber
 
 	result := {
 		"documentId": input.document[i].id,
