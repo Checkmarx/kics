@@ -62,8 +62,8 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
 Contributions are made to this repo via Issues and Pull Requests (PRs).  A few general guidelines that cover both:
 
 - Search for existing [issues](https://github.com/Checkmarx/kics/issues) and [pull requests](https://github.com/Checkmarx/kics/pulls) before creating your own to avoid duplicates.
-- PRs will only be accepted if associated with an issue (enhancement or bug) that has been submitted and reviewed/labeld as *accepted*.
-- We will work hard to makes sure issues that are raised are handled in a timely manner.
+- PRs will only be accepted if associated with an issue (enhancement or bug) that has been submitted and reviewed/labeled as *accepted*.
+- We will work hard to make sure issues that are raised are handled in a timely manner.
 
 ### Issues
 

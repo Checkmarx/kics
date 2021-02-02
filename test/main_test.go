@@ -3,10 +3,10 @@ package test
 import (
 	"fmt"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -17,6 +17,7 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
@@ -47,12 +48,18 @@ type queryEntry struct {
 	platform string
 }
 
-func (q queryEntry) PositiveFile() string {
-	return path.Join(q.dir, fmt.Sprintf("test/positive.%s", strings.ToLower(string(q.kind))))
+func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
+	files, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(q.kind)))))
+	require.Nil(tb, err)
+	return files
 }
 
-func (q queryEntry) NegativeFile() string {
-	return path.Join(q.dir, fmt.Sprintf("test/negative.%s", strings.ToLower(string(q.kind))))
+func (q queryEntry) PositiveFiles(tb testing.TB) []string {
+	return q.getSampleFiles(tb, "test/positive*.%s")
+}
+
+func (q queryEntry) NegativeFiles(tb testing.TB) []string {
+	return q.getSampleFiles(tb, "test/negative*.%s")
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
@@ -89,22 +96,25 @@ func loadQueries(tb testing.TB) []queryEntry {
 	return queriesDir
 }
 
-func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
-	content, err := ioutil.ReadFile(filePath)
-	require.NoError(t, err)
-	return getScannableFileMetadatas(t, filePath, content)
+func getFileMetadatas(t testing.TB, filesPath []string) model.FileMetadatas {
+	fileMetadatas := make(model.FileMetadatas, 0)
+	for _, path := range filesPath {
+		content, err := ioutil.ReadFile(path)
+		require.NoError(t, err)
+		fileMetadatas = append(fileMetadatas, getFilesMetadatasWithContent(t, path, content)...)
+	}
+	return fileMetadatas
 }
 
-func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) model.FileMetadatas {
+func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte) model.FileMetadatas {
 	combinedParser := getCombinedParser()
+	files := make(model.FileMetadatas, 0)
 
-	documents, kind, err := combinedParser.Parse(filePath, content)
+	parsedDocuments, kind, err := combinedParser.Parse(filePath, content)
 	require.NoError(t, err)
-
-	files := make([]model.FileMetadata, 0, len(documents))
-	for i, document := range documents {
+	for _, document := range parsedDocuments {
 		files = append(files, model.FileMetadata{
-			ID:           strconv.Itoa(fileID + i),
+			ID:           uuid.NewString(),
 			ScanID:       scanID,
 			Document:     document,
 			OriginalData: string(content),
@@ -182,4 +192,14 @@ func readLibrary(platform string) (string, error) {
 	}
 
 	return string(content), err
+}
+
+func isValidURL(toTest string) bool {
+	_, err := url.ParseRequestURI(toTest)
+	if err != nil {
+		return false
+	}
+
+	u, err := url.Parse(toTest)
+	return err == nil && u.Scheme != "" && u.Host != ""
 }

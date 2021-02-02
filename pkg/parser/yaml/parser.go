@@ -9,13 +9,16 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Parser defines a parser type
 type Parser struct {
 }
 
+// Playbooks represents a playbook object from parsed yaml files
 type Playbooks struct {
 	Tasks []map[string]interface{} `json:"playbooks"`
 }
 
+// Parse parses yaml/yml file and returns it as a Document
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
@@ -32,17 +35,19 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		var err error
 		documents, err = playbookParser(fileContent)
 		if err != nil {
-			return nil, errors.Wrap(err, "Failed to Parse Dockerfile")
+			return nil, errors.Wrap(err, "Failed to Parse YAML")
 		}
 	}
 
 	return documents, nil
 }
 
+// SupportedExtensions returns extensions supported by this parser, which are yaml and yml extension
 func (p *Parser) SupportedExtensions() []string {
 	return []string{".yaml", ".yml"}
 }
 
+// GetKind returns YAML constant kind
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
@@ -58,11 +63,11 @@ func playbookParser(fileContent []byte) ([]model.Document, error) {
 			playBooks.Tasks = append(playBooks.Tasks, arr...)
 			j, err := json.Marshal(playBooks)
 			if err != nil {
-				return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
+				return nil, errors.Wrap(err, "Failed to Marshal YAML")
 			}
 
 			if err := json.Unmarshal(j, &doc); err != nil {
-				return nil, errors.Wrap(err, "Failed to Unmarshal Dockerfile")
+				return nil, errors.Wrap(err, "Failed to Unmarshal YAML")
 			}
 			documents = append(documents, *doc)
 		}

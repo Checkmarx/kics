@@ -15,8 +15,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// Default values for inspector
 const (
-	// UndetectedVulnerabilityLine is the default line for a failed to detect line issue
 	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
@@ -26,16 +26,27 @@ const (
 	executeTimeout = 3 * time.Second
 )
 
+// ErrNoResult - error representing when a query didn't return a result
 var ErrNoResult = errors.New("query: not result")
+
+// ErrInvalidResult - error representing invalid result
 var ErrInvalidResult = errors.New("query: invalid result format")
 
+// VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
+// QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
+// GetQueries gets all queries from a QueryMetadata list
+// GetGenericQuery gets a base query based in plataform's name
 type QueriesSource interface {
 	GetQueries() ([]model.QueryMetadata, error)
 	GetGenericQuery(platform string) (string, error)
 }
 
+// Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
+// TrackQueryLoad increments the number of loaded queries
+// TrackQueryExecution increments the number of queries executed
+// FailedDetectLine decrements the number of queries executed
 type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
@@ -48,15 +59,20 @@ type preparedQuery struct {
 	metadata model.QueryMetadata
 }
 
+// Inspector represents a list of compiled queries, a builder for vulnerabilities, an information tracker
+// a flag to enable coverage and the coverage report if it is enabled
 type Inspector struct {
-	queries []*preparedQuery
-	vb      VulnerabilityBuilder
-	tracker Tracker
+	queries       []*preparedQuery
+	vb            VulnerabilityBuilder
+	tracker       Tracker
+	failedQueries map[string]error
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
 }
 
+// QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
+// the query compiled and its payload
 type QueryContext struct {
 	ctx     context.Context
 	scanID  string
@@ -72,6 +88,7 @@ var (
 	}
 )
 
+// NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
 	source QueriesSource,
@@ -130,17 +147,20 @@ func NewInspector(
 			})
 		}
 	}
+	failedQueries := make(map[string]error)
 
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d\n", len(opaQueries))
 
 	return &Inspector{
-		queries: opaQueries,
-		vb:      vb,
-		tracker: tracker,
+		queries:       opaQueries,
+		vb:            vb,
+		tracker:       tracker,
+		failedQueries: failedQueries,
 	}, nil
 }
 
+// Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.FileMetadatas) ([]model.Vulnerability, error) {
 	combinedFiles := files.Combine()
 
@@ -164,6 +184,8 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 				Str("scanID", scanID).
 				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
 
+			c.failedQueries[query.metadata.Query] = err
+
 			continue
 		}
 		vulnerabilities = append(vulnerabilities, vuls...)
@@ -174,12 +196,19 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 	return vulnerabilities, nil
 }
 
+// EnableCoverageReport enables the flag to create a coverage report
 func (c *Inspector) EnableCoverageReport() {
 	c.enableCoverageReport = true
 }
 
+// GetCoverageReport returns the scan coverage report
 func (c *Inspector) GetCoverageReport() cover.Report {
 	return c.coverageReport
+}
+
+// GetFailedQueries returns a map of failed queries and the associated error
+func (c *Inspector) GetFailedQueries() map[string]error {
+	return c.failedQueries
 }
 
 func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
@@ -246,6 +275,10 @@ func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet)
 			sentry.CaptureException(err)
 			log.Err(err).
 				Msgf("Inspector can't save vulnerability, query=%s", ctx.query.metadata.Query)
+
+			if _, ok := c.failedQueries[ctx.query.metadata.Query]; !ok {
+				c.failedQueries[ctx.query.metadata.Query] = err
+			}
 
 			continue
 		}

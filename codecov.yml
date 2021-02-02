@@ -18,3 +18,7 @@ ignore:
   - "*/**/*_test.go"
   - "**/*_test.go"
   - "**/mock/*.go"
+  - "**/*_easyjson.go"
+  - "cmd/"
+  - "internal/console/kics.go"
+  - "internal/console/scan.go"

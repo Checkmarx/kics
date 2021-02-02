@@ -2,16 +2,16 @@
 	{
 		"queryName": "Serial Ports Are Enabled For VM Instances",
 		"severity": "MEDIUM",
-		"line": 29
+		"line": 26
 	},
 	{
 		"queryName": "Serial Ports Are Enabled For VM Instances",
 		"severity": "MEDIUM",
-		"line": 42
+		"line": 38
 	},
 	{
 		"queryName": "Serial Ports Are Enabled For VM Instances",
 		"severity": "MEDIUM",
-		"line": 48
+		"line": 44
 	}
 ]

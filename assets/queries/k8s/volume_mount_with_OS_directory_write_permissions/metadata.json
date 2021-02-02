@@ -4,5 +4,5 @@
   "severity": "MEDIUM",
   "category": "Resources Limiting",
   "descriptionText": "Containers can mount sensitive folders from the hosts, giving them potentially dangerous access to critical host configurations and binaries.",
-  "descriptionUrl": "#"
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/storage/volumes/"
 }
