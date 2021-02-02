@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	command := resource.Value[0]
 
-	contains(command, "update")
+	contains(command, "apt-get update")
 	not updateFollowedByInstall(command)
 
 	result := {
@@ -26,7 +26,7 @@ updateFollowedByInstall(command) {
 		"localinstall",
 	]
 
-	update := indexof(command, "update")
+	update := indexof(command, "apt-get update")
 	update != -1
 
 	install := indexof(command, commandList[_])
