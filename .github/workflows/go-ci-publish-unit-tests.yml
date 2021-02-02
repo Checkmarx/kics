@@ -1,0 +1,31 @@
+name: go-ci-publish-unit-tests
+
+on:
+  workflow_run:
+    workflows:
+      - go-ci
+    types:
+      - completed
+
+jobs:
+  publish-unit-test-result:
+    name: Publish unit tests results
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: unit-tests-report-${{ matrix.os }}-${{ github.event.workflow_run.head.sha }}
+          commit: ${{ github.event.workflow_run.head.sha }}
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.7
+        with:
+          comment_title: ${{ matrix.os }} - Unit Test Statistics
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          hide_comments: orphaned commits
+          commit: ${{ github.event.workflow_run.head.sha }}
+          check_run_annotations: all tests, skipped tests
+          check_run_annotations_branch: "*"
+          files: "*/**/test-report-*.xml"

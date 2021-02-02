@@ -11,7 +11,6 @@ resource "google_compute_instance" "some_metadata" {
     }
   }
 
-  // Local SSD disk
   scratch_disk {
     interface = "SCSI"
   }
@@ -20,12 +19,10 @@ resource "google_compute_instance" "some_metadata" {
     network = "default"
 
     access_config {
-      // Ephemeral IP
     }
   }
 
   metadata = {
-    #... some other metadata
     serial-port-enable = "FALSE"
   }
 
@@ -38,7 +35,6 @@ resource "google_compute_instance" "some_metadata" {
 
 resource "google_compute_project_metadata" "more_metadata" {
   metadata = {
-    #... some other metadata
     serial-port-enable = false
   }
 }
