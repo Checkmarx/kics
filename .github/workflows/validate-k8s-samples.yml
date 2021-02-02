@@ -1,0 +1,18 @@
+name: validate-k8s-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/k8s/**/test/*.yaml"
+    - "assets/queries/k8s/**/test/*.yml"
+
+jobs:
+  validate-k8s-manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate k8s manifests
+        uses: makocchi-git/actions-k8s-manifests-validate-kubeval@1.0.0
+        with:
+          files: assets/queries/k8s/
+          token: ${{ secrets.GITHUB_TOKEN }}

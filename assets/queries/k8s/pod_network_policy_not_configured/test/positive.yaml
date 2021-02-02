@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: v1
 kind: Pod
 metadata:
   name: nopolicy
@@ -54,7 +54,7 @@ spec:
     - protocol: TCP
       port: 5978
 ---
-apiVersion: apps/v1beta1
+apiVersion: v1
 kind: Pod
 metadata:
   name: partialpolicy
