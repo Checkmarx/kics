@@ -121,13 +121,20 @@ func scan() error {
 	}
 
 	scanStartTime := time.Now()
-	queryPaths, err := getQueriesPath(queryPath, types)
-	if err != nil {
+
+	if err := validateArguments(types, map[string]interface{}{
+		"ansible":        "",
+		"terraform":      "",
+		"dockerfile":     "",
+		"cloudformation": "",
+		"k8s":            "",
+	}); err != nil {
 		return err
 	}
 
 	querySource := &query.FilesystemSource{
-		Source: queryPaths,
+		Source: queryPath,
+		Types:  types,
 	}
 
 	t := &tracker.CITracker{}

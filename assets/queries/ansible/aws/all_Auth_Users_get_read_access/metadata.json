@@ -4,5 +4,6 @@
   "severity": "HIGH",
   "category": "Identity and Access Management",
   "descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",
+  "platform": "ansible"
 }

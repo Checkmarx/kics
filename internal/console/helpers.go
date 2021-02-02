@@ -3,7 +3,6 @@ package console
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -115,37 +114,20 @@ func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 }
 
 // validateArguments is used for flags that receive arguments
-func validateArguments(arg, validArgs string) error {
-	if !strings.Contains(validArgs, arg) {
-		return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", arg, validArgs))
+func validateArguments(types []string, validArgs map[string]interface{}) error {
+	for _, typeQuery := range types {
+		if _, ok := validArgs[typeQuery]; !ok {
+			return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", typeQuery, mapToArguments(validArgs)))
+		}
 	}
 	return nil
 }
 
-func getValidTypeArguments(queryPath string) string {
-	files, err := ioutil.ReadDir(filepath.Clean(queryPath))
-	if err != nil {
-		log.Err(err).Msg("failed to get type valid arguments")
+func mapToArguments(args map[string]interface{}) string {
+	keys := make([]string, 0, len(args))
+	for arg := range args {
+		keys = append(keys, arg)
 	}
-	var validArgs []string
-	for _, f := range files {
-		if f.Name() == "template" {
-			continue
-		}
-		validArgs = append(validArgs, fmt.Sprintf("%s\n  ", f.Name()))
-	}
-	return strings.Join(validArgs, "")
-}
 
-func getQueriesPath(queryPath string, types []string) ([]string, error) {
-	queryPaths := make([]string, len(types))
-	queryPaths[0] = queryPath
-	for idx, typeInc := range types {
-		typeInc = strings.Trim(typeInc, " ")
-		if err := validateArguments(typeInc, getValidTypeArguments(queryPath)); err != nil {
-			return []string{}, err
-		}
-		queryPaths[idx] = filepath.Clean(filepath.Join(queryPath, typeInc))
-	}
-	return queryPaths, nil
+	return strings.Join(keys, "\n  ")
 }

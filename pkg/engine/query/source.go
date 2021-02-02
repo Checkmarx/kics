@@ -16,7 +16,8 @@ import (
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
 type FilesystemSource struct {
-	Source []string
+	Source string
+	Types  []string
 }
 
 const (
@@ -67,28 +68,36 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	return string(content), err
 }
 
+func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
+	// DELETE WHEN ALL QUERIES HAVE A PLATFORM
+	if queryPlatform == nil {
+		queryPlatform = "test"
+	}
+	if s.Types[0] != "" {
+		return strings.Contains(strings.Join(s.Types, ","), queryPlatform.(string))
+	}
+	return true
+}
+
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
-	var err error
-	for _, path := range s.Source {
-		err = filepath.Walk(path,
-			func(p string, f os.FileInfo, err error) error {
-				if err != nil {
-					return err
-				}
+	err := filepath.Walk(s.Source,
+		func(p string, f os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
 
-				if f.IsDir() || f.Name() != QueryFileName {
-					return nil
-				}
-
-				queryDirs = append(queryDirs, filepath.Dir(p))
+			if f.IsDir() || f.Name() != QueryFileName {
 				return nil
-			})
-		if err != nil {
-			return nil, errors.Wrap(err, "failed to get query Source")
-		}
+			}
+
+			queryDirs = append(queryDirs, filepath.Dir(p))
+			return nil
+		})
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to get query Source")
 	}
 
 	queries := make([]model.QueryMetadata, 0, len(queryDirs))
@@ -99,6 +108,10 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 			log.Err(errRQ).
 				Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
 
+			continue
+		}
+
+		if !s.CheckType(query.Metadata["platform"]) {
 			continue
 		}
 

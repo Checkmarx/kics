@@ -30,7 +30,7 @@ var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
 	severityList = []string{"HIGH", "MEDIUM", "LOW", "INFO"}
 
-	requiredQueryResultProperties = []string{
+	requiredQueryResultProperties = []string{ // PLATFORM - add platform
 		"documentId",
 		"searchKey",
 		"issueType",
@@ -51,7 +51,7 @@ var (
 
 	searchValueProperty = "searchValue"
 
-	requiredQueryMetadataProperties = map[string]func(tb testing.TB, value interface{}, metadataPath string){
+	requiredQueryMetadataProperties = map[string]func(tb testing.TB, value interface{}, metadataPath string){ // PLATFORM - add platform to see if is required
 		"id": func(tb testing.TB, value interface{}, metadataPath string) {
 			idValue := testMetadataFieldStringType(tb, value, "id", metadataPath)
 			require.True(tb, validUUID.MatchString(strings.TrimSpace(idValue)), "invalid UUID in query metadata file %s", metadataPath)
