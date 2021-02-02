@@ -18,6 +18,7 @@ var (
 	verbose     bool
 	logFile     bool
 	types       []string
+	cfgFile     string
 )
 
 var ctx = context.Background()

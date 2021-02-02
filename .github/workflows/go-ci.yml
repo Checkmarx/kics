@@ -61,7 +61,7 @@ jobs:
     - name: Archive unit tests report
       uses: actions/upload-artifact@v2
       with:
-        name: unit-tests-report-${{ matrix.os }}
+        name: unit-tests-report-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}
         path: |
           test-report*.xml
     - name: CodeCov

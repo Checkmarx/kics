@@ -3,7 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
-	properties := input.document[i].Resources[name].Properties[j]
+	properties := resource.Properties.DistributionConfig
 	distributionConfig := properties.Enabled
 	expectedvalue := "false"
 	distributionConfig == expectedvalue
@@ -19,7 +19,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
-	properties := input.document[i].Resources[name].Properties[j]
+	properties := resource.Properties.DistributionConfig
 	object.get(properties, "Origins", "undefined") == "undefined"
 	result := {
 		"documentId": input.document[i].id,

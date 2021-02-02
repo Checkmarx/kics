@@ -12,15 +12,33 @@ jobs:
     name: Publish unit tests results
     runs-on: ubuntu-latest
     steps:
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
+      - name: Download Linux Test Report
+        uses: dawidd6/action-download-artifact@v2
         with:
-          path: ./
-      - name: Publish Unit Test Results
+          name: unit-tests-report-ubuntu-latest-${{ github.event.workflow_run.head.sha }}
+          commit: ${{ github.event.workflow_run.head.sha }}
+      - name: Download Windows Test Report
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: unit-tests-report-windows-latest-${{ github.event.workflow_run.head.sha }}
+          commit: ${{ github.event.workflow_run.head.sha }}
+      - name: Publish Linux Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
-        if: always()
         with:
+          comment_title: Linux - Unit Test Statistics
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          hide_comments: orphaned commits
+          commit: ${{ github.event.workflow_run.head.sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
-          files: test-report-*.xml
+          files: "*/**/test-report-windows*.xml"
+      - name: Publish Windows Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.7
+        with:
+          comment_title: Windows - Unit Test Statistics
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          hide_comments: orphaned commits
+          commit: ${{ github.event.workflow_run.head.sha }}
+          check_run_annotations: all tests, skipped tests
+          check_run_annotations_branch: "*"
+          files: "*/**/test-report-ubuntu*.xml"
