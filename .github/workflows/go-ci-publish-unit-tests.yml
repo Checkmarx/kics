@@ -16,21 +16,21 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: unit-tests-report-ubuntu-latest-${{ github.event.workflow_run.head.sha }}
-          commit: ${{ github.event.workflow_run.head.sha }}
+          name: unit-tests-report-ubuntu-latest-${{ github.event.workflow_run.head_sha }}
+          commit: ${{ github.event.workflow_run.head_sha }}
       - name: Download Windows Test Report
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: unit-tests-report-windows-latest-${{ github.event.workflow_run.head.sha }}
-          commit: ${{ github.event.workflow_run.head.sha }}
+          name: unit-tests-report-windows-latest-${{ github.event.workflow_run.head_sha }}
+          commit: ${{ github.event.workflow_run.head_sha }}
       - name: Publish Linux Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
         with:
           comment_title: Linux - Unit Test Statistics
           github_token: ${{ secrets.GITHUB_TOKEN }}
           hide_comments: orphaned commits
-          commit: ${{ github.event.workflow_run.head.sha }}
+          commit: ${{ github.event.workflow_run.head_sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
           files: "*/**/test-report-windows*.xml"
@@ -40,7 +40,7 @@ jobs:
           comment_title: Windows - Unit Test Statistics
           github_token: ${{ secrets.GITHUB_TOKEN }}
           hide_comments: orphaned commits
-          commit: ${{ github.event.workflow_run.head.sha }}
+          commit: ${{ github.event.workflow_run.head_sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
           files: "*/**/test-report-ubuntu*.xml"
