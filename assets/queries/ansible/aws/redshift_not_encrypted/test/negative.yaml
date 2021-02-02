@@ -2,6 +2,7 @@
 - name: Basic cluster provisioning example
   community.aws.redshift:
     identifier: tf-redshift-cluster
+    command: create
     db_name: mydb
     username: foo
     password: Mustbe8characters
@@ -11,6 +12,7 @@
 - name: Basic cluster provisioning example2
   community.aws.redshift:
     identifier: tf-redshift-cluster
+    command: create
     db_name: mydb
     username: foo
     password: Mustbe8characters

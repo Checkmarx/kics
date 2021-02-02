@@ -7,3 +7,11 @@ getTasks(document) = result {
 	result := [body | playbook := document.playbooks[_]; body := playbook]
 	count(result) != 0
 }
+
+isAnsibleTrue(answer) {
+	lower(answer) == "yes"
+} else {
+	lower(answer) == "true"
+} else {
+	answer == true
+}
