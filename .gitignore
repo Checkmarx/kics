@@ -20,3 +20,7 @@
 # Log Files
 
 *.log
+
+# Configuration file
+
+config.*
