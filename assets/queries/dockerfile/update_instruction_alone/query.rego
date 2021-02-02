@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	command := resource.Value[0]
 
-	contains(command, " update ")
+	isValidUpdate(command)
 	not updateFollowedByInstall(command)
 
 	result := {
@@ -17,6 +17,18 @@ CxPolicy[result] {
 	}
 }
 
+isValidUpdate(command) {
+	contains(command, " update ")
+}
+
+isValidUpdate(command) {
+	array_split := split(command, " ")
+
+	len = count(array_split)
+
+	array_split[minus(len, 1)] == "update"
+}
+
 updateFollowedByInstall(command) {
 	commandList = [
 		"install",
@@ -26,7 +38,7 @@ updateFollowedByInstall(command) {
 		"localinstall",
 	]
 
-	update := indexof(command, " update ")
+	update := indexof(command, "update")
 	update != -1
 
 	install := indexof(command, commandList[_])
