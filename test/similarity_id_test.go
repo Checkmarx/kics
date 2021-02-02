@@ -291,7 +291,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
 		scanID,
-		getScannableFileMetadatas(
+		getFilesMetadatasWithContent(
 			t,
 			testParams.samplePath(),
 			testParams.sampleContent(t),
