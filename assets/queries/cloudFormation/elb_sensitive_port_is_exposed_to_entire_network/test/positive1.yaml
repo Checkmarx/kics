@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyLoadBalancer:
+      Type: AWS::ElasticLoadBalancing::LoadBalancer
+      Properties:
+        AvailabilityZones:
+        - "us-east-2a"
+        CrossZone: true
+        Scheme: internet-facing
+        Listeners:
+        - InstancePort: '80'
+          InstanceProtocol: HTTP
+          LoadBalancerPort: '443'
+          Protocol: HTTPS
+          PolicyNames:
+          - My-SSLNegotiation-Policy
+          SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
+        HealthCheck:
+          Target: HTTP:80/
+          HealthyThreshold: '2'
+          UnhealthyThreshold: '3'
+          Interval: '10'
+          Timeout: '5'
+        SecurityGroups:
+          - !Ref LBSecGroup
+        Policies:
+        - PolicyName: My-SSLNegotiation-Policy
+          PolicyType: SSLNegotiationPolicyType
+          Attributes:
+          - Name: Reference-Security-Policy
+            Value: ELBSecurityPolicy-TLS-1-2-2017-01
+  LBSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http and ssh
+        VpcId: my-vpc
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 50
+          ToPort: 80
+          CidrIp: 127.0.0.1/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 127.0.0.1/0
+        SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
