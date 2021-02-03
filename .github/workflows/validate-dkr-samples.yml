@@ -1,0 +1,17 @@
+name: validate-dkr-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/docker/**/test/*.dockerfile"
+
+jobs:
+  validate-dockerfile-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate dockerfiles syntax
+        run: .github/validate-dockerfile-syntax.sh
