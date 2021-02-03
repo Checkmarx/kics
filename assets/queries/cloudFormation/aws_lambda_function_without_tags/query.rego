@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("Resources.%s", [name]),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "All Lambda Functions have associated tags",
 		"keyActualValue": "A Lambda Function is missing associated tags",
