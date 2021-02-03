@@ -11,3 +11,15 @@ getSpecInfo(document) = specInfo { # this one can be also used for the result
 	spec := document.spec
 	specInfo := {"spec": spec, "path": "spec"}
 }
+
+CheckIFPdbExists(statefulset) = result {
+	pdb := input.document[j]
+	pdb.kind == "PodDisruptionBudget"
+	result := contains(pdb, statefulset.spec.selector.matchLabels)
+} else = false {
+	true
+}
+
+contains(array, label) {
+	array.spec.selector.matchLabels[_] == label[_]
+}

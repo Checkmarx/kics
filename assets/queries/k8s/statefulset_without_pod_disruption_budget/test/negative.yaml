@@ -6,8 +6,8 @@ spec:
   maxUnavailable: 1
   selector:
     matchLabels:
-      - app: nginx33
-      - run: test
+      app: nginx33
+      run: test
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -16,8 +16,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      - app: nginx123
-      - run: test
+      app: nginx123
+      run: test
   serviceName: "nginx"
   replicas: 3
   template:
