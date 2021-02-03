@@ -33,8 +33,8 @@ const (
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string {
 	var libraryPath string
-	if strings.LastIndex(relativeBasePath, "/queries") > -1 {
-		libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, "/queries")] + filepath.FromSlash("/libraries")
+	if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) > -1 {
+		libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries"))] + filepath.FromSlash("/libraries")
 	} else {
 		libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
 	}
