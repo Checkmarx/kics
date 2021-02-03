@@ -22,7 +22,7 @@ jobs:
             && tar xf kubeval-linux-amd64.tar.gz \
             && chmod +x kubeval \
             && rm -vf kubeval-linux-amd64.tar.gz \
-            && cd "${PROJDIR}""
+            && cd "${PROJDIR}"
       - name: Validate k8s manifests
         run: bash .github/validate-k8s-syntax.sh
         env:
