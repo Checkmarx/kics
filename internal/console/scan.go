@@ -122,7 +122,7 @@ func scan() error {
 	scanStartTime := time.Now()
 
 	querySource := &query.FilesystemSource{
-		Source: queryPath,
+		Source: filepath.FromSlash(queryPath),
 	}
 
 	t := &tracker.CITracker{}
