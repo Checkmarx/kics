@@ -11,8 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Validate k8s manifests
-        uses: makocchi-git/actions-k8s-manifests-validate-kubeval@1.0.1
         with:
-          files: assets/queries/k8s/
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Get Kubeval
+        run: |
+          mkdir -p .bin
+          PROJDIR=$(pwd)
+          cd .bin && wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz \
+            && tar xf kubeval-linux-amd64.tar.gz \
+            && chmod +x kubeval \
+            && rm -vf kubeval-linux-amd64.tar.gz \
+            && cd "${PROJDIR}""
+      - name: Validate k8s manifests
+        run: bash .github/validate-k8s-syntax.sh
+        env:
+          KUBEVAL_PATH: .bin/kubeval

@@ -1,0 +1,2 @@
+assets/queries/k8s/hpa_targets_a_invalid_object/test/positive.yaml
+assets/queries/k8s/deployment_no_pod_anti_affinity/test/positive.yaml

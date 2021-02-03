@@ -7,6 +7,6 @@
 	{
 		"queryName": "Cluster Allows Unsafe Sysctls",
 		"severity": "HIGH",
-		"line": 22
+		"line": 23
 	}
 ]

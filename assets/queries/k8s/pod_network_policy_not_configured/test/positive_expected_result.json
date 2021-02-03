@@ -7,6 +7,6 @@
 	{
 		"queryName": "Pod Is Not Targeted By A Proper Network Policy",
 		"severity": "MEDIUM",
-		"line": 62
+		"line": 53
 	}
 ]
