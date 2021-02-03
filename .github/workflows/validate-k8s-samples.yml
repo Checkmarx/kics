@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate k8s manifests
-        uses: makocchi-git/actions-k8s-manifests-validate-kubeval@1.0.0
+        uses: makocchi-git/actions-k8s-manifests-validate-kubeval@1.0.1
         with:
           files: assets/queries/k8s/
           token: ${{ secrets.GITHUB_TOKEN }}
