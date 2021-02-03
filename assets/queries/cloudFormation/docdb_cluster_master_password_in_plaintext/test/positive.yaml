@@ -2,26 +2,19 @@ Resources:
   NewAmpApp:
     Type:  AWS::DocDB::DBCluster
     Properties:
-      AvailabilityZones:
-        - String
-      BackupRetentionPeriod: Integer
-      DBClusterIdentifier: String
-      DBClusterParameterGroupName: String
-      DBSubnetGroupName: String
+      BackupRetentionPeriod: 8
+      DBClusterIdentifier: "sample-cluster"
+      DBClusterParameterGroupName: "default.docdb3.6"
+      DBSubnetGroupName: "default"
       DeletionProtection: true
-      EnableCloudwatchLogsExports:
-        - String
-      EngineVersion: String
-      KmsKeyId: String
-      MasterUsername: admin
+      KmsKeyId: "your-kms-key-id"
+      MasterUsername: "your-master-username"
       MasterUserPassword: 'asDjskjs73!!'
-      Port: Integer
-      PreferredBackupWindow: String
-      PreferredMaintenanceWindow: String
-      SnapshotIdentifier: String
+      Port: 27017
+      PreferredBackupWindow: "07:34-08:04"
+      PreferredMaintenanceWindow: "sat:04:51-sat:05:21"
+      SnapshotIdentifier: "sample-cluster-snapshot-id"
       StorageEncrypted: true
-      VpcSecurityGroupIds:
-        - String
 ---
 Parameters:
   ParentMasterPassword:
@@ -32,48 +25,34 @@ Resources:
   NewAmpApp1:
     Type: AWS::DocDB::DBCluster
     Properties:
-      AvailabilityZones:
-        - String
-      BackupRetentionPeriod: Integer
-      DBClusterIdentifier: String
-      DBClusterParameterGroupName: String
-      DBSubnetGroupName: String
-      DeletionProtection: Boolean
-      EnableCloudwatchLogsExports:
-        - String
-      EngineVersion: String
-      KmsKeyId: String
-      MasterUsername: String
+      BackupRetentionPeriod: 8
+      DBClusterIdentifier: "sample-cluster"
+      DBClusterParameterGroupName: "default.docdb3.6"
+      DBSubnetGroupName: "default"
+      DeletionProtection: true
+      KmsKeyId: "your-kms-key-id"
+      MasterUsername: "your-master-username"
       MasterUserPassword: !Ref ParentMasterPassword
-      Port: Integer
-      PreferredBackupWindow: String
-      PreferredMaintenanceWindow: String
-      SnapshotIdentifier: String
-      StorageEncrypted: Boolean
-      VpcSecurityGroupIds:
-        - String
+      Port: 27017
+      PreferredBackupWindow: "07:34-08:04"
+      PreferredMaintenanceWindow: "sat:04:51-sat:05:21"
+      SnapshotIdentifier: "sample-cluster-snapshot-id"
+      StorageEncrypted: true
 ---
 Resources:
   NewAmpApp03:
     Type:  AWS::DocDB::DBCluster
     Properties:
-      AvailabilityZones:
-        - String
-      BackupRetentionPeriod: Integer
-      DBClusterIdentifier: String
-      DBClusterParameterGroupName: String
-      DBSubnetGroupName: String
+      BackupRetentionPeriod: 8
+      DBClusterIdentifier: "sample-cluster"
+      DBClusterParameterGroupName: "default.docdb3.6"
+      DBSubnetGroupName: "default"
       DeletionProtection: true
-      EnableCloudwatchLogsExports:
-        - String
-      EngineVersion: String
-      KmsKeyId: String
-      MasterUsername: admin
+      KmsKeyId: "your-kms-key-id"
+      MasterUsername: "your-master-username"
       MasterUserPassword: 'asDjskjs73!!'
-      Port: Integer
-      PreferredBackupWindow: String
-      PreferredMaintenanceWindow: String
-      SnapshotIdentifier: String
+      Port: 27017
+      PreferredBackupWindow: "07:34-08:04"
+      PreferredMaintenanceWindow: "sat:04:51-sat:05:21"
+      SnapshotIdentifier: "sample-cluster-snapshot-id"
       StorageEncrypted: true
-      VpcSecurityGroupIds:
-        - String

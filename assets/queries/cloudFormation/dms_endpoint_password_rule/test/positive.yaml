@@ -18,7 +18,7 @@ Resources:
       NeptuneSettings:
         NeptuneSettings
       Password: 'asDjskjs73!!'
-      Port: Integer
+      Port: 80
       S3Settings:
         S3Settings
       ServerName: String
@@ -56,7 +56,7 @@ Resources:
       NeptuneSettings:
         NeptuneSettings
       Password: !Ref ParentMasterPassword
-      Port: Integer
+      Port: 80
       S3Settings:
         S3Settings
       ServerName: String
@@ -90,7 +90,7 @@ Resources:
       NeptuneSettings:
         NeptuneSettings
       Password: 'asDjskjs73!!'
-      Port: Integer
+      Port: 80
       S3Settings:
         S3Settings
       ServerName: String
