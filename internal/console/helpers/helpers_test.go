@@ -203,6 +203,7 @@ func TestProgressBar(t *testing.T) {
 			if tt.shouldCheckOutput {
 				progressBar.Writer = &out
 			} else {
+				// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 				progressBar.Writer = ioutil.Discard
 			}
 			go progressBar.Start(&wg)

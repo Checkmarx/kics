@@ -21,6 +21,7 @@ import (
 )
 
 func BenchmarkQueries(b *testing.B) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(b)
@@ -33,6 +34,7 @@ func BenchmarkQueries(b *testing.B) {
 }
 
 func TestQueries(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	if testing.Short() {

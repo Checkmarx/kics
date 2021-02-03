@@ -160,6 +160,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	for _, tc := range testTable {

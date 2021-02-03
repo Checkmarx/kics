@@ -86,6 +86,7 @@ var (
 )
 
 func TestQueriesContent(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(t)
@@ -99,6 +100,7 @@ func TestQueriesContent(t *testing.T) {
 }
 
 func TestQueriesMetadata(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(t)

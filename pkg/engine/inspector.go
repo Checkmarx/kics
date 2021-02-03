@@ -184,6 +184,7 @@ func (c *Inspector) Inspect(
 	wg.Add(1)
 	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(len(c.queries)), currentQuery)
 	if hideProgress {
+		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 		progressBar.Writer = ioutil.Discard
 	}
 	go progressBar.Start(&wg)
