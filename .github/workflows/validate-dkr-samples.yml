@@ -13,5 +13,13 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Get Hadolint
+        run: |
+          mkdir -p .bin
+          wget https://github.com/hadolint/hadolint/releases/download/v1.21.0/hadolint-Linux-x86_64
+          mv hadolint-Linux-x86_64 .bin/hadolint
+          chmod +x .bin/hadolint
       - name: Validate dockerfiles syntax
-        run: .github/validate-dockerfile-syntax.sh
+        run: bash .github/validate-dockerfile-syntax.sh
+        env:
+          HADOLINT_PATH: .bin/hadolint

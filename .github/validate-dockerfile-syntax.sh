@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail;
-MOUNT_ROOT=${MOUNT_ROOT:-'/project'}
+HADOLINT_PATH=${HADOLINT_PATH:-'.bin/hadolint'}
 
-echo assets/queries/dockerfile/**/*.dockerfile
 for filepath in $(find assets/queries/dockerfile -type f -name '*.dockerfile'); do
   echo "Validating ${filepath}"
-  docker run -v $(pwd):"${MOUNT_ROOT}" hadolint/hadolint hadolint -c "${MOUNT_ROOT}/.github/hadolint.yml" "${MOUNT_ROOT}/$filepath";
+  command "${HADOLINT_PATH}" -c ".github/hadolint.yml" "${filepath}";
 done
