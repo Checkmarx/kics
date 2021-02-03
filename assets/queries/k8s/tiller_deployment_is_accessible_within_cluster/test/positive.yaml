@@ -18,7 +18,8 @@ spec:
         name: tiller
     spec:
       containers:
-        - args:
+        -
+          args:
             - "--listen=10.7.2.8:44134"
           image: tiller-image
           name: tiller-v2
