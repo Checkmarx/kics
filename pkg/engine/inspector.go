@@ -164,6 +164,16 @@ func NewInspector(
 	}, nil
 }
 
+func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
+	wg.Add(1)
+	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
+	if hideProgress {
+		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
+		progressBar.Writer = ioutil.Discard
+	}
+	go progressBar.Start(wg)
+}
+
 // Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(
 	ctx context.Context,
@@ -181,13 +191,7 @@ func (c *Inspector) Inspect(
 	var vulnerabilities []model.Vulnerability
 	currentQuery := make(chan float64, 1)
 	var wg sync.WaitGroup
-	wg.Add(1)
-	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(len(c.queries)), currentQuery)
-	if hideProgress {
-		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-		progressBar.Writer = ioutil.Discard
-	}
-	go progressBar.Start(&wg)
+	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
 	for idx, query := range c.queries {
 		if !hideProgress {
 			currentQuery <- float64(idx)
