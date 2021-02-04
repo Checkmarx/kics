@@ -24,6 +24,8 @@ jobs:
             && rm -vf kubeval-linux-amd64.tar.gz \
             && cd "${PROJDIR}"
       - name: Validate k8s manifests
-        run: bash .github/validate-k8s-syntax.sh
+        run: python3 .github/validators/validate-syntax.py
         env:
-          KUBEVAL_PATH: .bin/kubeval
+          LINTER_PATH: .bin/kubeval
+          SKIP_LIST_PATH: '.github/validators/k8s-skip-list'
+          FILES_GLOB: 'assets/queries/k8s/**/test/*.yaml'
