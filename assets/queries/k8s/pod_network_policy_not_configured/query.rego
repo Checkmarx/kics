@@ -4,16 +4,17 @@ CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 
-	object.get(document, "kind", "undefined") != "NetworkPolicy"
+	document.kind == "NetworkPolicy"
+	spec := document.spec
 
-	findNetworkPolicy(document.metadata.labels[key], key) == false
+	not findPod(true)
 
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.labels.%s", [metadata.name, key]),
+    result := {
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'metadata.labels.%s' is targeted by a network policy", [key]),
-		"keyActualValue": sprintf("'metadata.labels.%s' is not targeted by a network policy", [key]),
+		"keyExpectedValue": "Pod is defined",
+		"keyActualValue": sprintf("metadata.name=%s should target at least one Pod", [metadata.name])
 	}
 }
 
@@ -21,41 +22,32 @@ CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 
-	object.get(document, "kind", "undefined") != "NetworkPolicy"
+	document.kind == "NetworkPolicy"
+	spec := document.spec
 
-	findNetworkPolicy(document.metadata.labels[key], key) == true
-	properNetworkPolicy(document.metadata.labels[key], key) == false
+	isTargeted(spec.podSelector.matchLabels[key], spec)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.labels.%s", [metadata.name, key]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'metadata.labels.%s' is targeted by a proper network policy (covers both ingress and egress)", [key]),
-		"keyActualValue": sprintf("'metadata.labels.%s' is not targeted by a proper network policy (does not cover ingress and egress)", [key]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("spec.podSelector.matchLabels[%s] is targeted by a Pod", [key]),
+		"keyActualValue": sprintf("spec.podSelector.matchLabels[%s] is not targeted by a Pod", [key])
 	}
 }
 
-findNetworkPolicy(lValue, lKey) {
-	networkPolicy := input.document[_]
-	object.get(networkPolicy, "kind", "undefined") == "NetworkPolicy"
-	spec := networkPolicy.spec
-	some key
-	key == lKey
-	spec.podSelector.matchLabels[key] == lValue
-} else = false {
-	true
+findPod(empty) {
+	document := input.document[_]
+    document.kind == "Pod"
 }
 
-properNetworkPolicy(lValue, lKey) {
-	networkPolicy := input.document[_]
-	object.get(networkPolicy, "kind", "undefined") == "NetworkPolicy"
-	spec := networkPolicy.spec
-	some key
-	key == lKey
-	spec.podSelector.matchLabels[key] == lValue
-	properSpec(spec) == true
-} else = false {
-	true
+isTargeted(matchLabels, spec) {
+	document := input.document[_]
+    document.kind == "Pod"
+    labelPod = document.metadata.labels[keyPod]
+    matchLabels != labelPod
+
+    properSpec(spec) == false
 }
 
 properSpec(spec) {
