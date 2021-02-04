@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
@@ -14,6 +15,6 @@ func TestVersionCommand(t *testing.T) {
 		out, err := test.CaptureCommandOutput(versionCmd, nil)
 
 		require.NoError(t, err)
-		require.Equal(t, fmt.Sprintf("%s v%s\n", currentKICSFullname, currentKICSVersion), out)
+		require.Equal(t, fmt.Sprintf("%s v%s\n", consoleHelpers.CurrentKICSFullname, consoleHelpers.CurrentKICSVersion), out)
 	})
 }

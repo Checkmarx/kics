@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -26,6 +27,18 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+)
+
+var (
+	path        string
+	queryPath   string
+	outputPath  string
+	payloadPath string
+	cfgFile     string
+	sarifPath   string
+	verbose     bool
+	logFile     bool
+	noProgress  bool
 )
 
 var scanCmd = &cobra.Command{
@@ -85,6 +98,7 @@ func initScanCmd() {
 	scanCmd.Flags().StringVarP(&sarifPath, "sarif", "", "", "file path to save SARIF output")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -93,6 +107,7 @@ func initScanCmd() {
 }
 
 func setupLogs() error {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 
@@ -105,7 +120,7 @@ func setupLogs() error {
 		if err != nil {
 			return err
 		}
-		fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
+		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
 	}
 
 	mw := io.MultiWriter(consoleLogger, fileLogger)
@@ -159,7 +174,7 @@ func scan() error {
 		Tracker:        t,
 	}
 
-	if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
+	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
 		return scanErr
 	}
 
@@ -199,7 +214,7 @@ func scan() error {
 		}
 	}
 
-	if err := printResult(&summary, inspector.GetFailedQueries()); err != nil {
+	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries()); err != nil {
 		return err
 	}
 
@@ -214,9 +229,18 @@ func scan() error {
 	return nil
 }
 
+func printToSarifFile(path string, summary *model.Summary) error {
+	sarifReport := model.NewSarifReport()
+	for idx := range summary.Queries {
+		sarifReport.BuildIssue(&summary.Queries[idx])
+	}
+
+	return printJSON(path, sarifReport)
+}
+
 func printJSON(path string, body interface{}) error {
 	if path != "" {
-		return printToJSONFile(path, body)
+		return consoleHelpers.PrintToJSONFile(path, body)
 	}
 	return nil
 }

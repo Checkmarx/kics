@@ -3,6 +3,7 @@ package console
 import (
 	"fmt"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/spf13/cobra"
 )
 
@@ -16,5 +17,5 @@ var versionCmd = &cobra.Command{
 }
 
 func getVersion() string {
-	return currentKICSFullname + " v" + currentKICSVersion
+	return consoleHelpers.CurrentKICSFullname + " v" + consoleHelpers.CurrentKICSVersion
 }

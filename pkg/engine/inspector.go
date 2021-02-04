@@ -3,8 +3,12 @@ package engine
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"sync"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
@@ -162,8 +166,23 @@ func NewInspector(
 	}, nil
 }
 
+func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
+	wg.Add(1)
+	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
+	if hideProgress {
+		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
+		progressBar.Writer = ioutil.Discard
+	}
+	go progressBar.Start(wg)
+}
+
 // Inspect scan files and return the a list of vulnerabilities found on the process
-func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.FileMetadatas) ([]model.Vulnerability, error) {
+func (c *Inspector) Inspect(
+	ctx context.Context,
+	scanID string,
+	files model.FileMetadatas,
+	hideProgress bool,
+) ([]model.Vulnerability, error) {
 	combinedFiles := files.Combine()
 
 	_, err := json.Marshal(combinedFiles)
@@ -172,7 +191,14 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 	}
 
 	var vulnerabilities []model.Vulnerability
-	for _, query := range c.queries {
+	currentQuery := make(chan float64, 1)
+	var wg sync.WaitGroup
+	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
+	for idx, query := range c.queries {
+		if !hideProgress {
+			currentQuery <- float64(idx)
+		}
+
 		vuls, err := c.doRun(QueryContext{
 			ctx:     ctx,
 			scanID:  scanID,
@@ -194,7 +220,9 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 
 		c.tracker.TrackQueryExecution()
 	}
-
+	close(currentQuery)
+	wg.Wait()
+	fmt.Println("\r")
 	return vulnerabilities, nil
 }
 
@@ -233,7 +261,6 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 
 		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
-
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {

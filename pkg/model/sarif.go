@@ -2,8 +2,6 @@ package model
 
 import (
 	"fmt"
-
-	"github.com/Checkmarx/kics/internal/console"
 )
 
 var severityLevelEquivalence = map[Severity]string{
@@ -139,8 +137,8 @@ func initTool() sarifTool {
 	return sarifTool{
 		Driver: sarifDriver{
 			ToolName:     "KICS",
-			ToolVersion:  console.CurrentKICSVersion,
-			ToolFullName: console.CurrentKICSFullname,
+			ToolVersion:  "1.1.2",
+			ToolFullName: "Keeping Infrastructure as Code Secure",
 			ToolURI:      "https://www.kics.io/",
 			Rules:        make([]sarifRule, 0),
 		},
