@@ -37,11 +37,6 @@ IsMissingAttribute(task) {
 	object.get(task.settings, "databaseFlags", "undefined") == "undefined"
 }
 
-IsFlagOff(dbFlags, flagName) {
-	dbFlags[j].name == flagName
-	lower(dbFlags[j].value) == "off"
-}
-
 checkValue(val) {
 	count(val) == 0
 }
