@@ -25,7 +25,7 @@ error_files = []
 ##############################
 for file in files:
   try:
-    result = subprocess.check_output([LINTER_PATH, file]).decode('utf-8').rstrip()
+    result = subprocess.check_output([LINTER_PATH, file], shell=False).decode('utf-8').rstrip()
   except CalledProcessError as e:
     error_files.append(e)
   for line in result.split('\n'):
