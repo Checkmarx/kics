@@ -9,14 +9,14 @@ Parameters:
     Default: 'username!'
 Resources:
   NewAmpApp-1:
-      Type: AWS::DirectoryService::MicrosoftAD
-      Properties:
-          CreateAlias: true
-          Edition: String
-          EnableSso: true
-          Name: String
-          Password: !Ref ParentMasterPassword
-          ShortName: String
+    Type: AWS::DirectoryService::MicrosoftAD
+    Properties:
+        CreateAlias: true
+        Edition: String
+        EnableSso: true
+        Name: String
+        Password: !Ref ParentMasterPassword
+        ShortName: String
 ---
 Parameters:
   ParentMasterPassword:
@@ -28,31 +28,31 @@ Parameters:
     Default: 'username'
 Resources:
   NewAmpApp-1:
-     Type: AWS::DirectoryService::MicrosoftAD
-        Properties:
-          CreateAlias: true
-          Edition: String
-          EnableSso: true
-          Name: String
-          Password: !Ref ParentMasterPassword
-          ShortName: String
+    Type: AWS::DirectoryService::MicrosoftAD
+    Properties:
+      CreateAlias: true
+      Edition: String
+      EnableSso: true
+      Name: String
+      Password: !Ref ParentMasterPassword
+      ShortName: String
 ---
 Resources:
-    NewAmpApp-2:
-        Type: AWS::DirectoryService::MicrosoftAD
-        Properties:
-            CreateAlias: true
-            Edition: String
-            EnableSso: true
-            Name: String
-            Password:  !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
-            ShortName: String
-    MyAmpAppSecretManagerRotater:
-        Type: AWS::SecretsManager::Secret
-        Properties:
-          Description: 'This is my amp app instance secret'
-          GenerateSecretString:
-            SecretStringTemplate: '{"username": "admin"}'
-            GenerateStringKey: 'password'
-            PasswordLength: 16
-            ExcludeCharacters: '"@/\'
+  NewAmpApp-2:
+    Type: AWS::DirectoryService::MicrosoftAD
+    Properties:
+        CreateAlias: true
+        Edition: String
+        EnableSso: true
+        Name: String
+        Password:  !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
+        ShortName: String
+  MyAmpAppSecretManagerRotater:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: 'This is my amp app instance secret'
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "admin"}'
+        GenerateStringKey: 'password'
+        PasswordLength: 16
+        ExcludeCharacters: '"@/\'
