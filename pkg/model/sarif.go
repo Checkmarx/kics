@@ -10,7 +10,6 @@ var severityLevelEquivalence = map[Severity]string{
 	"MEDIUM": "warning",
 	"HIGH":   "error",
 }
-var currentRuleIndex = 0
 
 var noCategory = sarifTaxanomyDefinition{
 	DefinitionID:               "CAT000",
@@ -230,41 +229,42 @@ func (sr *SarifReport) buildRule(queryMetadata *ruleMetadata) int {
 		}
 
 		sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
-		index = currentRuleIndex
-		currentRuleIndex++
+		index = len(sr.Runs[0].Tool.Driver.Rules) - 1
 	}
 	return index
 }
 
 func (sr *SarifReport) BuildIssue(issue *VulnerableQuery) {
-	metadata := ruleMetadata{
-		queryID:          issue.QueryID,
-		queryName:        issue.QueryName,
-		queryDescription: issue.QueryDescription,
-		queryURI:         issue.QueryURI,
-		queryCategory:    issue.QueryCategory,
-		severity:         issue.Severity,
-	}
-	ruleIndex := sr.buildRule(&metadata)
-	kind := "fail"
-	if severityLevelEquivalence[issue.Severity] == "none" {
-		kind = "informational"
-	}
-	for idx := range issue.Files {
-		result := sarifResult{
-			ResultRuleID:    issue.QueryID,
-			ResultRuleIndex: ruleIndex,
-			ResultKind:      kind,
-			ResultMessage:   sarifMessage{Text: issue.Files[idx].KeyActualValue},
-			ResultLocations: []sarifLocation{
-				{
-					PhysicalLocation: sarifPhysicalLocation{
-						ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
-						Region:           sarifRegion{StartLine: issue.Files[idx].Line},
+	if len(issue.Files) > 0 {
+		metadata := ruleMetadata{
+			queryID:          issue.QueryID,
+			queryName:        issue.QueryName,
+			queryDescription: issue.QueryDescription,
+			queryURI:         issue.QueryURI,
+			queryCategory:    issue.QueryCategory,
+			severity:         issue.Severity,
+		}
+		ruleIndex := sr.buildRule(&metadata)
+		kind := "fail"
+		if severityLevelEquivalence[issue.Severity] == "none" {
+			kind = "informational"
+		}
+		for idx := range issue.Files {
+			result := sarifResult{
+				ResultRuleID:    issue.QueryID,
+				ResultRuleIndex: ruleIndex,
+				ResultKind:      kind,
+				ResultMessage:   sarifMessage{Text: issue.Files[idx].KeyActualValue},
+				ResultLocations: []sarifLocation{
+					{
+						PhysicalLocation: sarifPhysicalLocation{
+							ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
+							Region:           sarifRegion{StartLine: issue.Files[idx].Line},
+						},
 					},
 				},
-			},
+			}
+			sr.Runs[0].Results = append(sr.Runs[0].Results, result)
 		}
-		sr.Runs[0].Results = append(sr.Runs[0].Results, result)
 	}
 }
