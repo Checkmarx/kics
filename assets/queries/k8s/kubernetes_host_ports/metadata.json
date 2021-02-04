@@ -1,8 +1,9 @@
 {
-  "id": "2b1836f1-dcce-416e-8e16-da8c71920633",
-  "queryName": "Kubernetes Image Host Port is Specified",
-  "severity": "LOW",
-  "category": "Network Security",
-  "descriptionText": "Sees if Kubernetes Image Host Port is Specified",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+	"id": "2b1836f1-dcce-416e-8e16-da8c71920633",
+	"queryName": "Kubernetes Image Host Port is Specified",
+	"severity": "LOW",
+	"category": "Network Security",
+	"descriptionText": "Sees if Kubernetes Image Host Port is Specified",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
+	"platform": "Kubernetes"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "42bb6b7f-6d54-4428-b707-666f669d94fb",
-  "queryName": "Static Websites Found",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Checks if any static websties are hosted on buckets",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#website"
+	"id": "42bb6b7f-6d54-4428-b707-666f669d94fb",
+	"queryName": "Static Websites Found",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Checks if any static websties are hosted on buckets",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#website",
+	"platform": "Terraform"
 }

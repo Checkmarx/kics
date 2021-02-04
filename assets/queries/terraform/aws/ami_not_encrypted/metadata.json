@@ -1,8 +1,9 @@
 {
-  "id": "8bbb242f-6e38-4127-86d4-d8f0b2687ae2",
-  "queryName": "Ami Not Encrypted",
-  "severity": "HIGH",
-  "category": "Encryption & Key Management",
-  "descriptionText": "AWS AMI Encryption is not enabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami"
+	"id": "8bbb242f-6e38-4127-86d4-d8f0b2687ae2",
+	"queryName": "Ami Not Encrypted",
+	"severity": "HIGH",
+	"category": "Encryption & Key Management",
+	"descriptionText": "AWS AMI Encryption is not enabled",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami",
+	"platform": "Terraform"
 }

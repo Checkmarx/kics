@@ -1,8 +1,9 @@
 {
-  "id": "aa8f7a35-9923-4cad-bd61-a19b7f6aac91",
-  "queryName": "Non Kube System Pod With Host Mount",
-  "severity": "MEDIUM",
-  "category": "Access Control",
-  "descriptionText": "A non kube-system workload should not have hostPath mounted",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+	"id": "aa8f7a35-9923-4cad-bd61-a19b7f6aac91",
+	"queryName": "Non Kube System Pod With Host Mount",
+	"severity": "MEDIUM",
+	"category": "Access Control",
+	"descriptionText": "A non kube-system workload should not have hostPath mounted",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+	"platform": "Kubernetes"
 }

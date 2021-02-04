@@ -1,8 +1,9 @@
 {
-  "id": "ef0b316a-211e-42f1-888e-64efe172b755",
-  "queryName": "AWS CloudWatch Retention Period",
-  "severity": "MEDIUM",
-  "category":"Logging",
-  "descriptionText": "AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group"
+	"id": "ef0b316a-211e-42f1-888e-64efe172b755",
+	"queryName": "AWS CloudWatch Retention Period",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group",
+	"platform": "Terraform"
 }

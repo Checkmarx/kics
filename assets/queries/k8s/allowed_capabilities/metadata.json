@@ -4,5 +4,6 @@
   "severity": "HIGH",
   "category": "Privileges",
   "descriptionText": "Containers should not have added capability",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+  "platform": "Kubernetes"
 }

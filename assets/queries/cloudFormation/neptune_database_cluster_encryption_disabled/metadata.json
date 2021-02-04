@@ -1,8 +1,9 @@
 {
-  "id": "bf4473f1-c8a2-4b1b-8134-bd32efabab93",
-  "queryName": "Neptune Database Cluster Encryption Disabled",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Neptune database cluster storage should have encryption enabled",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html"
+	"id": "bf4473f1-c8a2-4b1b-8134-bd32efabab93",
+	"queryName": "Neptune Database Cluster Encryption Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Neptune database cluster storage should have encryption enabled",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html",
+	"platform": "CloudFormation"
 }

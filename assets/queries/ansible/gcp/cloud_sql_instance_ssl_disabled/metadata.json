@@ -1,8 +1,9 @@
 {
-  "id": "d0383b8f-64b7-410f-9b6f-bde9420469f3",
-  "queryName": "Cloud SQL Instance SSL Disabled",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "GCP SQL Instance should have reqire SSL defined",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/require_ssl"
+	"id": "d0383b8f-64b7-410f-9b6f-bde9420469f3",
+	"queryName": "Cloud SQL Instance SSL Disabled",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "GCP SQL Instance should have reqire SSL defined",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/require_ssl",
+	"platform": "Ansible"
 }
