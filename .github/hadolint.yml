@@ -1,9 +1,9 @@
 #########################
 #  DISABLING ALL RULES  #
 #########################
-# we want to hadolint to
-# perform a syntax check only
-#
+# we want hadolint to perform
+# only a syntax check so we
+# disabled all the rules
 ignored:
 # taken from github docs
 - DL3000
