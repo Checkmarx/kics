@@ -126,7 +126,12 @@ type sarifRun struct {
 	Taxonomies []sarifTaxonomy `json:"taxonomies"`
 }
 
-type SarifReport struct {
+// SarifReport represents a usable sarif report reference
+type SarifReport interface {
+	BuildIssue(issue *VulnerableQuery)
+}
+
+type sarifReport struct {
 	Schema       string     `json:"$schema"`
 	SarifVersion string     `json:"version"`
 	Runs         []sarifRun `json:"runs"`
@@ -167,15 +172,16 @@ func initRun() []sarifRun {
 	}
 }
 
-func NewSarifReport() *SarifReport {
-	return &SarifReport{
+// NewSarifReport creates and start a new sarif report with default values respecting SARIF schema 2.1.0
+func NewSarifReport() SarifReport {
+	return &sarifReport{
 		Schema:       "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
 		SarifVersion: "2.1.0",
 		Runs:         initRun(),
 	}
 }
 
-func (sr *SarifReport) findCategory(category string) int {
+func (sr *sarifReport) findCategory(category string) int {
 	for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions {
 		if taxonomy.DefinitionName == category {
 			return idx
@@ -184,7 +190,7 @@ func (sr *SarifReport) findCategory(category string) int {
 	return -1
 }
 
-func (sr *SarifReport) buildCategory(category string) sarifDescriptorReference {
+func (sr *sarifReport) buildCategory(category string) sarifDescriptorReference {
 	target := targetTemplate
 	categoryIndex := sr.findCategory(category)
 	if categoryIndex == -1 {
@@ -206,7 +212,7 @@ func (sr *SarifReport) buildCategory(category string) sarifDescriptorReference {
 	return target
 }
 
-func (sr *SarifReport) findRuleIndex(ruleID string) int {
+func (sr *sarifReport) findRuleIndex(ruleID string) int {
 	for idx, rule := range sr.Runs[0].Tool.Driver.Rules {
 		if rule.RuleID == ruleID {
 			return idx
@@ -215,7 +221,7 @@ func (sr *SarifReport) findRuleIndex(ruleID string) int {
 	return -1
 }
 
-func (sr *SarifReport) buildRule(queryMetadata *ruleMetadata) int {
+func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 	index := sr.findRuleIndex(queryMetadata.queryID)
 	if index < 0 {
 		rule := sarifRule{
@@ -234,7 +240,8 @@ func (sr *SarifReport) buildRule(queryMetadata *ruleMetadata) int {
 	return index
 }
 
-func (sr *SarifReport) BuildIssue(issue *VulnerableQuery) {
+// BuildIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
+func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 	if len(issue.Files) > 0 {
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,

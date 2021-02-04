@@ -8,7 +8,7 @@ import (
 
 // TestCreateSarifReport tests if creates a sarif report correctly
 func TestCreateSarifReport(t *testing.T) {
-	sarif := NewSarifReport()
+	sarif := NewSarifReport().(*sarifReport)
 	require.Equal(t, "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json", sarif.Schema)
 	require.Equal(t, "2.1.0", sarif.SarifVersion)
 	require.Equal(t, "KICS", sarif.Runs[0].Tool.Driver.ToolName)
@@ -20,7 +20,7 @@ func TestCreateSarifReport(t *testing.T) {
 type test struct {
 	name string
 	vq   []VulnerableQuery
-	want SarifReport
+	want sarifReport
 }
 
 var tests = []test{
@@ -36,7 +36,7 @@ var tests = []test{
 				Files:            []VulnerableFile{},
 			},
 		},
-		want: SarifReport{
+		want: sarifReport{
 			Runs: initRun(),
 		},
 	},
@@ -54,7 +54,7 @@ var tests = []test{
 				},
 			},
 		},
-		want: SarifReport{
+		want: sarifReport{
 			Runs: []sarifRun{
 				{
 					Tool: sarifTool{
@@ -139,7 +139,7 @@ var tests = []test{
 				},
 			},
 		},
-		want: SarifReport{
+		want: sarifReport{
 			Runs: []sarifRun{
 				{
 					Tool: sarifTool{
@@ -239,7 +239,7 @@ var tests = []test{
 func TestBuildIssue(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := NewSarifReport()
+			result := NewSarifReport().(*sarifReport)
 			for _, vq := range tt.vq {
 				result.BuildIssue(&vq)
 			}

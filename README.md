@@ -45,7 +45,6 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
 The nightly release will have a "nightly" prefix with the last commit hash code.
 
-
 ## Contribution
 
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
