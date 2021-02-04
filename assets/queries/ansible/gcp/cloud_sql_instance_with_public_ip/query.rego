@@ -1,15 +1,19 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.getTasks(document)[t][k]
 	instance := task["google.cloud.gcp_sql_instance"]
+
+	ansLib.checkState(instance)
 	contains(instance.database_version, "SQLSERVER")
+
 	settings := instance.settings
 	ip_configuration := settings.ip_configuration
 
-	isAnsibleTrue(ip_configuration.ipv4_enabled)
+	ansLib.isAnsibleTrue(ip_configuration.ipv4_enabled)
 
 	result := {
 		"documentId": document.id,
@@ -18,19 +22,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "cloud_gcp_sql_instance.settings.ip_configuration.ipv4_enabled is disabled",
 		"keyActualValue": "cloud_gcp_sql_instance.settings.ip_configuration.ipv4_enabled is enabled",
 	}
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
-}
-
-getTasks(document) = result {
-	result := document.playbooks[0].tasks
-} else = result {
-	object.get(document.playbooks[0], "tasks", "undefined") == "undefined"
-	result := document.playbooks
 }

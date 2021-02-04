@@ -1,10 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	storage_bucket := task["google.cloud.gcp_storage_bucket"]
 
-	object.get(task["google.cloud.gcp_storage_bucket"], "versioning", "undefined") == "undefined"
+	ansLib.checkState(storage_bucket)
+	object.get(storage_bucket, "versioning", "undefined") == "undefined"
 
 	result := {
 		"documentId": document.id,
@@ -17,9 +21,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	storage_bucket := task["google.cloud.gcp_storage_bucket"]
 
-	not isAnsibleTrue(task["google.cloud.gcp_storage_bucket"].versioning.enabled)
+	ansLib.checkState(storage_bucket)
+	not ansLib.isAnsibleTrue(task["google.cloud.gcp_storage_bucket"].versioning.enabled)
 
 	result := {
 		"documentId": document.id,
@@ -28,20 +34,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'versioning.enabled' is true",
 		"keyActualValue": "'versioning.enabled' is false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }

@@ -1,10 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	container_task := task["google.cloud.gcp_container_node_pool"]
 
-	object.get(task["google.cloud.gcp_container_node_pool"], "management", "undefined") == "undefined"
+	ansLib.checkState(container_task)
+	object.get(container_task, "management", "undefined") == "undefined"
 
 	result := {
 		"documentId": document.id,
@@ -17,9 +21,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	container_task := task["google.cloud.gcp_container_node_pool"]
+	management := container_task.management
 
-	management := task["google.cloud.gcp_container_node_pool"].management
+	ansLib.checkState(container_task)
 	object.get(management, "auto_upgrade", "undefined") == "undefined"
 
 	result := {
@@ -33,10 +39,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	container_task := task["google.cloud.gcp_container_node_pool"]
+	auto_upgrade := container_task.management.auto_upgrade
 
-	auto_upgrade := task["google.cloud.gcp_container_node_pool"].management.auto_upgrade
-	not isAnsibleTrue(auto_upgrade)
+	ansLib.checkState(container_task)
+	not ansLib.isAnsibleTrue(auto_upgrade)
 
 	result := {
 		"documentId": document.id,
@@ -45,20 +53,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'management.auto_upgrade' is true",
 		"keyActualValue": "'management.auto_upgrade' is false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }

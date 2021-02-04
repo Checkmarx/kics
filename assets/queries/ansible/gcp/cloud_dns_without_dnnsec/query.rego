@@ -5,15 +5,17 @@ import data.generic.ansible as ansLib
 CxPolicy[result] {
 	document := input.document[i]
 	task := ansLib.getTasks(document)[t]
-	task["google.cloud.gcp_dns_managed_zone"].state == "present"
-	object.get(task["google.cloud.gcp_dns_managed_zone"], "dnssec_config", "undefined") == "undefined"
+	managed_zone := task["google.cloud.gcp_dns_managed_zone"]
+
+	ansLib.checkState(managed_zone)
+	object.get(managed_zone, "dnssec_config", "undefined") == "undefined"
 
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_dns_managed_zone}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'dnssec_config' is defined",
-		"keyActualValue": "'dnssec_config' is undefined",
+		"keyExpectedValue": "{{google.cloud.gcp_dns_managed_zone}}.dnssec_config is defined",
+		"keyActualValue": "{{google.cloud.gcp_dns_managed_zone}}.dnssec_config is undefined",
 	}
 }
 

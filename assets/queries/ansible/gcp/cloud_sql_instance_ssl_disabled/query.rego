@@ -1,14 +1,18 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.getTasks(document)[t][k]
 	instance := task["google.cloud.gcp_sql_instance"]
+
+	ansLib.checkState(instance)
+
 	settings := instance.settings
 	ip_configuration := settings.ip_configuration
 
-	isAnsibleFalse(ip_configuration.require_ssl)
+	ansLib.isAnsibleFalse(ip_configuration.require_ssl)
 
 	result := {
 		"documentId": document.id,
@@ -21,9 +25,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.getTasks(document)[t][k]
 	instance := task["google.cloud.gcp_sql_instance"]
+
+	ansLib.checkState(instance)
+
 	settings := instance.settings
 	ip_configuration := settings.ip_configuration
 
@@ -36,19 +42,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "cloud_gcp_sql_instance.settings.ip_configuration.require_ssl is defined",
 		"keyActualValue": "cloud_gcp_sql_instance.settings.ip_configuration.require_ssl is undefined",
 	}
-}
-
-isAnsibleFalse(answer) {
-	lower(answer) == "no"
-} else {
-	lower(answer) == "false"
-} else {
-	answer == false
-}
-
-getTasks(document) = result {
-	result := document.playbooks[0].tasks
-} else = result {
-	object.get(document.playbooks[0], "tasks", "undefined") == "undefined"
-	result := document.playbooks
 }

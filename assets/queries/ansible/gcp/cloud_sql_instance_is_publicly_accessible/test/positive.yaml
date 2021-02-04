@@ -1,6 +1,7 @@
 ---
 -
   name: sample
+  hosts: all
   tasks:
     -
       name: sql_instance

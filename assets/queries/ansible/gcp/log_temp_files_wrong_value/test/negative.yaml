@@ -1,4 +1,5 @@
 - name: sample
+  host: all
   tasks:
   - name: sql_instance
     google.cloud.gcp_sql_instance:
