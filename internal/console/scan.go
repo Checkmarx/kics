@@ -82,6 +82,7 @@ func initScanCmd() {
 	scanCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
+	scanCmd.Flags().StringVarP(&sarifPath, "sarif", "", "", "file path to save SARIF output")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 
@@ -190,6 +191,12 @@ func scan() error {
 
 	if err := printJSON(outputPath, summary); err != nil {
 		return err
+	}
+
+	if sarifPath != "" {
+		if err := printToSarifFile(sarifPath, &summary); err != nil {
+			return err
+		}
 	}
 
 	if err := printResult(&summary, inspector.GetFailedQueries()); err != nil {

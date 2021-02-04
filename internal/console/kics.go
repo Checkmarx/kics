@@ -18,6 +18,7 @@ var (
 	verbose     bool
 	logFile     bool
 	cfgFile     string
+	sarifPath   string
 )
 
 var ctx = context.Background()

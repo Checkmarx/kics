@@ -22,10 +22,13 @@ type VulnerableFile struct {
 
 // VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
 type VulnerableQuery struct {
-	QueryName string           `json:"query_name"`
-	QueryID   string           `json:"query_id"`
-	Severity  Severity         `json:"severity"`
-	Files     []VulnerableFile `json:"files"`
+	QueryName        string           `json:"query_name"`
+	QueryID          string           `json:"query_id"`
+	QueryDescription string           `json:"-"`
+	QueryCategory    string           `json:"-"`
+	QueryURI         string           `json:"-"`
+	Severity         Severity         `json:"severity"`
+	Files            []VulnerableFile `json:"files"`
 }
 
 // Counters hold information about how many files were scanned, parsed, failed to be scaned, the total of queries
@@ -56,9 +59,12 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryName]; !ok {
 			q[item.QueryName] = VulnerableQuery{
-				QueryName: item.QueryName,
-				QueryID:   item.QueryID,
-				Severity:  item.Severity,
+				QueryName:        item.QueryName,
+				QueryID:          item.QueryID,
+				Severity:         item.Severity,
+				QueryDescription: item.QueryDescription,
+				QueryCategory:    item.QueryCategory,
+				QueryURI:         item.QueryURI,
 			}
 		}
 

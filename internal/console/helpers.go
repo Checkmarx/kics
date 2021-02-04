@@ -12,6 +12,12 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// Constants with KICS info
+const (
+	CurrentKICSVersion  = "1.1.2"
+	CurrentKICSFullname = "Keeping Infrastructure as Code Secure"
+)
+
 // wordWrap Wraps text at the specified number of words
 func wordWrap(s, identation string, limit int) string {
 	if strings.TrimSpace(s) == "" {
@@ -69,28 +75,39 @@ func printResult(summary *model.Summary, failedQueries map[string]error) error {
 	return nil
 }
 
+func closeFile(f *os.File) {
+	if err := f.Close(); err != nil {
+		log.Err(err).Msgf("failed to close file %s", path)
+	}
+
+	curDir, err := os.Getwd()
+	if err != nil {
+		log.Err(err).Msgf("failed to get current directory")
+	}
+
+	log.Info().Str("fileName", path).Msgf("Results saved to file %s", filepath.Join(curDir, path))
+}
+
 func printToJSONFile(path string, body interface{}) error {
 	f, err := os.OpenFile(filepath.Clean(path), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
 	}
-	defer func() {
-		if err := f.Close(); err != nil {
-			log.Err(err).Msgf("failed to close file %s", path)
-		}
-
-		curDir, err := os.Getwd()
-		if err != nil {
-			log.Err(err).Msgf("failed to get current directory")
-		}
-
-		log.Info().Str("fileName", path).Msgf("Results saved to file %s", filepath.Join(curDir, path))
-	}()
+	defer closeFile(f)
 
 	encoder := json.NewEncoder(f)
 	encoder.SetIndent("", "\t")
 
 	return encoder.Encode(body)
+}
+
+func printToSarifFile(path string, summary *model.Summary) error {
+	sarifReport := model.NewSarifReport()
+	for idx := range summary.Queries {
+		sarifReport.BuildIssue(&summary.Queries[idx])
+	}
+
+	return printJSON(path, sarifReport)
 }
 
 func customConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
