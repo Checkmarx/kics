@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
-
+	task := ansLib.getTasks(document)[t]
+	task["google.cloud.gcp_dns_managed_zone"].state == "present"
 	object.get(task["google.cloud.gcp_dns_managed_zone"], "dnssec_config", "undefined") == "undefined"
 
 	result := {
@@ -17,8 +19,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
-
+	task := ansLib.getTasks(document)[t]
+	task["google.cloud.gcp_dns_managed_zone"].state == "present"
 	object.get(task["google.cloud.gcp_dns_managed_zone"].dnssec_config, "state", "undefined") == "undefined"
 
 	result := {
@@ -32,8 +34,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
-
+	task := ansLib.getTasks(document)[t]
+	task["google.cloud.gcp_dns_managed_zone"].state == "present"
 	task["google.cloud.gcp_dns_managed_zone"].dnssec_config.state != "on"
 
 	result := {
@@ -43,12 +45,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'dnssec_config.state' is equal to 'on'",
 		"keyActualValue": "'dnssec_config.state' is not equal to 'on'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

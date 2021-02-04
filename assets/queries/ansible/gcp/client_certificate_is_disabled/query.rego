@@ -1,10 +1,13 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["google.cloud.gcp_container_cluster"]
+	cluster.state == "present"
 	clusterName := task.name
 
 	object.get(cluster, "master_auth", "undefined") == "undefined"
@@ -20,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["google.cloud.gcp_container_cluster"]
 	clusterName := task.name
@@ -38,12 +41,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["google.cloud.gcp_container_cluster"]
 	clusterName := task.name
 
-	isAnsibleFalse(cluster.master_auth.client_certificate_config.issue_client_certificate)
+	ansLib.isAnsibleFalse(cluster.master_auth.client_certificate_config.issue_client_certificate)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -52,20 +55,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "google.cloud.gcp_container_cluster.master_auth.password is true",
 		"keyActualValue": "google.cloud.gcp_container_cluster.master_auth.password is false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleFalse(answer) {
-	lower(answer) == "no"
-} else {
-	lower(answer) == "false"
-} else {
-	answer == false
 }

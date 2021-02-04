@@ -5,6 +5,7 @@ CxPolicy[result] {
 	tasks := getTasks(document)
 	task := tasks[t]
 	instance := task["google.cloud.gcp_sql_instance"]
+	instance.state == "present"
 	contains(instance.database_version, "MYSQL")
 	settings := instance.settings
 	database_flags := settings.database_flags
