@@ -1,32 +1,37 @@
 [
+  {
+    "queryName": "EMR Security Configuration Encryptions Enabled",
+    "severity": "MEDIUM",
+    "line": 8
+  },
+  {
+    "queryName": "EMR Security Configuration Encryptions Enabled",
+    "severity": "MEDIUM",
+    "line": 9
+  },
+  {
+    "queryName": "EMR Security Configuration Encryptions Enabled",
+    "severity": "MEDIUM",
+    "line": 24
+  },
 	{
 		"queryName": "EMR Security Configuration Encryptions Enabled",
 		"severity": "MEDIUM",
-		"line": 26
+		"line": 25
 	},
 	{
 		"queryName": "EMR Security Configuration Encryptions Enabled",
 		"severity": "MEDIUM",
-		"line": 9
+		"line": 34
 	},
 	{
 		"queryName": "EMR Security Configuration Encryptions Enabled",
 		"severity": "MEDIUM",
 		"line": 35
-	},
-	{
+  },
+  {
 		"queryName": "EMR Security Configuration Encryptions Enabled",
 		"severity": "MEDIUM",
-		"line": 10
-	},
-	{
-		"queryName": "EMR Security Configuration Encryptions Enabled",
-		"severity": "MEDIUM",
-		"line": 36
-	},
-	{
-		"queryName": "EMR Security Configuration Encryptions Enabled",
-		"severity": "MEDIUM",
-		"line": 25
+		"line": 42
 	}
 ]
