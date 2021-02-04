@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import glob
+import os
 import subprocess
 from subprocess import CalledProcessError
-import os
 
 LINTER_PATH = os.getenv('LINTER_PATH')
 SKIP_LIST = os.getenv('SKIP_LIST_PATH')
