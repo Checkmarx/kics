@@ -6,9 +6,9 @@ CxPolicy[result] {
 	document := input.document[i]
 	task := ansLib.getTasks(document)[t][k]
 	instance := task["google.cloud.gcp_sql_instance"]
-	settings := instance.settings
-	database_flags := settings.database_flags
 
+	ansLib.checkState(instance)
+	database_flags := instance.settings.database_flags
 	ansLib.check_database_flags_content(database_flags, "log_min_duration_statement", -1)
 
 	result := {
