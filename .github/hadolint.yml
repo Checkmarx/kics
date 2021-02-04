@@ -1,4 +1,11 @@
+#########################
+#  DISABLING ALL RULES  #
+#########################
+# we want to hadolint to
+# perform a syntax check only
+#
 ignored:
+# taken from github docs
 - DL3000
 - DL3001
 - DL3002
@@ -82,7 +89,7 @@ ignored:
 - SC2154
 - SC2155
 - SC2164
-# added rogeriopeixotocx
+# added extra shellcheck rules to ignore by rogeriopeixotocx
 - SC1071
 - SC1072
 - SC1073

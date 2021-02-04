@@ -20,6 +20,6 @@ jobs:
           mv hadolint-Linux-x86_64 .bin/hadolint
           chmod +x .bin/hadolint
       - name: Validate dockerfiles syntax
-        run: bash .github/validate-dockerfile-syntax.sh
+        run: bash .github/validators/validate-dockerfile-syntax.sh
         env:
           HADOLINT_PATH: .bin/hadolint
