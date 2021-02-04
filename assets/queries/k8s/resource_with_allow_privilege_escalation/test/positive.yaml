@@ -86,3 +86,6 @@ spec:
               securityContext:
                 allowPrivilegeEscalation: true
           restartPolicy: OnFailure
+          containers:
+            - image: nginx
+              name: nginx-sec-ctx

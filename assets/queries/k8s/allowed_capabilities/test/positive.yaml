@@ -10,7 +10,6 @@ spec:
       allowPrivilegeEscalation: false
       capabilities:
            add: ["NET_ADMIN", "SYS_TIME"]
-
     resources:
       requests:
         memory: "64Mi"
@@ -18,7 +17,6 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
-
   - name: log-aggregator
     image: images.my-company.example/log-aggregator:v6
     securityContext:
@@ -43,7 +41,6 @@ spec:
       allowPrivilegeEscalation: false
       capabilities:
            add: ["NET_ADMIN", "SYS_TIME"]
-
     resources:
       requests:
         memory: "64Mi"
@@ -51,7 +48,6 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
-
   - name: log-aggregator
     image: images.my-company.example/log-aggregator:v6
     securityContext:
@@ -63,3 +59,6 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+  containers:
+  - name: app
+    image: images.my-company.example/app:v4
