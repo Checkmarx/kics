@@ -30,7 +30,7 @@ var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
 	severityList = []string{"HIGH", "MEDIUM", "LOW", "INFO"}
 
-	requiredQueryResultProperties = []string{ // PLATFORM - add platform
+	requiredQueryResultProperties = []string{
 		"documentId",
 		"searchKey",
 		"issueType",

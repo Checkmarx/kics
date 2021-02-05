@@ -13,7 +13,7 @@ import (
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
 func TestParser_Parse(t *testing.T) {
-	p := initilizeBuilder(t)
+	p := initilizeBuilder()
 
 	docs, kind, err := p.Parse("test.json", []byte(`
 {
@@ -63,7 +63,7 @@ func TestParser_Empty(t *testing.T) {
 
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
-	p := initilizeBuilder(t)
+	p := initilizeBuilder()
 
 	extensions := p.SupportedExtensions()
 	require.NotNil(t, extensions)
@@ -74,19 +74,17 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, "Dockerfile")
 }
 
-func initilizeBuilder(t *testing.T) *Parser {
-	bd, err := NewBuilder().
+func initilizeBuilder() *Parser {
+	bd, _ := NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Build([]string{""})
-	if err != nil {
-		t.Errorf("Error building parser: %s", err)
-	}
 	return bd
 }
 
+// TestParser_SupportedExtensions tests the functions [validateArguments()] and all the methods called by them
 func TestValidateArguments(t *testing.T) {
 	type args struct {
 		types     []string

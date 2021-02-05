@@ -33,23 +33,6 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 				Types:  []string{""},
 			},
 		},
-		// {
-		// 	name: "testing_single_path",
-		// 	fields: fields{
-		// 		Source: []string{
-		// 			"./assets/queries/dockerfile",
-		// 		},
-		// 	},
-		// },
-		// {
-		// 	name: "testing_multiple_path",
-		// 	fields: fields{
-		// 		Source: []string{
-		// 			"./assets/queries/dockerfile",
-		// 			"./assets/queries/terraform",
-		// 		},
-		// 	},
-		// },
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
@@ -246,68 +229,6 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		})
 	}
 }
-
-// // Test_ReadMetadata tests the functions [GetQueries()] and all the methods called by them (Tets, getting multiple queries types)
-// func TestFilesystemSource_GetQueriesByType(t *testing.T) {
-// 	if err := test.ChangeCurrentDir("kics"); err != nil {
-// 		t.Fatal(err)
-// 	}
-// 	type fields struct {
-// 		Source []string
-// 	}
-// 	tests := []struct {
-// 		name    string
-// 		fields  fields
-// 		want    int
-// 		wantErr bool
-// 	}{
-// 		{
-// 			name: "test_multiple_paths",
-// 			fields: fields{
-// 				Source: []string{
-// 					"test/fixtures/type-test01",
-// 					"test/fixtures/type-test02",
-// 				},
-// 			},
-// 			want:    5,
-// 			wantErr: false,
-// 		},
-// 		{
-// 			name: "test_path_type-test01",
-// 			fields: fields{
-// 				Source: []string{
-// 					"test/fixtures/type-test01",
-// 				},
-// 			},
-// 			want:    3,
-// 			wantErr: false,
-// 		},
-// 		{
-// 			name: "test_path_type-test02",
-// 			fields: fields{
-// 				Source: []string{
-// 					"test/fixtures/type-test02",
-// 				},
-// 			},
-// 			want:    2,
-// 			wantErr: false,
-// 		},
-// 	}
-
-// 	for _, tt := range tests {
-// 		t.Run(tt.name, func(t *testing.T) {
-// 			s := &FilesystemSource{
-// 				Source: tt.fields.Source,
-// 			}
-// 			got, err := s.GetQueries()
-// 			if (err != nil) != tt.wantErr {
-// 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
-// 				return
-// 			}
-// 			require.Equal(t, tt.want, len(got))
-// 		})
-// 	}
-// }
 
 // Test_ReadMetadata tests the functions [ReadMetadata()] and all the methods called by them
 func Test_ReadMetadata(t *testing.T) {

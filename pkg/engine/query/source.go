@@ -68,11 +68,8 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	return string(content), err
 }
 
+// CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
-	// DELETE WHEN ALL QUERIES HAVE A PLATFORM
-	if queryPlatform == nil {
-		queryPlatform = "test"
-	}
 	if s.Types[0] != "" {
 		return strings.Contains(strings.Join(s.Types, ","), queryPlatform.(string))
 	}
