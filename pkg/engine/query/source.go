@@ -16,8 +16,8 @@ import (
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
 type FilesystemSource struct {
-	Source string
-	Types  []string
+	source string
+	types  []string
 }
 
 const (
@@ -30,6 +30,13 @@ const (
 	// LibrariesDefaultBasePath the path to rego libraries
 	LibrariesDefaultBasePath = "./assets/libraries/"
 )
+
+func NewFilesystemSource(source string, types []string) *FilesystemSource {
+	return &FilesystemSource{
+		source: filepath.FromSlash(source),
+		types:  types,
+	}
+}
 
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string {
@@ -59,7 +66,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 
 // GetGenericQuery returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
-	pathToLib := GetPathToLibrary(platform, s.Source)
+	pathToLib := GetPathToLibrary(platform, s.source)
 
 	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
@@ -71,8 +78,8 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
-	if s.Types[0] != "" {
-		return strings.Contains(strings.Join(s.Types, ","), queryPlatform.(string))
+	if s.types[0] != "" {
+		return strings.Contains(strings.Join(s.types, ","), queryPlatform.(string))
 	}
 	return true
 }
@@ -81,7 +88,7 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
-	err := filepath.Walk(s.Source,
+	err := filepath.Walk(s.source,
 		func(p string, f os.FileInfo, err error) error {
 			if err != nil {
 				return err

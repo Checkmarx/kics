@@ -36,10 +36,8 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
-			s := &FilesystemSource{
-				Source: tt.fields.Source,
-				Types:  tt.fields.Types,
-			}
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
+
 			for n := 0; n < b.N; n++ {
 				if _, err := s.GetQueries(); err != nil {
 					b.Errorf("Error: %s", err)
@@ -70,7 +68,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_terraform",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: filepath.FromSlash("./assets/queries/template"),
 			},
 			args: args{
 				platform: "terraform",
@@ -81,7 +79,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_common",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: filepath.FromSlash("./assets/queries/template"),
 			},
 			args: args{
 				platform: "common",
@@ -92,7 +90,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_cloudformation",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: filepath.FromSlash("./assets/queries/template"),
 			},
 			args: args{
 				platform: "cloudFormation",
@@ -103,7 +101,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_ansible",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: filepath.FromSlash("./assets/queries/template"),
 			},
 			args: args{
 				platform: "ansible",
@@ -114,7 +112,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_dockerfile",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: filepath.FromSlash("./assets/queries/template"),
 			},
 			args: args{
 				platform: "dockerfile",
@@ -147,9 +145,8 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &FilesystemSource{
-				Source: tt.fields.Source,
-			}
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
+
 			got, err := s.GetGenericQuery(tt.args.platform)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetGenericQuery() error = %v, wantErr %v", err, tt.wantErr)
@@ -216,10 +213,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &FilesystemSource{
-				Source: tt.fields.Source,
-				Types:  []string{""},
-			}
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
 			got, err := s.GetQueries()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)

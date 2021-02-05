@@ -151,10 +151,7 @@ func scan() error {
 
 	scanStartTime := time.Now()
 
-	querySource := &query.FilesystemSource{
-		Source: filepath.FromSlash(queryPath),
-		Types:  types,
-	}
+	querySource := query.NewFilesystemSource(queryPath, types)
 
 	t := &tracker.CITracker{}
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)

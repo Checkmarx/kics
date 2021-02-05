@@ -354,10 +354,8 @@ type mockSource struct {
 }
 
 func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
-	sources := &query.FilesystemSource{
-		Source: m.Source,
-		Types:  []string{""},
-	}
+	sources := query.NewFilesystemSource(m.Source, []string{""})
+
 	return sources.GetQueries()
 }
 func (m *mockSource) GetGenericQuery(platform string) (string, error) {
