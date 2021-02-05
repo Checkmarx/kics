@@ -59,7 +59,7 @@ func (p *Parser) SupportedExtensions() []string {
 
 // SupportedTypes returns types supported by this parser, which are terraform
 func (p *Parser) SupportedTypes() []string {
-	return []string{"terraform"}
+	return []string{"Terraform"}
 }
 
 // GetKind returns Terraform kind parser

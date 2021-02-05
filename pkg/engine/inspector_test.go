@@ -296,6 +296,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				"category":        "Identity and Access Management",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+				"platform":        "CloudFormation",
 			},
 		},
 	})

@@ -215,6 +215,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        "HIGH",
+						"platform":        "CloudFormation",
 					},
 					Platform: "unknown",
 				},
@@ -331,7 +332,7 @@ func Test_ReadMetadata(t *testing.T) {
 		{
 			name: "read_metadata_template",
 			args: args{
-				queryDir: filepath.FromSlash("./assets/queries/template"),
+				queryDir: filepath.FromSlash("./test/fixtures/type-test01/template01"),
 			},
 			want: map[string]interface{}{
 				"category":        nil,
@@ -340,6 +341,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"id":              "<ID>",
 				"queryName":       "<QUERY_NAME>",
 				"severity":        "HIGH",
+				"platform":        "template",
 			},
 		},
 	}

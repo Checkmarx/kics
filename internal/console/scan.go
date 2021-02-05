@@ -151,16 +151,6 @@ func scan() error {
 
 	scanStartTime := time.Now()
 
-	if err := validateArguments(types, map[string]interface{}{
-		"ansible":        "",
-		"terraform":      "",
-		"dockerfile":     "",
-		"cloudformation": "",
-		"k8s":            "",
-	}); err != nil {
-		return err
-	}
-
 	querySource := &query.FilesystemSource{
 		Source: queryPath,
 		Types:  types,
@@ -186,11 +176,14 @@ func scan() error {
 		return err
 	}
 
-	combinedParser := parser.NewBuilder().
+	combinedParser, err := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Build(types)
+	if err != nil {
+		return err
+	}
 
 	store := storage.NewMemoryStorage()
 

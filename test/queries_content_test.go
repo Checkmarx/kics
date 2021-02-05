@@ -51,7 +51,7 @@ var (
 
 	searchValueProperty = "searchValue"
 
-	requiredQueryMetadataProperties = map[string]func(tb testing.TB, value interface{}, metadataPath string){ // PLATFORM - add platform to see if is required
+	requiredQueryMetadataProperties = map[string]func(tb testing.TB, value interface{}, metadataPath string){
 		"id": func(tb testing.TB, value interface{}, metadataPath string) {
 			idValue := testMetadataFieldStringType(tb, value, "id", metadataPath)
 			require.True(tb, validUUID.MatchString(strings.TrimSpace(idValue)), "invalid UUID in query metadata file %s", metadataPath)
@@ -71,6 +71,10 @@ var (
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
 			require.NotEmpty(tb, descriptionValue, "empty description text in query metadata file %s", metadataPath)
+		},
+		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
+			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
+			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)
 		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
 			switch urlValue := value.(type) {

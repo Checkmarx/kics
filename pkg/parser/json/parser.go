@@ -31,5 +31,5 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedTypes returns types supported by this parser, which are cloudFormation
 func (p *Parser) SupportedTypes() []string {
-	return []string{"cloudFormation"}
+	return []string{"JSON"}
 }

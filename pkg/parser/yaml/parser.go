@@ -49,7 +49,7 @@ func (p *Parser) SupportedExtensions() []string {
 
 // SupportedTypes returns types supported by this parser, which are ansible, cloudFormation, k8s
 func (p *Parser) SupportedTypes() []string {
-	return []string{"ansible", "cloudFormation", "k8s"}
+	return []string{"Ansible", "CloudFormation", "Kubernetes"}
 }
 
 // GetKind returns YAML constant kind

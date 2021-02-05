@@ -30,7 +30,7 @@ func TestParser_GetKind(t *testing.T) {
 // TestParser_GetKind tests the functions [SupportedTypes()] and all the methods called by them
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"terraform"}, p.SupportedTypes())
+	require.Equal(t, []string{"Terraform"}, p.SupportedTypes())
 }
 
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them

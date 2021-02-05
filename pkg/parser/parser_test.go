@@ -13,7 +13,7 @@ import (
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
 func TestParser_Parse(t *testing.T) {
-	p := initilizeBuilder()
+	p := initilizeBuilder(t)
 
 	docs, kind, err := p.Parse("test.json", []byte(`
 {
@@ -49,9 +49,11 @@ martin:
 
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
 func TestParser_Empty(t *testing.T) {
-	p := NewBuilder().
+	p, err := NewBuilder().
 		Build([]string{""})
-
+	if err != nil {
+		t.Errorf("Error building parser: %s", err)
+	}
 	doc, kind, err := p.Parse("test.json", nil)
 	require.Nil(t, doc)
 	require.Equal(t, model.FileKind(""), kind)
@@ -61,7 +63,7 @@ func TestParser_Empty(t *testing.T) {
 
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
-	p := initilizeBuilder()
+	p := initilizeBuilder(t)
 
 	extensions := p.SupportedExtensions()
 	require.NotNil(t, extensions)
@@ -72,11 +74,54 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, "Dockerfile")
 }
 
-func initilizeBuilder() *Parser {
-	return NewBuilder().
+func initilizeBuilder(t *testing.T) *Parser {
+	bd, err := NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{"ansible", "dockerfile", "cloudFormation", "terraform"})
+		Build([]string{""})
+	if err != nil {
+		t.Errorf("Error building parser: %s", err)
+	}
+	return bd
+}
+
+func TestValidateArguments(t *testing.T) {
+	type args struct {
+		types     []string
+		validArgs []string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			name: "validate_args_error",
+			args: args{
+				types:     []string{"dockerfiles"},
+				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+			},
+			wantErr: true,
+		},
+		{
+			name: "validate_args",
+			args: args{
+				types:     []string{"Dockerfile"},
+				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+			},
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := validateArguments(tt.args.types, tt.args.validArgs)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+		})
+	}
 }

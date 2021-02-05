@@ -4,5 +4,6 @@
   "severity": "HIGH",
   "category": null,
   "descriptionText": "<TEXT>",
-  "descriptionUrl": "#"
+  "descriptionUrl": "#",
+  "platform": "template"
 }

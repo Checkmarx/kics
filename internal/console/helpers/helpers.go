@@ -176,22 +176,3 @@ func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 
 	return *fileLogger
 }
-
-// validateArguments is used for flags that receive arguments
-func validateArguments(types []string, validArgs map[string]interface{}) error {
-	for _, typeQuery := range types {
-		if _, ok := validArgs[typeQuery]; !ok {
-			return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", typeQuery, mapToArguments(validArgs)))
-		}
-	}
-	return nil
-}
-
-func mapToArguments(args map[string]interface{}) string {
-	keys := make([]string, 0, len(args))
-	for arg := range args {
-		keys = append(keys, arg)
-	}
-
-	return strings.Join(keys, "\n  ")
-}

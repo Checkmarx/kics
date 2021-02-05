@@ -2,7 +2,9 @@ package parser
 
 import (
 	"errors"
+	"fmt"
 	"path/filepath"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 )
@@ -31,11 +33,13 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types []string) *Parser {
+func (b *Builder) Build(types []string) (*Parser, error) {
+	var suportedTypes []string
 	parsers := make(map[string]kindParser, len(b.parsers))
 	extensions := make(model.Extensions, len(b.parsers))
 	for _, parser := range b.parsers {
-		if contains(types, parser.SupportedTypes()) {
+		suportedTypes = append(suportedTypes, parser.SupportedTypes()...)
+		if _, _, ok := contains(types, parser.SupportedTypes()); ok {
 			for _, ext := range parser.SupportedExtensions() {
 				parsers[ext] = parser
 				extensions[ext] = struct{}{}
@@ -43,28 +47,14 @@ func (b *Builder) Build(types []string) *Parser {
 		}
 	}
 
+	if err := validateArguments(types, suportedTypes); err != nil {
+		return &Parser{}, err
+	}
+
 	return &Parser{
 		parsers:    parsers,
 		extensions: extensions,
-	}
-}
-
-func contains(types, supportedTypes []string) bool {
-	if types[0] == "" {
-		return true
-	}
-	set := make(map[string]struct{}, len(supportedTypes))
-	for _, s := range supportedTypes {
-		set[s] = struct{}{}
-	}
-	ok := true
-	for _, item := range types {
-		_, ok = set[item]
-		if ok {
-			return ok
-		}
-	}
-	return ok
+	}, nil
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS
@@ -98,4 +88,34 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 // SupportedExtensions returns extensions supported by KICS
 func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
+}
+
+func validateArguments(types, validArgs []string) error {
+	if invalidType, ok, _ := contains(types, validArgs); !ok {
+		return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", invalidType, strings.Join(validArgs, "\n  ")))
+	}
+	return nil
+}
+
+func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) {
+	if types[0] == "" {
+		return []string{}, true, true
+	}
+	set := make(map[string]struct{}, len(supportedTypes))
+	for _, s := range supportedTypes {
+		set[s] = struct{}{}
+	}
+	cont := true
+	supported := false
+	var invalidArgs []string
+	for _, item := range types {
+		_, ok := set[item]
+		if !ok {
+			cont = false
+			invalidArgs = append(invalidArgs, item)
+		} else {
+			supported = true
+		}
+	}
+	return invalidArgs, cont, supported
 }

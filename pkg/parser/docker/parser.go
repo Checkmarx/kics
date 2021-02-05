@@ -100,5 +100,5 @@ func (p *Parser) SupportedExtensions() []string {
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
 func (p *Parser) SupportedTypes() []string {
-	return []string{"dockerfile"}
+	return []string{"Dockerfile"}
 }

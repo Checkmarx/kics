@@ -136,53 +136,6 @@ func TestPrintToJSONFile(t *testing.T) {
 	}
 }
 
-func TestValidateArguments(t *testing.T) {
-	type args struct {
-		types     []string
-		validArgs map[string]interface{}
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr bool
-	}{
-		{
-			name: "validate_args_error",
-			args: args{
-				types: []string{"dockerfiles"},
-				validArgs: map[string]interface{}{
-					"ansible":        "",
-					"terraform":      "",
-					"dockerfile":     "",
-					"cloudformation": "",
-					"k8s":            "",
-				},
-			},
-			wantErr: true,
-		},
-		{
-			name: "validate_args",
-			args: args{
-				types: []string{"dockerfile"},
-				validArgs: map[string]interface{}{
-					"ansible":        "",
-					"terraform":      "",
-					"dockerfile":     "",
-					"cloudformation": "",
-					"k8s":            "",
-				},
-			},
-			wantErr: false,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := validateArguments(tt.args.types, tt.args.validArgs)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
 type progressBarTestArgs struct {
 	label string
 	total float64
