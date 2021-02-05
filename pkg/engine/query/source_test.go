@@ -37,7 +37,6 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
 			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
-
 			for n := 0; n < b.N; n++ {
 				if _, err := s.GetQueries(); err != nil {
 					b.Errorf("Error: %s", err)
@@ -68,7 +67,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_terraform",
 			fields: fields{
-				Source: filepath.FromSlash("./assets/queries/template"),
+				Source: "./assets/queries/template",
 			},
 			args: args{
 				platform: "terraform",
@@ -79,7 +78,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_common",
 			fields: fields{
-				Source: filepath.FromSlash("./assets/queries/template"),
+				Source: "./assets/queries/template",
 			},
 			args: args{
 				platform: "common",
@@ -90,7 +89,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_cloudformation",
 			fields: fields{
-				Source: filepath.FromSlash("./assets/queries/template"),
+				Source: "./assets/queries/template",
 			},
 			args: args{
 				platform: "cloudFormation",
@@ -101,7 +100,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_ansible",
 			fields: fields{
-				Source: filepath.FromSlash("./assets/queries/template"),
+				Source: "./assets/queries/template",
 			},
 			args: args{
 				platform: "ansible",
@@ -112,7 +111,7 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		{
 			name: "get_generic_query_dockerfile",
 			fields: fields{
-				Source: filepath.FromSlash("./assets/queries/template"),
+				Source: "./assets/queries/template",
 			},
 			args: args{
 				platform: "dockerfile",
@@ -181,7 +180,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
 			},
 			want: []model.QueryMetadata{
