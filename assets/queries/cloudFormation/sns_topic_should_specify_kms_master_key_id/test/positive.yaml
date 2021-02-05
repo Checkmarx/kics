@@ -1,13 +1,17 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  SNSTopic:
+  MySNSTopic:
     Type: AWS::SNS::Topic
     Properties:
-      ContentBasedDeduplication: Boolean
-      DisplayName: String
-      FifoTopic: Boolean
       Subscription:
-        - Subscription
-      Tags:
-        - Tag
-      TopicName: String
+        - Endpoint:
+            Fn::GetAtt:
+              - "MyQueue1"
+              - "Arn"
+          Protocol: "sqs"
+        - Endpoint:
+            Fn::GetAtt:
+              - "MyQueue2"
+              - "Arn"
+          Protocol: "sqs"
+      TopicName: "SampleTopic"

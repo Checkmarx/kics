@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.EncryptionAtRestOptions", [name]),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is undefined", [name]),
@@ -27,7 +27,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.EncryptionAtRestOptions", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.EncryptionAtRestOptions.Enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is enabled", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is disabled", [name]),

@@ -1,8 +1,9 @@
 {
-  "id": "ea33fcf7-394b-4d11-a228-985c5d08f205",
-  "queryName": "Default Security Groups Allow Traffic",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Security Groups set as default must be denied traffic.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
+	"id": "ea33fcf7-394b-4d11-a228-985c5d08f205",
+	"queryName": "Default Security Groups Allow Traffic",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Security Groups set as default must be denied traffic.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
+	"platform": "CloudFormation"
 }

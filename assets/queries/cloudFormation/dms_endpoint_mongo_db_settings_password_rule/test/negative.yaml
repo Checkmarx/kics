@@ -35,13 +35,13 @@ Resources:
           ExtractDocId: String
           NestingLevel: String
           Password: !Ref MasterMongoDBPassword
-          Port: Integer
+          Port: 80
           ServerName: String
           Username: String
       NeptuneSettings:
         NeptuneSettings
       Password: !Ref ParentMasterPassword
-      Port: Integer
+      Port: 80
       S3Settings:
         S3Settings
       ServerName: String
@@ -85,13 +85,13 @@ Resources:
           ExtractDocId: String
           NestingLevel: String
           Password: !Ref MasterMongoDBPassword
-          Port: Integer
+          Port: 80
           ServerName: String
           Username: String
       NeptuneSettings:
         NeptuneSettings
       Password: !Ref ParentMasterPassword
-      Port: Integer
+      Port: 80
       S3Settings:
         S3Settings
       ServerName: String
@@ -124,13 +124,13 @@ Resources:
           ExtractDocId: String
           NestingLevel: String
           Password:  !Sub '{{resolve:secretsmanager:${MangoDBSecretManagerRotater}::password}}'
-          Port: Integer
+          Port: 80
           ServerName: String
           Username: String
       NeptuneSettings:
         NeptuneSettings
       Password:  !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
-      Port: Integer
+      Port: 80
       S3Settings:
         S3Settings
       ServerName: String

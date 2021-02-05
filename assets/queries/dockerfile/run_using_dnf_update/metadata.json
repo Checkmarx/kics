@@ -1,8 +1,9 @@
 {
-  "id": "09fda05e-da85-4ee7-ab8d-2800a5e6e756",
-  "queryName": "Run Using dnf Update",
-  "severity": "HIGH",
-  "category": "Package Management",
-  "descriptionText": "Command 'dnf update' should not be used, as it can cause inconsistencies between builds and fails in updated packages",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+	"id": "09fda05e-da85-4ee7-ab8d-2800a5e6e756",
+	"queryName": "Run Using dnf Update",
+	"severity": "HIGH",
+	"category": "Package Management",
+	"descriptionText": "Command 'dnf update' should not be used, as it can cause inconsistencies between builds and fails in updated packages",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+	"platform": "Dockerfile"
 }

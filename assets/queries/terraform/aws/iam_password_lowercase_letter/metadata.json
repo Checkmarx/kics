@@ -1,8 +1,9 @@
 {
-  "id": "bbc7c137-6c7b-4fc4-984a-0c88e91fcaf9",
-  "queryName": "IAM Password Without Lowercase Letter",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Check if IAM account password has at least one lowercase letter",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy"
+	"id": "bbc7c137-6c7b-4fc4-984a-0c88e91fcaf9",
+	"queryName": "IAM Password Without Lowercase Letter",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Check if IAM account password has at least one lowercase letter",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
+	"platform": "Terraform"
 }

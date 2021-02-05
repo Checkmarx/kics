@@ -1,8 +1,9 @@
 {
-  "id": "f6397a20-4cf1-4540-a997-1d363c25ef58",
-  "queryName": "S3 Bucket Allows Put Action From All Principals",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "S3 Buckets must not allow Put Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Put, for all Principals.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html"
+	"id": "f6397a20-4cf1-4540-a997-1d363c25ef58",
+	"queryName": "S3 Bucket Allows Put Action From All Principals",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "S3 Buckets must not allow Put Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Put, for all Principals.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
+	"platform": "CloudFormation"
 }

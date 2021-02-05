@@ -1,8 +1,9 @@
 {
-  "id": "f922827f-aab6-447c-832a-e1ff63312bd3",
-  "queryName": "Container Runs Unmasked",
-  "severity": "MEDIUM",
-  "category": "Privileges",
-  "descriptionText": "Check if a container has full access (unmasked) to the host’s /proc command, which would allow to retrieve sensitive information and possibly change the kernel parameters in runtime.",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#allowedprocmounttypes"
+	"id": "f922827f-aab6-447c-832a-e1ff63312bd3",
+	"queryName": "Container Runs Unmasked",
+	"severity": "MEDIUM",
+	"category": "Privileges",
+	"descriptionText": "Check if a container has full access (unmasked) to the host’s /proc command, which would allow to retrieve sensitive information and possibly change the kernel parameters in runtime.",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#allowedprocmounttypes",
+	"platform": "Kubernetes"
 }
