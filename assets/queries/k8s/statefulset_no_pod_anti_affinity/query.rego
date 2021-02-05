@@ -45,25 +45,6 @@ CxPolicy[result] {
 	to_number(statefulset.spec.replicas) > 2
 
 	affinity := statefulset.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") == "undefined"
-
-	metadata := statefulset.metadata
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.affinity", [metadata.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity' is set",
-		"keyActualValue": "'spec.template.spec.affinity.podAntiAffinity' is undefined",
-	}
-}
-
-CxPolicy[result] {
-	statefulset := input.document[i]
-	object.get(statefulset, "kind", "undefined") == "StatefulSet"
-
-	to_number(statefulset.spec.replicas) > 2
-
-	affinity := statefulset.spec.template.spec.affinity
 	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
 
 	podAntiAffinity := affinity.podAntiAffinity
