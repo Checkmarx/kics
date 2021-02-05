@@ -13,15 +13,18 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - name: Get cfn-python-lint
         run: |
-          pip3 install setuptools
           pip3 install cfn-lint
           pip3 show cfn-lint
+          which cfn-lint
       - name: Validate cloudformation template syntax
         run: python3 .github/validators/validate-syntax.py
         env:
-          LINTER_PATH: "/home/runner/.local/bin/cfn-lint"
+          LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/cfn-lint"
           FILES_GLOB: "assets/queries/cloudFormation/**/test/*.yaml"
           EXTRA_ARGS: "--info"
           SKIP_LIST_PATH: ".github/validators/cfn-skip-list"

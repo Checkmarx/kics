@@ -29,6 +29,7 @@ print(f'found {len(files)} files to check')
 #         run linter         #
 ##############################
 for file in files:
+  result = ''
   try:
     cmds = [LINTER_PATH, file]
     if EXTRA_ARGS:
