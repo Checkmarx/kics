@@ -1,8 +1,9 @@
 {
-  "id": "08e39832-5e42-4304-98a0-aa5b43393162",
-  "queryName": "EFS without tags",
-  "severity": "LOW",
-  "category": "Cloud Assets Management",
-  "descriptionText": "Amazon Elastic Filesystem should have filesystem tags associated",
-  "descriptionUrl": "https://docs.aws.amazon.com/efs/latest/ug/manage-fs-tags.html"
+	"id": "08e39832-5e42-4304-98a0-aa5b43393162",
+	"queryName": "EFS without tags",
+	"severity": "LOW",
+	"category": "Cloud Assets Management",
+	"descriptionText": "Amazon Elastic Filesystem should have filesystem tags associated",
+	"descriptionUrl": "https://docs.aws.amazon.com/efs/latest/ug/manage-fs-tags.html",
+	"platform": "CloudFormation"
 }

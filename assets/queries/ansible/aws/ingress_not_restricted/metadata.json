@@ -1,8 +1,9 @@
 {
-  "id": "ea6bc7a6-d696-4dcf-a788-17fa03c17c81",
-  "queryName": "Ingress Not Restricted",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "AWS Security Group should restrict ingress access",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html"
+	"id": "ea6bc7a6-d696-4dcf-a788-17fa03c17c81",
+	"queryName": "Ingress Not Restricted",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "AWS Security Group should restrict ingress access",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+	"platform": "Ansible"
 }

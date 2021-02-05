@@ -1,8 +1,9 @@
 {
-  "id": "7db10d79-f8a2-4c90-b13e-34fc91e56094",
-  "queryName": "SSH Port Open",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "SSH port is open to the internet",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+	"id": "7db10d79-f8a2-4c90-b13e-34fc91e56094",
+	"queryName": "SSH Port Open",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "SSH port is open to the internet",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+	"platform": "Terraform"
 }

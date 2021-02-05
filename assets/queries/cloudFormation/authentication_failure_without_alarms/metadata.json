@@ -1,8 +1,9 @@
 {
-  "id": "375c5222-cce2-4a4e-a4bc-ffa9decd1503",
-  "queryName": "Authentication Failure Without Alarms",
-  "severity": "MEDIUM",
-  "category": "Monitoring",
-  "descriptionText": "A log metric filter and alarm should exist for AWS Management Console Authentication Failures",
-  "descriptionUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html"
+	"id": "375c5222-cce2-4a4e-a4bc-ffa9decd1503",
+	"queryName": "Authentication Failure Without Alarms",
+	"severity": "MEDIUM",
+	"category": "Monitoring",
+	"descriptionText": "A log metric filter and alarm should exist for AWS Management Console Authentication Failures",
+	"descriptionUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html",
+	"platform": "CloudFormation"
 }

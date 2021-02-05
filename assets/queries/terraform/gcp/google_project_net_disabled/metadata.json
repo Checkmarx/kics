@@ -4,5 +4,6 @@
   "severity": "MEDIUM",
   "category": "Network Security",
   "descriptionText": "Verifies if the Google Project Auto Create Network is Disabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project",
+  "platform": "Terraform"
 }

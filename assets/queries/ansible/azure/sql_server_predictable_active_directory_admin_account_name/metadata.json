@@ -1,8 +1,9 @@
 {
-  "id": "530e8291-2f22-4bab-b7ea-306f1bc2a308",
-  "queryName": "SQL Server Predictable Active Directory Account Name",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Azure SQL Server must avoid using predictable Active Directory Administrator Account names, like 'Admin', which means the attribute 'ad_user' must be set to a name that is not easy to predict",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_adserviceprincipal_module.html"
+	"id": "530e8291-2f22-4bab-b7ea-306f1bc2a308",
+	"queryName": "SQL Server Predictable Active Directory Account Name",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Azure SQL Server must avoid using predictable Active Directory Administrator Account names, like 'Admin', which means the attribute 'ad_user' must be set to a name that is not easy to predict",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_adserviceprincipal_module.html",
+	"platform": "Ansible"
 }
