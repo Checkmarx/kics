@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
@@ -14,7 +16,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Pod is defined",
-		"keyActualValue": sprintf("metadata.name=%s should target at least one Pod", [metadata.name])
+		"keyActualValue": "Pod is undefined"
 	}
 }
 
@@ -27,7 +29,7 @@ CxPolicy[result] {
 
 	isTargeted(spec.podSelector.matchLabels[key], spec)
 
-	result := {
+    result := {
 		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
 		"issueType": "MissingAttribute",
