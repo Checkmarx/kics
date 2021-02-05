@@ -1,8 +1,9 @@
 {
-  "id": "bb241e61-77c3-4b97-9575-c0f8a1e008d0",
-  "queryName": "StatefulSets Without Service Name",
-  "severity": "LOW",
-  "category": "High Availability",
-  "descriptionText": "Check if the StatefulSets have a headless 'serviceName'",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
+	"id": "bb241e61-77c3-4b97-9575-c0f8a1e008d0",
+	"queryName": "StatefulSets Without Service Name",
+	"severity": "LOW",
+	"category": "High Availability",
+	"descriptionText": "Check if the StatefulSets have a headless 'serviceName'",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
+	"platform": "Kubernetes"
 }

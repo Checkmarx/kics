@@ -1,8 +1,9 @@
 {
-  "id": "69f72007-502e-457b-bd2d-5012e31ac049",
-  "queryName": "Firewall Rule Allows Too Many Hosts To Access Redis Cache",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Check if any firewall rule allows too many hosts to access Redis Cache.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html"
+	"id": "69f72007-502e-457b-bd2d-5012e31ac049",
+	"queryName": "Firewall Rule Allows Too Many Hosts To Access Redis Cache",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Check if any firewall rule allows too many hosts to access Redis Cache.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html",
+	"platform": "Ansible"
 }

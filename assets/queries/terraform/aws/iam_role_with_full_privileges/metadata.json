@@ -1,8 +1,9 @@
 {
-  "id": "b1ffa705-19a3-4b73-b9d0-0c97d0663842",
-  "queryName": "IAM Role With Full Privileges",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "IAM role policy that allow full administrative privileges (for all resources)",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role"
+	"id": "b1ffa705-19a3-4b73-b9d0-0c97d0663842",
+	"queryName": "IAM Role With Full Privileges",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM role policy that allow full administrative privileges (for all resources)",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
+	"platform": "Terraform"
 }

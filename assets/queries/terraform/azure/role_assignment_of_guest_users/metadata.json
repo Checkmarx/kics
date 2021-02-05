@@ -1,8 +1,9 @@
 {
-  "id": "2bc626a8-0751-446f-975d-8139214fc790",
-  "queryName": "Role Assignment Of Guest Users",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "There is a role assignment for guest user",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment"
+	"id": "2bc626a8-0751-446f-975d-8139214fc790",
+	"queryName": "Role Assignment Of Guest Users",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "There is a role assignment for guest user",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
+	"platform": "Terraform"
 }

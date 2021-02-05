@@ -1,8 +1,9 @@
 {
-  "id": "92fe237e-074c-4262-81a4-2077acb928c1",
-  "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-  "severity": "MEDIUM",
-  "category": "Network Ports Security",
-  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for a wide private network in either TCP or UDP protocol",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+	"id": "92fe237e-074c-4262-81a4-2077acb928c1",
+	"queryName": "Sensitive Port Is Exposed To Wide Private Network",
+	"severity": "MEDIUM",
+	"category": "Network Ports Security",
+	"descriptionText": "A sensitive port, such as port 23 or port 110, is open for a wide private network in either TCP or UDP protocol",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+	"platform": "Terraform"
 }

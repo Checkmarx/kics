@@ -1,8 +1,9 @@
 {
-  "id": "e567f072-c8b9-40ce-aff1-a67f67b5ca16",
-  "queryName": "Cloudwatch without retention days",
-  "severity": "LOW",
-  "category": "Logging",
-  "descriptionText": "Cloudwatch log groups without retention days specified",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group"
+	"id": "e567f072-c8b9-40ce-aff1-a67f67b5ca16",
+	"queryName": "Cloudwatch without retention days",
+	"severity": "LOW",
+	"category": "Logging",
+	"descriptionText": "Cloudwatch log groups without retention days specified",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group",
+	"platform": "Terraform"
 }

@@ -45,7 +45,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memory-demo-3
+  name: memory-demo-23
   namespace: mem-example
 spec:
   securityContext:

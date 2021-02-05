@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "AWS Lambda Function Without Tags",
-		"severity": "MEDIUM",
-		"line": 50
-	}
+  {
+    "queryName": "AWS Lambda Function Without Tags",
+    "severity": "MEDIUM",
+    "line": 52
+  }
 ]

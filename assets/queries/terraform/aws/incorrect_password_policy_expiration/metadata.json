@@ -1,8 +1,9 @@
 {
-  "id": "ce60d060-efb8-4bfd-9cf7-ff8945d00d90",
-  "queryName": "Incorrect password policy expiration",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "No password exeration policy",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy"
+	"id": "ce60d060-efb8-4bfd-9cf7-ff8945d00d90",
+	"queryName": "Incorrect password policy expiration",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "No password exeration policy",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
+	"platform": "Terraform"
 }
