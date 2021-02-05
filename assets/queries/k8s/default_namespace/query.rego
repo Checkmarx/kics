@@ -1,9 +1,13 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 
-    checkKind(document.kind)
+    kind := document.kind
+    listKinds :=  ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+	k8sLib.checkKind(kind, listKinds)
 
 	metadata = document.metadata
 
@@ -13,15 +17,17 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
-		"keyExpectedValue": sprintf("Namespace is set in document[%d]", [i]),
-		"keyActualValue": sprintf("Namespace is not set in document[%d]", [i]),
+		"keyExpectedValue": "metadata.namespace is set",
+		"keyActualValue": "metadata.namespace is undefined",
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
 
-    checkKind(document.kind)
+    kind := document.kind
+    listKinds :=  ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+	k8sLib.checkKind(kind, listKinds)
 
 	metadata = document.metadata
 	metadata.namespace == "default"
@@ -30,12 +36,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
-		"keyExpectedValue": sprintf("Default namespace is not used in document[%d]", [i]),
-		"keyActualValue": sprintf("Default namespace is used in document[%d]", [i]),
+		"keyExpectedValue": "metadata.namespace is not default",
+		"keyActualValue": "metadata.namespace is default",
 	}
-}
-
-checkKind(kind) {
-    kinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
-	kind == kinds[i]
 }

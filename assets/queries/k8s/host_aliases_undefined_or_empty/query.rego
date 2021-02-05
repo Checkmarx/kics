@@ -1,9 +1,15 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	metadata := input.document[i].metadata
 	spec := input.document[i].spec
-    checkKind(input.document[i].kind)
+
+    kind := input.document[i].kind
+    listKinds :=  ["Pod"]
+	k8sLib.checkKind(kind, listKinds)
+
 	object.get(spec, "hostAliases", "undefined") == "undefined"
 
 	result := {
@@ -17,7 +23,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	metadata := input.document[i].metadata
-    checkKind(input.document[i].kind)
+
+    kind := input.document[i].kind
+    listKinds :=  ["Pod"]
+	k8sLib.checkKind(kind, listKinds)
+
 	spec := input.document[i].spec
 	spec.hostAliases == null
 
@@ -32,7 +42,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	metadata := input.document[i].metadata
-    checkKind(input.document[i].kind)
+
+    kind := input.document[i].kind
+    listKinds :=  ["Pod"]
+	k8sLib.checkKind(kind, listKinds)
+
 	spec := input.document[i].spec
 	checkAction(spec.hostAliases)
 
@@ -48,9 +62,4 @@ CxPolicy[result] {
 checkAction(action) {
 	is_array(action)
 	count(action) == 0
-}
-
-checkKind(kind) {
-    kinds := ["Pod"]
-	kind == kinds[i]
 }

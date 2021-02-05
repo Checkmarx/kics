@@ -1,8 +1,14 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	metadata := input.document[i].metadata
-    checkKind(input.document[i].kind)
+
+    kind := input.document[i].kind
+    listKinds :=  ["Pod"]
+	k8sLib.checkKind(kind, listKinds)
+
 	spec := input.document[i].spec
 	object.get(spec, "serviceAccountName", "undefined") == "undefined"
 
@@ -17,7 +23,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	metadata := input.document[i].metadata
-    checkKind(input.document[i].kind)
+
+    kind := input.document[i].kind
+    listKinds :=  ["Pod"]
+	k8sLib.checkKind(kind, listKinds)
+
 	spec := input.document[i].spec
 	spec.serviceAccountName == null
 
@@ -32,7 +42,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	metadata := input.document[i].metadata
-    checkKind(input.document[i].kind)
+
+    kind := input.document[i].kind
+    listKinds :=  ["Pod"]
+	k8sLib.checkKind(kind, listKinds)
+
 	spec := input.document[i].spec
 	checkAction(spec.serviceAccountName)
 
@@ -48,9 +62,4 @@ CxPolicy[result] {
 checkAction(action) {
 	is_string(action)
 	count(action) == 0
-}
-
-checkKind(kind) {
-    kinds := ["Pod"]
-	kind == kinds[i]
 }
