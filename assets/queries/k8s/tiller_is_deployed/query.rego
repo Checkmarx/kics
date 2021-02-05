@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'metadata' does not refer any Tiller resource",
 		"keyActualValue": "'metadata' refer to a Tiller resource",
@@ -25,7 +25,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.containers", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'spec.containers' don't have any Tiller containers",
 		"keyActualValue": "'spec.containers' contains a Tiller container",
@@ -41,7 +41,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.metadata", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.template.metadata", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'spec.template.metadata' does not refer any Tiller resource",
 		"keyActualValue": "'spec.template.metadata' refer to a Tiller resource",

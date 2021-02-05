@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name=%s.spec.containers.name=%s.image", [metadata.name, containers[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.containers.name=%s.image has '@'", [metadata.name, containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.containers.name=%s.image '@'", [metadata.name, containers[c].name]),
+		"keyActualValue": sprintf("metadata.name=%s.spec.containers.name=%s.image should have '@'", [metadata.name, containers[c].name]),
 	}
 }
 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.containers", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.containers.name=%s.image is Defined", [metadata.name, containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.containers.name=%s.image is Undefined", [metadata.name, containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name=%s.spec.containers.name=%s.image is defined", [metadata.name, containers[c].name]),
+		"keyActualValue": sprintf("metadata.name=%s.spec.containers.name=%s.image is undefined", [metadata.name, containers[c].name]),
 	}
 }
