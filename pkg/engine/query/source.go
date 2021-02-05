@@ -26,40 +26,41 @@ const (
 	MetadataFileName = "metadata.json"
 	// LibraryFileName The default library file name
 	LibraryFileName = "library.rego"
-	// LibrariesBasePath the path to rego libraries
-	LibrariesBasePath = "./assets/libraries/"
+	// LibrariesDefaultBasePath the path to rego libraries
+	LibrariesDefaultBasePath = "./assets/libraries/"
 )
 
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string {
-	libraryPath := filepath.Join(relativeBasePath, LibrariesBasePath)
-
-	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
-		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
-		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
-		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
-		return filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
-		return filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
+	var libraryPath string
+	if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) > -1 {
+		libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries"))] + filepath.FromSlash("/libraries")
+	} else {
+		libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
 	}
 
-	return filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+	libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+
+	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
+	}
+
+	return libraryFilePath
 }
 
 // GetGenericQuery returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
-	currentWorkdir, err := os.Getwd()
+	pathToLib := GetPathToLibrary(platform, s.Source)
 
-	if err != nil {
-		log.Err(err)
-	}
-
-	pathToLib := GetPathToLibrary(platform, currentWorkdir)
 	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
-
 	if err != nil {
 		log.Err(err)
 	}

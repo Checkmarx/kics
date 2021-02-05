@@ -1,5 +1,5 @@
 apiVersion: v1
-kind: Pode
+kind: Pod
 metadata:
   name: pod2
 spec:
@@ -10,7 +10,6 @@ spec:
       allowPrivilegeEscalation: false
       capabilities:
            add: ["SYS_ADMIN"]
-                
     resources:
       requests:
         memory: "64Mi"
@@ -18,7 +17,6 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
-
   - name: log-aggregator
     image: images.my-company.example/log-aggregator:v6
     securityContext:

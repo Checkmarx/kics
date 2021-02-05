@@ -1,10 +1,13 @@
-package console
+package helpers
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strings"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -102,23 +105,23 @@ var jsonTests = []struct {
 
 var failedQueries = map[string]error{}
 
-// TestPrintResult tests the functions [printResult()] and all the methods called by them
+// TestPrintResult tests the functions [PrintResult()] and all the methods called by them
 func TestPrintResult(t *testing.T) {
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return printResult(&testCase.caseTest, failedQueries) })
+			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
 		})
 	}
 }
 
-// TestPrintToJSONFile tests the functions [printToJSONFile()] and all the methods called by them
+// TestPrintToJSONFile tests the functions [PrintToJSONFile()] and all the methods called by them
 func TestPrintToJSONFile(t *testing.T) {
 	for idx, test := range jsonTests {
 		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
 			var err error
-			err = printToJSONFile(test.caseTest.path, test.caseTest.summary)
+			err = PrintToJSONFile(test.caseTest.path, test.caseTest.summary)
 			require.NoError(t, err)
 			require.FileExists(t, test.caseTest.path)
 			var jsonResult []byte
@@ -129,6 +132,90 @@ func TestPrintToJSONFile(t *testing.T) {
 			require.NoError(t, err)
 			require.Equal(t, test.expectedResult, resultSummary)
 			os.Remove(test.caseTest.path)
+		})
+	}
+}
+
+type progressBarTestArgs struct {
+	label string
+	total float64
+	space int
+}
+
+var progressBarTests = []struct {
+	name              string
+	args              progressBarTestArgs
+	shouldCheckOutput bool
+	want              string
+}{
+	{
+		name: "Should return labeled progressbar with 5 spaces each side",
+		args: progressBarTestArgs{
+			label: "ProgressTest",
+			total: 100.0,
+			space: 5,
+		},
+		shouldCheckOutput: true,
+		want:              "ProgressTest[===== 100.0% =====]",
+	},
+	{
+		name: "Should return labeless progressbar with 5 spaces each side",
+		args: progressBarTestArgs{
+			label: "",
+			total: 100.0,
+			space: 5,
+		},
+		shouldCheckOutput: true,
+		want:              "[===== 100.0% =====]",
+	},
+	{
+		name: "Should return labeless progressbar with 10 spaces each side",
+		args: progressBarTestArgs{
+			label: "",
+			total: 100.0,
+			space: 10,
+		},
+		shouldCheckOutput: true,
+		want:              "[========== 100.0% ==========]",
+	},
+	{
+		name: "Should ignore progressbar",
+		args: progressBarTestArgs{
+			label: "",
+			total: 100.0,
+			space: 10,
+		},
+		shouldCheckOutput: false,
+		want:              "",
+	},
+}
+
+// TestProgressBar tests the functions [ProgressBar()]
+func TestProgressBar(t *testing.T) {
+	for _, tt := range progressBarTests {
+		t.Run(tt.name, func(t *testing.T) {
+			var wg sync.WaitGroup
+			var out bytes.Buffer
+
+			wg.Add(1)
+			progress := make(chan float64, 1)
+			progressBar := NewProgressBar(tt.args.label, tt.args.space, tt.args.total, progress)
+			if tt.shouldCheckOutput {
+				progressBar.Writer = &out
+			} else {
+				// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
+				progressBar.Writer = ioutil.Discard
+			}
+			go progressBar.Start(&wg)
+			if tt.shouldCheckOutput {
+				for i := 0; i < 101; i++ {
+					progress <- float64(i)
+				}
+				progress <- float64(100)
+			}
+			wg.Wait()
+			splittedOut := strings.Split(out.String(), "\r")
+			require.Equal(t, tt.want, splittedOut[len(splittedOut)-1])
 		})
 	}
 }

@@ -9,9 +9,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.AlarmActions.Ref", [nameSNS]),
+		"searchKey": sprintf("Resources.%s.Properties", [nameSNS]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Subscription' is setted)", [nameSNS]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.Subscription' is not setted)", [nameSNS]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Subscription' is set)", [nameSNS]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.Subscription' is not set)", [nameSNS]),
 	}
 }

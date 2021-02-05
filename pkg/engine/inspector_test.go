@@ -3,6 +3,7 @@ package engine
 import (
 	"context"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
@@ -255,7 +256,7 @@ func TestInspect(t *testing.T) { //nolint
 				enableCoverageReport: tt.fields.enableCoverageReport,
 				coverageReport:       tt.fields.coverageReport,
 			}
-			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files)
+			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true)
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.GetCoverageReport() = %v, want %v", err, tt.want)
@@ -277,7 +278,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	require.NoError(t, err)
 
 	track := &tracker.CITracker{}
-	sources := &query.FilesystemSource{
+	sources := &mockSource{
 		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
 	}
 	vbs := DefaultVulnerabilityBuilder
@@ -343,4 +344,23 @@ func TestNewInspector(t *testing.T) { // nolint
 			require.NotNil(t, got.vb)
 		})
 	}
+}
+
+type mockSource struct {
+	Source string
+}
+
+func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
+	sources := &query.FilesystemSource{
+		Source: m.Source,
+	}
+	return sources.GetQueries()
+}
+func (m *mockSource) GetGenericQuery(platform string) (string, error) {
+	currentWorkdir, _ := os.Getwd()
+
+	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
+	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+
+	return string(content), err
 }

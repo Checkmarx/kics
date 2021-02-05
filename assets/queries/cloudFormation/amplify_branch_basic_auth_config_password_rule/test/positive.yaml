@@ -6,9 +6,9 @@ Resources:
       BranchName: String
       BuildSpec: String
       Description: String
-      EnableAutoBuild: Boolean
-      EnablePerformanceMode: Boolean
-      EnablePullRequestPreview: Boolean
+      EnableAutoBuild: false
+      EnablePerformanceMode: false
+      EnablePullRequestPreview: false
       EnvironmentVariables:
         - EnvironmentVariable
       PullRequestEnvironmentName: String
@@ -36,9 +36,9 @@ Resources:
       BranchName: String
       BuildSpec: String
       Description: String
-      EnableAutoBuild: Boolean
-      EnablePerformanceMode: Boolean
-      EnablePullRequestPreview: Boolean
+      EnableAutoBuild: false
+      EnablePerformanceMode: false
+      EnablePullRequestPreview: false
       EnvironmentVariables:
         - EnvironmentVariable
       PullRequestEnvironmentName: String
