@@ -1,8 +1,9 @@
 {
-  "id": "dd5230f8-a577-4bbb-b7ac-f2c2fe7d5299",
-  "queryName": "Storage Container with Public Access",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "Anonymous, public read access to a container and its blobs are enabled in Azure Blob Storage",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#container_access_type"
+	"id": "dd5230f8-a577-4bbb-b7ac-f2c2fe7d5299",
+	"queryName": "Storage Container with Public Access",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "Anonymous, public read access to a container and its blobs are enabled in Azure Blob Storage",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#container_access_type",
+	"platform": "Terraform"
 }

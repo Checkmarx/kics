@@ -1,8 +1,9 @@
 {
-  "id": "bc20bbc6-0697-4568-9a73-85af1dd97bdd",
-  "queryName": "VM With Full Cloud Access",
-  "severity": "HIGH",
-  "category": "Access Control",
-  "descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html#parameter-service_accounts/scopes"
+	"id": "bc20bbc6-0697-4568-9a73-85af1dd97bdd",
+	"queryName": "VM With Full Cloud Access",
+	"severity": "HIGH",
+	"category": "Access Control",
+	"descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html#parameter-service_accounts/scopes",
+	"platform": "Ansible"
 }

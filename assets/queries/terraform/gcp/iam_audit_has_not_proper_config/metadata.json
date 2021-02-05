@@ -1,8 +1,9 @@
 {
-  "id": "89fe890f-b480-460c-8b6b-7d8b1468adb4",
-  "queryName": "IAM Audit Logging Proper Config",
-  "severity": "HIGH",
-  "category": "Logging",
-  "descriptionText": "Audit Logging Configuration is defective",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config"
+	"id": "89fe890f-b480-460c-8b6b-7d8b1468adb4",
+	"queryName": "IAM Audit Logging Proper Config",
+	"severity": "HIGH",
+	"category": "Logging",
+	"descriptionText": "Audit Logging Configuration is defective",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config",
+	"platform": "Terraform"
 }

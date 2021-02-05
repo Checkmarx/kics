@@ -1,8 +1,9 @@
 {
-  "id": "11e7550e-c4b6-472e-adff-c698f157cdd7",
-  "queryName": "Network Policy is Disabled",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'network_policy.enabled' must be true and the attribute 'addons_config.network_policy_config.disabled' must be false ",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster"
+	"id": "11e7550e-c4b6-472e-adff-c698f157cdd7",
+	"queryName": "Network Policy is Disabled",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'network_policy.enabled' must be true and the attribute 'addons_config.network_policy_config.disabled' must be false ",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+	"platform": "Terraform"
 }

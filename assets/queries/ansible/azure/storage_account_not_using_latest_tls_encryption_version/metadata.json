@@ -1,8 +1,9 @@
 {
-  "id": "c62746cf-92d5-4649-9acf-7d48d086f2ee",
-  "queryName": "Storage Account Not Using Latest TLS Encryption Version",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-minimum_tls_version"
+	"id": "c62746cf-92d5-4649-9acf-7d48d086f2ee",
+	"queryName": "Storage Account Not Using Latest TLS Encryption Version",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-minimum_tls_version",
+	"platform": "Ansible"
 }

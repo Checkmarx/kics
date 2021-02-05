@@ -1,8 +1,9 @@
 {
-  "id": "80b7ac3f-d2b7-4577-9b10-df7913497162",
-  "queryName": "Volume Encryption Is Disabled",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "EBS volumes should be encrypted",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html"
+	"id": "80b7ac3f-d2b7-4577-9b10-df7913497162",
+	"queryName": "Volume Encryption Is Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "EBS volumes should be encrypted",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html",
+	"platform": "CloudFormation"
 }

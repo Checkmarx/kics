@@ -1,8 +1,9 @@
 {
-  "id": "48471392-d4d0-47c0-b135-cdec95eb3eef",
-  "queryName": "Service Account Token Automount Not Disabled",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Service Account Tokens are automatically mounted even if not necessary",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server"
+	"id": "48471392-d4d0-47c0-b135-cdec95eb3eef",
+	"queryName": "Service Account Token Automount Not Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Service Account Tokens are automatically mounted even if not necessary",
+	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server",
+	"platform": "Kubernetes"
 }

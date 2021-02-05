@@ -1,8 +1,9 @@
 {
-  "id": "3cb4af0b-056d-4fb1-8b95-fdc4593625ff",
-  "queryName": "Using Default Service Account",
-  "severity": "MEDIUM",
-  "category": "Identity & Access Management",
-  "descriptionText": "Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account' and its sub attribute 'email' must be defined. Additionally, 'email' must not be empty and must also not be a default Google Compute Engine service account.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance"
+	"id": "3cb4af0b-056d-4fb1-8b95-fdc4593625ff",
+	"queryName": "Using Default Service Account",
+	"severity": "MEDIUM",
+	"category": "Identity & Access Management",
+	"descriptionText": "Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account' and its sub attribute 'email' must be defined. Additionally, 'email' must not be empty and must also not be a default Google Compute Engine service account.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
+	"platform": "Terraform"
 }

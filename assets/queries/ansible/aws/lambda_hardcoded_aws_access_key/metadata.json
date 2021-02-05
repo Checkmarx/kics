@@ -1,8 +1,9 @@
 {
-  "id": "f34508b9-f574-4330-b42d-88c44cced645",
-  "queryName": "Lambda hardcoded AWS access key",
-  "severity": "MEDIUM",
-  "category": "Encryption & KeyManagement",
-  "descriptionText": "Lambda access key should not be in plaintext.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html"
+	"id": "f34508b9-f574-4330-b42d-88c44cced645",
+	"queryName": "Lambda hardcoded AWS access key",
+	"severity": "MEDIUM",
+	"category": "Encryption & KeyManagement",
+	"descriptionText": "Lambda access key should not be in plaintext.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html",
+	"platform": "Ansible"
 }

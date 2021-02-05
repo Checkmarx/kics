@@ -1,8 +1,9 @@
 {
-  "id": "ed35928e-195c-4405-a252-98ccb664ab7b",
-  "queryName": "API Gateway Content Encoding",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Enable Content Encoding through the attribute 'minimum_compression_size'. This value should be greater than -1 and smaller than 10485760",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api"
+	"id": "ed35928e-195c-4405-a252-98ccb664ab7b",
+	"queryName": "API Gateway Content Encoding",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Enable Content Encoding through the attribute 'minimum_compression_size'. This value should be greater than -1 and smaller than 10485760",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
+	"platform": "Terraform"
 }
