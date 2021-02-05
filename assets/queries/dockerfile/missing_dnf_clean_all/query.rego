@@ -18,27 +18,10 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[resource.StartLine] {
-	resource := input.document[i].command[name][_]
-	resource.Cmd == "run"
-	command := resource.Value[0]
-
-	containsInstallCommand(command)
-	containsDnfClean(input.document[i].command[name], resource.StartLine) == false
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' is run.",
-		"keyActualValue": "Command `dnf clean all` should be run after installing packages.",
-	}
-}
-
 containsDnfClean(inputs, startLine) {
 	commands := inputs[_]
 	commands.Cmd == "run"
-	contains(commands.Original, "dnf clean")
+	contains(commands.Value[_], "dnf clean")
 	commands.StartLine > startLine
 }
 
