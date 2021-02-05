@@ -1,8 +1,9 @@
 {
-  "id": "105ba098-1e34-48cd-b0f2-a8a43a51bf9b",
-  "queryName": "ALB Is Not Integrated With WAF",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html"
+	"id": "105ba098-1e34-48cd-b0f2-a8a43a51bf9b",
+	"queryName": "ALB Is Not Integrated With WAF",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html",
+	"platform": "CloudFormation"
 }

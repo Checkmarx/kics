@@ -1,8 +1,9 @@
 {
-  "id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
-  "queryName": "Missing User Instruction",
-  "severity": "HIGH",
-  "category": "Container",
-  "descriptionText": "A user should be specified in the dockerfile, otherwise the image will run as root",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user"
+	"id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
+	"queryName": "Missing User Instruction",
+	"severity": "HIGH",
+	"category": "Container",
+	"descriptionText": "A user should be specified in the dockerfile, otherwise the image will run as root",
+	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user",
+	"platform": "Dockerfile"
 }

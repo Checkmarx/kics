@@ -9,10 +9,10 @@ CxPolicy[result] {
 	properties.AtRestEncryptionEnabled == false
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.properties.AtRestEncryptionEnabled", [key]),
+		"searchKey": sprintf("Resources.%s.Properties.AtRestEncryptionEnabled", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.properties.AtRestEncryptionEnabled should be true", [key]),
-		"keyActualValue": sprintf("Resources.%s.properties.AtRestEncryptionEnabled is false", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AtRestEncryptionEnabled should be true", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.AtRestEncryptionEnabled is false", [key]),
 	}
 }
 
@@ -26,9 +26,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.properties", [key]),
+		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.properties.AtRestEncryptionEnabled should be defined", [key]),
-		"keyActualValue": sprintf("Resources.%s.properties.AtRestEncryptionEnabled is undefined", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.AtRestEncryptionEnabled should be defined", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.AtRestEncryptionEnabled is undefined", [key]),
 	}
 }

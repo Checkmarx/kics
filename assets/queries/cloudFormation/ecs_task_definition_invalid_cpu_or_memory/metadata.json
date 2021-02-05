@@ -1,8 +1,9 @@
 {
-  "id": "f4c9b5f5-68b8-491f-9e48-4f96644a1d51",
-  "queryName": "ECS Task Definition Invalid CPU or Memory",
-  "severity": "LOW",
-  "category": "Operational",
-  "descriptionText": "In ECS Task Definition of FARGATE launch type if you specify an invalid CPU or Memory value, you will receive an error",
-  "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html"
+	"id": "f4c9b5f5-68b8-491f-9e48-4f96644a1d51",
+	"queryName": "ECS Task Definition Invalid CPU or Memory",
+	"severity": "LOW",
+	"category": "Operational",
+	"descriptionText": "In ECS Task Definition of FARGATE launch type if you specify an invalid CPU or Memory value, you will receive an error",
+	"descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html",
+	"platform": "CloudFormation"
 }

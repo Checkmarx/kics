@@ -1,8 +1,9 @@
 {
-  "id": "0e5872b4-19a0-4165-8b2f-56d9e14b909f",
-  "queryName": "IAM Managed Policy Applied to a User",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Make sure that any managed IAM policies are implemented in a group and not in a user.",
-  "descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html#cfn-iam-managedpolicy-groups"
+	"id": "0e5872b4-19a0-4165-8b2f-56d9e14b909f",
+	"queryName": "IAM Managed Policy Applied to a User",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Make sure that any managed IAM policies are implemented in a group and not in a user.",
+	"descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html#cfn-iam-managedpolicy-groups",
+	"platform": "CloudFormation"
 }

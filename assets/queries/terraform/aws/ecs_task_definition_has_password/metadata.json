@@ -1,8 +1,9 @@
 {
-  "id": "d40210ea-64b9-4cce-a4fb-e8604f3c062c",
-  "queryName": "ECS Task Definition File has Password",
-  "category": "Data Security",
-  "severity": "HIGH",
-  "descriptionText": "ECS Task Definition File must not contain Password",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition"
+	"id": "d40210ea-64b9-4cce-a4fb-e8604f3c062c",
+	"queryName": "ECS Task Definition File has Password",
+	"category": "Data Security",
+	"severity": "HIGH",
+	"descriptionText": "ECS Task Definition File must not contain Password",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition",
+	"platform": "Terraform"
 }

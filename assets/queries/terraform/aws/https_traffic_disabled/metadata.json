@@ -1,8 +1,9 @@
 {
-  "id": "55af1353-2f62-4fa0-a8e1-a210ca2708f5",
-  "queryName": "HTTPS Traffic Disabled",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution"
+	"id": "55af1353-2f62-4fa0-a8e1-a210ca2708f5",
+	"queryName": "HTTPS Traffic Disabled",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
+	"platform": "Terraform"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "a1423864-2fbc-4f46-bfe1-fbbf125c71c9",
-  "queryName": "CodeBuild Not Encrypted",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "CodeBuild Project should be encrypted",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_codebuild_module.html"
+	"id": "a1423864-2fbc-4f46-bfe1-fbbf125c71c9",
+	"queryName": "CodeBuild Not Encrypted",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "CodeBuild Project should be encrypted",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_codebuild_module.html",
+	"platform": "Ansible"
 }

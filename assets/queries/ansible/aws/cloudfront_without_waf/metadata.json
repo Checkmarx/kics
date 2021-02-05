@@ -1,8 +1,9 @@
 {
-  "id": "22c80725-e390-4055-8d14-a872230f6607",
-  "queryName": "Cloudfront Without WAF",
-  "severity": "LOW",
-  "category": "Network Security",
-  "descriptionText": "CloudFront Distribution without WAF enabled",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html"
+	"id": "22c80725-e390-4055-8d14-a872230f6607",
+	"queryName": "Cloudfront Without WAF",
+	"severity": "LOW",
+	"category": "Network Security",
+	"descriptionText": "CloudFront Distribution without WAF enabled",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
+	"platform": "Ansible"
 }

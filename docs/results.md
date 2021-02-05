@@ -9,8 +9,8 @@ KICS results are output in clear and simple JSON format. Example:
 	"queries_failed_to_execute": 0,
 	"queries": [
 		{
-			"query_name": "Container Allow Privileg Escalation Is True",
-			"query_id": "container_allow_privilege_escalation_is_true",
+			"query_name": "Container Allow Privilege Escalation Is True",
+			"query_id": "c878abb4-cca5-4724-92b9-289be68bd47c",
 			"severity": "MEDIUM",
 			"files": [
 				{

@@ -1,8 +1,9 @@
 {
-  "id": "d3499f6d-1651-41bb-a9a7-de925fea487b",
-  "queryName": "Unpinned Package Version in Apk Add",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+	"id": "d3499f6d-1651-41bb-a9a7-de925fea487b",
+	"queryName": "Unpinned Package Version in Apk Add",
+	"severity": "MEDIUM",
+	"category": "Package Management",
+	"descriptionText": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+	"platform": "Dockerfile"
 }

@@ -5,9 +5,9 @@ CxPolicy[result] {
 	resource.Type == "AWS::IAM::Policy"
 	statements := resource.PolicyDocument.Statement
 
-	contains(statements[i].Action[_], "sts:AssumeRole")
+	contains(statements[_].Action[_], "sts:AssumeRole")
 
-	contains(statements[i].Resource, "*")
+	contains(statements[_].Resource, "*")
 
 	result := {
 		"documentId": input.document[i].id,

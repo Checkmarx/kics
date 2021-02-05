@@ -2,26 +2,31 @@
 	{
 		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
 		"severity": "HIGH",
-		"line": 37
+    "line": 37,
+    "fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
 		"severity": "HIGH",
-		"line": 73
+    "line": 22,
+    "fileName": "positive2.yaml"
 	},
 	{
 		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
 		"severity": "HIGH",
-		"line": 149
+    "line": 19,
+    "fileName": "positive3.yaml"
 	},
 	{
 		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
 		"severity": "HIGH",
-		"line": 234
+    "line": 22,
+    "fileName": "positive4.yaml"
 	},
 	{
 		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
 		"severity": "HIGH",
-		"line": 234
+    "line": 22,
+    "fileName": "positive4.yaml"
 	}
 ]

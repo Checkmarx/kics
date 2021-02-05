@@ -1,4 +1,4 @@
-name: goreleaser scheduled
+name: goreleaser-scheduled
 
 on:
   schedule:

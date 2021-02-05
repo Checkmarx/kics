@@ -1,8 +1,9 @@
 {
-  "id": "38c71c00-c177-4cd7-8d36-cd1007cdb190",
-  "queryName": "Vault with disabled Audit",
-  "severity": "HIGH",
-  "category": "Logging",
-  "descriptionText": "Ensure that logging for Azure KeyVault is 'Enabled'",
-  "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/key_vault.html"
+	"id": "38c71c00-c177-4cd7-8d36-cd1007cdb190",
+	"queryName": "Vault with disabled Audit",
+	"severity": "HIGH",
+	"category": "Logging",
+	"descriptionText": "Ensure that logging for Azure KeyVault is 'Enabled'",
+	"descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/key_vault.html",
+	"platform": "Terraform"
 }

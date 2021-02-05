@@ -5,7 +5,7 @@ builds:
     binary: kics
     goos:
       - linux
-      - windows 
+      - windows
     goarch:
       - amd64
 archives:
@@ -19,5 +19,4 @@ archives:
       386: x32
     files:
       - assets/queries
-release:
-  prerelease: auto
+      - assets/libraries

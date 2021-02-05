@@ -1,8 +1,9 @@
 {
-  "id": "8c5f4f1a-4c84-4fbe-9743-d6d72b1ee31a",
-  "queryName": "Cloudfront configuration allow HTTP",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Cloudfront distribution allows HTTP, it should be https-only or redirect-to-https",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#viewer_protocol_policy"
+	"id": "8c5f4f1a-4c84-4fbe-9743-d6d72b1ee31a",
+	"queryName": "Cloudfront configuration allow HTTP",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Cloudfront distribution allows HTTP, it should be https-only or redirect-to-https",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#viewer_protocol_policy",
+	"platform": "Terraform"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "b2fbf1df-76dd-4d78-a6c0-e538f4a9b016",
-  "queryName": "SSH Access Is Not Restricted From The Internet",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block).",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html"
+	"id": "b2fbf1df-76dd-4d78-a6c0-e538f4a9b016",
+	"queryName": "SSH Access Is Not Restricted From The Internet",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block).",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_firewall_module.html",
+	"platform": "Ansible"
 }
