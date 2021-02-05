@@ -3,6 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	password := resource.Properties.LoginProfile.Password
+	is_string(password)
 	count(password) < 14
 
 	result := {
