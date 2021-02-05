@@ -24,13 +24,13 @@ CxPolicy[result] {
 	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["google.cloud.gcp_container_cluster"]
-	clusterName := task.name
 
+	ansLib.checkState(cluster)
 	object.get(cluster.master_auth, "client_certificate_config", "undefined") == "undefined"
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.master_auth", [clusterName]),
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.master_auth", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "google.cloud.gcp_container_cluster.master_auth.client_certificate_config is defined",
 		"keyActualValue": "google.cloud.gcp_container_cluster.master_auth.client_certificate_config is undefined",
@@ -42,13 +42,13 @@ CxPolicy[result] {
 	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["google.cloud.gcp_container_cluster"]
-	clusterName := task.name
 
+	ansLib.checkState(cluster)
 	ansLib.isAnsibleFalse(cluster.master_auth.client_certificate_config.issue_client_certificate)
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.master_auth.client_certificate_config.issue_client_certificate", [clusterName]),
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.master_auth.client_certificate_config.issue_client_certificate", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "google.cloud.gcp_container_cluster.master_auth.password is true",
 		"keyActualValue": "google.cloud.gcp_container_cluster.master_auth.password is false",

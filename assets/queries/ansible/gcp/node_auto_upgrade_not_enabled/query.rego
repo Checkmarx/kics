@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'management' is defined",
-		"keyActualValue": "'management' is undefined",
+		"keyExpectedValue": "{{google.cloud.gcp_container_node_pool}}.management is defined",
+		"keyActualValue": "{{google.cloud.gcp_container_node_pool}}.management is undefined",
 	}
 }
 
@@ -32,8 +32,8 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}.management", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'management.auto_upgrade' is defined",
-		"keyActualValue": "'management.auto_upgrade' is undefined",
+		"keyExpectedValue": "{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade is defined",
+		"keyActualValue": "{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade is undefined",
 	}
 }
 
@@ -50,7 +50,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'management.auto_upgrade' is true",
-		"keyActualValue": "'management.auto_upgrade' is false",
+		"keyExpectedValue": "{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade is true",
+		"keyActualValue": "{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade is false",
 	}
 }

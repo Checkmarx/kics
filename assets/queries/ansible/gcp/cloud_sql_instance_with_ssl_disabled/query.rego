@@ -24,6 +24,7 @@ CxPolicy[result] {
 	task := ansLib.getTasks(document)[t]
 	sql_instance := task["google.cloud.gcp_sql_instance"]
 
+	ansLib.checkState(sql_instance)
 	not ansLib.isAnsibleTrue(sql_instance.settings.ip_configuration.require_ssl)
 
 	result := {

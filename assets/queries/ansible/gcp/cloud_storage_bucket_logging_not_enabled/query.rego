@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_storage_bucket}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'logging' is defined",
-		"keyActualValue": "'logging' is undefined",
+		"keyExpectedValue": "{{google.cloud.gcp_storage_bucket}}.logging is defined",
+		"keyActualValue": "{{google.cloud.gcp_storage_bucket}}.logging is undefined",
 	}
 }
