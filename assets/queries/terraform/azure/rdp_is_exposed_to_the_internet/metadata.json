@@ -1,8 +1,9 @@
 {
-  "id": "efbf6449-5ec5-4cfe-8f15-acc51e0d787c",
-  "queryName": "RDP Is Exposed To The Internet",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "Port 3389 (Remote Desktop) is exposed to the internet",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule"
+	"id": "efbf6449-5ec5-4cfe-8f15-acc51e0d787c",
+	"queryName": "RDP Is Exposed To The Internet",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "Port 3389 (Remote Desktop) is exposed to the internet",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
+	"platform": "Terraform"
 }

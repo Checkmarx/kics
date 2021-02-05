@@ -1,8 +1,9 @@
 {
-  "id": "5b9d237a-57d5-4177-be0e-71434b0fef47",
-  "queryName": "KMS Key With Vulnerable Policy",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Checks if the policy is vulnerable and needs updating.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_kms_module.html"
+	"id": "5b9d237a-57d5-4177-be0e-71434b0fef47",
+	"queryName": "KMS Key With Vulnerable Policy",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Checks if the policy is vulnerable and needs updating.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_kms_module.html",
+	"platform": "Ansible"
 }

@@ -1,8 +1,9 @@
 {
-    "id": "8cf4671a-cf3d-46fc-8389-21e7405063a2",
-    "queryName": "StatefulSet Requests Storage",
-    "severity": "LOW",
-    "category": "Filesystem",
-    "descriptionText": "A StatefulSet requests volume storage.",
-    "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
+	"id": "8cf4671a-cf3d-46fc-8389-21e7405063a2",
+	"queryName": "StatefulSet Requests Storage",
+	"severity": "LOW",
+	"category": "Filesystem",
+	"descriptionText": "A StatefulSet requests volume storage.",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
+	"platform": "Kubernetes"
 }

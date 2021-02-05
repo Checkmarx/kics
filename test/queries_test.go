@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"io/ioutil"
+	"path/filepath"
 	"sort"
 	"strings"
 	"testing"
@@ -20,6 +21,7 @@ import (
 )
 
 func BenchmarkQueries(b *testing.B) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(b)
@@ -32,6 +34,7 @@ func BenchmarkQueries(b *testing.B) {
 }
 
 func TestQueries(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	if testing.Short() {
@@ -47,20 +50,20 @@ func TestQueries(t *testing.T) {
 func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, "../assets/queries/")
 	t.Run(name+"_positive", func(t *testing.T) {
-		testQuery(t, entry, entry.PositiveFile(), getExpectedVulnerabilities(t, entry))
+		testQuery(t, entry, entry.PositiveFiles(t), getExpectedVulnerabilities(t, entry))
 	})
 	t.Run(name+"_negative", func(t *testing.T) {
-		testQuery(t, entry, entry.NegativeFile(), []model.Vulnerability{})
+		testQuery(t, entry, entry.NegativeFiles(t), []model.Vulnerability{})
 	})
 }
 
 func benchmarkPositiveandNegativeQueries(b *testing.B, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, "../assets/queries/")
 	b.Run(name+"_positive", func(b *testing.B) {
-		testQuery(b, entry, entry.PositiveFile(), getExpectedVulnerabilities(b, entry))
+		testQuery(b, entry, entry.PositiveFiles(b), getExpectedVulnerabilities(b, entry))
 	})
 	b.Run(name+"_negative", func(b *testing.B) {
-		testQuery(b, entry, entry.NegativeFile(), []model.Vulnerability{})
+		testQuery(b, entry, entry.NegativeFiles(b), []model.Vulnerability{})
 	})
 }
 
@@ -75,7 +78,7 @@ func getExpectedVulnerabilities(tb testing.TB, entry queryEntry) []model.Vulnera
 	return expectedVulnerabilities
 }
 
-func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnerabilities []model.Vulnerability) {
+func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVulnerabilities []model.Vulnerability) {
 	ctrl := gomock.NewController(tb)
 	defer ctrl.Finish()
 
@@ -108,16 +111,22 @@ func testQuery(tb testing.TB, entry queryEntry, filePath string, expectedVulnera
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	vulnerabilities, err := inspector.Inspect(ctx, scanID, getParsedFile(tb, filePath))
+	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true)
 	require.Nil(tb, err)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities)
 }
 
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability) {
 	sort.Slice(expected, func(i, j int) bool {
+		if expected[i].FileName != "" {
+			return strings.Compare(expected[i].FileName, expected[j].FileName) == -1 && expected[i].Line < expected[j].Line
+		}
 		return expected[i].Line < expected[j].Line
 	})
 	sort.Slice(actual, func(i, j int) bool {
+		if expected[i].FileName != "" {
+			return strings.Compare(filepath.Base(expected[i].FileName), filepath.Base(expected[j].FileName)) == -1 && actual[i].Line < actual[j].Line
+		}
 		return actual[i].Line < actual[j].Line
 	})
 
@@ -130,6 +139,9 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 
 		expectedItem := expected[i]
 		actualItem := actual[i]
+		if expectedItem.FileName != "" {
+			require.Equal(tb, expectedItem.FileName, filepath.Base(actualItem.FileName), "Incorrect file name")
+		}
 		require.Equal(tb, scanID, actualItem.ScanID)
 		require.Equal(tb, expectedItem.Line, actualItem.Line, "Not corrected detected line")
 		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity")

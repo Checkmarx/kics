@@ -1,8 +1,9 @@
 {
-  "id": "02474449-71aa-40a1-87ae-e14497747b00",
-  "queryName": "Cloud SQL Instance With SSL Disabled",
-  "severity": "HIGH",
-  "category": "Encryption & Key Management",
-  "descriptionText": "Cloud SQL Database Instance with SSL disabled for incoming connections",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl"
+	"id": "02474449-71aa-40a1-87ae-e14497747b00",
+	"queryName": "Cloud SQL Instance With SSL Disabled",
+	"severity": "HIGH",
+	"category": "Encryption & Key Management",
+	"descriptionText": "Cloud SQL Database Instance with SSL disabled for incoming connections",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl",
+	"platform": "Terraform"
 }

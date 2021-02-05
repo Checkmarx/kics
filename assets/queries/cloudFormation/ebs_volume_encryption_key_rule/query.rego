@@ -11,9 +11,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.properties", [key]),
+		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.properties.KmsKeyId should be defined", [key]),
-		"keyActualValue": sprintf("Resources.%s.properties.KmsKeyId is undefined", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.KmsKeyId should be defined", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.KmsKeyId is undefined", [key]),
 	}
 }

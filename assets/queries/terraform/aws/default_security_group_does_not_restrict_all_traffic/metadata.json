@@ -1,8 +1,9 @@
 {
-  "id": "46883ce1-dc3e-4b17-9195-c6a601624c73",
-  "queryName": "Default Security Group Does Not Restrict All Traffic",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "Check if default security group does not restrict all inbound and outbound traffic.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group"
+	"id": "46883ce1-dc3e-4b17-9195-c6a601624c73",
+	"queryName": "Default Security Group Does Not Restrict All Traffic",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "Check if default security group does not restrict all inbound and outbound traffic.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group",
+	"platform": "Terraform"
 }

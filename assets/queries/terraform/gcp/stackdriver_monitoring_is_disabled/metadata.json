@@ -1,8 +1,9 @@
 {
-  "id": "30e8dfd2-3591-4d19-8d11-79e93106c93d",
-  "queryName": "Stackdriver Monitoring is Disabled",
-  "severity": "HIGH",
-  "category": "Monitoring",
-  "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must be defined and different than 'none'",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster"
+	"id": "30e8dfd2-3591-4d19-8d11-79e93106c93d",
+	"queryName": "Stackdriver Monitoring is Disabled",
+	"severity": "HIGH",
+	"category": "Monitoring",
+	"descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must be defined and different than 'none'",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+	"platform": "Terraform"
 }
