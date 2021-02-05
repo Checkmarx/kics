@@ -1,8 +1,9 @@
 {
-  "id": "507df964-ad97-4035-ab14-94a82eabdfdd",
-  "queryName": "Cloud Storage Bucket Logging Not Enabled",
-  "severity": "HIGH",
-  "category": "Logging",
-  "descriptionText": "Cloud storage bucket with logging not enabled",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging"
+	"id": "507df964-ad97-4035-ab14-94a82eabdfdd",
+	"queryName": "Cloud Storage Bucket Logging Not Enabled",
+	"severity": "HIGH",
+	"category": "Logging",
+	"descriptionText": "Cloud storage bucket with logging not enabled",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging",
+	"platform": "Ansible"
 }

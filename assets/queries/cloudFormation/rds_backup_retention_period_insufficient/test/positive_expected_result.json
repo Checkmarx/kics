@@ -1,22 +1,22 @@
 [
-	{
-		"queryName": "RDS Backup Retention Period Insufficient",
-		"severity": "MEDIUM",
-		"line": 53
-	},
-	{
-		"queryName": "RDS Backup Retention Period Insufficient",
-		"severity": "MEDIUM",
-		"line": 146
-	},
-	{
-		"queryName": "RDS Backup Retention Period Insufficient",
-		"severity": "MEDIUM",
-		"line": 171
-	},
-	{
-		"queryName": "RDS Backup Retention Period Insufficient",
-		"severity": "MEDIUM",
-		"line": 231
-	}
+  {
+    "queryName": "RDS Backup Retention Period Insufficient",
+    "severity": "MEDIUM",
+    "line": 53
+  },
+  {
+    "queryName": "RDS Backup Retention Period Insufficient",
+    "severity": "MEDIUM",
+    "line": 146
+  },
+  {
+    "queryName": "RDS Backup Retention Period Insufficient",
+    "severity": "MEDIUM",
+    "line": 173
+  },
+  {
+    "queryName": "RDS Backup Retention Period Insufficient",
+    "severity": "MEDIUM",
+    "line": 233
+  }
 ]

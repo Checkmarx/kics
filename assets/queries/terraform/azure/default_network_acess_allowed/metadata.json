@@ -1,8 +1,9 @@
 {
-  "id": "9be09caf-2ba4-4fa9-9787-a670dc32c639",
-  "queryName": "Default Network Access is Allowed",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules"
+	"id": "9be09caf-2ba4-4fa9-9787-a670dc32c639",
+	"queryName": "Default Network Access is Allowed",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules",
+	"platform": "Terraform"
 }

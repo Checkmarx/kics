@@ -1,8 +1,9 @@
 {
-  "id": "0632d0db-9190-450a-8bb3-c283bffea445",
-  "queryName": "Redis Publicly Accessible",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html#parameter-start_ip_address"
+	"id": "0632d0db-9190-450a-8bb3-c283bffea445",
+	"queryName": "Redis Publicly Accessible",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html#parameter-start_ip_address",
+	"platform": "Ansible"
 }

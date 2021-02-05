@@ -1,8 +1,9 @@
 {
-  "id": "86b0efa7-4901-4edd-a37a-c034bec6645a",
-  "queryName": "SQS Queue Exposed",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Checks if the SQS Queue is exposed",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#parameter-policy"
+	"id": "86b0efa7-4901-4edd-a37a-c034bec6645a",
+	"queryName": "SQS Queue Exposed",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Checks if the SQS Queue is exposed",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#parameter-policy",
+	"platform": "Ansible"
 }

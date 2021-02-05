@@ -1,8 +1,9 @@
 {
-  "id": "0437633b-daa6-4bbc-8526-c0d2443b946e",
-  "queryName": "SSL Enforce Is Disabled",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server"
+	"id": "0437633b-daa6-4bbc-8526-c0d2443b946e",
+	"queryName": "SSL Enforce Is Disabled",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server",
+	"platform": "Terraform"
 }

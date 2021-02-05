@@ -3,28 +3,28 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Creates RDS Cluster
 Parameters:
   PMDatabaseEngine:
-    Type: "String"
+    Type: String
     Default: "MySQL"
     Description: "Database engine, Aurora, MySQL or PostgreSQL"
   PMRDSSG:
     Description: "Select the Security Group to use for the ELB"
     Type: "AWS::EC2::SecurityGroup::Id"
   PMDatabaseEngineVer:
-    Type: "String"
+    Type: String
     Description: "Database engine ver"
   PMDatabaseUsername:
     NoEcho: 'true'
-    Type: "String"
+    Type: String
     Description: "Database admin account name"
   PMDatabasePassword:
     NoEcho: 'true'
-    Type: "String"
+    Type: String
     Description: "Database admin account password"
   PMDBClusterParameterGroupName:
     Description: "Db Parameter Groupname"
-    Type: "String"
+    Type: String
   PMDatabaseInstanceClass:
-    Type: "String"
+    Type: String
     Default: "db.t2.micro"
     Description: "Database instance class"
   PMPrivateSubnets:
@@ -33,10 +33,10 @@ Parameters:
   PMServerEnv:
     Description: "Server Environment name."
     ConstraintDescription: "Choose an Environment from the drop down"
-    Type: "String"
+    Type: String
   PMDBClusterIdentifier:
     Description: "Db Cluster Name."
-    Type: "String"
+    Type: String
 
 Resources:
   DatabaseCluster:
@@ -150,8 +150,8 @@ Outputs:
     Value: !Ref MyDBSmall
 ---
 AWSTemplateFormatVersion: "2010-09-09"
-Parameters: 
-  DBUser: 
+Parameters:
+  DBUser:
     NoEcho: true
     Description: The database admin account username
     Type: String
@@ -159,7 +159,7 @@ Parameters:
     MaxLength: 16
     AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
     ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
-  DBPassword: 
+  DBPassword:
     NoEcho: true
     Description: The database admin account password
     Type: String
@@ -167,10 +167,10 @@ Parameters:
     MaxLength: 41
     AllowedPattern: "[a-zA-Z0-9]*"
     ConstraintDescription: must contain only alphanumeric characters.
-Resources: 
-  MyDB: 
+Resources:
+  MyDB:
     Type: "AWS::RDS::DBInstance"
-    Properties: 
+    Properties:
       AllocatedStorage: '5'
       DBInstanceClass: db.t2.small
       Engine: MySQL
@@ -178,12 +178,12 @@ Resources:
       MasterUsername: !Ref DBUser
       MasterUserPassword: !Ref DBPassword
       DBParameterGroupName: !Ref MyRDSParamGroup
-  MyRDSParamGroup: 
+  MyRDSParamGroup:
     Type: "AWS::RDS::DBParameterGroup"
-    Properties: 
+    Properties:
       Family: MySQL5.5
       Description: CloudFormation Sample Database Parameter Group
-      Parameters: 
+      Parameters:
         autocommit: '1'
         general_log: '1'
         old_passwords: '0'
@@ -192,28 +192,28 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Creates RDS Cluster
 Parameters:
   PMDatabaseEngine:
-    Type: "String"
+    Type: String
     Default: "MySQL"
     Description: "Database engine, Aurora, MySQL or PostgreSQL"
   PMRDSSG:
     Description: "Select the Security Group to use for the ELB"
     Type: "AWS::EC2::SecurityGroup::Id"
   PMDatabaseEngineVer:
-    Type: "String"
+    Type: String
     Description: "Database engine ver"
   PMDatabaseUsername:
     NoEcho: 'true'
-    Type: "String"
+    Type: String
     Description: "Database admin account name"
   PMDatabasePassword:
     NoEcho: 'true'
-    Type: "String"
+    Type: String
     Description: "Database admin account password"
   PMDBClusterParameterGroupName:
     Description: "Db Parameter Groupname"
-    Type: "String"
+    Type: String
   PMDatabaseInstanceClass:
-    Type: "String"
+    Type: String
     Default: "db.t2.micro"
     Description: "Database instance class"
   PMPrivateSubnets:
@@ -222,10 +222,10 @@ Parameters:
   PMServerEnv:
     Description: "Server Environment name."
     ConstraintDescription: "Choose an Environment from the drop down"
-    Type: "String"
+    Type: String
   PMDBClusterIdentifier:
     Description: "Db Cluster Name."
-    Type: "String"
+    Type: String
 
 Resources:
   BadDatabaseCluster:

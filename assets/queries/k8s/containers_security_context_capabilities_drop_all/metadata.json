@@ -1,8 +1,9 @@
 {
-  "id": "8e6f0117-261a-4631-803f-69388ae04140",
-  "queryName": "All Not Listed as Drop Capability for Containers",
-  "severity": "MEDIUM",
-  "category": "Privileges",
-  "descriptionText": "Sees if Kubernetes Drop All is on to ensure containers security context",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+	"id": "8e6f0117-261a-4631-803f-69388ae04140",
+	"queryName": "All Not Listed as Drop Capability for Containers",
+	"severity": "MEDIUM",
+	"category": "Privileges",
+	"descriptionText": "Sees if Kubernetes Drop All is on to ensure containers security context",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+	"platform": "Kubernetes"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "7081f85c-b94d-40fd-8b45-a4f1cac75e46",
-  "queryName": "IAM Access Key Is Exposed",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Check if IAM Access Key is active for some user besides 'root'",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key"
+	"id": "7081f85c-b94d-40fd-8b45-a4f1cac75e46",
+	"queryName": "IAM Access Key Is Exposed",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Check if IAM Access Key is active for some user besides 'root'",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key",
+	"platform": "Terraform"
 }

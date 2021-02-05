@@ -1,8 +1,9 @@
 {
-  "id": "01986452-bdd8-4aaa-b5df-d6bf61d616ff",
-  "queryName": "ECS Service Admin Role Present",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "ECS Services must not have Admin roles, which means the attribute 'role' must not be an admin role",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html"
+	"id": "01986452-bdd8-4aaa-b5df-d6bf61d616ff",
+	"queryName": "ECS Service Admin Role Present",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "ECS Services must not have Admin roles, which means the attribute 'role' must not be an admin role",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
+	"platform": "CloudFormation"
 }
