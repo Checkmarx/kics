@@ -1,4 +1,6 @@
-resource "aws_security_group" "tcp_positive" {
+resource "aws_security_group" "rdp_positive_tcp_1" {
+  name        = "rdp_positive_tcp_1"
+  description = "Gets the remote desktop port open with the tcp protocol"
 
   ingress {
     description = "Remote desktop port open"
@@ -9,13 +11,23 @@ resource "aws_security_group" "tcp_positive" {
   }
 }
 
-resource "aws_security_group" "udp_positive" {
+resource "aws_security_group" "rdp_positive_tcp_2" {
+  name        = "rdp_positive_tcp_2"
+  description = "Gets the remote desktop port open with the tcp protocol"
 
   ingress {
     description = "Remote desktop port open"
     from_port   = 3381
     to_port     = 3445
-    protocol    = "udp"
+    protocol    = "tcp"
+    cidr_blocks = ["1.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Remote desktop port open"
+    from_port   = 3000
+    to_port     = 4000
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }

@@ -1,6 +1,6 @@
 resource "aws_security_group" "negative_http_1" {
   name        = "negative_http"
-  description = "Doesn't get the htttp port open"
+  description = "Doesn't get the HTTP port open"
 }
 
 resource "aws_security_group" "negative_http_2" {
