@@ -17,3 +17,6 @@ spec:
       target:
         type: Value
         value: 10k
+      describedObject:
+        apiVersion: networking.k8s.io/v1beta1
+        kind: Ingress
