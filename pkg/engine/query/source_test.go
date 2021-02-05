@@ -262,7 +262,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"id":              "<ID>",
 				"queryName":       "<QUERY_NAME>",
 				"severity":        "HIGH",
-				"platform":        "template",
+				"platform":        "<PLATFORM>",
 			},
 		},
 	}

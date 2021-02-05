@@ -350,11 +350,13 @@ func TestNewInspector(t *testing.T) { // nolint
 
 type mockSource struct {
 	Source string
+	Types  []string
 }
 
 func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
 	sources := &query.FilesystemSource{
 		Source: m.Source,
+		Types:  []string{""},
 	}
 	return sources.GetQueries()
 }
