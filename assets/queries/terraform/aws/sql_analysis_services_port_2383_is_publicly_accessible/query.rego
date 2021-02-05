@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_security_group[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s] doesn't openSQL Analysis Services Port 2383", [name]),
-		"keyActualValue": sprintf("aws_security_group[%s] open SQL Analysis Services Port 2383", [name]),
+		"keyActualValue": sprintf("aws_security_group[%s] opens SQL Analysis Services Port 2383", [name]),
 	}
 }
 
