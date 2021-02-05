@@ -17,9 +17,9 @@ jobs:
         run: |
           pip install cfn-lint
       - name: Validate cloudformation template syntax
-        run: bash .github/validators/validate-syntax.py
+        run: python3 .github/validators/validate-syntax.py
         env:
           LINTER_PATH: cfn-lint
           FILES_GLOB: "assets/queries/cloudFormation/**/test/*.yaml"
-          EXTRA_ARGS: "--debug"
-          SKIP_LIST_PATH: cfn-skip-list
+          EXTRA_ARGS: "--info"
+          SKIP_LIST_PATH: ".github/validators/cfn-skip-list"
