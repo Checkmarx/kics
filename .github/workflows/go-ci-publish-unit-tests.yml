@@ -26,20 +26,20 @@ jobs:
           commit: ${{ github.event.workflow_run.head_sha }}
       - name: Publish Linux Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
+        if: always()
         with:
           comment_title: Linux - Unit Test Statistics
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          hide_comments: orphaned commits
           commit: ${{ github.event.workflow_run.head_sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"
           files: "test-report-ubuntu-latest.xml"
       - name: Publish Windows Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
+        if: always()
         with:
           comment_title: Windows - Unit Test Statistics
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          hide_comments: orphaned commits
           commit: ${{ github.event.workflow_run.head_sha }}
           check_run_annotations: all tests, skipped tests
           check_run_annotations_branch: "*"

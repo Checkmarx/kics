@@ -1,8 +1,9 @@
 {
-  "id": "1a427b25-2e9e-4298-9530-0499a55e736b",
-  "queryName": "AWS Security Group Ingress With All Protocols",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "AWS Security Group Ingress should not specify all protocols to prevent allow traffic on all ports",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html"
+	"id": "1a427b25-2e9e-4298-9530-0499a55e736b",
+	"queryName": "AWS Security Group Ingress With All Protocols",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "AWS Security Group Ingress should not specify all protocols to prevent allow traffic on all ports",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
+	"platform": "CloudFormation"
 }

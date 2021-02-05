@@ -1,8 +1,9 @@
 {
-  "id": "0956aedf-6a7a-478b-ab56-63e2b19923ad",
-  "queryName": "AWS DB Security Group with Public Scope",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "AWS DB Security Group's CIDR must be different than 0.0.0.0/0",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_security_groups"
+	"id": "0956aedf-6a7a-478b-ab56-63e2b19923ad",
+	"queryName": "AWS DB Security Group with Public Scope",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "AWS DB Security Group's CIDR must be different than 0.0.0.0/0",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_security_groups",
+	"platform": "Ansible"
 }

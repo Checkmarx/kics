@@ -1,8 +1,9 @@
 {
-  "id": "be5b230d-4371-4a28-a441-85dc760e2aa3",
-  "queryName": "IoT Policy Allows Wildcard Resource",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "IoT Policy should not allow Resource to be set as *",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html"
+	"id": "be5b230d-4371-4a28-a441-85dc760e2aa3",
+	"queryName": "IoT Policy Allows Wildcard Resource",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IoT Policy should not allow Resource to be set as *",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html",
+	"platform": "CloudFormation"
 }

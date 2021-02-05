@@ -1,8 +1,9 @@
 {
-  "id": "06adef8c-c284-4de7-aad2-af43b07a8ca1",
-  "queryName": "IAM User LoginProfile Password Is In Plaintext",
-  "severity": "MEDIUM",
-  "category": "Identity & Access Management",
-  "descriptionText": "IAM User LoginProfile Password must not be a plaintext string",
-  "descriptionUrl": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html"
+	"id": "06adef8c-c284-4de7-aad2-af43b07a8ca1",
+	"queryName": "IAM User LoginProfile Password Is In Plaintext",
+	"severity": "MEDIUM",
+	"category": "Identity & Access Management",
+	"descriptionText": "IAM User LoginProfile Password must not be a plaintext string",
+	"descriptionUrl": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html",
+	"platform": "CloudFormation"
 }

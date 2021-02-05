@@ -1,8 +1,9 @@
 {
-  "id": "af173fde-95ea-4584-b904-bb3923ac4bda",
-  "queryName": "Redshift Publicly Accessible",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Check if 'publicly_accessible' field is true or undefined (default is true)",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster"
+	"id": "af173fde-95ea-4584-b904-bb3923ac4bda",
+	"queryName": "Redshift Publicly Accessible",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Check if 'publicly_accessible' field is true or undefined (default is true)",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster",
+	"platform": "Terraform"
 }

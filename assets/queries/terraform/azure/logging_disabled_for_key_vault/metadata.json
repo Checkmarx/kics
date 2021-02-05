@@ -1,8 +1,9 @@
 {
-  "id": "bb2d6cbc-b3af-4da7-9b1c-d91652dd9ead",
-  "queryName": "Logging Disabled For Key Vault",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Loggign for Azure Key Vault is disabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting"
+	"id": "bb2d6cbc-b3af-4da7-9b1c-d91652dd9ead",
+	"queryName": "Logging Disabled For Key Vault",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Loggign for Azure Key Vault is disabled",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting",
+	"platform": "Terraform"
 }

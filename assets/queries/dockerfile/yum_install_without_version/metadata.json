@@ -1,8 +1,9 @@
 {
-  "id": "6452c424-1d92-4deb-bb18-a03e95d579c4",
-  "queryName": "Yum install Without Version",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "Not specifying the package version can cause failures due to unanticipated changes in required packages",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+	"id": "6452c424-1d92-4deb-bb18-a03e95d579c4",
+	"queryName": "Yum install Without Version",
+	"severity": "MEDIUM",
+	"category": "Package Management",
+	"descriptionText": "Not specifying the package version can cause failures due to unanticipated changes in required packages",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+	"platform": "Dockerfile"
 }

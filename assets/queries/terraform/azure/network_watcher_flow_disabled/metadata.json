@@ -1,8 +1,9 @@
 {
-  "id": "b90842e5-6779-44d4-9760-972f4c03ba1c",
-  "queryName": "Network Watcher Flow Disabled",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Check if enable field in the resource azurerm_network_watcher_flow_log is false.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log"
+	"id": "b90842e5-6779-44d4-9760-972f4c03ba1c",
+	"queryName": "Network Watcher Flow Disabled",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Check if enable field in the resource azurerm_network_watcher_flow_log is false.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log",
+	"platform": "Terraform"
 }

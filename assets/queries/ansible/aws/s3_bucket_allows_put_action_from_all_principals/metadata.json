@@ -1,8 +1,9 @@
 {
-  "id": "a0f1bfe0-741e-473f-b3b2-13e66f856fab",
-  "queryName": "S3 Bucket Allows Put Action From All Principals",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "S3 Buckets must not allow Put Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html"
+	"id": "a0f1bfe0-741e-473f-b3b2-13e66f856fab",
+	"queryName": "S3 Bucket Allows Put Action From All Principals",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "S3 Buckets must not allow Put Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html",
+	"platform": "Ansible"
 }

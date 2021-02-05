@@ -1,8 +1,9 @@
 {
-  "id": "704dadd3-54fc-48ac-b6a0-02f170011473",
-  "queryName": "AWS GuardDuty Detector",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Make sure that Amazon GuardDuty is Enabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector#example-usage"
+	"id": "704dadd3-54fc-48ac-b6a0-02f170011473",
+	"queryName": "AWS GuardDuty Detector",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "Make sure that Amazon GuardDuty is Enabled",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector#example-usage",
+	"platform": "Terraform"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "c2a3efb6-8a58-481c-82f2-bfddf34bb4b7",
-  "queryName": "CosmosDB Account Ip Range Filter Not Setted",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "The Ip Range Must Contain Ips",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter"
+	"id": "c2a3efb6-8a58-481c-82f2-bfddf34bb4b7",
+	"queryName": "CosmosDB Account Ip Range Filter Not Setted",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "The Ip Range Must Contain Ips",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter",
+	"platform": "Terraform"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "a7b520bb-2509-4fb0-be05-bc38f54c7a4c",
-  "queryName": "Cloud MYSQL Instance With Local Infile On",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "GCP MYSQL Instance should not have Local Infile On",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags"
+	"id": "a7b520bb-2509-4fb0-be05-bc38f54c7a4c",
+	"queryName": "Cloud MYSQL Instance With Local Infile On",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "GCP MYSQL Instance should not have Local Infile On",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
+	"platform": "Ansible"
 }

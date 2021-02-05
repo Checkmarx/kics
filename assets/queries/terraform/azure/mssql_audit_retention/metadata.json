@@ -1,8 +1,9 @@
 {
-  "id": "9c301481-e6ec-44f7-8a49-8ec63e2969ea",
-  "queryName": "MSSQL Audit Retention",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Make sure that for MSSQL Server, the Auditing Retention is greater than 90 days",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server"
+	"id": "9c301481-e6ec-44f7-8a49-8ec63e2969ea",
+	"queryName": "MSSQL Audit Retention",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "Make sure that for MSSQL Server, the Auditing Retention is greater than 90 days",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server",
+	"platform": "Terraform"
 }
