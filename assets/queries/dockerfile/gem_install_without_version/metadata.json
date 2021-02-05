@@ -1,8 +1,9 @@
 {
-  "id": "22cd11f7-9c6c-4f6e-84c0-02058120b341",
-  "queryName": "Gem Install Without Version",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+	"id": "22cd11f7-9c6c-4f6e-84c0-02058120b341",
+	"queryName": "Gem Install Without Version",
+	"severity": "MEDIUM",
+	"category": "Package Management",
+	"descriptionText": "Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>'",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+	"platform": "Dockerfile"
 }

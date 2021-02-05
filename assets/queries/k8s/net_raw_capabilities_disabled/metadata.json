@@ -1,8 +1,9 @@
 {
-  "id": "2270987f-bb51-479f-b8be-3ca73e5ad648",
-  "queryName": "NET_RAW Capabilities Disabled for PodSecurityPolicy",
-  "severity": "MEDIUM",
-  "category": "Privileges",
-  "descriptionText": "Containers need to have NET_RAW or All as drop capabilities",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+	"id": "2270987f-bb51-479f-b8be-3ca73e5ad648",
+	"queryName": "NET_RAW Capabilities Disabled for PodSecurityPolicy",
+	"severity": "MEDIUM",
+	"category": "Privileges",
+	"descriptionText": "Containers need to have NET_RAW or All as drop capabilities",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+	"platform": "Kubernetes"
 }

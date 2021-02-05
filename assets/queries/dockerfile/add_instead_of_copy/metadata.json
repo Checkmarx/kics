@@ -5,5 +5,5 @@
   "category": "Image",
   "descriptionText": "Should use COPY instead of ADD unless, running a tar file",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#add",
-  "platform": "dockerfile"
+  "platform": "Dockerfile"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "a4966c4f-9141-48b8-a564-ffe9959945bc",
-  "queryName": "S3 Bucket With All Permissions",
-  "severity": "LOW",
-  "category": "Data Security",
-  "descriptionText": "S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+	"id": "a4966c4f-9141-48b8-a564-ffe9959945bc",
+	"queryName": "S3 Bucket With All Permissions",
+	"severity": "LOW",
+	"category": "Data Security",
+	"descriptionText": "S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
+	"platform": "Terraform"
 }

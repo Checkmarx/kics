@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -26,6 +27,19 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+)
+
+var (
+	path        string
+	queryPath   string
+	outputPath  string
+	payloadPath string
+	excludePath []string
+	cfgFile     string
+	verbose     bool
+	logFile     bool
+	noProgress  bool
+	types       []string
 )
 
 var scanCmd = &cobra.Command{
@@ -79,12 +93,26 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 func initScanCmd() {
 	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to scan")
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
-	scanCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
+	scanCmd.Flags().StringVarP(
+		&queryPath,
+		"queries-path",
+		"q",
+		"./assets/queries",
+		"path to directory with queries (default ./assets/queries)",
+	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
+	scanCmd.Flags().StringSliceVarP(
+		&excludePath,
+		"exclude-paths",
+		"e",
+		[]string{},
+		"exclude paths or files from scan\nThe arg should be quoted and uses comma as separator\nexample: './shouldNotScan/*,somefile.txt'",
+	)
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
+	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -93,6 +121,7 @@ func initScanCmd() {
 }
 
 func setupLogs() error {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
 
@@ -105,7 +134,7 @@ func setupLogs() error {
 		if err != nil {
 			return err
 		}
-		fileLogger = customConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
+		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
 	}
 
 	mw := io.MultiWriter(consoleLogger, fileLogger)
@@ -143,12 +172,16 @@ func scan() error {
 		return err
 	}
 
-	var excludeFiles []string
+	var excludePaths []string
 	if payloadPath != "" {
-		excludeFiles = append(excludeFiles, payloadPath)
+		excludePaths = append(excludePaths, payloadPath)
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
+	if len(excludePath) > 0 {
+		excludePaths = append(excludePaths, excludePath...)
+	}
+
+	filesSource, err := source.NewFileSystemSourceProvider(path, excludePaths)
 	if err != nil {
 		return err
 	}
@@ -169,7 +202,7 @@ func scan() error {
 		Tracker:        t,
 	}
 
-	if scanErr := service.StartScan(ctx, scanID); scanErr != nil {
+	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
 		return scanErr
 	}
 
@@ -203,7 +236,7 @@ func scan() error {
 		return err
 	}
 
-	if err := printResult(&summary, inspector.GetFailedQueries()); err != nil {
+	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries()); err != nil {
 		return err
 	}
 
@@ -220,7 +253,7 @@ func scan() error {
 
 func printJSON(path string, body interface{}) error {
 	if path != "" {
-		return printToJSONFile(path, body)
+		return consoleHelpers.PrintToJSONFile(path, body)
 	}
 	return nil
 }

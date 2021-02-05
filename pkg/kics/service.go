@@ -54,7 +54,7 @@ type Service struct {
 }
 
 // StartScan executes scan over the context, using the scanID as reference
-func (s *Service) StartScan(ctx context.Context, scanID string) error {
+func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool) error {
 	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
 		ctx,
@@ -98,7 +98,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files)
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files, hideProgress)
 	if err != nil {
 		return errors.Wrap(err, "failed to inspect files")
 	}

@@ -10,17 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	path        string
-	queryPath   string
-	outputPath  string
-	payloadPath string
-	verbose     bool
-	logFile     bool
-	types       []string
-	cfgFile     string
-)
-
 var ctx = context.Background()
 
 const (

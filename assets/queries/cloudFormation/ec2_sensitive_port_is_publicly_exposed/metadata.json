@@ -1,8 +1,9 @@
 {
-  "id": "494b03d3-bf40-4464-8524-7c56ad0700ed",
-  "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "The EC2 instance has a sensitive port connection exposed to the entire network",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html"
+	"id": "494b03d3-bf40-4464-8524-7c56ad0700ed",
+	"queryName": "EC2 Sensitive Port Is Publicly Exposed",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "The EC2 instance has a sensitive port connection exposed to the entire network",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
+	"platform": "CloudFormation"
 }

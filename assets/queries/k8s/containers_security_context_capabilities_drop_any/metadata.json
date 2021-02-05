@@ -1,8 +1,9 @@
 {
-  "id": "268ca686-7fb7-4ae9-b129-955a2a89064e",
-  "queryName": "No Drop Capabilities for Containers",
-  "severity": "LOW",
-  "category": "Privileges",
-  "descriptionText": "Sees if Kubernetes Drop Capabilities exists to ensure containers security context",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+	"id": "268ca686-7fb7-4ae9-b129-955a2a89064e",
+	"queryName": "No Drop Capabilities for Containers",
+	"severity": "LOW",
+	"category": "Privileges",
+	"descriptionText": "Sees if Kubernetes Drop Capabilities exists to ensure containers security context",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+	"platform": "Kubernetes"
 }

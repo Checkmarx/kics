@@ -1,8 +1,9 @@
 {
-  "id": "68a51e22-ae5a-4d48-8e87-b01a323605c9",
-  "queryName": "COPY '--from' Without FROM Alias Defined Previously",
-  "severity": "MEDIUM",
-  "category": "Multi-stage",
-  "descriptionText": "COPY command with the flag '--from' should mention a previously defined FROM alias",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/"
+	"id": "68a51e22-ae5a-4d48-8e87-b01a323605c9",
+	"queryName": "COPY '--from' Without FROM Alias Defined Previously",
+	"severity": "MEDIUM",
+	"category": "Multi-stage",
+	"descriptionText": "COPY command with the flag '--from' should mention a previously defined FROM alias",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/",
+	"platform": "Dockerfile"
 }

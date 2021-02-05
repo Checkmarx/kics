@@ -1,8 +1,9 @@
 {
-  "id": "cdddb86f-95f6-4fc4-b5a1-483d9afceb2b",
-  "queryName": "COPY '--from' References Current FROM Alias",
-  "severity": "HIGH",
-  "category": "Multi-stage",
-  "descriptionText": "COPY '--from' should not mention the current FROM alias, since it is impossible to copy from itself",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/"
+	"id": "cdddb86f-95f6-4fc4-b5a1-483d9afceb2b",
+	"queryName": "COPY '--from' References Current FROM Alias",
+	"severity": "HIGH",
+	"category": "Multi-stage",
+	"descriptionText": "COPY '--from' should not mention the current FROM alias, since it is impossible to copy from itself",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/",
+	"platform": "Dockerfile"
 }

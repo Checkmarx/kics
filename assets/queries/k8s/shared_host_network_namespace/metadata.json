@@ -1,8 +1,9 @@
 {
-  "id": "6b6bdfb3-c3ae-44cb-88e4-7405c1ba2c8a",
-  "queryName": "Shared Host Network Namespace",
-  "severity": "HIGH",
-  "category": "Networking",
-  "descriptionText": "Container should not share the host network namespace",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+	"id": "6b6bdfb3-c3ae-44cb-88e4-7405c1ba2c8a",
+	"queryName": "Shared Host Network Namespace",
+	"severity": "HIGH",
+	"category": "Networking",
+	"descriptionText": "Container should not share the host network namespace",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+	"platform": "Kubernetes"
 }

@@ -51,13 +51,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memory-demo-3
+  name: memory-demo-23
   namespace: mem-example
 spec:
-  securityContext:
-    runAsUser: 1000
-    runAsGroup: 3000
-    fsGroup: 2000
-  volumes:
-    - name: sec-ctx-vol
-      emptyDir: { }
+  initContainers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]

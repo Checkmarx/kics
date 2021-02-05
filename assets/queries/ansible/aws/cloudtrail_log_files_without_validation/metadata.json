@@ -1,8 +1,9 @@
 {
-  "id": "4d8681a2-3d30-4c89-8070-08acd142748e",
-  "queryName": "CloudTrail Log Files Without Validation",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "CloudTrail Log Files should have validation enabled",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html"
+	"id": "4d8681a2-3d30-4c89-8070-08acd142748e",
+	"queryName": "CloudTrail Log Files Without Validation",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "CloudTrail Log Files should have validation enabled",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
+	"platform": "Ansible"
 }
