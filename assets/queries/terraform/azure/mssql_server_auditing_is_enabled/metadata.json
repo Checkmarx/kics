@@ -1,8 +1,9 @@
 {
-  "id": "609839ae-bd81-4375-9910-5bce72ae7b92",
-  "queryName": "MSSQL Server Auditing Is Enabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Make sure that for MSSQL Servers, that 'Auditing' is set to 'On'",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server"
+	"id": "609839ae-bd81-4375-9910-5bce72ae7b92",
+	"queryName": "MSSQL Server Auditing Is Enabled",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "Make sure that for MSSQL Servers, that 'Auditing' is set to 'On'",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server",
+	"platform": "Terraform"
 }

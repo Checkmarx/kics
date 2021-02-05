@@ -1,8 +1,9 @@
 {
-  "id": "d31cb911-bf5b-4eb6-9fc3-16780c77c7bd",
-  "queryName": "Cloudfront Logging is Disabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html"
+	"id": "d31cb911-bf5b-4eb6-9fc3-16780c77c7bd",
+	"queryName": "Cloudfront Logging is Disabled",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
+	"platform": "Ansible"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "af3e1800-a417-4ec5-b7ab-4c4181b6dfa5",
-  "queryName": "SQS With SSE Disabled",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#parameter-kms_master_key_id"
+	"id": "af3e1800-a417-4ec5-b7ab-4c4181b6dfa5",
+	"queryName": "SQS With SSE Disabled",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#parameter-kms_master_key_id",
+	"platform": "Ansible"
 }

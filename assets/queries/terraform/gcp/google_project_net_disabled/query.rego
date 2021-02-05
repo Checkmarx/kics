@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	project := input.document[i].resource.google_project[name]
-	project.auto_create_network == false
+	project.auto_create_network == true
 
 	result := {
 		"documentId": input.document[i].id,

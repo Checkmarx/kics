@@ -1,8 +1,9 @@
 {
-  "id": "abb06e5f-ef9a-4a99-98c6-376d396bfcdf",
-  "queryName": "SQS Queue Exposed",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Checks if the SQS Queue is exposed",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#policy"
+	"id": "abb06e5f-ef9a-4a99-98c6-376d396bfcdf",
+	"queryName": "SQS Queue Exposed",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Checks if the SQS Queue is exposed",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#policy",
+	"platform": "Terraform"
 }

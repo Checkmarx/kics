@@ -12,9 +12,10 @@ spec:
       value: "1024"
     - name: kernel.msgmax
       value: "65536"
-
+  containers:
+    - name: test1
+      image: nginx
 ---
-
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
@@ -24,3 +25,11 @@ spec:
   - kernel.msg*
   forbiddenSysctls:
   - kernel.shm_rmid_forced
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny

@@ -1,8 +1,9 @@
 {
-  "id": "f97b7d23-568f-4bcc-9ac9-02df0d57fbba",
-  "queryName": "S3 Bucket Allows Get Action From All Principals",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "S3 Buckets must not allow Get Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Get, for all Principals.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html"
+	"id": "f97b7d23-568f-4bcc-9ac9-02df0d57fbba",
+	"queryName": "S3 Bucket Allows Get Action From All Principals",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "S3 Buckets must not allow Get Actions From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Get, for all Principals.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
+	"platform": "CloudFormation"
 }
