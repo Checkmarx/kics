@@ -3,8 +3,8 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	password := resource.Properties.LoginProfile.Password
-	not regex.match(".*[-+_!@#$%^&*.,?]", password)
 	is_string(password)
+	not regex.match(".*[-+_!@#$%^&*.,?]", password)
 
 	result := {
 		"documentId": input.document[i].id,
