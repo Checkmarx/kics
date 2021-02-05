@@ -16,8 +16,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, module[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "redshift.encrypted should be set to true",
-		"keyActualValue": "redshift.encrypted is undefined",
+		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
+		"keyActualValue": sprintf("%s.encrypted is undefined", [module[m]]),
 	}
 }
 
@@ -35,8 +35,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, module[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "redshift.encrypted should be set to true",
-		"keyActualValue": "redshift.encrypted is set to false",
+		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
+		"keyActualValue": sprintf("%s.encrypted is set to false", [module[m]]),
 	}
 }
 
