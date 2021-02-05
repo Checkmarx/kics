@@ -1,6 +1,6 @@
 ---
 Resources:
-  ECSService:
+  ECSServiceNeg:
     Type: AWS::ECS::Service
     DependsOn:
     - Listener
@@ -8,7 +8,7 @@ Resources:
       Role:
         Ref: ECSServiceRole
       TaskDefinition:
-        Ref: ECSTaskDefinition
+        Ref: ECSTaskDefinitionNeg
       DesiredCount: 1
       LoadBalancers:
       - TargetGroupArn:
@@ -17,7 +17,7 @@ Resources:
         ContainerName: sample-app
       Cluster:
         Ref: ECSCluster
-  ECSTaskDefinition:
+  ECSTaskDefinitionNeg:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Ref 'ServiceName'
