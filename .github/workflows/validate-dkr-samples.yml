@@ -20,7 +20,7 @@ jobs:
           mv hadolint-Linux-x86_64 .bin/hadolint
           chmod +x .bin/hadolint
       - name: Validate dockerfiles syntax
-        run: bash .github/validators/validate-dkr-syntax.py
+        run: bash .github/validators/validate-syntax.py
         env:
           LINTER_PATH: .bin/hadolint
           FILES_GLOB: "assets/queries/docker/**/test/*.dockerfile"
