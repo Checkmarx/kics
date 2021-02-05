@@ -41,9 +41,10 @@ for file in files:
     result = subprocess.check_output(cmds, shell=False).decode('utf-8').rstrip()
   except CalledProcessError as e:
     error_files.append(e)
-  for line in result.split('\n'):
-    if line:
-      print(f"{line}")
+  if result:
+    for line in result.split('\n'):
+      if line:
+        print(f"{line}")
 
 ################################
 # show errors and exit code 1  #
