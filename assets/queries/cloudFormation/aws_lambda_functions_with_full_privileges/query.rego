@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument is not giving admin privileges to Resources.%s ", [role, name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument is giving admin privileges to Resources.%s ", [role, name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument does not give admin privileges to Resources.%s ", [role, name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Policies.PolicyDocument gives admin privileges to Resources.%s ", [role, name]),
 	}
 }
 
