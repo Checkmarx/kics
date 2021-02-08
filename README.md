@@ -60,6 +60,7 @@ Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keeping Infrastructure as Code Secure!**
 
+
 ---
 
 &copy; 2021 Checkmarx Ltd. All Rights Reserved.
