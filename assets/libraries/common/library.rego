@@ -23,7 +23,7 @@ calc_IP_value(ip) = result {
 	result = (((to_number(ips[0]) * 16777216) + (to_number(ips[1]) * 65536)) + (to_number(ips[2]) * 256)) + to_number(ips[3])
 }
 
-isDefaultPassword(p) = res {
+isDefaultPassword(p) {
 	ar = {
 		"!@",
 		"root",
@@ -126,5 +126,75 @@ isDefaultPassword(p) = res {
 		"password123",
 	}
 
-	res := ar[p]
+	ar[p]
+}
+
+isCommonValue(p) {
+	bl = {
+		"RESOURCE",
+		"GROUP",
+		"SUBNET",
+		"S3",
+		"SERVICE",
+		"AZURE",
+		"BUCKET",
+		"VIRTUAL",
+		"NETWORK",
+		"POLICY",
+		"AWS",
+		"PROTOCOL",
+		"CLOUD",
+		"MINUTE",
+		"TLS",
+		"EC2",
+		"VPC",
+		"INTERNET",
+		"ROUTE",
+		"EFS",
+		"INSTANCE",
+		"VPN",
+		"MOUNT",
+		"MYSQL",
+		"APACHE",
+		"ETHERNET",
+		"TERRAFORM",
+		"TARGET",
+		"ENVIRONMENT",
+		"MEMORY",
+		"PACKAGE",
+		"STATEMENT",
+	}
+
+	black := bl[_]
+	contains(upper(p), black)
+}
+
+isCommonKey(p) {
+	bl = {
+		"namespace",
+		"bypass",
+		"name",
+		"ref",
+		"base64",
+		"pattern",
+		"author",
+		"group",
+		"image",
+		"host",
+		"interface",
+		"service",
+		"src",
+		"value",
+		"default",
+		"sku",
+		"condition",
+		"status",
+		"size",
+		"runtime",
+		"id",
+		"chdir",
+	}
+
+	black := bl[_]
+	contains(lower(p), black)
 }
