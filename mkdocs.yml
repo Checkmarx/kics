@@ -27,6 +27,7 @@ nav:
     - Plans: 'https://github.com/Checkmarx/kics/projects'
     - Issues: 'https://github.com/Checkmarx/kics/issues'
     - Releases: releases.md
+  - Contributors: contributors.md
   - About: about.md
 
 # Theme
