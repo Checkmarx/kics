@@ -15,41 +15,21 @@ CxPolicy[result] {
 }
 
 checkValue(protocol) {
-	is_number(protocol)
+	to_number(protocol)
 	protocol == 6
 }
 
 checkValue(protocol) {
-	is_number(protocol)
+	to_number(protocol)
 	protocol == 17
 }
 
 checkValue(protocol) {
-	is_number(protocol)
+	to_number(protocol)
 	protocol == 1
 }
 
 checkValue(protocol) {
-	is_number(protocol)
+	to_number(protocol)
 	protocol == 58
-}
-
-checkValue(protocol) {
-	is_string(protocol)
-	protocol == "6"
-}
-
-checkValue(protocol) {
-	is_string(protocol)
-	protocol == "17"
-}
-
-checkValue(protocol) {
-	is_string(protocol)
-	protocol == "1"
-}
-
-checkValue(protocol) {
-	is_string(protocol)
-	protocol == "58"
 }
