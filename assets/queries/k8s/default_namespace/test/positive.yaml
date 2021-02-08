@@ -59,3 +59,9 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo.db.collection.com
