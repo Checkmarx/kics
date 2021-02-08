@@ -1,29 +1,25 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	commands = document.command
-	some img
-	some c
-	commands[img][c].Cmd == "run"
-	some j
+import data.generic.dockerfile as dockerLib
 
-	isYumInstall(commands[img][c].Value[j])
-	not isYumInstallWithVersion(commands[img][c].Value[j])
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
+	commands := resource.Value[0]
+
+	yum := regex.find_n("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install", commands, -1)
+	yum != null
+
+	packages = dockerLib.getPackages(commands, yum)
+	regex.match("^[a-zA-Z]", packages[j]) == true
+
+	not dockerLib.withVersion(packages[j])
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The package version should always be specified when using yum install",
-		"keyActualValue": sprintf("No version is specified in '%s'", [commands[img][c].Original]),
+		"keyExpectedValue": "The package version should always be specified when using zypper install",
+		"keyActualValue": sprintf("No version is specified in package '%s'", [packages[j]]),
 	}
-}
-
-isYumInstall(command) {
-	contains(command, "yum install")
-}
-
-isYumInstallWithVersion(command) {
-	regex.match("yum install (--?[a-z]+ )*\\w+-([0-9]+\\.)+[0-9]+", command)
 }
