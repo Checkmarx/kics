@@ -39,6 +39,7 @@ var (
 	verbose     bool
 	logFile     bool
 	noProgress  bool
+	types       []string
 )
 
 var scanCmd = &cobra.Command{
@@ -110,6 +111,7 @@ func initScanCmd() {
 	)
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
@@ -149,9 +151,7 @@ func scan() error {
 
 	scanStartTime := time.Now()
 
-	querySource := &query.FilesystemSource{
-		Source: filepath.FromSlash(queryPath),
-	}
+	querySource := query.NewFilesystemSource(queryPath, types)
 
 	t := &tracker.CITracker{}
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
@@ -173,12 +173,14 @@ func scan() error {
 		return err
 	}
 
-	combinedParser := parser.NewBuilder().
-		// Add(&jsonParser.Parser{}).
+	combinedParser, err := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build(types)
+	if err != nil {
+		return err
+	}
 
 	store := storage.NewMemoryStorage()
 

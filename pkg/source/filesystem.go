@@ -53,7 +53,7 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 	}
 
 	return &FileSystemSourceProvider{
-		path:     path,
+		path:     filepath.FromSlash(path),
 		excludes: ex,
 	}, nil
 }

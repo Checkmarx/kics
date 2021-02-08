@@ -13,6 +13,39 @@ import (
 	"github.com/Checkmarx/kics/test"
 )
 
+// BenchmarkFilesystemSource_GetQueries benchmarks getQueries to see improvements
+func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		b.Fatal(err)
+	}
+	type fields struct {
+		Source string
+		Types  []string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+	}{
+		{
+			name: "testing_all_paths",
+			fields: fields{
+				Source: "./assets/queries/",
+				Types:  []string{""},
+			},
+		},
+	}
+	for _, tt := range tests {
+		b.Run(tt.name, func(b *testing.B) {
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
+			for n := 0; n < b.N; n++ {
+				if _, err := s.GetQueries(); err != nil {
+					b.Errorf("Error: %s", err)
+				}
+			}
+		})
+	}
+}
+
 // TestFilesystemSource_GetGenericQuery tests the functions [GetGenericQuery()] and all the methods called by them
 func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
@@ -111,9 +144,8 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &FilesystemSource{
-				Source: filepath.FromSlash(tt.fields.Source),
-			}
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
+
 			got, err := s.GetGenericQuery(tt.args.platform)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetGenericQuery() error = %v, wantErr %v", err, tt.wantErr)
@@ -137,6 +169,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 
 	type fields struct {
 		Source string
+		Types  []string
 	}
 	tests := []struct {
 		name    string
@@ -147,7 +180,8 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+				Source: "./test/fixtures/all_auth_users_get_read_access",
+				Types:  []string{""},
 			},
 			want: []model.QueryMetadata{
 				{
@@ -160,6 +194,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        "HIGH",
+						"platform":        "CloudFormation",
 					},
 					Platform: "unknown",
 				},
@@ -177,9 +212,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &FilesystemSource{
-				Source: filepath.FromSlash(tt.fields.Source),
-			}
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
 			got, err := s.GetQueries()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
@@ -213,7 +246,7 @@ func Test_ReadMetadata(t *testing.T) {
 		{
 			name: "read_metadata_template",
 			args: args{
-				queryDir: filepath.FromSlash("./assets/queries/template"),
+				queryDir: filepath.FromSlash("./test/fixtures/type-test01/template01"),
 			},
 			want: map[string]interface{}{
 				"category":        nil,
@@ -222,6 +255,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"id":              "<ID>",
 				"queryName":       "<QUERY_NAME>",
 				"severity":        "HIGH",
+				"platform":        "<PLATFORM>",
 			},
 		},
 	}
