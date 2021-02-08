@@ -1,8 +1,9 @@
 {
-  "id": "f2f903fb-b977-461e-98d7-b3e2185c6118",
-  "queryName": "Pip install Keeping Cached Packages",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "When installing packages with pip, the '--no-cache-dir' flag should be set to make Docker images smaller",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+	"id": "f2f903fb-b977-461e-98d7-b3e2185c6118",
+	"queryName": "Pip install Keeping Cached Packages",
+	"severity": "MEDIUM",
+	"category": "Package Management",
+	"descriptionText": "When installing packages with pip, the '--no-cache-dir' flag should be set to make Docker images smaller",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+	"platform": "Dockerfile"
 }

@@ -12,6 +12,10 @@ getSpecInfo(document) = specInfo { # this one can be also used for the result
 	specInfo := {"spec": spec, "path": "spec"}
 }
 
+checkKind(currentKind, listKinds) {
+	currentKind == listKinds[i]
+}
+
 CheckIFPdbExists(statefulset) = result {
 	pdb := input.document[j]
 	pdb.kind == "PodDisruptionBudget"

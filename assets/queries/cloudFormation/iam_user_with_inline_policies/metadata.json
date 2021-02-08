@@ -1,8 +1,9 @@
 {
-  "id": "c2c21552-27d8-47d1-b50e-04c45f082470",
-  "queryName": "IAM User With Inline Policies",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "IAM User should embed managed policies instead of inline policies",
-  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html"
+	"id": "c2c21552-27d8-47d1-b50e-04c45f082470",
+	"queryName": "IAM User With Inline Policies",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM User should embed managed policies instead of inline policies",
+	"descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html",
+	"platform": "CloudFormation"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "a33e9173-b674-4dfb-9d82-cf3754816e4b",
-  "queryName": "PSP Allows Containers To Share The Host Network Namespace",
-  "severity": "HIGH",
-  "category": "Networking",
-  "descriptionText": "Check if Pod Security Policies allow containers to share the host network namespace.",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+	"id": "a33e9173-b674-4dfb-9d82-cf3754816e4b",
+	"queryName": "PSP Allows Containers To Share The Host Network Namespace",
+	"severity": "HIGH",
+	"category": "Networking",
+	"descriptionText": "Check if Pod Security Policies allow containers to share the host network namespace.",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+	"platform": "Kubernetes"
 }

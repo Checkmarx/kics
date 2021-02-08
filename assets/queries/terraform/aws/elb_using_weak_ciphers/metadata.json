@@ -1,8 +1,9 @@
 {
-  "id": "4a800e14-c94a-442d-9067-5a2e9f6c0a4c",
-  "queryName": "ELB Using Weak Ciphers",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'name' of 'policy_attributes' must not coincide with any of a predefined list of weak ciphers.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/load_balancer_policy"
+	"id": "4a800e14-c94a-442d-9067-5a2e9f6c0a4c",
+	"queryName": "ELB Using Weak Ciphers",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'name' of 'policy_attributes' must not coincide with any of a predefined list of weak ciphers.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/load_balancer_policy",
+	"platform": "Terraform"
 }

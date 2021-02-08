@@ -1,10 +1,11 @@
 package generic.terraform
 
-portNumbers = [
+portNumbers := [
 	[22, "SSH"],
 	[23, "Telnet"],
 	[25, "SMTP"],
 	[53, "DNS"],
+	[80, "HTTP"],
 	[110, "POP3"],
 	[135, "MSSQL Debugger"],
 	[137, "NetBIOS Name Service"],
@@ -50,3 +51,9 @@ portNumbers = [
 	[27018, "Mongo Web Portal"],
 	[61621, "Cassandra OpsCenter"],
 ]
+
+getPort(portN, pN) = n {
+	pos := pN[f][0]
+	pos == portN
+	n := pos
+}

@@ -13,7 +13,7 @@
 
 <a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
-**KICS** (pronounced as 'kick-s') or **Kicscan** is an open source solution for static code analysis of Infrastructure as Code.
+**KICS** is an open source solution for static code analysis of Infrastructure as Code.
 
 **K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
@@ -23,7 +23,7 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 <img alt="Terraform" src="docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
 
-Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](docs/roadmap.md).
+Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
 ## Getting Started
 
@@ -37,14 +37,13 @@ Setting up and using KICS is super-easy.
 
 What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
 
--   Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended, and added.
+-   Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended and added.
 -   Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
 ## Release process
 
 KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
-The nightly release will have a "nightly" prefix with the last commit hash code.
-
+The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for both Windows and Linux, as well a Docker image in [DockerHub](https://hub.docker.com/r/checkmarx/kics)
 
 ## Contribution
 
@@ -59,8 +58,8 @@ KICS is a true community project. It's built as an open source from day one, and
 Join the chat [on Gitter](https://gitter.im/kics-io/community).  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
-**Keep Infrastructure as Code Secure!**
+**Keeping Infrastructure as Code Secure!**
 
 ---
 
-&copy; 2020 Checkmarx Ltd. All Rights Reserved.
+&copy; 2021 Checkmarx Ltd. All Rights Reserved.

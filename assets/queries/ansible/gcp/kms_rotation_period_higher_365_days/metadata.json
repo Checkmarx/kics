@@ -1,8 +1,9 @@
 {
-  "id": "79f45008-60b3-4a0a-a302-8311fd3701b4",
-  "queryName": "KMS Rotation Period Is Higher Than 365 Days",
-  "severity": "HIGH",
-  "category": "Encryption & Key Management",
-  "descriptionText": "Check if any KMS rotation period surpasses 365 days.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html"
+	"id": "79f45008-60b3-4a0a-a302-8311fd3701b4",
+	"queryName": "KMS Rotation Period Is Higher Than 365 Days",
+	"severity": "HIGH",
+	"category": "Encryption & Key Management",
+	"descriptionText": "Check if any KMS rotation period surpasses 365 days.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html",
+	"platform": "Ansible"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "f6049677-ec4a-43af-8779-5190b6d03cba",
-  "queryName": "KMS Allows Wildcard Principal",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Kms Should not allow Principal parameter to be set as *",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html"
+	"id": "f6049677-ec4a-43af-8779-5190b6d03cba",
+	"queryName": "KMS Allows Wildcard Principal",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Kms Should not allow Principal parameter to be set as *",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html",
+	"platform": "CloudFormation"
 }

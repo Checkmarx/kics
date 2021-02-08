@@ -1,8 +1,9 @@
 {
-  "id": "9df7f78f-ebe3-432e-ac3b-b67189c15518",
-  "queryName": "Master Authentication is Disabled",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html"
+	"id": "9df7f78f-ebe3-432e-ac3b-b67189c15518",
+	"queryName": "Master Authentication is Disabled",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
+	"platform": "Ansible"
 }

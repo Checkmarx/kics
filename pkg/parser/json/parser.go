@@ -28,3 +28,8 @@ func (p *Parser) SupportedExtensions() []string {
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindJSON
 }
+
+// SupportedTypes returns types supported by this parser, which are cloudFormation
+func (p *Parser) SupportedTypes() []string {
+	return []string{"JSON"}
+}

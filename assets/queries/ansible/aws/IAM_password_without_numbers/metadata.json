@@ -1,8 +1,9 @@
 {
-  "id": "9cf25d62-0b96-42c8-b66d-998cd6ee5bb8",
-  "queryName": "IAM Password Without Numbers",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Check if IAM account password has at least one number",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html"
+	"id": "9cf25d62-0b96-42c8-b66d-998cd6ee5bb8",
+	"queryName": "IAM Password Without Numbers",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Check if IAM account password has at least one number",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html",
+	"platform": "Ansible"
 }

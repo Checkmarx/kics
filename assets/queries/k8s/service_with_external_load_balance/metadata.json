@@ -1,8 +1,9 @@
 {
-  "id": "26763a1c-5dda-4772-b507-5fca7fb5f165",
-  "queryName": "Service With External Load Balance",
-  "severity": "MEDIUM",
-  "category": "Networking",
-  "descriptionText": "Service has an external load balance, which may cause accessibility from other networks and the Internet",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/"
+	"id": "26763a1c-5dda-4772-b507-5fca7fb5f165",
+	"queryName": "Service With External Load Balance",
+	"severity": "MEDIUM",
+	"category": "Networking",
+	"descriptionText": "Service has an external load balance, which may cause accessibility from other networks and the Internet",
+	"descriptionUrl": "https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
+	"platform": "Kubernetes"
 }

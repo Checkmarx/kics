@@ -1,8 +1,9 @@
 {
-  "id": "fb2b0ecf-1492-491a-a70d-ba1df579175d",
-  "queryName": "ECS No Load Balancer Attached",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Amazon ECS service should be configured to use Load Balancing to distribute traffic evenly across the tasks, which means there must exist at least one LoadBalancer.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html"
+	"id": "fb2b0ecf-1492-491a-a70d-ba1df579175d",
+	"queryName": "ECS No Load Balancer Attached",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Amazon ECS service should be configured to use Load Balancing to distribute traffic evenly across the tasks, which means there must exist at least one LoadBalancer.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
+	"platform": "CloudFormation"
 }
