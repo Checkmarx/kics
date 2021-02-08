@@ -17,6 +17,6 @@
 	{
 		"queryName": "Resource With Allow Privilege Escalation",
 		"severity": "MEDIUM",
-		"line": 84
+		"line": 87
 	}
 ]

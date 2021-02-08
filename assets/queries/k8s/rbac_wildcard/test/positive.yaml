@@ -25,7 +25,8 @@ metadata:
   namespace: rbac3
   name: configmap-modifier2
 rules:
-      - operations: ["CREATE", "UPDATE"]
-        apiGroups: ["*"]
-        apiVersions: ["*"]
-        resources: ["*"]
+- operations: ["CREATE", "UPDATE"]
+  apiGroups: ["*"]
+  apiVersions: ["*"]
+  resources: ["*"]
+  verbs: ["POST"]

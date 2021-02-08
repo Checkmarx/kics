@@ -1,4 +1,4 @@
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-logo-donkey.png" width="250">  
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo/kics-logo-donkey.png" width="250">  
 
 ---
 
@@ -12,11 +12,11 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
-<img alt="Terraform" src="img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="CloudFormation" src="img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="img/logo-ansible.png" width="150">
+<img alt="Terraform" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Kubernetes" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Docker" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="CloudFormation" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Ansible" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-ansible.png" width="150">
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
