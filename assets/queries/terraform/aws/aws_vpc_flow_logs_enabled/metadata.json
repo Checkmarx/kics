@@ -1,8 +1,9 @@
 {
-  "id": "f83121ea-03da-434f-9277-9cd247ab3047",
-  "queryName": "VPC Flow Logs are not Enabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Sees if the id of the flow logs is the same as the vpc, if they are VPC flow logs are Enabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc"
+	"id": "f83121ea-03da-434f-9277-9cd247ab3047",
+	"queryName": "VPC Flow Logs are not Enabled",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "Sees if the id of the flow logs is the same as the vpc, if they are VPC flow logs are Enabled",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc",
+	"platform": "Terraform"
 }

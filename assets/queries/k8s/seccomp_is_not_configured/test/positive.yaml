@@ -12,7 +12,7 @@ kind: Pod
 metadata:
   name: pod-test-2
   annotations:
-    some-annotation: true
+    some-annotation: myannotation
 spec:
   containers:
   - name: foobar

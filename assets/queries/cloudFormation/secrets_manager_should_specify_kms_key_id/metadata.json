@@ -1,8 +1,9 @@
 {
-  "id": "c8ae9ba9-c2f7-4e5c-b32e-a4b7712d4d22",
-  "queryName": "Secrets Manager Should Specify KmsKeyId",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html"
+	"id": "c8ae9ba9-c2f7-4e5c-b32e-a4b7712d4d22",
+	"queryName": "Secrets Manager Should Specify KmsKeyId",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html",
+	"platform": "CloudFormation"
 }

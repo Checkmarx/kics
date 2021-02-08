@@ -1,8 +1,9 @@
 {
-  "id": "b1b20ae3-8fa7-4af5-a74d-a2145920fcb1",
-  "queryName": "IAM Password Without Minimum Length",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "IAM user resource Login Profile Password should have at least 14 characters",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user"
+	"id": "b1b20ae3-8fa7-4af5-a74d-a2145920fcb1",
+	"queryName": "IAM Password Without Minimum Length",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM user resource Login Profile Password should have at least 14 characters",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
+	"platform": "CloudFormation"
 }

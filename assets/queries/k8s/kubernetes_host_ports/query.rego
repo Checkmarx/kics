@@ -19,7 +19,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	document.kind = "Pod"
 	metadata := document.metadata
 	spec := document.spec.template.spec
 	containers := spec.containers

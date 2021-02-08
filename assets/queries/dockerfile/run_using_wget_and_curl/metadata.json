@@ -1,8 +1,9 @@
 {
-  "id": "fc775e75-fcfb-4c98-b2f2-910c5858b359",
-  "queryName": "Run Using 'wget' and 'curl'",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+	"id": "fc775e75-fcfb-4c98-b2f2-910c5858b359",
+	"queryName": "Run Using 'wget' and 'curl'",
+	"severity": "MEDIUM",
+	"category": "Package Management",
+	"descriptionText": "Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+	"platform": "Dockerfile"
 }

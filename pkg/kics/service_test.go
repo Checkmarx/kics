@@ -94,7 +94,7 @@ func TestService(t *testing.T) {
 			}
 		})
 		t.Run(fmt.Sprintf(tt.name+"_start_scan"), func(t *testing.T) {
-			if err := s.StartScan(tt.args.ctx, tt.args.scanID); (err != nil) != tt.wantErr {
+			if err := s.StartScan(tt.args.ctx, tt.args.scanID, true); (err != nil) != tt.wantErr {
 				t.Errorf("Service.StartScan() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
