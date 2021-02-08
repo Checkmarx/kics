@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"io/ioutil"
 	"os"
 	"path"
@@ -28,6 +29,12 @@ func main() {
 		Use:   "inspect",
 		Short: "Tool to build new query from example file",
 		RunE: func(cmd *cobra.Command, args []string) error {
+
+			if path.IsAbs(inPath) {
+				err := errors.New("path of file must not be absolute")
+				return err
+			}
+
 			content, err := ioutil.ReadFile(filepath.Clean(inPath))
 			if err != nil {
 				return err
