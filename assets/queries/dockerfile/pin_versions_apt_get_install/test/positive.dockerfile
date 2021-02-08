@@ -1,5 +1,6 @@
 FROM busybox
 RUN apt-get install python
+RUN ["apt-get", "install", "python"]
 
 FROM busybox2
 RUN apt-get install -y -t python

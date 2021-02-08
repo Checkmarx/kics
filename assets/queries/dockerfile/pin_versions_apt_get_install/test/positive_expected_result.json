@@ -7,31 +7,36 @@
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 3
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 6
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 9
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 9
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 9
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 9
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 9
   }
 ]
