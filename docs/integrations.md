@@ -9,7 +9,7 @@ and read about GitHub actions integration in the official GitHub [documentation]
 
 Here you can see it in action ;)
 
-<img src="../img/kics_scan_github_actions.png" width="850">  
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fix-images-path/docs/img/kics_scan_github_actions.png" width="850">  
 
 Visit the [KICS GitHub Action project](https://github.com/marketplace/actions/kics-github-action) to get more details
 
