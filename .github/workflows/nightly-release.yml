@@ -47,7 +47,7 @@ jobs:
       - name: dislay assets
         run: |
           ls -l /home/runner/work/kics/kics/dist
-      - name: Upload Release Asset linux
+      - name: Upload Release Asset Linux
         id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
         env:
@@ -55,9 +55,19 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: /home/runner/work/kics/kics/dist/kics_nightly_linux_x64.tar.gz
-          asset_name: test_nightly-release_linux_amd64.tar.gz
+          asset_name: kics_nightly-release_linux_amd64.tar.gz
           asset_content_type: application/gzip
-      - name: Upload Release Asset windows
+      - name: Upload Release Asset Darwin
+        id: upload-release-asset-darwin
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_darwin_x64.tar.gz
+          asset_name: kics_nightly-release_darwin_amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Release Asset Windows
         id: upload-release-asset-windows
         uses: actions/upload-release-asset@v1
         env:
@@ -65,9 +75,9 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: /home/runner/work/kics/kics/dist/kics_nightly_windows_x64.zip
-          asset_name: test_nightly-release_windows_amd64.zip
+          asset_name: kics_nightly-release_windows_amd64.zip
           asset_content_type: application/zip
-      - name: Upload Release Asset checksum
+      - name: Upload Release Asset Checksum
         id: upload-release-asset-checksums
         uses: actions/upload-release-asset@v1
         env:
@@ -75,7 +85,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: /home/runner/work/kics/kics/dist/kics_nightly_checksums.txt
-          asset_name: test_nightly-release_checksums.txt
+          asset_name: kics_nightly-release_checksums.txt
           asset_content_type: text/plain
   push_to_registry:
     name: Push Docker image to Docker Hub
