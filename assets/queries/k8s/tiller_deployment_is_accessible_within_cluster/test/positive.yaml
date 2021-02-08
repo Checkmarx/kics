@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -7,10 +7,9 @@ metadata:
     name: tiller
   name: tiller-bad-args
 spec:
-  containers:
-    -
-      image: tiller-image
-      name: tiller-v1
+  selector:
+    matchLabels:
+      name: tiller
   template:
     metadata:
       labels:
@@ -34,7 +33,7 @@ spec:
               protocol: TCP
       serviceAccountName: tiller
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -42,10 +41,9 @@ metadata:
     name: tiller
   name: tiller-deploy-no-args
 spec:
-  containers:
-    -
-      image: tiller-image-v2
-      name: tiller-v1
+  selector:
+    matchLabels:
+      name: tiller
   template:
     metadata:
       labels:

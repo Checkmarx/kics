@@ -3,6 +3,7 @@ package engine
 import (
 	"context"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
@@ -219,7 +220,7 @@ func TestInspect(t *testing.T) { //nolint
 						},
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
-						FileName:     filepath.FromSlash("assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"),
+						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					},
 				},
 			},
@@ -229,7 +230,7 @@ func TestInspect(t *testing.T) { //nolint
 					SimilarityID:     "b84570a546f2064d483b5916d3bf3c6949c8cfc227a8c61fce22220b2f5d77bd",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-					FileName:         filepath.FromSlash("assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"),
+					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
 					Severity:         "INFO",
@@ -277,8 +278,9 @@ func TestNewInspector(t *testing.T) { // nolint
 	require.NoError(t, err)
 
 	track := &tracker.CITracker{}
-	sources := &query.FilesystemSource{
+	sources := &mockSource{
 		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+		Types:  []string{""},
 	}
 	vbs := DefaultVulnerabilityBuilder
 	opaQueries := make([]*preparedQuery, 0, 1)
@@ -295,6 +297,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				"category":        "Identity and Access Management",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+				"platform":        "CloudFormation",
 			},
 		},
 	})
@@ -343,4 +346,23 @@ func TestNewInspector(t *testing.T) { // nolint
 			require.NotNil(t, got.vb)
 		})
 	}
+}
+
+type mockSource struct {
+	Source string
+	Types  []string
+}
+
+func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
+	sources := query.NewFilesystemSource(m.Source, []string{""})
+
+	return sources.GetQueries()
+}
+func (m *mockSource) GetGenericQuery(platform string) (string, error) {
+	currentWorkdir, _ := os.Getwd()
+
+	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
+	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+
+	return string(content), err
 }
