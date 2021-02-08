@@ -27,7 +27,7 @@ const (
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 3 * time.Second
+	executeTimeout = 4 * time.Second
 )
 
 // ErrNoResult - error representing when a query didn't return a result
