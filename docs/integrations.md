@@ -79,12 +79,12 @@ When your pipeline executes, it will run this jobs. If KICS finds any issues, it
 
 #### Pipeline Failure
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/feature/add_gitlab_integration/docs/img/kics_gitlab_pipeline_success.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/add_gitlab_integration/docs/img/kics_gitlab_pipeline_success.png" width="850">
 
 #### Pipeline Success
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/feature/add_gitlab_integration/docs/img/kics_scan_github_actions.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/add_gitlab_integration/docs/img/kics_scan_github_actions.png" width="850">
 
 ### Download Artifact
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/feature/add_gitlab_integration/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/add_gitlab_integration/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
