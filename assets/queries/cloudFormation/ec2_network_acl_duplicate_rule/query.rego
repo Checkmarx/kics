@@ -40,25 +40,7 @@ getTraffic(entry) = "egress" {
 }
 
 compareRuleNumber(entry1, entry2){
-    is_string(entry1.Properties.RuleNumber)
-    is_string(entry2.Properties.RuleNumber)
-    entry1.Properties.RuleNumber == entry2.Properties.RuleNumber
-}
-
-compareRuleNumber(entry1, entry2){
-    is_number(entry1.Properties.RuleNumber)
-    is_string(entry2.Properties.RuleNumber)
-    entry1.Properties.RuleNumber == to_number(entry2.Properties.RuleNumber)
-}
-
-compareRuleNumber(entry1, entry2){
-    is_string(entry1.Properties.RuleNumber)
-    is_number(entry2.Properties.RuleNumber)
-    to_number(entry1.Properties.RuleNumber) == entry2.Properties.RuleNumber
-}
-
-compareRuleNumber(entry1, entry2){
-    is_number(entry1.Properties.RuleNumber)
-    is_number(entry2.Properties.RuleNumber)
-    entry1.Properties.RuleNumber == entry2.Properties.RuleNumber
+    ruleNumberEntry1 := to_number(entry1.Properties.RuleNumber)
+    ruleNumberEntry2 := to_number(entry2.Properties.RuleNumber)
+    ruleNumberEntry1 == ruleNumberEntry2
 }
