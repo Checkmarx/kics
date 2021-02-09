@@ -127,12 +127,13 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 }
 
 func getCombinedParser() *parser.Parser {
-	return parser.NewBuilder().
+	bd, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build([]string{""})
+	return bd
 }
 
 func getQueryContent(queryDir string) (string, error) {

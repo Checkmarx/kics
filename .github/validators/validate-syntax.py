@@ -7,6 +7,9 @@ from subprocess import CalledProcessError
 LINTER_PATH = os.getenv('LINTER_PATH')
 SKIP_LIST = os.getenv('SKIP_LIST_PATH')
 FILES_GLOB = os.getenv('FILES_GLOB')
+EXTRA_ARGS = os.getenv('EXTRA_ARGS')
+
+print('starting validator')
 
 ##############################
 #  get files and skip list   #
@@ -20,16 +23,27 @@ with open(SKIP_LIST, 'r') as reader:
 files = [file for file in all_files if file not in ignore_list]
 error_files = []
 
+print(f'found {len(files)} files to check')
+
 ##############################
 #         run linter         #
 ##############################
 for file in files:
   try:
-    result = subprocess.check_output([LINTER_PATH, file], shell=False).decode('utf-8').rstrip()
+    cmds = [LINTER_PATH, file]
+    if EXTRA_ARGS:
+      if len(EXTRA_ARGS.split(' ')):
+        cmds = cmds + EXTRA_ARGS.split(' ')
+      else:
+        cmds.append(EXTRA_ARGS)
+
+    print(f'Validating {file}')
+    result = subprocess.check_output(cmds, shell=False).decode('utf-8').rstrip()
   except CalledProcessError as e:
     error_files.append(e)
   for line in result.split('\n'):
-    print(f"{line}")
+    if line:
+      print(f"{line}")
 
 ################################
 # show errors and exit code 1  #

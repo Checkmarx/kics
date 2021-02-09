@@ -1,6 +1,6 @@
 {
 	"id": "54c417bf-c762-48b9-9d31-b3d87047e3f0",
-	"queryName": "SQL Analysis Services Port 2383 (TCP) is Publicly Accessible",
+	"queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
 	"severity": "MEDIUM",
 	"category": "Network Ports Security",
 	"descriptionText": "Check if port 2383 on TCP is publicly accessible by checking the CIDR block range that can access it.",

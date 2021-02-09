@@ -1,7 +1,8 @@
 [
 	{
 		"queryName": "Copy With More Than 2 Arguments Not Ending With Slash",
-		"severity": "HIGH",
+    "severity": "HIGH",
+    "fileName": "positive.dockerfile",
 		"line": 2
 	}
 ]

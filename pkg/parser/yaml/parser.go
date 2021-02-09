@@ -47,6 +47,11 @@ func (p *Parser) SupportedExtensions() []string {
 	return []string{".yaml", ".yml"}
 }
 
+// SupportedTypes returns types supported by this parser, which are ansible, cloudFormation, k8s
+func (p *Parser) SupportedTypes() []string {
+	return []string{"Ansible", "CloudFormation", "Kubernetes"}
+}
+
 // GetKind returns YAML constant kind
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML

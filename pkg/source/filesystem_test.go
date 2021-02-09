@@ -4,6 +4,7 @@ import (
 	"context"
 	"io"
 	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -33,7 +34,7 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 				},
 			},
 			want: &FileSystemSourceProvider{
-				path:     "./test",
+				path:     filepath.FromSlash("./test"),
 				excludes: make(map[string][]os.FileInfo, 1),
 			},
 			wantErr: false,

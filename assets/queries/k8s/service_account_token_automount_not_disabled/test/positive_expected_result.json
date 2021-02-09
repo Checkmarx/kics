@@ -3,5 +3,10 @@
 		"queryName": "Service Account Token Automount Not Disabled",
 		"severity": "MEDIUM",
 		"line": 5
+  },
+  {
+		"queryName": "Service Account Token Automount Not Disabled",
+		"severity": "MEDIUM",
+		"line": 28
 	}
 ]
