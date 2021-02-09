@@ -104,7 +104,7 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := source.GetGenericQuery("commonQuery")
+	commonGeneralQuery, err := source.GetGenericQuery("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.

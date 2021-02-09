@@ -4,6 +4,6 @@
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Query to find passwords and secrets in infrastructure code.",
-  "descriptionUrl": "#",
-  "platform": ""
+  "descriptionUrl": "https://kics.io/",
+  "platform": "Common"
 }

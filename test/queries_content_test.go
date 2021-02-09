@@ -150,9 +150,9 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return []model.QueryMetadata{q}, err
 		})
 
-	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
-			q, err := readLibrary("commonQuery")
+			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
