@@ -50,7 +50,7 @@ type queryEntry struct {
 
 func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
 	files, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(q.kind)))))
-	x0 := path.Join(q.dir, "test/positive_expected_result.json")
+	x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
 	for i, check := range files {
 		if check == x0 {
 			files = append(files[:i], files[i+1:]...)
@@ -69,7 +69,7 @@ func (q queryEntry) NegativeFiles(tb testing.TB) []string {
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return path.Join(q.dir, "test/positive_expected_result.json")
+	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
