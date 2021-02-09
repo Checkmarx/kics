@@ -1,17 +1,17 @@
 [
-	{
-		"queryName": "VM CSEK Encryption is Disabled",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-	{
-		"queryName": "VM CSEK Encryption is Disabled",
-		"severity": "MEDIUM",
-		"line": 23
-	},
-	{
-		"queryName": "VM CSEK Encryption is Disabled",
-		"severity": "MEDIUM",
-		"line": 38
-	}
+  {
+    "queryName": "VM CSEK Encryption Is Disabled",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "VM CSEK Encryption Is Disabled",
+    "severity": "MEDIUM",
+    "line": 22
+  },
+  {
+    "queryName": "VM CSEK Encryption Is Disabled",
+    "severity": "MEDIUM",
+    "line": 37
+  }
 ]

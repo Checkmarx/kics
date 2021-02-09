@@ -1,0 +1,9 @@
+{
+  "id": "59571246-3f62-4965-a96f-c7d97e269351",
+  "queryName": "Google Project Auto Create Network Is Disabled",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Verifies if the Google Project Auto Create Network is Disabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project",
+  "platform": "Terraform"
+}

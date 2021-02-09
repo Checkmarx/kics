@@ -12,7 +12,7 @@ spec:
     - cat
     args:
     - "/etc/hosts"
-    
+
 ---
 
 apiVersion: v1
@@ -29,13 +29,29 @@ spec:
     - cat
     args:
     - "/etc/hosts"
-    
+
 ---
 
 apiVersion: v1
 kind: Pod
 metadata:
   name: hostaliases-pod3
+spec:
+  restartPolicy: Never
+  hostAliases:
+  containers:
+  - name: cat-hosts
+    image: busybox
+    command:
+    - cat
+    args:
+    - "/etc/hosts"
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostaliases.pod3
 spec:
   restartPolicy: Never
   hostAliases:

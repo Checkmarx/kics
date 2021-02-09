@@ -1,8 +1,9 @@
 {
-  "id": "c44c95fc-ae92-4bb8-bdf8-bb9bc412004a",
-  "queryName": "EC2 Public Instance Exposed Through Subnet",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "EC2 instances with public IP addresses shouldn't allow for unrestricted traffic to their subnets",
-  "descriptionUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+	"id": "c44c95fc-ae92-4bb8-bdf8-bb9bc412004a",
+	"queryName": "EC2 Public Instance Exposed Through Subnet",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "EC2 instances with public IP addresses shouldn't allow for unrestricted traffic to their subnets",
+	"descriptionUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html",
+	"platform": "CloudFormation"
 }

@@ -34,11 +34,13 @@ var (
 	queryPath   string
 	outputPath  string
 	payloadPath string
+	excludePath []string
 	cfgFile     string
 	sarifPath   string
 	verbose     bool
 	logFile     bool
 	noProgress  bool
+	types       []string
 )
 
 var scanCmd = &cobra.Command{
@@ -92,12 +94,26 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 func initScanCmd() {
 	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to scan")
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
-	scanCmd.Flags().StringVarP(&queryPath, "queries-path", "q", "./assets/queries", "path to directory with queries")
+	scanCmd.Flags().StringVarP(
+		&queryPath,
+		"queries-path",
+		"q",
+		"./assets/queries",
+		"path to directory with queries (default ./assets/queries)",
+	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	scanCmd.Flags().StringVarP(&sarifPath, "sarif", "", "", "file path to save SARIF output")
+	scanCmd.Flags().StringSliceVarP(
+		&excludePath,
+		"exclude-paths",
+		"e",
+		[]string{},
+		"exclude paths or files from scan\nThe arg should be quoted and uses comma as separator\nexample: './shouldNotScan/*,somefile.txt'",
+	)
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
@@ -137,9 +153,7 @@ func scan() error {
 
 	scanStartTime := time.Now()
 
-	querySource := &query.FilesystemSource{
-		Source: queryPath,
-	}
+	querySource := query.NewFilesystemSource(queryPath, types)
 
 	t := &tracker.CITracker{}
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
@@ -147,22 +161,28 @@ func scan() error {
 		return err
 	}
 
-	var excludeFiles []string
+	var excludePaths []string
 	if payloadPath != "" {
-		excludeFiles = append(excludeFiles, payloadPath)
+		excludePaths = append(excludePaths, payloadPath)
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(path, excludeFiles)
+	if len(excludePath) > 0 {
+		excludePaths = append(excludePaths, excludePath...)
+	}
+
+	filesSource, err := source.NewFileSystemSourceProvider(path, excludePaths)
 	if err != nil {
 		return err
 	}
 
-	combinedParser := parser.NewBuilder().
-		// Add(&jsonParser.Parser{}).
+	combinedParser, err := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build(types)
+	if err != nil {
+		return err
+	}
 
 	store := storage.NewMemoryStorage()
 

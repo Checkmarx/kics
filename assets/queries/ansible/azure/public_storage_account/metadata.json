@@ -1,8 +1,9 @@
 {
-  "id": "35e2f133-a395-40de-a79d-b260d973d1bd",
-  "queryName": "Public Storage Account",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Check if 'network_acls' is open to public.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls"
+	"id": "35e2f133-a395-40de-a79d-b260d973d1bd",
+	"queryName": "Public Storage Account",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Check if 'network_acls' is open to public.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls",
+	"platform": "Ansible"
 }

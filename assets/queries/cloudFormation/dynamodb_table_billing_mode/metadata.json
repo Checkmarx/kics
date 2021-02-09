@@ -1,8 +1,9 @@
 {
-  "id": "c333e906-8d8b-4275-b999-78b6318f8dc6",
-  "queryName": "DynamoDB Table Billing Mode",
-  "severity": "LOW",
-  "category": "Cloud Assets Management",
-  "descriptionText": "Checks if DynamoDB Table Billing Mode is set to either PAY_PER_REQUEST or PROVISIONED",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef"
+	"id": "c333e906-8d8b-4275-b999-78b6318f8dc6",
+	"queryName": "DynamoDB Table Billing Mode",
+	"severity": "LOW",
+	"category": "Cloud Assets Management",
+	"descriptionText": "Checks if DynamoDB Table Billing Mode is set to either PAY_PER_REQUEST or PROVISIONED",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef",
+	"platform": "CloudFormation"
 }

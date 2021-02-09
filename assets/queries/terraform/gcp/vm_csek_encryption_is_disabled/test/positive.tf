@@ -1,4 +1,3 @@
-#this is a problematic code where the query should report a result(s)
 resource "google_compute_disk" "default1" {
   name  = "test-disk"
   type  = "pd-ssd"

@@ -45,25 +45,6 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") == "undefined"
-
-	metadata := deployment.metadata
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.affinity", [metadata.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity' is set",
-		"keyActualValue": "'spec.template.spec.affinity.podAntiAffinity' is undefined",
-	}
-}
-
-CxPolicy[result] {
-	deployment := input.document[i]
-	object.get(deployment, "kind", "undefined") == "Deployment"
-
-	to_number(deployment.spec.replicas) > 2
-
-	affinity := deployment.spec.template.spec.affinity
 	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
 
 	podAntiAffinity := affinity.podAntiAffinity

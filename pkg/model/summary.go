@@ -28,6 +28,7 @@ type VulnerableQuery struct {
 	QueryCategory    string           `json:"-"`
 	QueryURI         string           `json:"-"`
 	Severity         Severity         `json:"severity"`
+	Platform         string           `json:"platform"`
 	Files            []VulnerableFile `json:"files"`
 }
 
@@ -65,6 +66,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 				QueryDescription: item.QueryDescription,
 				QueryCategory:    item.QueryCategory,
 				QueryURI:         item.QueryURI,
+				Platform:         item.Platform,
 			}
 		}
 

@@ -84,6 +84,7 @@ type Vulnerability struct {
 	QueryDescription string    `json:"-"`
 	QueryURI         string    `json:"-"`
 	QueryCategory    string    `json:"-"`
+	Platform         string    `db:"platform" json:"platform"`
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`

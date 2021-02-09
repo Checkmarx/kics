@@ -102,11 +102,11 @@ func TestService(t *testing.T) {
 }
 
 func createParserSourceProvider(path string) (*parser.Parser, *source.FileSystemSourceProvider) {
-	mockParser := parser.NewBuilder().
+	mockParser, _ := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build([]string{""})
 
 	mockFilesSource, _ := source.NewFileSystemSourceProvider(path, []string{})
 

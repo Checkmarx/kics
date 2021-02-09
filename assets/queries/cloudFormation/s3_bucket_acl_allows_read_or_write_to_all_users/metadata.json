@@ -1,8 +1,9 @@
 {
-  "id": "07dda8de-d90d-469e-9b37-1aca53526ced",
-  "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "S3 Buckets sould not be readable and writable to all users",
-  "descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html"
+	"id": "07dda8de-d90d-469e-9b37-1aca53526ced",
+	"queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "S3 Buckets sould not be readable and writable to all users",
+	"descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html",
+	"platform": "CloudFormation"
 }
