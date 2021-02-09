@@ -127,3 +127,6 @@ go run ./cmd/console/main.go generate-id
 - 'descriptionUrl' points to the official documentation about the resource being targeted
 
 
+## Best Practices 
+
+Use built-in functions as much as possible.
