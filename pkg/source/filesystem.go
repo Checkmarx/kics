@@ -58,6 +58,11 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 	}, nil
 }
 
+// GetBasePath returns base path of FileSystemSourceProvider
+func (s *FileSystemSourceProvider) GetBasePath() string {
+	return s.path
+}
+
 // GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
 	fileInfo, err := os.Stat(s.path)

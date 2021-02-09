@@ -48,22 +48,22 @@ func TestQueries(t *testing.T) {
 }
 
 func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
-	name := strings.TrimPrefix(entry.dir, "../assets/queries/")
+	name := strings.TrimPrefix(entry.dir, baseTestsScanPath)
 	t.Run(name+"_positive", func(t *testing.T) {
-		testQuery(t, entry, entry.PositiveFiles(t), getExpectedVulnerabilities(t, entry))
+		testQuery(t, entry, entry.PositiveFiles(t), getExpectedVulnerabilities(t, entry), baseTestsScanPath)
 	})
 	t.Run(name+"_negative", func(t *testing.T) {
-		testQuery(t, entry, entry.NegativeFiles(t), []model.Vulnerability{})
+		testQuery(t, entry, entry.NegativeFiles(t), []model.Vulnerability{}, baseTestsScanPath)
 	})
 }
 
 func benchmarkPositiveandNegativeQueries(b *testing.B, entry queryEntry) {
-	name := strings.TrimPrefix(entry.dir, "../assets/queries/")
+	name := strings.TrimPrefix(entry.dir, baseTestsScanPath)
 	b.Run(name+"_positive", func(b *testing.B) {
-		testQuery(b, entry, entry.PositiveFiles(b), getExpectedVulnerabilities(b, entry))
+		testQuery(b, entry, entry.PositiveFiles(b), getExpectedVulnerabilities(b, entry), baseTestsScanPath)
 	})
 	b.Run(name+"_negative", func(b *testing.B) {
-		testQuery(b, entry, entry.NegativeFiles(b), []model.Vulnerability{})
+		testQuery(b, entry, entry.NegativeFiles(b), []model.Vulnerability{}, baseTestsScanPath)
 	})
 }
 
@@ -78,7 +78,7 @@ func getExpectedVulnerabilities(tb testing.TB, entry queryEntry) []model.Vulnera
 	return expectedVulnerabilities
 }
 
-func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVulnerabilities []model.Vulnerability) {
+func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVulnerabilities []model.Vulnerability, baseScanPath string) {
 	ctrl := gomock.NewController(tb)
 	defer ctrl.Finish()
 
@@ -111,7 +111,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true)
+	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true, baseTestsScanPath)
 	require.Nil(tb, err)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities)
 }

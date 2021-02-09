@@ -17,8 +17,10 @@ import (
 )
 
 // SourceProvider is the interface that wraps the basic GetSources method.
+// GetBasePath returns base path of FileSystemSourceProvider
 // GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
+	GetBasePath() string
 	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
 }
 
@@ -98,7 +100,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files, hideProgress)
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files, hideProgress, s.SourceProvider.GetBasePath())
 	if err != nil {
 		return errors.Wrap(err, "failed to inspect files")
 	}

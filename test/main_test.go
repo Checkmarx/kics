@@ -38,6 +38,11 @@ var (
 	}
 )
 
+const (
+	scanID            = "test_scan"
+	baseTestsScanPath = "../assets/queries/"
+)
+
 func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }

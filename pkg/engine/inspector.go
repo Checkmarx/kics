@@ -78,11 +78,12 @@ type Inspector struct {
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
 // the query compiled and its payload
 type QueryContext struct {
-	ctx     context.Context
-	scanID  string
-	files   map[string]model.FileMetadata
-	query   *preparedQuery
-	payload model.Documents
+	ctx          context.Context
+	scanID       string
+	files        map[string]model.FileMetadata
+	query        *preparedQuery
+	payload      model.Documents
+	baseScanPath string
 }
 
 var (
@@ -97,8 +98,7 @@ func NewInspector(
 	ctx context.Context,
 	source QueriesSource,
 	vb VulnerabilityBuilder,
-	tracker Tracker,
-) (*Inspector, error) {
+	tracker Tracker) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
@@ -180,7 +180,7 @@ func (c *Inspector) Inspect(
 	scanID string,
 	files model.FileMetadatas,
 	hideProgress bool,
-) ([]model.Vulnerability, error) {
+	baseScanPath string) ([]model.Vulnerability, error) {
 	combinedFiles := files.Combine()
 
 	_, err := json.Marshal(combinedFiles)
@@ -198,11 +198,12 @@ func (c *Inspector) Inspect(
 		}
 
 		vuls, err := c.doRun(QueryContext{
-			ctx:     ctx,
-			scanID:  scanID,
-			files:   files.ToMap(),
-			query:   query,
-			payload: combinedFiles,
+			ctx:          ctx,
+			scanID:       scanID,
+			files:        files.ToMap(),
+			query:        query,
+			payload:      combinedFiles,
+			baseScanPath: baseScanPath,
 		})
 		if err != nil {
 			sentry.CaptureException(err)

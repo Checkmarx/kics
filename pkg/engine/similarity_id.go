@@ -4,15 +4,13 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"path/filepath"
-
-	"github.com/pkg/errors"
 )
 
 // ComputeSimilarityID This function receives four string parameters and computes a sha256 hash
-func ComputeSimilarityID(filePath, queryID, searchKey, searchValue string) (*string, error) {
-	standardizedPath, err := standardizeFilePath(filePath)
+func ComputeSimilarityID(basePath, filePath, queryID, searchKey, searchValue string) (*string, error) {
+	standardizedPath, err := standardizeToRelativePath(basePath, filePath)
 	if err != nil {
-		return nil, errors.Wrap(err, "Unable to compute similarity id")
+		return nil, err
 	}
 
 	var stringNode = standardizedPath + queryID + searchKey + searchValue
@@ -22,11 +20,13 @@ func ComputeSimilarityID(filePath, queryID, searchKey, searchValue string) (*str
 	return stringToPtrString(hex.EncodeToString(hashSum[:])), nil
 }
 
-func standardizeFilePath(path string) (string, error) {
+func standardizeToRelativePath(basePath, path string) (string, error) {
 	cleanPath := filepath.Clean(path)
 	standardPath := filepath.ToSlash(cleanPath)
-	if filepath.IsAbs(standardPath) {
-		return "", errors.New("illegal absolute path to file")
+	basePath = filepath.ToSlash(basePath)
+	relativeStandardPath, err := filepath.Rel(basePath, standardPath)
+	if err != nil {
+		return "", err
 	}
-	return standardPath, nil
+	return relativeStandardPath, nil
 }

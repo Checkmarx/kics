@@ -256,7 +256,7 @@ func TestInspect(t *testing.T) { //nolint
 				enableCoverageReport: tt.fields.enableCoverageReport,
 				coverageReport:       tt.fields.coverageReport,
 			}
-			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true)
+			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, "") //TODO
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.GetCoverageReport() = %v, want %v", err, tt.want)

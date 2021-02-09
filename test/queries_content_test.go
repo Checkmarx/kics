@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"path"
 	"path/filepath"
 	"regexp"
@@ -20,10 +21,6 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
-)
-
-const (
-	scanID = "test_scan"
 )
 
 var (
@@ -207,7 +204,9 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true)
+	baseScanPath, err := os.Getwd()
+	require.Nil(t, err)
+	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true, baseScanPath)
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()

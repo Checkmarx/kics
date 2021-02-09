@@ -154,6 +154,7 @@ func scan() error {
 	querySource := query.NewFilesystemSource(queryPath, types)
 
 	t := &tracker.CITracker{}
+
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
 	if err != nil {
 		return err
@@ -166,6 +167,11 @@ func scan() error {
 
 	if len(excludePath) > 0 {
 		excludePaths = append(excludePaths, excludePath...)
+	}
+
+	path, err = filepath.Abs(path)
+	if err != nil {
+		return err
 	}
 
 	filesSource, err := source.NewFileSystemSourceProvider(path, excludePaths)
