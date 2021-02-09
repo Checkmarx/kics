@@ -95,7 +95,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).
-				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
+				Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
 		}
 		if err := c.Close(); err != nil {
 			sentry.CaptureException(err)
