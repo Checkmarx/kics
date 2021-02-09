@@ -15,3 +15,15 @@ getSpecInfo(document) = specInfo { # this one can be also used for the result
 checkKind(currentKind, listKinds) {
 	currentKind == listKinds[i]
 }
+
+checkMetadata(metadata) {
+	contains(metadata.name, "tiller")
+}
+
+checkMetadata(metadata) {
+	object.get(metadata.labels, "app", "undefined") == "helm"
+}
+
+checkMetadata(metadata) {
+	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
+}

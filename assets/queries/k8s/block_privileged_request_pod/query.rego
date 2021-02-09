@@ -1,12 +1,14 @@
 package Cx
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	spec := input.document[i].spec
+	document := input.document[i]
+	spec := document.spec
 	spec.privileged
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s.spec.privileged", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.privileged is false", [metadata.name]),

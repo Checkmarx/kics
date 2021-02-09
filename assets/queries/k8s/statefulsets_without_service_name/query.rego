@@ -1,14 +1,18 @@
 package Cx
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	input.document[i].kind == "Service"
-	specs := input.document[i].spec
+	document := input.document
+
+	document[i].kind == "Service"
+	specs := document[i].spec
 	specs.clusterIP != "None"
-	some j
-	input.document[j].kind == "StatefulSet"
-	input.document[j].spec.selector.matchLabels == input.document[j].spec.template.metadata.labels
-	metadata.name == input.document[j].spec.serviceName
+
+	document[j].kind == "StatefulSet"
+	document[j].spec.selector.matchLabels == document[j].spec.template.metadata.labels
+
+	metadata := document[i].metadata
+
+	metadata.name == document[j].spec.serviceName
 
 	result := {
 		"documentId": input.document[i].id,

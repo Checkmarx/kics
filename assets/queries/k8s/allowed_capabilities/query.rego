@@ -13,7 +13,7 @@ CxPolicy[result] {
 	object.get(containers[index].securityContext.capabilities, "add", "undefined") != "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"issueType": "IncorrectValue",
 		"searchKey": sprintf("metadata.name=%s.%s.%s.name=%s.securityContext.capabilities.add", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"keyExpectedValue": sprintf("%s.%s.name=%s. does not have added capability", [specInfo.path, types[x], containers[index].name]),

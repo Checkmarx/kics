@@ -1,13 +1,15 @@
 package Cx
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	spec := input.document[i].spec
+	document := input.document[i]
+	spec := document.spec
 	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	drop := containers[c].securityContext.capabilities.drop
 
 	not contains(drop, "ALL")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
