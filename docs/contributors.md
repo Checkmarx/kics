@@ -3,7 +3,7 @@
 
 Special thanks to  **[Lior Kaplan](https://github.com/kaplanlior)** from **_Kaplan Open Source Consulting_** for his assistance in creating KICS. 
 
-The people listed below had made a huge contrubution to KICS. 
+The people listed below had made a huge contribution to KICS. 
 
 - [Ruben Silva](https://github.com/Ruben-Silva) 
 - [Rafaela Soares](https://github.com/rafaela-soares)
