@@ -1,0 +1,9 @@
+{
+  "id": "01aec7c2-3e4d-4274-ae47-2b8fea22fd1f",
+  "queryName": "ECS Task Definition Network Mode Not Recommended",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "Network_Mode should be 'awsvpc' in ecs_task_definition. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_taskdefinition_module.html#parameter-network_mode",
+  "platform": "Ansible"
+}

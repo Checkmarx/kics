@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Open access to resources through API",
-		"severity": "LOW",
-		"line": 16
-	}
+  {
+    "queryName": "Open Access To Resources Through API",
+    "severity": "LOW",
+    "line": 16
+  }
 ]

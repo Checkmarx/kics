@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "EKS cluster Has Public Access",
+    "severity": "MEDIUM",
+    "line": 7
+  }
+]

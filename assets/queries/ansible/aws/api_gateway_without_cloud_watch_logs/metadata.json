@@ -1,9 +1,0 @@
-{
-	"id": "72a931c2-12f5-40d1-93cc-47bff2f7aa2a",
-	"queryName": "API Gateway without Cloudwatch Log",
-	"severity": "MEDIUM",
-	"category": "Logging",
-	"descriptionText": "AWS CloudWatch Logs for APIs is not enabled",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudwatchlogs_log_group_module.html#ansible-collections-community-aws-cloudwatchlogs-log-group-module",
-	"platform": "Ansible"
-}

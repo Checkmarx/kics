@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 18
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]

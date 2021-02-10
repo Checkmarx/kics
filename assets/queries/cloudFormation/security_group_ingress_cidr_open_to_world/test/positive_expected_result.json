@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Security Group Ingress CIDR Open To World",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "Security Group Ingress CIDR Open To World",
+    "severity": "MEDIUM",
+    "line": 43
+  }
+]

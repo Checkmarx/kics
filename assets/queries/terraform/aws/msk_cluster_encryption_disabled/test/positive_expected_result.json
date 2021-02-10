@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 14
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 26
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 37
+  }
+]

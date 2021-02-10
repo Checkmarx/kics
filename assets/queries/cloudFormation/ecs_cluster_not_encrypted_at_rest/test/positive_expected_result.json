@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 37
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 135
+  }
+]

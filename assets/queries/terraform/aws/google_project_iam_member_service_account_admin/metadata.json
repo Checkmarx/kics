@@ -1,9 +1,0 @@
-{
-	"id": "84d36481-fd63-48cb-838e-635c44806ec2",
-	"queryName": "Google Project IAM Member Service Account has Admin Role",
-	"severity": "MEDIUM",
-	"category": "Identity & Access Management",
-	"descriptionText": "Verifies that Google Project IAM Member Service Account doesn't have an Admin Role associated",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member",
-	"platform": "Terraform"
-}

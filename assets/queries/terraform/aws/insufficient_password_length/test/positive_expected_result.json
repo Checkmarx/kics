@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "Insufficient password length",
-		"severity": "HIGH",
-		"line": 13
-	},
-	{
-		"queryName": "Insufficient password length",
-		"severity": "HIGH",
-		"line": 9
-	}
+  {
+    "queryName": "Insufficient Password Length",
+    "severity": "HIGH",
+    "line": 13
+  },
+  {
+    "queryName": "Insufficient Password Length",
+    "severity": "HIGH",
+    "line": 9
+  }
 ]

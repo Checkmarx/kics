@@ -1,0 +1,9 @@
+{
+  "id": "42f4b905-3736-4213-bfe9-c0660518cda8",
+  "queryName": "EKS cluster Has Public Access",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Amazon EKS public endpoint shoud be set to false",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster",
+  "platform": "Terraform"
+}

@@ -1,20 +1,20 @@
 [
-	{
-		"queryName": "SQS policy with Public Access",
-		"severity": "MEDIUM",
-		"line": 47,
-		"value": "examplequeue_aws"
-	},
-	{
-		"queryName": "SQS policy with Public Access",
-		"severity": "MEDIUM",
-		"line": 72,
-		"value": "examplequeue_aws_array"
-	},
-	{
-		"queryName": "SQS policy with Public Access",
-		"severity": "MEDIUM",
-		"line": 15,
-		"value": "examplequeue"
-	}
+  {
+    "queryName": "SQS Policy With Public Access",
+    "severity": "MEDIUM",
+    "line": 47,
+    "value": "examplequeue_aws"
+  },
+  {
+    "queryName": "SQS Policy With Public Access",
+    "severity": "MEDIUM",
+    "line": 72,
+    "value": "examplequeue_aws_array"
+  },
+  {
+    "queryName": "SQS Policy With Public Access",
+    "severity": "MEDIUM",
+    "line": 15,
+    "value": "examplequeue"
+  }
 ]

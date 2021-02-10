@@ -1,9 +1,9 @@
 {
-	"id": "568a4d22-3517-44a6-a7ad-6a7eed88722c",
-	"queryName": "S3 bucket without versioning",
-	"severity": "HIGH",
-	"category": "Cloud Assets Management",
-	"descriptionText": "S3 bucket without versioning",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning",
-	"platform": "Terraform"
+  "id": "568a4d22-3517-44a6-a7ad-6a7eed88722c",
+  "queryName": "S3 Bucket Without Versioning",
+  "severity": "HIGH",
+  "category": "Cloud Assets Management",
+  "descriptionText": "S3 bucket without versioning",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning",
+  "platform": "Terraform"
 }

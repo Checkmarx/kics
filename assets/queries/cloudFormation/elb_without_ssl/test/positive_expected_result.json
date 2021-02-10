@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "ELB Without SSL",
+    "severity": "HIGH",
+    "line": 9
+  }
+]

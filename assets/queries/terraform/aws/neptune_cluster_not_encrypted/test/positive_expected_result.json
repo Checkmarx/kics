@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "Neptune Cluster not encrypted",
-		"severity": "MEDIUM",
-		"line": 1
-	},
-	{
-		"queryName": "Neptune Cluster not encrypted",
-		"severity": "MEDIUM",
-		"line": 19
-	}
+  {
+    "queryName": "Neptune Cluster Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "Neptune Cluster Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 19
+  }
 ]

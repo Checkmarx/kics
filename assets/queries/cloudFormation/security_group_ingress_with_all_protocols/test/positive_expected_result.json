@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Security Group Ingress With All Protocols",
+    "severity": "MEDIUM",
+    "line": 9
+  },
+  {
+    "queryName": "Security Group Ingress With All Protocols",
+    "severity": "MEDIUM",
+    "line": 35
+  }
+]

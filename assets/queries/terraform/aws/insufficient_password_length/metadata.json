@@ -1,9 +1,9 @@
 {
-	"id": "eaafdd7a-aa0e-48ca-b739-f4461ec67067",
-	"queryName": "Insufficient password length",
-	"severity": "HIGH",
-	"category": "Identity and Access Management",
-	"descriptionText": "Unsafe Password length policy",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
-	"platform": "Terraform"
+  "id": "eaafdd7a-aa0e-48ca-b739-f4461ec67067",
+  "queryName": "Insufficient Password Length",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "Unsafe Password length policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
+  "platform": "Terraform"
 }
