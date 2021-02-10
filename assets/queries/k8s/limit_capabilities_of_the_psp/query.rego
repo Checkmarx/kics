@@ -2,11 +2,10 @@ package Cx
 
 CxPolicy[result] {
 	document := input.document
+	document[i].kind == "PodSecurityPolicy"
 	metadata := document[i].metadata
 	spec := document[i].spec
-	document[i].kind == "PodSecurityPolicy"
-	requiredDropCapabilities := object.get(spec, "requiredDropCapabilities", "undefined") != "undefined"
-	not requiredDropCapabilities
+	object.get(spec, "requiredDropCapabilities", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
