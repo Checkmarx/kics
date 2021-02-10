@@ -1,8 +1,9 @@
 {
-  "id": "b93e973e-9066-4455-a63b-c1c0e1ec3a48",
-  "queryName": "Default Service Account In Use",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Default service accounts should not be actively used",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+	"id": "b93e973e-9066-4455-a63b-c1c0e1ec3a48",
+	"queryName": "Default Service Account In Use",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Default service accounts should not be actively used",
+	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+	"platform": "Kubernetes"
 }

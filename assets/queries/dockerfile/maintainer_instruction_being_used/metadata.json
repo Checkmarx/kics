@@ -1,8 +1,9 @@
 {
-  "id": "99614418-f82b-4852-a9ae-5051402b741c",
-  "queryName": "MAINTAINER Instruction Being Used",
-  "severity": "HIGH",
-  "category": "Metadata",
-  "descriptionText": "The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#maintainer-deprecated"
+	"id": "99614418-f82b-4852-a9ae-5051402b741c",
+	"queryName": "MAINTAINER Instruction Being Used",
+	"severity": "HIGH",
+	"category": "Metadata",
+	"descriptionText": "The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily",
+	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#maintainer-deprecated",
+	"platform": "Dockerfile"
 }

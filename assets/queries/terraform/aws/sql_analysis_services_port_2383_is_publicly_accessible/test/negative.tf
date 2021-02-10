@@ -8,6 +8,6 @@ resource "aws_security_group" "allow_tls" {
     from_port   = 2383
     to_port     = 2383
     protocol    = "tcp"
-    cidr_blocks = [aws_vpc.main.cidr_block]
+    cidr_blocks = ["0.1.0.0/0"]
   }
-  }
+}

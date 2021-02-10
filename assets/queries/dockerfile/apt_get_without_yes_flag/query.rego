@@ -1,103 +1,67 @@
 package Cx
 
 CxPolicy[result] {
-	runCmd := input.document[i].command[name][_]
-	isRunCmd(runCmd)
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
 
-	value := runCmd.Value
-	count(value) == 1 #command is in a single string
+	count(resource.Value) == 1
 
-	cmd := value[0]
+	command := resource.Value[j]
+	isAptGet(command)
 
-	searchIndex := indexof(cmd, "apt-get")
-
-	searchIndex != -1
-
-	aptGetCmd := trimCmdEnd(substring(cmd, searchIndex + 8, (count(cmd) - searchIndex) - 8))
-
-	not hasYesFlag(aptGetCmd)
+	not avoidManualInput(command)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' uses '-y' flag to avoid user manual input", [runCmd.Original]),
-		"keyActualValue": sprintf("'%s' does not use '-y' flag to avoid user manual input", [runCmd.Original]),
+		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} avoids manual input", [name, resource.Original]),
+		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} doesn't avoid manual input", [name, resource.Original]),
 	}
 }
 
 CxPolicy[result] {
-	runCmd := input.document[i].command[name][_]
-	isRunCmd(runCmd)
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
 
-	value := runCmd.Value
-	count(value) > 1 #command is in several tokens
+	count(resource.Value) > 1
 
-	aptGetIdx := getAptGetIdx(value)
-	aptGetIdx != -1
-	aptGetCmdLastIdx := getCmdLastIdx(value, aptGetIdx)
+	isAptGetInList(resource.Value)
 
-	not checkYesFlag(value, aptGetIdx, aptGetCmdLastIdx)
-
-	cmdFormatted := replace(runCmd.Original, "\"", "'")
+	not avoidManualInputInList(resource.Value)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' uses '-y' flag to avoid user manual input", [cmdFormatted]),
-		"keyActualValue": sprintf("'%s' does not use '-y' flag to avoid user manual input", [cmdFormatted]),
+		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} avoids manual input", [name, resource.Original]),
+		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} doesn't avoid manual input", [name, resource.Original]),
 	}
 }
 
-isRunCmd(com) {
-	com.Cmd == "run"
-} else = false {
-	true
+isAptGet(command) {
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", command)
 }
 
-trimCmdEnd(cmd) = trimmed {
-	termOps := ["&&", "||", "|", "&", ";"]
-
-	splitStr := split(cmd, " ")
-	some i, j
-	splitStr[i] == termOps[j]
-	indexTerm := indexof(cmd, termOps[j])
-	trimmed := substring(cmd, 0, count(cmd) - indexTerm)
-} else = cmd {
-	true
+isAptGetInList(command) {
+	contains(command[x], "apt-get")
+	contains(command[j], "install")
 }
 
-hasYesFlag(arg) {
-	flags := ["-y", "-yes", "--assume-yes"]
-	contains(arg, flags[_])
-} else = false {
-	true
+avoidManualInputInList(command) {
+	flags := ["-y", "yes", "--assumeyes"]
+
+	contains(command[j], flags[x])
 }
 
-getAptGetIdx(value) = idx {
-	some i
-	value[i] == "apt-get"
-	idx := i + 1
-} else = -1 {
-	true
+isAptGet(command) {
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", command)
 }
 
-getCmdLastIdx(arr, initCmdIdx) = idx {
-	termOps := ["&&", "||", "|", "&", ";"]
-	some i
-	i > initCmdIdx
-	arr[i] == termOps[i]
-	idx := i - 1
-} else = count(arr) - 1 {
-	true
+avoidManualInput(command) {
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*install", command)
 }
 
-checkYesFlag(cmd, start, end) {
-	some i
-	i >= start
-	i <= end
-	hasYesFlag(cmd[i])
-} else = false {
-	true
+avoidManualInput(command) {
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*", command)
 }

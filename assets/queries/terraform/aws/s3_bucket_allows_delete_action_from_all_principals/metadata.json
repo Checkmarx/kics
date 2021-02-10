@@ -1,8 +1,9 @@
 {
-  "id": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
-  "queryName": "S3 Bucket Allows Delete Action From All Principals",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "S3 Buckets must not allow Delete Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Delete, for all Principals.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy"
+	"id": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+	"queryName": "S3 Bucket Allows Delete Action From All Principals",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "S3 Buckets must not allow Delete Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Delete, for all Principals.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy",
+	"platform": "Terraform"
 }

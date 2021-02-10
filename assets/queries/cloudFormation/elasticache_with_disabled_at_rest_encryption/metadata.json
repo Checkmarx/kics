@@ -1,8 +1,9 @@
 {
-  "id": "e4ee3903-9225-4b6a-bdfb-e62dbadef821",
-  "queryName": "ElastiCache with disabled at Rest Encryption",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at rest enabled",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-atrestencryptionenabled"
+	"id": "e4ee3903-9225-4b6a-bdfb-e62dbadef821",
+	"queryName": "ElastiCache with disabled at Rest Encryption",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at rest enabled",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-atrestencryptionenabled",
+	"platform": "CloudFormation"
 }

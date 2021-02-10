@@ -1,8 +1,9 @@
 {
-  "id": "24d932e1-91f0-46ea-836f-fdbd81694151",
-  "queryName": "Route53 Without Record Set",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Route53 HostedZone must have the Record Set defined.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html"
+	"id": "24d932e1-91f0-46ea-836f-fdbd81694151",
+	"queryName": "Route53 Without Record Set",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Route53 HostedZone must have the Record Set defined.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html",
+	"platform": "CloudFormation"
 }

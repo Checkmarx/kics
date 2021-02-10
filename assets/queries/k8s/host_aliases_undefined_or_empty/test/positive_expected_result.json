@@ -13,5 +13,10 @@
 		"queryName": "Host Aliases Undefined Or Empty",
 		"severity": "HIGH",
 		"line": 41
+  },
+  {
+		"queryName": "Host Aliases Undefined Or Empty",
+		"severity": "HIGH",
+		"line": 57
 	}
 ]

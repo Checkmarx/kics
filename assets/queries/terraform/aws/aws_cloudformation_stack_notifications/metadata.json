@@ -1,8 +1,9 @@
 {
-  "id": "b72d0026-f649-4c91-a9ea-15d8f681ac09",
-  "queryName": "AWS CloudFormation Stack Notifications Disabled",
-  "severity": "MEDIUM",
-  "category": "Monitoring",
-  "descriptionText": "Enable AWS CloudFormation Stack Notifications",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack"
+	"id": "b72d0026-f649-4c91-a9ea-15d8f681ac09",
+	"queryName": "AWS CloudFormation Stack Notifications Disabled",
+	"severity": "MEDIUM",
+	"category": "Monitoring",
+	"descriptionText": "Enable AWS CloudFormation Stack Notifications",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
+	"platform": "Terraform"
 }

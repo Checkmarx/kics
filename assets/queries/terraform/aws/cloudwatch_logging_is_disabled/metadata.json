@@ -1,8 +1,9 @@
 {
-  "id": "7dbba512-e244-42dc-98bb-422339827967",
-  "queryName": "CloudWatch Logging Is Disabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Check if CloudWatch logging is disabled for Route53 hosted zones",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_query_log"
+	"id": "7dbba512-e244-42dc-98bb-422339827967",
+	"queryName": "CloudWatch Logging Is Disabled",
+	"severity": "MEDIUM",
+	"category": "Logging",
+	"descriptionText": "Check if CloudWatch logging is disabled for Route53 hosted zones",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_query_log",
+	"platform": "Terraform"
 }

@@ -35,7 +35,7 @@ jobs:
     - name: Run Go mod tidy
       run: go mod tidy
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       with:
         path: |
           ~/go/pkg/mod

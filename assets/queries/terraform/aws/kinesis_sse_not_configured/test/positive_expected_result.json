@@ -1,42 +1,22 @@
 [
-	{
-		"queryName": "Kinesis SSE Not Configured",
-		"severity": "HIGH",
-		"line": 12
-	},
-
-
-        {
-		"queryName": "Kinesis SSE Not Configured",
-		"severity": "HIGH",
-		"line": 21
-	},
-
-
-
-    {
-		"queryName": "Kinesis SSE Not Configured",
-		"severity": "HIGH",
-		"line": 36
-	},
-
-
-
-        {
-		"queryName": "Kinesis SSE Not Configured",
-		"severity": "HIGH",
-		"line": 51
-	},
-
-
-
-    {
-		"queryName": "Kinesis SSE Not Configured",
-		"severity": "HIGH",
-		"line": 62
-	}
-
-
-
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 12
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 23
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 34
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 42
+  }
 ]
-
