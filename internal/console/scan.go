@@ -142,6 +142,28 @@ func setupLogs() error {
 	return nil
 }
 
+func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
+	var excludePaths []string
+	if payloadPath != "" {
+		excludePaths = append(excludePaths, payloadPath)
+	}
+
+	if len(excludePath) > 0 {
+		excludePaths = append(excludePaths, excludePath...)
+	}
+
+	absPath, err := filepath.Abs(path)
+	if err != nil {
+		return nil, err
+	}
+
+	filesSource, err := source.NewFileSystemSourceProvider(absPath, excludePaths)
+	if err != nil {
+		return nil, err
+	}
+	return filesSource, nil
+}
+
 func scan() error {
 	fmt.Printf("Scanning with %s\n\n", getVersion())
 
@@ -160,21 +182,7 @@ func scan() error {
 		return err
 	}
 
-	var excludePaths []string
-	if payloadPath != "" {
-		excludePaths = append(excludePaths, payloadPath)
-	}
-
-	if len(excludePath) > 0 {
-		excludePaths = append(excludePaths, excludePath...)
-	}
-
-	path, err = filepath.Abs(path)
-	if err != nil {
-		return err
-	}
-
-	filesSource, err := source.NewFileSystemSourceProvider(path, excludePaths)
+	filesSource, err := getFileSystemSourceProvider()
 	if err != nil {
 		return err
 	}

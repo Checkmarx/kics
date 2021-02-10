@@ -40,7 +40,7 @@ var (
 
 const (
 	scanID            = "test_scan"
-	baseTestsScanPath = "../assets/queries/"
+	BaseTestsScanPath = "../assets/queries/"
 )
 
 func TestMain(m *testing.M) {
