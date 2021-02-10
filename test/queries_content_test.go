@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"os"
 	"path"
 	"path/filepath"
 	"regexp"
@@ -204,9 +203,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	baseScanPath, err := os.Getwd()
-	require.Nil(t, err)
-	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true, baseScanPath)
+	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true, BaseTestsScanPath)
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()
