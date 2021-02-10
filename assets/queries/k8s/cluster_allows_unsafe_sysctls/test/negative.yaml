@@ -10,9 +10,10 @@ spec:
       value: "0"
     - name: net.ipv4.ip_local_port_range
       value: "0"
-
+  containers:
+    - name: test1
+      image: nginx
 ---
-
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
@@ -20,3 +21,11 @@ metadata:
 spec:
   forbiddenSysctls:
   - kernel.shm_rmid_forced
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny

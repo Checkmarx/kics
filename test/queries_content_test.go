@@ -23,7 +23,6 @@ import (
 )
 
 const (
-	fileID = 12345
 	scanID = "test_scan"
 )
 
@@ -73,6 +72,10 @@ var (
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
 			require.NotEmpty(tb, descriptionValue, "empty description text in query metadata file %s", metadataPath)
 		},
+		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
+			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
+			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)
+		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
 			switch urlValue := value.(type) {
 			case string:
@@ -87,6 +90,7 @@ var (
 )
 
 func TestQueriesContent(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(t)
@@ -100,6 +104,7 @@ func TestQueriesContent(t *testing.T) {
 }
 
 func TestQueriesMetadata(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(t)
@@ -120,8 +125,14 @@ func TestQueriesMetadata(t *testing.T) {
 func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	require.FileExists(t, path.Join(entry.dir, query.QueryFileName))
 	require.FileExists(t, path.Join(entry.dir, query.MetadataFileName))
-	require.FileExists(t, entry.PositiveFile())
-	require.FileExists(t, entry.NegativeFile())
+	require.True(t, len(entry.PositiveFiles(t)) > 0, "No positive samples found for query %s", entry.dir)
+	for _, positiveFile := range entry.PositiveFiles(t) {
+		require.FileExists(t, positiveFile)
+	}
+	require.True(t, len(entry.NegativeFiles(t)) > 0, "No negative samples found for query %s", entry.dir)
+	for _, negativeFile := range entry.NegativeFiles(t) {
+		require.FileExists(t, negativeFile)
+	}
 	require.FileExists(t, entry.ExpectedPositiveResultFile())
 }
 
@@ -196,7 +207,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	_, err = inspector.Inspect(ctx, scanID, getParsedFile(t, entry.PositiveFile()))
+	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true)
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()

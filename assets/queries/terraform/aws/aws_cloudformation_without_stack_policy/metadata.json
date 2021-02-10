@@ -1,8 +1,9 @@
 {
-  "id": "2f01fb2d-828a-499d-b98e-b83747305052",
-  "queryName": "AWS CloudFormation Without Stack Policy",
-  "severity": "MEDIUM",
-  "category": "Vulnerability and Threat Management",
-  "descriptionText": "AWS CloudFormation Stack should have a stack policy in order to protect stack resources from update actions",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack"
+	"id": "2f01fb2d-828a-499d-b98e-b83747305052",
+	"queryName": "AWS CloudFormation Without Stack Policy",
+	"severity": "MEDIUM",
+	"category": "Vulnerability and Threat Management",
+	"descriptionText": "AWS CloudFormation Stack should have a stack policy in order to protect stack resources from update actions",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
+	"platform": "Terraform"
 }

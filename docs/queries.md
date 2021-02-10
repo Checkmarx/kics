@@ -126,4 +126,3 @@ go run ./cmd/console/main.go generate-id
 - 'descriptionText' should explain with detail the vulnerability and if possible provide a way to remediate
 - 'descriptionUrl' points to the official documentation about the resource being targeted
 
-

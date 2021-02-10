@@ -1,4 +1,3 @@
-#this is a problematic code where the query should report a result(s)
 resource "github_repository" "example1" {
   name        = "example"
   description = "My awesome codebase"

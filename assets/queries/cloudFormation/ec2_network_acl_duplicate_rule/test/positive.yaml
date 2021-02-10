@@ -27,3 +27,30 @@ Resources:
        Egress: true
        RuleAction: allow
        CidrBlock: 0.0.0.0/0
+  MyNACL2:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+       VpcId: vpc-1122334455aabbccdd
+  InboundRule2:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: MyNACL2
+       RuleNumber: 112
+       Protocol: 6
+       Ingress: true
+       RuleAction: allow
+       CidrBlock: 172.16.0.0/24
+       PortRange:
+         From: 22
+         To: 22
+  OutboundRule2:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: MyNACL2
+       RuleNumber: "112"
+       Protocol: -1
+       Ingress: true
+       RuleAction: allow
+       CidrBlock: 0.0.0.0/0

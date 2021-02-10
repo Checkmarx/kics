@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "Elastic Search Domain Encryption At Rest Disabled",
-		"severity": "MEDIUM",
-		"line": 15
-	},
-	{
-		"queryName": "Elastic Search Domain Encryption At Rest Disabled",
-		"severity": "MEDIUM",
-		"line": 43
-	}
+  {
+    "queryName": "Elastic Search Domain Encryption At Rest Disabled",
+    "severity": "MEDIUM",
+    "line": 16
+  },
+  {
+    "queryName": "Elastic Search Domain Encryption At Rest Disabled",
+    "severity": "MEDIUM",
+    "line": 43
+  }
 ]

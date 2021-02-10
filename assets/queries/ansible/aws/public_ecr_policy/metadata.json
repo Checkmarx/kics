@@ -1,8 +1,9 @@
 {
-  "id": "fb5a5df7-6d74-4243-ab82-ff779a958bfd",
-  "queryName": "Public ECR policy",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Public ECR policy",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_ecr_module.html#parameter-policy"
+	"id": "fb5a5df7-6d74-4243-ab82-ff779a958bfd",
+	"queryName": "Public ECR policy",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Public ECR policy",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_ecr_module.html#parameter-policy",
+	"platform": "Ansible"
 }

@@ -62,6 +62,9 @@ spec:
           mountPath: /data/demo
       securityContext:
         allowPrivilegeEscalation: true
+  containers:
+    - image: nginx
+      name: nginx-sec-ctx
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -83,3 +86,6 @@ spec:
               securityContext:
                 allowPrivilegeEscalation: true
           restartPolicy: OnFailure
+          containers:
+            - image: nginx
+              name: nginx-sec-ctx

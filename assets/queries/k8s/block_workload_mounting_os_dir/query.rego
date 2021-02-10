@@ -5,7 +5,7 @@ CxPolicy[result] {
 	metadata := resource.metadata
 	resource.kind == "Pod"
 	volumes := resource.spec.volumes
-	isOSDir(volumes[_].hostPath.path)
+	isOSDir(volumes[j].hostPath.path)
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.volumes.name=%s.hostPath.path", [metadata.name, volumes[j].name]),
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	resource.kind != "Pod"
 	spec := resource.spec.template.spec
 	volumes := spec.volumes
-	isOSDir(volumes[_].hostPath.path)
+	isOSDir(volumes[j].hostPath.path)
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.volumes.name=%s.hostPath.path", [metadata.name, volumes[j].name]),

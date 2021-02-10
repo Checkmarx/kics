@@ -4,6 +4,7 @@ import (
 	"context"
 	"io"
 	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -33,8 +34,8 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 				},
 			},
 			want: &FileSystemSourceProvider{
-				path:     "./test",
-				excludes: make(map[string]os.FileInfo, 1),
+				path:     filepath.FromSlash("./test"),
+				excludes: make(map[string][]os.FileInfo, 1),
 			},
 			wantErr: false,
 		},
@@ -57,7 +58,7 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 	type fields struct {
 		path     string
-		excludes map[string]os.FileInfo
+		excludes map[string][]os.FileInfo
 	}
 	type args struct {
 		ctx        context.Context
@@ -75,7 +76,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			name: "get_sources",
 			fields: fields{
 				path:     "../../assets/queries",
-				excludes: map[string]os.FileInfo{},
+				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
@@ -91,7 +92,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			name: "error_sink",
 			fields: fields{
 				path:     "../../assets/queries",
-				excludes: map[string]os.FileInfo{},
+				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
@@ -107,7 +108,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			name: "get_sources_file",
 			fields: fields{
 				path:     "../../assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
-				excludes: map[string]os.FileInfo{},
+				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
@@ -123,7 +124,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			name: "error_not_suported_extension",
 			fields: fields{
 				path:     "../../assets/queries/template/test/positive.tf",
-				excludes: map[string]os.FileInfo{},
+				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
@@ -139,7 +140,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			name: "new_filesystem_source_provider_error",
 			fields: fields{
 				path:     "./no-path",
-				excludes: map[string]os.FileInfo{},
+				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx:        nil,
@@ -168,7 +169,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	infoFile, _ := os.Stat("../../assets/queries")
 	type fields struct {
 		path     string
-		excludes map[string]os.FileInfo
+		excludes map[string][]os.FileInfo
 	}
 	type args struct {
 		info       os.FileInfo
@@ -179,7 +180,10 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 		name   string
 		fields fields
 		args   args
-		want   bool
+		want   struct {
+			got bool
+			err error
+		}
 	}{
 		{
 			name: "check_conditions",
@@ -194,7 +198,13 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				},
 				path: "../../assets/queries",
 			},
-			want: true,
+			want: struct {
+				got bool
+				err error
+			}{
+				got: true,
+				err: nil,
+			},
 		},
 	}
 	for _, tt := range tests {
@@ -203,7 +213,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				path:     tt.fields.path,
 				excludes: tt.fields.excludes,
 			}
-			if got := s.checkConditions(tt.args.info, tt.args.extensions, tt.args.path); got != tt.want {
+			if got, err := s.checkConditions(tt.args.info, tt.args.extensions, tt.args.path); got != tt.want.got || err != tt.want.err {
 				t.Errorf("FileSystemSourceProvider.checkConditions() = %v, want %v", got, tt.want)
 			}
 		})

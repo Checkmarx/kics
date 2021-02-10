@@ -1,8 +1,9 @@
 {
-  "id": "7772bb8c-c0f3-42d4-8e4e-f1b8939ad085",
-  "queryName": "S3 Buckets Are Publicly Accessible",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "The S3 Bucket should not have the (accessPublicBlock empty or accessPublicBlock.ignorePublicAcls = false or accessPublicBlock.restrictPublicBuckets = false ) and ( policy.Statement contain [Effect='Allow' and (Principal='*' or Principal.AWS='*')])",
-  "descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html"
+	"id": "7772bb8c-c0f3-42d4-8e4e-f1b8939ad085",
+	"queryName": "S3 Buckets Are Publicly Accessible",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "The S3 Bucket should not have the (accessPublicBlock empty or accessPublicBlock.ignorePublicAcls = false or accessPublicBlock.restrictPublicBuckets = false ) and ( policy.Statement contain [Effect='Allow' and (Principal='*' or Principal.AWS='*')])",
+	"descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html",
+	"platform": "CloudFormation"
 }
