@@ -166,7 +166,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx engine.QueryContext, trk engine.Tracker, v interface{}) (model.Vulnerability, error) {
+		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}) (model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
