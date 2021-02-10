@@ -5,7 +5,7 @@ Integrate your CI with Github Actions, GitLab CI/CD.
 ## Integrate KICS with Github Actions
 
 You can integrate KICS into your Github Actions. 
-This provides you the ability to integrate KICS scans and apply KICS vulnerabilities and miconfiguration checks to your infrastructure as code (IaC)
+This provides you the ability to integrate KICS scans and apply KICS vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).
 
 Use KICS GitHub action from the [marketplace](https://github.com/marketplace/actions/kics-github-action)
 
@@ -22,7 +22,7 @@ and take a look at the [example usage](https://github.com/marketplace/actions/ki
 ## Integrate KICS with GitLab CI
 
 You can integrate KICS into your GitLab CI/CD. 
-This provides you the ability to integrate KICS scans and apply KICS vulnerabilities and miconfiguration checks to your infrastructure as code (IaC)
+This provides you the ability to integrate KICS scans and apply KICS vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).
 
 ### Basic Setup
 
@@ -75,7 +75,7 @@ kics-results:
 ```
 
 ### Example Results
-When your pipeline executes, it will run this jobs. If KICS finds any issues, it will fail the build.
+When your pipeline executes, it will run this job. If KICS finds any issues, it will fail the build.
 
 #### Pipeline Failure
 
