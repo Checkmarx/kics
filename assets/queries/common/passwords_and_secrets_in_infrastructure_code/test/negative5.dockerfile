@@ -1,0 +1,3 @@
+FROM baseImage
+
+RUN command

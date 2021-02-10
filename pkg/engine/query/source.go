@@ -60,6 +60,8 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 		libraryFilePath = filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
 	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
 		libraryFilePath = filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("common")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 	}
 
 	return libraryFilePath
@@ -79,6 +81,9 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
+	if queryPlatform.(string) == "Common" {
+		return true
+	}
 	if s.types[0] != "" {
 		return strings.Contains(strings.Join(s.types, ","), queryPlatform.(string))
 	}
@@ -177,8 +182,8 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 }
 
 func getPlatform(queryPath string) string {
-	if strings.Contains(queryPath, "commonQuery") {
-		return "commonQuery"
+	if strings.Contains(queryPath, "common") {
+		return "common"
 	} else if strings.Contains(queryPath, "ansible") {
 		return "ansible"
 	} else if strings.Contains(queryPath, "cloudFormation") {

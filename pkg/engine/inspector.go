@@ -27,7 +27,7 @@ const (
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 3 * time.Second
+	executeTimeout = 6 * time.Second
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -104,7 +104,7 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := source.GetGenericQuery("commonQuery")
+	commonGeneralQuery, err := source.GetGenericQuery("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
