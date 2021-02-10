@@ -40,7 +40,8 @@ For example, the JSON code above is the metadata corresponding to the query in t
   "severity": "HIGH",
   "category": "Identity and Access Management",
   "descriptionText": "It's not recommended to allow read access for all user groups.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+  "platform": "Terraform"
 }
 ```
 
@@ -53,11 +54,11 @@ Per each query created, it is mandatory the creation of **test cases** with, at 
 with data about the expected results, as shown below:
 ```json
 [
-	{
-		"queryName": "All Users Group Gets Read Access",
-		"severity": "HIGH",
-		"line": 3
-	}
+  {
+    "queryName": "All Users Group Gets Read Access",
+    "severity": "HIGH",
+    "line": 3
+  }
 ]
 ```
 
@@ -73,6 +74,42 @@ Summarizing, the following is the expected file tree for a query:
     |   |   |- metadata.json
     |   |   |- query.rego
 ```
+
+Also, a query can contains multiples positive and negative files, but all cases files names must start with negative or positive and
+each positive file must be referencered on `positive_expected_result.json`, as shown below:
+
+```json
+[
+  {
+    "queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 37,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive2.yaml"
+  }
+]
+```
+And the file tree should be as follows:
+
+```none
+- <technology>
+    |- <provider>
+    |   |- <queryfolder>
+    |   |   |- test
+    |   |   |   |- positive1<.ext>
+    |   |   |   |- positive2<.ext>
+    |   |   |   |- negative1<.ext>
+    |   |   |   |- negative2<.ext>
+    |   |   |   |- positive_expected_result.json
+    |   |   |- metadata.json
+    |   |   |- query.rego
+```
+
 ## Development of a Query 
 
 The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, that can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
@@ -89,7 +126,7 @@ After having the .json that will be our Rego input, we can begin to write querie
 To test and debug there are two ways:
 
 - [Using Rego playground](https://play.openpolicyagent.org/)
-- Install Open Policy Agent extension in VS Code and create a simple folder with a .rego file for the query and a input.json for the sample to test against
+- [Install Open Policy Agent extension](https://marketplace.visualstudio.com/items?itemName=tsandall.opa) in VS Code and create a simple folder with a .rego file for the query and a input.json for the sample to test against
 
 ### Testing 
 
@@ -104,13 +141,13 @@ Check if the new test was added correctly and if all tests are passing locally. 
 
 Filling metadata.json:
 
-- 'id' should be filled with a UUID. You can use the built-in command to generate this:
+- `id` should be filled with a UUID. You can use the built-in command to generate this:
 ```bash
 go run ./cmd/console/main.go generate-id
 ```
-- 'queryName' describes the name of the vulnerability
-- 'severity' can be filled with 'HIGH', 'MEDIUM','LOW' or 'INFO'
-- 'category' pick one of the following:
+- `queryName` describes the name of the vulnerability
+- `severity` can be filled with `HIGH`, `MEDIUM`,`LOW` or `INFO`
+- `category` pick one of the following:
   - Identity and Access Management
   - Network Security
   - Monitoring
@@ -123,6 +160,7 @@ go run ./cmd/console/main.go generate-id
   - Domain Name System (DNS) 
   - Management
   - Network Ports Security
-- 'descriptionText' should explain with detail the vulnerability and if possible provide a way to remediate
-- 'descriptionUrl' points to the official documentation about the resource being targeted
+- `descriptionText` should explain with detail the vulnerability and if possible provide a way to remediate
+- `descriptionUrl` points to the official documentation about the resource being targeted
+- `platform` refers to querys target platform
 
