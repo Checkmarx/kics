@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "CloudFront Minimum Protocol TLS1.2",
-		"severity": "HIGH",
-		"line": 24
-	},
-	{
-		"queryName": "CloudFront Minimum Protocol TLS1.2",
-		"severity": "HIGH",
-		"line": 32
-	}
+  {
+    "queryName": "CloudFront Minimum Protocol TLS1.2",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CloudFront Minimum Protocol TLS1.2",
+    "severity": "HIGH",
+    "line": 32,
+    "fileName": "positive1.yaml"
+  }
 ]

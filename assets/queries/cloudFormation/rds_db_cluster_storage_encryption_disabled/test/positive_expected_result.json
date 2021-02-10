@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "RDS DBCluster Storage Encryption Disabled",
-		"severity": "MEDIUM",
-		"line": 12
-	},
-	{
-		"queryName": "RDS DBCluster Storage Encryption Disabled",
-		"severity": "MEDIUM",
-		"line": 61
-	}
+  {
+    "queryName": "RDS DBCluster Storage Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "RDS DBCluster Storage Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.yaml"
+  }
 ]

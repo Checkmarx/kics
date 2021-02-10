@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "IAM Managed Policy Applied to a User",
-		"severity": "MEDIUM",
-		"line": 10
-	}
+  {
+    "queryName": "IAM Managed Policy Applied to a User",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.yaml"
+  }
 ]

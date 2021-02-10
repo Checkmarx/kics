@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "ECS Cluster at Rest Encryption",
-		"severity": "HIGH",
-		"line": 37
-	},
-	{
-		"queryName": "ECS Cluster at Rest Encryption",
-		"severity": "HIGH",
-		"line": 135
-	}
+  {
+    "queryName": "ECS Cluster at Rest Encryption",
+    "severity": "HIGH",
+    "line": 37,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ECS Cluster at Rest Encryption",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.yaml"
+  }
 ]

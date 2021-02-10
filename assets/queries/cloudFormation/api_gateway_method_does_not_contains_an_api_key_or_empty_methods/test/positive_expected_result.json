@@ -1,22 +1,26 @@
 [
-	{
-		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
-		"severity": "MEDIUM",
-		"line": 7
-	},
-	{
-		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
-		"severity": "MEDIUM",
-		"line": 12
-	},
-	{
-		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
-		"severity": "MEDIUM",
-		"line": 26
-	},
-	{
-		"queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
-		"severity": "MEDIUM",
-		"line": 31
-	}
+  {
+    "queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "API Gateway Method Does Not Contains An API Key Or Empty Methods",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml"
+  }
 ]

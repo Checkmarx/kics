@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "Redshift Cluster Publicly Accessible",
-		"severity": "MEDIUM",
-		"line": 5
-	},
-	{
-		"queryName": "Redshift Cluster Publicly Accessible",
-		"severity": "MEDIUM",
-		"line": 18
-	}
+  {
+    "queryName": "Redshift Cluster Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Redshift Cluster Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive1.yaml"
+  }
 ]

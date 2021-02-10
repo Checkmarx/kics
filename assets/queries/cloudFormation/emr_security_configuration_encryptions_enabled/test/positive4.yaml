@@ -1,0 +1,8 @@
+Resources:
+  EMRSecurityConfiguration04:
+    Type: AWS::EMR::SecurityConfiguration
+    Properties:
+       Name: String
+       SecurityConfiguration:
+         EncryptionConfiguration:
+

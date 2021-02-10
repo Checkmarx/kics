@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "CMKs Rotation Disabled",
-		"severity": "HIGH",
-		"line": 5
-	},
-	{
-		"queryName": "CMKs Rotation Disabled",
-		"severity": "HIGH",
-		"line": 31
-	}
+  {
+    "queryName": "CMKs Rotation Disabled",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CMKs Rotation Disabled",
+    "severity": "HIGH",
+    "line": 31,
+    "fileName": "positive1.yaml"
+  }
 ]

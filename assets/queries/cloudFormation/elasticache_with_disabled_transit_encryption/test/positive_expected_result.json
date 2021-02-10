@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "ElastiCache with disabled Transit Encryption",
-		"severity": "HIGH",
-		"line": 6
-	},
-	{
-		"queryName": "ElastiCache with disabled Transit Encryption",
-		"severity": "HIGH",
-		"line": 54
-	}
+  {
+    "queryName": "ElastiCache with disabled Transit Encryption",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ElastiCache with disabled Transit Encryption",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.yaml"
+  }
 ]

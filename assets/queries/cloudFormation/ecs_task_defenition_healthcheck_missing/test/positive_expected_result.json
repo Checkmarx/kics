@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "ECS Task Definition HealthCheck Missing",
-		"severity": "LOW",
-		"line": 22
-	}
+  {
+    "queryName": "ECS Task Definition HealthCheck Missing",
+    "severity": "LOW",
+    "line": 22,
+    "fileName": "positive1.yaml"
+  }
 ]

@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "ECS Service Without Running Tasks",
-		"severity": "MEDIUM",
-		"line": 64
-	}
+  {
+    "queryName": "ECS Service Without Running Tasks",
+    "severity": "MEDIUM",
+    "line": 64,
+    "fileName": "positive1.yaml"
+  }
 ]

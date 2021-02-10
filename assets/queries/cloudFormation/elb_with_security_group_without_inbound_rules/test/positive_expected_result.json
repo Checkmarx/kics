@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "ELB With Security Group Without Inbound Rules",
-		"severity": "MEDIUM",
-		"line": 5
-	}
+  {
+    "queryName": "ELB With Security Group Without Inbound Rules",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  }
 ]

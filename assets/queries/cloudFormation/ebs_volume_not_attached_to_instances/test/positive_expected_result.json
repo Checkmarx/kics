@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "EBS Volume Not Attached To Instances",
-		"severity": "MEDIUM",
-		"line": 3
-	}
+  {
+    "queryName": "EBS Volume Not Attached To Instances",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  }
 ]

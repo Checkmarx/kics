@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Unused VPC",
-		"severity": "LOW",
-		"line": 3
-	}
+  {
+    "queryName": "Unused VPC",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  }
 ]

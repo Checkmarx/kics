@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "CloudFront Distribution Without WAF",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "CloudFront Distribution Without WAF",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
 ]

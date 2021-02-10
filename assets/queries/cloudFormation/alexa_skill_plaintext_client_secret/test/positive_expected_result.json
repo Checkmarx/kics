@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Alexa Skill Plaintext Client Secret",
-		"severity": "MEDIUM",
-		"line": 17
-	}
+  {
+    "queryName": "Alexa Skill Plaintext Client Secret",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive1.yaml"
+  }
 ]

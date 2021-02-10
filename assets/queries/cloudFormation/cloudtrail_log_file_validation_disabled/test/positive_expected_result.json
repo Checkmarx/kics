@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "CloudTrail Log File Validation Disabled",
-		"severity": "LOW",
-		"line": 62
-	},
-	{
-		"queryName": "CloudTrail Log File Validation Disabled",
-		"severity": "LOW",
-		"line": 77
-	}
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 62,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 77,
+    "fileName": "positive1.yaml"
+  }
 ]

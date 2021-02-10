@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "SNS Topic Should Specify KmsMasterKeyId Attribute",
-		"severity": "MEDIUM",
-		"line": 5
-	}
+  {
+    "queryName": "SNS Topic Should Specify KmsMasterKeyId Attribute",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  }
 ]

@@ -1,22 +1,26 @@
 [
-	{
-		"queryName": "AWS Config Configuration Without Alarms",
-		"severity": "MEDIUM",
-		"line": 31
-	},
-	{
-		"queryName": "AWS Config Configuration Without Alarms",
-		"severity": "MEDIUM",
-		"line": 69
-	},
-	{
-		"queryName": "AWS Config Configuration Without Alarms",
-		"severity": "MEDIUM",
-		"line": 97
-	},
-	{
-		"queryName": "AWS Config Configuration Without Alarms",
-		"severity": "MEDIUM",
-		"line": 120
-	}
+  {
+    "queryName": "AWS Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "AWS Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "AWS Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "AWS Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  }
 ]

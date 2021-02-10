@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "IAM Password Without Minimum Length",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "IAM Password Without Minimum Length",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml"
+  }
 ]

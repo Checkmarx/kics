@@ -2,11 +2,13 @@
   {
     "queryName": "AWS Lambda Functions Tracing Disabled",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "AWS Lambda Functions Tracing Disabled",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 4,
+    "fileName": "positive2.yaml"
   }
 ]

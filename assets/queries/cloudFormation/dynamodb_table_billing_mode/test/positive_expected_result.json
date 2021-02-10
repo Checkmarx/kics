@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "DynamoDB Table Billing Mode",
-		"severity": "LOW",
-		"line": 13
-	}
+  {
+    "queryName": "DynamoDB Table Billing Mode",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  }
 ]

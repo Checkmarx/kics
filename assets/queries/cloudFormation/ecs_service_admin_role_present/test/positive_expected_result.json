@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "ECS Service Admin Role Present",
-		"severity": "HIGH",
-		"line": 87
-	}
+  {
+    "queryName": "ECS Service Admin Role Present",
+    "severity": "HIGH",
+    "line": 87,
+    "fileName": "positive1.yaml"
+  }
 ]

@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ParentUserToken:
+    Description: 'UserToken'
+    Type: String
+Resources:
+  NewApp:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: true
+      IAMServiceRole: String
+      Name: NewAmpApp
+      OauthToken: String
+      Repository: String

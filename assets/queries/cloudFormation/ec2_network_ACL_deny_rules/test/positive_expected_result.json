@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "EC2 Network ACL Ineffective Denied Traffic",
-		"severity": "MEDIUM",
-		"line": 17
-	}
+  {
+    "queryName": "EC2 Network ACL Ineffective Denied Traffic",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive1.yaml"
+  }
 ]

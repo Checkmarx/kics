@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Sagemaker Notebook Should Specify KmsKeyId",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "Sagemaker Notebook Should Specify KmsKeyId",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
 ]

@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "CloudTrail Not Integrated With Cloud Watch",
-		"severity": "MEDIUM",
-		"line": 62
-	}
+  {
+    "queryName": "CloudTrail Not Integrated With Cloud Watch",
+    "severity": "MEDIUM",
+    "line": 62,
+    "fileName": ".yaml"
+  }
 ]

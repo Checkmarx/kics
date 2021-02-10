@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "IAM Policy Grants Full Permissions",
-		"severity": "LOW",
-		"line": 13
-	},
-	{
-		"queryName": "IAM Policy Grants Full Permissions",
-		"severity": "LOW",
-		"line": 26
-	}
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "LOW",
+    "line": 26,
+    "fileName": "positive1.yaml"
+  }
 ]

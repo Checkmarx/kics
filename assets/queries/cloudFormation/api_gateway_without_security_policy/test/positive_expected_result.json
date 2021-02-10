@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "API Gateway Without Security Policy",
-		"severity": "HIGH",
-		"line": 20
-	},
-	{
-		"queryName": "API Gateway Without Security Policy",
-		"severity": "HIGH",
-		"line": 39
-	}
+  {
+    "queryName": "API Gateway Without Security Policy",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Without Security Policy",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive2.yaml"
+  }
 ]

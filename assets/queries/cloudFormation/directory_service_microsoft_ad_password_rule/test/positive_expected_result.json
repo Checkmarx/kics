@@ -1,17 +1,20 @@
 [
-	{
-		"queryName": "Directory Service Microsoft AD Password Rule",
-		"severity": "MEDIUM",
-		"line": 14
-	},
-	{
-		"queryName": "Directory Service Microsoft AD Password Rule",
-		"severity": "MEDIUM",
-		"line":25
-	},
-	{
-		"queryName": "Directory Service Microsoft AD Password Rule",
-		"severity": "MEDIUM",
-		"line":32
-	}
+  {
+    "queryName": "Directory Service Microsoft AD Password Rule",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Directory Service Microsoft AD Password Rule",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Directory Service Microsoft AD Password Rule",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive3.yaml"
+  }
 ]

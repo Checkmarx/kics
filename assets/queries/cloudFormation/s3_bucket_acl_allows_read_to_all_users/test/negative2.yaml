@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating S3 bucket
+Resources:
+  JenkinsArtifacts04:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: jenkins-secret-artifacts
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: CostCenter
+          Value: ITEngineering

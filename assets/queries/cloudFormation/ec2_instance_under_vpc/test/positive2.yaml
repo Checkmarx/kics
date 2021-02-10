@@ -1,0 +1,11 @@
+Resources:
+  Ec2Instance-02:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId:
+      Fn::FindInMap:
+            - "RegionMap"
+            - Ref: "AWS::Region"
+            - "AMI"
+      KeyName:
+      Ref: "KeyName"

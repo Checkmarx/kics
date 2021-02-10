@@ -1,17 +1,20 @@
 [
-	{
-		"queryName": "DMS Endpoint Password Exposed",
-		"severity": "MEDIUM",
-		"line":20
-	},
-	{
-		"queryName": "DMS Endpoint Password Exposed",
-		"severity": "MEDIUM",
-		"line":34
-	},
-	{
-		"queryName": "DMS Endpoint Password Exposed",
-		"severity": "MEDIUM",
-		"line":92
-	}
+  {
+    "queryName": "DMS Endpoint Password Exposed",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "DMS Endpoint Password Exposed",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "DMS Endpoint Password Exposed",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive3.yaml"
+  }
 ]

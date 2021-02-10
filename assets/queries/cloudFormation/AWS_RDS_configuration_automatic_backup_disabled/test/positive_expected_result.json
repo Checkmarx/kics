@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "AWS RDS Configuration Automatic Backup Disabled",
-		"severity": "LOW",
-		"line": 14
-	}
+  {
+    "queryName": "AWS RDS Configuration Automatic Backup Disabled",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive1.yaml"
+  }
 ]

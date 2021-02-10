@@ -1,13 +1,14 @@
 [
-	{
-		"queryName": "AWS Security Group Ingress Has CIDR Not Recommended",
-		"severity": "MEDIUM",
-		"line": 13
-	},
-
-	{
-		"queryName": "AWS Security Group Ingress Has CIDR Not Recommended",
-		"severity": "MEDIUM",
-		"line": 43
-	}
+  {
+    "queryName": "AWS Security Group Ingress Has CIDR Not Recommended",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "AWS Security Group Ingress Has CIDR Not Recommended",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive1.yaml"
+  }
 ]

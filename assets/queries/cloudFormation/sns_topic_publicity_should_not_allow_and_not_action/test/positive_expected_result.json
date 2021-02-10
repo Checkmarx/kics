@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "SNS Topic Publicity Should not have Allow and NotAction",
-		"severity": "MEDIUM",
-		"line": 11
-	},
-	{
-		"queryName": "SNS Topic Publicity Should not have Allow and NotAction",
-		"severity": "MEDIUM",
-		"line": 15
-	}
+  {
+    "queryName": "SNS Topic Publicity Should not have Allow and NotAction",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "SNS Topic Publicity Should not have Allow and NotAction",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive1.yaml"
+  }
 ]

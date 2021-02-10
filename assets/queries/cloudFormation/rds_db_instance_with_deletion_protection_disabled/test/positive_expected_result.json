@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "RDS DBInstance With Deletion Protection Disabled",
-		"severity": "LOW",
-		"line": 34
-	},
-	{
-		"queryName": "RDS DBInstance With Deletion Protection Disabled",
-		"severity": "LOW",
-		"line": 72
-	}
+  {
+    "queryName": "RDS DBInstance With Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 34,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "RDS DBInstance With Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 28,
+    "fileName": "positive2.yaml"
+  }
 ]

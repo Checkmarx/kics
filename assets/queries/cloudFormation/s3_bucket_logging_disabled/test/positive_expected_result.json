@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "S3 Bucket Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 7
-	}
+  {
+    "queryName": "S3 Bucket Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  }
 ]

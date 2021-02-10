@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "AWS SQS Queue Without KMS Master Key Id",
-		"severity": "MEDIUM",
-		"line": 4
-	}
+  {
+    "queryName": "AWS SQS Queue Without KMS Master Key Id",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  }
 ]

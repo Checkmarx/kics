@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "AWS Redshift Cluster Without KMS CMK",
-		"severity": "HIGH",
-		"line": 6
-	}
+  {
+    "queryName": "AWS Redshift Cluster Without KMS CMK",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
 ]

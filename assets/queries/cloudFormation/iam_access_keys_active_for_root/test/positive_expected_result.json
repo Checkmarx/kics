@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "IAM Access Keys Associated To Root Account",
-		"severity": "HIGH",
-		"line": 6
-	}
+  {
+    "queryName": "IAM Access Keys Associated To Root Account",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
 ]

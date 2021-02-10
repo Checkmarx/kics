@@ -2,11 +2,13 @@
   {
     "queryName": "Elastic Search Domain Encryption At Rest Disabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Elastic Search Domain Encryption At Rest Disabled",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 6,
+    "fileName": "positive2.yaml"
   }
 ]
