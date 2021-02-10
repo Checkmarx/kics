@@ -8,9 +8,11 @@ CxPolicy[result] {
 	some j
 	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
+
 	object.get(container, "readinessProbe", "undefined") == "undefined"
 
 	metadata := document.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
