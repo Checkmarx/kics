@@ -35,13 +35,13 @@ the severity, category and its description.
 For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.
 ```json
 {
-	"id": "5738faf3-3fe6-4614-a93d-f0003242d4f9",
-	"queryName": "All Users Group Gets Read Access",
-	"severity": "HIGH",
-	"category": "Identity and Access Management",
-	"descriptionText": "It's not recommended to allow read access for all user groups.",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
-	"platform": "Terraform"
+  "id": "5738faf3-3fe6-4614-a93d-f0003242d4f9",
+  "queryName": "All Users Group Gets Read Access",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "It's not recommended to allow read access for all user groups.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+  "platform": "Terraform"
 }
 ```
 
@@ -54,11 +54,11 @@ Per each query created, it is mandatory the creation of **test cases** with, at 
 with data about the expected results, as shown below:
 ```json
 [
-	{
-		"queryName": "All Users Group Gets Read Access",
-		"severity": "HIGH",
-		"line": 3
-	}
+  {
+    "queryName": "All Users Group Gets Read Access",
+    "severity": "HIGH",
+    "line": 3
+  }
 ]
 ```
 
@@ -80,18 +80,18 @@ each positive file must be referencered on `positive_expected_result.json`, as s
 
 ```json
 [
-	{
-		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
-		"severity": "HIGH",
+  {
+    "queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
     "line": 37,
     "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
-		"severity": "HIGH",
+  },
+  {
+    "queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
     "line": 22,
     "fileName": "positive2.yaml"
-	}
+  }
 ]
 ```
 And the file tree should be as follows:
