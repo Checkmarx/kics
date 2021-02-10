@@ -28,5 +28,5 @@ func standardizeToRelativePath(basePath, path string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return relativeStandardPath, nil
+	return filepath.ToSlash(relativeStandardPath), nil
 }

@@ -227,7 +227,7 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 			name:           "Resolve relative path",
 			basePath:       filepath.Join(volumeName, "test", "my", "project"),
 			input:          filepath.Join(volumeName, "test", "my", "project", "..", "test.yaml"),
-			expectedOutput: filepath.Join("..", "test.yaml"),
+			expectedOutput: "../test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string, err error) {
 				require.NotEmpty(t, actual)
 				require.Equal(t, expected, actual)
@@ -237,7 +237,7 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 			name:           "Check different directory",
 			basePath:       filepath.Join(volumeName, "test", "my", "project"),
 			input:          filepath.Join(volumeName, "test", "my", "project", "other", "test.yaml"),
-			expectedOutput: filepath.Join(volumeName, "test", "my", "project", "test.yaml"),
+			expectedOutput: volumeName + "test/my/project/test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string, err error) {
 				require.NotEmpty(t, actual)
 				require.NotEqual(t, expected, actual)
@@ -247,7 +247,7 @@ func TestStandardizeFilePathEquals(t *testing.T) {
 			name:           "Check different directory",
 			basePath:       filepath.Join("D:", "test", "my", "project"),
 			input:          filepath.Join(volumeName, "test", "my", "project", "other", "test.yaml"),
-			expectedOutput: filepath.Join(volumeName, "test", "my", "project", "test.yaml"),
+			expectedOutput: volumeName + "/test/my/project/test.yaml",
 			expectedFunction: func(t *testing.T, expected, actual string, err error) {
 				require.Error(t, err)
 			},

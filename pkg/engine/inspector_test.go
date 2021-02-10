@@ -224,6 +224,7 @@ func TestInspect(t *testing.T) { //nolint
 					},
 				},
 			},
+			// 27ef060e0ced4e40b94f2c5a8c330e9be5b9534ce41a4cc2f737bca66f2ce788
 			want: []model.Vulnerability{
 				{
 					ID:               0,
