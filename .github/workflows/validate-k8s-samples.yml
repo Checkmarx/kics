@@ -28,6 +28,7 @@ jobs:
       - name: Validate k8s manifests
         run: python3 .github/validators/validate-syntax.py
         env:
+          EXTRA_ARGS: '--skip-kinds CustomResourceDefinition'
           LINTER_PATH: .bin/kubeval
           SKIP_LIST_PATH: '.github/validators/k8s-skip-list'
           FILES_GLOB: 'assets/queries/k8s/**/test/*.yaml'

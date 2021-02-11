@@ -66,57 +66,62 @@ checkRootParent(spec, path, metadata, id) = result {
 
 checkRootContainer(spec, path, metadata, id) = result {
 	some j
-	container := spec.containers[j]
+	types = {"initContainers", "containers"}
+	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	uid := container.securityContext.runAsUser
 	to_number(uid) <= 0
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("%s.containers", [path]),
+		"searchKey": sprintf("%s.%s", [path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is higher than 0 and/or 'runAsNonRoot' is true", [path, j]),
-		"keyActualValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is 0 and 'runAsNonRoot' is not set to true", [path, j]),
+		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is higher than 0 and/or 'runAsNonRoot' is true", [path, types[x], j]),
+		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is 0 and 'runAsNonRoot' is not set to true", [path, types[x], j]),
 	}
 }
 
 checkRootContainer(spec, path, metadata, id) = result {
 	some j
-	container := spec.containers[j]
+	types = {"initContainers", "containers"}
+	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.containers", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s", [metadata.name, path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is defined", [path, j]),
-		"keyActualValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is undefined", [path, j]),
+		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is defined", [path, types[x], j]),
+		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is undefined", [path, types[x], j]),
 	}
 }
 
 checkUserContainer(spec, path, metadata, id) = result {
 	some j
-	container := spec.containers[j]
+	types = {"initContainers", "containers"}
+	container := spec[types[x]][j]
 	uid := container.securityContext.runAsUser
 	to_number(uid) <= 0
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.containers", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s", [metadata.name, path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is higher than 0 and/or 'runAsNonRoot' is true", [path, j]),
-		"keyActualValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is 0 and 'runAsNonRoot' is not set to true", [path, j]),
+		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is higher than 0 and/or 'runAsNonRoot' is true", [path, types[x], j]),
+		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is 0 and 'runAsNonRoot' is not set to true", [path, types[x], j]),
 	}
 }
 
 checkUserContainer(spec, path, metadata, id) = result {
 	some j
-	container := spec.containers[j]
+	types = {"initContainers", "containers"}
+	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.containers", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s", [metadata.name, path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is defined", [path, j]),
-		"keyActualValue": sprintf("'%s.containers[%d].securityContext.runAsUser' is undefined", [path, j]),
+		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is defined", [path, types[x], j]),
+		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is undefined", [path, types[x], j]),
+
 	}
 }

@@ -13,4 +13,3 @@ spec:
       runAsUser: 0
       allowPrivilegeEscalation: false
       runAsNonRoot: false
-      
