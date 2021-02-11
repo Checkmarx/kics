@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	ansLib.checkState(gcp_task)
 	contains(gcp_task.database_version, "POSTGRES")
-	ansLib.IsMissingAttribute(gcp_task)
+	IsMissingAttribute(gcp_task)
 
 	result := {
 		"documentId": document.id,
@@ -36,4 +36,12 @@ CxPolicy[result] {
 		"keyExpectedValue": "{{google.cloud.gcp_sql_instance}}.settings.databaseFlags has 'log_checkpoints' flag set to 'on'",
 		"keyActualValue": "{{google.cloud.gcp_sql_instance}}.settings.databaseFlags has 'log_checkpoints' flag set to 'off'",
 	}
+}
+
+IsMissingAttribute(task) {
+	object.get(task, "settings", "undefined") == "undefined"
+}
+
+IsMissingAttribute(task) {
+	object.get(task.settings, "databaseFlags", "undefined") == "undefined"
 }

@@ -2,6 +2,6 @@
   {
     "queryName": "Log Temp Files Wrong Value",
     "severity": "HIGH",
-    "line": 13
+    "line": 10
   }
 ]

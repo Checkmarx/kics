@@ -2,6 +2,6 @@
   {
     "queryName": "Cloud SQL Instance With Cross DB Ownership Chaining On",
     "severity": "HIGH",
-    "line": 13
+    "line": 10
   }
 ]

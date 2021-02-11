@@ -2,6 +2,6 @@
   {
     "queryName": "Cloud MYSQL Instance With Local Infile On",
     "severity": "HIGH",
-    "line": 13
+    "line": 10
   }
 ]

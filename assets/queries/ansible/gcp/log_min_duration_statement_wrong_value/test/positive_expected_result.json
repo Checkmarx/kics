@@ -2,6 +2,6 @@
   {
     "queryName": "Log Min Duration Statement Wrong Value",
     "severity": "HIGH",
-    "line": 13
+    "line": 10
   }
 ]

@@ -29,14 +29,6 @@ isAnsibleFalse(answer) {
 	answer == false
 }
 
-IsMissingAttribute(task) {
-	object.get(task, "settings", "undefined") == "undefined"
-}
-
-IsMissingAttribute(task) {
-	object.get(task.settings, "databaseFlags", "undefined") == "undefined"
-}
-
 checkValue(val) {
 	count(val) == 0
 }
@@ -53,14 +45,6 @@ check_database_flags_content(database_flags, flagName, flagValue) {
 check_database_flags_content(database_flags, flagName, flagValue) {
 	database_flags.name == flagName
 	database_flags.value != flagValue
-}
-
-isDirIngress(instance) {
-	instance.direction == "INGRESS"
-} else {
-	not instance.direction
-} else = false {
-	true
 }
 
 allowsPort(allowed, port) {

@@ -4,7 +4,7 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := ansLib.getTasks(document)[t][k]
+	task := ansLib.getTasks(document)[t]
 	instance := task["google.cloud.gcp_sql_instance"]
 
 	ansLib.checkState(instance)
@@ -25,7 +25,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := ansLib.getTasks(document)[t][k]
+	task := ansLib.getTasks(document)[t]
 	instance := task["google.cloud.gcp_sql_instance"]
 
 	ansLib.checkState(instance)
