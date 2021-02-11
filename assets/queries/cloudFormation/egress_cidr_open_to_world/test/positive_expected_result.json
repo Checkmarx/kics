@@ -2,13 +2,13 @@
   {
     "queryName": "AWS Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
-    "line": 19,
+    "line": 27,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "AWS Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
-    "line": 27,
+    "line": 19,
     "fileName": "positive1.yaml"
   }
 ]

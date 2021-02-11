@@ -14,7 +14,7 @@
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
     "severity": "MEDIUM",
-    "line": 37,
-    "fileName": "positive1.yaml"
+    "line": 35,
+    "fileName": "positive3.yaml"
   }
 ]

@@ -1,4 +1,3 @@
-
 Resources:
   EMRSecurityConfiguration01:
     Type: AWS::EMR::SecurityConfiguration

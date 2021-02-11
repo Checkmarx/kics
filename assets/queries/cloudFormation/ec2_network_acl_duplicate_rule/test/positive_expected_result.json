@@ -2,13 +2,19 @@
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "LOW",
-    "line": 12,
+    "line": 24,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "LOW",
     "line": 25,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "LOW",
+    "line": 12,
     "fileName": "positive1.yaml"
   }
 ]

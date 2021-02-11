@@ -2,13 +2,13 @@
   {
     "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
     "severity": "HIGH",
-    "line": 24,
+    "line": 32,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
     "severity": "HIGH",
-    "line": 32,
+    "line": 24,
     "fileName": "positive1.yaml"
   },
   {

@@ -8,7 +8,7 @@
   {
     "queryName": "RDS DBInstance With Deletion Protection Disabled",
     "severity": "LOW",
-    "line": 28,
+    "line": 30,
     "fileName": "positive2.yaml"
   }
 ]

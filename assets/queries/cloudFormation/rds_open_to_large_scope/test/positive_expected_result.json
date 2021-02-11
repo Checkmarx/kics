@@ -3,12 +3,6 @@
     "queryName": "RDS Open to Large Scope",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "RDS Open to Large Scope",
-    "severity": "HIGH",
-    "line": 18,
     "fileName": "positive2.yaml"
   },
   {
@@ -16,5 +10,11 @@
     "severity": "HIGH",
     "line": 18,
     "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "RDS Open to Large Scope",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive1.yaml"
   }
 ]

@@ -8,13 +8,13 @@
   {
     "queryName": "RDS Public Interface Open To Public Scope",
     "severity": "HIGH",
-    "line": 19,
-    "fileName": "positive2.yaml"
+    "line": 6,
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "RDS Public Interface Open To Public Scope",
     "severity": "HIGH",
-    "line": 6,
-    "fileName": "positive3.yaml"
+    "line": 19,
+    "fileName": "positive2.yaml"
   }
 ]

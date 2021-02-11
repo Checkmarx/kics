@@ -1,5 +1,3 @@
-
-
 Resources:
   DBinstance:
     Type: AWS::RDS::DBInstance

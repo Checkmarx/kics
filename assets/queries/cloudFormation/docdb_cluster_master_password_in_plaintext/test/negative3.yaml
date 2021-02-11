@@ -1,4 +1,3 @@
-
 Resources:
      NewAmpApp2:
         Type: AWS::DocDB::DBCluster

@@ -2,8 +2,8 @@
   {
     "queryName": "Directory Service Microsoft AD Password Rule",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive1.yaml"
+    "line": 5,
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "Directory Service Microsoft AD Password Rule",
@@ -14,7 +14,7 @@
   {
     "queryName": "Directory Service Microsoft AD Password Rule",
     "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive3.yaml"
+    "line": 14,
+    "fileName": "positive1.yaml"
   }
 ]

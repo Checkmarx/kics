@@ -3,7 +3,7 @@
     "queryName": "Directory Service Simple AD Password Exposed",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "Directory Service Simple AD Password Exposed",

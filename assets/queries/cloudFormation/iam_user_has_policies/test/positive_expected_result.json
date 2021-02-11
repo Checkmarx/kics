@@ -2,13 +2,13 @@
   {
     "queryName": "IAM User Has Policies",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 14,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "IAM User Has Policies",
     "severity": "MEDIUM",
-    "line": 14,
+    "line": 10,
     "fileName": "positive1.yaml"
   }
 ]

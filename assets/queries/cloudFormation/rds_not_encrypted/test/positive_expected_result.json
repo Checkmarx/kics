@@ -2,13 +2,13 @@
   {
     "queryName": "AWS RDS DB Instance Not Encrypted",
     "severity": "HIGH",
-    "line": 35,
-    "fileName": "positive1.yaml"
+    "line": 30,
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "AWS RDS DB Instance Not Encrypted",
     "severity": "HIGH",
-    "line": 30,
-    "fileName": "positive2.yaml"
+    "line": 35,
+    "fileName": "positive1.yaml"
   }
 ]

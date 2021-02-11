@@ -1,4 +1,3 @@
-
 Resources:
   ECSService:
     Type: AWS::ECS::Service

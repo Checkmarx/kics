@@ -1,4 +1,3 @@
-
 Resources:
     NewAmpApp-2:
         Type: AWS::DirectoryService::SimpleAD

@@ -3,6 +3,6 @@
     "queryName": "CloudTrail Not Integrated With Cloud Watch",
     "severity": "MEDIUM",
     "line": 62,
-    "fileName": ".yaml"
+    "fileName": "positive1.yaml"
   }
 ]

@@ -2,14 +2,14 @@
   {
     "queryName": "S3 Bucket Policy Changes Without Alarms",
     "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive1.yaml"
+    "line": 33,
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "S3 Bucket Policy Changes Without Alarms",
     "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive2.yaml"
+    "line": 11,
+    "fileName": "positive4.yaml"
   },
   {
     "queryName": "S3 Bucket Policy Changes Without Alarms",
@@ -20,7 +20,7 @@
   {
     "queryName": "S3 Bucket Policy Changes Without Alarms",
     "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive4.yaml"
+    "line": 31,
+    "fileName": "positive1.yaml"
   }
 ]
