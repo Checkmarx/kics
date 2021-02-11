@@ -60,11 +60,18 @@ version     Displays the current version
 ### Scan Command Options
 
 ```txt
+    --config string         path to configuration file
+-e, --exclude-paths         exclude paths or files from scan
+                            The arg should be quoted and uses comma as separator
+                            example: './shouldNotScan/*,somefile.txt'
 -h, --help                  help
+-l, --log-file              log to file info.log
+    --no-progress             hides scan's progress bar
 -o, --output-path string    file path to store result in json format
 -p, --path string           path to file or directory to scan
 -d, --payload-path string   file path to store source internal representation in JSON format
 -q, --queries-path string   path to directory with queries (default "./assets/queries")
+-t, --type                  type of queries to use in the scan
 -v, --verbose               verbose scan
 ```
 
