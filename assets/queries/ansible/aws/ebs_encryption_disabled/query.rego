@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}.encrypted", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "AWS EBS encryption should be enabled",
+		"keyExpectedValue": "AWS EBS encryption is enabled",
 		"keyActualValue": "AWS EBS encryption is disabled",
 	}
 }
@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "AWS EBS encryption should be defined",
+		"keyExpectedValue": "AWS EBS encryption is defined",
 		"keyActualValue": "AWS EBS encryption is undefined",
 	}
 }

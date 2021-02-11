@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.rds_instance}}", [instanceName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.rds_instance.storage_encrypted should be set to true",
+		"keyExpectedValue": "community.aws.rds_instance.storage_encrypted is defined",
 		"keyActualValue": "community.aws.rds_instance.storage_encrypted is undefined",
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.rds_instance}}.storage_encrypted", [instanceName]),
 		"issueType": "WrongValue",
-		"keyExpectedValue": "community.aws.rds_instance.storage_encrypted should be set to true",
+		"keyExpectedValue": "community.aws.rds_instance.storage_encrypted is set to true",
 		"keyActualValue": "community.aws.rds_instance.storage_encrypted is set to false",
 	}
 }

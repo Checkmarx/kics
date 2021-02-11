@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.default_cache_behavior.viewer_protocol_policy", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.default_cache_behavior.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.default_cache_behavior.viewer_protocol_policy 'isn't https-only' or 'redirect-to-https'", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.default_cache_behavior.viewer_protocol_policy is 'allow-all'", [task.name]),
 	}
 }
 
@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.cache_behaviors.viewer_protocol_policy", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.cache_behaviors.viewer_protocol_policy is 'https-only' or 'redirect-to-https'", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.cache_behaviors.viewer_protocol_policy 'isn't https-only' or 'redirect-to-https'", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.cache_behaviors.viewer_protocol_policy is 'allow-all'", [task.name]),
 	}
 }
 
