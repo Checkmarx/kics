@@ -23,7 +23,6 @@ resource "aws_security_group" "allow_tls" {
   }
 }
 
-
 resource "aws_security_group" "allow_tls2" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
@@ -48,8 +47,3 @@ resource "aws_security_group" "allow_tls2" {
     Name = "allow_tls"
   }
 }
-
-
-
-
-
