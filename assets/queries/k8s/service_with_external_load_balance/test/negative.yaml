@@ -42,3 +42,18 @@ spec:
   type: LoadBalancer
   selector:
     app: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service 04
+  annotations:
+    networking.gke.io/load-balancer-type: 'Internal'
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx

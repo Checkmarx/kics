@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-service 04
+  name: sample-service 05
 spec:
   ports:
     - port: 80
@@ -25,3 +25,49 @@ spec:
   type: LoadBalancer
   selector:
     app: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service 06
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: 'false'
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service 07
+  annotations:
+    networking.gke.io/load-balancer-type: 'External'
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service 08
+  annotations:
+    cloud.google.com/load-balancer-type: 'External'
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx
+
