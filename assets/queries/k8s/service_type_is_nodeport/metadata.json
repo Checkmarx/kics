@@ -1,8 +1,9 @@
 {
-  "id": "845acfbe-3e10-4b8e-b656-3b404d36dfb2",
-  "queryName": "Service Type is NodePort",
-  "severity": "LOW",
-  "category": "Networking",
-  "descriptionText": "Service type should not be NodePort",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/"
+	"id": "845acfbe-3e10-4b8e-b656-3b404d36dfb2",
+	"queryName": "Service Type is NodePort",
+	"severity": "LOW",
+	"category": "Networking",
+	"descriptionText": "Service type should not be NodePort",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/",
+	"platform": "Kubernetes"
 }

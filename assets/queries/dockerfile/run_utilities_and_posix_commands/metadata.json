@@ -1,8 +1,9 @@
 {
-  "id": "9b6b0f38-92a2-41f9-b881-3a1083d99f1b",
-  "queryName": "Run Utilities And POSIX Commands",
-  "severity": "INFO",
-  "category": "Package Management",
-  "descriptionText": "Some POSIX commands and interactive utilities shouldn't run inside a Docker Container",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+	"id": "9b6b0f38-92a2-41f9-b881-3a1083d99f1b",
+	"queryName": "Run Utilities And POSIX Commands",
+	"severity": "INFO",
+	"category": "Package Management",
+	"descriptionText": "Some POSIX commands and interactive utilities shouldn't run inside a Docker Container",
+	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
+	"platform": "Dockerfile"
 }

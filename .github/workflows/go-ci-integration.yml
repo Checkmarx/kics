@@ -21,7 +21,7 @@ jobs:
       id: buildx
       uses: docker/setup-buildx-action@master
     - name: Cache Docker layers
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-${{ github.ref }}
@@ -43,7 +43,7 @@ jobs:
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Run docker image and generate results.json
       run: |
-        time docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} -p "/path" -o "/path/results.json"
+        time docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
     - name: Assert queries_total > 0 in results.json
       id: assert_queries_total
       uses: sergeysova/jq-action@v2

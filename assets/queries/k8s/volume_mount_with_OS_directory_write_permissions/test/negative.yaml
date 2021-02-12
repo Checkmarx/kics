@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-0
+  name: pod-1
 spec:
   containers:
   - image: k8s.gcr.io/test-webserver
@@ -50,7 +50,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-0
+  name: pod-2
 spec:
   containers:
   - image: k8s.gcr.io/test-webserver

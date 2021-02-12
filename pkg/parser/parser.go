@@ -2,7 +2,9 @@ package parser
 
 import (
 	"errors"
+	"fmt"
 	"path/filepath"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 )
@@ -10,6 +12,7 @@ import (
 type kindParser interface {
 	GetKind() model.FileKind
 	SupportedExtensions() []string
+	SupportedTypes() []string
 	Parse(filePath string, fileContent []byte) ([]model.Document, error)
 }
 
@@ -30,20 +33,28 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build() *Parser {
+func (b *Builder) Build(types []string) (*Parser, error) {
+	var suportedTypes []string
 	parsers := make(map[string]kindParser, len(b.parsers))
 	extensions := make(model.Extensions, len(b.parsers))
 	for _, parser := range b.parsers {
-		for _, ext := range parser.SupportedExtensions() {
-			parsers[ext] = parser
-			extensions[ext] = struct{}{}
+		suportedTypes = append(suportedTypes, parser.SupportedTypes()...)
+		if _, _, ok := contains(types, parser.SupportedTypes()); ok {
+			for _, ext := range parser.SupportedExtensions() {
+				parsers[ext] = parser
+				extensions[ext] = struct{}{}
+			}
 		}
+	}
+
+	if err := validateArguments(types, suportedTypes); err != nil {
+		return &Parser{}, err
 	}
 
 	return &Parser{
 		parsers:    parsers,
 		extensions: extensions,
-	}
+	}, nil
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS
@@ -77,4 +88,34 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 // SupportedExtensions returns extensions supported by KICS
 func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
+}
+
+func validateArguments(types, validArgs []string) error {
+	if invalidType, ok, _ := contains(types, validArgs); !ok {
+		return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", invalidType, strings.Join(validArgs, "\n  ")))
+	}
+	return nil
+}
+
+func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) {
+	if types[0] == "" {
+		return []string{}, true, true
+	}
+	set := make(map[string]struct{}, len(supportedTypes))
+	for _, s := range supportedTypes {
+		set[s] = struct{}{}
+	}
+	cont := true
+	supported := false
+	var invalidArgs []string
+	for _, item := range types {
+		_, ok := set[item]
+		if !ok {
+			cont = false
+			invalidArgs = append(invalidArgs, item)
+		} else {
+			supported = true
+		}
+	}
+	return invalidArgs, cont, supported
 }

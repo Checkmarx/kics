@@ -1,8 +1,9 @@
 {
-  "id": "d72a7869-e8b9-4e12-bcd2-e8be10b39fa7",
-  "queryName": "IAM Password Without Symbol",
-  "severity": "MEDIUM",
-  "category": "Security, Identity, & Compliance",
-  "descriptionText": "IAM user resource Login Profile Password should have at least one symbol",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user"
+	"id": "d72a7869-e8b9-4e12-bcd2-e8be10b39fa7",
+	"queryName": "IAM Password Without Symbol",
+	"severity": "MEDIUM",
+	"category": "Security, Identity, & Compliance",
+	"descriptionText": "IAM user resource Login Profile Password should have at least one symbol",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
+	"platform": "CloudFormation"
 }

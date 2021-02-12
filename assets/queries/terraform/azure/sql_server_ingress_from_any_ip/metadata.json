@@ -1,8 +1,9 @@
 {
-  "id": "25c0ea09-f1c5-4380-b055-3b83863f2bb8",
-  "queryName": "SQLServer Ingress from Any IP",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Check if all IPs are allowed, check from start 0.0.0.0 to end 255.255.255.255.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule"
+	"id": "25c0ea09-f1c5-4380-b055-3b83863f2bb8",
+	"queryName": "SQLServer Ingress from Any IP",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Check if all IPs are allowed, check from start 0.0.0.0 to end 255.255.255.255.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule",
+	"platform": "Terraform"
 }

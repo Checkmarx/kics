@@ -16,7 +16,7 @@ CxPolicy[result] {
 	getTraffic(entry1) == getTraffic(entry2)
 
 	# Same rule number
-	entry1.Properties.RuleNumber == entry2.Properties.RuleNumber
+	compareRuleNumber(entry1, entry2)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,4 +37,10 @@ getTraffic(entry) = "egress" {
 	object.get(entry.Properties, "Egress", "undefined") == true
 } else = "ingress" {
 	true
+}
+
+compareRuleNumber(entry1, entry2){
+    ruleNumberEntry1 := to_number(entry1.Properties.RuleNumber)
+    ruleNumberEntry2 := to_number(entry2.Properties.RuleNumber)
+    ruleNumberEntry1 == ruleNumberEntry2
 }

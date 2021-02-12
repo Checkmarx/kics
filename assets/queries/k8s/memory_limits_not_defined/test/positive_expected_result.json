@@ -7,16 +7,16 @@
 	{
 		"queryName": "Memory Limits Are Not Defined",
 		"severity": "MEDIUM",
-		"line": 26
+		"line": 21
 	},
 	{
 		"queryName": "Memory Limits Are Not Defined",
 		"severity": "MEDIUM",
-		"line": 43
+		"line": 36
 	},
 	{
 		"queryName": "Memory Limits Are Not Defined",
 		"severity": "MEDIUM",
-		"line": 57
+		"line": 48
 	}
 ]

@@ -19,12 +19,9 @@ resource "google_sql_database_instance" "public_authorized_network" {
 
     ip_configuration {
 
-      dynamic "authorized_networks" {
-
-        content {
-          name  = "pub-network"
-          value = "0.0.0.0"
-        }
+      authorized_networks {
+        name  = "pub-network"
+        value = "0.0.0.0/0"
       }
     }
   }
@@ -42,7 +39,6 @@ resource "google_sql_database_instance" "ipv4_enabled" {
 
     ip_configuration {
         ipv4_enabled = true
-        private_network = "some_private_network"
     }
   }
 }

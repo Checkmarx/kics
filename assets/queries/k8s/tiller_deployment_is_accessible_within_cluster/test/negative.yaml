@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tiller-deploy
@@ -6,7 +6,7 @@ metadata:
     app: helm
     name: tiller
 spec:
- selector:
+  selector:
     matchLabels:
       app: helm
       name: tiller

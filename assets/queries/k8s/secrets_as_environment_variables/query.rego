@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
-	specInfo := getSpecInfo(document)
+	specInfo := k8sLib.getSpecInfo(document)
 
 	containers := ["containers", "initContainers"]
 
@@ -24,7 +26,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
-	specInfo := getSpecInfo(document)
+	specInfo := k8sLib.getSpecInfo(document)
 
 	containers := ["containers", "initContainers"]
 
@@ -39,16 +41,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s.%s.name=%s.envFrom.secretRef' is undefined", [specInfo.path, containers[c], container_name]),
 		"keyActualValue": sprintf("'%s.%s.name=%s.envFrom.secretRef' is defined", [specInfo.path, containers[c], container_name]),
 	}
-}
-
-getSpecInfo(document) = specInfo {
-	templates := {"job_template", "jobTemplate"}
-	spec := document.spec[templates[t]].spec.template.spec
-	specInfo := {"spec": spec, "path": sprintf("spec.%s.spec.template.spec", [templates[t]])}
-} else = specInfo {
-	spec := document.spec.template.spec
-	specInfo := {"spec": spec, "path": "spec.template.spec"}
-} else = specInfo {
-	spec := document.spec
-	specInfo := {"spec": spec, "path": "spec"}
 }

@@ -1,8 +1,9 @@
 {
-  "id": "086031e1-9d4a-4249-acb3-5bfe4c363db2",
-  "queryName": "Cloud Storage Anonymous or Publicly Accessible",
-  "severity": "MEDIUM",
-  "category": "Identity & Access Management",
-  "descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the attribute 'entity' must not be 'allUsers' or 'allAuthenticatedUsers'",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html"
+	"id": "086031e1-9d4a-4249-acb3-5bfe4c363db2",
+	"queryName": "Cloud Storage Anonymous or Publicly Accessible",
+	"severity": "MEDIUM",
+	"category": "Identity & Access Management",
+	"descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the attribute 'entity' must not be 'allUsers' or 'allAuthenticatedUsers'",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html",
+	"platform": "Ansible"
 }

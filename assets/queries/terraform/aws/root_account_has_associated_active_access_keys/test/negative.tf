@@ -9,7 +9,7 @@ resource "aws_iam_user" "lb" {
   path = "/system/"
 }
 
-resource "aws_iam_user_policy" "lb_ro" {
+resource "aws_iam_user_policy" "lb_ro1" {
   name = "test"
   user = aws_iam_user.lb.name
 

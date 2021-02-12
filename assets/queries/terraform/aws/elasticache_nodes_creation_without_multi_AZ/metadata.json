@@ -1,8 +1,9 @@
 {
-  "id": "6db03a91-f933-4f13-ab38-a8b87a7de54d",
-  "queryName": "ElastiCache Nodes Are Not Created Across Multi AZ",
-  "severity": "MEDIUM",
-  "category": "High Availability",
-  "descriptionText": "Check if ElastiCache nodes are not being created across multi AZ",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster"
+	"id": "6db03a91-f933-4f13-ab38-a8b87a7de54d",
+	"queryName": "ElastiCache Nodes Are Not Created Across Multi AZ",
+	"severity": "MEDIUM",
+	"category": "High Availability",
+	"descriptionText": "Check if ElastiCache nodes are not being created across multi AZ",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster",
+	"platform": "Terraform"
 }

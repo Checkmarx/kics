@@ -16,7 +16,8 @@ import (
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
 type FilesystemSource struct {
-	Source string
+	source string
+	types  []string
 }
 
 const (
@@ -26,40 +27,51 @@ const (
 	MetadataFileName = "metadata.json"
 	// LibraryFileName The default library file name
 	LibraryFileName = "library.rego"
-	// LibrariesBasePath the path to rego libraries
-	LibrariesBasePath = "./assets/libraries/"
+	// LibrariesDefaultBasePath the path to rego libraries
+	LibrariesDefaultBasePath = "./assets/libraries/"
 )
+
+// NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
+func NewFilesystemSource(source string, types []string) *FilesystemSource {
+	return &FilesystemSource{
+		source: filepath.FromSlash(source),
+		types:  types,
+	}
+}
 
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string {
-	libraryPath := filepath.Join(relativeBasePath, LibrariesBasePath)
-
-	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
-		return filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
-		return filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
-		return filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
-		return filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
-		return filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
+	var libraryPath string
+	if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) > -1 {
+		libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries"))] + filepath.FromSlash("/libraries")
+	} else {
+		libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
 	}
 
-	return filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+	libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+
+	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
+	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("common")) {
+		libraryFilePath = filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+	}
+
+	return libraryFilePath
 }
 
 // GetGenericQuery returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
-	currentWorkdir, err := os.Getwd()
+	pathToLib := GetPathToLibrary(platform, s.source)
 
-	if err != nil {
-		log.Err(err)
-	}
-
-	pathToLib := GetPathToLibrary(platform, currentWorkdir)
 	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
-
 	if err != nil {
 		log.Err(err)
 	}
@@ -67,11 +79,22 @@ func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	return string(content), err
 }
 
+// CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
+func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
+	if queryPlatform.(string) == "Common" {
+		return true
+	}
+	if s.types[0] != "" {
+		return strings.Contains(strings.Join(s.types, ","), queryPlatform.(string))
+	}
+	return true
+}
+
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
-	err := filepath.Walk(s.Source,
+	err := filepath.Walk(s.source,
 		func(p string, f os.FileInfo, err error) error {
 			if err != nil {
 				return err
@@ -96,6 +119,10 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 			log.Err(errRQ).
 				Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
 
+			continue
+		}
+
+		if !s.CheckType(query.Metadata["platform"]) {
 			continue
 		}
 
@@ -155,8 +182,8 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 }
 
 func getPlatform(queryPath string) string {
-	if strings.Contains(queryPath, "commonQuery") {
-		return "commonQuery"
+	if strings.Contains(queryPath, "common") {
+		return "common"
 	} else if strings.Contains(queryPath, "ansible") {
 		return "ansible"
 	} else if strings.Contains(queryPath, "cloudFormation") {

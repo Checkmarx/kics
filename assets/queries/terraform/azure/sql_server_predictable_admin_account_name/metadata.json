@@ -1,8 +1,9 @@
 {
-  "id": "2ab6de9a-0136-415c-be92-79d2e4fd750f",
-  "queryName": "SQL Server Predictable Admin Account Name",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Azure SQL Server's Admin account login must avoid using names like 'Admin', that are too predictable, which means the attribute 'administrator_login' must be set to a name that is not easy to predict",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server"
+	"id": "2ab6de9a-0136-415c-be92-79d2e4fd750f",
+	"queryName": "SQL Server Predictable Admin Account Name",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Azure SQL Server's Admin account login must avoid using names like 'Admin', that are too predictable, which means the attribute 'administrator_login' must be set to a name that is not easy to predict",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
+	"platform": "Terraform"
 }

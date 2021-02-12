@@ -1,8 +1,9 @@
 {
-  "id": "d4a73c49-cbaa-4c6f-80ee-d6ef5a3a26f5",
-  "queryName": "CloudTrail Logging Disabled",
-  "severity": "HIGH",
-  "category": "Logging",
-  "descriptionText": "Checks if we have enabled logging in the CloudTrail",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html#parameter-enable_logging"
+	"id": "d4a73c49-cbaa-4c6f-80ee-d6ef5a3a26f5",
+	"queryName": "CloudTrail Logging Disabled",
+	"severity": "HIGH",
+	"category": "Logging",
+	"descriptionText": "Checks if we have enabled logging in the CloudTrail",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html#parameter-enable_logging",
+	"platform": "Ansible"
 }
