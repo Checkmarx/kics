@@ -9,8 +9,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_security_center_subscription_pricing[%s].tier", [name]),
-		"issueType": "WrongValue",
-		"keyExpectedValue": sprintf("'azurerm_security_center_subscription_pricing.%s.tier' should be 'Standard'", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_security_center_subscription_pricing.%s.tier' is 'Standard'", [name]),
 		"keyActualValue": sprintf("'azurerm_security_center_subscription_pricing.%s.tier' is 'Free'", [name]),
 	}
 }
