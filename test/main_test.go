@@ -35,6 +35,16 @@ var (
 		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
+		// "../assets/queries/cloudFormation/amplify_app_access_token_rule":                  {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/amplify_app_oauth_token_rule":                   {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/ec2_network_Acl_overlap_ports": {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/ec2_network_acl_duplicate_rule":                 {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/ecs_allows_inbound_to_all_ipv4_and_ports":       {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/ecs_service_in_cluster_no_task_definition":      {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/elasticache_with_disabled_transit_encryption":   {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/emr_security_configuration_encryptions_enabled": {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/rds_backup_retention_period_insufficient":       {FileKind: model.KindYAML, Platform: "cloudFormation"},
+		// "../assets/queries/cloudFormation/workspace_without_encryption":                   {FileKind: model.KindYAML, Platform: "cloudFormation"},
 	}
 )
 
@@ -141,8 +151,8 @@ func getQueryContent(queryDir string) (string, error) {
 	return string(content), err
 }
 
-func getSampleContent(params *testCaseParamsType) ([]byte, error) {
-	samplePath := checkSampleExistsAndGetPath(params)
+func getSampleContent(tb testing.TB, params *testCaseParamsType) ([]byte, error) {
+	samplePath := checkSampleExistsAndGetPath(tb, params)
 	return getFileContent(samplePath)
 }
 
@@ -150,27 +160,32 @@ func getFileContent(filePath string) ([]byte, error) {
 	return ioutil.ReadFile(filePath)
 }
 
-func getSamplePath(params *testCaseParamsType) string {
+func getSamplePath(tb testing.TB, params *testCaseParamsType) string {
 	var samplePath string
 	if params.samplePath != "" {
 		samplePath = params.samplePath
 	} else {
-		samplePath = checkSampleExistsAndGetPath(params)
+		samplePath = checkSampleExistsAndGetPath(tb, params)
 	}
 	return samplePath
 }
 
-func checkSampleExistsAndGetPath(params *testCaseParamsType) string {
+func checkSampleExistsAndGetPath(tb testing.TB, params *testCaseParamsType) string {
 	var samplePath string
+	var globMatch string
 	extensions := fileExtension[params.platform]
 	for _, v := range extensions {
-		joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
-		_, err := os.Stat(joinedPath)
-		if err == nil {
-			samplePath = joinedPath
-			break
+		joinedPathList, _ := filepath.Glob(filepath.Join(params.queryDir, fmt.Sprintf("test/positive*%s", v)))
+		for _, path := range joinedPathList {
+			globMatch = path
+			_, err := os.Stat(path)
+			if err == nil {
+				samplePath = path
+				break
+			}
 		}
 	}
+	require.False(tb, samplePath == "", "Sample not found in path: %s", globMatch)
 	return samplePath
 }
 

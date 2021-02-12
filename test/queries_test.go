@@ -113,19 +113,21 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 
 	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true)
 	require.Nil(tb, err)
-	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities)
+	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
 }
 
-func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability) {
+func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, entry queryEntry) {
 	sort.Slice(expected, func(i, j int) bool {
 		if expected[i].FileName != "" {
-			return strings.Compare(expected[i].FileName, expected[j].FileName) == -1 && expected[i].Line < expected[j].Line
+			isLessThan := strings.Compare(expected[i].FileName, expected[j].FileName) == -1 && expected[i].Line < expected[j].Line
+			return isLessThan
 		}
 		return expected[i].Line < expected[j].Line
 	})
 	sort.Slice(actual, func(i, j int) bool {
-		if expected[i].FileName != "" {
-			return strings.Compare(filepath.Base(expected[i].FileName), filepath.Base(expected[j].FileName)) == -1 && actual[i].Line < actual[j].Line
+		if actual[i].FileName != "" {
+			isLessThan := strings.Compare(filepath.Base(actual[i].FileName), filepath.Base(actual[j].FileName)) == -1 && actual[i].Line < actual[j].Line
+			return isLessThan
 		}
 		return actual[i].Line < actual[j].Line
 	})
@@ -140,15 +142,32 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 		expectedItem := expected[i]
 		actualItem := actual[i]
 		if expectedItem.FileName != "" {
-			require.Equal(tb, expectedItem.FileName, filepath.Base(actualItem.FileName), "Incorrect file name")
+			require.Equal(tb, expectedItem.FileName, filepath.Base(actualItem.FileName), "Incorrect file name for query %s", entry.dir)
 		}
 		require.Equal(tb, scanID, actualItem.ScanID)
-		require.Equal(tb, expectedItem.Line, actualItem.Line, "Not corrected detected line")
-		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity")
-		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name")
+		require.Equal(tb, expectedItem.Line, actualItem.Line, "Not corrected detected line for query %s \n%v\n---\n%v",
+			entry.dir, filterFileNameAndLine(expected), filterFileNameAndLine(actual))
+		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity for query %s", entry.dir)
+		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name for query %s", entry.dir)
 		if expectedItem.Value != nil {
 			require.NotNil(tb, actualItem.Value)
 			require.Equal(tb, *expectedItem.Value, *actualItem.Value)
 		}
 	}
+}
+
+type ResultItem struct {
+	File string
+	Line int
+}
+
+func filterFileNameAndLine(vulnerabilitySlice []model.Vulnerability) []ResultItem {
+	result := []ResultItem{}
+	for i, _ := range vulnerabilitySlice {
+		result = append(result, ResultItem{
+			File: vulnerabilitySlice[i].FileName,
+			Line: vulnerabilitySlice[i].Line,
+		})
+	}
+	return result
 }

@@ -113,7 +113,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, _ := source.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := source.GetGenericQuery(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.
