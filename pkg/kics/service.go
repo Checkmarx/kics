@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
+	"os"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -16,9 +17,16 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const (
+	maxFileSize = 5000000 // 5MB
+	megaByte    = 1000000 // 1MB
+)
+
 // SourceProvider is the interface that wraps the basic GetSources method.
+// GetBasePath returns base path of FileSystemSourceProvider
 // GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
+	GetBasePath() string
 	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
 }
 
@@ -63,16 +71,22 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
 
+			fileInfo, err := os.Stat(filename)
+			if err != nil {
+				return errors.Wrapf(err, "failed to get file info %s", filename)
+			}
+			if fileInfo.Size() > maxFileSize {
+				return errors.Wrapf(errors.New("file size limit exceeded"), "File size should not exceed %dMB: %s", maxFileSize/megaByte, filename)
+			}
+
 			content, err := ioutil.ReadAll(rc)
 			if err != nil {
 				return errors.Wrap(err, "failed to read file content")
 			}
-
 			documents, kind, err := s.Parser.Parse(filename, content)
 			if err != nil {
 				return errors.Wrap(err, "failed to parse file content")
 			}
-
 			for _, document := range documents {
 				_, err = json.Marshal(document)
 				if err != nil {
@@ -98,7 +112,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files, hideProgress)
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files, hideProgress, s.SourceProvider.GetBasePath())
 	if err != nil {
 		return errors.Wrap(err, "failed to inspect files")
 	}

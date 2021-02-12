@@ -1,12 +1,17 @@
 [
-	{
-		"queryName": "Unpinned Package Version in Pip Install",
-		"severity": "MEDIUM",
-		"line": 3
-	},
-	{
-		"queryName": "Unpinned Package Version in Pip Install",
-		"severity": "MEDIUM",
-		"line": 14
-	}
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 4
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 15
+  }
 ]

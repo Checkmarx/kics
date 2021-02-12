@@ -9,7 +9,7 @@ resource "aws_iam_user" "lb" {
   path = "/system/"
 }
 
-resource "aws_iam_user_policy" "lb_ro" {
+resource "aws_iam_user_policy" "lb_ro2" {
   name = "test"
   user = aws_iam_user.lb.name
 
@@ -44,7 +44,7 @@ resource "aws_iam_user" "lb" {
   path = "/system/"
 }
 
-resource "aws_iam_user_policy" "lb_ro" {
+resource "aws_iam_user_policy" "lb_ro3" {
   name = "test"
   user = aws_iam_user.lb.name
 
