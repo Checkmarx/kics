@@ -6,15 +6,18 @@ CxPolicy[result] {
 	object.get(document, "kind", "undefined") != "CronJob"
 
 	some j
-	container := document.spec.containers[j]
+	types := {"initContainers", "containers"}
+	container := document.spec[types[x]][j]
+
 	object.get(container, "readinessProbe", "undefined") == "undefined"
 
 	metadata := document.metadata
+
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.containers[%d].readinessProbe' is set", [j]),
-		"keyActualValue": sprintf("'spec.containers[%d].readinessProbe' is undefined", [j]),
+		"keyExpectedValue": sprintf("'spec.%s[%d].readinessProbe' is set", [types[x], j]),
+		"keyActualValue": sprintf("'spec.%s[%d].readinessProbe' is undefined", [types[x], j]),
 	}
 }

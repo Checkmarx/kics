@@ -3,17 +3,18 @@ package Cx
 import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	spec := input.document[i].spec
-
-    kind := input.document[i].kind
-    listKinds :=  ["Pod"]
+	document := input.document[i]
+	kind := document.kind
+	listKinds := ["Pod"]
 	k8sLib.checkKind(kind, listKinds)
 
+	spec := document.spec
 	object.get(spec, "hostAliases", "undefined") == "undefined"
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.hostAliases is defined", [metadata.name]),
@@ -22,17 +23,18 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-
-    kind := input.document[i].kind
-    listKinds :=  ["Pod"]
+	document := input.document[i]
+	kind := document.kind
+	listKinds := ["Pod"]
 	k8sLib.checkKind(kind, listKinds)
 
-	spec := input.document[i].spec
+	spec := document.spec
 	spec.hostAliases == null
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostAliases", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.hostAliases is not null", [metadata.name]),
@@ -41,17 +43,18 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-
-    kind := input.document[i].kind
-    listKinds :=  ["Pod"]
+	document := input.document[i]
+	kind := document.kind
+	listKinds := ["Pod"]
 	k8sLib.checkKind(kind, listKinds)
 
-	spec := input.document[i].spec
+	spec := document.spec
 	checkAction(spec.hostAliases)
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostAliases", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.hostAliases is not empty", [metadata.name]),

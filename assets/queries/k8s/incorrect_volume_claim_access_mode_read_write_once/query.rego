@@ -1,14 +1,16 @@
 package Cx
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	volumeClaims := input.document[i].spec.volumeClaimTemplates
+	document := input.document[i]
+	volumeClaims := document.spec.volumeClaimTemplates
 
 	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) == 0
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s.spec.volumeClaimTemplates", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.volumeClaimTemplates has one template with a 'ReadWriteOnce'", [metadata.name]),
@@ -17,14 +19,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	volumeClaims := input.document[i].spec.volumeClaimTemplates
+	document := input.document[i]
+	volumeClaims := document.spec.volumeClaimTemplates
 
 	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) > 1
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s.spec.volumeClaimTemplates", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.volumeClaimTemplates has only one template with a 'ReadWriteOnce'", [metadata.name]),
