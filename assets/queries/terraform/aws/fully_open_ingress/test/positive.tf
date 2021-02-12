@@ -7,7 +7,7 @@ resource "aws_db_instance" "default" {
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
 
   identifier              = "rds-${local.resource_prefix.value}"
-  engine_version          = "8.0" # Latest major version 
+  engine_version          = "8.0" # Latest major version
   instance_class          = "db.t3.micro"
   allocated_storage       = "20"
   username                = "admin"
@@ -99,8 +99,8 @@ resource "aws_security_group_rule" "somename" {
 resource "aws_security_group" "ingress_inside" {
   ingress {
     type              = "ingress"
-    from_port         = "3306"
-    to_port           = "3306"
+    from_port         = 3306
+    to_port           = 3306
     protocol          = "tcp"
     cidr_blocks       = ["0.0.0.0/0"]
     security_group_id = aws_security_group.default.id
@@ -117,7 +117,7 @@ resource "aws_security_group_rule" "egress" {
 }
 
 
-### EC2 instance 
+### EC2 instance
 resource "aws_iam_instance_profile" "ec2profile" {
   name = "${local.resource_prefix.value}-profile"
   role = "${aws_iam_role.ec2role.name}"
@@ -200,7 +200,7 @@ resource "aws_instance" "db_app" {
 ### Config from https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html
 sudo yum -y update
 sudo yum -y install httpd php php-mysqlnd
-sudo systemctl enable httpd 
+sudo systemctl enable httpd
 sudo systemctl start httpd
 
 sudo mkdir /var/www/inc
@@ -212,7 +212,7 @@ define('DB_PASSWORD', '${var.password}');
 define('DB_DATABASE', '${aws_db_instance.default.name}');
 ?>
 EnD
-sudo mv /tmp/dbinfo.inc /var/www/inc 
+sudo mv /tmp/dbinfo.inc /var/www/inc
 sudo chown root:root /var/www/inc/dbinfo.inc
 
 cat << EnD > /tmp/index.php
@@ -335,7 +335,7 @@ function TableExists(\$tableName, \$connection, \$dbName) {
 
   return false;
 }
-?>               
+?>
 EnD
 
 sudo mv /tmp/index.php /var/www/html
