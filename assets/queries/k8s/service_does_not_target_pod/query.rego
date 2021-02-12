@@ -36,7 +36,8 @@ CxPolicy[result] {
 confirmPorts(servicePorts) {
 	pod := input.document[i]
 	pod.kind == "Pod"
-	containers := pod.spec.containers[j]
+	types := {"initContainers", "containers"}
+	containers := pod.spec[types[x]][j]
 	containers.ports[k].containerPort == servicePorts.targetPort
 } else = false {
 	true

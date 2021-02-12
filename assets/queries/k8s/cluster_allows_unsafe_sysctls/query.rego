@@ -1,14 +1,16 @@
 package Cx
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	input.document[i].kind == "PodSecurityPolicy"
-	spec := input.document[i].spec
+	document := input.document[i]
+	document.kind == "PodSecurityPolicy"
+	spec := document.spec
 
 	spec.allowedUnsafeSysctls
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s.spec", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.allowedUnsafeSysctls is undefined", [metadata.name]),
@@ -17,15 +19,17 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	input.document[i].kind == "Pod"
-	spec := input.document[i].spec
+	document := input.document[i]
+	document.kind == "Pod"
+	spec := document.spec
 
 	sysctl := spec.securityContext.sysctls[_].name
 	check_Unsafe(sysctl)
 
+	metadata := document.metadata
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s.spec.securityContext.sysctls", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.securityContext.sysctls does not have an Unsafe Sysctl", [metadata.name]),

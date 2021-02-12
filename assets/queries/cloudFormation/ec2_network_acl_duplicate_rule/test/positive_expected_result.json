@@ -1,12 +1,22 @@
 [
-	{
-		"queryName": "EC2 Network ACL Duplicate Rule",
-		"severity": "LOW",
-		"line": 12
-	},
-	{
-		"queryName": "EC2 Network ACL Duplicate Rule",
-		"severity": "LOW",
-		"line": 25
-	}
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "LOW",
+    "line": 12
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "LOW",
+    "line": 25
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "LOW",
+    "line": 39
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "LOW",
+    "line": 52
+  }
 ]

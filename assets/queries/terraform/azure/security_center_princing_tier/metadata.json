@@ -1,9 +1,0 @@
-{
-	"id": "819d50fd-1cdf-45c3-9936-be408aaad93e",
-	"queryName": "Security Center Princing Tier",
-	"severity": "MEDIUM",
-	"category": "Operational Efficiency",
-	"descriptionText": "Make sure that the 'Standard' pricing tiers were selected.",
-	"descriptionUrl": "https://docs.bridgecrew.io/docs/ensure-standard-pricing-tier-is-selected",
-	"platform": "Terraform"
-}

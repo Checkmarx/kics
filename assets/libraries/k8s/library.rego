@@ -26,4 +26,15 @@ CheckIFPdbExists(statefulset) = result {
 
 contains(array, label) {
 	array.spec.selector.matchLabels[_] == label[_]
+
+checkMetadata(metadata) {
+	contains(metadata.name, "tiller")
+}
+
+checkMetadata(metadata) {
+	object.get(metadata.labels, "app", "undefined") == "helm"
+}
+
+checkMetadata(metadata) {
+	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
 }

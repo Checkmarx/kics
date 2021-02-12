@@ -1,10 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	sql_instance := task["google.cloud.gcp_sql_instance"]
 
-	path := getPathDefinitions(task["google.cloud.gcp_sql_instance"])
+	ansLib.checkState(sql_instance)
+	path := getPathDefinitions(sql_instance)
 
 	result := {
 		"documentId": document.id,
@@ -17,9 +21,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	sql_instance := task["google.cloud.gcp_sql_instance"]
 
-	not isAnsibleTrue(task["google.cloud.gcp_sql_instance"].settings.ip_configuration.require_ssl)
+	ansLib.checkState(sql_instance)
+	not ansLib.isAnsibleTrue(sql_instance.settings.ip_configuration.require_ssl)
 
 	result := {
 		"documentId": document.id,
@@ -43,20 +49,4 @@ getPathDefinitions(instance) = result {
 getPathDefinitions(instance) = result {
 	object.get(instance.settings.ip_configuration, "require_ssl", "undefined") == "undefined"
 	result = {"defined": ".settings.ip_configuration", "undefined": "settings.ip_configuration.require_ssl"}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }
