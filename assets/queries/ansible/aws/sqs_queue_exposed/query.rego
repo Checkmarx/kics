@@ -4,7 +4,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-	task["community.aws.sqs_queue"].policy.Statement.Principal == "*"
+	isAccessible(task["community.aws.sqs_queue"])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,4 +21,12 @@ getTasks(document) = result {
 } else = result {
 	result := [body | playbook := document.playbooks[_]; body := playbook]
 	count(result) != 0
+}
+
+isAccessible(task) {
+	task.policy.Statement.Principal == "*"
+}
+
+isAccessible(task) {
+	task.policy.Statement[s].Principal == "*"
 }

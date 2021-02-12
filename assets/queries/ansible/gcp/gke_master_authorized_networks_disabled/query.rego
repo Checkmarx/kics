@@ -1,10 +1,13 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
 	container_cluster := task["google.cloud.gcp_container_cluster"]
 
+	ansLib.checkState(container_cluster)
 	object.get(container_cluster, "master_authorized_networks_config", "undefined") == "undefined"
 
 	result := {
@@ -18,9 +21,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
 	container_cluster := task["google.cloud.gcp_container_cluster"]
 
+	ansLib.checkState(container_cluster)
 	object.get(container_cluster.master_authorized_networks_config, "enabled", "undefined") == "undefined"
 
 	result := {
@@ -34,10 +38,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
 	container_cluster := task["google.cloud.gcp_container_cluster"]
 
-	not isAnsibleTrue(container_cluster.master_authorized_networks_config.enabled)
+	ansLib.checkState(container_cluster)
+	not ansLib.isAnsibleTrue(container_cluster.master_authorized_networks_config.enabled)
 
 	result := {
 		"documentId": document.id,
@@ -46,20 +51,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'master_authorized_networks_config.enabled' is true",
 		"keyActualValue": "'master_authorized_networks_config.enabled' is false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }

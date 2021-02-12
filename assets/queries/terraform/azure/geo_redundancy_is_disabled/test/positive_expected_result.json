@@ -7,11 +7,6 @@
 	{
 		"queryName": "Geo Redundancy Is Disabled",
 		"severity": "HIGH",
-		"line": 34
-	},
-	{
-		"queryName": "Geo Redundancy Is Disabled",
-		"severity": "HIGH",
-		"line": 63
+		"line": 31
 	}
 ]
