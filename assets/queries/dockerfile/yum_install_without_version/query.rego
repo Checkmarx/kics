@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The package version should always be specified when using zypper install",
+		"keyExpectedValue": "The package version should always be specified when using yum install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [packages[j]]),
 	}
 }
@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The package version should always be specified when using zypper install",
+		"keyExpectedValue": "The package version should always be specified when using yum install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [resource.Value[j]]),
 	}
 }
