@@ -11,6 +11,7 @@ const (
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindDOCKER    FileKind = "DOCKERFILE"
+	KindCOMMON    FileKind = "*"
 )
 
 // Constants to describe vulnerability's severity
