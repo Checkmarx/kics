@@ -1,8 +1,9 @@
 {
-  "id": "74a18d1a-cf02-4a31-8791-ed0967ad7fdc",
-  "queryName": "AWS Cognito UserPool Without MFA",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management" ,
-  "descriptionText": "AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html"
+	"id": "74a18d1a-cf02-4a31-8791-ed0967ad7fdc",
+	"queryName": "AWS Cognito UserPool Without MFA",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html",
+	"platform": "CloudFormation"
 }

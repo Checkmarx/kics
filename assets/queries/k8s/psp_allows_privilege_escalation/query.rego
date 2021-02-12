@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := getSpecInfo(document)
+	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
 	document.kind == "PodSecurityPolicy"
@@ -20,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := getSpecInfo(document)
+	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
 	document.kind == "PodSecurityPolicy"
@@ -34,16 +36,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "Attribute 'allowPrivilegeEscalation' is false",
 		"keyActualValue": "Attribute 'allowPrivilegeEscalation' is true",
 	}
-}
-
-getSpecInfo(document) = specInfo {
-	templates := {"job_template", "jobTemplate"}
-	spec := document.spec[templates[t]].spec.template.spec
-	specInfo := {"spec": spec, "path": sprintf("spec.%s.spec.template.spec", [templates[t]])}
-} else = specInfo {
-	spec := document.spec.template.spec
-	specInfo := {"spec": spec, "path": "spec.template.spec"}
-} else = specInfo {
-	spec := document.spec
-	specInfo := {"spec": spec, "path": "spec"}
 }

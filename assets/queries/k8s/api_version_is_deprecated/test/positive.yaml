@@ -31,6 +31,29 @@ spec:
   selector:
     matchLabels:
       name: fluentd-elasticsearch
+  template:
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+        - name: fluentd-elasticsearch
+          image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+          resources:
+            limits:
+              cpu: 500m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: optmount
+              mountPath: /opt
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: optmount
+          hostPath:
+            path: /opt
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress

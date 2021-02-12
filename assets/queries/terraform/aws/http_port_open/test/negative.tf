@@ -1,7 +1,6 @@
-#this code is a correct code for which the query should not find any result
 resource "aws_security_group" "negative_http_1" {
   name        = "negative_http"
-  description = "Doesn't get the htttp port open"
+  description = "Doesn't get the HTTP port open"
 }
 
 resource "aws_security_group" "negative_http_2" {
@@ -21,4 +20,4 @@ resource "aws_security_group" "negative_http_3" {
     protocol    = "tcp"
     cidr_blocks = ["0.1.0.0/0"]
   }
-}  
+}

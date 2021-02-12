@@ -1,8 +1,9 @@
 {
-  "id": "126c1788-23c2-4a10-906c-ef179f4f96ec",
-  "queryName": "ELB Using Insecure Protocols",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "ELB Predefined or Custom Security Policies must not use insecure protocols, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'name' of 'policy_attributes' must not coincide with any of a predefined list of insecure protocols.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/load_balancer_policy"
+	"id": "126c1788-23c2-4a10-906c-ef179f4f96ec",
+	"queryName": "ELB Using Insecure Protocols",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "ELB Predefined or Custom Security Policies must not use insecure protocols, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'name' of 'policy_attributes' must not coincide with any of a predefined list of insecure protocols.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/load_balancer_policy",
+	"platform": "Terraform"
 }

@@ -1,7 +1,12 @@
 [
-	{
-		"queryName": "Yum install Without Version",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "Yum install Without Version",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Yum install Without Version",
+    "severity": "MEDIUM",
+    "line": 3
+  }
 ]

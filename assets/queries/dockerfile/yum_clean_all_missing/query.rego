@@ -3,9 +3,13 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
-	contains(resource.Value[j], "yum")
 
-	not containsCleanAfterYum(resource.Value[j])
+	command := resource.Value[0]
+
+	output := regex.match("yum (-[a-zA-Z]+ *)*install", command)
+	output == true
+
+	not containsCleanAfterYum(command)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,9 +21,9 @@ CxPolicy[result] {
 }
 
 containsCleanAfterYum(command) {
-	contains(command, "yum clean all")
+	yumInstallCommand := regex.find_n("yum (-[a-zA-Z]+ *)*install", command, -1)
 
-	install := indexof(command, "yum install")
+	install := indexof(command, yumInstallCommand[0])
 	install != -1
 
 	clean := indexof(command, "yum clean all")

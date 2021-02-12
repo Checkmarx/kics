@@ -1,8 +1,9 @@
 {
-  "id": "ae9c56a6-3ed1-4ac0-9b54-31267f51151d",
-  "queryName": "Apk Add Using Local Cache Path",
-  "severity": "INFO",
-  "category": "Package Management",
-  "descriptionText": "When installing packages, use the '--no-cache' switch to avoid the need to use '--update' and remove '/var/cache/apk/*'",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run"
+	"id": "ae9c56a6-3ed1-4ac0-9b54-31267f51151d",
+	"queryName": "Apk Add Using Local Cache Path",
+	"severity": "INFO",
+	"category": "Package Management",
+	"descriptionText": "When installing packages, use the '--no-cache' switch to avoid the need to use '--update' and remove '/var/cache/apk/*'",
+	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
+	"platform": "Dockerfile"
 }

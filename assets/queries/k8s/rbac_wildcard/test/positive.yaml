@@ -1,0 +1,32 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: rbac1
+  name: configmap-modifier
+rules:
+- apiGroups: ["*"]
+  resources: ["configmaps"]
+  verbs: ["*"]
+---
+# Define role for OPA/kube-mgmt to update configmaps with policy status.
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: rbac2
+  name: configmap-modifier1
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: rbac3
+  name: configmap-modifier2
+rules:
+- operations: ["CREATE", "UPDATE"]
+  apiGroups: ["*"]
+  apiVersions: ["*"]
+  resources: ["*"]
+  verbs: ["POST"]

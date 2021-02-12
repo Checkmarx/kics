@@ -1,8 +1,9 @@
 {
-  "id": "4f615f3e-fb9c-4fad-8b70-2e9f781806ce",
-  "queryName": "DB Security Group Lower than 256",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "DB Security CIDR must be lower than 256 (/24)",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group"
+	"id": "4f615f3e-fb9c-4fad-8b70-2e9f781806ce",
+	"queryName": "DB Security Group Lower than 256",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "DB Security CIDR must be lower than 256 (/24)",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
+	"platform": "Terraform"
 }

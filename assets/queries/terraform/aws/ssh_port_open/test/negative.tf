@@ -1,7 +1,6 @@
-#this code is a correct code for which the query should not find any result
 resource "aws_security_group" "negative_ssh_1" {
-  name        = "negative_http"
-  description = "Doesn't get the htttp port open"
+  name        = "negative_ssh"
+  description = "Doesn't get the ssh port open"
 }
 
 resource "aws_security_group" "negative_ssh_2" {

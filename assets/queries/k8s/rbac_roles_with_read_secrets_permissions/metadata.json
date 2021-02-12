@@ -1,8 +1,9 @@
 {
-  "id": "b7bca5c4-1dab-4c2c-8cbe-3050b9d59b14",
-  "queryName": "RBAC Roles with Read Secrets Permissions",
-  "severity": "MEDIUM",
-  "category": "Access Control",
-  "descriptionText": "Minimize access to secrets (RBAC)",
-  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+	"id": "b7bca5c4-1dab-4c2c-8cbe-3050b9d59b14",
+	"queryName": "RBAC Roles with Read Secrets Permissions",
+	"severity": "MEDIUM",
+	"category": "Access Control",
+	"descriptionText": "Minimize access to secrets (RBAC)",
+	"descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+	"platform": "Kubernetes"
 }

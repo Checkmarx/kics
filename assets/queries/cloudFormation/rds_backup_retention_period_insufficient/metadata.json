@@ -1,8 +1,9 @@
 {
-  "id": "e649a218-d099-4550-86a4-1231e1fcb60d",
-  "queryName": "RDS Backup Retention Period Insufficient",
-  "severity": "MEDIUM",
-  "category": "Backup and Disaster Recovery",
-  "descriptionText": "AWS RDS backup retention policy should be at least 7 days",
-  "descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html"
+	"id": "e649a218-d099-4550-86a4-1231e1fcb60d",
+	"queryName": "RDS Backup Retention Period Insufficient",
+	"severity": "MEDIUM",
+	"category": "Backup and Disaster Recovery",
+	"descriptionText": "AWS RDS backup retention policy should be at least 7 days",
+	"descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html",
+	"platform": "CloudFormation"
 }

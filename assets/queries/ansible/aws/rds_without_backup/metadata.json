@@ -1,8 +1,9 @@
 {
-  "id": "e69890e6-fce5-461d-98ad-cb98318dfc96",
-  "queryName": "RDS Without Backup",
-  "severity": "MEDIUM",
-  "category": "Backup and Disaster Recovery",
-  "descriptionText": "RDS configured without backup",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-backup_retention_period"
+	"id": "e69890e6-fce5-461d-98ad-cb98318dfc96",
+	"queryName": "RDS Without Backup",
+	"severity": "MEDIUM",
+	"category": "Backup and Disaster Recovery",
+	"descriptionText": "RDS configured without backup",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-backup_retention_period",
+	"platform": "Ansible"
 }

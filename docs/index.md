@@ -1,4 +1,4 @@
-<img alt="KICS - Keep Infrastructure as Code Secure" src="img/logo/kics-logo-donkey.png" width="250">  
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo/kics-logo-donkey.png" width="250">  
 
 ---
 
@@ -12,11 +12,11 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
-<img alt="Terraform" src="img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="CloudFormation" src="img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="img/logo-ansible.png" width="150">
+<img alt="Terraform" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Kubernetes" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Docker" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="CloudFormation" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Ansible" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-ansible.png" width="150">
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
@@ -33,13 +33,13 @@ Setting up and using KICS is super-easy.
 
 What makes KICS really powerful and popular is its built-in extensibility. This extensibility is achieved by:
 
-- Fully customizable and adjustable heuristics rules, called [queries](queries.md). These can be easily edited, extended, and added.
+- Fully customizable and adjustable heuristics rules, called [queries](queries.md). These can be easily edited, extended and added.
 - Robust but yet simple [architecture](architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
 
 ## Contribution
 
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
+KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.  
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 - [How can I help?!](CONTRIBUTING.md)

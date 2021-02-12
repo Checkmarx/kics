@@ -1,8 +1,9 @@
 {
-  "id": "cf3c7631-cd1e-42f3-8801-a561214a6e79",
-  "queryName": "SQL Database Backup Configuration Disabled",
-  "severity": "HIGH",
-  "category": "Backup & Disaster Recovery",
-  "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance"
+	"id": "cf3c7631-cd1e-42f3-8801-a561214a6e79",
+	"queryName": "SQL Database Backup Configuration Disabled",
+	"severity": "HIGH",
+	"category": "Backup & Disaster Recovery",
+	"descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
+	"platform": "Terraform"
 }

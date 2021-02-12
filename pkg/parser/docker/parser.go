@@ -97,3 +97,8 @@ func (p *Parser) GetKind() model.FileKind {
 func (p *Parser) SupportedExtensions() []string {
 	return []string{"Dockerfile", ".dockerfile"}
 }
+
+// SupportedTypes returns types supported by this parser, which are dockerfile
+func (p *Parser) SupportedTypes() []string {
+	return []string{"Dockerfile"}
+}

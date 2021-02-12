@@ -1,33 +1,54 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	commands = document.command
-	some img
-	some c
-	commands[img][c].Cmd == "run"
-	some j
+import data.generic.dockerfile as dockerLib
 
-	isZypperInstall(commands[img][c].Value[j])
-	not isZypperInstallWithVersion(commands[img][c].Value[j])
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
+
+	count(resource.Value) == 1
+	commands := resource.Value[0]
+
+	zypper := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*in(stall)?", commands, -1)
+	zypper != null
+
+	packages = dockerLib.getPackages(commands, zypper)
+	regex.match("^[a-zA-Z]", packages[j]) == true
+
+	not dockerLib.withVersion(packages[j])
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using zypper install",
-		"keyActualValue": sprintf("No version is specified in '%s'", [commands[img][c].Value[j]]),
+		"keyActualValue": sprintf("No version is specified in package '%s'", [packages[j]]),
 	}
 }
 
-isZypperInstall(command) {
-	contains(command, "zypper install")
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
+
+	count(resource.Value) > 1
+
+	isZypper(resource.Value)
+
+	resource.Value[j] != "install"
+	resource.Value[j] != "zypper"
+	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	not dockerLib.withVersion(resource.Value[j])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "The package version should always be specified when using zypper install",
+		"keyActualValue": sprintf("No version is specified in package '%s'", [resource.Value[j]]),
+	}
 }
 
-isZypperInstall(command) {
-	contains(command, "zypper in")
-}
-
-isZypperInstallWithVersion(command) {
-	regex.match("zypper in(stall)? (-[a-z]+ )*\\w+(>|<|=|>=|<=)([0-9]+\\.)+[0-9]+", command)
+isZypper(command) {
+	contains(command[x], "zypper")
+	contains(command[j], "install")
 }

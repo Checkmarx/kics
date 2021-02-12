@@ -7,7 +7,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -15,9 +14,9 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
@@ -35,7 +34,13 @@ var (
 		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
+		"../assets/queries/common":                   {FileKind: model.KindCOMMON, Platform: "common"},
 	}
+)
+
+const (
+	scanID            = "test_scan"
+	BaseTestsScanPath = "../assets/queries/"
 )
 
 func TestMain(m *testing.M) {
@@ -48,16 +53,28 @@ type queryEntry struct {
 	platform string
 }
 
-func (q queryEntry) PositiveFile() string {
-	return path.Join(q.dir, fmt.Sprintf("test/positive.%s", strings.ToLower(string(q.kind))))
+func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
+	files, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(q.kind)))))
+	x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+	for i, check := range files {
+		if check == x0 {
+			files = append(files[:i], files[i+1:]...)
+		}
+	}
+	require.Nil(tb, err)
+	return files
 }
 
-func (q queryEntry) NegativeFile() string {
-	return path.Join(q.dir, fmt.Sprintf("test/negative.%s", strings.ToLower(string(q.kind))))
+func (q queryEntry) PositiveFiles(tb testing.TB) []string {
+	return q.getSampleFiles(tb, "test/positive*.%s")
+}
+
+func (q queryEntry) NegativeFiles(tb testing.TB) []string {
+	return q.getSampleFiles(tb, "test/negative*.%s")
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return path.Join(q.dir, "test/positive_expected_result.json")
+	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
@@ -90,22 +107,25 @@ func loadQueries(tb testing.TB) []queryEntry {
 	return queriesDir
 }
 
-func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
-	content, err := ioutil.ReadFile(filePath)
-	require.NoError(t, err)
-	return getScannableFileMetadatas(t, filePath, content)
+func getFileMetadatas(t testing.TB, filesPath []string) model.FileMetadatas {
+	fileMetadatas := make(model.FileMetadatas, 0)
+	for _, path := range filesPath {
+		content, err := ioutil.ReadFile(path)
+		require.NoError(t, err)
+		fileMetadatas = append(fileMetadatas, getFilesMetadatasWithContent(t, path, content)...)
+	}
+	return fileMetadatas
 }
 
-func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) model.FileMetadatas {
+func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte) model.FileMetadatas {
 	combinedParser := getCombinedParser()
+	files := make(model.FileMetadatas, 0)
 
-	documents, kind, err := combinedParser.Parse(filePath, content)
+	parsedDocuments, kind, err := combinedParser.Parse(filePath, content)
 	require.NoError(t, err)
-
-	files := make([]model.FileMetadata, 0, len(documents))
-	for i, document := range documents {
+	for _, document := range parsedDocuments {
 		files = append(files, model.FileMetadata{
-			ID:           strconv.Itoa(fileID + i),
+			ID:           uuid.NewString(),
 			ScanID:       scanID,
 			Document:     document,
 			OriginalData: string(content),
@@ -118,12 +138,12 @@ func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) mo
 }
 
 func getCombinedParser() *parser.Parser {
-	return parser.NewBuilder().
-		Add(&jsonParser.Parser{}).
+	bd, _ := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build([]string{""})
+	return bd
 }
 
 func getQueryContent(queryDir string) (string, error) {

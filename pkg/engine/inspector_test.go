@@ -2,6 +2,9 @@ package engine
 
 import (
 	"context"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -221,10 +224,11 @@ func TestInspect(t *testing.T) { //nolint
 					},
 				},
 			},
+			// 27ef060e0ced4e40b94f2c5a8c330e9be5b9534ce41a4cc2f737bca66f2ce788
 			want: []model.Vulnerability{
 				{
 					ID:               0,
-					SimilarityID:     "b84570a546f2064d483b5916d3bf3c6949c8cfc227a8c61fce22220b2f5d77bd",
+					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
@@ -253,14 +257,18 @@ func TestInspect(t *testing.T) { //nolint
 				enableCoverageReport: tt.fields.enableCoverageReport,
 				coverageReport:       tt.fields.coverageReport,
 			}
-			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files)
+			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, filepath.FromSlash("assets/queries/"))
 			if tt.wantErr {
 				if err == nil {
-					t.Errorf("Inspector.GetCoverageReport() = %v, want %v", err, tt.want)
+					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)
 				}
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Inspector.GetCoverageReport() = %v, want %v", got, tt.want)
+				gotStrVulnerabilities, err := test.StringifyStruct(got)
+				require.Nil(t, err)
+				wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
+				require.Nil(t, err)
+				t.Errorf("Inspector.Inspect() = %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 	}
@@ -271,32 +279,21 @@ func TestNewInspector(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
+	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	require.NoError(t, err)
+
 	track := &tracker.CITracker{}
-	sources := &query.FilesystemSource{
-		Source: "./test/fixtures/all_auth_users_get_read_access",
+	sources := &mockSource{
+		Source: filepath.FromSlash("./test/fixtures/all_auth_users_get_read_access"),
+		Types:  []string{""},
 	}
 	vbs := DefaultVulnerabilityBuilder
 	opaQueries := make([]*preparedQuery, 0, 1)
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: rego.PreparedEvalQuery{},
 		metadata: model.QueryMetadata{
-			Query: "all_auth_users_get_read_access",
-			Content: `package Cx
-
-CxPolicy [ result ] {
-    resource := input.document[i].resource.aws_s3_bucket[name]
-    role = "authenticated-read"
-    resource.acl == role
-
-    result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
-                "issueType":		   "IncorrectValue",
-                "keyExpectedValue": sprintf("aws_s3_bucket[%s].acl is private", [name]),
-                "keyActualValue": 	sprintf("aws_s3_bucket[%s].acl is %s", [name, role])
-            }
-}
-`,
+			Query:    "all_auth_users_get_read_access",
+			Content:  string(contentByte),
 			Platform: "unknown",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
@@ -305,6 +302,7 @@ CxPolicy [ result ] {
 				"category":        "Identity and Access Management",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+				"platform":        "CloudFormation",
 			},
 		},
 	})
@@ -341,16 +339,44 @@ CxPolicy [ result ] {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("NewInspector() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
 			}
+			gotStrMetadata, err := test.StringifyStruct(got.queries[0].metadata)
+			require.Nil(t, err)
+			wantStrMetadata, err := test.StringifyStruct(tt.want.queries[0].metadata)
+			require.Nil(t, err)
 			if !reflect.DeepEqual(got.queries[0].metadata, tt.want.queries[0].metadata) {
-				t.Errorf("NewInspector() metadata = %v, want %v", got.queries[0].metadata, tt.want.queries[0].metadata)
+				t.Errorf("NewInspector() metadata: got = %v,\n want = %v", gotStrMetadata, wantStrMetadata)
 			}
+
+			gotStrTracker, err := test.StringifyStruct(got.tracker)
+			require.Nil(t, err)
+			wantStrTracker, err := test.StringifyStruct(tt.want.tracker)
+			require.Nil(t, err)
 			if !reflect.DeepEqual(got.tracker, tt.want.tracker) {
-				t.Errorf("NewInspector() tracker = %v, want %v", got.tracker, tt.want.tracker)
+				t.Errorf("NewInspector() tracker: got = %v,\n want = %v", gotStrTracker, wantStrTracker)
 			}
 			require.NotNil(t, got.vb)
 		})
 	}
+}
+
+type mockSource struct {
+	Source string
+	Types  []string
+}
+
+func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
+	sources := query.NewFilesystemSource(m.Source, []string{""})
+
+	return sources.GetQueries()
+}
+func (m *mockSource) GetGenericQuery(platform string) (string, error) {
+	currentWorkdir, _ := os.Getwd()
+
+	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
+	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+
+	return string(content), err
 }

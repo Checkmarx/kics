@@ -1,6 +1,8 @@
 package query
 
 import (
+	"io/ioutil"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -10,6 +12,39 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 )
+
+// BenchmarkFilesystemSource_GetQueries benchmarks getQueries to see improvements
+func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		b.Fatal(err)
+	}
+	type fields struct {
+		Source string
+		Types  []string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+	}{
+		{
+			name: "testing_all_paths",
+			fields: fields{
+				Source: "./assets/queries/",
+				Types:  []string{""},
+			},
+		},
+	}
+	for _, tt := range tests {
+		b.Run(tt.name, func(b *testing.B) {
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
+			for n := 0; n < b.N; n++ {
+				if _, err := s.GetQueries(); err != nil {
+					b.Errorf("Error: %s", err)
+				}
+			}
+		})
+	}
+}
 
 // TestFilesystemSource_GetGenericQuery tests the functions [GetGenericQuery()] and all the methods called by them
 func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
@@ -109,9 +144,8 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &FilesystemSource{
-				Source: tt.fields.Source,
-			}
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
+
 			got, err := s.GetGenericQuery(tt.args.platform)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetGenericQuery() error = %v, wantErr %v", err, tt.wantErr)
@@ -130,8 +164,12 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	require.NoError(t, err)
+
 	type fields struct {
 		Source string
+		Types  []string
 	}
 	tests := []struct {
 		name    string
@@ -142,32 +180,21 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: "./assets/queries/template",
+				Source: "./test/fixtures/all_auth_users_get_read_access",
+				Types:  []string{""},
 			},
 			want: []model.QueryMetadata{
 				{
-					Query: "template",
-					Content: `package Cx
-
-CxPolicy [ result ] {
-  resource := input.document[i].resource
-  resource == "<VALUE>"
-
-	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("%s", [resource]),
-                "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
-                "keyExpectedValue": "<RESOURCE>",
-                "keyActualValue": 	resource
-              }
-}`,
+					Query:   "all_auth_users_get_read_access",
+					Content: string(contentByte),
 					Metadata: map[string]interface{}{
-						"category":        nil,
-						"descriptionText": "<TEXT>",
-						"descriptionUrl":  "#",
-						"id":              "<ID>",
-						"queryName":       "<QUERY_NAME>",
+						"category":        "Identity and Access Management",
+						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
+						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+						"queryName":       "All Auth Users Get Read Access",
 						"severity":        "HIGH",
+						"platform":        "CloudFormation",
 					},
 					Platform: "unknown",
 				},
@@ -185,9 +212,7 @@ CxPolicy [ result ] {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &FilesystemSource{
-				Source: tt.fields.Source,
-			}
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
 			got, err := s.GetQueries()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
@@ -221,7 +246,7 @@ func Test_ReadMetadata(t *testing.T) {
 		{
 			name: "read_metadata_template",
 			args: args{
-				queryDir: "./assets/queries/template",
+				queryDir: filepath.FromSlash("./test/fixtures/type-test01/template01"),
 			},
 			want: map[string]interface{}{
 				"category":        nil,
@@ -230,6 +255,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"id":              "<ID>",
 				"queryName":       "<QUERY_NAME>",
 				"severity":        "HIGH",
+				"platform":        "<PLATFORM>",
 			},
 		},
 	}
@@ -253,11 +279,11 @@ func Test_getPlatform(t *testing.T) {
 		want string
 	}{
 		{
-			name: "get_platform_commonQuery",
+			name: "get_platform_common",
 			args: args{
-				queryPath: "../test/commonQuery/test",
+				queryPath: "../test/common/test",
 			},
-			want: "commonQuery",
+			want: "common",
 		},
 		{
 			name: "get_platform_ansible",

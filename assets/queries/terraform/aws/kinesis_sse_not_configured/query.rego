@@ -4,7 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
 
 	resource.kinesis_source_configuration
-
+    not resource.kinesis_source_configuration.kinesis_stream_arn
 	resource.server_side_encryption.enabled == true
 
 	result := {
@@ -20,6 +20,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
 
 	not resource.server_side_encryption
+    not resource.kinesis_source_configuration.kinesis_stream_arn
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,8 +1,9 @@
 {
-  "id": "839f238f-2e3a-4a72-b945-8abdf91af955",
-  "queryName": "IAM Password Without Number",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "IAM user resource Login Profile Password should have at least one number",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user"
+	"id": "839f238f-2e3a-4a72-b945-8abdf91af955",
+	"queryName": "IAM Password Without Number",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM user resource Login Profile Password should have at least one number",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
+	"platform": "CloudFormation"
 }

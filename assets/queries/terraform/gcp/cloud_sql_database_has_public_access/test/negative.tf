@@ -19,7 +19,7 @@ resource "google_sql_database_instance" "authorized_networks" {
 
     ip_configuration {
 
-      dynamic "authorized_networks" {
+      authorized_networks {
 
         content {
           name  = "some_trusted_network"
@@ -27,7 +27,7 @@ resource "google_sql_database_instance" "authorized_networks" {
         }
       }
 
-      dynamic "authorized_networks" {
+      authorized_networks {
 
         content {
           name  = "another_trusted_network"
