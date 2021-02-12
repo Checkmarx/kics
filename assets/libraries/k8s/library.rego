@@ -19,13 +19,14 @@ checkKind(currentKind, listKinds) {
 CheckIFPdbExists(statefulset) = result {
 	pdb := input.document[j]
 	pdb.kind == "PodDisruptionBudget"
-	result := contains(pdb, statefulset.spec.selector.matchLabels)
+	result := containsLabel(pdb, statefulset.spec.selector.matchLabels)
 } else = false {
 	true
 }
 
-contains(array, label) {
+containsLabel(array, label) {
 	array.spec.selector.matchLabels[_] == label[_]
+}
 
 checkMetadata(metadata) {
 	contains(metadata.name, "tiller")
