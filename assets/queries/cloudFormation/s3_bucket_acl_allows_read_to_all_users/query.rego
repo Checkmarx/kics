@@ -12,6 +12,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.AccessControl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "S3 bucket should not have a public readable ACL",
-		"keyActualValue": sprintf("S3 bucket named '%s' has ACL set to '%s'", [object.get(resource.Properties, "BucketName", "undefined"), properties.AccessControl]),
+		"keyActualValue": sprintf("S3 bucket '%s' has ACL set to '%s'", [name, properties.AccessControl]),
 	}
 }

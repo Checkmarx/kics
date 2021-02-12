@@ -1,8 +1,9 @@
 {
-  "id": "dbbc6705-d541-43b0-b166-dd4be8208b54",
-  "queryName": "NET_RAW Capabilities Disabled Minimized",
-  "severity": "HIGH",
-  "category": "Privileges",
-  "descriptionText": "Containers need to have NET_RAW or All as Security Context",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
+	"id": "dbbc6705-d541-43b0-b166-dd4be8208b54",
+	"queryName": "NET_RAW Capabilities Disabled Minimized",
+	"severity": "HIGH",
+	"category": "Privileges",
+	"descriptionText": "Containers need to have NET_RAW or All as Security Context",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+	"platform": "Kubernetes"
 }

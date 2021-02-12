@@ -160,6 +160,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	for _, tc := range testTable {
@@ -270,9 +271,9 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		return []model.QueryMetadata{q}, nil
 	})
 
-	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
-			q, err := readLibrary("commonQuery")
+			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
@@ -296,6 +297,8 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.samplePath(),
 			testParams.sampleContent(t),
 		),
+		true,
+		BaseTestsScanPath,
 	)
 	require.Nil(t, err)
 	return vulnerabilities

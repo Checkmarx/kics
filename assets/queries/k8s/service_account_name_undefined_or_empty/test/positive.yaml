@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: nginx.container
 spec:
   containers:
   - image: nginx
@@ -14,7 +14,7 @@ spec:
   - name: vault-token
     projected:
       sources:
-      - serviceAccountToken:  
+      - serviceAccountToken:
           path: vault-token
           expirationSeconds: 7200
           audience: vault
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx2
+  name: nginx2.container.group
 spec:
   containers:
   - image: nginx2
@@ -32,7 +32,7 @@ spec:
     volumeMounts:
     - mountPath: /var/run/secrets/tokens
       name: vault-token
-  serviceAccountName: 
+  serviceAccountName:
   volumes:
   - name: vault-token
     projected:

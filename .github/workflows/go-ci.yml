@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         go-version: [1.15.x]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Set up Go 1.x
@@ -35,7 +35,7 @@ jobs:
     - name: Run Go mod tidy
       run: go mod tidy
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       with:
         path: |
           ~/go/pkg/mod

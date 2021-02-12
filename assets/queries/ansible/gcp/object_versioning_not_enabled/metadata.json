@@ -1,8 +1,9 @@
 {
-  "id": "7814ddda-e758-4a56-8be3-289a81ded929",
-  "queryName": "Object Versioning Not Enabled",
-  "severity": "HIGH",
-  "category": "Logging",
-  "descriptionText": "Object Versioning not fully enabled on Cloud Storage Bucket",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning"
+	"id": "7814ddda-e758-4a56-8be3-289a81ded929",
+	"queryName": "Object Versioning Not Enabled",
+	"severity": "HIGH",
+	"category": "Logging",
+	"descriptionText": "Object Versioning not fully enabled on Cloud Storage Bucket",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning",
+	"platform": "Ansible"
 }

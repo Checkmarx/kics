@@ -4,6 +4,7 @@ builds:
   - main: ./cmd/console/main.go
     binary: kics
     goos:
+      - darwin
       - linux
       - windows
     goarch:

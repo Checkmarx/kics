@@ -21,6 +21,7 @@ import (
 )
 
 func BenchmarkQueries(b *testing.B) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	queries := loadQueries(b)
@@ -33,6 +34,7 @@ func BenchmarkQueries(b *testing.B) {
 }
 
 func TestQueries(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	if testing.Short() {
@@ -46,7 +48,7 @@ func TestQueries(t *testing.T) {
 }
 
 func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
-	name := strings.TrimPrefix(entry.dir, "../assets/queries/")
+	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	t.Run(name+"_positive", func(t *testing.T) {
 		testQuery(t, entry, entry.PositiveFiles(t), getExpectedVulnerabilities(t, entry))
 	})
@@ -56,7 +58,7 @@ func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
 }
 
 func benchmarkPositiveandNegativeQueries(b *testing.B, entry queryEntry) {
-	name := strings.TrimPrefix(entry.dir, "../assets/queries/")
+	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	b.Run(name+"_positive", func(b *testing.B) {
 		testQuery(b, entry, entry.PositiveFiles(b), getExpectedVulnerabilities(b, entry))
 	})
@@ -91,9 +93,9 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			return []model.QueryMetadata{q}, nil
 		})
 
-	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
-			q, err := readLibrary("commonQuery")
+			q, err := readLibrary("common")
 			require.NoError(tb, err)
 			return q, nil
 		})
@@ -109,7 +111,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath))
+	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true, BaseTestsScanPath)
 	require.Nil(tb, err)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities)
 }

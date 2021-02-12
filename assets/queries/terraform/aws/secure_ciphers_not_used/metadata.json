@@ -1,8 +1,9 @@
 {
-  "id": "5c0003fb-9aa0-42c1-9da3-eb0e332bef21",
-  "queryName": "Secure Ciphers Not Used",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Check if secure ciphers aren't used in CloudFront",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution"
+	"id": "5c0003fb-9aa0-42c1-9da3-eb0e332bef21",
+	"queryName": "Secure Ciphers Not Used",
+	"severity": "HIGH",
+	"category": "Encryption and Key Management",
+	"descriptionText": "Check if secure ciphers aren't used in CloudFront",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
+	"platform": "Terraform"
 }

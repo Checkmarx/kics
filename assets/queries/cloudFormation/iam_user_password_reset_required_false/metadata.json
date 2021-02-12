@@ -1,8 +1,9 @@
 {
-  "id": "a964d6e3-8e1e-4d93-8120-61fa640dd55a",
-  "queryName": "user IAM missing PasswordResetRequired",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "IAM User Login Profile should exist and have PasswordResetRequired property set to true",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html"
+	"id": "a964d6e3-8e1e-4d93-8120-61fa640dd55a",
+	"queryName": "user IAM missing PasswordResetRequired",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM User Login Profile should exist and have PasswordResetRequired property set to true",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html",
+	"platform": "CloudFormation"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "5b033ec8-f079-4323-b5c8-99d4620433a9",
-  "queryName": "EMR Security Configuration Encryptions Enabled",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html"
+	"id": "5b033ec8-f079-4323-b5c8-99d4620433a9",
+	"queryName": "EMR Security Configuration Encryptions Enabled",
+	"severity": "MEDIUM",
+	"category": "Encryption and Key Management",
+	"descriptionText": "EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html",
+	"platform": "CloudFormation"
 }

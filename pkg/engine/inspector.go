@@ -3,8 +3,12 @@ package engine
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"sync"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
@@ -23,7 +27,7 @@ const (
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 3 * time.Second
+	executeTimeout = 6 * time.Second
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -33,7 +37,7 @@ var ErrNoResult = errors.New("query: not result")
 var ErrInvalidResult = errors.New("query: invalid result format")
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
-type VulnerabilityBuilder func(ctx QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
+type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
 // QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
 // GetQueries gets all queries from a QueryMetadata list
@@ -74,11 +78,12 @@ type Inspector struct {
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
 // the query compiled and its payload
 type QueryContext struct {
-	ctx     context.Context
-	scanID  string
-	files   map[string]model.FileMetadata
-	query   *preparedQuery
-	payload model.Documents
+	ctx          context.Context
+	scanID       string
+	files        map[string]model.FileMetadata
+	query        *preparedQuery
+	payload      model.Documents
+	baseScanPath string
 }
 
 var (
@@ -93,14 +98,13 @@ func NewInspector(
 	ctx context.Context,
 	source QueriesSource,
 	vb VulnerabilityBuilder,
-	tracker Tracker,
-) (*Inspector, error) {
+	tracker Tracker) (*Inspector, error) {
 	queries, err := source.GetQueries()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := source.GetGenericQuery("commonQuery")
+	commonGeneralQuery, err := source.GetGenericQuery("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
@@ -160,8 +164,23 @@ func NewInspector(
 	}, nil
 }
 
+func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
+	wg.Add(1)
+	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
+	if hideProgress {
+		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
+		progressBar.Writer = ioutil.Discard
+	}
+	go progressBar.Start(wg)
+}
+
 // Inspect scan files and return the a list of vulnerabilities found on the process
-func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.FileMetadatas) ([]model.Vulnerability, error) {
+func (c *Inspector) Inspect(
+	ctx context.Context,
+	scanID string,
+	files model.FileMetadatas,
+	hideProgress bool,
+	baseScanPath string) ([]model.Vulnerability, error) {
 	combinedFiles := files.Combine()
 
 	_, err := json.Marshal(combinedFiles)
@@ -170,13 +189,21 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 	}
 
 	var vulnerabilities []model.Vulnerability
-	for _, query := range c.queries {
-		vuls, err := c.doRun(QueryContext{
-			ctx:     ctx,
-			scanID:  scanID,
-			files:   files.ToMap(),
-			query:   query,
-			payload: combinedFiles,
+	currentQuery := make(chan float64, 1)
+	var wg sync.WaitGroup
+	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
+	for idx, query := range c.queries {
+		if !hideProgress {
+			currentQuery <- float64(idx)
+		}
+
+		vuls, err := c.doRun(&QueryContext{
+			ctx:          ctx,
+			scanID:       scanID,
+			files:        files.ToMap(),
+			query:        query,
+			payload:      combinedFiles,
+			baseScanPath: baseScanPath,
 		})
 		if err != nil {
 			sentry.CaptureException(err)
@@ -192,7 +219,9 @@ func (c *Inspector) Inspect(ctx context.Context, scanID string, files model.File
 
 		c.tracker.TrackQueryExecution()
 	}
-
+	close(currentQuery)
+	wg.Wait()
+	fmt.Println("\r")
 	return vulnerabilities, nil
 }
 
@@ -211,7 +240,7 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 	return c.failedQueries
 }
 
-func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
+func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, executeTimeout)
 	defer cancel()
 
@@ -231,7 +260,6 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 
 		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
-
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {
@@ -250,7 +278,7 @@ func (c *Inspector) doRun(ctx QueryContext) ([]model.Vulnerability, error) {
 	return c.decodeQueryResults(ctx, results)
 }
 
-func (c *Inspector) decodeQueryResults(ctx QueryContext, results rego.ResultSet) ([]model.Vulnerability, error) {
+func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet) ([]model.Vulnerability, error) {
 	if len(results) == 0 {
 		return nil, ErrNoResult
 	}

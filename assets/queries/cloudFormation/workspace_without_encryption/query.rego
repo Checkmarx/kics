@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties", [workspaceName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties should have the property UserVolumeEncryptionEnabled set to true", [workspaceName]),
-		"keyActualValue": sprintf("Resources.%s.Properties does not have de UserVolumeEncryptionEnabled property set", [workspaceName]),
+		"keyActualValue": sprintf("Resources.%s.Properties does not have the UserVolumeEncryptionEnabled property set", [workspaceName]),
 	}
 }
 

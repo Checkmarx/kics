@@ -1,8 +1,9 @@
 {
-  "id": "b84a0b47-2e99-4c9f-8933-98bcabe2b94d",
-  "queryName": "Run Using apt",
-  "severity": "MEDIUM",
-  "category": "Package Management",
-  "descriptionText": "apt is discouraged by the linux distributions as an unattended tool as its interface may suffer changes between versions. Better use the more stable apt-get and apt-cache",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+	"id": "b84a0b47-2e99-4c9f-8933-98bcabe2b94d",
+	"queryName": "Run Using apt",
+	"severity": "MEDIUM",
+	"category": "Package Management",
+	"descriptionText": "apt is discouraged by the linux distributions as an unattended tool as its interface may suffer changes between versions. Better use the more stable apt-get and apt-cache",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+	"platform": "Dockerfile"
 }

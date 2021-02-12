@@ -1,8 +1,9 @@
 {
-  "id": "5ef61c88-bbb4-4725-b1df-55d23c9676bb",
-  "queryName": "Cloud DNS without DNSSEC",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Cloud DNS without DNSSEC",
-  "descriptionUrl": "https://www.terraform.io/docs/providers/google/d/dns_managed_zone.html"
+	"id": "5ef61c88-bbb4-4725-b1df-55d23c9676bb",
+	"queryName": "Cloud DNS without DNSSEC",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Cloud DNS without DNSSEC",
+	"descriptionUrl": "https://www.terraform.io/docs/providers/google/d/dns_managed_zone.html",
+	"platform": "Terraform"
 }
