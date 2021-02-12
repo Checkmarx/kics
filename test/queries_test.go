@@ -119,15 +119,13 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, entry queryEntry) {
 	sort.Slice(expected, func(i, j int) bool {
 		if expected[i].FileName != "" {
-			isLessThan := strings.Compare(expected[i].FileName, expected[j].FileName) == -1 && expected[i].Line < expected[j].Line
-			return isLessThan
+			return strings.Compare(expected[i].FileName, expected[j].FileName) <= 0 && expected[i].Line < expected[j].Line
 		}
 		return expected[i].Line < expected[j].Line
 	})
 	sort.Slice(actual, func(i, j int) bool {
 		if actual[i].FileName != "" {
-			isLessThan := strings.Compare(filepath.Base(actual[i].FileName), filepath.Base(actual[j].FileName)) == -1 && actual[i].Line < actual[j].Line
-			return isLessThan
+			return strings.Compare(filepath.Base(actual[i].FileName), filepath.Base(actual[j].FileName)) <= 0 && actual[i].Line < actual[j].Line
 		}
 		return actual[i].Line < actual[j].Line
 	})
