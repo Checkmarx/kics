@@ -1,13 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.getTasks(document)[t]
 	gcp_task := task["google.cloud.gcp_sql_instance"]
-	contains(gcp_task.database_version, "POSTGRES")
 
+	ansLib.checkState(gcp_task)
+	contains(gcp_task.database_version, "POSTGRES")
 	IsMissingAttribute(gcp_task)
 
 	result := {
@@ -21,13 +22,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.getTasks(document)[t]
 	gcp_task := task["google.cloud.gcp_sql_instance"]
-	contains(gcp_task.database_version, "POSTGRES")
 
-	IsFlagOff(gcp_task.settings.databaseFlags)
+	ansLib.checkState(gcp_task)
+	contains(gcp_task.database_version, "POSTGRES")
+	ansLib.check_database_flags_content(gcp_task.settings.databaseFlags, "log_connections", "on")
 
 	result := {
 		"documentId": document.id,
@@ -38,23 +38,10 @@ CxPolicy[result] {
 	}
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
+IsMissingAttribute(task) {
+	object.get(task, "settings", "undefined") == "undefined"
 }
 
-IsMissingAttribute(gcp_task) {
-	object.get(gcp_task, "settings", "undefined") == "undefined"
-}
-
-IsMissingAttribute(gcp_task) {
-	object.get(gcp_task.settings, "databaseFlags", "undefined") == "undefined"
-}
-
-IsFlagOff(dbFlags) {
-	dbFlags[j].name == "log_connections"
-	lower(dbFlags[j].value) == "off"
+IsMissingAttribute(task) {
+	object.get(task.settings, "databaseFlags", "undefined") == "undefined"
 }

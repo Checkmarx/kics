@@ -1,11 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	dns := task["google.cloud.gcp_dns_managed_zone"]
 
-	dnssec_config := task["google.cloud.gcp_dns_managed_zone"].dnssec_config
-	lower(dnssec_config.defaultKeySpecs.algorithm) == "rsasha1"
+	ansLib.checkState(dns)
+	lower(dns.dnssec_config.defaultKeySpecs.algorithm) == "rsasha1"
 
 	result := {
 		"documentId": document.id,
@@ -14,12 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'dnssec_config.defaultKeySpecs.algorithm' is not equal to 'rsasha1'",
 		"keyActualValue": "'dnssec_config.defaultKeySpecs.algorithm' is equal to 'rsasha1'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
