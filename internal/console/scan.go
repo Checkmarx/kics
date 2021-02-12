@@ -39,6 +39,7 @@ var (
 	verbose     bool
 	logFile     bool
 	noProgress  bool
+	types       []string
 )
 
 var scanCmd = &cobra.Command{
@@ -110,6 +111,7 @@ func initScanCmd() {
 	)
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
@@ -140,25 +142,7 @@ func setupLogs() error {
 	return nil
 }
 
-func scan() error {
-	fmt.Printf("Scanning with %s\n\n", getVersion())
-
-	if err := setupLogs(); err != nil {
-		return err
-	}
-
-	scanStartTime := time.Now()
-
-	querySource := &query.FilesystemSource{
-		Source: queryPath,
-	}
-
-	t := &tracker.CITracker{}
-	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
-	if err != nil {
-		return err
-	}
-
+func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
 	var excludePaths []string
 	if payloadPath != "" {
 		excludePaths = append(excludePaths, payloadPath)
@@ -168,17 +152,49 @@ func scan() error {
 		excludePaths = append(excludePaths, excludePath...)
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(path, excludePaths)
+	absPath, err := filepath.Abs(path)
+	if err != nil {
+		return nil, err
+	}
+
+	filesSource, err := source.NewFileSystemSourceProvider(absPath, excludePaths)
+	if err != nil {
+		return nil, err
+	}
+	return filesSource, nil
+}
+
+func scan() error {
+	fmt.Printf("Scanning with %s\n\n", getVersion())
+
+	if err := setupLogs(); err != nil {
+		return err
+	}
+
+	scanStartTime := time.Now()
+
+	querySource := query.NewFilesystemSource(queryPath, types)
+
+	t := &tracker.CITracker{}
+
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
 	if err != nil {
 		return err
 	}
 
-	combinedParser := parser.NewBuilder().
-		// Add(&jsonParser.Parser{}).
+	filesSource, err := getFileSystemSourceProvider()
+	if err != nil {
+		return err
+	}
+
+	combinedParser, err := parser.NewBuilder().
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build(types)
+	if err != nil {
+		return err
+	}
 
 	store := storage.NewMemoryStorage()
 

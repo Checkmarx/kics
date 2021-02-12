@@ -2,6 +2,7 @@ package test
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
@@ -74,4 +75,13 @@ func GetCurrentDirName(path string) string {
 		return dirs[len(dirs)-2]
 	}
 	return dirs[len(dirs)-1]
+}
+
+// StringifyStruct stringify struct for pretty print
+func StringifyStruct(v interface{}) (string, error) {
+	jsonValue, err := json.MarshalIndent(v, "", "  ")
+	if err != nil {
+		return "", err
+	}
+	return string(jsonValue), nil
 }

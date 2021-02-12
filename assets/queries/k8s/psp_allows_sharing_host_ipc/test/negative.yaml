@@ -3,4 +3,12 @@ kind: PodSecurityPolicy
 metadata:
   name: example
 spec:
-  hostIPC: false 
+  hostIPC: false
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny

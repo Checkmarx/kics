@@ -19,11 +19,11 @@ At a high very level, KICS is composed of the following main components: a comma
 - Security Queries => pre-built REGO queries for each security and misconfiguration
 - Writer => Writes results into JSON format
 
-<img src="../img/arch/high-level-arch.png" align="left">  
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/high-level-arch.png" align="left">  
 
 
 ## Execution Flow
 
 The sequence diagram below depicts interaction of the main KICS components:  
-<img src="../img/arch/exec-flow-1.png" align="left">  
-<img src="../img/arch/exec-flow-2.png" align="left">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-1.png" align="left">  
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png" align="left">

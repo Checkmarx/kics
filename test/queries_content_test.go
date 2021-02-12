@@ -22,10 +22,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-const (
-	scanID = "test_scan"
-)
-
 var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
 	severityList = []string{"HIGH", "MEDIUM", "LOW", "INFO"}
@@ -71,6 +67,10 @@ var (
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
 			require.NotEmpty(tb, descriptionValue, "empty description text in query metadata file %s", metadataPath)
+		},
+		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
+			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
+			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)
 		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
 			switch urlValue := value.(type) {
@@ -146,9 +146,9 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return []model.QueryMetadata{q}, err
 		})
 
-	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
-			q, err := readLibrary("commonQuery")
+			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
@@ -165,7 +165,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx engine.QueryContext, trk engine.Tracker, v interface{}) (model.Vulnerability, error) {
+		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}) (model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
@@ -203,7 +203,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true)
+	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true, BaseTestsScanPath)
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()

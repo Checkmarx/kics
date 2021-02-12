@@ -27,4 +27,3 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref EnvironmentName
-

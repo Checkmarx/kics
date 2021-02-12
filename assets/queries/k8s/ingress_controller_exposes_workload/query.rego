@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "Ingress"
-	specInfo := getSpecInfo(document)
+	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 	annotations := metadata.annotations
 
@@ -25,18 +27,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("metadata.name=%s is not exposing the workload", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s is exposing the workload", [metadata.name]),
 	}
-}
-
-getSpecInfo(document) = specInfo {
-	templates := {"job_template", "jobTemplate"}
-	spec := document.spec[templates[t]].spec.template.spec
-	specInfo := {"spec": spec, "path": sprintf("spec.%s.spec.template.spec", [templates[t]])}
-} else = specInfo {
-	spec := document.spec.template.spec
-	specInfo := {"spec": spec, "path": "spec.template.spec"}
-} else = specInfo {
-	spec := document.spec
-	specInfo := {"spec": spec, "path": "spec"}
 }
 
 ingressControllerExposesWorload(serviceName, servicePort) = allow {

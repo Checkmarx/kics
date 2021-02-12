@@ -1,9 +1,0 @@
-{
-	"id": "93564a91-a8f5-424c-8955-eadcb1fbfc3a",
-	"queryName": "Compute disk is not encrypted",
-	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
-	"descriptionText": "Compute disk is not encrypted",
-	"descriptionUrl": "https://www.terraform.io/docs/providers/google/r/compute_disk.html",
-	"platform": "Terraform"
-}

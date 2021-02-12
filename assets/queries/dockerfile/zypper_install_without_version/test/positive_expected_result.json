@@ -1,7 +1,12 @@
 [
-	{
-		"queryName": "Zypper Install Without Version",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "Zypper Install Without Version",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Zypper Install Without Version",
+    "severity": "MEDIUM",
+    "line": 3
+  }
 ]

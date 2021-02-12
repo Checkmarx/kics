@@ -8,7 +8,7 @@
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 22,
+    "line": 30,
     "fileName": "positive2.yaml"
   }
 ]
