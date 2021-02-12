@@ -119,7 +119,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 func vulnerabilityCompare(vulnerabiitySlice []model.Vulnerability, i, j int) bool {
 	if vulnerabiitySlice[i].FileName != "" {
 		compareFile := strings.Compare(filepath.Base(vulnerabiitySlice[i].FileName), filepath.Base(vulnerabiitySlice[j].FileName))
-		if compareFile > 0 {
+		if compareFile <= 0 {
 			return vulnerabiitySlice[i].Line < vulnerabiitySlice[j].Line
 		}
 		return true
@@ -166,7 +166,7 @@ type ResultItem struct {
 
 func filterFileNameAndLine(vulnerabilitySlice []model.Vulnerability) []ResultItem {
 	result := []ResultItem{}
-	for i, _ := range vulnerabilitySlice {
+	for i := 0; i < len(vulnerabilitySlice); i++ {
 		result = append(result, ResultItem{
 			File: vulnerabilitySlice[i].FileName,
 			Line: vulnerabilitySlice[i].Line,
