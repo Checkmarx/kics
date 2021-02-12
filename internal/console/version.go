@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const currentVersion = "Keeping Infrastructure as Code Secure v1.1.2"
+const currentVersion = "Keeping Infrastructure as Code Secure v1.1.3"
 
 var versionCmd = &cobra.Command{
 	Use:   "version",

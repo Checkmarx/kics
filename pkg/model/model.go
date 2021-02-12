@@ -11,6 +11,7 @@ const (
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindDOCKER    FileKind = "DOCKERFILE"
+	KindCOMMON    FileKind = "*"
 )
 
 // Constants to describe vulnerability's severity
@@ -81,6 +82,7 @@ type Vulnerability struct {
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
 	QueryName        string    `db:"query_name" json:"queryName"`
+	Platform         string    `db:"platform" json:"platform"`
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`

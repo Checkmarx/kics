@@ -1,31 +1,54 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
-	command := resource.Value[0]
 
-	contains(resource.Value[0], "apt-get install")
-	commandSplited := split(resource.Value[0], " ")
+	count(resource.Value) == 1
+	commands := resource.Value[0]
 
-	"install" == commandSplited[index]
+	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet != null
 
-	index + 1 <= count(commandSplited)
-	packages := array.slice(commandSplited, index + 1, count(commandSplited))
+	packages = dockerLib.getPackages(commands, aptGet)
+	regex.match("^[a-zA-Z]", packages[j]) == true
 
-	some pack
-	not startswith(packages[pack], "-")
-	noVersion(packages[pack])
+	not dockerLib.withVersion(packages[j])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, commands]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "When installing a package, its pin version should be defined",
-		"keyActualValue": "The pin version is not defined",
+		"keyExpectedValue": sprintf("Package '%s' has version defined", [packages[j]]),
+		"keyActualValue": sprintf("Package '%s' does not have version defined", [packages[j]]),
 	}
 }
 
-noVersion(pack) {
-	not contains(pack, "=")
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
+
+	count(resource.Value) > 1
+
+	isAptGet(resource.Value)
+
+	resource.Value[j] != "install"
+	resource.Value[j] != "apt-get"
+	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	not dockerLib.withVersion(resource.Value[j])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Package '%s' has version defined", [resource.Value[j]]),
+		"keyActualValue": sprintf("Package '%s' does not have version defined", [resource.Value[j]]),
+	}
+}
+
+isAptGet(command) {
+	contains(command[x], "apt-get")
+	contains(command[j], "install")
 }

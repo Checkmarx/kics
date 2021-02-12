@@ -19,6 +19,12 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Equal(t, []string{".yaml", ".yml"}, p.SupportedExtensions())
 }
 
+// TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
+func TestParser_SupportedTypes(t *testing.T) {
+	p := &Parser{}
+	require.Equal(t, []string{"Ansible", "CloudFormation", "Kubernetes"}, p.SupportedTypes())
+}
+
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
 func TestParser_Parse(t *testing.T) {
 	p := &Parser{}

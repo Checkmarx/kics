@@ -1,27 +1,28 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][install]
+	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
-	command := resource.Value[0]
+	commands := resource.Value[0]
 
-	contains(resource.Value[0], "apt-get install")
+	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet != null
 
-	not hasClean(resource.Value[0], install)
+	not hasClean(resource.Value[0], aptGet[0])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, commands]),
 		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "After using apt-get install, it is needed to delete apt-get lists",
 		"keyActualValue": "After using apt-get install, the apt-get lists were not deleted",
 	}
 }
 
-hasClean(resourceValue, install) {
+hasClean(resourceValue, aptGet) {
 	listCommands := split(resourceValue, "&& ")
 
-	startswith(listCommands[install], "apt-get install")
+	startswith(listCommands[install], aptGet)
 
 	some clean
 	startswith(listCommands[clean], "apt-get clean")

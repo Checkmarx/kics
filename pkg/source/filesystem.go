@@ -53,9 +53,14 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 	}
 
 	return &FileSystemSourceProvider{
-		path:     path,
+		path:     filepath.FromSlash(path),
 		excludes: ex,
 	}, nil
+}
+
+// GetBasePath returns base path of FileSystemSourceProvider
+func (s *FileSystemSourceProvider) GetBasePath() string {
+	return s.path
 }
 
 // GetSources tries to open file or directory and execute sink function on it
@@ -95,7 +100,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).
-				Msgf("Filesystem terraform files provider couldn't parse file, file=%s", info.Name())
+				Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
 		}
 		if err := c.Close(); err != nil {
 			sentry.CaptureException(err)
