@@ -1,35 +1,44 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: sample-service 01
+  annotations:
+    cloud.google.com/load-balancer-type: 'Internal'
 spec:
-  selector:
-    app: nginx
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 9376
-  clusterIP: 10.0.171.239
+    - port: 80
+      targetPort: 80
+      protocol: TCP
   type: LoadBalancer
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
-spec:
-  replicas: 3
   selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 9376
+    app: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service 02
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: 'true'
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service 03
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: 'true'
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx

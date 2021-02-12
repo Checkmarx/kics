@@ -2,6 +2,11 @@
 	{
 		"queryName": "Service With External Load Balance",
 		"severity": "MEDIUM",
-		"line": 5
+		"line": 4
+	},
+  {
+		"queryName": "Service With External Load Balance",
+		"severity": "MEDIUM",
+		"line": 18
 	}
 ]
