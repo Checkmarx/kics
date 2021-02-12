@@ -1,11 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.getTasks(document)[t]
+	compute_instance := task["google.cloud.gcp_compute_instance"]
 
-	task["google.cloud.gcp_compute_instance"].network_interfaces[_].access_configs
+	ansLib.checkState(compute_instance)
+	compute_instance.network_interfaces[_].access_configs
 
 	result := {
 		"documentId": document.id,
@@ -14,12 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is not defined",
 		"keyActualValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is defined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

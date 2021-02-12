@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Log Min Messages Invalid Value",
-		"severity": "HIGH",
-		"line": 13
-	}
+  {
+    "queryName": "Log Min Messages Invalid Value",
+    "severity": "HIGH",
+    "line": 11
+  }
 ]

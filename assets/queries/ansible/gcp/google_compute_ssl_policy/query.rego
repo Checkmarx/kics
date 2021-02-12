@@ -1,44 +1,37 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.getTasks(document)[t]
 	policy := task["google.cloud.gcp_compute_ssl_policy"]
-	policyName := task.name
 
+	ansLib.checkState(policy)
 	object.get(policy, "min_tls_version", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_ssl_policy}}", [policyName]),
+		"documentId": document.id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_ssl_policy}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "google.cloud.gcp_compute_ssl_policy should have a min_tls_version 'TLS_1_2'",
-		"keyActualValue": "google.cloud.gcp_compute_ssl_policy does not have min_tls_version 'TLS_1_2'",
+		"keyExpectedValue": "{{google.cloud.gcp_compute_ssl_policy}} has min_tls_version set to 'TLS_1_2'",
+		"keyActualValue": "{{google.cloud.gcp_compute_ssl_policy}} does not have min_tls_version set to 'TLS_1_2'",
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.getTasks(document)[t]
 	policy := task["google.cloud.gcp_compute_ssl_policy"]
-	policyName := task.name
+
+	ansLib.checkState(policy)
 	policy.min_tls_version != "TLS_1_2"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_ssl_policy}}.min_tls_version", [policyName]),
+		"documentId": document.id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_ssl_policy}}.min_tls_version", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "google.cloud.gcp_compute_ssl_policy.min_tls_version should have min_tls_version 'TLS_1_2'",
-		"keyActualValue": "google.cloud.gcp_compute_ssl_policy.min_tls_version does not have min_tls_version 'TLS_1_2'",
+		"keyExpectedValue": "{{google.cloud.gcp_compute_ssl_policy}}.min_tls_version has min_tls_version set to 'TLS_1_2'",
+		"keyActualValue": "{{google.cloud.gcp_compute_ssl_policy}}.min_tls_version does not have min_tls_version set to 'TLS_1_2'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
