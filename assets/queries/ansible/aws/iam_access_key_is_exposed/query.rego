@@ -7,7 +7,7 @@ CxPolicy[result] {
 	iamuserObjBody = iamuserObj["community.aws.iam"]
 	iamuserObjName = iamuserObj.name
 	lower(iamuserObjBody.access_key_state) == "active"
-	contains(lower(iamuserObjBody.name),"root")
+	not contains(lower(iamuserObjBody.name),"root")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.iam}}.access_key_state", [iamuserObjName]),
