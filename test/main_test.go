@@ -35,16 +35,6 @@ var (
 		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
-		// "../assets/queries/cloudFormation/amplify_app_access_token_rule":                  {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/amplify_app_oauth_token_rule":                   {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/ec2_network_Acl_overlap_ports": {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/ec2_network_acl_duplicate_rule":                 {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/ecs_allows_inbound_to_all_ipv4_and_ports":       {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/ecs_service_in_cluster_no_task_definition":      {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/elasticache_with_disabled_transit_encryption":   {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/emr_security_configuration_encryptions_enabled": {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/rds_backup_retention_period_insufficient":       {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		// "../assets/queries/cloudFormation/workspace_without_encryption":                   {FileKind: model.KindYAML, Platform: "cloudFormation"},
 	}
 )
 

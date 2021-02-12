@@ -1,0 +1,31 @@
+name: validate-cfn-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/cloudFormation/**/test/*.yaml"
+
+jobs:
+  validate-cloudformation-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v2
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          python-version: '3.x'
+      - name: Get cfn-python-lint
+        run: |
+          pip3 install cfn-lint
+          pip3 show cfn-lint
+          which cfn-lint
+      - name: Validate cloudformation template syntax
+        run: python3 .github/validators/validate-syntax.py
+        env:
+          LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/cfn-lint"
+          FILES_GLOB: "assets/queries/cloudFormation/**/test/*.yaml"
+          EXTRA_ARGS: "--info"
+          SKIP_LIST_PATH: ".github/validators/cfn-skip-list"
