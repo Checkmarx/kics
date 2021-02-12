@@ -1,10 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	instance := task["google.cloud.gcp_sql_instance"]
 
-	path := getPathDefinitions(task["google.cloud.gcp_sql_instance"])
+	ansLib.checkState(instance)
+	path := getPathDefinitions(instance)
 
 	result := {
 		"documentId": document.id,
@@ -17,9 +21,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	instance := task["google.cloud.gcp_sql_instance"]
 
-	not isAnsibleTrue(task["google.cloud.gcp_sql_instance"].settings.backup_configuration.enabled)
+	ansLib.checkState(instance)
+	not ansLib.isAnsibleTrue(instance.settings.backup_configuration.enabled)
 
 	result := {
 		"documentId": document.id,
@@ -43,20 +49,4 @@ getPathDefinitions(instance) = result {
 getPathDefinitions(instance) = result {
 	object.get(instance.settings.backup_configuration, "enabled", "undefined") == "undefined"
 	result = {"defined": ".settings.backup_configuration", "undefined": "settings.backup_configuration.enabled"}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }
