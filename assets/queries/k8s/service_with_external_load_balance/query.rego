@@ -40,6 +40,10 @@ CxPolicy[result] {
 }
 
 checkLoadBalancer(annotation) {
+    annotation["networking.gke.io/load-balancer-type"] == "Internal"
+}
+
+checkLoadBalancer(annotation) {
     annotation["cloud.google.com/load-balancer-type"] == "Internal"
 }
 
