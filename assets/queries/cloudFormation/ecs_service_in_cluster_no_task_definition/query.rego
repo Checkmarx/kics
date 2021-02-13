@@ -4,7 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
-	isInCluster(resource)
+	isInCluster(resource, i)
 
 	object.get(resource.Properties, "TaskDefinition", "undefined") == "undefined"
 
@@ -21,12 +21,12 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
-	isInCluster(resource)
+	isInCluster(resource, i)
 
 	object.get(resource.Properties, "TaskDefinition", "undefined") != "undefined"
 	taskDefinition := resource.Properties.TaskDefinition
 
-	existsTaskDefinition(taskDefinition) == null
+	existsTaskDefinition(taskDefinition, i) == null
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,12 +41,12 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
-	isInCluster(resource)
+	isInCluster(resource, i)
 
 	object.get(resource.Properties, "TaskDefinition", "undefined") != "undefined"
 	taskDefinition := resource.Properties.TaskDefinition
 
-	taskDef := existsTaskDefinition(taskDefinition)
+	taskDef := existsTaskDefinition(taskDefinition, i)
 	taskDef != null
 
 	hasTaskRole(taskDef) == false
@@ -60,10 +60,10 @@ CxPolicy[result] {
 	}
 }
 
-isInCluster(service) {
+isInCluster(service, i) {
 	cluster := service.Properties.Cluster
 	is_string(cluster)
-	input.document[_].Resources[cluster]
+	input.document[i].Resources[cluster]
 } else {
 	cluster := service.Properties.Cluster
 	is_object(cluster)
@@ -72,16 +72,16 @@ isInCluster(service) {
 	true
 }
 
-existsTaskDefinition(taskDefName) = taskDef {
+existsTaskDefinition(taskDefName, i) = taskDef {
 	is_string(taskDefName)
-	input.document[_].Resources[taskDefName].Type == "AWS::ECS::TaskDefinition"
-	taskDef := input.document[_].Resources[taskDefName]
+	input.document[i].Resources[taskDefName].Type == "AWS::ECS::TaskDefinition"
+	taskDef := input.document[i].Resources[taskDefName]
 } else = taskDef {
 	is_object(taskDefName)
 	object.get(taskDefName, "Ref", "undefined") != "undefined"
 	ref := object.get(taskDefName, "Ref", "undefined")
-	input.document[_].Resources[ref].Type == "AWS::ECS::TaskDefinition"
-	taskDef := input.document[_].Resources[ref]
+	input.document[i].Resources[ref].Type == "AWS::ECS::TaskDefinition"
+	taskDef := input.document[i].Resources[ref]
 } else = null {
 	true
 }
