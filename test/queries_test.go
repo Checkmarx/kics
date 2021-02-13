@@ -116,15 +116,17 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
 }
 
-func vulnerabilityCompare(vulnerabiitySlice []model.Vulnerability, i, j int) bool {
-	if vulnerabiitySlice[i].FileName != "" {
-		compareFile := strings.Compare(filepath.Base(vulnerabiitySlice[i].FileName), filepath.Base(vulnerabiitySlice[j].FileName))
-		if compareFile <= 0 {
-			return vulnerabiitySlice[i].Line < vulnerabiitySlice[j].Line
+func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bool {
+	if vulnerabilitySlice[i].FileName != "" {
+		compareFile := strings.Compare(filepath.Base(vulnerabilitySlice[i].FileName), filepath.Base(vulnerabilitySlice[j].FileName))
+		if compareFile < 0 {
+			return true
+		} else if compareFile == 0 {
+			return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
 		}
-		return true
+		return false
 	}
-	return vulnerabiitySlice[i].Line < vulnerabiitySlice[j].Line
+	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
 }
 
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, entry queryEntry) {

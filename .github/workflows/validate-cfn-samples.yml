@@ -6,7 +6,7 @@ on:
     - "assets/queries/cloudFormation/**/test/*.yaml"
 
 jobs:
-  validate-cloudformation-syntax:
+  validate-cfn-syntax:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
