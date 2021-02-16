@@ -20,7 +20,7 @@
 | | Engineering and performance improvements |  |
 | In-Progress | **Milestone 4** | Feb 2021 |
 | Completed | Mac support |  |
-| Completed | Hard-coded secrects key detection |  |
+| Completed | Hard-coded secret keys detection |  |
 | In-Progress | Reporting - add SARIF format |  |
 | In-Progress | CI/CD improved documentation |  |
 |In-Progress | Engineering and performance improvements |  |
