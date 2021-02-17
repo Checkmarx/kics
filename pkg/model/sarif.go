@@ -2,20 +2,18 @@ package model
 
 import (
 	"fmt"
+	"sort"
+
+	"github.com/rs/zerolog/log"
 )
+
+var categoriesNotFound = make(map[string]bool)
 
 var severityLevelEquivalence = map[Severity]string{
 	"INFO":   "none",
 	"LOW":    "note",
 	"MEDIUM": "warning",
 	"HIGH":   "error",
-}
-
-var noCategory = sarifTaxanomyDefinition{
-	DefinitionID:               "CAT000",
-	DefinitionName:             "Undefined Category",
-	DefinitionShortDescription: sarifMessage{Text: "Category is not defined"},
-	DefinitionFullDescription:  sarifMessage{Text: "Category is not defined"},
 }
 
 var targetTemplate = sarifDescriptorReference{
@@ -116,6 +114,7 @@ type sarifTaxanomyDefinition struct {
 type sarifTaxonomy struct {
 	TaxonomyGUID             string                    `json:"guid"`
 	TaxonomyName             string                    `json:"name"`
+	TaxonomyFullDescription  sarifMessage              `json:"fullDescription"`
 	TaxonomyShortDescription sarifMessage              `json:"shortDescription"`
 	TaxonomyDefinitions      []sarifTaxanomyDefinition `json:"taxa"`
 }
@@ -149,6 +148,21 @@ func initTool() sarifTool {
 	}
 }
 
+func initCategories() []sarifTaxanomyDefinition {
+	allCategories := []sarifTaxanomyDefinition{noCategory}
+	categoriesKeys := make([]string, 0, len(categories))
+	for category := range categories {
+		categoriesKeys = append(categoriesKeys, category)
+	}
+	sort.Strings(categoriesKeys)
+	for idx, categoryKey := range categoriesKeys {
+		category := categories[categoryKey]
+		category.DefinitionID = categoryIdentifier + fmt.Sprintf("%03d", idx+1)
+		allCategories = append(allCategories, category)
+	}
+	return allCategories
+}
+
 func initTaxonomies() []sarifTaxonomy {
 	return []sarifTaxonomy{
 		{
@@ -157,7 +171,10 @@ func initTaxonomies() []sarifTaxonomy {
 			TaxonomyShortDescription: sarifMessage{
 				Text: "Vulnerabilities categories",
 			},
-			TaxonomyDefinitions: []sarifTaxanomyDefinition{noCategory},
+			TaxonomyFullDescription: sarifMessage{
+				Text: "This taxonomy contains the types an issue can assume",
+			},
+			TaxonomyDefinitions: initCategories(),
 		},
 	}
 }
@@ -187,28 +204,20 @@ func (sr *sarifReport) findCategory(category string) int {
 			return idx
 		}
 	}
-	return -1
+	return 0
 }
 
 func (sr *sarifReport) buildCategory(category string) sarifDescriptorReference {
 	target := targetTemplate
 	categoryIndex := sr.findCategory(category)
-	if categoryIndex == -1 {
-		if category == "" {
-			categoryIndex = 0
-		} else {
-			categoryIndex = len(sr.Runs[0].Taxonomies[0].TaxonomyDefinitions)
-			sr.Runs[0].Taxonomies[0].TaxonomyDefinitions = append(sr.Runs[0].Taxonomies[0].TaxonomyDefinitions,
-				sarifTaxanomyDefinition{
-					DefinitionID:               fmt.Sprintf("CAT%03d", categoryIndex),
-					DefinitionName:             category,
-					DefinitionShortDescription: sarifMessage{Text: "Vulnerability category"},
-					DefinitionFullDescription:  sarifMessage{Text: "Vulnerability category"},
-				})
-		}
-	}
 	target.ReferenceIndex = categoryIndex
 	target.ReferenceID = sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex].DefinitionID
+	if categoryIndex == 0 {
+		if _, exists := categoriesNotFound[category]; !exists {
+			log.Warn().Msgf("Category %s not found.", category)
+			categoriesNotFound[category] = true
+		}
+	}
 	return target
 }
 

@@ -23,5 +23,8 @@
 # Configuration file
 config.*
 
+# Sarif file
+*.sarif
+
 # ci/cd binaries
 .bin
