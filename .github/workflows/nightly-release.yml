@@ -98,3 +98,5 @@ jobs:
           repository: checkmarx/kics
           tag_with_ref: false
           tags: nightly
+          build-args: |
+            VERSION=nightly-${{ github.sha }}
