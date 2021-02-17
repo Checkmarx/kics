@@ -10,4 +10,4 @@ Resources:
         Status: Enabled
       Tags:
         - Key: CostCenter
-          Value:
+          Value: ''
