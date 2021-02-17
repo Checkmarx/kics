@@ -21,7 +21,7 @@ Resources:
           CidrIp: 10.0.0.1/0
         - ToPort: 53
           FromPort: 53
-          IpProtocol: -1
+          IpProtocol: "-1"
           CidrIp: 10.0.0.1/0
   EC2Instance03:
     Type: AWS::EC2::Instance
