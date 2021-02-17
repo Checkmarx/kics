@@ -8,13 +8,13 @@ Parameters:
     Type: String
     Default: 'username!'
 Resources:
-  NewAmpApp-1:
-      Type: AWS::DirectoryService::SimpleAD
-      Properties:
-          CreateAlias: true
-          Description: String
-          EnableSso: true
-          Name: String
-          Password: !Ref ParentMasterPassword
-          ShortName: String
-          Size: String
+  NewAmpApp1:
+    Type: AWS::DirectoryService::SimpleAD
+    Properties:
+        CreateAlias: true
+        Description: String
+        EnableSso: true
+        Name: String
+        Password: !Ref ParentMasterPassword
+        ShortName: String
+        Size: String
