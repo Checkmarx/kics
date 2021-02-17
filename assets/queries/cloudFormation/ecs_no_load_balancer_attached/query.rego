@@ -17,29 +17,15 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
-	resource.Properties.LoadBalancers == null
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.LoadBalancers", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.LoadBalancers' is null", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.LoadBalancers' is not null", [name]),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LoadBalancers
 	check_size(resource.Properties.LoadBalancers)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.Policies.LoadBalancers", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.LoadBalancers", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Policies.LoadBalancers' is not empty", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.Policies.LoadBalancers' is empty", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.LoadBalancers' is not empty", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.LoadBalancers' is empty", [name]),
 	}
 }
 

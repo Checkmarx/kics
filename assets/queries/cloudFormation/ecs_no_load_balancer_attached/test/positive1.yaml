@@ -22,6 +22,6 @@ Resources:
       TaskDefinition:
         Ref: ECSTaskDefinition
       DesiredCount: 1
-      LoadBalancers:
+      LoadBalancers: []
       Cluster:
         Ref: ECSCluster
