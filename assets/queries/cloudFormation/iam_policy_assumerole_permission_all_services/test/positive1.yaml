@@ -4,11 +4,11 @@ Resources:
   mypolicy:
     Type: AWS::IAM::Policy
     Properties:
-    PolicyName: mygrouppolicy
-    PolicyDocument:
-      Version: '2012-10-17'
-      Statement:
-      - Effect: Allow
-        Action: ["sts:AssumeRole"]
-        Resource: "*"
-
+      PolicyName: mygrouppolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action: ["sts:AssumeRole"]
+          Resource: "*"
+      Users: ["SomeUser"]
