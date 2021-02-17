@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'metadata' does not refer any to a Tiller resource",
 		"keyActualValue": "'metadata' refers to a Tiller resource",
@@ -28,7 +28,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.containers' doesn't have any Tiller containers", [types[x]]),
 		"keyActualValue": sprintf("'spec.containers' contains a Tiller container", [types[x]]),
@@ -44,7 +44,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.metadata", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.template.metadata", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'spec.template.metadata' does not refer to any Tiller resource",
 		"keyActualValue": "'spec.template.metadata' refers to a Tiller resource",
@@ -62,7 +62,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s", [metadata.name, types[x]]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.%s", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.template.spec.%s' doesn't have any Tiller containers", [types[x]]),
 		"keyActualValue": sprintf("'spec.template.spec.%s' contains a Tiller container", [types[x]]),
