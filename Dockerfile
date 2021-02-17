@@ -32,7 +32,7 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 #runtime image
-FROM alpine
+FROM alpine:latest
 
 RUN addgroup -S kics && adduser -S kics -G kics
 USER kics
