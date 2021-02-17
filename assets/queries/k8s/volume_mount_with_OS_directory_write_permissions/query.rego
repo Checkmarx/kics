@@ -2,32 +2,34 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i]
-	containers := resource.spec.containers
+	types := {"initContainers", "containers"}
+	containers := resource.spec[types[x]]
 	volumeMounts := containers[_].volumeMounts
 	is_OS_Dir(volumeMounts[v].mountPath)
 	volumeMounts[v].readOnly == false
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers.volumeMounts.name=%s.readyOnly", [resource.metadata.name, volumeMounts[v].name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s.volumeMounts.name=%s.readyOnly", [resource.metadata.name, types[x], volumeMounts[v].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("spec.containers.volumeMounts[%s].readOnly is true", [volumeMounts[v].name]),
-		"keyActualValue": sprintf("spec.containers.volumeMounts[%s].readOnly is false", [volumeMounts[v].name]),
+		"keyExpectedValue": sprintf("spec.%s.volumeMounts[%s].readOnly is true", [types[x], volumeMounts[v].name]),
+		"keyActualValue": sprintf("spec.%s.volumeMounts[%s].readOnly is false", [types[x], volumeMounts[v].name]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i]
-	containers := resource.spec.containers
+	types := {"initContainers", "containers"}
+	containers := resource.spec[types[x]]
 	volumeMounts := containers[_].volumeMounts
 	is_OS_Dir(volumeMounts[v].mountPath)
 	object.get(volumeMounts[v], "readOnly", "undefined") == "undefined"
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers.volumeMounts.name=%s", [resource.metadata.name, volumeMounts[v].name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s.volumeMounts.name=%s", [resource.metadata.name, types[x], volumeMounts[v].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.containers.volumeMounts[%s].readOnly is set", [volumeMounts[v].name]),
-		"keyActualValue": sprintf("spec.containers.volumeMounts[%s].readOnly is undefined", [volumeMounts[v].name]),
+		"keyExpectedValue": sprintf("spec.%s.volumeMounts[%s].readOnly is set", [types[x], volumeMounts[v].name]),
+		"keyActualValue": sprintf("spec.%s.volumeMounts[%s].readOnly is undefined", [types[x], volumeMounts[v].name]),
 	}
 }
 

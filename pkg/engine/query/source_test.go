@@ -279,11 +279,11 @@ func Test_getPlatform(t *testing.T) {
 		want string
 	}{
 		{
-			name: "get_platform_commonQuery",
+			name: "get_platform_common",
 			args: args{
-				queryPath: "../test/commonQuery/test",
+				queryPath: "../test/common/test",
 			},
-			want: "commonQuery",
+			want: "common",
 		},
 		{
 			name: "get_platform_ansible",

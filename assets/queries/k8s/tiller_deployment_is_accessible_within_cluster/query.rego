@@ -1,12 +1,14 @@
 package Cx
 
-# container
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 
 	isTiller(document)
 
-	container := document.spec.containers[j]
+	types := {"initContainers", "containers"}
+	container := document.spec[types[x]][j]
 	metadata := document.metadata
 
 	contains(container.image, "tiller")
@@ -15,10 +17,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.containers[%s].args' is set", [container.name]),
-		"keyActualValue": sprintf("'spec.containers[%s].args' is undefined", [container.name]),
+		"keyExpectedValue": sprintf("'spec.%s[%s].args' is set", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.%s[%s].args' is undefined", [types[x], container.name]),
 	}
 }
 
@@ -27,7 +29,8 @@ CxPolicy[result] {
 
 	isTiller(document)
 
-	container := document.spec.containers[j]
+	types := {"initContainers", "containers"}
+	container := document.spec[types[x]][j]
 	metadata := document.metadata
 
 	contains(container.image, "tiller")
@@ -38,10 +41,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.containers.args", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.%s.args", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.containers[%s].args' set the container to listen to localhost", [container.name]),
-		"keyActualValue": sprintf("'spec.containers[%s].args' is not setting the container to lister to localhost", [container.name]),
+		"keyExpectedValue": sprintf("'spec.%s[%s].args' sets the container to listen to localhost", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.%s[%s].args' is not setting the container to listen to localhost", [types[x], container.name]),
 	}
 }
 
@@ -51,17 +54,18 @@ CxPolicy[result] {
 
 	isTillerTemplate(document)
 
-	container := document.spec.template.spec.containers[j]
+	types := {"initContainers", "containers"}
+	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
 	object.get(container, "args", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.containers", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s", [metadata.name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.template.spec.containers[%s].args' is set", [container.name]),
-		"keyActualValue": sprintf("'spec.template.spec.containers[%s].args' is undefined", [container.name]),
+		"keyExpectedValue": sprintf("'spec.template.spec.%s[%s].args' is set", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.template.spec.%s[%s].args' is undefined", [types[x], container.name]),
 	}
 }
 
@@ -70,7 +74,8 @@ CxPolicy[result] {
 
 	isTillerTemplate(document)
 
-	container := document.spec.template.spec.containers[j]
+	types := {"initContainers", "containers"}
+	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
 	object.get(container, "args", "undefined") != "undefined"
@@ -78,34 +83,22 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.containers.args", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.args", [metadata.name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.template.spec.containers[%s].args' set the container to listen to localhost", [container.name]),
-		"keyActualValue": sprintf("'spec.template.spec.containers[%s].args' is not setting the container to lister to localhost", [container.name]),
+		"keyExpectedValue": sprintf("'spec.template.spec.%s[%s].args' sets the container to listen to localhost", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.template.spec.%s[%s].args' is not setting the container to listen to localhost", [types[x], container.name]),
 	}
 }
 
 ############################################################
 isTiller(document) {
 	document.spec.containers
-	checkMetadata(document.metadata)
+	k8sLib.checkMetadata(document.metadata)
 }
 
 isTillerTemplate(document) {
 	document.spec.template.spec.containers
-	checkMetadata(document.spec.template.metadata)
-}
-
-checkMetadata(metadata) {
-	contains(metadata.name, "tiller")
-}
-
-checkMetadata(metadata) {
-	object.get(metadata.labels, "app", "undefined") == "helm"
-}
-
-checkMetadata(metadata) {
-	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
+	k8sLib.checkMetadata(document.spec.template.metadata)
 }
 
 ##############################################################
