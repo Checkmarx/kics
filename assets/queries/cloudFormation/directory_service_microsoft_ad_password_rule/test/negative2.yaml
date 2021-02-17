@@ -9,11 +9,11 @@ Parameters:
     Default: 'username'
 Resources:
   NewAmpApp-1:
-     Type: AWS::DirectoryService::MicrosoftAD
-        Properties:
-          CreateAlias: true
-          Edition: String
-          EnableSso: true
-          Name: String
-          Password: !Ref ParentMasterPassword
-          ShortName: String
+    Type: AWS::DirectoryService::MicrosoftAD
+    Properties:
+      CreateAlias: true
+      Edition: String
+      EnableSso: true
+      Name: String
+      Password: !Ref ParentMasterPassword
+      ShortName: String
