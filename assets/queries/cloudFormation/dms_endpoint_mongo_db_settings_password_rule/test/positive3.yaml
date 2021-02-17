@@ -10,7 +10,7 @@ Parameters:
     Type: String
     Default: 'username'
 Resources:
-  NewAmpApp-1:
+  NewAmpApp6:
     Type: AWS::DMS::Endpoint
     Properties:
       CertificateArn: String

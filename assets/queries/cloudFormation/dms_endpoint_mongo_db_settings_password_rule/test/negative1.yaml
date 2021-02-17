@@ -12,7 +12,7 @@ Parameters:
     Type: String
     Default: ''
 Resources:
-  NewAmpApp-1:
+  NewAmpApp1:
     Type: AWS::DMS::Endpoint
     Properties:
       CertificateArn: String

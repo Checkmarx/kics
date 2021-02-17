@@ -1,5 +1,5 @@
 Resources:
-  NewAmpApp:
+  NewAmpApp5:
     Type: AWS::DMS::Endpoint
     Properties:
       CertificateArn: String

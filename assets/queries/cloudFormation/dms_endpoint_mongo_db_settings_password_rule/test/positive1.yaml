@@ -12,7 +12,7 @@ Parameters:
     Type: String
     Default: 'as@3djdkDjskjs73!!'
 Resources:
-  NewAmpApp-1:
+  NewAmpApp4:
     Type: AWS::DMS::Endpoint
     Properties:
       CertificateArn: String
