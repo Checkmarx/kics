@@ -40,7 +40,7 @@ Resources:
               - curl -f http://localhost:8080/ || exit 1
             Interval: 30
             Retries: 3
-            StartPeriod:
+            StartPeriod: 1
             Timeout: 5
           Memory: 512
           Essential: true
