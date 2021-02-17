@@ -8,6 +8,20 @@ LINTER_PATH = os.getenv('LINTER_PATH')
 SKIP_LIST = os.getenv('SKIP_LIST_PATH')
 FILES_GLOB = os.getenv('FILES_GLOB')
 EXTRA_ARGS = os.getenv('EXTRA_ARGS')
+NO_PROGRESS = os.getenv('NO_PROGRESS', False)
+
+##############################
+#  show summary and exit     #
+#  code 1 if errors > 0      #
+##############################
+def summary(files, error_files):
+  print('\n\n>>------------------------------------------------')
+  print(f'found {len(error_files)} issues in {len(files)} file checked')
+  print('>>------------------------------------------------')
+  if len(error_files) > 0:
+    exit(1)
+  else:
+    exit(0)
 
 print('starting validator')
 
@@ -37,8 +51,8 @@ for file in files:
         cmds = cmds + EXTRA_ARGS.split(' ')
       else:
         cmds.append(EXTRA_ARGS)
-
-    print(f'Validating {file}')
+    if not NO_PROGRESS:
+      print(f'Validating {file}')
     result = subprocess.check_output(cmds, shell=False).decode('utf-8').rstrip()
   except CalledProcessError as e:
     error_files.append(e)
@@ -48,7 +62,7 @@ for file in files:
         print(f"{line}")
 
 ################################
-# show errors and exit code 1  #
+#          list errors         #
 ################################
 if len(error_files) > 0:
   print("\n--- errors ---")
@@ -57,4 +71,6 @@ if len(error_files) > 0:
     error_result = error.output.decode('utf-8').rstrip()
     for line in error_result.split('\n'):
       print(line)
-  exit(1)
+  summary(files, error_files)
+else:
+  summary(files, error_files)

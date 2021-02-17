@@ -28,3 +28,4 @@ jobs:
           FILES_GLOB: "assets/queries/cloudFormation/**/test/*.yaml"
           EXTRA_ARGS: "--info --config-file .github/.cfnlintrc.yml"
           SKIP_LIST_PATH: ".github/validators/cfn-skip-list"
+          NO_PROGRESS: True
