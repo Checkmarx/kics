@@ -2,7 +2,8 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-	not resource.auto_minor_version_upgrade
+	object.get(resource,"auto_minor_version_upgrade","undefined") != "undefined"
+    not resource.auto_minor_version_upgrade
 
 	result := {
 		"documentId": input.document[i].id,
@@ -12,3 +13,4 @@ CxPolicy[result] {
 		"keyActualValue": "'aws_db_instance.auto_minor_version_upgrade'  is 'false'",
 	}
 }
+

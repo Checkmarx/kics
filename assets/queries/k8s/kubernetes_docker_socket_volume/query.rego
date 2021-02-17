@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.k8s as k8s
+
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "Pod"
@@ -19,8 +21,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	document.kind != "Pod"
-	document.kind != "CronJob"
+    kind := document.kind
+    listKinds := ["Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job"]
+
+	k8s.checkKind(kind, listKinds)
+
 	metadata := document.metadata
 	spec := document.spec.template.spec
 	volumes := spec.volumes

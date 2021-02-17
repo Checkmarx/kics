@@ -14,7 +14,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/google/uuid"
@@ -35,7 +34,13 @@ var (
 		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
 		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
+		"../assets/queries/common":                   {FileKind: model.KindCOMMON, Platform: "common"},
 	}
+)
+
+const (
+	scanID            = "test_scan"
+	BaseTestsScanPath = "../assets/queries/"
 )
 
 func TestMain(m *testing.M) {
@@ -50,6 +55,12 @@ type queryEntry struct {
 
 func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
 	files, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(q.kind)))))
+	x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+	for i, check := range files {
+		if check == x0 {
+			files = append(files[:i], files[i+1:]...)
+		}
+	}
 	require.Nil(tb, err)
 	return files
 }
@@ -63,7 +74,7 @@ func (q queryEntry) NegativeFiles(tb testing.TB) []string {
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return path.Join(q.dir, "test/positive_expected_result.json")
+	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
@@ -128,7 +139,6 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 
 func getCombinedParser() *parser.Parser {
 	bd, _ := parser.NewBuilder().
-		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).

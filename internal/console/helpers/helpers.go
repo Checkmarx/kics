@@ -16,12 +16,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// Constants with KICS info
-const (
-	CurrentKICSVersion  = "1.1.2"
-	CurrentKICSFullname = "Keeping Infrastructure as Code Secure"
-)
-
 // ProgressBar represents a Progress
 // Writer is the writer output for progress bar
 type ProgressBar struct {
@@ -111,11 +105,16 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n")
-	for _, q := range summary.Queries {
-		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
+	for idx := range summary.Queries {
+		fmt.Printf(
+			"%s, Severity: %s, Results: %d\n",
+			summary.Queries[idx].QueryName,
+			summary.Queries[idx].Severity,
+			len(summary.Queries[idx].Files),
+		)
 
-		for i := 0; i < len(q.Files); i++ {
-			fmt.Printf("\t%s:%d\n", q.Files[i].FileName, q.Files[i].Line)
+		for i := 0; i < len(summary.Queries[idx].Files); i++ {
+			fmt.Printf("\t%s:%d\n", summary.Queries[idx].Files[i].FileName, summary.Queries[idx].Files[i].Line)
 		}
 	}
 	fmt.Printf("\nResults Summary:\n")

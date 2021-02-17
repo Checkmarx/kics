@@ -6,7 +6,7 @@
 
 [Checkmarx](https://www.checkmarx.com/) is the global leader in software security solutions for modern enterprise software development. Checkmarx delivers the industry’s most comprehensive Software Security Platform that unifies with DevOps and provides static and interactive application security testing, software composition analysis and developer AppSec awareness and training programs to reduce and remediate risk from software vulnerabilities. Checkmarx is trusted by more than 40 percent of the Fortune 100 and half of the Fortune 50, including leading organizations such as SAP, Samsung and Salesforce.com.
 
-<img alt="Checkmarx" src="https://raw.githubusercontent.com/Checkmarx/kics/fix-images-path/docs/img/logo-cx-horizontal.png" width="200">
+<img alt="Checkmarx" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-cx-horizontal.png" width="200">
 
 Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com) or join the chat [on Gitter](https://gitter.im/kics-io/community).
 

@@ -2,7 +2,6 @@
   {
     "queryName": "Unprotected SQS Queue",
     "severity": "LOW",
-    "line": 2,
-    "value": "terraform-example-queue"
+    "line": 2
   }
 ]

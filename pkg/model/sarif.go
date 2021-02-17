@@ -255,9 +255,9 @@ func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,
 			queryName:        issue.QueryName,
-			queryDescription: issue.QueryDescription,
+			queryDescription: issue.Description,
 			queryURI:         issue.QueryURI,
-			queryCategory:    issue.QueryCategory,
+			queryCategory:    issue.Category,
 			severity:         issue.Severity,
 		}
 		ruleIndex := sr.buildRule(&metadata)
@@ -274,7 +274,7 @@ func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 				ResultLocations: []sarifLocation{
 					{
 						PhysicalLocation: sarifPhysicalLocation{
-							ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
+							ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://" + issue.Files[idx].FileName},
 							Region:           sarifRegion{StartLine: issue.Files[idx].Line},
 						},
 					},

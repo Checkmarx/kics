@@ -3,7 +3,8 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::Bucket"
-	not resource.Properties.VersioningConfiguration
+    object.get(resource, "Properties", "undefined") != "undefined"
+    object.get(resource.Properties, "VersioningConfiguration", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

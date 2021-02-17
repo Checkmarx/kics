@@ -224,15 +224,17 @@ func TestInspect(t *testing.T) { //nolint
 					},
 				},
 			},
+			// 27ef060e0ced4e40b94f2c5a8c330e9be5b9534ce41a4cc2f737bca66f2ce788
 			want: []model.Vulnerability{
 				{
 					ID:               0,
-					SimilarityID:     "b84570a546f2064d483b5916d3bf3c6949c8cfc227a8c61fce22220b2f5d77bd",
+					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
+					QueryURI:         "https://github.com/Checkmarx/kics/",
 					Severity:         "INFO",
 					Line:             -1,
 					IssueType:        "IncorrectValue",
@@ -256,14 +258,18 @@ func TestInspect(t *testing.T) { //nolint
 				enableCoverageReport: tt.fields.enableCoverageReport,
 				coverageReport:       tt.fields.coverageReport,
 			}
-			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true)
+			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, filepath.FromSlash("assets/queries/"))
 			if tt.wantErr {
 				if err == nil {
-					t.Errorf("Inspector.GetCoverageReport() = %v, want %v", err, tt.want)
+					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)
 				}
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Inspector.GetCoverageReport() = %v, want %v", got, tt.want)
+				gotStrVulnerabilities, err := test.StringifyStruct(got)
+				require.Nil(t, err)
+				wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
+				require.Nil(t, err)
+				t.Errorf("Inspector.Inspect() = %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 	}
@@ -337,11 +343,20 @@ func TestNewInspector(t *testing.T) { // nolint
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
 			}
+			gotStrMetadata, err := test.StringifyStruct(got.queries[0].metadata)
+			require.Nil(t, err)
+			wantStrMetadata, err := test.StringifyStruct(tt.want.queries[0].metadata)
+			require.Nil(t, err)
 			if !reflect.DeepEqual(got.queries[0].metadata, tt.want.queries[0].metadata) {
-				t.Errorf("NewInspector() metadata: got = %v,\n want = %v", got.queries[0].metadata, tt.want.queries[0].metadata)
+				t.Errorf("NewInspector() metadata: got = %v,\n want = %v", gotStrMetadata, wantStrMetadata)
 			}
+
+			gotStrTracker, err := test.StringifyStruct(got.tracker)
+			require.Nil(t, err)
+			wantStrTracker, err := test.StringifyStruct(tt.want.tracker)
+			require.Nil(t, err)
 			if !reflect.DeepEqual(got.tracker, tt.want.tracker) {
-				t.Errorf("NewInspector() tracker: got = %v,\n want = %v", got.tracker, tt.want.tracker)
+				t.Errorf("NewInspector() tracker: got = %v,\n want = %v", gotStrTracker, wantStrTracker)
 			}
 			require.NotNil(t, got.vb)
 		})

@@ -28,12 +28,12 @@ var tests = []test{
 		name: "Should not create any rule",
 		vq: []VulnerableQuery{
 			{
-				QueryName:        "test",
-				QueryID:          "1",
-				QueryDescription: "test description",
-				QueryURI:         "https://www.test.com",
-				Severity:         SeverityHigh,
-				Files:            []VulnerableFile{},
+				QueryName:   "test",
+				QueryID:     "1",
+				Description: "test description",
+				QueryURI:    "https://www.test.com",
+				Severity:    SeverityHigh,
+				Files:       []VulnerableFile{},
 			},
 		},
 		want: sarifReport{
@@ -44,11 +44,11 @@ var tests = []test{
 		name: "Should create one occurrence",
 		vq: []VulnerableQuery{
 			{
-				QueryName:        "test",
-				QueryID:          "1",
-				QueryDescription: "test description",
-				QueryURI:         "https://www.test.com",
-				Severity:         SeverityHigh,
+				QueryName:   "test",
+				QueryID:     "1",
+				Description: "test description",
+				QueryURI:    "https://www.test.com",
+				Severity:    SeverityHigh,
 				Files: []VulnerableFile{
 					{KeyActualValue: "test", FileName: "test.json", Line: 1},
 				},
@@ -91,7 +91,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "test.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test.json"},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -106,34 +106,34 @@ var tests = []test{
 		name: "Should create multiple occurrence",
 		vq: []VulnerableQuery{
 			{
-				QueryName:        "test",
-				QueryID:          "1",
-				QueryDescription: "test description",
-				QueryURI:         "https://www.test.com",
-				QueryCategory:    "test",
-				Severity:         SeverityHigh,
+				QueryName:   "test",
+				QueryID:     "1",
+				Description: "test description",
+				QueryURI:    "https://www.test.com",
+				Category:    "test",
+				Severity:    SeverityHigh,
 				Files: []VulnerableFile{
 					{KeyActualValue: "test", FileName: "test.json", Line: 1},
 				},
 			},
 			{
-				QueryName:        "test",
-				QueryID:          "1",
-				QueryDescription: "test description",
-				QueryURI:         "https://www.test.com",
-				QueryCategory:    "test",
-				Severity:         SeverityHigh,
+				QueryName:   "test",
+				QueryID:     "1",
+				Description: "test description",
+				QueryURI:    "https://www.test.com",
+				Category:    "test",
+				Severity:    SeverityHigh,
 				Files: []VulnerableFile{
 					{KeyActualValue: "test", FileName: "test1.json", Line: 1},
 				},
 			},
 			{
-				QueryName:        "test info",
-				QueryID:          "2",
-				QueryDescription: "test description",
-				QueryURI:         "https://www.test.com",
-				QueryCategory:    "test",
-				Severity:         SeverityInfo,
+				QueryName:   "test info",
+				QueryID:     "2",
+				Description: "test description",
+				QueryURI:    "https://www.test.com",
+				Category:    "test",
+				Severity:    SeverityInfo,
 				Files: []VulnerableFile{
 					{KeyActualValue: "test", FileName: "test2.json", Line: 1},
 				},
@@ -157,8 +157,8 @@ var tests = []test{
 									RuleRelationships: []sarifDescriptorRelationship{
 										{
 											Target: sarifDescriptorReference{
-												ReferenceID:    "CAT001",
-												ReferenceIndex: 1,
+												ReferenceID:    "CAT000",
+												ReferenceIndex: 0,
 												ToolComponent:  targetTemplate.ToolComponent,
 											},
 										},
@@ -176,8 +176,8 @@ var tests = []test{
 									RuleRelationships: []sarifDescriptorRelationship{
 										{
 											Target: sarifDescriptorReference{
-												ReferenceID:    "CAT001",
-												ReferenceIndex: 1,
+												ReferenceID:    "CAT000",
+												ReferenceIndex: 0,
 												ToolComponent:  targetTemplate.ToolComponent,
 											},
 										},
@@ -195,7 +195,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "test.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test.json"},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -209,7 +209,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "test1.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test1.json"},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -223,7 +223,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "test2.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test2.json"},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
