@@ -3,6 +3,5 @@ Resources:
     Type: AWS::EMR::SecurityConfiguration
     Properties:
        Name: String
-       SecurityConfiguration:
-         EncryptionConfiguration:
+       SecurityConfiguration: {}
 

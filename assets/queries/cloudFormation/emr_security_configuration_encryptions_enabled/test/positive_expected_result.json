@@ -34,5 +34,11 @@
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryptions Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive4.yaml"
   }
 ]
