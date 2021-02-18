@@ -91,6 +91,7 @@ func (c *Parser) SupportedExtensions() model.Extensions {
 }
 
 func validateArguments(types, validArgs []string) error {
+	validArgs = removeDuplicateValues(validArgs)
 	if invalidType, ok, _ := contains(types, validArgs); !ok {
 		return fmt.Errorf(fmt.Sprintf("Unknown Argument: %s\nValid Arguments:\n  %s\n", invalidType, strings.Join(validArgs, "\n  ")))
 	}
@@ -103,13 +104,13 @@ func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes,
 	}
 	set := make(map[string]struct{}, len(supportedTypes))
 	for _, s := range supportedTypes {
-		set[s] = struct{}{}
+		set[strings.ToUpper(s)] = struct{}{}
 	}
 	cont := true
 	supported := false
 	var invalidArgs []string
 	for _, item := range types {
-		_, ok := set[item]
+		_, ok := set[strings.ToUpper(item)]
 		if !ok {
 			cont = false
 			invalidArgs = append(invalidArgs, item)
@@ -118,4 +119,18 @@ func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes,
 		}
 	}
 	return invalidArgs, cont, supported
+}
+
+// function to remove duplicate values in array
+func removeDuplicateValues(stringSlice []string) []string {
+	keys := make(map[string]bool)
+	list := []string{}
+
+	for _, entry := range stringSlice {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
 }
