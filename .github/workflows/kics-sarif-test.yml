@@ -1,0 +1,35 @@
+name: kics-sarif-upload-test
+on:
+  push:
+    branches:
+      - feature/kics_sarif
+jobs:
+  generate-sarif-test:
+    name: kics-sarif-test
+    runs-on: ubuntu-latest
+    env:
+      GO111MODULE: on
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      - name: Get short SHA
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
+      - name: Set up Go 1.15.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.x
+      - name: Get Modules
+        run: |
+          go mod vendor
+      - name: Build KICS binary
+        run: |
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+          -ldflags "-X github.com/Checkmarx/kics/internal/console.Version=${​​GITHUB_SHA_SHORT}​​" -a -installsuffix cgo \
+          -o bin/kics cmd/console/main.go
+      - name: Run KICS Scanner and output sarif
+        run: |
+          ./bin/kics -p . --sarif "results.sarif"
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
