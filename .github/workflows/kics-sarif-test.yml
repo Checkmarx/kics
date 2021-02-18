@@ -23,9 +23,7 @@ jobs:
           go mod vendor
       - name: Build KICS binary
         run: |
-          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-            -ldflags "-X github.com/Checkmarx/kics/internal/console.Version=${​​GITHUB_SHA_SHORT}​​" -a -installsuffix cgo \
-            -o bin/kics cmd/console/main.go
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o bin/kics cmd/console/main.go
       - name: Run KICS Scanner and output sarif
         run: |
           ./bin/kics -p . --sarif "results.sarif"
