@@ -26,8 +26,11 @@ jobs:
           CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o bin/kics cmd/console/main.go
       - name: Run KICS Scanner and output sarif
         run: |
-          ./bin/kics -p . --sarif "results.sarif"
-          cat results.sarif
+          ./bin/kics --no-progress -p . --sarif "results.sarif"
+      - name: Save sarif file
+        uses: actions/upload-artifact@v2
+        with:
+          path: results.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:

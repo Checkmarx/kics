@@ -81,9 +81,7 @@ type sarifTool struct {
 }
 
 type sarifRegion struct {
-	StartLine   int `json:"startLine"`
-	StartColumn int `json:"startColumn"`
-	EndColumn   int `json:"endColumn"`
+	StartLine int `json:"startLine"`
 }
 
 type sarifArtifactLocation struct {
@@ -285,9 +283,7 @@ func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 						PhysicalLocation: sarifPhysicalLocation{
 							ArtifactLocation: sarifArtifactLocation{ArtifactURI: relativePath},
 							Region: sarifRegion{
-								StartLine:   issue.Files[idx].Line,
-								StartColumn: 1,
-								EndColumn:   2,
+								StartLine: issue.Files[idx].Line,
 							},
 						},
 					},
