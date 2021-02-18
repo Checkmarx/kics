@@ -15,5 +15,5 @@ CxPolicy[result] {
 }
 
 containsCommand(cmds) {
-	regex.match("\\b( *ps *)\\b|\\b( *shutdown *)\\b|\\b( *service *)\\b|\\b( *free *)\\b|\\b( *top *)\\b|\\b( *kill *)\\b|\\b( *mount *)\\b|\\b( *ifconfig *)\\b|\\b( *nano *)\\b|\\b( *vim *)\\b", cmds.Value[_])
+	regex.match("\\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\\b", cmds.Value[_])
 }
