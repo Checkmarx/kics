@@ -8,7 +8,7 @@ CxPolicy[result] {
 	statefulset.spec.replicas > 1
 	metadata := statefulset.metadata
 
-	k8sLib.CheckIFPdbExists(statefulset) == false
+	hasPodDisruptionBudget(statefulset) == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,4 +17,16 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("metadata.name=%s is targeted by a PodDisruptionBudget", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s is not targeted by a PodDisruptionBudget", [metadata.name]),
 	}
+}
+
+hasPodDisruptionBudget(statefulset) = result {
+	pdb := input.document[j]
+	pdb.kind == "PodDisruptionBudget"
+	result := containsLabel(pdb, statefulset.spec.selector.matchLabels)
+} else = false {
+	true
+}
+
+containsLabel(array, label) {
+	array.spec.selector.matchLabels[_] == label[_]
 }
