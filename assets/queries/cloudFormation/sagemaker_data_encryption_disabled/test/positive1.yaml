@@ -11,7 +11,7 @@ Resources:
     Properties:
       InstanceType: "ml.t2.large"
       RoleArn: !GetAtt ExecutionRole.Arn
-      KmsKeyId :
+      KmsKeyId: 'some-kms-key'
   BasicNotebookInstance3:
     Type: "AWS::SageMaker::NotebookInstance"
     Properties:

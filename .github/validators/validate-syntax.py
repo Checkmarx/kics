@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import glob
 import os
 import subprocess
@@ -9,6 +10,12 @@ SKIP_LIST = os.getenv('SKIP_LIST_PATH')
 FILES_GLOB = os.getenv('FILES_GLOB')
 EXTRA_ARGS = os.getenv('EXTRA_ARGS')
 NO_PROGRESS = os.getenv('NO_PROGRESS', False)
+
+parser = argparse.ArgumentParser(description='Execute linter against files')
+parser.add_argument('filesglob', metavar='FILES', type=str, nargs='+',
+                    help='List of file globs to check')
+
+args = parser.parse_args()
 
 ##############################
 #  show summary and exit     #
@@ -28,13 +35,22 @@ print('starting validator')
 ##############################
 #  get files and skip list   #
 ##############################
-all_files = glob.glob(FILES_GLOB)
+all_files = []
 ignore_list = []
+
+if FILES_GLOB:
+  all_files = glob.glob(FILES_GLOB)
+else:
+  for my_glob in args.filesglob:
+    all_files.extend(glob.glob(my_glob))
 
 with open(SKIP_LIST, 'r') as reader:
   ignore_list = [line.rstrip() for line in reader]
 
-files = [file for file in all_files if file not in ignore_list]
+files = [file for file in all_files
+          if file not in ignore_list
+          and 'positive_expected_result.json' not in file]
+
 error_files = []
 
 print(f'found {len(files)} files to check')

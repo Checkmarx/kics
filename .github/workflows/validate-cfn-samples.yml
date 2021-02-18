@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
     - "assets/queries/cloudFormation/**/test/*.yaml"
+    - "assets/queries/cloudFormation/**/test/*.json"
 
 jobs:
   validate-cfn-syntax:
@@ -22,10 +23,11 @@ jobs:
           pip3 show cfn-lint
           which cfn-lint
       - name: Validate cloudformation template syntax
-        run: python3 .github/validators/validate-syntax.py
+        run: |
+          python3 -u .github/validators/validate-syntax.py assets/queries/cloudFormation/**/test/*.yaml \
+            assets/queries/cloudFormation/**/test/*.json
         env:
           LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/cfn-lint"
-          FILES_GLOB: "assets/queries/cloudFormation/**/test/*.yaml"
           EXTRA_ARGS: "--info --config-file .github/.cfnlintrc.yml"
           SKIP_LIST_PATH: ".github/validators/cfn-skip-list"
           NO_PROGRESS: True
