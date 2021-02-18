@@ -1,9 +1,0 @@
-{
-	"id": "5bc462eb-c317-4ba4-8eeb-589a23ac1e6b",
-	"queryName": "No password reuse prevention",
-	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
-	"descriptionText": "Password policy `password_reuse_prevention` doesn't exist or is false",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
-	"platform": "Terraform"
-}

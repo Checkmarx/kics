@@ -7,8 +7,6 @@ resource "aws_cloudwatch_log_group" "yada" {
   }
 }
 
-
-
 resource "aws_cloudwatch_log_group" "yada2" {
   name = "Yada"
 
