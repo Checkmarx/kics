@@ -26,12 +26,12 @@ Resources:
         Tags:
           - Tag
         Username: String
-      MyAmpAppSecretManagerRotater:
-          Type: AWS::SecretsManager::Secret
-          Properties:
-            Description: 'This is my amp app instance secret'
-            GenerateSecretString:
-              SecretStringTemplate: '{"username": "admin"}'
-              GenerateStringKey: 'password'
-              PasswordLength: 16
-              ExcludeCharacters: '"@/\'
+    MyAmpAppSecretManagerRotater:
+        Type: AWS::SecretsManager::Secret
+        Properties:
+          Description: 'This is my amp app instance secret'
+          GenerateSecretString:
+            SecretStringTemplate: '{"username": "admin"}'
+            GenerateStringKey: 'password'
+            PasswordLength: 16
+            ExcludeCharacters: '"@/\'
