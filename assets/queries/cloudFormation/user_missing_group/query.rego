@@ -18,12 +18,26 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::IAM::User"
 	groups := resource.Properties.Groups
-	groups != []
+	count(groups) == 0
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Groups", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Resources.Properties.Groups' should contain groups",
 		"keyActualValue": "'Resources.Properties.Groups' is empty",
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].Resources[name]
+	resource.Type == "AWS::IAM::User"
+	groups := resource.Properties.Groups
+	groups == null 
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("Resources.%s.Properties.Groups", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'Resources.Properties.Groups' should contain groups",
+		"keyActualValue": "'Resources.Properties.Groups' is null",
 	}
 }
