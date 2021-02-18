@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "metadata.name does not contain 'tiller'",
 		"keyActualValue": "document[%d].metadata.name contains 'tiller'",
@@ -27,7 +27,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "metadata.labels does not have values that contain 'tiller'",
 		"keyActualValue": sprintf("metadata.labels.%s contains 'tiller'", [j]),
@@ -46,7 +46,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.selector.%s", [metadata.name, j]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.selector.%s", [metadata.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "spec.selector does not have values that contain 'tiller'",
 		"keyActualValue": sprintf("spec.selector.%s contains 'tiller'", [j]),

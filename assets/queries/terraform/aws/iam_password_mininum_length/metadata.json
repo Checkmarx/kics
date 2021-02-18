@@ -2,7 +2,7 @@
   "id": "1bc1c685-e593-450e-88fb-19db4c82aa1d",
   "queryName": "IAM Password Without Valid Minimum Length",
   "severity": "MEDIUM",
-  "category": "IAM",
+  "category": "Identity & Access Management",
   "descriptionText": "Check if IAM account password has the required minimum length",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
   "platform": "Terraform"

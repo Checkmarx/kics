@@ -27,6 +27,8 @@ jobs:
         key: ${{ runner.os }}-buildx-${{ github.ref }}
         restore-keys: |
           ${{ runner.os }}-buildx-${{ github.ref }}
+    - name: Get short SHA
+      run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
     - name: Build
       id: docker_build
       uses: docker/build-push-action@v2
@@ -37,6 +39,8 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         push: false
         tags:  kics:${{ github.sha }}
+        build-args: |
+          VERSION=${GITHUB_SHA_SHORT}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
     - name: Image digest
