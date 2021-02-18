@@ -11,7 +11,7 @@ spec:
       nodePort: 30475
       port: 8089
       protocol: TCP
-      targetPort: 8089
+      targetPort: 8088
 
 ---
 
