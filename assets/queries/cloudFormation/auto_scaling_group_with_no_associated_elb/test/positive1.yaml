@@ -57,7 +57,7 @@ Resources:
       MaxSize: "6"
       DesiredCapacity: "2"
       HealthCheckGracePeriod: 300
-      LoadBalancerNames:
+      LoadBalancerNames: []
       LaunchTemplate:
         LaunchTemplateId: !Ref myLaunchTemplate
         Version: !GetAtt myLaunchTemplate.LatestVersionNumber
