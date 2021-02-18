@@ -27,6 +27,7 @@ jobs:
       - name: Run KICS Scanner and output sarif
         run: |
           ./bin/kics -p . --sarif "results.sarif"
+          cat results.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
