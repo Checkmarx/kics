@@ -263,13 +263,13 @@ func scan() error {
 	return nil
 }
 
-func printToSarifFile(path string, summary *model.Summary) error {
-	sarifReport := model.NewSarifReport()
+func printToSarifFile(sarifPath string, summary *model.Summary) error {
+	sarifReport := model.NewSarifReport(path)
 	for idx := range summary.Queries {
 		sarifReport.BuildIssue(&summary.Queries[idx])
 	}
 
-	return printJSON(path, sarifReport)
+	return printJSON(sarifPath, sarifReport)
 }
 
 func printJSON(path string, body interface{}) error {

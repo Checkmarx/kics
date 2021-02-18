@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"path/filepath"
 	"sort"
 
 	"github.com/rs/zerolog/log"
@@ -131,6 +132,7 @@ type SarifReport interface {
 }
 
 type sarifReport struct {
+	basePath     string     `json:"-"`
 	Schema       string     `json:"$schema"`
 	SarifVersion string     `json:"version"`
 	Runs         []sarifRun `json:"runs"`
@@ -190,7 +192,7 @@ func initRun() []sarifRun {
 }
 
 // NewSarifReport creates and start a new sarif report with default values respecting SARIF schema 2.1.0
-func NewSarifReport() SarifReport {
+func NewSarifReport(scanPath string) SarifReport {
 	return &sarifReport{
 		Schema:       "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
 		SarifVersion: "2.1.0",
@@ -252,6 +254,10 @@ func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 // BuildIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
 func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 	if len(issue.Files) > 0 {
+		absBasePath, err := filepath.Abs(sr.basePath)
+		if err != nil {
+			log.Err(err)
+		}
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,
 			queryName:        issue.QueryName,
@@ -266,6 +272,7 @@ func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 			kind = "informational"
 		}
 		for idx := range issue.Files {
+			relativePath, _ := filepath.Rel(absBasePath, issue.Files[idx].FileName)
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
@@ -274,7 +281,7 @@ func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
 				ResultLocations: []sarifLocation{
 					{
 						PhysicalLocation: sarifPhysicalLocation{
-							ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://" + issue.Files[idx].FileName},
+							ArtifactLocation: sarifArtifactLocation{ArtifactURI: relativePath},
 							Region:           sarifRegion{StartLine: issue.Files[idx].Line},
 						},
 					},
