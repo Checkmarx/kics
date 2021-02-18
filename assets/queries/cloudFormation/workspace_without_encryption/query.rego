@@ -3,7 +3,7 @@ package Cx
 CxPolicy[result] {
 	document := input.document[i]
 	some workspaceName
-	document.Resources[policyName].Type == "AWS::WorkSpaces::Workspace"
+	document.Resources[workspaceName].Type == "AWS::WorkSpaces::Workspace"
 	workspace := document.Resources[workspaceName]
 
 	# The UserVolumeEncryptionEnabled property is defined, but is set to false
@@ -22,7 +22,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	some workspaceName
-	document.Resources[policyName].Type == "AWS::WorkSpaces::Workspace"
+	document.Resources[workspaceName].Type == "AWS::WorkSpaces::Workspace"
 	workspace := document.Resources[workspaceName]
 
 	# The UserVolumeEncryptionEnabled property is not defined
