@@ -6,7 +6,7 @@ CxPolicy[result] {
 	command := resource.Value[0]
 
 	containsInstallCommand(command)
-
+	not containsDnfClean(input.document[i].command[name], resource.StartLine)
 	not containsCleanAfterInstall(command)
 
 	result := {
@@ -14,8 +14,15 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' is run.",
-		"keyActualValue": "Command `dnf clean all` should be run after installing packages.",
+		"keyActualValue": "Command `dnf clean all` is not being run after installing packages.",
 	}
+}
+
+containsDnfClean(inputs, startLine) {
+	commands := inputs[_]
+	commands.Cmd == "run"
+	contains(commands.Value[_], "dnf clean")
+	commands.StartLine > startLine
 }
 
 containsInstallCommand(command) {

@@ -2,9 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-
 	resource.Cmd == "run"
-
 	values := resource.Value[0]
 
 	hasCacheFlag(values)
@@ -23,7 +21,6 @@ hasCacheFlag(values) {
 
 	some i
 	instruction := commands[i]
-	contains(instruction, "pip")
-	contains(instruction, "install")
+	contains(instruction, "pip install")
 	not contains(instruction, "--no-cache-dir")
 }
