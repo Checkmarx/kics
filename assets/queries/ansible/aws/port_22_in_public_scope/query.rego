@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	currentFromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	currentToPort := task["amazon.aws.ec2_group"].rules[index].to_port
 
@@ -24,9 +25,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	currentFromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	currentToPort := task["amazon.aws.ec2_group"].rules[index].to_port
 
@@ -42,14 +43,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is not public", [index]),
 		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is public", [index]),
 	}
-}
-
-getTasks(document) {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isSSH(currentFromPort, currentToPort) {

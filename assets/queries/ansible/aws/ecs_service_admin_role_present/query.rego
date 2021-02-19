@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.ecs_service"].publicly_accessible)
 	ecs := task["community.aws.ecs_service"]
 	ecsName := task.name
 
@@ -17,12 +19,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.ecs_service.role is not an admin role",
 		"keyActualValue": "community.aws.ecs_service.role is an admin role",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	currentPort := task["amazon.aws.ec2_group"].rules[index].from_port
 
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	currentPort := task["amazon.aws.ec2_group"].rules[index].from_port
 
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
@@ -40,14 +41,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is known", [index]),
 		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is unknown and is exposed to the entire Internet", [index]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 portIsKnown(port) = allow {

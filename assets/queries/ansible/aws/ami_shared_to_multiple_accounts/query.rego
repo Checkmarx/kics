@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_ami"].publicly_accessible)
 	amiIsShared(task["amazon.aws.ec2_ami"].launch_permissions)
 
 	result := {
@@ -14,14 +16,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "amazon.aws.ec2_ami.launch_permissions just allows one user to launch the AMI",
 		"keyActualValue": "amazon.aws.ec2_ami.launch_permissions allows more than one user to launch the AMI",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 amiIsShared(attribute) = allow {

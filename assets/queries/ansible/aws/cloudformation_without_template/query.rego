@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"].publicly_accessible)
 	modules := {"community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"}
 
 	object.get(task[modules[index]], "template_body", "undefined") == "undefined"
@@ -22,9 +23,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"].publicly_accessible)
 	attributes := {"template_body", "template_url", "template"}
 
 	modules := {"community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"}
@@ -38,12 +39,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s does not have more than one of the attributes template, template_body and template_url set", [modules[index]]),
 		"keyActualValue": sprintf("%s has more than one of the attributes template, template_body and template_url set", [modules[index]]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

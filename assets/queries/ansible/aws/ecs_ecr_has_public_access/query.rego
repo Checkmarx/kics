@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.ecs_ecr"].publicly_accessible)
 	stat := task["community.aws.ecs_ecr"].policy.Statement[j]
 	stat.Effect == "Allow"
 	stat.Principal == "*"
@@ -15,12 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'Statement.Principal' isn't '*'",
 		"keyActualValue": "'Statement.Principal' is '*'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

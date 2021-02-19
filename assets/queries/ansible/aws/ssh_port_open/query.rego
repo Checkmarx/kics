@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	fromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	toPort := task["amazon.aws.ec2_group"].rules[index].to_port
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
@@ -26,6 +28,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	ports := task["amazon.aws.ec2_group"].rules[index].ports
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	cidr == "0.0.0.0/0"
@@ -45,6 +48,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	ports := task["amazon.aws.ec2_group"].rules[index].ports
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	cidr == "0.0.0.0/0"
@@ -66,6 +70,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	ports := task["amazon.aws.ec2_group"].rules[index].ports[_]
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	cidr == "0.0.0.0/0"
@@ -87,6 +92,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	ports := task["amazon.aws.ec2_group"].rules[index].ports[_]
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	cidr == "0.0.0.0/0"
@@ -106,6 +112,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	fromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	cidr == "0.0.0.0/0"
@@ -125,6 +132,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	toPort := task["amazon.aws.ec2_group"].rules[index].to_port
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	cidr == "0.0.0.0/0"
@@ -138,12 +146,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules.to_port doesn't open the ssh port (%s)", [task.name, portNumber]),
 		"keyActualValue": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules.to_port opens the ssh port (%s)", [task.name, portNumber]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.aws_kms"].publicly_accessible)
 	aws_kms := task["community.aws.aws_kms"]
 	policy_exists := object.get(aws_kms, "policy", "undefined") != "undefined"
 
@@ -17,14 +19,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.aws_kms}}.policy is correct", [task.name]),
 		"keyActualValue": sprintf("name=%s.{{community.aws.aws_kms}}.policy is incorrect, the policy statement is too exposed", [task.name]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 check_permission(statement) {

@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	fromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	toPort := task["amazon.aws.ec2_group"].rules[index].to_port
 
@@ -24,9 +25,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	fromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	toPort := task["amazon.aws.ec2_group"].rules[index].to_port
 
@@ -42,14 +43,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] doesn't have public port wide", [index]),
 		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d] has public port wide", [index]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isEntireNetwork(cidr) = allow {

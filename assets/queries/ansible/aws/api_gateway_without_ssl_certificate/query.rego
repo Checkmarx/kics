@@ -1,10 +1,11 @@
 package Cx
 
+import data.generic.ansible as ansLib
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.aws_api_gateway"].publicly_accessible)
 	modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
 
 	object.get(task[modules[index]], "validate_certs", "undefined") == "undefined"
@@ -20,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
@@ -34,14 +35,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.validate_certs is set to yes", [modules[index]]),
 		"keyActualValue": sprintf("%s.validate_certs is not set to yes", [modules[index]]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isTrueOrYes(attribute) = allow {

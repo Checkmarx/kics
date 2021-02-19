@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.iam_managed_policy"].publicly_accessible)
 	awsApiGateway := task["community.aws.iam_managed_policy"]
 	contains(awsApiGateway.state, "present")
 	resource := awsApiGateway.policy.Statement[_].Resource
@@ -18,12 +20,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Action not contains '*'",
 		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Action contains '*'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

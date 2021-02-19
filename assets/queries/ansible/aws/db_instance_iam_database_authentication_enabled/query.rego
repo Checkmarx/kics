@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	rds_instance := tasks[_]
+    ansLib.isAnsibleTrue(task["community.aws.rds_instance"].publicly_accessible)
 	rds_instanceBody := rds_instance["community.aws.rds_instance"]
 	rds_instanceName := rds_instance.name
 	is_disabled(rds_instanceBody.enable_iam_database_authentication)
@@ -18,8 +20,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	rds_instance := tasks[_]
+     ansLib.isAnsibleTrue(task["community.aws.rds_instance"].publicly_accessible)
 	rds_instanceBody := rds_instance["community.aws.rds_instance"]
 	rds_instanceName := rds_instance.name
 	object.get(rds_instanceBody, "enable_iam_database_authentication", "undefined") == "undefined"
@@ -37,12 +40,4 @@ is_disabled(value) {
 	value == negativeValue[_]
 } else = false {
 	true
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

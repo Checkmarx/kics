@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.rds_instance"].publicly_accessible)
 	object.get(task["community.aws.rds_instance"], "ca_certificate_identifier", "undefined") == "undefined"
 
 	result := {
@@ -18,9 +19,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.rds_instance"].publicly_accessible)
 	task["community.aws.rds_instance"].ca_certificate_identifier != "rds-ca-2019"
 
 	result := {
@@ -30,12 +31,4 @@ CxPolicy[result] {
 		"keyExpectedValue": ".publicly_accessible is false",
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

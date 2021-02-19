@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	instanceList := tasks[_]
 	ec2_instance = instanceList.ec2_group
 	ec2_instanceName = ec2_instance.name
@@ -24,10 +25,4 @@ checkOver256(ipVal) {
 	to_number(hosts[1]) <= 24
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
+

@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	instanceList := tasks[_]
 	ec2_instance = instanceList.ec2_group
 	ec2_instanceName = ec2_instance.name
@@ -21,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	instanceList := tasks[_]
 	ec2_instance = instanceList.ec2_group
 	ec2_instanceName = ec2_instance.name
@@ -41,10 +41,3 @@ isPublicScope(ipVal) {
 	ipVal == "0.0.0.0/0"
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}

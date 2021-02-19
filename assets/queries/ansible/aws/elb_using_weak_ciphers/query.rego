@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.elb_application_lb"].publicly_accessible)
 	elb := task["community.aws.elb_application_lb"]
 	elbName := task.name
 
@@ -20,8 +22,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.elb_application_lb"].publicly_accessible)
 	elb := task["community.aws.elb_application_lb"]
 	elbName := task.name
 
@@ -38,8 +41,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.elb_application_lb"].publicly_accessible)
 	elb := task["community.aws.elb_application_lb"]
 	elbName := task.name
 
@@ -56,8 +60,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.elb_application_lb"].publicly_accessible)
 	elb := task["community.aws.elb_network_lb"]
 	elbName := task.name
 
@@ -74,8 +79,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.elb_application_lb"].publicly_accessible)
 	elb := task["community.aws.elb_network_lb"]
 	elbName := task.name
 
@@ -92,8 +98,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.elb_application_lb"].publicly_accessible)
 	elb := task["community.aws.elb_network_lb"]
 	elbName := task.name
 
@@ -106,14 +113,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.elb_network_lb.listeners.SslPolicy is not a weak cipher",
 		"keyActualValue": "community.aws.elb_network_lb.listeners.SslPolicy is a weak cipher",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 check_vulnerability(aux) {

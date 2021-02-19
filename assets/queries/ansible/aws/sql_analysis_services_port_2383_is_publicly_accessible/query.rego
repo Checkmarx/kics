@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
 	port := rules.ports[k]
@@ -23,8 +25,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
 	port := ["to_port", "from_port"]
@@ -43,8 +46,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
 	rules.proto == "tcp"
@@ -62,8 +66,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_group"].publicly_accessible)
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
 	rules.proto == "tcp"
@@ -84,12 +89,4 @@ CxPolicy[result] {
 checkRange(to_port, from_port) {
 	to_port >= 2383
 	from_port <= 2383
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

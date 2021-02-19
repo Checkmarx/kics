@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_vol"].publicly_accessible)
 	volume := task["amazon.aws.ec2_vol"]
 	volumeName := task.name
 
@@ -20,8 +22,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2_vol"].publicly_accessible)
 	volume := task["amazon.aws.ec2_vol"]
 	volumeName := task.name
 
@@ -34,14 +37,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "amazon.aws.ec2_vol.encrypted should be set to true",
 		"keyActualValue": "amazon.aws.ec2_vol.encrypted is set to false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isAnsibleTrue(answer) {

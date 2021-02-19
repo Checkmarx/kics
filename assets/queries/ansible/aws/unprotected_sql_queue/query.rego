@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	sqsQueuePolicy = tasks[_]
+    ansLib.isAnsibleTrue(task["community.aws.sqs_queue"].publicly_accessible)
 	sqsQueueBody = sqsQueuePolicy["community.aws.sqs_queue"]
 	sqsQueueName = sqsQueuePolicy.name
 	object.get(sqsQueueBody, "state", "present") == "present"
@@ -16,12 +18,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'kms_master_key_id' should be set",
 		"keyActualValue": "'kms_master_key_id' is undefined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

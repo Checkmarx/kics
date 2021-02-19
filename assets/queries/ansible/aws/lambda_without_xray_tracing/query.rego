@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.lambda"].publicly_accessible)
 	object.get(task["community.aws.lambda"], "tracing_mode", "undefined") == "undefined"
 
 	result := {
@@ -18,9 +19,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.lambda"].publicly_accessible)
 	task["community.aws.lambda"].tracing_mode != "Active"
 
 	result := {
@@ -30,12 +31,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.lambda.tracing_mode is set to 'Active'",
 		"keyActualValue": "community.aws.lambda.tracing_mode is not set to 'Active'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

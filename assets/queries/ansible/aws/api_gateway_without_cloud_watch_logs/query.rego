@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.ansible as ansLib
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.cloudwatchlogs_log_group"].publicly_accessible)
 	awsApiGateway := task["community.aws.cloudwatchlogs_log_group"]
 	object.get(awsApiGateway, "log_group_name", "undefined") == "undefined"
 	clusterName := task.name
@@ -16,10 +18,3 @@ CxPolicy[result] {
 	}
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}

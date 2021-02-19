@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.cloudtrail"].publicly_accessible)
 	isAnsibleFalse(task["community.aws.cloudtrail"].is_multi_region_trail)
 
 	result := {
@@ -13,14 +15,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("name={{%s}}.{{community.aws.cloudtrail}}.is_multi_region_trail is true", [task.name]),
 		"keyActualValue": sprintf("name={{%s}}.{{community.aws.cloudtrail}}.is_multi_region_trail is false", [task.name]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isAnsibleFalse(answer) {

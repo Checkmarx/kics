@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.route53"].publicly_accessible)
 	object.get(task["community.aws.route53"], "value", "undefined") == "undefined"
 
 	result := {
@@ -17,8 +19,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.route53"].publicly_accessible)
 	valueIsEmpty(task["community.aws.route53"].value)
 
 	result := {
@@ -28,14 +31,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_route53.value is not empty",
 		"keyActualValue": "aws_route53.value is empty",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 valueIsEmpty(value) {

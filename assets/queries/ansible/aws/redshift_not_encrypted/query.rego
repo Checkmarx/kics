@@ -1,11 +1,11 @@
 package Cx
-
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
 	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["redshift", "community.aws.redshift"].publicly_accessible)
 	module := ["redshift", "community.aws.redshift"]
 	redshiftCluster := task[module[m]]
 
@@ -25,6 +25,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["redshift", "community.aws.redshift"].publicly_accessible)
 	module := ["redshift", "community.aws.redshift"]
 	redshiftCluster := task[module[m]]
 

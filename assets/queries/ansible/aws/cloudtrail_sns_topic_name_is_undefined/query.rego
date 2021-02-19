@@ -1,8 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	playbooks := getTasks(input.document[i])
 	redis_cache := playbooks[j]
+    tasks := ansLib.getTasks(document)
+    ansLib.isAnsibleTrue(task["community.aws.cloudtrail"].publicly_accessible)
 	instance := redis_cache["community.aws.cloudtrail"]
 
 	not instance.sns_topic_name
@@ -19,6 +22,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	playbooks := getTasks(input.document[i])
 	redis_cache := playbooks[j]
+    tasks := ansLib.getTasks(document)
+    ansLib.isAnsibleTrue(task["community.aws.cloudtrail"].publicly_accessible)
 	instance := redis_cache["community.aws.cloudtrail"]
 
 	instance.sns_topic_name == null
@@ -32,9 +37,4 @@ CxPolicy[result] {
 	}
 }
 
-getTasks(document) = result {
-	result := document.playbooks[0].tasks
-} else = result {
-	object.get(document.playbooks[0], "tasks", "undefined") == "undefined"
-	result := document.playbooks
-}
+

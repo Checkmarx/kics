@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.cloudfront_distribution"].publicly_accessible)
 	cloudfrontDistribution := task["community.aws.cloudfront_distribution"]
 
 	cloudfrontDistribution.default_cache_behavior.viewer_protocol_policy = "allow-all"
@@ -15,12 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'default_cache_behavior.viewer_protocol_policy' is equal to 'https-only' or 'redirect-to-https'",
 		"keyActualValue": "'default_cache_behavior.viewer_protocol_policy' is equal 'allow-all'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

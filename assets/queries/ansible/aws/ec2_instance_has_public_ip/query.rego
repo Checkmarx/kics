@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["amazon.aws.ec2"].publicly_accessible)
 	ipValue := task["amazon.aws.ec2"].assign_public_ip
 	HasPublicIP(ipValue)
 
@@ -21,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	ipValue := task["community.aws.ec2_launch_template"].network_interfaces.associate_public_ip_address
@@ -40,9 +41,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.ec2_instance"].publicly_accessible)
 	ipValue := task["community.aws.ec2_instance"].network.assign_public_ip
 	HasPublicIP(ipValue)
 
@@ -55,14 +56,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.ec2_instance}}.network.assign_public_ip is false, 'no' or undefined", [task.name]),
 		"keyActualValue": sprintf("name=%s.{{community.aws.ec2_instance}}.network.assign_public_ip is '%s'", [task.name, ipValue]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 HasPublicIP(value) {

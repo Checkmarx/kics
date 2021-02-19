@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.iam_managed_policy"].publicly_accessible)
 	awsApiGateway := task["community.aws.iam_managed_policy"]
 	checkState(awsApiGateway)
 	lower(awsApiGateway.iam_type) == "user"
@@ -15,14 +17,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.iam_managed_policy.iam_type should be configured with group or role",
 		"keyActualValue": "community.aws.iam_managed_policy.iam_type is configured with user",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 checkState(awsApiGateway) {

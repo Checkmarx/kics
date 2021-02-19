@@ -1,9 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
+    ansLib.isAnsibleTrue(task["community.aws.cloudwatchlogs_log_group"].publicly_accessible)
 	cloudwatchlogs := task["community.aws.cloudwatchlogs_log_group"]
 
 	not cloudwatchlogs.retention
@@ -15,12 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'retention_in_days' is set",
 		"keyActualValue": "'retention_in_days' is not set",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

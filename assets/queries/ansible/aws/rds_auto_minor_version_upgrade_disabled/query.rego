@@ -1,10 +1,11 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.rds_instance"].publicly_accessible)
 	isAnsibleFalse(task["community.aws.rds_instance"].auto_minor_version_upgrade)
 
 	result := {
@@ -18,9 +19,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
-
+    ansLib.isAnsibleTrue(task["community.aws.rds_instance"].publicly_accessible)
 	object.get(task["community.aws.rds_instance"], "auto_minor_version_upgrade", "undefined") == "undefined"
 
 	result := {
@@ -30,14 +31,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "AWS RDS instance feature auto_minor_version_upgrade should be true",
 		"keyActualValue": "AWS RDS instance feature auto_minor_version_upgrade is false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isAnsibleFalse(answer) {
