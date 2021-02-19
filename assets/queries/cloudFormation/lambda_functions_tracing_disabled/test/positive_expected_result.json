@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Lambda Functions Tracing Disabled",
+    "severity": "MEDIUM",
+    "line": 37
+  },
+  {
+    "queryName": "Lambda Functions Tracing Disabled",
+    "severity": "MEDIUM",
+    "line": 42
+  }
+]

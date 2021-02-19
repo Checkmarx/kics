@@ -1,13 +1,12 @@
 [
-	{
-		"queryName": "Lambda hardcoded AWS access key",
-		"severity": "MEDIUM",
-		"line": 3
-	},
-	{
-		"queryName": "Lambda hardcoded AWS access key",
-		"severity": "MEDIUM",
-		"line": 32
-	}
+  {
+    "queryName": "Lambda Hardcoded AWS Access Key",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Lambda Hardcoded AWS Access Key",
+    "severity": "MEDIUM",
+    "line": 32
+  }
 ]
-

@@ -1,9 +1,0 @@
-{
-	"id": "261a83f8-dd72-4e8c-b5e1-ebf06e8fe606",
-	"queryName": "PostgresSQL DB Server Log Retention Is Low",
-	"severity": "MEDIUM",
-	"category": "Logging",
-	"descriptionText": "Check if PostgresSQL Database Server retains logs for less than 3 Days",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
-	"platform": "Terraform"
-}

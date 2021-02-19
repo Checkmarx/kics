@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "RDS DB Instance Not Encrypted",
+    "severity": "HIGH",
+    "line": 35
+  },
+  {
+    "queryName": "RDS DB Instance Not Encrypted",
+    "severity": "HIGH",
+    "line": 68
+  }
+]

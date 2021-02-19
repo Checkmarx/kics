@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "User IAM Missing PasswordResetRequired",
+    "severity": "MEDIUM",
+    "line": 10
+  },
+  {
+    "queryName": "User IAM Missing PasswordResetRequired",
+    "severity": "MEDIUM",
+    "line": 34
+  },
+  {
+    "queryName": "User IAM Missing PasswordResetRequired",
+    "severity": "MEDIUM",
+    "line": 57
+  }
+]

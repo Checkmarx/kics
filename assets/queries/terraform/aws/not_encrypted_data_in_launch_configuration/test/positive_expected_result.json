@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Not encrypted data in launch configuration",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "Not Encrypted Data In Launch Configuration",
+    "severity": "MEDIUM",
+    "line": 6
+  }
 ]

@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "CodeBuild Without EncryptionKey",
+    "severity": "MEDIUM",
+    "line": 7
+  }
+]

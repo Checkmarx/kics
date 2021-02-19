@@ -1,18 +1,12 @@
 [
-	{
-		"queryName": "Stack Retention is Disabled",
-		"severity": "MEDIUM",
-		"line": 5
-	},
-
-	
-	{
-		"queryName": "Stack Retention is Disabled",
-		"severity": "MEDIUM",
-		"line": 8
-	}
-
+  {
+    "queryName": "Stack Retention Is Disabled",
+    "severity": "MEDIUM",
+    "line": 5
+  },
+  {
+    "queryName": "Stack Retention Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8
+  }
 ]
-
-
-	

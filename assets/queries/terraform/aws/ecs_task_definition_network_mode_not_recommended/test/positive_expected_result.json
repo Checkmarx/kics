@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "ECS Task Definition Network Mode Not Recommended",
+    "severity": "HIGH",
+    "line": 3
+  }
+]

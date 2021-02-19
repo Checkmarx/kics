@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "AWS RDS Configuration Automatic Backup Disabled",
-		"severity": "LOW",
-		"line": 14
-	}
-]

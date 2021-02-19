@@ -1,9 +1,0 @@
-{
-	"id": "249328b8-5f0f-409f-b1dd-029f07882e11",
-	"queryName": "Block Cluster Admin Rolebinding",
-	"severity": "LOW",
-	"category": "Access Control",
-	"descriptionText": "Ensure that the cluster-admin role is only used where required (RBAC)",
-	"descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles",
-	"platform": "Kubernetes"
-}

@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Activity Log Retention Period Less Than 365",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "Activity Log Retention Period Less Than 365",
+    "severity": "MEDIUM",
+    "line": 20
+  },
+  {
+    "queryName": "Activity Log Retention Period Less Than 365",
+    "severity": "MEDIUM",
+    "line": 46
+  }
+]

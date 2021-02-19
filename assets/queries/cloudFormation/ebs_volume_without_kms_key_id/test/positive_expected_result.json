@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "EBS Volume Without KmsKeyId",
+    "severity": "MEDIUM",
+    "line": 6
+  }
+]

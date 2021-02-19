@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Redshift Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Redshift Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 48
+  }
+]
