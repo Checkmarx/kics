@@ -34,9 +34,21 @@ getRef(obj) = obj.Ref {
 }
 
 getTraffic(entry) = "egress" {
-	object.get(entry.Properties, "Egress", "undefined") == true
+	entry.Properties.Egress == true
+} else = "egress" {
+	lower(entry.Properties.Egress) == "true"
 } else = "ingress" {
-	true
+	lower(entry.Properties.Egress) == "false"
+} else = "ingress" {
+	entry.Properties.Egress == false
+} else = "egress" {
+	lower(entry.Properties.Ingress) == "false"
+} else = "ingress" {
+	lower(entry.Properties.Ingress) == "true"
+} else = "ingress" {
+	entry.Properties.Ingress == true
+} else = "egress" {
+	entry.Properties.Ingress == false
 }
 
 compareRuleNumber(entry1, entry2){
