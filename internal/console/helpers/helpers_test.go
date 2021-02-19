@@ -292,6 +292,12 @@ func TestFileAnalyzer(t *testing.T) {
 			want:    "",
 			wantErr: true,
 		},
+		{
+			name:    "file_analizer_js_wrong_extension",
+			arg:     "test/fixtures/config_test/kics_wrong.js",
+			want:    "yaml",
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {
