@@ -46,7 +46,7 @@ kics-scan:
 kics-results:
   stage: kics-result
   before_script:
-    - export TOTAL_SEVERITY_COUNTER=`grep '"totalCounter"':' ' kics-results.json | awk {'print $2'}`
+    - export TOTAL_SEVERITY_COUNTER=`grep '"total_counter"':' ' kics-results.json | awk {'print $2'}`
     - export SEVERITY_COUNTER_HIGH=`grep '"HIGH"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
     - export SEVERITY_COUNTER_MEDIUM=`grep '"INFO"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
     - export SEVERITY_COUNTER_LOW=`grep '"LOW"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
@@ -95,7 +95,7 @@ kics-scan:
 kics-results:
   stage: kics-result
   before_script:
-    - export TOTAL_SEVERITY_COUNTER=`grep '"totalCounter"':' ' kics-results.json | awk {'print $2'}`
+    - export TOTAL_SEVERITY_COUNTER=`grep '"total_counter"':' ' kics-results.json | awk {'print $2'}`
     - export SEVERITY_COUNTER_HIGH=`grep '"HIGH"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
     - export SEVERITY_COUNTER_MEDIUM=`grep '"INFO"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
     - export SEVERITY_COUNTER_LOW=`grep '"LOW"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`

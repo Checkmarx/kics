@@ -50,7 +50,7 @@ wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${P
 
 3.5- Consume the results
 ```shell
-TOTAL_SEVERITY_COUNTER=`grep '"totalCounter"':' ' kics-results.json | awk {'print $2'}`
+TOTAL_SEVERITY_COUNTER=`grep '"total_counter"':' ' kics-results.json | awk {'print $2'}`
 export SEVERITY_COUNTER_HIGH=`grep '"HIGH"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
 SEVERITY_COUNTER_MEDIUM=`grep '"INFO"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
 SEVERITY_COUNTER_LOW=`grep '"LOW"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
@@ -60,7 +60,7 @@ echo "TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER"
 
 3.6- Optionally, define a breaking point for the CI
 ```shell
-if [ 
+if [ "$SEVERITY_COUNTER_HIGH" -ge "1" ]; then
     echo "Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS" && exit 1;
 fi
 ```
@@ -79,7 +79,7 @@ pool:
 stages:
 - stage: Kics
   displayName: Kics
-  # variables: # several syntaxes, see specific section
+
   jobs:
   - job: runKics
     displayName: runKics
@@ -104,14 +104,14 @@ stages:
           echo '--- START SCANNING ---'
           ${TARGET_DIR}/kics --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
 
-          TOTAL_SEVERITY_COUNTER=`grep '"totalCounter"':' ' kics-results.json | awk {'print $2'}`
+          TOTAL_SEVERITY_COUNTER=`grep '"total_counter"':' ' kics-results.json | awk {'print $2'}`
           export SEVERITY_COUNTER_HIGH=`grep '"HIGH"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
           SEVERITY_COUNTER_MEDIUM=`grep '"INFO"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
           SEVERITY_COUNTER_LOW=`grep '"LOW"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
           SEVERITY_COUNTER_INFO=`grep '"MEDIUM"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
           echo "TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER"
 
-          if [ 
+          if [ "$SEVERITY_COUNTER_HIGH" -ge "1" ]; then
             echo "Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS" && exit 1;
           fi
 ```
