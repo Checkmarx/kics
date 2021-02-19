@@ -2,19 +2,11 @@
   {
     "queryName": "S3 Bucket With Public RW Access",
     "severity": "INFO",
-    "line": 19,
-    "value": "my-tf-test-bucket"
+    "line": 3
   },
   {
     "queryName": "S3 Bucket With Public RW Access",
     "severity": "INFO",
-    "line": 34,
-    "value": "my-tf-test-bucket"
-  },
-  {
-    "queryName": "S3 Bucket With Public RW Access",
-    "severity": "INFO",
-    "line": 4,
-    "value": "my-tf-test-bucket"
+    "line": 17
   }
 ]

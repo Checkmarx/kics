@@ -7,6 +7,6 @@
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "MEDIUM",
-    "line": 20
+    "line": 18
   }
 ]
