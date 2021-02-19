@@ -12,7 +12,7 @@ Contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com) or joi
 
 ---
 
-## What is Infrastructure as Code
+## Infrastructure as Code
 
 Infrastructure as Code (IaC) is the creation, provisioning and configuration of software-defined compute (SDC), network and storage infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
 
@@ -41,12 +41,8 @@ Main Benefits of Infrastructure as Code:
 
 ---
 
-## What is Infrastructure as Code Testing
+## Infrastructure as Code Testing
 
 Infrastructure as Code testing examines configuration definitions and scripts used to instantiate infrastructure to ensure the resulting resources are secure.
 
 IaC security testing tools must be able to consume configuration files and scripts in relevant formats, apply tests to ensure conformance with common configuration hardening standards (i.e., Center for Internet Security Benchmarks and many others), identify security issues associated with specific operational environments, identify embedded secrets, and perform other tests supporting organization-specific standards and compliance requirements. Optionally, tools can automatically remediate errors (e.g., changing read/write permissions on storage resources). This capability specifically examines IaC testing in the context of the development process, however tools may also support examination of deployed production instances and responding to issues identified in those systems.
-
----
-
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo/kics-logo-donkey.png" width="250">  

@@ -3,9 +3,9 @@
 There are multiple ways to get KICS up and running:
 
 
-### Docker
+#### Docker
 
-KICS is available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
+KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:  
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)
 
@@ -16,7 +16,7 @@ docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkm
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.
 
-### Binary
+#### Binary
 
 KICS release process is pretty straightforward.
 When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
@@ -24,7 +24,7 @@ Our security queries will be included in the ZIP files and tarballs, so that you
 
 So all you need is:
 
-1. Go to [KICS releases](https://github.com/Checkmarx/kics/releases/latest)
+1. Go to <a href="https://github.com/Checkmarx/kics/releases/latest" target="_blank">KICS releases</a>
 1. Download KICS binaries based on your OS
 1. Extract files
 1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)  
@@ -32,9 +32,9 @@ So all you need is:
    ./kics scan -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
-### Build from Sources
+#### Build from Sources
 
-1. Download and install Go from [https://golang.org/dl/](https://golang.org/dl/)  
+1. Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>
 1. Clone the repository:  
    ```
    git clone https://github.com/Checkmarx/kics.git
@@ -47,7 +47,10 @@ So all you need is:
    go run ./cmd/console/main.go scan -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
-### CLI Commands
+---
+
+## KICS Commands
+KICS can interpret the following commands:
 
 ```txt
 generate-id Generates uuid for query
@@ -56,8 +59,7 @@ scan        Executes a scan analysis
 version     Displays the current version
 ```
 
-
-### Scan Command Options
+#### Scan Command Options
 
 ```txt
     --config string         path to configuration file
@@ -75,12 +77,13 @@ version     Displays the current version
 -v, --verbose               verbose scan
 ```
 
+The other commands have no further options.
+
+---
+
 ## Next Steps
-
-- Check how you can easily [integrate it into your CI](integrations.md) for any project.
+- [Understand how to configure KICS](configuration-file.md) so you can have a better KICS experience.
+- [Explore the queries internals](queries.md) for better understanding how KICS works.
 - [Explore the output results format](results.md) and quickly fix the issues detected.
+- [Contribute](CONTRIBUTING.md) if you want to go the extra mile.
 
-
-## Contribution
-
-Want to go the next mile and contribute? [You're welcome!](CONTRIBUTING.md)
