@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	modules := {"community.aws.ec2_instance", "amazon.aws.ec2"}
@@ -16,12 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.vpc_subnet_id is set", [modules[index]]),
 		"keyActualValue": sprintf("%s.vpc_subnet_id is undefined", [modules[index]]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

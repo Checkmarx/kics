@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	rds_instance := tasks[_]
 	rds_instanceBody := rds_instance["community.aws.rds_instance"]
 	rds_instanceName := rds_instance.name
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	rds_instance := tasks[_]
 	rds_instanceBody := rds_instance["community.aws.rds_instance"]
 	rds_instanceName := rds_instance.name
@@ -37,12 +38,4 @@ is_disabled(value) {
 	value == negativeValue[_]
 } else = false {
 	true
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

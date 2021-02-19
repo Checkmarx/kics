@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	iamuserObj = tasks[_]
 	iamuserObjBody = iamuserObj["community.aws.iam"]
 	iamuserObjName = iamuserObj.name
@@ -15,12 +16,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("{{%s}}.{{community.aws.iam}}.name is 'root' for an active access key", [iamuserObjName]),
 		"keyActualValue": sprintf("{{%s}}.{{community.aws.iam}}.name is '%s' for an active access key", [iamuserObjName, iamuserObjBody.name]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

@@ -1,11 +1,12 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
-	isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
+	ansLib.isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
 
 	result := {
 		"documentId": document.id,
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	object.get(task["amazon.aws.ec2_vol"], "encrypted", "undefined") == "undefined"
@@ -30,20 +31,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "AWS EBS encryption should be defined",
 		"keyActualValue": "AWS EBS encryption is undefined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleFalse(answer) {
-	lower(answer) == "no"
-} else {
-	lower(answer) == "false"
-} else {
-	answer == false
 }

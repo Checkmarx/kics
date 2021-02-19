@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	applicationLb := task["community.aws.elb_application_lb"]
 	clusterName := applicationLb.name
@@ -20,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	applicationLb := task["community.aws.elb_application_lb"]
 	clusterName := applicationLb.name
@@ -39,12 +40,4 @@ CxPolicy[result] {
 
 MissingProtocol(listeners) {
 	listeners[_].Protocol
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

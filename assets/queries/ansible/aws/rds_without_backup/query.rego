@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	instance := task["community.aws.rds_instance"]
 	instanceName := task.name
@@ -20,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	instance := task["community.aws.rds_instance"]
 	instanceName := task.name
@@ -34,12 +35,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.rds_instance should have the property 'backup_retention_period' greater than 0",
 		"keyActualValue": "community.aws.rds_instance has the property 'backup_retention_period' assigned to 0",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

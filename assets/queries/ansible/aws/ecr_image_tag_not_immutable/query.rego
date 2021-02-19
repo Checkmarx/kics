@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	object.get(task["community.aws.ecs_ecr"], "image_tag_mutability", "undefined") == "undefined"
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	task["community.aws.ecs_ecr"].image_tag_mutability != "immutable"
@@ -30,12 +31,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.ecs_ecr.image_tag_mutability is set to 'immutable'",
 		"keyActualValue": "community.aws.ecs_ecr.image_tag_mutability is not set to 'immutable'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

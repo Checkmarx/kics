@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
@@ -23,7 +24,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
@@ -43,7 +44,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
@@ -62,7 +63,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	awsEc2 := task["amazon.aws.ec2_group"]
 	rules := awsEc2.rules[j]
@@ -86,10 +87,3 @@ checkRange(to_port, from_port) {
 	from_port <= 2383
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
