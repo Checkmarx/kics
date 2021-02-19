@@ -71,6 +71,7 @@ version     Displays the current version
 -p, --path string           path to file or directory to scan
 -d, --payload-path string   file path to store source internal representation in JSON format
 -q, --queries-path string   path to directory with queries (default "./assets/queries")
+    --sarif string          file path to store result in sarif format
 -t, --type                  type of queries to use in the scan
 -v, --verbose               verbose scan
 ```
