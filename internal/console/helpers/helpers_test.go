@@ -227,55 +227,81 @@ func TestFileAnalyzer(t *testing.T) {
 	}
 
 	tests := []struct {
-		name string
-		arg  string
-		want string
+		name    string
+		arg     string
+		want    string
+		wantErr bool
 	}{
 		{
-			name: "file_analizer_json",
-			arg:  "test/fixtures/config_test/kics.json",
-			want: "json",
+			name:    "file_analizer_json",
+			arg:     "test/fixtures/config_test/kics.json",
+			want:    "json",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_json_no_extension",
-			arg:  "test/fixtures/config_test/kics.config_json",
-			want: "json",
+			name:    "file_analizer_json_no_extension",
+			arg:     "test/fixtures/config_test/kics.config_json",
+			want:    "json",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_yaml",
-			arg:  "test/fixtures/config_test/kics.yaml",
-			want: "yaml",
+			name:    "file_analizer_yaml",
+			arg:     "test/fixtures/config_test/kics.yaml",
+			want:    "yaml",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_yaml_no_extension",
-			arg:  "test/fixtures/config_test/kics.config_yaml",
-			want: "yaml",
+			name:    "file_analizer_yaml_no_extension",
+			arg:     "test/fixtures/config_test/kics.config_yaml",
+			want:    "yaml",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_hcl",
-			arg:  "test/fixtures/config_test/kics.hcl",
-			want: "hcl",
+			name:    "file_analizer_hcl",
+			arg:     "test/fixtures/config_test/kics.hcl",
+			want:    "hcl",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_hcl_no_extension",
-			arg:  "test/fixtures/config_test/kics.config_hcl",
-			want: "hcl",
+			name:    "file_analizer_hcl_no_extension",
+			arg:     "test/fixtures/config_test/kics.config_hcl",
+			want:    "hcl",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_toml",
-			arg:  "test/fixtures/config_test/kics.toml",
-			want: "toml",
+			name:    "file_analizer_toml",
+			arg:     "test/fixtures/config_test/kics.toml",
+			want:    "toml",
+			wantErr: false,
 		},
 		{
-			name: "file_analizer_toml_no_extension",
-			arg:  "test/fixtures/config_test/kics.config_toml",
-			want: "toml",
+			name:    "file_analizer_toml_no_extension",
+			arg:     "test/fixtures/config_test/kics.config_toml",
+			want:    "toml",
+			wantErr: false,
+		},
+		{
+			name:    "file_analizer_js_incorrect",
+			arg:     "test/fixtures/config_test/kics.config_js",
+			want:    "",
+			wantErr: true,
+		},
+		{
+			name:    "file_analizer_js_no_extension_incorrect",
+			arg:     "test/fixtures/config_test/kics.js",
+			want:    "",
+			wantErr: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := FileAnalyzer(tt.arg); !reflect.DeepEqual(got, tt.want) {
+			got, err := FileAnalyzer(tt.arg)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("FileAnalyzer() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FileAnalyzer() = %v, want %v", got, tt.want)
 			}
 		})

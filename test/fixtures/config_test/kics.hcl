@@ -1,9 +1,13 @@
-"exclude-paths" = "exclude paths or files from scan"
-"log-file" = true
-"no-progress" = false
-"output-path" = "file path to store result in json format"
-"path" = "path to file or directory to scan"
-"payload-path" = "file path to store source internal representation in JSON format"
-"queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-"type" = "type of queries to use in the scan"
-"verbose" = true
+io_mode = "async"
+
+service "http" "web_proxy" {
+  listen_addr = "127.0.0.1:8080"
+
+  process "main" {
+    command = ["/usr/local/bin/awesome-app", "server"]
+  }
+
+  process "mgmt" {
+    command = ["/usr/local/bin/awesome-app", "mgmt"]
+  }
+}

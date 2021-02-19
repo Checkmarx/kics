@@ -55,8 +55,12 @@ var scanCmd = &cobra.Command{
 
 func initializeConfig(cmd *cobra.Command) error {
 	if cfgFile == "" {
-		if _, err := os.Stat(filepath.ToSlash("kics.config")); os.IsNotExist(err) {
-			return nil
+		_, err := os.Stat(filepath.ToSlash("kics.config"))
+		if err != nil {
+			if os.IsNotExist(err) {
+				return nil
+			}
+			return err
 		}
 		cfgFile = filepath.ToSlash("kics.config")
 	}
@@ -64,7 +68,11 @@ func initializeConfig(cmd *cobra.Command) error {
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
-	v.SetConfigType(consoleHelpers.FileAnalyzer(cfgFile))
+	ext, err := consoleHelpers.FileAnalyzer(cfgFile)
+	if err != nil {
+		return err
+	}
+	v.SetConfigType(ext)
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
