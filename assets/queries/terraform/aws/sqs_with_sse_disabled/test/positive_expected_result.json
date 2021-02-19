@@ -1,17 +1,17 @@
 [
-	{
-		"queryName": "SQS with SSE disabled",
-		"severity": "HIGH",
-		"line": 1
-	},
-	{
-		"queryName": "SQS with SSE disabled",
-		"severity": "HIGH",
-		"line": 8
-	},
-	{
-		"queryName": "SQS with SSE disabled",
-		"severity": "HIGH",
-		"line": 14
-	}
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 8
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "HIGH",
+    "line": 14
+  }
 ]

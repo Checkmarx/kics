@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "IAM Password Without Reuse Prevention",
-		"severity": "MEDIUM",
-		"line": 7
-	},
-	{
-		"queryName": "IAM Password Without Reuse Prevention",
-		"severity": "MEDIUM",
-		"line": 10
-	}
+  {
+    "queryName": "IAM Password Without Reuse Prevention",
+    "severity": "MEDIUM",
+    "line": 7
+  },
+  {
+    "queryName": "IAM Password Without Reuse Prevention",
+    "severity": "MEDIUM",
+    "line": 10
+  }
 ]

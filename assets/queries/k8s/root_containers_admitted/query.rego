@@ -13,10 +13,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, privilege[p]]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, privilege[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s is set to 'false'", [metadata.name, privilege[p]]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.%s is set to 'true'", [metadata.name, privilege[p]]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s is set to 'false'", [metadata.name, privilege[p]]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s is set to 'true'", [metadata.name, privilege[p]]),
 	}
 }
 
@@ -31,10 +31,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.runAsUser.rule", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.runAsUser.rule", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.runAsUser.rule is equal to 'MustRunAsNonRoot'", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.runAsUser.rule is not equal to 'MustRunAsNonRoot'", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.runAsUser.rule is equal to 'MustRunAsNonRoot'", [metadata.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.runAsUser.rule is not equal to 'MustRunAsNonRoot'", [metadata.name]),
 	}
 }
 
@@ -50,10 +50,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.rule", [metadata.name, groups[p]]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.rule", [metadata.name, groups[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s limits its ranges", [metadata.name, groups[p]]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.%s does not limit its ranges", [metadata.name, groups[p]]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s limits its ranges", [metadata.name, groups[p]]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s does not limit its ranges", [metadata.name, groups[p]]),
 	}
 }
 
@@ -70,9 +70,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, groups[p]]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, groups[p]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s does not allow range '0' (root)", [metadata.name, groups[p]]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.%s allows range '0' (root)", [metadata.name, groups[p]]),
+		"keyExpectedValue": sprintf("metadata.name{{%s}}.spec.%s does not allow range '0' (root)", [metadata.name, groups[p]]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s allows range '0' (root)", [metadata.name, groups[p]]),
 	}
 }

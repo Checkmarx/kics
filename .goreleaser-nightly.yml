@@ -9,9 +9,10 @@ builds:
       - windows
     goarch:
       - amd64
+    ldflags:
+      - -X github.com/Checkmarx/kics/internal/console.Version={{.Version}}-{{.ShortCommit}}
 archives:
-  -
-    builds: [kics]
+  - builds: [kics]
     format_overrides:
       - goos: windows
         format: zip
@@ -19,9 +20,10 @@ archives:
       amd64: x64
       386: x32
     files:
+      - LICENSE
       - assets/queries
       - assets/libraries
 release:
   prerelease: true
 snapshot:
-  name_template: "nightly"
+  name_template: nightly

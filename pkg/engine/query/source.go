@@ -85,7 +85,7 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 		return true
 	}
 	if s.types[0] != "" {
-		return strings.Contains(strings.Join(s.types, ","), queryPlatform.(string))
+		return strings.Contains(strings.ToUpper(strings.Join(s.types, ",")), strings.ToUpper(queryPlatform.(string)))
 	}
 	return true
 }
