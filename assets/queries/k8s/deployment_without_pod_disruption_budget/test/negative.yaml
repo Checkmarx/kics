@@ -6,7 +6,7 @@ spec:
   minAvailable: 2
   selector:
     matchLabels:
-      app: nginx
+      app: nginx32
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,7 +18,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: nginx32
   template:
     metadata:
       labels:

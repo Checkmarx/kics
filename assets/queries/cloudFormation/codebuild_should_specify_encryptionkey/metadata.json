@@ -1,9 +1,0 @@
-{
-	"id": "d7467bb6-3ed1-4c82-8095-5e7a818d0aad",
-	"queryName": "CodeBuild Should Specify EncryptionKey",
-	"severity": "MEDIUM",
-	"category": "Encryption & Key Management",
-	"descriptionText": "CodeBuild Should have EncryptionKey defined",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html",
-	"platform": "CloudFormation"
-}

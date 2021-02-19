@@ -1,0 +1,9 @@
+{
+  "id": "ee464fc2-54a6-4e22-b10a-c6dcd2474d0c",
+  "queryName": "Security Group Egress With All Protocols",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "AWS Security Group Egress should not specify all protocols to prevent allow traffic on all ports",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html",
+  "platform": "CloudFormation"
+}

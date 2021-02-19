@@ -1,19 +1,17 @@
 [
-	{
-		"queryName": "AWS Kinesis Stream Without SSE",
-		"severity": "HIGH",
-		"line": 8
-	},
-
-	{
-		"queryName": "AWS Kinesis Stream Without SSE",
-		"severity": "HIGH",
-		"line": 19
-	},
-
-	{
-		"queryName": "AWS Kinesis Stream Without SSE",
-		"severity": "HIGH",
-		"line": 26
-	}
+  {
+    "queryName": "Kinesis Stream Without SSE",
+    "severity": "HIGH",
+    "line": 8
+  },
+  {
+    "queryName": "Kinesis Stream Without SSE",
+    "severity": "HIGH",
+    "line": 19
+  },
+  {
+    "queryName": "Kinesis Stream Without SSE",
+    "severity": "HIGH",
+    "line": 26
+  }
 ]

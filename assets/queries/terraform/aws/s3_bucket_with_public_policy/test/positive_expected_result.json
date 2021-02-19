@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "S3 bucket allows public policy",
-		"severity": "HIGH",
-		"line": 18
-	},
-	{
-		"queryName": "S3 bucket allows public policy",
-		"severity": "HIGH",
-		"line": 9
-	}
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 18
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 9
+  }
 ]

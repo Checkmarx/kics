@@ -1,0 +1,9 @@
+{
+  "id": "babdedcf-d859-43da-9a7b-6d72e661a8fd",
+  "queryName": "IAM Role Allows All Principals To Assume",
+  "severity": "LOW",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM role allows all services or principals to assume it",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
+  "platform": "Ansible"
+}

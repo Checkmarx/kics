@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "IAM User Policy Without MFA",
+    "severity": "HIGH",
+    "line": 18
+  }
+]

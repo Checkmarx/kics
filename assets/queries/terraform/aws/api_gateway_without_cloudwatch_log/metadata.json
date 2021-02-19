@@ -1,9 +1,9 @@
 {
-	"id": "982aa526-6970-4c59-8b9b-2ce7e019fe36",
-	"queryName": "API Gateway without Cloudwatch Log",
-	"severity": "MEDIUM",
-	"category": "Logging",
-	"descriptionText": "AWS CloudWatch Logs for APIs is not enabled",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group",
-	"platform": "Terraform"
+  "id": "982aa526-6970-4c59-8b9b-2ce7e019fe36",
+  "queryName": "API Gateway Without Cloudwatch Log",
+  "severity": "MEDIUM",
+  "category": "Logging",
+  "descriptionText": "AWS CloudWatch Logs for APIs is not enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group",
+  "platform": "Terraform"
 }

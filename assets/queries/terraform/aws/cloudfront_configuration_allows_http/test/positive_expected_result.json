@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Cloudfront Configuration Allows HTTP",
+    "severity": "HIGH",
+    "line": 49
+  },
+  {
+    "queryName": "Cloudfront Configuration Allows HTTP",
+    "severity": "HIGH",
+    "line": 76
+  }
+]

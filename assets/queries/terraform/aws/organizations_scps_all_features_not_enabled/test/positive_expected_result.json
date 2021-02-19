@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Organizations SCPs All Features Not Enabled",
+    "severity": "MEDIUM",
+    "line": 4
+  },
+  {
+    "queryName": "Organizations SCPs All Features Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21
+  },
+  {
+    "queryName": "Organizations SCPs All Features Not Enabled",
+    "severity": "MEDIUM",
+    "line": 36
+  }
+]

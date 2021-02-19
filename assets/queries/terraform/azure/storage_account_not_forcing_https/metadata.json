@@ -1,0 +1,9 @@
+{
+  "id": "12944ec4-1fa0-47be-8b17-42a034f937c2",
+  "queryName": "Storage Account Not Forcing HTTPS",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "See that Storage Accounts forces the use of HTTPS",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
+  "platform": "Terraform"
+}

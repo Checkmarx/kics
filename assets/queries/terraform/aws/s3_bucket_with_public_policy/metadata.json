@@ -1,9 +1,9 @@
 {
-	"id": "1a4bc881-9f69-4d44-8c9a-d37d08f54c50",
-	"queryName": "S3 bucket allows public policy",
-	"severity": "HIGH",
-	"category": "Network Security",
-	"descriptionText": "S3 bucket allows public policy",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
-	"platform": "Terraform"
+  "id": "1a4bc881-9f69-4d44-8c9a-d37d08f54c50",
+  "queryName": "S3 Bucket Allows Public Policy",
+  "severity": "HIGH",
+  "category": "Network Security",
+  "descriptionText": "S3 bucket allows public policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+  "platform": "Terraform"
 }

@@ -1,21 +1,21 @@
 [
   {
-    "queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+    "queryName": "GameLift Fleet EC2InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 10
   },
   {
-    "queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+    "queryName": "GameLift Fleet EC2InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 10
   },
   {
-    "queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+    "queryName": "GameLift Fleet EC2InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 27
   },
   {
-    "queryName": "AWS GameLift Fleet EC2InboundPermissions With Port Range",
+    "queryName": "GameLift Fleet EC2InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 27
   }

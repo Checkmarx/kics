@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "API Gateway without Cloudwatch Log",
-		"severity": "MEDIUM",
-		"line": 1
-	}
+  {
+    "queryName": "API Gateway Without Cloudwatch Log",
+    "severity": "MEDIUM",
+    "line": 1
+  }
 ]

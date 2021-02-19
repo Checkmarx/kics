@@ -1,9 +1,9 @@
 {
-	"id": "7fdc2bf3-6bc0-4cb3-84c5-cfd041c0f892",
-	"queryName": "ECS Task Definition Container has Password",
-	"severity": "HIGH",
-	"category": "Data Security",
-	"descriptionText": "It's not recommend to use plaintext environment variables for sensitive information, such as credential data.",
-	"descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_environment",
-	"platform": "Ansible"
+  "id": "7fdc2bf3-6bc0-4cb3-84c5-cfd041c0f892",
+  "queryName": "ECS Task Definition Container Has Password",
+  "severity": "HIGH",
+  "category": "Data Security",
+  "descriptionText": "It's not recommend to use plaintext environment variables for sensitive information, such as credential data.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_environment",
+  "platform": "Ansible"
 }
