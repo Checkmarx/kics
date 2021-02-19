@@ -9,6 +9,7 @@ WORKDIR /app
 
 
 ENV GOPRIVATE=github.com/Checkmarx/*
+ARG VERSION=development
 
 #Copy go mod and sum files
 COPY go.mod .
@@ -22,7 +23,9 @@ COPY . .
 
 USER root
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o bin/kics cmd/console/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+  -ldflags "-X github.com/Checkmarx/kics/internal/console.Version=${VERSION}" -a -installsuffix cgo \
+  -o bin/kics cmd/console/main.go
 USER Checkmarx
 
 #Healthcheck the container

@@ -15,6 +15,11 @@ checkState(task) {
 	state != "absent"
 }
 
+checkState(task) {
+	state := object.get(task, "state", "undefined")
+	state != "absent"
+}
+
 isAnsibleTrue(answer) {
 	lower(answer) == "yes"
 } else {
@@ -68,4 +73,8 @@ isPortInBounds(low, high, portNumber) {
 	to_number(high) >= portNumber
 } else = false {
 	true
+
 }
+
+}
+master

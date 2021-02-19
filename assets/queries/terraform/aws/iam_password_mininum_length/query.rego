@@ -16,7 +16,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	password_policy := input.document[i].resource.aws_iam_account_password_policy[name]
 	min_length := password_policy.minimum_password_length
-
 	to_number(min_length) < 8
 
 	result := {

@@ -1,4 +1,3 @@
-#this code is a correct code for which the query should not find any result
 resource "azurerm_resource_group" "example" {
   name     = "acceptanceTestResourceGroup1"
   location = "West US"

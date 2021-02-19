@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s", [policyStat.Principal]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Statement.Principal' dosen't contain '*'",
+		"keyExpectedValue": "'Statement.Principal' doesn't contain '*'",
 		"keyActualValue": "'Statement.Principal' contains '*'",
 	}
 }

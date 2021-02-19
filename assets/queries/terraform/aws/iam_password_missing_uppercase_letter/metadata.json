@@ -2,7 +2,7 @@
 	"id": "c5ff7bc9-d8ea-46dd-81cb-8286f3222249",
 	"queryName": "IAM Password Without Uppercase Letter",
 	"severity": "MEDIUM",
-	"category": "IAM",
+	"category": "Identity & Access Management",
 	"descriptionText": "Check if IAM account password has at least one uppercase letter",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
 	"platform": "Terraform"

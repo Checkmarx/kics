@@ -1,35 +1,23 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	playbooks := getTasks(input.document[i])
-	compute_instance := playbooks[j]
-	instance := compute_instance["google.cloud.gcp_compute_instance"]
+	document := input.document[i]
+	task := ansLib.getTasks(document)[t]
+	instance := task["google.cloud.gcp_compute_instance"]
 	metadata := instance.metadata
 
+	ansLib.checkState(instance)
 	object.get(metadata, "enable-oslogin", "undefined") != "undefined"
 
-	not isTrue(object.get(metadata, "enable-oslogin", "undefined"))
+	not ansLib.isAnsibleTrue(object.get(metadata, "enable-oslogin", "undefined"))
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin", [playbooks[j].name]),
+		"documentId": document.id,
+		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin' is true", [playbooks[j].name]),
-		"keyActualValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin' is false", [playbooks[j].name]),
+		"keyExpectedValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin' is true", [task.name]),
+		"keyActualValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin' is false", [task.name]),
 	}
-}
-
-isTrue(attribute) {
-	attribute == "yes"
-} else {
-	attribute == true
-} else = false {
-	true
-}
-
-getTasks(document) = result {
-	result := document.playbooks[0].tasks
-} else = result {
-	object.get(document.playbooks[0], "tasks", "undefined") == "undefined"
-	result := document.playbooks
 }

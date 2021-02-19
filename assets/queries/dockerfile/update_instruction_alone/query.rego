@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	command := resource.Value[0]
 
-	contains(command, "update")
+	isValidUpdate(command)
 	not updateFollowedByInstall(command)
 
 	result := {
@@ -15,6 +15,18 @@ CxPolicy[result] {
 		"keyExpectedValue": "Instruction 'RUN <package-manager> update' is followed by 'RUN <package-manager> install' ",
 		"keyActualValue": "Instruction 'RUN <package-manager> update' isn't followed by 'RUN <package-manager> install in the same 'RUN' statement",
 	}
+}
+
+isValidUpdate(command) {
+	contains(command, " update ")
+}
+
+isValidUpdate(command) {
+	array_split := split(command, " ")
+
+	len = count(array_split)
+
+	array_split[minus(len, 1)] == "update"
 }
 
 updateFollowedByInstall(command) {

@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BackupRetentionPeriod", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource doesn't have the minimum backup retention period of 7 days", [name]),
-		"keyActualValue": sprintf("The RDS DBCluster '%s' resource has backup retention period of '%v' which is less than the minimum of 7 days", [name, properties.BackupRetentionPeriod]),
+		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource has a minimum backup retention period of at least 7 days", [name]),
+		"keyActualValue": sprintf("The RDS DBCluster '%s' resource has backup retention period of '%s' which is less than the minimum of 7 days", [name, properties.BackupRetentionPeriod]),
 	}
 }
 
@@ -25,8 +25,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingValue",
-		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource doesn't define the minimum backup retention period of 7 days", [name]),
-		"keyActualValue": sprintf("The RDS DBCluster '%s' resource has the default backup retention period of 1 day which is less than the minimum of 7 days", [name]),
+		"keyExpectedValue": sprintf("The RDS DBCluster '%s' resource has a minimum backup retention period of at least 7 days", [name]),
+		"keyActualValue": sprintf("The RDS DBCluster '%s' resource doesn't define a backup retention period", [name]),
 	}
 }
 
@@ -48,8 +48,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingValue",
-		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource doesn't define the minimum backup retention period of 7 days", [name]),
-		"keyActualValue": sprintf("The RDS DBInstance '%s' resource has the default backup retention period of 1 day which is less than the minimum of 7 days", [name]),
+		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource has a minimum backup retention period of at least 7 days", [name]),
+		"keyActualValue": sprintf("The RDS DBInstance '%s' resource doesn't define a backup retention period and no RDS Cluster are defined", [name]),
 	}
 }
 
@@ -71,7 +71,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BackupRetentionPeriod", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource doesn't define the minimum backup retention period of 7 days", [name]),
-		"keyActualValue": sprintf("The RDS DBCluster '%s' resource has the default backup retention period of 1 day which is less than the minimum of 7 days", [name]),
+		"keyExpectedValue": sprintf("The RDS DBInstance '%s' resource has a minimum backup retention period of at least 7 days", [name]),
+		"keyActualValue": sprintf("The RDS DBCluster '%s' resource has backup retention period of '%s' which is less than the minimum of 7 days, and no RDS Cluster are defined", [name, properties.BackupRetentionPeriod]),
 	}
 }
