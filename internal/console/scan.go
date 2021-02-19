@@ -55,14 +55,14 @@ var scanCmd = &cobra.Command{
 
 func initializeConfig(cmd *cobra.Command) error {
 	if cfgFile == "" {
-		_, err := os.Stat(filepath.ToSlash("kics.config"))
+		_, err := os.Stat(filepath.ToSlash(filepath.Join(path, "kics.config")))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
 			}
 			return err
 		}
-		cfgFile = filepath.ToSlash("kics.config")
+		cfgFile = filepath.ToSlash(filepath.Join(path, "kics.config"))
 	}
 	v := viper.New()
 	base := filepath.Base(cfgFile)

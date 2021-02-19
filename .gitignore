@@ -20,9 +20,5 @@
 # Log Files
 *.log
 
-# Configuration file
-kics.config
-*config.*
-
 # ci/cd binaries
 .bin
