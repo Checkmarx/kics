@@ -64,7 +64,7 @@ CxPolicy[result] {
 	some nameAlarm
 	resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
 
-	not regex.match("{ *\\(\\$\\.eventName *= *ConsoleLogin\\) *&& *\\(\\$\\.errorMessage *= *\"Failed authentication\"\\) *}", resourceMetricFilter[name].Properties.FilterPattern)
+	not regex.match("{ *\\(\\$\\.eventName *= *\"?ConsoleLogin\"?\\) *&& *\\(\\$\\.errorMessage *= *\"?Failed authentication\"?\\) *}", resourceMetricFilter[name].Properties.FilterPattern)
 
 	result := {
 		"documentId": input.document[i].id,

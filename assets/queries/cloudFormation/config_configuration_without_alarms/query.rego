@@ -64,7 +64,7 @@ CxPolicy[result] {
 	some nameAlarm
 	resourceAlarm[nameAlarm].Type == "AWS::CloudWatch::Alarm"
 
-	not regex.match("{ *\\(\\$\\.eventSource=config\\.amazonaws\\.com\\) *&& *\\(\\(\\$\\.eventName=StopConfigurationRecorder\\) *\\|\\| *\\(\\$\\.eventName=DeleteDeliveryChannel\\) *\\|\\| *\\(\\$\\.eventName=PutDeliveryChannel\\) *\\|\\| *\\(\\$\\.eventName=PutConfigurationRecorder\\)\\) *}", resourceMetricFilter[name].Properties.FilterPattern)
+	not regex.match("{ *\\(\\$\\.eventSource *= *config\\.amazonaws\\.com\\) *&& *\\(\\(\\$\\.eventName *= *StopConfigurationRecorder\\) *\\|\\| *\\(\\$\\.eventName *= *DeleteDeliveryChannel\\) *\\|\\| *\\(\\$\\.eventName *= *PutDeliveryChannel\\) *\\|\\| *\\(\\$\\.eventName *= *PutConfigurationRecorder\\)\\) *}", resourceMetricFilter[name].Properties.FilterPattern)
 
 	result := {
 		"documentId": input.document[i].id,
