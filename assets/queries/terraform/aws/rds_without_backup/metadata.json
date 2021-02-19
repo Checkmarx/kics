@@ -2,7 +2,7 @@
   "id": "1dc73fb4-5b51-430c-8c5f-25dcf9090b02",
   "queryName": "RDS Without Backup",
   "severity": "MEDIUM",
-  "category": "Backup and Disaster Recovery+",
+  "category": "Backup & Disaster Recovery",
   "descriptionText": "RDS configured without backup",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
   "platform": "Terraform"

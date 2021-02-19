@@ -2,7 +2,7 @@
 	"id": "83957b81-39c1-4191-8e12-671d2ce14354",
 	"queryName": "IAM Password Without Uppercase Letter",
 	"severity": "MEDIUM",
-	"category": "IAM",
+	"category": "Identity & Access Management",
 	"descriptionText": "Check if IAM account password has at least one uppercase letter",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html",
 	"platform": "Ansible"

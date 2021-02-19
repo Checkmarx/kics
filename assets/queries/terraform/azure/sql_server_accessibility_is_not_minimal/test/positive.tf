@@ -1,4 +1,3 @@
-#this is a problematic code where the query should report a result(s)
 resource "azurerm_resource_group" "example" {
   name     = "acceptanceTestResourceGroup1"
   location = "West US"

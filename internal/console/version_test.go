@@ -14,6 +14,6 @@ func TestVersionCommand(t *testing.T) {
 		out, err := test.CaptureCommandOutput(versionCmd, nil)
 
 		require.NoError(t, err)
-		require.Equal(t, fmt.Sprintf("%s\n", currentVersion), out)
+		require.Equal(t, fmt.Sprintf("%s\n", getVersion()), out)
 	})
 }

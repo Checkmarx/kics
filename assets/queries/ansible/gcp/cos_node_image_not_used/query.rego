@@ -1,10 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
 	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.getTasks(document)[t]
+	gcp_container := task["google.cloud.gcp_container_node_pool"]
+	image_type := gcp_container.config.image_type
 
-	image_type := task["google.cloud.gcp_container_node_pool"].config.image_type
+	ansLib.checkState(gcp_container)
 	lower(image_type) != "cos"
 
 	result := {
@@ -14,12 +18,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'config.image_type' is equal to 'COS'",
 		"keyActualValue": "'config.image_type' is not equal to 'COS'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

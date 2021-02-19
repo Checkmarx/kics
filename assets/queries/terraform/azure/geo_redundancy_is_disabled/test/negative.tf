@@ -3,24 +3,17 @@ resource "azurerm_postgresql_server" "postgre_server" {
     location            = "usgovvirginia"
     resource_group_name = "${azurerm_resource_group.jira_rg.name}"
 
-    sku {
-        name     = "${var.jira_postgre_sku_name}"
-        capacity = "${var.jira_postgre_sku_capacity}"
-        tier     = "${var.jira_postgre_sku_tier}"
-        family   = "${var.jira_postgre_sku_family}"
-    }
+    sku_name   = "GP_Gen5_4"
+    version    = "9.6"
+    storage_mb = 640000
 
-    storage_profile {
-        storage_mb            = "${var.jira_postgre_storage}"
-        backup_retention_days = "${var.jira_postgre_data_retention}"
-        geo_redundant_backup  = "Enabled"
-        auto_grow             = "Enabled"
-    }
+    backup_retention_days        = "${var.jira_postgre_data_retention}"
+    geo_redundant_backup_enabled = true
+    auto_grow_enabled            = true
 
     administrator_login          = "${var.mp_db_username}"
     administrator_login_password = "${azurerm_key_vault_secret.db_pswd.value}"
-    version                      = "9.5"
-    ssl_enforcement              = "Enabled"
+    ssl_enforcement_enabled      = false
 
     tags                         = "${local.postgresqlserver_tags}"
 }

@@ -4,6 +4,7 @@ CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
 	metadata := compute.metadata
 	ssh_keys_enabled := object.get(metadata, "block-project-ssh-keys", "undefined")
+    ssh_keys_enabled != "undefined"
 	not isTrue(ssh_keys_enabled)
 
 	result := {
@@ -17,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
-	not compute.metadata
+	object.get(compute,"metadata","undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,6 +26,19 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata is set", [name]),
 		"keyActualValue": sprintf("google_compute_instance[%s].metadata is undefined", [name]),
+	}
+}
+
+CxPolicy[result] {
+	compute := input.document[i].resource.google_compute_instance[name]
+	object.get(compute.metadata,"block-project-ssh-keys","undefined") == "undefined"
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("google_compute_instance[%s].metadata", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is set", [name]),
+		"keyActualValue": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys is undefined", [name]),
 	}
 }
 
