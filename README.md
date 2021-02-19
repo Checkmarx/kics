@@ -29,8 +29,6 @@ Support of other solutions and additional cloud providers are on the [roadmap](d
 
 Setting up and using KICS is super-easy.
 
-Setting up and using KICS is super-easy.
-
 - First, see how to [install and get KICS running](docs/getting-started.md).
 - Then explore KICS [output results format](docs/results.md) and quickly fix the issues detected.
 
