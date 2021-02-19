@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -11,9 +12,12 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"gopkg.in/yaml.v3"
 )
 
 // ProgressBar represents a Progress
@@ -175,4 +179,37 @@ func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 	}
 
 	return *fileLogger
+}
+
+// FileAnalyzer determines the type of extension in the passed config file by its content
+func FileAnalyzer(path string) (string, error) {
+	ostat, err := os.Open(path)
+	if err != nil {
+		return "", err
+	}
+	rc, err := ioutil.ReadAll(ostat)
+	if err != nil {
+		return "", err
+	}
+	var temp map[string]interface{}
+
+	if err := json.Unmarshal(rc, &temp); err == nil {
+		return "json", nil
+	}
+
+	if err := yaml.Unmarshal(rc, &temp); err == nil {
+		return "yaml", nil
+	}
+
+	if _, err := toml.Decode(string(rc), &temp); err == nil {
+		return "toml", nil
+	}
+
+	if c, err := hcl.Parse(string(rc)); err == nil {
+		if err = hcl.DecodeObject(&temp, c); err == nil {
+			return "hcl", nil
+		}
+	}
+
+	return "", errors.New("invalid configuration file format")
 }
