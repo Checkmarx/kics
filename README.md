@@ -29,12 +29,12 @@ Support of other solutions and additional cloud providers are on the [roadmap](d
 
 Setting up and using KICS is super-easy.
 
-- First, see how to [install and get KICS running](docs/getting-started.md).
-- Then explore KICS [output results format](docs/results.md) and quickly fix the issues detected.
+-  First, see how to [install and get KICS running](docs/getting-started.md).
+-  Then explore KICS [output results format](docs/results.md) and quickly fix the issues detected.
 
 Interested in more advanced stuff?
-- Deep dive into KICS [queries](docs/queries.md).
-- Understand how to [integrate](docs/integrations.md) KICS in your favourit CI/CD pipelines.
+-  Deep dive into KICS [queries](docs/queries.md).
+-  Understand how to [integrate](docs/integrations.md) KICS in your favourit CI/CD pipelines.
 
 
 ## How it Works
