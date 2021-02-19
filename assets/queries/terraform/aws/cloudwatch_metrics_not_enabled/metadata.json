@@ -1,6 +1,6 @@
 {
   "id": "081069cb-588b-4ce1-884c-2a1ce3029fe5",
-  "queryName": "CloudWatch Metrics Not enabled",
+  "queryName": "CloudWatch Metrics Not Enabled",
   "severity": "MEDIUM",
   "category": "Logging",
   "descriptionText": "Enable the CloudWatch Metrics",

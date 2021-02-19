@@ -1,9 +1,9 @@
 {
   "id": "dc17ee4b-ddf2-4e23-96e8-7a36abad1303",
-  "queryName": "CloudFront Without Minimum Protocol TLS1.2",
+  "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
   "severity": "HIGH",
   "category": "Network Security",
-  "descriptionText": "CloudFront Minimum Protocol version should be higher than TLS1.2",
+  "descriptionText": "CloudFront Minimum Protocol version should be higher than TLS 1.2",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html",
   "platform": "CloudFormation"
 }

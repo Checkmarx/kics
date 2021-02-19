@@ -3,7 +3,7 @@
   "queryName": "Google KMS Crypto Key Rotation Period Not Recommended",
   "severity": "MEDIUM",
   "category": "Encryption & Key Management",
-  "descriptionText": "Make sure Encryption keys changes after 90 days",
+  "descriptionText": "Make sure Encryption keys change after 90 days",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key",
   "platform": "Terraform"
 }

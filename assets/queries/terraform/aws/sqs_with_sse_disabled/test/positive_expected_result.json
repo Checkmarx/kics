@@ -1,16 +1,16 @@
 [
   {
-    "queryName": "SQS With SSE disabled",
+    "queryName": "SQS With SSE Disabled",
     "severity": "HIGH",
     "line": 1
   },
   {
-    "queryName": "SQS With SSE disabled",
+    "queryName": "SQS With SSE Disabled",
     "severity": "HIGH",
     "line": 8
   },
   {
-    "queryName": "SQS With SSE disabled",
+    "queryName": "SQS With SSE Disabled",
     "severity": "HIGH",
     "line": 14
   }

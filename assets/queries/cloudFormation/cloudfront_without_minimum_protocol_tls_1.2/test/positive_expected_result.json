@@ -1,11 +1,11 @@
 [
   {
-    "queryName": "CloudFront Without Minimum Protocol TLS1.2",
+    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "HIGH",
     "line": 24
   },
   {
-    "queryName": "CloudFront Without Minimum Protocol TLS1.2",
+    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "HIGH",
     "line": 32
   }

@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "IAM Policies Allows All ('*') In Policy Statement",
+    "queryName": "IAM Policy Allows All ('*') In Policy Statement",
     "severity": "MEDIUM",
     "line": 32
   }

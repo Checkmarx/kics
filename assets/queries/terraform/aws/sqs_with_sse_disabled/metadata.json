@@ -1,6 +1,6 @@
 {
   "id": "6e8849c1-3aa7-40e3-9063-b85ee300f29f",
-  "queryName": "SQS With SSE disabled",
+  "queryName": "SQS With SSE Disabled",
   "severity": "HIGH",
   "category": "Network Security",
   "descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
