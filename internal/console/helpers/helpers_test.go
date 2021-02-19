@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"reflect"
 	"strings"
 	"sync"
 	"testing"
@@ -216,6 +217,67 @@ func TestProgressBar(t *testing.T) {
 			wg.Wait()
 			splittedOut := strings.Split(out.String(), "\r")
 			require.Equal(t, tt.want, splittedOut[len(splittedOut)-1])
+		})
+	}
+}
+
+func TestFileAnalyzer(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+
+	tests := []struct {
+		name string
+		arg  string
+		want string
+	}{
+		{
+			name: "file_analizer_json",
+			arg:  "test/fixtures/config_test/kics.json",
+			want: "json",
+		},
+		{
+			name: "file_analizer_json_no_extension",
+			arg:  "test/fixtures/config_test/kics.config_json",
+			want: "json",
+		},
+		{
+			name: "file_analizer_yaml",
+			arg:  "test/fixtures/config_test/kics.yaml",
+			want: "yaml",
+		},
+		{
+			name: "file_analizer_yaml_no_extension",
+			arg:  "test/fixtures/config_test/kics.config_yaml",
+			want: "yaml",
+		},
+		{
+			name: "file_analizer_hcl",
+			arg:  "test/fixtures/config_test/kics.hcl",
+			want: "hcl",
+		},
+		{
+			name: "file_analizer_hcl_no_extension",
+			arg:  "test/fixtures/config_test/kics.config_hcl",
+			want: "hcl",
+		},
+		{
+			name: "file_analizer_toml",
+			arg:  "test/fixtures/config_test/kics.toml",
+			want: "toml",
+		},
+		{
+			name: "file_analizer_toml_no_extension",
+			arg:  "test/fixtures/config_test/kics.config_toml",
+			want: "toml",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := FileAnalyzer(tt.arg); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("FileAnalyzer() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }

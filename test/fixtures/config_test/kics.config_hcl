@@ -1,0 +1,9 @@
+"exclude-paths" = "exclude paths or files from scan"
+"log-file" = true
+"no-progress" = false
+"output-path" = "file path to store result in json format"
+"path" = "path to file or directory to scan"
+"payload-path" = "file path to store source internal representation in JSON format"
+"queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
+"type" = "type of queries to use in the scan"
+"verbose" = true

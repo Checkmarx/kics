@@ -12,8 +12,10 @@ import (
 	"sync"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"gopkg.in/yaml.v3"
 )
 
 // ProgressBar represents a Progress
@@ -175,4 +177,27 @@ func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 	}
 
 	return *fileLogger
+}
+
+// FileAnalyzer determines the type of extension in the passed config file by its content
+func FileAnalyzer(path string) string {
+	ostat, _ := os.Open(path)
+	rc, _ := ioutil.ReadAll(ostat)
+	var temp map[string]interface{}
+
+	if err := json.Unmarshal(rc, &temp); err == nil {
+		return "json"
+	}
+
+	if err := yaml.Unmarshal(rc, &temp); err == nil {
+		return "yaml"
+	}
+
+	if c, err := hcl.Parse(string(rc)); err == nil {
+		if err = hcl.DecodeObject(&temp, c); err == nil {
+			return "hcl"
+		}
+	}
+
+	return "toml"
 }
