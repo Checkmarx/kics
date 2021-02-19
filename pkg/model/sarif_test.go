@@ -8,7 +8,7 @@ import (
 
 // TestCreateSarifReport tests if creates a sarif report correctly
 func TestCreateSarifReport(t *testing.T) {
-	sarif := NewSarifReport().(*sarifReport)
+	sarif := NewSarifReport(".").(*sarifReport)
 	require.Equal(t, "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json", sarif.Schema)
 	require.Equal(t, "2.1.0", sarif.SarifVersion)
 	require.Equal(t, "KICS", sarif.Runs[0].Tool.Driver.ToolName)
@@ -91,7 +91,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -113,7 +113,7 @@ var tests = []test{
 				Category:    "test",
 				Severity:    SeverityHigh,
 				Files: []VulnerableFile{
-					{KeyActualValue: "test", FileName: "test.json", Line: 1},
+					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
 			{
@@ -124,7 +124,7 @@ var tests = []test{
 				Category:    "test",
 				Severity:    SeverityHigh,
 				Files: []VulnerableFile{
-					{KeyActualValue: "test", FileName: "test1.json", Line: 1},
+					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
 			{
@@ -135,7 +135,7 @@ var tests = []test{
 				Category:    "test",
 				Severity:    SeverityInfo,
 				Files: []VulnerableFile{
-					{KeyActualValue: "test", FileName: "test2.json", Line: 1},
+					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
 		},
@@ -195,7 +195,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -209,7 +209,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test1.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -223,7 +223,7 @@ var tests = []test{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "file://test2.json"},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
@@ -239,7 +239,7 @@ var tests = []test{
 func TestBuildIssue(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := NewSarifReport().(*sarifReport)
+			result := NewSarifReport(".").(*sarifReport)
 			for _, vq := range tt.vq {
 				result.BuildIssue(&vq)
 			}

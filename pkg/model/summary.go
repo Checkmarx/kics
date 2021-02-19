@@ -88,10 +88,10 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 
 	queries := make([]VulnerableQuery, 0, len(q))
 	sevs := map[Severity]int{"INFO": 0, "LOW": 0, "MEDIUM": 0, "HIGH": 0}
-	for _, i := range q {
-		queries = append(queries, i)
-		sevs[i.Severity] += len(i.Files)
-		severitySummary.TotalCounter += len(i.Files)
+	for idx := range q {
+		queries = append(queries, q[idx])
+		sevs[q[idx].Severity] += len(q[idx].Files)
+		severitySummary.TotalCounter += len(q[idx].Files)
 	}
 	severitySummary.SeverityCounters = sevs
 
