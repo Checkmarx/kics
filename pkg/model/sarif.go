@@ -1,9 +1,7 @@
 package model
 
 import (
-	"fmt"
 	"path/filepath"
-	"sort"
 
 	"github.com/rs/zerolog/log"
 )
@@ -152,14 +150,7 @@ func initTool() sarifTool {
 
 func initCategories() []sarifTaxanomyDefinition {
 	allCategories := []sarifTaxanomyDefinition{noCategory}
-	categoriesKeys := make([]string, 0, len(categories))
-	for category := range categories {
-		categoriesKeys = append(categoriesKeys, category)
-	}
-	sort.Strings(categoriesKeys)
-	for idx, categoryKey := range categoriesKeys {
-		category := categories[categoryKey]
-		category.DefinitionID = categoryIdentifier + fmt.Sprintf("%03d", idx+1)
+	for _, category := range categories {
 		allCategories = append(allCategories, category)
 	}
 	return allCategories

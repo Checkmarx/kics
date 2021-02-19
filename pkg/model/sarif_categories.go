@@ -11,6 +11,7 @@ var noCategory = sarifTaxanomyDefinition{
 
 var categories = map[string]sarifTaxanomyDefinition{
 	"Backup and Disaster Recovery": {
+		DefinitionID:   categoryIdentifier + "001",
 		DefinitionName: "Backup and Disaster Recovery",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -20,6 +21,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Cloud Assets Management": {
+		DefinitionID:   categoryIdentifier + "002",
 		DefinitionName: "Cloud Assets Management",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -29,6 +31,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Domain Name System (DNS)": {
+		DefinitionID:   categoryIdentifier + "003",
 		DefinitionName: "Domain Name System (DNS)",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -38,6 +41,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Encryption and Key Management": {
+		DefinitionID:   categoryIdentifier + "004",
 		DefinitionName: "Encryption and Key Management",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -47,6 +51,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Identity and Access Management": {
+		DefinitionID:   categoryIdentifier + "005",
 		DefinitionName: "Identity and Access Management",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -56,6 +61,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Logging": {
+		DefinitionID:   categoryIdentifier + "006",
 		DefinitionName: "Logging",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -65,6 +71,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Management": {
+		DefinitionID:   categoryIdentifier + "007",
 		DefinitionName: "Management",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -74,6 +81,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Monitoring": {
+		DefinitionID:   categoryIdentifier + "008",
 		DefinitionName: "Monitoring",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -83,6 +91,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Network Ports Security": {
+		DefinitionID:   categoryIdentifier + "009",
 		DefinitionName: "Network Ports Security",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -92,6 +101,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Network Security": {
+		DefinitionID:   categoryIdentifier + "010",
 		DefinitionName: "Network Security",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -101,6 +111,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Operational": {
+		DefinitionID:   categoryIdentifier + "011",
 		DefinitionName: "Operational",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -110,6 +121,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Resources Limiting": {
+		DefinitionID:   categoryIdentifier + "012",
 		DefinitionName: "Resources Limiting",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
@@ -119,6 +131,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 	},
 	"Vulnerability and Threat Management": {
+		DefinitionID:   categoryIdentifier + "013",
 		DefinitionName: "Vulnerability and Threat Management",
 		DefinitionShortDescription: sarifMessage{
 			Text: "Description of category",
