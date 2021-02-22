@@ -1,22 +1,26 @@
 [
-	{
-		"queryName": "CloudTrail Configuration Changes Without Alarms",
-		"severity": "LOW",
-		"line": 31
-	},
-	{
-		"queryName": "CloudTrail Configuration Changes Without Alarms",
-		"severity": "LOW",
-		"line": 69
-	},
-	{
-		"queryName": "CloudTrail Configuration Changes Without Alarms",
-		"severity": "LOW",
-		"line": 97
-	},
-	{
-		"queryName": "CloudTrail Configuration Changes Without Alarms",
-		"severity": "LOW",
-		"line": 120
-	}
+  {
+    "queryName": "CloudTrail Configuration Changes Without Alarms",
+    "severity": "LOW",
+    "line": 33,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "CloudTrail Configuration Changes Without Alarms",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "CloudTrail Configuration Changes Without Alarms",
+    "severity": "LOW",
+    "line": 24,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "CloudTrail Configuration Changes Without Alarms",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive1.yaml"
+  }
 ]

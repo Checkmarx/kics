@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "Amplify Branch Basic Auth Config Password Exposed",
-		"severity": "MEDIUM",
-		"line": 26
-	},
-	{
-		"queryName": "Amplify Branch Basic Auth Config Password Exposed",
-		"severity": "MEDIUM",
-		"line": 18
-	}
+  {
+    "queryName": "Amplify Branch Basic Auth Config Password Exposed",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Amplify Branch Basic Auth Config Password Exposed",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive1.yaml"
+  }
 ]

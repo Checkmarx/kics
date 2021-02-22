@@ -2,21 +2,25 @@
   {
     "queryName": "RDS Backup Retention Period Insufficient",
     "severity": "MEDIUM",
-    "line": 53
+    "line": 52,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "RDS Backup Retention Period Insufficient",
     "severity": "MEDIUM",
-    "line": 146
+    "line": 43,
+    "fileName": "positive4.yaml"
   },
   {
     "queryName": "RDS Backup Retention Period Insufficient",
     "severity": "MEDIUM",
-    "line": 173
+    "line": 22,
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "RDS Backup Retention Period Insufficient",
     "severity": "MEDIUM",
-    "line": 233
+    "line": 35,
+    "fileName": "positive2.yaml"
   }
 ]

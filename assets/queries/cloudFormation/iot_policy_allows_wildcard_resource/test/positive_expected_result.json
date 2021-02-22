@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "IoT Policy Allows Wildcard Resource",
-		"severity": "MEDIUM",
-		"line": 13
-	}
+  {
+    "queryName": "IoT Policy Allows Wildcard Resource",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  }
 ]

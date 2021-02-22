@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Lambda Permission Principal Is Wildcard",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "Lambda Permission Principal Is Wildcard",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml"
+  }
 ]

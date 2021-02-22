@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "Workspace Without Encryption",
-		"severity": "MEDIUM",
-		"line": 5
-	},
-	{
-		"queryName": "Workspace Without Encryption",
-		"severity": "MEDIUM",
-		"line": 29
-	}
+  {
+    "queryName": "Workspace Without Encryption",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Workspace Without Encryption",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  }
 ]

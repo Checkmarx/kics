@@ -2,10 +2,10 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.PolicyName == "AWSSupportAccess"
+	resource.Properties.PolicyName == "AWSSupportAccess"
 	resource.Type == "AWS::IAM::Policy"
 
-	not hasAttributeList(resource, "Roles")
+	not hasAttributeList(resource.Properties, "Roles")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,10 +18,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.PolicyName == "AWSSupportAccess"
+	resource.Properties.PolicyName == "AWSSupportAccess"
 	resource.Type == "AWS::IAM::Policy"
 
-	not hasAttributeList(resource, "Users")
+	not hasAttributeList(resource.Properties, "Users")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -34,10 +34,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.PolicyName == "AWSSupportAccess"
+	resource.Properties.PolicyName == "AWSSupportAccess"
 	resource.Type == "AWS::IAM::Policy"
 
-	not hasAttributeList(resource, "Groups")
+	not hasAttributeList(resource.Properties, "Groups")
 
 	result := {
 		"documentId": input.document[i].id,

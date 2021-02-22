@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "SQS Queue Policy With Wildcard Principals",
-		"severity": "HIGH",
-		"line": 19
-	},
-	{
-		"queryName": "SQS Queue Policy With Wildcard Principals",
-		"severity": "HIGH",
-		"line": 38
-	}
+  {
+    "queryName": "SQS Queue Policy With Wildcard Principals",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "SQS Queue Policy With Wildcard Principals",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.yaml"
+  }
 ]

@@ -17,20 +17,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::AutoScaling::AutoScalingGroup"
-	resource.Properties.LoadBalancerNames == null
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.LoadBalancerNames", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.LoadBalancerNames' is not null", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.LoadBalancerNames' is null", [name]),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::AutoScaling::AutoScalingGroup"
 	elbs := resource.Properties.LoadBalancerNames
 	check_size(elbs)
 

@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "EC2 network ACL overlapping ports",
+    "severity": "HIGH",
+    "line": 78,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 network ACL overlapping ports",
+    "severity": "HIGH",
+    "line": 90,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 network ACL overlapping ports",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 network ACL overlapping ports",
+    "severity": "HIGH",
+    "line": 30,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 network ACL overlapping ports",
+    "severity": "HIGH",
+    "line": 42,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 network ACL overlapping ports",
+    "severity": "HIGH",
+    "line": 54,
+    "fileName": "positive1.yaml"
+  }
+]

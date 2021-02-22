@@ -1,26 +1,32 @@
-[{
-        "queryName": "S3 Bucket Without SSL Enforcement",
-        "severity": "HIGH",
-        "line": 4
-    },
-    {
-        "queryName": "S3 Bucket Without SSL Enforcement",
-        "severity": "HIGH",
-        "line": 46
-    },
-    {
-        "queryName": "S3 Bucket Without SSL Enforcement",
-        "severity": "HIGH",
-        "line": 99
-    },
-    {
-        "queryName": "S3 Bucket Without SSL Enforcement",
-        "severity": "HIGH",
-        "line": 144
-    },
-    {
-        "queryName": "S3 Bucket Without SSL Enforcement",
-        "severity": "HIGH",
-        "line": 152
-    }
+[
+  {
+    "queryName": "S3 Bucket Without SSL Enforcement",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL Enforcement",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL Enforcement",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL Enforcement",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL Enforcement",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  }
 ]

@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
-		"severity": "MEDIUM",
-		"line": 28
-	}
+  {
+    "queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive1.yaml"
+  }
 ]

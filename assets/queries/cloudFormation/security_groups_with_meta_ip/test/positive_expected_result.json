@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Security Groups With Meta Ip",
-		"severity": "HIGH",
-		"line": 19
-	} 
+  {
+    "queryName": "Security Groups With Meta Ip",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive1.yaml"
+  }
 ]

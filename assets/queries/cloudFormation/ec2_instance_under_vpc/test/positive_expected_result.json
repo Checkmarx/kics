@@ -2,11 +2,13 @@
   {
     "queryName": "EC2 Instance Under VPC",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "EC2 Instance Under VPC",
     "severity": "MEDIUM",
-    "line": 45
+    "line": 4,
+    "fileName": "positive2.yaml"
   }
 ]

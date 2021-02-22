@@ -6,7 +6,7 @@ CxPolicy[result] {
 	bucket := resource.Properties.BucketName
 	not bucketName(bucket)
     not bucketName(name)
-	
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BucketName", [name]),

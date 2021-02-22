@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "RDS Public Interface",
-		"severity": "HIGH",
-		"line": 69
-	}
+  {
+    "queryName": "RDS Public Interface",
+    "severity": "HIGH",
+    "line": 69,
+    "fileName": "positive1.yaml"
+  }
 ]

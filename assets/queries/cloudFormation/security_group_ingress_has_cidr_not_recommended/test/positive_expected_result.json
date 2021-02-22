@@ -2,11 +2,13 @@
   {
     "queryName": "Security Group Ingress Has CIDR Not Recommended",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Ingress Has CIDR Not Recommended",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "fileName": "positive1.yaml"
   }
 ]

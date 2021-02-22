@@ -2,16 +2,19 @@
   {
     "queryName": "Kinesis Stream Without SSE",
     "severity": "HIGH",
-    "line": 8
+    "line": 26,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Kinesis Stream Without SSE",
     "severity": "HIGH",
-    "line": 19
+    "line": 19,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Kinesis Stream Without SSE",
     "severity": "HIGH",
-    "line": 26
+    "line": 8,
+    "fileName": "positive1.yaml"
   }
 ]

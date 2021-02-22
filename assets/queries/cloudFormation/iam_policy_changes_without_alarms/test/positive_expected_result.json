@@ -1,22 +1,26 @@
 [
-	{
-		"queryName": "IAM Policy Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 31
-	},
-	{
-		"queryName": "IAM Policy Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 69
-	},
-	{
-		"queryName": "IAM Policy Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 97
-	},
-	{
-		"queryName": "IAM Policy Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 120
-	}
+  {
+    "queryName": "IAM Policy Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "IAM Policy Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "IAM Policy Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "IAM Policy Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.yaml"
+  }
 ]

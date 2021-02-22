@@ -2,16 +2,19 @@
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "MEDIUM",
-    "line": 54
+    "line": 54,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "MEDIUM",
-    "line": 66
+    "line": 66,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "MEDIUM",
-    "line": 61
+    "line": 61,
+    "fileName": "positive1.yaml"
   }
 ]

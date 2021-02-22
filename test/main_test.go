@@ -152,8 +152,8 @@ func getQueryContent(queryDir string) (string, error) {
 	return string(content), err
 }
 
-func getSampleContent(params *testCaseParamsType) ([]byte, error) {
-	samplePath := checkSampleExistsAndGetPath(params)
+func getSampleContent(tb testing.TB, params *testCaseParamsType) ([]byte, error) {
+	samplePath := checkSampleExistsAndGetPath(tb, params)
 	return getFileContent(samplePath)
 }
 
@@ -161,27 +161,32 @@ func getFileContent(filePath string) ([]byte, error) {
 	return ioutil.ReadFile(filePath)
 }
 
-func getSamplePath(params *testCaseParamsType) string {
+func getSamplePath(tb testing.TB, params *testCaseParamsType) string {
 	var samplePath string
 	if params.samplePath != "" {
 		samplePath = params.samplePath
 	} else {
-		samplePath = checkSampleExistsAndGetPath(params)
+		samplePath = checkSampleExistsAndGetPath(tb, params)
 	}
 	return samplePath
 }
 
-func checkSampleExistsAndGetPath(params *testCaseParamsType) string {
+func checkSampleExistsAndGetPath(tb testing.TB, params *testCaseParamsType) string {
 	var samplePath string
+	var globMatch string
 	extensions := fileExtension[params.platform]
 	for _, v := range extensions {
-		joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
-		_, err := os.Stat(joinedPath)
-		if err == nil {
-			samplePath = joinedPath
-			break
+		joinedPathList, _ := filepath.Glob(filepath.Join(params.queryDir, fmt.Sprintf("test/positive*%s", v)))
+		for _, path := range joinedPathList {
+			globMatch = path
+			_, err := os.Stat(path)
+			if err == nil {
+				samplePath = path
+				break
+			}
 		}
 	}
+	require.False(tb, samplePath == "", "Sample not found in path: %s", globMatch)
 	return samplePath
 }
 

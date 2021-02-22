@@ -2,11 +2,13 @@
   {
     "queryName": "Security Group Ingress With All Protocols",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Ingress With All Protocols",
     "severity": "MEDIUM",
-    "line": 35
+    "line": 35,
+    "fileName": "positive1.yaml"
   }
 ]

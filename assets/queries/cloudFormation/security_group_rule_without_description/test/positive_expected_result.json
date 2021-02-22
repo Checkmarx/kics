@@ -2,26 +2,31 @@
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "LOW",
-    "line": 7
+    "line": 12,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "LOW",
-    "line": 12
+    "line": 7,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "LOW",
-    "line": 19
+    "line": 19,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "LOW",
-    "line": 33
+    "line": 33,
+    "fileName": "positive1.yaml"
   }
 ]

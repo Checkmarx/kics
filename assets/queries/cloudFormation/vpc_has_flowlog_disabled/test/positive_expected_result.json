@@ -2,6 +2,7 @@
 	{
 		"queryName": "VPC Has FlowLog Disabled",
 		"severity": "MEDIUM",
-		"line": 34
+		"line": 34,
+    "fileName": "positive1.yaml"
 	}
 ]

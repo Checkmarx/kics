@@ -1,22 +1,27 @@
+
 [
   {
     "queryName": "Config Configuration Without Alarms",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 33,
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "Config Configuration Without Alarms",
     "severity": "MEDIUM",
-    "line": 69
+    "line": 11,
+    "fileName": "positive4.yaml"
   },
   {
     "queryName": "Config Configuration Without Alarms",
     "severity": "MEDIUM",
-    "line": 97
+    "line": 24,
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "Config Configuration Without Alarms",
     "severity": "MEDIUM",
-    "line": 120
+    "line": 31,
+    "fileName": "positive1.yaml"
   }
 ]

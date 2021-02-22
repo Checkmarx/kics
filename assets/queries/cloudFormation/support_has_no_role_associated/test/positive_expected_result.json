@@ -2,16 +2,19 @@
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
-    "line": 16
+    "line": 16,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
-    "line": 28
+    "line": 28,
+    "fileName": "positive1.yaml"
   }
 ]

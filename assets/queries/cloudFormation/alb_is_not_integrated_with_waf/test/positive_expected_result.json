@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "ALB Is Not Integrated With WAF",
-		"severity": "MEDIUM",
-		"line": 3
-	},
-	{
-		"queryName": "ALB Is Not Integrated With WAF",
-		"severity": "MEDIUM",
-		"line": 22
-	}
+  {
+    "queryName": "ALB Is Not Integrated With WAF",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ALB Is Not Integrated With WAF",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.yaml"
+  }
 ]

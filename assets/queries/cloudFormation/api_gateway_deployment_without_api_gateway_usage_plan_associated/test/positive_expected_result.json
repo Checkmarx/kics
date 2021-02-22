@@ -1,22 +1,26 @@
 [
-	{
-		"queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-		"severity": "LOW",
-		"line": 4
-	},
-	{
-		"queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-		"severity": "LOW",
-		"line": 4
-	},
-	{
-		"queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-		"severity": "LOW",
-		"line": 16
-	},
-	{
-		"queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-		"severity": "LOW",
-		"line": 42
-	}
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive3.yaml"
+  }
 ]

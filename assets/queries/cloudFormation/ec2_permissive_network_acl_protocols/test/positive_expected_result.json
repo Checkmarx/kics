@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "EC2 permissive network Acl protocols",
-		"severity": "MEDIUM",
-		"line": 17
-	}
+  {
+    "queryName": "EC2 Permissive Network Acl Protocols",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive1.yaml"
+  }
 ]

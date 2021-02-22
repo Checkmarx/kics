@@ -2,6 +2,7 @@
   {
     "queryName": "SNS Topic Without KmsMasterKeyId",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive1.yaml"
   }
 ]

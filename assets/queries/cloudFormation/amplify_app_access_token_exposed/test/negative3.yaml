@@ -1,0 +1,18 @@
+Parameters:
+  ParentAccessToken:
+    Description: 'Access Token'
+    Type: String
+    Default: ""
+Resources:
+  AmpApp:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: !Ref ParentAccessToken
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: true
+      IAMServiceRole: String
+      Name: NewAmpApp
+      OauthToken: String
+      Repository: String

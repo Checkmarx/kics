@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
 ]

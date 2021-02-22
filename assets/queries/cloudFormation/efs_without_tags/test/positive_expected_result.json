@@ -2,6 +2,7 @@
   {
     "queryName": "EFS Without Tags",
     "severity": "LOW",
-    "line": 16
+    "line": 15,
+    "fileName": "positive1.yaml"
   }
 ]

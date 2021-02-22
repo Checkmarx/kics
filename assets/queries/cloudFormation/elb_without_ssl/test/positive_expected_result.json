@@ -2,6 +2,7 @@
   {
     "queryName": "ELB Without SSL",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "fileName": "positive1.yaml"
   }
 ]

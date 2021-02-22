@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "Amplify App OAuth Token Exposed",
-		"severity": "MEDIUM",
-		"line": 19
-	},
-	{
-		"queryName": "Amplify App OAuth Token Exposed",
-		"severity": "MEDIUM",
-		"line": 38
-	}
+  {
+    "queryName": "Amplify App OAuth Token Exposed",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Amplify App OAuth Token Exposed",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  }
 ]

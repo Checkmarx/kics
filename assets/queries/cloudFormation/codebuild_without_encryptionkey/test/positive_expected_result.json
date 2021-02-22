@@ -2,6 +2,7 @@
   {
     "queryName": "CodeBuild Without EncryptionKey",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive1.yaml"
   }
 ]

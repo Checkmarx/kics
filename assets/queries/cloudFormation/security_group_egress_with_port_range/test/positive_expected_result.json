@@ -2,11 +2,13 @@
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 25,
+    "fileName": "positive1.yaml"
   }
 ]

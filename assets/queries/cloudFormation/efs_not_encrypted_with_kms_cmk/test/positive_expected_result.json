@@ -2,6 +2,7 @@
   {
     "queryName": "EFS Not Encrypted With KMS CMK",
     "severity": "HIGH",
-    "line": 82
+    "line": 82,
+    "fileName": "positive1.yaml"
   }
 ]

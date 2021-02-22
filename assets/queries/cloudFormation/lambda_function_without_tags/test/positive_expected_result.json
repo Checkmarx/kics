@@ -2,6 +2,7 @@
   {
     "queryName": "Lambda Function Without Tags",
     "severity": "MEDIUM",
-    "line": 52
+    "line": 52,
+    "fileName": "positive1.yaml"
   }
 ]
