@@ -13,11 +13,9 @@
 
 <a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
-**KICS** is an open source solution for static code analysis of Infrastructure as Code.
+Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with **KICS** by Checkmarx.
 
-**K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
-
-It is as simple as running a CLI tool, making it easy to integrate into any project CI.
+**KICS** stands for **K**eeping **I**nfrastructure as **C**ode **S**ecure, it is open source and is a must-have for any cloud native project.
 
 #### Supported Platforms
 

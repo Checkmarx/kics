@@ -20,10 +20,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::IAM::User"
 	groups := resource.Properties.Groups
-
-    is_array(groups)
-    count(groups) == 0
-
+	count(groups) == 0
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Groups", [name]),

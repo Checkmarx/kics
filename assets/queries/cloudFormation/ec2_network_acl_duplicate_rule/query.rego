@@ -4,7 +4,7 @@ CxPolicy[result] {
 	entry1 := input.document[i].Resources[name]
 	entry1.Type == "AWS::EC2::NetworkAclEntry"
 
-	entry2 := input.document[_].Resources[_]
+	entry2 := input.document[i].Resources[_]
 	entry2.Type == "AWS::EC2::NetworkAclEntry"
 
 	entry1 != entry2
@@ -34,9 +34,13 @@ getRef(obj) = obj.Ref {
 }
 
 getTraffic(entry) = "egress" {
-	object.get(entry.Properties, "Egress", "undefined") == true
+	lower(sprintf("%v",[entry.Properties.Egress])) == "true"
 } else = "ingress" {
-	true
+	lower(sprintf("%v",[entry.Properties.Egress])) == "false"
+} else = "egress" {
+	lower(sprintf("%v",[entry.Properties.Ingress])) == "false"
+} else = "ingress" {
+	lower(sprintf("%v",[entry.Properties.Ingress])) == "true"
 }
 
 compareRuleNumber(entry1, entry2){
