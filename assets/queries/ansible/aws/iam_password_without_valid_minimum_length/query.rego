@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	firstPolicy = tasks[_]
 	policyBody = firstPolicy["community.aws.iam_password_policy"]
 	policyName = firstPolicy.name
@@ -20,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	firstPolicy = tasks[_]
 	policyBody = firstPolicy["community.aws.iam_password_policy"]
 	policyName = firstPolicy.name
@@ -43,12 +44,4 @@ getName(policyBody) = "min_pw_length" {
 	object.get(policyBody, "minimum_password_length", "undefined") != "undefined"
 } else = false {
 	true
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

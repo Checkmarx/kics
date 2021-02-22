@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	snsTopicCommunity := task["community.aws.sns_topic"]
 	snsTopicName := task.name
@@ -19,7 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	snsTopic := task.sns_topic
 	snsTopicName := task.name
@@ -32,12 +33,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "sns_topic.subscriptions should be undefined",
 		"keyActualValue": "sns_topic.subscriptions is defined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

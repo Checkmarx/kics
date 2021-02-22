@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cloudwatchlogs := task["community.aws.ecs_ecr"]
 	pol := cloudwatchlogs.policy.Statement[index].Principal
@@ -19,7 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cloudwatchlogs := task["community.aws.ecs_ecr"]
 	pol := cloudwatchlogs.policy
@@ -32,12 +33,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'policy.Principal' is not equal '*'",
 		"keyActualValue": "'policy.Principal' is equal '*'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	sqsPolicy := task["community.aws.sqs_queue"]
 	sqsPolicyName := task.name
@@ -21,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	sqsPolicy := task["community.aws.sqs_queue"]
 	sqsPolicyName := task.name
@@ -36,14 +37,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal.AWS should not be equal to '*'", [sqsPolicyName]),
 		"keyActualValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal.AWS is equal to '*'", [sqsPolicyName]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 checkPrincipal(principal) {

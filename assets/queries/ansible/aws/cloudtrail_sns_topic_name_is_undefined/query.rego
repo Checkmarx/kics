@@ -1,7 +1,8 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	playbooks := getTasks(input.document[i])
+	playbooks := ansLib.getTasks(input.document[i])
 	redis_cache := playbooks[j]
 	instance := redis_cache["community.aws.cloudtrail"]
 
@@ -17,7 +18,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	playbooks := getTasks(input.document[i])
+	playbooks := ansLib.getTasks(input.document[i])
 	redis_cache := playbooks[j]
 	instance := redis_cache["community.aws.cloudtrail"]
 
@@ -30,11 +31,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
 		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [playbooks[j].name]),
 	}
-}
-
-getTasks(document) = result {
-	result := document.playbooks[0].tasks
-} else = result {
-	object.get(document.playbooks[0], "tasks", "undefined") == "undefined"
-	result := document.playbooks
 }

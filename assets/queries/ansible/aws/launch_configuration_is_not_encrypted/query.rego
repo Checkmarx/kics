@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["community.aws.ec2_lc"]
 	clusterName := task.name
@@ -23,7 +24,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cluster := task["community.aws.ec2_lc"]
 	clusterName := task.name
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	volumes := cluster.volumes
 	volume := volumes[v]
 
-	not isAnsibleTrue(volume.encrypted)
+	not ansLib.isAnsibleTrue(volume.encrypted)
 	deviceName := volume.device_name
 
 	result := {
@@ -41,20 +42,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.ec2_lc.volumes[*].encrypted should be set to true",
 		"keyActualValue": "community.aws.ec2_lc.volumes[*].encrypted is set to false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }

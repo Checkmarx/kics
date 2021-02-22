@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	object.get(task["community.aws.cloudwatchlogs_log_group"], "retention", "undefined") == "undefined"
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	value := task["community.aws.cloudwatchlogs_log_group"].retention
@@ -34,12 +35,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.cloudwatchlogs_log_group.retention is set and valid",
 		"keyActualValue": "community.aws.cloudwatchlogs_log_group.retention is set and invalid",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

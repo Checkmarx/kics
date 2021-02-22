@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	user_data := task["community.aws.ec2_instance"].user_data
 
@@ -19,7 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	user_data := task["community.aws.ec2_instance"].user_data
 
@@ -32,12 +33,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'community.aws.ec2_instance.user_data' doesn't contain access key",
 		"keyActualValue": "'community.aws.ec2_instance.user_data' contains access key",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
