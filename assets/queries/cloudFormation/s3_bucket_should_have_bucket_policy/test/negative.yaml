@@ -27,3 +27,29 @@ Resources:
                 'aws:Referer':
                   - 'http://www.example.com/*'
                   - 'http://example.net/*'
+  S3Bucket9:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: docexamplebucket
+  SampleBucketPolicy10:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref docexamplebucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource:
+              'Fn::Join':
+                - ''
+                - - 'arn:aws:s3:::'
+                  - Ref: docexamplebucket
+                  - /*
+            Principal: '*'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'
