@@ -6,7 +6,7 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.0
 	github.com/getsentry/sentry-go v0.10.0
-	github.com/golang/mock v1.4.4
+	github.com/golang/mock v1.5.0
 	github.com/google/go-cmp v0.5.0 // indirect
 	github.com/google/uuid v1.2.0
 	github.com/hashicorp/hcl v1.0.0
