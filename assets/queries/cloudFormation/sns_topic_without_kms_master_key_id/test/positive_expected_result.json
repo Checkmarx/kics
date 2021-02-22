@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "SNS Topic Without KmsMasterKeyId",
+    "severity": "MEDIUM",
+    "line": 5
+  }
+]

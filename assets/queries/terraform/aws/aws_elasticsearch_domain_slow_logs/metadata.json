@@ -1,9 +1,0 @@
-{
-	"id": "e979fcbc-df6c-422d-9458-c33d65e71c45",
-	"queryName": "AWS Elasticsearch Domain Slow Logs",
-	"severity": "MEDIUM",
-	"category": "Logging",
-	"descriptionText": "Ensure that AWS Elasticsearch enables support for slow logs",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
-	"platform": "Terraform"
-}

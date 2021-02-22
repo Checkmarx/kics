@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Security Group Ingress With Port Range",
+    "severity": "MEDIUM",
+    "line": 8
+  },
+  {
+    "queryName": "Security Group Ingress With Port Range",
+    "severity": "MEDIUM",
+    "line": 37
+  }
+]

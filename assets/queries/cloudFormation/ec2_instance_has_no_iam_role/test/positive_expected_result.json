@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 5
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 30
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 56
+  }
+]

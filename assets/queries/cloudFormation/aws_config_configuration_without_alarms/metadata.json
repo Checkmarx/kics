@@ -1,9 +1,0 @@
-{
-	"id": "fdd9a357-f72d-42c0-af68-78b2b63269cf",
-	"queryName": "AWS Config Configuration Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Monitoring",
-	"descriptionText": "A log metric filter and alarm should exist for AWS Config Configuration",
-	"descriptionUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html",
-	"platform": "CloudFormation"
-}

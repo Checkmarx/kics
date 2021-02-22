@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 31
+  },
+  {
+    "queryName": "Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 69
+  },
+  {
+    "queryName": "Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 97
+  },
+  {
+    "queryName": "Config Configuration Without Alarms",
+    "severity": "MEDIUM",
+    "line": 120
+  }
+]

@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "AWS Config Configuration Aggregator All Regions Not Enabled",
-		"severity": "HIGH",
-		"line": 10
-	},
-	{
-		"queryName": "AWS Config Configuration Aggregator All Regions Not Enabled",
-		"severity": "HIGH",
-		"line": 24
-	}
+  {
+    "queryName": "Config Configuration Aggregator All Regions Not Enabled",
+    "severity": "HIGH",
+    "line": 10
+  },
+  {
+    "queryName": "Config Configuration Aggregator All Regions Not Enabled",
+    "severity": "HIGH",
+    "line": 24
+  }
 ]

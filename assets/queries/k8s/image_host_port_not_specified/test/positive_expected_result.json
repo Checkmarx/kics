@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Image Host Port Not Specified",
+    "severity": "LOW",
+    "line": 9
+  },
+  {
+    "queryName": "Image Host Port Not Specified",
+    "severity": "LOW",
+    "line": 24
+  }
+]

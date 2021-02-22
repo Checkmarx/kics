@@ -20,8 +20,5 @@
 # Log Files
 *.log
 
-# Configuration file
-config.*
-
 # ci/cd binaries
 .bin

@@ -46,10 +46,7 @@ var scanCmd = &cobra.Command{
 	Use:   "scan",
 	Short: "Executes a scan analysis",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-		if cfgFile != "" {
-			return initializeConfig(cmd)
-		}
-		return nil
+		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return scan()
@@ -57,13 +54,25 @@ var scanCmd = &cobra.Command{
 }
 
 func initializeConfig(cmd *cobra.Command) error {
+	if cfgFile == "" {
+		_, err := os.Stat(filepath.ToSlash(filepath.Join(path, "kics.config")))
+		if err != nil {
+			if os.IsNotExist(err) {
+				return nil
+			}
+			return err
+		}
+		cfgFile = filepath.ToSlash(filepath.Join(path, "kics.config"))
+	}
 	v := viper.New()
 	base := filepath.Base(cfgFile)
-	if strings.LastIndex(base, ".") > -1 {
-		base = base[:strings.LastIndex(base, ".")]
-	}
 	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
+	ext, err := consoleHelpers.FileAnalyzer(cfgFile)
+	if err != nil {
+		return err
+	}
+	v.SetConfigType(ext)
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}

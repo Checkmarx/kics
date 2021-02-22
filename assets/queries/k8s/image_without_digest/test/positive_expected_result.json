@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "line": 8
+  },
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "line": 19
+  }
+]

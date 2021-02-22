@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "IAM policies without Groups",
-		"severity": "LOW",
-		"line": 25
-	}
+  {
+    "queryName": "IAM Policies Without Groups",
+    "severity": "LOW",
+    "line": 25
+  }
 ]

@@ -30,8 +30,12 @@ Support of other solutions and additional cloud providers are on the [roadmap](d
 Setting up and using KICS is super-easy.
 
 -   First, see how to [install and get KICS running](docs/getting-started.md).
--   Next, check how you can easily [integrate it into your CI](docs/integrations.md) for any project.
--   Eventually, [explore the output results format](docs/results.md) and quickly fix the issues detected.
+-   Then explore KICS [output results format](docs/results.md) and quickly fix the issues detected.
+
+Interested in more advanced stuff?
+-   Deep dive into KICS [queries](docs/queries.md).
+-   Understand how to [integrate](docs/integrations.md) KICS in your favourit CI/CD pipelines.
+
 
 ## How it Works
 
@@ -43,7 +47,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 ## Release process
 
 KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
-The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for both Windows and Linux, as well a Docker image in [DockerHub](https://hub.docker.com/r/checkmarx/kics)
+The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for both Windows and Linux, as well a Docker image in <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
 ## Contribution
 
@@ -55,7 +59,7 @@ KICS is a true community project. It's built as an open source from day one, and
 <a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
 [KICS public documentation](https://docs.kics.io/) has all the project aspects covered.  
-Join the chat [on Gitter](https://gitter.im/kics-io/community).  
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keeping Infrastructure as Code Secure!**

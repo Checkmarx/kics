@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "SQS Queue Policy Allows Not Principal",
+    "severity": "MEDIUM",
+    "line": 16
+  },
+  {
+    "queryName": "SQS Queue Policy Allows Not Principal",
+    "severity": "MEDIUM",
+    "line": 35
+  }
+]

@@ -1,10 +1,12 @@
 ## Overview
 
-KICS is 100% open source is written in Golang using Open Policy Agent ([OPA](https://www.openpolicyagent.org/)).
+KICS is 100% open source is written in Golang using Open Policy Agent (<a href="https://www.openpolicyagent.org/" target="_blank">OPA</a>).
 
-Golang speed, simplicity and reliability made it the perfect choice for writing KICS, while [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) as a query language, was a native choice to implement security queries. 
+Golang speed, simplicity and reliability made it the perfect choice for writing KICS, while <a href="https://www.openpolicyagent.org/docs/latest/policy-language/" target="_blank">Rego</a> as a query language, was a native choice to implement security queries. 
 
 So far have written 1000+ ready-to-use queries that cover a wide range of vulnerabilities checks for AWS, GCP, Azure and other cloud providers. 
+
+---
 
 ## High Level Architecture
 
@@ -21,9 +23,11 @@ At a high very level, KICS is composed of the following main components: a comma
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/high-level-arch.png" align="left">  
 
+<br/>
 
 ## Execution Flow
 
 The sequence diagram below depicts interaction of the main KICS components:  
+<br/>
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-1.png" align="left">  
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png" align="left">
