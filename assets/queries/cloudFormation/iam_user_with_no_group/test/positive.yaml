@@ -32,7 +32,7 @@ Resources:
     emptyGroup:
       Type: AWS::IAM::User
       Properties:
-        Groups:
+        Groups: []
         Path: "/"
         LoginProfile:
           Password: myP@ssW0rd
