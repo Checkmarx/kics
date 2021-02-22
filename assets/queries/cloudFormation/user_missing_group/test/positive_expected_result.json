@@ -8,10 +8,5 @@
     "queryName": "IAM User With No Group",
     "severity": "LOW",
     "line": 35
-  },
-  {
-    "queryName": "IAM User With No Group",
-    "severity": "LOW",
-    "line": 64
   }
 ]
