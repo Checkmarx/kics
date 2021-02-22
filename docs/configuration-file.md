@@ -1,10 +1,12 @@
 ## Configuration File
 
-Configuration file example:
+KICS allow you to provide all configurations either as command line arguments or as code.
+
+Here is a Configuration file example:
 
 ```JSON
 {
-  "path": "assets/queries",
+  "path": "assets/iac_samples",
   "verbose": true,
   "log-file": true,
   "queries-path": "assets/queries",
@@ -12,27 +14,25 @@ Configuration file example:
 }
 ```
 
-## Supported extensions
+---
 
-    -JSON
-    -TOML
-    -YAML
-    -HCL
+## Supported Formats
+KICS supports the following formats for the configuration files.
 
-## How to Add and Run a Configuration File
+- JSON
+- TOML
+- YAML
+- HCL
 
-1. Start by creating a file called 'config' using your preferred extension.
-2. From the templates section, look for the extension you used and copy its content to your 'config' file changing the content as needed.
-3. To use KICS with your configuration file, run the command:
-```
-go run ./cmd/console/main.go scan --config <path-of-configuration-file>
-```
+Notice that format is about the content and not the file extension.
 
-(CLI flags will have priority over the configuration file properties)
+KICS is able to infer the format without the need of file extension.
 
-# Templates
+---
 
-## JSON Format
+## Templates
+
+#### JSON Format
 
 ```JSON
 {
@@ -48,7 +48,7 @@ go run ./cmd/console/main.go scan --config <path-of-configuration-file>
 }
 ```
 
-## YAML Format
+#### YAML Format
 
 ```YAML
 path: "path to file or directory to scan"
@@ -62,7 +62,7 @@ type: "type of queries to use in the scan"
 payload-path: "file path to store source internal representation in JSON format"
 ```
 
-## TOML Format
+#### TOML Format
 
 ```TOML
 path = "path to file or directory to scan"
@@ -76,7 +76,7 @@ type = "type of queries to use in the scan"
 payload-path = "file path to store source internal representation in JSON format"
 ```
 
-## HCL Format
+#### HCL Format
 
 ```hcl
 "exclude-paths" = "exclude paths or files from scan"
@@ -89,3 +89,29 @@ payload-path = "file path to store source internal representation in JSON format
 "type" = "type of queries to use in the scan"
 "verbose" = true
 ```
+
+---
+
+
+## How to Use 
+You can enclose all your configurations in a file and use it in two different ways.
+
+#### Command Argument File
+
+1. Create a file with any name/any extension. For the sake of example, let's call it `kics-config.json`
+2. Add the necessary configurations as shown in the templates section in any of the supported formats.
+3. Pass the configuration file as argument:
+```
+kics scan --config kics-config.json
+```
+
+#### Configuration as Code
+
+1. Create a file named `kics.config` and place it in the root of your project repository.
+2. Add the necessary configurations as shown in the templates section in any of the supported formats.
+3. Invoke KICS without arguments (KICS will search for the specific file in the root)
+```
+kics scan
+```
+
+**Note**: CLI flags will have priority over the configuration file properties!

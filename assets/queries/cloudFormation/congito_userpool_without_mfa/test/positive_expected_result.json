@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "AWS Cognito UserPool Without MFA",
+    "queryName": "Cognito UserPool Without MFA",
     "severity": "MEDIUM",
     "line": 14,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "AWS Cognito UserPool Without MFA",
+    "queryName": "Cognito UserPool Without MFA",
     "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive1.yaml"

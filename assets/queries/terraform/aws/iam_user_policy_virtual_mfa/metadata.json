@@ -1,9 +1,0 @@
-{
-	"id": "b5681959-6c09-4f55-b42b-c40fa12d03ec",
-	"queryName": "IAM User Policy Virtual MFA",
-	"severity": "HIGH",
-	"category": "Identity and Access Management",
-	"descriptionText": "Check if the root user is authenticated with MFA",
-	"descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html",
-	"platform": "Terraform"
-}

@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "AWS SQS Queue Policy Allows NotAction",
+    "queryName": "SQS Queue Policy Allows NotAction",
     "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive1.yaml"

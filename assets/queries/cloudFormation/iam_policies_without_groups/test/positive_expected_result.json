@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "IAM policies without Groups",
+    "queryName": "IAM Policies Without Groups",
     "severity": "LOW",
     "line": 25,
     "fileName": "positive1.yaml"

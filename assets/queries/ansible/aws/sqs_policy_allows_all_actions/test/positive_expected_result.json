@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "SQS policy allows ALL (*) actions",
+		"queryName": "SQS Policy Allows ALL (*) Actions",
 		"severity": "MEDIUM",
 		"line": 12
 	}

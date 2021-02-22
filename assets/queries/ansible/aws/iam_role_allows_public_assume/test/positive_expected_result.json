@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "IAM role allows public assume",
+		"queryName": "IAM Role Allows Public Assume",
 		"severity": "LOW",
 		"line": 12
 	}

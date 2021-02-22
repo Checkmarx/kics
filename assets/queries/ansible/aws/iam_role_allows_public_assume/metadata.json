@@ -1,6 +1,6 @@
 {
 	"id": "12a7a7ce-39d6-49dd-923d-aeb4564eb66c",
-	"queryName": "IAM role allows public assume",
+	"queryName": "IAM Role Allows Public Assume",
 	"severity": "LOW",
 	"category": "Identity and Access Management",
 	"descriptionText": "IAM role allows All services or principals to assume it",

@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "EBS Volume Encryption Key Rule",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive1.yaml"
-  }
-]

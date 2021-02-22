@@ -1,6 +1,6 @@
 {
 	"id": "babdedcf-d859-43da-9a7b-6d72e661a8fd",
-	"queryName": "IAM role allows all principals to assume",
+	"queryName": "IAM Role Allows All Principals To Assume",
 	"severity": "LOW",
 	"category": "Identity and Access Management",
 	"descriptionText": "IAM role allows all services or principals to assume it",

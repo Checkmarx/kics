@@ -119,10 +119,10 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bool {
 	if vulnerabilitySlice[i].FileName != "" {
 		compareFile := strings.Compare(filepath.Base(vulnerabilitySlice[i].FileName), filepath.Base(vulnerabilitySlice[j].FileName))
-		if compareFile < 0 {
-			return true
-		} else if compareFile == 0 {
+		if compareFile == 0 {
 			return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
+		} else if compareFile < 0 {
+			return true
 		}
 		return false
 	}

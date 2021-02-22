@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "AWS GuardDuty Detector",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "GuardDuty Detector Disabled",
+    "severity": "MEDIUM",
+    "line": 2
+  }
 ]
