@@ -326,7 +326,6 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 		} else {
 			vulnerabilities = append(vulnerabilities, vulnerability)
 		}
-
 	}
 
 	if failedDetectLine {

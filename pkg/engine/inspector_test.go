@@ -337,7 +337,6 @@ func TestNewInspector(t *testing.T) { // nolint
 			},
 		},
 	})
-
 	type args struct {
 		ctx            context.Context
 		source         QueriesSource
