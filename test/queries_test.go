@@ -107,7 +107,12 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			return q, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
+	inspector, err := engine.NewInspector(ctx,
+		queriesSource,
+		engine.DefaultVulnerabilityBuilder,
+		&tracker.CITracker{},
+		map[string]bool{})
+
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
