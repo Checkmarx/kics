@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 from pathlib import Path
 from jinja2 import Template
-import os, sys, argparse, re, json, collections
+import os, argparse, json
 
 severities = {'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO'}
 colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C'}
@@ -34,13 +35,13 @@ for path in parsed_args['intput_path'][0].rglob('metadata.json'):
     if category not in template_dict[platform][severity]:
       template_dict[platform][severity][category] = {}
 
-    if type(metadata_dict['descriptionUrl']) is str:
-      metadata_dict['descriptionUrl'] = [metadata_dict['descriptionUrl']]    
+    if isinstance(metadata_dict['descriptionUrl'], str):
+      metadata_dict['descriptionUrl'] = [metadata_dict['descriptionUrl']]
     template_dict[platform][severity][category][metadata_dict['id']] = metadata_dict
 
 for platform in template_dict:
-  for format in parsed_args['formats']:
-    with open(os.path.join(parsed_args['templates_path'][0], 'template' + format)) as template:
+  for file_format in parsed_args['formats']:
+    with open(os.path.join(parsed_args['templates_path'][0], 'template' + file_format)) as template:
       # sort to be ordered by category
       data = {}
       for severity in severities:
@@ -48,7 +49,6 @@ for platform in template_dict:
           data[severity] = {}
           for category in sorted(template_dict[platform][severities[severity]].keys()):
             data[severity] = {**data[severity], **template_dict[platform][severities[severity]][category]}
-      
       template_string = template.read()
       template_jinja = Template(template_string)
       result = template_jinja.render({
@@ -56,5 +56,5 @@ for platform in template_dict:
         'data': data,
         'colors': colors
       })
-    with open(os.path.join(parsed_args['output_path'][0], platform.lower() + '-queries' + format), 'w') as output:
+    with open(os.path.join(parsed_args['output_path'][0], platform.lower() + '-queries' + file_format), 'w') as output:
       print (result, file=output)
