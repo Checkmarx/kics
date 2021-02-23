@@ -125,7 +125,7 @@ func initScanCmd() {
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
 		"exclude-results",
-		"s",
+		"x",
 		[]string{},
 		`exclude results by providing the similarity ID of a result
 The arg should be quoted and uses comma as separator

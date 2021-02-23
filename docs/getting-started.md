@@ -72,7 +72,7 @@ Flags:
   -e, --exclude-paths strings     exclude paths or files from scan
                                   The arg should be quoted and uses comma as separator
                                   example: './shouldNotScan/*,somefile.txt'
-  -s, --exclude-results strings   exclude results by providing the similarity ID of a result
+  -x, --exclude-results strings   exclude results by providing the similarity ID of a result
                                   The arg should be quoted and uses comma as separator
                                   example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'
   -h, --help                      help for scan
