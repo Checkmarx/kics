@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Security Groups With Exhibited Admin Ports",
-		"severity": "HIGH",
-		"line": 15
-	}
+  {
+    "queryName": "Security Groups With Exhibited Admin Ports",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.yaml"
+  }
 ]

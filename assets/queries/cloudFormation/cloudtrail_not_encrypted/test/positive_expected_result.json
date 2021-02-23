@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "CloudTrail Not Encrypted",
-		"severity": "HIGH",
-		"line": 62
-	}
+  {
+    "queryName": "CloudTrail Not Encrypted",
+    "severity": "HIGH",
+    "line": 62,
+    "fileName": "positive1.yaml"
+  }
 ]

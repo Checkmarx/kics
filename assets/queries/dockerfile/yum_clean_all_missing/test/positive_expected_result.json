@@ -1,7 +1,12 @@
 [
-	{
-		"queryName": "Yum Clean All Missing",
-		"severity": "MEDIUM",
-		"line": 3
-	}
+  {
+    "queryName": "Yum Clean All Missing",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Yum Clean All Missing",
+    "severity": "MEDIUM",
+    "line": 12
+  }
 ]

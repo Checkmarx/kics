@@ -1,0 +1,12 @@
+#this is a problematic code where the query should report a result(s)
+Resources:
+  BadPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      Description: Policy for something.
+      Path: "/"
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement: []
+      Users:
+      - Ref: TestUser

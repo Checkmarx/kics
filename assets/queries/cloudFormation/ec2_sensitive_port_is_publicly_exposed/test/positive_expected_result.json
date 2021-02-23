@@ -1,37 +1,56 @@
 [
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 8
-	},
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 38
-	},
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 38
-	},
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 77
-	},
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 107
-	},
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 107
-	},
-	{
-		"queryName": "EC2 Sensitive Port Is Publicly Exposed",
-		"severity": "HIGH",
-		"line": 107
-	}
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive4.yaml"
+  }
 ]

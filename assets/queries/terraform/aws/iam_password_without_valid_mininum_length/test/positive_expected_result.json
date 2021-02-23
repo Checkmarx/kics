@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "IAM Password Without Valid Minimum Length",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "IAM Password Without Valid Minimum Length",
+    "severity": "MEDIUM",
+    "line": 10
+  }
+]

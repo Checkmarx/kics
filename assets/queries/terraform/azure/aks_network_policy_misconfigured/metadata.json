@@ -1,0 +1,9 @@
+{
+  "id": "f5342045-b935-402d-adf1-8dbbd09c0eef",
+  "queryName": "AKS Network Policy Misconfigured",
+  "severity": "MEDIUM",
+  "category": "Network Security",
+  "descriptionText": "Check if the Azure Kubernetes Service doesn't have the proper network policy configuration.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster",
+  "platform": "Terraform"
+}

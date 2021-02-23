@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Amplify App Basic Auth Config Password Exposed",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Amplify App Basic Auth Config Password Exposed",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive1.yaml"
+  }
+]

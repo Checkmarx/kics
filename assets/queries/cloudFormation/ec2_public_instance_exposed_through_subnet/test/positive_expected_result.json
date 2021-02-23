@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "EC2 Public Instance Exposed Through Subnet",
-		"severity": "HIGH",
-		"line": 28
-	}
+  {
+    "queryName": "EC2 Public Instance Exposed Through Subnet",
+    "severity": "HIGH",
+    "line": 28,
+    "fileName": "positive1.yaml"
+  }
 ]

@@ -3,31 +3,33 @@ site_name: KICS
 site_url: http://www.kics.io
 site_description: >-
   Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.
-copyright:  >-
+copyright: >-
   &copy; 2021 Checkmarx Ltd. All Rights Reserved.
-
 
 # Repo
 repo_name: GitHub
 repo_url: https://github.com/Checkmarx/kics/
 
-
 # Navigation
 nav:
   - Home: index.md
-  - Install:
-    - Getting Started: getting-started.md
-    - Integrations: integrations.md
-    - Results: results.md
-  - Queries: queries.md
+  - Getting Started:
+      - Installation: getting-started.md
+      - Configuration: configuration-file.md
+      - Queries: queries.md
+      - Results: results.md
   - Architecture: architecture.md
-  - Contribution: CONTRIBUTING.md
+  - Integrations: 
+      - Overview: integrations.md
+      - Github Actions: integrations_ghactions.md
+      - Gitlab CI: integrations_gitlabci.md
+      - Azure DevOps: integrations_azurepipelines.md
   - Project:
-    - Roadmap: roadmap.md
-    - Plans: 'https://github.com/Checkmarx/kics/projects'
-    - Issues: 'https://github.com/Checkmarx/kics/issues'
-    - Releases: releases.md
-  - Contributors: contributors.md
+      - Roadmap: roadmap.md
+      - Plans: "https://github.com/Checkmarx/kics/projects"
+      - Issues: "https://github.com/Checkmarx/kics/issues"
+      - Releases: releases.md
+  - Contribution: CONTRIBUTING.md
   - About: about.md
 
 # Theme

@@ -2,15 +2,14 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-
 	resource.Cmd == "run"
-
 	values := resource.Value[0]
 	commands = split(values, "&&")
 
 	some k
-	hasInstallCommandWithoutFlag(commands[k])
-	not hasYesFlag(commands[k])
+	c := hasInstallCommandWithoutFlag(commands[k])
+
+	not hasYesFlag(c)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,24 +20,20 @@ CxPolicy[result] {
 	}
 }
 
-hasInstallCommandWithoutFlag(command) {
+hasInstallCommandWithoutFlag(command) = c {
 	commandList = [
-		"install",
-		"groupinstall",
-		"localinstall",
-		"reinstall",
-		"in",
-		"rei",
+		"dnf install",
+		"dnf groupinstall",
+		"dnf localinstall",
+		"dnf reinstall",
+		"dnf in",
+		"dnf rei",
 	]
 
-	contains(command, "dnf")
 	contains(command, commandList[_])
+	c := command
 }
 
 hasYesFlag(command) {
-	contains(command, "-y")
-}
-
-hasYesFlag(command) {
-	contains(command, "--assume-yes")
+	regex.match("\\b(dnf *install (-y|-[\\D]{1}y|-y[\\D]{1}|-yes|--asumme-yes))\\b [\\w\\W]*", command)
 }

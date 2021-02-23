@@ -1,9 +1,0 @@
-{
-	"id": "081069cb-588b-4ce1-884c-2a1ce3029fe5",
-	"queryName": "Metrics not enabled",
-	"severity": "MEDIUM",
-	"category": "Logging",
-	"descriptionText": "Enable the CloudWatch Metrics",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#metrics_enabled",
-	"platform": "Terraform"
-}

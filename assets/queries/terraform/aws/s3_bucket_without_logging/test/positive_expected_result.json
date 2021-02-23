@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "S3 no logging",
-		"severity": "LOW",
-		"line": 2
-	}
+  {
+    "queryName": "S3 Bucket Without Logging",
+    "severity": "LOW",
+    "line": 2
+  }
 ]

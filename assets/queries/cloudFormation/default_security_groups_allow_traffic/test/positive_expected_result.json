@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Default Security Groups Allow Traffic",
-		"severity": "HIGH",
-		"line": 16
-	}
+  {
+    "queryName": "Default Security Groups Allow Traffic",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive1.yaml"
+  }
 ]

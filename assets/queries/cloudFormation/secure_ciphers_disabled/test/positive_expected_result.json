@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Secure Ciphers Disabled",
-		"severity": "HIGH",
-		"line": 26
-	}
+  {
+    "queryName": "Secure Ciphers Disabled",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive1.yaml"
+  }
 ]

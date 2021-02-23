@@ -1,31 +1,27 @@
 [
-	{
-		"queryName": "AWS Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 2
-	},
-
-	{
-		"queryName": "AWS Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 16
-	},
-
-	{
-		"queryName": "AWS Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 23
-	},
-
-	{
-		"queryName": "AWS Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 38
-	},
-
-	{
-		"queryName": "AWS Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 44
-	}
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 2
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 16
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 23
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 38
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 44
+  }
 ]

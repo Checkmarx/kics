@@ -1,8 +1,8 @@
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo/kics-logo-donkey.png" width="250">  
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">  
 
 ---
 
-**KICS** (pronounced as 'kick-s') or **Kicscan** is an open source solution for static code analysis of Infrastructure as Code.
+**KICS** is an open source solution for static code analysis of Infrastructure as Code.
 
 **K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
 
@@ -12,11 +12,11 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
-<img alt="Terraform" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="CloudFormation" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/logo-ansible.png" width="150">
+<img alt="Terraform" src="img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="CloudFormation" src="img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Ansible" src="img/logo-ansible.png" width="150">
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
@@ -26,8 +26,11 @@ Support of other solutions, such as Chef, and of additional cloud providers are 
 Setting up and using KICS is super-easy.
 
 - First, see how to [install and get KICS running](getting-started.md).
-- Next, check how you can easily [integrate it into your CI](integrations.md) for any project.
-- Eventually, [explore the output results format](results.md) and quickly fix the issues detected.
+- Then explore KICS [output results format](results.md) and quickly fix the issues detected.
+
+Interested in more advanced stuff?
+- Deep dive into KICS [queries](queries.md).
+- Understand how you to [integrate](integrations.md) KICS in your favourit CI/CD pipelines.
 
 ## How it Works
 
@@ -43,11 +46,11 @@ KICS is a true community project. It's built as an open source project from day 
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 - [How can I help?!](CONTRIBUTING.md)
-- [Take me to the repo on GitHub!](https://github.com/Checkmarx/kics/)
+- <a href="https://github.com/Checkmarx/kics/" target="_blank">Take me to the repo on GitHub!</a>
 
 ## About the Project
 
-The KICS project is powered by [Checkmarx](https://www.checkmarx.com/), global leader of Application Security Testing.  
+The KICS project is powered by <a href="https://www.checkmarx.com/" target="_blank">Checkmarx</a>, global leader of Application Security Testing.  
 [Read more](about.md) about **Infrastructure as Code**, **Infrastructure as Code Testing** and Checkmarx.
 
 KICS will always stay an open source and free project for the benefit of global software industry community.  
@@ -58,8 +61,8 @@ Now, Software <span style="color: #5FBB46">**=**</span> **Security**.
 Looking for more info? Explore KICS project in details:
 
 - [Roadmap](roadmap.md)
-- [Project plans](https://github.com/Checkmarx/kics/projects)
-- [Issues](https://github.com/Checkmarx/kics/issues)
+- <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
+- <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
 
-Join the chat [on Gitter](https://gitter.im/kics-io/community).  
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

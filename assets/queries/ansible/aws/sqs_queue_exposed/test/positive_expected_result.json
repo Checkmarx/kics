@@ -1,7 +1,12 @@
 [
-	{
-		"queryName": "SQS Queue Exposed",
-		"severity": "HIGH",
-		"line": 16
-	}
+  {
+    "queryName": "SQS Queue Exposed",
+    "severity": "HIGH",
+    "line": 16
+  },
+  {
+    "queryName": "SQS Queue Exposed",
+    "severity": "HIGH",
+    "line": 37
+  }
 ]

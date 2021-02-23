@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "EFS without tags",
-		"severity": "LOW",
-		"line": 16
-	}
+  {
+    "queryName": "EFS Without Tags",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive1.yaml"
+  }
 ]

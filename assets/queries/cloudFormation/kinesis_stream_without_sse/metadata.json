@@ -1,9 +1,9 @@
 {
-	"id": "7f65be75-90ab-4036-8c2a-410aef7bb650",
-	"queryName": "AWS Kinesis Stream Without SSE",
-	"severity": "HIGH",
-	"category": "Encryption and Key Management",
-	"descriptionText": "AWS Kinesis Stream should have SSE (Server Side Encryption) defined",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html",
-	"platform": "CloudFormation"
+  "id": "7f65be75-90ab-4036-8c2a-410aef7bb650",
+  "queryName": "Kinesis Stream Without SSE",
+  "severity": "HIGH",
+  "category": "Encryption and Key Management",
+  "descriptionText": "AWS Kinesis Stream should have SSE (Server Side Encryption) defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html",
+  "platform": "CloudFormation"
 }

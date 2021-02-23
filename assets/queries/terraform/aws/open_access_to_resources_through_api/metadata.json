@@ -1,9 +1,9 @@
 {
-	"id": "108aa260-6dab-4a75-ae3f-de917d634840",
-	"queryName": "Open access to resources through API",
-	"severity": "LOW",
-	"category": "Network Security",
-	"descriptionText": "Open access to back-end resources through API",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method",
-	"platform": "Terraform"
+  "id": "108aa260-6dab-4a75-ae3f-de917d634840",
+  "queryName": "Open Access To Resources Through API",
+  "severity": "LOW",
+  "category": "Network Security",
+  "descriptionText": "Open access to back-end resources through API",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method",
+  "platform": "Terraform"
 }

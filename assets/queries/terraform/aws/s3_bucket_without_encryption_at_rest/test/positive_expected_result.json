@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "S3 bucket without encryption at REST",
-		"severity": "HIGH",
-		"line": 12
-	}
-]

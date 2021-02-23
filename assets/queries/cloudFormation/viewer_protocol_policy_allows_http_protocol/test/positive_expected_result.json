@@ -1,13 +1,14 @@
 [
-	{
-		"queryName": "Viewer Protocol Policy Allows HTTP Protocol",
-		"severity": "HIGH",
-		"line": 13
-	}
-	,
-	{
-		"queryName": "Viewer Protocol Policy Allows HTTP Protocol",
-		"severity": "HIGH",
-		"line": 29
-	}
+  {
+    "queryName": "Viewer Protocol Policy Allows HTTP Protocol",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Viewer Protocol Policy Allows HTTP Protocol",
+    "severity": "HIGH",
+    "line": 29,
+    "fileName": "positive1.yaml"
+  }
 ]

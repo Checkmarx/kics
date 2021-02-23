@@ -1,0 +1,26 @@
+Resources:
+  myCluster:
+    Type: "AWS::Redshift::Cluster"
+    Properties:
+      DBName: "mydb"
+      MasterUsername: "master"
+      MasterUserPassword:
+        Ref: "MasterUserPassword"
+      NodeType: "ds2.xlarge"
+      ClusterType: "single-node"
+      Tags:
+        - Key: foo
+          Value: bar
+  myCluster2:
+    Type: "AWS::Redshift::Cluster"
+    Properties:
+      PubliclyAccessible: true
+      DBName: "mydb"
+      MasterUsername: "master"
+      MasterUserPassword:
+        Ref: "MasterUserPassword"
+      NodeType: "ds2.xlarge"
+      ClusterType: "single-node"
+      Tags:
+        - Key: foo
+          Value: bar

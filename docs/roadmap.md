@@ -14,17 +14,27 @@
 | Completed | Adding support for Ansible |  |
 | Completed | Adding support for AWS CloudFormation |  |
 | | | |
-| _In progress_ | **Milestone 3** | January 2021 |
-| _In progress_ | Adding more queries and extending coverage |  |
-| _In progress_ | Adding more CI/CD integrations |  |
-| _In progress_ | Engineering and performance improvements |  |
+| Completed | **Milestone 3** | January 2021 |
+|  | Adding more queries and extending coverage |  |
+|  | Adding more CI/CD integrations |  |
+| | Engineering and performance improvements |  |
+| In-Progress | **Milestone 4** | Feb 2021 |
+| Completed | Mac support |  |
+| Completed | Hard-coded secret keys detection |  |
+| In-Progress | Reporting - add SARIF format |  |
+| In-Progress | CI/CD improved documentation |  |
+|In-Progress | Engineering and performance improvements |  |
+| Not-Started | **Milestone 4** | Mar 2021 |
+|  |  |  |
+|  | |  |
+| |  |  |
+
 
 ## Long Term Roadmap
-* Queries - add metadata of remediation advice 
 * Homebrew support for easier Mac deployment
 * Azure Resource Manager
 * Google Cloud Deployment Manager
 
 Have an idea?  
-Join the chat [on Gitter](https://gitter.im/kics-io/community).  
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

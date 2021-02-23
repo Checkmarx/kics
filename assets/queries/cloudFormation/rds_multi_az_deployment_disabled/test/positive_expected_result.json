@@ -2,11 +2,13 @@
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
-    "line": 128
+    "line": 128,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
-    "line": 148
+    "line": 148,
+    "fileName": "positive1.yaml"
   }
 ]

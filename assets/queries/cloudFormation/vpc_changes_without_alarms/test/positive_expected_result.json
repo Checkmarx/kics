@@ -1,22 +1,26 @@
 [
-	{
-		"queryName": "VPC Changes Without Alarms",
-  		"severity": "MEDIUM",
-		"line": 31
-	},
-	{
-		"queryName": "VPC Changes Without Alarms",
-  		"severity": "MEDIUM",
-		"line": 69
-	},
-	{
-		"queryName": "VPC Changes Without Alarms",
-  		"severity": "MEDIUM",
-		"line": 97
-	},
-	{
-		"queryName": "VPC Changes Without Alarms",
-  		"severity": "MEDIUM",
-		"line": 120
-	}
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.yaml"
+  }
 ]

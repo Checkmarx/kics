@@ -1,9 +1,0 @@
-{
-	"id": "d0cc8694-fcad-43ff-ac86-32331d7e867f",
-	"queryName": "S3 bucket allows public ACL",
-	"severity": "MEDIUM",
-	"category": "Network Security",
-	"descriptionText": "S3 bucket allows public ACL",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
-	"platform": "Terraform"
-}

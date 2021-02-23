@@ -1,31 +1,32 @@
 [
-	{
-		"queryName": "AWS Security Group Rule Without Description",
-		"severity": "LOW",
-		"line": 4
-	},
-
-	{
-		"queryName": "AWS Security Group Rule Without Description",
-		"severity": "LOW",
-		"line": 7
-	},
-
-	{
-		"queryName": "AWS Security Group Rule Without Description",
-		"severity": "LOW",
-		"line": 12
-	},
-
-	{
-		"queryName": "AWS Security Group Rule Without Description",
-		"severity": "LOW",
-		"line": 19
-	},
-
-	{
-		"queryName": "AWS Security Group Rule Without Description",
-		"severity": "LOW",
-		"line": 33
-	}
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "LOW",
+    "line": 33,
+    "fileName": "positive1.yaml"
+  }
 ]

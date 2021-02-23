@@ -1,12 +1,14 @@
 [
-	{
-		"queryName": "ELB Access Log Disabled",
-		"severity": "MEDIUM",
-		"line": 6
-	},
-	{
-		"queryName": "ELB Access Log Disabled",
-		"severity": "MEDIUM",
-		"line": 61
-	}
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive2.yaml"
+  }
 ]

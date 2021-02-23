@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "CloudFront Distribution Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CloudFront Distribution Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 30,
+    "fileName": "positive2.yaml"
+  }
+]
