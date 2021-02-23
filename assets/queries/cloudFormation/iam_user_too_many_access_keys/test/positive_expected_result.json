@@ -6,9 +6,21 @@
     "fileName": "positive1.yaml"
   },
   {
+    "line": 10,
+    "fileName": "positive1.yaml",
+    "queryName": "IAM User Has Too Many Access Keys",
+    "severity": "MEDIUM"
+  },
+  {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive1.yaml"
+    "line": 20,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "IAM User Has Too Many Access Keys",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.json"
   }
 ]

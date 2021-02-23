@@ -1,26 +1,50 @@
 [
   {
-    "queryName": "Management Console Without Alarms",
     "severity": "MEDIUM",
     "line": 33,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "queryName": "Management Console Without Alarms"
   },
   {
+    "fileName": "positive4.yaml",
     "queryName": "Management Console Without Alarms",
     "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive4.yaml"
+    "line": 11
   },
   {
+    "fileName": "positive3.yaml",
     "queryName": "Management Console Without Alarms",
     "severity": "MEDIUM",
-    "line": 24,
-    "fileName": "positive3.yaml"
+    "line": 24
   },
   {
     "queryName": "Management Console Without Alarms",
     "severity": "MEDIUM",
     "line": 31,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Management Console Without Alarms",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Management Console Without Alarms",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Management Console Without Alarms",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive7.json"
+  },
+  {
+    "fileName": "positive8.json",
+    "queryName": "Management Console Without Alarms",
+    "severity": "MEDIUM",
+    "line": 17
   }
 ]

@@ -1,0 +1,27 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template",
+  "Resources": {
+    "secondKey": {
+      "Type": "AWS::IAM::AccessKey",
+      "Properties": {
+        "UserName": "myuser"
+      }
+    },
+    "myuser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "LoginProfile": {
+          "Password": "myP@ssW0rd"
+        },
+        "Path": "/"
+      }
+    },
+    "firstKey": {
+      "Type": "AWS::IAM::AccessKey",
+      "Properties": {
+        "UserName": "myuser"
+      }
+    }
+  }
+}

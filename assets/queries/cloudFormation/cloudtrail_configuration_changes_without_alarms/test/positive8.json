@@ -1,0 +1,45 @@
+{
+  "Resources": {
+    "SnsTopic4": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "alarm-action",
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ]
+      }
+    },
+    "CloudWatchAlarm4": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "TreatMissingData": "notBreaching",
+        "AlarmName": "iam_policy_changes",
+        "MetricName": "IAMPolicyEventCount",
+        "Period": 300,
+        "EvaluationPeriods": 1,
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "Namespace": "CloudTrailMetrics",
+        "Statistic": "Sum",
+        "Threshold": 1
+      }
+    },
+    "MetricFilter4": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "MetricTransformations": [
+          {
+            "MetricValue": "1",
+            "MetricNamespace": "CloudTrailMetrics",
+            "MetricName": "IAMPolicyEventCount"
+          }
+        ],
+        "LogGroupName": "",
+        "FilterPattern": "{ ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) }"
+      }
+    }
+  }
+}

@@ -6,9 +6,21 @@
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "IAM Policy Grants Full Permissions",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "IAM Policy Grants Full Permissions"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "LOW",
+    "line": 37,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive2.json"
   }
 ]

@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 31,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Network Gateway Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 37,
+    "fileName": "positive5.json"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive6.json",
+    "queryName": "Network Gateway Changes Without Alarms"
+  },
+  {
+    "queryName": "Network Gateway Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "Network Gateway Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive8.json"
   }
 ]

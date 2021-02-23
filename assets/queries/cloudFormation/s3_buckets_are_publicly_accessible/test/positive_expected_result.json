@@ -1,14 +1,26 @@
 [
   {
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "queryName": "S3 Buckets Are Publicly Accessible",
+    "severity": "HIGH"
+  },
+  {
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive1.yaml",
+    "queryName": "S3 Buckets Are Publicly Accessible"
+  },
+  {
+    "fileName": "positive2.json",
     "queryName": "S3 Buckets Are Publicly Accessible",
     "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive1.yaml"
+    "line": 10
   },
   {
     "queryName": "S3 Buckets Are Publicly Accessible",
     "severity": "HIGH",
-    "line": 33,
-    "fileName": "positive1.yaml"
+    "line": 48,
+    "fileName": "positive2.json"
   }
 ]

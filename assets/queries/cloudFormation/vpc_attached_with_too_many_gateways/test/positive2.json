@@ -1,0 +1,58 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "AttachVpnGateway4": {
+      "Properties": {
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "VpnGatewayId": {
+          "Ref": "myVPNGateway4"
+        }
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment"
+    },
+    "myVPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "EnableDnsHostnames": "false",
+        "InstanceTenancy": "dedicated",
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsSupport": "false"
+      }
+    },
+    "AttachVpnGateway": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "VpnGatewayId": {
+          "Ref": "myVPNGateway"
+        }
+      }
+    },
+    "AttachVpnGateway2": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "VpnGatewayId": {
+          "Ref": "myVPNGateway2"
+        }
+      }
+    },
+    "AttachVpnGateway3": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "VpnGatewayId": {
+          "Ref": "myVPNGateway3"
+        }
+      }
+    }
+  }
+}

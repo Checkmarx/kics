@@ -12,9 +12,27 @@
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
     "line": 55,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "EC2 Instance Has No IAM Role"
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.json"
+  },
+  {
+    "line": 53,
+    "fileName": "positive2.json",
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 94
   }
 ]

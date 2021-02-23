@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 31,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Route Table Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 37,
+    "fileName": "positive5.json"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive6.json",
+    "queryName": "Route Table Changes Without Alarms"
+  },
+  {
+    "queryName": "Route Table Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive7.json"
+  },
+  {
+    "line": 31,
+    "fileName": "positive8.json",
+    "queryName": "Route Table Changes Without Alarms",
+    "severity": "MEDIUM"
   }
 ]

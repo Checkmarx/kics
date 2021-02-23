@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "myDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Enabled": "true",
+          "Comment": "Somecomment",
+          "DefaultRootObject": "index.html",
+          "Logging": {
+            "IncludeCookies": "true",
+            "Bucket": "mylogs.s3.amazonaws.com",
+            "Prefix": "myprefix"
+          },
+          "Origins": [
+            {
+              "DomainName": "www.example.com",
+              "Id": "myCustomOrigin",
+              "CustomOriginConfig": {
+                "OriginProtocolPolicy": "http-only",
+                "HTTPPort": "80",
+                "HTTPSPort": "443"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

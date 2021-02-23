@@ -1,0 +1,26 @@
+{
+  "MyPolicy": {
+    "Type": "AWS::IAM::Policy",
+    "Properties": {
+      "PolicyName": "mygrouppolicy",
+      "PolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": [
+              "s3:GetObject",
+              "s3:PutObject",
+              "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::myAWSBucket/*",
+            "Effect": "Allow"
+          }
+        ]
+      },
+      "Groups": [
+        "myexistinggroup1",
+        "mygroup"
+      ]
+    }
+  }
+}

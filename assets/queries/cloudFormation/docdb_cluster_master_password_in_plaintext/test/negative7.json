@@ -1,0 +1,28 @@
+{
+  "Parameters": {
+    "ParentMasterPassword": {
+      "Description": "Password",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "NewAmpApp1": {
+      "Type": "AWS::DocDB::DBCluster",
+      "Properties": {
+        "DBClusterIdentifier": "sample-cluster",
+        "DBSubnetGroupName": "default",
+        "DeletionProtection": true,
+        "MasterUserPassword": "ParentMasterPassword",
+        "Port": 27017,
+        "PreferredBackupWindow": "07:34-08:04",
+        "PreferredMaintenanceWindow": "sat:04:51-sat:05:21",
+        "BackupRetentionPeriod": 8,
+        "SnapshotIdentifier": "sample-cluster-snapshot-id",
+        "KmsKeyId": "your-kms-key-id",
+        "MasterUsername": "your-master-username",
+        "StorageEncrypted": true,
+        "DBClusterParameterGroupName": "default.docdb3.6"
+      }
+    }
+  }
+}

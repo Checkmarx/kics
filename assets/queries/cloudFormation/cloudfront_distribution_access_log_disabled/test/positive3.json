@@ -1,0 +1,42 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "myDistribution1": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DefaultCacheBehavior": {
+          "AllowedMethods": [
+            "GET",
+            "HEAD",
+            "OPTIONS"
+          ],
+          "TargetOriginId": "myS3Origin",
+          "ForwardedValues": {
+            "QueryString": "false",
+            "Cookies": {
+              "Forward": "none"
+            }
+          },
+          "TrustedSigners": [
+            "1234567890EX"
+          ],
+          "ViewerProtocolPolicy": "allow-all"
+        },
+        "DistributionConfig": {
+          "Origins": [
+            {
+              "DomainName": "mybucket.s3.amazonaws.com",
+              "Id": "myS3Origin",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": "origin-access-identity/cloudfront/E127EXAMPLE51Z"
+              }
+            }
+          ],
+          "Enabled": "true",
+          "Comment": "Some comment",
+          "DefaultRootObject": "index.html"
+        }
+      }
+    }
+  }
+}

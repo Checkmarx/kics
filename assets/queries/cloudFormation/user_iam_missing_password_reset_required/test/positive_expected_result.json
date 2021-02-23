@@ -16,5 +16,23 @@
     "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "User IAM Missing PasswordResetRequired",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "User IAM Missing PasswordResetRequired",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive5.json"
+  },
+  {
+    "line": 7,
+    "fileName": "positive6.json",
+    "queryName": "User IAM Missing PasswordResetRequired",
+    "severity": "MEDIUM"
   }
 ]

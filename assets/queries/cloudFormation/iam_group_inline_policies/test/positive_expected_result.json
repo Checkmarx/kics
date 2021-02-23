@@ -1,7 +1,13 @@
 [
-	{
-		"queryName": "IAM Group Inline Policies",
-		"severity": "MEDIUM",
-		"line": 10
-	}
+  {
+    "queryName": "IAM Group Inline Policies",
+    "severity": "MEDIUM",
+    "line": 10
+  },
+  {
+    "queryName": "IAM Group Inline Policies",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.json"
+  }
 ]

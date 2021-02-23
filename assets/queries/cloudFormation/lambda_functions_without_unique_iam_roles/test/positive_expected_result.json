@@ -1,14 +1,26 @@
 [
   {
-    "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "Lambda Functions Without Unique IAM Roles"
   },
   {
-    "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "MEDIUM",
     "line": 41,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "Lambda Functions Without Unique IAM Roles"
+  },
+  {
+    "line": 7,
+    "fileName": "positive2.json",
+    "queryName": "Lambda Functions Without Unique IAM Roles",
+    "severity": "MEDIUM"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "Lambda Functions Without Unique IAM Roles",
+    "severity": "MEDIUM",
+    "line": 24
   }
 ]

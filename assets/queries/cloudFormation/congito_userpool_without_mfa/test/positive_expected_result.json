@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Cognito UserPool Without MFA",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive2.json"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.json",
+    "queryName": "Cognito UserPool Without MFA"
   }
 ]

@@ -1,8 +1,14 @@
 [
   {
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "queryName": "SNS Topic Without KmsMasterKeyId",
+    "severity": "MEDIUM"
+  },
+  {
+    "fileName": "positive2.json",
     "queryName": "SNS Topic Without KmsMasterKeyId",
     "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive1.yaml"
+    "line": 6
   }
 ]

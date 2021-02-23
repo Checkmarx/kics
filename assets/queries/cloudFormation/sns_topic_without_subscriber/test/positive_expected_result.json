@@ -1,8 +1,14 @@
 [
   {
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "queryName": "SNS Topic Without Subscriber",
+    "severity": "LOW"
+  },
+  {
     "queryName": "SNS Topic Without Subscriber",
     "severity": "LOW",
-    "line": 6,
-    "fileName": "positive1.yaml"
+    "line": 5,
+    "fileName": "positive2.json"
   }
 ]

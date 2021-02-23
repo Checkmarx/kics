@@ -1,14 +1,26 @@
 [
   {
-    "queryName": "Connection Between CloudFront Origin Not Encrypted",
-    "severity": "HIGH",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "Connection Between CloudFront Origin Not Encrypted",
+    "severity": "HIGH"
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "HIGH",
     "line": 30,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Connection Between CloudFront Origin Not Encrypted",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive2.json"
+  },
+  {
+    "severity": "HIGH",
+    "line": 56,
+    "fileName": "positive2.json",
+    "queryName": "Connection Between CloudFront Origin Not Encrypted"
   }
 ]

@@ -4,5 +4,11 @@
     "severity": "HIGH",
     "line": 26,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Secure Ciphers Disabled",
+    "severity": "HIGH",
+    "line": 44,
+    "fileName": "positive2.json"
   }
 ]

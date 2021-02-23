@@ -1,9 +1,9 @@
 [
   {
+    "fileName": "positive1.yaml",
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
-    "line": 33,
-    "fileName": "positive1.yaml"
+    "line": 33
   },
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
@@ -22,5 +22,29 @@
     "severity": "HIGH",
     "line": 87,
     "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "HIGH",
+    "line": 129,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Allows List Action From All Principals"
+  },
+  {
+    "line": 145,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Allows List Action From All Principals",
+    "severity": "HIGH"
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Allows List Action From All Principals",
+    "severity": "HIGH",
+    "line": 159
+  },
+  {
+    "queryName": "S3 Bucket Allows List Action From All Principals",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.json"
   }
 ]

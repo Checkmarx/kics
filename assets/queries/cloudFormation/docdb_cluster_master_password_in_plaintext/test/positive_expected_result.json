@@ -1,9 +1,9 @@
 [
   {
-    "queryName": "DocDB cluster master password in plaintext",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "queryName": "DocDB cluster master password in plaintext"
   },
   {
     "queryName": "DocDB cluster master password in plaintext",
@@ -16,5 +16,23 @@
     "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive3.yaml"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive4.json",
+    "queryName": "DocDB cluster master password in plaintext"
+  },
+  {
+    "queryName": "DocDB cluster master password in plaintext",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "DocDB cluster master password in plaintext",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive6.json"
   }
 ]

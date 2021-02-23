@@ -1,0 +1,42 @@
+{
+  "Resources": {
+    "NeptuneDBCluster": {
+      "Type": "AWS::Neptune::DBCluster",
+      "Properties": {
+        "DBClusterIdentifier": "String",
+        "EnableCloudwatchLogsExports": [
+          "String"
+        ],
+        "EngineVersion": "String",
+        "Port": 8182,
+        "SourceDBClusterIdentifier": "String",
+        "Tags": [
+          "Tag"
+        ],
+        "AssociatedRoles": [
+          "DBClusterRole"
+        ],
+        "DBSubnetGroupName": "String",
+        "RestoreToTime": "String",
+        "StorageEncrypted": false,
+        "UseLatestRestorableTime": true,
+        "DBClusterParameterGroupName": "String",
+        "PreferredBackupWindow": "String",
+        "SnapshotIdentifier": "String",
+        "IamAuthEnabled": true,
+        "DeletionProtection": true,
+        "KmsKeyId": "String",
+        "PreferredMaintenanceWindow": "String",
+        "RestoreType": "String",
+        "VpcSecurityGroupIds": [
+          "String"
+        ],
+        "AvailabilityZones": [
+          "String"
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "A sample template"
+}

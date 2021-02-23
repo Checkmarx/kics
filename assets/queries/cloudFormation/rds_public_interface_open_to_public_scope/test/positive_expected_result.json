@@ -1,9 +1,9 @@
 [
   {
-    "queryName": "RDS Public Interface Open To Public Scope",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "RDS Public Interface Open To Public Scope"
   },
   {
     "queryName": "RDS Public Interface Open To Public Scope",
@@ -16,5 +16,23 @@
     "severity": "HIGH",
     "line": 19,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "RDS Public Interface Open To Public Scope",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "RDS Public Interface Open To Public Scope",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive5.json"
+  },
+  {
+    "line": 15,
+    "fileName": "positive6.json",
+    "queryName": "RDS Public Interface Open To Public Scope",
+    "severity": "HIGH"
   }
 ]

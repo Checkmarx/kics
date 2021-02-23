@@ -1,9 +1,9 @@
 [
   {
-    "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "HIGH",
     "line": 33,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "CloudFormation Specifying Credentials Not Safe"
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
@@ -16,5 +16,23 @@
     "severity": "HIGH",
     "line": 71,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CloudFormation Specifying Credentials Not Safe",
+    "severity": "HIGH",
+    "line": 48,
+    "fileName": "positive2.json"
+  },
+  {
+    "line": 51,
+    "fileName": "positive2.json",
+    "queryName": "CloudFormation Specifying Credentials Not Safe",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "CloudFormation Specifying Credentials Not Safe",
+    "severity": "HIGH",
+    "line": 112,
+    "fileName": "positive2.json"
   }
 ]

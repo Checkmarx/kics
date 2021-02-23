@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Create a basic ActiveMQ broker",
+  "Resources": {
+    "BasicBroker": {
+      "Type": "AWS::AmazonMQ::Broker",
+      "Properties": {
+        "BrokerName": "MyBasicBroker",
+        "DeploymentMode": "SINGLE_INSTANCE",
+        "EncryptionOptions": {
+          "UseAwsOwnedKey": true
+        },
+        "EngineType": "ActiveMQ",
+        "EngineVersion": "5.15.0",
+        "HostInstanceType": "mq.t2.micro",
+        "Users": [
+          {
+            "ConsoleAccess": "true",
+            "Groups": [
+              "MyGroup"
+            ],
+            "Password": {
+              "Ref": "BrokerPassword"
+            },
+            "Username": {
+              "Ref": "BrokerUsername"
+            }
+          }
+        ],
+        "AutoMinorVersionUpgrade": "false",
+        "PubliclyAccessible": "true"
+      }
+    }
+  }
+}

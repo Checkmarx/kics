@@ -1,0 +1,111 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Id": "MyPolicy",
+          "Version": "2012-10-17T00:00:00Z",
+          "Statement": [
+            {
+              "Sid": "EnsureSSL",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              },
+              "Resource": [
+                "",
+                [
+                  "arn:aws:s3:::",
+                  "S3Bucket2",
+                  "/*"
+                ]
+              ]
+            }
+          ]
+        },
+        "Bucket": "S3Bucket2"
+      }
+    },
+    "S3Bucket3": {
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket"
+    },
+    "BucketPolicy2": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17T00:00:00Z",
+          "Statement": [
+            {
+              "Sid": "EnsureSSL",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              },
+              "Resource": [
+                "",
+                [
+                  "arn:aws:s3:::",
+                  "S3Bucket3",
+                  "/*"
+                ]
+              ]
+            }
+          ],
+          "Id": "MyPolicy2"
+        },
+        "Bucket": "S3Bucket3"
+      }
+    },
+    "S3Bucket2": {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "WebsiteURL": {
+      "Value": [
+        "S3Bucket2",
+        "WebsiteURL"
+      ],
+      "Description": "URL for website hosted on S3"
+    },
+    "S3BucketSecureURL": {
+      "Value": [
+        "",
+        [
+          "https://",
+          [
+            "S3Bucket2",
+            "DomainName"
+          ]
+        ]
+      ],
+      "Description": "Name of S3 bucket to hold website content"
+    }
+  }
+}

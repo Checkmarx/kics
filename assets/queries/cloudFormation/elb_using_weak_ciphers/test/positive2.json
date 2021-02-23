@@ -1,0 +1,58 @@
+{
+  "Resources": {
+    "MyLoadBalancer": {
+      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Properties": {
+        "AvailabilityZones": [
+          "us-east-2a"
+        ],
+        "CrossZone": true,
+        "Listeners": [
+          {
+            "InstancePort": "80",
+            "InstanceProtocol": "HTTP",
+            "LoadBalancerPort": "443",
+            "Protocol": "HTTPS",
+            "PolicyNames": [
+              "My-SSLNegotiation-Policy"
+            ],
+            "SSLCertificateId": "arn:aws:iam::123456789012:server-certificate/my-server-certificate"
+          }
+        ],
+        "HealthCheck": {
+          "Target": "HTTP:80/",
+          "HealthyThreshold": "2",
+          "UnhealthyThreshold": "3",
+          "Interval": "10",
+          "Timeout": "5"
+        },
+        "Policies": [
+          {
+            "PolicyName": "My-SSLNegotiation-Policy",
+            "PolicyType": "SSLNegotiationPolicyType",
+            "Attributes": [
+              {
+                "Name": "TLS_RSA_NULL_SHA1",
+                "Value": "ELBSecurityPolicy-TLS-1-2-2017-01"
+              },
+              {
+                "Value": "ELBSecurityPolicy-TLS-1-2-2017-01",
+                "Name": "DHE-DSS-DES-CBC3-SHA"
+              }
+            ]
+          },
+          {
+            "PolicyName": "My-SSLNegotiation-Policy2",
+            "PolicyType": "SSLNegotiationPolicyType",
+            "Attributes": [
+              {
+                "Name": "TLS_DHE_PSK_WITH_NULL_SHA256",
+                "Value": "ELBSecurityPolicy-TLS-1-2-2017-01"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

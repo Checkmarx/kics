@@ -1,0 +1,27 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ApiGateway",
+  "Resources": {
+    "MockMethod": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "Integration": {
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "StatusCode": "200"
+          }
+        ],
+        "ApiKeyRequired": true,
+        "RestApiId": "MyApi",
+        "ResourceId": [
+          "MyApi",
+          "RootResourceId"
+        ],
+        "HttpMethod": "",
+        "AuthorizationType": "NONE"
+      }
+    }
+  }
+}

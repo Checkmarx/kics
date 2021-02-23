@@ -1,15 +1,15 @@
 [
   {
-    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
-    "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
+    "severity": "LOW"
   },
   {
-    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
@@ -22,5 +22,29 @@
     "severity": "LOW",
     "line": 4,
     "fileName": "positive3.yaml"
+  },
+  {
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive4.json",
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated"
+  },
+  {
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive6.json"
   }
 ]
