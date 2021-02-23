@@ -4,5 +4,11 @@
     "severity": "HIGH",
     "line": 10,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive2.json"
   }
 ]

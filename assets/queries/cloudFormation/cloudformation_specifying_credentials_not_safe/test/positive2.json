@@ -1,0 +1,120 @@
+{
+  "Properties": "EC2 Resource Properties ...",
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "WebServer": {
+      "DependsOn": "BucketPolicy",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "config": {
+            "packages": {
+              "yum": {
+                "httpd": []
+              }
+            },
+            "files": {
+              "/var/www/html/index.html": {
+                "authentication": "S3AccessCreds",
+                "source": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "http://s3.amazonaws.com/",
+                      {
+                        "Ref": "BucketName"
+                      },
+                      "/index.html"
+                    ]
+                  ]
+                },
+                "mode": "000400",
+                "owner": "apache",
+                "group": "apache"
+              }
+            },
+            "services": {
+              "sysvinit": {
+                "httpd": {
+                  "enabled": "true",
+                  "ensureRunning": "true"
+                }
+              }
+            }
+          }
+        },
+        "AWS::CloudFormation::Authentication": {
+          "S3AccessCreds": {
+            "type": "S3",
+            "accessKeyId": {
+              "Ref": "CfnKeys"
+            },
+            "secretKey": {
+              "Fn::GetAtt": [
+                "CfnKeys",
+                "SecretAccessKey"
+              ]
+            }
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "WebServer2": {
+      "Type": "AWS::EC2::Instance",
+      "DependsOn": "BucketPolicy",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "config": {
+            "packages": {
+              "yum": {
+                "httpd": []
+              }
+            },
+            "files": {
+              "/var/www/html/index.html": {
+                "group": "apache",
+                "authentication": "S3AccessCreds",
+                "source": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "http://s3.amazonaws.com/",
+                      {
+                        "Ref": "BucketName"
+                      },
+                      "/index.html"
+                    ]
+                  ]
+                },
+                "mode": "000400",
+                "owner": "apache"
+              }
+            },
+            "services": {
+              "sysvinit": {
+                "httpd": {
+                  "enabled": "true",
+                  "ensureRunning": "true"
+                }
+              }
+            }
+          }
+        },
+        "AWS::CloudFormation::Authentication": {
+          "BasicAccessCreds": {
+            "uris": [
+              "example.com/test"
+            ],
+            "type": "basic",
+            "username": {
+              "Ref": "UserName"
+            },
+            "password": {
+              "Ref": "Password"
+            }
+          }
+        }
+      }
+    }
+  }
+}

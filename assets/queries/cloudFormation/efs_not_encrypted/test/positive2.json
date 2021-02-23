@@ -1,0 +1,160 @@
+{
+  "Description": "Create EFS system and Mount Targets for test VPC",
+  "Parameters": {
+    "VPC": {
+      "Type": "String",
+      "Description": "The VPC identity",
+      "Default": "vpc-ID"
+    },
+    "SubnetID1": {
+      "Description": "The subnet where to launch the service",
+      "Default": "subnet-ID",
+      "Type": "String"
+    },
+    "SubnetID2": {
+      "Type": "String",
+      "Description": "the subnet where to Launch the service",
+      "Default": "subnet-ID"
+    },
+    "SubnetID3": {
+      "Default": "subnet-ID",
+      "Type": "String",
+      "Description": "The subnet where to launch the service"
+    },
+    "SubnetID4": {
+      "Description": "the subnet where to Launch the service",
+      "Default": "subnet-ID",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "MountTarget3": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID3"
+      }
+    },
+    "MountTarget4": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID4"
+      }
+    },
+    "EFSSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "security group for the prod EFS",
+        "GroupName": "test-EFS-SG",
+        "VpcId": "VPC",
+        "SecurityGroupIngress": [
+          {
+            "ToPort": 2049,
+            "SourceSecurityGroupId": "sg-ID",
+            "Description": "servers to connect to efs",
+            "FromPort": 2049,
+            "IpProtocol": "tcp"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Environment",
+            "Value": "prod"
+          },
+          {
+            "Key": "Name",
+            "Value": "test-VPC-EFS-SG"
+          },
+          {
+            "Key": "Project",
+            "Value": "ITEngineering"
+          }
+        ]
+      }
+    },
+    "EFSFileSystem01": {
+      "Type": "AWS::EFS::FileSystem",
+      "Properties": {
+        "BackupPolicy": {
+          "Status": "ENABLED"
+        },
+        "Encrypted": false,
+        "LifecyclePolicies": [
+          {
+            "TransitionToIA": "AFTER_60_DAYS"
+          }
+        ],
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "FileSystemTags": [
+          {
+            "Value": "prod",
+            "Key": "Environment"
+          },
+          {
+            "Key": "Name",
+            "Value": "test-VPC-EFS"
+          },
+          {
+            "Key": "Project",
+            "Value": "ITEngineering"
+          }
+        ]
+      }
+    },
+    "MountTarget1": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID1"
+      }
+    },
+    "MountTarget2": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "SubnetId": "SubnetID2",
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "EFS": {
+      "Description": "The created EFS",
+      "Value": "EFSFileSystem01"
+    },
+    "EFSMountTarget1": {
+      "Description": "The EFS MountTarget1",
+      "Value": "MountTarget1"
+    },
+    "EFSMountTarget2": {
+      "Description": "The EFS MountTarget2",
+      "Value": "MountTarget2"
+    },
+    "EFSMountTarget3": {
+      "Description": "The EFS MountTarget3",
+      "Value": "MountTarget3"
+    },
+    "EFSMountTarget4": {
+      "Value": "MountTarget4",
+      "Description": "The EFS MountTarget4"
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}

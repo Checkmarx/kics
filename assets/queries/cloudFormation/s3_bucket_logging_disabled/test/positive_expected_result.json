@@ -4,5 +4,11 @@
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive1.yaml"
+  },
+  {
+    "line": 113,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Logging Disabled",
+    "severity": "MEDIUM"
   }
 ]

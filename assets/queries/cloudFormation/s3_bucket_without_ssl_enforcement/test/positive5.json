@@ -1,0 +1,64 @@
+{
+  "Outputs": {
+    "S3BucketSecureURL": {
+      "Value": [
+        "",
+        [
+          "https://",
+          [
+            "S3Bucket",
+            "DomainName"
+          ]
+        ]
+      ],
+      "Description": "Name of S3 bucket to hold website content"
+    },
+    "WebsiteURL": {
+      "Value": [
+        "S3Bucket",
+        "WebsiteURL"
+      ],
+      "Description": "URL for website hosted on S3"
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "S3Bucket": {
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      },
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket"
+    },
+    "BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17T00:00:00Z",
+          "Statement": [
+            {
+              "Resource": [
+                "",
+                [
+                  "arn:aws:s3:::",
+                  "S3Bucket",
+                  "/*"
+                ]
+              ],
+              "Sid": "PublicReadForGetBucketObjects",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject"
+            }
+          ],
+          "Id": "MyPolicy"
+        },
+        "Bucket": "S3Bucket"
+      }
+    }
+  }
+}

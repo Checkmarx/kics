@@ -1,8 +1,14 @@
 [
   {
-    "queryName": "Unused VPC",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "Unused VPC"
+  },
+  {
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive2.json",
+    "queryName": "Unused VPC"
   }
 ]

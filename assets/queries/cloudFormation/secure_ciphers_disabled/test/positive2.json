@@ -1,0 +1,49 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "cloudfrontdistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Origins": [
+            {
+              "CustomOriginConfig": {
+                "OriginKeepaliveTimeout": 60,
+                "OriginReadTimeout": 30
+              }
+            }
+          ],
+          "CacheBehaviors": [
+            {
+              "LambdaFunctionAssociations": [
+                {
+                  "EventType": "viewer-request",
+                  "LambdaFunctionARN": "examp"
+                }
+              ]
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "LambdaFunctionAssociations": [
+              {
+                "EventType": "viewer-request",
+                "LambdaFunctionARN": "examp"
+              }
+            ]
+          },
+          "IPV6Enabled": true
+        },
+        "Tags": [
+          {
+            "Key": "name",
+            "Value": "example"
+          }
+        ],
+        "ViewerCertificate": {
+          "CloudFrontDefaultCertificate": false,
+          "MinimumProtocolVersion": "SSLv3"
+        }
+      }
+    }
+  }
+}

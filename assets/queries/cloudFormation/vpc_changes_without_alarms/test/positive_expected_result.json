@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 31,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive5.json"
+  },
+  {
+    "line": 38,
+    "fileName": "positive6.json",
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM"
+  },
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "VPC Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive8.json"
   }
 ]

@@ -4,5 +4,11 @@
     "severity": "LOW",
     "line": 13,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "DynamoDB With Table Billing Mode Not Recommended",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive2.json"
   }
 ]

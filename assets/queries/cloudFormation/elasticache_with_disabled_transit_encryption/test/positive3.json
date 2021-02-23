@@ -1,0 +1,58 @@
+{
+  "Resources": {
+    "ReplicationGroup": {
+      "Properties": {
+        "Engine": "redis",
+        "EngineVersion": "EngineVersion",
+        "ReplicasPerNodeGroup": "NumReplicas",
+        "PreferredMaintenanceWindow": "sat:07:00-sat:08:00",
+        "AtRestEncryptionEnabled": true,
+        "CacheParameterGroupName": "CacheParameterGroup",
+        "NotificationTopicArn": [
+          "HasAlertTopic",
+          {
+            "Fn::ImportValue": "${ParentAlertStack}-TopicARN"
+          },
+          "AWS::NoValue"
+        ],
+        "SecurityGroupIds": [
+          "SecurityGroup"
+        ],
+        "SnapshotName": [
+          "HasSnapshotName",
+          "SnapshotName",
+          "AWS::NoValue"
+        ],
+        "SnapshotRetentionLimit": "SnapshotRetentionLimit",
+        "CacheNodeType": "CacheNodeType",
+        "AutomaticFailoverEnabled": [
+          "HasAutomaticFailoverEnabled",
+          true,
+          false
+        ],
+        "CacheSubnetGroupName": "CacheSubnetGroupName",
+        "KmsKeyId": [
+          "HasKmsKey",
+          {
+            "Fn::ImportValue": "${ParentKmsKeyStack}-KeyId"
+          },
+          "AWS::NoValue"
+        ],
+        "NumNodeGroups": "NumShards",
+        "AuthToken": [
+          "HasAuthToken",
+          "AuthToken",
+          "AWS::NoValue"
+        ],
+        "SnapshotWindow": "00:00-03:00",
+        "ReplicationGroupDescription": "AWS::StackName"
+      },
+      "UpdatePolicy": {
+        "UseOnlineResharding": true
+      },
+      "DeletionPolicy": "Snapshot",
+      "UpdateReplacePolicy": "Snapshot",
+      "Type": "AWS::ElastiCache::ReplicationGroup"
+    }
+  }
+}

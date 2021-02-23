@@ -1,15 +1,15 @@
 [
   {
+    "fileName": "positive1.yaml",
     "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive1.yaml"
+    "line": 33
   },
   {
-    "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
-    "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM"
   },
   {
     "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 49,
     "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive2.json",
+    "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.json",
+    "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports"
+  },
+  {
+    "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "TCP/UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 61,
+    "fileName": "positive2.json"
   }
 ]

@@ -4,5 +4,11 @@
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Without Server Side Encryption"
   }
 ]

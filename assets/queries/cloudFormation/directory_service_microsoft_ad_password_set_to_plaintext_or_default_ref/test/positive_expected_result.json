@@ -1,4 +1,3 @@
-
 [
   {
     "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
@@ -17,5 +16,23 @@
     "severity": "MEDIUM",
     "line": 14,
     "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive4.json",
+    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
+    "severity": "MEDIUM",
+    "line": 17
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive5.json",
+    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref"
+  },
+  {
+    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive6.json"
   }
 ]

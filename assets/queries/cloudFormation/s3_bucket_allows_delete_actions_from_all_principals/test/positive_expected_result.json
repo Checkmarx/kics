@@ -22,5 +22,29 @@
     "severity": "HIGH",
     "line": 87,
     "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "HIGH",
+    "line": 129,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Allows Delete Action From All Principals"
+  },
+  {
+    "queryName": "S3 Bucket Allows Delete Action From All Principals",
+    "severity": "HIGH",
+    "line": 145,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "S3 Bucket Allows Delete Action From All Principals",
+    "severity": "HIGH",
+    "line": 164,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "S3 Bucket Allows Delete Action From All Principals",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.json"
   }
 ]

@@ -6,9 +6,21 @@
     "fileName": "positive1.yaml"
   },
   {
+    "fileName": "positive1.yaml",
     "queryName": "CMKs Rotation Disabled",
     "severity": "HIGH",
-    "line": 31,
-    "fileName": "positive1.yaml"
+    "line": 31
+  },
+  {
+    "fileName": "positive2.json",
+    "queryName": "CMKs Rotation Disabled",
+    "severity": "HIGH",
+    "line": 5
+  },
+  {
+    "queryName": "CMKs Rotation Disabled",
+    "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive2.json"
   }
 ]

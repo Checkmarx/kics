@@ -1,8 +1,14 @@
 [
   {
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "queryName": "ELB Without SSL",
+    "severity": "HIGH"
+  },
+  {
     "queryName": "ELB Without SSL",
     "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive1.yaml"
+    "line": 6,
+    "fileName": "positive2.json"
   }
 ]

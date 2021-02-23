@@ -10,5 +10,17 @@
     "severity": "LOW",
     "line": 30,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "RDS DBInstance With Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 49,
+    "fileName": "positive3.json"
+  },
+  {
+    "fileName": "positive4.json",
+    "queryName": "RDS DBInstance With Deletion Protection Disabled",
+    "severity": "LOW",
+    "line": 45
   }
 ]

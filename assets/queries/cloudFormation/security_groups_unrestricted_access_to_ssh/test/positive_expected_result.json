@@ -4,5 +4,11 @@
     "severity": "HIGH",
     "line": 15,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive2.json"
   }
 ]

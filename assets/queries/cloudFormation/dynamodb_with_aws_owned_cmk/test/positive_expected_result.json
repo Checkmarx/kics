@@ -1,26 +1,50 @@
 [
   {
-    "queryName": "DynamoDB with AWS Owned CMK",
-    "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "DynamoDB with AWS Owned CMK",
+    "severity": "HIGH"
   },
   {
-    "queryName": "DynamoDB with AWS Owned CMK",
-    "severity": "HIGH",
     "line": 4,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "queryName": "DynamoDB with AWS Owned CMK",
+    "severity": "HIGH"
   },
   {
+    "fileName": "positive2.yaml",
     "queryName": "DynamoDB with AWS Owned CMK",
     "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive2.yaml"
+    "line": 4
   },
   {
     "queryName": "DynamoDB with AWS Owned CMK",
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "DynamoDB with AWS Owned CMK",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "DynamoDB with AWS Owned CMK",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive6.json"
+  },
+  {
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive7.json",
+    "queryName": "DynamoDB with AWS Owned CMK"
+  },
+  {
+    "queryName": "DynamoDB with AWS Owned CMK",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive8.json"
   }
 ]

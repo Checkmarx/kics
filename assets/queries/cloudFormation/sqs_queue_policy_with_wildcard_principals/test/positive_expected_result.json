@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 18,
     "fileName": "positive2.yaml"
+  },
+  {
+    "line": 21,
+    "fileName": "positive3.json",
+    "queryName": "SQS Queue Policy With Wildcard Principals",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "SQS Queue Policy With Wildcard Principals",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive4.json"
   }
 ]

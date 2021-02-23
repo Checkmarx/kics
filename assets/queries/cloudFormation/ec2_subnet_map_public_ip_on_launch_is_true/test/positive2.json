@@ -1,0 +1,13 @@
+{
+  "Resources": {
+    "PublicSubnet1": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": "PubPrivateVPC",
+        "AvailabilityZone": "us-east-1a",
+        "CidrBlock": "172.31.1.0/24",
+        "MapPublicIpOnLaunch": true
+      }
+    }
+  }
+}

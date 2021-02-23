@@ -1,0 +1,50 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "",
+  "Resources": {
+    "SnsTopic2": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ],
+        "TopicName": "alarm-action"
+      }
+    },
+    "CloudWatchAlarm2": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "Namespace": "CloudTrailMetrics2",
+        "Statistic": "Sum",
+        "Period": 300,
+        "EvaluationPeriods": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "AlarmActions": [
+          "SnsTopic2"
+        ],
+        "AlarmName": "iam_policy_changes",
+        "Threshold": 1,
+        "TreatMissingData": "notBreaching",
+        "MetricName": "IAMPolicyEventCount"
+      }
+    },
+    "MetricFilter2": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "LogGroupName": "",
+        "FilterPattern": "{ ($.eventName = ConsoleLogin) \u0026\u0026 ($.additionalEventData.MFAUsed != Yes) }",
+        "MetricTransformations": [
+          {
+            "MetricValue": "1",
+            "MetricNamespace": "CloudTrailMetrics2",
+            "MetricName": "IAMPolicyEventCount"
+          }
+        ]
+      }
+    }
+  }
+}

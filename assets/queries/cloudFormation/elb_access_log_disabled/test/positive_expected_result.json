@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 31,
     "fileName": "positive2.yaml"
+  },
+  {
+    "fileName": "positive3.json",
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 7
+  },
+  {
+    "fileName": "positive4.json",
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 18
   }
 ]

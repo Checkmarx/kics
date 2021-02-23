@@ -1,8 +1,14 @@
 [
   {
-    "queryName": "Route53 Without Record Set",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "Route53 Without Record Set"
+  },
+  {
+    "queryName": "Route53 Without Record Set",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive2.json"
   }
 ]

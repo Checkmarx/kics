@@ -18,15 +18,45 @@
     "fileName": "positive3.yaml"
   },
   {
+    "fileName": "positive4.yaml",
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "HIGH",
-    "line": 3,
-    "fileName": "positive4.yaml"
+    "line": 3
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "HIGH",
     "line": 11,
     "fileName": "positive4.yaml"
+  },
+  {
+    "fileName": "positive5.json",
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "HIGH",
+    "line": 27
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "HIGH",
+    "line": 46,
+    "fileName": "positive7.json"
+  },
+  {
+    "line": 4,
+    "fileName": "positive8.json",
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive8.json"
   }
 ]

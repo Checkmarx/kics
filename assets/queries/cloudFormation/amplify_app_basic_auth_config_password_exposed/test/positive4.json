@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Parameters": {
+    "ParentUsername": {
+      "Description": "Username",
+      "Type": "String",
+      "Default": ""
+    },
+    "ParentPassword": {
+      "Description": "Password",
+      "Type": "String",
+      "Default": "@skdsjdk0234!AB"
+    }
+  },
+  "Resources": {
+    "NewAmpApp-4": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "CustomHeaders": "String",
+        "EnableBranchAutoDeletion": true,
+        "IAMServiceRole": "String",
+        "OauthToken": "String",
+        "Repository": "String",
+        "BuildSpec": "String",
+        "Description": "String",
+        "Name": "NewAmpApp",
+        "BasicAuthConfig": {
+          "Password": "ParentPassword",
+          "Username": "ParentUsername",
+          "EnableBasicAuth": true
+        }
+      }
+    }
+  }
+}

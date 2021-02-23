@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/google/uuid"
@@ -23,18 +24,18 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/azure":          {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":            {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/github":         {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes_pod": {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/k8s":                      {FileKind: model.KindYAML, Platform: "k8s"},
-		"../assets/queries/cloudFormation":           {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		"../assets/queries/ansible/aws":              {FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
-		"../assets/queries/common":                   {FileKind: model.KindCOMMON, Platform: "common"},
+		"../assets/queries/terraform/aws":            {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/azure":          {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":            {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/github":         {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes_pod": {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/k8s":                      {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
+		"../assets/queries/cloudFormation":           {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/dockerfile":               {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
+		"../assets/queries/common":                   {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 	}
 )
 
@@ -49,19 +50,23 @@ func TestMain(m *testing.M) {
 
 type queryEntry struct {
 	dir      string
-	kind     model.FileKind
+	kind     []model.FileKind
 	platform string
 }
 
 func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
-	files, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(q.kind)))))
-	x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
-	for i, check := range files {
-		if check == x0 {
-			files = append(files[:i], files[i+1:]...)
+	var files []string
+	for _, kinds := range q.kind {
+		kindFiles, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
+		x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+		for i, check := range kindFiles {
+			if check == x0 {
+				kindFiles = append(kindFiles[:i], kindFiles[i+1:]...)
+			}
 		}
+		require.Nil(tb, err)
+		files = append(files, kindFiles...)
 	}
-	require.Nil(tb, err)
 	return files
 }
 
@@ -77,7 +82,7 @@ func (q queryEntry) ExpectedPositiveResultFile() string {
 	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
 }
 
-func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
+func appendQueries(queriesDir []queryEntry, dirName string, kind []model.FileKind, platform string) []queryEntry {
 	queriesDir = append(queriesDir, queryEntry{
 		dir:      dirName,
 		kind:     kind,
@@ -139,6 +144,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 
 func getCombinedParser() *parser.Parser {
 	bd, _ := parser.NewBuilder().
+		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).

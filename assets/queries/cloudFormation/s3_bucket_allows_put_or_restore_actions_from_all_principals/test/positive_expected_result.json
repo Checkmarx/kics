@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 42,
     "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "HIGH",
+    "line": 56,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Allows Put Or Restore Actions From All Principals"
+  },
+  {
+    "severity": "HIGH",
+    "line": 72,
+    "fileName": "positive2.json",
+    "queryName": "S3 Bucket Allows Put Or Restore Actions From All Principals"
   }
 ]

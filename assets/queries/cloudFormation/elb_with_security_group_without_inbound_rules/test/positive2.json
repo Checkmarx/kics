@@ -1,0 +1,19 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "sgwithoutingress": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Limits security group egress traffic"
+      }
+    },
+    "MyLoadBalancer": {
+      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Properties": {
+        "SecurityGroups": [
+          "sgwithoutingress"
+        ]
+      }
+    }
+  }
+}

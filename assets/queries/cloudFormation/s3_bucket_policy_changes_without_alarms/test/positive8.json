@@ -1,0 +1,45 @@
+{
+  "Resources": {
+    "SnsTopic4": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ],
+        "TopicName": "alarm-action"
+      }
+    },
+    "CloudWatchAlarm4": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmName": "iam_policy_changes",
+        "MetricName": "IAMPolicyEventCount",
+        "Period": 300,
+        "Threshold": 1,
+        "TreatMissingData": "notBreaching",
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "Namespace": "CloudTrailMetrics",
+        "Statistic": "Sum",
+        "EvaluationPeriods": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold"
+      }
+    },
+    "MetricFilter4": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "LogGroupName": "",
+        "FilterPattern": "{ ($.eventSource = s3.amazonaws.com) \u0026\u0026 (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) ||($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) ||($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName= DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }",
+        "MetricTransformations": [
+          {
+            "MetricValue": "1",
+            "MetricNamespace": "CloudTrailMetrics",
+            "MetricName": "IAMPolicyEventCount"
+          }
+        ]
+      }
+    }
+  }
+}

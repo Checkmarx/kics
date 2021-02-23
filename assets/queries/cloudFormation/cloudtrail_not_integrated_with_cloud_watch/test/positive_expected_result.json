@@ -1,8 +1,14 @@
 [
   {
-    "queryName": "CloudTrail Not Integrated With Cloud Watch",
     "severity": "MEDIUM",
     "line": 62,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "queryName": "CloudTrail Not Integrated With Cloud Watch"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With Cloud Watch",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive2.json"
   }
 ]

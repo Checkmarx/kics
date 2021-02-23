@@ -12,15 +12,39 @@
     "fileName": "positive4.yaml"
   },
   {
-    "queryName": "Authentication Failure Without Alarms",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "queryName": "Authentication Failure Without Alarms"
   },
   {
     "queryName": "Authentication Failure Without Alarms",
     "severity": "MEDIUM",
     "line": 31,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Authentication Failure Without Alarms",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Authentication Failure Without Alarms",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Authentication Failure Without Alarms",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "Authentication Failure Without Alarms",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive8.json"
   }
 ]
