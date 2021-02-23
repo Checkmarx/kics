@@ -196,7 +196,8 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"severity":        "HIGH",
 						"platform":        "CloudFormation",
 					},
-					Platform: "unknown",
+					Platform:    "unknown",
+					Aggregation: 1,
 				},
 			},
 			wantErr: false,
@@ -218,7 +219,12 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			require.Equal(t, tt.want, got)
+			wantStr, err := test.StringifyStruct(tt.want)
+			require.Nil(t, err)
+			gotStr, err := test.StringifyStruct(got)
+			require.Nil(t, err)
+
+			require.Equal(t, tt.want, got, "want = %s\ngot = %s", wantStr, gotStr)
 		})
 	}
 }
@@ -256,13 +262,18 @@ func Test_ReadMetadata(t *testing.T) {
 				"queryName":       "<QUERY_NAME>",
 				"severity":        "HIGH",
 				"platform":        "<PLATFORM>",
+				"aggregation":     1,
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := ReadMetadata(tt.args.queryDir); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("readMetadata() = %v, want %v", got, tt.want)
+				gotStr, err := test.StringifyStruct(got)
+				require.Nil(t, err)
+				wantStr, err := test.StringifyStruct(tt.want)
+				require.Nil(t, err)
+				t.Errorf("readMetadata()\ngot = %v\nwant = %v", gotStr, wantStr)
 			}
 		})
 	}

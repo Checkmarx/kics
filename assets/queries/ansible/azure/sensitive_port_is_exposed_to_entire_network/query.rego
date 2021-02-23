@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.ansible as lib
+
 getFieldName(field) = name {
 	upper(field) == "NETWORK PORTS SECURITY"
 	name := "azure_rm_securitygroup"
@@ -110,7 +112,7 @@ CxPolicy[result] {
 
 	#############	document and resource
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := lib.getTasks(document)
 	task := tasks[t]
 
 	resource := task[field].rules[r]
@@ -138,12 +140,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s.%s.rules", [portName, protocol, portNumber, ruleName, field]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s.%s.rules", [portName, protocol, portNumber, ruleName, field]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

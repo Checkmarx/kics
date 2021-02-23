@@ -5,5 +5,6 @@
   "category": null,
   "descriptionText": "<TEXT>",
   "descriptionUrl": "#",
-  "platform": "<PLATFORM>"
+  "platform": "<PLATFORM>",
+  "aggregation": 1
 }

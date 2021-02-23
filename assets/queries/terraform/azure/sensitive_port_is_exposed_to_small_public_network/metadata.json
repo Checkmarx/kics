@@ -5,5 +5,6 @@
   "category": "Network Ports Security",
   "descriptionText": "A sensitive port, such as port 23 or port 110, is open for small public network in either TCP or UDP protocol",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "aggregation": 96
 }
