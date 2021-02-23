@@ -44,7 +44,8 @@ KICS is able to infer the format without the need of file extension.
   "exclude-paths": "exclude paths or files from scan",
   "no-progress": false,
   "type": "type of queries to use in the scan",
-  "payload-path": "file path to store source internal representation in JSON format"
+  "payload-path": "file path to store source internal representation in JSON format",
+  "exclude-results": "exclude results by providing a list of similarity IDs of a result"
 }
 ```
 
@@ -60,6 +61,7 @@ exclude-paths: "exclude paths or files from scan"
 no-progress: false
 type: "type of queries to use in the scan"
 payload-path: "file path to store source internal representation in JSON format"
+exclude-results: "exclude results by providing a list of similarity IDs of a result"
 ```
 
 #### TOML Format
@@ -74,6 +76,7 @@ exclude-paths = "exclude paths or files from scan"
 no-progress = false
 type = "type of queries to use in the scan"
 payload-path = "file path to store source internal representation in JSON format"
+exclude-results = "exclude results by providing a list of similarity IDs of a result"
 ```
 
 #### HCL Format
@@ -88,12 +91,13 @@ payload-path = "file path to store source internal representation in JSON format
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
 "type" = "type of queries to use in the scan"
 "verbose" = true
+"exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 ```
 
 ---
 
 
-## How to Use 
+## How to Use
 You can enclose all your configurations in a file and use it in two different ways.
 
 #### Command Argument File

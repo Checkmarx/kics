@@ -285,7 +285,12 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			return q, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
+	inspector, err := engine.NewInspector(ctx,
+		queriesSource,
+		engine.DefaultVulnerabilityBuilder,
+		&tracker.CITracker{},
+		map[string]bool{})
+
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 

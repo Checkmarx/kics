@@ -30,16 +30,17 @@ import (
 )
 
 var (
-	path        string
-	queryPath   string
-	outputPath  string
-	payloadPath string
-	excludePath []string
-	cfgFile     string
-	verbose     bool
-	logFile     bool
-	noProgress  bool
-	types       []string
+	path           string
+	queryPath      string
+	outputPath     string
+	payloadPath    string
+	excludePath    []string
+	excludeResults []string
+	cfgFile        string
+	verbose        bool
+	logFile        bool
+	noProgress     bool
+	types          []string
 )
 
 var scanCmd = &cobra.Command{
@@ -122,6 +123,13 @@ func initScanCmd() {
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
+	scanCmd.Flags().StringSliceVarP(&excludeResults,
+		"exclude-results",
+		"x",
+		[]string{},
+		`exclude results by providing the similarity ID of a result
+The arg should be quoted and uses comma as separator
+example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'`)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -173,6 +181,14 @@ func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
 	return filesSource, nil
 }
 
+func getExcludeResultsMap(excludeResults []string) map[string]bool {
+	excludeResultsMap := make(map[string]bool)
+	for _, er := range excludeResults {
+		excludeResultsMap[er] = true
+	}
+	return excludeResultsMap
+}
+
 func scan() error {
 	fmt.Printf("Scanning with %s\n\n", getVersion())
 
@@ -186,7 +202,9 @@ func scan() error {
 
 	t := &tracker.CITracker{}
 
-	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t)
+	excludeResultsMap := getExcludeResultsMap(excludeResults)
+
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeResultsMap)
 	if err != nil {
 		return err
 	}
