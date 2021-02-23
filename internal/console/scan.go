@@ -128,8 +128,8 @@ func initScanCmd() {
 		"s",
 		[]string{},
 		`exclude results by providing the similarity ID of a result
-		The arg should be quoted and uses comma as separator
-		example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'`)
+The arg should be quoted and uses comma as separator
+example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'`)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
