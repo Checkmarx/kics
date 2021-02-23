@@ -6,7 +6,6 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -78,8 +77,6 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 			if fileInfo.Size() > maxFileSize {
 				return errors.Wrapf(errors.New("file size limit exceeded"), "File size should not exceed %dMB: %s", maxFileSize/megaByte, filename)
 			}
-
-			filename = filepath.Base(filename)
 
 			content, err := ioutil.ReadAll(rc)
 			if err != nil {
