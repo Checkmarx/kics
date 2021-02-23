@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	instanceList := tasks[_]
 	ec2_instance = instanceList.ec2_group
 	ec2_instanceName = ec2_instance.name
@@ -21,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	instanceList := tasks[_]
 	ec2_instance = instanceList.ec2_group
 	ec2_instanceName = ec2_instance.name
@@ -40,12 +41,4 @@ CxPolicy[result] {
 checkPrivateIps(ipVal) = result {
 	private_ips = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
 	result := net.cidr_contains(private_ips[_], ipVal)
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

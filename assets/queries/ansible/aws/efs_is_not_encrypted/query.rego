@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	fs := task["community.aws.efs"]
 	fsName := task.name
@@ -20,12 +21,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	fs := task["community.aws.efs"]
 	fsName := task.name
 
-	not isAnsibleTrue(fs.encrypt)
+	not ansLib.isAnsibleTrue(fs.encrypt)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -34,20 +35,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "community.aws.efs.encrypt should be set to true",
 		"keyActualValue": "community.aws.efs.encrypt is set to false",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
 }

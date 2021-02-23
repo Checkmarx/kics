@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	ec2Ami := task["amazon.aws.ec2_ami"]
 	ec2AmiName := task.name
@@ -21,12 +22,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	ec2Ami := task["amazon.aws.ec2_ami"]
 	ec2AmiName := task.name
 	devMap := ec2Ami.device_mapping
-	not isAnsibleTrue(devMap.encrypted)
+	not ansLib.isAnsibleTrue(devMap.encrypted)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,18 +38,3 @@ CxPolicy[result] {
 	}
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleTrue(answer) {
-	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
-}

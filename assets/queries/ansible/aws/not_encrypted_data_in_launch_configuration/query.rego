@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	modules := {"community.aws.ec2_lc", "ec2_lc"}
@@ -20,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	modules := {"community.aws.ec2_lc", "ec2_lc"}
@@ -38,7 +39,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 
 	modules := {"community.aws.ec2_lc", "ec2_lc"}
@@ -53,14 +54,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.volumes[%d].encrypted is set to true or yes", [modules[index], j]),
 		"keyActualValue": sprintf("%s.volumes[%d].encrypted is not set to true or yes", [modules[index], j]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isNoOrFalse(attribute) = allow {

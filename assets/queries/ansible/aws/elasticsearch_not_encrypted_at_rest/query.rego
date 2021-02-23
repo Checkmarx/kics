@@ -1,8 +1,9 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	elasticsearch = tasks[_][j]
 	elasticsearchBody = elasticsearch.ec2_elasticsearch
 	elasticsearchName = elasticsearchBody.name
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document = input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	elasticsearch = tasks[_][j]
 	elasticsearchBody = elasticsearch.ec2_elasticsearch
 	elasticsearchName = elasticsearchBody.name
@@ -40,10 +41,3 @@ is_disabled(value) {
 	true
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}

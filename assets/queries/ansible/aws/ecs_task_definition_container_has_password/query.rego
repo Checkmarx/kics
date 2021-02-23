@@ -1,9 +1,10 @@
 package Cx
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	password := ["password", "pw", "pass"]
 	document := input.document[i]
-	tasks := getTasks(document)
+	tasks := ansLib.getTasks(document)
 	task := tasks[t]
 	cont := task["community.aws.ecs_taskdefinition"].containers[j]
 	checkPassword(cont.env, password)
@@ -15,14 +16,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "'community.aws.ecs_taskdefinition.containers.env' doesn't have 'password' value",
 		"keyActualValue": "'community.aws.ecs_taskdefinition.containers.env' has 'password' value",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 checkPassword(env, password) {
