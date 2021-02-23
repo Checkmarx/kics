@@ -262,7 +262,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"queryName":       "<QUERY_NAME>",
 				"severity":        "HIGH",
 				"platform":        "<PLATFORM>",
-				"aggregation":     1,
+				"aggregation":     float64(1),
 			},
 		},
 	}

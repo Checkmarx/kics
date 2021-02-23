@@ -171,8 +171,8 @@ func NewInspector(
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
 	sum := 0
-	for i, _ := range opaQueries {
-		sum += opaQueries[i].metadata.Aggregation
+	for _, query := range opaQueries {
+		sum += query.metadata.Aggregation
 	}
 	return sum
 }
