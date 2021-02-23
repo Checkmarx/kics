@@ -18,6 +18,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
@@ -55,7 +56,7 @@ var scanCmd = &cobra.Command{
 
 func initializeConfig(cmd *cobra.Command) error {
 	if cfgFile == "" {
-		_, err := os.Stat(filepath.ToSlash(filepath.Join(path, "kics.config")))
+		_, err := os.Stat(filepath.ToSlash(filepath.Join(filepath.Dir(path), "kics.config")))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
@@ -197,6 +198,7 @@ func scan() error {
 	}
 
 	combinedParser, err := parser.NewBuilder().
+		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
