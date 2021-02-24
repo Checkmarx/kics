@@ -44,12 +44,12 @@ func TestCITracker(t *testing.T) {
 			FailedSimilarityID: tt.fields.FailedSimilarityID,
 		}
 		t.Run(fmt.Sprintf(tt.name+"_LoadedQueries"), func(t *testing.T) {
-			c.TrackQueryLoad()
+			c.TrackQueryLoad(1)
 			require.Equal(t, 1, c.LoadedQueries)
 		})
 
 		t.Run(fmt.Sprintf(tt.name+"_TrackQueryExecution"), func(t *testing.T) {
-			c.TrackQueryExecution()
+			c.TrackQueryExecution(1)
 			require.Equal(t, 1, c.ExecutedQueries)
 		})
 

@@ -52,8 +52,8 @@ type QueriesSource interface {
 // TrackQueryExecution increments the number of queries executed
 // FailedDetectLine decrements the number of queries executed
 type Tracker interface {
-	TrackQueryLoad()
-	TrackQueryExecution()
+	TrackQueryLoad(queryAggregation int)
+	TrackQueryExecution(queryAggregation int)
 	FailedDetectLine()
 	FailedComputeSimilarityID()
 }
@@ -145,7 +145,7 @@ func NewInspector(
 				continue
 			}
 
-			tracker.TrackQueryLoad()
+			tracker.TrackQueryLoad(metadata.Aggregation)
 
 			opaQueries = append(opaQueries, &preparedQuery{
 				opaQuery: opaQuery,
@@ -155,8 +155,10 @@ func NewInspector(
 	}
 	failedQueries := make(map[string]error)
 
+	queriesNumber := sumAllAggregatedQueries(opaQueries)
+
 	log.Info().
-		Msgf("Inspector initialized, number of queries=%d\n", len(opaQueries))
+		Msgf("Inspector initialized, number of queries=%d\n", queriesNumber)
 
 	return &Inspector{
 		queries:        opaQueries,
@@ -165,6 +167,14 @@ func NewInspector(
 		failedQueries:  failedQueries,
 		excludeResults: excludeResults,
 	}, nil
+}
+
+func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
+	sum := 0
+	for _, query := range opaQueries {
+		sum += query.metadata.Aggregation
+	}
+	return sum
 }
 
 func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
@@ -222,7 +232,7 @@ func (c *Inspector) Inspect(
 
 		vulnerabilities = append(vulnerabilities, vuls...)
 
-		c.tracker.TrackQueryExecution()
+		c.tracker.TrackQueryExecution(query.metadata.Aggregation)
 	}
 	close(currentQuery)
 	wg.Wait()
