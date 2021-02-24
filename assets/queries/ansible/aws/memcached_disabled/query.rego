@@ -1,14 +1,14 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+
 	task["community.aws.elasticache"].engine == "redis"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.elasticache}}.engine", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.elasticache}}.engine enables Memcached", [task.name]),

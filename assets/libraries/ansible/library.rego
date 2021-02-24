@@ -1,12 +1,50 @@
 package generic.ansible
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
+tasks := TasksPerDocument
+
+TasksPerDocument[id] = result {
+	document := input.document[i]
+	id := document.id
+	result := getTasks(document)
 }
+
+getTasks(document) = result {
+	document.playbooks[0].tasks
+	result := [task |
+		playbook := document.playbooks[0].tasks[_]
+		task := getTasksFromBlocks(playbook)[_]
+	]
+} else = result {
+	result := [task |
+		playbook := document.playbooks[_]
+		task := getTasksFromBlocks(playbook)[_]
+	]
+}
+
+getTasksFromBlocks(playbook) = result {
+	playbook.block
+	result := [task |
+		walk(playbook, [path, task])
+		is_object(task)
+		not task.block
+		valid_path(path)
+	]
+} else = [playbook] {
+	true
+}
+
+valid_path(path) {
+	count(path) == 0
+} else {
+	count(path) % 2 == 0
+	valid_group(path[minus(count(path), 2)])
+}
+
+valid_group("block") = true
+
+valid_group("always") = true
+
+valid_group("rescue") = true
 
 checkState(task) {
 	state := object.get(task, "state", "undefined")

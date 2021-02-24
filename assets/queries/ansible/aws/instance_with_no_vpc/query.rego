@@ -1,17 +1,15 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	modules := {"community.aws.ec2_instance", "amazon.aws.ec2"}
 
 	object.get(task[modules[index]], "vpc_subnet_id", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.vpc_subnet_id is set", [modules[index]]),

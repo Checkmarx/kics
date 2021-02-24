@@ -1,12 +1,10 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	iam := task["community.aws.iam"]
-	iamName := task.name
 
 	is_string(iam.access_key_state)
 	lower(iam.access_key_state) == "active"
@@ -15,8 +13,8 @@ CxPolicy[result] {
 	contains(lower(iam.name), "root")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam}}", [iamName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.iam}}", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.iam is not active for a root account",
 		"keyActualValue": "community.aws.iam is active for a root account",

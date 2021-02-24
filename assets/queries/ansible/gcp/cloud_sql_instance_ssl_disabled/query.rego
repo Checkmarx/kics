@@ -3,19 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_sql_instance"]
-
 	ansLib.checkState(instance)
 
-	settings := instance.settings
-	ip_configuration := settings.ip_configuration
-
-	ansLib.isAnsibleFalse(ip_configuration.require_ssl)
+	ansLib.isAnsibleFalse(instance.settings.ip_configuration.require_ssl)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.require_ssl", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{cloud_gcp_sql_instance}}.settings.ip_configuration.require_ssl is true",
@@ -24,19 +19,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_sql_instance"]
-
 	ansLib.checkState(instance)
 
-	settings := instance.settings
-	ip_configuration := settings.ip_configuration
-
-	object.get(ip_configuration, "require_ssl", "undefined") == "undefined"
+	object.get(instance.settings.ip_configuration, "require_ssl", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{cloud_gcp_sql_instance}}.settings.ip_configuration.require_ssl is defined",
