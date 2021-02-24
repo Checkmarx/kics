@@ -6,5 +6,5 @@
 	"descriptionText": "The load balancer of the application with a sensitive port connection is exposed to the entire internet.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
 	"platform": "CloudFormation",
-  "aggregation": 61
+  "aggregation": 183
 }
