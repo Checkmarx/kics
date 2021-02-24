@@ -54,6 +54,11 @@ type Severity string
 // IssueType is the issue's type string representation
 type IssueType string
 
+type VulnLines struct {
+	Positions []int
+	Lines     []string
+}
+
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
 	ID           string `db:"id"`
@@ -87,6 +92,7 @@ type Vulnerability struct {
 	Platform         string    `db:"platform" json:"platform"`
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
+	VulnLines        VulnLines `json:"vulnLines"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`
 	SearchKey        string    `db:"search_key" json:"searchKey"`
 	SearchValue      string    `db:"search_value" json:"searchValue"`

@@ -77,6 +77,7 @@ Flags:
                                   example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'
   -h, --help                      help for scan
   -l, --log-file                  log to file info.log
+      --no-color                  Disable color output
       --no-progress               hides scan's progress bar
   -o, --output-path string        file path to store result in json format
   -p, --path string               path to file or directory to scan

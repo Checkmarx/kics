@@ -23,6 +23,7 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
+	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -42,6 +43,7 @@ var (
 	logFile        bool
 	noProgress     bool
 	types          []string
+	noColor        bool
 )
 
 var scanCmd = &cobra.Command{
@@ -122,6 +124,7 @@ func initScanCmd() {
 	)
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
+	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "Disable color output")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
@@ -191,7 +194,21 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func scan() error {
+	if noColor {
+		color.Disable()
+	}
+
+	printer := consoleHelpers.NewPrinter()
+
 	fmt.Printf("Scanning with %s\n\n", getVersion())
+
+	rc, err := ioutil.ReadFile("docs/img/kics-console")
+
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("%s\n\n", printer.Success.Sprint(string(rc)))
 
 	if err := setupLogs(); err != nil {
 		return err
@@ -269,7 +286,7 @@ func scan() error {
 		return err
 	}
 
-	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries()); err != nil {
+	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries(), *printer, verbose); err != nil {
 		return err
 	}
 
