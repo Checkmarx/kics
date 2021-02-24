@@ -27,24 +27,22 @@ getTasksFromBlocks(playbook) = result {
 		walk(playbook, [path, task])
 		is_object(task)
 		not task.block
-		valid_path(path)
+		validPath(path)
 	]
 } else = [playbook] {
 	true
 }
 
-valid_path(path) {
-	count(path) == 0
-} else {
-	count(path) % 2 == 0
-	valid_group(path[minus(count(path), 2)])
+validPath(path) {
+	count(path) > 1
+	validGroup(path[minus(count(path), 2)])
 }
 
-valid_group("block") = true
+validGroup("block") = true
 
-valid_group("always") = true
+validGroup("always") = true
 
-valid_group("rescue") = true
+validGroup("rescue") = true
 
 checkState(task) {
 	state := object.get(task, "state", "undefined")
