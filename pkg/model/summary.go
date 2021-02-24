@@ -12,7 +12,7 @@ type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
 	SimilarityID     string    `json:"similarity_id"`
 	Line             int       `json:"line"`
-	VulnLines        VulnLines `json:"vulnLines"`
+	VulnLines        VulnLines `json:"-"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
 	SearchValue      string    `json:"search_value"`
