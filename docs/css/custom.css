@@ -1,0 +1,5 @@
+.table {
+  width: 70vw;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
