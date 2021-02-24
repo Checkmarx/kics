@@ -143,11 +143,17 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	metadata := ReadMetadata(queryDir)
 	platform := getPlatform(queryDir)
 
+	aggregation := 1
+	if agg, ok := metadata["aggregation"]; ok {
+		aggregation = int(agg.(float64))
+	}
+
 	return model.QueryMetadata{
-		Query:    path.Base(filepath.ToSlash(queryDir)),
-		Content:  string(queryContent),
-		Metadata: metadata,
-		Platform: platform,
+		Query:       path.Base(filepath.ToSlash(queryDir)),
+		Content:     string(queryContent),
+		Metadata:    metadata,
+		Platform:    platform,
+		Aggregation: aggregation,
 	}, nil
 }
 

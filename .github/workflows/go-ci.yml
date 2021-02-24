@@ -13,7 +13,7 @@ jobs:
       with:
           fetch-depth: 0
     - name: golangci-lint
-      uses: golangci/golangci-lint-action@v2.4.0
+      uses: golangci/golangci-lint-action@v2.5.1
       with:
         version: v1.29
   unit-tests:
