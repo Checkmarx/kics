@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"sync"
@@ -87,8 +88,9 @@ var printTests = []struct {
 }
 
 type jsonCaseTest struct {
-	summary model.Summary
-	path    string
+	summary  model.Summary
+	path     string
+	filename string
 }
 
 var jsonTests = []struct {
@@ -97,8 +99,9 @@ var jsonTests = []struct {
 }{
 	{
 		caseTest: jsonCaseTest{
-			summary: summary,
-			path:    "./testout.json",
+			summary:  summary,
+			path:     "./testdir",
+			filename: "testout",
 		},
 		expectedResult: summary,
 	},
@@ -122,17 +125,17 @@ func TestPrintToJSONFile(t *testing.T) {
 	for idx, test := range jsonTests {
 		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
 			var err error
-			err = PrintToJSONFile(test.caseTest.path, test.caseTest.summary)
+			err = printToJSONFile(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
 			require.NoError(t, err)
-			require.FileExists(t, test.caseTest.path)
+			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
 			var jsonResult []byte
-			jsonResult, err = ioutil.ReadFile(test.caseTest.path)
+			jsonResult, err = ioutil.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
 			require.NoError(t, err)
 			var resultSummary model.Summary
 			err = json.Unmarshal(jsonResult, &resultSummary)
 			require.NoError(t, err)
 			require.Equal(t, test.expectedResult, resultSummary)
-			os.Remove(test.caseTest.path)
+			os.RemoveAll(test.caseTest.path)
 		})
 	}
 }

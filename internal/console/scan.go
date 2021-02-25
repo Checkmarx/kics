@@ -37,6 +37,7 @@ var (
 	payloadPath    string
 	excludePath    []string
 	excludeResults []string
+	outputFormats  []string
 	cfgFile        string
 	verbose        bool
 	logFile        bool
@@ -111,7 +112,7 @@ func initScanCmd() {
 		"./assets/queries",
 		"path to directory with queries (default ./assets/queries)",
 	)
-	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
+	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store result in output formats")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -123,6 +124,7 @@ func initScanCmd() {
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
+	scanCmd.Flags().StringSliceVarP(&outputFormats, "output-formats", "", []string{"json"}, "Formats the result will be exported")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
 		"exclude-results",
@@ -261,11 +263,11 @@ func scan() error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printJSON(payloadPath, files.Combine()); err != nil {
+	if err := printOutput(payloadPath, "payload", files.Combine(), []string{"json"}); err != nil {
 		return err
 	}
 
-	if err := printJSON(outputPath, summary); err != nil {
+	if err := printOutput(outputPath, "results", summary, outputFormats); err != nil {
 		return err
 	}
 
@@ -284,9 +286,10 @@ func scan() error {
 	return nil
 }
 
-func printJSON(path string, body interface{}) error {
-	if path != "" {
-		return consoleHelpers.PrintToJSONFile(path, body)
+func printOutput(path, filename string, body interface{}, formats []string) error {
+	ok := consoleHelpers.ValidateReportFormats(formats)
+	if ok == nil && path != "" {
+		ok = consoleHelpers.GenerateOutput(path, filename, body, formats)
 	}
-	return nil
+	return ok
 }

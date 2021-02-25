@@ -20,6 +20,10 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+var reportGenerators = map[string]func(path, filename string, body interface{}) error{
+	"json": printToJSONFile,
+}
+
 // ProgressBar represents a Progress
 // Writer is the writer output for progress bar
 type ProgressBar struct {
@@ -135,23 +139,24 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
 	return nil
 }
 
-// PrintToJSONFile prints on JSON file the summary results
-func PrintToJSONFile(path string, body interface{}) error {
-	f, err := os.OpenFile(filepath.Clean(path), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+// printToJSONFile prints on JSON file the summary results
+func printToJSONFile(path, filename string, body interface{}) error {
+	fullPath := filepath.Join(path, filename+".json")
+	_ = os.MkdirAll(path, os.ModePerm)
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
 	}
 	defer func() {
-		if err := f.Close(); err != nil {
-			log.Err(err).Msgf("failed to close file %s", path)
+		if err = f.Close(); err != nil {
+			log.Err(err).Msgf("failed to close file %s", fullPath)
 		}
 
-		curDir, err := os.Getwd()
 		if err != nil {
 			log.Err(err).Msgf("failed to get current directory")
 		}
 
-		log.Info().Str("fileName", path).Msgf("Results saved to file %s", filepath.Join(curDir, path))
+		log.Info().Str("fileName", filename+".json").Msgf("Results saved to file %s", fullPath)
 	}()
 
 	encoder := json.NewEncoder(f)
@@ -212,4 +217,31 @@ func FileAnalyzer(path string) (string, error) {
 	}
 
 	return "", errors.New("invalid configuration file format")
+}
+
+// GenerateOutput execute each report function to generate report
+func GenerateOutput(path, filename string, body interface{}, formats []string) error {
+	var err error = nil
+	for _, format := range formats {
+		if err = reportGenerators[format](path, filename, body); err != nil {
+			break
+		}
+	}
+	return err
+}
+
+// ValidateReportFormats returns an error if output format is not supported
+func ValidateReportFormats(formats []string) error {
+	validFormats := make([]string, len(reportGenerators))
+	for reportFormats := range reportGenerators {
+		validFormats = append(validFormats, reportFormats)
+	}
+	for _, format := range formats {
+		if _, ok := reportGenerators[format]; !ok {
+			return fmt.Errorf(
+				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(validFormats, "\n  ")),
+			)
+		}
+	}
+	return nil
 }
