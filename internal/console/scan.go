@@ -93,7 +93,9 @@ func initializeConfig(cmd *cobra.Command) error {
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
+		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
 			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
@@ -119,6 +121,18 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 			}
 		}
 	})
+	for key, val := range settingsMap {
+		if val == true {
+			continue
+		} else {
+			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
+			err := cmd.Help()
+			if err != nil {
+				log.Err(err).Msg("Unable to show help message")
+			}
+			os.Exit(1)
+		}
+	}
 }
 
 func initScanCmd() {
