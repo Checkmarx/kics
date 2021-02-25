@@ -9,6 +9,7 @@ jobs:
     name: integration-tests
     strategy:
       matrix:
+        go-version: [1.15.x]
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
