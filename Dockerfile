@@ -12,11 +12,11 @@ ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION=development
 
 #Copy go mod and sum files
-COPY go.mod .
-COPY go.sum .
+COPY --chown=Checkmarx:Checkmarx go.mod .
+COPY --chown=Checkmarx:Checkmarx go.sum .
 
 # Get dependancies - will also be cached if we won't change mod/sum
-RUN go mod download
+RUN go mod download -x
 
 # COPY the source code as the last step
 COPY . .
