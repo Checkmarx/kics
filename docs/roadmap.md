@@ -23,11 +23,13 @@
 | Completed | Hard-coded secret keys detection |  |
 | In-Progress | Reporting - add SARIF format |  |
 | In-Progress | CI/CD improved documentation |  |
+| In-Progress | Improved CLI outputs (progess, coloring, logo) |  |
 |In-Progress | Engineering and performance improvements |  |
 | Not-Started | **Milestone 5** | Mar 2021 |
 |  | Additional IaC Tools - GCP, Azure RM, etc. |  |
 |  | Distribution platforms: Homebrew, Chocolatey|  |
 |  | Reporting - add HTML format |  |
+|  | Terraform - Parameters files support |  |
 
 Have an idea?  
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
