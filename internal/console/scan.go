@@ -57,7 +57,15 @@ var scanCmd = &cobra.Command{
 
 func initializeConfig(cmd *cobra.Command) error {
 	if cfgFile == "" {
-		_, err := os.Stat(filepath.ToSlash(filepath.Join(filepath.Dir(path), "kics.config")))
+		configpath := path
+		info, err := os.Stat(path)
+		if err != nil {
+			return nil
+		}
+		if !info.IsDir() {
+			configpath = filepath.Dir(path)
+		}
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, "kics.config")))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
