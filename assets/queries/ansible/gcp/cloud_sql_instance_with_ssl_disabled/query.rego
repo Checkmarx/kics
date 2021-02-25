@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	sql_instance := task["google.cloud.gcp_sql_instance"]
 
 	ansLib.checkState(sql_instance)
 	path := getPathDefinitions(sql_instance)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}%s", [task.name, path.defined]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is defined", [path.undefined]),
@@ -20,15 +19,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	sql_instance := task["google.cloud.gcp_sql_instance"]
 
 	ansLib.checkState(sql_instance)
 	not ansLib.isAnsibleTrue(sql_instance.settings.ip_configuration.require_ssl)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.require_ssl", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' is true",

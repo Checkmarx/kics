@@ -1,21 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	task["amazon.aws.ec2_group"].rules[index].from_port == 0
 	task["amazon.aws.ec2_group"].rules[index].to_port == 0
 
-	not isvalidProto(task["amazon.aws.ec2_group"].rules[index])
+	not isValidProto(task["amazon.aws.ec2_group"].rules[index])
 
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 	isEntireNetwork(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] is restricted", [index]),
@@ -24,20 +23,18 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	task["amazon.aws.ec2_group"].rules[index].from_port == 0
 	task["amazon.aws.ec2_group"].rules[index].to_port == 0
 
-	not isvalidProto(task["amazon.aws.ec2_group"].rules[index])
+	not isValidProto(task["amazon.aws.ec2_group"].rules[index])
 
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
 	isEntireNetwork(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] is restricted", [index]),
@@ -64,7 +61,7 @@ isEntireNetwork(cidr) = allow {
 	allow = true
 }
 
-isvalidProto(proto) {
+isValidProto(proto) {
 	isString := is_string(proto)
 	protos = {"tcp", "udp", "icmp", "icmpv6"}
 
@@ -73,7 +70,7 @@ isvalidProto(proto) {
 	allow = true
 }
 
-isvalidProto(proto) {
+isValidProto(proto) {
 	isString := is_number(proto)
 	protos = {1, 6, 17, 58}
 

@@ -3,17 +3,16 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(input.document[i])[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 	metadata := instance.metadata
 
 	ansLib.checkState(instance)
 	object.get(metadata, "block-project-ssh-keys", "undefined") != "undefined"
-	not ansLib.isAnsibleTrue(object.get(metadata, "block-project-ssh-keys", "undefined"))
+	not ansLib.isAnsibleTrue(metadata["block-project-ssh-keys"])
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.metadata.block-project-ssh-keys", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.block-project-ssh-keys' is true", [task.name]),
@@ -22,16 +21,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(input.document[i])[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
-	metadata := instance.metadata
 
 	ansLib.checkState(instance)
-	object.get(metadata, "block-project-ssh-keys", "undefined") == "undefined"
+	object.get(instance.metadata, "block-project-ssh-keys", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.metadata", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.block-project-ssh-keys' is set and is true", [task.name]),
@@ -40,15 +37,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(input.document[i])[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
 	object.get(instance, "metadata", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata' is set", [task.name]),

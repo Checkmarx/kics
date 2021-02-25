@@ -1,15 +1,14 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	object.get(task["community.aws.cloudwatchlogs_log_group"], "retention", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.cloudwatchlogs_log_group}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "community.aws.cloudwatchlogs_log_group.retention is set",
@@ -18,9 +17,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	value := task["community.aws.cloudwatchlogs_log_group"].retention
 
@@ -29,7 +26,7 @@ CxPolicy[result] {
 	count({x | validValues[x]; validValues[x] == value}) == 0
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.cloudwatchlogs_log_group}}.retention", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.cloudwatchlogs_log_group.retention is set and valid",

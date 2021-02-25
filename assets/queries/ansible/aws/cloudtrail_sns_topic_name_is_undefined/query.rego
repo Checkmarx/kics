@@ -1,34 +1,33 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	playbooks := ansLib.getTasks(input.document[i])
-	redis_cache := playbooks[j]
-	instance := redis_cache["community.aws.cloudtrail"]
+	task := ansLib.tasks[id][t]
+	instance := task["community.aws.cloudtrail"]
 
 	not instance.sns_topic_name
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}", [playbooks[j].name]),
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is undefined", [playbooks[j].name]),
+		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is undefined", [task.name]),
 	}
 }
 
 CxPolicy[result] {
-	playbooks := ansLib.getTasks(input.document[i])
-	redis_cache := playbooks[j]
-	instance := redis_cache["community.aws.cloudtrail"]
+	task := ansLib.tasks[id][t]
+	instance := task["community.aws.cloudtrail"]
 
 	instance.sns_topic_name == null
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name", [playbooks[j].name]),
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [playbooks[j].name]),
+		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [task.name]),
 	}
 }

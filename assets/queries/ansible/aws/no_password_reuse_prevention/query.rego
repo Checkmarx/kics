@@ -1,19 +1,17 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	pwPolicy := task["community.aws.iam_password_policy"]
-	pwPolicyName := task.name
 
 	searchKey := checkPwReusePrevent(pwPolicy)
 	searchKey != "none"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}%s", [pwPolicyName, searchKey]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}%s", [task.name, searchKey]),
 		"issueType": issueType(searchKey),
 		"keyExpectedValue": "community.aws.iam_password_policy should have the property 'password_reuse_prevent' greater than 0",
 		"keyActualValue": "community.aws.iam_password_policy has the property 'password_reuse_prevent' unassigned or assigned to 0",

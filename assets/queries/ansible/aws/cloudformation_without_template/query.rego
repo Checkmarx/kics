@@ -1,11 +1,9 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	modules := {"community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"}
 
 	object.get(task[modules[index]], "template_body", "undefined") == "undefined"
@@ -13,7 +11,7 @@ CxPolicy[result] {
 	object.get(task[modules[index]], "template", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s has template, template_body or template_url set", [modules[index]]),
@@ -22,18 +20,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	attributes := {"template_body", "template_url", "template"}
-
 	modules := {"community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"}
 
 	count([x | obj := object.get(task[modules[index]], attributes[x], "undefined"); obj != "undefined"]) > 1
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s does not have more than one of the attributes template, template_body and template_url set", [modules[index]]),

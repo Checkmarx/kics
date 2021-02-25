@@ -1,20 +1,17 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	currentPort := task["amazon.aws.ec2_group"].rules[index].from_port
-
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 
 	not portIsKnown(currentPort)
 	isEntireNetwork(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is known", [index]),
@@ -23,19 +20,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	currentPort := task["amazon.aws.ec2_group"].rules[index].from_port
-
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
 
 	not portIsKnown(currentPort)
 	isEntireNetwork(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is known", [index]),

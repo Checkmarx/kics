@@ -1,15 +1,15 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	instance := task["community.aws.rds_instance"]
+
 	not checkEncryption(instance)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.rds_instance}}.storage_encrypted", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_rds_instance.storage_encrypted is true or aws_rds_instance.kms_key_id is defined",

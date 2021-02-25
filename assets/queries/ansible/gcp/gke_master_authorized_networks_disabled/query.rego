@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	container_cluster := task["google.cloud.gcp_container_cluster"]
 
 	ansLib.checkState(container_cluster)
 	object.get(container_cluster, "master_authorized_networks_config", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_cluster}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'master_authorized_networks_config' is defined",
@@ -20,15 +19,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	container_cluster := task["google.cloud.gcp_container_cluster"]
 
 	ansLib.checkState(container_cluster)
 	object.get(container_cluster.master_authorized_networks_config, "enabled", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'master_authorized_networks_config.enabled' is defined",
@@ -37,15 +35,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	container_cluster := task["google.cloud.gcp_container_cluster"]
 
 	ansLib.checkState(container_cluster)
 	not ansLib.isAnsibleTrue(container_cluster.master_authorized_networks_config.enabled)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config.enabled", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'master_authorized_networks_config.enabled' is true",

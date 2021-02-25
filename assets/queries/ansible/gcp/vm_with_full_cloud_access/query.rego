@@ -3,8 +3,7 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	taskComputeInstance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(taskComputeInstance)
@@ -14,7 +13,7 @@ CxPolicy[result] {
 	lower(scopes[_]) == "cloud-platform"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.service_accounts", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'service_accounts.scopes' does not contain 'cloud-platform'",

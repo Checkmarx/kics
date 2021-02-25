@@ -1,15 +1,14 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	object.get(task["community.aws.ecs_ecr"], "image_tag_mutability", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "community.aws.ecs_ecr.image_tag_mutability is set ",
@@ -18,14 +17,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	task["community.aws.ecs_ecr"].image_tag_mutability != "immutable"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}.image_tag_mutability", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.ecs_ecr.image_tag_mutability is set to 'immutable'",

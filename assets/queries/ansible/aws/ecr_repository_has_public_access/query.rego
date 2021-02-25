@@ -1,18 +1,18 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	stat := task["community.aws.ecs_ecr"].policy.Statement[j]
+
 	stat.Effect == "Allow"
 	stat.Principal == "*"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}.policy.Statement.Principal='*'", [task.name]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Statement.Principal' isn't '*'",
 		"keyActualValue": "'Statement.Principal' is '*'",
 	}

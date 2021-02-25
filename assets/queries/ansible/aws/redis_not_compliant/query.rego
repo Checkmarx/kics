@@ -1,15 +1,15 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	min_version_string = "4.0.10"
+
 	eval_version_number(task["community.aws.elasticache"].cache_engine_version) < eval_version_number(min_version_string)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.elasticache}}.cache_engine_version is compliant with the AWS PCI DSS requirements", [task.name]),
