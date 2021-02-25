@@ -220,7 +220,7 @@ func scan() error {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types)
+		Build(querySource.Types)
 	if err != nil {
 		return err
 	}
