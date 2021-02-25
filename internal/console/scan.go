@@ -86,7 +86,7 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("VIPER_")
+	v.SetEnvPrefix("KICS_")
 	v.AutomaticEnv()
 	bindFlags(cmd, v)
 	return nil
@@ -96,14 +96,26 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "VIPER_", envVarSuffix)); err != nil {
+			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
 		if !f.Changed && v.IsSet(f.Name) {
 			val := v.Get(f.Name)
-			if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
-				log.Err(err).Msg("Failed to get Viper flags")
+			switch t := val.(type) {
+			case []interface{}:
+				var paramSlice []string
+				for _, param := range t {
+					paramSlice = append(paramSlice, param.(string))
+				}
+				valStr := strings.Join(paramSlice, ",")
+				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", valStr)); err != nil {
+					log.Err(err).Msg("Failed to get Viper flags")
+				}
+			default:
+				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
+					log.Err(err).Msg("Failed to get Viper flags")
+				}
 			}
 		}
 	})
