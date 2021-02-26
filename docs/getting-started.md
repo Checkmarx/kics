@@ -66,24 +66,29 @@ Executes a scan analysis
 
 Usage:
   kics scan [flags]
+  kics scan [command]
+
+Available Commands:
+  list-platforms List supported platforms
 
 Flags:
       --config string             path to configuration file
-  -e, --exclude-paths strings     exclude paths or files from scan
-                                  The arg should be quoted and uses comma as separator
+  -e, --exclude-paths strings     exclude paths from scan
+                                  supports glob and can be provided multiple times or as a quoted comma separated string
                                   example: './shouldNotScan/*,somefile.txt'
   -x, --exclude-results strings   exclude results by providing the similarity ID of a result
-                                  The arg should be quoted and uses comma as separator
-                                  example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'
+                                  can be provided multiple times or as a comma separated string
+                                  example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
   -h, --help                      help for scan
-  -l, --log-file                  log to file info.log
-      --no-progress               hides scan's progress bar
+  -l, --log-file                  writes log messages to info.log
+      --no-progress               hides the progress bar
   -o, --output-path string        file path to store result in json format
-  -p, --path string               path to file or directory to scan
-  -d, --payload-path string       file path to store source internal representation in JSON format
-  -q, --queries-path string       path to directory with queries (default ./assets/queries) (default "./assets/queries")
-  -t, --type strings              type of queries to use in the scan
-  -v, --verbose                   verbose scan
+  -p, --path string               path or directory path to scan
+  -d, --payload-path string       path to store internal representation JSON file
+  -q, --queries-path string       path to directory with queries (default "./assets/queries")
+  -t, --type strings              case insensitive list of platform types to scan
+                                  (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
+  -v, --verbose                   increase verbosity
 ```
 
 The other commands have no further options.

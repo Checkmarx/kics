@@ -1,4 +1,4 @@
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">  
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">
 
 ---
 
@@ -42,7 +42,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 
 ## Contribution
 
-KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.  
+KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 - [How can I help?!](CONTRIBUTING.md)
@@ -50,11 +50,11 @@ KICS is a true community project. It's built as an open source project from day 
 
 ## About the Project
 
-The KICS project is powered by <a href="https://www.checkmarx.com/" target="_blank">Checkmarx</a>, global leader of Application Security Testing.  
+The KICS project is powered by <a href="https://www.checkmarx.com/" target="_blank">Checkmarx</a>, global leader of Application Security Testing.
 [Read more](about.md) about **Infrastructure as Code**, **Infrastructure as Code Testing** and Checkmarx.
 
-KICS will always stay an open source and free project for the benefit of global software industry community.  
-We believe that when **Software is Everywhere, Security is Everything**.  
+KICS will always stay an open source and free project for the benefit of global software industry community.
+We believe that when **Software is Everywhere, Security is Everything**.
 
 Now, Software <span style="color: #5FBB46">**=**</span> **Security**.
 
@@ -64,5 +64,5 @@ Looking for more info? Explore KICS project in details:
 - <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
 - <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
 
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

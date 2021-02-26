@@ -13,7 +13,7 @@ In this case we instruct the job to download and use the latest Linux version of
 
 1- Edit or add a new job in the .gitlab-ci.yml file in your repository.
 
-2- In the beginning of the job, instruct it to get the latest version of KICS, for example in `before_script`: 
+2- In the beginning of the job, instruct it to get the latest version of KICS, for example in `before_script`:
 ```yaml
 before_script:
   - apk add --no-cache libc6-compat curl
@@ -33,7 +33,7 @@ stages:
 ```yaml
 kics-scan:
   stage: kics
-  script: 
+  script:
     - kics scan -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
   artifacts:
     name: kics-results.json
@@ -54,7 +54,7 @@ kics-results:
   script:
     - |
       echo "TOTAL SEVERITY COUNTER: $TOTAL_SEVERITY_COUNTER
-      SEVERITY COUNTER HIGH: $SEVERITY_COUNTER_HIGH 
+      SEVERITY COUNTER HIGH: $SEVERITY_COUNTER_HIGH
       SEVERITY COUNTER MEDIUM: $SEVERITY_COUNTER_MEDIUM
       SEVERITY COUNTER LOW: $SEVERITY_COUNTER_LOW
       SEVERITY COUNTER INFO: $SEVERITY_COUNTER_INFO"
@@ -85,7 +85,7 @@ stages:
 
 kics-scan:
   stage: kics
-  script: 
+  script:
     - kics scan -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
   artifacts:
     name: kics-results.json
@@ -103,7 +103,7 @@ kics-results:
   script:
     - |
       echo "TOTAL SEVERITY COUNTER: $TOTAL_SEVERITY_COUNTER
-      SEVERITY COUNTER HIGH: $SEVERITY_COUNTER_HIGH 
+      SEVERITY COUNTER HIGH: $SEVERITY_COUNTER_HIGH
       SEVERITY COUNTER MEDIUM: $SEVERITY_COUNTER_MEDIUM
       SEVERITY COUNTER LOW: $SEVERITY_COUNTER_LOW
       SEVERITY COUNTER INFO: $SEVERITY_COUNTER_INFO"
