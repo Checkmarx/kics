@@ -1,12 +1,29 @@
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">  
+
+<div class="row" >
+    <div class="col-6 text-center" >
+        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250"> 
+        <br/> 
+         <br/> 
+        <p>Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with <b>KICS</b> by Checkmarx.</p>
+        <p><b>KICS</b> stands for <b>K</b>eeping <b>I</b>nfrastructure as <b>C</b>ode <b>S</b>ecure, it is open source and is a must-have for any cloud native project.</p>
+    </div>
+    <div class="col-6 text-center">
+        <br/><br/>
+        <h4>Version 1.1.4</h4>
+        <p style="font-size:8pt">2021.02.24<p>
+        <h4>Downloads:</h4>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.1.4/kics_1.1.4_windows_x64.zip">Windows</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.1.4/kics_1.1.4_linux_x64.tar.gz">Linux</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.1.4/kics_1.1.4_darwin_x64.tar.gz">MacOS</a>
+        <hr/>
+        <a class="btn btn-outline-success"  href="https://docs.kics.io/CONTRIBUTING">Contribute!</a>
+    </div>
+</div>
+
 
 ---
 
-**KICS** is an open source solution for static code analysis of Infrastructure as Code.
 
-**K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
-
-It is as simple as running a CLI tool, making it easy to integrate into any project CI.
 
 #### Supported Platforms
 
