@@ -1,21 +1,18 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	currentFromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	currentToPort := task["amazon.aws.ec2_group"].rules[index].to_port
-
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
 
 	isSSH(currentFromPort, currentToPort)
 	not isPrivate(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is not public", [index]),
@@ -24,20 +21,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	currentFromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	currentToPort := task["amazon.aws.ec2_group"].rules[index].to_port
-
 	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
 
 	isSSH(currentFromPort, currentToPort)
 	not isPrivate(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is not public", [index]),

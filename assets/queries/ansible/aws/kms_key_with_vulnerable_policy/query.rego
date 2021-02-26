@@ -1,18 +1,17 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	aws_kms := task["community.aws.aws_kms"]
-	policy_exists := object.get(aws_kms, "policy", "undefined") != "undefined"
 
+	policy_exists := object.get(aws_kms, "policy", "undefined") != "undefined"
 	statement = aws_kms.policy.Statement[_]
 	check_permission(statement) == true
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.aws_kms}}.policy", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.aws_kms}}.policy is correct", [task.name]),

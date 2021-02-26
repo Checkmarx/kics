@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	container_task := task["google.cloud.gcp_container_node_pool"]
 
 	ansLib.checkState(container_task)
 	object.get(container_task, "management", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_container_node_pool}}.management is defined",
@@ -20,8 +19,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	container_task := task["google.cloud.gcp_container_node_pool"]
 	management := container_task.management
 
@@ -29,7 +27,7 @@ CxPolicy[result] {
 	object.get(management, "auto_upgrade", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}.management", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade is defined",
@@ -38,8 +36,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	container_task := task["google.cloud.gcp_container_node_pool"]
 	auto_upgrade := container_task.management.auto_upgrade
 
@@ -47,7 +44,7 @@ CxPolicy[result] {
 	not ansLib.isAnsibleTrue(auto_upgrade)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade is true",

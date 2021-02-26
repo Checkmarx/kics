@@ -1,14 +1,14 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+
 	isAccessible(task["community.aws.sqs_queue"])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal doesn't get the queue publicly accessible", [task.name]),

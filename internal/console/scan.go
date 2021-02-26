@@ -57,7 +57,15 @@ var scanCmd = &cobra.Command{
 
 func initializeConfig(cmd *cobra.Command) error {
 	if cfgFile == "" {
-		_, err := os.Stat(filepath.ToSlash(filepath.Join(filepath.Dir(path), "kics.config")))
+		configpath := path
+		info, err := os.Stat(path)
+		if err != nil {
+			return nil
+		}
+		if !info.IsDir() {
+			configpath = filepath.Dir(path)
+		}
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, "kics.config")))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
@@ -78,27 +86,53 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("VIPER_")
+	v.SetEnvPrefix("KICS_")
 	v.AutomaticEnv()
 	bindFlags(cmd, v)
 	return nil
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
+		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "VIPER_", envVarSuffix)); err != nil {
+			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
 		if !f.Changed && v.IsSet(f.Name) {
 			val := v.Get(f.Name)
-			if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
-				log.Err(err).Msg("Failed to get Viper flags")
+			switch t := val.(type) {
+			case []interface{}:
+				var paramSlice []string
+				for _, param := range t {
+					paramSlice = append(paramSlice, param.(string))
+				}
+				valStr := strings.Join(paramSlice, ",")
+				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", valStr)); err != nil {
+					log.Err(err).Msg("Failed to get Viper flags")
+				}
+			default:
+				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
+					log.Err(err).Msg("Failed to get Viper flags")
+				}
 			}
 		}
 	})
+	for key, val := range settingsMap {
+		if val == true {
+			continue
+		} else {
+			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
+			err := cmd.Help()
+			if err != nil {
+				log.Err(err).Msg("Unable to show help message")
+			}
+			os.Exit(1)
+		}
+	}
 }
 
 func initScanCmd() {
@@ -220,7 +254,7 @@ func scan() error {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types)
+		Build(querySource.Types)
 	if err != nil {
 		return err
 	}
