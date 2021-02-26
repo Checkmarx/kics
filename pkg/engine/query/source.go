@@ -58,7 +58,7 @@ func NewFilesystemSource(source string, types []string) *FilesystemSource {
 func ListSupportedPlatforms() []string {
 	keys := make([]string, len(supportedPlatforms))
 	i := 0
-	for k, _ := range supportedPlatforms {
+	for k := range supportedPlatforms {
 		keys[i] = k
 		i++
 	}
@@ -77,9 +77,9 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 
 	libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-	for _, supportedPlatform := range supportedPlatforms {
-		if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supportedPlatform)) {
-			libraryFilePath = filepath.FromSlash(libraryPath + "/" + supportedPlatform + "/" + LibraryFileName)
+	for _, supPlatform := range supportedPlatforms {
+		if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
+			libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
 			break
 		}
 	}
