@@ -4,11 +4,11 @@
     policy:
       Version: '2008-10-17'
       Statement:
-        - Sid: read-only
-          Effect: Allow
-          Principal:
-            AWS: '{{ read_only_arn }}'
-          Action:
-            - ecr:GetDownloadUrlForLayer
-            - ecr:BatchGetImage
-            - ecr:BatchCheckLayerAvailability
+      - Sid: read-only
+        Effect: Allow
+        Principal:
+          AWS: '{{ read_only_arn }}'
+        Action:
+        - ecr:GetDownloadUrlForLayer
+        - ecr:BatchGetImage
+        - ecr:BatchCheckLayerAvailability

@@ -1,4 +1,3 @@
----
 - name: Use a routing policy to distribute traffic
   community.aws.route53:
     state: present
@@ -7,6 +6,6 @@
     type: CNAME
     value: host1.foo.com
     ttl: 30
-    identifier: "host1@www"
+    identifier: host1@www
     weight: 100
-    health_check: "d994b780-3150-49fd-9205-356abdd42e75"
+    health_check: d994b780-3150-49fd-9205-356abdd42e75

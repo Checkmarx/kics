@@ -3,30 +3,30 @@
     state: present
     caller_reference: unique test distribution ID
     origins:
-        - id: 'my test origin-000111'
-          domain_name: www.example.com
-          origin_path: /production
-          custom_headers:
-            - header_name: MyCustomHeaderName
-              header_value: MyCustomHeaderValue
+    - id: my test origin-000111
+      domain_name: www.example.com
+      origin_path: /production
+      custom_headers:
+      - header_name: MyCustomHeaderName
+        header_value: MyCustomHeaderValue
     default_cache_behavior:
-      target_origin_id: 'my test origin-000111'
+      target_origin_id: my test origin-000111
       forwarded_values:
         query_string: true
         cookies:
           forward: all
         headers:
-         - '*'
+        - '*'
       viewer_protocol_policy: https-only
       smooth_streaming: true
       compress: true
       allowed_methods:
         items:
-          - GET
-          - HEAD
+        - GET
+        - HEAD
         cached_methods:
-          - GET
-          - HEAD
+        - GET
+        - HEAD
     logging:
       enabled: true
       include_cookies: false

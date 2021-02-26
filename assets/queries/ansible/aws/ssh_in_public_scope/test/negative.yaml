@@ -5,11 +5,11 @@
     vpc_id: 12345
     region: eu-west-1
     rules:
-      - proto: tcp
-        from_port: 80
-        to_port: 80
-        cidr_ip: 79.32.0.0/8
-      - proto: tcp
-        from_port: 80
-        to_port: 80
-        cidr_ipv6: 64:ff9b::/96
+    - proto: tcp
+      from_port: 80
+      to_port: 80
+      cidr_ip: 79.32.0.0/8
+    - proto: tcp
+      from_port: 80
+      to_port: 80
+      cidr_ipv6: 64:ff9b::/96

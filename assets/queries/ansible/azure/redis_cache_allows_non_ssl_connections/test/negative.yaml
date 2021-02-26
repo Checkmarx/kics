@@ -1,9 +1,9 @@
 - name: Non SSl Disallowed
   azure_rm_rediscache:
-      resource_group: myResourceGroup
-      name: myRedis
-      enable_non_ssl_port: no
+    resource_group: myResourceGroup
+    name: myRedis
+    enable_non_ssl_port: no
 - name: Non SSl Undefined
   azure_rm_rediscache:
-      resource_group: myResourceGroup
-      name: myRedis
+    resource_group: myResourceGroup
+    name: myRedis

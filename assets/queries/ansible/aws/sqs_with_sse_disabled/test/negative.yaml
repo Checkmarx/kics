@@ -1,4 +1,3 @@
----
 - name: Create SQS queue with redrive policy
   community.aws.sqs_queue:
     name: my-queue
@@ -9,7 +8,7 @@
     delivery_delay: 30
     receive_message_wait_time: 20
     kms_master_key_id: key-id
-    policy: "{{ json_dict }}"
+    policy: '{{ json_dict }}'
     redrive_policy:
       maxReceiveCount: 5
       deadLetterTargetArn: arn:aws:sqs:eu-west-1:123456789012:my-dead-queue

@@ -1,10 +1,9 @@
----
 - name: as_conf
   community.aws.ec2_lc:
     name: special
     image_id: data.aws_ami.ubuntu.id
     key_name: default
-    security_groups: ['group', 'group2' ]
+    security_groups: [group, group2]
     instance_type: m4.large
     spot_price: 0.001
     volumes:
@@ -15,7 +14,7 @@
     name: special
     image_id: data.aws_ami.ubuntu.id
     key_name: default
-    security_groups: ['group', 'group2' ]
+    security_groups: [group, group2]
     instance_type: m4.large
     spot_price: 0.001
     volumes:
