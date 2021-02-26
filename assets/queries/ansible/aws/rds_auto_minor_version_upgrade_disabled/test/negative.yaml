@@ -1,5 +1,4 @@
-- name: negative - create minimal aurora instance in default VPC and default subnet
-    group
+- name: negative - create minimal aurora instance in default VPC and default subnet group
   community.aws.rds_instance:
     engine: aurora
     db_instance_identifier: ansible-test-aurora-db-instance
