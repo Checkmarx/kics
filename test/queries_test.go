@@ -47,6 +47,22 @@ func TestQueries(t *testing.T) {
 	}
 }
 
+func TestUniqueQueryIDs(t *testing.T) {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	queries := loadQueries(t)
+
+	queriesIdentifiers := make(map[string]string)
+
+	for _, entry := range queries {
+		metadata := query.ReadMetadata(entry.dir)
+		uuid := metadata["id"].(string)
+		duplicateDir, ok := queriesIdentifiers[uuid]
+		require.False(t, ok, "\nnon unique query found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+			uuid, entry.dir, duplicateDir)
+		queriesIdentifiers[uuid] = entry.dir
+	}
+}
+
 func testPositiveandNegativeQueries(t *testing.T, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	t.Run(name+"_positive", func(t *testing.T) {
