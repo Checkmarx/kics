@@ -7,11 +7,7 @@ on:
 jobs:
   integration-tests:
     name: integration-tests
-    strategy:
-      matrix:
-        go-version: [1.15.x]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2

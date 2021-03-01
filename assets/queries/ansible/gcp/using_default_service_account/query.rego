@@ -3,8 +3,7 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
@@ -12,7 +11,7 @@ CxPolicy[result] {
 	object.get(instance, "service_account_email", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.service_account_email is defined",
@@ -21,8 +20,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
@@ -32,7 +30,7 @@ CxPolicy[result] {
 	count(email) == 0
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.service_account_email", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.service_account_email is not empty",
@@ -41,8 +39,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
@@ -53,7 +50,7 @@ CxPolicy[result] {
 	not contains(email, "@")
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.service_account_email", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.service_account_email is an email",
@@ -62,8 +59,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
@@ -72,7 +68,7 @@ CxPolicy[result] {
 	contains(email, "@developer.gserviceaccount.com")
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.service_account_email", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.service_account_email is not a default Google Compute Engine service account",

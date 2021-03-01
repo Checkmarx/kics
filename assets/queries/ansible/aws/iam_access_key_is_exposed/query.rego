@@ -1,19 +1,19 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document = input.document[i]
-	tasks := ansLib.getTasks(document)
-	iamuserObj = tasks[_]
-	iamuserObjBody = iamuserObj["community.aws.iam"]
-	iamuserObjName = iamuserObj.name
-	lower(iamuserObjBody.access_key_state) == "active"
-	not contains(lower(iamuserObjBody.name),"root")
+	task = ansLib.tasks[id][t]
+	iamuser = task["community.aws.iam"]
+
+	lower(iamuser.access_key_state) == "active"
+	not contains(lower(iamuser.name), "root")
+
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam}}.access_key_state", [iamuserObjName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.iam}}.access_key_state", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}}.{{community.aws.iam}}.name is 'root' for an active access key", [iamuserObjName]),
-		"keyActualValue": sprintf("{{%s}}.{{community.aws.iam}}.name is '%s' for an active access key", [iamuserObjName, iamuserObjBody.name]),
+		"keyExpectedValue": sprintf("{{%s}}.{{community.aws.iam}}.name is 'root' for an active access key", [task.name]),
+		"keyActualValue": sprintf("{{%s}}.{{community.aws.iam}}.name is '%s' for an active access key", [task.name, iamuser.name]),
 	}
 }

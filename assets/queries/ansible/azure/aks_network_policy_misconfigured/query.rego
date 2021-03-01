@@ -1,14 +1,14 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	not isValidNetworkPolicy(task.azure_rm_aks.network_profile.network_policy)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.azure_rm_aks.network_profile.network_policy", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Azure AKS cluster network policy should be either 'calico' or 'azure'",
@@ -17,14 +17,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	object.get(task.azure_rm_aks, "network_profile", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.azure_rm_aks", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Azure AKS cluster network profile should be defined",
@@ -33,28 +31,18 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	object.get(task.azure_rm_aks, "network_profile", "undefined") == "undefined"
 	object.get(task.azure_rm_aks.network_profile, "network_policy", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.azure_rm_aks", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Azure AKS cluster network policy should be defined",
 		"keyActualValue": "Azure AKS cluster network policy is undefined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isValidNetworkPolicy(policy) {

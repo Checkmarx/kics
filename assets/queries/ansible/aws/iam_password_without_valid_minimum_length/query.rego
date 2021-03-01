@@ -1,18 +1,16 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document = input.document[i]
-	tasks := ansLib.getTasks(document)
-	firstPolicy = tasks[_]
-	policyBody = firstPolicy["community.aws.iam_password_policy"]
-	policyName = firstPolicy.name
+	task = ansLib.tasks[id][t]
+	policy = task["community.aws.iam_password_policy"]
 
-	not getName(policyBody)
+	not getName(policy)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}", [policyName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'min_pw_length/minimum_password_length' is set and no less than 8",
 		"keyActualValue": "'min_pw_length/minimum_password_length' is undefined",
@@ -20,18 +18,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document = input.document[i]
-	tasks := ansLib.getTasks(document)
-	firstPolicy = tasks[_]
-	policyBody = firstPolicy["community.aws.iam_password_policy"]
-	policyName = firstPolicy.name
+	task = ansLib.tasks[id][t]
+	policy = task["community.aws.iam_password_policy"]
 
-	variableName = getName(policyBody)
-	to_number(policyBody[variableName]) < 8
+	variableName = getName(policy)
+	to_number(policy[variableName]) < 8
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}.{{min_pw_length}}", [policyName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}.{{min_pw_length}}", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is set and no less than 8", [variableName]),
 		"keyActualValue": sprintf("'%s' is less than 8", [variableName]),

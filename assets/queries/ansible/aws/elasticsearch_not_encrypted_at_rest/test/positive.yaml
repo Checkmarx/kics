@@ -20,7 +20,7 @@
         access_policies: "{{ lookup('file', 'files/cluster_policies.json') | from_json }}"
         encryption_at_rest_enabled : false
         profile: "myawsaccount"
-    - name: "Create ElasticSearch cluster"
+    - name: "Create second ElasticSearch cluster"
       ec2_elasticsearch:
         name: "my-cluster-2"
         elasticsearch_version: "2.3"

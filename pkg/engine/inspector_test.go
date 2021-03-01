@@ -335,6 +335,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 				"platform":        "CloudFormation",
 			},
+			Aggregation: 1,
 		},
 	})
 	type args struct {

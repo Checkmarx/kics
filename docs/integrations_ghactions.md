@@ -15,7 +15,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
   uses: Checkmarx/kics-github-action@v1.0
   with:
     # path to file or directory to scan
-    path: 
+    path:
     # file path to store result in json format
     output_path: # optional
     # file path to store source internal representation in JSON format
@@ -27,7 +27,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 ```
 
 
-#### Example 
+#### Example
 ```yaml
 #...
   steps:
@@ -45,7 +45,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 Here you can see it in action:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_scan_github_actions.png" width="850">  
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_scan_github_actions.png" width="850">
 
 
 #### Resources

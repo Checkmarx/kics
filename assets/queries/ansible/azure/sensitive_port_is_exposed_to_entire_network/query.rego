@@ -1,9 +1,6 @@
 package Cx
 
-getFieldName(field) = name {
-	upper(field) == "NETWORK PORTS SECURITY"
-	name := "azure_rm_securitygroup"
-}
+import data.generic.ansible as ansLib
 
 getProtocol(resource) = protocol {
 	protocol := resource.protocol
@@ -106,15 +103,10 @@ CxPolicy[result] {
 		[61621, "Cassandra OpsCenter"],
 	]
 
-	field := getFieldName("Network Ports Security") # Category/service used
-
 	#############	document and resource
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
-	resource := task[field].rules[r]
-	sgName := task.name
+	resource := task.azure_rm_securitygroup.rules[r]
 	ruleName := resource.name
 
 	#############	get relevant fields
@@ -131,19 +123,11 @@ CxPolicy[result] {
 
 	#############	Result
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.rules.name={{%s}}.destination_port_range", [sgName, field, ruleName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure_rm_securitygroup}}.rules.name={{%s}}.destination_port_range", [task.name, ruleName]),
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s.%s.rules", [portName, protocol, portNumber, ruleName, field]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s.%s.rules", [portName, protocol, portNumber, ruleName, field]),
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s.azure_rm_securitygroup.rules", [portName, protocol, portNumber, ruleName]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s.azure_rm_securitygroup.rules", [portName, protocol, portNumber, ruleName]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

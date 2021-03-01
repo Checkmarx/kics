@@ -1,16 +1,15 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	cloudwatchlogs := task["community.aws.aws_config_aggregator"]
 
 	not ansLib.isAnsibleTrue(cloudwatchlogs.account_sources.all_aws_regions)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.aws_config_aggregator}}.account_sources.all_aws_regions", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_config_aggregator.account_sources' should have all_aws_regions set to true",
@@ -19,15 +18,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	cloudwatchlogs := task["community.aws.aws_config_aggregator"]
 
 	not ansLib.isAnsibleTrue(cloudwatchlogs.organization_source.all_aws_regions)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.aws_config_aggregator}}.organization_source.all_aws_regions", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_config_aggregator.organization_source' should have all_aws_regions set to true",

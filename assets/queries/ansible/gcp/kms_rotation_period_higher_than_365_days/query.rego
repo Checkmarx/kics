@@ -3,8 +3,7 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_kms_crypto_key"]
 
 	ansLib.checkState(instance)
@@ -13,7 +12,7 @@ CxPolicy[result] {
 	to_number(rotation_period) > seconds_in_a_year
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_kms_crypto_key}}.rotation_period", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_kms_crypto_key}}.rotation_period is at most '315356000s'", [task.name]),
@@ -22,15 +21,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_kms_crypto_key"]
 
 	ansLib.checkState(instance)
 	object.get(instance, "rotation_period", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_kms_crypto_key}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_kms_crypto_key}}.rotation_period is set", [task.name]),

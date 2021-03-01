@@ -1,26 +1,19 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+
 	hasPublicAccess(task.azure_rm_storageblob.public_access)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{azure_rm_storageblob}}.public_access", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_storageblob.public_access is not set",
 		"keyActualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 hasPublicAccess(access) {

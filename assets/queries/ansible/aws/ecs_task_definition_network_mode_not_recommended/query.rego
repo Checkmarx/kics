@@ -1,16 +1,16 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+
 	task["community.aws.ecs_taskdefinition"].network_mode != "awsvpc"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{community.aws.ecs_taskdefinition}}.network_mode", [task.name]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'community.aws.ecs_taskdefinition.network_mode' is 'awsvpc'",
 		"keyActualValue": sprintf("'community.aws.ecs_taskdefinition.network_mode' is '%s'", [task["community.aws.ecs_taskdefinition"].network_mode]),
 	}

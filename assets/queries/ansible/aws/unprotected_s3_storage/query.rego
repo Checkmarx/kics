@@ -1,15 +1,14 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 
 	task["amazon.aws.s3_bucket"].encryption == "none"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{amazon.aws.s3_bucket}}.encryption", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "amazon.aws.s3_bucket.encryption is not none",

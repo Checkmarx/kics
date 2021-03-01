@@ -9,10 +9,26 @@ Here is a Configuration file example:
   "path": "assets/iac_samples",
   "verbose": true,
   "log-file": true,
+  "type": "Dockerfile,Kubernetes",
   "queries-path": "assets/queries",
   "output-path": "results.json"
 }
 ```
+
+The same example now in YAML format passing `type` as an array of strings:
+
+```YAML
+path: assets/iac_samples
+verbose: true
+log-file: true
+type:
+  - Dockerfile
+  - Kubernetes
+queries-path: "assets/queries"
+output-path: "results.json"
+```
+
+> 📝 flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
 ---
 

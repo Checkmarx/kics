@@ -1,17 +1,15 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	applicationLb := task["community.aws.elb_application_lb"]
-	clusterName := applicationLb.name
 
 	applicationLb.listeners[index].Protocol != "HTTPS"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners.Protocol=%s", [task.name, applicationLb.listeners[index].Protocol]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
@@ -20,17 +18,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	applicationLb := task["community.aws.elb_application_lb"]
-	clusterName := applicationLb.name
 
 	applicationLb.listeners[index]
 	not MissingProtocol(applicationLb.listeners)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
@@ -41,4 +36,3 @@ CxPolicy[result] {
 MissingProtocol(listeners) {
 	listeners[_].Protocol
 }
-

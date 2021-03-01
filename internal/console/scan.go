@@ -61,9 +61,28 @@ var scanCmd = &cobra.Command{
 	},
 }
 
+var listPlatformsCmd = &cobra.Command{
+	Use:   "list-platforms",
+	Short: "List supported platforms",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		for _, v := range query.ListSupportedPlatforms() {
+			fmt.Println(v)
+		}
+		return nil
+	},
+}
+
 func initializeConfig(cmd *cobra.Command) error {
 	if cfgFile == "" {
-		_, err := os.Stat(filepath.ToSlash(filepath.Join(filepath.Dir(path), "kics.config")))
+		configpath := path
+		info, err := os.Stat(path)
+		if err != nil {
+			return nil
+		}
+		if !info.IsDir() {
+			configpath = filepath.Dir(path)
+		}
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, "kics.config")))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
@@ -84,67 +103,97 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("VIPER_")
+	v.SetEnvPrefix("KICS_")
 	v.AutomaticEnv()
 	bindFlags(cmd, v)
 	return nil
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
+		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "VIPER_", envVarSuffix)); err != nil {
+			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
 		if !f.Changed && v.IsSet(f.Name) {
 			val := v.Get(f.Name)
-			if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
-				log.Err(err).Msg("Failed to get Viper flags")
+			switch t := val.(type) {
+			case []interface{}:
+				var paramSlice []string
+				for _, param := range t {
+					paramSlice = append(paramSlice, param.(string))
+				}
+				valStr := strings.Join(paramSlice, ",")
+				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", valStr)); err != nil {
+					log.Err(err).Msg("Failed to get Viper flags")
+				}
+			default:
+				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
+					log.Err(err).Msg("Failed to get Viper flags")
+				}
 			}
 		}
 	})
+	for key, val := range settingsMap {
+		if val == true {
+			continue
+		} else {
+			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
+			err := cmd.Help()
+			if err != nil {
+				log.Err(err).Msg("Unable to show help message")
+			}
+			os.Exit(1)
+		}
+	}
 }
 
 func initScanCmd() {
-	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path to file or directory to scan")
+	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path or directory path to scan")
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
 	scanCmd.Flags().StringVarP(
 		&queryPath,
 		"queries-path",
 		"q",
 		"./assets/queries",
-		"path to directory with queries (default ./assets/queries)",
+		"path to directory with queries",
 	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
 	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "L", 3, "numer of lines to be displayed in results output")
-	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
+	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
 		"exclude-paths",
 		"e",
 		[]string{},
-		"exclude paths or files from scan\nThe arg should be quoted and uses comma as separator\nexample: './shouldNotScan/*,somefile.txt'",
+		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
+			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
-	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
 	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable color output")
 	scanCmd.Flags().BoolVarP(&min, "minimal", "m", false, "minimal version of results output")
-	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
-	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
+	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
+	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
+	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
+		fmt.Sprintf("(%s)", strings.Join(query.ListSupportedPlatforms(), ", ")))
+	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
 		"exclude-results",
 		"x",
 		[]string{},
-		`exclude results by providing the similarity ID of a result
-The arg should be quoted and uses comma as separator
-example: 'fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe,31263s5696620s93dbb973d9360942fc2a...'`)
+		"exclude results by providing the similarity ID of a result\n"+
+			"can be provided multiple times or as a comma separated string\n"+
+			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'")
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("failed to add command required flags")
 	}
+
+	scanCmd.AddCommand(listPlatformsCmd)
 }
 
 func setupLogs() error {
@@ -243,7 +292,7 @@ func scan() error { //nolint
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types)
+		Build(querySource.Types)
 	if err != nil {
 		return err
 	}
