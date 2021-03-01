@@ -12,8 +12,7 @@ NO_PROGRESS = os.getenv('NO_PROGRESS', False)
 
 parser = argparse.ArgumentParser(description='Execute linter against files')
 parser.add_argument('filesglob', metavar='FILES',
-  type=str, nargs='+',
-  required=False, help='List of file globs to check')
+  type=str, nargs='+', help='List of file globs to check')
 
 args = parser.parse_args()
 
