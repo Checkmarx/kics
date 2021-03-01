@@ -39,13 +39,15 @@ type ProgressBar struct {
 // Info is for info sevevity results
 // Success is for successful prints
 // Line is the color to print the line with the vulnerability
+// minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
-	Medium  color.RGBColor
-	High    color.RGBColor
-	Low     color.RGBColor
-	Info    color.RGBColor
-	Success color.RGBColor
-	Line    color.RGBColor
+	Medium     color.RGBColor
+	High       color.RGBColor
+	Low        color.RGBColor
+	Info       color.RGBColor
+	Success    color.RGBColor
+	Line       color.RGBColor
+	minVersion bool
 }
 
 // NewProgressBar initializes a new ProgressBar
@@ -116,7 +118,7 @@ func WordWrap(s, identation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer Printer, verbose bool) error {
+func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
@@ -130,14 +132,14 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	for _, q := range sortBySev(summary.Queries) {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", printer.PrintBySev(q.QueryName,
 			string(q.Severity)), printer.PrintBySev(string(q.Severity), string(q.Severity)), len(q.Files))
-		if verbose {
+		if !printer.minVersion {
 			fmt.Printf("Description: %s\n", q.Description)
 			fmt.Printf("Platform: %s\n\n", q.Platform)
 		}
 		for i := 0; i < len(q.Files); i++ {
 			fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", i+1), string(q.Severity)),
 				q.Files[i].FileName, printer.Success.Sprint(q.Files[i].Line))
-			if verbose {
+			if !printer.minVersion {
 				fmt.Println()
 				for idx, lines := range q.Files[i].VulnLines.Lines {
 					if q.Files[i].VulnLines.Positions[idx] == q.Files[i].Line {
@@ -257,14 +259,15 @@ func sortBySev(queries []model.VulnerableQuery) []model.VulnerableQuery {
 }
 
 // NewPrinter initializes a new Printer
-func NewPrinter() *Printer {
+func NewPrinter(minVersion bool) *Printer {
 	return &Printer{
-		Medium:  color.HEX("#ff7213"),
-		High:    color.HEX("#bb2124"),
-		Low:     color.HEX("#edd57e"),
-		Success: color.HEX("#22bb33"),
-		Info:    color.HEX("#5bc0de"),
-		Line:    color.HEX("#f0ad4e"),
+		Medium:     color.HEX("#ff7213"),
+		High:       color.HEX("#bb2124"),
+		Low:        color.HEX("#edd57e"),
+		Success:    color.HEX("#22bb33"),
+		Info:       color.HEX("#5bc0de"),
+		Line:       color.HEX("#f0ad4e"),
+		minVersion: minVersion,
 	}
 }
 

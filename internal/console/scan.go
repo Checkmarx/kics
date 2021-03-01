@@ -1,6 +1,7 @@
 package console
 
 import (
+	_ "embed" // Embed kics CLI img
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -22,6 +23,7 @@ import (
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
+	"github.com/efekarakus/termcolor"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
@@ -44,6 +46,8 @@ var (
 	noProgress     bool
 	types          []string
 	noColor        bool
+	min            bool
+	outputLines    int
 )
 
 var scanCmd = &cobra.Command{
@@ -114,6 +118,7 @@ func initScanCmd() {
 		"path to directory with queries (default ./assets/queries)",
 	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
+	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "L", 3, "numer of lines to be displayed in results output")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "file path to store source internal representation in JSON format")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -124,7 +129,8 @@ func initScanCmd() {
 	)
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "verbose scan")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "log to file info.log")
-	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "Disable color output")
+	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable color output")
+	scanCmd.Flags().BoolVarP(&min, "minimal", "m", false, "minimal version of results output")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "type of queries to use in the scan")
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides scan's progress bar")
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
@@ -193,32 +199,32 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func scan() error {
-	if noColor {
+//go:embed img/kics-console
+var s string
+
+func scan() error { //nolint
+	if noColor || !termcolor.Supports256(os.Stderr) {
 		color.Disable()
 	}
 
-	printer := consoleHelpers.NewPrinter()
+	printer := consoleHelpers.NewPrinter(min)
 
 	fmt.Printf("Scanning with %s\n\n", getVersion())
 
-	rc, err := ioutil.ReadFile("docs/img/kics-console")
+	printer.Success.Printf("%s", s)
 
-	if err != nil {
-		return err
-	}
-
-	fmt.Printf("%s\n\n", printer.Success.Sprint(string(rc)))
-
-	if err := setupLogs(); err != nil {
-		return err
+	if errlog := setupLogs(); errlog != nil {
+		return errlog
 	}
 
 	scanStartTime := time.Now()
 
 	querySource := query.NewFilesystemSource(queryPath, types)
 
-	t := &tracker.CITracker{}
+	t, err := tracker.NewTracker(outputLines)
+	if err != nil {
+		return err
+	}
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
@@ -286,7 +292,7 @@ func scan() error {
 		return err
 	}
 
-	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries(), *printer, verbose); err != nil {
+	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries(), printer); err != nil {
 		return err
 	}
 

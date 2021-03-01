@@ -51,11 +51,13 @@ type QueriesSource interface {
 // TrackQueryLoad increments the number of loaded queries
 // TrackQueryExecution increments the number of queries executed
 // FailedDetectLine decrements the number of queries executed
+// GetOutputLines returns the number of lines to be displayed in results outputs
 type Tracker interface {
 	TrackQueryLoad()
 	TrackQueryExecution()
 	FailedDetectLine()
 	FailedComputeSimilarityID()
+	GetOutputLines() int
 }
 
 type preparedQuery struct {

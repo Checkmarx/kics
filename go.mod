@@ -1,10 +1,11 @@
 module github.com/Checkmarx/kics
 
-go 1.15
+go 1.16
 
 require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.0
+	github.com/efekarakus/termcolor v1.0.1
 	github.com/getsentry/sentry-go v0.10.0
 	github.com/golang/mock v1.5.0
 	github.com/google/go-cmp v0.5.3 // indirect

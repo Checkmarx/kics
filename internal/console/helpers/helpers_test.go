@@ -112,7 +112,7 @@ func TestPrintResult(t *testing.T) {
 	color.Disable()
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, Printer{}, false) })
+			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true)) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
 		})
@@ -369,7 +369,7 @@ func TestPrinter(t *testing.T) {
 		},
 	}
 
-	printer := NewPrinter()
+	printer := NewPrinter(false)
 	color.Disable()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
