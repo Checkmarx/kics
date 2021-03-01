@@ -13,3 +13,11 @@ resource "aws_launch_configuration" "as_conf" {
     encrypted = true
   }
 }
+
+resource "aws_launch_configuration" "ubuntu" {
+  name = "test-launch-config"
+
+  ephemeral_block_device {
+    encrypted = false
+  }
+}
