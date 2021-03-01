@@ -1,9 +1,0 @@
-{
-	"id": "e433692a-773e-41b4-a269-4b4605309f15",
-	"queryName": "SQLServer with Public Access",
-	"severity": "HIGH",
-	"category": "Network Security",
-	"descriptionText": "Check if both start and end 'ip_address' are equal to 0.0.0.0 (any IP).",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html",
-	"platform": "Ansible"
-}
