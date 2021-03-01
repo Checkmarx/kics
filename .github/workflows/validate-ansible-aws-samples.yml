@@ -1,0 +1,32 @@
+name: validate-ansible-aws-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/ansible/aws/**/test/*.yaml"
+
+jobs:
+  validate-ans-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: assets/queries/ansible/aws
+          config_file: .github/yamllint.yml
+      - name: Install ansible-lint and dependencies
+        run: |
+          pip3 install ansible ansible-lint
+          ansible-galaxy collection install community.aws --force
+      - name: Validate ansible template syntax
+        run: |
+          python3 -u .github/validators/validate-syntax.py assets/queries/ansible/aws/**/test/*.yaml
+        env:
+          LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/ansible-lint"
+          SKIP_LIST_PATH: ".github/validators/ansible-skip-list"
+          NO_PROGRESS: False
+
