@@ -85,7 +85,6 @@ stages:
     displayName: runKics
     steps:
       - script: |
-          # We can use a bit of shell-fu to get the latest tag
           get_latest_kics_release() {
             curl --silent "https://api.github.com/repos/Checkmarx/kics/releases/latest" |
               grep '"tag_name":' |

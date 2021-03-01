@@ -1,12 +1,29 @@
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">  
+
+<div class="row" >
+    <div class="col-6 text-center" >
+        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">
+        <br/>
+         <br/>
+        <p>Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with <b>KICS</b> by Checkmarx.</p>
+        <p><b>KICS</b> stands for <b>K</b>eeping <b>I</b>nfrastructure as <b>C</b>ode <b>S</b>ecure, it is open source and is a must-have for any cloud native project.</p>
+    </div>
+    <div class="col-6 text-center">
+        <br/><br/>
+        <h4>Version 1.1.4</h4>
+        <p style="font-size:8pt">2021.02.24<p>
+        <h4>Downloads:</h4>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.1.4/kics_1.1.4_windows_x64.zip">Windows</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.1.4/kics_1.1.4_linux_x64.tar.gz">Linux</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.1.4/kics_1.1.4_darwin_x64.tar.gz">MacOS</a>
+        <hr/>
+        <a class="btn btn-outline-success"  href="https://docs.kics.io/CONTRIBUTING">Contribute!</a>
+    </div>
+</div>
+
 
 ---
 
-**KICS** is an open source solution for static code analysis of Infrastructure as Code.
 
-**K**eeping **I**nfrastructure as **C**ode **S**ecure (in short **KICS**) is a must-have for any cloud native project. With KICS, finding security vulnerabilities, compliance issues, and infrastructure misconfigurations happens early in the development cycle, when fixing these is straightforward and cheap.
-
-It is as simple as running a CLI tool, making it easy to integrate into any project CI.
 
 #### Supported Platforms
 
@@ -42,7 +59,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 
 ## Contribution
 
-KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.  
+KICS is a true community project. It's built as an open source project from day one and anyone can find his own way to contribute to the project.
 [Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 - [How can I help?!](CONTRIBUTING.md)
@@ -50,11 +67,11 @@ KICS is a true community project. It's built as an open source project from day 
 
 ## About the Project
 
-The KICS project is powered by <a href="https://www.checkmarx.com/" target="_blank">Checkmarx</a>, global leader of Application Security Testing.  
+The KICS project is powered by <a href="https://www.checkmarx.com/" target="_blank">Checkmarx</a>, global leader of Application Security Testing.
 [Read more](about.md) about **Infrastructure as Code**, **Infrastructure as Code Testing** and Checkmarx.
 
-KICS will always stay an open source and free project for the benefit of global software industry community.  
-We believe that when **Software is Everywhere, Security is Everything**.  
+KICS will always stay an open source and free project for the benefit of global software industry community.
+We believe that when **Software is Everywhere, Security is Everything**.
 
 Now, Software <span style="color: #5FBB46">**=**</span> **Security**.
 
@@ -64,5 +81,5 @@ Looking for more info? Explore KICS project in details:
 - <a href="https://github.com/Checkmarx/kics/projects" target="_blank">Project plans</a>
 - <a href="https://github.com/Checkmarx/kics/issues" target="_blank">Issues</a>
 
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

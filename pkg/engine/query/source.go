@@ -6,6 +6,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -33,6 +34,15 @@ const (
 	LibrariesDefaultBasePath = "./assets/libraries/"
 )
 
+var (
+	supportedPlatforms = map[string]string{"Ansible": "ansible",
+		"CloudFormation": "cloudformation",
+		"Dockerfile":     "dockerfile",
+		"Kubernetes":     "k8s",
+		"Terraform":      "terraform",
+	}
+)
+
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types []string) *FilesystemSource {
 	if len(types) == 0 {
@@ -42,6 +52,18 @@ func NewFilesystemSource(source string, types []string) *FilesystemSource {
 		Source: filepath.FromSlash(source),
 		Types:  types,
 	}
+}
+
+// ListSupportedPlatforms returns a list of supported platforms
+func ListSupportedPlatforms() []string {
+	keys := make([]string, len(supportedPlatforms))
+	i := 0
+	for k := range supportedPlatforms {
+		keys[i] = k
+		i++
+	}
+	sort.Strings(keys)
+	return keys
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
@@ -55,18 +77,11 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 
 	libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-	if strings.Contains(strings.ToUpper(platform), strings.ToUpper("ansible")) {
-		libraryFilePath = filepath.FromSlash(libraryPath + "/ansible/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("cloudFormation")) {
-		libraryFilePath = filepath.FromSlash(libraryPath + "/cloudformation/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("dockerfile")) {
-		libraryFilePath = filepath.FromSlash(libraryPath + "/dockerfile/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("k8s")) {
-		libraryFilePath = filepath.FromSlash(libraryPath + "/k8s/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("terraform")) {
-		libraryFilePath = filepath.FromSlash(libraryPath + "/terraform/" + LibraryFileName)
-	} else if strings.Contains(strings.ToUpper(platform), strings.ToUpper("common")) {
-		libraryFilePath = filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+	for _, supPlatform := range supportedPlatforms {
+		if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
+			libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
+			break
+		}
 	}
 
 	return libraryFilePath

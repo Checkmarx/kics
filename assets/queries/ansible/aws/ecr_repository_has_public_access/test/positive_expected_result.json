@@ -1,7 +1,0 @@
-[
-  {
-    "queryName": "ECR Repository Has Public Access",
-    "severity": "HIGH",
-    "line": 9
-  }
-]

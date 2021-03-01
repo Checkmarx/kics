@@ -7,7 +7,7 @@
 [![Documentation](https://img.shields.io/badge/docs-viewdocs-blue.svg?style=flat-square "Viewdocs")](https://docs.kics.io/)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-black.png" width="250">  
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-black.png" width="250">
 
 ---
 
@@ -49,15 +49,15 @@ The nightly release will have a "nightly" prefix with the last commit hash code.
 
 ## Contribution
 
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
+KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
 [Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 ## More
 
 <a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
 
-[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.  
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
+[KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keeping Infrastructure as Code Secure!**
