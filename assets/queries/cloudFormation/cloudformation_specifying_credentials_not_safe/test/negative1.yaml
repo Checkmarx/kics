@@ -2,7 +2,6 @@ AWSTemplateFormatVersion: 2010-09-09
 Resources:
   WebServer:
     Type: AWS::EC2::Instance
-    DependsOn: "BucketPolicy"
     Metadata:
       AWS::CloudFormation::Init:
         config:
@@ -27,5 +26,3 @@ Resources:
               httpd:
                 enabled: "true"
                 ensureRunning: "true"
-Properties:
-  EC2 Resource Properties ...
