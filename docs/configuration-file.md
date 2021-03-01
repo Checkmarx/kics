@@ -62,7 +62,8 @@ KICS is able to infer the format without the need of file extension.
   "type": "type of queries to use in the scan",
   "payload-path": "file path to store source internal representation in JSON format",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
-  "no-color": false
+  "no-color": false,
+  "minimal": false
 }
 ```
 
@@ -80,6 +81,7 @@ type: "type of queries to use in the scan"
 payload-path: "file path to store source internal representation in JSON format"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
 no-color: false
+minimal: false
 ```
 
 #### TOML Format
@@ -96,6 +98,7 @@ type = "type of queries to use in the scan"
 payload-path = "file path to store source internal representation in JSON format"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
 no-color = false
+minimal = false
 ```
 
 #### HCL Format
@@ -112,6 +115,7 @@ no-color = false
 "verbose" = true
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 "no-color" = false
+"minimal" = false
 ```
 
 ---

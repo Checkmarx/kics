@@ -54,6 +54,7 @@ type Severity string
 // IssueType is the issue's type string representation
 type IssueType string
 
+// VulnLines is the lines containing and adjecent to the vulnerability line with their respective positions
 type VulnLines struct {
 	Positions []int
 	Lines     []string

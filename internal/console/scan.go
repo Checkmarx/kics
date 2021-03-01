@@ -23,7 +23,6 @@ import (
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
-	"github.com/efekarakus/termcolor"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
@@ -163,7 +162,7 @@ func initScanCmd() {
 		"path to directory with queries",
 	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
-	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "L", 3, "numer of lines to be displayed in results output")
+	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "L", 3, "number of lines to be displayed in results output")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -252,7 +251,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 var s string
 
 func scan() error { //nolint
-	if noColor || !termcolor.Supports256(os.Stderr) {
+	if noColor {
 		color.Disable()
 	}
 
