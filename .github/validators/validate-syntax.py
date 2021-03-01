@@ -42,6 +42,7 @@ for my_glob in args.filesglob:
 
 with open(SKIP_LIST, 'r') as reader:
   ignore_list = [line.rstrip() for line in reader]
+print(f"Ignore list is:{os.linesep} {os.linesep.join(ignore_list)}")
 
 files = [file for file in all_files
           if file not in ignore_list
