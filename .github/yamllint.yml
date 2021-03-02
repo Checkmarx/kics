@@ -1,8 +1,8 @@
 extends: relaxed
 rules:
   line-length:
-    max: 80
+    max: 180
     level: warning
   indentation:
-    indent-sequences: whatever
+    indent-sequences: consistent
   comments-indentation: disable

@@ -6,7 +6,7 @@ on:
     - "assets/queries/ansible/gcp/**/test/*.yaml"
 
 jobs:
-  validate-ans-syntax:
+  validate-syntax:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
