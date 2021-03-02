@@ -8,23 +8,34 @@
 </head>
 <body>
   <div>
-    <b>Counters</b>
-    <div>
-      {{with .SeveritySummary}}
-        {{range $key, $value := .SeverityCounters }}
-          <span>{{ $key }}: {{ $value }}</span>
-        {{end}}
-        <span>Total: {{ .TotalCounter }}</span>
-      {{end}}
+    <h3>Counters</h3>
+    <div class="counters">
+    {{- with .SeveritySummary -}}
+      <div class="severity"><span class="high">High</span>: {{ index .SeverityCounters (severity "high") }}</div>
+      <div class="severity"><span class="medium">Medium</span>: {{ index .SeverityCounters (severity "medium") }}</div>
+      <div class="severity"><span class="low">Low</span>: {{ index .SeverityCounters (severity "low") }}</div>
+      <div class="severity"><span class="info">Info</span>: {{ index .SeverityCounters (severity "info") }}</div>
+      <div class="severity"><span>Total</span>: {{ .TotalCounter }}</div>
+    {{- end}}
     </div>
   </div>
-  <div>
-    {{range .Queries}}
-        <span>{{ .QueryName }}</span>
-        {{range .Files }}
-          <span>{{ .FileName }}:{{ .Line }}</span>
-        {{end}}
-      {{end}}
+  <div class="query">
+  {{- range .Queries}}
+    <div class="query-title">
+      <h2 class="{{ sprintf "%s" .Severity | lower }}">{{ .QueryName }}</h2>
+    </div>
+    <div class="vulnerable-files">
+    {{- range .Files}}
+      <div class="vulnerable-files-header">
+        <span>{{ .FileName }}</span>
+        <span>{{ .Line }}</span>
+      </div>
+      <div class="vulnerable-lines">
+        Here will show file vulnerable region
+      </div>
+    {{- end -}}
+    </div>
+  {{- end -}}
   </div>
 </body>
 </html>

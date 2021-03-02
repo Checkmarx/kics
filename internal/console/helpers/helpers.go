@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"math"
 	"os"
-	"path/filepath"
 	"strings"
 	"sync"
 
@@ -22,7 +21,7 @@ import (
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
-	"json": printToJSONFile,
+	"json": report.PrintJSONReport,
 	"html": report.PrintHTMLReport,
 }
 
@@ -139,32 +138,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
 		Msg("Inspector stopped\n")
 
 	return nil
-}
-
-// printToJSONFile prints on JSON file the summary results
-func printToJSONFile(path, filename string, body interface{}) error {
-	fullPath := filepath.Join(path, filename+".json")
-	_ = os.MkdirAll(path, os.ModePerm)
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
-	if err != nil {
-		return err
-	}
-	defer func() {
-		if err = f.Close(); err != nil {
-			log.Err(err).Msgf("failed to close file %s", fullPath)
-		}
-
-		if err != nil {
-			log.Err(err).Msgf("failed to get current directory")
-		}
-
-		log.Info().Str("fileName", filename+".json").Msgf("Results saved to file %s", fullPath)
-	}()
-
-	encoder := json.NewEncoder(f)
-	encoder.SetIndent("", "\t")
-
-	return encoder.Encode(body)
 }
 
 // CustomConsoleWriter creates an output to print log in a files

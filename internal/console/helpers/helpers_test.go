@@ -2,11 +2,8 @@ package helpers
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"os"
-	"path/filepath"
 	"reflect"
 	"strings"
 	"sync"
@@ -17,59 +14,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var summary = model.Summary{
-	Counters: model.Counters{
-		ScannedFiles:           1,
-		ParsedFiles:            1,
-		FailedToScanFiles:      0,
-		TotalQueries:           1,
-		FailedToExecuteQueries: 0,
-	},
-	Queries: []model.VulnerableQuery{
-		{
-			QueryName: "ALB protocol is HTTP",
-			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  "HIGH",
-			Files: []model.VulnerableFile{
-				{
-					FileName:         "positive.tf",
-					Line:             25,
-					IssueType:        "MissingAttribute",
-					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-					KeyActualValue:   "'default_action.redirect.protocol' is missing",
-					Value:            nil,
-				},
-				{
-					FileName:         "positive.tf",
-					Line:             19,
-					IssueType:        "IncorrectValue",
-					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-					KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
-					Value:            nil,
-				},
-			},
-		},
-	},
-	SeveritySummary: model.SeveritySummary{
-		ScanID: "console",
-		SeverityCounters: map[model.Severity]int{
-			"INFO":   0,
-			"LOW":    0,
-			"MEDIUM": 0,
-			"HIGH":   2,
-		},
-		TotalCounter: 2,
-	},
-}
-
 var printTests = []struct {
 	caseTest       model.Summary
 	expectedResult string
 }{
 	{
-		caseTest: summary,
+		caseTest: test.SummaryMock,
 		expectedResult: "Files scanned: 1\n" +
 			"Parsed files: 1\n" +
 			"Queries loaded: 1\n" +
@@ -87,26 +37,6 @@ var printTests = []struct {
 	},
 }
 
-type jsonCaseTest struct {
-	summary  model.Summary
-	path     string
-	filename string
-}
-
-var jsonTests = []struct {
-	caseTest       jsonCaseTest
-	expectedResult model.Summary
-}{
-	{
-		caseTest: jsonCaseTest{
-			summary:  summary,
-			path:     "./testdir",
-			filename: "testout",
-		},
-		expectedResult: summary,
-	},
-}
-
 var failedQueries = map[string]error{}
 
 // TestPrintResult tests the functions [PrintResult()] and all the methods called by them
@@ -116,26 +46,6 @@ func TestPrintResult(t *testing.T) {
 			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
-		})
-	}
-}
-
-// TestPrintToJSONFile tests the functions [PrintToJSONFile()] and all the methods called by them
-func TestPrintToJSONFile(t *testing.T) {
-	for idx, test := range jsonTests {
-		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
-			var err error
-			err = printToJSONFile(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
-			require.NoError(t, err)
-			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
-			var jsonResult []byte
-			jsonResult, err = ioutil.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
-			require.NoError(t, err)
-			var resultSummary model.Summary
-			err = json.Unmarshal(jsonResult, &resultSummary)
-			require.NoError(t, err)
-			require.Equal(t, test.expectedResult, resultSummary)
-			os.RemoveAll(test.caseTest.path)
 		})
 	}
 }
