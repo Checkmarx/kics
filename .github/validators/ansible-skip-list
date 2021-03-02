@@ -1,4 +1,0 @@
-assets/queries/ansible/aws/elasticsearch_encryption_with_kms_is_disabled/test/negative.yaml
-assets/queries/ansible/aws/elasticsearch_encryption_with_kms_is_disabled/test/positive.yaml
-assets/queries/ansible/aws/elasticsearch_not_encrypted_at_rest/test/positive.yaml
-assets/queries/ansible/aws/elasticsearch_not_encrypted_at_rest/test/negative.yaml

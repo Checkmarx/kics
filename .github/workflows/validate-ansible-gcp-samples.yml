@@ -18,21 +18,3 @@ jobs:
         with:
           file_or_dir: assets/queries/ansible/gcp
           config_file: .github/yamllint.yml
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Install virtualenv
-        run: sudo apt-get install -y python3-virtualenv
-      - name: Install ansible-lint and dependencies
-        run: |
-          virtualenv ci-env
-          source ci-env/bin/activate
-          pip3 install ansible ansible-lint
-          ansible-galaxy collection install google.cloud --force
-          ansible-galaxy collection list -vv
-      - name: Validate ansible template syntax
-        run: |
-          source ci-env/bin/activate
-          for sample in assets/queries/ansible/gcp/**/*.yaml;
-            do echo $sample && ansible-lint -c .github/ansible-lint.yml $sample;
-          done
