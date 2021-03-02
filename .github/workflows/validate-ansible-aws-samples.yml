@@ -29,6 +29,7 @@ jobs:
         run: |
           python3 -u .github/validators/validate-syntax.py assets/queries/ansible/aws/**/test/*.yaml
         env:
+          EXTRA_ARGS: "-c .github/ansible-lint.yml"
           LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/ansible-lint"
           SKIP_LIST_PATH: ".github/validators/ansible-skip-list"
           NO_PROGRESS: False

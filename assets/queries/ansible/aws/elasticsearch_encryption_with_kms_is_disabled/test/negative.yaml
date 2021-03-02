@@ -17,8 +17,7 @@
       vpc_subnets: subnet-e537d64a
       vpc_security_groups: sg-dd2f13cb
       snapshot_hour: 13
-      access_policies: "{{ lookup('file', 'files/cluster_policies.json') | from_json\
-        \ }}"
+      access_policies: "{{ lookup('file', 'files/cluster_policies.json') | from_json }}"
       encryption_at_rest_enabled: true
       encryption_at_rest_kms_key_id: arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef
       profile: myawsaccount
