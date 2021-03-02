@@ -25,6 +25,7 @@ jobs:
         run: |
           pip3 install ansible ansible-lint
           ansible-galaxy collection install google.cloud --force
+          ansible-galaxy collection list -vv
       - name: Validate ansible template syntax
         run: |
           python3 -u .github/validators/validate-syntax.py assets/queries/ansible/gcp/**/test/*.yaml
@@ -32,4 +33,4 @@ jobs:
           EXTRA_ARGS: "-c .github/ansible-lint.yml"
           LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/ansible-lint"
           SKIP_LIST_PATH: ".github/validators/ansible-skip-list"
-          NO_PROGRESS: False
+          NO_PROGRESS: True
