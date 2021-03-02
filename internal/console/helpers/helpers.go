@@ -14,6 +14,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -22,6 +23,7 @@ import (
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
 	"json": printToJSONFile,
+	"html": report.PrintHTMLReport,
 }
 
 // ProgressBar represents a Progress

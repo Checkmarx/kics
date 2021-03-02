@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="./report.css" rel="stylesheet" />
+  <title>KICS Scan Result</title>
+</head>
+<body>
+  <div>
+    <b>Counters</b>
+    <div>
+      {{with .SeveritySummary}}
+        {{range $key, $value := .SeverityCounters }}
+          <span>{{ $key }}: {{ $value }}</span>
+        {{end}}
+        <span>Total: {{ .TotalCounter }}</span>
+      {{end}}
+    </div>
+  </div>
+  <div>
+    {{range .Queries}}
+        <span>{{ .QueryName }}</span>
+        {{range .Files }}
+          <span>{{ .FileName }}:{{ .Line }}</span>
+        {{end}}
+      {{end}}
+  </div>
+</body>
+</html>
