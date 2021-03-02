@@ -6,7 +6,7 @@ on:
     - "assets/queries/ansible/aws/**/test/*.yaml"
 
 jobs:
-  validate-syntax:
+  validate-aws-syntax:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

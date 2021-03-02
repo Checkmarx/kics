@@ -6,7 +6,7 @@ on:
     - "assets/queries/ansible/azure/**/test/*.yaml"
 
 jobs:
-  validate-syntax:
+  validate-azr-syntax:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
