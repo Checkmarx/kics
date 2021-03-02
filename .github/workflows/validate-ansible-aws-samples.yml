@@ -21,17 +21,19 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - name: Install virtualenv
+        run: sudo apt-get install -y python3-virtualenv
       - name: Install ansible-lint and dependencies
         run: |
+          virtualenv ci-env
+          source ci-env/bin/activate
           pip3 install ansible ansible-lint
           ansible-galaxy collection install community.aws --force
           ansible-galaxy collection list -vv
       - name: Validate ansible template syntax
         run: |
-          python3 -u .github/validators/validate-syntax.py assets/queries/ansible/aws/**/test/*.yaml
-        env:
-          EXTRA_ARGS: "-c .github/ansible-lint.yml"
-          LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/ansible-lint"
-          SKIP_LIST_PATH: ".github/validators/ansible-skip-list"
-          NO_PROGRESS: True
+          source ci-env/bin/activate
+          for sample in assets/queries/ansible/aws/**/*.yaml;
+            do echo $sample && ansible-lint -c .github/ansible-lint.yml $sample;
+          done
 

@@ -16,16 +16,16 @@
     tags:
       key1: 'value1'
   loop:
-    - name: HelloWorld
-      zip_file: hello-code.zip
-      env_vars:
-        key1: "first"
-        key2: "second"
-    - name: ByeBye
-      zip_file: bye-code.zip
-      env_vars:
-        key1: "1"
-        key2: "2"
+  - name: HelloWorld
+    zip_file: hello-code.zip
+    env_vars:
+      key1: "first"
+      key2: "second"
+  - name: ByeBye
+    zip_file: bye-code.zip
+    env_vars:
+      key1: "1"
+      key2: "2"
 - name: looped creation V2
   community.aws.lambda:
     name: '{{ item.name }}'
