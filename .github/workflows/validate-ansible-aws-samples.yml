@@ -18,6 +18,9 @@ jobs:
         with:
           file_or_dir: assets/queries/ansible/aws
           config_file: .github/yamllint.yml
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
       - name: Install ansible-lint and dependencies
         run: |
           pip3 install ansible ansible-lint
