@@ -21,8 +21,10 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - name: Install virtualenv
-        run: sudo apt-get install -y python3-virtualenv
+      - name: Install virtualenv and zsh
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y python3-virtualenv zsh
       - name: Install ansible-lint and dependencies
         run: |
           virtualenv ci-env
@@ -30,10 +32,14 @@ jobs:
           pip3 install ansible ansible-lint
           ansible-galaxy collection install community.aws --force
           ansible-galaxy collection list -vv
+        shell: zsh {0}
       - name: Validate ansible template syntax
         run: |
           source ci-env/bin/activate
+          echo $SHELL
+          echo $0
           for sample in assets/queries/ansible/aws/**/*.yaml;
             do echo $sample && ansible-lint -c .github/ansible-lint.yml $sample;
           done
+        shell: zsh {0}
 
