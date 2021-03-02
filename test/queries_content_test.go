@@ -24,7 +24,7 @@ import (
 
 var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
-	severityList = []string{"HIGH", "MEDIUM", "LOW", "INFO"}
+	severityList = []string{model.SeverityHigh, model.SeverityMedium, model.SeverityLow, model.SeverityInfo}
 
 	requiredQueryResultProperties = []string{
 		"documentId",

@@ -5,6 +5,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -117,12 +118,16 @@ func TestNewTracker(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := NewTracker(tt.args.outputLines)
+			gotStrVulnerabilities, errStr := test.StringifyStruct(*got)
+			require.Nil(t, errStr)
+			wantStrVulnerabilities, errStr := test.StringifyStruct(tt.want)
+			require.Nil(t, errStr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewTracker() error = %v, wantErr = %v", err, tt.wantErr)
 				return
 			}
-			if !reflect.DeepEqual(*got, tt.want) {
-				t.Errorf("NewTracker() = %v, want = %v", got, tt.want)
+			if !reflect.DeepEqual(gotStrVulnerabilities, wantStrVulnerabilities) {
+				t.Errorf("NewTracker() = %v, want = %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 	}

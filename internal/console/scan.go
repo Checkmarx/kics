@@ -162,7 +162,7 @@ func initScanCmd() {
 		"path to directory with queries",
 	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
-	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "L", 3, "number of lines to be displayed in results output")
+	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "", 3, "number of lines to be displayed in results output")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -173,7 +173,7 @@ func initScanCmd() {
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
 	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable color output")
-	scanCmd.Flags().BoolVarP(&min, "minimal", "m", false, "minimal version of results output")
+	scanCmd.Flags().BoolVarP(&min, "minimal", "", false, "minimal version of results output")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
@@ -250,21 +250,18 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 //go:embed img/kics-console
 var s string
 
-func scan() error { //nolint
+func scan() error {
 	if noColor {
 		color.Disable()
 	}
 
 	printer := consoleHelpers.NewPrinter(min)
-
+	printer.Success.Printf("\n%s\n\n", s)
 	fmt.Printf("Scanning with %s\n\n", getVersion())
-
-	printer.Success.Printf("%s", s)
 
 	if errlog := setupLogs(); errlog != nil {
 		return errlog
 	}
-
 	scanStartTime := time.Now()
 
 	querySource := query.NewFilesystemSource(queryPath, types)

@@ -29,7 +29,7 @@ var summary = model.Summary{
 		{
 			QueryName: "ALB protocol is HTTP",
 			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  "HIGH",
+			Severity:  model.SeverityHigh,
 			Files: []model.VulnerableFile{
 				{
 					FileName:         "positive.tf",
@@ -55,10 +55,10 @@ var summary = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			"INFO":   0,
-			"LOW":    0,
-			"MEDIUM": 0,
-			"HIGH":   2,
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   2,
 		},
 		TotalCounter: 2,
 	},
@@ -73,8 +73,8 @@ var printTests = []struct {
 		expectedResult: "Files scanned: 1\n" +
 			"Parsed files: 1\n" +
 			"Queries loaded: 1\n" +
-			"Queries failed to execute: 0\n" +
-			"------------------------------------\n" +
+			"Queries failed to execute: 0\n\n" +
+			"------------------------------------\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
 			"\t[1]: positive.tf:25\n" +
 			"\t[2]: positive.tf:19\n\n" +
@@ -331,7 +331,7 @@ func TestPrinter(t *testing.T) {
 			name: "test_high",
 			args: args{
 				content: "test_high_content",
-				sev:     "HIGH",
+				sev:     model.SeverityHigh,
 			},
 			want: "test_high_content",
 		},
@@ -339,7 +339,7 @@ func TestPrinter(t *testing.T) {
 			name: "test_medium",
 			args: args{
 				content: "test_medium_content",
-				sev:     "MEDIUM",
+				sev:     model.SeverityMedium,
 			},
 			want: "test_medium_content",
 		},
@@ -347,7 +347,7 @@ func TestPrinter(t *testing.T) {
 			name: "test_low",
 			args: args{
 				content: "test_low_content",
-				sev:     "LOW",
+				sev:     model.SeverityLow,
 			},
 			want: "test_low_content",
 		},
@@ -355,7 +355,7 @@ func TestPrinter(t *testing.T) {
 			name: "test_info",
 			args: args{
 				content: "test_info_content",
-				sev:     "INFO",
+				sev:     model.SeverityInfo,
 			},
 			want: "test_info_content",
 		},
@@ -374,8 +374,12 @@ func TestPrinter(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := printer.PrintBySev(tt.args.content, tt.args.sev)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("PrintBySev() = %v, want = %v", got, tt.want)
+			gotStrVulnerabilities, err := test.StringifyStruct(got)
+			require.Nil(t, err)
+			wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
+			require.Nil(t, err)
+			if !reflect.DeepEqual(gotStrVulnerabilities, wantStrVulnerabilities) {
+				t.Errorf("PrintBySev() = %v, want = %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 	}

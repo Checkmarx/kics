@@ -9,7 +9,6 @@ import (
 	"math"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
 	"sync"
 
@@ -41,13 +40,13 @@ type ProgressBar struct {
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
-	Medium     color.RGBColor
-	High       color.RGBColor
-	Low        color.RGBColor
-	Info       color.RGBColor
-	Success    color.RGBColor
-	Line       color.RGBColor
-	minVersion bool
+	Medium  color.RGBColor
+	High    color.RGBColor
+	Low     color.RGBColor
+	Info    color.RGBColor
+	Success color.RGBColor
+	Line    color.RGBColor
+	minimal bool
 }
 
 // NewProgressBar initializes a new ProgressBar
@@ -95,6 +94,7 @@ func (p *ProgressBar) Start(wg *sync.WaitGroup) {
 			fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
 		}
 	}
+	fmt.Println()
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -123,29 +123,29 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
 
-	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
+	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
 	for queryName, err := range failedQueries {
 		fmt.Printf("\t- %s:\n", queryName)
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
-	fmt.Printf("------------------------------------\n")
-	for _, q := range sortBySev(summary.Queries) {
+	fmt.Printf("------------------------------------\n\n")
+	for _, q := range summary.Queries.SortBySev() {
 		fmt.Printf("%s, Severity: %s, Results: %d\n", printer.PrintBySev(q.QueryName,
 			string(q.Severity)), printer.PrintBySev(string(q.Severity), string(q.Severity)), len(q.Files))
-		if !printer.minVersion {
+		if !printer.minimal {
 			fmt.Printf("Description: %s\n", q.Description)
 			fmt.Printf("Platform: %s\n\n", q.Platform)
 		}
 		for i := 0; i < len(q.Files); i++ {
 			fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", i+1), string(q.Severity)),
 				q.Files[i].FileName, printer.Success.Sprint(q.Files[i].Line))
-			if !printer.minVersion {
+			if !printer.minimal {
 				fmt.Println()
-				for idx, lines := range q.Files[i].VulnLines.Lines {
+				for idx, line := range q.Files[i].VulnLines.Lines {
 					if q.Files[i].VulnLines.Positions[idx] == q.Files[i].Line {
-						printer.Line.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], lines)
+						printer.Line.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], line)
 					} else {
-						fmt.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], lines)
+						fmt.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], line)
 					}
 				}
 				fmt.Print("\n\n")
@@ -153,10 +153,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		}
 	}
 	fmt.Printf("\nResults Summary:\n")
-	fmt.Printf("%s: %d\n", printer.High.Sprint("HIGH"), summary.SeveritySummary.SeverityCounters["HIGH"])
-	fmt.Printf("%s: %d\n", printer.Medium.Sprint("MEDIUM"), summary.SeveritySummary.SeverityCounters["MEDIUM"])
-	fmt.Printf("%s: %d\n", printer.Low.Sprint("LOW"), summary.SeveritySummary.SeverityCounters["LOW"])
-	fmt.Printf("%s: %d\n", printer.Info.Sprint("INFO"), summary.SeveritySummary.SeverityCounters["INFO"])
+	fmt.Printf("%s: %d\n", printer.High.Sprint(model.SeverityHigh), summary.SeveritySummary.SeverityCounters[model.SeverityHigh])
+	fmt.Printf("%s: %d\n", printer.Medium.Sprint(model.SeverityMedium), summary.SeveritySummary.SeverityCounters[model.SeverityMedium])
+	fmt.Printf("%s: %d\n", printer.Low.Sprint(model.SeverityLow), summary.SeveritySummary.SeverityCounters[model.SeverityLow])
+	fmt.Printf("%s: %d\n", printer.Info.Sprint(model.SeverityInfo), summary.SeveritySummary.SeverityCounters[model.SeverityInfo])
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 	log.
 		Info().
@@ -250,37 +250,29 @@ func FileAnalyzer(path string) (string, error) {
 	return "", errors.New("invalid configuration file format")
 }
 
-func sortBySev(queries []model.VulnerableQuery) []model.VulnerableQuery {
-	idxSev := map[model.Severity]int{"INFO": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3}
-	sort.Slice(queries, func(i, j int) bool {
-		return idxSev[queries[i].Severity] < idxSev[queries[j].Severity]
-	})
-	return queries
-}
-
 // NewPrinter initializes a new Printer
-func NewPrinter(minVersion bool) *Printer {
+func NewPrinter(minimal bool) *Printer {
 	return &Printer{
-		Medium:     color.HEX("#ff7213"),
-		High:       color.HEX("#bb2124"),
-		Low:        color.HEX("#edd57e"),
-		Success:    color.HEX("#22bb33"),
-		Info:       color.HEX("#5bc0de"),
-		Line:       color.HEX("#f0ad4e"),
-		minVersion: minVersion,
+		Medium:  color.HEX("#ff7213"),
+		High:    color.HEX("#bb2124"),
+		Low:     color.HEX("#edd57e"),
+		Success: color.HEX("#22bb33"),
+		Info:    color.HEX("#5bc0de"),
+		Line:    color.HEX("#f0ad4e"),
+		minimal: minimal,
 	}
 }
 
 // PrintBySev will print the output with the specific severity color given the severity of the result
 func (p *Printer) PrintBySev(content, sev string) string {
-	switch strings.ToLower(sev) {
-	case "high":
+	switch strings.ToUpper(sev) {
+	case model.SeverityHigh:
 		return p.High.Sprintf(content)
-	case "medium":
+	case model.SeverityMedium:
 		return p.Medium.Sprintf(content)
-	case "low":
+	case model.SeverityLow:
 		return p.Low.Sprintf(content)
-	case "info":
+	case model.SeverityInfo:
 		return p.Info.Sprintf(content)
 	}
 	return content
