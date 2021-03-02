@@ -35,7 +35,8 @@ const (
 )
 
 var (
-	supportedPlatforms = map[string]string{"Ansible": "ansible",
+	supportedPlatforms = map[string]string{
+		"Ansible":        "ansible",
 		"CloudFormation": "cloudformation",
 		"Dockerfile":     "dockerfile",
 		"Kubernetes":     "k8s",

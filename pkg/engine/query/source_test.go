@@ -340,3 +340,16 @@ func Test_getPlatform(t *testing.T) {
 		})
 	}
 }
+
+// TestListSupportedPlatforms tests the function ListSupportedPlatforms
+func TestListSupportedPlatforms(t *testing.T) {
+	expected := []string{
+		"Ansible",
+		"CloudFormation",
+		"Dockerfile",
+		"Kubernetes",
+		"Terraform",
+	}
+	actual := ListSupportedPlatforms()
+	require.Equal(t, expected, actual, "expected=%s\ngot=%s", expected, actual)
+}
