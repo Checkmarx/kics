@@ -26,10 +26,14 @@
 | In-Progress | Improved CLI outputs (progess, coloring, logo) |  |
 |In-Progress | Engineering and performance improvements |  |
 | Not-Started | **Milestone 5** | Mar 2021 |
-|  | Additional IaC Tools - GCP, Azure RM, etc. |  |
+|  | Helm support |  |
 |  | Distribution platforms: Homebrew, Chocolatey|  |
+|  | Our PM's birthday! |  |
 |  | Reporting - add HTML format |  |
 |  | Terraform - Parameters files support |  |
+| Not-Started | **Milestone 6** | Apr 2021 |
+|  | OpenAPI/Swagger support |  |
+|  | Azure Resource Manager support |  |
 
 Have an idea?  
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
