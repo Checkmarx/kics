@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "Secrets Manager Should Specify KmsKeyId",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "queryName": "Secrets Manager Should Specify KmsKeyId"
+  },
+  {
+    "line": 7,
+    "fileName": "positive2.json",
+    "queryName": "Secrets Manager Should Specify KmsKeyId",
+    "severity": "MEDIUM"
+  }
 ]

@@ -1,9 +1,9 @@
 {
-	"id": "b4378389-a9aa-44ee-91e7-ef183f11079e",
-	"queryName": "IAM policies attached to user",
-	"severity": "LOW",
-	"category": "Identity and Access Management",
-	"descriptionText": "IAM policies should be attached only to groups or roles",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment",
-	"platform": "Terraform"
+  "id": "b4378389-a9aa-44ee-91e7-ef183f11079e",
+  "queryName": "IAM Policies Attached To User",
+  "severity": "LOW",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM policies should be attached only to groups or roles",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment",
+  "platform": "Terraform"
 }

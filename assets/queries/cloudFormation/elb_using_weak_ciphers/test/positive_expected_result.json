@@ -1,17 +1,38 @@
 [
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 27
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 29
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 34
-	}
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "line": 29,
+    "fileName": "positive1.yaml",
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH"
+  },
+  {
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive1.yaml",
+    "queryName": "ELB Using Weak Ciphers"
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 35,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 40,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive2.json"
+  }
 ]

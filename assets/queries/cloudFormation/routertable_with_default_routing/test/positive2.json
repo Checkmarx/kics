@@ -1,0 +1,114 @@
+{
+  "Resources": {
+    "InternetGateway": {
+      "Type": "AWS::EC2::InternetGateway",
+      "DependsOn": "VPC"
+    },
+    "Ec2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            {
+              "Ref": "AWS::Region"
+            },
+            "AMI"
+          ]
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": true,
+            "DeviceIndex": "0",
+            "SubnetId": "PublicSubnetA"
+          }
+        ]
+      }
+    },
+    "PublicRoute1": {
+      "Type": "AWS::EC2::Route",
+      "DependsOn": "AttachGateway",
+      "Properties": {
+        "NatGatewayId": "id",
+        "RouteTableId": "PublicRouteTable",
+        "DestinationCidrBlock": "0.0.0.0/0"
+      }
+    },
+    "PublicRoute3": {
+      "Type": "AWS::EC2::Route",
+      "DependsOn": "AttachGateway",
+      "Properties": {
+        "RouteTableId": "PublicRouteTable",
+        "DestinationCidrBlock": "10.1.10.0/24"
+      }
+    },
+    "VPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": [
+              "",
+              [
+                "AWS::StackName",
+                "-VPC"
+              ]
+            ]
+          }
+        ],
+        "CidrBlock": "10.1.0.0/16",
+        "EnableDnsSupport": true,
+        "EnableDnsHostnames": true
+      }
+    },
+    "AttachGateway": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": "VPC",
+        "InternetGatewayId": "InternetGateway"
+      }
+    },
+    "PublicSubnetA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": "VPC",
+        "CidrBlock": "10.1.10.0/24",
+        "AvailabilityZone": [
+          0,
+          ""
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${AWS::StackName}-Public-A"
+          }
+        ]
+      }
+    },
+    "PublicRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": "VPC",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Public"
+          }
+        ]
+      }
+    },
+    "PublicRoute2": {
+      "DependsOn": "AttachGateway",
+      "Properties": {
+        "RouteTableId": "PublicRouteTable",
+        "DestinationIpv6CidrBlock": "::/0",
+        "NatGatewayId": "id"
+      },
+      "Type": "AWS::EC2::Route"
+    }
+  }
+}

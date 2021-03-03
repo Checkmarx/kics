@@ -1,0 +1,210 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Create EFS system and Mount Targets for test VPC",
+  "Parameters": {
+    "VPC": {
+      "Type": "String",
+      "Description": "The VPC identity",
+      "Default": "vpc-ID"
+    },
+    "SubnetID1": {
+      "Type": "String",
+      "Description": "The subnet where to launch the service",
+      "Default": "subnet-ID"
+    },
+    "SubnetID2": {
+      "Default": "subnet-ID",
+      "Type": "String",
+      "Description": "the subnet where to Launch the service"
+    },
+    "SubnetID3": {
+      "Description": "The subnet where to launch the service",
+      "Default": "subnet-ID",
+      "Type": "String"
+    },
+    "SubnetID4": {
+      "Type": "String",
+      "Description": "the subnet where to Launch the service",
+      "Default": "subnet-ID"
+    }
+  },
+  "Resources": {
+    "MountTarget1": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID1"
+      }
+    },
+    "MountTarget2": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID2"
+      }
+    },
+    "MountTarget3": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID3"
+      }
+    },
+    "MountTarget4": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "EFSFileSystem01",
+        "IpAddress": "*.*.*.*",
+        "SecurityGroups": [
+          "EFSSecurityGroup"
+        ],
+        "SubnetId": "SubnetID4"
+      }
+    },
+    "EFSKMSKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": "An example CMK with KMS",
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "efs-default-key1",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::999999999999:user/roger"
+              },
+              "Action": [
+                "kms:Create*",
+                "kms:Describe*",
+                "kms:Enable*",
+                "kms:List*",
+                "kms:Put*",
+                "kms:Update*",
+                "kms:Revoke*",
+                "kms:Disable*",
+                "kms:Get*",
+                "kms:Delete*",
+                "kms:ScheduleKeyDeletion",
+                "kms:CancelKeyDeletion"
+              ],
+              "Resource": "*",
+              "Sid": "Allow administration of the key"
+            },
+            {
+              "Action": [
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey",
+                "kms:GenerateDataKeyWithoutPlaintext"
+              ],
+              "Resource": "*",
+              "Sid": "Allow use of the key",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::999999999999:user/roger"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "EFSSecurityGroup": {
+      "Properties": {
+        "SecurityGroupIngress": [
+          {
+            "SourceSecurityGroupId": "sg-ID",
+            "Description": "servers to connect to efs",
+            "FromPort": 2049,
+            "IpProtocol": "tcp",
+            "ToPort": 2049
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Environment",
+            "Value": "prod"
+          },
+          {
+            "Value": "test-VPC-EFS-SG",
+            "Key": "Name"
+          },
+          {
+            "Key": "Project",
+            "Value": "ITEngineering"
+          }
+        ],
+        "GroupDescription": "security group for the prod EFS",
+        "GroupName": "test-EFS-SG",
+        "VpcId": "VPC"
+      },
+      "Type": "AWS::EC2::SecurityGroup"
+    },
+    "EFSFileSystem01": {
+      "Type": "AWS::EFS::FileSystem",
+      "Properties": {
+        "LifecyclePolicies": [
+          {
+            "TransitionToIA": "AFTER_60_DAYS"
+          }
+        ],
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "FileSystemTags": [
+          {
+            "Key": "Environment",
+            "Value": "prod"
+          },
+          {
+            "Key": "Name",
+            "Value": "test-VPC-EFS"
+          },
+          {
+            "Key": "Project",
+            "Value": "ITEngineering"
+          }
+        ],
+        "BackupPolicy": {
+          "Status": "ENABLED"
+        },
+        "Encrypted": false
+      }
+    }
+  },
+  "Outputs": {
+    "EFSMountTarget2": {
+      "Description": "The EFS MountTarget2",
+      "Value": "MountTarget2"
+    },
+    "EFSMountTarget3": {
+      "Description": "The EFS MountTarget3",
+      "Value": "MountTarget3"
+    },
+    "EFSMountTarget4": {
+      "Value": "MountTarget4",
+      "Description": "The EFS MountTarget4"
+    },
+    "EFS": {
+      "Description": "The created EFS",
+      "Value": "EFSFileSystem01"
+    },
+    "EFSMountTarget1": {
+      "Description": "The EFS MountTarget1",
+      "Value": "MountTarget1"
+    }
+  }
+}

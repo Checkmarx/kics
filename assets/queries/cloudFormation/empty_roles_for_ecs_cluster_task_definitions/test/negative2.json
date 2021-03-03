@@ -1,0 +1,72 @@
+{
+  "Resources": {
+    "ECSTaskDefinition": {
+      "Properties": {
+        "Memory": "ContainerMemory",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "ExecutionRoleArn": {
+          "Fn::ImportValue": [
+            ":",
+            [
+              "StackName",
+              "ECSTaskExecutionRole"
+            ]
+          ]
+        },
+        "TaskRoleArn": {
+          "Fn::If": [
+            "HasCustomRole",
+            "Role",
+            "AWS::NoValue"
+          ]
+        },
+        "ContainerDefinitions": [
+          {
+            "Name": "ServiceName",
+            "Cpu": "ContainerCpu",
+            "Memory": "ContainerMemory",
+            "Image": "ImageUrl",
+            "PortMappings": [
+              {
+                "ContainerPort": "ContainerPort"
+              }
+            ]
+          }
+        ],
+        "Family": "ServiceName",
+        "Cpu": "ContainerCpu"
+      },
+      "Type": "AWS::ECS::TaskDefinition"
+    },
+    "ECSService": {
+      "Type": "AWS::ECS::Service",
+      "DependsOn": [
+        "Listener"
+      ],
+      "Properties": {
+        "DesiredCount": 1,
+        "LoadBalancers": [
+          {
+            "TargetGroupArn": {
+              "Ref": "TargetGroup"
+            },
+            "ContainerPort": 80,
+            "ContainerName": "sample-app"
+          }
+        ],
+        "Cluster": {
+          "Ref": "ECSCluster"
+        },
+        "Role": {
+          "Ref": "ECSServiceRole"
+        },
+        "TaskDefinition": {
+          "Ref": "ECSTaskDefinition"
+        }
+      }
+    }
+  }
+}

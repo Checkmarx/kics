@@ -12,8 +12,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.SecurityGroups", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "All inbound rules contain port 22, tcp protocol and number of hosts > 32",
-		"keyActualValue": "One of the inbound rules does not contain port 22, tpc protocol or number of hosts < 32",
+		"keyExpectedValue": "All inbound rules contain port 22, tcp protocol and number of hosts greater than 32",
+		"keyActualValue": "One of the inbound rules does not contain port 22, tpc protocol or number of hosts smaller than 32",
 	}
 }
 
@@ -29,8 +29,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.SecurityGroups", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "All inbound rules contain port 22, tcp protocol and number of hosts > 32",
-		"keyActualValue": "One of the inbound rules does not contain port 22, tpc protocol or number of hosts < 32",
+		"keyExpectedValue": "All inbound rules contain port 22, tcp protocol and number of hosts greater than 32",
+		"keyActualValue": "One of the inbound rules does not contain port 22, tpc protocol or number of hosts smaller than 32",
 	}
 }
 

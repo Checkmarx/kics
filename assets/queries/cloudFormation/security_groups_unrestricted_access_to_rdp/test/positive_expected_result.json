@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Security Group Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive2.json"
+  }
+]

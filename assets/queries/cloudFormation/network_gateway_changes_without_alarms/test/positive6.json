@@ -1,0 +1,48 @@
+{
+  "Resources": {
+    "CloudWatchAlarm2": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmName": "iam_policy_changes",
+        "MetricName": "IAMPolicyEventCount",
+        "Period": 300,
+        "Threshold": 1,
+        "AlarmActions": [
+          "SnsTopic2"
+        ],
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "Namespace": "CloudTrailMetrics2",
+        "Statistic": "Sum",
+        "EvaluationPeriods": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "TreatMissingData": "notBreaching"
+      }
+    },
+    "MetricFilter2": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "LogGroupName": "",
+        "FilterPattern": "{ ($.eventName = CreateCustomerGateway) || ($.eventName = DeleteCustomerGateway) || ($.eventName = AttachInternetGateway) || ($.eventName = CreateInternetGateway) || ($.eventName = DeleteInternetGateway) || ($.eventName = DetachInternetGateway) }",
+        "MetricTransformations": [
+          {
+            "MetricValue": "1",
+            "MetricNamespace": "CloudTrailMetricsFake",
+            "MetricName": "IAMPolicyEventCount"
+          }
+        ]
+      }
+    },
+    "SnsTopic2": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ],
+        "TopicName": "alarm-action"
+      }
+    }
+  }
+}

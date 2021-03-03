@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "PostgresSQL DB Server Log Retention Is Low",
-		"severity": "MEDIUM",
-		"line": 5
-	}
-]

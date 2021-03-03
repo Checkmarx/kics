@@ -3,9 +3,7 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	module := ["redshift", "community.aws.redshift"]
 	redshiftCluster := task[module[m]]
 
@@ -13,7 +11,7 @@ CxPolicy[result] {
 	object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, module[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
@@ -22,9 +20,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	module := ["redshift", "community.aws.redshift"]
 	redshiftCluster := task[module[m]]
 
@@ -32,7 +28,7 @@ CxPolicy[result] {
 	not ansLib.isAnsibleTrue(redshiftCluster.encrypted)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, module[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),

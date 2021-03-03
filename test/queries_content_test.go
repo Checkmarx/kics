@@ -197,6 +197,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return model.Vulnerability{}, nil
 		},
 		trk,
+		map[string]bool{},
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

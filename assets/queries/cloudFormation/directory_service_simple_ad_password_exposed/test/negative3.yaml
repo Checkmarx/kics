@@ -1,0 +1,20 @@
+Resources:
+  NewAmpApp3:
+    Type: AWS::DirectoryService::SimpleAD
+    Properties:
+        CreateAlias: true
+        Description: String
+        EnableSso: true
+        Name: String
+        Password:  !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
+        ShortName: String
+        Size: String
+  MyAmpAppSecretManagerRotater:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: 'This is my amp app instance secret'
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "admin"}'
+        GenerateStringKey: 'password'
+        PasswordLength: 16
+        ExcludeCharacters: '"@/\'

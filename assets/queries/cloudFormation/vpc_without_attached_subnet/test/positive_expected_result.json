@@ -1,0 +1,14 @@
+[
+  {
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.yaml",
+    "queryName": "VPC Without Attached Subnet"
+  },
+  {
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive2.json",
+    "queryName": "VPC Without Attached Subnet"
+  }
+]

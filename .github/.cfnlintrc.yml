@@ -1,0 +1,10 @@
+ignore_checks:
+  # ignoring all warnings
+  - W
+  # ignoring all errors
+  - E
+
+# except parser errors
+# in malformed templates
+mandatory_checks:
+  - E0000

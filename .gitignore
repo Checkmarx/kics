@@ -20,11 +20,11 @@
 # Log Files
 *.log
 
-# Configuration file
-config.*
+# ci/cd binaries
+.bin
+
+# kics configuration file
+kics.config
 
 # Sarif file
 *.sarif
-
-# ci/cd binaries
-.bin

@@ -28,3 +28,11 @@ resource "aws_launch_configuration" "as_conf2" {
     encrypted = false
   }
 }
+
+resource "aws_launch_configuration" "ubuntu" {
+  name = "test-launch-config"
+
+  root_block_device {
+    encrypted = false
+  }
+}

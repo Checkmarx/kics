@@ -1,34 +1,22 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	pgConfig := task["azure.azcollection.azure_rm_postgresqlconfiguration"]
-	pgConfigName := task.name
 
 	is_string(pgConfig.name)
-	name := lower(pgConfig.name)
-
 	is_string(pgConfig.value)
-	value := upper(pgConfig.value)
 
-	name == "log_duration"
-	value != "ON"
+	lower(pgConfig.name) == "log_duration"
+	upper(pgConfig.value) != "ON"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value", [pgConfigName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value should be 'ON' for 'log_duration'", [pgConfigName]),
-		"keyActualValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value is 'OFF' for 'log_duration'", [pgConfigName]),
+		"keyExpectedValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value should be 'ON' for 'log_duration'", [task.name]),
+		"keyActualValue": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value is 'OFF' for 'log_duration'", [task.name]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

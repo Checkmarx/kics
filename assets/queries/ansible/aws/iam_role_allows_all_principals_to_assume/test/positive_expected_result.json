@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "IAM Role Allows All Principals To Assume",
+		"severity": "LOW",
+		"line": 11
+	},
+	{
+		"queryName": "IAM Role Allows All Principals To Assume",
+		"severity": "LOW",
+		"line": 24
+	}
+]

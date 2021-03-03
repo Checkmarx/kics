@@ -164,12 +164,33 @@ func TestInspect(t *testing.T) { //nolint
 		},
 	})
 
+	mockedFileMetadataDocument := map[string]interface{}{
+		"id":   nil,
+		"file": nil,
+		"command": map[string]interface{}{
+			"openjdk:10-jdk": []map[string]interface{}{
+				{
+					"Cmd":       "add",
+					"EndLine":   8,
+					"JSON":      false,
+					"Original":  "ADD ${JAR_FILE} app.jar",
+					"StartLine": 8,
+					"SubCmd":    "",
+					"Value": []string{
+						"app.jar",
+					},
+				},
+			},
+		},
+	}
+
 	type fields struct {
 		queries              []*preparedQuery
 		vb                   VulnerabilityBuilder
 		tracker              Tracker
 		enableCoverageReport bool
 		coverageReport       cover.Report
+		excludeResults       map[string]bool
 	}
 	type args struct {
 		ctx    context.Context
@@ -184,47 +205,29 @@ func TestInspect(t *testing.T) { //nolint
 		wantErr bool
 	}{
 		{
-			name: "Test",
+			name: "TestInspect",
 			fields: fields{
 				queries:              opaQueries,
 				vb:                   DefaultVulnerabilityBuilder,
 				tracker:              &tracker.CITracker{},
 				enableCoverageReport: true,
 				coverageReport:       cover.Report{},
+				excludeResults:       map[string]bool{},
 			},
 			args: args{
 				ctx:    ctx,
 				scanID: "scanID",
 				files: model.FileMetadatas{
 					{
-						ID:     "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-						ScanID: "scanID",
-						Document: map[string]interface{}{
-							"id":   nil,
-							"file": nil,
-							"command": map[string]interface{}{
-								"openjdk:10-jdk": []map[string]interface{}{
-									{
-										"Cmd":       "add",
-										"EndLine":   8,
-										"JSON":      false,
-										"Original":  "ADD ${JAR_FILE} app.jar",
-										"StartLine": 8,
-										"SubCmd":    "",
-										"Value": []string{
-											"app.jar",
-										},
-									},
-								},
-							},
-						},
+						ID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
+						ScanID:       "scanID",
+						Document:     mockedFileMetadataDocument,
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
 						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					},
 				},
 			},
-			// 27ef060e0ced4e40b94f2c5a8c330e9be5b9534ce41a4cc2f737bca66f2ce788
 			want: []model.Vulnerability{
 				{
 					ID:               0,
@@ -247,6 +250,33 @@ func TestInspect(t *testing.T) { //nolint
 			},
 			wantErr: false,
 		},
+		{
+			name: "TestInspectExcludeResult",
+			fields: fields{
+				queries:              opaQueries,
+				vb:                   DefaultVulnerabilityBuilder,
+				tracker:              &tracker.CITracker{},
+				enableCoverageReport: true,
+				coverageReport:       cover.Report{},
+				excludeResults:       map[string]bool{"fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe": true},
+			},
+			args: args{
+				ctx:    ctx,
+				scanID: "scanID",
+				files: model.FileMetadatas{
+					{
+						ID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
+						ScanID:       "scanID",
+						Document:     mockedFileMetadataDocument,
+						OriginalData: "orig_data",
+						Kind:         "DOCKERFILE",
+						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+					},
+				},
+			},
+			want:    []model.Vulnerability{},
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {
@@ -257,6 +287,7 @@ func TestInspect(t *testing.T) { //nolint
 				tracker:              tt.fields.tracker,
 				enableCoverageReport: tt.fields.enableCoverageReport,
 				coverageReport:       tt.fields.coverageReport,
+				excludeResults:       tt.fields.excludeResults,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, filepath.FromSlash("assets/queries/"))
 			if tt.wantErr {
@@ -305,14 +336,15 @@ func TestNewInspector(t *testing.T) { // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 				"platform":        "CloudFormation",
 			},
+			Aggregation: 1,
 		},
 	})
-
 	type args struct {
-		ctx     context.Context
-		source  QueriesSource
-		vb      VulnerabilityBuilder
-		tracker Tracker
+		ctx            context.Context
+		source         QueriesSource
+		vb             VulnerabilityBuilder
+		tracker        Tracker
+		excludeResults map[string]bool
 	}
 	tests := []struct {
 		name    string
@@ -323,10 +355,11 @@ func TestNewInspector(t *testing.T) { // nolint
 		{
 			name: "test_new_inspector",
 			args: args{
-				ctx:     context.Background(),
-				vb:      vbs,
-				tracker: track,
-				source:  sources,
+				ctx:            context.Background(),
+				vb:             vbs,
+				tracker:        track,
+				source:         sources,
+				excludeResults: map[string]bool{},
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -338,7 +371,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker)
+			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeResults)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return

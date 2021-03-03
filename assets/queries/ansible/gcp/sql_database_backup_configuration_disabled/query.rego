@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_sql_instance"]
 
 	ansLib.checkState(instance)
 	path := getPathDefinitions(instance)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}%s", [task.name, path.defined]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is defined", [path.undefined]),
@@ -20,15 +19,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_sql_instance"]
 
 	ansLib.checkState(instance)
 	not ansLib.isAnsibleTrue(instance.settings.backup_configuration.enabled)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.backup_configuration.enabled", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'settings.backup_configuration.require_ssl' is true",

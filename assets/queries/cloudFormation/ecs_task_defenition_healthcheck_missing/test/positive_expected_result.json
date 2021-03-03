@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "ECS Task Definition HealthCheck Missing",
-		"severity": "LOW",
-		"line": 22
-	}
-]

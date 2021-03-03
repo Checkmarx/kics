@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "EC2 permissive network Acl protocols",
-		"severity": "MEDIUM",
-		"line": 17
-	}
-]

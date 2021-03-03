@@ -1,0 +1,54 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "NotebookInstance",
+  "Resources": {
+    "Vpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "VpcCIDR",
+        "EnableDnsSupport": "true",
+        "EnableDnsHostnames": "true",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "AWS::StackName"
+          }
+        ]
+      }
+    },
+    "NotebookInstance": {
+      "Type": "AWS::SageMaker::NotebookInstance",
+      "DependsOn": [
+        "MountTarget1",
+        "MountTarget2",
+        "MountTarget3",
+        "VpcS3Endpoint"
+      ],
+      "Properties": {
+        "VolumeSizeInGB": "EbsVolumeSize",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "AWS::StackName"
+          }
+        ],
+        "NotebookInstanceName": "NotebookInstanceName",
+        "SecurityGroupIds": [
+          "VpcSecurityGroup.GroupId"
+        ],
+        "DirectInternetAccess": "Disabled",
+        "AdditionalCodeRepositories": [
+          "CreateCodeRepo",
+          [
+            "CodeRepo.CodeRepositoryName"
+          ],
+          "AWS::NoValue"
+        ],
+        "LifecycleConfigName": "NotebookStartConfig.NotebookInstanceLifecycleConfigName",
+        "InstanceType": "NotebookInstanceType",
+        "RoleArn": "ExecutionRole.Arn",
+        "RootAccess": "Enabled"
+      }
+    }
+  }
+}

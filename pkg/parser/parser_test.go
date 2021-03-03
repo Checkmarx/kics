@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -111,6 +112,14 @@ func TestValidateArguments(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			name: "validate_args_case_sensetive",
+			args: args{
+				types:     []string{"kubernetes"},
+				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+			},
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {
@@ -119,6 +128,58 @@ func TestValidateArguments(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
 				return
+			}
+		})
+	}
+}
+
+func TestRemoveDuplicateValues(t *testing.T) {
+	type args struct {
+		stringSlice []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "remove_duplications",
+			args: args{
+				stringSlice: []string{
+					"test",
+					"test1",
+					"test",
+					"test2",
+				},
+			},
+			want: []string{
+				"test",
+				"test1",
+				"test2",
+			},
+		},
+		{
+			name: "no_duplicates",
+			args: args{
+				stringSlice: []string{
+					"test",
+					"test1",
+					"test2",
+				},
+			},
+			want: []string{
+				"test",
+				"test1",
+				"test2",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := removeDuplicateValues(tt.args.stringSlice)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("removeDuplicateValues() = %v, want %v", got, tt.want)
 			}
 		})
 	}
