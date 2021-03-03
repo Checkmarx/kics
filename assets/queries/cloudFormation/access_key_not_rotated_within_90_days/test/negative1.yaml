@@ -1,4 +1,4 @@
-Resources: # root document object
+Resources:
   ConfigRule:
     Type: AWS::Config::ConfigRule
     Properties:
