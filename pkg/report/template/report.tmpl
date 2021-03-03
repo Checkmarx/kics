@@ -7,7 +7,8 @@
   <title>KICS Scan Result</title>
 </head>
 <body>
-  <div>
+  <div class="container">
+    <h1>KICS Scan Result</h1>
     <h3>Counters</h3>
     <div class="counters">
     {{- with .SeveritySummary -}}
@@ -19,7 +20,7 @@
     {{- end}}
     </div>
   </div>
-  <div class="query">
+  <div class="container query">
   {{- range .Queries}}
     <div class="query-title">
       <h2 class="{{ sprintf "%s" .Severity | lower }}">{{ .QueryName }}</h2>

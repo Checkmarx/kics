@@ -10,6 +10,12 @@ body {
   margin-left: 5vw;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .counters {
   border: 1px solid #333;
   display: flex;
@@ -44,9 +50,6 @@ body {
 }
 
 .query {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   width: 90vw;
 }
 
