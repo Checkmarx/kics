@@ -8,7 +8,7 @@
         Action: "logs:CreateLogGroup"
         Resource: "*"
         Principal:
-            - AWS: "arn:aws:iam::root"
+          - AWS: "arn:aws:iam::root"
     make_default: false
     state: present
 - name: Create2 IAM Managed Policy
