@@ -20,23 +20,37 @@
     {{- end}}
     </div>
   </div>
-  <div class="container query">
   {{- range .Queries}}
+  <div class="container query">
     <div class="query-title">
       <h2 class="{{ sprintf "%s" .Severity | lower }}">{{ .QueryName }}</h2>
+      <span>{{ .QueryID }}</span>
     </div>
     <div class="vulnerable-files">
-    {{- range .Files}}
-      <div class="vulnerable-files-header">
-        <span>{{ .FileName }}</span>
-        <span>{{ .Line }}</span>
-      </div>
-      <div class="vulnerable-lines">
-        Here will show file vulnerable region
-      </div>
-    {{- end -}}
+      <details>
+        <summary>Files</summary>
+        {{- range .Files}}
+          <div class="vulnerable-file">
+            <div class="vulnerable-file-header">
+              <span>{{ .FileName }}</span>
+              <span>{{ .Line }}</span>
+            </div>
+            <details>
+              <summary>Details</summary>
+              <div class="vulnerability-info">
+                <div class="vulnerable-lines">
+                  <span class="error">Here will show file vulnerable region</span>
+                </div>
+                <div class="correction-example">
+                  Here will show a snippet how to correct
+                </div>
+              </div>
+            </details>
+          </div>
+        {{- end -}}
+      </details>
     </div>
-  {{- end -}}
   </div>
+  {{- end -}}
 </body>
 </html>

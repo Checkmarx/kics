@@ -10,10 +10,16 @@ body {
   margin-left: 5vw;
 }
 
+summary {
+  user-select: none;
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 
 .counters {
@@ -21,7 +27,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 10vw;
-  margin-bottom: 32px;
 }
 
 .severity {
@@ -56,7 +61,12 @@ body {
 .query-title {
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
   width: 100%;
+}
+
+.query-title > span {
+  font-size: x-small;
 }
 
 .vulnerable-files {
@@ -66,28 +76,63 @@ body {
   width: 100%;
 }
 
-.vulnerable-files-header {
+.vulnerable-file-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-top: 1px solid #333;
   border-bottom: 1px solid #333;
 }
 
-.vulnerable-files-header > span:first-child{
+.vulnerable-file-header > span:first-child{
   flex:1;
   border-right: 1px solid #333;
 }
 
-.vulnerable-files-header > span:last-child{
+.vulnerable-file-header > span:last-child{
   min-width: 48px;
   text-align: center;
 }
 
-.vulnerable-lines {
-  background-color: #DDD;
+.vulnerability-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #EEE;
+}
+
+.vulnerability-info > div {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
   padding: 16px 0;
 }
 
-.vulnerable-files > :not(.vulnerable-lines:last-child) {
+.vulnerability-info > :not(div:last-child) {
+  border-right: 1px solid #333;
+}
+
+.vulnerable-file:nth-of-type(odd) {
+  background-color: #0CC5;
+}
+
+.vulnerable-file:nth-of-type(even) {
+  background-color: #3D35;
+}
+
+.vulnerable-lines > .error {
+  background-color: #C003;
+}
+
+.vulnerable-files > details {
+  text-indent: 8px;
+}
+
+.vulnerable-file > details {
+  text-indent: 16px;
+}
+
+.vulnerable-file > details[open] > summary {
   border-bottom: 1px solid #333;
 }
