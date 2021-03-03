@@ -8,7 +8,7 @@
       tier: db-n1-standard-1
     region: us-central1
     project: test_project
-    database_version : POSTGRES_9_6
+    database_version: POSTGRES_9_6
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
     state: present
@@ -19,7 +19,7 @@
       tier: db-n1-standard-1
     region: us-central1
     project: test_project
-    database_version : POSTGRES_9_6
+    database_version: POSTGRES_9_6
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
     state: present

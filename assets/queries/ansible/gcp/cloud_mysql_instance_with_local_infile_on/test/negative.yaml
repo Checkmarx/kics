@@ -12,4 +12,3 @@
         value: value1
       tier: db-n1-standard-1
     state: present
-
