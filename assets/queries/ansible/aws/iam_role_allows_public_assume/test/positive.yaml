@@ -8,7 +8,7 @@
         Action: "logs:CreateLogGroup"
         Resource: "*"
         Principal:
-          - Service: "ec2.amazonaws.com"
-          - AWS: "*"
+        - Service: "ec2.amazonaws.com"
+        - AWS: "*"
     make_default: false
     state: present

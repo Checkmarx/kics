@@ -42,7 +42,7 @@
         group_id: sg-12345678
       - proto: icmp
         from_port: 8 # icmp type, -1 = any type
-        to_port:  -1 # icmp subtype, -1 = any subtype
+        to_port: -1 # icmp subtype, -1 = any subtype
         cidr_ip: 192.168.1.0/24
       - proto: all
         # the containing group name may be specified here

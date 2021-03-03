@@ -25,8 +25,8 @@
     state: present
     access_key_state: active
   loop:
-     - Mario
-     - Luigi
+    - Mario
+    - Luigi
   register: new_groups
 - name: Update user
   community.aws.iam:
