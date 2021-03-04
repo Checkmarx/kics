@@ -2,7 +2,7 @@
 	"id": "3ca03a61-3249-4c16-8427-6f8e47dda729",
 	"queryName": "Service Does Not Target Pod",
 	"severity": "LOW",
-	"category": "Networking",
+	"category": "Insecure Configurations",
 	"descriptionText": "Service should Target a Pod",
 	"descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/",
 	"platform": "Kubernetes"
