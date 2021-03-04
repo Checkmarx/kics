@@ -82,7 +82,7 @@ jobs:
           exit 0
         fi
   security-scan:
-    name: security-tests
+    name: security-scan
     runs-on: ubuntu-latest
     env:
       GO111MODULE: on
