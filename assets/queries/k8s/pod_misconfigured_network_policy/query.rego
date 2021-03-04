@@ -1,22 +1,5 @@
 package Cx
 
-CxPolicy[result] {
-	pod := input.document[i]
-    pod.kind == "Pod"
-
-    policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
-    # no network policies are present
-    count(policyList) == 0
-
-    result := {
-		"documentId": pod.id,
-		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Pod %s should have a NetworkPolicy applied", [pod.metadata.name]),
-		"keyActualValue": sprintf("Pod %s has no NetworkPolicy applied", [pod.metadata.name])
-	}
-}
-
 # same namespace but has no ingress rules
 CxPolicy[result] {
 	pod := input.document[i]
@@ -29,7 +12,7 @@ CxPolicy[result] {
     netPolicy = policyList[k]
     isSameNamespace(pod, netPolicy)
 
-    # no ingress nor egress policies are defined
+    # if no ingress and no egress policies are defined
     not policyHasEgress(netPolicy)
     not policyHasIngress(netPolicy)
 
@@ -58,6 +41,7 @@ CxPolicy[result] {
     # if there are matching labels
 	pod.metadata.labels[key] == netPolicy.spec.podSelector.matchLabels[key]
 
+    # if no ingress and no egress policies are defined
     not policyHasIngress(netPolicy)
     not policyHasEgress(netPolicy)
 
