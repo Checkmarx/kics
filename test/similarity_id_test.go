@@ -3,7 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -160,8 +160,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	for _, tc := range testTable {
 		t.Run(tc.name, func(tt *testing.T) {
