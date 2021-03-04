@@ -1,22 +1,50 @@
 [
-	{
-		"queryName": "Security Group Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 31
-	},
-	{
-		"queryName": "Security Group Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 69
-	},
-	{
-		"queryName": "Security Group Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 97
-	},
-	{
-		"queryName": "Security Group Changes Without Alarms",
-		"severity": "MEDIUM",
-		"line": 120
-	}
+  {
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.yaml",
+    "queryName": "Security Group Changes Without Alarms"
+  },
+  {
+    "queryName": "Security Group Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "Security Group Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.yaml",
+    "queryName": "Security Group Changes Without Alarms"
+  },
+  {
+    "queryName": "Security Group Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Security Group Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Security Group Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "Security Group Changes Without Alarms",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive8.json"
+  }
 ]

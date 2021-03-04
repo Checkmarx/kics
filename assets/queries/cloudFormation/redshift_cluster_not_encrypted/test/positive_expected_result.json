@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Redshift Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "fileName": "positive2.yaml",
+    "queryName": "Redshift Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 21
+  },
+  {
+    "queryName": "Redshift Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive3.json"
+  },
+  {
+    "line": 32,
+    "fileName": "positive4.json",
+    "queryName": "Redshift Cluster Not Encrypted",
+    "severity": "HIGH"
+  }
+]

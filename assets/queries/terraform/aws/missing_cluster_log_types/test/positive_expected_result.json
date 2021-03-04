@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Missing cluster log types",
-		"severity": "LOW",
-		"line": 9
-	}
+  {
+    "queryName": "Missing Cluster Log Types",
+    "severity": "LOW",
+    "line": 9
+  }
 ]

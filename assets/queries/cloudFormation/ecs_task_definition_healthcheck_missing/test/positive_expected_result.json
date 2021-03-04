@@ -1,0 +1,14 @@
+[
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ECS Task Definition HealthCheck Missing",
+    "severity": "LOW",
+    "line": 22
+  },
+  {
+    "line": 55,
+    "fileName": "positive2.json",
+    "queryName": "ECS Task Definition HealthCheck Missing",
+    "severity": "LOW"
+  }
+]

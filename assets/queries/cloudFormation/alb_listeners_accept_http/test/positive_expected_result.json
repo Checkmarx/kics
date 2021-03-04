@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "ALB Listeners Accept HTTP",
-		"severity": "MEDIUM",
-		"line": 13
-	},
-	{
-		"queryName": "ALB Listeners Accept HTTP",
-		"severity": "MEDIUM",
-		"line": 25
-	}
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ALB Listeners Accept HTTP",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ALB Listeners Accept HTTP",
+    "severity": "MEDIUM",
+    "line": 25
+  },
+  {
+    "queryName": "ALB Listeners Accept HTTP",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive2.json"
+  },
+  {
+    "line": 35,
+    "fileName": "positive2.json",
+    "queryName": "ALB Listeners Accept HTTP",
+    "severity": "MEDIUM"
+  }
 ]

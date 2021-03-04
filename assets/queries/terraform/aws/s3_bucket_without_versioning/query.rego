@@ -3,7 +3,7 @@ package Cx
 #default of mfa_delete is false
 CxPolicy[result] {
 	b := input.document[i].resource.aws_s3_bucket[name]
-	not b.versioning
+    object.get(b,"versioning","undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,8 +23,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'versioning' is equal 'true'",
-		"keyActualValue": "'versioning' is missing",
+		"keyExpectedValue": "'versioning.enabled' is equal 'true'",
+		"keyActualValue": "'versioning.enabled' is missing",
 	}
 }
 

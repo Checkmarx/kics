@@ -13,14 +13,14 @@ jobs:
       with:
           fetch-depth: 0
     - name: golangci-lint
-      uses: golangci/golangci-lint-action@v2
+      uses: golangci/golangci-lint-action@v2.5.1
       with:
         version: v1.29
   unit-tests:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.15.x]
+        go-version: [1.16.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:

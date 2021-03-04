@@ -1,22 +1,50 @@
 [
-	{
-		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
-  		"severity": "MEDIUM",
-		"line": 31
-	},
-	{
-		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
-  		"severity": "MEDIUM",
-		"line": 69
-	},
-	{
-		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
-  		"severity": "MEDIUM",
-		"line": 97
-	},
-	{
-		"queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
-  		"severity": "MEDIUM",
-		"line": 120
-	}
+  {
+    "line": 33,
+    "fileName": "positive2.yaml",
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+    "severity": "MEDIUM"
+  },
+  {
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+    "severity": "MEDIUM",
+    "line": 31
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 37,
+    "fileName": "positive5.json",
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive6.json",
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User"
+  },
+  {
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "CloudWatch Alarm And Logfilter Not Defined For Root User",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive8.json"
+  }
 ]

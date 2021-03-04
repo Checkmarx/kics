@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.%s.%s.name=%s.securityContext", [metadata.name, specInfo.path, types[x], containers[index].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s.securityContext", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.%s[%s].securityContext is set", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s[%s].securityContext is undefined", [specInfo.path, types[x], containers[index].name]),
@@ -32,7 +32,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.%s.%s.name=%s.securityContext.allowPrivilegeEscalation", [metadata.name, specInfo.path, types[x], containers[index].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s.securityContext.allowPrivilegeEscalation", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is false", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is true", [specInfo.path, types[x], containers[index].name]),

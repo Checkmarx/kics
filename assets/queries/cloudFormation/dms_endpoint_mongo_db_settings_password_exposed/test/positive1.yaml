@@ -1,0 +1,51 @@
+Parameters:
+  ParentMasterPassword:
+    Description: 'Password'
+    Type: String
+    Default: ''
+  ParentMasterUsername:
+    Description: 'username'
+    Type: String
+    Default: 'username!'
+  MasterMongoDBPassword:
+    Description: 'Password'
+    Type: String
+    Default: 'as@3djdkDjskjs73!!'
+Resources:
+  NewAmpApp4:
+    Type: AWS::DMS::Endpoint
+    Properties:
+      CertificateArn: String
+      DatabaseName: String
+      EndpointIdentifier: String
+      EndpointType: String
+      EngineName: String
+      ExtraConnectionAttributes: String
+      KafkaSettings:
+        KafkaSettings
+      KinesisSettings:
+        KinesisSettings
+      KmsKeyId: String
+      MongoDbSettings:
+          AuthMechanism: String
+          AuthSource: String
+          AuthType: String
+          DatabaseName: String
+          DocsToInvestigate: String
+          ExtractDocId: String
+          NestingLevel: String
+          Password: !Ref MasterMongoDBPassword
+          Port: 80
+          ServerName: String
+          Username: String
+      NeptuneSettings:
+        NeptuneSettings
+      Password: !Ref ParentMasterPassword
+      Port: 80
+      S3Settings:
+        S3Settings
+      ServerName: String
+      SslMode: String
+      Tags:
+        - Tag
+      Username: String

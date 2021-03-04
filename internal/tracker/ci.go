@@ -11,13 +11,13 @@ type CITracker struct {
 }
 
 // TrackQueryLoad adds a loaded query
-func (c *CITracker) TrackQueryLoad() {
-	c.LoadedQueries++
+func (c *CITracker) TrackQueryLoad(queryAggregation int) {
+	c.LoadedQueries += queryAggregation
 }
 
 // TrackQueryExecution adds a query executed
-func (c *CITracker) TrackQueryExecution() {
-	c.ExecutedQueries++
+func (c *CITracker) TrackQueryExecution(queryAggregation int) {
+	c.ExecutedQueries += queryAggregation
 }
 
 // TrackFileFound adds a found file to be scanned

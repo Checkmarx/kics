@@ -16,7 +16,7 @@ getProtocolList(protocol) = list {
 }
 
 getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
-	protocols[_] == ["-1", "ALL"][_]
+	sprintf("%v", protocols[_]) == ["-1", "ALL"][_]
 	portsMap = object.union(tcpPortsMap, udpPortsMap)
 } else = portsMap {
 	protocols[_] == "UDP"

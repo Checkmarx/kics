@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Pod Security Policy Set to Privileged",
+    "severity": "MEDIUM",
+    "line": 6
+  }
+]

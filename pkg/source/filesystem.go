@@ -80,7 +80,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			return errors.Wrap(errOpenFile, "failed to open path")
 		}
 
-		return sink(ctx, fileInfo.Name(), c)
+		return sink(ctx, s.path, c)
 	}
 
 	err = filepath.Walk(s.path, func(path string, info os.FileInfo, err error) error {

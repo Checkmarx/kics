@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "Security Group Unrestricted Access To SSH",
-		"severity": "HIGH",
-		"line": 15
-	}
-]

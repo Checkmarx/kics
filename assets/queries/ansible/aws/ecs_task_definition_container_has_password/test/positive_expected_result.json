@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "ECS Task Definition Container has Password",
-		"severity": "HIGH",
-		"line": 11
-	}
+  {
+    "queryName": "ECS Task Definition Container Has Password",
+    "severity": "HIGH",
+    "line": 11
+  }
 ]

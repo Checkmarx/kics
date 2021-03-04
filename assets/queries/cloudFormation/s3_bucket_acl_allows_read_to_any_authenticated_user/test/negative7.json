@@ -1,0 +1,22 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Creating S3 bucket",
+  "Resources": {
+    "JenkinsArtifacts05": {
+      "Properties": {
+        "BucketName": "jenkins-secret-artifacts2",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        },
+        "Tags": [
+          {
+            "Value": "ITEngineering",
+            "Key": "CostCenter"
+          }
+        ],
+        "AccessControl": "PublicReadWrite"
+      },
+      "Type": "AWS::S3::Bucket"
+    }
+  }
+}

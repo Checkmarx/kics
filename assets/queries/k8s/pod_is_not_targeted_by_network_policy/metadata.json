@@ -1,0 +1,9 @@
+{
+	"id": "0401f71b-9c1e-4821-ab15-a955caa621be",
+	"queryName": "Pod Is Not Targeted By NetworkPolicy",
+	"severity": "MEDIUM",
+	"category": "Networking",
+	"descriptionText": "Check if any pod is not being targeted by a proper network policy.",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+	"platform": "Kubernetes"
+}

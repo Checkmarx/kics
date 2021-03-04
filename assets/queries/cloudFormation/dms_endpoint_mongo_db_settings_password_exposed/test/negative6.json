@@ -1,0 +1,65 @@
+{
+  "Resources": {
+    "MyAmpAppSecretManagerRotater": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "This is my amp app instance secret",
+        "GenerateSecretString": {
+          "ExcludeCharacters": "\"@/\\",
+          "SecretStringTemplate": "{\"username\": \"admin\"}",
+          "GenerateStringKey": "password",
+          "PasswordLength": 16
+        }
+      }
+    },
+    "MongoDBSecretManagerRotater": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "This is my MongoDBSecretManagerRotater instance secret",
+        "GenerateSecretString": {
+          "GenerateStringKey": "password",
+          "PasswordLength": 16,
+          "ExcludeCharacters": "\"@/\\",
+          "SecretStringTemplate": "{\"username\": \"admin\"}"
+        }
+      }
+    },
+    "NewAmpApp3": {
+      "Type": "AWS::DMS::Endpoint",
+      "Properties": {
+        "EndpointType": "String",
+        "ExtraConnectionAttributes": "String",
+        "KmsKeyId": "String",
+        "NeptuneSettings": "NeptuneSettings",
+        "CertificateArn": "String",
+        "S3Settings": "S3Settings",
+        "Username": "String",
+        "MongoDbSettings": {
+          "Username": "String",
+          "AuthMechanism": "String",
+          "AuthType": "String",
+          "DocsToInvestigate": "String",
+          "ExtractDocId": "String",
+          "NestingLevel": "String",
+          "Password": "{{resolve:secretsmanager:${MongoDBSecretManagerRotater}::password}}",
+          "Port": 80,
+          "ServerName": "String",
+          "AuthSource": "String",
+          "DatabaseName": "String"
+        },
+        "EndpointIdentifier": "String",
+        "EngineName": "String",
+        "Password": "{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}",
+        "Tags": [
+          "Tag"
+        ],
+        "DatabaseName": "String",
+        "KinesisSettings": "KinesisSettings",
+        "Port": 80,
+        "ServerName": "String",
+        "SslMode": "String",
+        "KafkaSettings": "KafkaSettings"
+      }
+    }
+  }
+}

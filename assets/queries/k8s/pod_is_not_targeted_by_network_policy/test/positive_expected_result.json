@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Pod Is Not Targeted By NetworkPolicy",
+		"severity": "MEDIUM",
+		"line": 4,
+    "fileName": "positive2.yaml"
+	},
+  {
+		"queryName": "Pod Is Not Targeted By NetworkPolicy",
+		"severity": "MEDIUM",
+		"line": 4,
+    "fileName": "positive1.yaml"
+	}
+]

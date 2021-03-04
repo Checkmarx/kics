@@ -1,25 +1,20 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	task := getTasks(document)[t]
+import data.generic.ansible as ansLib
 
-	access := task["google.cloud.gcp_bigquery_dataset"].access
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	bigquery_dataset := task["google.cloud.gcp_bigquery_dataset"]
+
+	ansLib.checkState(bigquery_dataset)
+	access := bigquery_dataset.access
 	lower(access[_].special_group) == "allauthenticatedusers"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name=%s.{{google.cloud.gcp_bigquery_dataset}}.access", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'access.special_group' is not equal to 'allAuthenticatedUsers'",
-		"keyActualValue": "'access.special_group' is equal to 'allAuthenticatedUsers'",
+		"keyExpectedValue": "{{google.cloud.gcp_bigquery_dataset}}.access.special_group is not equal to 'allAuthenticatedUsers'",
+		"keyActualValue": "{{google.cloud.gcp_bigquery_dataset}}.access.special_group is equal to 'allAuthenticatedUsers'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

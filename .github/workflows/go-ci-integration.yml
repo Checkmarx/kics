@@ -7,11 +7,7 @@ on:
 jobs:
   integration-tests:
     name: integration-tests
-    strategy:
-      matrix:
-        go-version: [1.15.x]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
@@ -27,6 +23,8 @@ jobs:
         key: ${{ runner.os }}-buildx-${{ github.ref }}
         restore-keys: |
           ${{ runner.os }}-buildx-${{ github.ref }}
+    - name: Get short SHA
+      run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
     - name: Build
       id: docker_build
       uses: docker/build-push-action@v2
@@ -37,6 +35,8 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         push: false
         tags:  kics:${{ github.sha }}
+        build-args: |
+          VERSION=${GITHUB_SHA_SHORT}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
     - name: Image digest

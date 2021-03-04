@@ -1,20 +1,17 @@
 [
-	{
-		"queryName": "Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 1
-	},
-  
-	{
-		"queryName": "Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 34
-	},
-
-	{
-		"queryName": "Kinesis Not Encrypted with KMS",
-		"severity": "HIGH",
-		"line": 41
-	}
-
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 34
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
+    "line": 41
+  }
 ]

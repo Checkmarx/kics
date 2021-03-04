@@ -1,9 +1,0 @@
-{
-	"id": "cde1dbc4-ea92-4414-a575-5bbbe77d093c",
-	"queryName": "Not encrypted data in launch configuration",
-	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
-	"descriptionText": "Data stored in the Launch configuration EBS is not securely encrypted",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance",
-	"platform": "Terraform"
-}

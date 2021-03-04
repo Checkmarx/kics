@@ -18,7 +18,7 @@ CxPolicy [ result ] {
 }
 ```
 
-### Anatomy
+#### Anatomy
 
 The anatomy of a query is straightforward. It builds up a policy and defines the result.
 
@@ -27,7 +27,7 @@ The **policy** builds the pattern that breaks the *security* of the infrastructu
 The **result** defines the specific data used to present the *vulnerability* in the infrastructure code.
 
 
-### Metadata
+#### Metadata
 
 Each query has a metadata.json companion file with all the relevant information about the *vulnerability*, including 
 the severity, category and its description.
@@ -46,7 +46,7 @@ For example, the JSON code above is the metadata corresponding to the query in t
 ```
 
 
-### Organization
+#### Organization
 Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped 
 under provider (e.g., aws, gcp, azure, etc.) when applicable.
 
@@ -110,7 +110,9 @@ And the file tree should be as follows:
     |   |   |- query.rego
 ```
 
-## Development of a Query 
+---
+
+## Create a new Query 
 
 The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, that can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
 
@@ -128,7 +130,7 @@ To test and debug there are two ways:
 - [Using Rego playground](https://play.openpolicyagent.org/)
 - [Install Open Policy Agent extension](https://marketplace.visualstudio.com/items?itemName=tsandall.opa) in VS Code and create a simple folder with a .rego file for the query and a input.json for the sample to test against
 
-### Testing 
+#### Testing 
 
 For a query to be considered complete, it must be compliant with at least one positive and one negative test case. To run the unit tests you can run this command:
 
@@ -137,7 +139,7 @@ go test -mod=vendor -v -cover ./... -count=1
 ```
 Check if the new test was added correctly and if all tests are passing locally. If succeeds, a Pull Request can now be created.
 
-### Guidelines
+#### Guidelines
 
 Filling metadata.json:
 

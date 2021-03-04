@@ -70,6 +70,9 @@ type QueryMetadata struct {
 	Content  string
 	Metadata map[string]interface{}
 	Platform string
+	// special field for generic queries
+	// represents how many queries are aggregated into a single rego file
+	Aggregation int
 }
 
 // Vulnerability is a representation of a detected vulnerability in scanned files
@@ -82,6 +85,8 @@ type Vulnerability struct {
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
 	QueryName        string    `db:"query_name" json:"queryName"`
+	Category         string    `json:"category"`
+	Description      string    `json:"description"`
 	Platform         string    `db:"platform" json:"platform"`
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
@@ -96,7 +101,7 @@ type Vulnerability struct {
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
 type QueryConfig struct {
-	FileKind FileKind
+	FileKind []FileKind
 	Platform string
 }
 

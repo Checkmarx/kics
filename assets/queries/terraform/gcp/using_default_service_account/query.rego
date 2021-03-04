@@ -43,6 +43,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_instance[name]
 	count(resource.service_account.email) > 0
 	not contains(resource.service_account.email, "@")
+    not emailInVar(resource.service_account.email)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -64,4 +65,9 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is not a default Google Compute Engine service account", [name]),
 		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is a default Google Compute Engine service account", [name]),
 	}
+}
+
+emailInVar(email) {
+    startswith(email,"${google_service_account.")
+    endswith(email,".email}")
 }

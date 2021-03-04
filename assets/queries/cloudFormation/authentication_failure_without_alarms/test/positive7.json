@@ -1,0 +1,46 @@
+{
+  "Resources": {
+    "SnsTopic3": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "alarm-action",
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ]
+      }
+    },
+    "CloudWatchAlarm3": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "Namespace": "CloudTrailMetrics",
+        "Period": 300,
+        "Threshold": 1,
+        "AlarmActions": [],
+        "AlarmName": "iam_policy_changes",
+        "MetricName": "IAMPolicyEventCount",
+        "Statistic": "Sum",
+        "EvaluationPeriods": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "TreatMissingData": "notBreaching"
+      }
+    },
+    "MetricFilter3": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "LogGroupName": "",
+        "FilterPattern": "{ ($.eventName = ConsoleLogin) \u0026\u0026 ($.errorMessage = \"Failed authentication\") }",
+        "MetricTransformations": [
+          {
+            "MetricNamespace": "CloudTrailMetrics",
+            "MetricName": "IAMPolicyEventCount",
+            "MetricValue": "1"
+          }
+        ]
+      }
+    }
+  }
+}

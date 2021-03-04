@@ -1,63 +1,51 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
-	cluster := task["google.cloud.gcp_container_cluster"]
-	clusterName := task.name
+import data.generic.ansible as ansLib
 
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
+
+	ansLib.checkState(cluster)
 	object.get(cluster, "resource_labels", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [clusterName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [task.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is defined", [clusterName]),
-		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is undefined", [clusterName]),
+		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is defined", [task.name]),
+		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is undefined", [task.name]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	cluster := task["google.cloud.gcp_container_cluster"]
-	clusterName := task.name
 
+	ansLib.checkState(cluster)
 	cluster.resource_labels == null
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.resource_labels", [clusterName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.resource_labels", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is not null", [clusterName]),
-		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is null", [clusterName]),
+		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is not null", [task.name]),
+		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is null", [task.name]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	cluster := task["google.cloud.gcp_container_cluster"]
-	clusterName := task.name
 
+	ansLib.checkState(cluster)
 	count(cluster.resource_labels) == 0
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.resource_labels", [clusterName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.resource_labels", [task.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is not empty", [clusterName]),
-		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is empty", [clusterName]),
+		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is not empty", [task.name]),
+		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is empty", [task.name]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

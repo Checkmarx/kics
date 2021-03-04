@@ -1,17 +1,16 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	elb := task["community.aws.elb_application_lb"]
-	elbName := task.name
 
 	object.get(elb, "listeners", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}", [elbName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "community.aws.elb_application_lb.listeners is defined",
 		"keyActualValue": "community.aws.elb_application_lb.listeners is undefined",
@@ -19,17 +18,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	elb := task["community.aws.elb_application_lb"]
-	elbName := task.name
 
 	object.get(elb.listeners[j], "SslPolicy", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners.%s", [elbName, j]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners.%s", [task.name, j]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "community.aws.elb_application_lb.listeners.SslPolicy is defined",
 		"keyActualValue": "community.aws.elb_application_lb.listeners.SslPolicy is undefined",
@@ -37,17 +33,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	elb := task["community.aws.elb_application_lb"]
-	elbName := task.name
 
 	check_vulnerability(elb.listeners[j].SslPolicy)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners.%s", [elbName, j]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_application_lb}}.listeners.%s", [task.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.elb_application_lb.listeners.SslPolicy is not a weak cipher",
 		"keyActualValue": "community.aws.elb_application_lb.listeners.SslPolicy is a weak cipher",
@@ -55,17 +48,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	elb := task["community.aws.elb_network_lb"]
-	elbName := task.name
 
 	object.get(elb, "listeners", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_network_lb}}", [elbName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_network_lb}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "community.aws.elb_network_lb.listeners is defined",
 		"keyActualValue": "community.aws.elb_network_lb.listeners is undefined",
@@ -73,17 +63,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	elb := task["community.aws.elb_network_lb"]
-	elbName := task.name
 
 	object.get(elb.listeners[j], "SslPolicy", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_network_lb}}.listeners.%s", [elbName, j]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_network_lb}}.listeners.%s", [task.name, j]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "community.aws.elb_network_lb.listeners.SslPolicy is defined",
 		"keyActualValue": "community.aws.elb_network_lb.listeners.SslPolicy is undefined",
@@ -91,29 +78,18 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
 	elb := task["community.aws.elb_network_lb"]
-	elbName := task.name
 
 	check_vulnerability(elb.listeners[j].SslPolicy)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_network_lb}}.listeners.%s", [elbName, j]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.elb_network_lb}}.listeners.%s", [task.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "community.aws.elb_network_lb.listeners.SslPolicy is not a weak cipher",
 		"keyActualValue": "community.aws.elb_network_lb.listeners.SslPolicy is a weak cipher",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 check_vulnerability(aux) {

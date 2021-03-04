@@ -1,9 +1,9 @@
 {
-	"id": "a2fdf451-89dd-451e-af92-bf6c0f4bab96",
-	"queryName": "AWS Config Configuration Aggregator All Regions Not Enabled",
-	"severity": "HIGH",
-	"category": "Logging",
-	"descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_config_aggregator_module.html#parameter-organization_source",
-	"platform": "Ansible"
+  "id": "a2fdf451-89dd-451e-af92-bf6c0f4bab96",
+  "queryName": "Config Configuration Aggregator All Regions Not Enabled",
+  "severity": "HIGH",
+  "category": "Logging",
+  "descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_config_aggregator_module.html#parameter-organization_source",
+  "platform": "Ansible"
 }

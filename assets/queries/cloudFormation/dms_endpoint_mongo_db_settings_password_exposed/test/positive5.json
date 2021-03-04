@@ -1,0 +1,41 @@
+{
+  "Resources": {
+    "NewAmpApp5": {
+      "Type": "AWS::DMS::Endpoint",
+      "Properties": {
+        "EndpointIdentifier": "String",
+        "EngineName": "String",
+        "SslMode": "String",
+        "Username": "String",
+        "ExtraConnectionAttributes": "String",
+        "KafkaSettings": "KafkaSettings",
+        "KinesisSettings": "KinesisSettings",
+        "NeptuneSettings": "NeptuneSettings",
+        "S3Settings": "S3Settings",
+        "DatabaseName": "String",
+        "MongoDbSettings": {
+          "AuthMechanism": "String",
+          "AuthSource": "String",
+          "AuthType": "String",
+          "DatabaseName": "String",
+          "Port": 80,
+          "Username": "String",
+          "DocsToInvestigate": "String",
+          "ExtractDocId": "String",
+          "NestingLevel": "String",
+          "Password": "as@3djdkDjskjs73!!",
+          "ServerName": "String"
+        },
+        "Password": "asDjskjs73!!",
+        "ServerName": "String",
+        "CertificateArn": "String",
+        "EndpointType": "String",
+        "KmsKeyId": "String",
+        "Port": 80,
+        "Tags": [
+          "Tag"
+        ]
+      }
+    }
+  }
+}
