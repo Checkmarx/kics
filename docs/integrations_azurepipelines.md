@@ -16,8 +16,8 @@ In this case we instruct the job to download and use the latest Linux version of
 2- Declare a new stage
 ```yaml
 stages:
-- stage: Kics
-  displayName: Kics
+- stage: kics
+  displayName: kics
 ```
 
 3- Declare the steps - in this case it is a script where we follow the steps:
@@ -77,8 +77,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Kics
-  displayName: Kics
+- stage: kics
+  displayName: kics
 
   jobs:
   - job: runKics
