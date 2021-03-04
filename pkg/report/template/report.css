@@ -69,11 +69,30 @@ summary {
   font-size: x-small;
 }
 
-.vulnerable-files {
+.vulnerability-details {
   display: flex;
   flex-direction: column;
   border: 1px solid #333;
   width: 100%;
+}
+
+.query-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+}
+
+.query-info > span:first-child{
+  flex:1;
+  padding: 0 8px;
+  border-right: 1px solid #333;
+  text-align: justify;
+}
+
+.query-info > span:last-child{
+  text-align: center;
+  padding: 0 8px;
 }
 
 .vulnerable-file-header {
@@ -125,7 +144,7 @@ summary {
   background-color: #C003;
 }
 
-.vulnerable-files > details {
+.vulnerability-details > details {
   text-indent: 8px;
 }
 

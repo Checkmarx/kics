@@ -26,7 +26,11 @@
       <h2 class="{{ sprintf "%s" .Severity | lower }}">{{ .QueryName }}</h2>
       <span>{{ .QueryID }}</span>
     </div>
-    <div class="vulnerable-files">
+    <div class="vulnerability-details">
+      <div class="query-info">
+        <span>{{ .Description }}</span>
+        <span>{{ .Category }}</span>
+      </div>
       <details>
         <summary>Files</summary>
         {{- range .Files}}
@@ -40,9 +44,6 @@
               <div class="vulnerability-info">
                 <div class="vulnerable-lines">
                   <span class="error">Here will show file vulnerable region</span>
-                </div>
-                <div class="correction-example">
-                  Here will show a snippet how to correct
                 </div>
               </div>
             </details>
