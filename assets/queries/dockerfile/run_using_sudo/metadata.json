@@ -2,7 +2,7 @@
 	"id": "8ada6e80-0ade-439e-b176-0b28f6bce35a",
 	"queryName": "Run Using Sudo",
 	"severity": "HIGH",
-	"category": "User Management",
+	"category": "Best Practices",
 	"descriptionText": "Avoid RUN with sudo command as it leads to unpredictable behavior",
 	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
 	"platform": "Dockerfile"
