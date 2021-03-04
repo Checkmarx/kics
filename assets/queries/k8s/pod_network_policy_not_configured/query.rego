@@ -1,65 +1,92 @@
 package Cx
 
-import data.generic.k8s as k8sLib
-
 CxPolicy[result] {
-	document := input.document[i]
-	metadata := document.metadata
+	pod := input.document[i]
+    pod.kind == "Pod"
 
-	document.kind == "NetworkPolicy"
-	spec := document.spec
-
-	not findPod(true)
+    policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
+    # no network policies are present
+    count(policyList) == 0
 
     result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"documentId": pod.id,
+		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Pod is defined",
-		"keyActualValue": "Pod is undefined"
+		"keyExpectedValue": sprintf("Pod %s should have a NetworkPolicy applied", [pod.metadata.name]),
+		"keyActualValue": sprintf("Pod %s has no NetworkPolicy applied", [pod.metadata.name])
 	}
 }
 
+# same namespace but has no ingress rules
 CxPolicy[result] {
-	document := input.document[i]
-	metadata := document.metadata
+	pod := input.document[i]
+	pod.kind == "Pod"
 
-	document.kind == "NetworkPolicy"
-	spec := document.spec
+    policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
+    # if network policies are present
+    count(policyList) > 0
 
-	isTargeted(spec.podSelector.matchLabels[key], spec)
+    netPolicy = policyList[k]
+    isSameNamespace(pod, netPolicy)
+
+    # no ingress nor egress policies are defined
+    not policyHasEgress(netPolicy)
+    not policyHasIngress(netPolicy)
 
     result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
+		"documentId": pod.id,
+		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("spec.podSelector.matchLabels[%s] is targeted by a Pod", [key]),
-		"keyActualValue": sprintf("spec.podSelector.matchLabels[%s] is not targeted by a Pod", [key])
+		"keyExpectedValue": sprintf("Pod %s should have ingress and egress rules in matching NetworkPolicy", [pod.metadata.name]),
+		"keyActualValue": sprintf("Pod %s has no ingress or egress rules in matching NetworkPolicy", [pod.metadata.name])
 	}
 }
 
-findPod(empty) {
-	document := input.document[_]
-    document.kind == "Pod"
+# if it's not the same namespace pod must be matched explicitly
+CxPolicy[result] {
+	pod := input.document[i]
+	pod.kind == "Pod"
+
+    policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
+    # if network policies are present
+    count(policyList) > 0
+
+    netPolicy = policyList[k]
+    # if it's not in the same namespace there should be a matching labels rule
+    not isSameNamespace(pod, netPolicy)
+
+    # if there are matching labels
+	pod.metadata.labels[key] == netPolicy.spec.podSelector.matchLabels[key]
+
+    not policyHasIngress(netPolicy)
+    not policyHasEgress(netPolicy)
+
+    result := {
+		"documentId": pod.id,
+		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Pod %s should have egress rules in matching NetworkPolicy", [pod.metadata.name]),
+		"keyActualValue": sprintf("Pod %s has no egress rules in matching NetworkPolicy", [pod.metadata.name])
+	}
 }
 
-isTargeted(matchLabels, spec) {
-	document := input.document[_]
-    document.kind == "Pod"
-    labelPod = document.metadata.labels[keyPod]
-    matchLabels != labelPod
-
-    properSpec(spec) == false
+# if pod and netPolicy are in the same namespace
+isSameNamespace(pod, policy) {
+	object.get(policy.metadata, "namespace", "default") == object.get(pod.metadata, "namespace", "default")
 }
 
-properSpec(spec) {
-	object.get(spec, "policyTypes", "undefined") != "undefined"
-	spec.policyTypes[_] == "Ingress"
-	spec.policyTypes[_] == "Egress"
+# if policyType array is undefined or policyTypes array contains "Ingress"
+policyHasIngress(netPolicy) {
+	object.get(netPolicy.spec, "policyTypes", "undefined") == "undefined"
 } else {
-	object.get(spec, "policyTypes", "undefined") == "undefined"
-	object.get(spec, "egress", "undefined") != "undefined"
-	count(spec.egress) > 0
-} else = false {
-	true
+	lower(netPolicy.spec.policyTypes[_]) == lower("Ingress")
+}
+
+# if policyType array is undefined and contains egress rules inside the spec
+# OR if policyType array contains Egress listed
+policyHasEgress(netPolicy) {
+	object.get(netPolicy.spec, "policyTypes", "undefined") == "undefined"
+    count(netPolicy.spec.egress) > 0
+} else {
+	lower(netPolicy.spec.policyTypes[_]) == lower("Egress")
 }
