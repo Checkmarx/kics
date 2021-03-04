@@ -1,0 +1,29 @@
+project_name: kics
+
+builds:
+  - main: ./cmd/console/main.go
+    binary: kics
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+    ldflags:
+      - -X github.com/Checkmarx/kics/internal/console.Version={{.Version}}-{{.ShortCommit}}
+archives:
+  - builds: [kics]
+    format_overrides:
+      - goos: windows
+        format: zip
+    replacements:
+      amd64: x64
+      386: x32
+    files:
+      - LICENSE
+      - assets/queries
+      - assets/libraries
+release:
+  prerelease: true
+snapshot:
+  name_template: nightly

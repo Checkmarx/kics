@@ -1,45 +1,45 @@
 package Cx
 
-CxPolicy [ result ] {
-    document := input.document[i]
-    metadata := document.metadata
-    specInfo := getSpecInfo(document)
+import data.generic.k8s as k8sLib
 
-    object.get(specInfo.spec, "automountServiceAccountToken", "undefined") == "undefined"
+CxPolicy[result] {
+	document := input.document[i]
 
-	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("metadata.name=%s.%s", [metadata.name, specInfo.path]),
-                "issueType":		"MissingAttribute",
-                "keyExpectedValue": sprintf("'%s.automountServiceAccountToken' is false", [specInfo.path]),
-                "keyActualValue": 	sprintf("'%s.automountServiceAccountToken' is undefined", [specInfo.path])
-              }
-}
+    kind := document.kind
+    listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
+	k8sLib.checkKind(kind, listKinds)
 
-CxPolicy [ result ] {
-    document := input.document[i]
-    metadata := document.metadata
-    specInfo := getSpecInfo(document)
+	metadata := document.metadata
+	specInfo := k8sLib.getSpecInfo(document)
 
-    specInfo.spec.automountServiceAccountToken == true
+	object.get(specInfo.spec, "automountServiceAccountToken", "undefined") == "undefined"
 
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("metadata.name=%s.%s.automountServiceAccountToken", [metadata.name, specInfo.path]),
-                "issueType":		"IncorrectValue",
-                "keyExpectedValue": sprintf("'%s.automountServiceAccountToken' is false", [specInfo.path]),
-                "keyActualValue": 	sprintf("'%s.automountServiceAccountToken' is true", [specInfo.path])
-              }
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("'%s.automountServiceAccountToken' is false", [specInfo.path]),
+		"keyActualValue": sprintf("'%s.automountServiceAccountToken' is undefined", [specInfo.path]),
+	}
 }
 
-getSpecInfo(document) = specInfo {
-    templates := {"job_template", "jobTemplate"}
-    spec := document.spec[templates[t]].spec.template.spec
-    specInfo := {"spec": spec, "path": sprintf("spec.%s.spec.template.spec", [templates[t]])}
-} else = specInfo {
-    spec := document.spec.template.spec
-    specInfo := {"spec": spec, "path": "spec.template.spec"}
-} else = specInfo {
-    spec := document.spec
-    specInfo := {"spec": spec, "path": "spec"}
-}  
+CxPolicy[result] {
+	document := input.document[i]
+
+    kind := document.kind
+    listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
+	k8sLib.checkKind(kind, listKinds)
+
+	metadata := document.metadata
+	specInfo := k8sLib.getSpecInfo(document)
+
+	specInfo.spec.automountServiceAccountToken == true
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken", [metadata.name, specInfo.path]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s.automountServiceAccountToken' is false", [specInfo.path]),
+		"keyActualValue": sprintf("'%s.automountServiceAccountToken' is true", [specInfo.path]),
+	}
+}

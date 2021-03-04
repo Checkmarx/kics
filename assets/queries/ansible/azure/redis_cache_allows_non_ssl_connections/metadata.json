@@ -1,0 +1,9 @@
+{
+	"id": "869e7fb4-30f0-4bdb-b360-ad548f337f2f",
+	"queryName": "Redis Cache Allows Non SSL Connections",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Check if any Redis Cache resource allows non-SSL connections.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html",
+	"platform": "Ansible"
+}

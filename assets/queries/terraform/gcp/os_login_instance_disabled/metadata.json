@@ -1,8 +1,0 @@
-{
-  "id": "d0b4d550-c001-46c3-bbdb-d5d75d33f05f",
-  "queryName": "OSLogin Is Disabled In VM Instance",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Check if any VM instance disables OSLogin",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance"
-}

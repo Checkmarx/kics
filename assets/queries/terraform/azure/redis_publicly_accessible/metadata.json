@@ -1,8 +1,9 @@
 {
-  "id": "5089d055-53ff-421b-9482-a5267bdce629",
-  "queryName": "Redis Publicly Accessible",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule"
+	"id": "5089d055-53ff-421b-9482-a5267bdce629",
+	"queryName": "Redis Publicly Accessible",
+	"severity": "HIGH",
+	"category": "Network Security",
+	"descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
+	"platform": "Terraform"
 }

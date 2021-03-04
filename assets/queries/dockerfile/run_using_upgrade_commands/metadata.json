@@ -1,8 +1,9 @@
 {
-  "id": "682fe378-c180-4bd5-8a14-95fc285fb269",
-  "queryName": "Run Using Upgrade Commands",
-  "severity": "HIGH",
-  "category": "Package Management",
-  "descriptionText": "Commands 'apt-get upgrade' and 'apt-get dist-upgrade' should not be used",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+	"id": "682fe378-c180-4bd5-8a14-95fc285fb269",
+	"queryName": "Run Using Upgrade Commands",
+	"severity": "HIGH",
+	"category": "Package Management",
+	"descriptionText": "Commands 'apt-get upgrade' and 'apt-get dist-upgrade' should not be used",
+	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+	"platform": "Dockerfile"
 }

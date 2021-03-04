@@ -1,0 +1,102 @@
+name: goreleaser-scheduled
+
+on:
+  schedule:
+  - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: release --rm-dist --config="./.goreleaser-nightly.yml"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: delete release
+        uses: dev-drprasad/delete-tag-and-release@v0.1.3
+        with:
+          delete_release: true # default: false
+          tag_name: nightly # tag name to delete
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          release_name: nightly-${{ github.sha }}
+          draft: false
+          prerelease: true
+      - name: Display assets
+        run: |
+          ls -l /home/runner/work/kics/kics/dist
+      - name: Upload Release Asset Linux
+        id: upload-release-asset-linux
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_linux_x64.tar.gz
+          asset_name: kics_nightly-release_linux_amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Release Asset Darwin
+        id: upload-release-asset-darwin
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_darwin_x64.tar.gz
+          asset_name: kics_nightly-release_darwin_amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Release Asset Windows
+        id: upload-release-asset-windows
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_windows_x64.zip
+          asset_name: kics_nightly-release_windows_amd64.zip
+          asset_content_type: application/zip
+      - name: Upload Release Asset Checksum
+        id: upload-release-asset-checksums
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_checksums.txt
+          asset_name: kics_nightly-release_checksums.txt
+          asset_content_type: text/plain
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: checkmarx/kics
+          tag_with_ref: false
+          tags: nightly
+          build-args: |
+            VERSION=nightly-${{ github.sha }}

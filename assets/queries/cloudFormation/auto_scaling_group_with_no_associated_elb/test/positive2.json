@@ -1,0 +1,156 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "myLaunchTemplate": {
+      "Type": "AWS::EC2::LaunchTemplate",
+      "Properties": {
+        "LaunchTemplateName": "${AWS::StackName}-launch-template",
+        "LaunchTemplateData": {
+          "InstanceType": "t2.micro",
+          "KeyName": "my-key-pair-useast1",
+          "Monitoring": {
+            "Enabled": true
+          },
+          "SecurityGroupIds": [
+            "sg-7c227019",
+            "sg-903004f8"
+          ],
+          "BlockDeviceMappings": [
+            {
+              "Ebs": {
+                "VolumeSize": 22,
+                "VolumeType": "gp2",
+                "DeleteOnTermination": true,
+                "Encrypted": true
+              },
+              "DeviceName": "/dev/xvdcz"
+            }
+          ],
+          "CreditSpecification": {
+            "CpuCredits": "Unlimited"
+          },
+          "ImageId": "ami-02354e95b39ca8dec"
+        }
+      }
+    },
+    "myASG": {
+      "Type": "AWS::AutoScaling::AutoScalingGroup",
+      "Properties": {
+        "HealthCheckGracePeriod": 300,
+        "LaunchTemplate": {
+          "LaunchTemplateId": "myLaunchTemplate",
+          "Version": "myLaunchTemplate.LatestVersionNumber"
+        },
+        "VPCZoneIdentifier": [
+          "myPublicSubnet1",
+          "myPublicSubnet2"
+        ],
+        "MetricsCollection": [
+          {
+            "Granularity": "1Minute",
+            "Metrics": [
+              "GroupMinSize",
+              "GroupMaxSize"
+            ]
+          }
+        ],
+        "AutoScalingGroupName": "myASG",
+        "MaxSize": "6",
+        "DesiredCapacity": "2",
+        "MinSize": "1",
+        "Tags": [
+          {
+            "Key": "Environment",
+            "Value": "Production",
+            "PropagateAtLaunch": "true"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "WebServerGroup",
+            "PropagateAtLaunch": "false"
+          }
+        ]
+      }
+    },
+    "myASG2": {
+      "Type": "AWS::AutoScaling::AutoScalingGroup",
+      "Properties": {
+        "LoadBalancerNames": [],
+        "LaunchTemplate": {
+          "Version": "myLaunchTemplate.LatestVersionNumber",
+          "LaunchTemplateId": "myLaunchTemplate"
+        },
+        "VPCZoneIdentifier": [
+          "myPublicSubnet1",
+          "myPublicSubnet2"
+        ],
+        "MinSize": "1",
+        "MaxSize": "6",
+        "HealthCheckGracePeriod": 300,
+        "Tags": [
+          {
+            "Value": "Production",
+            "PropagateAtLaunch": "true",
+            "Key": "Environment"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "WebServerGroup",
+            "PropagateAtLaunch": "false"
+          }
+        ],
+        "AutoScalingGroupName": "myASG2",
+        "DesiredCapacity": "2",
+        "MetricsCollection": [
+          {
+            "Granularity": "1Minute",
+            "Metrics": [
+              "GroupMinSize",
+              "GroupMaxSize"
+            ]
+          }
+        ]
+      }
+    },
+    "myASG3": {
+      "Type": "AWS::AutoScaling::AutoScalingGroup",
+      "Properties": {
+        "VPCZoneIdentifier": [
+          "myPublicSubnet1",
+          "myPublicSubnet2"
+        ],
+        "MaxSize": "6",
+        "MinSize": "1",
+        "DesiredCapacity": "2",
+        "HealthCheckGracePeriod": 300,
+        "LoadBalancerNames": [],
+        "LaunchTemplate": {
+          "LaunchTemplateId": "myLaunchTemplate",
+          "Version": "myLaunchTemplate.LatestVersionNumber"
+        },
+        "MetricsCollection": [
+          {
+            "Granularity": "1Minute",
+            "Metrics": [
+              "GroupMinSize",
+              "GroupMaxSize"
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Environment",
+            "Value": "Production",
+            "PropagateAtLaunch": "true"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "WebServerGroup",
+            "PropagateAtLaunch": "false"
+          }
+        ],
+        "AutoScalingGroupName": "myASG"
+      }
+    }
+  }
+}

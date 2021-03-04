@@ -1,8 +1,0 @@
-{
-  "id": "4967da26-7180-4a78-ab03-8a2a0dc21778",
-  "queryName": "ElasticSearch Encryption With KMS Is Disabled",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Check if any ElasticSearch domain isn't encrypted with KMS",
-  "descriptionUrl": "https://galaxy.ansible.com/fiunchinho/aws-elasticsearch-module"
-}

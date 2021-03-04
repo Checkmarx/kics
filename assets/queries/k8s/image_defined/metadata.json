@@ -1,8 +1,0 @@
-{
-  "id": "583053b7-e632-46f0-b989-f81ff8045385",
-  "queryName": "Image Must Be Defined",
-  "severity": "LOW",
-  "category": "Versioning",
-  "descriptionText": "Image must be defined and not be empty or equal to latest.",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
-}

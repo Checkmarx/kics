@@ -4,5 +4,6 @@
   "severity": "HIGH",
   "category": "Network Ports Security",
   "descriptionText": "AWS Security Group should not have an unknown port exposed to the entire Internet",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+  "platform": "Terraform"
 }

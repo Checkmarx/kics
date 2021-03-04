@@ -1,0 +1,9 @@
+{
+	"id": "6ea57c8b-f9c0-4ec7-bae3-bd75a9dee27d",
+	"queryName": "SDB Domain Declared As A Resource",
+	"severity": "LOW",
+	"category": "Operational",
+	"descriptionText": "SimpleDb Domain resource should not be declared",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html",
+	"platform": "CloudFormation"
+}

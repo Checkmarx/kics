@@ -1,0 +1,16 @@
+#this code is a correct code for which the query should not find any result
+#this is a problematic code where the query should report a result(s)
+Resources:
+  EMRSecurityConfiguration:
+    Type: AWS::EMR::SecurityConfiguration
+    Properties:
+       Name: String
+       SecurityConfiguration:
+         EncryptionConfiguration:
+           EnableInTransitEncryption: true
+           EnableAtRestEncryption: true
+           AtRestEncryptionConfiguration:
+             LocalDiskEncryptionConfiguration:
+                 EnableEbsEncryption: true
+                 EncryptionKeyProviderType: AwsKms
+                 AwsKmsKey: arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012

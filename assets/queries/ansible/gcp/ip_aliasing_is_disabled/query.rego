@@ -1,70 +1,52 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-	
-  object.get(cluster, "ip_allocation_policy", "undefined") == "undefined"
+import data.generic.ansible as ansLib
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [clusterName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "google.cloud.gcp_container_cluster.ip_allocation_policy should be defined",
-                "keyActualValue":   "google.cloud.gcp_container_cluster.ip_allocation_policy is undefined"
-              }
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
+
+	ansLib.checkState(cluster)
+	object.get(cluster, "ip_allocation_policy", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy is defined",
+		"keyActualValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy is undefined",
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-  cluster.ip_allocation_policy
-  
-  object.get(cluster.ip_allocation_policy, "use_ip_aliases", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
+	cluster.ip_allocation_policy
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy", [clusterName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "google.cloud.gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be set to true",
-                "keyActualValue":   "google.cloud.gcp_container_cluster.ip_allocation_policy.use_ip_aliases is undefined"
-              }
+	ansLib.checkState(cluster)
+	object.get(cluster.ip_allocation_policy, "use_ip_aliases", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases is set to true",
+		"keyActualValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases is undefined",
+	}
 }
 
-CxPolicy [result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
-    cluster := task["google.cloud.gcp_container_cluster"]
-    clusterName := task.name
-    
-    not isAnsibleTrue(cluster.ip_allocation_policy.use_ip_aliases)
-    
-    result := {
-        "documentId": document.id,
-        "searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases", [clusterName]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": "google.cloud.gcp_container_cluster.ip_allocation_policy.use_ip_aliases is true",
-        "keyActualValue": "google.cloud.gcp_container_cluster.ip_allocation_policy.use_ip_aliases is false"
-    }
-}
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]  
-    count(result) != 0
-}
+	ansLib.checkState(cluster)
+	not ansLib.isAnsibleTrue(cluster.ip_allocation_policy.use_ip_aliases)
 
-isAnsibleTrue(answer) {
- 	lower(answer) == "yes"
-} else {
-	answer == true
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases is true",
+		"keyActualValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases is false",
+	}
 }

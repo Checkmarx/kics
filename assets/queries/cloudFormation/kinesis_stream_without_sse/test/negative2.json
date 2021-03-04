@@ -1,0 +1,22 @@
+{
+  "Resources": {
+    "EventStream": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${EnvironmentName}-EventStream-${AWS::Region}"
+          }
+        ],
+        "Name": "EventStream",
+        "RetentionPeriodHours": 24,
+        "ShardCount": 1,
+        "StreamEncryption": {
+          "EncryptionType": "KMS",
+          "KeyId": "myKey"
+        }
+      }
+    }
+  }
+}

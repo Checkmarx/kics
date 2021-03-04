@@ -1,8 +1,0 @@
-{
-  "id": "2623d682-dccb-44cd-99d0-54d9fd62f8f2",
-  "queryName": "EC2 Network ACL Ineffective Denied Traffic",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Ineffective deny rules. A deny rule should be applied to all IP addresses.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
-}

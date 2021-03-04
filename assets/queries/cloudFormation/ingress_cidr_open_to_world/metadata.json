@@ -1,8 +1,0 @@
-{
-  "id": "4a1e6b34-1008-4e61-a5f2-1f7c276f8d14",
-  "queryName": "AWS Security Group Ingress CIDR Open To World",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "AWS Security Group Ingress CIDR should not be open to the world",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html"
-}

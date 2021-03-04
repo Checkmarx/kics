@@ -1,49 +1,31 @@
 package Cx
 
-CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
-
-    isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
-
-    result := {
-        "documentId": document.id,
-        "searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}.encrypted", [task.name]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": "AWS EBS encryption should be enabled",
-        "keyActualValue": "AWS EBS encryption is disabled"
-    }
-}
+import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	task := ansLib.tasks[id][t]
 
-    object.get(task["amazon.aws.ec2_vol"], "encrypted", "undefined") == "undefined"
+	ansLib.isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
 
-    result := {
-        "documentId": document.id,
-        "searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}", [task.name]),
-        "issueType": "MissingAttribute",
-        "keyExpectedValue": "AWS EBS encryption should be defined",
-        "keyActualValue": "AWS EBS encryption is undefined"
-    }
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}.encrypted", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "AWS EBS encryption should be enabled",
+		"keyActualValue": "AWS EBS encryption is disabled",
+	}
 }
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
-}
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
 
-isAnsibleFalse(answer) {
-    lower(answer) == "no"
-} else {
-    lower(answer) == "false"
-} else {
-	answer == false
+	object.get(task["amazon.aws.ec2_vol"], "encrypted", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "AWS EBS encryption should be defined",
+		"keyActualValue": "AWS EBS encryption is undefined",
+	}
 }

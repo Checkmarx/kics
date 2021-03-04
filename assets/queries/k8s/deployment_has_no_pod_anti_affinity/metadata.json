@@ -1,0 +1,9 @@
+{
+	"id": "a31b7b82-d994-48c4-bd21-3bab6c31827a",
+	"queryName": "Deployment Has No PodAntiAffinity",
+	"severity": "LOW",
+	"category": "Resources Limiting",
+	"descriptionText": "Check if Deployment resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/",
+	"platform": "Kubernetes"
+}

@@ -1,8 +1,9 @@
 {
   "id": "d994585f-defb-4b51-b6d2-c70f020ceb10",
-  "queryName": "SQS policy with Public Access",
+  "queryName": "SQS Policy With Public Access",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
   "descriptionText": "SQS policy with public access",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html",
+  "platform": "Ansible"
 }

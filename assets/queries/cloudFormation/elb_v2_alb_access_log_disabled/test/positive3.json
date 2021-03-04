@@ -1,0 +1,40 @@
+{
+  "Parameters": {
+    "SecurityGroup": {
+      "Description": "Select the Security Group to apply to the Application Load Balancer",
+      "Type": "AWS::EC2::SecurityGroup::Id"
+    },
+    "EnvironmentName": {
+      "Description": "An environment name that will be prefixed to resource names",
+      "Type": "String"
+    },
+    "VPC": {
+      "Type": "AWS::EC2::VPC::Id",
+      "Description": "Choose which VPC the Application Load Balancer should be deployed to"
+    },
+    "Subnets": {
+      "Description": "Choose which subnets the Application Load Balancer should be deployed to",
+      "Type": "List\u003cAWS::EC2::Subnet::Id\u003e"
+    }
+  },
+  "Resources": {
+    "LoadBalancer": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "Name": "EnvironmentName",
+        "Subnets": "Subnets",
+        "SecurityGroups": [
+          "SecurityGroup"
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "EnvironmentName"
+          }
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A simple EC2 instance"
+}

@@ -1,38 +1,56 @@
 package Cx
 
-CxPolicy [ result ] {
-   
-  service := input.document[i]
-  service.kind == "Service"
-  metadata := service.metadata  
-  
-  not CheckIfDestinationPortExists(service)
-  
-  
-  result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("metadata.name=%s.spec", [metadata.name]),
-                "issueType":		"MissingAttribute",
-                "keyExpectedValue": sprintf("metadata.name=%s is not exposing a workload", [metadata.name]),
-                "keyActualValue": 	sprintf("metadata.name=%s is exposing a workload", [metadata.name])
-            }
+CxPolicy[result] {
+	document := input.document[i]
+	object.get(document, "kind", "undefined") == "Service"
+
+    metadata = document.metadata
+	document.spec.type == "LoadBalancer"
+
+	object.get(metadata, "annotations", "undefined") == "undefined"
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'metadata.annotations' is set",
+		"keyActualValue": "'metadata.annotations' is undefined",
+	}
 }
 
+CxPolicy[result] {
+	document := input.document[i]
+	object.get(document, "kind", "undefined") == "Service"
 
+    metadata = document.metadata
+	document.spec.type == "LoadBalancer"
 
-CheckIfDestinationPortExists (service) = result {
+	object.get(metadata, "annotations", "undefined") != "undefined"
 
-	documents := input.document
-	pod := [pod | documents[index].spec.template.metadata.labels.app == service.spec.selector.app; pod = documents[index]]
-    service.spec.type == "LoadBalancer"
-    
-    result := contains(pod, service.spec.selector.app);contains(pod, service.spec.ports[k].targetPort)
+    annotations = metadata.annotations
+    not checkLoadBalancer(annotations)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("metadata.name={{%s}}.annotations", [metadata.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("metadata.name={{%s}} using an external Load Balancer provider by cloud provider", [metadata.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}} is exposing a workload, not using an external Load Balancer provider by cloud provider", [metadata.name]),
+	}
 }
 
-contains (array, string) = true {
-	array[a].spec.template.metadata.labels.app == string
+checkLoadBalancer(annotation) {
+    annotation["networking.gke.io/load-balancer-type"] == "Internal"
 }
 
-contains (array, string) = true {
-	array[a].spec.template.spec.containers[c].ports[p].containerPort == string
+checkLoadBalancer(annotation) {
+    annotation["cloud.google.com/load-balancer-type"] == "Internal"
+}
+
+checkLoadBalancer(annotation) {
+	annotation["service.beta.kubernetes.io/aws-load-balancer-internal"] == "true"
+}
+
+checkLoadBalancer(annotation) {
+	annotation["service.beta.kubernetes.io/azure-load-balancer-internal"] == "true"
 }

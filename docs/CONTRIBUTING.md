@@ -6,7 +6,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 Within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-### Contribution Options
+#### Contribution Options
 
 Good news! You don't have to contribute code. There are plenty of ways you can contribute to KICS project:
 
@@ -15,10 +15,11 @@ Good news! You don't have to contribute code. There are plenty of ways you can c
 - Improving and translating the documentation 
 - Volunteering to maintain the project
 
-### Code of Conduct
+#### Code of Conduct
 
 By participating and contributing to the project, you agree to uphold our [Code of Conduct](code-of-conduct.md).
 
+---
 
 ## Get Started!
 
@@ -57,22 +58,24 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
    ```
 1. Submit a pull request on GitHub website.
 
+---
+
 ## How to Contribute
 
 Contributions are made to this repo via Issues and Pull Requests (PRs).  A few general guidelines that cover both:
 
 - Search for existing [issues](https://github.com/Checkmarx/kics/issues) and [pull requests](https://github.com/Checkmarx/kics/pulls) before creating your own to avoid duplicates.
-- PRs will only be accepted if associated with an issue (enhancement or bug) that has been submitted and reviewed/labeld as *accepted*.
-- We will work hard to makes sure issues that are raised are handled in a timely manner.
+- PRs will only be accepted if associated with an issue (enhancement or bug) that has been submitted and reviewed/labeled as *accepted*.
+- We will work hard to make sure issues that are raised are handled in a timely manner.
 
-### Issues
+#### Issues
 
 Issues should be used to report problems with the solution / source code, request a new feature, or to discuss potential changes before a PR is created. When you create a new Issue, a template will be loaded that will guide you through collecting and providing the information we need to investigate.
 
 If you find an Issue that addresses the problem you're having, please add your own reproduction information to the existing issue rather than creating a new one. Adding a [reaction](https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) can also help by indicating to our maintainers that a particular problem is affecting more than just the reporter.
 
 
-### Pull Requests
+#### Pull Requests
 
 Pull Requests (PRs) are always welcome and can be a quick way to get your fix or improvement slated for the next release. In general, PRs should:
 
@@ -85,7 +88,7 @@ Pull Requests (PRs) are always welcome and can be a quick way to get your fix or
 
 For changes that address core functionality or would require breaking changes (e.g. a major release), please open an Issue to discuss your proposal first. 
 
-### Pull Request Guidelines
+#### Pull Request Guidelines
 
 Before you submit a pull request, please reassure that it meets these guidelines:
 
@@ -93,7 +96,7 @@ Before you submit a pull request, please reassure that it meets these guidelines
 1. The pull request includes tests.
 1. The relevant docs are updated, whether you're pushing new functionality or updating a query.
 
-### Templates
+#### Templates
 
 The following templates will be used when [creating a new issue](https://github.com/Checkmarx/kics/issues/new/choose):  
 
@@ -101,6 +104,8 @@ The following templates will be used when [creating a new issue](https://github.
 - New (Approved) Feature Template
 - Query Template
 - Bug Report Template
+
+---
 
 ## Resources
 
@@ -110,3 +115,50 @@ The following templates will be used when [creating a new issue](https://github.
 
 Join the chat [on Gitter](https://gitter.im/kics-io/community).  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
+
+And become one of our top contributors!
+
+---
+
+## Top Contributors
+
+Special thanks to  **[Lior Kaplan](https://github.com/kaplanlior)** from **_Kaplan Open Source Consulting_** for his assistance in creating KICS. 
+
+The people listed below had made a huge contribution to KICS. 
+
+- [Ruben Silva](https://github.com/Ruben-Silva) 
+- [Rafaela Soares](https://github.com/rafaela-soares)
+- [João Martins](https://github.com/joaomartinscx)
+- [Joel Carvalho](https://github.com/joelcarvalhocheckmarx)
+- [Pedro Mimoso](https://github.com/pedro-mimoso)
+- [Nuno Araújo](https://github.com/NunoAraujoCX)
+- [Fábio Gonçalves](https://github.com/fabioGoncalvesCx)
+- [Mariana Carvalho](https://github.com/mcarvalhox)
+- [Jorge Cruz](https://github.com/jorge-cruz)
+- [João Oliveira](https://github.com/JoaoO1998)
+- [Diogo Lemos](https://github.com/diogo-lemos)
+- [Alex Roichman](https://github.com/Alexaro1cx)
+- [Adar Weidman](https://github.com/AdarWeidman)
+- [Eli Trop](https://github.com/elit-cx)
+- [Joel Sousa](https://github.com/joelsou5a)
+- [Sónia Antão](https://github.com/soniantao)
+- [Catarina Araújo](https://github.com/cataraujo190)
+- [Pedro Pereira](https://github.com/pedropereiraaa)
+- [Samuel Ferreira](https://github.com/samuel-ferreira)
+
+#### Core Team
+
+- [Rui Gomes](https://github.com/ruigomescx)
+- [Rogério Peixoto](https://github.com/rogeriopeixotocx)
+- [João Reigota](https://github.com/joaoReigota1)
+- [Felipe Avelar](https://github.com/felipe-avelar)
+- [Nuno Oliveira](https://github.com/nunoocx)
+- [Mark Mishaev](https://github.com/markmishaevcx)
+- [Igor Markov](https://github.com/IgorMarkov)
+- [Ori Bendet](https://github.com/oribendetcx)
+- [Erez Yalon](https://github.com/erezyalon)
+
+
+**Thank you all!**
+
+

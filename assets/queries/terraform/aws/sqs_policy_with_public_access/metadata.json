@@ -1,8 +1,9 @@
 {
   "id": "730675f9-52ed-49b6-8ead-0acb5dd7df7f",
-  "queryName": "SQS policy with Public Access",
+  "queryName": "SQS Policy With Public Access",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
   "descriptionText": "SQS policy with public access",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue",
+  "platform": "Terraform"
 }

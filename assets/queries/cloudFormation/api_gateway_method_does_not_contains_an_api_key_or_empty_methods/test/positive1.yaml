@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ApiGateway
+Resources:
+  MockMethod:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      ApiKeyRequired: false
+      RestApiId: !Ref MyApi
+      ResourceId: !GetAtt
+        - MyApi
+        - RootResourceId
+      HttpMethod: GET
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+      MethodResponses:
+        - StatusCode : "200"
+

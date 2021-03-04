@@ -1,8 +1,0 @@
-{
-  "id": "14a457f0-473d-4d1d-9e37-6d99b355b336",
-  "queryName": "Google Compute SSL Policy Weak Cipher Suits is Enabled",
-  "severity": "MEDIUM",
-  "category": "Encryption & Key Management",
-  "descriptionText": "This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_ssl_policy"
-}

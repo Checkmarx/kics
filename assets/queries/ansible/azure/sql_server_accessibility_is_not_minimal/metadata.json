@@ -1,8 +1,9 @@
 {
-  "id": "3f23c96c-f9f5-488d-9b17-605b8da5842f",
-  "queryName": "SQL Server Accessibility is Not Minimal",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Azure SQL Server Accessibility must be set to a minimal address range, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be lesser than 256. Additionally, both ips must be different from '0.0.0.0'",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html"
+	"id": "3f23c96c-f9f5-488d-9b17-605b8da5842f",
+	"queryName": "SQL Server Accessibility is Not Minimal",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Azure SQL Server Accessibility must be set to a minimal address range, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be lesser than 256. Additionally, both ips must be different from '0.0.0.0'",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html",
+	"platform": "Ansible"
 }

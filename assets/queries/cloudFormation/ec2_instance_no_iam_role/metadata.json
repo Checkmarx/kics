@@ -1,8 +1,0 @@
-{
-  "id": "f914357d-8386-4d56-9ba6-456e5723f9a6",
-  "queryName": "AWS EC2 Instance Has No IAM Role",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Check if an EC2 instance refers to an IAM profile, which represents an IAM Role.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html"
-}

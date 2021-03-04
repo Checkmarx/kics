@@ -1,8 +1,10 @@
 {
-  "id": "381c3f2a-ef6f-4eff-99f7-b169cda3422c",
-  "queryName": "Sensitive Port Is Exposed To Entire Network",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+	"id": "381c3f2a-ef6f-4eff-99f7-b169cda3422c",
+	"queryName": "Sensitive Port Is Exposed To Entire Network",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+	"platform": "Terraform",
+  "aggregation": 48
 }

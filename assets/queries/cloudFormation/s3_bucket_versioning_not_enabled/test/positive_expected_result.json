@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "S3 Bucket Versioning Not Enabled",
-		"severity": "MEDIUM",
-		"line": 5
-	},
-	{
-		"queryName": "S3 Bucket Versioning Not Enabled",
-		"severity": "MEDIUM",
-		"line": 53
-	}
+  {
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "queryName": "S3 Bucket Versioning Not Enabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "queryName": "S3 Bucket Versioning Not Enabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Versioning Not Enabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "S3 Bucket Versioning Not Enabled",
+    "severity": "MEDIUM",
+    "line": 48,
+    "fileName": "positive4.json"
+  }
 ]

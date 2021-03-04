@@ -1,8 +1,0 @@
-{
-  "id": "80456d2e-afa8-410f-a60c-15958f6473de",
-  "queryName": "Sagemaker Notebook Should Specify KmsKeyId",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "SageMaker Notebook Instance should have a KmsKeyId defined",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html"
-}

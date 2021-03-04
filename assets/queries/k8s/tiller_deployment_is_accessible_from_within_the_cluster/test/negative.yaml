@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tiller-deploy
+  labels:
+    app: helm
+    name: tiller
+spec:
+  selector:
+    matchLabels:
+      app: helm
+      name: tiller
+  template:
+    metadata:
+      labels:
+        app: helm
+        name: tiller
+    spec:
+      serviceAccountName: tiller
+      containers:
+        - name: tiller
+          image: "tiller-image"
+          args: ["--listen=127.0.0.1:44134"]
+          ports:
+          - containerPort: 44134
+            name: tiller
+            protocol: TCP
+          - containerPort: 44135
+            name: http
+            protocol: TCP

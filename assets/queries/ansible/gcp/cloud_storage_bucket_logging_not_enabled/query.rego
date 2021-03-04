@@ -1,25 +1,19 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  task := getTasks(document)[t]
-  storage_bucket := task["google.cloud.gcp_storage_bucket"]
+import data.generic.ansible as ansLib
 
-  object.get(storage_bucket, "logging", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	storage_bucket := task["google.cloud.gcp_storage_bucket"]
+
+	ansLib.checkState(storage_bucket)
+	object.get(storage_bucket, "logging", "undefined") == "undefined"
 
 	result := {
-                "documentId": 		document.id,
-                "searchKey": 	    sprintf("name=%s.{{google.cloud.gcp_storage_bucket}}", [task.name]),
-                "issueType":		"MissingAttribute",
-                "keyExpectedValue": "'logging' is defined",
-                "keyActualValue": 	"'logging' is undefined"
-              }
-}
-
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{google.cloud.gcp_storage_bucket}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "{{google.cloud.gcp_storage_bucket}}.logging is defined",
+		"keyActualValue": "{{google.cloud.gcp_storage_bucket}}.logging is undefined",
+	}
 }

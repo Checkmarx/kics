@@ -1,0 +1,46 @@
+{
+  "Resources": {
+    "SnsTopic3": {
+      "Properties": {
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ],
+        "TopicName": "alarm-action"
+      },
+      "Type": "AWS::SNS::Topic"
+    },
+    "CloudWatchAlarm3": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "Statistic": "Sum",
+        "EvaluationPeriods": 1,
+        "Threshold": 1,
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "MetricName": "IAMPolicyEventCount",
+        "Period": 300,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "AlarmActions": [],
+        "TreatMissingData": "notBreaching",
+        "AlarmName": "iam_policy_changes",
+        "Namespace": "CloudTrailMetrics"
+      }
+    },
+    "MetricFilter3": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "FilterPattern": "{($.eventName = AssociateRouteTable) || ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }",
+        "MetricTransformations": [
+          {
+            "MetricValue": "1",
+            "MetricNamespace": "CloudTrailMetrics",
+            "MetricName": "IAMPolicyEventCount"
+          }
+        ],
+        "LogGroupName": ""
+      }
+    }
+  }
+}

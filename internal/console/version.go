@@ -6,6 +6,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Version - current KICS version
+var Version = "dev"
+
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Displays the current version",
@@ -16,5 +19,5 @@ var versionCmd = &cobra.Command{
 }
 
 func getVersion() string {
-	return "Keeping Infrastructure as Code Secure v1.1.1"
+	return fmt.Sprintf("Keeping Infrastructure as Code Secure %s", Version)
 }

@@ -1,0 +1,9 @@
+{
+  "id": "75480b31-f349-4b9a-861f-bce19588e674",
+  "queryName": "All Auth Users Get Read Access",
+  "severity": "HIGH",
+  "category": "Identity and Access Management",
+  "descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",
+  "platform": "Ansible"
+}

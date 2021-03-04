@@ -1,8 +1,0 @@
-{
-  "id": "7ab2f925-4f47-4ab0-b64d-9a03d2837c22",
-  "queryName": "API Gateway Has CloudWatch Logging Disabled",
-  "severity": "MEDIUM",
-  "category": "Logging",
-  "descriptionText": "Check if API Gateway Stage has CloudWatch logging disabled",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage"
-}

@@ -1,8 +1,0 @@
-{
-  "id": "352271ca-842f-408a-8b24-f6f2b76eb027",
-  "queryName": "KMS Rotation Period Is Higher Than 365 Days",
-  "severity": "HIGH",
-  "category": "Encryption & Key Management",
-  "descriptionText": "Check that keys aren't the same for a period greater than 365 days.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key"
-}

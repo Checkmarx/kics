@@ -7,16 +7,25 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// TestParser_GetKind tests the functions [GetKind()] and all the methods called by them
 func TestParser_GetKind(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, model.KindDOCKER, p.GetKind())
 }
 
+// TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, []string{"Dockerfile", ".dockerfile"}, p.SupportedExtensions())
 }
 
+// TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
+func TestParser_SupportedTypes(t *testing.T) {
+	p := &Parser{}
+	require.Equal(t, []string{"Dockerfile"}, p.SupportedTypes())
+}
+
+// TestParser_Parse tests the functions [Parse()] and all the methods called by them
 func TestParser_Parse(t *testing.T) {
 	p := &Parser{}
 	sample := []string{

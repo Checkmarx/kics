@@ -1,0 +1,14 @@
+[
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "Alexa Skill Plaintext Client Secret Exposed",
+    "severity": "MEDIUM",
+    "line": 17
+  },
+  {
+    "queryName": "Alexa Skill Plaintext Client Secret Exposed",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive2.json"
+  }
+]

@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  NeptuneDBCluster:
+    Type: AWS::Neptune::DBCluster
+    Properties:
+      AssociatedRoles:
+        - DBClusterRole
+      AvailabilityZones:
+        - String
+      DBClusterIdentifier: String
+      DBClusterParameterGroupName: String
+      DBSubnetGroupName: String
+      DeletionProtection: true
+      EnableCloudwatchLogsExports:
+        - String
+      EngineVersion: String
+      IamAuthEnabled: true
+      KmsKeyId: String
+      Port: 8182
+      PreferredBackupWindow: String
+      PreferredMaintenanceWindow: String
+      RestoreToTime: String
+      RestoreType: String
+      SnapshotIdentifier: String
+      SourceDBClusterIdentifier: String
+      StorageEncrypted: true
+      Tags:
+        - Tag
+      UseLatestRestorableTime: true
+      VpcSecurityGroupIds:
+        - String

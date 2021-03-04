@@ -1,8 +1,0 @@
-{
-  "id": "e28ceb92-d588-4166-aac5-766c8f5b7472",
-  "queryName": "Unchangeable password",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Unchangeable passwords in AWS password policy",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html"
-}

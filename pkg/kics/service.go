@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -16,10 +15,19 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// SourceProvider is the interface that wraps the basic GetSources method.
+// GetBasePath returns base path of FileSystemSourceProvider
+// GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
+	GetBasePath() string
 	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
 }
 
+// Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
+// SaveFile should append metadata to a file
+// SaveVulnerabilities should append vulnerabilities list to current storage
+// GetVulnerabilities should returns all vulnerabilities associated to a scan ID
+// GetScanSummary should return a list of summaries based on their scan IDs
 type Storage interface {
 	SaveFile(ctx context.Context, metadata *model.FileMetadata) error
 	SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error
@@ -27,11 +35,17 @@ type Storage interface {
 	GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error)
 }
 
+// Tracker is the interface that wraps the basic methods: TrackFileFound and TrackFileParse
+// TrackFileFound should increment the number of files to be scanned
+// TrackFileParse should increment the number of files parsed successfully to be scanned
 type Tracker interface {
 	TrackFileFound()
 	TrackFileParse()
 }
 
+// Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
+// a parser to parse and provide files in format that KICS understand, a inspector that runs the scanning and a tracker to
+// update scanning numbers
 type Service struct {
 	SourceProvider SourceProvider
 	Storage        Storage
@@ -40,7 +54,8 @@ type Service struct {
 	Tracker        Tracker
 }
 
-func (s *Service) StartScan(ctx context.Context, scanID string) error {
+// StartScan executes scan over the context, using the scanID as reference
+func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool) error {
 	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
 		ctx,
@@ -49,16 +64,15 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
 
-			content, err := ioutil.ReadAll(rc)
+			content, err := getContent(rc)
 			if err != nil {
-				return errors.Wrap(err, "failed to read file content")
+				return errors.Wrapf(err, "failed to get file content: %s", filename)
 			}
 
-			documents, kind, err := s.Parser.Parse(filename, content)
+			documents, kind, err := s.Parser.Parse(filename, *content)
 			if err != nil {
 				return errors.Wrap(err, "failed to parse file content")
 			}
-
 			for _, document := range documents {
 				_, err = json.Marshal(document)
 				if err != nil {
@@ -71,7 +85,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 					ID:           uuid.New().String(),
 					ScanID:       scanID,
 					Document:     document,
-					OriginalData: string(content),
+					OriginalData: string(*content),
 					Kind:         kind,
 					FileName:     filename,
 				}
@@ -84,7 +98,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files)
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, files, hideProgress, s.SourceProvider.GetBasePath())
 	if err != nil {
 		return errors.Wrap(err, "failed to inspect files")
 	}
@@ -94,10 +108,39 @@ func (s *Service) StartScan(ctx context.Context, scanID string) error {
 	return errors.Wrap(err, "failed to save vulnerabilities")
 }
 
+/*
+   getContent will read the passed file 1MB at a time
+   to prevent resource exhaustion and return its content
+*/
+func getContent(rc io.ReadCloser) (*[]byte, error) {
+	maxSizeMB := 5 // Max size of file in MBs
+	defer rc.Close()
+	var content []byte
+	data := make([]byte, 1048576)
+	for {
+		if maxSizeMB < 0 {
+			return &[]byte{}, errors.New("file size limit exceeded")
+		}
+		data = data[:cap(data)]
+		n, err := rc.Read(data)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return &[]byte{}, err
+		}
+		content = append(content, data[:n]...)
+		maxSizeMB--
+	}
+	return &content, nil
+}
+
+// GetVulnerabilities returns a list of scan detected vulnerabilities
 func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) {
 	return s.Storage.GetVulnerabilities(ctx, scanID)
 }
 
+// GetScanSummary returns how many vulnerabilities of each severity was found
 func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) {
 	return s.Storage.GetScanSummary(ctx, scanIDs)
 }

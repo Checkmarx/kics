@@ -1,8 +1,0 @@
-{
-  "id": "5330b503-3319-44ff-9b1c-00ee873f728a",
-  "queryName": "DB Security Group Has Public IP",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "The CIDR IP must not be Public",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_security_groups"
-}

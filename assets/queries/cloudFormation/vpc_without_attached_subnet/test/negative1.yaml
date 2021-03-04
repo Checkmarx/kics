@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+    myVPC_2:
+      Type: AWS::EC2::VPC
+      Properties:
+        CidrBlock: 10.0.0.0/16
+        EnableDnsSupport: 'false'
+        EnableDnsHostnames: 'false'
+        InstanceTenancy: dedicated
+    mySubnet:
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId:
+            Ref: myVPC_2
+        CidrBlock: 10.0.0.0/24
+        AvailabilityZone: "us-east-1a"

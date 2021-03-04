@@ -1,8 +1,9 @@
 {
-  "id": "61d1a2d0-4db8-405a-913d-5d2ce49dff6f",
-  "queryName": "Instance With No VPC",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Instance should be configured in VPC (Virtual Private Cloud)",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html"
+	"id": "61d1a2d0-4db8-405a-913d-5d2ce49dff6f",
+	"queryName": "Instance With No VPC",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "Instance should be configured in VPC (Virtual Private Cloud)",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html",
+	"platform": "Ansible"
 }

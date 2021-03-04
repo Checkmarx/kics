@@ -1,103 +1,83 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-	
-  object.get(cluster, "private_cluster_config", "undefined") == "undefined"
+import data.generic.ansible as ansLib
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [clusterName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config is defined", [clusterName]),
-                "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config is undefined", [clusterName])
-              }
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
+
+	ansLib.checkState(cluster)
+	object.get(cluster, "private_cluster_config", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config is defined", [task.name]),
+		"keyActualValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config is undefined", [task.name]),
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-	
-  object.get(cluster.private_cluster_config, "enable_private_nodes", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config", [clusterName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is defined", [clusterName]),
-                "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is undefined", [clusterName])
-              }
+	ansLib.checkState(cluster)
+	object.get(cluster.private_cluster_config, "enable_private_nodes", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_nodes is defined", [task.name]),
+		"keyActualValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_nodes is undefined", [task.name]),
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-	
-  object.get(cluster.private_cluster_config, "enable_private_endpoint", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config", [clusterName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is defined", [clusterName]),
-                "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is undefined", [clusterName])
-              }
+	ansLib.checkState(cluster)
+	object.get(cluster.private_cluster_config, "enable_private_endpoint", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_endpoint is defined", [task.name]),
+		"keyActualValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_endpoint is undefined", [task.name]),
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-  not isAnsibleTrue(cluster.private_cluster_config.enable_private_endpoint)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
 
-  result := {
-              "documentId":       input.document[i].id,
-              "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_endpoint", [clusterName]),
-              "issueType":        "IncorrectValue",
-              "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is true", [clusterName]),
-              "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_endpoint is false", [clusterName])
-            }
+	ansLib.checkState(cluster)
+	not ansLib.isAnsibleTrue(cluster.private_cluster_config.enable_private_endpoint)
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_endpoint", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_endpoint is true", [task.name]),
+		"keyActualValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_endpoint is false", [task.name]),
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  cluster := task["google.cloud.gcp_container_cluster"]
-  clusterName := task.name
-  not isAnsibleTrue(cluster.private_cluster_config.enable_private_nodes)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	cluster := task["google.cloud.gcp_container_cluster"]
 
-  result := {
-              "documentId":       input.document[i].id,
-              "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_nodes", [clusterName]),
-              "issueType":        "IncorrectValue",
-              "keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is true", [clusterName]),
-              "keyActualValue":   sprintf("google.cloud.gcp_container_cluster[%s].private_cluster_config.enable_private_nodes is false", [clusterName])
-            }
-}
+	ansLib.checkState(cluster)
+	not ansLib.isAnsibleTrue(cluster.private_cluster_config.enable_private_nodes)
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]  
-    count(result) != 0
-}
-
-isAnsibleTrue(answer) {
- 	lower(answer) == "yes"
-} else {
-	answer == true
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_nodes", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_nodes is true", [task.name]),
+		"keyActualValue": sprintf("{{google.cloud.gcp_container_cluster}}[%s].private_cluster_config.enable_private_nodes is false", [task.name]),
+	}
 }

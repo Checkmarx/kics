@@ -1,8 +1,9 @@
 {
-  "id": "254c932d-e3bf-44b2-bc9d-eb5fdb09f8d4",
-  "queryName": "Redis Not Compliant",
-  "severity": "HIGH",
-  "category": "Data Security",
-  "descriptionText": "Check if the redis version is compliant with the necessary AWS PCI DSS requirements",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine_version"
+	"id": "254c932d-e3bf-44b2-bc9d-eb5fdb09f8d4",
+	"queryName": "Redis Not Compliant",
+	"severity": "HIGH",
+	"category": "Data Security",
+	"descriptionText": "Check if the redis version is compliant with the necessary AWS PCI DSS requirements",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine_version",
+	"platform": "Terraform"
 }

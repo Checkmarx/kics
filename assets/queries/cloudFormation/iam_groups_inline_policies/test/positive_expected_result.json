@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "IAM Group Inline Policies",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "IAM Group Inline Policies",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.json"
+  }
+]

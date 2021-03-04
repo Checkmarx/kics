@@ -1,0 +1,9 @@
+{
+  "id": "06b9f52a-8cd5-459b-bdc6-21a22521e1be",
+  "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "Directory Service Microsoft AD password must not be a plaintext string or a Ref to a Parameter with a Default value.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html",
+  "platform": "CloudFormation"
+}

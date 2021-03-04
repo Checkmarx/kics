@@ -1,8 +1,9 @@
 {
   "id": "12726829-93ed-4d51-9cbe-13423f4299e1",
-  "queryName": "AWS SQS Queue Without KMS Master Key Id",
+  "queryName": "SQS Queue Without KMS Master Key Id",
   "severity": "MEDIUM",
   "category": "Encryption and Key Management",
   "descriptionText": "AWS SQS Queue should have a KMS Master Key defined",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid"
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid",
+  "platform": "CloudFormation"
 }

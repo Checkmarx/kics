@@ -1,0 +1,9 @@
+{
+	"id": "1e749bc9-fde8-471c-af0c-8254efd2dee5",
+	"queryName": "Role Binding To Default Service Account",
+	"severity": "HIGH",
+	"category": "Identity and Access Management",
+	"descriptionText": "No role nor cluster role should bind to a default service account",
+	"descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+	"platform": "Kubernetes"
+}

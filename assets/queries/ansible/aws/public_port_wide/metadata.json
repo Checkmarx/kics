@@ -1,8 +1,9 @@
 {
-  "id": "71ea648a-d31a-4b5a-a589-5674243f1c33",
-  "queryName": "Public Port Wide",
-  "severity": "HIGH",
-  "category": "Network Ports Security",
-  "descriptionText": "AWS Security Group should not have public port wide",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html"
+	"id": "71ea648a-d31a-4b5a-a589-5674243f1c33",
+	"queryName": "Public Port Wide",
+	"severity": "HIGH",
+	"category": "Network Ports Security",
+	"descriptionText": "AWS Security Group should not have public port wide",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+	"platform": "Ansible"
 }

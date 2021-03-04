@@ -1,40 +1,33 @@
 package Cx
 
-CxPolicy [result] {
-  playbooks := getTasks(input.document[i])
-  redis_cache := playbooks[j]
-  instance := redis_cache["community.aws.cloudtrail"]
-  
-  not instance.sns_topic_name
+import data.generic.ansible as ansLib
+
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	instance := task["community.aws.cloudtrail"]
+
+	not instance.sns_topic_name
 
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("name=%s.{{community.aws.cloudtrail}}", [playbooks[j].name]),
-                "issueType":		"MissingAttribute", 
-                "keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
-                "keyActualValue": 	sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is undefined", [playbooks[j].name])
-              }
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is undefined", [task.name]),
+	}
 }
 
-CxPolicy [result] {
-  playbooks := getTasks(input.document[i])
-  redis_cache := playbooks[j]
-  instance := redis_cache["community.aws.cloudtrail"]
-  
-  instance.sns_topic_name == null
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	instance := task["community.aws.cloudtrail"]
+
+	instance.sns_topic_name == null
 
 	result := {
-                "documentId": 		input.document[i].id,
-                "searchKey": 	    sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name", [playbooks[j].name]),
-                "issueType":		"IncorrectValue", 
-                "keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
-                "keyActualValue": 	sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [playbooks[j].name])
-              }
-}
-
-getTasks(document) = result {
-  result := document.playbooks[0].tasks
-} else = result {
-  object.get(document.playbooks[0],"tasks","undefined") == "undefined"
-  result := document.playbooks
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [task.name]),
+	}
 }

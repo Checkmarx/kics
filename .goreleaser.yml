@@ -4,13 +4,15 @@ builds:
   - main: ./cmd/console/main.go
     binary: kics
     goos:
+      - darwin
       - linux
-      - windows 
+      - windows
     goarch:
       - amd64
+    ldflags:
+      - -X github.com/Checkmarx/kics/internal/console.Version={{.Version}}
 archives:
-  -
-    builds: [kics]
+  - builds: [kics]
     format_overrides:
       - goos: windows
         format: zip
@@ -18,6 +20,6 @@ archives:
       amd64: x64
       386: x32
     files:
+      - LICENSE
       - assets/queries
-release:
-  prerelease: auto
+      - assets/libraries

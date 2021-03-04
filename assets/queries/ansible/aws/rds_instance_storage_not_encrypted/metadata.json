@@ -1,8 +1,0 @@
-{
-  "id": "b4e3a555-1e42-49b2-b8c2-37f778c3c16e",
-  "queryName": "RDS Instance Storage Not Encrypted",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "RDS Instance Storage should be encrypted or kms_key_id should be defined.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html"
-}

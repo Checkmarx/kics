@@ -1,0 +1,54 @@
+{
+  "Resources": {
+    "myKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Enabled": true,
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "Key"
+            },
+            "Value": {
+              "Ref": "Value"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Parameters": {
+    "Key": {
+      "Type": "String"
+    },
+    "Value": {
+      "Type": "String"
+    }
+  }
+}

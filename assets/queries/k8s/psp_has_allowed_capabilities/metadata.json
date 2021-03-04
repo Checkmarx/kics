@@ -1,8 +1,0 @@
-{
-  "id": "7307579a-3abb-46ad-9ce5-2a915634d5c8",
-  "queryName": "PSP With Added Capabilities",
-  "severity": "MEDIUM",
-  "category": "Privileges",
-  "descriptionText": "PodSecurityPolicy should not have added capabilities",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/"
-}

@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "KMS Allows Wildcard Principal",
-		"severity": "MEDIUM",
-		"line": 14
-	}
+  {
+    "queryName": "KMS Allows Wildcard Principal",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "KMS Allows Wildcard Principal",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive2.json"
+  }
 ]

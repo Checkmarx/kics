@@ -1,8 +1,0 @@
-{
-  "id": "d58c6f24-3763-4269-9f5b-86b2569a003b",
-  "queryName": "Google Container Node Pool Auto Repair is Disabled",
-  "severity": "MEDIUM",
-  "category": "Operational Efficiency",
-  "descriptionText": "Verifies if Google Container Node Pool Auto Repair is Enabled",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html"
-}

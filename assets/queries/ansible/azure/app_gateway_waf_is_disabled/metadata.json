@@ -1,8 +1,0 @@
-{
-  "id": "2fc5ab5a-c5eb-4ae4-b687-0f16fe77c255",
-  "queryName": "WAF Is Disabled For Azure Application Gateway",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_appgateway_module.html"
-}

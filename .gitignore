@@ -18,5 +18,10 @@
 /site
 
 # Log Files
-
 *.log
+
+# ci/cd binaries
+.bin
+
+# kics configuration file
+kics.config

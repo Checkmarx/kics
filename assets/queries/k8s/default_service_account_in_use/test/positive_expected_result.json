@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Default Service Account In Use",
-		"severity": "MEDIUM",
-		"line": 5
-	}
+  {
+    "queryName": "Default Service Account In Use",
+    "severity": "MEDIUM",
+    "line": 5
+  }
 ]

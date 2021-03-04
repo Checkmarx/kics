@@ -1,8 +1,9 @@
 {
-  "id": "c3e073c1-f65e-4d18-bd67-4a8f20ad1ab9",
-  "queryName": "S3 Bucket With Public Access",
-  "severity": "MEDIUM",
-  "category": null,
-  "descriptionText": "S3 Bucket allows public access",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission"
+	"id": "c3e073c1-f65e-4d18-bd67-4a8f20ad1ab9",
+	"queryName": "S3 Bucket With Public Access",
+	"severity": "MEDIUM",
+	"category": "Network Security",
+	"descriptionText": "S3 Bucket allows public access",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",
+	"platform": "Ansible"
 }

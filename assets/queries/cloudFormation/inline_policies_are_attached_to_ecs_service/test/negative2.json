@@ -1,0 +1,40 @@
+{
+  "Resources": {
+    "IAMPolicy": {
+      "Properties": {
+        "PolicyName": "root",
+        "PolicyDocument": {
+          "Version": "2012-10-17T00:00:00Z",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "*",
+              "Resource": "*"
+            }
+          ]
+        }
+      },
+      "Type": "AWS::IAM::Policy"
+    },
+    "InlinePolicy": {
+      "DependsOn": [
+        "Listener"
+      ],
+      "Properties": {
+        "LoadBalancers": [
+          {
+            "TargetGroupArn": {
+              "Ref": "TargetGroup"
+            },
+            "ContainerPort": 80,
+            "ContainerName": "sample-app"
+          }
+        ],
+        "Cluster": {
+          "Ref": "ECSCluster"
+        }
+      },
+      "Type": "AWS::ECS::Service"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "Parameters": {
+    "ParentPassword": {
+      "Description": "Password",
+      "Type": "String",
+      "Default": ""
+    },
+    "ParentUsername": {
+      "Description": "Username",
+      "Type": "String",
+      "Default": ""
+    }
+  },
+  "Resources": {
+    "NewAmpApp-4": {
+      "Type": "AWS::Amplify::App",
+      "Properties": {
+        "BuildSpec": "String",
+        "CustomHeaders": "String",
+        "Description": "String",
+        "EnableBranchAutoDeletion": true,
+        "IAMServiceRole": "String",
+        "Name": "NewAmpApp",
+        "Repository": "String",
+        "OauthToken": "ParentPassword"
+      }
+    }
+  }
+}

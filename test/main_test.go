@@ -3,10 +3,10 @@ package test
 import (
 	"fmt"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -17,24 +17,31 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws":            {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/azure":          {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":            {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/github":         {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes_pod": {FileKind: model.KindTerraform, Platform: "terraform"},
-		"../assets/queries/k8s":                      {FileKind: model.KindYAML, Platform: "k8s"},
-		"../assets/queries/cloudFormation":           {FileKind: model.KindYAML, Platform: "cloudFormation"},
-		"../assets/queries/ansible/aws":              {FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/ansible/gcp":              {FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/ansible/azure":            {FileKind: model.KindYAML, Platform: "ansible"},
-		"../assets/queries/dockerfile":               {FileKind: model.KindDOCKER, Platform: "dockerfile"},
+		"../assets/queries/terraform/aws":            {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/azure":          {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":            {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/github":         {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes_pod": {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/k8s":                      {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
+		"../assets/queries/cloudFormation":           {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/dockerfile":               {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
+		"../assets/queries/common":                   {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 	}
+)
+
+const (
+	scanID            = "test_scan"
+	BaseTestsScanPath = "../assets/queries/"
 )
 
 func TestMain(m *testing.M) {
@@ -43,23 +50,39 @@ func TestMain(m *testing.M) {
 
 type queryEntry struct {
 	dir      string
-	kind     model.FileKind
+	kind     []model.FileKind
 	platform string
 }
 
-func (q queryEntry) PositiveFile() string {
-	return path.Join(q.dir, fmt.Sprintf("test/positive.%s", strings.ToLower(string(q.kind))))
+func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
+	var files []string
+	for _, kinds := range q.kind {
+		kindFiles, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
+		x0 := filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
+		for i, check := range kindFiles {
+			if check == x0 {
+				kindFiles = append(kindFiles[:i], kindFiles[i+1:]...)
+			}
+		}
+		require.Nil(tb, err)
+		files = append(files, kindFiles...)
+	}
+	return files
 }
 
-func (q queryEntry) NegativeFile() string {
-	return path.Join(q.dir, fmt.Sprintf("test/negative.%s", strings.ToLower(string(q.kind))))
+func (q queryEntry) PositiveFiles(tb testing.TB) []string {
+	return q.getSampleFiles(tb, "test/positive*.%s")
+}
+
+func (q queryEntry) NegativeFiles(tb testing.TB) []string {
+	return q.getSampleFiles(tb, "test/negative*.%s")
 }
 
 func (q queryEntry) ExpectedPositiveResultFile() string {
-	return path.Join(q.dir, "test/positive_expected_result.json")
+	return filepath.FromSlash(path.Join(q.dir, "test/positive_expected_result.json"))
 }
 
-func appendQueries(queriesDir []queryEntry, dirName string, kind model.FileKind, platform string) []queryEntry {
+func appendQueries(queriesDir []queryEntry, dirName string, kind []model.FileKind, platform string) []queryEntry {
 	queriesDir = append(queriesDir, queryEntry{
 		dir:      dirName,
 		kind:     kind,
@@ -89,22 +112,25 @@ func loadQueries(tb testing.TB) []queryEntry {
 	return queriesDir
 }
 
-func getParsedFile(t testing.TB, filePath string) model.FileMetadatas {
-	content, err := ioutil.ReadFile(filePath)
-	require.NoError(t, err)
-	return getScannableFileMetadatas(t, filePath, content)
+func getFileMetadatas(t testing.TB, filesPath []string) model.FileMetadatas {
+	fileMetadatas := make(model.FileMetadatas, 0)
+	for _, path := range filesPath {
+		content, err := ioutil.ReadFile(path)
+		require.NoError(t, err)
+		fileMetadatas = append(fileMetadatas, getFilesMetadatasWithContent(t, path, content)...)
+	}
+	return fileMetadatas
 }
 
-func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) model.FileMetadatas {
+func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte) model.FileMetadatas {
 	combinedParser := getCombinedParser()
+	files := make(model.FileMetadatas, 0)
 
-	documents, kind, err := combinedParser.Parse(filePath, content)
+	parsedDocuments, kind, err := combinedParser.Parse(filePath, content)
 	require.NoError(t, err)
-
-	files := make([]model.FileMetadata, 0, len(documents))
-	for i, document := range documents {
+	for _, document := range parsedDocuments {
 		files = append(files, model.FileMetadata{
-			ID:           strconv.Itoa(fileID + i),
+			ID:           uuid.NewString(),
 			ScanID:       scanID,
 			Document:     document,
 			OriginalData: string(content),
@@ -117,12 +143,13 @@ func getScannableFileMetadatas(t testing.TB, filePath string, content []byte) mo
 }
 
 func getCombinedParser() *parser.Parser {
-	return parser.NewBuilder().
+	bd, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build()
+		Build([]string{""})
+	return bd
 }
 
 func getQueryContent(queryDir string) (string, error) {
@@ -131,8 +158,8 @@ func getQueryContent(queryDir string) (string, error) {
 	return string(content), err
 }
 
-func getSampleContent(params *testCaseParamsType) ([]byte, error) {
-	samplePath := checkSampleExistsAndGetPath(params)
+func getSampleContent(tb testing.TB, params *testCaseParamsType) ([]byte, error) {
+	samplePath := checkSampleExistsAndGetPath(tb, params)
 	return getFileContent(samplePath)
 }
 
@@ -140,27 +167,32 @@ func getFileContent(filePath string) ([]byte, error) {
 	return ioutil.ReadFile(filePath)
 }
 
-func getSamplePath(params *testCaseParamsType) string {
+func getSamplePath(tb testing.TB, params *testCaseParamsType) string {
 	var samplePath string
 	if params.samplePath != "" {
 		samplePath = params.samplePath
 	} else {
-		samplePath = checkSampleExistsAndGetPath(params)
+		samplePath = checkSampleExistsAndGetPath(tb, params)
 	}
 	return samplePath
 }
 
-func checkSampleExistsAndGetPath(params *testCaseParamsType) string {
+func checkSampleExistsAndGetPath(tb testing.TB, params *testCaseParamsType) string {
 	var samplePath string
+	var globMatch string
 	extensions := fileExtension[params.platform]
 	for _, v := range extensions {
-		joinedPath := filepath.Join(params.queryDir, fmt.Sprintf("test/positive%s", v))
-		_, err := os.Stat(joinedPath)
-		if err == nil {
-			samplePath = joinedPath
-			break
+		joinedPathList, _ := filepath.Glob(filepath.Join(params.queryDir, fmt.Sprintf("test/positive*%s", v)))
+		for _, path := range joinedPathList {
+			globMatch = path
+			_, err := os.Stat(path)
+			if err == nil {
+				samplePath = path
+				break
+			}
 		}
 	}
+	require.False(tb, samplePath == "", "Sample not found in path: %s", globMatch)
 	return samplePath
 }
 
@@ -182,4 +214,14 @@ func readLibrary(platform string) (string, error) {
 	}
 
 	return string(content), err
+}
+
+func isValidURL(toTest string) bool {
+	_, err := url.ParseRequestURI(toTest)
+	if err != nil {
+		return false
+	}
+
+	u, err := url.Parse(toTest)
+	return err == nil && u.Scheme != "" && u.Host != ""
 }

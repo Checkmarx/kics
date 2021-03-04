@@ -34,7 +34,7 @@ type testParamsType struct {
 	queryDir      string // mandatory
 	platform      string // mandatory
 	queryID       func() string
-	samplePath    func() string
+	samplePath    func(t testing.TB) string
 	sampleContent func(t testing.TB) []byte
 	queryContent  func(t testing.TB) string
 }
@@ -145,11 +145,11 @@ var (
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
-					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
+					queryDir: "../assets/queries/cloudFormation/api_gateway_with_open_access",
 				}),
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
-					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
+					queryDir: "../assets/queries/cloudFormation/api_gateway_with_open_access",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -160,6 +160,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
+	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
 
 	for _, tc := range testTable {
@@ -187,13 +188,13 @@ func getTestQueryID(params *testCaseParamsType) string {
 	return testQueryID
 }
 
-func getTestSampleContent(params *testCaseParamsType) ([]byte, error) {
+func getTestSampleContent(tb testing.TB, params *testCaseParamsType) ([]byte, error) {
 	var testSampleContent []byte
 	var err error
 	if params.sampleFixturePath != "" {
 		testSampleContent, err = getFileContent(params.sampleFixturePath)
 	} else {
-		testSampleContent, err = getSampleContent(params)
+		testSampleContent, err = getSampleContent(tb, params)
 	}
 	return testSampleContent, err
 }
@@ -217,11 +218,11 @@ func getTestParams(params *testCaseParamsType) testParamsType {
 		queryID: func() string {
 			return getTestQueryID(params)
 		},
-		samplePath: func() string {
-			return getSamplePath(params)
+		samplePath: func(t testing.TB) string {
+			return getSamplePath(t, params)
 		},
 		sampleContent: func(t testing.TB) []byte {
-			content, err := getTestSampleContent(params)
+			content, err := getTestSampleContent(t, params)
 			require.Nil(t, err)
 			return content
 		},
@@ -270,9 +271,9 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		return []model.QueryMetadata{q}, nil
 	})
 
-	queriesSource.EXPECT().GetGenericQuery("commonQuery").
+	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
-			q, err := readLibrary("commonQuery")
+			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
@@ -284,18 +285,25 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			return q, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
+	inspector, err := engine.NewInspector(ctx,
+		queriesSource,
+		engine.DefaultVulnerabilityBuilder,
+		&tracker.CITracker{},
+		map[string]bool{})
+
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
 		scanID,
-		getScannableFileMetadatas(
+		getFilesMetadatasWithContent(
 			t,
-			testParams.samplePath(),
+			testParams.samplePath(t),
 			testParams.sampleContent(t),
 		),
+		true,
+		BaseTestsScanPath,
 	)
 	require.Nil(t, err)
 	return vulnerabilities

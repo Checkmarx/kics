@@ -1,8 +1,0 @@
-{
-  "id": "6b896afb-ca07-467a-b256-1a0077a1c08e",
-  "queryName": "RBAC Wildcard In Rule",
-  "severity": "LOW",
-  "category": "Access Control",
-  "descriptionText": "Kubernetes Roles and ClusterRoles should not use wildcards in rules (objects or actions)",
-  "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
-}

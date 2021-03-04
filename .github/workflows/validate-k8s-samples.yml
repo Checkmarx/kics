@@ -1,0 +1,33 @@
+name: validate-k8s-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/k8s/**/test/*.yaml"
+    - "assets/queries/k8s/**/test/*.yml"
+
+jobs:
+  validate-k8s-manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Get Kubeval
+        env:
+          KUBEVAL_RELEASES_URL: https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+        run: |
+          mkdir -p .bin
+          PROJDIR=$(pwd)
+          cd .bin && wget "${KUBEVAL_RELEASES_URL}" \
+            && tar xf $(basename "${KUBEVAL_RELEASES_URL}") \
+            && chmod +x kubeval \
+            && rm -vf $(basename "${KUBEVAL_RELEASES_URL}") \
+            && cd "${PROJDIR}"
+      - name: Validate k8s manifests
+        run: python3 .github/validators/validate-syntax.py "assets/queries/k8s/**/test/*.yaml"
+        env:
+          EXTRA_ARGS: '--skip-kinds CustomResourceDefinition'
+          LINTER_PATH: .bin/kubeval
+          SKIP_LIST_PATH: '.github/validators/k8s-skip-list'

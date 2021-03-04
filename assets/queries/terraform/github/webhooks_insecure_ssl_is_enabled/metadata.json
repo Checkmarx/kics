@@ -1,8 +1,0 @@
-{
-  "id": "ce7c874e-1b88-450b-a5e4-cb76ada3c8a9",
-  "queryName": "Insecure SSL Is Enabled For GitHub Organization Webhook",
-  "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
-  "descriptionText": "Check if insecure SSL is being used in the GitHub organization webhooks",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/organization_webhook"
-}

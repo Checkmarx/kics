@@ -8,23 +8,29 @@
 |  | Delivery: CLI & Docker |  |
 | | | |
 | Completed | **Milestone 2** | December 2020 |
-| Completed | Adding support for K8S |  |
-| Completed | Adding support for Docker |  |
-| Completed | Designing official logo for KICS |  |
-| Completed | Adding support for Ansible |  |
-| Completed | Adding support for AWS CloudFormation |  |
+|   | Adding support for K8S |  |
+|   | Adding support for Docker |  |
+|   | Designing official logo for KICS |  |
+|   | Adding support for Ansible |  |
+|   | Adding support for AWS CloudFormation |  |
 | | | |
-| _In progress_ | **Milestone 3** | January 2021 |
-| _In progress_ | Adding more queries and extending coverage |  |
-| _In progress_ | Adding more CI/CD integrations |  |
-| _In progress_ | Engineering and performance improvements |  |
-
-## Long Term Roadmap
-* Queries - add metadata of remediation advice 
-* Homebrew support for easier Mac deployment
-* Azure Resource Manager
-* Google Cloud Deployment Manager
+| Completed | **Milestone 3** | January 2021 |
+|  | Adding more queries and extending coverage |  |
+|  | Adding more CI/CD integrations |  |
+| | Engineering and performance improvements |  |
+| In-Progress | **Milestone 4** | Feb 2021 |
+| Completed | Mac support |  |
+| Completed | Hard-coded secret keys detection |  |
+| In-Progress | Reporting - add SARIF format |  |
+| In-Progress | CI/CD improved documentation |  |
+| In-Progress | Improved CLI outputs (progess, coloring, logo) |  |
+|In-Progress | Engineering and performance improvements |  |
+| Not-Started | **Milestone 5** | Mar 2021 |
+|  | Additional IaC Tools - GCP, Azure RM, etc. |  |
+|  | Distribution platforms: Homebrew, Chocolatey|  |
+|  | Reporting - add HTML format |  |
+|  | Terraform - Parameters files support |  |
 
 Have an idea?  
-Join the chat [on Gitter](https://gitter.im/kics-io/community).  
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

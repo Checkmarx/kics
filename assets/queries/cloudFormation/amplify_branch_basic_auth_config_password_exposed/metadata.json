@@ -1,0 +1,9 @@
+{
+	"id": "dfb56e5d-ee68-446e-b32a-657b62befe69",
+	"queryName": "Amplify Branch Basic Auth Config Password Exposed",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "Amplify Branch BasicAuthConfig Password must not be a plaintext string or a Ref to a Parameter with a Default value.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-basicauthconfig",
+	"platform": "CloudFormation"
+}

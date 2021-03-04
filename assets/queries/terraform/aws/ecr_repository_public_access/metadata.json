@@ -1,8 +1,0 @@
-{
-  "id": "e86e26fc-489e-44f0-9bcd-97305e4ba69a",
-  "queryName": "ECR Repository Public Access",
-  "severity": "HIGH",
-  "category": "Data Security",
-  "descriptionText": "Amazon ECR image repositories shouldn't have public access",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy"
-}

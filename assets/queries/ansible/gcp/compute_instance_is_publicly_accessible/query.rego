@@ -1,25 +1,19 @@
 package Cx
 
-CxPolicy [result ]  {
-	document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
+import data.generic.ansible as ansLib
 
-  task["google.cloud.gcp_compute_instance"].network_interfaces[_].access_configs
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	compute_instance := task["google.cloud.gcp_compute_instance"]
 
-  result := {
-            "documentId": document.id,
-        	  "searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs", [task.name]),
-        	  "issueType": "IncorrectValue",
-       	 	  "keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is not defined",
-        	  "keyActualValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is defined"
-            }
-}
+	ansLib.checkState(compute_instance)
+	compute_instance.network_interfaces[_].access_configs
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook]
-    count(result) != 0
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is not defined",
+		"keyActualValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is defined",
+	}
 }

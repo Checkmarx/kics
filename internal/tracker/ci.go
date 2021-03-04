@@ -1,5 +1,7 @@
 package tracker
 
+// CITracker contains information of how many queries were loaded and executed
+// and how many files were found and executed
 type CITracker struct {
 	LoadedQueries      int
 	ExecutedQueries    int
@@ -8,18 +10,22 @@ type CITracker struct {
 	FailedSimilarityID int
 }
 
-func (c *CITracker) TrackQueryLoad() {
-	c.LoadedQueries++
+// TrackQueryLoad adds a loaded query
+func (c *CITracker) TrackQueryLoad(queryAggregation int) {
+	c.LoadedQueries += queryAggregation
 }
 
-func (c *CITracker) TrackQueryExecution() {
-	c.ExecutedQueries++
+// TrackQueryExecution adds a query executed
+func (c *CITracker) TrackQueryExecution(queryAggregation int) {
+	c.ExecutedQueries += queryAggregation
 }
 
+// TrackFileFound adds a found file to be scanned
 func (c *CITracker) TrackFileFound() {
 	c.FoundFiles++
 }
 
+// TrackFileParse adds a successful parsed file to be scanned
 func (c *CITracker) TrackFileParse() {
 	c.ParsedFiles++
 }

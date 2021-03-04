@@ -1,22 +1,50 @@
 [
-	{
-		"queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
-		"severity": "HIGH",
-		"line": 7
-	},
-	{
-		"queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
-		"severity": "HIGH",
-		"line": 19
-	},
-	{
-		"queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
-		"severity": "HIGH",
-		"line": 34
-	},
-	{
-		"queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
-		"severity": "HIGH",
-		"line": 52
-	}
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "fileName": "positive3.yaml",
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 7
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive8.json"
+  }
 ]

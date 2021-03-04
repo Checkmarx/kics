@@ -1,17 +1,38 @@
 [
-	{
-		"queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
-		"severity": "HIGH",
-		"line": 24
-	},
-	{
-		"queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
-		"severity": "HIGH",
-		"line": 32
-	},
-	{
-		"queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
-		"severity": "HIGH",
-		"line": 303
-	}
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
+    "severity": "HIGH",
+    "line": 32
+  },
+  {
+    "line": 24,
+    "fileName": "positive1.yaml",
+    "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
+    "severity": "HIGH",
+    "line": 115,
+    "fileName": "positive3.json"
+  },
+  {
+    "severity": "HIGH",
+    "line": 326,
+    "fileName": "positive3.json",
+    "queryName": "ECS Service Allows Inbound To All IPv4 And Ports"
+  },
+  {
+    "queryName": "ECS Service Allows Inbound To All IPv4 And Ports",
+    "severity": "HIGH",
+    "line": 268,
+    "fileName": "positive4.json"
+  }
 ]

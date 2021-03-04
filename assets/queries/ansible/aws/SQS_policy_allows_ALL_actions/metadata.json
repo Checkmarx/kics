@@ -1,8 +1,0 @@
-{
-  "id": "ed9b3beb-92cf-44d9-a9d2-171eeba569d4",
-  "queryName": "SQS policy allows ALL (*) actions",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "SQS policy allows ALL (*) actions",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html"
-}

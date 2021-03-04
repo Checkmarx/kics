@@ -1,8 +1,0 @@
-{
-  "id": "c4dcdcdf-10dd-4bf4-b4a0-8f6239e6aaa0",
-  "queryName": "SSH Access Is Not Restricted From The Internet",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block)",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall"
-}

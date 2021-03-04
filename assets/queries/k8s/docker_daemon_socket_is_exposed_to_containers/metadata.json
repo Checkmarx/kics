@@ -1,0 +1,9 @@
+{
+	"id": "a6f34658-fdfb-4154-9536-56d516f65828",
+	"queryName": "Docker Daemon Socket is Exposed to Containers",
+	"severity": "LOW",
+	"category": "Network Security",
+	"descriptionText": "Sees if Docker Daemon Socket is not exposed to Containers",
+	"descriptionUrl": "https://kubernetes.io/docs/concepts/storage/volumes/",
+	"platform": "Kubernetes"
+}

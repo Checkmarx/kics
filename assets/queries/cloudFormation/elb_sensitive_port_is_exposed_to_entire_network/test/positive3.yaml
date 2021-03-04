@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  MySubnet:
+    Description: "My subnet"
+    Type: List<String>
+Resources:
+  GatewayLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: my-gateway-load-balancer
+      Scheme: internet-facing
+      Type: gateway
+      Subnets: !Ref MySubnet
+  InstancesSecGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http and ssh
+        VpcId: my-vpc
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 127.0.0.1/32
+        - IpProtocol: tcp
+          FromPort: 636
+          ToPort: 636
+          CidrIp: 127.0.0.1/0
+        SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+  EC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.2xlarge
+      SecurityGroups:
+      - !Ref 'InstancesSecGroup'
+      KeyName: my-rsa-key
+      ImageId: ami-79fd7eee
+  EC2Instance02:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.2xlarge
+      SecurityGroups:
+      - !Ref 'InstancesSecGroup'
+      KeyName: my-rsa-key
+      ImageId: ami-79fd7eee
+  GatewayLoadBalancerTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: t10-networklb-target
+      Port: 443
+      Protocol: TCP
+      VpcId: t10-vpc-id
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: '60'
+      Targets:
+      - Id: !Ref EC2Instance01
+        Port: 443
+      - Id: !Ref EC2Instance02
+        Port: 443
+      Tags:
+        - Key: Name
+          Value: t10-networklb-target
+  GatewayLoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+      - Type: forward
+        TargetGroupArn: !Ref GatewayLoadBalancerTargetGroup
+      LoadBalancerArn: !Ref GatewayLoadBalancer
+      Port: 443
+      Protocol: TCP
+  GatewayLoadBalancerListenerCert:
+    Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
+    Properties:
+      Certificates:
+        - CertificateArn: arn:aws:acm:eu-west-1:xxxaccountxxx:certificate/123456....
+      ListenerArn: !Ref GatewayLoadBalancerListener

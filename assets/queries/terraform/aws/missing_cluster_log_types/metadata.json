@@ -1,8 +1,9 @@
 {
   "id": "66f130d9-b81d-4e8e-9b08-da74b9c891df",
-  "queryName": "Missing cluster log types",
+  "queryName": "Missing Cluster Log Types",
   "severity": "LOW",
   "category": "Logging",
   "descriptionText": "Amazon EKS control plane logging don't enabled for all log types",
-  "descriptionUrl": "https://www.terraform.io/docs/providers/aws/r/eks_cluster.html"
+  "descriptionUrl": "https://www.terraform.io/docs/providers/aws/r/eks_cluster.html",
+  "platform": "Terraform"
 }

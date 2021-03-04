@@ -1,8 +1,0 @@
-{
-  "id": "e835bd0d-65da-49f7-b6d1-b646da8727e6",
-  "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
-  "severity": "HIGH",
-  "category": "Identity and Access Management",
-  "descriptionText": "Check if any IAM Policy grants 'AssumeRole' permission across all services.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html"
-}

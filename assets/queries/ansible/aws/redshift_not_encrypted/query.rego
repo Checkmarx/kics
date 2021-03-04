@@ -1,53 +1,41 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  redshiftCluster := task["community.aws.redshift"]
-  clusterName := task.name
+import data.generic.ansible as ansLib
 
-  object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	module := ["redshift", "community.aws.redshift"]
+	redshiftCluster := task[module[m]]
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{community.aws.redshift}}", [clusterName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "community.aws.redshift.encrypted should be set to true",
-                "keyActualValue":   "community.aws.redshift.encrypted is undefined"
-              }
+	redshiftCluster.command == "create"
+	object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, module[m]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
+		"keyActualValue": sprintf("%s.encrypted is undefined", [module[m]]),
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  redshiftCluster := task["community.aws.redshift"]
-  clusterName := task.name
-  not isAnsibleTrue(redshiftCluster.encrypted)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	module := ["redshift", "community.aws.redshift"]
+	redshiftCluster := task[module[m]]
 
-  result := {
-              "documentId":       input.document[i].id,
-              "searchKey":        sprintf("name={{%s}}.{{community.aws.redshift}}.encrypted", [clusterName]),
-              "issueType":        "WrongValue",
-              "keyExpectedValue": "community.aws.redshift.encrypted should be set to true",
-              "keyActualValue":   "community.aws.redshift.encrypted is set to false"
-            }
+	createOrModify(redshiftCluster.command)
+	not ansLib.isAnsibleTrue(redshiftCluster.encrypted)
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, module[m]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
+		"keyActualValue": sprintf("%s.encrypted is set to false", [module[m]]),
+	}
 }
 
+createOrModify("create") = true
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
-}
-
-isAnsibleTrue(answer) {
- 	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
-}
+createOrModify("modify") = true

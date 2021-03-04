@@ -1,0 +1,45 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Resources": {
+    "SafeSecGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http and ssh",
+        "VpcId": "my-vpc",
+        "SecurityGroupIngress": [
+          {
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "127.0.0.1/32",
+            "IpProtocol": "tcp"
+          },
+          {
+            "ToPort": 77,
+            "CidrIp": "127.0.0.1/32",
+            "IpProtocol": "all",
+            "FromPort": 77
+          }
+        ],
+        "SecurityGroupEgress": [
+          {
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "127.0.0.1/32",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "MyNegativeEC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "SecurityGroups": [
+          "SafeSecGroup"
+        ],
+        "KeyName": "my-new-rsa-key",
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium"
+      }
+    }
+  }
+}

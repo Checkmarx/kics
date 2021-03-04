@@ -1,0 +1,9 @@
+{
+	"id": "efbf148a-67e9-42d2-ac47-02fa1c0d0b22",
+	"queryName": "Shell Running A Pipe Without Pipefail Flag",
+	"severity": "MEDIUM",
+	"category": "Defaults",
+	"descriptionText": "Check if shell commands with pipes (except Powershell) have the pipefail flag set (-o).",
+	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
+	"platform": "Dockerfile"
+}

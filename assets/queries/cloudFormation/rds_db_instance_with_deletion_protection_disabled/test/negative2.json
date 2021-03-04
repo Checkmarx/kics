@@ -1,0 +1,60 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "RDS Storage Encrypted",
+  "Parameters": {
+    "DBInstanceType": {
+      "Type": "String"
+    },
+    "SourceRegion": {
+      "Type": "String"
+    },
+    "SourceDBInstanceIdentifier": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "MyKey": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "KeyPolicy": {
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": [
+                  "",
+                  [
+                    "arn:aws:iam::",
+                    "AWS::AccountId",
+                    ":root"
+                  ]
+                ]
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17T00:00:00Z"
+        }
+      }
+    },
+    "MyDBSmall": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "SourceDBInstanceIdentifier": "SourceDBInstanceIdentifier",
+        "SourceRegion": "SourceRegion",
+        "DeletionProtection": true,
+        "KmsKeyId": "MyKey",
+        "DBInstanceClass": "DBInstanceType"
+      }
+    }
+  },
+  "Outputs": {
+    "InstanceId": {
+      "Description": "InstanceId of the newly created RDS Instance",
+      "Value": "MyDBSmall"
+    }
+  }
+}

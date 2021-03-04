@@ -1,8 +1,0 @@
-{
-  "id": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb",
-  "queryName": "Containers Running As Root",
-  "severity": "MEDIUM",
-  "category": "Privileges",
-  "descriptionText": "Check if containers are running as root unduly.",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
-}

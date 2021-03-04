@@ -1,35 +1,25 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  metadata := document.metadata
-  specInfo := getSpecInfo(document)
-  serviceAccount := specInfo.spec.serviceAccountName
+import data.generic.k8s as k8sLib
 
-  document_other := input.document[j]
-  i != j
-  specInfo_other := getSpecInfo(document_other)
-  serviceAccount_other := specInfo_other.spec.serviceAccountName
+CxPolicy[result] {
+	document := input.document[i]
+	metadata := document.metadata
+	specInfo := k8sLib.getSpecInfo(document)
+	serviceAccount := specInfo.spec.serviceAccountName
 
-  serviceAccount == serviceAccount_other
+	document_other := input.document[j]
+	i != j
+	specInfo_other := k8sLib.getSpecInfo(document_other)
+	serviceAccount_other := specInfo_other.spec.serviceAccountName
 
-  result := {
-              "documentId":       input.document[i].id,
-              "searchKey": 	      sprintf("metadata.name=%s.%s.serviceAccountName", [metadata.name, specInfo.path]),
-              "issueType":		    "IncorrectValue",
-              "keyExpectedValue": sprintf("'%s.serviceAccountName' is not shared with other workloads", [specInfo.path]),
-              "keyActualValue": 	sprintf("'%s.serviceAccountName' is shared with other workloads", [specInfo.path])
-            }
-}
+	serviceAccount == serviceAccount_other
 
-getSpecInfo(document) = specInfo {
-    templates := {"job_template", "jobTemplate"}
-    spec := document.spec[templates[t]].spec.template.spec
-    specInfo := {"spec": spec, "path": sprintf("spec.%s.spec.template.spec", [templates[t]])}
-} else = specInfo {
-    spec := document.spec.template.spec
-    specInfo := {"spec": spec, "path": "spec.template.spec"}
-} else = specInfo {
-    spec := document.spec
-    specInfo := {"spec": spec, "path": "spec"}
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("metadata.name=%s.%s.serviceAccountName", [metadata.name, specInfo.path]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s.serviceAccountName' is not shared with other workloads", [specInfo.path]),
+		"keyActualValue": sprintf("'%s.serviceAccountName' is shared with other workloads", [specInfo.path]),
+	}
 }

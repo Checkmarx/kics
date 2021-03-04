@@ -1,53 +1,33 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  storageAccount := task["azure.azcollection.azure_rm_postgresqlserver"]
-  storageAccountName := task.name
+import data.generic.ansible as ansLib
 
-  object.get(storageAccount, "enforce_ssl", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	storageAccount := task["azure.azcollection.azure_rm_postgresqlserver"]
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlserver}}", [storageAccountName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "azure.azcollection.azure_rm_postgresqlserver should have enforce_ssl set to true",
-                "keyActualValue":   "azure.azcollection.azure_rm_postgresqlserver does not have enforce_ssl (defaults to false)"
-              }
+	object.get(storageAccount, "enforce_ssl", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlserver}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "azure.azcollection.azure_rm_postgresqlserver should have enforce_ssl set to true",
+		"keyActualValue": "azure.azcollection.azure_rm_postgresqlserver does not have enforce_ssl (defaults to false)",
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  storageAccount := task["azure.azcollection.azure_rm_postgresqlserver"]
-  storageAccountName := task.name
-  not isAnsibleTrue(storageAccount.enforce_ssl)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	storageAccount := task["azure.azcollection.azure_rm_postgresqlserver"]
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlserver}}.enforce_ssl", [storageAccountName]),
-                "issueType":        "WrongValue",
-                "keyExpectedValue": "azure.azcollection.azure_rm_postgresqlserver should have enforce_ssl set to true",
-                "keyActualValue":   "azure.azcollection.azure_rm_postgresqlserver does has enforce_ssl set to false"
-              }
-}
+	not ansLib.isAnsibleTrue(storageAccount.enforce_ssl)
 
-
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
-}
-
-isAnsibleTrue(answer) {
- 	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlserver}}.enforce_ssl", [task.name]),
+		"issueType": "WrongValue",
+		"keyExpectedValue": "azure.azcollection.azure_rm_postgresqlserver should have enforce_ssl set to true",
+		"keyActualValue": "azure.azcollection.azure_rm_postgresqlserver does has enforce_ssl set to false",
+	}
 }

@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "EBS Volume Encryption Key Rule",
-		"severity": "MEDIUM",
-		"line": 4
-	}
-]

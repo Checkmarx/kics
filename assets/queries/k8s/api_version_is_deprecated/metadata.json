@@ -1,8 +1,0 @@
-{
-  "id": "94b76ea5-e074-4ca2-8a03-c5a606e30645",
-  "queryName": "Object Is Using A Deprecated API Version",
-  "severity": "HIGH",
-  "category": "Networking",
-  "descriptionText": "Check if any objects are using a deprecated version of API.",
-  "descriptionUrl": "https://kubernetes.io/docs/reference/using-api/deprecation-policy/"
-}

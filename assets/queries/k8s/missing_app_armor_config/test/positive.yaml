@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-1
+  annotations:
+    container.apparmor/hello1: localhost/k8s-apparmor-example-allow-write
+spec:
+  containers:
+  - name: hello1
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-2
+spec:
+  containers:
+  - name: hello2
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor4
+  annotations:
+    ingress-whitelist: "qa.acmecorp.internal.acmecorp.com"
+spec:
+  containers:
+  - name: hello4
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor5
+spec:
+  containers:
+  - name: hello5
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]

@@ -1,8 +1,0 @@
-{
-  "id": "8b36775e-183d-4d46-b0f7-96a6f34a723f",
-  "queryName": "Missing App Armor Config",
-  "severity": "LOW",
-  "category": "Access Control",
-  "descriptionText": "Containers should be configured with AppArmor for any application to reduce its potential attack",
-  "descriptionUrl": "https://kubernetes.io/docs/tutorials/clusters/apparmor/"
-}

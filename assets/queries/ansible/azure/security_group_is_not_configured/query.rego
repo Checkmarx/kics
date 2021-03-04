@@ -1,72 +1,49 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  subnet := task["azure_rm_subnet"]
-  subnetName := task.name
+import data.generic.ansible as ansLib
 
-  object.get(subnet, "security_group", "undefined") == "undefined"
-  object.get(subnet, "security_group_name", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	subnet := task.azure_rm_subnet
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{azure_rm_subnet}}", [subnetName]),
-                "issueType":        "MissingAttribute",
-                "keyExpectedValue": "azure_rm_subnet.security_group is defined",
-                "keyActualValue":   "azure_rm_subnet.security_group is undefined"
-              }
+	object.get(subnet, "security_group", "undefined") == "undefined"
+	object.get(subnet, "security_group_name", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure_rm_subnet}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "azure_rm_subnet.security_group is defined",
+		"keyActualValue": "azure_rm_subnet.security_group is undefined",
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  subnet := task["azure_rm_subnet"]
-  subnetName := task.name
-  
-  checkString(subnet.security_group)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	subnet := task.azure_rm_subnet
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{azure_rm_subnet}}.security_group", [subnetName]),
-                "issueType":        "IncorrectValue",
-                "keyExpectedValue": "azure_rm_subnet.security_group is not empty or null",
-                "keyActualValue":   "azure_rm_subnet.security_group is empty or null"
-              }
+	ansLib.checkValue(subnet.security_group)
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure_rm_subnet}}.security_group", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "azure_rm_subnet.security_group is not empty or null",
+		"keyActualValue": "azure_rm_subnet.security_group is empty or null",
+	}
 }
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  subnet := task["azure_rm_subnet"]
-  subnetName := task.name
-  
-  checkString(subnet.security_group_name)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	subnet := task.azure_rm_subnet
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{azure_rm_subnet}}.security_group_name", [subnetName]),
-                "issueType":        "IncorrectValue",
-                "keyExpectedValue": "azure_rm_subnet.security_group_name is not empty or null",
-                "keyActualValue":   "azure_rm_subnet.security_group_name is empty or null"
-              }
-}
+	ansLib.checkValue(subnet.security_group_name)
 
-checkString(string){
-  string == null
-}
-
-checkString(string){
-  count(string) == 0
-}
-
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]  
-    count(result) != 0
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{azure_rm_subnet}}.security_group_name", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "azure_rm_subnet.security_group_name is not empty or null",
+		"keyActualValue": "azure_rm_subnet.security_group_name is empty or null",
+	}
 }

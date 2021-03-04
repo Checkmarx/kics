@@ -1,8 +1,9 @@
 {
   "id": "ffe0fd52-7a8b-4a5c-8fc7-49844418e6c9",
-  "queryName": "AWS CloudFormation Without Stack Policy",
+  "queryName": "CloudFormation Without Stack Policy",
   "severity": "MEDIUM",
   "category": "Operational Efficiency",
   "descriptionText": "AWS CloudFormation Stack should have a stack policy in order to protect stack resources from update actions",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html",
+  "platform": "Ansible"
 }

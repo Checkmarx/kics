@@ -1,8 +1,0 @@
-{
-  "id": "4a8fc9a2-2b2f-4b3f-aa8d-401425872034",
-  "queryName": "SQS Queue Policy Allow Not Principal",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "Checks if an SQS Queue policy has an Allow and a NotPrincipal. AWS strongly recommends against using `NotPrincipal` in the same policy statement as `\"Effect\": \"Allow\"`.",
-  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notprincipal.html"
-}

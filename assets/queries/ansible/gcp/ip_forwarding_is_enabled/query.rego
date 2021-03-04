@@ -1,35 +1,19 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  instance := task["google.cloud.gcp_compute_instance"]
-  instanceName := task.name
+import data.generic.ansible as ansLib
 
-  isAnsibleTrue(instance.can_ip_forward)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	instance := task["google.cloud.gcp_compute_instance"]
 
-    result := {
-                "documentId":       input.document[i].id,
-                "searchKey":        sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.can_ip_forward", [instanceName]),
-                "issueType":        "IncorrectValue",
-                "keyExpectedValue": "google.cloud.gcp_compute_instance.can_ip_forward is false",
-                "keyActualValue":   "google.cloud.gcp_compute_instance.can_ip_forward is true"
-              }
-}
+	ansLib.checkState(instance)
+	ansLib.isAnsibleTrue(instance.can_ip_forward)
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]  
-    count(result) != 0
-} 
-
-isAnsibleTrue(answer) {
- 	lower(answer) == "yes"
-} else {
-	lower(answer) == "true"
-} else {
-	answer == true
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.can_ip_forward", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.can_ip_forward is false",
+		"keyActualValue": "{{google.cloud.gcp_compute_instance}}.can_ip_forward is true",
+	}
 }

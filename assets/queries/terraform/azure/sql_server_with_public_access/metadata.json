@@ -1,8 +1,0 @@
-{
-  "id": "4ceb31fc-b89e-4948-a80b-a333e70e1de9",
-  "queryName": "SQLServer with Public Access",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Check if both start and end 'ip_address' are equals to 0.0.0.0 (any IP).",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule"
-}

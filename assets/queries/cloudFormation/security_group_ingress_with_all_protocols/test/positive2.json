@@ -1,0 +1,69 @@
+{
+  "Resources": {
+    "InstanceSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": -1,
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ],
+        "SecurityGroupEgress": [
+          {
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "GroupDescription": "Allow http to client host"
+      }
+    },
+    "OutboundRule": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "ToPort": 65535,
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "TargetSG",
+            "GroupId"
+          ]
+        },
+        "GroupId": {
+          "Fn::GetAtt": [
+            "SourceSG",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 0
+      }
+    },
+    "InboundRule": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": -1,
+        "FromPort": 0,
+        "ToPort": 65535,
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "SourceSG",
+            "GroupId"
+          ]
+        },
+        "GroupId": {
+          "Fn::GetAtt": [
+            "TargetSG",
+            "GroupId"
+          ]
+        }
+      }
+    }
+  }
+}

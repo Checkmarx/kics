@@ -1,92 +1,74 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	task := ansLib.tasks[id][t]
 
-    object.get(task["community.aws.kinesis_stream"], "encryption_type", "undefined") == "undefined"
+	object.get(task["community.aws.kinesis_stream"], "encryption_type", "undefined") == "undefined"
 
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name={{%s}}.{{community.aws.kinesis_stream}}", [task.name]),
-        "issueType":         "MissingAttribute",
-        "keyExpectedValue":  "community.aws.kinesis_stream.encryption_type is set",
-        "keyActualValue": 	 "community.aws.kinesis_stream.encryption_type is undefined"
-    }
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.kinesis_stream}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "community.aws.kinesis_stream.encryption_type is set",
+		"keyActualValue": "community.aws.kinesis_stream.encryption_type is undefined",
+	}
 }
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	task := ansLib.tasks[id][t]
 
-    object.get(task["community.aws.kinesis_stream"], "encryption_state", "undefined") == "undefined"
+	object.get(task["community.aws.kinesis_stream"], "encryption_state", "undefined") == "undefined"
 
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name={{%s}}.{{community.aws.kinesis_stream}}", [task.name]),
-        "issueType":         "MissingAttribute",
-        "keyExpectedValue":  "community.aws.kinesis_stream.encryption_state is set",
-        "keyActualValue": 	 "community.aws.kinesis_stream.encryption_state is undefined"
-    }
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.kinesis_stream}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "community.aws.kinesis_stream.encryption_state is set",
+		"keyActualValue": "community.aws.kinesis_stream.encryption_state is undefined",
+	}
 }
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	task := ansLib.tasks[id][t]
 
-    task["community.aws.kinesis_stream"].encryption_state != "enabled"
+	task["community.aws.kinesis_stream"].encryption_state != "enabled"
 
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name={{%s}}.{{community.aws.kinesis_stream}}.encryption_state", [task.name]),
-        "issueType":         "IncorrectValue",
-        "keyExpectedValue":  "community.aws.kinesis_stream.encryption_state is set to enabled",
-        "keyActualValue": 	 "community.aws.kinesis_stream.encryption_state is not set to enabled"
-    }
-}
-
-
-CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
-
-    task["community.aws.kinesis_stream"].encryption_type == "NONE"
-
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name={{%s}}.{{community.aws.kinesis_stream}}.encryption_type", [task.name]),
-        "issueType":         "IncorrectValue",
-        "keyExpectedValue":  "community.aws.kinesis_stream.encryption_type is set and not NONE",
-        "keyActualValue": 	 "community.aws.kinesis_stream.encryption_type is set but NONE"
-    }
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.kinesis_stream}}.encryption_state", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "community.aws.kinesis_stream.encryption_state is set to enabled",
+		"keyActualValue": "community.aws.kinesis_stream.encryption_state is not set to enabled",
+	}
 }
 
 CxPolicy[result] {
-    document := input.document[i]
-    tasks := getTasks(document)
-    task := tasks[t]
+	task := ansLib.tasks[id][t]
 
-    task["community.aws.kinesis_stream"].encryption_type == "KMS"
-    object.get(task["community.aws.kinesis_stream"], "key_id", "undefined") == "undefined"
-    
+	task["community.aws.kinesis_stream"].encryption_type == "NONE"
 
-    result := {
-        "documentId":        document.id,
-        "searchKey":         sprintf("name={{%s}}.{{community.aws.kinesis_stream}}", [task.name]),
-        "issueType":         "MissingAttribute",
-        "keyExpectedValue":  "community.aws.kinesis_stream.key_id is set",
-        "keyActualValue": 	 "community.aws.kinesis_stream.key_id is undefined"
-    }
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.kinesis_stream}}.encryption_type", [task.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "community.aws.kinesis_stream.encryption_type is set and not NONE",
+		"keyActualValue": "community.aws.kinesis_stream.encryption_type is set but NONE",
+	}
 }
 
-getTasks(document) = result {
-    result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-    count(result) != 0
-} else = result {
-    result := [body | playbook := document.playbooks[_]; body := playbook ]
-    count(result) != 0
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+
+	task["community.aws.kinesis_stream"].encryption_type == "KMS"
+	object.get(task["community.aws.kinesis_stream"], "key_id", "undefined") == "undefined"
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{community.aws.kinesis_stream}}", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "community.aws.kinesis_stream.key_id is set",
+		"keyActualValue": "community.aws.kinesis_stream.key_id is undefined",
+	}
 }

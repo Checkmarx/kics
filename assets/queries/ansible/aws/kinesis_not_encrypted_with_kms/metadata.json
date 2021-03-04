@@ -1,8 +1,9 @@
 {
   "id": "f2ea6481-1d31-4d40-946a-520dc6321dd7",
-  "queryName": "AWS Kinesis Not Encrypted with KMS",
+  "queryName": "Kinesis Not Encrypted With KMS",
   "severity": "HIGH",
   "category": "Encryption and Key Management",
   "descriptionText": "AWS Kinesis Streams and metadata should be protected with KMS",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/kinesis_stream_module.html"
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/kinesis_stream_module.html",
+  "platform": "Ansible"
 }

@@ -1,8 +1,9 @@
 {
-  "id": "f0104061-8bfc-4b45-8a7d-630eb502f281",
-  "queryName": "RDS Automatic Minor Upgrades Disabled",
-  "severity": "MEDIUM",
-  "category": "Operational",
-  "descriptionText": "AWS RDS must have automatic minor upgrades enabled, which means the attribute 'AutoMinorVersionUpgrade' must be set to true.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html"
+	"id": "f0104061-8bfc-4b45-8a7d-630eb502f281",
+	"queryName": "RDS Automatic Minor Upgrades Disabled",
+	"severity": "MEDIUM",
+	"category": "Operational",
+	"descriptionText": "AWS RDS must have automatic minor upgrades enabled, which means the attribute 'AutoMinorVersionUpgrade' must be set to true.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+	"platform": "CloudFormation"
 }

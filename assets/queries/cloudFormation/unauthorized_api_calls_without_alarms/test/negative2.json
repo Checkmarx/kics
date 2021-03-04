@@ -1,0 +1,50 @@
+{
+  "Resources": {
+    "SnsTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "Subscription": [
+          {
+            "Endpoint": "email@example.com",
+            "Protocol": "email"
+          }
+        ],
+        "TopicName": "alarm-action"
+      }
+    },
+    "CloudWatchAlarm": {
+      "Properties": {
+        "AlarmName": "iam_policy_changes",
+        "AlarmDescription": "A CloudWatch Alarm that triggers when changes are made to IAM policies. Events include IAM policy creation/deletion/update operations as well as attaching/detaching policies from IAM users, roles or groups.",
+        "EvaluationPeriods": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "AlarmActions": [
+          "SnsTopic"
+        ],
+        "TreatMissingData": "notBreaching",
+        "MetricName": "IAMPolicyEventCount",
+        "Namespace": "CloudTrailMetrics",
+        "Statistic": "Sum",
+        "Period": 300,
+        "Threshold": 1
+      },
+      "Type": "AWS::CloudWatch::Alarm"
+    },
+    "MetricFilter": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "LogGroupName": "",
+        "FilterPattern": "{ ($.errorCode = \"*UnauthorizedOperation\") || ($.errorCode = \"AccessDenied*\") }",
+        "MetricTransformations": [
+          {
+            "MetricNamespace": "CloudTrailMetrics",
+            "MetricName": "IAMPolicyEventCount",
+            "MetricValue": "1"
+          }
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": ""
+}

@@ -1,8 +1,0 @@
-{
-  "id": "5c822443-e1ea-46b8-84eb-758ec602e844",
-  "queryName": "Security Group is Not Configured",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "Azure Virtual Network subnet must be configured with a Network Security Group, which means the attribute 'security_group' must be defined and not empty",
-  "descriptionUrl": "https://www.terraform.io/docs/providers/azure/r/virtual_network.html"
-}

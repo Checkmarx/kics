@@ -3,6 +3,7 @@
   "queryName": "Public ECR policy",
   "severity": "MEDIUM",
   "category": "Identity and Access Management",
-  "descriptionText": "Public ECR policy",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_ecr_module.html#parameter-policy"
+  "descriptionText": "Amazon ECR image repositories shouldn't have public access",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_ecr_module.html#parameter-policy",
+  "platform": "Ansible"
 }

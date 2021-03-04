@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "EBS Volume Clusters Not Encrypted",
+    "severity": "HIGH",
+    "line": 4
+  }
+]

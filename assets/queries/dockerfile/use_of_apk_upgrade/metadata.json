@@ -1,8 +1,9 @@
 {
   "id": "989ab888-7d1e-410f-9dde-c64a1d367bf2",
-  "queryName": "Use of apk upgrade",
+  "queryName": "Use of Apk Upgrade",
   "severity": "HIGH",
   "category": "Package Management",
   "descriptionText": "Avoid usage of apk upgrade because some packages from the parent image cannot be upgraded inside an unprivileged container",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run"
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
+  "platform": "Dockerfile"
 }

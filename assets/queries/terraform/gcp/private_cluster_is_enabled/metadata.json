@@ -1,8 +1,0 @@
-{
-  "id": "6ccb85d7-0420-4907-9380-50313f80946b",
-  "queryName": "Private Cluster is Disabled",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'private_cluster_config' must be defined and the attributes 'enable_private_nodes' and 'enable_private_endpoint' must be true",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster"
-}

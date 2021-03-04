@@ -1,0 +1,9 @@
+{
+	"id": "e401d614-8026-4f4b-9af9-75d1197461ba",
+	"queryName": "IAM Policies With Full Privileges",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM policies that allow full administrative privileges (for all resources)",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
+	"platform": "Ansible"
+}

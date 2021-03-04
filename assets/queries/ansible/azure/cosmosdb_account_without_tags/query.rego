@@ -1,26 +1,18 @@
 package Cx
 
-CxPolicy [ result ] {
-  document := input.document[i]
-  tasks := getTasks(document)
-  task := tasks[t]
-  task.azure_rm_cosmosdbaccount
-  not task.azure_rm_cosmosdbaccount.tags
+import data.generic.ansible as ansLib
 
-  result := {
-          "documentId": document.id,
-          "searchKey": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags", [task.name]),
-          "issueType": "MissingAttribute",
-          "keyExpectedValue": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags is defined", [task.name]),
-          "keyActualValue": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags is undefined", [task.name]),
-      }
-}
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
 
+	task.azure_rm_cosmosdbaccount
+	not task.azure_rm_cosmosdbaccount.tags
 
-getTasks(document) = result {
-  result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-  count(result) != 0
-} else = result {
-  result := [body | playbook := document.playbooks[_]; body := playbook ]
-  count(result) != 0
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags", [task.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags is defined", [task.name]),
+		"keyActualValue": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags is undefined", [task.name]),
+	}
 }

@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "Tiller Deployment Is Accessible From Within The Cluster",
+		"severity": "HIGH",
+		"line": 21
+	},
+	{
+		"queryName": "Tiller Deployment Is Accessible From Within The Cluster",
+		"severity": "HIGH",
+		"line": 53
+	}
+]

@@ -1,8 +1,9 @@
 {
-  "id": "e4239438-e639-44aa-adb8-866e400e3ade",
-  "queryName": "IAM Policy On User",
-  "severity": "MEDIUM",
-  "category": "Identity and Access Management",
-  "descriptionText": "IAM policies should be applied to groups and not to users",
-  "descriptionUrl": "#"
+	"id": "e4239438-e639-44aa-adb8-866e400e3ade",
+	"queryName": "IAM Policy On User",
+	"severity": "MEDIUM",
+	"category": "Identity and Access Management",
+	"descriptionText": "IAM policies should be applied to groups and not to users",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_IAM.html",
+	"platform": "CloudFormation"
 }

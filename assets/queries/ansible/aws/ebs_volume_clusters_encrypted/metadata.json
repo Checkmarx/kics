@@ -1,8 +1,0 @@
-{
-  "id": "5255c3db-448b-4f9b-a087-a568fe290a76",
-  "queryName": "Volume Clusters Not Encrypted",
-  "severity": "HIGH",
-  "category": "Encryption and Key Management",
-  "descriptionText": "The value on AWS Volume Cluster Encryption must be true",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_vol_module.html#parameter-encrypted"
-}

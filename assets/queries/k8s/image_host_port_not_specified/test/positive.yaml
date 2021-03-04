@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: firstpod
+spec:
+  containers:
+  - name: container
+    image: nginx
+    ports:
+    - containerPort: 80
+      hostIP: 10.0.0.1
+      hostPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secondpod
+spec:
+  template:
+    spec:
+      containers:
+      - name: container2
+        image: nginx
+        ports:
+        - containerPort: 81
+          hostIP: 10.0.0.2
+          hostPort: 8081
+    metadata:
+      labels:
+        app: nginx
+  selector:
+    matchLabels:
+      app: nginx

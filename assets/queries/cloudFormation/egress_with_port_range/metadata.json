@@ -1,8 +1,0 @@
-{
-  "id": "dae9c373-8287-462f-8746-6f93dad93610",
-  "queryName": "AWS Security Group Egress With Port Range",
-  "severity": "MEDIUM",
-  "category": "Network Security",
-  "descriptionText": "AWS Security Group Egress should have a single port",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html"
-}

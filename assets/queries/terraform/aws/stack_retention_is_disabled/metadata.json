@@ -1,8 +1,9 @@
 {
   "id": "6e0e2f68-3fd9-4cd8-a5e4-e2213ef0df97",
-  "queryName": "Stack Retention is Disabled",
+  "queryName": "Stack Retention Is Disabled",
   "severity": "MEDIUM",
   "category": "Backup and Disaster Recovery",
   "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack_set_instance#stack_set_name"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack_set_instance#stack_set_name",
+  "platform": "Terraform"
 }

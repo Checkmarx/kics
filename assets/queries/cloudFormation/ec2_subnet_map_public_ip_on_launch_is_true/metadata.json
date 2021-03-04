@@ -1,8 +1,0 @@
-{
-  "id": "6c9fb2ca-7912-4610-bdb4-7c39f8e31ca9",
-  "queryName": "EC2 Subnet MapPublicIpOnLaunch Is True",
-  "severity": "HIGH",
-  "category": "Network Security",
-  "descriptionText": "MapPublicIpOnLaunch feature should be false in order to disable automatic IP assignment",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html"
-}

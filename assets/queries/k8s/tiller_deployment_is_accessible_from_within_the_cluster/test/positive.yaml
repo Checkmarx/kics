@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: helm
+    name: tiller
+  name: tiller-bad-args
+spec:
+  selector:
+    matchLabels:
+      name: tiller
+  template:
+    metadata:
+      labels:
+        app: helm
+        name: tiller
+    spec:
+      containers:
+        -
+          args:
+            - "--listen=10.7.2.8:44134"
+          image: tiller-image
+          name: tiller-v2
+          ports:
+            -
+              containerPort: 44134
+              name: tiller
+              protocol: TCP
+            -
+              containerPort: 44135
+              name: http
+              protocol: TCP
+      serviceAccountName: tiller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: helm
+    name: tiller
+  name: tiller-deploy-no-args
+spec:
+  selector:
+    matchLabels:
+      name: tiller
+  template:
+    metadata:
+      labels:
+        app: helm
+        name: tiller
+    spec:
+      containers:
+        -
+          name: tiller-v2
+          image: tiller-image
+      serviceAccountName: tiller

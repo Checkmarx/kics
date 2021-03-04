@@ -1,0 +1,9 @@
+{
+  "id": "12b7e704-37f0-4d1e-911a-44bf60c48c21",
+  "queryName": "IAM Role Allows All Principals To Assume",
+  "severity": "LOW",
+  "category": "Identity and Access Management",
+  "descriptionText": "IAM role allows all services or principals to assume it",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
+  "platform": "Terraform"
+}
