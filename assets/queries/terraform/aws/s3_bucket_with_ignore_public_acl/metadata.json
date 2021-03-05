@@ -2,7 +2,7 @@
   "id": "4fa66806-0dd9-4f8d-9480-3174d39c7c91",
   "queryName": "S3 Bucket With Ignore Public ACL",
   "severity": "LOW",
-  "category": "Network Security",
+  "category": "Insecure Configurations",
   "descriptionText": "S3 bucket with ignore public ACL",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
   "platform": "Terraform"

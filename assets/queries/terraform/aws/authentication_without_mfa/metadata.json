@@ -2,7 +2,7 @@
 	"id": "3ddfa124-6407-4845-a501-179f90c65097",
 	"queryName": "Authentication Without MFA",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Users should authenticate with MFA (Multi-factor Authentication)",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy",
 	"platform": "Terraform"

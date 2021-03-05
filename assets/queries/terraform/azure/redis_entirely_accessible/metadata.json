@@ -2,7 +2,7 @@
 	"id": "fd8da341-6760-4450-b26c-9f6d8850575e",
 	"queryName": "Redis Entirely Accessible",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "Firewall rule allowing unrestricted access to Redis from the Internet",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
 	"platform": "Terraform"
