@@ -2,7 +2,7 @@
 	"id": "1baba08e-3c8a-4be7-95eb-dced5833de21",
 	"queryName": "Master Authentication is Disabled",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Access Control",
 	"descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
 	"platform": "Terraform"

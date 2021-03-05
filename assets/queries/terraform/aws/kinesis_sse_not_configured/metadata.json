@@ -2,7 +2,7 @@
 	"id": "5c6dd5e7-1fe0-4cae-8f81-4c122717cef3",
 	"queryName": "Kinesis SSE Not Configured",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "AWS Kinesis Server data at rest should have Server Side Encryption (SSE) enabled",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_firehose_delivery_stream#server_side_encryption",
 	"platform": "Terraform"
