@@ -335,22 +335,23 @@ func scan() error {
 	return nil
 }
 
-func printOutput(path, filename string, body interface{}, formats []string) error {
-	if path == "" {
+func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+	if outputPath == "" {
 		return nil
 	}
-	if strings.Contains(path, ".") {
-		if len(formats) == 0 && filepath.Ext(path) != "" {
-			formats = []string{filepath.Ext(path)[1:]}
+	if strings.Contains(outputPath, ".") {
+		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
+			formats = []string{filepath.Ext(outputPath)[1:]}
 		}
-		if len(formats) == 1 && strings.HasSuffix(path, formats[0]) {
-			filename = filepath.Base(path)
+		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
+			filename = filepath.Base(outputPath)
+			outputPath = filepath.Dir(outputPath)
 		}
 	}
 
 	ok := consoleHelpers.ValidateReportFormats(formats)
-	if ok == nil && path != "" {
-		ok = consoleHelpers.GenerateReport(path, filename, body, formats)
+	if ok == nil {
+		ok = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
 	}
 	return ok
 }
