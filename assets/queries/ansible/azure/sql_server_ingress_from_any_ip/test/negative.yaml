@@ -1,4 +1,3 @@
----
 - name: Create (or update) Firewall Rule
   azure.azcollection.azure_rm_sqlfirewallrule:
     resource_group: myResourceGroup

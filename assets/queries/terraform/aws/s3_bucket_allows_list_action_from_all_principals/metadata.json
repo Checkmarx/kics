@@ -2,7 +2,7 @@
 	"id": "66c6f96f-2d9e-417e-a998-9058aeeecd44",
 	"queryName": "S3 Bucket Allows List Action From All Principals",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "S3 Buckets must not allow List Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is List, for all Principals.",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy",
 	"platform": "Terraform"

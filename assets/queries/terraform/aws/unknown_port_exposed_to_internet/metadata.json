@@ -2,7 +2,7 @@
   "id": "590d878b-abdc-428f-895a-e2b68a0e1998",
   "queryName": "Unknown Port Exposed To Internet",
   "severity": "HIGH",
-  "category": "Network Ports Security",
+  "category": "Networking and Firewall",
   "descriptionText": "AWS Security Group should not have an unknown port exposed to the entire Internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
   "platform": "Terraform"

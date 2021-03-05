@@ -7,8 +7,8 @@
     admin_user_enabled: true
     sku: Premium
     tags:
-        Release: beta1
-        Environment: Production
+      Release: beta1
+      Environment: Production
 - name: Create an azure container registry2
   azure.azcollection.azure_rm_containerregistry:
     name: myRegistry
@@ -17,5 +17,5 @@
     admin_user_enabled: "true"
     sku: Premium
     tags:
-        Release: beta1
-        Environment: Production
+      Release: beta1
+      Environment: Production
