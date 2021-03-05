@@ -82,11 +82,11 @@ Flags:
   -h, --help                      help for scan
   -l, --log-file                  writes log messages to info.log
       --no-progress               hides the progress bar
-  -o, --output-path string        file path to store result in json format
+  -o, --output-path string        directory path to store result in output formats
+      --output-formats string     formats the result will be exported
   -p, --path string               path or directory path to scan
   -d, --payload-path string       path to store internal representation JSON file
   -q, --queries-path string       path to directory with queries (default "./assets/queries")
-      --sarif string              path to store result in sarif format
   -t, --type strings              case insensitive list of platform types to scan
                                   (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
   -v, --verbose                   increase verbosity

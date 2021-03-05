@@ -7,6 +7,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
+// PrintSarifReport creates a report file on sarif format
 func PrintSarifReport(path, filename string, body interface{}) error {
 	if !strings.HasSuffix(filename, ".sarif") {
 		filename += ".sarif"

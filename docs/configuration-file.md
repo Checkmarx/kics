@@ -56,7 +56,8 @@ KICS is able to infer the format without the need of file extension.
   "verbose": true,
   "log-file": true,
   "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
-  "output-path": "file path to store result in json format",
+  "output-path": "directory path to store result in output formats",
+  "output-formats": "formats the result will be exported",
   "exclude-paths": "exclude paths or files from scan",
   "no-progress": false,
   "type": "type of queries to use in the scan",
@@ -72,7 +73,8 @@ path: "path to file or directory to scan"
 verbose: true
 log-file: true
 queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-output-path: "file path to store result in json format"
+output-path: "directory path to store result in output formats"
+output-formats: "formats the result will be exported"
 exclude-paths: "exclude paths or files from scan"
 no-progress: false
 type: "type of queries to use in the scan"
@@ -87,7 +89,8 @@ path = "path to file or directory to scan"
 verbose = true
 log-file = true
 queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-output-path = "file path to store result in json format"
+output-path = "directory path to store result in output formats"
+output-formats = "formats the result will be exported"
 exclude-paths = "exclude paths or files from scan"
 no-progress = false
 type = "type of queries to use in the scan"
@@ -101,7 +104,8 @@ exclude-results = "exclude results by providing a list of similarity IDs of a re
 "exclude-paths" = "exclude paths or files from scan"
 "log-file" = true
 "no-progress" = false
-"output-path" = "file path to store result in json format"
+"output-path" = "directory path to store result in output formats"
+"output-formats" = "formats the result will be exported"
 "path" = "path to file or directory to scan"
 "payload-path" = "file path to store source internal representation in JSON format"
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"

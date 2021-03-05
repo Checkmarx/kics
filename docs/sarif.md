@@ -11,7 +11,8 @@ steps:
     uses: checkmarx/kics-action@v1.0
     with:
       path: 'terraform'
-      sarif: 'results.sarif'
+      output-formats: 'sarif'
+      output-path: 'results.sarif'
   - name: Upload SARIF file
     uses: github/codeql-action/upload-sarif@v1
     with:
