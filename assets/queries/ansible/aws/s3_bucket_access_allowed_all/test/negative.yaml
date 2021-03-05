@@ -2,13 +2,13 @@
   amazon.aws.s3_bucket:
     name: mys3bucket
     policy:
-      Version: "2012-10-17"
-      Id: "sqspolicy"
+      Version: '2012-10-17'
+      Id: sqspolicy
       Statement:
       - Sid: First
         Effect: Deny
-        Principal: "*"
-        Action: "*"
+        Principal: '*'
+        Action: '*'
         Resource: ${aws_sqs_queue.q.arn}
         Condition:
           ArnEquals:

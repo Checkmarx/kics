@@ -4,14 +4,14 @@
 		"severity": "MEDIUM",
 		"line": 7
 		},
-	{
-		"queryName": "IAM Access Key Is Exposed",
-		"severity": "MEDIUM",
-		"line": 42
-	},
-	{
-		"queryName": "IAM Access Key Is Exposed",
-		"severity": "MEDIUM",
-		"line": 31
-	}
+    {
+      "queryName": "IAM Access Key Is Exposed",
+      "severity": "MEDIUM",
+      "line": 26
+    },
+    {
+      "queryName": "IAM Access Key Is Exposed",
+      "severity": "MEDIUM",
+      "line": 36
+    }
 ]

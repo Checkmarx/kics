@@ -2,7 +2,7 @@
   google.cloud.gcp_sql_instance:
     auth_kind: serviceaccount
     database_version: MYSQL_5_6
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     project: test_project
     region: us-central1
     service_account_file: /tmp/auth.pem
