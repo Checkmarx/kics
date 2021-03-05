@@ -2,7 +2,7 @@
   "id": "dd29336b-fe57-445b-a26e-e6aa867ae609",
   "queryName": "Container Is Privileged",
   "severity": "HIGH",
-  "category": "Best Practices",
+  "category": "Insecure Configurations",
   "descriptionText": "Do not allow container to be privileged.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers",
   "platform": "Kubernetes"
