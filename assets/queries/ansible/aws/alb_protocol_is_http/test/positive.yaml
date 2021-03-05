@@ -1,4 +1,3 @@
----
 - name: my_elb_application
   community.aws.elb_application_lb:
     name: myelb
@@ -10,14 +9,13 @@
       - subnet-abcdef000
     listeners:
       - Protocol: HTTP
-        Port: 80 # Required. The port on which the load balancer is listening.
-        # The security policy that defines which ciphers and protocols are supported. The default is the current predefined security policy.
+        Port: 80
         SslPolicy: ELBSecurityPolicy-2015-05
-        Certificates: # The ARN of the certificate (only one certficate ARN should be provided)
+        Certificates:
           - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
         DefaultActions:
-          - Type: forward # Required.
-            TargetGroupName: # Required. The name of the target group
+          - Type: forward
+            TargetGroupName: targetname
     state: present
 - name: my_elb_application2
   community.aws.elb_application_lb:
@@ -29,12 +27,11 @@
       - subnet-012345678
       - subnet-abcdef000
     listeners:
-        Port: 80 # Required. The port on which the load balancer is listening.
-        # The security policy that defines which ciphers and protocols are supported. The default is the current predefined security policy.
-        SslPolicy: ELBSecurityPolicy-2015-05
-        Certificates: # The ARN of the certificate (only one certficate ARN should be provided)
-          - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
-        DefaultActions:
-          - Type: forward # Required.
-            TargetGroupName: # Required. The name of the target group
+      Port: 80
+      SslPolicy: ELBSecurityPolicy-2015-05
+      Certificates:
+        - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
+      DefaultActions:
+        - Type: forward
+          TargetGroupName: targetname
     state: present

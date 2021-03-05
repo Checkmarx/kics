@@ -3,7 +3,7 @@
   google.cloud.gcp_bigquery_dataset:
     name: my_example_dataset
     access:
-        - special_group: allAuthenticatedUsers
+      - special_group: allAuthenticatedUsers
     dataset_reference:
       dataset_id: my_example_dataset
     project: test_project

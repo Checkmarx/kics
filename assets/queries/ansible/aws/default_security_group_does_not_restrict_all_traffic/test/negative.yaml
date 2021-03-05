@@ -1,5 +1,3 @@
-
----
 - name: example ec2 group
   amazon.aws.ec2_group:
     name: example
@@ -9,19 +7,19 @@
     aws_secret_key: SECRET
     aws_access_key: ACCESS
     rules:
-      - proto: all
+    - proto: all
         # in the 'proto' attribute, if you specify -1, all, or a protocol number other than tcp, udp, icmp, or 58 (ICMPv6),
         # traffic on all ports is allowed, regardless of any ports you specify
-        from_port: 10050 # this value is ignored
-        to_port: 10050 # this value is ignored
-        cidr_ip: 10.1.0.0/16
-        cidr_ipv6: 64:ff9b::/96
+      from_port: 10050   # this value is ignored
+      to_port: 10050   # this value is ignored
+      cidr_ip: 10.1.0.0/16
+      cidr_ipv6: 64:ff9b::/96
     rules_egress:
-      - proto: tcp
-        from_port: 80
-        to_port: 80
-        cidr_ip: 10.1.0.0/16
-        cidr_ipv6: 64:ff9b::/96
-        group_name: example-other
+    - proto: tcp
+      from_port: 80
+      to_port: 80
+      cidr_ip: 10.1.0.0/16
+      cidr_ipv6: 64:ff9b::/96
+      group_name: example-other
         # description to use if example-other needs to be created
-        group_desc: other example EC2 group
+      group_desc: other example EC2 group

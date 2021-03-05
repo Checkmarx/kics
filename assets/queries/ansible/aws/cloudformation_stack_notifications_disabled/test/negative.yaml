@@ -1,8 +1,8 @@
 - name: create a stack, pass in the template via an URL
   amazon.aws.cloudformation:
-    stack_name: "ansible-cloudformation"
-    stack_policy: "wowowowoowow"
-    notification_arns: "a, b"
+    stack_name: ansible-cloudformation
+    stack_policy: wowowowoowow
+    notification_arns: a, b
     state: present
     region: us-east-1
     disable_rollback: true

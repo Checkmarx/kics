@@ -1,4 +1,3 @@
----
 - name: create an account
   azure.azcollection.azure_rm_storageaccount:
     resource_group: myResourceGroup
@@ -22,7 +21,7 @@
     resource_group: myResourceGroup
     name: clh0002
     type: Standard_RAGRS
-    https_only: True
+    https_only: true
     tags:
       testing: testing
       delete: on-exit
@@ -31,7 +30,7 @@
     resource_group: myResourceGroup
     name: clh0002
     type: Standard_RAGRS
-    https_only: "true"
+    https_only: 'true'
     tags:
       testing: testing
       delete: on-exit
@@ -40,7 +39,7 @@
     resource_group: myResourceGroup
     name: clh0002
     type: Standard_RAGRS
-    https_only: "True"
+    https_only: 'True'
     tags:
       testing: testing
       delete: on-exit
@@ -49,7 +48,7 @@
     resource_group: myResourceGroup
     name: clh0002
     type: Standard_RAGRS
-    https_only: "yes"
+    https_only: yes
     tags:
       testing: testing
       delete: on-exit
@@ -58,7 +57,7 @@
     resource_group: myResourceGroup
     name: clh0002
     type: Standard_RAGRS
-    https_only: "Yes"
+    https_only: Yes
     tags:
       testing: testing
       delete: on-exit

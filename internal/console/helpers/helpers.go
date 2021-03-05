@@ -190,7 +190,7 @@ func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 
 // FileAnalyzer determines the type of extension in the passed config file by its content
 func FileAnalyzer(path string) (string, error) {
-	ostat, err := os.Open(path)
+	ostat, err := os.Open(filepath.Clean(path))
 	if err != nil {
 		return "", err
 	}
