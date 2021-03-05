@@ -2,7 +2,7 @@
   "id": "bcdcbdc6-a350-4855-ae7c-d1e6436f7c97",
   "queryName": "IAM Role Allows Public Assume",
   "severity": "LOW",
-  "category": "Identity and Access Management",
+  "category": "Access Control",
   "descriptionText": "IAM role allows All services or principals to assume it",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
   "platform": "Terraform"

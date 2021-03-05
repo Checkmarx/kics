@@ -2,7 +2,7 @@
 	"id": "b139213e-7d24-49c2-8025-c18faa21ecaa",
 	"queryName": "Node Auto Upgrade Not Enabled",
 	"severity": "HIGH",
-	"category": "Operational Efficiency",
+	"category": "Insecure Configurations",
 	"descriptionText": "Node 'auto_upgrade' should be enabled for Kubernetes Clusters",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#auto_upgrade",
 	"platform": "Terraform"
