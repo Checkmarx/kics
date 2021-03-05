@@ -1,7 +1,7 @@
 ## KICS Roadmap
 
 | Status | Milestone | ETA | Target Release |
-| :--- | :--- | :--- | |
+| :--- | :--- | :--- | :--- |
 | Not-Started | **Milestone 5** | Mar 2021 | |
 |  | Helm Support |  | 1.3.0|
 |  | Terraform - Parameters files support |  | 1.3.0|
@@ -9,12 +9,12 @@
 |  | Distribution platforms: Homebrew, Chocolatey|  | |
 | | | | |
 | In-Progress | **Milestone 4** | Feb 2021 | |
-| Completed | Mac support |  | v1.1.3 |
-| Completed | Hard-coded secret keys detection |  | v1.1.3|
 | In-Progress | Reporting - add SARIF format |  | v1.2.0|
-| Completed | CI/CD improved documentation |  | v1.1.4|
 | In-Progress | Improved CLI outputs (progess, coloring, logo) |  | v1.2.0|
 | In-Progress | Engineering and performance improvements |  | 1.2.0|
+| Completed | CI/CD improved documentation |  | v1.1.4|
+| Completed | Mac support |  | v1.1.3 |
+| Completed | Hard-coded secret keys detection |  | v1.1.3|
 
 ---
 <br/>
