@@ -49,8 +49,8 @@ CxPolicy[result] {
 		"documentId": pod.id,
 		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Pod %s should have egress rules in matching NetworkPolicy", [pod.metadata.name]),
-		"keyActualValue": sprintf("Pod %s has no egress rules in matching NetworkPolicy", [pod.metadata.name])
+		"keyExpectedValue": sprintf("Pod %s should have ingress and egress rules in matching NetworkPolicy", [pod.metadata.name]),
+		"keyActualValue": sprintf("Pod %s has no ingress or egress rules in matching NetworkPolicy", [pod.metadata.name])
 	}
 }
 
