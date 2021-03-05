@@ -1,15 +1,15 @@
 #this is a problematic code where the query should report a result(s)
-resource "aws_iam_access_key" "lb1" {
+resource "aws_iam_access_key" "positive1" {
   user    = "root"
   pgp_key = "keybase:some_person_that_exists"
 }
 
-resource "aws_iam_user" "lb" {
+resource "aws_iam_user" "positive3" {
   name = "loadbalancer"
   path = "/system/"
 }
 
-resource "aws_iam_user_policy" "lb_ro2" {
+resource "aws_iam_user_policy" "positive4" {
   name = "test"
   user = aws_iam_user.lb.name
 
@@ -33,7 +33,7 @@ output "secret" {
   value = aws_iam_access_key.lb.encrypted_secret
 }
 
-resource "aws_iam_access_key" "lb2" {
+resource "aws_iam_access_key" "positive2" {
   user    = "root"
   pgp_key = "keybase:some_person_that_exists"
   status = "Active"
@@ -44,7 +44,7 @@ resource "aws_iam_user" "lb" {
   path = "/system/"
 }
 
-resource "aws_iam_user_policy" "lb_ro3" {
+resource "aws_iam_user_policy" "positive5" {
   name = "test"
   user = aws_iam_user.lb.name
 

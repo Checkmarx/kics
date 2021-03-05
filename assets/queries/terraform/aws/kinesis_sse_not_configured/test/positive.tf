@@ -1,4 +1,4 @@
-resource "aws_kinesis_firehose_delivery_stream" "example" {
+resource "aws_kinesis_firehose_delivery_stream" "positive1" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 
@@ -9,13 +9,13 @@ resource "aws_kinesis_firehose_delivery_stream" "example" {
 }
 
 
-resource "aws_kinesis_firehose_delivery_stream" "example2" {
+resource "aws_kinesis_firehose_delivery_stream" "positive2" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 }
 
 
-resource "aws_kinesis_firehose_delivery_stream" "example3" {
+resource "aws_kinesis_firehose_delivery_stream" "positive3" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 
@@ -25,7 +25,7 @@ resource "aws_kinesis_firehose_delivery_stream" "example3" {
 }
 
 
-resource "aws_kinesis_firehose_delivery_stream" "example4" {
+resource "aws_kinesis_firehose_delivery_stream" "positive4" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 
@@ -35,7 +35,7 @@ resource "aws_kinesis_firehose_delivery_stream" "example4" {
   }
 }
 
-resource "aws_kinesis_firehose_delivery_stream" "example5" {
+resource "aws_kinesis_firehose_delivery_stream" "positive5" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 

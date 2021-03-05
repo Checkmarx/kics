@@ -1,4 +1,4 @@
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "positive1" {
   name                = "storageaccountname"
   resource_group_name = azurerm_resource_group.example.name
 
@@ -17,7 +17,7 @@ resource "azurerm_storage_account" "example" {
   }
 }
 
-resource "azurerm_storage_account" "example2" {
+resource "azurerm_storage_account" "positive2" {
   name                = "storageaccountname"
   resource_group_name = azurerm_resource_group.example.name
 
@@ -35,7 +35,7 @@ resource "azurerm_storage_account" "example2" {
   }
 }
 
-resource "azurerm_storage_account_network_rules" "test" {
+resource "azurerm_storage_account_network_rules" "positive3" {
   resource_group_name  = azurerm_resource_group.test.name
   storage_account_name = azurerm_storage_account.test.name
 
@@ -45,7 +45,7 @@ resource "azurerm_storage_account_network_rules" "test" {
   bypass                     = ["Metrics"]
 }
 
-resource "azurerm_storage_account_network_rules" "test2" {
+resource "azurerm_storage_account_network_rules" "positive4" {
   resource_group_name  = azurerm_resource_group.test.name
   storage_account_name = azurerm_storage_account.test.name
 

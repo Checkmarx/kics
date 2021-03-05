@@ -1,4 +1,4 @@
-resource "aws_neptune_cluster" "default" {
+resource "aws_neptune_cluster" "positive1" {
   cluster_identifier                  = "neptune-cluster-demo"
   engine                              = "neptune"
   backup_retention_period             = 5
@@ -8,7 +8,7 @@ resource "aws_neptune_cluster" "default" {
   apply_immediately                   = true
 }
 
-resource "aws_neptune_cluster" "false" {
+resource "aws_neptune_cluster" "positive2" {
   cluster_identifier                  = "neptune-cluster-demo"
   engine                              = "neptune"
   backup_retention_period             = 5

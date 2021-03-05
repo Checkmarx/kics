@@ -1,4 +1,4 @@
-resource "aws_config_configuration_aggregator" "account" {
+resource "aws_config_configuration_aggregator" "negative1" {
   name = "example"
 
   account_aggregation_source {
@@ -7,7 +7,7 @@ resource "aws_config_configuration_aggregator" "account" {
   }
 }
 
-resource "aws_config_configuration_aggregator" "organization" {
+resource "aws_config_configuration_aggregator" "negative2" {
   depends_on = [aws_iam_role_policy_attachment.organization]
 
   name = "example" # Required

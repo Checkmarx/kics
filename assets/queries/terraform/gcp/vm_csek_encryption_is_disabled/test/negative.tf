@@ -1,4 +1,4 @@
-resource "google_compute_disk" "default" {
+resource "google_compute_disk" "negative1" {
   name  = "test-disk"
   type  = "pd-ssd"
   zone  = "us-central1-a"

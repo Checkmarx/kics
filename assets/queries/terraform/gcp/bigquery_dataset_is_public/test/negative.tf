@@ -1,5 +1,5 @@
 # negative sample
-resource "google_bigquery_dataset" "dataset" {
+resource "google_bigquery_dataset" "negative1" {
   dataset_id                  = "example_dataset"
   friendly_name               = "test"
   description                 = "This is a test description"

@@ -1,4 +1,4 @@
-resource "azurerm_postgresql_server" "postgre_server" {
+resource "azurerm_postgresql_server" "negative1" {
     name                = "dbserver"
     location            = "usgovvirginia"
     resource_group_name = "${azurerm_resource_group.jira_rg.name}"

@@ -1,4 +1,4 @@
-resource "azurerm_key_vault_key" "generated" {
+resource "azurerm_key_vault_key" "positive1" {
     name         = "generated-certificate"
     key_vault_id = azurerm_key_vault.example.id
     key_type     = "RSA"

@@ -1,4 +1,4 @@
-resource "google_sql_database_instance" "master1" {
+resource "google_sql_database_instance" "positive1" {
     name             = "master-instance"
     database_version = "POSTGRES_11"
     region           = "us-central1"
@@ -8,7 +8,7 @@ resource "google_sql_database_instance" "master1" {
     }
 }
 
-resource "google_sql_database_instance" "master2" {
+resource "google_sql_database_instance" "positive2" {
     name             = "master-instance"
     database_version = "POSTGRES_11"
     region           = "us-central1"
@@ -20,7 +20,7 @@ resource "google_sql_database_instance" "master2" {
     }
 }
 
-resource "google_sql_database_instance" "master3" {
+resource "google_sql_database_instance" "positive3" {
     name             = "master-instance"
     database_version = "POSTGRES_11"
     region           = "us-central1"

@@ -1,4 +1,4 @@
-resource "google_dns_managed_zone" "foo" {
+resource "google_dns_managed_zone" "negative1" {
   name     = "foobar"
   dns_name = "foo.bar."
 

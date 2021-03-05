@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "positive1" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -12,7 +12,7 @@ resource "aws_db_instance" "default" {
   storage_encrypted = false
 }
 
-resource "aws_db_instance" "default2" {
+resource "aws_db_instance" "positive2" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"

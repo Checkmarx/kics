@@ -1,4 +1,4 @@
-resource "aws_security_group" "rdp_positive_tcp_1" {
+resource "aws_security_group" "positive1" {
   name        = "rdp_positive_tcp_1"
   description = "Gets the remote desktop port open with the tcp protocol"
 
@@ -11,7 +11,7 @@ resource "aws_security_group" "rdp_positive_tcp_1" {
   }
 }
 
-resource "aws_security_group" "rdp_positive_tcp_2" {
+resource "aws_security_group" "positive2" {
   name        = "rdp_positive_tcp_2"
   description = "Gets the remote desktop port open with the tcp protocol"
 

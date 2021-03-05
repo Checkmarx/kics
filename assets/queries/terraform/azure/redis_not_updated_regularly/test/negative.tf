@@ -1,4 +1,4 @@
-resource "azurerm_redis_cache" "example_redis" {
+resource "azurerm_redis_cache" "negative1" {
     name                = "timeout-redis"
     location            = "West Europe"
     resource_group_name = azurerm_resource_group.example_rg.name

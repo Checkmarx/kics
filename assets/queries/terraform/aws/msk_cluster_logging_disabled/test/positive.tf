@@ -1,4 +1,4 @@
-resource "aws_msk_cluster" "example1" {  
+resource "aws_msk_cluster" "positive1" {  
   logging_info {
     broker_logs {
       cloudwatch_logs {
@@ -17,6 +17,6 @@ resource "aws_msk_cluster" "example1" {
   }
 }
 
-resource "aws_msk_cluster" "example2" {  
+resource "aws_msk_cluster" "positive2" {  
   
 }

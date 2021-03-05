@@ -1,4 +1,4 @@
-resource "google_compute_disk" "default1" {
+resource "google_compute_disk" "positive1" {
   name  = "test-disk"
   type  = "pd-ssd"
   zone  = "us-central1-a"
@@ -9,7 +9,7 @@ resource "google_compute_disk" "default1" {
   physical_block_size_bytes = 4096
 }
 
-resource "google_compute_disk" "default2" {
+resource "google_compute_disk" "positive2" {
   name  = "test-disk"
   type  = "pd-ssd"
   zone  = "us-central1-a"
@@ -23,7 +23,7 @@ resource "google_compute_disk" "default2" {
   }
 }
 
-resource "google_compute_disk" "default3" {
+resource "google_compute_disk" "positive3" {
   name  = "test-disk"
   type  = "pd-ssd"
   zone  = "us-central1-a"

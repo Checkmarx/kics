@@ -1,4 +1,4 @@
-resource "aws_elasticsearch_domain" "example" {
+resource "aws_elasticsearch_domain" "positive1" {
 
   log_publishing_options {
     cloudwatch_log_group_arn = aws_cloudwatch_log_group.example.arn
@@ -7,7 +7,7 @@ resource "aws_elasticsearch_domain" "example" {
   }
 }
 
-resource "aws_elasticsearch_domain" "example2" {
+resource "aws_elasticsearch_domain" "positive2" {
 
 log_publishing_options {
 cloudwatch_log_group_arn = aws_cloudwatch_log_group.example.arn

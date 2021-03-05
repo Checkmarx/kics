@@ -1,4 +1,4 @@
-resource "aws_eks_cluster" "example" {
+resource "aws_eks_cluster" "positive1" {
   name     = "example"
   role_arn = aws_iam_role.example.arn
 
@@ -23,7 +23,7 @@ output "kubeconfig-certificate-authority-data" {
   value = aws_eks_cluster.example.certificate_authority[0].data
 }
 
-resource "aws_eks_cluster" "without_example" {
+resource "aws_eks_cluster" "positive2" {
   name     = "without_example"
   role_arn = aws_iam_role.example.arn
 

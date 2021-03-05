@@ -3,7 +3,7 @@ variable "cluster_name" {
   type    = string
 }
 
-resource "aws_eks_cluster" "example" {
+resource "aws_eks_cluster" "positive1" {
   depends_on = [aws_cloudwatch_log_group.example]
 
   enabled_cluster_log_types = ["api", "audit"]
@@ -12,7 +12,7 @@ resource "aws_eks_cluster" "example" {
   # ... other configuration ...
 }
 
-resource "aws_cloudwatch_log_group" "example" {
+resource "aws_cloudwatch_log_group" "positive2" {
   name              = "/aws/eks/${var.cluster_name}/cluster"
   retention_in_days = 7
 

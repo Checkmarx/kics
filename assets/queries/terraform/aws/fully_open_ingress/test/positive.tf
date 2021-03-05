@@ -1,4 +1,4 @@
-resource "aws_security_group_rule" "somename" {
+resource "aws_security_group_rule" "positive1" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
@@ -7,7 +7,7 @@ resource "aws_security_group_rule" "somename" {
   security_group_id = aws_security_group.default.id
 }
 
-resource "aws_security_group" "ingress_inside_pos_1" {
+resource "aws_security_group" "positive2" {
   ingress {
     from_port         = 3306
     to_port           = 3306
@@ -17,7 +17,7 @@ resource "aws_security_group" "ingress_inside_pos_1" {
   }
 }
 
-resource "aws_security_group" "ingress_inside_pos_2" {
+resource "aws_security_group" "positive3" {
   ingress {
     from_port         = 3306
     to_port           = 3306

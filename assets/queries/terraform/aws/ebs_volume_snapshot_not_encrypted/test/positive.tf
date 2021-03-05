@@ -1,4 +1,4 @@
-resource "aws_ebs_snapshot" "production_snapshot" {
+resource "aws_ebs_snapshot" "positive1" {
   volume_id = "${data.aws_ebs_volume.prod_volume.id}"
   encrypted = false
   tags {
@@ -6,7 +6,7 @@ resource "aws_ebs_snapshot" "production_snapshot" {
   }
 }
 
-resource "aws_ebs_snapshot" "production_snapshot2" {
+resource "aws_ebs_snapshot" "positive2" {
   volume_id = "${data.aws_ebs_volume.prod_volume.id}"
   tags {
     Name = "Production"

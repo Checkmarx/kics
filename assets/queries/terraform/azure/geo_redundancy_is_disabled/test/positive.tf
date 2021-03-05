@@ -1,5 +1,5 @@
 
-resource "azurerm_postgresql_server" "postgre_server1" {
+resource "azurerm_postgresql_server" "positive1" {
     name                = "dbserver"
     location            = "usgovvirginia"
     resource_group_name = "${azurerm_resource_group.jira_rg.name}"
@@ -18,7 +18,7 @@ resource "azurerm_postgresql_server" "postgre_server1" {
     tags                         = "${local.postgresqlserver_tags}"
 }
 
-resource "azurerm_postgresql_server" "postgre_server2" {
+resource "azurerm_postgresql_server" "positive2" {
     name                = "dbserver"
     location            = "usgovvirginia"
     resource_group_name = "${azurerm_resource_group.jira_rg.name}"

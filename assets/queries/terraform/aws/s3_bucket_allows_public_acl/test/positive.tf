@@ -1,8 +1,8 @@
-resource "aws_s3_bucket" "example" {
+resource "aws_s3_bucket" "positive1" {
   bucket = "example"
 }
 
-resource "aws_s3_bucket_public_access_block" "example" {
+resource "aws_s3_bucket_public_access_block" "positive2" {
   bucket = aws_s3_bucket.example.id
 
   block_public_acls   = false
@@ -15,7 +15,7 @@ resource "aws_s3_bucket_public_access_block" "example" {
 // comment
 // comment
 // comment
-resource "aws_s3_bucket_public_access_block" "example_not_found" {
+resource "aws_s3_bucket_public_access_block" "positive3" {
   bucket = aws_s3_bucket.example.id
 
   block_public_policy = true

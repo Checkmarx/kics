@@ -14,6 +14,8 @@ CxPolicy[result] {
 	}
 }
 
+# TODO fix this query...
+# all resources should have different names
 CxPolicy[result] {
 	route := input.document[i].resource.aws_route53_query_log[name]
 	log_group := route.cloudwatch_log_group_arn

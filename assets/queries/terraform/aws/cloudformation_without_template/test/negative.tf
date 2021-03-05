@@ -1,4 +1,4 @@
-resource "aws_cloudformation_stack" "network" {
+resource "aws_cloudformation_stack" "negative1" {
 
      name = "networking-stack"
 
@@ -11,7 +11,7 @@ resource "aws_cloudformation_stack" "network" {
 
 
 
-resource "aws_cloudformation_stack" "network2" {
+resource "aws_cloudformation_stack" "negative2" {
 
      name = "networking-stack"
 

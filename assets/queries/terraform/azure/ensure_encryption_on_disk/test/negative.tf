@@ -1,5 +1,5 @@
 
-resource "azurerm_managed_disk" "encryption_enabled" {
+resource "azurerm_managed_disk" "negative1" {
   name                 = "acctestmd"
   location             = "West US 2"
   resource_group_name  = azurerm_resource_group.example.name
