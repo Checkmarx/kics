@@ -14,11 +14,17 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
+
+var reportGenerators = map[string]func(path, filename string, body interface{}) error{
+	"json":  report.PrintJSONReport,
+	"sarif": report.PrintSarifReport,
+}
 
 // ProgressBar represents a Progress
 // Writer is the writer output for progress bar
@@ -140,33 +146,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
 	return nil
 }
 
-func closeFile(path string, f *os.File) {
-	if err := f.Close(); err != nil {
-		log.Err(err).Msgf("failed to close file %s", path)
-	}
-
-	curDir, err := os.Getwd()
-	if err != nil {
-		log.Err(err).Msgf("failed to get current directory")
-	}
-
-	log.Info().Str("fileName", path).Msgf("Results saved to file %s", filepath.Join(curDir, path))
-}
-
-// PrintToJSONFile prints on JSON file the summary results
-func PrintToJSONFile(path string, body interface{}) error {
-	f, err := os.OpenFile(filepath.Clean(path), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
-	if err != nil {
-		return err
-	}
-	defer closeFile(path, f)
-
-	encoder := json.NewEncoder(f)
-	encoder.SetIndent("", "\t")
-
-	return encoder.Encode(body)
-}
-
 // CustomConsoleWriter creates an output to print log in a files
 func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWriter {
 	fileLogger.FormatLevel = func(i interface{}) string {
@@ -219,4 +198,32 @@ func FileAnalyzer(path string) (string, error) {
 	}
 
 	return "", errors.New("invalid configuration file format")
+}
+
+// GenerateReport execute each report function to generate report
+func GenerateReport(path, filename string, body interface{}, formats []string) error {
+	var err error = nil
+	for _, format := range formats {
+		if err = reportGenerators[format](path, filename, body); err != nil {
+			log.Error().Msgf("failed to generate %s report", format)
+			break
+		}
+	}
+	return err
+}
+
+// ValidateReportFormats returns an error if output format is not supported
+func ValidateReportFormats(formats []string) error {
+	validFormats := make([]string, len(reportGenerators))
+	for reportFormats := range reportGenerators {
+		validFormats = append(validFormats, reportFormats)
+	}
+	for _, format := range formats {
+		if _, ok := reportGenerators[format]; !ok {
+			return fmt.Errorf(
+				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(validFormats, "\n")),
+			)
+		}
+	}
+	return nil
 }

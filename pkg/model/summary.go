@@ -24,7 +24,7 @@ type VulnerableFile struct {
 type VulnerableQuery struct {
 	QueryName   string           `json:"query_name"`
 	QueryID     string           `json:"query_id"`
-	QueryURI    string           `json:"-"`
+	QueryURI    string           `json:"query_url"`
 	Severity    Severity         `json:"severity"`
 	Platform    string           `json:"platform"`
 	Files       []VulnerableFile `json:"files"`

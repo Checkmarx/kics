@@ -37,8 +37,8 @@ var (
 	payloadPath    string
 	excludePath    []string
 	excludeResults []string
+	outputFormats  []string
 	cfgFile        string
-	sarifPath      string
 	verbose        bool
 	logFile        bool
 	noProgress     bool
@@ -157,9 +157,9 @@ func initScanCmd() {
 		"./assets/queries",
 		"path to directory with queries",
 	)
-	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
+	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store result in output formats")
+	scanCmd.Flags().StringSliceVarP(&outputFormats, "output-formats", "", []string{}, "Formats the result will be exported")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
-	scanCmd.Flags().StringVarP(&sarifPath, "sarif", "", "", "file path to save SARIF output")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
 		"exclude-paths",
@@ -312,18 +312,12 @@ func scan() error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printJSON(payloadPath, files.Combine()); err != nil {
+	if err := printOutput(payloadPath, "payload", files.Combine(), []string{"json"}); err != nil {
 		return err
 	}
 
-	if err := printJSON(outputPath, summary); err != nil {
+	if err := printOutput(outputPath, "results", summary, outputFormats); err != nil {
 		return err
-	}
-
-	if sarifPath != "" {
-		if err := printToSarifFile(sarifPath, &summary); err != nil {
-			return err
-		}
 	}
 
 	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries()); err != nil {
@@ -341,18 +335,22 @@ func scan() error {
 	return nil
 }
 
-func printToSarifFile(sarifPath string, summary *model.Summary) error {
-	sarifReport := model.NewSarifReport(path)
-	for idx := range summary.Queries {
-		sarifReport.BuildIssue(&summary.Queries[idx])
+func printOutput(path, filename string, body interface{}, formats []string) error {
+	if path == "" {
+		return nil
+	}
+	if strings.Contains(path, ".") {
+		if len(formats) == 0 && filepath.Ext(path) != "" {
+			formats = []string{filepath.Ext(path)[1:]}
+		}
+		if len(formats) == 1 && strings.HasSuffix(path, formats[0]) {
+			filename = filepath.Base(path)
+		}
 	}
 
-	return printJSON(sarifPath, sarifReport)
-}
-
-func printJSON(path string, body interface{}) error {
-	if path != "" {
-		return consoleHelpers.PrintToJSONFile(path, body)
+	ok := consoleHelpers.ValidateReportFormats(formats)
+	if ok == nil && path != "" {
+		ok = consoleHelpers.GenerateReport(path, filename, body, formats)
 	}
-	return nil
+	return ok
 }
