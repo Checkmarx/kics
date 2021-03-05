@@ -52,53 +52,58 @@ KICS is able to infer the format without the need of file extension.
 
 ```JSON
 {
-  "path": "path to file or directory to scan",
-  "verbose": true,
-  "log-file": true,
-  "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
-  "output-path": "file path to store result in json format",
   "exclude-paths": "exclude paths or files from scan",
+  "exclude-queries": "exclude queries by providing the query ID",
+  "exclude-results": "exclude results by providing a list of similarity IDs of a result",
+  "log-file": true,
   "no-progress": false,
-  "type": "type of queries to use in the scan",
+  "output-path": "file path to store result in json format",
+  "path": "path to file or directory to scan",
   "payload-path": "file path to store source internal representation in JSON format",
-  "exclude-results": "exclude results by providing a list of similarity IDs of a result"
+  "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
+  "type": "type of queries to use in the scan",
+  "verbose": true
 }
 ```
 
 #### YAML Format
 
 ```YAML
-path: "path to file or directory to scan"
-verbose: true
-log-file: true
-queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-output-path: "file path to store result in json format"
 exclude-paths: "exclude paths or files from scan"
-no-progress: false
-type: "type of queries to use in the scan"
-payload-path: "file path to store source internal representation in JSON format"
+exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
+log-file: true
+no-progress: false
+output-path: "file path to store result in json format"
+path: "path to file or directory to scan"
+payload-path: "file path to store source internal representation in JSON format"
+queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
+type: "type of queries to use in the scan"
+verbose: true
 ```
 
 #### TOML Format
 
 ```TOML
-path = "path to file or directory to scan"
-verbose = true
-log-file = true
-queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-output-path = "file path to store result in json format"
 exclude-paths = "exclude paths or files from scan"
-no-progress = false
-type = "type of queries to use in the scan"
-payload-path = "file path to store source internal representation in JSON format"
+exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
+log-file = true
+no-progress = false
+output-path = "file path to store result in json format"
+path = "path to file or directory to scan"
+payload-path = "file path to store source internal representation in JSON format"
+queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
+type = "type of queries to use in the scan"
+verbose = true
 ```
 
 #### HCL Format
 
 ```hcl
 "exclude-paths" = "exclude paths or files from scan"
+"exclude-queries" = "exclude queries by providing the query ID"
+"exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 "log-file" = true
 "no-progress" = false
 "output-path" = "file path to store result in json format"
@@ -107,7 +112,6 @@ exclude-results = "exclude results by providing a list of similarity IDs of a re
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
 "type" = "type of queries to use in the scan"
 "verbose" = true
-"exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 ```
 
 ---

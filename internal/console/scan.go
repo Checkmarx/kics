@@ -36,6 +36,7 @@ var (
 	outputPath     string
 	payloadPath    string
 	excludePath    []string
+	excludeQueries []string
 	excludeResults []string
 	cfgFile        string
 	verbose        bool
@@ -171,13 +172,24 @@ func initScanCmd() {
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(query.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
-	scanCmd.Flags().StringSliceVarP(&excludeResults,
+	scanCmd.Flags().StringSliceVarP(
+		&excludeQueries,
+		"exclude-queries",
+		"",
+		[]string{},
+		"exclude queries by providing the query ID\n"+
+			"can be provided multiple times or as a comma separated string\n"+
+			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
+	)
+	scanCmd.Flags().StringSliceVarP(
+		&excludeResults,
 		"exclude-results",
 		"x",
 		[]string{},
 		"exclude results by providing the similarity ID of a result\n"+
 			"can be provided multiple times or as a comma separated string\n"+
-			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'")
+			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
+	)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -254,7 +266,7 @@ func scan() error {
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
-	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeResultsMap)
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
 	if err != nil {
 		return err
 	}

@@ -5,52 +5,36 @@
 package mock
 
 import (
-	context "context"
 	reflect "reflect"
 
 	model "github.com/Checkmarx/kics/pkg/model"
 	gomock "github.com/golang/mock/gomock"
 )
 
-// MockQueriesSource is a mock of QueriesSource interface
+// MockQueriesSource is a mock of QueriesSource interface.
 type MockQueriesSource struct {
 	ctrl     *gomock.Controller
 	recorder *MockQueriesSourceMockRecorder
 }
 
-// MockQueriesSourceMockRecorder is the mock recorder for MockQueriesSource
+// MockQueriesSourceMockRecorder is the mock recorder for MockQueriesSource.
 type MockQueriesSourceMockRecorder struct {
 	mock *MockQueriesSource
 }
 
-// NewMockQueriesSource creates a new mock instance
+// NewMockQueriesSource creates a new mock instance.
 func NewMockQueriesSource(ctrl *gomock.Controller) *MockQueriesSource {
 	mock := &MockQueriesSource{ctrl: ctrl}
 	mock.recorder = &MockQueriesSourceMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockQueriesSource) EXPECT() *MockQueriesSourceMockRecorder {
 	return m.recorder
 }
 
-// GetQueries mocks base method
-func (m *MockQueriesSource) GetQueries() ([]model.QueryMetadata, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetQueries")
-	ret0, _ := ret[0].([]model.QueryMetadata)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetQueries indicates an expected call of GetQueries
-func (mr *MockQueriesSourceMockRecorder) GetQueries() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries))
-}
-
-// GetQueries mocks base method
+// GetGenericQuery mocks base method.
 func (m *MockQueriesSource) GetGenericQuery(platform string) (string, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetGenericQuery", platform)
@@ -59,60 +43,94 @@ func (m *MockQueriesSource) GetGenericQuery(platform string) (string, error) {
 	return ret0, ret1
 }
 
-// GetQueries indicates an expected call of GetQueries
-func (mr *MockQueriesSourceMockRecorder) GetGenericQuery(platform string) *gomock.Call {
+// GetGenericQuery indicates an expected call of GetGenericQuery.
+func (mr *MockQueriesSourceMockRecorder) GetGenericQuery(platform interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGenericQuery", reflect.TypeOf((*MockQueriesSource)(nil).GetGenericQuery), platform)
 }
 
-// MockFilesStorage is a mock of FilesStorage interface
-type MockFilesStorage struct {
-	ctrl     *gomock.Controller
-	recorder *MockFilesStorageMockRecorder
-}
-
-// MockFilesStorageMockRecorder is the mock recorder for MockFilesStorage
-type MockFilesStorageMockRecorder struct {
-	mock *MockFilesStorage
-}
-
-// NewMockFilesStorage creates a new mock instance
-func NewMockFilesStorage(ctrl *gomock.Controller) *MockFilesStorage {
-	mock := &MockFilesStorage{ctrl: ctrl}
-	mock.recorder = &MockFilesStorageMockRecorder{mock}
-	return mock
-}
-
-// EXPECT returns an object that allows the caller to indicate expected use
-func (m *MockFilesStorage) EXPECT() *MockFilesStorageMockRecorder {
-	return m.recorder
-}
-
-// GetFiles mocks base method
-func (m *MockFilesStorage) GetFiles(ctx context.Context, scanID string) (model.FileMetadatas, error) {
+// GetQueries mocks base method.
+func (m *MockQueriesSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetFiles", ctx, scanID)
-	ret0, _ := ret[0].(model.FileMetadatas)
+	ret := m.ctrl.Call(m, "GetQueries", excludeQueries)
+	ret0, _ := ret[0].([]model.QueryMetadata)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetFiles indicates an expected call of GetFiles
-func (mr *MockFilesStorageMockRecorder) GetFiles(ctx, scanID interface{}) *gomock.Call {
+// GetQueries indicates an expected call of GetQueries.
+func (mr *MockQueriesSourceMockRecorder) GetQueries(excludeQueries interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFiles", reflect.TypeOf((*MockFilesStorage)(nil).GetFiles), ctx, scanID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries), excludeQueries)
 }
 
-// SaveVulnerabilities mocks base method
-func (m *MockFilesStorage) SaveVulnerabilities(ctx context.Context, vulnerabilities []model.Vulnerability) error {
+// MockTracker is a mock of Tracker interface.
+type MockTracker struct {
+	ctrl     *gomock.Controller
+	recorder *MockTrackerMockRecorder
+}
+
+// MockTrackerMockRecorder is the mock recorder for MockTracker.
+type MockTrackerMockRecorder struct {
+	mock *MockTracker
+}
+
+// NewMockTracker creates a new mock instance.
+func NewMockTracker(ctrl *gomock.Controller) *MockTracker {
+	mock := &MockTracker{ctrl: ctrl}
+	mock.recorder = &MockTrackerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockTracker) EXPECT() *MockTrackerMockRecorder {
+	return m.recorder
+}
+
+// FailedComputeSimilarityID mocks base method.
+func (m *MockTracker) FailedComputeSimilarityID() {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SaveVulnerabilities", ctx, vulnerabilities)
-	ret0, _ := ret[0].(error)
-	return ret0
+	m.ctrl.Call(m, "FailedComputeSimilarityID")
 }
 
-// SaveVulnerabilities indicates an expected call of SaveVulnerabilities
-func (mr *MockFilesStorageMockRecorder) SaveVulnerabilities(ctx, vulnerabilities interface{}) *gomock.Call {
+// FailedComputeSimilarityID indicates an expected call of FailedComputeSimilarityID.
+func (mr *MockTrackerMockRecorder) FailedComputeSimilarityID() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveVulnerabilities", reflect.TypeOf((*MockFilesStorage)(nil).SaveVulnerabilities), ctx, vulnerabilities)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FailedComputeSimilarityID", reflect.TypeOf((*MockTracker)(nil).FailedComputeSimilarityID))
+}
+
+// FailedDetectLine mocks base method.
+func (m *MockTracker) FailedDetectLine() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "FailedDetectLine")
+}
+
+// FailedDetectLine indicates an expected call of FailedDetectLine.
+func (mr *MockTrackerMockRecorder) FailedDetectLine() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FailedDetectLine", reflect.TypeOf((*MockTracker)(nil).FailedDetectLine))
+}
+
+// TrackQueryExecution mocks base method.
+func (m *MockTracker) TrackQueryExecution(queryAggregation int) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "TrackQueryExecution", queryAggregation)
+}
+
+// TrackQueryExecution indicates an expected call of TrackQueryExecution.
+func (mr *MockTrackerMockRecorder) TrackQueryExecution(queryAggregation interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TrackQueryExecution", reflect.TypeOf((*MockTracker)(nil).TrackQueryExecution), queryAggregation)
+}
+
+// TrackQueryLoad mocks base method.
+func (m *MockTracker) TrackQueryLoad(queryAggregation int) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "TrackQueryLoad", queryAggregation)
+}
+
+// TrackQueryLoad indicates an expected call of TrackQueryLoad.
+func (mr *MockTrackerMockRecorder) TrackQueryLoad(queryAggregation interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TrackQueryLoad", reflect.TypeOf((*MockTracker)(nil).TrackQueryLoad), queryAggregation)
 }
