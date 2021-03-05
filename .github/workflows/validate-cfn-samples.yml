@@ -20,8 +20,6 @@ jobs:
       - name: Get cfn-python-lint
         run: |
           pip3 install cfn-lint
-          pip3 show cfn-lint
-          which cfn-lint
       - name: Validate cloudformation template syntax
         run: |
           python3 -u .github/validators/validate-syntax.py assets/queries/cloudFormation/**/test/*.yaml \

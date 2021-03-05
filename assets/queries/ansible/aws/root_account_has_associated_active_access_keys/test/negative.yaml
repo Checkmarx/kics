@@ -2,10 +2,10 @@
 - name: Create two new IAM users with API keys
   community.aws.iam:
     iam_type: user
-    name: "{{ root }}"
+    name: '{{ root }}'
     state: present
-    password: "{{ temp_pass }}"
+    password: '{{ temp_pass }}'
     access_key_state: inactive
   loop:
-    - jcleese
-    - mpython
+  - jcleese
+  - mpython

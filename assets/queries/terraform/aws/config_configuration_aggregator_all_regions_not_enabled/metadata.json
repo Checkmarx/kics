@@ -2,7 +2,7 @@
   "id": "ac5a0bc0-a54c-45aa-90c3-15f7703b9132",
   "queryName": "Config Configuration Aggregator All Regions Not Enabled",
   "severity": "HIGH",
-  "category": "Logging",
+  "category": "Observability",
   "descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator#all_regions",
   "platform": "Terraform"

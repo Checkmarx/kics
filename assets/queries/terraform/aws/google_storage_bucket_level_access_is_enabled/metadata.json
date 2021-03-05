@@ -2,7 +2,7 @@
 	"id": "bb0db090-5509-4853-a827-75ced0b3caa0",
 	"queryName": "Google Storage Bucket Level Access is Enabled",
 	"severity": "MEDIUM",
-	"category": "Identity & Access Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Validates if the Google Storage Bucket Level Access is Enabled",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket",
 	"platform": "Terraform"

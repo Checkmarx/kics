@@ -2,7 +2,7 @@
   "id": "e979fcbc-df6c-422d-9458-c33d65e71c45",
   "queryName": "Elasticsearch Without Slow Logs",
   "severity": "MEDIUM",
-  "category": "Logging",
+  "category": "Observability",
   "descriptionText": "Ensure that AWS Elasticsearch enables support for slow logs",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
   "platform": "Terraform"

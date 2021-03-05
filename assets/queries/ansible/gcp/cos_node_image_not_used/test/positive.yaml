@@ -10,4 +10,4 @@
     service_account_file: "/tmp/auth.pem"
     state: present
     config:
-        image_type: WINDOWS_LTSC
+      image_type: WINDOWS_LTSC

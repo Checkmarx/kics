@@ -1,4 +1,3 @@
----
 - name: create a cluster
   google.cloud.gcp_container_cluster:
     name: my-cluster
@@ -7,6 +6,6 @@
     auth_kind: serviceaccount
     master_authorized_networks_config:
       cidr_blocks:
-        - cidr_block: 192.0.2.0/24
+      - cidr_block: 192.0.2.0/24
       enabled: yes
     state: present

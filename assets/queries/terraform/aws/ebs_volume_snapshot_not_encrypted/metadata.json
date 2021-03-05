@@ -2,7 +2,7 @@
   "id": "e6b4b943-6883-47a9-9739-7ada9568f8ca",
   "queryName": "EBS Volume Snapshot Not Encrypted",
   "severity": "HIGH",
-  "category": "Encryption and Key Management",
+  "category": "Encryption",
   "descriptionText": "The value on AWS EBS Volume Snapshot Encryptation must be true",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ebs_snapshot#encrypted",
   "platform": "Terraform"
