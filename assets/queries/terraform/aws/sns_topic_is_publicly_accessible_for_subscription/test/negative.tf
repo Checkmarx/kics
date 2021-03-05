@@ -15,4 +15,4 @@ policy = <<EOF
 }
 EOF
 }
-}
+
