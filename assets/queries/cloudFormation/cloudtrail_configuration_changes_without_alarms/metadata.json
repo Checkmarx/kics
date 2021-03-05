@@ -1,9 +1,0 @@
-{
-	"id": "1c205547-fc40-4666-a5de-352903f4cc8b",
-	"queryName": "CloudTrail Configuration Changes Without Alarms",
-	"severity": "LOW",
-	"category": "Monitoring",
-	"descriptionText": "A log metric filter and alarm should exist for CloudTrail Configuration Changes",
-	"descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html",
-	"platform": "CloudFormation"
-}
