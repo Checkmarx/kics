@@ -2,12 +2,14 @@
 
 | Status | Milestone | ETA | Target Release |
 | :--- | :--- | :--- | :--- |
-| Not-Started | **Milestone 5** | Mar 2021 | |
-|  | Helm Support |  | 1.3.0|
-|  | Terraform - Parameters files support |  | 1.3.0|
-|  | Reporting - add HTML format |  | 1.2.0|
-|  | Distribution platforms: Homebrew, Chocolatey|  | |
-| | | | |
+| Not-Started | **Milestone 6** | Apr 2021 | |
+|  | Helm support |  | TBA |
+|  | Schemas support OpenAPI |  | TBA |
+|  | Schemas support Swagger |  | TBA |
+|  | Distribution platforms: Homebrew, Chocolatey|  | TBA|
+| In-Progress | **Milestone 5** | Mar 2021 | |
+| In-Progress | Terraform - Parameters files support |  | v1.3.0|
+| In-Progress | Reporting - add HTML format |  | v1.2.0|
 | In-Progress | **Milestone 4** | Feb 2021 | |
 | In-Progress | Reporting - add SARIF format |  | v1.2.0|
 | In-Progress | Improved CLI outputs (progess, coloring, logo) |  | v1.2.0|
@@ -27,14 +29,12 @@
 |  | Adding more queries and extending coverage |  | v1.1.1|
 |  | Adding more CI/CD integrations |  | v1.1.1|
 |  | Engineering and performance improvements |  | v1.1.1|
-|  | | |
 | Completed | **Milestone 2** | December 2020 | |
 |   | Adding support for K8S |  | v1.1.0|
 |   | Adding support for Docker |  | v1.1.0|
 |   | Adding support for Ansible |  | v1.1.0|
 |   | Adding support for AWS CloudFormation |  | v1.1.0|
 |   | Designing official logo for KICS | | |
-| | | | |
 | Completed | **Milestone 1** | November 2020 | |
 |  | First version of KICS engine |  | v1.0.0|
 |  | Terraform support, 50 queries |  | v1.0.0|
