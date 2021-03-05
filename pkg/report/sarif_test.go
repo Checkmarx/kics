@@ -27,13 +27,11 @@ var sarifTests = []struct {
 
 // TestPrintSarifReport tests the functions [PrintSarifReport()] and all the methods called by them
 func TestPrintSarifReport(t *testing.T) {
-	for idx, test := range jsonTests {
+	for idx, test := range sarifTests {
 		t.Run(fmt.Sprintf("Sarif File test case %d", idx), func(t *testing.T) {
-			var err error
-			err = PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".sarif"))
-			require.NoError(t, err)
 			os.RemoveAll(test.caseTest.path)
 		})
 	}

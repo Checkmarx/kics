@@ -16,7 +16,7 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 	if err != nil {
 		return err
 	}
-	if err = json.Unmarshal(result, &summary); err != nil {
+	if err := json.Unmarshal(result, &summary); err != nil {
 		return err
 	}
 
