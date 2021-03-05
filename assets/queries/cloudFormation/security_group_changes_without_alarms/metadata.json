@@ -2,7 +2,7 @@
 	"id": "4539759c-a609-4632-90e6-08385b90b4d9",
 	"queryName": "Security Group Changes Without Alarms",
 	"severity": "MEDIUM",
-	"category": "Monitoring",
+	"category": "Observability",
 	"descriptionText": "A log metric filter and alarm should exist for Security Group Changes",
 	"descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html",
 	"platform": "CloudFormation"

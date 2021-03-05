@@ -2,7 +2,7 @@
 	"id": "bc798502-f92b-46c8-87c3-faa5167d0071",
 	"queryName": "ElasticSearch Not Encrypted At Rest",
 	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Check if ElasticSearch encryption is disabled at Rest",
 	"descriptionUrl": "https://galaxy.ansible.com/fiunchinho/aws-elasticsearch-module",
 	"platform": "Ansible"
