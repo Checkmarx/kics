@@ -13,13 +13,14 @@ CxPolicy[result] {
 	zypper != null
 
 	packages = dockerLib.getPackages(commands, zypper)
-	regex.match("^[a-zA-Z]", packages[j]) == true
+	length := count(packages)
 
-	not dockerLib.withVersion(packages[j])
+	some j
+	analyzePackages(j, packages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using zypper install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [packages[j]]),
@@ -51,4 +52,17 @@ CxPolicy[result] {
 isZypper(command) {
 	contains(command[x], "zypper")
 	contains(command[j], "install")
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j == length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	not dockerLib.withVersion(currentPackage)
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j != length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	packages[plus(j, 1)] != "-v"
+	not dockerLib.withVersion(currentPackage)
 }
