@@ -2,7 +2,6 @@ package engine
 
 import (
 	"context"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -311,7 +310,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
-	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 
 	track := &tracker.CITracker{}
@@ -410,7 +409,7 @@ func (m *mockSource) GetGenericQuery(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()
 
 	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
-	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err
 }

@@ -1,7 +1,7 @@
 package query
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
@@ -164,7 +164,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 
 	type fields struct {

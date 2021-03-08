@@ -3,7 +3,6 @@ package report
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -42,7 +41,7 @@ func TestPrintJSONReport(t *testing.T) {
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
 			var jsonResult []byte
-			jsonResult, err = ioutil.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
+			jsonResult, err = os.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
 			require.NoError(t, err)
 			var resultSummary model.Summary
 			err = json.Unmarshal(jsonResult, &resultSummary)

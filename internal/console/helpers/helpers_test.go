@@ -3,7 +3,7 @@ package helpers
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"reflect"
 	"strings"
 	"sync"
@@ -117,8 +117,7 @@ func TestProgressBar(t *testing.T) {
 			if tt.shouldCheckOutput {
 				progressBar.Writer = &out
 			} else {
-				// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-				progressBar.Writer = ioutil.Discard
+				progressBar.Writer = io.Discard
 			}
 			go progressBar.Start(&wg)
 			if tt.shouldCheckOutput {
