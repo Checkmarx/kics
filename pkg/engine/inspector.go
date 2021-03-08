@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"sync"
 	"time"
 
@@ -181,8 +181,7 @@ func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progress
 	wg.Add(1)
 	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
 	if hideProgress {
-		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-		progressBar.Writer = ioutil.Discard
+		progressBar.Writer = io.Discard
 	}
 	go progressBar.Start(wg)
 }
