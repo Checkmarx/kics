@@ -1,3 +1,4 @@
+# trigger validator
 - name: my_elb_application
   community.aws.elb_application_lb:
     name: myelb

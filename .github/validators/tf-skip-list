@@ -1,0 +1,2 @@
+assets/queries/terraform/aws/authentication_without_mfa/test/positive.tf
+assets/queries/terraform/aws/authentication_without_mfa/test/negative.tf

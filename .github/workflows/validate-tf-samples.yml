@@ -26,7 +26,7 @@ jobs:
             && cd "${PROJDIR}"
       - name: Run tflint
         run: |
-          python3 .github/validators/validate-syntax.py "assets/queries/terraform/**/**/test/*.tf"
-        env:
-          LINTER_PATH: .bin/tflint
-          SKIP_LIST_PATH: '.github/validators/tf-skip-list'
+          python3 -u .github/validators/validate-syntax.py \
+            "assets/queries/terraform/**/**/test/*.tf" \
+            --linter .bin/tflint \
+            --skip '.github/validators/tf-skip-list'

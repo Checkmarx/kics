@@ -14,7 +14,7 @@ CxPolicy[result] {
 	}
 }
 
-# TODO fix this query...
+# TODO review this query...
 # all resources should have different names
 CxPolicy[result] {
 	route := input.document[i].resource.aws_route53_query_log[name]

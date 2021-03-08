@@ -1,3 +1,4 @@
+# trigger validator
 resource "aws_lb" "negative1" {
   # ...
 }
@@ -25,5 +26,5 @@ resource "aws_lb_listener" "negative3" {
 resource "aws_alb_listener" "negative4" {
   load_balancer_arn = aws_lb.front_end.arn
   port              = "443"
-  protocol          = "HTTPS"  
+  protocol          = "HTTPS"
 }
