@@ -6,7 +6,7 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"amazon.aws.ec2", "ec2"}
 	ec2 := task[modules[m]]
-	ansLib.checkState(ec2)
+	checkState(object.get(ec2, "state", "undefined"))
 
 	ansLib.isAnsibleTrue(ec2.assign_public_ip)
 
@@ -45,7 +45,7 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.ec2_instance", "ec2_instance"}
 	ec2_instance := task[modules[m]]
-	ansLib.checkState(ec2_instance)
+	checkState(object.get(ec2_instance, "state", "undefined"))
 
 	ipValue := ec2_instance.network.assign_public_ip
 	ansLib.isAnsibleTrue(ipValue)
@@ -60,3 +60,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("ec2_instance.network.assign_public_ip is '%s'", [ipValue]),
 	}
 }
+
+checkState("undefined") = true
+
+checkState("present") = true

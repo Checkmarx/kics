@@ -6,7 +6,7 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.ec2_instance", "ec2_instance", "amazon.aws.ec2", "ec2"}
 	ec2 := task[modules[m]]
-	ansLib.checkState(ec2)
+	checkState(object.get(ec2, "state", "undefined"))
 
 	object.get(ec2, "vpc_subnet_id", "undefined") == "undefined"
 
@@ -18,3 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("%s.vpc_subnet_id is undefined", [modules[m]]),
 	}
 }
+
+checkState("undefined") = true
+
+checkState("present") = true

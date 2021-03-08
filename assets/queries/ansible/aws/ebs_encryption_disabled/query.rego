@@ -7,7 +7,7 @@ modules := {"amazon.aws.ec2_vol", "ec2_vol"}
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	ec2_vol := task[modules[m]]
-	ansLib.checkState(ec2_vol)
+	checkState(ec2_vol)
 
 	ansLib.isAnsibleFalse(ec2_vol.encrypted)
 
@@ -23,7 +23,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	ec2_vol := task[modules[m]]
-	ansLib.checkState(ec2_vol)
+	checkState(ec2_vol)
 
 	object.get(ec2_vol, "encrypted", "undefined") == "undefined"
 
@@ -34,4 +34,10 @@ CxPolicy[result] {
 		"keyExpectedValue": "ec2_vol.encrypted should be defined",
 		"keyActualValue": "ec2_vol.encrypted is undefined",
 	}
+}
+
+checkState(task) {
+	state := object.get(task, "state", "undefined")
+	state != "absent"
+	state != "list"
 }
