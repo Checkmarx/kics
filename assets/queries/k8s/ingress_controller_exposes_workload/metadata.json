@@ -2,7 +2,7 @@
 	"id": "69bbc5e3-0818-4150-89cc-1e989b48f23b",
 	"queryName": "Ingress Controller Exposes Workload",
 	"severity": "MEDIUM",
-	"category": "Networking",
+	"category": "Insecure Configuration",
 	"descriptionText": "Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks",
 	"descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/",
 	"platform": "Kubernetes"

@@ -2,7 +2,7 @@
 	"id": "b16e8501-ef3c-44e1-a543-a093238099c9",
 	"queryName": "Using Platform Flag with FROM Command",
 	"severity": "MEDIUM",
-	"category": "Package Management",
+	"category": "Supply-Chain",
 	"descriptionText": "Don't use '--platform' flag with FROM",
 	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
 	"platform": "Dockerfile"

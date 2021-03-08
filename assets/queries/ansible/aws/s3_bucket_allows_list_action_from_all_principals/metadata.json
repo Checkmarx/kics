@@ -2,7 +2,7 @@
 	"id": "d395a950-12ce-4314-a742-ac5a785ab44e",
 	"queryName": "S3 Bucket Allows List Action From All Principals",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "S3 Buckets must not allow List Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion.",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html",
 	"platform": "Ansible"

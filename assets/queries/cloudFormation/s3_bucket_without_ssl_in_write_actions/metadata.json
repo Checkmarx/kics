@@ -2,7 +2,7 @@
 	"id": "38c64e76-c71e-4d92-a337-60174d1de1c9",
 	"queryName": "S3 Bucket Without SSL In Write Actions",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "S3 Buckets should enforce encryption of data transfers using Secure Sockets Layer (SSL)",
 	"descriptionUrl": "https://aws.amazon.com/blogs/security/how-to-use-bucket-policies-and-apply-defense-in-depth-to-help-secure-your-amazon-s3-data/",
 	"platform": "CloudFormation"

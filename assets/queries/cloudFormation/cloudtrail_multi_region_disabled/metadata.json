@@ -2,7 +2,7 @@
 	"id": "058ac855-989f-4378-ba4d-52d004020da7",
 	"queryName": "CloudTrail Multi Region Disabled",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "AWS CloudTrail should have IsMultiRegionTrail set to true",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-ismultiregiontrail",
 	"platform": "CloudFormation"

@@ -2,7 +2,7 @@
   "id": "4fbfee74-8186-40d5-a24e-4baa76a855de",
   "queryName": "SQS Queue Policy Allows NotAction",
   "severity": "MEDIUM",
-  "category": "Identity & Access Management",
+  "category": "Access Control",
   "descriptionText": "AWS SQS Queue Policy should not allow NotAction since the actions specified in this element are the only actions in that are limited",
   "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notaction.html",
   "platform": "CloudFormation"

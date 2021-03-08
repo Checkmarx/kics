@@ -166,3 +166,11 @@ go run ./cmd/console/main.go generate-id
 - `descriptionUrl` points to the official documentation about the resource being targeted
 - `platform` refers to querys target platform
 
+# List of queries
+
+- [Ansible](queries/ansible-queries.md)
+- [CloudFormation](queries/cloudformation-queries.md)
+- [Common](queries/common-queries.md)
+- [Dockerfile](queries/dockerfile-queries.md)
+- [Kubernetes](queries/kubernetes-queries.md)
+- [Terraform](queries/terraform-queries.md)

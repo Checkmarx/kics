@@ -2,7 +2,7 @@
 	"id": "2059155b-27fd-441e-b616-6966c468561f",
 	"queryName": "API Gateway X-Ray Disabled",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Observability",
 	"descriptionText": "API Gateway should have X-Ray Tracing enabled",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html#parameter-tracing_enabled",
 	"platform": "Ansible"

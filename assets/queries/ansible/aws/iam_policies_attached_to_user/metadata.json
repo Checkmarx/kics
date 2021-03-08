@@ -2,7 +2,7 @@
 	"id": "eafe4bc3-1042-4f88-b988-1939e64bf060",
 	"queryName": "IAM Policies Attached To User",
 	"severity": "LOW",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "IAM policies should be attached only to groups or roles",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_policy_module.html",
 	"platform": "Ansible"

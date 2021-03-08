@@ -1,0 +1,29 @@
+name: generate-queries-docs
+
+on:
+  push:
+    branches: [master]
+    paths:
+    - "assets/queries/**/metadata.json"
+
+jobs:
+  generate-docs:
+    name: generate-queries-docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Generate docs
+        run: |
+          python3 -u .github/generators/docs_generator.py -p ./assets/queries/ \
+            -o ./docs/queries/ -f md -t .github/generators/templates
+      - uses: EndBug/add-and-commit@v7
+        with:
+          message: 'Automatic document generation'
+          author_name: github-actions
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+
