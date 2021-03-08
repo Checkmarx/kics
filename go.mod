@@ -7,8 +7,9 @@ require (
 	github.com/agnivade/levenshtein v1.1.0
 	github.com/getsentry/sentry-go v0.10.0
 	github.com/golang/mock v1.5.0
-	github.com/google/go-cmp v0.5.0 // indirect
+	github.com/google/go-cmp v0.5.3 // indirect
 	github.com/google/uuid v1.2.0
+	github.com/gookit/color v1.2.4
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.9.0
 	github.com/mailru/easyjson v0.7.7
@@ -22,6 +23,7 @@ require (
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.7.0
 	github.com/zclconf/go-cty v1.8.0
+	golang.org/x/sys v0.0.0-20210220050731-9a76102bfb43 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )
 
