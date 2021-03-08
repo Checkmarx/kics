@@ -339,11 +339,12 @@ func TestNewInspector(t *testing.T) { // nolint
 		},
 	})
 	type args struct {
-		ctx            context.Context
-		source         QueriesSource
-		vb             VulnerabilityBuilder
-		tracker        Tracker
-		excludeResults map[string]bool
+		ctx               context.Context
+		source            QueriesSource
+		vb                VulnerabilityBuilder
+		tracker           Tracker
+		excludeCategories []string
+		excludeResults    map[string]bool
 	}
 	tests := []struct {
 		name    string
@@ -354,11 +355,12 @@ func TestNewInspector(t *testing.T) { // nolint
 		{
 			name: "test_new_inspector",
 			args: args{
-				ctx:            context.Background(),
-				vb:             vbs,
-				tracker:        track,
-				source:         sources,
-				excludeResults: map[string]bool{},
+				ctx:               context.Background(),
+				vb:                vbs,
+				tracker:           track,
+				source:            sources,
+				excludeCategories: []string{},
+				excludeResults:    map[string]bool{},
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -370,7 +372,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeResults)
+			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeCategories, tt.args.excludeResults)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
@@ -400,10 +402,10 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(excludeCategories []string) ([]model.QueryMetadata, error) {
 	sources := query.NewFilesystemSource(m.Source, []string{""})
 
-	return sources.GetQueries()
+	return sources.GetQueries([]string{})
 }
 func (m *mockSource) GetGenericQuery(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()

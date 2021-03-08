@@ -111,9 +111,19 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 	return true
 }
 
+func checkCategoryExclude(queryCategory interface{}, excludeCategories []string) bool {
+	category := queryCategory.(string)
+	for _, excludeCategory := range excludeCategories {
+		if category == excludeCategory {
+			return true
+		}
+	}
+	return false
+}
+
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
+func (s *FilesystemSource) GetQueries(excludeCategories []string) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
@@ -144,6 +154,9 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 		}
 
 		if !s.CheckType(query.Metadata["platform"]) {
+			continue
+		}
+		if checkCategoryExclude(query.Metadata["category"], excludeCategories) {
 			continue
 		}
 

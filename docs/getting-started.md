@@ -76,6 +76,9 @@ Flags:
   -e, --exclude-paths strings     exclude paths from scan
                                   supports glob and can be provided multiple times or as a quoted comma separated string
                                   example: './shouldNotScan/*,somefile.txt'
+      --exclude-categories        exclude categories by providing its name
+                                  can be provided multiple times or as a comma separated string
+                                  example: 'Access control,Best practices'
   -x, --exclude-results strings   exclude results by providing the similarity ID of a result
                                   can be provided multiple times or as a comma separated string
                                   example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'

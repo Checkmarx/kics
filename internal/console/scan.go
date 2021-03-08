@@ -31,17 +31,18 @@ import (
 )
 
 var (
-	path           string
-	queryPath      string
-	outputPath     string
-	payloadPath    string
-	excludePath    []string
-	excludeResults []string
-	cfgFile        string
-	verbose        bool
-	logFile        bool
-	noProgress     bool
-	types          []string
+	path              string
+	queryPath         string
+	outputPath        string
+	payloadPath       string
+	excludePath       []string
+	excludeResults    []string
+	excludeCategories []string
+	cfgFile           string
+	verbose           bool
+	logFile           bool
+	noProgress        bool
+	types             []string
 )
 
 var scanCmd = &cobra.Command{
@@ -178,6 +179,15 @@ func initScanCmd() {
 		"exclude results by providing the similarity ID of a result\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'")
+	scanCmd.Flags().StringSliceVarP(
+		&excludeCategories,
+		"exclude-categories",
+		"",
+		[]string{},
+		"exclude categories by providing its name\n"+
+			"can be provided multiple times or as a comma separated string\n"+
+			"example: 'Access control,Best practices'",
+	)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -254,7 +264,7 @@ func scan() error {
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
-	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeResultsMap)
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeCategories, excludeResultsMap)
 	if err != nil {
 		return err
 	}
