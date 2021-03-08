@@ -112,7 +112,12 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 }
 
 func checkCategoryExclude(queryCategory interface{}, excludeCategories []string) bool {
-	category := queryCategory.(string)
+	category, ok := queryCategory.(string)
+	if !ok {
+		log.Warn().
+			Msgf("Can't cast query category = %v", queryCategory)
+		return false
+	}
 	for _, excludeCategory := range excludeCategories {
 		if category == excludeCategory {
 			return true
