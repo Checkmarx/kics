@@ -14,20 +14,20 @@ CxPolicy[result] {
 
 	bindingExists(name, kind)
 
-	resources := document.rules[_].resources
 	some resource
-	contains(resourcesTaint, resources[resource])
+	resources := document.rules[resource].resources
+	resources[_] == "secrets"
 
-	rules := document.rules[_].verbs
+	rules := document.rules[resource].verbs
 	some rule
 	contains(ruleTaint, rules[rule])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.rules.verbs", [metadata.name]),
+		"searchKey": sprintf("metadata.name=%s.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The metadata.name=%s.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
-		"keyActualValue": sprintf("The metadata.name=%s.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
+		"keyActualValue": sprintf("The metadata.name=%s.rules.verb contain the following verbs: [%s]", [metadata.name, rules]),
 	}
 }
 
