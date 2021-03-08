@@ -2,7 +2,7 @@
 	"id": "1e5f5307-3e01-438d-8da6-985307ed25ce",
 	"queryName": "VM Not Attached To Network",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "No Network Security Group is attached to the Virtual Machine",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachine_module.html#parameter-network_interface_names",
 	"platform": "Ansible"

@@ -2,7 +2,7 @@
 	"id": "f45ea400-6bbe-4501-9fc7-1c3d75c32067",
 	"queryName": "Image Version Using 'latest'",
 	"severity": "MEDIUM",
-	"category": "Versioning",
+	"category": "Supply-Chain",
 	"descriptionText": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
 	"descriptionUrl": "https://docs.docker.com/develop/dev-best-practices/",
 	"platform": "Dockerfile"

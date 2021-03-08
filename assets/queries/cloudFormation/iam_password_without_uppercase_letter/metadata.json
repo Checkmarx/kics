@@ -2,7 +2,7 @@
 	"id": "445020f6-b69e-4484-847f-02d4b7768902",
 	"queryName": "IAM Password Without Uppercase Letter",
 	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
+	"category": "Best Practices",
 	"descriptionText": "IAM user resource Login Profile Password should have at least one uppercase letter",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
 	"platform": "CloudFormation"

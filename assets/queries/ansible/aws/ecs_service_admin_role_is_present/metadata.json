@@ -2,7 +2,7 @@
 	"id": "7db727c1-1720-468e-b80e-06697f71e09e",
 	"queryName": "ECS Service Admin Role is Present",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "ECS Services must not have Admin roles, which means the attribute 'role' must not be an admin role",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_service_module.html",
 	"platform": "Ansible"

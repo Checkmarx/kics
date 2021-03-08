@@ -2,7 +2,7 @@
   "id": "9d13b150-a2ab-42a1-b6f4-142e41f81e52",
   "queryName": "SNS Topic Without KmsMasterKeyId",
   "severity": "MEDIUM",
-  "category": "Encryption and Key Management",
+  "category": "Secret Management",
   "descriptionText": "KmsMasterKeyId attribute should not be undefined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html",
   "platform": "CloudFormation"

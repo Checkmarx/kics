@@ -2,7 +2,7 @@
 	"id": "38300d1a-feb2-4a48-936a-d1ef1cd24313",
 	"queryName": "Missing Zypper Clean",
 	"severity": "MEDIUM",
-	"category": "Package Management",
+	"category": "Supply-Chain",
 	"descriptionText": "Reduce layer and image size by deleting unneeded caches after running zypper",
 	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
 	"platform": "Dockerfile"
