@@ -1,9 +1,0 @@
-{
-	"id": "8cbddfb6-f647-43e9-a4f8-737005ef5159",
-	"queryName": "S3 Bucket Policy Changes Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Observability",
-	"descriptionText": "A log metric filter and alarm should exist for S3 Bucket Policy Changes",
-	"descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html",
-	"platform": "CloudFormation"
-}

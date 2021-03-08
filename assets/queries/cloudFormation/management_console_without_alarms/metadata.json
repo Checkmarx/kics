@@ -1,9 +1,0 @@
-{
-	"id": "cacf58b4-4904-4ecd-8003-55f1c6715272",
-	"queryName": "Management Console Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Observability",
-	"descriptionText": "A log metric filter and alarm should exist for Management Console sign-in without MFA",
-	"descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail-additional-examples.html",
-	"platform": "CloudFormation"
-}

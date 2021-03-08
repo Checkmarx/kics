@@ -1,9 +1,0 @@
-{
-	"id": "7b347a63-e143-43eb-9f7a-753a24d70a38",
-	"queryName": "Route Table Changes Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Observability",
-	"descriptionText": "A log metric filter and alarm should exist for route table changes",
-	"descriptionUrl": "https://kb.securestate.vmware.com/monitor-route-table-changes.html",
-	"platform": "CloudFormation"
-}

@@ -1,9 +1,0 @@
-{
-	"id": "553e2798-ec48-43d7-a94f-b88179464597",
-	"queryName": "Master Key Events Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Observability",
-	"descriptionText": "A log metric filter and alarm should exist dor Customer Master Key Events",
-	"descriptionUrl": "https://asecure.cloud/a/disabled_deleted_cmks/",
-	"platform": "CloudFormation"
-}

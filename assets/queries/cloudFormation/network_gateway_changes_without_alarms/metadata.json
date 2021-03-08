@@ -1,9 +1,0 @@
-{
-	"id": "f4c46791-0ee5-480a-ac38-43e7b0dbb4d9",
-	"queryName": "Network Gateway Changes Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Observability",
-	"descriptionText": "A log metric filter and alarm should exist for Changes to Network Gateways",
-	"descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html",
-	"platform": "CloudFormation"
-}
