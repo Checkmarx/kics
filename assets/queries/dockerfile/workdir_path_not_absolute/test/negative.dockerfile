@@ -4,6 +4,7 @@ RUN pip install --upgrade pip
 WORKDIR /path/to/workdir
 WORKDIR c:\\windows
 ENV DIRPATH=/path
+ENV GLASSFISH_ARCHIVE glassfish5
 WORKDIR $DIRPATH/$DIRNAME
 WORKDIR ${GLASSFISH_HOME}/bin
 COPY requirements.txt /usr/src/app/
