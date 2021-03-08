@@ -27,8 +27,7 @@ jobs:
             && cd "${PROJDIR}"
       - name: Validate k8s manifests
         run: |
-          python3 -u .github/validators/validate-syntax.py \
-            "assets/queries/k8s/**/test/*.yaml" \
+          python3 -u .github/validators/validate-syntax.py "assets/queries/k8s/**/test/*.yaml" \
             --extra ' --skip-kinds CustomResourceDefinition' \
             --linter .bin/kubeval \
-            --skip '.github/validators/k8s-skip-list'
+            --skip '.github/validators/k8s-skip-list' -v

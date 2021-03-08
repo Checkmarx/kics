@@ -39,7 +39,6 @@ parser.add_argument('-v', '--verbose', action='count', default=0,
   help='Increase verbosity, default:ERROR v:INFO vv:DEBUG')
 
 args = parser.parse_args()
-print(args)
 
 def summary(files, error_files):
   """ Show summary and exit with code 1 if errors > 0 """
@@ -92,7 +91,7 @@ def run_linter(file):
       cmds = [args.linter, file]
 
     if args.extra:
-      cmds.append(args.extra)
+      cmds = [*cmds[:1], *args.extra.strip().split(' '), *cmds[1:]]
 
     result = subprocess.check_output(cmds, shell=False).decode('utf-8').rstrip()
   finally:

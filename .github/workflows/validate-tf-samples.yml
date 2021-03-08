@@ -29,4 +29,5 @@ jobs:
           python3 -u .github/validators/validate-syntax.py \
             "assets/queries/terraform/**/**/test/*.tf" \
             --linter .bin/tflint \
-            --skip '.github/validators/tf-skip-list'
+            --skip '.github/validators/tf-skip-list' \
+            --verbose --tmp
