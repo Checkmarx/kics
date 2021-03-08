@@ -22,8 +22,8 @@ jobs:
           pip3 install -U cfn-lint --user
       - name: Validate cloudformation template syntax
         run: |
-          python3 -u .github/validators/validate-syntax.py assets/queries/cloudFormation/**/test/*.yaml \
-            assets/queries/cloudFormation/**/test/*.json \
+          python3 -u ".github/validators/validate-syntax.py assets/queries/cloudFormation/**/test/*.yaml" \
+            "assets/queries/cloudFormation/**/test/*.json" \
             --linter /home/runner/.local/bin/cfn-lint \
-            --extra ' --info --config-file .github/.cfnlintrc.yml' \
-            --skip '.github/validators/cfn-skip-list'
+            --extra " --info --config-file .github/.cfnlintrc.yml" \
+            --skip "".github/validators/cfn-skip-list"
