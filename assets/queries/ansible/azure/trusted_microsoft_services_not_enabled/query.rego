@@ -4,13 +4,16 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_storageaccount", "azure_rm_storageaccount"}
+	storageaccount := task[modules[m]]
+	ansLib.checkState(storageaccount)
 
-	task.azure_rm_storageaccount.network_acls.default_action == "Deny"
-	not containsAzureService(task.azure_rm_storageaccount.network_acls.bypass)
+	lower(storageaccount.network_acls.default_action) == "deny"
+	not containsAzureService(storageaccount.network_acls.bypass)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{azure_rm_storageaccount}}.network_acls.bypass", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network_acls.bypass", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_storageaccount.network_acls.bypass is not set or contains 'AzureServices'",
 		"keyActualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",

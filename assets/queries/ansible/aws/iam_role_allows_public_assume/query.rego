@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	awsApiGateway := task["community.aws.iam_managed_policy"]
+	awsApiGateway := task[modules[m]]
 	ansLib.checkState(awsApiGateway)
 
 	statement := awsApiGateway.policy.Statement[_]
@@ -14,16 +16,16 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
-		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
+		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	awsApiGateway := task["community.aws.iam_managed_policy"]
+	awsApiGateway := task[modules[m]]
 	ansLib.checkState(awsApiGateway)
 
 	statement := awsApiGateway.policy.Statement[_]
@@ -33,9 +35,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
-		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
+		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
 	}
 }

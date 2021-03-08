@@ -2,30 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"amazon.aws.ec2_vol", "ec2_vol"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	ec2_vol := task[modules[m]]
+	ansLib.checkState(ec2_vol)
 
-	ansLib.isAnsibleFalse(task["amazon.aws.ec2_vol"].encrypted)
+	ansLib.isAnsibleFalse(ec2_vol.encrypted)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}.encrypted", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "AWS EBS encryption should be enabled",
-		"keyActualValue": "AWS EBS encryption is disabled",
+		"keyExpectedValue": "ec2_vol.encrypted should be enabled",
+		"keyActualValue": "ec2_vol.encrypted is disabled",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	ec2_vol := task[modules[m]]
+	ansLib.checkState(ec2_vol)
 
-	object.get(task["amazon.aws.ec2_vol"], "encrypted", "undefined") == "undefined"
+	object.get(ec2_vol, "encrypted", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{amazon.aws.ec2_vol}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "AWS EBS encryption should be defined",
-		"keyActualValue": "AWS EBS encryption is undefined",
+		"keyExpectedValue": "ec2_vol.encrypted should be defined",
+		"keyActualValue": "ec2_vol.encrypted is undefined",
 	}
 }

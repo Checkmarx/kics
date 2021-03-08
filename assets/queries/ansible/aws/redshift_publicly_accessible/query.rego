@@ -4,28 +4,15 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	modules := ["redshift", "community.aws.redshift"]
 
-	ansLib.isAnsibleTrue(task["community.aws.redshift"].publicly_accessible)
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.redshift}}.publicly_accessible", [task.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is false",
-		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-
-	ansLib.isAnsibleTrue(task.redshift.publicly_accessible)
+	ansLib.isAnsibleTrue(task[modules[m]].publicly_accessible)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.redshift.publicly_accessible", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.publicly_accessible", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is false",
-		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
+		"keyExpectedValue": "redshift.publicly_accessible is false",
+		"keyActualValue": "redshift.publicly_accessible is true",
 	}
 }

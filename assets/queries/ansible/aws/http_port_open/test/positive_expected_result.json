@@ -1,37 +1,37 @@
 [
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 9
-	},
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 25
-	},
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 38
-	},
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 51
-	},
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 66
-	},
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 81
-	},
-	{
-		"queryName": "HTTP Port Open",
-		"severity": "HIGH",
-		"line": 96
-	}
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 9
+  },
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 23
+  },
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 36
+  },
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 49
+  },
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 64
+  },
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 79
+  },
+  {
+    "queryName": "HTTP Port Open",
+    "severity": "HIGH",
+    "line": 93
+  }
 ]
