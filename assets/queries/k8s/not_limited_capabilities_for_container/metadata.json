@@ -2,7 +2,7 @@
 	"id": "2f1a0619-b12b-48a0-825f-993bb6f01d58",
 	"queryName": "Not Limited Capabilities For Container",
 	"severity": "MEDIUM",
-	"category": "Privileges",
+	"category": "Insecure Configurations",
 	"descriptionText": "Limit the capabilities for a Container.",
 	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 	"platform": "Kubernetes"

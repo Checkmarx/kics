@@ -2,7 +2,7 @@
 	"id": "9ef7d25d-9764-4224-9968-fa321c56ef76",
 	"queryName": "Unchangeable password",
 	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Unchangeable passwords in AWS password policy",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
 	"platform": "Terraform"

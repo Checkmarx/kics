@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"reflect"
 	"strings"
@@ -128,7 +128,7 @@ func TestPrintToJSONFile(t *testing.T) {
 			require.NoError(t, err)
 			require.FileExists(t, test.caseTest.path)
 			var jsonResult []byte
-			jsonResult, err = ioutil.ReadFile(test.caseTest.path)
+			jsonResult, err = os.ReadFile(test.caseTest.path)
 			require.NoError(t, err)
 			var resultSummary model.Summary
 			err = json.Unmarshal(jsonResult, &resultSummary)
@@ -206,8 +206,7 @@ func TestProgressBar(t *testing.T) {
 			if tt.shouldCheckOutput {
 				progressBar.Writer = &out
 			} else {
-				// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-				progressBar.Writer = ioutil.Discard
+				progressBar.Writer = io.Discard
 			}
 			go progressBar.Start(&wg)
 			if tt.shouldCheckOutput {

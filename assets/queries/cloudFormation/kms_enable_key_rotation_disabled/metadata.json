@@ -2,7 +2,7 @@
 	"id": "235ca980-eb71-48f4-9030-df0c371029eb",
 	"queryName": "KMS EnableKeyRotation Disabled",
 	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "EnableKeyRotation should not be false or undefined",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html",
 	"platform": "CloudFormation"

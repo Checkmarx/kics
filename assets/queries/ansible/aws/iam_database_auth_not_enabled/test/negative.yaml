@@ -3,8 +3,8 @@
     engine: aurora
     db_instance_identifier: ansible-test-aurora-db-instance
     instance_type: db.t2.small
-    password: "{{ password }}"
-    username: "{{ username }}"
+    password: '{{ password }}'
+    username: '{{ username }}'
     cluster_id: ansible-test-cluster
     enable_iam_database_authentication: true
 
@@ -14,23 +14,23 @@
     id: test-encrypted-db
     state: present
     engine: mariadb
-    storage_encrypted: True
+    storage_encrypted: true
     db_instance_class: db.t2.medium
-    username: "{{ username }}"
-    password: "{{ password }}"
-    allocated_storage: "{{ allocated_storage }}"
+    username: '{{ username }}'
+    password: '{{ password }}'
+    allocated_storage: '{{ allocated_storage }}'
     enable_iam_database_authentication: true
 
 - name: remove the DB instance without a final snapshot
   community.aws.rds_instance:
-    id: "{{ instance_id }}"
+    id: '{{ instance_id }}'
     state: absent
-    skip_final_snapshot: True
+    skip_final_snapshot: true
     enable_iam_database_authentication: true
 
 - name: remove the DB instance with a final snapshot
   community.aws.rds_instance:
-    id: "{{ instance_id }}"
+    id: '{{ instance_id }}'
     state: absent
-    final_snapshot_identifier: "{{ snapshot_id }}"
+    final_snapshot_identifier: '{{ snapshot_id }}'
     enable_iam_database_authentication: true

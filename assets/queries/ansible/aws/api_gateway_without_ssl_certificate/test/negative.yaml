@@ -1,6 +1,6 @@
 - name: update API v2
   aws_api_gateway:
-    api_id: 'abc123321cba'
+    api_id: abc123321cba
     state: present
     swagger_file: my_api.yml
     validate_certs: yes

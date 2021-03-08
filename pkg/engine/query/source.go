@@ -2,7 +2,6 @@ package query
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -35,7 +34,8 @@ const (
 )
 
 var (
-	supportedPlatforms = map[string]string{"Ansible": "ansible",
+	supportedPlatforms = map[string]string{
+		"Ansible":        "ansible",
 		"CloudFormation": "cloudformation",
 		"Dockerfile":     "dockerfile",
 		"Kubernetes":     "k8s",
@@ -91,7 +91,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	pathToLib := GetPathToLibrary(platform, s.Source)
 
-	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
 		log.Err(err)
 	}
@@ -155,7 +155,7 @@ func (s *FilesystemSource) GetQueries() ([]model.QueryMetadata, error) {
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
-	queryContent, err := ioutil.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
+	queryContent, err := os.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}

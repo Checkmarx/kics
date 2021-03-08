@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -28,7 +27,7 @@ func main() {
 		Use:   "inspect",
 		Short: "Tool to build new query from example file",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			content, err := ioutil.ReadFile(filepath.Clean(inPath))
+			content, err := os.ReadFile(filepath.Clean(inPath))
 			if err != nil {
 				return err
 			}

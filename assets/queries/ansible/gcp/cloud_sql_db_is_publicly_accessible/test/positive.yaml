@@ -1,7 +1,7 @@
 - name: sql_instance
   google.cloud.gcp_sql_instance:
     auth_kind: serviceaccount
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     project: test_project
     region: us-central1
     service_account_file: /tmp/auth.pem
@@ -15,7 +15,7 @@
 - name: sql_instance2
   google.cloud.gcp_sql_instance:
     auth_kind: serviceaccount
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     project: test_project
     region: us-central1
     service_account_file: /tmp/auth.pem
@@ -27,7 +27,7 @@
 - name: sql_instance3
   google.cloud.gcp_sql_instance:
     auth_kind: serviceaccount
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     project: test_project
     region: us-central1
     service_account_file: /tmp/auth.pem

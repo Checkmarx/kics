@@ -2,7 +2,7 @@
 	"id": "1c07bfaf-663c-4f6f-b22b-8e2d481e4df5",
 	"queryName": "CMKs Rotation Disabled",
 	"severity": "HIGH",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'EnableKeyRotation' must be set to 'true' when the key is enabled.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html",
 	"platform": "CloudFormation"

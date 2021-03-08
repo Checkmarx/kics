@@ -1,7 +1,0 @@
-[
-  {
-    "queryName": "Cloud SQL Instance SSL Disabled",
-    "severity": "HIGH",
-    "line": 10
-  }
-]

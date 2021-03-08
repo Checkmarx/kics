@@ -2,7 +2,7 @@
 	"id": "965a08d7-ef86-4f14-8792-4a3b2098937e",
 	"queryName": "Apt Get Install Pin Version Not Defined",
 	"severity": "MEDIUM",
-	"category": "Package Management",
+	"category": "Supply-Chain",
 	"descriptionText": "When installing a package, its pin version should be defined",
 	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
 	"platform": "Dockerfile"

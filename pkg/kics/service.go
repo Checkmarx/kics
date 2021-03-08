@@ -4,8 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
-	"os"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -15,11 +13,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
-)
-
-const (
-	maxFileSize = 5000000 // 5MB
-	megaByte    = 1000000 // 1MB
 )
 
 // SourceProvider is the interface that wraps the basic GetSources method.
@@ -70,19 +63,13 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
-			fileInfo, err := os.Stat(filename)
+
+			content, err := getContent(rc)
 			if err != nil {
-				return errors.Wrapf(err, "failed to get file info %s", filename)
-			}
-			if fileInfo.Size() > maxFileSize {
-				return errors.Wrapf(errors.New("file size limit exceeded"), "File size should not exceed %dMB: %s", maxFileSize/megaByte, filename)
+				return errors.Wrapf(err, "failed to get file content: %s", filename)
 			}
 
-			content, err := ioutil.ReadAll(rc)
-			if err != nil {
-				return errors.Wrap(err, "failed to read file content")
-			}
-			documents, kind, err := s.Parser.Parse(filename, content)
+			documents, kind, err := s.Parser.Parse(filename, *content)
 			if err != nil {
 				return errors.Wrap(err, "failed to parse file content")
 			}
@@ -98,7 +85,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 					ID:           uuid.New().String(),
 					ScanID:       scanID,
 					Document:     document,
-					OriginalData: string(content),
+					OriginalData: string(*content),
 					Kind:         kind,
 					FileName:     filename,
 				}
@@ -119,6 +106,33 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 
 	return errors.Wrap(err, "failed to save vulnerabilities")
+}
+
+/*
+   getContent will read the passed file 1MB at a time
+   to prevent resource exhaustion and return its content
+*/
+func getContent(rc io.ReadCloser) (*[]byte, error) {
+	maxSizeMB := 5 // Max size of file in MBs
+	defer rc.Close()
+	var content []byte
+	data := make([]byte, 1048576)
+	for {
+		if maxSizeMB < 0 {
+			return &[]byte{}, errors.New("file size limit exceeded")
+		}
+		data = data[:cap(data)]
+		n, err := rc.Read(data)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return &[]byte{}, err
+		}
+		content = append(content, data[:n]...)
+		maxSizeMB--
+	}
+	return &content, nil
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities

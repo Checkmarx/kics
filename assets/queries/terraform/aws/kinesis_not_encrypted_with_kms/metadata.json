@@ -2,7 +2,7 @@
   "id": "862fe4bf-3eec-4767-a517-40f378886b88",
   "queryName": "Kinesis Not Encrypted With KMS",
   "severity": "HIGH",
-  "category": "Encryption and Key Management",
+  "category": "Encryption",
   "descriptionText": "AWS Kinesis Streams and metadata should be protected with KMS",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_stream",
   "platform": "Terraform"

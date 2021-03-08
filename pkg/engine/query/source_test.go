@@ -1,7 +1,7 @@
 package query
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
@@ -164,7 +164,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 
 	type fields struct {
@@ -188,7 +188,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 					Query:   "all_auth_users_get_read_access",
 					Content: string(contentByte),
 					Metadata: map[string]interface{}{
-						"category":        "Identity and Access Management",
+						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
 						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
@@ -339,4 +339,17 @@ func Test_getPlatform(t *testing.T) {
 			}
 		})
 	}
+}
+
+// TestListSupportedPlatforms tests the function ListSupportedPlatforms
+func TestListSupportedPlatforms(t *testing.T) {
+	expected := []string{
+		"Ansible",
+		"CloudFormation",
+		"Dockerfile",
+		"Kubernetes",
+		"Terraform",
+	}
+	actual := ListSupportedPlatforms()
+	require.Equal(t, expected, actual, "expected=%s\ngot=%s", expected, actual)
 }

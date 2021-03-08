@@ -7,13 +7,12 @@ from subprocess import CalledProcessError
 
 LINTER_PATH = os.getenv('LINTER_PATH')
 SKIP_LIST = os.getenv('SKIP_LIST_PATH')
-FILES_GLOB = os.getenv('FILES_GLOB')
 EXTRA_ARGS = os.getenv('EXTRA_ARGS')
 NO_PROGRESS = os.getenv('NO_PROGRESS', False)
 
 parser = argparse.ArgumentParser(description='Execute linter against files')
-parser.add_argument('filesglob', metavar='FILES', type=str, nargs='+',
-                    help='List of file globs to check')
+parser.add_argument('filesglob', metavar='FILES',
+  type=str, nargs='+', help='List of file globs to check')
 
 args = parser.parse_args()
 
@@ -38,14 +37,12 @@ print('starting validator')
 all_files = []
 ignore_list = []
 
-if FILES_GLOB:
-  all_files = glob.glob(FILES_GLOB)
-else:
-  for my_glob in args.filesglob:
-    all_files.extend(glob.glob(my_glob))
+for my_glob in args.filesglob:
+  all_files.extend(glob.glob(my_glob))
 
 with open(SKIP_LIST, 'r') as reader:
   ignore_list = [line.rstrip() for line in reader]
+print(f"Ignore list is:{os.linesep}{os.linesep.join(ignore_list)}")
 
 files = [file for file in all_files
           if file not in ignore_list

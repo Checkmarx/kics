@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s[%s].policy.Principal", [pl[r], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy.Principal is not equal to '*'", [pl[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Principal is equal to '*'", [pl[r], name]),
+		"keyActualValue": sprintf("%s[%s].policy.Principal is equal to '*', thus making the bucket accessible to all AWS Accounts", [pl[r], name]),
 	}
 }
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s[%s].policy.Principal.AWS", [pl[r], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy.Principal.AWS doesn't contain '*'", [pl[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Principal.AWS contains '*'", [pl[r], name]),
+		"keyActualValue": sprintf("%s[%s].policy.Principal.AWS contains '*', thus making the bucket accessible to all AWS Accounts", [pl[r], name]),
 	}
 }
 
