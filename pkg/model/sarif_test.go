@@ -3,6 +3,7 @@ package model
 import (
 	"testing"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/stretchr/testify/require"
 )
 
@@ -13,8 +14,8 @@ func TestCreateSarifReport(t *testing.T) {
 	require.Equal(t, "2.1.0", sarif.SarifVersion)
 	require.Equal(t, "KICS", sarif.Runs[0].Tool.Driver.ToolName)
 	require.Equal(t, "https://www.kics.io/", sarif.Runs[0].Tool.Driver.ToolURI)
-	require.Equal(t, "Keeping Infrastructure as Code Secure", sarif.Runs[0].Tool.Driver.ToolFullName)
-	require.Equal(t, "1.1.2", sarif.Runs[0].Tool.Driver.ToolVersion)
+	require.Equal(t, constants.Fullname, sarif.Runs[0].Tool.Driver.ToolFullName)
+	require.Equal(t, constants.Version, sarif.Runs[0].Tool.Driver.ToolVersion)
 }
 
 type test struct {

@@ -3,6 +3,7 @@ package model
 import (
 	"path/filepath"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/rs/zerolog/log"
 )
 
@@ -140,8 +141,8 @@ func initTool() sarifTool {
 	return sarifTool{
 		Driver: sarifDriver{
 			ToolName:     "KICS",
-			ToolVersion:  "1.1.2",
-			ToolFullName: "Keeping Infrastructure as Code Secure",
+			ToolVersion:  constants.Version,
+			ToolFullName: constants.Fullname,
 			ToolURI:      "https://www.kics.io/",
 			Rules:        make([]sarifRule, 0),
 		},
@@ -226,6 +227,10 @@ func (sr *sarifReport) findRuleIndex(ruleID string) int {
 func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 	index := sr.findRuleIndex(queryMetadata.queryID)
 	if index < 0 {
+		helpURI := "https://docs.kics.io/"
+		if queryMetadata.queryURI != "" {
+			helpURI = queryMetadata.queryURI
+		}
 		rule := sarifRule{
 			RuleID:               queryMetadata.queryID,
 			RuleName:             queryMetadata.queryName,
@@ -233,7 +238,7 @@ func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 			RuleFullDescription:  sarifMessage{Text: queryMetadata.queryDescription},
 			DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
 			RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildCategory(queryMetadata.queryCategory)}},
-			HelpURI:              queryMetadata.queryURI,
+			HelpURI:              helpURI,
 		}
 
 		sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
