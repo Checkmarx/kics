@@ -12,7 +12,7 @@
     - test-ssh-clients
     project: test_project
     auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
+    service_account_file: /tmp/auth.pem
     state: present
     source_ranges:
-    - "0.0.0.0"
+    - 0.0.0.0

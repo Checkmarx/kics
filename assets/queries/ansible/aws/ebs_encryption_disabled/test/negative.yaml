@@ -1,4 +1,3 @@
----
 - name: Creating EBS volume05
   amazon.aws.ec2_vol:
     instance: XXXXXX
@@ -9,7 +8,7 @@
 - name: Creating EBS volume06
   amazon.aws.ec2_vol:
     instance: XXXXXX
-    encrypted: "True"
+    encrypted: 'True'
     volume_size: 50
     volume_type: gp2
     device_name: /dev/xvdf

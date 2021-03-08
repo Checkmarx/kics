@@ -1,6 +1,6 @@
 - name: create a stack, pass in the template body via lookup template v3
   amazon.aws.cloudformation:
-    stack_name: "ansible-cloudformation"
+    stack_name: ansible-cloudformation
     state: present
     region: us-east-1
     disable_rollback: true
@@ -16,7 +16,7 @@
 
 - name: create a stack, pass in the template via an URL v4
   amazon.aws.cloudformation:
-    stack_name: "ansible-cloudformation"
+    stack_name: ansible-cloudformation
     state: present
     region: us-east-1
     disable_rollback: true

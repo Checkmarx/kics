@@ -1,4 +1,3 @@
----
 - name: foo
   amazon.aws.s3_bucket:
     name: mys3bucket

@@ -7,14 +7,14 @@
     delivery_policy:
       http:
         defaultHealthyRetryPolicy:
-            minDelayTarget: 2
-            maxDelayTarget: 4
-            numRetries: 3
-            numMaxDelayRetries: 5
-            backoffFunction: "<linear|arithmetic|geometric|exponential>"
+          minDelayTarget: 2
+          maxDelayTarget: 4
+          numRetries: 3
+          numMaxDelayRetries: 5
+          backoffFunction: "<linear|arithmetic|geometric|exponential>"
         disableSubscriptionOverrides: True
         defaultThrottlePolicy:
-            maxReceivesPerSecond: 10
+          maxReceivesPerSecond: 10
     subscriptions:
       - endpoint: "my_email_address@example.com"
         protocol: "email"
@@ -29,14 +29,14 @@
     delivery_policy:
       http:
         defaultHealthyRetryPolicy:
-            minDelayTarget: 2
-            maxDelayTarget: 4
-            numRetries: 3
-            numMaxDelayRetries: 5
-            backoffFunction: "<linear|arithmetic|geometric|exponential>"
+          minDelayTarget: 2
+          maxDelayTarget: 4
+          numRetries: 3
+          numMaxDelayRetries: 5
+          backoffFunction: "<linear|arithmetic|geometric|exponential>"
         disableSubscriptionOverrides: True
         defaultThrottlePolicy:
-            maxReceivesPerSecond: 10
+          maxReceivesPerSecond: 10
     subscriptions:
       - endpoint: "my_email_address@example.com"
         protocol: "email"

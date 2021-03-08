@@ -7,5 +7,5 @@
       bypass: AzureServices,Metrics
       default_action: Deny
       ip_rules:
-        - value: 1.2.3.4
-          action: Allow
+      - value: 1.2.3.4
+        action: Allow
