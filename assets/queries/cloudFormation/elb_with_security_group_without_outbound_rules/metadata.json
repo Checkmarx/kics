@@ -2,7 +2,7 @@
 	"id": "01d5a458-a6c4-452a-ac50-054d59275b7c",
 	"queryName": "ELB With Security Group Without Outbound Rules",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress",
 	"platform": "CloudFormation"

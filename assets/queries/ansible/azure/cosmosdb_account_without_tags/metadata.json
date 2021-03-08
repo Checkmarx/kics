@@ -2,7 +2,7 @@
 	"id": "23a4dc83-4959-4d99-8056-8e051a82bc1e",
 	"queryName": "Cosmos DB Account Without Tags",
 	"severity": "MEDIUM",
-	"category": "Cloud Assets Management",
+	"category": "Build Process",
 	"descriptionText": "Cosmos DB Account must have a mapping of tags.",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html",
 	"platform": "Ansible"

@@ -2,7 +2,7 @@
 	"id": "0104165b-02d5-426f-abc9-91fb48189899",
 	"queryName": "RDS Open to Large Scope",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "Amazon RDS must not be open to a large scope, which means the IP Address in its Security Group must not have more than 256 hosts.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
 	"platform": "CloudFormation"

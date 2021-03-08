@@ -2,7 +2,7 @@
 	"id": "31733ee2-fef0-4e87-9778-65da22a8ecf1",
 	"queryName": "Viewer Protocol Policy Allows HTTP Protocol",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Ensure that the Viewer Protocol is only HTTPS Compliant",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html",
 	"platform": "CloudFormation"

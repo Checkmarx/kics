@@ -2,7 +2,7 @@
 	"id": "783860a3-6dca-4c8b-81d0-7b62769ccbca",
 	"queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
 	"severity": "LOW",
-	"category": "Monitoring",
+	"category": "Observability",
 	"descriptionText": "API Gateway Deployment should have API Gateway UsagePlan defined and associated.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html",
 	"platform": "CloudFormation"
