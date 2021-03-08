@@ -19,15 +19,13 @@ jobs:
           python-version: '3.x'
       - name: Get cfn-python-lint
         run: |
-          pip3 install cfn-lint
-          pip3 show cfn-lint
-          which cfn-lint
+          pip3 install -U cfn-lint --user
       - name: Validate cloudformation template syntax
         run: |
           python3 -u .github/validators/validate-syntax.py assets/queries/cloudFormation/**/test/*.yaml \
             assets/queries/cloudFormation/**/test/*.json
         env:
-          LINTER_PATH: "/opt/hostedtoolcache/Python/3.9.1/x64/bin/cfn-lint"
+          LINTER_PATH: /home/runner/.local/bin/cfn-lint
           EXTRA_ARGS: "--info --config-file .github/.cfnlintrc.yml"
           SKIP_LIST_PATH: ".github/validators/cfn-skip-list"
           NO_PROGRESS: True

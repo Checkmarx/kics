@@ -8,8 +8,6 @@
   loop:
     - jcleese
     - mpython
-
-
 - name: Create two new IAM users with API keys
   community.aws.iam:
     iam_type: user
@@ -20,9 +18,6 @@
   loop:
     - root
     - mpython
-
-
-
 - name: Create Two Groups, Mario and Luigi
   community.aws.iam:
     iam_type: group
@@ -30,10 +25,9 @@
     state: present
     access_key_state: active
   loop:
-     - Mario
-     - Luigi
+    - Mario
+    - Luigi
   register: new_groups
-
 - name: Update user
   community.aws.iam:
     iam_type: user

@@ -19,11 +19,12 @@ nav:
       - Queries: queries.md
       - Results: results.md
   - Architecture: architecture.md
-  - Integrations: 
+  - Integrations:
       - Overview: integrations.md
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Azure DevOps: integrations_azurepipelines.md
+      - Bitbucket Pipelines: integrations_bitbucketpipelines.md
   - Project:
       - Roadmap: roadmap.md
       - Plans: "https://github.com/Checkmarx/kics/projects"

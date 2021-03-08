@@ -1,0 +1,23 @@
+name: validate-ansible-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/ansible/aws/**/test/*.yaml"
+    - "assets/queries/ansible/azure/**/test/*.yaml"
+    - "assets/queries/ansible/gcp/**/test/*.yaml"
+
+jobs:
+  lint-samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: assets/queries/ansible/
+          config_file: .github/yamllint.yml
+          strict: true
