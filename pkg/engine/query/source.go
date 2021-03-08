@@ -19,9 +19,8 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source         string
-	Types          []string
-	ExcludeQueries []string
+	Source string
+	Types  []string
 }
 
 const (
