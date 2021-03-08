@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name=%s.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The metadata.name=%s.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
-		"keyActualValue": sprintf("The metadata.name=%s.rules.verb contain the following verbs: [%s]", [metadata.name, rules]),
+		"keyActualValue": sprintf("The metadata.name=%s.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
 	}
 }
 
