@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math"
 	"os"
 	"path/filepath"
@@ -49,8 +48,7 @@ func NewProgressBar(label string, space int, total float64, progress chan float6
 // wg is a wait group to report when progress is done
 func (p *ProgressBar) Start(wg *sync.WaitGroup) {
 	defer wg.Done()
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	if p.Writer != ioutil.Discard {
+	if p.Writer != io.Discard {
 		var firstHalfPercentage, secondHalfPercentage string
 		const hundredPercent = 100
 		formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
@@ -183,11 +181,11 @@ func CustomConsoleWriter(fileLogger *zerolog.ConsoleWriter) zerolog.ConsoleWrite
 
 // FileAnalyzer determines the type of extension in the passed config file by its content
 func FileAnalyzer(path string) (string, error) {
-	ostat, err := os.Open(path)
+	ostat, err := os.Open(filepath.Clean(path))
 	if err != nil {
 		return "", err
 	}
-	rc, err := ioutil.ReadAll(ostat)
+	rc, err := io.ReadAll(ostat)
 	if err != nil {
 		return "", err
 	}

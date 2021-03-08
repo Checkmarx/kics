@@ -9,14 +9,14 @@
     labels:
       environment: production
     network_interfaces:
-    - network: "{{ network }}"
+    - network: '{{ network }}'
       access_configs:
       - name: External NAT
-        nat_ip: "{{ address }}"
+        nat_ip: '{{ address }}'
         type: ONE_TO_ONE_NAT
     zone: us-central1-a
     project: test_project
     auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
+    service_account_file: /tmp/auth.pem
     state: present
     can_ip_forward: no

@@ -1,16 +1,15 @@
----
 - name: Create a log profile
   azure_rm_monitorlogprofile:
     name: myProfile
     location: eastus
     locations:
-      - eastus
-      - westus
+    - eastus
+    - westus
     categories:
-      - Write
-      - Action
+    - Write
+    - Action
     retention_policy:
-      enabled: True
+      enabled: true
       days: 380
     storage_account:
       resource_group: myResourceGroup

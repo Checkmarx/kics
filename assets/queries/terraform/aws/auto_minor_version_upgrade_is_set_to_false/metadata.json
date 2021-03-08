@@ -1,9 +1,9 @@
 {
-	"id": "3b6d777b-76e3-4133-80a3-0d6f667ade7f",
-	"queryName": "Auto Minor Version Upgrade Is Set To False",
-	"severity": "HIGH",
-	"category": "Data Security",
-	"descriptionText": "RDS Instance Auto Minor Version Upgrade feature in Aws Db Instance must be true",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#auto_minor_version_upgrade",
-	"platform": "Terraform"
+  "id": "3b6d777b-76e3-4133-80a3-0d6f667ade7f",
+  "queryName": "Auto Minor Version Upgrade Is Set To False",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "RDS Instance Auto Minor Version Upgrade feature in Aws Db Instance must be true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#auto_minor_version_upgrade",
+  "platform": "Terraform"
 }

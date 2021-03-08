@@ -41,6 +41,9 @@ theme:
   include_sidebar: true
   sticky_navigation: true
 
+extra_css:
+  - css/custom.css
+
 # Plugins
 plugins:
   - search

@@ -2,7 +2,7 @@
 	"id": "be41f891-96b1-4b9d-b74f-b922a918c778",
 	"queryName": "COS Node Image Not Used",
 	"severity": "HIGH",
-	"category": "Operational Efficiency",
+	"category": "Resource Management",
 	"descriptionText": "A node image, that is not Container-Optimized OS (COS), is used for Kubernetes Engine Clusters Node image",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type",
 	"platform": "Ansible"

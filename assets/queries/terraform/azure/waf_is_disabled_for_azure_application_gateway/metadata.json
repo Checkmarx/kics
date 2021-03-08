@@ -1,9 +1,9 @@
 {
-	"id": "2e48d91c-50e4-45c8-9312-27b625868a72",
-	"queryName": "WAF Is Disabled For Azure Application Gateway",
-	"severity": "MEDIUM",
-	"category": "Network Security",
-	"descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway",
-	"platform": "Terraform"
+  "id": "2e48d91c-50e4-45c8-9312-27b625868a72",
+  "queryName": "WAF Is Disabled For Azure Application Gateway",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway",
+  "platform": "Terraform"
 }

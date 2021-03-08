@@ -2,7 +2,7 @@
 	"id": "b947809d-dd2f-4de9-b724-04d101c515aa",
 	"queryName": "Redis Not Updated Regularly",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "Redis Cache is not configured to be updated regularly with security and operational updates",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache#patch_schedule",
 	"platform": "Terraform"

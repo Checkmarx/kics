@@ -3,7 +3,6 @@ package console
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -188,9 +187,8 @@ func initScanCmd() {
 }
 
 func setupLogs() error {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
-	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
+	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
+	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
 
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
