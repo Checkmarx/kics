@@ -330,7 +330,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 				"queryName":       "All Auth Users Get Read Access",
 				"severity":        "HIGH",
-				"category":        "Identity and Access Management",
+				"category":        "Access Control",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 				"platform":        "CloudFormation",
