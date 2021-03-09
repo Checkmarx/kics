@@ -4,7 +4,7 @@ resource "google_container_cluster" "negative1" {
   location           = "us-central1-a"
   initial_node_count = 3
   pod_security_policy_config {
-        enabled: true
+        enabled = "true"
   }
 
   timeouts {

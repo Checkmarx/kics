@@ -1,12 +1,14 @@
 [
 	{
-		"queryName": "Root Account Has Associated Active Access Keys",
+    "queryName": "Root Account Has Associated Active Access Keys",
 		"severity": "HIGH",
-		"line": 2
-	},
-	{
-		"queryName": "Root Account Has Associated Active Access Keys",
+		"line": 2,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Root Account Has Associated Active Access Keys",
 		"severity": "HIGH",
-		"line": 39
-	}
+		"line": 4,
+    "fileName": "positive2.tf"
+  }
 ]
