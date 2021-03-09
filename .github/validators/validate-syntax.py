@@ -95,8 +95,10 @@ def run_linter(file):
     tmp_copy = ''
     cmds = []
     try:
-        if args.verbose:
+        if args.verbose > 0:
             print(f'Validating {file}')
+        else:
+            print('.', end='')
 
         if args.tmp:
             tmp_copy = create_temporary_copy(file)
@@ -108,10 +110,10 @@ def run_linter(file):
             cmds = [*cmds[:1], *args.extra.strip().split(' '), *cmds[1:]]
 
         if args.redirect:
-          output = subprocess.check_output(
-              cmds, shell=False, stderr=subprocess.STDOUT)
+            output = subprocess.check_output(
+                cmds, shell=False, stderr=subprocess.STDOUT)
         else:
-          output = subprocess.check_output(cmds, shell=False)
+            output = subprocess.check_output(cmds, shell=False)
 
         result = output.decode('utf-8').rstrip()
     finally:
@@ -127,7 +129,7 @@ print('starting validator')
 skip_list = read_skip_list()
 
 if args.verbose:
-    print(f"Ignore list is:{os.linesep}{os.linesep.join(skip_list)}")
+    print(f"Ignore list is:{os.linesep}{os.linesep.join(skip_list)}\n")
 
 ############################################
 #  filter out test files and ignored files #
@@ -140,8 +142,7 @@ files = [
 
 error_files = []
 
-if args.verbose:
-    print(f'found {len(files)} files to check')
+print(f'found {len(files)} files to check')
 
 ###########################################
 #                run linter               #

@@ -21,5 +21,5 @@ resource "aws_db_instance" "negative2" {
   username             = "foo"
   password             = "foobarbaz"
   iam_database_authentication_enabled = false
-  kms_key_id = "${aws_kms_key.my_key.key_id}"
+  kms_key_id = aws_kms_key.my_key.key_id
 }

@@ -6,7 +6,7 @@ resource "aws_cloudformation_stack" "negative1" {
      VPCCidr = "10.0.0.0/16"
      }
 
-     policy_url = ""
+     policy_url = "somepolicyurl"
 }
 
 
@@ -19,5 +19,5 @@ resource "aws_cloudformation_stack" "negative2" {
      VPCCidr = "10.0.0.0/16"
      }
 
-     policy_body = ""
+     policy_body = "somepolicy"
 }

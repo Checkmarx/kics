@@ -6,7 +6,7 @@ resource "aws_cloudformation_stack" "negative1" {
      VPCCidr = "10.0.0.0/16"
      }
 
-     template_url = ""
+     template_url = "sometemplateurl"
 }
 
 
@@ -19,5 +19,5 @@ resource "aws_cloudformation_stack" "negative2" {
      VPCCidr = "10.0.0.0/16"
      }
 
-     template_body = ""
+     template_body = "sometemplatebody"
 }
