@@ -7,7 +7,6 @@ resource "aws_db_instance" "positive1" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
   iam_database_authentication_enabled = false
   storage_encrypted = false
 }
@@ -21,5 +20,4 @@ resource "aws_db_instance" "positive2" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
 }

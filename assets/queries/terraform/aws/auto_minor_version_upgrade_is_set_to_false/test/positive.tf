@@ -7,7 +7,6 @@ resource "aws_db_instance" "positive1" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
   iam_database_authentication_enabled = true
   storage_encrypted = true
   ca_cert_identifier = "rds-ca-2019"

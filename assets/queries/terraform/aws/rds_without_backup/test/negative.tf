@@ -9,6 +9,5 @@ resource "aws_db_instance" "negative1" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
   backup_retention_period =  12
 }
