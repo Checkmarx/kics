@@ -7,7 +7,7 @@ modules := {"community.aws.ec2_instance", "ec2_instance"}
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	ec2_instance := task[modules[m]]
-	ansLib.checkState(object.get(ec2_instance, "state", "undefined"))
+	checkState(object.get(ec2_instance, "state", "undefined"))
 
 	re_match("([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])", ec2_instance.user_data)
 
@@ -23,7 +23,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	ec2_instance := task[modules[m]]
-	ansLib.checkState(object.get(ec2_instance, "state", "undefined"))
+	checkState(object.get(ec2_instance, "state", "undefined"))
 
 	re_match("[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])", ec2_instance.user_data)
 
