@@ -11,7 +11,7 @@ Our current release process is structured in the following way:
 Every release is packed with:
 
 - Source code .zip/tarballs
-- Binaries for Windows and Linux
+- Binaries for Windows, Linux and macOS
 - Docker image uploaded to <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
 If waiting for a new release it's not enough, we also provide nightly builds that include the latest changes.
