@@ -43,7 +43,7 @@ type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}
 // GetQueries gets all queries from a QueryMetadata list
 // GetGenericQuery gets a base query based in plataform's name
 type QueriesSource interface {
-	GetQueries() ([]model.QueryMetadata, error)
+	GetQueries(excludeQueries []string) ([]model.QueryMetadata, error)
 	GetGenericQuery(platform string) (string, error)
 }
 
@@ -102,8 +102,9 @@ func NewInspector(
 	source QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
+	excludeQueries []string,
 	excludeResults map[string]bool) (*Inspector, error) {
-	queries, err := source.GetQueries()
+	queries, err := source.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
