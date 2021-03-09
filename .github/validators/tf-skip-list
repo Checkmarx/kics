@@ -1,2 +1,10 @@
 assets/queries/terraform/aws/authentication_without_mfa/test/positive.tf
 assets/queries/terraform/aws/authentication_without_mfa/test/negative.tf
+assets/queries/terraform/aws/cloudfront_without_waf/test/positive.tf
+assets/queries/terraform/aws/cloudfront_without_waf/test/negative.tf
+assets/queries/terraform/aws/iam_role_allows_public_assume/test/positive.tf
+assets/queries/terraform/aws/iam_role_allows_public_assume/test/negative.tf
+assets/queries/terraform/aws/hard_coded_aws_access_key/test/positive.tf
+assets/queries/terraform/aws/hard_coded_aws_access_key/test/negative.tf
+assets/queries/terraform/aws/iam_role_allows_all_principals_to_assume/test/positive.tf
+assets/queries/terraform/aws/iam_role_allows_all_principals_to_assume/test/negative.tf

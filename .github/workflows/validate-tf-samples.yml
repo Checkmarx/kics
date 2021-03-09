@@ -30,4 +30,4 @@ jobs:
             "assets/queries/terraform/**/**/test/*.tf" \
             --linter .bin/tflint \
             --skip '.github/validators/tf-skip-list' \
-            --verbose --tmp
+            --verbose --tmp --redirect
