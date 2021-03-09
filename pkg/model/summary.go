@@ -1,5 +1,9 @@
 package model
 
+import (
+	"sort"
+)
+
 // SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
 type SeveritySummary struct {
 	ScanID           string           `json:"scan_id"`
@@ -12,6 +16,7 @@ type VulnerableFile struct {
 	FileName         string    `json:"file_name"`
 	SimilarityID     string    `json:"similarity_id"`
 	Line             int       `json:"line"`
+	VulnLines        VulnLines `json:"-"`
 	IssueType        IssueType `json:"issue_type"`
 	SearchKey        string    `json:"search_key"`
 	SearchValue      string    `json:"search_value"`
@@ -32,6 +37,9 @@ type VulnerableQuery struct {
 	Description string           `json:"description"`
 }
 
+// VulnerableQuerySlice is a slice of VulnerableQuery
+type VulnerableQuerySlice []VulnerableQuery
+
 // Counters hold information about how many files were scanned, parsed, failed to be scaned, the total of queries
 // and how many queries failed to execute
 type Counters struct {
@@ -46,7 +54,7 @@ type Counters struct {
 // Summary is a report of a single scan
 type Summary struct {
 	Counters
-	Queries []VulnerableQuery `json:"queries"`
+	Queries VulnerableQuerySlice `json:"queries"`
 	SeveritySummary
 }
 
@@ -75,6 +83,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 			FileName:         item.FileName,
 			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
+			VulnLines:        item.VulnLines,
 			IssueType:        item.IssueType,
 			SearchKey:        item.SearchKey,
 			SearchValue:      item.SearchValue,
@@ -87,7 +96,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 	}
 
 	queries := make([]VulnerableQuery, 0, len(q))
-	sevs := map[Severity]int{"INFO": 0, "LOW": 0, "MEDIUM": 0, "HIGH": 0}
+	sevs := map[Severity]int{SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
 	for idx := range q {
 		queries = append(queries, q[idx])
 		sevs[q[idx].Severity] += len(q[idx].Files)
@@ -100,4 +109,13 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		Queries:         queries,
 		SeveritySummary: severitySummary,
 	}
+}
+
+// SortBySev will sort queries by severity in an ascending order
+func (v VulnerableQuerySlice) SortBySev() VulnerableQuerySlice {
+	idxSev := map[Severity]int{SeverityInfo: 0, SeverityLow: 1, SeverityMedium: 2, SeverityHigh: 3}
+	sort.Slice(v, func(i, j int) bool {
+		return idxSev[v[i].Severity] < idxSev[v[j].Severity]
+	})
+	return v
 }

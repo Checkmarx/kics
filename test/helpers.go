@@ -100,7 +100,7 @@ var SummaryMock = model.Summary{
 		{
 			QueryName: "ALB protocol is HTTP",
 			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  "HIGH",
+			Severity:  model.SeverityHigh,
 			Files: []model.VulnerableFile{
 				{
 					FileName:         "positive.tf",
@@ -126,10 +126,10 @@ var SummaryMock = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			"INFO":   0,
-			"LOW":    0,
-			"MEDIUM": 0,
-			"HIGH":   2,
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   2,
 		},
 		TotalCounter: 2,
 	},
