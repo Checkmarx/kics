@@ -130,7 +130,7 @@ for file in files:
   try:
     result = run_linter(file)
   except CalledProcessError as e:
-    error_files.append(e)
+    error_files.append({'err':e, 'file': file})
   if result:
     for line in result.split('\n'):
       if line and args.verbose:
@@ -140,12 +140,12 @@ for file in files:
 #                list errors              #
 ###########################################
 if len(error_files) > 0:
-  print("\n--- errors ---")
-  for error in error_files:
-    print(error)
-    error_result = error.output.decode('utf-8').rstrip()
+  print("\n###### ERRORS #######")
+  for error_obj in error_files:
+    print(error_obj)
+    error_result = error_obj['err'].output.decode('utf-8').rstrip()
     for line in error_result.split('\n'):
       print(line)
-  summary(files, error_files)
-else:
-  summary(files, error_files)
+    print('----\n')
+
+summary(files, error_files)
