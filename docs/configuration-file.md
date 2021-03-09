@@ -59,7 +59,7 @@ KICS is able to infer the format without the need of file extension.
   "minimal": false,
   "no-color": false,
   "no-progress": false,
-  "output-formats": "formats the result will be exported",
+  "output-formats": "formats in which the result will be exported",
   "output-path": "directory path to store result in output formats",
   "path": "path to file or directory to scan",
   "payload-path": "file path to store source internal representation in JSON format",
@@ -79,7 +79,7 @@ log-file: true
 no-color: false
 minimal: false
 no-progress: false
-output-formats: "formats the result will be exported"
+output-formats: "formats in which the result will be exported"
 output-path: "directory path to store result in output formats"
 path: "path to file or directory to scan"
 payload-path: "file path to store source internal representation in JSON format"
@@ -98,7 +98,7 @@ log-file = true
 minimal = false
 no-color = false
 no-progress = false
-output-formats = "formats the result will be exported"
+output-formats = "formats in which the result will be exported"
 output-path = "directory path to store result in output formats"
 path = "path to file or directory to scan"
 payload-path = "file path to store source internal representation in JSON format"
@@ -117,7 +117,7 @@ verbose = true
 "minimal" = false
 "no-color" = false
 "no-progress" = false
-"output-formats" = "formats the result will be exported"
+"output-formats" = "formats in which the result will be exported"
 "output-path" = "directory path to store result in output formats"
 "path" = "path to file or directory to scan"
 "payload-path" = "file path to store source internal representation in JSON format"

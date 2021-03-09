@@ -87,7 +87,7 @@ Flags:
       --minimal                   minimal version of results output
       --no-color                  disable color output
       --no-progress               hides the progress bar
-      --output-formats string     formats the result will be exported
+      --output-formats string     formats in which the result will be exported
       --output-lines int          number of lines to be displayed in results output (default 3)
   -o, --output-path string        directory path to store result in output formats
   -p, --path string               path or directory path to scan
