@@ -163,7 +163,13 @@ func initScanCmd() {
 		"path to directory with queries",
 	)
 	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store reports")
-	scanCmd.Flags().StringSliceVarP(&reportFormats, "report-formats", "", []string{}, "formats in which the results will be exported (json, sarif)")
+	scanCmd.Flags().StringSliceVarP(
+		&reportFormats,
+		"report-formats",
+		"",
+		[]string{},
+		"formats in which the results will be exported (json, sarif)",
+	)
 	scanCmd.Flags().IntVarP(&outputLines, "preview-lines", "", 3, "number of lines to be display in CLI results (default: 3)")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
