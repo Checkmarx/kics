@@ -15,7 +15,7 @@ resource "aws_iam_access_key" "positive2" {
 
 resource "aws_iam_user_policy" "positive3" {
   name = "excess_policy"
-  user = "${aws_iam_user.user.name}"
+  user = aws_iam_user.user.name
 
   policy = <<EOF
 {
