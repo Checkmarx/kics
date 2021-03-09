@@ -2,7 +2,6 @@ package engine
 
 import (
 	"context"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -237,7 +236,7 @@ func TestInspect(t *testing.T) { //nolint
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
-					Severity:         "INFO",
+					Severity:         model.SeverityInfo,
 					Line:             -1,
 					IssueType:        "IncorrectValue",
 					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
@@ -310,7 +309,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
-	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 
 	track := &tracker.CITracker{}
@@ -329,8 +328,8 @@ func TestNewInspector(t *testing.T) { // nolint
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 				"queryName":       "All Auth Users Get Read Access",
-				"severity":        "HIGH",
-				"category":        "Identity and Access Management",
+				"severity":        model.SeverityHigh,
+				"category":        "Access Control",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 				"platform":        "CloudFormation",
@@ -411,7 +410,7 @@ func (m *mockSource) GetGenericQuery(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()
 
 	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
-	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err
 }

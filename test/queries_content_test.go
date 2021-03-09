@@ -4,7 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"os"
 	"path"
 	"path/filepath"
 	"regexp"
@@ -24,7 +25,7 @@ import (
 
 var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
-	severityList = []string{"HIGH", "MEDIUM", "LOW", "INFO"}
+	severityList = []string{model.SeverityHigh, model.SeverityMedium, model.SeverityLow, model.SeverityInfo}
 
 	requiredQueryResultProperties = []string{
 		"documentId",
@@ -86,8 +87,7 @@ var (
 )
 
 func TestQueriesContent(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	queries := loadQueries(t)
 
@@ -100,8 +100,7 @@ func TestQueriesContent(t *testing.T) {
 }
 
 func TestQueriesMetadata(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	queries := loadQueries(t)
 
@@ -226,7 +225,7 @@ func testMetadataURL(tb testing.TB, url, metadataPath string) {
 
 func testUnmarshalMetadata(tb testing.TB, entry queryEntry) (meta map[string]interface{}, metadataPath string) {
 	metadataPath = path.Join(entry.dir, query.MetadataFileName)
-	content, err := ioutil.ReadFile(metadataPath)
+	content, err := os.ReadFile(metadataPath)
 	require.NoError(tb, err, "can't read query metadata file %s", metadataPath)
 
 	var metadata map[string]interface{}

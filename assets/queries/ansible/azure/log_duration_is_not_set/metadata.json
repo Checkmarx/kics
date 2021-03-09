@@ -2,7 +2,7 @@
 	"id": "729ebb15-8060-40f7-9017-cb72676a5487",
 	"queryName": "Log Duration Is Not Set",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_duration' is set to 'ON'",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
 	"platform": "Ansible"

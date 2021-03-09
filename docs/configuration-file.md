@@ -56,6 +56,8 @@ KICS is able to infer the format without the need of file extension.
   "exclude-queries": "exclude queries by providing the query ID",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
   "log-file": true,
+  "minimal": false,
+  "no-color": false,
   "no-progress": false,
   "output-path": "file path to store result in json format",
   "path": "path to file or directory to scan",
@@ -73,6 +75,8 @@ exclude-paths: "exclude paths or files from scan"
 exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
 log-file: true
+no-color: false
+minimal: false
 no-progress: false
 output-path: "file path to store result in json format"
 path: "path to file or directory to scan"
@@ -89,6 +93,8 @@ exclude-paths = "exclude paths or files from scan"
 exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
 log-file = true
+minimal = false
+no-color = false
 no-progress = false
 output-path = "file path to store result in json format"
 path = "path to file or directory to scan"
@@ -105,6 +111,8 @@ verbose = true
 "exclude-queries" = "exclude queries by providing the query ID"
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 "log-file" = true
+"minimal" = false
+"no-color" = false
 "no-progress" = false
 "output-path" = "file path to store result in json format"
 "path" = "path to file or directory to scan"

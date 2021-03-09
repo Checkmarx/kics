@@ -2,7 +2,7 @@
 	"id": "ad21e616-5026-4b9d-990d-5b007bfe679c",
 	"queryName": "Auto Scaling Group With No Associated ELB",
 	"severity": "MEDIUM",
-	"category": "Operational",
+	"category": "Availability",
 	"descriptionText": "AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'LoadBalancerNames' must be defined and not empty.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html",
 	"platform": "CloudFormation"

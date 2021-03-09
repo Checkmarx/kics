@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math"
 	"os"
 	"path/filepath"
@@ -14,6 +13,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/gookit/color"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -28,6 +28,24 @@ type ProgressBar struct {
 	space    int
 	total    float64
 	progress chan float64
+}
+
+// Printer wil print console output with colors
+// Medium is for medium sevevity results
+// High is for high sevevity results
+// Low is for low sevevity results
+// Info is for info sevevity results
+// Success is for successful prints
+// Line is the color to print the line with the vulnerability
+// minVersion is a bool that if true will print the results output in a minimum version
+type Printer struct {
+	Medium  color.RGBColor
+	High    color.RGBColor
+	Low     color.RGBColor
+	Info    color.RGBColor
+	Success color.RGBColor
+	Line    color.RGBColor
+	minimal bool
 }
 
 // NewProgressBar initializes a new ProgressBar
@@ -49,8 +67,7 @@ func NewProgressBar(label string, space int, total float64, progress chan float6
 // wg is a wait group to report when progress is done
 func (p *ProgressBar) Start(wg *sync.WaitGroup) {
 	defer wg.Done()
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	if p.Writer != ioutil.Discard {
+	if p.Writer != io.Discard {
 		var firstHalfPercentage, secondHalfPercentage string
 		const hundredPercent = 100
 		formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
@@ -75,6 +92,7 @@ func (p *ProgressBar) Start(wg *sync.WaitGroup) {
 			fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
 		}
 	}
+	fmt.Println()
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -98,29 +116,45 @@ func WordWrap(s, identation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error) error {
+func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
 
-	fmt.Printf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
+	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
 	for queryName, err := range failedQueries {
 		fmt.Printf("\t- %s:\n", queryName)
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
-	fmt.Printf("------------------------------------\n")
-	for _, q := range summary.Queries {
-		fmt.Printf("%s, Severity: %s, Results: %d\n", q.QueryName, q.Severity, len(q.Files))
-
+	fmt.Printf("------------------------------------\n\n")
+	for _, q := range summary.Queries.SortBySev() {
+		fmt.Printf("%s, Severity: %s, Results: %d\n", printer.PrintBySev(q.QueryName,
+			string(q.Severity)), printer.PrintBySev(string(q.Severity), string(q.Severity)), len(q.Files))
+		if !printer.minimal {
+			fmt.Printf("Description: %s\n", q.Description)
+			fmt.Printf("Platform: %s\n\n", q.Platform)
+		}
 		for i := 0; i < len(q.Files); i++ {
-			fmt.Printf("\t%s:%d\n", q.Files[i].FileName, q.Files[i].Line)
+			fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", i+1), string(q.Severity)),
+				q.Files[i].FileName, printer.Success.Sprint(q.Files[i].Line))
+			if !printer.minimal {
+				fmt.Println()
+				for idx, line := range q.Files[i].VulnLines.Lines {
+					if q.Files[i].VulnLines.Positions[idx] == q.Files[i].Line {
+						printer.Line.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], line)
+					} else {
+						fmt.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], line)
+					}
+				}
+				fmt.Print("\n\n")
+			}
 		}
 	}
 	fmt.Printf("\nResults Summary:\n")
-	fmt.Printf("HIGH: %d\n", summary.SeveritySummary.SeverityCounters["HIGH"])
-	fmt.Printf("MEDIUM: %d\n", summary.SeveritySummary.SeverityCounters["MEDIUM"])
-	fmt.Printf("LOW: %d\n", summary.SeveritySummary.SeverityCounters["LOW"])
-	fmt.Printf("INFO: %d\n", summary.SeveritySummary.SeverityCounters["INFO"])
+	fmt.Printf("%s: %d\n", printer.High.Sprint(model.SeverityHigh), summary.SeveritySummary.SeverityCounters[model.SeverityHigh])
+	fmt.Printf("%s: %d\n", printer.Medium.Sprint(model.SeverityMedium), summary.SeveritySummary.SeverityCounters[model.SeverityMedium])
+	fmt.Printf("%s: %d\n", printer.Low.Sprint(model.SeverityLow), summary.SeveritySummary.SeverityCounters[model.SeverityLow])
+	fmt.Printf("%s: %d\n", printer.Info.Sprint(model.SeverityInfo), summary.SeveritySummary.SeverityCounters[model.SeverityInfo])
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 	log.
 		Info().
@@ -187,7 +221,7 @@ func FileAnalyzer(path string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	rc, err := ioutil.ReadAll(ostat)
+	rc, err := io.ReadAll(ostat)
 	if err != nil {
 		return "", err
 	}
@@ -212,4 +246,32 @@ func FileAnalyzer(path string) (string, error) {
 	}
 
 	return "", errors.New("invalid configuration file format")
+}
+
+// NewPrinter initializes a new Printer
+func NewPrinter(minimal bool) *Printer {
+	return &Printer{
+		Medium:  color.HEX("#ff7213"),
+		High:    color.HEX("#bb2124"),
+		Low:     color.HEX("#edd57e"),
+		Success: color.HEX("#22bb33"),
+		Info:    color.HEX("#5bc0de"),
+		Line:    color.HEX("#f0ad4e"),
+		minimal: minimal,
+	}
+}
+
+// PrintBySev will print the output with the specific severity color given the severity of the result
+func (p *Printer) PrintBySev(content, sev string) string {
+	switch strings.ToUpper(sev) {
+	case model.SeverityHigh:
+		return p.High.Sprintf(content)
+	case model.SeverityMedium:
+		return p.Medium.Sprintf(content)
+	case model.SeverityLow:
+		return p.Low.Sprintf(content)
+	case model.SeverityInfo:
+		return p.Info.Sprintf(content)
+	}
+	return content
 }

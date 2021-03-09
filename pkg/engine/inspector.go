@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"sync"
 	"time"
 
@@ -51,11 +51,13 @@ type QueriesSource interface {
 // TrackQueryLoad increments the number of loaded queries
 // TrackQueryExecution increments the number of queries executed
 // FailedDetectLine decrements the number of queries executed
+// GetOutputLines returns the number of lines to be displayed in results outputs
 type Tracker interface {
 	TrackQueryLoad(queryAggregation int)
 	TrackQueryExecution(queryAggregation int)
 	FailedDetectLine()
 	FailedComputeSimilarityID()
+	GetOutputLines() int
 }
 
 type preparedQuery struct {
@@ -182,8 +184,7 @@ func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progress
 	wg.Add(1)
 	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
 	if hideProgress {
-		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-		progressBar.Writer = ioutil.Discard
+		progressBar.Writer = io.Discard
 	}
 	go progressBar.Start(wg)
 }

@@ -2,7 +2,7 @@
 	"id": "2c161e58-cb52-454f-abea-6470c37b5e6e",
 	"queryName": "RDS DBInstance With Deletion Protection Disabled",
 	"severity": "LOW",
-	"category": "Backup and Disaster Recovery",
+	"category": "Backup",
 	"descriptionText": "RDS DBInstance should have deletion protection set to true",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-deletionprotection",
 	"platform": "CloudFormation"

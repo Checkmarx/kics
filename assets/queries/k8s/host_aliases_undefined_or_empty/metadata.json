@@ -2,7 +2,7 @@
 	"id": "72b03514-20ae-4409-8842-2dd70c2e25aa",
 	"queryName": "Host Aliases Undefined Or Empty",
 	"severity": "HIGH",
-	"category": "Networking",
+	"category": "Insecure Configuration",
 	"descriptionText": "A Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.hostAliases' must be defined and not empty or null.",
 	"descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/",
 	"platform": "Kubernetes"

@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Inline Policies Are Attached To ECS Service",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Inline Policies Are Attached To ECS Service",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.json"
   }

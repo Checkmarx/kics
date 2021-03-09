@@ -84,7 +84,10 @@ Flags:
                                   example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
   -h, --help                      help for scan
   -l, --log-file                  writes log messages to info.log
+      --minimal                   minimal version of results output
+      --no-color                  disable color output
       --no-progress               hides the progress bar
+      --output-lines int          number of lines to be displayed in results output (default 3)
   -o, --output-path string        file path to store result in json format
   -p, --path string               path or directory path to scan
   -d, --payload-path string       path to store internal representation JSON file
