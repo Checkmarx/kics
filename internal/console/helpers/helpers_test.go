@@ -2,10 +2,8 @@ package helpers
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
-	"os"
 	"reflect"
 	"strings"
 	"sync"
@@ -13,70 +11,24 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
+	"github.com/gookit/color"
 	"github.com/stretchr/testify/require"
 )
-
-var summary = model.Summary{
-	Counters: model.Counters{
-		ScannedFiles:           1,
-		ParsedFiles:            1,
-		FailedToScanFiles:      0,
-		TotalQueries:           1,
-		FailedToExecuteQueries: 0,
-	},
-	Queries: []model.VulnerableQuery{
-		{
-			QueryName: "ALB protocol is HTTP",
-			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  "HIGH",
-			Files: []model.VulnerableFile{
-				{
-					FileName:         "positive.tf",
-					Line:             25,
-					IssueType:        "MissingAttribute",
-					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-					KeyActualValue:   "'default_action.redirect.protocol' is missing",
-					Value:            nil,
-				},
-				{
-					FileName:         "positive.tf",
-					Line:             19,
-					IssueType:        "IncorrectValue",
-					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-					KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
-					Value:            nil,
-				},
-			},
-		},
-	},
-	SeveritySummary: model.SeveritySummary{
-		ScanID: "console",
-		SeverityCounters: map[model.Severity]int{
-			"INFO":   0,
-			"LOW":    0,
-			"MEDIUM": 0,
-			"HIGH":   2,
-		},
-		TotalCounter: 2,
-	},
-}
 
 var printTests = []struct {
 	caseTest       model.Summary
 	expectedResult string
 }{
 	{
-		caseTest: summary,
+		caseTest: test.SummaryMock,
 		expectedResult: "Files scanned: 1\n" +
 			"Parsed files: 1\n" +
 			"Queries loaded: 1\n" +
-			"Queries failed to execute: 0\n" +
-			"------------------------------------\n" +
+			"Queries failed to execute: 0\n\n" +
+			"------------------------------------\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
-			"\tpositive.tf:25\n" +
-			"\tpositive.tf:19\n\n" +
+			"\t[1]: positive.tf:25\n" +
+			"\t[2]: positive.tf:19\n\n" +
 			"Results Summary:\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 0\n" +
@@ -86,53 +38,16 @@ var printTests = []struct {
 	},
 }
 
-type jsonCaseTest struct {
-	summary model.Summary
-	path    string
-}
-
-var jsonTests = []struct {
-	caseTest       jsonCaseTest
-	expectedResult model.Summary
-}{
-	{
-		caseTest: jsonCaseTest{
-			summary: summary,
-			path:    "./testout.json",
-		},
-		expectedResult: summary,
-	},
-}
-
 var failedQueries = map[string]error{}
 
 // TestPrintResult tests the functions [PrintResult()] and all the methods called by them
 func TestPrintResult(t *testing.T) {
+	color.Disable()
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries) })
+			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true)) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
-		})
-	}
-}
-
-// TestPrintToJSONFile tests the functions [PrintToJSONFile()] and all the methods called by them
-func TestPrintToJSONFile(t *testing.T) {
-	for idx, test := range jsonTests {
-		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
-			var err error
-			err = PrintToJSONFile(test.caseTest.path, test.caseTest.summary)
-			require.NoError(t, err)
-			require.FileExists(t, test.caseTest.path)
-			var jsonResult []byte
-			jsonResult, err = os.ReadFile(test.caseTest.path)
-			require.NoError(t, err)
-			var resultSummary model.Summary
-			err = json.Unmarshal(jsonResult, &resultSummary)
-			require.NoError(t, err)
-			require.Equal(t, test.expectedResult, resultSummary)
-			os.Remove(test.caseTest.path)
 		})
 	}
 }
@@ -308,6 +223,75 @@ func TestFileAnalyzer(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FileAnalyzer() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPrinter(t *testing.T) {
+	type args struct {
+		content string
+		sev     string
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "test_high",
+			args: args{
+				content: "test_high_content",
+				sev:     model.SeverityHigh,
+			},
+			want: "test_high_content",
+		},
+		{
+			name: "test_medium",
+			args: args{
+				content: "test_medium_content",
+				sev:     model.SeverityMedium,
+			},
+			want: "test_medium_content",
+		},
+		{
+			name: "test_low",
+			args: args{
+				content: "test_low_content",
+				sev:     model.SeverityLow,
+			},
+			want: "test_low_content",
+		},
+		{
+			name: "test_info",
+			args: args{
+				content: "test_info_content",
+				sev:     model.SeverityInfo,
+			},
+			want: "test_info_content",
+		},
+		{
+			name: "test_no_sev_content",
+			args: args{
+				content: "test_no_sev_content",
+				sev:     "no_sev",
+			},
+			want: "test_no_sev_content",
+		},
+	}
+
+	printer := NewPrinter(false)
+	color.Disable()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := printer.PrintBySev(tt.args.content, tt.args.sev)
+			gotStrVulnerabilities, err := test.StringifyStruct(got)
+			require.Nil(t, err)
+			wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
+			require.Nil(t, err)
+			if !reflect.DeepEqual(gotStrVulnerabilities, wantStrVulnerabilities) {
+				t.Errorf("PrintBySev() = %v, want = %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 	}

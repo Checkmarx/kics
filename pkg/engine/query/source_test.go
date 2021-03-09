@@ -38,7 +38,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Run(tt.name, func(b *testing.B) {
 			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
 			for n := 0; n < b.N; n++ {
-				if _, err := s.GetQueries(); err != nil {
+				if _, err := s.GetQueries([]string{""}); err != nil {
 					b.Errorf("Error: %s", err)
 				}
 			}
@@ -193,7 +193,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 						"queryName":       "All Auth Users Get Read Access",
-						"severity":        "HIGH",
+						"severity":        model.SeverityHigh,
 						"platform":        "CloudFormation",
 					},
 					Platform:    "unknown",
@@ -214,7 +214,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			got, err := s.GetQueries()
+			got, err := s.GetQueries([]string{""})
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -260,7 +260,7 @@ func Test_ReadMetadata(t *testing.T) {
 				"descriptionUrl":  "#",
 				"id":              "<ID>",
 				"queryName":       "<QUERY_NAME>",
-				"severity":        "HIGH",
+				"severity":        model.SeverityHigh,
 				"platform":        "<PLATFORM>",
 				"aggregation":     float64(1),
 			},

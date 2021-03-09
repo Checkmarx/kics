@@ -236,7 +236,8 @@ func TestInspect(t *testing.T) { //nolint
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
-					Severity:         "INFO",
+					QueryURI:         "https://github.com/Checkmarx/kics/",
+					Severity:         model.SeverityInfo,
 					Line:             -1,
 					IssueType:        "IncorrectValue",
 					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
@@ -328,7 +329,7 @@ func TestNewInspector(t *testing.T) { // nolint
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 				"queryName":       "All Auth Users Get Read Access",
-				"severity":        "HIGH",
+				"severity":        model.SeverityHigh,
 				"category":        "Access Control",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
@@ -342,6 +343,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		source         QueriesSource
 		vb             VulnerabilityBuilder
 		tracker        Tracker
+		excludeQueries []string
 		excludeResults map[string]bool
 	}
 	tests := []struct {
@@ -357,6 +359,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				vb:             vbs,
 				tracker:        track,
 				source:         sources,
+				excludeQueries: []string{},
 				excludeResults: map[string]bool{},
 			},
 			want: &Inspector{
@@ -369,7 +372,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeResults)
+			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeQueries, tt.args.excludeResults)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
@@ -399,10 +402,10 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries() ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
 	sources := query.NewFilesystemSource(m.Source, []string{""})
 
-	return sources.GetQueries()
+	return sources.GetQueries(excludeQueries)
 }
 func (m *mockSource) GetGenericQuery(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()

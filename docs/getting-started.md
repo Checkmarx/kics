@@ -76,16 +76,23 @@ Flags:
   -e, --exclude-paths strings     exclude paths from scan
                                   supports glob and can be provided multiple times or as a quoted comma separated string
                                   example: './shouldNotScan/*,somefile.txt'
+      --exclude-queries           exclude queries by providing the query ID
+			                         can be provided multiple times or as a comma separated string
+			                         example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
   -x, --exclude-results strings   exclude results by providing the similarity ID of a result
                                   can be provided multiple times or as a comma separated string
                                   example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
   -h, --help                      help for scan
   -l, --log-file                  writes log messages to info.log
+      --minimal-ui                simplified version of CLI output
+      --no-color                  disable CLI color output
       --no-progress               hides the progress bar
-  -o, --output-path string        file path to store result in json format
+  -o, --output-path string        directory path to store reports
   -p, --path string               path or directory path to scan
   -d, --payload-path string       path to store internal representation JSON file
+      --preview-lines int          number of lines to be display in CLI results (default: 3)
   -q, --queries-path string       path to directory with queries (default "./assets/queries")
+      --report-formats string     formats in which the results will be exported (json, sarif)
   -t, --type strings              case insensitive list of platform types to scan
                                   (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
   -v, --verbose                   increase verbosity
