@@ -87,13 +87,9 @@ Flags:
       --minimal                   minimal version of results output
       --no-color                  disable color output
       --no-progress               hides the progress bar
-<<<<<<< HEAD
-  -o, --output-path string        directory path to store result in output formats
       --output-formats string     formats the result will be exported
-=======
       --output-lines int          number of lines to be displayed in results output (default 3)
-  -o, --output-path string        file path to store result in json format
->>>>>>> master
+  -o, --output-path string        directory path to store result in output formats
   -p, --path string               path or directory path to scan
   -d, --payload-path string       path to store internal representation JSON file
   -q, --queries-path string       path to directory with queries (default "./assets/queries")
