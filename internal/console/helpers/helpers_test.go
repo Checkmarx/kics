@@ -13,6 +13,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
+	"github.com/gookit/color"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,7 +29,7 @@ var summary = model.Summary{
 		{
 			QueryName: "ALB protocol is HTTP",
 			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  "HIGH",
+			Severity:  model.SeverityHigh,
 			Files: []model.VulnerableFile{
 				{
 					FileName:         "positive.tf",
@@ -54,10 +55,10 @@ var summary = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			"INFO":   0,
-			"LOW":    0,
-			"MEDIUM": 0,
-			"HIGH":   2,
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   2,
 		},
 		TotalCounter: 2,
 	},
@@ -72,11 +73,11 @@ var printTests = []struct {
 		expectedResult: "Files scanned: 1\n" +
 			"Parsed files: 1\n" +
 			"Queries loaded: 1\n" +
-			"Queries failed to execute: 0\n" +
-			"------------------------------------\n" +
+			"Queries failed to execute: 0\n\n" +
+			"------------------------------------\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
-			"\tpositive.tf:25\n" +
-			"\tpositive.tf:19\n\n" +
+			"\t[1]: positive.tf:25\n" +
+			"\t[2]: positive.tf:19\n\n" +
 			"Results Summary:\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 0\n" +
@@ -108,9 +109,10 @@ var failedQueries = map[string]error{}
 
 // TestPrintResult tests the functions [PrintResult()] and all the methods called by them
 func TestPrintResult(t *testing.T) {
+	color.Disable()
 	for idx, testCase := range printTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
-			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries) })
+			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(true)) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResult, out)
 		})
@@ -308,6 +310,75 @@ func TestFileAnalyzer(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FileAnalyzer() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestPrinter(t *testing.T) {
+	type args struct {
+		content string
+		sev     string
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "test_high",
+			args: args{
+				content: "test_high_content",
+				sev:     model.SeverityHigh,
+			},
+			want: "test_high_content",
+		},
+		{
+			name: "test_medium",
+			args: args{
+				content: "test_medium_content",
+				sev:     model.SeverityMedium,
+			},
+			want: "test_medium_content",
+		},
+		{
+			name: "test_low",
+			args: args{
+				content: "test_low_content",
+				sev:     model.SeverityLow,
+			},
+			want: "test_low_content",
+		},
+		{
+			name: "test_info",
+			args: args{
+				content: "test_info_content",
+				sev:     model.SeverityInfo,
+			},
+			want: "test_info_content",
+		},
+		{
+			name: "test_no_sev_content",
+			args: args{
+				content: "test_no_sev_content",
+				sev:     "no_sev",
+			},
+			want: "test_no_sev_content",
+		},
+	}
+
+	printer := NewPrinter(false)
+	color.Disable()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := printer.PrintBySev(tt.args.content, tt.args.sev)
+			gotStrVulnerabilities, err := test.StringifyStruct(got)
+			require.Nil(t, err)
+			wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
+			require.Nil(t, err)
+			if !reflect.DeepEqual(gotStrVulnerabilities, wantStrVulnerabilities) {
+				t.Errorf("PrintBySev() = %v, want = %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 	}
