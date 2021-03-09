@@ -19,6 +19,7 @@ jobs:
           python-version: '3.x'
       - name: Generate docs
         run: |
+          pip3 install -r .github/generators/requirements.txt
           python3 -u .github/generators/docs_generator.py -p ./assets/queries/ \
             -o ./docs/queries/ -f md -t .github/generators/templates
       - uses: EndBug/add-and-commit@v7
