@@ -91,6 +91,7 @@ type Vulnerability struct {
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
 	QueryName        string    `db:"query_name" json:"queryName"`
+	QueryURI         string    `json:"-"`
 	Category         string    `json:"category"`
 	Description      string    `json:"description"`
 	Platform         string    `db:"platform" json:"platform"`

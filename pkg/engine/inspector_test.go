@@ -236,6 +236,7 @@ func TestInspect(t *testing.T) { //nolint
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
+					QueryURI:         "https://github.com/Checkmarx/kics/",
 					Severity:         model.SeverityInfo,
 					Line:             -1,
 					IssueType:        "IncorrectValue",

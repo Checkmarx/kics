@@ -84,14 +84,15 @@ Flags:
                                   example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
   -h, --help                      help for scan
   -l, --log-file                  writes log messages to info.log
-      --minimal                   minimal version of results output
-      --no-color                  disable color output
+      --minimal-ui                simplified version of CLI output
+      --no-color                  disable CLI color output
       --no-progress               hides the progress bar
-      --output-lines int          number of lines to be displayed in results output (default 3)
-  -o, --output-path string        file path to store result in json format
+  -o, --output-path string        directory path to store reports
   -p, --path string               path or directory path to scan
   -d, --payload-path string       path to store internal representation JSON file
+      --preview-lines int          number of lines to be display in CLI results (default: 3)
   -q, --queries-path string       path to directory with queries (default "./assets/queries")
+      --report-formats string     formats in which the results will be exported (json, sarif)
   -t, --type strings              case insensitive list of platform types to scan
                                   (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
   -v, --verbose                   increase verbosity

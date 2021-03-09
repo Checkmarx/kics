@@ -24,6 +24,8 @@ const (
 	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
+	DefaultQueryDescription     = "Undefined"
+	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery      = `result = data.Cx.CxPolicy`

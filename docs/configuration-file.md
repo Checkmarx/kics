@@ -56,13 +56,15 @@ KICS is able to infer the format without the need of file extension.
   "exclude-queries": "exclude queries by providing the query ID",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
   "log-file": true,
-  "minimal": false,
+  "minimal-ui": false,
   "no-color": false,
   "no-progress": false,
-  "output-path": "file path to store result in json format",
+  "output-path": "directory path to store reports",
   "path": "path to file or directory to scan",
   "payload-path": "file path to store source internal representation in JSON format",
+  "preview-lines": 3,
   "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
+  "report-formats": "formats in which the results will be exported (json, sarif)",
   "type": "type of queries to use in the scan",
   "verbose": true
 }
@@ -76,12 +78,14 @@ exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
 log-file: true
 no-color: false
-minimal: false
+minimal-ui: false
 no-progress: false
-output-path: "file path to store result in json format"
+output-path: "directory path to store reports"
 path: "path to file or directory to scan"
 payload-path: "file path to store source internal representation in JSON format"
+preview-lines: 3
 queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
+report-formats: "formats in which the results will be exported (json, sarif)"
 type: "type of queries to use in the scan"
 verbose: true
 ```
@@ -93,13 +97,15 @@ exclude-paths = "exclude paths or files from scan"
 exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
 log-file = true
-minimal = false
+minimal-ui = false
 no-color = false
 no-progress = false
-output-path = "file path to store result in json format"
+output-path = "directory path to store reports"
 path = "path to file or directory to scan"
 payload-path = "file path to store source internal representation in JSON format"
+preview-lines = 3
 queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
+report-formats = "formats in which the results will be exported (json, sarif)"
 type = "type of queries to use in the scan"
 verbose = true
 ```
@@ -111,13 +117,15 @@ verbose = true
 "exclude-queries" = "exclude queries by providing the query ID"
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 "log-file" = true
-"minimal" = false
+"minimal-ui" = false
 "no-color" = false
 "no-progress" = false
-"output-path" = "file path to store result in json format"
+"output-path" = "directory path to store reports"
 "path" = "path to file or directory to scan"
 "payload-path" = "file path to store source internal representation in JSON format"
+"preview-lines" = 3
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
+"report-formats" = "formats in which the results will be exported (json, sarif)"
 "type" = "type of queries to use in the scan"
 "verbose" = true
 ```

@@ -39,6 +39,7 @@ var (
 	excludePath    []string
 	excludeQueries []string
 	excludeResults []string
+	reportFormats  []string
 	cfgFile        string
 	verbose        bool
 	logFile        bool
@@ -161,8 +162,15 @@ func initScanCmd() {
 		"./assets/queries",
 		"path to directory with queries",
 	)
-	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
-	scanCmd.Flags().IntVarP(&outputLines, "output-lines", "", 3, "number of lines to be displayed in results output")
+	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store reports")
+	scanCmd.Flags().StringSliceVarP(
+		&reportFormats,
+		"report-formats",
+		"",
+		[]string{},
+		"formats in which the results will be exported (json, sarif)",
+	)
+	scanCmd.Flags().IntVarP(&outputLines, "preview-lines", "", 3, "number of lines to be display in CLI results (default: 3)")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -172,8 +180,8 @@ func initScanCmd() {
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable color output")
-	scanCmd.Flags().BoolVarP(&min, "minimal", "", false, "minimal version of results output")
+	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
+	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
@@ -339,11 +347,11 @@ func scan() error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printJSON(payloadPath, files.Combine()); err != nil {
+	if err := printOutput(payloadPath, "payload", files.Combine(), []string{"json"}); err != nil {
 		return err
 	}
 
-	if err := printJSON(outputPath, summary); err != nil {
+	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
 		return err
 	}
 
@@ -362,9 +370,23 @@ func scan() error {
 	return nil
 }
 
-func printJSON(path string, body interface{}) error {
-	if path != "" {
-		return consoleHelpers.PrintToJSONFile(path, body)
+func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+	if outputPath == "" {
+		return nil
 	}
-	return nil
+	if strings.Contains(outputPath, ".") {
+		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
+			formats = []string{filepath.Ext(outputPath)[1:]}
+		}
+		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
+			filename = filepath.Base(outputPath)
+			outputPath = filepath.Dir(outputPath)
+		}
+	}
+
+	ok := consoleHelpers.ValidateReportFormats(formats)
+	if ok == nil {
+		ok = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
+	}
+	return ok
 }

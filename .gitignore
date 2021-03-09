@@ -25,3 +25,6 @@
 
 # kics configuration file
 kics.config
+
+# Sarif file
+*.sarif
