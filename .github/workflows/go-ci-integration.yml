@@ -86,9 +86,17 @@ jobs:
         go-version: 1.16.x
     - name: Get short SHA
       run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
+    - uses: actions/cache@v2
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go
     - name: Download modules
       run: go mod vendor
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
     - name: Docker build on Windows
       run: docker build --build-arg "VERSION=${GITHUB_SHA_SHORT}" -f Dockerfile.windows -t checkmarx/kics:nanoserver .
-    - name: Docker run
-      run: docker run -it checkmarx/kics:nanoserver version
+    - name: Docker run on Windows
+      run: docker run --rm checkmarx/kics:nanoserver version
