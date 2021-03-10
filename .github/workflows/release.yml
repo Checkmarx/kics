@@ -45,6 +45,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ outputs.get-version.version }}
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
