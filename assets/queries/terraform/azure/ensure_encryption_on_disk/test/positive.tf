@@ -1,4 +1,4 @@
-resource "azurerm_managed_disk" "encryption_disabled" {
+resource "azurerm_managed_disk" "positive1" {
   name                 = "acctestmd"
   location             = "West US 2"
   resource_group_name  = azurerm_resource_group.example.name
@@ -15,7 +15,7 @@ resource "azurerm_managed_disk" "encryption_disabled" {
   }
 }
 
-resource "azurerm_managed_disk" "encryption_missing" {
+resource "azurerm_managed_disk" "positive2" {
   name                 = "acctestmd"
   location             = "West US 2"
   resource_group_name  = azurerm_resource_group.example.name

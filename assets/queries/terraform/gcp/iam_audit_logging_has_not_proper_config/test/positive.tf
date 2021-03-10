@@ -1,4 +1,4 @@
-resource "google_project_iam_audit_config" "not_all_services" {
+resource "google_project_iam_audit_config" "positive1" {
   project = "your-project-id"
   service = "some_specific_service"
   audit_log_config {
@@ -12,7 +12,7 @@ resource "google_project_iam_audit_config" "not_all_services" {
   }
 }
 
-resource "google_project_iam_audit_config" "invalid_log_type" {
+resource "google_project_iam_audit_config" "positive2" {
   project = "your-project-id"
   service = "allServices"
   audit_log_config {

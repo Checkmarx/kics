@@ -1,8 +1,8 @@
-resource "aws_sqs_queue" "q" {
+resource "aws_sqs_queue" "positive1" {
   name = "examplequeue"
 }
 
-resource "aws_sqs_queue_policy" "test" {
+resource "aws_sqs_queue_policy" "positive2" {
   queue_url = aws_sqs_queue.q.id
 
   policy = <<POLICY

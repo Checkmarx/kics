@@ -1,4 +1,4 @@
-resource "azurerm_sql_database" "example1" {
+resource "azurerm_sql_database" "positive1" {
   name                = "myexamplesqldatabase"
   resource_group_name = azurerm_resource_group.example.name
   location            = "West US"
@@ -16,7 +16,7 @@ resource "azurerm_sql_database" "example1" {
   }
 }
 
-resource "azurerm_sql_database" "example2" {
+resource "azurerm_sql_database" "positive2" {
   name                = "myexamplesqldatabase"
   resource_group_name = azurerm_resource_group.example.name
   location            = "West US"
@@ -34,7 +34,7 @@ resource "azurerm_sql_database" "example2" {
   }
 }
 
-resource "azurerm_sql_database" "example3" {
+resource "azurerm_sql_database" "positive3" {
   name                = "myexamplesqldatabase"
   resource_group_name = azurerm_resource_group.example.name
   location            = "West US"
@@ -52,7 +52,7 @@ resource "azurerm_sql_database" "example3" {
   }
 }
 
-resource "azurerm_sql_server" "example4" {
+resource "azurerm_sql_server" "positive4" {
     name                         = "sqlserver"
     resource_group_name          = azurerm_resource_group.example.name
     location                     = azurerm_resource_group.example.location

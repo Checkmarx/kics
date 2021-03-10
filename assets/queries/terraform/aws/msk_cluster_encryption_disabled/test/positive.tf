@@ -1,10 +1,10 @@
-resource "aws_msk_cluster" "example1" {
+resource "aws_msk_cluster" "positive1" {
   cluster_name           = "example"
   kafka_version          = "2.4.1"
   number_of_broker_nodes = 3
 }
 
-resource "aws_msk_cluster" "example2" {
+resource "aws_msk_cluster" "positive2" {
   cluster_name           = "example"
   kafka_version          = "2.4.1"
   number_of_broker_nodes = 3
@@ -16,7 +16,7 @@ resource "aws_msk_cluster" "example2" {
   }
 }
 
-resource "aws_msk_cluster" "example3" {
+resource "aws_msk_cluster" "positive3" {
   cluster_name           = "example"
   kafka_version          = "2.4.1"
   number_of_broker_nodes = 3
@@ -28,7 +28,7 @@ resource "aws_msk_cluster" "example3" {
   }
 }
 
-resource "aws_msk_cluster" "example4" {
+resource "aws_msk_cluster" "positive4" {
   cluster_name           = "example"
   kafka_version          = "2.4.1"
   number_of_broker_nodes = 3

@@ -29,11 +29,12 @@ type VulnerableFile struct {
 type VulnerableQuery struct {
 	QueryName   string           `json:"query_name"`
 	QueryID     string           `json:"query_id"`
-	Category    string           `json:"category"`
-	Description string           `json:"description"`
+	QueryURI    string           `json:"query_url"`
 	Severity    Severity         `json:"severity"`
 	Platform    string           `json:"platform"`
 	Files       []VulnerableFile `json:"files"`
+	Category    string           `json:"category"`
+	Description string           `json:"description"`
 }
 
 // VulnerableQuerySlice is a slice of VulnerableQuery
@@ -69,10 +70,11 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 			q[item.QueryName] = VulnerableQuery{
 				QueryName:   item.QueryName,
 				QueryID:     item.QueryID,
+				Severity:    item.Severity,
+				QueryURI:    item.QueryURI,
+				Platform:    item.Platform,
 				Category:    item.Category,
 				Description: item.Description,
-				Platform:    item.Platform,
-				Severity:    item.Severity,
 			}
 		}
 
@@ -95,10 +97,10 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 
 	queries := make([]VulnerableQuery, 0, len(q))
 	sevs := map[Severity]int{SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
-	for _, i := range q {
-		queries = append(queries, i)
-		sevs[i.Severity] += len(i.Files)
-		severitySummary.TotalCounter += len(i.Files)
+	for idx := range q {
+		queries = append(queries, q[idx])
+		sevs[q[idx].Severity] += len(q[idx].Files)
+		severitySummary.TotalCounter += len(q[idx].Files)
 	}
 	severitySummary.SeverityCounters = sevs
 

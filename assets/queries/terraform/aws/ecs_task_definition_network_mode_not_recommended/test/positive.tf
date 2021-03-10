@@ -1,4 +1,4 @@
-resource "aws_ecs_task_definition" "service" {
+resource "aws_ecs_task_definition" "positive1" {
   family                = "service"
   network_mode = "none"
 

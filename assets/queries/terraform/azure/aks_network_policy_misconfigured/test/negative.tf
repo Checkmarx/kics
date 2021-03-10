@@ -1,4 +1,4 @@
-resource "azurerm_kubernetes_cluster" "azure_np" {
+resource "azurerm_kubernetes_cluster" "negative1" {
   name                = "example-aks1"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -23,7 +23,7 @@ resource "azurerm_kubernetes_cluster" "azure_np" {
   }
 }
 
-resource "azurerm_kubernetes_cluster" "calico_np" {
+resource "azurerm_kubernetes_cluster" "negative2" {
   name                = "example-aks2"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

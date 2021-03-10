@@ -46,6 +46,25 @@ var (
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
 	}
 
+	// query category -> TODO categories ID
+	AvailableCategories = map[string]string{
+		"Access Control":          "CAT001",
+		"Availability":            "CAT002",
+		"Backup":                  "CAT003",
+		"Best Practices":          "CAT004",
+		"Build Process":           "CAT005",
+		"Encryption":              "CAT006",
+		"Insecure Configurations": "CAT007",
+		"Insecure Defaults":       "CAT008",
+		"Networking and Firewall": "CAT009",
+		"Observability":           "CAT010",
+		"Resource Management":     "CAT011",
+		"Secret Management":       "CAT012",
+		"Supply-Chain":            "CAT013",
+	}
+
+	CategoriesKeys = MapToStringSlice(AvailableCategories)
+
 	searchValueProperty = "searchValue"
 
 	requiredQueryMetadataProperties = map[string]func(tb testing.TB, value interface{}, metadataPath string){
@@ -64,6 +83,8 @@ var (
 		"category": func(tb testing.TB, value interface{}, metadataPath string) {
 			categoryValue := testMetadataFieldStringType(tb, value, "category", metadataPath)
 			require.NotEmpty(tb, categoryValue, "empty category in query metadata file %s", metadataPath)
+			_, ok := AvailableCategories[categoryValue]
+			require.True(tb, ok, "%s is not a valid category must be one of:\n%v", categoryValue, strings.Join(CategoriesKeys, "\n"))
 		},
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
@@ -138,8 +159,8 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctx := context.Background()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries().
-		DoAndReturn(func() ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries([]string{}).
+		DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
 			q, err := query.ReadQuery(entry.dir)
 
 			return []model.QueryMetadata{q}, err
@@ -196,6 +217,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return model.Vulnerability{}, nil
 		},
 		trk,
+		[]string{},
 		map[string]bool{},
 	)
 	require.Nil(t, err)

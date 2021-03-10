@@ -1,6 +1,7 @@
 name: generate-queries-docs
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
@@ -19,11 +20,16 @@ jobs:
           python-version: '3.x'
       - name: Generate docs
         run: |
+          pip3 install -r .github/generators/requirements.txt
           python3 -u .github/generators/docs_generator.py -p ./assets/queries/ \
             -o ./docs/queries/ -f md -t .github/generators/templates
-      - uses: EndBug/add-and-commit@v7
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          message: 'Automatic document generation'
-          author_name: github-actions
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          title: Update queries docs ${{ github.ref }} - ${{ github.run_id }}
+          body: |
+            **Automated changes** 
+            Updating queries' documentation.
+            Triggered by SHA: _${{ github.sha }}_
+          labels: documentation
 

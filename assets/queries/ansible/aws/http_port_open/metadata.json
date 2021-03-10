@@ -2,7 +2,7 @@
 	"id": "a14ad534-acbe-4a8e-9404-2f7e1045646e",
 	"queryName": "HTTP Port Open",
 	"severity": "HIGH",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "HTTP port is open to the internet",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
 	"platform": "Ansible"

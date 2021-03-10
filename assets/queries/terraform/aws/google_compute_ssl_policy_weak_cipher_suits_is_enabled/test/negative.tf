@@ -1,4 +1,4 @@
-resource "google_compute_ssl_policy" "custom-ssl-policy" {
+resource "google_compute_ssl_policy" "negative1" {
   name            = "custom-ssl-policy"
   min_tls_version = "TLS_1_2"
   profile         = "CUSTOM"

@@ -58,13 +58,14 @@ var (
 			name: "Changed Sample and Query SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive2.tf", fixtureDir),
 					queryFixturePath:  fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
 				}),
 			},
@@ -93,13 +94,14 @@ var (
 			name: "Changed Sample SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive2.tf", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -133,7 +135,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive.tf",
+					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive1.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -253,7 +255,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries().DoAndReturn(func() ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries([]string{}).DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
 		metadata := query.ReadMetadata(testParams.queryDir)
 
 		// Override metadata ID with custom QueryID for testing
@@ -288,6 +290,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
+		[]string{},
 		map[string]bool{})
 
 	require.Nil(t, err)

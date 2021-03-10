@@ -1,4 +1,4 @@
-resource "google_storage_bucket" "foo" {
+resource "google_storage_bucket" "positive1" {
   name     = "foo"
   location = "EU"
 
@@ -7,7 +7,7 @@ resource "google_storage_bucket" "foo" {
   }
 }
 
-resource "google_storage_bucket" "foo2" {
+resource "google_storage_bucket" "positive2" {
   name     = "foo"
   location = "EU"
 }

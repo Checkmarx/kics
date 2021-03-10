@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "b_public_read" {
+resource "aws_s3_bucket" "positive1" {
   bucket = "my-tf-test-bucket"
   acl    = "public-read"
 
@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "b_public_read" {
   }
 }
 
-resource "aws_s3_bucket" "b_public_read_write" {
+resource "aws_s3_bucket" "positive2" {
   bucket = "my-tf-test-bucket"
   acl    = "public-read-write"
 

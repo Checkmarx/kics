@@ -1,4 +1,4 @@
-resource "aws_iam_user" "user" {
+resource "aws_iam_user" "positive1" {
   name          = "${local.resource_prefix.value}-user"
   force_destroy = true
 
@@ -9,13 +9,13 @@ resource "aws_iam_user" "user" {
 
 }
 
-resource "aws_iam_access_key" "user" {
+resource "aws_iam_access_key" "positive2" {
   user = aws_iam_user.user.name
 }
 
-resource "aws_iam_policy_attachment" "userpolicy" {
+resource "aws_iam_policy_attachment" "positive3" {
   name = "excess_policy"
-  user = "${aws_iam_user.user.name}"
+  user = aws_iam_user.user.name
 
   policy = <<EOF
 {

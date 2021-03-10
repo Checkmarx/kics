@@ -20,9 +20,9 @@ jobs:
           mv hadolint-Linux-x86_64 .bin/hadolint
           chmod +x .bin/hadolint
       - name: Validate dockerfiles syntax
-        run: python3 .github/validators/validate-syntax.py -u "assets/queries/docker/**/test/*.dockerfile"
-        env:
-          LINTER_PATH: .bin/hadolint
-          EXTRA_ARGS: "-c .github/hadolint.yml"
-          SKIP_LIST_PATH: dkr-skip-list
-
+        run: |
+          python3 -u .github/validators/validate-syntax.py \
+            "assets/queries/docker/**/test/*.dockerfile" \
+            --linter .bin/hadolint \
+            --skip dkr-skip-list \
+            --extra ' -c .github/hadolint.yml'

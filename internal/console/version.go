@@ -3,11 +3,9 @@ package console
 import (
 	"fmt"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/spf13/cobra"
 )
-
-// Version - current KICS version
-var Version = "dev"
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
@@ -19,5 +17,5 @@ var versionCmd = &cobra.Command{
 }
 
 func getVersion() string {
-	return fmt.Sprintf("Keeping Infrastructure as Code Secure %s", Version)
+	return fmt.Sprintf("%s %s", constants.Fullname, constants.Version)
 }

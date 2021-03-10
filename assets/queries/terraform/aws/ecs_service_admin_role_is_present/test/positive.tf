@@ -1,5 +1,5 @@
 #this is a problematic code where the query should report a result(s)
-resource "aws_ecs_service" "mongo" {
+resource "aws_ecs_service" "positive1" {
   name            = "mongodb"
   cluster         = aws_ecs_cluster.foo.id
   task_definition = aws_ecs_task_definition.mongo.arn
