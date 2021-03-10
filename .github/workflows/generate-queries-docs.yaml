@@ -26,9 +26,11 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Update queries docs ${{ github.ref }} - ${{ github.run_id }}
+          title: Update queries docs - ${{ github.run_id }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
           body: |
-            **Automated changes** 
+            **Automated changes**
             Updating queries' documentation.
             Triggered by SHA: _${{ github.sha }}_
           labels: documentation
