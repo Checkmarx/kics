@@ -87,6 +87,18 @@ func StringifyStruct(v interface{}) (string, error) {
 	return string(jsonValue), nil
 }
 
+// MapToStringSlice extract slice of keys from a map[string]string
+func MapToStringSlice(stringKeyMap map[string]string) []string {
+	keys := make([]string, len(stringKeyMap))
+
+	i := 0
+	for k := range stringKeyMap {
+		keys[i] = k
+		i++
+	}
+	return keys
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
