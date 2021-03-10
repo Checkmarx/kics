@@ -1,4 +1,4 @@
-resource "google_compute_instance" "ssh_keys_unblocked" {
+resource "google_compute_instance" "positive1" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
@@ -36,7 +36,7 @@ resource "google_compute_instance" "ssh_keys_unblocked" {
   }
 }
 
-resource "google_compute_instance" "no_metadata" {
+resource "google_compute_instance" "positive2" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"

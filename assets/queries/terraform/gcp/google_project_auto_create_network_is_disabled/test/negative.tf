@@ -1,4 +1,4 @@
-resource "google_project" "my_project" {
+resource "google_project" "negative1" {
   name       = "My Project"
   project_id = "your-project-id"
   org_id     = "1234567"

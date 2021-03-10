@@ -1,4 +1,4 @@
-resource "aws_rds_cluster" "example1" {
+resource "aws_rds_cluster" "negative1" {
 cluster_identifier = "example"
 db_subnet_group_name = aws_db_subnet_group.example.name
 engine_mode = "multimaster"

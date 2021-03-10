@@ -1,4 +1,4 @@
-resource "aws_mq_broker" "not_publicly_accessible" {
+resource "aws_mq_broker" "negative1" {
   broker_name = "example"
 
   configuration {

@@ -1,3 +1,4 @@
+## trigger validator
 Resources:
   ConfigRule:
     Type: AWS::Config::ConfigRule

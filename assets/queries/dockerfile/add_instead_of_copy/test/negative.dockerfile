@@ -1,3 +1,4 @@
+## trigger validator
 FROM openjdk:10-jdk
 VOLUME /tmp
 ARG JAR_FILE

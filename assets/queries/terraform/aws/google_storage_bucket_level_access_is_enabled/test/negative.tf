@@ -1,4 +1,4 @@
-resource "google_storage_bucket" "static-site" {
+resource "google_storage_bucket" "negative1" {
   name          = "image-store.com"
   location      = "EU"
   force_destroy = true

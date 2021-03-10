@@ -1,6 +1,6 @@
-resource "aws_iam_role_policy" "apigateway_cloudwatch_logging" {
+resource "aws_iam_role_policy" "negative1" {
   name = "apigateway-cloudwatch-logging"
-  role = "${aws_iam_role.apigateway_cloudwatch_logging.id}"
+  role = aws_iam_role.apigateway_cloudwatch_logging.id
 
   policy = <<EOF
 {

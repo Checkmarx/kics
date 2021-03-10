@@ -1,10 +1,10 @@
-resource "aws_iam_user_login_profile" "example" {
+resource "aws_iam_user_login_profile" "positive1" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 }
 
 
-resource "aws_iam_user_login_profile" "example2" {
+resource "aws_iam_user_login_profile" "positive2" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 
@@ -14,7 +14,7 @@ resource "aws_iam_user_login_profile" "example2" {
 }
 
 
-resource "aws_iam_user_login_profile" "example3" {
+resource "aws_iam_user_login_profile" "positive3" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 
@@ -24,7 +24,7 @@ resource "aws_iam_user_login_profile" "example3" {
 }
 
 
-resource "aws_iam_user_login_profile" "example4" {
+resource "aws_iam_user_login_profile" "positive4" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 
@@ -32,7 +32,7 @@ resource "aws_iam_user_login_profile" "example4" {
 }
 
 
-resource "aws_iam_user_login_profile" "example5" {
+resource "aws_iam_user_login_profile" "positive5" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 
@@ -40,7 +40,7 @@ resource "aws_iam_user_login_profile" "example5" {
 }
 
 
-resource "aws_iam_user_login_profile" "example6" {
+resource "aws_iam_user_login_profile" "positive6" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 
@@ -48,7 +48,7 @@ resource "aws_iam_user_login_profile" "example6" {
 }
 
 
-resource "aws_iam_user_login_profile" "example7" {
+resource "aws_iam_user_login_profile" "positive7" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 

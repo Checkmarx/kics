@@ -1,5 +1,5 @@
 #this code is a correct code for which the query should not find any result
-resource "aws_sqs_queue" "q" {
+resource "aws_sqs_queue" "negative1" {
   name = "examplequeue"
 
   policy = <<POLICY

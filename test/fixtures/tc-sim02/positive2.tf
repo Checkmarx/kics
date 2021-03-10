@@ -4,7 +4,7 @@
 // ###########################################
 resource "aws_redshift_cluster" "default" {
 
-  // change whitespaces for tests
+  // whitespace for tests
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "foo"
@@ -21,6 +21,7 @@ resource "aws_redshift_cluster" "default1" {
   master_password     = "Mustbe8characters"
   node_type           = "dc1.large"
   // change new property for tests
+
   BOGUS_PROPERTY      = "CRAZY-TEST-PROPERTY"
 
   cluster_type        = "single-node"

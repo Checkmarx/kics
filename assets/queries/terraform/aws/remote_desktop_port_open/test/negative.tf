@@ -1,10 +1,10 @@
-resource "aws_security_group" "negative_rdp_1" {
+resource "aws_security_group" "negative1" {
   name        = "Dont open remote desktop port"
   description = "Doesn't enable the remote desktop port"
 
 }
 
-resource "aws_security_group" "negative_rdp_2" {
+resource "aws_security_group" "negative2" {
 
   ingress {
     description = "Remote desktop open private"

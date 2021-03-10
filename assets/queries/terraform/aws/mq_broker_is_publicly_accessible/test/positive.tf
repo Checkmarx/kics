@@ -1,4 +1,4 @@
-resource "aws_mq_broker" "publicly_accessible" {
+resource "aws_mq_broker" "positive1" {
   broker_name = "example"
 
   configuration {

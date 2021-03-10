@@ -1,4 +1,4 @@
-resource "aws_iam_user" "lb" {
+resource "aws_iam_user" "negative1" {
   name = "root"
   path = "/system/"
 
@@ -7,11 +7,11 @@ resource "aws_iam_user" "lb" {
   }
 }
 
-resource "aws_iam_access_key" "lb" {
+resource "aws_iam_access_key" "negative2" {
   user = aws_iam_user.lb.name
 }
 
-resource "aws_iam_user_policy" "lb_ro" {
+resource "aws_iam_user_policy" "negative3" {
   name = "test"
   user = aws_iam_user.lb.name
 
@@ -36,7 +36,7 @@ resource "aws_iam_user_policy" "lb_ro" {
 EOF
 }
 
-resource "aws_iam_user_policy" "lb_ro2" {
+resource "aws_iam_user_policy" "negative4" {
   name = "test"
   user = aws_iam_user.lb.name
 

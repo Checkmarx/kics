@@ -1,4 +1,4 @@
-resource "google_container_node_pool" "np1" {
+resource "google_container_node_pool" "positive1" {
   name       = "my-node-pool"
   location   = "us-central1-a"
   cluster    = google_container_cluster.primary.name
@@ -10,7 +10,7 @@ resource "google_container_node_pool" "np1" {
   }
 }
 
-resource "google_container_node_pool" "np2" {
+resource "google_container_node_pool" "positive2" {
   name       = "my-node-pool"
   location   = "us-central1-a"
   cluster    = google_container_cluster.primary.name
@@ -26,7 +26,7 @@ resource "google_container_node_pool" "np2" {
   }
 }
 
-resource "google_container_node_pool" "np3" {
+resource "google_container_node_pool" "positive3" {
   name       = "my-node-pool"
   location   = "us-central1-a"
   cluster    = google_container_cluster.primary.name

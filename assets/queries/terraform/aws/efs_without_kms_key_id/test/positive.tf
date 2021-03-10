@@ -1,4 +1,4 @@
-resource "aws_efs_file_system" "foo3" {
+resource "aws_efs_file_system" "positive1" {
   creation_token = "my-product"
   encrypted = true
 

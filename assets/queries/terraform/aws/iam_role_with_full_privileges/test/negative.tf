@@ -1,4 +1,4 @@
-resource "aws_iam_role" "test_role" {
+resource "aws_iam_role" "negative1" {
   name = "test_role"
 
   assume_role_policy = <<EOF
