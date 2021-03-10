@@ -2,7 +2,7 @@
 	"id": "591ade62-d6b0-4580-b1ae-209f80ba1cd9",
 	"queryName": "Service Account Name Undefined Or Empty",
 	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
+	"category": "Insecure Defaults",
 	"descriptionText": "A Pod should have a Service Account defined so to restrict Kubernetes API access, which means the attribute 'serviceAccountName' should be defined and not empty.",
 	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 	"platform": "Kubernetes"

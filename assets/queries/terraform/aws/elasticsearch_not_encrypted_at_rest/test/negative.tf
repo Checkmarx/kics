@@ -1,4 +1,4 @@
-resource "aws_elasticsearch_domain" "encrypted_at_rest" {
+resource "aws_elasticsearch_domain" "negative1" {
   domain_name           = "example"
   elasticsearch_version = "1.5"
 

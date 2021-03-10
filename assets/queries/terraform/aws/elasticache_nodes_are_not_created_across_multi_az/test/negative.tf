@@ -1,4 +1,4 @@
-resource "aws_elasticache_cluster" "multi-az" {
+resource "aws_elasticache_cluster" "negative1" {
   cluster_id           = "cluster-example"
   engine = "memcached"
 

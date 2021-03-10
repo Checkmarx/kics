@@ -50,18 +50,18 @@ func (mr *MockQueriesSourceMockRecorder) GetGenericQuery(platform interface{}) *
 }
 
 // GetQueries mocks base method.
-func (m *MockQueriesSource) GetQueries(excludeCategories []string) ([]model.QueryMetadata, error) {
+func (m *MockQueriesSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetQueries", excludeCategories)
+	ret := m.ctrl.Call(m, "GetQueries", excludeQueries)
 	ret0, _ := ret[0].([]model.QueryMetadata)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetQueries indicates an expected call of GetQueries.
-func (mr *MockQueriesSourceMockRecorder) GetQueries(excludeCategories interface{}) *gomock.Call {
+func (mr *MockQueriesSourceMockRecorder) GetQueries(excludeQueries interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries), excludeCategories)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries), excludeQueries)
 }
 
 // MockTracker is a mock of Tracker interface.

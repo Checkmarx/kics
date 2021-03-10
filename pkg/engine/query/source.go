@@ -2,7 +2,6 @@ package query
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -92,7 +91,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
 	pathToLib := GetPathToLibrary(platform, s.Source)
 
-	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
 		log.Err(err)
 	}
@@ -111,15 +110,15 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 	return true
 }
 
-func checkCategoryExclude(queryCategory interface{}, excludeCategories []string) bool {
-	category, ok := queryCategory.(string)
+func checkQueryExclude(id interface{}, excludeQueries []string) bool {
+	queryID, ok := id.(string)
 	if !ok {
 		log.Warn().
-			Msgf("Can't cast query category = %v", queryCategory)
+			Msgf("Can't cast query metadata key = %v", id)
 		return false
 	}
-	for _, excludeCategory := range excludeCategories {
-		if category == excludeCategory {
+	for _, excludeID := range excludeQueries {
+		if queryID == excludeID {
 			return true
 		}
 	}
@@ -128,7 +127,7 @@ func checkCategoryExclude(queryCategory interface{}, excludeCategories []string)
 
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries(excludeCategories []string) ([]model.QueryMetadata, error) {
+func (s *FilesystemSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
@@ -161,7 +160,7 @@ func (s *FilesystemSource) GetQueries(excludeCategories []string) ([]model.Query
 		if !s.CheckType(query.Metadata["platform"]) {
 			continue
 		}
-		if checkCategoryExclude(query.Metadata["category"], excludeCategories) {
+		if checkQueryExclude(query.Metadata["id"], excludeQueries) {
 			continue
 		}
 
@@ -174,7 +173,7 @@ func (s *FilesystemSource) GetQueries(excludeCategories []string) ([]model.Query
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
-	queryContent, err := ioutil.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
+	queryContent, err := os.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}

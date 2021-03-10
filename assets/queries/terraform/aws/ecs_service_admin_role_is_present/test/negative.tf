@@ -1,5 +1,5 @@
 #this code is a correct code for which the query should not find any result
-resource "aws_ecs_service" "mongo" {
+resource "aws_ecs_service" "negative1" {
   name            = "mongodb"
   cluster         = aws_ecs_cluster.foo.id
   task_definition = aws_ecs_task_definition.mongo.arn

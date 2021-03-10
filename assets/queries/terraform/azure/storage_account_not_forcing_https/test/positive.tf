@@ -1,4 +1,4 @@
-resource "azurerm_storage_account" "storage_account1" {
+resource "azurerm_storage_account" "positive1" {
   name                      = "example1"
   resource_group_name       = data.azurerm_resource_group.example.name
   location                  = data.azurerm_resource_group.example.location
@@ -7,7 +7,7 @@ resource "azurerm_storage_account" "storage_account1" {
   enable_https_traffic_only = false
 }
 
-resource "azurerm_storage_account" "storage_account2" {
+resource "azurerm_storage_account" "positive2" {
   name                      = "example2"
   resource_group_name       = data.azurerm_resource_group.example.name
   location                  = data.azurerm_resource_group.example.location

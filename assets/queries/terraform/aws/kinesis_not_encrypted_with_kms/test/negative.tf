@@ -1,4 +1,4 @@
-resource "aws_kinesis_stream" "test_stream4" {
+resource "aws_kinesis_stream" "negative1" {
   name             = "terraform-kinesis-test"
   shard_count      = 1
   retention_period = 48

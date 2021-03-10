@@ -2,7 +2,7 @@
 	"id": "d4895357-dd49-4ba5-b726-1bb81cb50989",
 	"queryName": "Run Using Zypper Update",
 	"severity": "MEDIUM",
-	"category": "Package Management",
+	"category": "Supply-Chain",
 	"descriptionText": "'zypper update' should not be used. Can cause inconsistencies between builds, producing problems for application developers",
 	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
 	"platform": "Dockerfile"

@@ -3,7 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -58,13 +58,14 @@ var (
 			name: "Changed Sample and Query SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive2.tf", fixtureDir),
 					queryFixturePath:  fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
 				}),
 			},
@@ -93,13 +94,14 @@ var (
 			name: "Changed Sample SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive2.tf", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -133,7 +135,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive.tf",
+					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive1.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -160,8 +162,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	for _, tc := range testTable {
 		t.Run(tc.name, func(tt *testing.T) {
@@ -254,7 +255,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries([]string{}).DoAndReturn(func(excludeCategories []string) ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries([]string{}).DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
 		metadata := query.ReadMetadata(testParams.queryDir)
 
 		// Override metadata ID with custom QueryID for testing

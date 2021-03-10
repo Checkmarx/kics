@@ -1,9 +1,9 @@
 package console
 
 import (
+	_ "embed" // Embed kics CLI img
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -23,6 +23,7 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
+	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -35,14 +36,19 @@ var (
 	queryPath         string
 	outputPath        string
 	payloadPath       string
-	excludePath       []string
-	excludeResults    []string
 	excludeCategories []string
+	excludePath       []string
+	excludeQueries    []string
+	excludeResults    []string
+	reportFormats     []string
 	cfgFile           string
 	verbose           bool
 	logFile           bool
 	noProgress        bool
 	types             []string
+	noColor           bool
+	min               bool
+	outputLines       int
 )
 
 var scanCmd = &cobra.Command{
@@ -157,7 +163,15 @@ func initScanCmd() {
 		"./assets/queries",
 		"path to directory with queries",
 	)
-	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "file path to store result in json format")
+	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store reports")
+	scanCmd.Flags().StringSliceVarP(
+		&reportFormats,
+		"report-formats",
+		"",
+		[]string{},
+		"formats in which the results will be exported (json, sarif)",
+	)
+	scanCmd.Flags().IntVarP(&outputLines, "preview-lines", "", 3, "number of lines to be display in CLI results (default: 3)")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -167,18 +181,31 @@ func initScanCmd() {
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
+	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
+	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(query.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
-	scanCmd.Flags().StringSliceVarP(&excludeResults,
+	scanCmd.Flags().StringSliceVarP(
+		&excludeQueries,
+		"exclude-queries",
+		"",
+		[]string{},
+		"exclude queries by providing the query ID\n"+
+			"can be provided multiple times or as a comma separated string\n"+
+			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
+	)
+	scanCmd.Flags().StringSliceVarP(
+		&excludeResults,
 		"exclude-results",
 		"x",
 		[]string{},
 		"exclude results by providing the similarity ID of a result\n"+
 			"can be provided multiple times or as a comma separated string\n"+
-			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'")
+			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
+	)
 	scanCmd.Flags().StringSliceVarP(
 		&excludeCategories,
 		"exclude-categories",
@@ -198,9 +225,8 @@ func initScanCmd() {
 }
 
 func setupLogs() error {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	consoleLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
-	fileLogger := zerolog.ConsoleWriter{Out: ioutil.Discard}
+	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
+	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
 
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
@@ -249,22 +275,33 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func scan() error {
-	fmt.Printf("Scanning with %s\n\n", getVersion())
+//go:embed img/kics-console
+var s string
 
-	if err := setupLogs(); err != nil {
-		return err
+func scan() error {
+	if noColor {
+		color.Disable()
 	}
 
+	printer := consoleHelpers.NewPrinter(min)
+	printer.Success.Printf("\n%s\n\n", s)
+	fmt.Printf("Scanning with %s\n\n", getVersion())
+
+	if errlog := setupLogs(); errlog != nil {
+		return errlog
+	}
 	scanStartTime := time.Now()
 
 	querySource := query.NewFilesystemSource(queryPath, types)
 
-	t := &tracker.CITracker{}
+	t, err := tracker.NewTracker(outputLines)
+	if err != nil {
+		return err
+	}
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
-	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeCategories, excludeResultsMap)
+	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
 	if err != nil {
 		return err
 	}
@@ -320,15 +357,15 @@ func scan() error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printJSON(payloadPath, files.Combine()); err != nil {
+	if err := printOutput(payloadPath, "payload", files.Combine(), []string{"json"}); err != nil {
 		return err
 	}
 
-	if err := printJSON(outputPath, summary); err != nil {
+	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
 		return err
 	}
 
-	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries()); err != nil {
+	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries(), printer); err != nil {
 		return err
 	}
 
@@ -343,9 +380,23 @@ func scan() error {
 	return nil
 }
 
-func printJSON(path string, body interface{}) error {
-	if path != "" {
-		return consoleHelpers.PrintToJSONFile(path, body)
+func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+	if outputPath == "" {
+		return nil
 	}
-	return nil
+	if strings.Contains(outputPath, ".") {
+		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
+			formats = []string{filepath.Ext(outputPath)[1:]}
+		}
+		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
+			filename = filepath.Base(outputPath)
+			outputPath = filepath.Dir(outputPath)
+		}
+	}
+
+	ok := consoleHelpers.ValidateReportFormats(formats)
+	if ok == nil {
+		ok = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
+	}
+	return ok
 }

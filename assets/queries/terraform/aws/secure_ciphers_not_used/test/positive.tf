@@ -1,5 +1,5 @@
 #this is a problematic code where the query should report a result(s)
-resource "aws_cloudfront_distribution" "s3_distribution_positive" {
+resource "aws_cloudfront_distribution" "positive1" {
   origin {
     domain_name = "mybucket"
     origin_id   = "myS3Origin"

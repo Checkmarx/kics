@@ -148,21 +148,30 @@ Filling metadata.json:
 go run ./cmd/console/main.go generate-id
 ```
 - `queryName` describes the name of the vulnerability
-- `severity` can be filled with `HIGH`, `MEDIUM`,`LOW` or `INFO`
+- `severity` can be filled with `HIGH`, `MEDIUM`, `LOW` or `INFO`
 - `category` pick one of the following:
-  - Identity and Access Management
-  - Network Security
-  - Monitoring
-  - Encryption and Key Management
-  - Logging
-  - Operational
-  - Cloud Assets Management
-  - Vulnerability and Threat Management
-  - Backup and Disaster Recovery
-  - Domain Name System (DNS) 
-  - Management
-  - Network Ports Security
+  - Access Control
+  - Availability
+  - Backup
+  - Best Practices
+  - Build Process
+  - Encryption
+  - Insecure Configurations
+  - Insecure Defaults
+  - Networking and Firewall
+  - Observability
+  - Resource Management
+  - Secret Management
+  - Supply-Chain
 - `descriptionText` should explain with detail the vulnerability and if possible provide a way to remediate
 - `descriptionUrl` points to the official documentation about the resource being targeted
-- `platform` refers to querys target platform
+- `platform` query target platform (e.g. Terraform, Kubernetes, etc.)
 
+# List of queries
+
+- [Ansible](queries/ansible-queries.md)
+- [CloudFormation](queries/cloudformation-queries.md)
+- [Common](queries/common-queries.md)
+- [Dockerfile](queries/dockerfile-queries.md)
+- [Kubernetes](queries/kubernetes-queries.md)
+- [Terraform](queries/terraform-queries.md)

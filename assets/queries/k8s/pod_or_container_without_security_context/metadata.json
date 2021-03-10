@@ -2,7 +2,7 @@
 	"id": "a97a340a-0063-418e-b3a1-3028941d0995",
 	"queryName": "Pod or Container Without Security Context",
 	"severity": "LOW",
-	"category": "Privileges",
+	"category": "Insecure Configurations",
 	"descriptionText": "A security context defines privilege and access control settings for a Pod or Container",
 	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 	"platform": "Kubernetes"

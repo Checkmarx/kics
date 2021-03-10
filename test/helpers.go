@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/spf13/cobra"
 )
 
@@ -84,4 +85,64 @@ func StringifyStruct(v interface{}) (string, error) {
 		return "", err
 	}
 	return string(jsonValue), nil
+}
+
+// MapToStringSlice extract slice of keys from a map[string]string
+func MapToStringSlice(stringKeyMap map[string]string) []string {
+	keys := make([]string, len(stringKeyMap))
+
+	i := 0
+	for k := range stringKeyMap {
+		keys[i] = k
+		i++
+	}
+	return keys
+}
+
+// SummaryMock a summary to be used without running kics scan
+var SummaryMock = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           1,
+		ParsedFiles:            1,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.VulnerableQuery{
+		{
+			QueryName: "ALB protocol is HTTP",
+			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
+			Severity:  model.SeverityHigh,
+			Files: []model.VulnerableFile{
+				{
+					FileName:         "positive.tf",
+					Line:             25,
+					IssueType:        "MissingAttribute",
+					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+					KeyActualValue:   "'default_action.redirect.protocol' is missing",
+					Value:            nil,
+				},
+				{
+					FileName:         "positive.tf",
+					Line:             19,
+					IssueType:        "IncorrectValue",
+					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+					KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
+					Value:            nil,
+				},
+			},
+		},
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   2,
+		},
+		TotalCounter: 2,
+	},
 }

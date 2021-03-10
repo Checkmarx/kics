@@ -1,8 +1,8 @@
 {
 	"id": "eee107f9-b3d8-45d3-b9c6-43b5a7263ce1",
 	"queryName": "Authentication Without MFA",
-	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"severity": "MEDIUM",
+	"category": "Best Practices",
 	"descriptionText": "Users should authenticate with MFA (Multi-factor Authentication)",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_mfa_device_info_module.html",
 	"platform": "Ansible"

@@ -1,10 +1,10 @@
 #this is a problematic code where the query should report a result(s)
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "positive1" {
   name     = "database-rg"
   location = "West US"
 }
 
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "positive2" {
   name                     = "examplesa"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
@@ -12,7 +12,7 @@ resource "azurerm_storage_account" "example" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_sql_server" "example1" {
+resource "azurerm_sql_server" "positive3" {
   name                         = "mssqlserver"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = azurerm_resource_group.example.location
@@ -32,7 +32,7 @@ resource "azurerm_sql_server" "example1" {
   }
 }
 
-resource "azurerm_sql_server" "example2" {
+resource "azurerm_sql_server" "positive4" {
   name                         = "mssqlserver"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = azurerm_resource_group.example.location

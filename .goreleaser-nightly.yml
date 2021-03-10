@@ -10,7 +10,7 @@ builds:
     goarch:
       - amd64
     ldflags:
-      - -X github.com/Checkmarx/kics/internal/console.Version={{.Version}}-{{.ShortCommit}}
+      - -X github.com/Checkmarx/kics/internal/constants.Version={{.Version}}-{{.ShortCommit}}
 archives:
   - builds: [kics]
     format_overrides:

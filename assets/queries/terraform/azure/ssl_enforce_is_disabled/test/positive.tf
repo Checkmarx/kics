@@ -1,4 +1,4 @@
-resource "azurerm_postgresql_server" "example1" {
+resource "azurerm_postgresql_server" "positive1" {
   name                = "example-psqlserver"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -19,7 +19,7 @@ resource "azurerm_postgresql_server" "example1" {
   ssl_minimal_tls_version_enforced = "TLS1_2"
 }
 
-resource "azurerm_postgresql_server" "example2" {
+resource "azurerm_postgresql_server" "positive2" {
   name                = "example-psqlserver"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

@@ -1,4 +1,4 @@
-resource "google_compute_instance" "serial_port_enabled" {
+resource "google_compute_instance" "positive1" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
@@ -33,13 +33,13 @@ resource "google_compute_instance" "serial_port_enabled" {
   }
 }
 
-resource "google_compute_project_metadata" "another_serial_port_enabled" {
+resource "google_compute_project_metadata" "positive2" {
   metadata = {
     serial-port-enable = "TRUE"
   }
 }
 
-resource "google_compute_project_metadata_item" "yet_another_serial_port_enabled" {
+resource "google_compute_project_metadata_item" "positive3" {
   key   = "serial-port-enable"
   value = "TRUE"
 }

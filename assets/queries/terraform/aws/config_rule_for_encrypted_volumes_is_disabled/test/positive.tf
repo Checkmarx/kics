@@ -1,4 +1,4 @@
-resource "aws_config_config_rule" "some_rule" {
+resource "aws_config_config_rule" "positive1" {
   name = "some_rule"
 
   source {
@@ -7,7 +7,7 @@ resource "aws_config_config_rule" "some_rule" {
   }
 }
 
-resource "aws_config_config_rule" "another_rule" {
+resource "aws_config_config_rule" "positive2" {
   name = "another_rule"
 
   source {

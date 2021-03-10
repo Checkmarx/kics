@@ -26,8 +26,8 @@ jobs:
             && rm -vf $(basename "${KUBEVAL_RELEASES_URL}") \
             && cd "${PROJDIR}"
       - name: Validate k8s manifests
-        run: python3 .github/validators/validate-syntax.py "assets/queries/k8s/**/test/*.yaml"
-        env:
-          EXTRA_ARGS: '--skip-kinds CustomResourceDefinition'
-          LINTER_PATH: .bin/kubeval
-          SKIP_LIST_PATH: '.github/validators/k8s-skip-list'
+        run: |
+          python3 -u .github/validators/validate-syntax.py "assets/queries/k8s/**/test/*.yaml" \
+            --extra ' --skip-kinds CustomResourceDefinition' \
+            --linter .bin/kubeval \
+            --skip '.github/validators/k8s-skip-list' -v

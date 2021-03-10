@@ -1,4 +1,4 @@
-resource "aws_cloudfront_distribution" "s3_distribution" {
+resource "aws_cloudfront_distribution" "negative1" {
   origin {
     domain_name = aws_s3_bucket.b.bucket_regional_domain_name
     origin_id   = local.s3_origin_id

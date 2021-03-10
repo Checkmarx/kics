@@ -1,17 +1,17 @@
 #this code is a correct code for which the query should not find any result
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "negative1" {
   name     = "example-resources"
   location = "West Europe"
 }
 
-resource "azurerm_virtual_network" "example" {
+resource "azurerm_virtual_network" "negative2" {
   name                = "example-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 }
 
-resource "azurerm_subnet" "example" {
+resource "azurerm_subnet" "negative3" {
   name                 = "example-subnet"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
@@ -19,7 +19,7 @@ resource "azurerm_subnet" "example" {
   service_endpoints    = ["Microsoft.Storage"]
 }
 
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "negative4" {
   name                     = "storageaccountname"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
@@ -31,7 +31,7 @@ resource "azurerm_storage_account" "example" {
   }
 }
 
-resource "azurerm_storage_account_network_rules" "test" {
+resource "azurerm_storage_account_network_rules" "negative5" {
   resource_group_name  = azurerm_resource_group.test.name
   storage_account_name = azurerm_storage_account.test.name
 

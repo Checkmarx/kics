@@ -1,4 +1,4 @@
-resource "github_organization_webhook" "insecure_ssl_enabled" {
+resource "github_organization_webhook" "positive1" {
   name = "web"
 
   configuration {

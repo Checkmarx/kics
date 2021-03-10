@@ -1,4 +1,4 @@
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "positive1" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"

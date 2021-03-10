@@ -2,7 +2,7 @@
 	"id": "c3b9f7b0-f5a0-49ec-9cbc-f1e346b7274d",
 	"queryName": "S3 Bucket Without Logging",
 	"severity": "LOW",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "S3 bucket without debug_botocore_endpoint_logs",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs",
 	"platform": "Ansible"

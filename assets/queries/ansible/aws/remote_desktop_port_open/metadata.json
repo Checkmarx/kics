@@ -2,7 +2,7 @@
 	"id": "eda7301d-1f3e-47cf-8d4e-976debc64341",
 	"queryName": "Remote Desktop Port Open",
 	"severity": "HIGH",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "The remote desktop port is open",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
 	"platform": "Ansible"

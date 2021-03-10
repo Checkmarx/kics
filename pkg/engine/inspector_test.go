@@ -2,7 +2,6 @@ package engine
 
 import (
 	"context"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -237,7 +236,8 @@ func TestInspect(t *testing.T) { //nolint
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
-					Severity:         "INFO",
+					QueryURI:         "https://github.com/Checkmarx/kics/",
+					Severity:         model.SeverityInfo,
 					Line:             -1,
 					IssueType:        "IncorrectValue",
 					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
@@ -310,7 +310,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
-	contentByte, err := ioutil.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 
 	track := &tracker.CITracker{}
@@ -329,8 +329,8 @@ func TestNewInspector(t *testing.T) { // nolint
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
 				"queryName":       "All Auth Users Get Read Access",
-				"severity":        "HIGH",
-				"category":        "Identity and Access Management",
+				"severity":        model.SeverityHigh,
+				"category":        "Access Control",
 				"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", // nolint
 				"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
 				"platform":        "CloudFormation",
@@ -339,12 +339,12 @@ func TestNewInspector(t *testing.T) { // nolint
 		},
 	})
 	type args struct {
-		ctx               context.Context
-		source            QueriesSource
-		vb                VulnerabilityBuilder
-		tracker           Tracker
-		excludeCategories []string
-		excludeResults    map[string]bool
+		ctx            context.Context
+		source         QueriesSource
+		vb             VulnerabilityBuilder
+		tracker        Tracker
+		excludeQueries []string
+		excludeResults map[string]bool
 	}
 	tests := []struct {
 		name    string
@@ -355,12 +355,12 @@ func TestNewInspector(t *testing.T) { // nolint
 		{
 			name: "test_new_inspector",
 			args: args{
-				ctx:               context.Background(),
-				vb:                vbs,
-				tracker:           track,
-				source:            sources,
-				excludeCategories: []string{},
-				excludeResults:    map[string]bool{},
+				ctx:            context.Background(),
+				vb:             vbs,
+				tracker:        track,
+				source:         sources,
+				excludeQueries: []string{},
+				excludeResults: map[string]bool{},
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -372,7 +372,7 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeCategories, tt.args.excludeResults)
+			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeQueries, tt.args.excludeResults)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return
@@ -402,16 +402,16 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(excludeCategories []string) ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
 	sources := query.NewFilesystemSource(m.Source, []string{""})
 
-	return sources.GetQueries([]string{})
+	return sources.GetQueries(excludeQueries)
 }
 func (m *mockSource) GetGenericQuery(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()
 
 	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
-	content, err := ioutil.ReadFile(filepath.Clean(pathToLib))
+	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err
 }

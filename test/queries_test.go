@@ -3,7 +3,8 @@ package test
 import (
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"io"
+	"os"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -21,8 +22,7 @@ import (
 )
 
 func BenchmarkQueries(b *testing.B) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	queries := loadQueries(b)
 	for _, entry := range queries {
@@ -34,8 +34,7 @@ func BenchmarkQueries(b *testing.B) {
 }
 
 func TestQueries(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	if testing.Short() {
 		t.Skip("skipping queries test in short mode.")
@@ -48,7 +47,7 @@ func TestQueries(t *testing.T) {
 }
 
 func TestUniqueQueryIDs(t *testing.T) {
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 	queries := loadQueries(t)
 
 	queriesIdentifiers := make(map[string]string)
@@ -84,7 +83,7 @@ func benchmarkPositiveandNegativeQueries(b *testing.B, entry queryEntry) {
 }
 
 func getExpectedVulnerabilities(tb testing.TB, entry queryEntry) []model.Vulnerability {
-	content, err := ioutil.ReadFile(entry.ExpectedPositiveResultFile())
+	content, err := os.ReadFile(entry.ExpectedPositiveResultFile())
 	require.NoError(tb, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile())
 
 	var expectedVulnerabilities []model.Vulnerability
@@ -102,7 +101,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries([]string{}).
-		DoAndReturn(func(excludeCategories []string) ([]model.QueryMetadata, error) {
+		DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
 			q, err := query.ReadQuery(entry.dir)
 			require.NoError(tb, err)
 

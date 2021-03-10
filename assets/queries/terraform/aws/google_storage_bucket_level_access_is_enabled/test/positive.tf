@@ -1,4 +1,4 @@
-resource "google_storage_bucket" "static-site" {
+resource "google_storage_bucket" "positive1" {
   name          = "image-store.com"
   location      = "EU"
   force_destroy = true
@@ -17,7 +17,7 @@ resource "google_storage_bucket" "static-site" {
   }
 }
 
-resource "google_storage_bucket" "static-site2" {
+resource "google_storage_bucket" "positive2" {
   name          = "image-store.com"
   location      = "EU"
   force_destroy = true

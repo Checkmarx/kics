@@ -2,7 +2,7 @@
 	"id": "5c6b727b-1382-4629-8ba9-abd1365e5610",
 	"queryName": "Redshift Publicly Accessible",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "Check if 'publicly_accessible' field is true (default is false)",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html",
 	"platform": "Ansible"

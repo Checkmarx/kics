@@ -1,12 +1,12 @@
-resource "aws_lb" "front_end" {
+resource "aws_lb" "positive1" {
   # ...
 }
 
-resource "aws_lb_target_group" "front_end" {
+resource "aws_lb_target_group" "positive2" {
   # ...
 }
 
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "positive3" {
   load_balancer_arn = aws_lb.front_end.arn
   port              = "80"
   protocol          = "HTTP"
@@ -22,7 +22,7 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
-resource "aws_alb_listener" "front_end" {
+resource "aws_alb_listener" "positive4" {
   load_balancer_arn = aws_lb.front_end.arn
   port              = "8080"
   protocol          = "HTTP"  
