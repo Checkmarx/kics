@@ -48,19 +48,19 @@ var (
 
 	// query category -> TODO categories ID
 	AvailableCategories = map[string]string{
-		"Access Control":          "access-control",
-		"Availability":            "availability",
-		"Backup":                  "backup",
-		"Best Practices":          "best-practices",
-		"Build Process":           "build-process",
-		"Encryption":              "encryption",
-		"Insecure Configurations": "insecure-configurations",
-		"Insecure Defaults":       "insecure-defaults",
-		"Networking and Firewall": "networking-and-firewall",
-		"Observability":           "observability",
-		"Resource Management":     "resource-management",
-		"Secret Management":       "secret-management",
-		"Supply-Chain":            "supply-chain",
+		"Access Control":          "CAT001",
+		"Availability":            "CAT002",
+		"Backup":                  "CAT003",
+		"Best Practices":          "CAT004",
+		"Build Process":           "CAT005",
+		"Encryption":              "CAT006",
+		"Insecure Configurations": "CAT007",
+		"Insecure Defaults":       "CAT008",
+		"Networking and Firewall": "CAT009",
+		"Observability":           "CAT010",
+		"Resource Management":     "CAT011",
+		"Secret Management":       "CAT012",
+		"Supply-Chain":            "CAT013",
 	}
 
 	CategoriesKeys = MapToStringSlice(AvailableCategories)
