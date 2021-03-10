@@ -46,6 +46,25 @@ var (
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
 	}
 
+	// query category -> TODO categories ID
+	AvailableCategories = map[string]string{
+		"Access Control":          "access-control",
+		"Availability":            "availability",
+		"Backup":                  "backup",
+		"Best Practices":          "best-practices",
+		"Build Process":           "build-process",
+		"Encryption":              "encryption",
+		"Insecure Configurations": "insecure-configurations",
+		"Insecure Defaults":       "insecure-defaults",
+		"Networking and Firewall": "networking-and-firewall",
+		"Observability":           "observability",
+		"Resource Management":     "resource-management",
+		"Secret Management":       "secret-management",
+		"Supply-Chain":            "supply-chain",
+	}
+
+	CategoriesKeys = MapToStringSlice(AvailableCategories)
+
 	searchValueProperty = "searchValue"
 
 	requiredQueryMetadataProperties = map[string]func(tb testing.TB, value interface{}, metadataPath string){
@@ -64,6 +83,8 @@ var (
 		"category": func(tb testing.TB, value interface{}, metadataPath string) {
 			categoryValue := testMetadataFieldStringType(tb, value, "category", metadataPath)
 			require.NotEmpty(tb, categoryValue, "empty category in query metadata file %s", metadataPath)
+			_, ok := AvailableCategories[categoryValue]
+			require.True(tb, ok, "%s is not a valid category must be one of:\n%v", categoryValue, strings.Join(CategoriesKeys, "\n"))
 		},
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
