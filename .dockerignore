@@ -1,0 +1,16 @@
+.github
+bin
+docs
+.editorconfig
+.gitignore
+.golangci.yml
+.goreleaser.nightly.yml
+.goreleaser.yml
+codecov.yml
+cx.configuration
+docker-compose.yml
+Dockerfile
+mkdocs.yml
+sonar-project.properties
+*.sarif
+*.zip

@@ -1,1 +1,3 @@
-*.go text eol=lf
+Dockerfile  eol=lf
+*.sh        eol=lf
+*.go text   eol=lf

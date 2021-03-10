@@ -1,0 +1,14 @@
+FROM golang:1.16.0-windowsservercore-1809 as build
+
+COPY . /workspace
+WORKDIR /workspace
+
+ARG VERSION=development
+ENV GOOS=windows GOARCH=amd64 GCO_ENABLED=0
+
+RUN $env:LDFLAGS = '-X github.com/Checkmarx/kics/internal/constants.Version=' + $env:VERSION; \
+  go build -ldflags $env:LDFLAGS -a -installsuffix cgo -o "bin/kics.exe" cmd/console/main.go
+
+FROM mcr.microsoft.com/windows/nanoserver:1809
+COPY --from=build ./workspace/bin/kics.exe /kics.exe
+ENTRYPOINT ["\\kics.exe"]
