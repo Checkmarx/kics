@@ -100,8 +100,8 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctx := context.TODO()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries([]string{}).
-		DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 			q, err := query.ReadQuery(entry.dir)
 			require.NoError(tb, err)
 
@@ -126,7 +126,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		[]string{},
+		engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(tb, err)

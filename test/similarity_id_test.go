@@ -255,7 +255,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries([]string{}).DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 		metadata := query.ReadMetadata(testParams.queryDir)
 
 		// Override metadata ID with custom QueryID for testing
@@ -290,7 +290,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		[]string{},
+		engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(t, err)

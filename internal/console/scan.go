@@ -38,7 +38,7 @@ var (
 	payloadPath       string
 	excludeCategories []string
 	excludePath       []string
-	excludeQueries    []string
+	excludeIDs        []string
 	excludeResults    []string
 	reportFormats     []string
 	cfgFile           string
@@ -189,7 +189,7 @@ func initScanCmd() {
 		fmt.Sprintf("(%s)", strings.Join(query.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
 	scanCmd.Flags().StringSliceVarP(
-		&excludeQueries,
+		&excludeIDs,
 		"exclude-queries",
 		"",
 		[]string{},
@@ -300,6 +300,11 @@ func scan() error {
 	}
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
+
+	excludeQueries := engine.ExcludeQueries{
+		ByIDs:        excludeIDs,
+		ByCategories: excludeCategories,
+	}
 
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
 	if err != nil {

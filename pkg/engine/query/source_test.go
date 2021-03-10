@@ -9,9 +9,15 @@ import (
 
 	"github.com/stretchr/testify/require"
 
+	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 )
+
+type ExcludeQueries struct {
+	ByIDs        []string
+	ByCategories []string
+}
 
 // BenchmarkFilesystemSource_GetQueries benchmarks getQueries to see improvements
 func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
@@ -38,7 +44,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Run(tt.name, func(b *testing.B) {
 			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
 			for n := 0; n < b.N; n++ {
-				if _, err := s.GetQueries([]string{""}); err != nil {
+				if _, err := s.GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}); err != nil {
 					b.Errorf("Error: %s", err)
 				}
 			}
@@ -214,7 +220,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			got, err := s.GetQueries([]string{""})
+			got, err := s.GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}})
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return

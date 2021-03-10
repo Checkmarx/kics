@@ -41,11 +41,17 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
+// ExcludeQueries represents a struct with options to exclude queries and a list for each option
+type ExcludeQueries struct {
+	ByIDs        []string
+	ByCategories []string
+}
+
 // QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
 // GetQueries gets all queries from a QueryMetadata list
 // GetGenericQuery gets a base query based in plataform's name
 type QueriesSource interface {
-	GetQueries(excludeQueries []string) ([]model.QueryMetadata, error)
+	GetQueries(excludeQueries ExcludeQueries) ([]model.QueryMetadata, error)
 	GetGenericQuery(platform string) (string, error)
 }
 
@@ -104,7 +110,7 @@ func NewInspector(
 	source QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
-	excludeQueries []string,
+	excludeQueries ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
 	queries, err := source.GetQueries(excludeQueries)
 	if err != nil {

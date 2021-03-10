@@ -7,6 +7,7 @@ package mock
 import (
 	reflect "reflect"
 
+	engine "github.com/Checkmarx/kics/pkg/engine"
 	model "github.com/Checkmarx/kics/pkg/model"
 	gomock "github.com/golang/mock/gomock"
 )
@@ -50,7 +51,7 @@ func (mr *MockQueriesSourceMockRecorder) GetGenericQuery(platform interface{}) *
 }
 
 // GetQueries mocks base method.
-func (m *MockQueriesSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
+func (m *MockQueriesSource) GetQueries(excludeQueries engine.ExcludeQueries) ([]model.QueryMetadata, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetQueries", excludeQueries)
 	ret0, _ := ret[0].([]model.QueryMetadata)
@@ -109,6 +110,20 @@ func (m *MockTracker) FailedDetectLine() {
 func (mr *MockTrackerMockRecorder) FailedDetectLine() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FailedDetectLine", reflect.TypeOf((*MockTracker)(nil).FailedDetectLine))
+}
+
+// GetOutputLines mocks base method.
+func (m *MockTracker) GetOutputLines() int {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetOutputLines")
+	ret0, _ := ret[0].(int)
+	return ret0
+}
+
+// GetOutputLines indicates an expected call of GetOutputLines.
+func (mr *MockTrackerMockRecorder) GetOutputLines() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetOutputLines", reflect.TypeOf((*MockTracker)(nil).GetOutputLines))
 }
 
 // TrackQueryExecution mocks base method.

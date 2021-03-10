@@ -343,7 +343,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		source         QueriesSource
 		vb             VulnerabilityBuilder
 		tracker        Tracker
-		excludeQueries []string
+		excludeQueries ExcludeQueries
 		excludeResults map[string]bool
 	}
 	tests := []struct {
@@ -355,11 +355,14 @@ func TestNewInspector(t *testing.T) { // nolint
 		{
 			name: "test_new_inspector",
 			args: args{
-				ctx:            context.Background(),
-				vb:             vbs,
-				tracker:        track,
-				source:         sources,
-				excludeQueries: []string{},
+				ctx:     context.Background(),
+				vb:      vbs,
+				tracker: track,
+				source:  sources,
+				excludeQueries: ExcludeQueries{
+					ByIDs:        []string{},
+					ByCategories: []string{},
+				},
 				excludeResults: map[string]bool{},
 			},
 			want: &Inspector{
@@ -402,7 +405,7 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(excludeQueries ExcludeQueries) ([]model.QueryMetadata, error) {
 	sources := query.NewFilesystemSource(m.Source, []string{""})
 
 	return sources.GetQueries(excludeQueries)
