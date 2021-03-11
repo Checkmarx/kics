@@ -111,6 +111,6 @@ jobs:
           context: .
           file: ./Dockerfile.integration
           push: true
-          tags: checkmarx/kics:nightly
+          tags: checkmarx/kics:nightly-alpine
           build-args: |
             VERSION=nightly-${{ github.sha }}
