@@ -43,7 +43,7 @@ jobs:
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Run docker image and generate results.json
       run: |
-        docker run -u $(id -u) -v $(PWD)/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
+        docker run -u $(id -u) -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
     - name: Assert queries_total > 0 in results.json
       id: assert_queries_total
       uses: sergeysova/jq-action@v2
