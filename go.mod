@@ -11,7 +11,7 @@ require (
 	github.com/google/uuid v1.2.0
 	github.com/gookit/color v1.2.4
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.9.0
+	github.com/hashicorp/hcl/v2 v2.9.1
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.8.2
 	github.com/open-policy-agent/opa v0.26.0
