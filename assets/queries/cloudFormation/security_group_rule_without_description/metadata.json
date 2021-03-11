@@ -1,9 +1,9 @@
 {
-	"id": "5e6c9c68-8a82-408e-8749-ddad78cbb9c5",
-	"queryName": "AWS Security Group Rule Without Description",
-	"severity": "LOW",
-	"category": "Network Security",
-	"descriptionText": "AWS Security Group Rule should have description defined",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-	"platform": "CloudFormation"
+  "id": "5e6c9c68-8a82-408e-8749-ddad78cbb9c5",
+  "queryName": "Security Group Rule Without Description",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "AWS Security Group Rule should have description defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
+  "platform": "CloudFormation"
 }

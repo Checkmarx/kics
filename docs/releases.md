@@ -1,6 +1,6 @@
 ## Releases
 
-For our release versions we follow the [SemVer](https://semver.org/) specification, meaning that we structure our versions into a MAJOR.MINOR.PATCH semantic.
+For our release versions we follow the <a href="https://semver.org/" target="_blank">SemVer</a> specification, meaning that we structure our versions into a MAJOR.MINOR.PATCH semantic.
 
 Our current release process is structured in the following way:
 
@@ -11,9 +11,9 @@ Our current release process is structured in the following way:
 Every release is packed with:
 
 - Source code .zip/tarballs
-- Binaries for Windows and Linux
-- Docker image uploaded to [DockerHub](https://hub.docker.com/r/checkmarx/kics)
+- Binaries for Windows, Linux and macOS
+- Docker image uploaded to <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
 If waiting for a new release it's not enough, we also provide nightly builds that include the latest changes.
 
-You can find our releases [here](https://github.com/Checkmarx/kics/releases)
+You can find our releases <a href="https://github.com/Checkmarx/kics/releases" target="_blank">here</a>.

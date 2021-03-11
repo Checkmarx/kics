@@ -1,0 +1,17 @@
+- name: Create SQS queue with redrive policy
+  community.aws.sqs_queue:
+    name: my-queue
+    region: ap-southeast-2
+    default_visibility_timeout: 120
+    message_retention_period: 86400
+    maximum_message_size: 1024
+    delivery_delay: 30
+    receive_message_wait_time: 20
+    policy:
+      Version: '2012-10-17'
+      Statement:
+      - Effect: Allow
+        Action: logs:CreateLogGroup
+        Resource: '*'
+    make_default: false
+    state: present

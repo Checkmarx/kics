@@ -1,0 +1,17 @@
+- name: ssh_keys_unblocked
+  google.cloud.gcp_compute_instance:
+    metadata:
+      block-project-ssh-keys: no
+    zone: us-central1-a
+    auth_kind: serviceaccount
+- name: ssh_keys_missing
+  google.cloud.gcp_compute_instance:
+    metadata:
+      startup-script-url: gs:://graphite-playground/bootstrap.sh
+      cost-center: '12345'
+    zone: us-central1-a
+    auth_kind: serviceaccount
+- name: no_metadata
+  google.cloud.gcp_compute_instance:
+    zone: us-central1-a
+    auth_kind: serviceaccount

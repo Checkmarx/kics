@@ -1,0 +1,84 @@
+{
+  "Description": "VPC: public and private subnets in two availability zones, a cloudonaut.io template",
+  "Parameters": {
+    "ClassB": {
+      "Description": "Class B of VPC (10.XXX.0.0/16)",
+      "Type": "Number",
+      "Default": 0,
+      "ConstraintDescription": "Must be in the range [0-255]",
+      "MinValue": 0,
+      "MaxValue": 255
+    }
+  },
+  "Resources": {
+    "Role": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com"
+              }
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "logs:DescribeLogGroups",
+                    "logs:DescribeLogStreams"
+                  ],
+                  "Resource": "LogGroup.Arn"
+                }
+              ],
+              "Version": "2012-10-17"
+            },
+            "PolicyName": "flowlogs-policy"
+          }
+        ]
+      }
+    },
+    "MyVPC": {
+      "Properties": {
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "10.${ClassB}.0.0/16"
+          }
+        ],
+        "CidrBlock": "10.${ClassB}.0.0/16",
+        "EnableDnsSupport": true,
+        "EnableDnsHostnames": true
+      },
+      "Type": "AWS::EC2::VPC"
+    },
+    "LogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "RetentionInDays": 14
+      }
+    },
+    "FlowLog": {
+      "Type": "AWS::EC2::FlowLog",
+      "Properties": {
+        "DeliverLogsPermissionArn": "Role.Arn",
+        "LogGroupName": "LogGroup",
+        "ResourceId": "MyVPC",
+        "ResourceType": "VPC",
+        "TrafficType": "ACCEPT"
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}

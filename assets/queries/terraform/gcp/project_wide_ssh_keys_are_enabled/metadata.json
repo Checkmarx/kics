@@ -1,9 +1,0 @@
-{
-	"id": "3e4d5ce6-3280-4027-8010-c26eeea1ec01",
-	"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-	"severity": "MEDIUM",
-	"category": "Network Security",
-	"descriptionText": "Check if SSH keys are enabled project-wide in VM instances",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
-	"platform": "Terraform"
-}

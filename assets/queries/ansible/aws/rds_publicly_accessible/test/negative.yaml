@@ -1,0 +1,17 @@
+- name: create RDS instance in default VPC and default subnet group02
+  community.aws.rds_instance:
+    engine: aurora
+    db_instance_identifier: ansible-test-aurora-db-instance
+    instance_type: db.t2.small
+    password: '{{ password }}'
+    username: '{{ username }}'
+    cluster_id: ansible-test-cluster
+    publicly_accessible: false
+- name: create RDS instance in default VPC and default subnet group03
+  rds_instance:
+    engine: aurora
+    db_instance_identifier: ansible-test-aurora-db-instance
+    instance_type: db.t2.small
+    password: '{{ password }}'
+    username: '{{ username }}'
+    cluster_id: ansible-test-cluster

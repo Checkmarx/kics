@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "Batch Job Definition With Privileged Container Properties",
-		"severity": "HIGH",
-		"line": 21
-	}
+  {
+    "line": 21,
+    "fileName": "positive1.yaml",
+    "queryName": "Batch Job Definition With Privileged Container Properties",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "Batch Job Definition With Privileged Container Properties",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive2.json"
+  }
 ]

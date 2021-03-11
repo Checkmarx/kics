@@ -2,8 +2,9 @@
 	"id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
 	"queryName": "Sensitive Port Is Exposed To Entire Network",
 	"severity": "HIGH",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
-	"platform": "Ansible"
+	"platform": "Ansible",
+  "aggregation": 35
 }

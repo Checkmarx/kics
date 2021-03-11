@@ -1,0 +1,30 @@
+---
+- name: Create instance of Key Vault
+  azure_rm_keyvault:
+    resource_group: myResourceGroup
+    vault_name: samplekeyvault
+    enabled_for_deployment: yes
+    enable_soft_delete: no
+    vault_tenant: 72f98888-8666-4144-9199-2d7cd0111111
+    sku:
+      name: standard
+    access_policies:
+      - tenant_id: 72f98888-8666-4144-9199-2d7cd0111111
+        object_id: 99998888-8666-4144-9199-2d7cd0111111
+        keys:
+          - get
+          - list
+- name: Create instance of Key Vault 02
+  azure_rm_keyvault:
+    resource_group: myResourceGroup 02
+    vault_name: samplekeyvault
+    enabled_for_deployment: yes
+    vault_tenant: 72f98888-8666-4144-9199-2d7cd0111111
+    sku:
+      name: standard
+    access_policies:
+      - tenant_id: 72f98888-8666-4144-9199-2d7cd0111111
+        object_id: 99998888-8666-4144-9199-2d7cd0111111
+        keys:
+          - get
+          - list

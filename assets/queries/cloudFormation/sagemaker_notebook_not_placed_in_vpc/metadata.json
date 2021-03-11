@@ -1,0 +1,9 @@
+{
+	"id": "9c7028d9-04c2-45be-b8b2-1188ccaefb36",
+	"queryName": "SageMaker Notebook Not Placed In VPC",
+	"severity": "HIGH",
+	"category": "Networking and Firewall",
+	"descriptionText": "SageMaker Notebook must be placed in a VPC",
+	"descriptionUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown",
+	"platform": "CloudFormation"
+}

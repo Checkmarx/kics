@@ -1,0 +1,9 @@
+{
+  "id": "89f84a1e-75f8-47c5-83b5-bee8e2de4168",
+  "queryName": "Monitoring Log Profile Without All Activities",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Monitoring log profile captures all the activities (Action, Write, Delete)",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html",
+  "platform": "Ansible"
+}

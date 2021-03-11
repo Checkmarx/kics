@@ -1,9 +1,0 @@
-{
-	"id": "5e92d816-2177-4083-85b4-f61b4f7176d9",
-	"queryName": "Public Lambda via API Gateway",
-	"severity": "MEDIUM",
-	"category": "Network Security",
-	"descriptionText": "Allowing to run lambda function using public API Gateway",
-	"descriptionUrl": "https://docs.ansible.com/ansible/2.4/lambda_policy_module.html",
-	"platform": "Ansible"
-}

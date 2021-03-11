@@ -2,7 +2,7 @@
 	"id": "663062e9-473d-4e87-99bc-6f3684b3df40",
 	"queryName": "SQL Server Predictable Admin Account Name",
 	"severity": "MEDIUM",
-	"category": "Identity & Access Management",
+	"category": "Best Practices",
 	"descriptionText": "Azure SQL Server's Admin account login must avoid using names like 'Admin', that are too predictable, which means the attribute 'admin_username' must be set to a name that is not easy to predict",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlserver_module.html",
 	"platform": "Ansible"

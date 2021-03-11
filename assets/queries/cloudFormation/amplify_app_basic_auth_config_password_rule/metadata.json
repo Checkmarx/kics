@@ -1,9 +1,0 @@
-{
-	"id": "71493c8b-3014-404c-9802-078b74496fb7",
-	"queryName": "Amplify App Basic Auth Config Password Exposed",
-	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
-	"descriptionText": "Amplify App BasicAuthConfig Password must not be a plaintext string or a Ref to a Parameter with a Default value.",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html",
-	"platform": "CloudFormation"
-}

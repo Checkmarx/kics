@@ -1,4 +1,4 @@
-resource "aws_iam_user_policy" "lb_ro" {
+resource "aws_iam_user_policy" "positive1" {
   name = "test"
   user = aws_iam_user.lb.name
 
@@ -24,7 +24,7 @@ EOF
 }
 
 
-resource "aws_iam_user_policy" "lb_ro2" {
+resource "aws_iam_user_policy" "positive2" {
   name = "test"
   user = aws_iam_user.lb.name
 

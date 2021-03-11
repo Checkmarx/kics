@@ -1,0 +1,58 @@
+{
+  "Parameters": {
+    "ParentMasterPassword": {
+      "Description": "Password",
+      "Type": "String",
+      "Default": ""
+    },
+    "ParentMasterUsername": {
+      "Description": "username",
+      "Type": "String",
+      "Default": "username!"
+    },
+    "MasterMongoDBPassword": {
+      "Description": "Password",
+      "Type": "String",
+      "Default": "as@3djdkDjskjs73!!"
+    }
+  },
+  "Resources": {
+    "NewAmpApp4": {
+      "Type": "AWS::DMS::Endpoint",
+      "Properties": {
+        "CertificateArn": "String",
+        "DatabaseName": "String",
+        "EndpointType": "String",
+        "ExtraConnectionAttributes": "String",
+        "SslMode": "String",
+        "EndpointIdentifier": "String",
+        "MongoDbSettings": {
+          "ServerName": "String",
+          "Username": "String",
+          "AuthMechanism": "String",
+          "AuthType": "String",
+          "DatabaseName": "String",
+          "DocsToInvestigate": "String",
+          "NestingLevel": "String",
+          "Password": "MasterMongoDBPassword",
+          "AuthSource": "String",
+          "ExtractDocId": "String",
+          "Port": 80
+        },
+        "NeptuneSettings": "NeptuneSettings",
+        "Password": "ParentMasterPassword",
+        "Tags": [
+          "Tag"
+        ],
+        "KafkaSettings": "KafkaSettings",
+        "KinesisSettings": "KinesisSettings",
+        "KmsKeyId": "String",
+        "Port": 80,
+        "ServerName": "String",
+        "Username": "String",
+        "EngineName": "String",
+        "S3Settings": "S3Settings"
+      }
+    }
+  }
+}

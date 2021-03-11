@@ -1,0 +1,9 @@
+{
+	"id": "7af2f4a3-00d9-47f3-8d15-ca0888f4e5b2",
+	"queryName": "ElasticSearch Encryption With KMS Is Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption",
+	"descriptionText": "Check if any ElasticSearch domain isn't encrypted with KMS",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
+	"platform": "Terraform"
+}

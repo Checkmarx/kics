@@ -1,6 +1,0 @@
-- name: serial_enabled
-  google.cloud.gcp_compute_instance:
-    metadata:
-      serial-port-enable: yes
-    zone: us-central1-a
-    auth_kind: serviceaccount

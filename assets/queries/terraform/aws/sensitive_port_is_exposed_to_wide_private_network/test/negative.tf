@@ -1,4 +1,4 @@
-resource "aws_security_group" "allow_tls1" {
+resource "aws_security_group" "negative1" {
   name        = "allow_tls1"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -13,7 +13,7 @@ resource "aws_security_group" "allow_tls1" {
 }
 
 
-resource "aws_security_group" "allow_tls2" {
+resource "aws_security_group" "negative2" {
   name        = "allow_tls2"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -28,7 +28,7 @@ resource "aws_security_group" "allow_tls2" {
 }
 
 
-resource "aws_security_group" "allow_tls3" {
+resource "aws_security_group" "negative3" {
   name        = "allow_tls3"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -43,7 +43,7 @@ resource "aws_security_group" "allow_tls3" {
 }
 
 
-resource "aws_security_group" "allow_tls4" {
+resource "aws_security_group" "negative4" {
   name        = "allow_tls4"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -58,7 +58,7 @@ resource "aws_security_group" "allow_tls4" {
 }
 
 
-resource "aws_security_group" "allow_tls5" {
+resource "aws_security_group" "negative5" {
   name        = "allow_tls5"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -73,7 +73,7 @@ resource "aws_security_group" "allow_tls5" {
 }
 
 
-resource "aws_security_group" "allow_tls6" {
+resource "aws_security_group" "negative6" {
   name        = "allow_tls6"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id

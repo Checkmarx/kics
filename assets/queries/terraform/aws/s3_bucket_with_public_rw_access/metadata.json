@@ -1,0 +1,9 @@
+{
+  "id": "38c5ee0d-7f22-4260-ab72-5073048df100",
+  "queryName": "S3 Bucket With Public RW Access",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "S3 bucket with public READ/WRITE access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete",
+  "platform": "Terraform"
+}

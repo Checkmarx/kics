@@ -1,0 +1,9 @@
+{
+	"id": "7d7054c0-3a52-4e9b-b9ff-cbfe16a2378b",
+	"queryName": "Cloud SQL DB Is Publicly Accessible",
+	"severity": "HIGH",
+	"category": "Access Control",
+	"descriptionText": "Check if any Cloud SQL instances are publicly accessible.",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html",
+	"platform": "Ansible"
+}

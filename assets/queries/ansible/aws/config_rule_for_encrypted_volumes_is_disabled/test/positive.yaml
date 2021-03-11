@@ -1,0 +1,12 @@
+---
+- name: foo
+  community.aws.aws_config_rule:
+    name: test_config_rule
+    state: present
+    description: 'This AWS Config rule checks for public write access on S3 buckets'
+    scope:
+      compliance_types:
+        - 'AWS::S3::Bucket'
+    source:
+      owner: AWS
+      identifier: 'S3_BUCKET_PUBLIC_WRITE_PROHIBITED'

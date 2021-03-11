@@ -1,9 +1,0 @@
-- name: key_with_valid_rotation_period
-  google.cloud.gcp_kms_crypto_key:
-    name: test_object
-    key_ring: projects/{{ gcp_project }}/locations/us-central1/keyRings/key-key-ring
-    project: test_project
-    auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
-    state: present
-    rotation_period: "90000s"

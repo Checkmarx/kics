@@ -1,0 +1,9 @@
+{
+  "id": "91bea7b8-0c31-4863-adc9-93f6177266c4",
+  "queryName": "CloudFormation Without Template",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS CloudFormation should have a template defined through the attribute template_url or attribute template_body",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
+  "platform": "Terraform"
+}

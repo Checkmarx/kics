@@ -1,0 +1,9 @@
+{
+	"id": "7f8843f0-9ea5-42b4-a02b-753055113195",
+	"queryName": "Geo Restriction Disabled",
+	"severity": "LOW",
+	"category": "Best Practices",
+	"descriptionText": "Geo Restriction feature should be enabled, to restrict or allow users in specific locations accessing web application content",
+	"descriptionUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html",
+	"platform": "CloudFormation"
+}

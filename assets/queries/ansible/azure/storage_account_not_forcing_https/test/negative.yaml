@@ -1,0 +1,72 @@
+- name: create an account
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: yes
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account2
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: true
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account3
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: true
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account4
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: 'true'
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account5
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: 'True'
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account6
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: yes
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account7
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: Yes
+    tags:
+      testing: testing
+      delete: on-exit
+- name: create an account8
+  azure.azcollection.azure_rm_storageaccount:
+    resource_group: myResourceGroup
+    name: clh0002
+    type: Standard_RAGRS
+    https_only: Yes
+    tags:
+      testing: testing
+      delete: on-exit

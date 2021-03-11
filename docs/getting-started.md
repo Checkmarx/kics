@@ -3,20 +3,20 @@
 There are multiple ways to get KICS up and running:
 
 
-### Docker
+#### Docker
 
-KICS is available as a [Docker image](https://hub.docker.com/r/checkmarx/kics) and can be used as follows:  
+KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)
 
 ```txt
-docker pull checkmarx/kics:latest  
+docker pull checkmarx/kics:latest
 docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
-```  
+```
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.
 
-### Binary
+#### Binary
 
 KICS release process is pretty straightforward.
 When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
@@ -24,30 +24,33 @@ Our security queries will be included in the ZIP files and tarballs, so that you
 
 So all you need is:
 
-1. Go to [KICS releases](https://github.com/Checkmarx/kics/releases/latest)
+1. Go to <a href="https://github.com/Checkmarx/kics/releases/latest" target="_blank">KICS releases</a>
 1. Download KICS binaries based on your OS
 1. Extract files
-1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)  
+1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)
    ```
    ./kics scan -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
-### Build from Sources
+#### Build from Sources
 
-1. Download and install Go from [https://golang.org/dl/](https://golang.org/dl/)  
-1. Clone the repository:  
+1. Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>
+1. Clone the repository:
    ```
    git clone https://github.com/Checkmarx/kics.git
-   ```  
+   ```
    ```
    cd kics
    ```
-1. Kick a scan!  
+1. Kick a scan!
    ```
    go run ./cmd/console/main.go scan -p <path-of-your-project-to-scan> -o <output-results.json>
    ```
 
-### CLI Commands
+---
+
+## KICS Commands
+KICS can interpret the following commands:
 
 ```txt
 generate-id Generates uuid for query
@@ -56,31 +59,52 @@ scan        Executes a scan analysis
 version     Displays the current version
 ```
 
-
-### Scan Command Options
+#### Scan Command Options
 
 ```txt
-    --config string         path to configuration file
--e, --exclude-paths         exclude paths or files from scan
-                            The arg should be quoted and uses comma as separator
-                            example: './shouldNotScan/*,somefile.txt'
--h, --help                  help
--l, --log-file              log to file info.log
-    --no-progress             hides scan's progress bar
--o, --output-path string    file path to store result in json format
--p, --path string           path to file or directory to scan
--d, --payload-path string   file path to store source internal representation in JSON format
--q, --queries-path string   path to directory with queries (default "./assets/queries")
--t, --type                  type of queries to use in the scan
--v, --verbose               verbose scan
+Executes a scan analysis
+
+Usage:
+  kics scan [flags]
+  kics scan [command]
+
+Available Commands:
+  list-platforms List supported platforms
+
+Flags:
+      --config string             path to configuration file
+  -e, --exclude-paths strings     exclude paths from scan
+                                  supports glob and can be provided multiple times or as a quoted comma separated string
+                                  example: './shouldNotScan/*,somefile.txt'
+      --exclude-queries           exclude queries by providing the query ID
+			                         can be provided multiple times or as a comma separated string
+			                         example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
+  -x, --exclude-results strings   exclude results by providing the similarity ID of a result
+                                  can be provided multiple times or as a comma separated string
+                                  example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
+  -h, --help                      help for scan
+  -l, --log-file                  writes log messages to info.log
+      --minimal-ui                simplified version of CLI output
+      --no-color                  disable CLI color output
+      --no-progress               hides the progress bar
+  -o, --output-path string        directory path to store reports
+  -p, --path string               path or directory path to scan
+  -d, --payload-path string       path to store internal representation JSON file
+      --preview-lines int          number of lines to be display in CLI results (default: 3)
+  -q, --queries-path string       path to directory with queries (default "./assets/queries")
+      --report-formats string     formats in which the results will be exported (json, sarif)
+  -t, --type strings              case insensitive list of platform types to scan
+                                  (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
+  -v, --verbose                   increase verbosity
 ```
 
+The other commands have no further options.
+
+---
+
 ## Next Steps
-
-- Check how you can easily [integrate it into your CI](integrations.md) for any project.
+- [Understand how to configure KICS](configuration-file.md) so you can have a better KICS experience.
+- [Explore the queries internals](queries.md) for better understanding how KICS works.
 - [Explore the output results format](results.md) and quickly fix the issues detected.
+- [Contribute](CONTRIBUTING.md) if you want to go the extra mile.
 
-
-## Contribution
-
-Want to go the next mile and contribute? [You're welcome!](CONTRIBUTING.md)

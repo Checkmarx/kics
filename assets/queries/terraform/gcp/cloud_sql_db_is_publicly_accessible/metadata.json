@@ -1,0 +1,9 @@
+{
+	"id": "b187edca-b81e-4fdc-aff4-aab57db45edb",
+	"queryName": "Cloud SQL DB Is Publicly Accessible",
+	"severity": "HIGH",
+	"category": "Networking and Firewall",
+	"descriptionText": "Check if any Cloud SQL instances are publicly accessible.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
+	"platform": "Terraform"
+}

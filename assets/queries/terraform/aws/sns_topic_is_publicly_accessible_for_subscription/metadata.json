@@ -1,0 +1,9 @@
+{
+	"id": "b26d2b7e-60f6-413d-a3a1-a57db24aa2b3",
+	"queryName": "SNS Topic is Publicly Accessible For Subscription",
+	"severity": "MEDIUM",
+	"category": "Access Control",
+	"descriptionText": "This query checks if SNS Topic is Accessible For Subscription",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic",
+	"platform": "Terraform"
+}

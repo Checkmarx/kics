@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
 	object.get(instance, "shielded_instance_config", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config is defined",
@@ -20,16 +19,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
-	instance.shielded_instance_config
 	object.get(instance.shielded_instance_config, "enable_integrity_monitoring", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_integrity_monitoring is defined",
@@ -38,16 +35,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
-	instance.shielded_instance_config
 	object.get(instance.shielded_instance_config, "enable_secure_boot", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_secure_boot is defined",
@@ -56,16 +51,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
-	instance.shielded_instance_config
 	object.get(instance.shielded_instance_config, "enable_vtpm", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_vtpm is defined",
@@ -74,15 +67,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
 	ansLib.isAnsibleFalse(instance.shielded_instance_config.enable_integrity_monitoring)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_integrity_monitoring", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_integrity_monitoring is true",
@@ -91,15 +83,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
 	ansLib.isAnsibleFalse(instance.shielded_instance_config.enable_secure_boot)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_secure_boot", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_secure_boot is true",
@@ -108,15 +99,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	instance := task["google.cloud.gcp_compute_instance"]
 
 	ansLib.checkState(instance)
 	ansLib.isAnsibleFalse(instance.shielded_instance_config.enable_vtpm)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_vtpm", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_vtpm is true",

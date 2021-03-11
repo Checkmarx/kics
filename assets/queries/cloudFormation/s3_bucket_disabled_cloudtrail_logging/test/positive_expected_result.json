@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "S3 Bucket Disabled Cloudtrail Logging",
-		"severity": "HIGH",
-		"line": 7
-	}
+  {
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive1.yaml",
+    "queryName": "S3 Bucket Disabled Cloudtrail Logging"
+  },
+  {
+    "queryName": "S3 Bucket Disabled Cloudtrail Logging",
+    "severity": "HIGH",
+    "line": 67,
+    "fileName": "positive2.json"
+  }
 ]

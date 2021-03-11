@@ -2,6 +2,6 @@
 	{
 		"queryName": "DB Instance Publicly Accessible",
 		"severity": "HIGH",
-		"line": 11
+		"line": 10
 	}
 ]

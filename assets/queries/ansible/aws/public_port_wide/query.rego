@@ -1,10 +1,9 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+import data.generic.ansible as ansLib
 
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
 	fromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	toPort := task["amazon.aws.ec2_group"].rules[index].to_port
 
@@ -14,7 +13,7 @@ CxPolicy[result] {
 	isEntireNetwork(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] doesn't have public port wide", [index]),
@@ -23,10 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
 	fromPort := task["amazon.aws.ec2_group"].rules[index].from_port
 	toPort := task["amazon.aws.ec2_group"].rules[index].to_port
 
@@ -36,20 +32,12 @@ CxPolicy[result] {
 	isEntireNetwork(cidr)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] doesn't have public port wide", [index]),
 		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d] has public port wide", [index]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }
 
 isEntireNetwork(cidr) = allow {

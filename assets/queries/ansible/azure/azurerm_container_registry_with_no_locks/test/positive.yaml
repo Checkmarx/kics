@@ -1,0 +1,25 @@
+- name: Create an azure container registry
+  azure_rm_containerregistry:
+    name: myRegistry
+    location: eastus
+    resource_group: myResourceGroupFake
+    admin_user_enabled: true
+    sku: Premium
+    tags:
+      Release: beta1
+      Environment: Production
+- name: Create a lock for a resource group
+  azure_rm_lock:
+    resource_group: myResourceGroup32
+    name: myLock
+    level: read_only
+- name: Create an azure container registry2
+  azure.azcollection.azure_rm_containerregistry:
+    name: myRegistry
+    location: eastus
+    resource_group: someResourceGroup
+    admin_user_enabled: "true"
+    sku: Premium
+    tags:
+      Release: beta1
+      Environment: Production

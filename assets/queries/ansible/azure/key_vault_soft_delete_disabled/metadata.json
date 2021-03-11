@@ -1,9 +1,0 @@
-{
-	"id": "881696a8-68c5-4073-85bc-7c38a3deb854",
-	"queryName": "Key Vault Soft Delete Is Disabled",
-	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
-	"descriptionText": "Make sure Soft Delete is enabled for Key Vault",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_keyvault_module.html#parameter-enable_soft_delete",
-	"platform": "Ansible"
-}

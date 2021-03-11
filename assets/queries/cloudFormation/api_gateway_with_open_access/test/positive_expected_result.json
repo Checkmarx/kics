@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "API Gateway With Open Access",
-		"severity": "MEDIUM",
-		"line": 12
-	}
+  {
+    "queryName": "API Gateway With Open Access",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "API Gateway With Open Access",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.json"
+  }
 ]

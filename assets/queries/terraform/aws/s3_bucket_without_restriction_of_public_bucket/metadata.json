@@ -1,9 +1,9 @@
 {
-	"id": "1ec253ab-c220-4d63-b2de-5b40e0af9293",
-	"queryName": "S3 bucket without restriction of public bucket",
-	"severity": "HIGH",
-	"category": "Network Security",
-	"descriptionText": "S3 bucket without restriction of public bucket",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
-	"platform": "Terraform"
+  "id": "1ec253ab-c220-4d63-b2de-5b40e0af9293",
+  "queryName": "S3 Bucket Without Restriction Of Public Bucket",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "S3 bucket without restriction of public bucket",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+  "platform": "Terraform"
 }

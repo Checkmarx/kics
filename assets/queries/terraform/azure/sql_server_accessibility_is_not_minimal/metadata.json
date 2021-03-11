@@ -1,0 +1,9 @@
+{
+  "id": "d7ba74da-2da0-4d4b-83c8-2fd72a3f6c28",
+  "queryName": "SQL Server Accessibility Is Not Minimal",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure SQL Server Accessibility must be set to a minimal address range, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' must be lesser than 256. Additionally, both ips must be different from '0.0.0.0'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule",
+  "platform": "Terraform"
+}

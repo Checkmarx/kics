@@ -1,9 +1,0 @@
-{
-	"id": "0ed012a4-9199-43d2-b9e4-9bd049a48aa4",
-	"queryName": "IAM Database Auth Not Enabled",
-	"severity": "HIGH",
-	"category": "Data Security",
-	"descriptionText": "IAM Database Auth Enabled must be configured to true",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html",
-	"platform": "Ansible"
-}

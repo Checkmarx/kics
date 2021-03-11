@@ -4,7 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
-	
+
     object.get(prop, "LoadBalancerAttributes", "undefined") == "undefined"
 
 	result := {
@@ -20,7 +20,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
-	
+
     not object.get(prop, "LoadBalancerAttributes", "undefined") == "undefined"
 	contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
 

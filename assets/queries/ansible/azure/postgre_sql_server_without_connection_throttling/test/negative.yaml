@@ -1,0 +1,36 @@
+- name: Update PostgreSQL Server setting
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: connection_throttling
+    value: on
+- name: Update PostgreSQL Server setting2
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: connection_throttling
+    value: On
+- name: Update PostgreSQL Server setting3
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: connection_throttling
+    value: ON
+- name: Update PostgreSQL Server setting4
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: connection_throttling
+    value: on
+- name: Update PostgreSQL Server setting5
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: connection_throttling
+    value: On
+- name: Update PostgreSQL Server setting6
+  azure.azcollection.azure_rm_postgresqlconfiguration:
+    resource_group: myResourceGroup
+    server_name: myServer
+    name: connection_throttling
+    value: ON

@@ -1,0 +1,20 @@
+- name: Create an azure container registry
+  azure.azcollection.azure_rm_containerregistry:
+    name: myRegistry
+    location: eastus
+    resource_group: myResourceGroup
+    admin_user_enabled: false
+    sku: Premium
+    tags:
+      Release: beta1
+      Environment: Production
+- name: Create an azure container registry2
+  azure.azcollection.azure_rm_containerregistry:
+    name: myRegistry
+    location: eastus
+    resource_group: myResourceGroup
+    admin_user_enabled: false
+    sku: Premium
+    tags:
+      Release: beta1
+      Environment: Production

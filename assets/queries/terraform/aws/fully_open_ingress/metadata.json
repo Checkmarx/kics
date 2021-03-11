@@ -2,7 +2,7 @@
   "id": "4728cd65-a20c-49da-8b31-9c08b423e4db",
   "queryName": "Fully Open Ingress",
   "severity": "HIGH",
-  "category": "Network Security",
+  "category": "Networking and Firewall",
   "descriptionText": "Security groups allow ingress from 0.0.0.0:0",
   "descriptionUrl": [
     "https://www.terraform.io/docs/providers/aws/r/security_group.html",

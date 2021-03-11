@@ -1,0 +1,21 @@
+- name: example ec2 group2
+  ec2_group:
+    name: example1
+    description: an example EC2 group
+    vpc_id: 12345
+    region: eu-west-1a
+    aws_secret_key: SECRET
+    aws_access_key: ACCESS
+    rules:
+    - proto: tcp
+      from_port: 80
+      to_port: 80
+      cidr_ip: 10.1.1.1/32
+  rules_egress:
+  - proto: tcp
+    from_port: 80
+    to_port: 80
+    cidr_ip: 10.1.1.1/32
+    group_name: example-other
+        # description to use if example-other needs to be created
+    group_desc: other example EC2 group

@@ -1,0 +1,60 @@
+{
+  "Parameters": {
+    "Project": {
+      "Default": "EFS Mount",
+      "Type": "String"
+    },
+    "VPC": {
+      "Type": "AWS::EC2::VPC::Id"
+    },
+    "Subnet1": {
+      "Type": "AWS::EC2::Subnet::Id"
+    },
+    "Owner": {
+      "Type": "String",
+      "Default": "FirstName LastName"
+    }
+  },
+  "Resources": {
+    "EfsSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Instance to EFS Mount Access",
+        "VpcId": "VPC",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "AWS::StackName"
+          },
+          {
+            "Key": "Owner",
+            "Value": "Owner"
+          },
+          {
+            "Key": "Project",
+            "Value": "Project"
+          }
+        ]
+      }
+    },
+    "FileSystem": {
+      "Type": "AWS::EFS::FileSystem",
+      "Properties": {
+        "Encrypted": true,
+        "PerformanceMode": "generalPurpose"
+      }
+    },
+    "MountTarget1": {
+      "Type": "AWS::EFS::MountTarget",
+      "Properties": {
+        "FileSystemId": "FileSystem",
+        "SubnetId": "Subnet1",
+        "SecurityGroups": [
+          "EfsSecurityGroup"
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Create Elastic File System"
+}

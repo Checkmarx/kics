@@ -1,0 +1,9 @@
+{
+  "id": "61cf9883-1752-4768-b18c-0d57f2737709",
+  "queryName": "EKS Cluster Has Public Access CIDRs",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Amazon EKS public endpoint is enables and accessible to all: 0.0.0.0/0\"",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster",
+  "platform": "Terraform"
+}

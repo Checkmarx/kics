@@ -1,0 +1,9 @@
+{
+	"id": "4d32780f-43a4-424a-a06d-943c543576a5",
+	"queryName": "IoT Policy Allows Action as Wildcard",
+	"severity": "MEDIUM",
+	"category": "Access Control",
+	"descriptionText": "IoT Policy should not allow Action to be set as *",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html",
+	"platform": "CloudFormation"
+}

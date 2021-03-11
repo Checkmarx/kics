@@ -12,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/source"
@@ -103,6 +104,7 @@ func TestService(t *testing.T) {
 
 func createParserSourceProvider(path string) (*parser.Parser, *source.FileSystemSourceProvider) {
 	mockParser, _ := parser.NewBuilder().
+		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).

@@ -1,0 +1,36 @@
+- name: sql_instance
+  google.cloud.gcp_sql_instance:
+    auth_kind: serviceaccount
+    name: "{{ resource_name }}-2"
+    project: test_project
+    region: us-central1
+    service_account_file: /tmp/auth.pem
+    settings:
+      ip_configuration:
+        authorized_networks:
+          - name: "google dns server"
+            value: "0.0.0.0"
+      tier: db-n1-standard-1
+    state: present
+- name: sql_instance2
+  google.cloud.gcp_sql_instance:
+    auth_kind: serviceaccount
+    name: "{{ resource_name }}-2"
+    project: test_project
+    region: us-central1
+    service_account_file: /tmp/auth.pem
+    settings:
+      ip_configuration:
+        ipv4_enabled: yes
+      tier: db-n1-standard-1
+    state: present
+- name: sql_instance3
+  google.cloud.gcp_sql_instance:
+    auth_kind: serviceaccount
+    name: "{{ resource_name }}-2"
+    project: test_project
+    region: us-central1
+    service_account_file: /tmp/auth.pem
+    settings:
+      tier: db-n1-standard-1
+    state: present

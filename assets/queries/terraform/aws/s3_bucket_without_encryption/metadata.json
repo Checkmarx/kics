@@ -1,0 +1,9 @@
+{
+  "id": "6726dcc0-5ff5-459d-b473-a780bef7665c",
+  "queryName": "S3 Bucket Without Encryption",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "S3 bucket should have encryption defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
+  "platform": "Terraform"
+}

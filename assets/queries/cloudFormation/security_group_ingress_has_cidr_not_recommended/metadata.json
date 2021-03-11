@@ -1,0 +1,9 @@
+{
+  "id": "a3e4e39a-e5fc-4ee9-8cf5-700febfa86dd",
+  "queryName": "Security Group Ingress Has CIDR Not Recommended",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "AWS Security Group Ingress CIDR should not be /32 in case of IPV4 or /128 in case of IPV6",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
+  "platform": "CloudFormation"
+}

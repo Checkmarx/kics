@@ -1,0 +1,9 @@
+{
+  "id": "b7063015-6c31-4658-a8e7-14f98f37fd42",
+  "queryName": "EBS Volume Without KmsKeyId",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "EBS Volume should specify a KmsKeyId value",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html",
+  "platform": "CloudFormation"
+}

@@ -1,9 +1,0 @@
-{
-	"id": "8b862ca9-0fbd-4959-ad72-b6609bdaa22d",
-	"queryName": "Tiller Service Is Not Deleted",
-	"severity": "HIGH",
-	"category": "Cloud Assets Management",
-	"descriptionText": "Check if there is any Tiller Service present",
-	"descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service",
-	"platform": "Kubernetes"
-}

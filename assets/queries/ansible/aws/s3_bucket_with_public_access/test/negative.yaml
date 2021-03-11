@@ -1,4 +1,3 @@
----
 - name: Create an empty bucket
   amazon.aws.aws_s3:
     bucket: mybucket

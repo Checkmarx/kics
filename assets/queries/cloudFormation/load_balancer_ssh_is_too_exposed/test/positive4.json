@@ -1,0 +1,122 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Parameters": {
+    "Instance01": {
+      "Type": "String",
+      "Description": "instance 01"
+    },
+    "Instance02": {
+      "Description": "instance 02",
+      "Type": "String"
+    },
+    "MySubnet": {
+      "Description": "My subnet",
+      "Type": "List"
+    }
+  },
+  "Resources": {
+    "NetworkLoadBalancer": {
+      "Properties": {
+        "Name": "t10-networkloadbalancer",
+        "Scheme": "internet-facing",
+        "Subnets": "MySubnet",
+        "SecurityGroups": [
+          "LBSecGroupV2"
+        ],
+        "Type": "network",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "t10-networklb"
+          }
+        ]
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer"
+    },
+    "LBSecGroupV2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http and ssh",
+        "VpcId": "my-vpc",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "127.0.0.1/32"
+          },
+          {
+            "CidrIp": "127.0.0.1/33",
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80
+          }
+        ],
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "NetworkLoadBalancerTargetGroup": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "Port": 443,
+        "Protocol": "TCP",
+        "VpcId": "t10-vpc-id",
+        "TargetGroupAttributes": [
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": 60
+          }
+        ],
+        "Targets": [
+          {
+            "Id": "Instance01",
+            "Port": 443
+          },
+          {
+            "Id": "Instance02",
+            "Port": 443
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "t10-networklb-target"
+          }
+        ],
+        "Name": "t10-networklb-target"
+      }
+    },
+    "NetworkLoadBalancerListener": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "NetworkLoadBalancerTargetGroup"
+          }
+        ],
+        "LoadBalancerArn": "NetworkLoadBalancer",
+        "Port": "443",
+        "Protocol": "TCP"
+      }
+    },
+    "NetworkLoadBalancerListenerCert": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+      "Properties": {
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:eu-west-1:xxxaccountxxx:certificate/123456...."
+          }
+        ],
+        "ListenerArn": "NetworkLoadBalancerListener"
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-name: Create an account with kind of FileStorage
+- name: Create an account with kind of FileStorage
   azure_rm_storageaccount:
     resource_group: myResourceGroup
     name: c1h0002

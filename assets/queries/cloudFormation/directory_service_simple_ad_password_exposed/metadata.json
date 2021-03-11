@@ -1,0 +1,9 @@
+{
+	"id": "6685d912-d81f-4cfa-95ad-e316ea31c989",
+	"queryName": "Directory Service Simple AD Password Exposed",
+	"severity": "MEDIUM",
+	"category": "Secret Management",
+	"descriptionText": "DirectoryService SimpleAD password must not be a plaintext string or a Ref to a Parameter with a Default value.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html",
+	"platform": "CloudFormation"
+}

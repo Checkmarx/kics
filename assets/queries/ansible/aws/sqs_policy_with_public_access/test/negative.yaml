@@ -8,11 +8,11 @@
     delivery_delay: 30
     receive_message_wait_time: 20
     policy:
-      Version: "2012-10-17"
+      Version: '2012-10-17'
       Statement:
-      - Effect: "Allow"
-        Action: "sqs:*"
-        Resource: "*"
-        Principal: "Principal"
+      - Effect: Allow
+        Action: sqs:*
+        Resource: '*'
+        Principal: Principal
     make_default: false
     state: present

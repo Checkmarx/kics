@@ -1,0 +1,52 @@
+{
+  "Resources": {
+    "EventStream1": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Name": "EventStream",
+        "RetentionPeriodHours": 24,
+        "ShardCount": 1,
+        "StreamEncryption": {
+          "EncryptionType": "KMS"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${EnvironmentName}-EventStream-${AWS::Region}"
+          }
+        ]
+      }
+    },
+    "EventStream2": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Name": "EventStream",
+        "RetentionPeriodHours": 24,
+        "ShardCount": 1,
+        "StreamEncryption": {
+          "KeyId": "myKey"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${EnvironmentName}-EventStream-${AWS::Region}"
+          }
+        ]
+      }
+    },
+    "EventStream3": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Name": "EventStream",
+        "RetentionPeriodHours": 24,
+        "ShardCount": 1,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "${EnvironmentName}-EventStream-${AWS::Region}"
+          }
+        ]
+      }
+    }
+  }
+}

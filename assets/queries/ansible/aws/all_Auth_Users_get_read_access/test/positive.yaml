@@ -1,6 +1,0 @@
----
-- name: Create an empty bucket2
-  amazon.aws.aws_s3:
-    bucket: mybucket
-    mode: create
-    permission: authenticated-read

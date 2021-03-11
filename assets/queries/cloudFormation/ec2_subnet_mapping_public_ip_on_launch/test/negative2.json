@@ -1,0 +1,21 @@
+{
+  "Resources": {
+    "mySubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "foo",
+            "Value": "bar"
+          }
+        ],
+        "MapPublicIpOnLaunch": false,
+        "VpcId": "myVPC",
+        "CidrBlock": "10.0.0.0/24",
+        "AvailabilityZone": "us-east-1a"
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template"
+}

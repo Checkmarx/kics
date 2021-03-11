@@ -1,0 +1,9 @@
+{
+	"id": "2f652c42-619d-4361-b361-9f599688f8ca",
+	"queryName": "HPA Targets Invalid Object",
+	"severity": "LOW",
+	"category": "Availability",
+	"descriptionText": "The Horizontal Pod Autoscale must target a valid object",
+	"descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/",
+	"platform": "Kubernetes"
+}

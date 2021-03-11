@@ -1,0 +1,9 @@
+{
+	"id": "f62aa827-4ade-4dc4-89e4-1433d384a368",
+	"queryName": "IAM Policy Grants Full Permissions",
+	"severity": "LOW",
+	"category": "Access Control",
+	"descriptionText": "Check if an IAM policy is granting full permissions to resources from the get-go, instead of granting permissions gradually as necessary.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html",
+	"platform": "CloudFormation"
+}

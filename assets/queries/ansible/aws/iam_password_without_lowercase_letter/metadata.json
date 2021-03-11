@@ -1,0 +1,9 @@
+{
+	"id": "8e3063f4-b511-45c3-b030-f3b0c9131951",
+	"queryName": "IAM Password Without Lowercase Letter",
+	"severity": "MEDIUM",
+	"category": "Best Practices",
+	"descriptionText": "Check if IAM account password has at least one lowercase letter",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html",
+	"platform": "Ansible"
+}

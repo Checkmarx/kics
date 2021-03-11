@@ -2,7 +2,7 @@
 	"id": "9b83114b-b2a1-4534-990d-06da015e47aa",
 	"queryName": "Lambda Permission Badly Configured",
 	"severity": "LOW",
-	"category": "Identity and Access Management",
+	"category": "Best Practices",
 	"descriptionText": "Lambda permission may be misconfigured if the action field is not filled in by 'lambda: InvokeFunction'",
 	"descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html",
 	"platform": "CloudFormation"

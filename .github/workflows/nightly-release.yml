@@ -16,7 +16,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.15
+          go-version: 1.16
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -90,13 +90,18 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: checkmarx/kics
-          tag_with_ref: false
-          tags: nightly
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: checkmarx/kics:nightly
           build-args: |
             VERSION=nightly-${{ github.sha }}

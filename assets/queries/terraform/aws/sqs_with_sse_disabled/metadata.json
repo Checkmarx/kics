@@ -1,9 +1,9 @@
 {
-	"id": "6e8849c1-3aa7-40e3-9063-b85ee300f29f",
-	"queryName": "SQS with SSE disabled",
-	"severity": "HIGH",
-	"category": "Network Security",
-	"descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue",
-	"platform": "Terraform"
+  "id": "6e8849c1-3aa7-40e3-9063-b85ee300f29f",
+  "queryName": "SQS With SSE Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue",
+  "platform": "Terraform"
 }

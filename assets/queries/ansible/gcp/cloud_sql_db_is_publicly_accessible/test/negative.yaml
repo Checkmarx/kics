@@ -1,0 +1,14 @@
+- name: sql_instance
+  google.cloud.gcp_sql_instance:
+    auth_kind: serviceaccount
+    name: '{{ resource_name }}-2'
+    project: test_project
+    region: us-central1
+    service_account_file: /tmp/auth.pem
+    settings:
+      ip_configuration:
+        authorized_networks:
+        - name: google dns server
+          value: 8.8.8.8/32
+      tier: db-n1-standard-1
+    state: present

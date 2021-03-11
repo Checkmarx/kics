@@ -1,0 +1,9 @@
+{
+  "id": "7a70eed6-de3a-4da2-94da-a2bbc8fe2a48",
+  "queryName": "IAM Password Without Symbols",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Check if IAM account password has the required symbols",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
+  "platform": "Terraform"
+}

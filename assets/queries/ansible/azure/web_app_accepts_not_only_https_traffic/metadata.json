@@ -1,0 +1,9 @@
+{
+  "id": "eb8c2560-8bee-4248-9d0d-e80c8641dd91",
+  "queryName": "Web App Accepts Not Only HTTPS Traffic",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Web app should only accept HTTPS traffic in Azure Web App Service.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_webapp_module.html#parameter-https_only",
+  "platform": "Ansible"
+}

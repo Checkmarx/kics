@@ -1,0 +1,9 @@
+{
+  "id": "5beacce3-4020-4a3d-9e1d-a36f953df630",
+  "queryName": "RDS DB Instance Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS RDS DB Instance should be encrypted",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+  "platform": "CloudFormation"
+}

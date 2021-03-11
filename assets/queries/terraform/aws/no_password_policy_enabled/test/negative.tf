@@ -1,4 +1,4 @@
-resource "aws_iam_user_login_profile" "example8" {
+resource "aws_iam_user_login_profile" "negative1" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 

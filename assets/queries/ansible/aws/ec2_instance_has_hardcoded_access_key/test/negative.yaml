@@ -1,0 +1,14 @@
+- name: start an instance with a cpu_options
+  community.aws.ec2_instance:
+    name: public-cpuoption-instance
+    vpc_subnet_id: subnet-5ca1ab1e
+    tags:
+      Environment: Testing
+    instance_type: c4.large
+    volumes:
+    - device_name: /dev/sda1
+      ebs:
+        delete_on_termination: true
+    cpu_options:
+      core_count: 1
+      threads_per_core: 1

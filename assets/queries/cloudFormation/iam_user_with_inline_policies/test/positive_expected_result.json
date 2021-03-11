@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IAM User With Inline Policies",
-		"severity": "MEDIUM",
-		"line": 10
-	}
-]

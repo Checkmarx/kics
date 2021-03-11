@@ -1,0 +1,9 @@
+{
+	"id": "5f700072-b7ce-4e84-b3f3-497bf1c24a4d",
+	"queryName": "DMS Endpoint Password Exposed",
+	"severity": "MEDIUM",
+	"category": "Secret Management",
+	"descriptionText": "DMS Endpoint password must not be a plaintext string or a Ref to a Parameter with a Default value.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html",
+	"platform": "CloudFormation"
+}

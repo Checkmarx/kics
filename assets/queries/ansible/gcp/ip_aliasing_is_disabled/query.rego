@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	cluster := task["google.cloud.gcp_container_cluster"]
 
 	ansLib.checkState(cluster)
 	object.get(cluster, "ip_allocation_policy", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy is defined",
@@ -20,8 +19,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	cluster := task["google.cloud.gcp_container_cluster"]
 	cluster.ip_allocation_policy
 
@@ -29,7 +27,7 @@ CxPolicy[result] {
 	object.get(cluster.ip_allocation_policy, "use_ip_aliases", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases is set to true",
@@ -38,15 +36,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
+	task := ansLib.tasks[id][t]
 	cluster := task["google.cloud.gcp_container_cluster"]
 
 	ansLib.checkState(cluster)
 	not ansLib.isAnsibleTrue(cluster.ip_allocation_policy.use_ip_aliases)
 
 	result := {
-		"documentId": document.id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases is true",

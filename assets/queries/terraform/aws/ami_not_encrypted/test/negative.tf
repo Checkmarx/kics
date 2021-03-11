@@ -1,5 +1,5 @@
 #this code is a correct code for which the query should not find any result
-resource "aws_ami" "example" {
+resource "aws_ami" "negative1" {
   name                = "terraform-example"
   virtualization_type = "hvm"
   root_device_name    = "/dev/xvda2"

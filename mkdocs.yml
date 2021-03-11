@@ -13,20 +13,24 @@ repo_url: https://github.com/Checkmarx/kics/
 # Navigation
 nav:
   - Home: index.md
-  - Install:
-      - Getting Started: getting-started.md
+  - Getting Started:
+      - Installation: getting-started.md
       - Configuration: configuration-file.md
-      - Integrations: integrations.md
+      - Queries: queries.md
       - Results: results.md
-  - Queries: queries.md
   - Architecture: architecture.md
-  - Contribution: CONTRIBUTING.md
+  - Integrations:
+      - Overview: integrations.md
+      - Github Actions: integrations_ghactions.md
+      - Gitlab CI: integrations_gitlabci.md
+      - Azure DevOps: integrations_azurepipelines.md
+      - Bitbucket Pipelines: integrations_bitbucketpipelines.md
   - Project:
       - Roadmap: roadmap.md
       - Plans: "https://github.com/Checkmarx/kics/projects"
       - Issues: "https://github.com/Checkmarx/kics/issues"
       - Releases: releases.md
-  - Contributors: contributors.md
+  - Contribution: CONTRIBUTING.md
   - About: about.md
 
 # Theme
@@ -36,6 +40,9 @@ theme:
   favicon: img/logo/kics-logo-text.png
   include_sidebar: true
   sticky_navigation: true
+
+extra_css:
+  - css/custom.css
 
 # Plugins
 plugins:

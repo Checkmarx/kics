@@ -1,9 +1,0 @@
-{
-	"id": "b7652612-de4e-4466-a0bf-1cd81f0c6063",
-	"queryName": "Volume Mount with OS Directory Write Permissions",
-	"severity": "MEDIUM",
-	"category": "Resources Limiting",
-	"descriptionText": "Containers can mount sensitive folders from the hosts, giving them potentially dangerous access to critical host configurations and binaries.",
-	"descriptionUrl": "https://kubernetes.io/docs/concepts/storage/volumes/",
-	"platform": "Kubernetes"
-}

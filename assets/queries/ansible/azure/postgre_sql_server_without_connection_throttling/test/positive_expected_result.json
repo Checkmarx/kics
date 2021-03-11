@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "PostgreSQL Server Without Connection Throttling",
+    "severity": "MEDIUM",
+    "line": 7
+  },
+  {
+    "queryName": "PostgreSQL Server Without Connection Throttling",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "PostgreSQL Server Without Connection Throttling",
+    "severity": "MEDIUM",
+    "line": 19
+  },
+  {
+    "queryName": "PostgreSQL Server Without Connection Throttling",
+    "severity": "MEDIUM",
+    "line": 25
+  },
+  {
+    "queryName": "PostgreSQL Server Without Connection Throttling",
+    "severity": "MEDIUM",
+    "line": 31
+  },
+  {
+    "queryName": "PostgreSQL Server Without Connection Throttling",
+    "severity": "MEDIUM",
+    "line": 37
+  }
+]

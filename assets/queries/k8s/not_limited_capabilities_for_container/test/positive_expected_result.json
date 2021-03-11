@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Not Limited Capabilities For Container",
+    "severity": "MEDIUM",
+    "line": 11
+  },
+  {
+    "queryName": "Not Limited Capabilities For Container",
+    "severity": "MEDIUM",
+    "line": 34
+  }
+]

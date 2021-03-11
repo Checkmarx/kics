@@ -2,7 +2,7 @@
 	"id": "3b02569b-fc6f-4153-b3a3-ba91022fed68",
 	"queryName": "ElastiCache with disabled Transit Encryption",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at transit enabled",
 	"descriptionUrl": "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/in-transit-encryption.html",
 	"platform": "CloudFormation"

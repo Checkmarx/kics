@@ -1,9 +1,0 @@
-{
-	"id": "e4f54ff4-d352-40e8-a096-5141073c37a2",
-	"queryName": "CDN Configuration Is Missing",
-	"severity": "LOW",
-	"category": "Network Security",
-	"descriptionText": "Content Delivery Network (CDN) service is used within AWS account to secure and accelerate the delivery of websites. The use of a CDN can provide a layer of security between your origin content and the destination.",
-	"descriptionUrl": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/networking-services.html",
-	"platform": "CloudFormation"
-}

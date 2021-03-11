@@ -1,0 +1,9 @@
+{
+	"id": "f6d299d2-21eb-41cc-b1e1-fe12d857500b",
+	"queryName": "VPC Has FlowLog Disabled",
+	"severity": "LOW",
+	"category": "Observability",
+	"descriptionText": "VPC hasn't any FlowLog associated",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html",
+	"platform": "CloudFormation"
+}

@@ -2,7 +2,7 @@
 	"id": "0b530315-0ea4-497f-b34c-4ff86268f59d",
 	"queryName": "KMS Key No Deletion Window",
 	"severity": "HIGH",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "AWS KMS Key should have a valid deletion window",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key",
 	"platform": "Terraform"

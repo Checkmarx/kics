@@ -1,0 +1,58 @@
+{
+  "Resources": {
+    "MySkill": {
+      "Type": "Alexa::ASK::Skill",
+      "Properties": {
+        "SkillPackage": {
+          "S3Bucket": "my-skill-packages",
+          "S3Key": "skillpackage.zip",
+          "S3BucketRole": "S3BucketReadRole.Arn",
+          "Overrides": {
+            "Manifest": {
+              "apis": {
+                "custom": {
+                  "endpoint": {
+                    "uri": "SkillFunction.Arn"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "AuthenticationConfiguration": {
+          "ClientId": "amzn1.application-oa2-client.1234",
+          "ClientSecret": "1234",
+          "RefreshToken": "{{resolve:secretsmanager:Atzr|IQEBLzAtAhRPpMJxdwVz2Nn6f2y-tpJX2DeX}}"
+        },
+        "VendorId": "1234"
+      }
+    },
+    "MySkill2": {
+      "Type": "Alexa::ASK::Skill",
+      "Properties": {
+        "SkillPackage": {
+          "S3Bucket": "my-skill-packages",
+          "S3Key": "skillpackage.zip",
+          "S3BucketRole": "S3BucketReadRole.Arn",
+          "Overrides": {
+            "Manifest": {
+              "apis": {
+                "custom": {
+                  "endpoint": {
+                    "uri": "SkillFunction.Arn"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "AuthenticationConfiguration": {
+          "ClientId": "amzn1.application-oa2-client.1234",
+          "ClientSecret": "1234",
+          "RefreshToken": "{{resolve:ssm-secure:Atzr|IQEBLzAtAhRPpMJxdwVz2Nn6f2y-tpJX2DeX}}"
+        },
+        "VendorId": "1234"
+      }
+    }
+  }
+}

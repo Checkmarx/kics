@@ -1,4 +1,4 @@
-resource "kubernetes_pod" "test2" {
+resource "kubernetes_pod" "positive1" {
   metadata {
     name = "terraform-example"
   }
@@ -59,7 +59,7 @@ resource "kubernetes_pod" "test2" {
 
 
 
-resource "kubernetes_pod" "test3" {
+resource "kubernetes_pod" "positive2" {
   metadata {
     name = "terraform-example"
   }

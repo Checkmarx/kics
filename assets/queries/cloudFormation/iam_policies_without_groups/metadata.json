@@ -1,9 +1,9 @@
 {
-	"id": "5e7acff5-095b-40ac-9073-ac2e4ad8a512",
-	"queryName": "IAM policies without Groups",
-	"severity": "LOW",
-	"category": "Identity and Access Management",
-	"descriptionText": "IAM policy should not apply directly to users, should be with a group",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
-	"platform": "CloudFormation"
+  "id": "5e7acff5-095b-40ac-9073-ac2e4ad8a512",
+  "queryName": "IAM Policies Without Groups",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "IAM policy should not apply directly to users, should be with a group",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
+  "platform": "CloudFormation"
 }

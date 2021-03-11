@@ -1,0 +1,22 @@
+{
+  "Resources": {
+    "NewAmpApp03": {
+      "Type": "AWS::DocDB::DBCluster",
+      "Properties": {
+        "Port": 27017,
+        "PreferredBackupWindow": "07:34-08:04",
+        "PreferredMaintenanceWindow": "sat:04:51-sat:05:21",
+        "DBClusterIdentifier": "sample-cluster",
+        "DBClusterParameterGroupName": "default.docdb3.6",
+        "DBSubnetGroupName": "default",
+        "DeletionProtection": true,
+        "KmsKeyId": "your-kms-key-id",
+        "SnapshotIdentifier": "sample-cluster-snapshot-id",
+        "StorageEncrypted": true,
+        "BackupRetentionPeriod": 8,
+        "MasterUsername": "your-master-username",
+        "MasterUserPassword": "asDjskjs73!!"
+      }
+    }
+  }
+}

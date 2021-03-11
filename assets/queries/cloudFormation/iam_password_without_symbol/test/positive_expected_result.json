@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "IAM Password Without Symbol",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "IAM Password Without Symbol",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "IAM Password Without Symbol",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.json"
+  }
 ]

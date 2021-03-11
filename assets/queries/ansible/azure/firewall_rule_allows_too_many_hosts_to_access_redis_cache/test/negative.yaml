@@ -1,0 +1,7 @@
+- name: reduced_hosts
+  azure_rm_rediscachefirewallrule:
+    resource_group: myResourceGroup
+    cache_name: myRedisCache
+    name: myRule
+    start_ip_address: 192.168.1.1
+    end_ip_address: 192.168.1.4

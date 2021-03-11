@@ -1,0 +1,9 @@
+{
+  "id": "9488c451-074e-4cd3-aee3-7db6104f542c",
+  "queryName": "Lambda Functions Tracing Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS Lambda functions should have TracingConfig enabled. For this, property 'tracingConfig.mode' should have the value 'Active'",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html",
+  "platform": "CloudFormation"
+}

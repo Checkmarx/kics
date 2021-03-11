@@ -1,9 +1,0 @@
-{
-	"id": "c48e57d3-d642-4e0b-90db-37f807b41b91",
-	"queryName": "Block Privileged Request Pod Security Policy",
-	"severity": "MEDIUM",
-	"category": "Privileges",
-	"descriptionText": "Do not allow pod to request execution as privileged.",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#privileged",
-	"platform": "Kubernetes"
-}

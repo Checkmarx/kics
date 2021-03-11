@@ -1,0 +1,19 @@
+{
+  "Resources": {
+    "Ec2Instance-02": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "some-ec2-image",
+        "Fn::FindInMap": [
+          "RegionMap",
+          {
+            "Ref": "AWS::Region"
+          },
+          "AMI"
+        ],
+        "KeyName": "some-rsa-key",
+        "Ref": "KeyName"
+      }
+    }
+  }
+}

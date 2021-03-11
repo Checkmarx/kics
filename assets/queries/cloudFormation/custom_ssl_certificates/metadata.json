@@ -1,9 +1,0 @@
-{
-	"id": "b4d9c12b-bfba-4aeb-9cb8-2358546d8041",
-	"queryName": "Vulnerable Default SSL Certificate",
-	"severity": "HIGH",
-	"category": "Network Security",
-	"descriptionText": "Custom SSL certificates allow only defined users to access content by using alternate domain name instead the default one",
-	"descriptionUrl": "https://aws.amazon.com/pt/cloudfront/custom-ssl-domains/",
-	"platform": "CloudFormation"
-}

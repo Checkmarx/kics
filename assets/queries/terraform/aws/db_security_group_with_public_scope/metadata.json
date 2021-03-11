@@ -1,0 +1,9 @@
+{
+  "id": "1e0ef61b-ad85-4518-a3d3-85eaad164885",
+  "queryName": "DB Security Group With Public Scope",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The CIDR must be diferent than 0.0.0.0/0",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
+  "platform": "Terraform"
+}

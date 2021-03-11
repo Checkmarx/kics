@@ -1,4 +1,4 @@
-resource "azurerm_network_security_rule" "example1" {
+resource "azurerm_network_security_rule" "negative1" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -12,7 +12,7 @@ resource "azurerm_network_security_rule" "example1" {
      network_security_group_name = azurerm_network_security_group.example.name
 }
 
-resource "azurerm_network_security_rule" "example2" {
+resource "azurerm_network_security_rule" "negative2" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -27,7 +27,7 @@ resource "azurerm_network_security_rule" "example2" {
 }
 
 
-resource "azurerm_network_security_rule" "example3" {
+resource "azurerm_network_security_rule" "negative3" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -42,7 +42,7 @@ resource "azurerm_network_security_rule" "example3" {
 }
 
 
-resource "azurerm_network_security_rule" "example4" {
+resource "azurerm_network_security_rule" "negative4" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -57,7 +57,7 @@ resource "azurerm_network_security_rule" "example4" {
 }
 
 
-resource "azurerm_network_security_rule" "example5" {
+resource "azurerm_network_security_rule" "negative5" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -71,7 +71,7 @@ resource "azurerm_network_security_rule" "example5" {
      network_security_group_name = azurerm_network_security_group.example.name
 }
 
-resource "azurerm_network_security_rule" "example6" {
+resource "azurerm_network_security_rule" "negative6" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -86,7 +86,7 @@ resource "azurerm_network_security_rule" "example6" {
 }
 
 
-resource "azurerm_network_security_rule" "example7" {
+resource "azurerm_network_security_rule" "negative7" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -101,7 +101,7 @@ resource "azurerm_network_security_rule" "example7" {
 }
 
 
-resource "azurerm_network_security_rule" "example8" {
+resource "azurerm_network_security_rule" "negative8" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -116,7 +116,7 @@ resource "azurerm_network_security_rule" "example8" {
 }
 
 
-resource "azurerm_network_security_rule" "example9" {
+resource "azurerm_network_security_rule" "negative9" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -130,7 +130,7 @@ resource "azurerm_network_security_rule" "example9" {
      network_security_group_name = azurerm_network_security_group.example.name
 }
 
-resource "azurerm_network_security_rule" "example10" {
+resource "azurerm_network_security_rule" "negative10" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"
@@ -144,7 +144,7 @@ resource "azurerm_network_security_rule" "example10" {
      network_security_group_name = azurerm_network_security_group.example.name
 }
 
-resource "azurerm_network_security_rule" "example11" {
+resource "azurerm_network_security_rule" "negative11" {
      name                        = "example"
      priority                    = 100
      direction                   = "Inbound"

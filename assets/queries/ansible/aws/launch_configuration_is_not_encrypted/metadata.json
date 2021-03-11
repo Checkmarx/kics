@@ -1,9 +1,0 @@
-{
-	"id": "72f36805-91d7-4187-9712-603b9cd0768f",
-	"queryName": "Launch Configuration Is Not Encrypted",
-	"severity": "HIGH",
-	"category": "Encryption & Key Management",
-	"descriptionText": "Launch Configuration must be encrypted",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html#parameter-volumes/encrypted",
-	"platform": "Ansible"
-}

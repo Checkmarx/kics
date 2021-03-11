@@ -1,4 +1,3 @@
----
 - name: Update PostgreSQL Server setting
   azure.azcollection.azure_rm_postgresqlconfiguration:
     resource_group: myResourceGroup
@@ -22,16 +21,16 @@
     resource_group: myResourceGroup
     server_name: myServer
     name: log_checkpoints
-    value: "on"
+    value: on
 - name: Update PostgreSQL Server setting5
   azure.azcollection.azure_rm_postgresqlconfiguration:
     resource_group: myResourceGroup
     server_name: myServer
     name: log_checkpoints
-    value: "On"
+    value: On
 - name: Update PostgreSQL Server setting6
   azure.azcollection.azure_rm_postgresqlconfiguration:
     resource_group: myResourceGroup
     server_name: myServer
     name: log_checkpoints
-    value: "ON"
+    value: ON

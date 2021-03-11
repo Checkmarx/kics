@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "IAM Policy Full Privileges",
-		"severity": "HIGH",
-		"line": 10
-	},
-	{
-		"queryName": "IAM Policy Full Privileges",
-		"severity": "HIGH",
-		"line": 23
-	}
+  {
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.yaml",
+    "queryName": "IAM Policy Full Privileges"
+  },
+  {
+    "queryName": "IAM Policy Full Privileges",
+    "severity": "HIGH",
+    "line": 23,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive2.json",
+    "queryName": "IAM Policy Full Privileges"
+  },
+  {
+    "queryName": "IAM Policy Full Privileges",
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive2.json"
+  }
 ]

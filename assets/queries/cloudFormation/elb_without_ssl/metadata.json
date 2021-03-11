@@ -1,0 +1,9 @@
+{
+  "id": "80908a75-586b-4c61-ab04-490f4f4525b8",
+  "queryName": "ELB Without SSL",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Check if the ELB is setup with SSL for secure communication",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
+  "platform": "CloudFormation"
+}

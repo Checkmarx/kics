@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "VPC Has FlowLog Disabled",
+    "severity": "LOW",
+    "line": 34,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "VPC Has FlowLog Disabled",
+    "severity": "LOW",
+    "line": 52,
+    "fileName": "positive2.json"
+  }
+]

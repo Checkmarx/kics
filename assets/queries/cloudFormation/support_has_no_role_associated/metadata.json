@@ -1,0 +1,9 @@
+{
+  "id": "d71b5fd7-9020-4b2d-9ec8-b3839faa2744",
+  "queryName": "Support Has No Role Associated",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "Check if any AWS Support policy does not have any role and users and group associated, which means that is not being managed.",
+  "descriptionUrl": "https://docs.aws.amazon.com/awssupport/latest/user/security-iam.html#security_iam_access-manage",
+  "platform": "CloudFormation"
+}

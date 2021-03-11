@@ -1,9 +1,0 @@
-#this is a problematic code where the query should report a result(s)
-- name: ECS Service
-  community.aws.ecs_service:
-    state: present
-    name: console-test-service
-    cluster: new_cluster
-    task_definition: 'new_cluster-task:1'
-    desired_count: 0
-    role: admin

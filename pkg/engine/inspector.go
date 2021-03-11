@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"sync"
 	"time"
 
@@ -24,10 +24,12 @@ const (
 	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
+	DefaultQueryDescription     = "Undefined"
+	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 6 * time.Second
+	executeTimeout = 10 * time.Second
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -43,7 +45,7 @@ type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}
 // GetQueries gets all queries from a QueryMetadata list
 // GetGenericQuery gets a base query based in plataform's name
 type QueriesSource interface {
-	GetQueries() ([]model.QueryMetadata, error)
+	GetQueries(excludeQueries []string) ([]model.QueryMetadata, error)
 	GetGenericQuery(platform string) (string, error)
 }
 
@@ -51,11 +53,13 @@ type QueriesSource interface {
 // TrackQueryLoad increments the number of loaded queries
 // TrackQueryExecution increments the number of queries executed
 // FailedDetectLine decrements the number of queries executed
+// GetOutputLines returns the number of lines to be displayed in results outputs
 type Tracker interface {
-	TrackQueryLoad()
-	TrackQueryExecution()
+	TrackQueryLoad(queryAggregation int)
+	TrackQueryExecution(queryAggregation int)
 	FailedDetectLine()
 	FailedComputeSimilarityID()
+	GetOutputLines() int
 }
 
 type preparedQuery struct {
@@ -66,10 +70,11 @@ type preparedQuery struct {
 // Inspector represents a list of compiled queries, a builder for vulnerabilities, an information tracker
 // a flag to enable coverage and the coverage report if it is enabled
 type Inspector struct {
-	queries       []*preparedQuery
-	vb            VulnerabilityBuilder
-	tracker       Tracker
-	failedQueries map[string]error
+	queries        []*preparedQuery
+	vb             VulnerabilityBuilder
+	tracker        Tracker
+	failedQueries  map[string]error
+	excludeResults map[string]bool
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
@@ -98,8 +103,10 @@ func NewInspector(
 	ctx context.Context,
 	source QueriesSource,
 	vb VulnerabilityBuilder,
-	tracker Tracker) (*Inspector, error) {
-	queries, err := source.GetQueries()
+	tracker Tracker,
+	excludeQueries []string,
+	excludeResults map[string]bool) (*Inspector, error) {
+	queries, err := source.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
@@ -113,7 +120,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, _ := source.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := source.GetGenericQuery(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.
@@ -143,7 +150,7 @@ func NewInspector(
 				continue
 			}
 
-			tracker.TrackQueryLoad()
+			tracker.TrackQueryLoad(metadata.Aggregation)
 
 			opaQueries = append(opaQueries, &preparedQuery{
 				opaQuery: opaQuery,
@@ -153,23 +160,33 @@ func NewInspector(
 	}
 	failedQueries := make(map[string]error)
 
+	queriesNumber := sumAllAggregatedQueries(opaQueries)
+
 	log.Info().
-		Msgf("Inspector initialized, number of queries=%d\n", len(opaQueries))
+		Msgf("Inspector initialized, number of queries=%d\n", queriesNumber)
 
 	return &Inspector{
-		queries:       opaQueries,
-		vb:            vb,
-		tracker:       tracker,
-		failedQueries: failedQueries,
+		queries:        opaQueries,
+		vb:             vb,
+		tracker:        tracker,
+		failedQueries:  failedQueries,
+		excludeResults: excludeResults,
 	}, nil
+}
+
+func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
+	sum := 0
+	for _, query := range opaQueries {
+		sum += query.metadata.Aggregation
+	}
+	return sum
 }
 
 func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
 	wg.Add(1)
 	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
 	if hideProgress {
-		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-		progressBar.Writer = ioutil.Discard
+		progressBar.Writer = io.Discard
 	}
 	go progressBar.Start(wg)
 }
@@ -189,6 +206,7 @@ func (c *Inspector) Inspect(
 	}
 
 	var vulnerabilities []model.Vulnerability
+	vulnerabilities = make([]model.Vulnerability, 0)
 	currentQuery := make(chan float64, 1)
 	var wg sync.WaitGroup
 	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
@@ -215,9 +233,10 @@ func (c *Inspector) Inspect(
 
 			continue
 		}
+
 		vulnerabilities = append(vulnerabilities, vuls...)
 
-		c.tracker.TrackQueryExecution()
+		c.tracker.TrackQueryExecution(query.metadata.Aggregation)
 	}
 	close(currentQuery)
 	wg.Wait()
@@ -315,7 +334,12 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 			failedDetectLine = true
 		}
 
-		vulnerabilities = append(vulnerabilities, vulnerability)
+		if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
+			log.Debug().
+				Msgf("Excluding result simID=%s", vulnerability.SimilarityID)
+		} else {
+			vulnerabilities = append(vulnerabilities, vulnerability)
+		}
 	}
 
 	if failedDetectLine {

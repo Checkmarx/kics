@@ -1,0 +1,31 @@
+{
+  "Resources": {
+    "ECSService": {
+      "Type": "AWS::ECS::Service",
+      "DependsOn": [
+        "Listener"
+      ],
+      "Properties": {
+        "DesiredCount": 1,
+        "LoadBalancers": [
+          {
+            "TargetGroupArn": {
+              "Ref": "TargetGroup"
+            },
+            "ContainerPort": 80,
+            "ContainerName": "sample-app"
+          }
+        ],
+        "Cluster": {
+          "Ref": "ECSCluster"
+        },
+        "Role": {
+          "Ref": "ECSServiceRole"
+        },
+        "TaskDefinition": {
+          "Ref": "ECSTaskDefinition"
+        }
+      }
+    }
+  }
+}

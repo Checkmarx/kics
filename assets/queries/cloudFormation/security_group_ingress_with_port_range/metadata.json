@@ -1,0 +1,9 @@
+{
+  "id": "87482183-a8e7-4e42-a566-7a23ec231c16",
+  "queryName": "Security Group Ingress With Port Range",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Security Group Ingress should have a single port",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
+  "platform": "CloudFormation"
+}

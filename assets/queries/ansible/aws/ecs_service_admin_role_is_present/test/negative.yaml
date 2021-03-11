@@ -1,0 +1,8 @@
+#this code is a correct code for which the query should not find any result
+- name: ECS Service
+  community.aws.ecs_service:
+    state: present
+    name: console-test-service
+    cluster: new_cluster
+    task_definition: new_cluster-task:1
+    desired_count: 0

@@ -3,7 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -34,7 +34,7 @@ type testParamsType struct {
 	queryDir      string // mandatory
 	platform      string // mandatory
 	queryID       func() string
-	samplePath    func() string
+	samplePath    func(t testing.TB) string
 	sampleContent func(t testing.TB) []byte
 	queryContent  func(t testing.TB) string
 }
@@ -58,13 +58,14 @@ var (
 			name: "Changed Sample and Query SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive2.tf", fixtureDir),
 					queryFixturePath:  fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
 				}),
 			},
@@ -93,13 +94,14 @@ var (
 			name: "Changed Sample SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive2.tf", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -133,7 +135,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive.tf",
+					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive1.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -145,11 +147,11 @@ var (
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
-					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
+					queryDir: "../assets/queries/cloudFormation/api_gateway_with_open_access",
 				}),
 				getTestParams(&testCaseParamsType{
 					platform: "cloudFormation",
-					queryDir: "../assets/queries/cloudFormation/amazon_mq_broker_encryption_disabled",
+					queryDir: "../assets/queries/cloudFormation/api_gateway_with_open_access",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -160,8 +162,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	for _, tc := range testTable {
 		t.Run(tc.name, func(tt *testing.T) {
@@ -188,13 +189,13 @@ func getTestQueryID(params *testCaseParamsType) string {
 	return testQueryID
 }
 
-func getTestSampleContent(params *testCaseParamsType) ([]byte, error) {
+func getTestSampleContent(tb testing.TB, params *testCaseParamsType) ([]byte, error) {
 	var testSampleContent []byte
 	var err error
 	if params.sampleFixturePath != "" {
 		testSampleContent, err = getFileContent(params.sampleFixturePath)
 	} else {
-		testSampleContent, err = getSampleContent(params)
+		testSampleContent, err = getSampleContent(tb, params)
 	}
 	return testSampleContent, err
 }
@@ -218,11 +219,11 @@ func getTestParams(params *testCaseParamsType) testParamsType {
 		queryID: func() string {
 			return getTestQueryID(params)
 		},
-		samplePath: func() string {
-			return getSamplePath(params)
+		samplePath: func(t testing.TB) string {
+			return getSamplePath(t, params)
 		},
 		sampleContent: func(t testing.TB) []byte {
-			content, err := getTestSampleContent(params)
+			content, err := getTestSampleContent(t, params)
 			require.Nil(t, err)
 			return content
 		},
@@ -254,7 +255,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries().DoAndReturn(func() ([]model.QueryMetadata, error) {
+	queriesSource.EXPECT().GetQueries([]string{}).DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
 		metadata := query.ReadMetadata(testParams.queryDir)
 
 		// Override metadata ID with custom QueryID for testing
@@ -285,7 +286,13 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			return q, nil
 		})
 
-	inspector, err := engine.NewInspector(ctx, queriesSource, engine.DefaultVulnerabilityBuilder, &tracker.CITracker{})
+	inspector, err := engine.NewInspector(ctx,
+		queriesSource,
+		engine.DefaultVulnerabilityBuilder,
+		&tracker.CITracker{},
+		[]string{},
+		map[string]bool{})
+
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
@@ -294,7 +301,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		scanID,
 		getFilesMetadatasWithContent(
 			t,
-			testParams.samplePath(),
+			testParams.samplePath(t),
 			testParams.sampleContent(t),
 		),
 		true,

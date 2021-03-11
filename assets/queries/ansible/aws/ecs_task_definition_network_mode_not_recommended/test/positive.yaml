@@ -1,0 +1,31 @@
+---
+- name: Create task definition
+  community.aws.ecs_taskdefinition:
+    family: nginx
+    containers:
+    - name: nginx
+      essential: true
+      image: "nginx"
+      portMappings:
+      - containerPort: 8080
+        hostPort: 8080
+      cpu: 512
+      memory: 1024
+    state: present
+    network_mode: default
+
+- name: Create task definition2
+  community.aws.ecs_taskdefinition:
+    family: nginx
+    containers:
+    - name: nginx
+      essential: true
+      image: "nginx"
+      portMappings:
+      - containerPort: 8080
+        hostPort: 8080
+    launch_type: FARGATE
+    cpu: 512
+    memory: 1024
+    state: present
+    network_mode: none

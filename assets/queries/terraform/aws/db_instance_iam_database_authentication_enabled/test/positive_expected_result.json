@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 11
-	}
-]

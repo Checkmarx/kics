@@ -1,9 +1,9 @@
 {
-	"id": "229588ef-8fde-40c8-8756-f4f2b5825ded",
-	"queryName": "Memory Requests Are Not Defined",
-	"severity": "MEDIUM",
-	"category": "Resources Limiting",
-	"descriptionText": "Memory requests should be specified",
-	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/",
-	"platform": "Kubernetes"
+  "id": "229588ef-8fde-40c8-8756-f4f2b5825ded",
+  "queryName": "Memory Requests Not Defined",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "Memory requests should be specified",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/",
+  "platform": "Kubernetes"
 }

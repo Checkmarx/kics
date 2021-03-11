@@ -2,7 +2,7 @@
 	"id": "2775e169-e708-42a9-9305-b58aadd2c4dd",
 	"queryName": "Using Default Service Account",
 	"severity": "MEDIUM",
-	"category": "Identity & Access Management",
+	"category": "Insecure Defaults",
 	"descriptionText": "Instances must not be configured to use the Default Service Account, that has full access to all Cloud APIs, which means the attribute 'service_account_email' must be defined. Additionally, it must not be empty and must also not be a default Google Compute Engine service account.",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
 	"platform": "Ansible"

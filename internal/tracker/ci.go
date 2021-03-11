@@ -1,5 +1,7 @@
 package tracker
 
+import "errors"
+
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
 type CITracker struct {
@@ -8,16 +10,33 @@ type CITracker struct {
 	FoundFiles         int
 	ParsedFiles        int
 	FailedSimilarityID int
+	lines              int
+}
+
+// NewTracker will create a new instance of a tracker with the number of lines to display in results output
+// number of lines can not be smaller than 1
+func NewTracker(outputLines int) (*CITracker, error) {
+	if outputLines < 1 {
+		return &CITracker{}, errors.New("output lines number minimum is 1")
+	}
+	return &CITracker{
+		lines: outputLines,
+	}, nil
+}
+
+// GetOutputLines returns the number of lines to display in results output
+func (c *CITracker) GetOutputLines() int {
+	return c.lines
 }
 
 // TrackQueryLoad adds a loaded query
-func (c *CITracker) TrackQueryLoad() {
-	c.LoadedQueries++
+func (c *CITracker) TrackQueryLoad(queryAggregation int) {
+	c.LoadedQueries += queryAggregation
 }
 
 // TrackQueryExecution adds a query executed
-func (c *CITracker) TrackQueryExecution() {
-	c.ExecutedQueries++
+func (c *CITracker) TrackQueryExecution(queryAggregation int) {
+	c.ExecutedQueries += queryAggregation
 }
 
 // TrackFileFound adds a found file to be scanned

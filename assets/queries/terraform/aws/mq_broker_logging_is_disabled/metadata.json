@@ -1,9 +1,0 @@
-{
-	"id": "31245f98-a6a9-4182-9fc1-45482b9d030a",
-	"queryName": "MQ Broker Has Disabled General Or Audit Logging",
-	"severity": "MEDIUM",
-	"category": "Logging",
-	"descriptionText": "Check if MQ Brokers don't have logging enabled in any of the two options possible (audit and general).",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker",
-	"platform": "Terraform"
-}
