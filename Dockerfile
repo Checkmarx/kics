@@ -32,13 +32,10 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 #runtime image
-FROM alpine:3.7
+FROM scratch
 
-RUN addgroup -S kics && adduser -S kics -G kics
-USER kics
-
-COPY --chown=kics:kics --from=build_env /app/bin/kics /app/bin/kics
-COPY --chown=kics:kics --from=build_env /app/assets/ /app/bin/assets/
+COPY --from=build_env /app/bin/kics /app/bin/kics
+COPY --from=build_env /app/assets/ /app/bin/assets/
 
 WORKDIR /app/bin
 
