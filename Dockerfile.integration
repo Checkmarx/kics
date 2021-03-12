@@ -1,4 +1,4 @@
-FROM golang:1.16.0-alpine3.12 as build_env
+FROM golang:1.16.2-alpine3.12 as build_env
 
 # Create a group and user
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
@@ -32,7 +32,7 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 #runtime image
-FROM alpine:3.7
+FROM alpine:3.13.2
 
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/ /app/bin/assets/

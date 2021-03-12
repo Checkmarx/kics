@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.16
+      - name: Set short hash
+        id: set-short-hash
+        run: echo "::set-output name=short-sha::${GITHUB_SHA::8}"
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -25,7 +28,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: delete release
-        uses: dev-drprasad/delete-tag-and-release@v0.1.3
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
           delete_release: true # default: false
           tag_name: nightly # tag name to delete
@@ -38,7 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: nightly
-          release_name: nightly-${{ github.sha }}
+          release_name: nightly-${{ steps.set-short-hash.short-sha }}
           draft: false
           prerelease: true
       - name: Display assets
@@ -104,7 +107,7 @@ jobs:
           push: true
           tags: checkmarx/kics:nightly
           build-args: |
-            VERSION=nightly-${{ github.sha }}
+            VERSION=nightly-${{ steps.set-short-hash.short-sha }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2
         with:
@@ -113,4 +116,4 @@ jobs:
           push: true
           tags: checkmarx/kics:nightly-alpine
           build-args: |
-            VERSION=nightly-${{ github.sha }}
+            VERSION=nightly-${{ steps.set-short-hash.short-sha }}
