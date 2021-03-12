@@ -9,7 +9,7 @@ require (
 	github.com/golang/mock v1.5.0
 	github.com/google/go-cmp v0.5.3 // indirect
 	github.com/google/uuid v1.2.0
-	github.com/gookit/color v1.2.4
+	github.com/gookit/color v1.3.8
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.9.0
 	github.com/mailru/easyjson v0.7.7
