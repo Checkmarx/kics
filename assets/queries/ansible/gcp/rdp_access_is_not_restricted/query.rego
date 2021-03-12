@@ -4,9 +4,10 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	instance := task["google.cloud.gcp_compute_firewall"]
-
+	modules := {"google.cloud.gcp_compute_firewall", "gcp_compute_firewall"}
+	instance := task[modules[m]]
 	ansLib.checkState(instance)
+
 	isDirIngress(instance)
 
 	allowed := instance.allowed
@@ -14,10 +15,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_firewall}}.allowed.ip_protocol=%s.ports", [task.name, allowed[k].ip_protocol]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.allowed.ip_protocol=%s.ports", [task.name, modules[m], allowed[k].ip_protocol]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{google.cloud.gcp_compute_firewall}}.allowed.ip_protocol=%s.ports don't contain RDP port (3389) with unrestricted ingress traffic", [task.name, allowed[k].ip_protocol]),
-		"keyActualValue": sprintf("name=%s.{{google.cloud.gcp_compute_firewall}}.allowed.ip_protocol=%s.ports contain RDP port (3389) with unrestricted ingress traffic", [task.name, allowed[k].ip_protocol]),
+		"keyExpectedValue": sprintf("gcp_compute_firewall.allowed.ip_protocol=%s.ports don't contain RDP port (3389) with unrestricted ingress traffic", [allowed[k].ip_protocol]),
+		"keyActualValue": sprintf("gcp_compute_firewall.allowed.ip_protocol=%s.ports contain RDP port (3389) with unrestricted ingress traffic", [allowed[k].ip_protocol]),
 	}
 }
 

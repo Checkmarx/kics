@@ -2,30 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.rds_instance", "rds_instance"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	rds_instance := task[modules[m]]
+	ansLib.checkState(rds_instance)
 
-	ansLib.isAnsibleFalse(task["community.aws.rds_instance"].auto_minor_version_upgrade)
+	ansLib.isAnsibleFalse(rds_instance.auto_minor_version_upgrade)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.rds_instance}}.auto_minor_version_upgrade", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.auto_minor_version_upgrade", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "AWS RDS instance feature auto_minor_version_upgrade should be true",
-		"keyActualValue": "AWS RDS instance feature auto_minor_version_upgrade is false",
+		"keyExpectedValue": "rds_instance.auto_minor_version_upgrade should be true",
+		"keyActualValue": "rds_instance.auto_minor_version_upgrade is false",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	rds_instance := task[modules[m]]
+	ansLib.checkState(rds_instance)
 
-	object.get(task["community.aws.rds_instance"], "auto_minor_version_upgrade", "undefined") == "undefined"
+	object.get(rds_instance, "auto_minor_version_upgrade", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.rds_instance}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "AWS RDS instance feature auto_minor_version_upgrade should be true",
-		"keyActualValue": "AWS RDS instance feature auto_minor_version_upgrade is false",
+		"keyExpectedValue": "rds_instance.auto_minor_version_upgrade should be set",
+		"keyActualValue": "rds_instance.auto_minor_version_upgrade is undefined",
 	}
 }

@@ -1,22 +1,12 @@
 [
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 9
-	},
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 22
-	},
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 24
-	},
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 35
-	}
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "HIGH",
+    "line": 9
+  },
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "HIGH",
+    "line": 22
+  }
 ]

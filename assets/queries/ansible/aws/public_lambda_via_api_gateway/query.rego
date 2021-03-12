@@ -4,7 +4,9 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	lambda := task.lambda_policy
+	modules := {"community.aws.lambda_policy", "lambda_policy"}
+	lambda := task[modules[m]]
+	ansLib.checkState(lambda)
 
 	lambdaAction(lambda.action)
 	principalAllowAPIGateway(lambda.principal)
@@ -12,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{lambda_policy}}.source_arn", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.source_arn", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "lambda_policy.source_arn should not be equal to '/*/*'",
 		"keyActualValue": "lambda_policy.source_arn is equal to '/*/*'",

@@ -4,16 +4,17 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	compute_instance := task["google.cloud.gcp_compute_instance"]
-
+	modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
+	compute_instance := task[modules[m]]
 	ansLib.checkState(compute_instance)
+
 	compute_instance.network_interfaces[_].access_configs
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network_interfaces.access_configs", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is not defined",
-		"keyActualValue": "{{google.cloud.gcp_compute_instance}}.network_interfaces.access_configs is defined",
+		"keyExpectedValue": "gcp_compute_instance.network_interfaces.access_configs is not defined",
+		"keyActualValue": "gcp_compute_instance.network_interfaces.access_configs is defined",
 	}
 }

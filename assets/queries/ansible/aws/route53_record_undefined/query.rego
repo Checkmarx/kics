@@ -2,30 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.route53", "route53"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	route53 := task[modules[m]]
+	ansLib.checkState(route53)
 
-	object.get(task["community.aws.route53"], "value", "undefined") == "undefined"
+	object.get(route53, "value", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.route53}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_route53.value is defined",
-		"keyActualValue": "aws_route53.value is undefined",
+		"keyExpectedValue": "route53.value is defined",
+		"keyActualValue": "route53.value is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	route53 := task[modules[m]]
+	ansLib.checkState(route53)
 
-	ansLib.checkValue(task["community.aws.route53"].value)
+	ansLib.checkValue(route53.value)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.route53}}.value", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.value", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_route53.value is not empty",
-		"keyActualValue": "aws_route53.value is empty",
+		"keyExpectedValue": "route53.value is not empty",
+		"keyActualValue": "route53.value is empty",
 	}
 }
