@@ -1,4 +1,4 @@
-name: generate-queries-docs
+name: update-queries-docs
 
 on:
   workflow_dispatch:
@@ -8,8 +8,8 @@ on:
     - "assets/queries/**/metadata.json"
 
 jobs:
-  generate-docs:
-    name: generate-queries-docs
+  update-docs:
+    name: Update queries documentation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - name: Generate docs
+      - name: Update docs
         run: |
           pip3 install -r .github/generators/requirements.txt
           python3 -u .github/generators/docs_generator.py -p ./assets/queries/ \
@@ -26,7 +26,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Update queries docs - ${{ github.run_id }}
+          title: Update queries documentation - ${{ github.run_id }}
           env:
             GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
           body: |
