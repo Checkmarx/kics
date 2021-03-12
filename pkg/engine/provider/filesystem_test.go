@@ -1,4 +1,4 @@
-package source
+package provider
 
 import (
 	"context"
@@ -62,7 +62,6 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 	}
 	type args struct {
 		ctx        context.Context
-		in1        string
 		extensions model.Extensions
 		sink       Sink
 	}
@@ -75,12 +74,11 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "get_sources",
 			fields: fields{
-				path:     "../../assets/queries",
+				path:     "../../../assets/queries",
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
-				in1: "alb_protocol_is_http",
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
@@ -91,12 +89,11 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "error_sink",
 			fields: fields{
-				path:     "../../assets/queries",
+				path:     "../../../assets/queries",
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
-				in1: "alb_protocol_is_http",
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
@@ -107,12 +104,11 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "get_sources_file",
 			fields: fields{
-				path:     "../../assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+				path:     "../../../assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
-				in1: "add_instead_of_copy",
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
@@ -123,12 +119,11 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "error_not_suported_extension",
 			fields: fields{
-				path:     "../../assets/queries/template/test/positive.tf",
+				path:     "../../../assets/queries/template/test/positive.tf",
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
 				ctx: nil,
-				in1: "template",
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
@@ -144,7 +139,6 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			},
 			args: args{
 				ctx:        nil,
-				in1:        "alb_protocol_is_http",
 				extensions: nil,
 				sink:       mockSink,
 			},
@@ -157,7 +151,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				path:     tt.fields.path,
 				excludes: tt.fields.excludes,
 			}
-			if err := s.GetSources(tt.args.ctx, tt.args.in1, tt.args.extensions, tt.args.sink); (err != nil) != tt.wantErr {
+			if err := s.GetSources(tt.args.ctx, tt.args.extensions, tt.args.sink); (err != nil) != tt.wantErr {
 				t.Errorf("FileSystemSourceProvider.GetSources() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -166,7 +160,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 
 // TestFileSystemSourceProvider_checkConditions tests the functions [checkConditions()] and all the methods called by them
 func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
-	infoFile, _ := os.Stat("../../assets/queries")
+	infoFile, _ := os.Stat("../../../assets/queries")
 	type fields struct {
 		path     string
 		excludes map[string][]os.FileInfo

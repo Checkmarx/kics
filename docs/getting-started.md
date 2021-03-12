@@ -73,6 +73,9 @@ Available Commands:
 
 Flags:
       --config string             path to configuration file
+      --exclude-categories        exclude categories by providing its name
+                                  can be provided multiple times or as a comma separated string
+                                  example: 'Access control,Best practices'
   -e, --exclude-paths strings     exclude paths from scan
                                   supports glob and can be provided multiple times or as a quoted comma separated string
                                   example: './shouldNotScan/*,somefile.txt'

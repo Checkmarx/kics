@@ -1,4 +1,4 @@
-package query
+package source
 
 import (
 	"encoding/json"
@@ -111,7 +111,12 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 }
 
 func checkQueryExclude(id interface{}, excludeQueries []string) bool {
-	queryID := id.(string)
+	queryID, ok := id.(string)
+	if !ok {
+		log.Warn().
+			Msgf("Can't cast query metadata key = %v", id)
+		return false
+	}
 	for _, excludeID := range excludeQueries {
 		if queryID == excludeID {
 			return true
@@ -122,7 +127,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
+func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
@@ -155,7 +160,8 @@ func (s *FilesystemSource) GetQueries(excludeQueries []string) ([]model.QueryMet
 		if !s.CheckType(query.Metadata["platform"]) {
 			continue
 		}
-		if checkQueryExclude(query.Metadata["id"], excludeQueries) {
+		if checkQueryExclude(query.Metadata["id"], excludeQueries.ByIDs) ||
+			checkQueryExclude(query.Metadata["category"], excludeQueries.ByCategories) {
 			continue
 		}
 

@@ -9,7 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
@@ -180,7 +180,7 @@ func TestInspectorSimilarityID(t *testing.T) {
 func getTestQueryID(params *testCaseParamsType) string {
 	var testQueryID string
 	if params.queryID == "" {
-		metadata := query.ReadMetadata(params.queryDir)
+		metadata := source.ReadMetadata(params.queryDir)
 		v := metadata["id"]
 		testQueryID = v.(string)
 	} else {
@@ -255,22 +255,23 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries([]string{}).DoAndReturn(func([]string) ([]model.QueryMetadata, error) {
-		metadata := query.ReadMetadata(testParams.queryDir)
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
+			metadata := source.ReadMetadata(testParams.queryDir)
 
-		// Override metadata ID with custom QueryID for testing
-		if testParams.queryID() != metadata["id"] {
-			metadata["id"] = testParams.queryID()
-		}
+			// Override metadata ID with custom QueryID for testing
+			if testParams.queryID() != metadata["id"] {
+				metadata["id"] = testParams.queryID()
+			}
 
-		q := model.QueryMetadata{
-			Query:    testParams.queryID(),
-			Content:  testParams.queryContent(t),
-			Metadata: metadata,
-			Platform: testParams.platform,
-		}
-		return []model.QueryMetadata{q}, nil
-	})
+			q := model.QueryMetadata{
+				Query:    testParams.queryID(),
+				Content:  testParams.queryContent(t),
+				Metadata: metadata,
+				Platform: testParams.platform,
+			}
+			return []model.QueryMetadata{q}, nil
+		})
 
 	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
@@ -290,7 +291,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		[]string{},
+		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(t, err)
