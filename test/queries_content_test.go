@@ -15,7 +15,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
@@ -139,8 +139,8 @@ func TestQueriesMetadata(t *testing.T) {
 }
 
 func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
-	require.FileExists(t, path.Join(entry.dir, query.QueryFileName))
-	require.FileExists(t, path.Join(entry.dir, query.MetadataFileName))
+	require.FileExists(t, path.Join(entry.dir, source.QueryFileName))
+	require.FileExists(t, path.Join(entry.dir, source.MetadataFileName))
 	require.True(t, len(entry.PositiveFiles(t)) > 0, "No positive samples found for query %s", entry.dir)
 	for _, positiveFile := range entry.PositiveFiles(t) {
 		require.FileExists(t, positiveFile)
@@ -159,9 +159,9 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctx := context.Background()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
-			q, err := query.ReadQuery(entry.dir)
+			q, err := source.ReadQuery(entry.dir)
 
 			return []model.QueryMetadata{q}, err
 		})
@@ -217,7 +217,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return model.Vulnerability{}, nil
 		},
 		trk,
-		engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{},
 	)
 	require.Nil(t, err)
@@ -245,7 +245,7 @@ func testMetadataURL(tb testing.TB, url, metadataPath string) {
 }
 
 func testUnmarshalMetadata(tb testing.TB, entry queryEntry) (meta map[string]interface{}, metadataPath string) {
-	metadataPath = path.Join(entry.dir, query.MetadataFileName)
+	metadataPath = path.Join(entry.dir, source.MetadataFileName)
 	content, err := os.ReadFile(metadataPath)
 	require.NoError(tb, err, "can't read query metadata file %s", metadataPath)
 

@@ -13,7 +13,8 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
@@ -21,7 +22,6 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
@@ -66,7 +66,7 @@ var listPlatformsCmd = &cobra.Command{
 	Use:   "list-platforms",
 	Short: "List supported platforms",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		for _, v := range query.ListSupportedPlatforms() {
+		for _, v := range source.ListSupportedPlatforms() {
 			fmt.Println(v)
 		}
 		return nil
@@ -186,7 +186,7 @@ func initScanCmd() {
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
-		fmt.Sprintf("(%s)", strings.Join(query.ListSupportedPlatforms(), ", ")))
+		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
 	scanCmd.Flags().StringSliceVarP(
 		&excludeIDs,
@@ -245,7 +245,7 @@ func setupLogs() error {
 	return nil
 }
 
-func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
+func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 	var excludePaths []string
 	if payloadPath != "" {
 		excludePaths = append(excludePaths, payloadPath)
@@ -260,7 +260,7 @@ func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
 		return nil, err
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(absPath, excludePaths)
+	filesSource, err := provider.NewFileSystemSourceProvider(absPath, excludePaths)
 	if err != nil {
 		return nil, err
 	}
@@ -292,7 +292,7 @@ func scan() error {
 	}
 	scanStartTime := time.Now()
 
-	querySource := query.NewFilesystemSource(queryPath, types)
+	querySource := source.NewFilesystemSource(queryPath, types)
 
 	t, err := tracker.NewTracker(outputLines)
 	if err != nil {
@@ -301,7 +301,7 @@ func scan() error {
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
-	excludeQueries := engine.ExcludeQueries{
+	excludeQueries := source.ExcludeQueries{
 		ByIDs:        excludeIDs,
 		ByCategories: excludeCategories,
 	}

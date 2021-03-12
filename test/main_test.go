@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -152,7 +152,7 @@ func getCombinedParser() *parser.Parser {
 }
 
 func getQueryContent(queryDir string) (string, error) {
-	fullQueryPath := filepath.Join(queryDir, query.QueryFileName)
+	fullQueryPath := filepath.Join(queryDir, source.QueryFileName)
 	content, err := getFileContent(fullQueryPath)
 	return string(content), err
 }
@@ -205,7 +205,7 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	pathToLib := query.GetPathToLibrary(platform, "../")
+	pathToLib := source.GetPathToLibrary(platform, "../")
 	content, err := os.ReadFile(pathToLib)
 
 	if err != nil {

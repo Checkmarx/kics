@@ -9,6 +9,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
@@ -40,20 +41,6 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
-
-// ExcludeQueries represents a struct with options to exclude queries and a list for each option
-type ExcludeQueries struct {
-	ByIDs        []string
-	ByCategories []string
-}
-
-// QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
-// GetQueries gets all queries from a QueryMetadata list
-// GetGenericQuery gets a base query based in plataform's name
-type QueriesSource interface {
-	GetQueries(excludeQueries ExcludeQueries) ([]model.QueryMetadata, error)
-	GetGenericQuery(platform string) (string, error)
-}
 
 // Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
 // TrackQueryLoad increments the number of loaded queries
@@ -107,10 +94,10 @@ var (
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
-	source QueriesSource,
+	source source.QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
-	excludeQueries ExcludeQueries,
+	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
 	queries, err := source.GetQueries(excludeQueries)
 	if err != nil {

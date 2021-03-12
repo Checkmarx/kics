@@ -13,7 +13,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
@@ -53,7 +53,7 @@ func TestUniqueQueryIDs(t *testing.T) {
 	queriesIdentifiers := make(map[string]string)
 
 	for _, entry := range queries {
-		metadata := query.ReadMetadata(entry.dir)
+		metadata := source.ReadMetadata(entry.dir)
 		uuid := metadata["id"].(string)
 		duplicateDir, ok := queriesIdentifiers[uuid]
 		require.False(t, ok, "\nnon unique query found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
@@ -100,9 +100,9 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctx := context.TODO()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
-			q, err := query.ReadQuery(entry.dir)
+			q, err := source.ReadQuery(entry.dir)
 			require.NoError(tb, err)
 
 			return []model.QueryMetadata{q}, nil
@@ -126,7 +126,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(tb, err)

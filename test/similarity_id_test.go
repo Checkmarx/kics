@@ -9,7 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
@@ -180,7 +180,7 @@ func TestInspectorSimilarityID(t *testing.T) {
 func getTestQueryID(params *testCaseParamsType) string {
 	var testQueryID string
 	if params.queryID == "" {
-		metadata := query.ReadMetadata(params.queryDir)
+		metadata := source.ReadMetadata(params.queryDir)
 		v := metadata["id"]
 		testQueryID = v.(string)
 	} else {
@@ -255,8 +255,8 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries(engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
-		metadata := query.ReadMetadata(testParams.queryDir)
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
+		metadata := source.ReadMetadata(testParams.queryDir)
 
 		// Override metadata ID with custom QueryID for testing
 		if testParams.queryID() != metadata["id"] {
@@ -290,7 +290,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		engine.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(t, err)

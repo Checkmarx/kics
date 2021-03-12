@@ -1,4 +1,4 @@
-package source
+package provider
 
 import (
 	"context"
@@ -64,7 +64,7 @@ func (s *FileSystemSourceProvider) GetBasePath() string {
 }
 
 // GetSources tries to open file or directory and execute sink function on it
-func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
+func (s *FileSystemSourceProvider) GetSources(ctx context.Context, extensions model.Extensions, sink Sink) error {
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
