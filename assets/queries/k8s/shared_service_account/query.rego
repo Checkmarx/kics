@@ -17,7 +17,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.%s.serviceAccountName", [metadata.name, specInfo.path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.serviceAccountName", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.serviceAccountName' is not shared with other workloads", [specInfo.path]),
 		"keyActualValue": sprintf("'%s.serviceAccountName' is shared with other workloads", [specInfo.path]),

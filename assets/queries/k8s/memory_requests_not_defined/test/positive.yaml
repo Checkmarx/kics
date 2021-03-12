@@ -5,7 +5,7 @@ metadata:
   namespace: mem-example
 spec:
   containers:
-  - name: memory-demo-ctr
+  - name: memory-demo-ctr-1
     image: polinux/stress
     resources:
       limits:
@@ -22,7 +22,7 @@ metadata:
   namespace: mem-example
 spec:
   containers:
-  - name: memory-demo-ctr
+  - name: memory-demo-ctr-2
     image: polinux/stress
     resources:
       limits:
@@ -37,7 +37,7 @@ metadata:
   namespace: mem-example
 spec:
   containers:
-  - name: memory-demo-ctr
+  - name: memory-demo-ctr-3
     image: polinux/stress
     command: ["stress"]
     args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
@@ -45,7 +45,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memory-demo-23
+  name: memory-demo-3
   namespace: mem-example
 spec:
   securityContext:
@@ -56,6 +56,6 @@ spec:
     - name: sec-ctx-vol
       emptyDir: { }
   containers:
-  - name: memory-demo-ctr
+  - name: memory-demo-ctr-4
     image: polinux/stress
     command: ["stress"]

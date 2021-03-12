@@ -11,10 +11,10 @@ CxPolicy[result] {
 	metadata := document.metadata
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s", [metadata.name, types[x], container.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}", [metadata.name, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.%s[%d].securityContext' is set", [types[x], j]),
-		"keyActualValue": sprintf("'spec.%s[%d].securityContext' is undefined", [types[x], j]),
+		"keyExpectedValue": sprintf("'spec.%s.name={{%s}}.securityContext' is set", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.%s.name={{%s}}.securityContext' is undefined", [types[x], container.name]),
 	}
 }
 
@@ -30,10 +30,10 @@ CxPolicy[result] {
 	metadata := document.metadata
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.securityContext", [metadata.name, types[x], container.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext", [metadata.name, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'spec.%s[%d].securityContext.readOnlyRootFilesystem' is set and is true", [types[x], j]),
-		"keyActualValue": sprintf("'spec.%s[%d].securityContext.readOnlyRootFilesystem' is undefined", [types[x], j]),
+		"keyExpectedValue": sprintf("'spec.%s.name={{%s}}.securityContext.readOnlyRootFilesystem' is set and is true", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.%s.name={{%s}}.securityContext.readOnlyRootFilesystem' is undefined", [types[x], container.name]),
 	}
 }
 
@@ -48,9 +48,9 @@ CxPolicy[result] {
 	metadata := document.metadata
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.securityContext.readOnlyRootFilesystem", [metadata.name, types[x], container.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.readOnlyRootFilesystem", [metadata.name, types[x], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.containe%ss[%d].securityContext.readOnlyRootFilesystem' is true", [types[x], j]),
-		"keyActualValue": sprintf("'spec.%s[%d].securityContext.readOnlyRootFilesystem' is false", [types[x], j]),
+		"keyExpectedValue": sprintf("'spec.%s.name={{%s}}.securityContext.readOnlyRootFilesystem' is true", [types[x], container.name]),
+		"keyActualValue": sprintf("'spec.%s.name={{%s}}.securityContext.readOnlyRootFilesystem' is false", [types[x], container.name]),
 	}
 }

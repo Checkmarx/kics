@@ -2,21 +2,21 @@
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 10
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 25
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 38
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 48
+    "line": 57
   }
 ]

@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs", [resource.metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Roles should not be allowed to send read verbs to 'secrets' resources",
 		"keyActualValue": sprintf("Roles should not be allowed to send read verbs to 'secrets' resources, verbs found: [%v]", [concat(", ", resource.rules[ru].verbs)]),
@@ -27,7 +27,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs", [resource.metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ClusterRoles should not be allowed to send read verbs to 'secrets' resources",
 		"keyActualValue": sprintf("ClusterRoles should not be allowed to send read verbs to 'secrets' resources, verbs found: [%v]", [concat(", ", resource.rules[ru].verbs)]),

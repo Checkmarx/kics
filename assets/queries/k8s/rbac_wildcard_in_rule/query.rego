@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules.apiGroups.%s", [metadata.name, document.rules[r].apiGroups[j]]),
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].apiGroups shouldn't contain value: '%s'", [metadata.name, r, notExpectedKey]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].apiGroups contains value: '%s'", [metadata.name, r, notExpectedKey]),
@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules.resources.%s", [metadata.name, document.rules[r].resources[j]]),
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].resources shouldn't contain value: '%s'", [metadata.name, r, notExpectedKey]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].resources contains value: '%s'", [metadata.name, r, notExpectedKey]),
@@ -52,7 +52,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs.%s", [metadata.name, document.rules[r].verbs[j]]),
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].verbs shouldn't contain value: '%s'", [metadata.name, r, notExpectedKey]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].verbs contains value: '%s'", [metadata.name, r, notExpectedKey]),

@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.containers.name={{%s}}", [metadata.name, containers[index].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.containers.name={{%s}} is defined", [metadata.name, containers[index].name]),
-		"keyActualValue": sprintf("metadata.name={{%s}}.spec.containers.name={{%s}} is undefined", [metadata.name, containers[index].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.containers.name={{%s}}.livenessProbe is defined", [metadata.name, containers[index].name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.containers.name={{%s}}.livenessProbe is undefined", [metadata.name, containers[index].name]),
 	}
 }

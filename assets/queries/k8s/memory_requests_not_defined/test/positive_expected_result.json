@@ -2,21 +2,21 @@
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 13
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 27
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 38
+    "line": 40
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 59
   }
 ]

@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.podSelector.matchLabels.%s", [metadata.name, key]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.podSelector.matchLabels.%s", [metadata.name, key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.podSelector.matchLabels.%s' is targeting at least a pod", [key]),
 		"keyActualValue": sprintf("'spec.podSelector.matchLabels.%s' is not targeting any pod", [key]),
