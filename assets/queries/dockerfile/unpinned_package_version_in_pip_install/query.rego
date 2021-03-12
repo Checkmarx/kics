@@ -9,7 +9,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	yum := regex.find_n("pip (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	yum := regex.find_n("pip(3)? (-(-)?[a-zA-Z]+ *)*install", commands, -1)
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "RUN instruction with 'pip install <package>' should use package pinning form 'pip install <package>=<version>'",
+		"keyExpectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [commands]),
 	}
 }
@@ -36,6 +36,8 @@ CxPolicy[result] {
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "pip"
+	resource.Value[j] != "pip3"
+
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
@@ -43,12 +45,13 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "RUN instruction with 'pip install <package>' should use package pinning form 'pip install <package>=<version>'",
+		"keyExpectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[j]]),
 	}
 }
 
 isPip(command) {
-	contains(command[x], "pip")
+	pip := {"pip", "pip3"}
+	contains(command[x], pip[z])
 	contains(command[j], "install")
 }
