@@ -7,10 +7,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.ENV={{%s}}", [name, resource.Value[0]]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
-		"keyExpectedValue": sprintf("'%s %s' doesn't exist", [resource.Cmd, resource.Value[0]]),
-		"keyActualValue": sprintf("'%s %s' exists", [resource.Cmd, resource.Value[0]]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s ' doesn't exist", [resource.Original]),
+		"keyActualValue": sprintf("'%s ' exists", [resource.Original]),
 	}
 }
 
@@ -21,11 +21,38 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.LABEL={{%s}}", [name, resource.Value[0]]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
-		"keyExpectedValue": sprintf("'%s %s' doesn't exist", [resource.Cmd, resource.Value[0]]),
-		"keyActualValue": sprintf("'%s %s' exists", [resource.Cmd, resource.Value[0]]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s ' doesn't exist", [resource.Original]),
+		"keyActualValue": sprintf("'%s ' exists", [resource.Original]),
 	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
+
+	hasSecret(resource)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s ' doesn't exist", [resource.Original]),
+		"keyActualValue": sprintf("'%s ' exists", [resource.Original]),
+	}
+}
+
+hasSecret(resource) {
+	options := {" -p ", "--passwordfile"}
+	count(resource.Value) == 1
+	contains(resource.Value[0], options[j])
+}
+
+hasSecret(resource) {
+	options := {"-p", "--passwordfile"}
+	count(resource.Value) > 1
+	contains(resource.Value[_], options[j])
 }
 
 checkSecret(cmd) {
@@ -44,6 +71,20 @@ checkSecret(cmd) {
 		"tkn",
 	]
 
-	value := cmd.Value[_]
+	value := cmd.Value[j]
 	contains(lower(value), secrets[_])
+
+	check(cmd, j)
+}
+
+check(resource, j) {
+	resource.Cmd == "label"
+	j != 0
+
+	resource.Value[minus(j, 1)] != "description"
+	resource.Value[minus(j, 1)] != "maintainer"
+}
+
+check(resource, j) {
+	j == 0
 }
