@@ -94,17 +94,17 @@ var (
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
-	source source.QueriesSource,
+	queriesSource source.QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
-	queries, err := source.GetQueries(excludeQueries)
+	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := source.GetGenericQuery("common")
+	commonGeneralQuery, err := queriesSource.GetGenericQuery("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
@@ -113,7 +113,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := source.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := queriesSource.GetGenericQuery(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.

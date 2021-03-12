@@ -10,11 +10,11 @@
 })();
 
 function removeElement(querySelector, parentElement) {
-  var removeElement = document.querySelector(querySelector);
-  if (removeElement) {
+  var element = document.querySelector(querySelector);
+  if (element) {
     if (parentElement) {
-      removeElement = removeElement.parentElement;
+      element = element.parentElement;
     }
-    removeElement.remove()
+    element.remove()
   }
 }

@@ -255,22 +255,23 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
-		metadata := source.ReadMetadata(testParams.queryDir)
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
+			metadata := source.ReadMetadata(testParams.queryDir)
 
-		// Override metadata ID with custom QueryID for testing
-		if testParams.queryID() != metadata["id"] {
-			metadata["id"] = testParams.queryID()
-		}
+			// Override metadata ID with custom QueryID for testing
+			if testParams.queryID() != metadata["id"] {
+				metadata["id"] = testParams.queryID()
+			}
 
-		q := model.QueryMetadata{
-			Query:    testParams.queryID(),
-			Content:  testParams.queryContent(t),
-			Metadata: metadata,
-			Platform: testParams.platform,
-		}
-		return []model.QueryMetadata{q}, nil
-	})
+			q := model.QueryMetadata{
+				Query:    testParams.queryID(),
+				Content:  testParams.queryContent(t),
+				Metadata: metadata,
+				Platform: testParams.platform,
+			}
+			return []model.QueryMetadata{q}, nil
+		})
 
 	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {

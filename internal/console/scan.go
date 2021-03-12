@@ -122,21 +122,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		}
 		if !f.Changed && v.IsSet(f.Name) {
 			val := v.Get(f.Name)
-			switch t := val.(type) {
-			case []interface{}:
-				var paramSlice []string
-				for _, param := range t {
-					paramSlice = append(paramSlice, param.(string))
-				}
-				valStr := strings.Join(paramSlice, ",")
-				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", valStr)); err != nil {
-					log.Err(err).Msg("Failed to get Viper flags")
-				}
-			default:
-				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
-					log.Err(err).Msg("Failed to get Viper flags")
-				}
-			}
+			setBoundFlags(f.Name, val, cmd)
 		}
 	})
 	for key, val := range settingsMap {
@@ -149,6 +135,24 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 				log.Err(err).Msg("Unable to show help message")
 			}
 			os.Exit(1)
+		}
+	}
+}
+
+func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
+	switch t := val.(type) {
+	case []interface{}:
+		var paramSlice []string
+		for _, param := range t {
+			paramSlice = append(paramSlice, param.(string))
+		}
+		valStr := strings.Join(paramSlice, ",")
+		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
+			log.Err(err).Msg("Failed to get Viper flags")
+		}
+	default:
+		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
+			log.Err(err).Msg("Failed to get Viper flags")
 		}
 	}
 }
@@ -362,15 +366,7 @@ func scan() error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printOutput(payloadPath, "payload", files.Combine(), []string{"json"}); err != nil {
-		return err
-	}
-
-	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
-		return err
-	}
-
-	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries(), printer); err != nil {
+	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		return err
 	}
 
@@ -383,6 +379,23 @@ func scan() error {
 	}
 
 	return nil
+}
+
+func resolveOutputs(
+	summary *model.Summary,
+	documents model.Documents,
+	failedQueries map[string]error,
+	printer *consoleHelpers.Printer,
+) error {
+	if err := printOutput(payloadPath, "payload", documents, []string{"json"}); err != nil {
+		return err
+	}
+
+	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
+		return err
+	}
+
+	return consoleHelpers.PrintResult(summary, failedQueries, printer)
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string) error {
