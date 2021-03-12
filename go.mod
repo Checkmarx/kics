@@ -9,12 +9,12 @@ require (
 	github.com/golang/mock v1.5.0
 	github.com/google/go-cmp v0.5.3 // indirect
 	github.com/google/uuid v1.2.0
-	github.com/gookit/color v1.2.4
+	github.com/gookit/color v1.3.8
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.9.0
+	github.com/hashicorp/hcl/v2 v2.9.1
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.8.2
-	github.com/open-policy-agent/opa v0.26.0
+	github.com/open-policy-agent/opa v0.27.0
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.20.0
