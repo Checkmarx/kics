@@ -3,6 +3,7 @@
 bin
 docs
 site
+test
 .editorconfig
 .gitignore
 .golangci.yml
@@ -12,6 +13,7 @@ codecov.yml
 cx.configuration
 docker-compose.yml
 Dockerfile
+Dockerfile.integration
 mkdocs.yml
 sonar-project.properties
 *.sarif
