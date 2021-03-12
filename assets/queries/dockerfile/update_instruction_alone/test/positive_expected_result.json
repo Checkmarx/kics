@@ -1,7 +1,12 @@
 [
-	{
-		"queryName": "Update Instruction Alone",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "Update Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Update Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 5
+  }
 ]
