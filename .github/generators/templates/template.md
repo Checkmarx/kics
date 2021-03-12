@@ -1,7 +1,7 @@
 ## {{platform}} Queries List
 This page contains all queries from {{platform}}, classified by severity level.
 {% for severity in data %}
-### <span style="color:{{colors[severity]}}">**{{severity}}**</span>
+### Severity: <span style="color:{{colors[severity]}}">**{{severity}}**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
