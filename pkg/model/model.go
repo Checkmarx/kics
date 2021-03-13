@@ -1,8 +1,11 @@
+//go:generate go run github.com/mailru/easyjson/main $GOFILE
 package model
 
 import (
 	"sort"
 	"strings"
+
+	_ "github.com/mailru/easyjson/gen" //nolint
 )
 
 // Constants to describe what kind of file refers
