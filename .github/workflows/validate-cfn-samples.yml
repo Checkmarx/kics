@@ -1,6 +1,7 @@
 name: validate-cfn-samples
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
     - "assets/queries/cloudFormation/**/test/*.yaml"
@@ -17,6 +18,17 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - name: Get commit changed files
+        uses: lots0logs/gh-action-get-changed-files@2.1.4
+        id: get-changed-files
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: DEBUG - print changed files
+        run: cat ${HOME}/files.json
+      - name: Filter queries metadata
+        id: get-changed-metadata
+        run: |
+          echo "::set-output name=files-list::$(cat ${HOME}/files.json | grep metadata.json)"
       - name: Get cfn-python-lint
         run: |
           pip3 install -U cfn-lint --user
