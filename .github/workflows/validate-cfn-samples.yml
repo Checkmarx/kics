@@ -19,24 +19,33 @@ jobs:
         with:
           python-version: '3.x'
       - name: Get commit changed files
+        if: github.event_name != 'workflow_dispatch'
         uses: lots0logs/gh-action-get-changed-files@2.1.4
         id: get-changed-files
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: DEBUG - print changed files
-        run: cat ${HOME}/files.json
-      - name: Filter queries metadata
-        id: get-changed-metadata
+      - name: Filter changed samples
+        if: github.event_name != 'workflow_dispatch'
+        id: filter-changed-samples
         run: |
-          echo "::set-output name=files-list::$(cat ${HOME}/files.json | grep metadata.json)"
+          python3 -u ".github/validators/filter-changed-samples.py" "assets/queries/cloudFormation/**/test/*.yaml" "assets/queries/cloudFormation/**/test/*.json" > output.txt
+          cat output.txt
+          echo "::set-output name=samples-list::$(cat ./output.txt)"
+      - name: DEBUG - print changed samples
+        run: echo ${{ steps.filter-changed-samples.samples-list }}
+      - name: Set all samples
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+            echo "::set-output name=samples-list::'assets/queries/cloudFormation/**/test/*.yaml' 'assets/queries/cloudFormation/**/test/*.json'"
       - name: Get cfn-python-lint
         run: |
           pip3 install -U cfn-lint --user
       - name: Validate cloudformation template syntax
         run: |
           python3 -u ".github/validators/validate-syntax.py" \
-            "assets/queries/cloudFormation/**/test/*.yaml" \
-            "assets/queries/cloudFormation/**/test/*.json" \
             --linter /home/runner/.local/bin/cfn-lint \
-            --extra " --info --config-file .github/.cfnlintrc.yml" \
-            --skip ".github/validators/cfn-skip-list" --verbose
+            --extra " \
+            --info \
+            --config-file .github/.cfnlintrc.yml" \
+            --skip ".github/validators/cfn-skip-list" \
+            --verbose ${{ steps.filter-changed-samples.samples-list }}

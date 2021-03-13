@@ -1,4 +1,4 @@
-#this code is a correct code for which the query should not find any result
+# trigger validation
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Description": "AWS CloudFormation Sample Template for creating an Amazon RDS DB instance:
