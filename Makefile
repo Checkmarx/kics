@@ -11,13 +11,19 @@ clean: ## remove files created during build
 	$(call print-target)
 	rm -rf dist
 	rm -rf bin
+	rm -rf vendor
 	rm -f coverage.*
 
 .PHONY: mod-tidy
-mod-tidy: ## go mod tidy
+mod-tidy: ## go mod tidy - download and cleanup modules
 	$(call print-target)
 	go mod tidy
 	cd tools && go mod tidy
+
+.PHONY: vendor
+vendor: ## go mod vendor - download vendor modules
+	$(call print-target)
+	go mod vendor
 
 .PHONY: install
 install: ## go install tools
@@ -43,7 +49,7 @@ go-clean: ## Go clean build, test and modules caches
 	go clean -r -i -cache -testcache -modcache
 
 .PHONY: generate
-generate: ## go generate
+generate: mod-tidy ## go generate
 	$(call print-target)
 	go generate ./...
 

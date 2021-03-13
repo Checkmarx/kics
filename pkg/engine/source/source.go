@@ -1,4 +1,4 @@
-//go:generate go run github.com/golang/mock/mockgen -package mock -source=./source.go -destination=../mock/source.go
+//go:generate go run -mod=mod github.com/golang/mock/mockgen -package mock -source=./$GOFILE -destination=../mock/$GOFILE
 package source
 
 import "github.com/Checkmarx/kics/pkg/model"

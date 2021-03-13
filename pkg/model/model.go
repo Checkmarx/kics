@@ -1,4 +1,4 @@
-//go:generate go run github.com/mailru/easyjson/main $GOFILE
+//go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE
 package model
 
 import (
