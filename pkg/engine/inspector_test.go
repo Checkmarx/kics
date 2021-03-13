@@ -10,7 +10,8 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/open-policy-agent/opa/cover"
@@ -340,10 +341,10 @@ func TestNewInspector(t *testing.T) { // nolint
 	})
 	type args struct {
 		ctx            context.Context
-		source         QueriesSource
+		source         source.QueriesSource
 		vb             VulnerabilityBuilder
 		tracker        Tracker
-		excludeQueries []string
+		excludeQueries source.ExcludeQueries
 		excludeResults map[string]bool
 	}
 	tests := []struct {
@@ -355,11 +356,14 @@ func TestNewInspector(t *testing.T) { // nolint
 		{
 			name: "test_new_inspector",
 			args: args{
-				ctx:            context.Background(),
-				vb:             vbs,
-				tracker:        track,
-				source:         sources,
-				excludeQueries: []string{},
+				ctx:     context.Background(),
+				vb:      vbs,
+				tracker: track,
+				source:  sources,
+				excludeQueries: source.ExcludeQueries{
+					ByIDs:        []string{},
+					ByCategories: []string{},
+				},
 				excludeResults: map[string]bool{},
 			},
 			want: &Inspector{
@@ -402,15 +406,15 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(excludeQueries []string) ([]model.QueryMetadata, error) {
-	sources := query.NewFilesystemSource(m.Source, []string{""})
+func (m *mockSource) GetQueries(excludeQueries source.ExcludeQueries) ([]model.QueryMetadata, error) {
+	sources := source.NewFilesystemSource(m.Source, []string{""})
 
 	return sources.GetQueries(excludeQueries)
 }
 func (m *mockSource) GetGenericQuery(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()
 
-	pathToLib := query.GetPathToLibrary(platform, currentWorkdir)
+	pathToLib := source.GetPathToLibrary(platform, currentWorkdir)
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err

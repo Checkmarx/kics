@@ -25,4 +25,4 @@ dockerise:
 
 .PHONY: mock
 mock:
-	mockgen -package mock -source pkg/engine/inspector.go > pkg/engine/mock/inspector.go
+	mockgen -package mock -source pkg/engine/source/source.go > pkg/engine/mock/source.go

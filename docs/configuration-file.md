@@ -52,6 +52,7 @@ KICS is able to infer the format without the need of file extension.
 
 ```JSON
 {
+  "exclude-categories": "exclude categories by providing its name",
   "exclude-paths": "exclude paths or files from scan",
   "exclude-queries": "exclude queries by providing the query ID",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
@@ -73,6 +74,7 @@ KICS is able to infer the format without the need of file extension.
 #### YAML Format
 
 ```YAML
+exclude-categories: "exclude categories by providing its name"
 exclude-paths: "exclude paths or files from scan"
 exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
@@ -93,6 +95,7 @@ verbose: true
 #### TOML Format
 
 ```TOML
+exclude-categories = "exclude categories by providing its name"
 exclude-paths = "exclude paths or files from scan"
 exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
@@ -113,6 +116,7 @@ verbose = true
 #### HCL Format
 
 ```hcl
+"exclude-categories" = "exclude categories by providing its name"
 "exclude-paths" = "exclude paths or files from scan"
 "exclude-queries" = "exclude queries by providing the query ID"
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"

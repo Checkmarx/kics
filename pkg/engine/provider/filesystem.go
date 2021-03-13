@@ -1,4 +1,4 @@
-package source
+package provider
 
 import (
 	"context"
@@ -26,15 +26,9 @@ var ErrNotSupportedFile = errors.New("invalid file format")
 func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
 	ex := make(map[string][]os.FileInfo, len(excludes))
 	for _, exclude := range excludes {
-		var excludePaths []string
-		if strings.ContainsAny(exclude, "*?[") {
-			info, err := filepath.Glob(exclude)
-			if err != nil {
-				return nil, errors.Wrap(err, "failed to open excluded file")
-			}
-			excludePaths = info
-		} else {
-			excludePaths = []string{exclude}
+		excludePaths, err := getExcludePaths(exclude)
+		if err != nil {
+			return nil, err
 		}
 		for _, excludePath := range excludePaths {
 			info, err := os.Stat(excludePath)
@@ -42,7 +36,6 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 				if os.IsNotExist(err) {
 					continue
 				}
-
 				return nil, errors.Wrap(err, "failed to open excluded file")
 			}
 			if _, ok := ex[info.Name()]; !ok {
@@ -58,13 +51,24 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 	}, nil
 }
 
+func getExcludePaths(pathExpressions string) ([]string, error) {
+	if strings.ContainsAny(pathExpressions, "*?[") {
+		info, err := filepath.Glob(pathExpressions)
+		if err != nil {
+			return nil, errors.Wrap(err, "failed to open excluded file")
+		}
+		return info, nil
+	}
+	return []string{pathExpressions}, nil
+}
+
 // GetBasePath returns base path of FileSystemSourceProvider
 func (s *FileSystemSourceProvider) GetBasePath() string {
 	return s.path
 }
 
 // GetSources tries to open file or directory and execute sink function on it
-func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
+func (s *FileSystemSourceProvider) GetSources(ctx context.Context, extensions model.Extensions, sink Sink) error {
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
@@ -95,6 +99,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 		if err != nil {
 			return errors.Wrap(err, "failed to open file")
 		}
+		defer closeFile(c, info)
 
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
@@ -102,15 +107,18 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			log.Err(err).
 				Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
 		}
-		if err := c.Close(); err != nil {
-			sentry.CaptureException(err)
-			log.Err(err).
-				Msgf("Filesystem couldn't close file, file=%s", info.Name())
-		}
 		return nil
 	})
 
 	return errors.Wrap(err, "failed to walk directory")
+}
+
+func closeFile(file *os.File, info os.FileInfo) {
+	if err := file.Close(); err != nil {
+		sentry.CaptureException(err)
+		log.Err(err).
+			Msgf("Filesystem couldn't close file, file=%s", info.Name())
+	}
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {

@@ -145,27 +145,13 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			fmt.Printf("Description: %s\n", sortedQueries[idx].Description)
 			fmt.Printf("Platform: %s\n\n", sortedQueries[idx].Platform)
 		}
-		for i := 0; i < len(sortedQueries[idx].Files); i++ {
-			fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", i+1), string(sortedQueries[idx].Severity)),
-				sortedQueries[idx].Files[i].FileName, printer.Success.Sprint(sortedQueries[idx].Files[i].Line))
-			if !printer.minimal {
-				fmt.Println()
-				for lineIdx, line := range sortedQueries[idx].Files[i].VulnLines.Lines {
-					if sortedQueries[idx].Files[i].VulnLines.Positions[lineIdx] == sortedQueries[idx].Files[i].Line {
-						printer.Line.Printf("\t\t%03d: %s\n", sortedQueries[idx].Files[i].VulnLines.Positions[lineIdx], line)
-					} else {
-						fmt.Printf("\t\t%03d: %s\n", sortedQueries[idx].Files[i].VulnLines.Positions[lineIdx], line)
-					}
-				}
-				fmt.Print("\n\n")
-			}
-		}
+		printFiles(&sortedQueries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
-	fmt.Printf("%s: %d\n", printer.High.Sprint(model.SeverityHigh), summary.SeveritySummary.SeverityCounters[model.SeverityHigh])
-	fmt.Printf("%s: %d\n", printer.Medium.Sprint(model.SeverityMedium), summary.SeveritySummary.SeverityCounters[model.SeverityMedium])
-	fmt.Printf("%s: %d\n", printer.Low.Sprint(model.SeverityLow), summary.SeveritySummary.SeverityCounters[model.SeverityLow])
-	fmt.Printf("%s: %d\n", printer.Info.Sprint(model.SeverityInfo), summary.SeveritySummary.SeverityCounters[model.SeverityInfo])
+	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
+	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
+	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
+	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 	log.
 		Info().
@@ -178,6 +164,28 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		Msg("Inspector stopped\n")
 
 	return nil
+}
+
+func printSeverityCounter(severity string, counter int, printColor color.RGBColor) {
+	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
+}
+
+func printFiles(query *model.VulnerableQuery, printer *Printer) {
+	for fileIdx := range query.Files {
+		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
+			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
+		if !printer.minimal {
+			fmt.Println()
+			for lineIdx, line := range query.Files[fileIdx].VulnLines.Lines {
+				if query.Files[fileIdx].VulnLines.Positions[lineIdx] == query.Files[fileIdx].Line {
+					printer.Line.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+				} else {
+					fmt.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+				}
+			}
+			fmt.Print("\n\n")
+		}
+	}
 }
 
 // CustomConsoleWriter creates an output to print log in a files
