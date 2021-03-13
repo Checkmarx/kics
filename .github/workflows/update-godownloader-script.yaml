@@ -1,0 +1,43 @@
+name: update-install-script
+
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+
+jobs:
+  update-install:
+    name: Update install script
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Get Godownloader
+        env:
+          BASE_URL: https://github.com/goreleaser/godownloader/releases/download
+        run: |
+          LATEST_TAG=$(curl --silent "https://api.github.com/repos/goreleaser/godownloader/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          LATEST_VERSION=${LATEST_TAG#v}
+          FULL_URL="${BASE_URL}/${LATEST_TAG}/godownloader_${LATEST_VERSION}_Linux_x86_64.tar.gz"
+          mkdir -p .bin
+          PROJDIR=$(pwd)
+          cd .bin && wget "${FULL_URL}" \
+            && tar xf $(basename "${FULL_URL}") \
+            && chmod +x godownloader \
+            && rm -vf $(basename "${FULL_URL}") \
+            && cd "${PROJDIR}"
+      - name: Update install.sh
+        run: ./.bin/godownloader --repo Checkmarx/kics > install.sh
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: Update install script - ${{ github.run_id }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+          body: |
+            **Automated changes**
+            Updating oneliner godownloader installation script
+            Triggered by SHA: _${{ github.sha }}_
+          labels: CI
