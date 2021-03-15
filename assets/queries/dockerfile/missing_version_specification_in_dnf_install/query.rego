@@ -1,36 +1,70 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-
 	resource.Cmd == "run"
 
-	command := resource.Value[0]
+	count(resource.Value) == 1
+	commands := resource.Value[0]
 
-	containsCommand(command)
-	not regex.match(`dnf\s+(-*[a-zA-Z]+\s*)*(in|rei)n?(stall)?(-*[a-z]+\s*)*\s*\w*(-|_|~|=)(\d+\.)(.+)`, command)
+	dnf := regex.find_n("dnf (-(-)?[a-zA-Z]+ *)*(in|rei)n?(stall)?", commands, -1)
+	dnf != null
+
+	packages = dockerLib.getPackages(commands, dnf)
+
+	length := count(packages)
+
+	some j
+	analyzePackages(j, packages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Package version is specified when using 'dnf install'",
 		"keyActualValue": "Package version should be pinned when running ´dnf install´",
 	}
 }
 
-containsCommand(command) {
-	instructions := split(command, "&& ")
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
 
-	installCommands = [
-		"install",
-		"in",
-		"reinstall",
-		"rei",
-	]
+	count(resource.Value) > 1
 
-	some i
-	contains(instructions[i], "dnf")
-	some j
-	contains(instructions[i], installCommands[j])
+	isDnf(resource.Value)
+
+	resource.Value[j] != "dnf"
+	regex.match("(in|rei)n?(stall)?", resource.Value[j]) == false
+
+	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	not dockerLib.withVersion(resource.Value[j])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Package version is specified when using 'dnf install'",
+		"keyActualValue": "Package version should be pinned when running ´dnf install´",
+	}
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j == length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	not dockerLib.withVersion(currentPackage)
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j != length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	packages[plus(j, 1)] != "-v"
+	not dockerLib.withVersion(currentPackage)
+}
+
+isDnf(command) {
+	contains(command[x], "dnf")
+	regex.match("(in|rei)n?(stall)?", command[j]) == true
 }

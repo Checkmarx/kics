@@ -13,9 +13,10 @@ CxPolicy[result] {
 	aptGet != null
 
 	packages = dockerLib.getPackages(commands, aptGet)
-	regex.match("^[a-zA-Z]", packages[j]) == true
+	length := count(packages)
 
-	not dockerLib.withVersion(packages[j])
+	some j
+	analyzePackages(j, packages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -51,4 +52,17 @@ CxPolicy[result] {
 isAptGet(command) {
 	contains(command[x], "apt-get")
 	contains(command[j], "install")
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j == length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	not dockerLib.withVersion(currentPackage)
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j != length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	packages[plus(j, 1)] != "-v"
+	not dockerLib.withVersion(currentPackage)
 }
