@@ -1,103 +1,57 @@
 package Cx
 
 CxPolicy[result] {
-	runCmd := input.document[i].command[name][_]
-	isRunCmd(runCmd)
+	resource := input.document[i].command[name][_]
 
-	value := runCmd.Value
-	count(value) == 1 #command is in a single string
+	resource.Cmd == "run"
+	count(resource.Value) == 1
+	commands := resource.Value[0]
 
-	cmd := value[0]
+	commandsSplit = split(commands, "&&")
 
-	searchIndex := indexof(cmd, "apt-get")
-
-	searchIndex != -1
-
-	aptGetCmd := trimCmdEnd(substring(cmd, searchIndex + 8, (count(cmd) - searchIndex) - 8))
-
-	not hasNoRecommendsFlag(aptGetCmd)
+	some j
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
+	not avoidAdditionalPackages(commandsSplit[j])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [runCmd.Original]),
-		"keyActualValue": sprintf("'%s' does not use '--no-install-recommends' flag to avoid installing additional packages", [runCmd.Original]),
+		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
+		"keyActualValue": sprintf("'%s' does not use '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
 	}
 }
 
 CxPolicy[result] {
-	runCmd := input.document[i].command[name][_]
-	isRunCmd(runCmd)
+	resource := input.document[i].command[name][_]
 
-	value := runCmd.Value
-	count(value) > 1 #command is in several tokens
+	resource.Cmd == "run"
+	count(resource.Value) > 1
 
-	aptGetIdx := getAptGetIdx(value)
-	aptGetIdx != -1
-	aptGetCmdLastIdx := getCmdLastIdx(value, aptGetIdx)
+	commands := resource.Value
 
-	not checkRecommendsFlag(value, aptGetIdx, aptGetCmdLastIdx)
+	commands[_] == "apt-get"
+	commands[_] == "install"
 
-	cmdFormatted := replace(runCmd.Original, "\"", "'")
+	not avoidAdditionalPackages(commands)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [cmdFormatted]),
-		"keyActualValue": sprintf("'%s' does not use '--no-install-recommends' flag to avoid installing additional packages", [cmdFormatted]),
+		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
+		"keyActualValue": sprintf("'%s' does not use '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
 	}
 }
 
-isRunCmd(com) {
-	com.Cmd == "run"
-} else = false {
-	true
-}
-
-trimCmdEnd(cmd) = trimmed {
-	termOps := ["&&", "||", "|", "&", ";"]
-
-	splitStr := split(cmd, " ")
-	some i, j
-	splitStr[i] == termOps[j]
-	indexTerm := indexof(cmd, termOps[j])
-	trimmed := substring(cmd, 0, count(cmd) - indexTerm)
-} else = cmd {
-	true
-}
-
-hasNoRecommendsFlag(arg) {
+avoidAdditionalPackages(cmd) {
+	is_string(cmd) == true
 	flags := ["--no-install-recommends", "apt::install-recommends=false"]
-	contains(arg, flags[_])
-} else = false {
-	true
+	contains(cmd, flags[_])
 }
 
-getAptGetIdx(value) = idx {
-	some i
-	value[i] == "apt-get"
-	idx := i + 1
-} else = -1 {
-	true
-}
-
-getCmdLastIdx(arr, initCmdIdx) = idx {
-	termOps := ["&&", "||", "|", "&", ";"]
-	some i
-	i > initCmdIdx
-	arr[i] == termOps[i]
-	idx := i - 1
-} else = count(arr) - 1 {
-	true
-}
-
-checkRecommendsFlag(cmd, start, end) {
-	some i
-	i >= start
-	i <= end
-	hasNoRecommendsFlag(cmd[i])
-} else = false {
-	true
+avoidAdditionalPackages(cmd) {
+	is_array(cmd) == true
+	flags := ["--no-install-recommends", "apt::install-recommends=false"]
+	contains(cmd[_], flags[_])
 }
