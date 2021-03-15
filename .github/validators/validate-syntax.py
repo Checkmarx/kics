@@ -97,7 +97,7 @@ def changed_sample_files(all_files):
 
     changed_samples = [file for file in all_files if file in changes_list]
     if args.verbose > 1:
-      print('changesd samples:')
+      print('changed samples:')
       print(changed_samples)
 
     return changed_samples
