@@ -9,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s", [name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s has FlowLogs enabled", [name]),
 		"keyActualValue": sprintf("Resources.%s has FlowLogs disabled", [name]),
 	}
