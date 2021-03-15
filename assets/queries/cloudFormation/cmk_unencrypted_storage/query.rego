@@ -3,7 +3,7 @@ package Cx
 CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 	document := input.document[i]
 	resource := document.Resources[key]
-	checkTypeS(resource.Type)
+	checkTypeStorage(resource.Type)
 	properties := resource.Properties
 	properties.StorageEncrypted == false
 
@@ -19,7 +19,7 @@ CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 	document := input.document[i]
 	resource := document.Resources[key]
-	checkTypeS(resource.Type)
+	checkTypeStorage(resource.Type)
 
 	properties := resource.Properties
 	object.get(properties, "StorageEncrypted", "undefined") == "undefined"
@@ -36,7 +36,7 @@ CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
-	checkTypeK(resource.Type)
+	checkTypeKmsKey(resource.Type)
 	properties := resource.Properties
 	object.get(properties, "KmsKeyId", "undefined") == "undefined"
 
@@ -80,12 +80,12 @@ CxPolicy[result] {
 	}
 }
 
-checkTypeS(type){
+checkTypeStorage(type){
 	listDb := {"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}
 	type == listDb[_]
 }
 
-checkTypeK(type) {
+checkTypeKmsKey(type) {
     listTypes := {"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::Redshift::Cluster"}
     type == listTypes[_]
 }
