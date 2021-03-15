@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.VersioningConfiguration.Status", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "S3 bucket versioning is setted to Enabled",
-		"keyActualValue": "S3 bucket versioning is setted to Suspended",
+		"keyExpectedValue": "S3 bucket versioning is set to Enabled",
+		"keyActualValue": "S3 bucket versioning is set to Suspended",
 	}
 }

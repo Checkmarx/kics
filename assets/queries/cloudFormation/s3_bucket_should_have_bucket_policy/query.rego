@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.BucketName", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' should be the same as 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' are not the same as 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is not the same as 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
 	}
 }
 

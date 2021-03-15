@@ -26,8 +26,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.PropertiesProject.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be minimum 1.2", [name]),
-		"keyActualValue": sprintf("Resources.%s.PropertiesProject.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' lesser than 1.2", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be at least 1.2", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' lesser than 1.2", [name]),
 	}
 }
 

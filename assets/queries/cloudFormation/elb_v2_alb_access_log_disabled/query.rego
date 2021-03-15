@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.LoadBalancerAttributes' has LoadBalancerAttributes defined", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.LoadBalancerAttributes' doesn't have LoadBalancerAttributes defined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties' has LoadBalancerAttributes defined", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties' doesn't have LoadBalancerAttributes defined", [name]),
 	}
 }
 
