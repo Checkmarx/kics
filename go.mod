@@ -14,7 +14,7 @@ require (
 	github.com/hashicorp/hcl/v2 v2.9.1
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.8.2
-	github.com/open-policy-agent/opa v0.27.0
+	github.com/open-policy-agent/opa v0.27.1
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.20.0
