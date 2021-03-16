@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'Resources.Properties.DistributionConfig.WebACLId' is defined",
-		"keyActualValue": "'Resources.Properties.DistributionConfig.WebACLId' is undefined",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is undefined", [name]),
 	}
 }

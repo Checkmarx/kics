@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "S3 bucket versioning is configured",
-		"keyActualValue": "S3 bucket versioning is missing",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.VersioningConfiguration is defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.VersioningConfiguration is undefined", [name]),
 	}
 }
 
@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.VersioningConfiguration.Status", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "S3 bucket versioning is set to Enabled",
-		"keyActualValue": "S3 bucket versioning is set to Suspended",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.VersioningConfiguration.Status is set to Enabled", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.VersioningConfiguration.Status is set to Suspended", [name]),
 	}
 }
