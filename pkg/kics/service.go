@@ -103,9 +103,8 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.ReadCloser) (*[]byte, error) {
+func getContent(rc io.Reader) (*[]byte, error) {
 	maxSizeMB := 5 // Max size of file in MBs
-	defer rc.Close()
 	var content []byte
 	data := make([]byte, 1048576)
 	for {
