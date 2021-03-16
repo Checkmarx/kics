@@ -15,21 +15,21 @@ CxPolicy[result] {
 }
 
 checkValue(protocol) {
-	to_number(protocol)
-	protocol == 6
+	prt := to_number(protocol)
+	prt == 6
 }
 
 checkValue(protocol) {
-	to_number(protocol)
-	protocol == 17
+	prt := to_number(protocol)
+	prt == 17
 }
 
 checkValue(protocol) {
-	to_number(protocol)
-	protocol == 1
+	prt := to_number(protocol)
+	prt == 1
 }
 
 checkValue(protocol) {
-	to_number(protocol)
-	protocol == 58
+	prt := to_number(protocol)
+	prt == 58
 }
