@@ -111,14 +111,14 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 }
 
 func checkQueryExclude(id interface{}, excludeQueries []string) bool {
-	queryID, ok := id.(string)
+	queryMetadataKey, ok := id.(string)
 	if !ok {
 		log.Warn().
 			Msgf("Can't cast query metadata key = %v", id)
 		return false
 	}
-	for _, excludeID := range excludeQueries {
-		if queryID == excludeID {
+	for _, excludedQuery := range excludeQueries {
+		if queryMetadataKey == excludedQuery {
 			return true
 		}
 	}
