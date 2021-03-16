@@ -204,6 +204,7 @@ func (c *Inspector) Inspect(
 	var wg sync.WaitGroup
 	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
 	for idx, query := range c.queries {
+		log.Debug().Msgf("Running query %d of %d", idx, len(c.queries))
 		if !hideProgress {
 			currentQuery <- float64(idx)
 		}
