@@ -7,7 +7,6 @@ USER Checkmarx
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
 
-
 ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION=development
 

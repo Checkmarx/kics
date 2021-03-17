@@ -78,18 +78,27 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
-    - uses: satackey/action-docker-layer-caching@v0.0.11
-      continue-on-error: true
     - name: Docker info
       run: |
         docker version
         docker info
     - name: Choco install jq
-      run: choco install jq -y
+      run: choco install jq -
+    - name: Cache Docker Windows Container Layers
+      uses: actions/cache@v2
+      env:
+        cache-name: docker-layers
+      with:
+        path: C:\ProgramData\docker\windowsfilter
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
     - name: Docker build on Windows
-      run: docker build --build-arg "VERSION=${GITHUB_SHA_SHORT}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-${{ github.sha }} .
+      run: docker build --build-arg "VERSION=${GITHUB_SHA_SHORT}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-integration .
     - name: Run docker image and generate results.json
-      run: docker run -e SENTRY_DSN=${{secrets.SENTRY_DSN}} -v ${PWD}\assets\queries:C:\data checkmarx/kics:nanoserver-${{ github.sha }} --no-progress -p "C:\data" -o "C:\data\results.json"
+      run: docker run -e SENTRY_DSN=${{secrets.SENTRY_DSN}} -v ${PWD}\assets\queries:C:\data checkmarx/kics:nanoserver-integration --no-progress -p "C:\data" -o "C:\data\results.json"
     - name: Assert results.json
       run: |
         echo "Assert queries_total > 0 in results.json"
