@@ -1,0 +1,52 @@
+name: update-queries-docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+    - "assets/queries/**/metadata.json"
+
+jobs:
+  update-docs:
+    name: Update queries documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Get commit changed files
+        uses: lots0logs/gh-action-get-changed-files@2.1.4
+        id: get-changed-files
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: DEBUG - print changed files
+        run: cat ${HOME}/files.json
+      - name: Filter queries metadata
+        id: get-changed-metadata
+        run: |
+          echo "::set-output name=files-list::$(cat ${HOME}/files.json | grep metadata.json)"
+      - name: Update docs
+        run: |
+          pip3 install -r .github/generators/requirements.txt
+          python3 -u .github/generators/docs_generator.py -p ./assets/queries/ \
+            -o ./docs/queries/ -f md -t .github/generators/templates
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: Update queries documentation - ${{ github.run_id }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+          body: |
+            **Automated changes**
+            Updating queries' documentation.
+            Triggered by SHA: _${{ github.sha }}_
+            Changed metadatas:
+            ```
+            ${{ steps.get-changed-metadata.files-list }}
+            ```
+          labels: documentation
+

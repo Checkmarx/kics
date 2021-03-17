@@ -9,8 +9,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration' is setted and configuration has value true",
-		"keyActualValue": "'Resources.Properties.PublicAccessBlockConfiguration' is not setted or configuration has value false ",
+		"keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration' is set and configuration has value true",
+		"keyActualValue": "'Resources.Properties.PublicAccessBlockConfiguration' is not set or configuration has value false ",
 	}
 }
 
@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration' is setted and configuration has value true ",
+		"keyExpectedValue": "'Resources.Properties.PublicAccessBlockConfiguration' is set and configuration has value true ",
 		"keyActualValue": "'Resources.Properties.WebsiteConfiguration' is configured",
 	}
 }

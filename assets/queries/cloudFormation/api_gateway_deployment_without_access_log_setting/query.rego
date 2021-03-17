@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s has Stage defined", [name]),
-		"keyActualValue": sprintf("Resources.%s has not Stage defined", [name]),
+		"keyActualValue": sprintf("Resources.%s doesn't have Stage defined", [name]),
 	}
 }
 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s have AWS::ApiGateway::Stage associated, DeploymentId.Ref is the same as the ApiGateway::Stage resource", [name]),
+		"keyExpectedValue": sprintf("Resources.%s has AWS::ApiGateway::Stage associated, DeploymentId.Ref is the same as the ApiGateway::Stage resource", [name]),
 		"keyActualValue": sprintf("Resources.%s should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource", [name]),
 	}
 }

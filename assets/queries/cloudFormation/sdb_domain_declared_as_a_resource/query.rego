@@ -8,7 +8,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s", [name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s is not defined", [name]),
 		"keyActualValue": sprintf("Resources.%s is defined", [name]),
 	}

@@ -1,9 +1,9 @@
 {
-	"id": "90501b1b-cded-4cc1-9e8b-206b85cda317",
-	"queryName": "S3 Bucket Website Host Is Disabled",
-	"severity": "HIGH",
-	"category": "Access Control",
-	"descriptionText": "It's dangerous disabling a block public access settings in bucket or write a bucket policy that grants public read access",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
-	"platform": "CloudFormation"
+  "id": "90501b1b-cded-4cc1-9e8b-206b85cda317",
+  "queryName": "S3 Bucket Website Host Is Disabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "It's dangerous disabling a block public access settings in bucket or writing a bucket policy that grants public read access",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
+  "platform": "CloudFormation"
 }

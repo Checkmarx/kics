@@ -4,16 +4,18 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	firewall_rule := task.azure_rm_rediscachefirewallrule
+	modules := {"azure.azcollection.azure_rm_rediscachefirewallrule", "azure_rm_rediscachefirewallrule"}
+	firewall_rule := task[modules[m]]
+	ansLib.checkState(firewall_rule)
 
 	firewall_rule.start_ip_address == "0.0.0.0"
 	firewall_rule.end_ip_address == "0.0.0.0"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{azure_rm_rediscachefirewallrule}}.start_ip_address", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.start_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'azure_rm_rediscachefirewallrule' start_ip and end_ip are not equal to '0.0.0.0'",
-		"keyActualValue": "'azure_rm_rediscachefirewallrule' start_ip and end_ip are equal to '0.0.0.0'",
+		"keyExpectedValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are not equal to '0.0.0.0'",
+		"keyActualValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are equal to '0.0.0.0'",
 	}
 }

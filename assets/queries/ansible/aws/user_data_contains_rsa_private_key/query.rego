@@ -4,15 +4,17 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	user_data := task["community.aws.ec2_lc"].user_data
+	modules := {"community.aws.ec2_lc", "ec2_lc"}
+	ec2_lc := task[modules[m]]
+	ansLib.checkState(ec2_lc)
 
-	contains(user_data, "LS0tLS1CR")
+	contains(ec2_lc.user_data, "LS0tLS1CR")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.ec2_lc}}.user_data", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.user_data", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.ec2_lc}}.user_data should not contain RSA Private Key", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.ec2_lc}}.user_data contains RSA Private Key", [task.name]),
+		"keyExpectedValue": "ec2_lc.user_data should not contain RSA Private Key",
+		"keyActualValue": "ec2_lc.user_data contains RSA Private Key",
 	}
 }

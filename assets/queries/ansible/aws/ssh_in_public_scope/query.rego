@@ -2,39 +2,23 @@ package Cx
 
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	currentFromPort := task["amazon.aws.ec2_group"].rules[index].from_port
-	currentToPort := task["amazon.aws.ec2_group"].rules[index].to_port
-	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
-
-	isSSH(currentFromPort, currentToPort)
-	not isPrivate(cidr)
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is not public", [index]),
-		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is public", [index]),
-	}
-}
+modules := {"amazon.aws.ec2_group", "ec2_group"}
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	currentFromPort := task["amazon.aws.ec2_group"].rules[index].from_port
-	currentToPort := task["amazon.aws.ec2_group"].rules[index].to_port
-	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
+	ec2_group := task[modules[m]]
+	ansLib.checkState(ec2_group)
+	rule := ec2_group.rules[index]
 
-	isSSH(currentFromPort, currentToPort)
-	not isPrivate(cidr)
+	isSSH(rule.from_port, rule.to_port)
+	publicRule(rule)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is not public", [index]),
-		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d] SSH' (Port:22) is public", [index]),
+		"keyExpectedValue": sprintf("ec2_group.rules[%d] SSH' (Port:22) is not public", [index]),
+		"keyActualValue": sprintf("ec2_group.rules[%d] SSH' (Port:22) is public", [index]),
 	}
 }
 
@@ -48,20 +32,23 @@ isSSH(currentFromPort, currentToPort) {
 	currentToPort == -1
 }
 
+publicRule(rule) {
+	not isPrivate(rule.cidr_ip)
+}
+
+publicRule(rule) {
+	not isPrivate(rule.cidr_ipv6)
+}
+
 isPrivate(cidr) {
-	isArray := is_array(cidr)
-
+	is_array(cidr)
 	privateIPs = ["192.120.0.0/16", "75.132.0.0/16", "79.32.0.0/8", "64:ff9b::/96", "2607:F8B0::/32"]
-
 	cidrLength := count(cidr)
-
 	count({x | cidr[x]; cidr[x] == privateIPs[j]}) == cidrLength
 }
 
 isPrivate(cidr) {
-	isString := is_string(cidr)
-
+	is_string(cidr)
 	privateIPs = ["192.120.0.0/16", "75.132.0.0/16", "79.32.0.0/8", "64:ff9b::/96", "2607:F8B0::/32"]
-
 	cidr == privateIPs[j]
 }

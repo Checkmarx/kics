@@ -105,8 +105,10 @@ CxPolicy[result] {
 
 	#############	document and resource
 	task := ansLib.tasks[id][t]
-
-	resource := task.azure_rm_securitygroup.rules[r]
+	modules := {"azure.azcollection.azure_rm_securitygroup", "azure_rm_securitygroup"}
+	securitygroup := task[modules[m]]
+	ansLib.checkState(securitygroup)
+	resource := securitygroup.rules[r]
 	ruleName := resource.name
 
 	#############	get relevant fields
@@ -124,7 +126,7 @@ CxPolicy[result] {
 	#############	Result
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_securitygroup}}.rules.name={{%s}}.destination_port_range", [task.name, ruleName]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.rules.name={{%s}}.destination_port_range", [task.name, modules[m], ruleName]),
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s.azure_rm_securitygroup.rules", [portName, protocol, portNumber, ruleName]),

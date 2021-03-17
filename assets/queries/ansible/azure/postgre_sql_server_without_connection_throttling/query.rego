@@ -4,7 +4,9 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	pgConfig := task["azure.azcollection.azure_rm_postgresqlconfiguration"]
+	modules := {"azure.azcollection.azure_rm_postgresqlconfiguration", "azure_rm_postgresqlconfiguration"}
+	pgConfig := task[modules[m]]
+	ansLib.checkState(pgConfig)
 
 	is_string(pgConfig.name)
 	is_string(pgConfig.value)
@@ -14,9 +16,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value", [task.name]),
-		"issueType": "WrongValue",
-		"keyExpectedValue": "azure.azcollection.azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-		"keyActualValue": "azure.azcollection.azure_rm_postgresqlconfiguration.value if 'OFF'",
+		"searchKey": sprintf("name={{%s}}.{{%s}}.value", [task.name, modules[m]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+		"keyActualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
 	}
 }

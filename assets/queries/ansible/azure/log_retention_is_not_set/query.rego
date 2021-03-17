@@ -4,7 +4,9 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	postgresql_configuration := task.azure_rm_postgresqlconfiguration
+	modules := {"azure.azcollection.azure_rm_postgresqlconfiguration", "azure_rm_postgresqlconfiguration"}
+	postgresql_configuration := task[modules[m]]
+	ansLib.checkState(postgresql_configuration)
 
 	is_string(postgresql_configuration.name)
 	lower(postgresql_configuration.name) == "log_retention"
@@ -14,9 +16,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{azure_rm_postgresqlconfiguration}}.value", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.value", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'value' is equal to 'on'",
-		"keyActualValue": "'value' is not equal to 'on'",
+		"keyExpectedValue": "azure_rm_postgresqlconfiguration.value is equal to 'on'",
+		"keyActualValue": "azure_rm_postgresqlconfiguration.value is not equal to 'on'",
 	}
 }

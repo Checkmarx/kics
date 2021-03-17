@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s has RecordSet", [name]),
-		"keyActualValue": sprintf("Resources.%s has not RecordSet", [name]),
+		"keyActualValue": sprintf("Resources.%s doesn't have RecordSet", [name]),
 	}
 }
 

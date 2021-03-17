@@ -6,22 +6,14 @@ import (
 	"io"
 
 	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
-	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
-
-// SourceProvider is the interface that wraps the basic GetSources method.
-// GetBasePath returns base path of FileSystemSourceProvider
-// GetSources receives context, receive ID, extensions supported and a sink function to save sources
-type SourceProvider interface {
-	GetBasePath() string
-	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
-}
 
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
 // SaveFile should append metadata to a file
@@ -47,7 +39,7 @@ type Tracker interface {
 // a parser to parse and provide files in format that KICS understand, a inspector that runs the scanning and a tracker to
 // update scanning numbers
 type Service struct {
-	SourceProvider SourceProvider
+	SourceProvider provider.SourceProvider
 	Storage        Storage
 	Parser         *parser.Parser
 	Inspector      *engine.Inspector
@@ -59,7 +51,6 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
 		ctx,
-		scanID,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			s.Tracker.TrackFileFound()
@@ -112,9 +103,8 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
    getContent will read the passed file 1MB at a time
    to prevent resource exhaustion and return its content
 */
-func getContent(rc io.ReadCloser) (*[]byte, error) {
+func getContent(rc io.Reader) (*[]byte, error) {
 	maxSizeMB := 5 // Max size of file in MBs
-	defer rc.Close()
 	var content []byte
 	data := make([]byte, 1048576)
 	for {

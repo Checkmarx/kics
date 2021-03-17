@@ -1,12 +1,17 @@
 [
-	{
-		"queryName": "Secrets Stored In Dockerfile",
-		"severity": "MEDIUM",
-		"line": 4
-	},
-	{
-		"queryName": "Secrets Stored In Dockerfile",
-		"severity": "MEDIUM",
-		"line": 5
-	}
+  {
+    "queryName": "Secrets Stored In Dockerfile",
+    "severity": "MEDIUM",
+    "line": 4
+  },
+  {
+    "queryName": "Secrets Stored In Dockerfile",
+    "severity": "MEDIUM",
+    "line": 5
+  },
+  {
+    "queryName": "Secrets Stored In Dockerfile",
+    "severity": "MEDIUM",
+    "line": 6
+  }
 ]

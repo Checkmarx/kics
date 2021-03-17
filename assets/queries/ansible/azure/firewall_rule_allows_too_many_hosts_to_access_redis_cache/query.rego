@@ -4,7 +4,9 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	instance := task.azure_rm_rediscachefirewallrule
+	modules := {"azure.azcollection.azure_rm_rediscachefirewallrule", "azure_rm_rediscachefirewallrule"}
+	instance := task[modules[m]]
+	ansLib.checkState(instance)
 
 	occupied_hosts := getHosts(instance.start_ip_address)
 	all_hosts := getHosts(instance.end_ip_address)
@@ -14,10 +16,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{azure_rm_rediscachefirewallrule}}.start_ip_address", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.start_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{azure_rm_rediscachefirewallrule}}.start_ip_address and end_ip_address allows up to 255 hosts", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{azure_rm_rediscachefirewallrule}}.start_ip_address and end_ip_address allow %s", [task.name, available]),
+		"keyExpectedValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow up to 255 hosts",
+		"keyActualValue": sprintf("azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow %d hosts", [available]),
 	}
 }
 

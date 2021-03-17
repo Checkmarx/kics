@@ -4,7 +4,9 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	bucket := task["amazon.aws.s3_bucket"]
+	modules := {"amazon.aws.s3_bucket", "s3_bucket"}
+	bucket := task[modules[m]]
+	ansLib.checkState(bucket)
 
 	bucket.policy.Statement[_].Effect == "Allow"
 	contains(lower(bucket.policy.Statement[_].Action), "write")
@@ -13,9 +15,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("amazon.aws.s3_bucket[%s] does not allow WriteACP Action From All Principals", [bucket.name]),
-		"keyActualValue": sprintf("amazon.aws.s3_bucket[%s] allows WriteACP Action From All Principals", [bucket.name]),
+		"keyExpectedValue": sprintf("s3_bucket[%s] does not allow WriteACP Action From All Principals", [bucket.name]),
+		"keyActualValue": sprintf("s3_bucket[%s] allows WriteACP Action From All Principals", [bucket.name]),
 	}
 }

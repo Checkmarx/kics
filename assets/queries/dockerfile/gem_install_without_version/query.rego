@@ -12,14 +12,15 @@ CxPolicy[result] {
 	gem := regex.find_n("gem (-(-)?[a-zA-Z]+ *)*install", commands, -1)
 	gem != null
 
-	packages = dockerLib.getPackages(commands, gem)
-	regex.match("^[a-zA-Z]", packages[j]) == true
+	packages := dockerLib.getPackages(commands, gem)
+	length := count(packages)
 
-	not dockerLib.withVersion(packages[j])
+	some j
+	analyzePackages(j, packages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s is 'gem install <gem>:<version>'", [resource.Original]),
 		"keyActualValue": sprintf("%s is 'gem install <gem>', you should use 'gem install <gem>:<version>", [resource.Original]),
@@ -51,4 +52,17 @@ CxPolicy[result] {
 isGem(command) {
 	contains(command[x], "gem")
 	contains(command[j], "install")
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j == length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	not dockerLib.withVersion(currentPackage)
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j != length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	packages[plus(j, 1)] != "-v"
+	not dockerLib.withVersion(currentPackage)
 }

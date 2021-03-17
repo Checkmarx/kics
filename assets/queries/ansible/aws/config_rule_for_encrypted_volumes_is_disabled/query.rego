@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.aws_config_rule", "aws_config_rule"}
+
 CxPolicy[result] {
 	tasks := ansLib.tasks[id]
-	configRules := [t | tasks[_]["community.aws.aws_config_rule"]; t := tasks[x]]
+	configRules := [t | ansLib.checkState(tasks[x][modules[_]]); t := tasks[x]]
 
 	not checkSource(configRules, "ENCRYPTED_VOLUMES")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_config_rule}}.source.identifier", [configRules[0].name]),
+		"searchKey": sprintf("name={{%s}}", [configRules[0].name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "There should be a aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",
 		"keyActualValue": "There is no aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",
@@ -18,6 +20,6 @@ CxPolicy[result] {
 }
 
 checkSource(configRules, expected_source) {
-	source := configRules[_]["community.aws.aws_config_rule"].source
+	source := configRules[_][modules[_]].source
 	upper(source.identifier) == expected_source
 }
