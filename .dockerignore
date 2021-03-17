@@ -1,6 +1,7 @@
 .github
 bin
 docs
+vendor
 .editorconfig
 .gitignore
 .golangci.yml

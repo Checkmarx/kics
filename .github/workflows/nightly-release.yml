@@ -84,8 +84,8 @@ jobs:
           asset_path: /home/runner/work/kics/kics/dist/kics_nightly_checksums.txt
           asset_name: kics_nightly-release_checksums.txt
           asset_content_type: text/plain
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  push_to_registry_unix:
+    name: Push Docker Image to DockerHub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -105,3 +105,21 @@ jobs:
           tags: checkmarx/kics:nightly
           build-args: |
             VERSION=nightly-${{ github.sha }}
+  push_to_registry_windows:
+    name: Push Windows Container Docker Image to DockerHub
+    runs-on: windows-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+      - name: Docker build on Windows
+        run: docker build --build-arg "VERSION=nightly-${{ github.sha }}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-1809 .
+      - name: Push docker image
+        run: |
+          docker push checkmarx/kics:nanoserver-1809

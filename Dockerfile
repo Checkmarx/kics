@@ -16,7 +16,7 @@ COPY --chown=Checkmarx:Checkmarx go.mod .
 COPY --chown=Checkmarx:Checkmarx go.sum .
 
 # Get dependancies - will also be cached if we won't change mod/sum
-RUN go mod download -x
+RUN go mod download
 
 # COPY the source code as the last step
 COPY . .
