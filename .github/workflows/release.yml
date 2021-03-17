@@ -71,7 +71,9 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
       - name: Docker build on Windows
-        run: docker build --build-arg "VERSION=nightly-${{ github.sha }}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-1809 .
+        run: docker build --build-arg "VERSION=${{ steps.get-version.outputs.version }}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-1809-latest .
       - name: Push docker image
         run: |
-          docker push checkmarx/kics:nanoserver-1809
+          docker tag checkmarx/kics:nanoserver-1809-latest checkmarx/kics:nanoserver-1809-${{ steps.get-version.outputs.version }}
+          docker push checkmarx/kics:nanoserver-1809-latest
+          docker push checkmarx/kics:nanoserver-1809-${{ steps.get-version.outputs.version }}

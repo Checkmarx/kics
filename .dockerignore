@@ -3,7 +3,6 @@
 bin
 docs
 site
-test
 .editorconfig
 .gitignore
 .golangci.yml

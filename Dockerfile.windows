@@ -17,7 +17,7 @@ COPY . /workspace
 ARG VERSION=development
 ENV GOOS=windows GOARCH=amd64 GCO_ENABLED=0
 
-RUN go mod tidy
+RUN go mod download
 RUN $env:LDFLAGS = '-X github.com/Checkmarx/kics/internal/constants.Version=' + $env:VERSION; \
   go build -ldflags $env:LDFLAGS -a -installsuffix cgo -o "bin/kics.exe" cmd/console/main.go
 
