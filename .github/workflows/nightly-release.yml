@@ -18,8 +18,8 @@ jobs:
         with:
           go-version: 1.16
       - name: Set short hash
-        id: set-short-hash
-        run: echo "::set-output name=short-sha::$(git rev-parse --short HEAD)"
+        id: shorthash
+        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -41,7 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: nightly
-          release_name: nightly-${{ steps.set-short-hash.short-sha }}
+          release_name: nightly-${{ steps.shorthash.outputs.sha8 }}
           draft: false
           prerelease: true
       - name: Display assets
@@ -107,7 +107,7 @@ jobs:
           push: true
           tags: checkmarx/kics:nightly
           build-args: |
-            VERSION=nightly-${{ steps.set-short-hash.short-sha }}
+            VERSION=nightly-${{ steps.shorthash.outputs.sha8 }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2
         with:
@@ -116,4 +116,4 @@ jobs:
           push: true
           tags: checkmarx/kics:nightly-alpine
           build-args: |
-            VERSION=nightly-${{ steps.set-short-hash.short-sha }}
+            VERSION=nightly-${{ steps.shorthash.outputs.sha8 }}
