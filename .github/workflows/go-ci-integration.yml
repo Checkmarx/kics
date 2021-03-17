@@ -50,16 +50,26 @@ jobs:
     - name: Assert results.json
       run: |
         set -eo pipefail
-        echo "Assert queries_total > 0 in results.json"
-        jq '.queries_total' ${PWD}/assets/queries/results.json
-        echo "Assert total_counter > 0 in results.json"
-        jq '.total_counter' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
-        echo "Assert files_scanned > 0 in results.json"
-        jq '.files_scanned' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
-        echo "Assert queries_failed_to_execute == 0 in results.json"
-        jq '.queries_failed_to_execute' ${PWD}/assets/queries/results.json
-        echo "Assert files_failed_to_scan == 0 in results.json"
-        jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json | xargs -i{} test {} -eq 0
+
+        COUNT=$(jq '.queries_total' ${PWD}/assets/queries/results.json)
+        echo "Assert queries_total > 0 in results.json :: ${COUNT}"
+        echo $COUNT | xargs -i{} test {} -gt 0
+
+        COUNT=$(jq '.total_counter' ${PWD}/assets/queries/results.json)
+        echo "Assert total_counter > 0 in results.json :: ${COUNT}"
+        echo $COUNT | xargs -i{} test {} -gt 0
+
+        COUNT=$(jq '.files_scanned' ${PWD}/assets/queries/results.json)
+        echo "Assert files_scanned > 0 in results.json :: ${COUNT}"
+        echo $COUNT | xargs -i{} test {} -gt 0
+
+        COUNT=$(jq '.queries_failed_to_execute' ${PWD}/assets/queries/results.json)
+        echo "Assert queries_failed_to_execute == 0 in results.json :: ${COUNT}"
+        echo $COUNT | xargs -i{} test {} -eq 0
+
+        COUNT=$(jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json)
+        echo "Assert files_failed_to_scan == 0 in results.json :: ${COUNT}"
+        echo $COUNT | xargs -i{} test {} -eq 0
   integration-tests-windows:
     name: integration-tests-windows
     runs-on: windows-latest
@@ -85,15 +95,19 @@ jobs:
         echo "Assert queries_total > 0 in results.json"
         $count=$(jq.exe '.queries_total' ${PWD}\assets\queries\results.json)
         if ($count -gt 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+
         echo "Assert total_counter > 0 in results.json"
         $count=$(jq.exe '.total_counter' ${PWD}\assets\queries\results.json)
         if ($count -gt 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+
         echo "Assert files_scanned > 0 in results.json"
         $count=$(jq.exe '.files_scanned' ${PWD}\assets\queries\results.json)
         if ($count -gt 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+
         echo "Assert queries_failed_to_execute == 0 in results.json"
         $count=$(jq.exe '.queries_failed_to_execute' ${PWD}\assets\queries\results.json)
         if ($count -eq 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+
         echo "Assert files_failed_to_scan == 0 in results.json"
         $count=$(jq.exe '.files_failed_to_scan' ${PWD}\assets\queries\results.json)
         if ($count -eq 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
