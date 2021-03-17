@@ -44,34 +44,22 @@ jobs:
     - name: Run docker image and generate results.json
       run: |
         docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
-    - name: Assert queries_total > 0 in results.json
-      id: assert_queries_total
-      uses: sergeysova/jq-action@v2
-      with:
-        cmd: jq '.queries_total' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
-    - name: Assert total_counter > 0 in results.json
-      id: assert_total_counter
-      uses: sergeysova/jq-action@v2
-      with:
-        cmd: jq '.total_counter' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
-    - name: Assert files_scanned > 0 in results.json
-      id: assert_files_scanned
-      uses: sergeysova/jq-action@v2
-      with:
-        cmd: jq '.files_scanned' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
-    - name: Assert queries_failed_to_execute == 0 in results.json
-      id: assert_queries_failed_to_execute
-      uses: sergeysova/jq-action@v2
-      with:
-        cmd: jq '.queries_failed_to_execute' ${PWD}/assets/queries/results.json | xargs -i{} test {} -eq 0
-    - name: Assert files_failed_to_scan == 0 in results.json
-      id: assert_files_failed_to_scan
-      uses: sergeysova/jq-action@v2
-      with:
-        cmd: jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json | xargs -i{} test {} -eq 0
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
+    - name: Assert results.json
+      run: |
+        set -eo pipefail
+        echo "Assert queries_total > 0 in results.json"
+        jq '.queries_total' ${PWD}/assets/queries/results.json
+        echo "Assert total_counter > 0 in results.json"
+        jq '.total_counter' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
+        echo "Assert files_scanned > 0 in results.json"
+        jq '.files_scanned' ${PWD}/assets/queries/results.json | xargs -i{} test {} -gt 0
+        echo "Assert queries_failed_to_execute == 0 in results.json"
+        jq '.queries_failed_to_execute' ${PWD}/assets/queries/results.json
+        echo "Assert files_failed_to_scan == 0 in results.json"
+        jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json | xargs -i{} test {} -eq 0
   integration-tests-windows:
     name: integration-tests-windows
     runs-on: windows-latest
@@ -82,7 +70,30 @@ jobs:
         persist-credentials: false
     - uses: satackey/action-docker-layer-caching@v0.0.11
       continue-on-error: true
+    - name: Docker info
+      run: |
+        docker version
+        docker info
+    - name: Choco install jq
+      run: choco install jq -y
     - name: Docker build on Windows
       run: docker build --build-arg "VERSION=${GITHUB_SHA_SHORT}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-${{ github.sha }} .
     - name: Run docker image and generate results.json
       run: docker run -e SENTRY_DSN=${{secrets.SENTRY_DSN}} -v ${PWD}\assets\queries:C:\data checkmarx/kics:nanoserver-${{ github.sha }} --no-progress -p "C:\data" -o "C:\data\results.json"
+    - name: Assert results.json
+      run: |
+        echo "Assert queries_total > 0 in results.json"
+        $count=$(jq.exe '.queries_total' ${PWD}\assets\queries\results.json)
+        if ($count -gt 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+        echo "Assert total_counter > 0 in results.json"
+        $count=$(jq.exe '.total_counter' ${PWD}\assets\queries\results.json)
+        if ($count -gt 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+        echo "Assert files_scanned > 0 in results.json"
+        $count=$(jq.exe '.files_scanned' ${PWD}\assets\queries\results.json)
+        if ($count -gt 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+        echo "Assert queries_failed_to_execute == 0 in results.json"
+        $count=$(jq.exe '.queries_failed_to_execute' ${PWD}\assets\queries\results.json)
+        if ($count -eq 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }
+        echo "Assert files_failed_to_scan == 0 in results.json"
+        $count=$(jq.exe '.files_failed_to_scan' ${PWD}\assets\queries\results.json)
+        if ($count -eq 0) { echo 'Ok'} else { Write-Error 'Failed' -ErrorAction Stop }

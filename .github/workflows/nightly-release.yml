@@ -131,7 +131,6 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
       - name: Docker build on Windows
-        run: docker build --build-arg "VERSION=nightly-${{ steps.shorthash.outputs.sha8 }}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-1809 .
+        run: docker build --build-arg "VERSION=nightly-${{ steps.shorthash.outputs.sha8 }}" -f Dockerfile.windows -t checkmarx/kics:nanoserver-1809-nightly .
       - name: Push docker image
-        run: |
-          docker push checkmarx/kics:nanoserver-1809
+        run: docker push checkmarx/kics:nanoserver-1809-nightly
