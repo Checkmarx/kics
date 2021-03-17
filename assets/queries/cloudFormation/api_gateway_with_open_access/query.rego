@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.AuthorizationType", [name]),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.AuthorizationType is %s and Resources.%s.Properties.HttpMethod is %s", [name, none, name, options]),
 		"keyActualValue": sprintf("Resources.%s.Properties.AuthorizationType is %s and Resources.%s.Properties.HttpMethod is not %s", [name, none, name, options]),
