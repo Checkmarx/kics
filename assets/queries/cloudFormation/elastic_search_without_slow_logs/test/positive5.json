@@ -1,0 +1,85 @@
+{
+  "document": [
+    {
+      "AWSTemplateFormatVersion": "2010-09-09",
+      "Description": "ElasticsearchDomain resource",
+      "Parameters": {
+        "DomainName": {
+          "Description": "User defined Elasticsearch Domain name",
+          "Type": "String"
+        },
+        "ElasticsearchVersion": {
+          "Description": "User defined Elasticsearch Version",
+          "Type": "String"
+        },
+        "InstanceType": {
+          "Type": "String"
+        },
+        "AvailabilityZone": {
+          "Type": "String"
+        },
+        "CidrBlock": {
+          "Type": "String"
+        },
+        "GroupDescription": {
+          "Type": "String"
+        },
+        "SGName": {
+          "Type": "String"
+        }
+      },
+      "Resources": {
+        "ElasticsearchDomain": {
+          "Type": "AWS::Elasticsearch::Domain",
+          "Properties": {
+            "EBSOptions": {
+              "EBSEnabled": "true",
+              "Iops": 0,
+              "VolumeSize": 10,
+              "VolumeType": "standard"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": "0"
+            },
+            "AccessPolicies": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Deny",
+                  "Principal": {
+                    "AWS": "*"
+                  },
+                  "Action": "es:*",
+                  "Resource": "*"
+                }
+              ]
+            },
+            "LogPublishingOptions": {
+              "ES_APPLICATION_LOGS": {
+                "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-index-slow-logs",
+                "Enabled": "true"
+              }
+            },
+            "AdvancedOptions": {
+              "rest.action.multi.allow_explicit_index": "true"
+            },
+            "DomainName": {
+              "Ref": "DomainName"
+            },
+            "ElasticsearchVersion": {
+              "Ref": "ElasticsearchVersion"
+            },
+            "ElasticsearchClusterConfig": {
+              "InstanceCount": "1",
+              "InstanceType": {
+                "Ref": "InstanceType"
+              }
+            }
+          }
+        }
+      },
+      "id": "30a2951c-f239-4686-a915-94d5085b6b08",
+      "file": "C:\\Users\\pedrom\\Desktop\\Data\\yaml\\yaml.yaml"
+    }
+  ]
+}
