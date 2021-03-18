@@ -1,0 +1,9 @@
+{
+  "id": "15ccec05-5476-4890-ad19-53991eba1db8",
+  "queryName": "API Gateway With Open Access",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "API Gateway Method should restrict the authorization type, except for the HTTP OPTIONS method.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method",
+  "platform": "Terraform"
+}
