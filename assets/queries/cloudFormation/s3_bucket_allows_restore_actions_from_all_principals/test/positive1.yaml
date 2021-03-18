@@ -32,7 +32,7 @@ Resources:
       AssumeRolePolicyDocument:
         Statement:
           - Action:
-              - 's3:PutObject'
+              - 's3:RestoreObject'
             Effect: Allow
             Principal: "*"
   BucketBackupPolicy:
