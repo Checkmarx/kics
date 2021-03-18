@@ -7,20 +7,20 @@
   },
   {
     "severity": "HIGH",
-    "line": 29,
+    "line": 30,
     "fileName": "positive1.yaml",
     "queryName": "Viewer Protocol Policy Allows HTTP Protocol"
   },
   {
     "queryName": "Viewer Protocol Policy Allows HTTP Protocol",
     "severity": "HIGH",
-    "line": 50,
+    "line": 10,
     "fileName": "positive2.json"
   },
   {
     "fileName": "positive2.json",
     "queryName": "Viewer Protocol Policy Allows HTTP Protocol",
     "severity": "HIGH",
-    "line": 8
+    "line": 50
   }
 ]
