@@ -85,54 +85,13 @@
         }
       }
     },
-    "myKey3": {
-      "Properties": {
-        "KeyPolicy": {
-          "Version": "2012-10-17",
-          "Id": "key-default-1",
-          "Statement": [
-            {
-              "Principal": {
-                "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:iam::",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":root"
-                    ]
-                  ]
-                }
-              },
-              "Action": "kms:*",
-              "Resource": "*",
-              "Sid": "Enable IAM User Permissions",
-              "Effect": "Allow"
-            }
-          ]
-        },
-        "Tags": [
-          {
-            "Value": {
-              "Ref": "Value"
-            },
-            "Key": {
-              "Ref": "Key"
-            }
-          }
-        ]
+    "Parameters": {
+      "Key": {
+        "Type": "String"
       },
-      "Type": "AWS::KMS::Key"
-    }
-  },
-  "Parameters": {
-    "Key": {
-      "Type": "String"
-    },
-    "Value": {
-      "Type": "String"
+      "Value": {
+        "Type": "String"
+      }
     }
   }
 }
