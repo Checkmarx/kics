@@ -28,7 +28,35 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 Refer to [kics-github-action](https://github.com/Checkmarx/kics-github-action) repository for a full list of parameters
 
-## Simple usage example
+### GitHub Actions integration with SARIF
+
+KICS has an option to generate results on SARIF format, which can be integrated with many CI tools, [including GitHub Actions](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/integrating-with-code-scanning).
+
+The following workflow shows how to integrate KICS with GitHub Actions:
+
+```YAML
+steps:
+- uses: actions/checkout@v2
+  - name: run kics Scan
+    uses: checkmarx/kics-action@v1.0
+    with:
+      path: 'terraform'
+      output-path: 'results.sarif'
+  - name: Upload SARIF file
+    uses: github/codeql-action/upload-sarif@v1
+    with:
+      sarif_file: results.sarif
+```
+
+The results list can be found on security tab of your GitHub project and should look like the following image:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/sarif-example-1.png" width="850">
+
+An entry should describe the error and in which line it occurred:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/sarif-example-2.png" width="850">
+
+## Default report Usage example
 
 ```yaml
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -45,11 +73,18 @@ Refer to [kics-github-action](https://github.com/Checkmarx/kics-github-action) r
     - name: display kics results
       run: |
         cat results.json
+      # optionally parse the results with jq
+      # jq '.total_counter' results.json
+      # jq '.queries_total' results.json
 ```
+
+Here you can see it in action:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_scan_github_actions.png" width="850">
 
 ## Example using docker-runner and SARIF report
 
-checkmarx/kics-action@docker-runner branch runs an alpine based linux container (`checkmarx/kics:nightly-alpine`) that doesn't require downloading kics binaries and queries in the `entrypoint.sh`
+We also provide [checkmarx/kics-action@docker-runner](https://github.com/Checkmarx/kics-github-action/tree/docker-runner) that runs an alpine based linux container (`checkmarx/kics:nightly-alpine`) that doesn't require downloading kics binaries and queries in the `entrypoint.sh`
 
 ```yaml
 name: scan with KICS docker-runner
@@ -81,7 +116,7 @@ jobs:
           platform_type: terraform
           output_formats: 'json,sarif'
           exclude_paths: "terraform/gcp/big_data.tf,terraform/azure"
-          # seek query id in it's metadata.json
+          # look for the queries' ID in its metadata.json
           exclude_queries: 0437633b-daa6-4bbc-8526-c0d2443b946e
       - name: Show results
         run: |
@@ -142,39 +177,6 @@ jobs:
         with:
           sarif_file: results-dir/results.sarif
 ```
-
-Here you can see it in action:
-
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_scan_github_actions.png" width="850">
-
-### GitHub Actions integration with SARIF
-
-KICS has an option to generate results on SARIF format, which can be integrated with many CI tools, [including GitHub Actions](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/integrating-with-code-scanning).
-
-The following workflow shows how to integrate KICS with GitHub Actions:
-
-```YAML
-steps:
-- uses: actions/checkout@v2
-  - name: run kics Scan
-    uses: checkmarx/kics-action@v1.0
-    with:
-      path: 'terraform'
-      output-path: 'results.sarif'
-  - name: Upload SARIF file
-    uses: github/codeql-action/upload-sarif@v1
-    with:
-      sarif_file: results.sarif
-```
-
-The results list can be found on security tab of your GitHub project and should look like the following image:
-
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/sarif-example-1.png" width="850">
-
-An entry should describe the error and in which line it occurred:
-
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/sarif-example-2.png" width="850">
-
 
 #### Resources
 
