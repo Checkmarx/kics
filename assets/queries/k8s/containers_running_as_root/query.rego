@@ -4,9 +4,7 @@ import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
-    kind := document.kind
-    listKinds :=  ["Pod"]
-	k8sLib.checkKind(kind, listKinds)
+    document.kind == "Pod"
 
 	spec := document.spec
 
@@ -16,9 +14,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-    kind := document.kind
-    listKinds :=  ["CronJob"]
-	k8sLib.checkKind(kind, listKinds)
+    document.kind == "CronJob"
 
 	spec := document.spec.jobTemplate.spec.template.spec
 
