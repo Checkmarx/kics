@@ -8,3 +8,6 @@ COPY app.py /usr/src/app/
 COPY templates/index.html /usr/src/app/templates/
 EXPOSE 5000
 CMD ["python", "/usr/src/app/app.py"]
+ENV GRPC_VERSION 1.0.0
+RUN gem install grpc -v ${GRPC_RUBY_VERSION}
+RUN gem install grpc:${GRPC_VERSION} grpc-tools:${GRPC_VERSION}

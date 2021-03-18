@@ -10,7 +10,7 @@ CxPolicy[result] {
     result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
-		"issueType": "MissingValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'Resources.Properties should contain Groups",
 		"keyActualValue": "'Resources.Properties' does not contain Groups",
 	}

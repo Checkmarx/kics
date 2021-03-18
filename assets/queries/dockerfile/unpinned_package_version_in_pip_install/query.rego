@@ -13,13 +13,14 @@ CxPolicy[result] {
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
-	regex.match("^[a-zA-Z]", packages[j]) == true
+	length := count(packages)
 
-	not dockerLib.withVersion(packages[j])
+	some j
+	analyzePackages(j, packages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
 		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [commands]),
@@ -54,4 +55,17 @@ isPip(command) {
 	pip := {"pip", "pip3"}
 	contains(command[x], pip[z])
 	contains(command[j], "install")
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j == length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	not dockerLib.withVersion(currentPackage)
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j != length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	packages[plus(j, 1)] != "-v"
+	not dockerLib.withVersion(currentPackage)
 }

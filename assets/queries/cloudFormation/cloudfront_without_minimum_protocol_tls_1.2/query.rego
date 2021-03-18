@@ -20,14 +20,14 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
 	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
-	not containsProtocolVersion(["TLSv1.2_2018", "TLSv1.2_2019"], protocolVer)
+	not containsProtocolVersion(["TLSv1.2_2018", "TLSv1.2_2019","TLSv1.2-2018", "TLSv1.2-2019"], protocolVer)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.PropertiesProject.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be minimum 1.2", [name]),
-		"keyActualValue": sprintf("Resources.%s.PropertiesProject.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' lesser than 1.2", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be at least 1.2", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' lesser than 1.2", [name]),
 	}
 }
 

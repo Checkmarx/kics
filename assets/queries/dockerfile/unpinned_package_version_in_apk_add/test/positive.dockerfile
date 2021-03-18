@@ -15,6 +15,7 @@ RUN apk add py-pip \
     && rm -rf /tmp/*
 RUN apk add --dir /dir libimagequant \
     && minidlna
+RUN ["apk", "add", "py-pip"]
 RUN sudo pip install --upgrade pip
 COPY requirements.txt /usr/src/app/
 RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt

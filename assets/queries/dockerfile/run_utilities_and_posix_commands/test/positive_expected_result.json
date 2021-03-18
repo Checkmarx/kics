@@ -1,7 +1,12 @@
 [
-	{
-		"queryName": "Run Utilities And POSIX Commands",
-		"severity": "INFO",
-		"line": 4
-	}
+  {
+    "queryName": "Run Utilities And POSIX Commands",
+    "severity": "INFO",
+    "line": 4
+  },
+  {
+    "queryName": "Run Utilities And POSIX Commands",
+    "severity": "INFO",
+    "line": 5
+  }
 ]
