@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties should have logging enabled", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties has logging disabled", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Logging is defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.Logging is undefined", [name]),
 	}
 }
 

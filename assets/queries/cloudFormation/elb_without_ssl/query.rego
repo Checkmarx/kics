@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Listeners", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Listeners is setup with SSL", [name]),
-		"keyActualValue": sprintf("Resources.%s.Listeners isn't setup with SSL", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Listeners.InstanceProtocol' and 'Resources.%s.Listeners.Protocol' is set to 'HTTPS'", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Listeners.InstanceProtocol' or 'Resources.%s.Listeners.Protocol' isn't set to 'HTTPS'", [name]),
 	}
 }
