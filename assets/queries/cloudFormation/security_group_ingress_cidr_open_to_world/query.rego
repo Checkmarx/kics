@@ -12,8 +12,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIp is not open to the world", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.CidrIp is open to the world", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIp is not open to the world (0.0.0.0/0)", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.CidrIp is open to the world (0.0.0.0/0)", [name]),
 	}
 }
 
@@ -29,8 +29,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.CidrIpv6", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIpv6 is not open to the world", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.CidrIpv6 is open to the world", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.CidrIpv6 is not open to the world (::/0)", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.CidrIpv6 is open to the world (::/0)", [name]),
 	}
 }
 
@@ -44,10 +44,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress.CidrIp", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp is not open to the world", [name, index]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp is open to the world", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp is not open to the world (0.0.0.0/0)", [name, index]),
+		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp is open to the world (0.0.0.0/0)", [name, index]),
 	}
 }
 
@@ -61,9 +61,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress.CidrIpv6", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6", [name, index]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 is not open to the world", [name, index]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 is open to the world", [name, index]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 is not open to the world (::/0)", [name, index]),
+		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6 is open to the world (::/0)", [name, index]),
 	}
 }

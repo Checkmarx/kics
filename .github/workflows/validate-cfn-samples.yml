@@ -1,6 +1,7 @@
 name: validate-cfn-samples
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
     - "assets/queries/cloudFormation/**/test/*.yaml"
@@ -17,14 +18,31 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - name: Get commit changed files
+        if: github.event_name != 'workflow_dispatch'
+        uses: lots0logs/gh-action-get-changed-files@2.1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get cfn-python-lint
         run: |
           pip3 install -U cfn-lint --user
-      - name: Validate cloudformation template syntax
+      - name: Validate ALL cloudformation template samples
+        if: github.event_name == 'workflow_dispatch'
         run: |
           python3 -u ".github/validators/validate-syntax.py" \
             "assets/queries/cloudFormation/**/test/*.yaml" \
             "assets/queries/cloudFormation/**/test/*.json" \
             --linter /home/runner/.local/bin/cfn-lint \
             --extra " --info --config-file .github/.cfnlintrc.yml" \
-            --skip ".github/validators/cfn-skip-list" --verbose
+            --skip ".github/validators/cfn-skip-list" \
+            --verbose
+      - name: Validate CHANGED cloudformation template samples
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          python3 -u ".github/validators/validate-syntax.py" \
+            "assets/queries/cloudFormation/**/test/*.yaml" \
+            "assets/queries/cloudFormation/**/test/*.json" \
+            --diff ${HOME}/files.json \
+            --linter /home/runner/.local/bin/cfn-lint \
+            --extra " --info --config-file .github/.cfnlintrc.yml" \
+            --skip ".github/validators/cfn-skip-list" -vv

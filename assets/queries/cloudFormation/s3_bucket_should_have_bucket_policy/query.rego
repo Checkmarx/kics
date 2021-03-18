@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BucketName", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' should be the same as 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is not the same as 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is the same as an 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' or 'Resources.[%s]' is not the same as an 'AWS::S3::BucketPolicy' Bucket Ref", [name, name]),
 	}
 }
 
@@ -25,8 +25,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' should be defined in 'AWS::S3::Bucket'", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' is not defined in 'AWS::S3::Bucket'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.BucketName' is defined", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.BucketName' is not defined", [name]),
 	}
 }
 

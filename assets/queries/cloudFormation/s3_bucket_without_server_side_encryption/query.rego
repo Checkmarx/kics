@@ -13,10 +13,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("Resources.%s", [bucketName]),
+		"searchKey": sprintf("Resources.%s.Properties", [bucketName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s bucket should server-side encryption enabled", [bucketName]),
-		"keyActualValue": sprintf("Resources.%s bucket doesn't have any server-side encryption configuration", [bucketName]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration is defined and not empty", [bucketName]),
+		"keyActualValue": sprintf("Resources.%s.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty", [bucketName]),
+    
 	}
 }
 

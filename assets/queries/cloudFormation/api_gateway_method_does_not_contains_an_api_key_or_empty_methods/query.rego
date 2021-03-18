@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.ApiKeyRequired", [name]),
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.ApiKeyRequired is defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ApiKeyRequired is undefined", [name]),
