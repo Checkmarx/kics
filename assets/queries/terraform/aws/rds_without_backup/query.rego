@@ -10,7 +10,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'backup_retention_period' exists",
 		"keyActualValue": "'backup_retention_period' is missing",
-		"value": db.name,
 	}
 }
 
@@ -24,6 +23,5 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'backup_retention_period' is not equal '0'",
 		"keyActualValue": "'backup_retention_period' is equal '0'",
-		"value": db.name,
 	}
 }

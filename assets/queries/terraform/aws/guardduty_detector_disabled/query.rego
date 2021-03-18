@@ -12,6 +12,5 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "GuardDuty Detector should be Enabled",
 		"keyActualValue": "GuardDuty Detector is not Enabled",
-		"value": detector,
 	}
 }
