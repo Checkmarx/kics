@@ -29,8 +29,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           title: Update documentation index page - ${{ steps.current-version.version }}
-          env:
-            GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ secrets.KICS_BOT_PAT }}
           body: |
             **Automated changes**
             Updating documentation index page.
