@@ -89,7 +89,7 @@ jobs:
       env:
         cache-name: docker-layers
       with:
-        path: C:\ProgramData\docker\windowsfilter
+        path: C:\ProgramData\docker
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
