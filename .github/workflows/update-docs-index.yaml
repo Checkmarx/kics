@@ -23,7 +23,7 @@ jobs:
       - name: Print variables
         run: |
           echo "Version :: ${{ steps.cversion.outputs.version }}"
-          echo "Date :: ${{ steps.cdate.outputs.outputs.date }}"
+          echo "Date :: ${{ steps.cdate.outputs.date }}"
       - name: Replace lines
         run: |
           sed -E -i "s/<h4>Version [0-9]+\.[0-9]+\.[0-9]+<\/h4>/<h4>Version ${{ steps.cversion.outputs.version }}<\/h4>/" docs/index.md
