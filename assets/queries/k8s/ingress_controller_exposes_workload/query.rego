@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	object.get(annotations, "kubernetes.io/ingress.class", "undefined") != "undefined"
 
-	spec := document.spec
+	spec := specInfo.spec
 
 	backend := spec.rules[x].http.paths[j].backend
 

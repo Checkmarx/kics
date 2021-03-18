@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	document.kind == "PodSecurityPolicy"
 
-	object.get(document.spec, "allowedCapabilities", "undefined") != "undefined"
+	object.get(specInfo.spec, "allowedCapabilities", "undefined") != "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

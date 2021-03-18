@@ -8,7 +8,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types = {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	add := object.get(containers[index].securityContext.capabilities, "add", "undefined")
 	add != "undefined"

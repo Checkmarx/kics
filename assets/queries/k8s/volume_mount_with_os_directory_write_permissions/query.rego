@@ -39,7 +39,3 @@ is_OS_Dir(mountPath) = result {
 } else = result {
 	result = mountPath == "/"
 }
-
-listcontains(dirs, elem) {
-	startswith(elem, dirs[_])
-}

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "PodSecurityPolicy"
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	capabilities := spec.containers[k].securityContext.capabilities
-	not contains(capabilities.drop, ["ALL", "NET_RAW"])
+	not k8sLib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,10 +19,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s.name=%s.securityContext.capabilities.drop is ALL or NET_RAW", [metadata.name, types[x], containers[k].name]),
 		"keyActualValue": sprintf("metadata.name=%s.spec.%s.name=%s.securityContext.capabilities.drop is not ALL or NET_RAW", [metadata.name, types[x], containers[k].name]),
 	}
-}
-
-contains(array, elem) {
-	upper(array[_]) == elem[_]
-} else = false {
-	true
 }

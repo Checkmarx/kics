@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
@@ -9,30 +11,25 @@ CxPolicy[result] {
 	resourcesTaint := ["secrets"]
 
 	kind := document.kind
-	contains(validKind, kind)
+	k8sLib.checkKind(kind, validKind)
 	name := metadata.name
 
 	bindingExists(name, kind)
 
-	resources := document.rules[_].resources
 	some resource
-	contains(resourcesTaint, resources[resource])
+	resources := document.rules[resource].resources
+	resources[_] == "secrets"
 
-	rules := document.rules[_].verbs
-	some rule
-	contains(ruleTaint, rules[rule])
+	rules := document.rules[resource].verbs
+	k8sLib.compareArrays(ruleTaint, rules)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.rules.verbs", [metadata.name]),
+		"documentId": document.id,
+		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The metadata.name=%s.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
-		"keyActualValue": sprintf("The metadata.name=%s.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
+		"keyExpectedValue": sprintf("The metadata.name={{%s}}.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
+		"keyActualValue": sprintf("The metadata.name={{%s}}.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
 	}
-}
-
-contains(arr1, string) {
-	arr1[_] == string
 }
 
 bindingExists(name, kind) {

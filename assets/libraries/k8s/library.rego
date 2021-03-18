@@ -16,14 +16,8 @@ checkKind(currentKind, listKinds) {
 	currentKind == listKinds[i]
 }
 
-checkMetadata(metadata) {
-	contains(metadata.name, "tiller")
-}
-
-checkMetadata(metadata) {
-	object.get(metadata.labels, "app", "undefined") == "helm"
-}
-
-checkMetadata(metadata) {
-	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
+compareArrays(arrayOne, arrayTwo) {
+	upper(arrayOne[_]) == upper(arrayTwo[_])
+} else = false {
+	true
 }

@@ -1,7 +1,5 @@
 package Cx
 
-import data.generic.k8s as k8sLib
-
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -93,12 +91,12 @@ CxPolicy[result] {
 ############################################################
 isTiller(document) {
 	document.spec.containers
-	k8sLib.checkMetadata(document.metadata)
+	checkMetadata(document.metadata)
 }
 
 isTillerTemplate(document) {
 	document.spec.template.spec.containers
-	k8sLib.checkMetadata(document.spec.template.metadata)
+	checkMetadata(document.spec.template.metadata)
 }
 
 ##############################################################
@@ -117,4 +115,16 @@ localAddress(arg) {
 
 localAddress(arg) {
 	contains(arg, "127.0.0.1")
+}
+
+checkMetadata(metadata) {
+	contains(metadata.name, "tiller")
+}
+
+checkMetadata(metadata) {
+	object.get(metadata.labels, "app", "undefined") == "helm"
+}
+
+checkMetadata(metadata) {
+	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
 }
