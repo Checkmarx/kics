@@ -22,7 +22,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.7.0
-	github.com/zclconf/go-cty v1.8.0
+	github.com/zclconf/go-cty v1.8.1
 	golang.org/x/sys v0.0.0-20210220050731-9a76102bfb43 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )
