@@ -20,7 +20,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
 	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
-	not containsProtocolVersion(["TLSv1.2_2018", "TLSv1.2_2019"], protocolVer)
+	not containsProtocolVersion(["TLSv1.2_2018", "TLSv1.2_2019","TLSv1.2-2018", "TLSv1.2-2019"], protocolVer)
 
 	result := {
 		"documentId": input.document[i].id,
