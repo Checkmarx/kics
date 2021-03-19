@@ -3,7 +3,7 @@
   "queryName": "Chown Flag Exists",
   "severity": "LOW",
   "category": "Best Practices",
-  "descriptionText": "You can just drop the --chown option, the user only needs execution permissions on the file, not ownership",
+  "descriptionText": "If the user only needs execution permissions on the file and not ownership, don't use --chown option",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile"
 }

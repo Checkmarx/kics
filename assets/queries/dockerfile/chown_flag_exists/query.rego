@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource[j].Original]),
 		"category": "Best Practices",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The 'Dockerfile' shouldn´t contains the 'chown' flag",
+		"keyExpectedValue": "The 'Dockerfile' shouldn´t contain the 'chown' flag",
 		"keyActualValue": "The 'Dockerfile' contains the 'chown' flag",
 	}
 }
