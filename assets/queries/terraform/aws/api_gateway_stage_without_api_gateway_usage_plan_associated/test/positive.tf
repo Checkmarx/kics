@@ -1,0 +1,25 @@
+resource "aws_api_gateway_stage" "positive1" {
+  rest_api_id   = "${aws_api_gateway_rest_api.test.id}"
+  deployment_id = "${aws_api_gateway_deployment.test.id}"
+  stage_name = "some name"
+  tags {
+    project = "ProjectName"
+  }
+}
+
+resource "aws_api_gateway_stage" "positive2" {
+  deployment_id = aws_api_gateway_deployment.example.id
+  rest_api_id   = aws_api_gateway_rest_api.example.id
+  stage_name    = "development"
+}
+
+resource "aws_api_gateway_usage_plan" "positive3" {
+  name         = "my-usage-plan"
+  description  = "my description"
+  product_code = "MYCODE"
+
+  api_stages {
+    api_id = aws_api_gateway_rest_api.somename.id
+    stage  = "development"
+  }
+}
