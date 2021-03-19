@@ -1,6 +1,6 @@
 resource "aws_api_gateway_stage" "negative1" {
-  deployment_id = aws_api_gateway_deployment.example.id
-  rest_api_id   = aws_api_gateway_rest_api.example.id
+  deployment_id = "some deployment id"
+  rest_api_id   = "rest_api_1"
   stage_name    = "development"
 }
 
@@ -10,7 +10,7 @@ resource "aws_api_gateway_usage_plan" "negative2" {
   product_code = "MYCODE"
 
   api_stages {
-    api_id = aws_api_gateway_rest_api.example.id
+    api_id = "rest_api_1"
     stage  = "development"
   }
 }

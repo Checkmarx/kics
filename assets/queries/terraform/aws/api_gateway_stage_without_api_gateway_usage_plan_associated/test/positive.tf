@@ -8,8 +8,8 @@ resource "aws_api_gateway_stage" "positive1" {
 }
 
 resource "aws_api_gateway_stage" "positive2" {
-  deployment_id = aws_api_gateway_deployment.example.id
-  rest_api_id   = aws_api_gateway_rest_api.example.id
+  deployment_id = "some deployment id"
+  rest_api_id   = "some rest api id"
   stage_name    = "development"
 }
 
@@ -19,7 +19,7 @@ resource "aws_api_gateway_usage_plan" "positive3" {
   product_code = "MYCODE"
 
   api_stages {
-    api_id = aws_api_gateway_rest_api.somename.id
+    api_id = "another id"
     stage  = "development"
   }
 }
