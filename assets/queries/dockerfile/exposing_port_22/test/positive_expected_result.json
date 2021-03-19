@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Exposing Port 22",
+    "severity": "LOW",
+    "line": 3
+  }
+]
