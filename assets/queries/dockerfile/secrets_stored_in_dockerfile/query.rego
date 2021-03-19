@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "env"
@@ -50,9 +52,8 @@ hasSecret(resource) {
 }
 
 hasSecret(resource) {
-	options := {"-p", "--passwordfile"}
 	count(resource.Value) > 1
-	contains(resource.Value[_], options[j])
+    dockerLib.arrayContains(resource.Value, {"-p", "--passwordfile"})
 }
 
 checkSecret(cmd) {

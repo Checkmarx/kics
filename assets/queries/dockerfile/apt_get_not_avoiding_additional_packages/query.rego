@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 
@@ -52,6 +54,5 @@ avoidAdditionalPackages(cmd) {
 
 avoidAdditionalPackages(cmd) {
 	is_array(cmd) == true
-	flags := ["--no-install-recommends", "apt::install-recommends=false"]
-	contains(cmd[_], flags[_])
+    dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
 }

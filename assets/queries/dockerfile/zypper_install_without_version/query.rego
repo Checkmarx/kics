@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	isZypper(resource.Value)
+    dockerLib.arrayContains(resource.Value, {"zypper", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "zypper"
@@ -47,11 +47,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "The package version should always be specified when using zypper install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [resource.Value[j]]),
 	}
-}
-
-isZypper(command) {
-	contains(command[x], "zypper")
-	contains(command[j], "install")
 }
 
 analyzePackages(j, currentPackage, packages, length) {

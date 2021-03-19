@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	isGem(resource.Value)
+    dockerLib.arrayContains(resource.Value, {"gem", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "gem"
@@ -47,11 +47,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s is 'gem install <gem>:<version>'", [resource.Original]),
 		"keyActualValue": sprintf("%s is 'gem install <gem>', you should use 'gem install <gem>:<version>", [resource.Original]),
 	}
-}
-
-isGem(command) {
-	contains(command[x], "gem")
-	contains(command[j], "install")
 }
 
 analyzePackages(j, currentPackage, packages, length) {

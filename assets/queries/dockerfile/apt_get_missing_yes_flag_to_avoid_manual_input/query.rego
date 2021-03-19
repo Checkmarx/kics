@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
@@ -26,7 +28,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	isAptGetInList(resource.Value)
+    dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
 
 	not avoidManualInputInList(resource.Value)
 
@@ -41,11 +43,6 @@ CxPolicy[result] {
 
 isAptGet(command) {
 	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", command)
-}
-
-isAptGetInList(command) {
-	contains(command[x], "apt-get")
-	contains(command[j], "install")
 }
 
 avoidManualInputInList(command) {
