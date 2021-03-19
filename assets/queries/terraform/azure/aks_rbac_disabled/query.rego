@@ -19,22 +19,6 @@ CxPolicy[result] {
 
 	rbac := cluster.role_based_access_control
 
-	object.get(rbac, "enabled", "undefined") == "undefined"
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].role_based_access_control", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control.enabled' is defined", [name]),
-		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].role_based_access_control.enabled' is undefined", [name]),
-	}
-}
-
-CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
-
-	rbac := cluster.role_based_access_control
-
 	rbac.enabled != true
 
 	result := {
