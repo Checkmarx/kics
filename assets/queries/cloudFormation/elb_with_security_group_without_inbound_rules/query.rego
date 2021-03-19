@@ -38,3 +38,13 @@ withoutOutboundRules(securityGroupName) = result {
 	securityGroup.Properties.SecurityGroupIngress == []
 	result := {"expected": "not empty", "actual": "empty", "path": ".SecurityGroupIngress", "issue": "IncorrectValue"}
 }
+
+withoutOutboundRules(securityGroupName) = result {
+    some j
+        resource := input.document[i].Resources[j]
+        resource.Type == "AWS::EC2::SecurityGroupIngress"
+        groupId := resource.Properties.GroupId
+        id := replace(groupId, "!Ref ", "")
+        not id == securityGroupName
+    result := {"expected": "defined", "actual": "undefined", "path": "", "issue": "MissingAttribute"}
+}
