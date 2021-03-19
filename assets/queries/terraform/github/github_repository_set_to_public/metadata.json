@@ -1,0 +1,9 @@
+{
+  "id": "15d8a7fd-465a-4d15-a868-add86552f17b",
+  "queryName": "GitHub Repository Set To Public",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/github/r/repository.html",
+  "platform": "Terraform"
+}
