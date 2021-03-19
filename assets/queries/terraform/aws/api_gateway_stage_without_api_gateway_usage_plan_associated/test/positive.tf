@@ -1,6 +1,6 @@
 resource "aws_api_gateway_stage" "positive1" {
-  rest_api_id   = "${aws_api_gateway_rest_api.test.id}"
-  deployment_id = "${aws_api_gateway_deployment.test.id}"
+  rest_api_id   = "some deployment id"
+  deployment_id = "some rest api id"
   stage_name = "some name"
   tags {
     project = "ProjectName"
