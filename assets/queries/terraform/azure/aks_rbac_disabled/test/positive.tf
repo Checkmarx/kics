@@ -60,9 +60,9 @@ resource "azurerm_kubernetes_cluster" "positive3" {
 
   role_based_access_control {
     azure_active_directory {
-      client_app_id     = "${azuread_application.client.application_id}"
-      server_app_id     = "${azuread_application.server.application_id}"
-      server_app_secret = "${azuread_service_principal_password.server.value}"
+      client_app_id     = azuread_application.client.application_id
+      server_app_id     = azuread_application.server.application_id
+      server_app_secret = azuread_service_principal_password.server.value
     }
   }
 
