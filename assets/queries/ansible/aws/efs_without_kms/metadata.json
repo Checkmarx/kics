@@ -1,0 +1,9 @@
+{
+	"id": "bd77554e-f138-40c5-91b2-2a09f878608e",
+	"queryName": "EFS Without KMS",
+	"severity": "HIGH",
+	"category": "Secret Management",
+	"descriptionText": "Elastic File System (EFS) must have KMS Key ID",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html#parameter-kms_key_id",
+	"platform": "Ansible"
+}

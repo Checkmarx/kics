@@ -2,6 +2,6 @@
 	{
 		"queryName": "EFS Without KMS",
 		"severity": "HIGH",
-		"line": 1
+		"line": 3
 	}
 ]
