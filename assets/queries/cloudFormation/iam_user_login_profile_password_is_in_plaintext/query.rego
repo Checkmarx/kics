@@ -16,4 +16,5 @@ CxPolicy[result] {
 
 checkPass(pass) {
 	is_string(pass)
+    not contains(pass, "secretsmanager")
 }
