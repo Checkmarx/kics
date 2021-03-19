@@ -2,49 +2,25 @@
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
-    "line": 33,
+    "line": 8,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
-    "line": 42,
+    "line": 23,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
-    "line": 50,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "line": 87,
-    "fileName": "positive1.yaml",
-    "queryName": "S3 Bucket Allows Get Action From All Principals",
-    "severity": "HIGH"
-  },
-  {
-    "queryName": "S3 Bucket Allows Get Action From All Principals",
-    "severity": "HIGH",
-    "line": 205,
+    "line": 10,
     "fileName": "positive2.json"
   },
   {
     "severity": "HIGH",
-    "line": 221,
+    "line": 36,
     "fileName": "positive2.json",
     "queryName": "S3 Bucket Allows Get Action From All Principals"
-  },
-  {
-    "fileName": "positive2.json",
-    "queryName": "S3 Bucket Allows Get Action From All Principals",
-    "severity": "HIGH",
-    "line": 6
-  },
-  {
-    "fileName": "positive2.json",
-    "queryName": "S3 Bucket Allows Get Action From All Principals",
-    "severity": "HIGH",
-    "line": 83
   }
 ]

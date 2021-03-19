@@ -1,161 +1,32 @@
 {
   "Resources": {
-    "RecordServiceS3Bucket": {
+    "SampleBucketPolicy2": {
+      "Type": "AWS::S3::BucketPolicy",
       "Properties": {
-        "ReplicationConfiguration": {
-          "Role": {
-            "Fn::GetAtt": [
-              "WorkItemBucketBackupRole",
-              "Arn"
-            ]
-          },
-          "Rules": [
-            {
-              "Destination": {
-                "StorageClass": "STANDARD",
-                "Bucket": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:s3:::",
-                      {
-                        "Fn::Join": [
-                          "-",
-                          [
-                            {
-                              "Ref": "AWS::Region"
-                            },
-                            {
-                              "Ref": "AWS::StackName"
-                            },
-                            "replicationbucket"
-                          ]
-                        ]
-                      }
-                    ]
-                  ]
-                }
-              },
-              "Id": "Backup",
-              "Prefix": "",
-              "Status": "Enabled"
-            }
-          ]
+        "Bucket": {
+          "Ref": "DOC-EXAMPLE-BUCKET"
         },
-        "VersioningConfiguration": {
-          "Status": "Enabled"
-        }
-      },
-      "Type": "AWS::S3::Bucket",
-      "DeletionPolicy": "Retain"
-    },
-    "WorkItemBucketBackupRole": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
+        "PolicyDocument": {
           "Statement": [
             {
               "Action": [
-                "sts:AssumeRole"
+                "s3:RestoreObject"
               ],
-              "Effect": "Allow",
-              "Principal": {
-                "Service": [
-                  "s3.amazonaws.com"
-                ]
+              "Effect": "Deny",
+              "Resource": "*",
+              "Principal": "*",
+              "Condition": {
+                "StringLike": {
+                  "aws:Referer": [
+                    "http://www.example.com/*",
+                    "http://example.net/*"
+                  ]
+                }
               }
             }
           ]
         }
       }
-    },
-    "BucketBackupPolicy": {
-      "Properties": {
-        "Roles": [
-          {
-            "Ref": "WorkItemBucketBackupRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:GetReplicationConfiguration",
-                "s3:ListBucket"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:s3:::",
-                      {
-                        "Ref": "RecordServiceS3Bucket"
-                      }
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": [
-                "s3:GetObjectVersion",
-                "s3:GetObjectVersionAcl"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:s3:::",
-                      {
-                        "Ref": "RecordServiceS3Bucket"
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Action": [
-                "s3:ReplicateObject",
-                "s3:ReplicateDelete"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:s3:::",
-                      {
-                        "Fn::Join": [
-                          "-",
-                          [
-                            {
-                              "Ref": "AWS::Region"
-                            },
-                            {
-                              "Ref": "AWS::StackName"
-                            },
-                            "replicationbucket"
-                          ]
-                        ]
-                      },
-                      "/*"
-                    ]
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        "PolicyName": "BucketABCBackupPolicy"
-      },
-      "Type": "AWS::IAM::Policy"
     }
   }
 }

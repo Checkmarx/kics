@@ -1,117 +1,34 @@
 #this is a problematic code where the query should report a result(s)
 Resources:
-  RecordServiceS3Bucket:
-    Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Retain
+  SampleBucketPolicy3:
+    Type: 'AWS::S3::BucketPolicy'
     Properties:
-      ReplicationConfiguration:
-        Role:
-          'Fn::GetAtt':
-            - WorkItemBucketBackupRole
-            - Arn
-        Rules:
-          - Destination:
-              Bucket:
-                'Fn::Join':
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - 'Fn::Join':
-                        - '-'
-                        - - Ref: 'AWS::Region'
-                          - Ref: 'AWS::StackName'
-                          - replicationbucket
-              StorageClass: STANDARD
-            Id: Backup
-            Prefix: ''
-            Status: Enabled
-      VersioningConfiguration:
-        Status: Enabled
-  WorkItemBucketBackupRole:
-    Type: 'AWS::IAM::Role'
-    Properties:
-      AssumeRolePolicyDocument:
+      Bucket: !Ref DOC-EXAMPLE-BUCKET
+      PolicyDocument:
         Statement:
-          - Action:
-              - 's3:PutObject'
+          - Action: "PutObject"
             Effect: Allow
+            Resource: "*"
             Principal: "*"
-  AnotherRole:
-    Type: 'AWS::IAM::Role'
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'
+  SampleBucketPolicy4:
+    Type: 'AWS::S3::BucketPolicy'
     Properties:
-      AssumeRolePolicyDocument:
-        Statement:
-          - Action: "s3:PutObject"
-            Effect: Allow
-            Principal: "*"
-  BucketBackupPolicy:
-    Type: 'AWS::IAM::Policy'
-    Properties:
+      Bucket: !Ref DOC-EXAMPLE-BUCKET
       PolicyDocument:
         Statement:
           - Action:
-              - 's3:GetReplicationConfiguration'
-              - 's3:PutBucket'
+              - "PutObject"
+              - "GetObject"
             Effect: Allow
             Resource: "*"
-          - Action:
-              - 's3:GetObjectVersion'
-              - 's3:GetObjectVersionAcl'
-            Effect: Allow
-            Resource:
-              - 'Fn::Join':
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - Ref: RecordServiceS3Bucket
-                    - /*
-          - Action:
-              - 's3:ReplicateObject'
-              - 's3:ReplicateDelete'
-            Effect: Allow
-            Resource:
-              - 'Fn::Join':
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - 'Fn::Join':
-                        - '-'
-                        - - Ref: 'AWS::Region'
-                          - Ref: 'AWS::StackName'
-                          - replicationbucket
-                    - /*
-      PolicyName: BucketBackupPolicyABC
-      Roles:
-        - Ref: WorkItemBucketBackupRole
-  AnotherPolicy:
-    Type: 'AWS::IAM::Policy'
-    Properties:
-      PolicyDocument:
-        Statement:
-          - Action: "s3:PutBucket"
-            Effect: Allow
-            Resource: "*"
-          - Action:
-              - 's3:GetObjectVersion'
-              - 's3:GetObjectVersionAcl'
-            Effect: Allow
-            Resource:
-              - 'Fn::Join':
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - Ref: RecordServiceS3Bucket
-                    - /*
-          - Action:
-              - 's3:ReplicateObject'
-              - 's3:ReplicateDelete'
-            Effect: Allow
-            Resource:
-              - 'Fn::Join':
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - 'Fn::Join':
-                        - '-'
-                        - - Ref: 'AWS::Region'
-                          - Ref: 'AWS::StackName'
-                          - replicationbucket
-                    - /*
-      PolicyName: AnotherPolicyABC
-      Roles:
-        - Ref: WorkItemBucketBackupRole
+            Principal: "*"
+            Condition:
+              StringLike:
+                'aws:Referer':
+                  - 'http://www.example.com/*'
+                  - 'http://example.net/*'
