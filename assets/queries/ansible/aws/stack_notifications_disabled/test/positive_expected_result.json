@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "CloudFormation Stack Notifications Disabled",
+    "queryName": "Stack Notifications Disabled",
     "severity": "MEDIUM",
     "line": 2
   }
