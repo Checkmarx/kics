@@ -1,89 +1,54 @@
 {
-  "document": [
-    {
-      "Resources": {
-        "ElasticsearchDomain": {
-          "Type": "AWS::Elasticsearch::Domain",
-          "Properties": {
-            "DomainName": {
-              "Ref": "DomainName"
-            },
-            "ElasticsearchVersion": {
-              "Ref": "ElasticsearchVersion"
-            },
-            "ElasticsearchClusterConfig": {
-              "InstanceCount": "1",
-              "InstanceType": {
-                "Ref": "InstanceType"
-              }
-            },
-            "EBSOptions": {
-              "Iops": 0,
-              "VolumeSize": 10,
-              "VolumeType": "standard",
-              "EBSEnabled": "true"
-            },
-            "SnapshotOptions": {
-              "AutomatedSnapshotStartHour": "0"
-            },
-            "AccessPolicies": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Action": "es:*",
-                  "Resource": "*",
-                  "Effect": "Deny",
-                  "Principal": {
-                    "AWS": "*"
-                  }
-                }
-              ]
-            },
-            "LogPublishingOptions": {
-              "SEARCH_SLOW_LOGS": {
-                "Enabled": "false",
-                "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs"
-              },
-              "INDEX_SLOW_LOGS": {
-                "Enabled": "true",
-                "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-index-slow-logs"
-              }
-            },
-            "AdvancedOptions": {
-              "rest.action.multi.allow_explicit_index": "true"
-            }
-          }
-        }
-      },
-      "id": "f4c9db60-7a5d-4fb4-8da0-a9b72768c288",
-      "file": "C:\\Users\\pedrom\\Desktop\\Data\\yaml\\yaml.yaml",
-      "AWSTemplateFormatVersion": "2010-09-09",
-      "Description": "ElasticsearchDomain resource",
-      "Parameters": {
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ElasticsearchDomain resource",
+  "Resources": {
+    "ElasticsearchDomain": {
+      "Type": "AWS::Elasticsearch::Domain",
+      "Properties": {
         "DomainName": {
-          "Description": "User defined Elasticsearch Domain name",
-          "Type": "String"
+          "Ref": "DomainName"
         },
         "ElasticsearchVersion": {
-          "Description": "User defined Elasticsearch Version",
-          "Type": "String"
+          "Ref": "ElasticsearchVersion"
         },
-        "InstanceType": {
-          "Type": "String"
+        "ElasticsearchClusterConfig": {
+          "InstanceCount": "1",
+          "InstanceType": {
+            "Ref": "InstanceType"
+          }
         },
-        "AvailabilityZone": {
-          "Type": "String"
+        "EBSOptions": {
+          "Iops": 0,
+          "VolumeSize": 10,
+          "VolumeType": "standard",
+          "EBSEnabled": "true"
         },
-        "CidrBlock": {
-          "Type": "String"
+        "SnapshotOptions": {
+          "AutomatedSnapshotStartHour": "0"
         },
-        "GroupDescription": {
-          "Type": "String"
+        "AccessPolicies": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "es:*",
+              "Resource": "*",
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*"
+              }
+            }
+          ]
         },
-        "SGName": {
-          "Type": "String"
+        "LogPublishingOptions": {
+          "SEARCH_SLOW_LOGS": {
+            "Enabled": "false",
+            "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs"
+          }
+        },
+        "AdvancedOptions": {
+          "rest.action.multi.allow_explicit_index": "true"
         }
       }
     }
-  ]
+  }
 }

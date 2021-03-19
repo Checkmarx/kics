@@ -1,79 +1,73 @@
 {
-  "document": [
-    {
-      "Resources": {
-        "ElasticsearchDomain": {
-          "Type": "AWS::Elasticsearch::Domain",
-          "Properties": {
-            "ElasticsearchVersion": {
-              "Ref": "ElasticsearchVersion"
-            },
-            "ElasticsearchClusterConfig": {
-              "InstanceCount": "1",
-              "InstanceType": {
-                "Ref": "InstanceType"
-              }
-            },
-            "EBSOptions": {
-              "VolumeSize": 10,
-              "VolumeType": "standard",
-              "EBSEnabled": "true",
-              "Iops": 0
-            },
-            "SnapshotOptions": {
-              "AutomatedSnapshotStartHour": "0"
-            },
-            "AccessPolicies": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Deny",
-                  "Principal": {
-                    "AWS": "*"
-                  },
-                  "Action": "es:*",
-                  "Resource": "*"
-                }
-              ]
-            },
-            "AdvancedOptions": {
-              "rest.action.multi.allow_explicit_index": "true"
-            },
-            "DomainName": {
-              "Ref": "DomainName"
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "ElasticsearchDomain resource",
+  "Parameters": {
+    "DomainName": {
+      "Description": "User defined Elasticsearch Domain name",
+      "Type": "String"
+    },
+    "ElasticsearchVersion": {
+      "Description": "User defined Elasticsearch Version",
+      "Type": "String"
+    },
+    "InstanceType": {
+      "Type": "String"
+    },
+    "AvailabilityZone": {
+      "Type": "String"
+    },
+    "CidrBlock": {
+      "Type": "String"
+    },
+    "GroupDescription": {
+      "Type": "String"
+    },
+    "SGName": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "ElasticsearchDomain": {
+      "Type": "AWS::Elasticsearch::Domain",
+      "Properties": {
+        "EBSOptions": {
+          "EBSEnabled": "true",
+          "Iops": 0,
+          "VolumeSize": 10,
+          "VolumeType": "standard"
+        },
+        "SnapshotOptions": {
+          "AutomatedSnapshotStartHour": "0"
+        },
+        "AccessPolicies": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Action": "es:*",
+              "Resource": "*"
             }
-          }
-        }
-      },
-      "id": "7db6a2f8-2f3a-40d1-b150-eb6b5faccabf",
-      "file": "C:\\Users\\pedrom\\Desktop\\Data\\yaml\\yaml.yaml",
-      "AWSTemplateFormatVersion": "2010-09-09",
-      "Description": "ElasticsearchDomain resource",
-      "Parameters": {
-        "AvailabilityZone": {
-          "Type": "String"
+          ]
         },
-        "CidrBlock": {
-          "Type": "String"
-        },
-        "GroupDescription": {
-          "Type": "String"
-        },
-        "SGName": {
-          "Type": "String"
+        "AdvancedOptions": {
+          "rest.action.multi.allow_explicit_index": "true"
         },
         "DomainName": {
-          "Description": "User defined Elasticsearch Domain name",
-          "Type": "String"
+          "Ref": "DomainName"
         },
         "ElasticsearchVersion": {
-          "Description": "User defined Elasticsearch Version",
-          "Type": "String"
+          "Ref": "ElasticsearchVersion"
         },
-        "InstanceType": {
-          "Type": "String"
+        "ElasticsearchClusterConfig": {
+          "InstanceCount": "1",
+          "InstanceType": {
+            "Ref": "InstanceType"
+          }
         }
       }
     }
-  ]
+  }
 }

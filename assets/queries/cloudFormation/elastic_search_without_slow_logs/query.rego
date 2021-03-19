@@ -32,17 +32,18 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	document := input.document[i]
+	resource := document.Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
 	properties := resource.Properties
 	object.get(properties, "LogPublishingOptions", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.LogPublishingOptions", [name]),
+		"documentId": document.id,
+		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions exists", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions doe snot exist", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not exist", [name]),
 	}
 }
 
