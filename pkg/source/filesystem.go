@@ -64,7 +64,7 @@ func (s *FileSystemSourceProvider) GetBasePath() string {
 }
 
 // GetSources tries to open file or directory and execute sink function on it
-func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink) error {
+func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
@@ -88,9 +88,26 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string, ext
 			return err
 		}
 
+		/*
+			------------------------
+				HELM RENDER PART			possible position to place generic render
+			------------------------
+		*/
+		// possible logic to determine if we want to render helm
+		if info.IsDir() {
+			err = resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
+			if err != nil {
+				sentry.CaptureException(err)
+				log.Err(err).
+					Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+			}
+		}
+		// -------------------------------------------------
+
 		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path); shouldSkip {
 			return skipFolder
 		}
+
 		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
 			return errors.Wrap(err, "failed to open file")

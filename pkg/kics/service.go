@@ -8,6 +8,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
@@ -20,7 +21,7 @@ import (
 // GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
 	GetBasePath() string
-	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink) error
+	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink, resolverSink source.ResolverSink) error
 }
 
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
@@ -52,6 +53,7 @@ type Service struct {
 	Parser         *parser.Parser
 	Inspector      *engine.Inspector
 	Tracker        Tracker
+	Resolver       *resolver.Resolver
 }
 
 // StartScan executes scan over the context, using the scanID as reference
@@ -93,6 +95,43 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 			}
 
 			return errors.Wrap(err, "failed to save file content")
+		},
+		func(ctx context.Context, filename string) error {
+			kind := s.Resolver.GetType(filename)
+			if kind == model.KindCOMMON {
+				return nil
+			}
+			resFiles, err := s.Resolver.Resolve(filename, kind)
+			if err != nil {
+				return errors.Wrap(err, "failed to render file content")
+			}
+			for _, rfile := range resFiles.File {
+				documents, _, err := s.Parser.Parse(rfile.FileName, rfile.Content)
+				if err != nil {
+					return errors.Wrap(err, "failed to parse file content")
+				}
+				for _, document := range documents {
+					_, err = json.Marshal(document)
+					if err != nil {
+						sentry.CaptureException(err)
+						log.Err(err).Msgf("failed to marshal content in file: %s", rfile.FileName)
+						continue
+					}
+
+					file := model.FileMetadata{
+						ID:           uuid.New().String(),
+						ScanID:       scanID,
+						Document:     document,
+						OriginalData: string(rfile.OriginalData),
+						Kind:         kind,
+						FileName:     rfile.FileName,
+						Content:      string(rfile.Content),
+						HelmID:       rfile.SplitID,
+					}
+					files = s.saveToFile(ctx, &file, files)
+				}
+			}
+			return nil
 		},
 	); err != nil {
 		return errors.Wrap(err, "failed to read sources")

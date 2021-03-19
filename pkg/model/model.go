@@ -12,6 +12,7 @@ const (
 	KindYAML      FileKind = "YAML"
 	KindDOCKER    FileKind = "DOCKERFILE"
 	KindCOMMON    FileKind = "*"
+	KINDHELM      FileKind = "HELM"
 )
 
 // Constants to describe vulnerability's severity
@@ -68,6 +69,8 @@ type FileMetadata struct {
 	OriginalData string   `db:"orig_data"`
 	Kind         FileKind `db:"kind"`
 	FileName     string   `db:"file_name"`
+	Content      string
+	HelmID       string
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -110,6 +113,17 @@ type Vulnerability struct {
 type QueryConfig struct {
 	FileKind []FileKind
 	Platform string
+}
+
+type RenderedFiles struct {
+	File []RenderedFile
+}
+
+type RenderedFile struct {
+	FileName     string
+	Content      []byte
+	OriginalData []byte
+	SplitID      string
 }
 
 // Extensions represents a list of supported extensions

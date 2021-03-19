@@ -21,6 +21,8 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
@@ -291,6 +293,13 @@ func scan() error {
 		return err
 	}
 
+	combinedResolver, err := resolver.NewBuilder().
+		Add(&helm.Resolver{}).
+		Build()
+	if err != nil {
+		return err
+	}
+
 	store := storage.NewMemoryStorage()
 
 	service := &kics.Service{
@@ -299,6 +308,7 @@ func scan() error {
 		Parser:         combinedParser,
 		Inspector:      inspector,
 		Tracker:        t,
+		Resolver:       combinedResolver,
 	}
 
 	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
