@@ -256,6 +256,8 @@ func GenerateReport(path, filename string, body interface{}, formats []string) e
 
 // ValidateReportFormats returns an error if output format is not supported
 func ValidateReportFormats(formats []string) error {
+	log.Trace().Msg("validating report formats")
+
 	validFormats := make([]string, len(reportGenerators))
 	for reportFormats := range reportGenerators {
 		validFormats = append(validFormats, reportFormats)
@@ -267,6 +269,7 @@ func ValidateReportFormats(formats []string) error {
 			)
 		}
 	}
+	log.Trace().Msg("valid report formats provided")
 	return nil
 }
 

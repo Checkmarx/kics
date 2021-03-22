@@ -99,7 +99,7 @@ func NewInspector(
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
-	log.Debug().Msg("Creating new inspector")
+	log.Trace().Msg("engine.NewInspector()")
 
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
@@ -115,6 +115,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
+		log.Trace().Msgf("get %s query libraries", metadata.Platform)
 		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)

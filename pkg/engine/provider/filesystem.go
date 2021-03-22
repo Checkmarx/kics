@@ -105,7 +105,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, extensions mo
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).
-				Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
+				Msgf("filesystem files provider couldn't parse file, file=%s", info.Name())
 		}
 		return nil
 	})

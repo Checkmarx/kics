@@ -45,7 +45,7 @@ var (
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types []string) *FilesystemSource {
-	log.Debug().Msg("Creating new filesystem source")
+	log.Trace().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
 		types = []string{""}
@@ -91,7 +91,6 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-
 	pathToLib := GetPathToLibrary(platform, s.Source)
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))

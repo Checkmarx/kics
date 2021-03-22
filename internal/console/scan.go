@@ -44,11 +44,14 @@ var (
 	cfgFile           string
 	verbose           bool
 	logFile           bool
+	logLevel          string
 	noProgress        bool
 	types             []string
 	noColor           bool
 	min               bool
 	outputLines       int
+	//go:embed img/kics-console
+	banner string
 )
 
 var scanCmd = &cobra.Command{
@@ -194,6 +197,7 @@ func initScanCmd() {
 	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
+	scanCmd.Flags().StringVarP(&logLevel, "log-level", "", "INFO", "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
@@ -233,11 +237,31 @@ func initScanCmd() {
 	scanCmd.AddCommand(listPlatformsCmd)
 }
 
-func setupLogs() error {
-	log.Trace().Msg("setup up logs")
+func setLogLevel() {
+	switch logLevel {
+	case "TRACE":
+		zerolog.SetGlobalLevel(zerolog.TraceLevel)
+	case "DEBUG":
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	case "INFO":
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	case "WARN":
+		zerolog.SetGlobalLevel(zerolog.WarnLevel)
+	case "ERROR":
+		zerolog.SetGlobalLevel(zerolog.ErrorLevel)
+	case "FATAL":
+		zerolog.SetGlobalLevel(zerolog.FatalLevel)
+	default:
+		log.Warn().Msg("invalid log level, setting default INFO level")
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	}
+}
 
+func setupLogs() error {
 	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
+
+	setLogLevel()
 
 	if verbose {
 		log.Debug().Msg("verbose mode, redirecting logs to stdout")
@@ -288,32 +312,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-//go:embed img/kics-console
-var s string
-
-func scan() error {
-	log.Debug().Msg("starting scan")
-	if noColor {
-		log.Debug().Msg("desabling colors")
-		color.Disable()
-	}
-
-	printer := consoleHelpers.NewPrinter(min)
-	printer.Success.Printf("\n%s\n\n", s)
-	fmt.Printf("Scanning with %s\n\n", getVersion())
-
-	if errlog := setupLogs(); errlog != nil {
-		return errlog
-	}
-	scanStartTime := time.Now()
-
-	querySource := source.NewFilesystemSource(queryPath, types)
-
-	t, err := tracker.NewTracker(outputLines)
-	if err != nil {
-		return err
-	}
-
+func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) {
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
 	excludeQueries := source.ExcludeQueries{
@@ -323,12 +322,18 @@ func scan() error {
 
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	return inspector, nil
+}
 
+func createService(inspector *engine.Inspector,
+	t kics.Tracker,
+	store kics.Storage,
+	querySource source.FilesystemSource) (*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider()
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	combinedParser, err := parser.NewBuilder().
@@ -338,46 +343,81 @@ func scan() error {
 		Add(&dockerParser.Parser{}).
 		Build(querySource.Types)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	store := storage.NewMemoryStorage()
-
-	service := &kics.Service{
+	return &kics.Service{
 		SourceProvider: filesSource,
 		Storage:        store,
 		Parser:         combinedParser,
 		Inspector:      inspector,
 		Tracker:        t,
+	}, nil
+}
+
+func scan() error {
+	log.Trace().Msg("starting scan()")
+
+	if errlog := setupLogs(); errlog != nil {
+		return errlog
+	}
+
+	if noColor {
+		log.Debug().Msg("colors disabled")
+		color.Disable()
+	}
+
+	printer := consoleHelpers.NewPrinter(min)
+	printer.Success.Printf("\n%s\n\n", banner)
+
+	versionMsg := fmt.Sprintf("Scanning with %s\n\n", getVersion())
+	log.Info().Msgf(versionMsg)
+	fmt.Println(versionMsg)
+
+	scanStartTime := time.Now()
+
+	t, err := tracker.NewTracker(outputLines)
+	if err != nil {
+		log.Err(err)
+		return err
+	}
+
+	querySource := source.NewFilesystemSource(queryPath, types)
+	store := storage.NewMemoryStorage()
+
+	inspector, err := createInspector(t, querySource)
+	if err != nil {
+		log.Err(err)
+	}
+
+	service, err := createService(inspector, t, store, *querySource)
+	if err != nil {
+		log.Err(err)
 	}
 
 	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
+		log.Err(scanErr)
 		return scanErr
 	}
 
-	result, err := store.GetVulnerabilities(ctx, scanID)
+	results, err := store.GetVulnerabilities(ctx, scanID)
 	if err != nil {
+		log.Err(err)
 		return err
 	}
 
 	files, err := store.GetFiles(ctx, scanID)
 	if err != nil {
+		log.Err(err)
 		return err
 	}
 
 	elapsed := time.Since(scanStartTime)
 
-	counters := model.Counters{
-		ScannedFiles:           t.FoundFiles,
-		ParsedFiles:            t.ParsedFiles,
-		TotalQueries:           t.LoadedQueries,
-		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
-		FailedSimilarityID:     t.FailedSimilarityID,
-	}
-
-	summary := model.CreateSummary(counters, result, scanID)
+	summary := getSummary(t, results)
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
+		log.Err(err)
 		return err
 	}
 
@@ -390,6 +430,18 @@ func scan() error {
 	}
 
 	return nil
+}
+
+func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summary {
+	counters := model.Counters{
+		ScannedFiles:           t.FoundFiles,
+		ParsedFiles:            t.ParsedFiles,
+		TotalQueries:           t.LoadedQueries,
+		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
+		FailedSimilarityID:     t.FailedSimilarityID,
+	}
+
+	return model.CreateSummary(counters, results, scanID)
 }
 
 func resolveOutputs(
@@ -413,6 +465,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	if outputPath == "" {
 		return nil
 	}
+	log.Debug().Msgf("writing output to %s", outputPath)
+
 	if strings.Contains(outputPath, ".") {
 		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
 			formats = []string{filepath.Ext(outputPath)[1:]}
