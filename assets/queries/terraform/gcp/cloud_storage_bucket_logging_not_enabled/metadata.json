@@ -2,7 +2,7 @@
 	"id": "d6cabc3a-d57e-48c2-b341-bf3dd4f4a120",
 	"queryName": "Cloud Storage Bucket Logging Not Enabled",
 	"severity": "HIGH",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "Cloud storage bucket with logging not enabled",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#log_bucket",
 	"platform": "Terraform"

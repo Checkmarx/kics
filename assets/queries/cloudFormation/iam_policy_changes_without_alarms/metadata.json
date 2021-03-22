@@ -1,9 +1,0 @@
-{
-	"id": "515f4046-9ddb-4263-8745-42ad66e4f5ea",
-	"queryName": "IAM Policy Changes Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Monitoring",
-	"descriptionText": "A log metric filter and alarm should exist for IAM policy changes",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html",
-	"platform": "CloudFormation"
-}

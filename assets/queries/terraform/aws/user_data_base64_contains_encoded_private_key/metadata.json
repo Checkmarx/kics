@@ -2,7 +2,7 @@
 	"id": "443488f5-c734-460b-a36d-5b3f330174dc",
 	"queryName": "User Data Base64 Contains Encoded Private Key",
 	"severity": "HIGH",
-	"category": "Data Security",
+	"category": "Encryption",
 	"descriptionText": "User Data Base64 contains an encoded RSA Private Key",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64",
 	"platform": "Terraform"

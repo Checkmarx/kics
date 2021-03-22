@@ -2,7 +2,7 @@
 	"id": "4552b71f-0a2a-4bc4-92dd-ed7ec1b4674c",
 	"queryName": "S3 Bucket Logging Disabled",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "Server Access Logging must be enabled on S3 Buckets so that all changes are logged and trackable",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig",
 	"platform": "CloudFormation"

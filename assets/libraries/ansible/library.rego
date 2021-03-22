@@ -1,12 +1,48 @@
 package generic.ansible
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
+tasks := TasksPerDocument
+
+TasksPerDocument[id] = result {
+	document := input.document[i]
+	id := document.id
+	result := getTasks(document)
 }
+
+getTasks(document) = result {
+	document.playbooks[0].tasks
+	result := [task |
+		playbook := document.playbooks[0].tasks[_]
+		task := getTasksFromBlocks(playbook)[_]
+	]
+} else = result {
+	result := [task |
+		playbook := document.playbooks[_]
+		task := getTasksFromBlocks(playbook)[_]
+	]
+}
+
+getTasksFromBlocks(playbook) = result {
+	playbook.block
+	result := [task |
+		walk(playbook, [path, task])
+		is_object(task)
+		not task.block
+		validPath(path)
+	]
+} else = [playbook] {
+	true
+}
+
+validPath(path) {
+	count(path) > 1
+	validGroup(path[minus(count(path), 2)])
+}
+
+validGroup("block") = true
+
+validGroup("always") = true
+
+validGroup("rescue") = true
 
 checkState(task) {
 	state := object.get(task, "state", "undefined")
@@ -66,4 +102,38 @@ isPortInBounds(low, high, portNumber) {
 	to_number(high) >= portNumber
 } else = false {
 	true
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.from_port != -1
+	rule.from_port <= portNumber
+	rule.to_port >= portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.ports == portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.ports[_] == portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	mports := split(rule.ports, "-")
+	to_number(mports[0]) <= portNumber
+	to_number(mports[1]) >= portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	mports := split(rule.ports[_], "-")
+	to_number(mports[0]) <= portNumber
+	to_number(mports[1]) >= portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.from_port == -1
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.to_port == -1
 }

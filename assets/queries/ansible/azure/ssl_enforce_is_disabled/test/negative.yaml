@@ -1,4 +1,3 @@
----
 - name: Create (or update) PostgreSQL Server
   azure.azcollection.azure_rm_postgresqlserver:
     resource_group: myResourceGroup
@@ -44,7 +43,7 @@
       tier: Basic
     location: eastus
     storage_mb: 1024
-    enforce_ssl: True
+    enforce_ssl: true
     admin_username: cloudsa
     admin_password: password
 - name: Create (or update) PostgreSQL Server5
@@ -56,7 +55,7 @@
       tier: Basic
     location: eastus
     storage_mb: 1024
-    enforce_ssl: "yes"
+    enforce_ssl: yes
     admin_username: cloudsa
     admin_password: password
 - name: Create (or update) PostgreSQL Server6
@@ -68,7 +67,7 @@
       tier: Basic
     location: eastus
     storage_mb: 1024
-    enforce_ssl: "Yes"
+    enforce_ssl: Yes
     admin_username: cloudsa
     admin_password: password
 - name: Create (or update) PostgreSQL Server7
@@ -80,7 +79,7 @@
       tier: Basic
     location: eastus
     storage_mb: 1024
-    enforce_ssl: "true"
+    enforce_ssl: 'true'
     admin_username: cloudsa
     admin_password: password
 - name: Create (or update) PostgreSQL Server8
@@ -92,6 +91,6 @@
       tier: Basic
     location: eastus
     storage_mb: 1024
-    enforce_ssl: "True"
+    enforce_ssl: 'True'
     admin_username: cloudsa
     admin_password: password

@@ -1,42 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.rds_instance", "rds_instance"}
+
 CxPolicy[result] {
-	document = input.document[i]
-	tasks := ansLib.getTasks(document)
-	rds_instance := tasks[_]
-	rds_instanceBody := rds_instance["community.aws.rds_instance"]
-	rds_instanceName := rds_instance.name
-	is_disabled(rds_instanceBody.enable_iam_database_authentication)
+	task := ansLib.tasks[id][t]
+	rds_instance := task[modules[m]]
+	ansLib.checkState(rds_instance)
+
+	ansLib.isAnsibleFalse(rds_instance.enable_iam_database_authentication)
+
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.enable_iam_database_authentication", [rds_instanceName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_iam_database_authentication", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}}.enable_iam_database_authentication should be enabled.", [rds_instanceName]),
-		"keyActualValue": sprintf("{{%s}}.enable_iam_database_authentication is disabled", [rds_instanceName]),
+		"keyExpectedValue": "rds_instance.enable_iam_database_authentication should be enabled",
+		"keyActualValue": "rds_instance.enable_iam_database_authentication is disabled",
 	}
 }
 
 CxPolicy[result] {
-	document = input.document[i]
-	tasks := ansLib.getTasks(document)
-	rds_instance := tasks[_]
-	rds_instanceBody := rds_instance["community.aws.rds_instance"]
-	rds_instanceName := rds_instance.name
-	object.get(rds_instanceBody, "enable_iam_database_authentication", "undefined") == "undefined"
+	task := ansLib.tasks[id][t]
+	rds_instance := task[modules[m]]
+	ansLib.checkState(rds_instance)
+
+	object.get(rds_instance, "enable_iam_database_authentication", "undefined") == "undefined"
+
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}", [rds_instanceName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("{{%s}}.enable_iam_database_authentication should be defined", [rds_instanceName]),
-		"keyActualValue": sprintf("{{%s}}.enable_iam_database_authentication is undefined", [rds_instanceName]),
+		"keyExpectedValue": "rds_instance.enable_iam_database_authentication should be defined",
+		"keyActualValue": "rds_instance.enable_iam_database_authentication is undefined",
 	}
 }
-
-is_disabled(value) {
-	negativeValue = {"False", false, "false", "No", "no"}
-	value == negativeValue[_]
-} else = false {
-	true
-}
-

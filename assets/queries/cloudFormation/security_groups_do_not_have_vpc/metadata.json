@@ -1,9 +1,9 @@
 {
 	"id": "493d9591-6249-47bf-8dc0-5c10161cc558",
-	"queryName": "Security Groups Do Not Have VPC",
+	"queryName": "Security Groups Without VPC",
 	"severity": "MEDIUM",
-	"category": "Network Security",
-	"descriptionText": "Security Groups must have VPC.",
+	"category": "Networking and Firewall",
+	"descriptionText": "Security Groups must have a VPC.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
 	"platform": "CloudFormation"
 }

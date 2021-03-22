@@ -2,7 +2,6 @@ package test
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/url"
 	"os"
 	"path"
@@ -10,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -96,7 +95,7 @@ func loadQueries(tb testing.TB) []queryEntry {
 	var queriesDir []queryEntry
 
 	for queriesPath, queryConfig := range queriesPaths {
-		fs, err := ioutil.ReadDir(queriesPath)
+		fs, err := os.ReadDir(queriesPath)
 		require.Nil(tb, err)
 
 		for _, f := range fs {
@@ -115,7 +114,7 @@ func loadQueries(tb testing.TB) []queryEntry {
 func getFileMetadatas(t testing.TB, filesPath []string) model.FileMetadatas {
 	fileMetadatas := make(model.FileMetadatas, 0)
 	for _, path := range filesPath {
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		require.NoError(t, err)
 		fileMetadatas = append(fileMetadatas, getFilesMetadatasWithContent(t, path, content)...)
 	}
@@ -153,7 +152,7 @@ func getCombinedParser() *parser.Parser {
 }
 
 func getQueryContent(queryDir string) (string, error) {
-	fullQueryPath := filepath.Join(queryDir, query.QueryFileName)
+	fullQueryPath := filepath.Join(queryDir, source.QueryFileName)
 	content, err := getFileContent(fullQueryPath)
 	return string(content), err
 }
@@ -164,7 +163,7 @@ func getSampleContent(tb testing.TB, params *testCaseParamsType) ([]byte, error)
 }
 
 func getFileContent(filePath string) ([]byte, error) {
-	return ioutil.ReadFile(filePath)
+	return os.ReadFile(filePath)
 }
 
 func getSamplePath(tb testing.TB, params *testCaseParamsType) string {
@@ -206,8 +205,8 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	pathToLib := query.GetPathToLibrary(platform, "../")
-	content, err := ioutil.ReadFile(pathToLib)
+	pathToLib := source.GetPathToLibrary(platform, "../")
+	content, err := os.ReadFile(pathToLib)
 
 	if err != nil {
 		log.Err(err)

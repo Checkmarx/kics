@@ -1,0 +1,9 @@
+{
+	"id": "a58d1a2d-4078-4b80-855b-84cc3f7f4540",
+	"queryName": "IAM Group Inline Policies",
+	"severity": "MEDIUM",
+	"category": "Encryption",
+	"descriptionText": "IAM Groups should not use inline policies and instead use managed policies. If a group is deleted, the inline policy is also deleted",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
+	"platform": "CloudFormation"
+}

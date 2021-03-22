@@ -1,4 +1,3 @@
----
 - name: Create (or update) SQL Server
   azure_rm_sqlserver:
     resource_group: myResourceGroup

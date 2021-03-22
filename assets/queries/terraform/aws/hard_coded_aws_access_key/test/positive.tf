@@ -1,7 +1,7 @@
 #### INSTANCE HTTP ####
 
 # Create instance
-resource "aws_instance" "http" {
+resource "aws_instance" "positive1" {
   for_each      = var.http_instance_names
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
@@ -18,7 +18,7 @@ resource "aws_instance" "http" {
 }
 
 # Attach floating ip on instance http
-resource "aws_eip" "public_http" {
+resource "aws_eip" "positive3" {
   for_each   = var.http_instance_names
   vpc        = true
   instance   = aws_instance.http[each.key].id
@@ -28,7 +28,7 @@ resource "aws_eip" "public_http" {
   }
 }
 
-resource "aws_instance" "long_access_key" {
+resource "aws_instance" "positive2" {
   for_each      = var.http_instance_names
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"

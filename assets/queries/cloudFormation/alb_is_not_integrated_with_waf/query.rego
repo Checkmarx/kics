@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.Type=AWS::WAFRegional::WebACLAssociation.ResourceArn.Ref=%s' is defined", [name]),
-		"keyActualValue": sprintf("'Resources.Type=AWS::WAFRegional::WebACLAssociation.ResourceArn.Ref=%s' is undefined", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s' has an 'internal' scheme and a 'WebACLAssociation' associated", [name]),
+		"keyActualValue": sprintf("'Resources.%s' doesn't have an 'internal' scheme or a 'WebACLAssociation' associated", [name]),
 	}
 }
 

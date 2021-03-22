@@ -1,4 +1,4 @@
-resource "aws_iam_role" "test_role" {
+resource "aws_iam_role" "positive1" {
   name = "test_role"
 
   assume_role_policy = <<EOF
@@ -23,7 +23,7 @@ EOF
   }
 }
 
-resource "aws_iam_role" "test_role2" {
+resource "aws_iam_role" "positive2" {
   name = "test_role2"
 
   assume_role_policy = <<EOF

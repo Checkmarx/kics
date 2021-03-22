@@ -2,7 +2,7 @@
 	"id": "86a248ab-0e01-4564-a82a-878303e253bb",
 	"queryName": "Elastic Search Domain Encryption At Rest Disabled",
 	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Elastic Search Domain should have encrypt data at rest.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-encryptionatrestoptions",
 	"platform": "CloudFormation"

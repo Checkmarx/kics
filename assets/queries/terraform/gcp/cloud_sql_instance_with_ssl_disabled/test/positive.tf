@@ -1,4 +1,4 @@
-resource "google_sql_database_instance" "instance" {
+resource "google_sql_database_instance" "positive1" {
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
@@ -11,7 +11,7 @@ resource "google_sql_database_instance" "instance" {
   }
 }
 
-resource "google_sql_database_instance" "instance2" {
+resource "google_sql_database_instance" "positive2" {
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
@@ -28,7 +28,7 @@ resource "google_sql_database_instance" "instance2" {
   }
 }
 
-resource "google_sql_database_instance" "instance3" {
+resource "google_sql_database_instance" "positive3" {
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"

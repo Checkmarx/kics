@@ -2,7 +2,7 @@
 	"id": "88d55d94-315d-4564-beee-d2d725feab11",
 	"queryName": "SageMaker Enabling Internet Access",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "SageMaker must have disabled internet access and root access for Creating Notebook Instances.",
 	"descriptionUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown",
 	"platform": "CloudFormation"

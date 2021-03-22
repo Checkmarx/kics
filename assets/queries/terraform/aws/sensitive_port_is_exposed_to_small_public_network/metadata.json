@@ -2,9 +2,9 @@
 	"id": "e35c16a2-d54e-419d-8546-a804d8e024d0",
 	"queryName": "Sensitive Port Is Exposed To Small Public Network",
 	"severity": "MEDIUM",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "A sensitive port, such as port 23 or port 110, is open for a small public network in either TCP or UDP protocol",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
 	"platform": "Terraform",
-  "aggregation": 48
+	"aggregation": 48
 }

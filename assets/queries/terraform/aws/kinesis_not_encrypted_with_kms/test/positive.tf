@@ -1,4 +1,4 @@
-resource "aws_kinesis_stream" "test_stream" {
+resource "aws_kinesis_stream" "positive1" {
   name             = "terraform-kinesis-test"
   shard_count      = 1
   retention_period = 48
@@ -16,7 +16,7 @@ resource "aws_kinesis_stream" "test_stream" {
 
 
 
-resource "aws_kinesis_stream" "test_stream2" {
+resource "aws_kinesis_stream" "positive2" {
   name             = "terraform-kinesis-test"
   shard_count      = 1
   retention_period = 48
@@ -38,7 +38,7 @@ resource "aws_kinesis_stream" "test_stream2" {
 
 
 
-resource "aws_kinesis_stream" "test_stream3" {
+resource "aws_kinesis_stream" "positive3" {
   name             = "terraform-kinesis-test"
   shard_count      = 1
   retention_period = 48

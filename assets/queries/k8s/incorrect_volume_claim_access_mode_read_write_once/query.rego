@@ -2,6 +2,9 @@ package Cx
 
 CxPolicy[result] {
 	document := input.document[i]
+
+	document.kind == "StatefulSet"
+
 	volumeClaims := document.spec.volumeClaimTemplates
 
 	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
@@ -20,6 +23,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
+
+	document.kind == "StatefulSet"
+
 	volumeClaims := document.spec.volumeClaimTemplates
 
 	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]

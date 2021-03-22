@@ -1,18 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"amazon.aws.cloudformation", "cloudformation"}
+	cloudformation := task[modules[m]]
+	ansLib.checkState(cloudformation)
 
-	object.get(task["amazon.aws.cloudformation"], "stack_policy", "undefined") == "undefined"
+	object.get(cloudformation, "stack_policy", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{amazon.aws.cloudformation}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "amazon.aws.cloudformation.stack_policy is set",
-		"keyActualValue": "amazon.aws.cloudformation.stack_policy is undefined",
+		"keyExpectedValue": "cloudformation.stack_policy is set",
+		"keyActualValue": "cloudformation.stack_policy is undefined",
 	}
 }

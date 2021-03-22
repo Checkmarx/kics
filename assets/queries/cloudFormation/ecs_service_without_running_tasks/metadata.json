@@ -2,7 +2,7 @@
 	"id": "79d745f0-d5f3-46db-9504-bef73e9fd528",
 	"queryName": "ECS Service Without Running Tasks",
 	"severity": "MEDIUM",
-	"category": "Operational",
+	"category": "Availability",
 	"descriptionText": "ECS Service should have at least 1 task running",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-deploymentconfiguration",
 	"platform": "CloudFormation"

@@ -1,25 +1,20 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
-	task.azure_rm_cosmosdbaccount
-	not task.azure_rm_cosmosdbaccount.tags
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_cosmosdbaccount", "azure_rm_cosmosdbaccount"}
+	cosmosdbaccount := task[modules[m]]
+	ansLib.checkState(cosmosdbaccount)
+
+	object.get(cosmosdbaccount, "tags", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.tags", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags is defined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{azure_rm_cosmosdbaccount}}.tags is undefined", [task.name]),
+		"keyExpectedValue": "azure_rm_cosmosdbaccount.tags is defined",
+		"keyActualValue": "azure_rm_cosmosdbaccount.tags is undefined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

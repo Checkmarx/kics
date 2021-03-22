@@ -1,0 +1,9 @@
+{
+  "id": "3b3b4411-ad1f-40e7-b257-a78a6bb9673a",
+  "queryName": "VPC Without Attached Subnet",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "VPCs without attached subnets may indicate that they are not being used",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html",
+  "platform": "CloudFormation"
+}

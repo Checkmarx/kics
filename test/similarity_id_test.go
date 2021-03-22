@@ -3,13 +3,13 @@ package test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
@@ -58,13 +58,14 @@ var (
 			name: "Changed Sample and Query SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim01/positive2.tf", fixtureDir),
 					queryFixturePath:  fmt.Sprintf("%s/tc-sim01/query.rego", fixtureDir),
 				}),
 			},
@@ -93,13 +94,14 @@ var (
 			name: "Changed Sample SimID Should Be Equal",
 			calls: []testParamsType{
 				getTestParams(&testCaseParamsType{
-					platform: "terraform",
-					queryDir: "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					platform:          "terraform",
+					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive1.tf", fixtureDir),
 				}),
 				getTestParams(&testCaseParamsType{
 					platform:          "terraform",
 					queryDir:          "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive.tf", fixtureDir),
+					sampleFixturePath: fmt.Sprintf("%s/tc-sim02/positive2.tf", fixtureDir),
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -133,7 +135,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive.tf",
+					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive1.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -160,8 +162,7 @@ var (
 )
 
 func TestInspectorSimilarityID(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	for _, tc := range testTable {
 		t.Run(tc.name, func(tt *testing.T) {
@@ -179,7 +180,7 @@ func TestInspectorSimilarityID(t *testing.T) {
 func getTestQueryID(params *testCaseParamsType) string {
 	var testQueryID string
 	if params.queryID == "" {
-		metadata := query.ReadMetadata(params.queryDir)
+		metadata := source.ReadMetadata(params.queryDir)
 		v := metadata["id"]
 		testQueryID = v.(string)
 	} else {
@@ -254,22 +255,23 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries().DoAndReturn(func() ([]model.QueryMetadata, error) {
-		metadata := query.ReadMetadata(testParams.queryDir)
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
+			metadata := source.ReadMetadata(testParams.queryDir)
 
-		// Override metadata ID with custom QueryID for testing
-		if testParams.queryID() != metadata["id"] {
-			metadata["id"] = testParams.queryID()
-		}
+			// Override metadata ID with custom QueryID for testing
+			if testParams.queryID() != metadata["id"] {
+				metadata["id"] = testParams.queryID()
+			}
 
-		q := model.QueryMetadata{
-			Query:    testParams.queryID(),
-			Content:  testParams.queryContent(t),
-			Metadata: metadata,
-			Platform: testParams.platform,
-		}
-		return []model.QueryMetadata{q}, nil
-	})
+			q := model.QueryMetadata{
+				Query:    testParams.queryID(),
+				Content:  testParams.queryContent(t),
+				Metadata: metadata,
+				Platform: testParams.platform,
+			}
+			return []model.QueryMetadata{q}, nil
+		})
 
 	queriesSource.EXPECT().GetGenericQuery("common").
 		DoAndReturn(func(string) (string, error) {
@@ -289,6 +291,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
+		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(t, err)

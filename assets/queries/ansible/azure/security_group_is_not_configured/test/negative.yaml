@@ -4,5 +4,5 @@
     resource_group: myResourceGroup
     virtual_network_name: myVirtualNetwork
     name: mySubnet
-    address_prefix_cidr: "10.1.0.0/24"
+    address_prefix_cidr: 10.1.0.0/24
     security_group: mySecurityGroup

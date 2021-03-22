@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("EFS resource '%s' should have file system tags associated", [name]),
-		"keyActualValue": sprintf("EFS resource '%s' doesn't have any file system tags associated", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.FileSystemTags' is defined", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.FileSystemTags' is undefined", [name]),
 	}
 }

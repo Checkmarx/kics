@@ -1,24 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	s3 := task["amazon.aws.aws_s3"]
-	s3Name := task.name
+	task := ansLib.tasks[id][t]
+	modules := {"amazon.aws.aws_s3", "aws_s3"}
+	s3 := task[modules[m]]
+	ansLib.checkState(s3)
 
-	hasPublicReadPermission(s3.permission)
+	startswith(s3.permission, "public-read")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.aws_s3}}.permission", [s3Name]),
-		"issueType": "WrongValue",
-		"keyExpectedValue": "amazon.aws.aws_s3 should not have read access for all user groups",
-		"keyActualValue": "amazon.aws.aws_s3 has read access for all user groups",
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.permission", [task.name, modules[m]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "aws_s3 should not have read access for all user groups",
+		"keyActualValue": "aws_s3 has read access for all user groups",
 	}
-}
-
-hasPublicReadPermission(value) {
-	startswith(value, "public-read")
 }

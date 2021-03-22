@@ -1,18 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	lambda := task.lambda_policy
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.lambda_policy", "lambda_policy"}
+	lambda := task[modules[m]]
+	ansLib.checkState(lambda)
+
 	lambdaAction(lambda.action)
 	principalAllowAPIGateway(lambda.principal)
 	re_match("/\\*/\\*$", lambda.source_arn)
-	clusterName := task.name
+
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{lambda_policy}}.source_arn", [clusterName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.source_arn", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "lambda_policy.source_arn should not be equal to '/*/*'",
 		"keyActualValue": "lambda_policy.source_arn is equal to '/*/*'",

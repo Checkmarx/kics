@@ -1,4 +1,4 @@
-resource "google_sql_database_instance" "no_config" {
+resource "google_sql_database_instance" "positive1" {
   name             = "master-instance"
   database_version = "POSTGRES_11"
   region           = "us-central1"
@@ -10,7 +10,7 @@ resource "google_sql_database_instance" "no_config" {
   }
 }
 
-resource "google_sql_database_instance" "public_authorized_network" {
+resource "google_sql_database_instance" "positive2" {
   name             = "postgres-instance-2"
   database_version = "POSTGRES_11"
 
@@ -27,7 +27,7 @@ resource "google_sql_database_instance" "public_authorized_network" {
   }
 }
 
-resource "google_sql_database_instance" "ipv4_enabled" {
+resource "google_sql_database_instance" "positive3" {
   name             = "master-instance"
   database_version = "POSTGRES_11"
   region           = "us-central1"
@@ -43,7 +43,7 @@ resource "google_sql_database_instance" "ipv4_enabled" {
   }
 }
 
-resource "google_sql_database_instance" "no_private_network_config" {
+resource "google_sql_database_instance" "positive4" {
   name             = "master-instance"
   database_version = "POSTGRES_11"
   region           = "us-central1"

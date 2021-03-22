@@ -2,7 +2,7 @@
 	"id": "b2e8752c-3497-4255-98d2-e4ae5b46bbf5",
 	"queryName": "S3 Bucket Without Server Side Encryption",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "S3 Buckets should have server-side encryption at rest enabled to protect sensitive data",
 	"descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/user-guide/default-bucket-encryption.html",
 	"platform": "CloudFormation"

@@ -1,4 +1,4 @@
-resource "google_compute_firewall" "rdp_not_allowed" {
+resource "google_compute_firewall" "negative1" {
   name    = "test-firewall"
   network = google_compute_network.default.name
 

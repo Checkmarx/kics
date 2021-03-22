@@ -1,4 +1,4 @@
-resource "aws_elasticsearch_domain" "example" {
+resource "aws_elasticsearch_domain" "negative1" {
 
   log_publishing_options {
     cloudwatch_log_group_arn = aws_cloudwatch_log_group.example.arn

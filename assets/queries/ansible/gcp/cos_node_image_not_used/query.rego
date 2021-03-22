@@ -3,19 +3,18 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	gcp_container := task["google.cloud.gcp_container_node_pool"]
-	image_type := gcp_container.config.image_type
-
+	task := ansLib.tasks[id][t]
+	modules := {"google.cloud.gcp_container_node_pool", "gcp_container_node_pool"}
+	gcp_container := task[modules[m]]
 	ansLib.checkState(gcp_container)
-	lower(image_type) != "cos"
+
+	lower(gcp_container.config.image_type) != "cos"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_node_pool}}.config.image_type", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.config.image_type", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'config.image_type' is equal to 'COS'",
-		"keyActualValue": "'config.image_type' is not equal to 'COS'",
+		"keyExpectedValue": "gcp_container_node_pool.config.image_type is equal to 'COS'",
+		"keyActualValue": "gcp_container_node_pool.config.image_type is not equal to 'COS'",
 	}
 }

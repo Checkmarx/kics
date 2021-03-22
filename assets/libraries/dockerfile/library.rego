@@ -14,7 +14,7 @@ getPackages(commands, command) = output {
 }
 
 withVersion(pack) {
-	regex.match("[A-Za-z0-9_-]+-[$](.+)", pack)
+	regex.match("[A-Za-z0-9_-]+[-:][$](.+)", pack)
 }
 
 withVersion(pack) {

@@ -1,4 +1,4 @@
-resource "aws_launch_configuration" "as_conf" {
+resource "aws_launch_configuration" "positive1" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"
@@ -13,7 +13,7 @@ resource "aws_launch_configuration" "as_conf" {
   }
 }
 
-resource "aws_launch_configuration" "as_conf2" {
+resource "aws_launch_configuration" "positive2" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"
@@ -25,6 +25,14 @@ resource "aws_launch_configuration" "as_conf2" {
 
   ebs_block_device {
     device_name = "/dev/xvda1"
+    encrypted = false
+  }
+}
+
+resource "aws_launch_configuration" "positive3" {
+  name = "test-launch-config"
+
+  root_block_device {
     encrypted = false
   }
 }

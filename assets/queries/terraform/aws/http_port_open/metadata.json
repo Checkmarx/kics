@@ -2,7 +2,7 @@
 	"id": "ffac8a12-322e-42c1-b9b9-81ff85c39ef7",
 	"queryName": "HTTP Port Open",
 	"severity": "HIGH",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "HTTP port is open to the internet",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
 	"platform": "Terraform"

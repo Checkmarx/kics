@@ -1,8 +1,11 @@
+//go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE
 package model
 
 import (
 	"sort"
 	"strings"
+
+	_ "github.com/mailru/easyjson/gen" //nolint
 )
 
 // Constants to describe what kind of file refers
@@ -54,6 +57,12 @@ type Severity string
 // IssueType is the issue's type string representation
 type IssueType string
 
+// VulnLines is the lines containing and adjecent to the vulnerability line with their respective positions
+type VulnLines struct {
+	Positions []int
+	Lines     []string
+}
+
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
 	ID           string `db:"id"`
@@ -85,11 +94,13 @@ type Vulnerability struct {
 	FileName         string    `db:"file_name" json:"fileName"`
 	QueryID          string    `db:"query_id" json:"queryID"`
 	QueryName        string    `db:"query_name" json:"queryName"`
+	QueryURI         string    `json:"-"`
 	Category         string    `json:"category"`
 	Description      string    `json:"description"`
 	Platform         string    `db:"platform" json:"platform"`
 	Severity         Severity  `json:"severity"`
 	Line             int       `json:"line"`
+	VulnLines        VulnLines `json:"vulnLines"`
 	IssueType        IssueType `db:"issue_type" json:"issueType"`
 	SearchKey        string    `db:"search_key" json:"searchKey"`
 	SearchValue      string    `db:"search_value" json:"searchValue"`

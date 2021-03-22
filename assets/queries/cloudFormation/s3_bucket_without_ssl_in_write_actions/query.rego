@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [bucketName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s bucket should have a policy that enforces SSL", [bucketName]),
+		"keyExpectedValue": sprintf("Resources.%s bucket has a policy that enforces SSL", [bucketName]),
 		"keyActualValue": sprintf("Resources.%s bucket doesn't have a policy", [bucketName]),
 	}
 }
@@ -27,20 +27,20 @@ CxPolicy[result] {
 
 	bucketName := resource
 
-    bucketHasPolicy(bucketName, resources)
+	bucketHasPolicy(bucketName, resources)
 	not bucketHasPolicyWithValidSslVerification(bucketName, resources)
 
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [bucketName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s bucket should have a policy that enforces SSL", [bucketName]),
+		"keyExpectedValue": sprintf("Resources.%s bucket has a policy that enforces SSL", [bucketName]),
 		"keyActualValue": sprintf("Resources.%s bucket doesn't have a policy or has a policy that doesn't enforce SSL", [bucketName]),
 	}
 }
 
-bucketHasPolicy(bucketName, resources){
-    some resource
+bucketHasPolicy(bucketName, resources) {
+	some resource
 	resources[resource].Type == "AWS::S3::BucketPolicy"
 
 	policy = resources[resource2]

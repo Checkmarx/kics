@@ -2,7 +2,7 @@
   "id": "6db6e0c2-32a3-4a2e-93b5-72c35f4119db",
   "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
   "severity": "HIGH",
-  "category": "Filesystem",
+  "category": "Build Process",
   "descriptionText": "When a COPY command has more than two arguments, the last one should end with a slash",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#copy",
   "platform": "Dockerfile"

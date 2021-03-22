@@ -2,7 +2,7 @@
 	"id": "89827c57-5a8a-49eb-9731-976a606d70db",
 	"queryName": "Workspace Without Encryption",
 	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Workspaces should have encryption enabled",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html",
 	"platform": "CloudFormation"

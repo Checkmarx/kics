@@ -3,18 +3,18 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	dns := task["google.cloud.gcp_dns_managed_zone"]
-
+	task := ansLib.tasks[id][t]
+	modules := {"google.cloud.gcp_dns_managed_zone", "gcp_dns_managed_zone"}
+	dns := task[modules[m]]
 	ansLib.checkState(dns)
+
 	lower(dns.dnssec_config.defaultKeySpecs.algorithm) == "rsasha1"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.defaultKeySpecs.algorithm", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.dnssec_config.defaultKeySpecs.algorithm", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'dnssec_config.defaultKeySpecs.algorithm' is not equal to 'rsasha1'",
-		"keyActualValue": "'dnssec_config.defaultKeySpecs.algorithm' is equal to 'rsasha1'",
+		"keyExpectedValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is not equal to 'rsasha1'",
+		"keyActualValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is equal to 'rsasha1'",
 	}
 }

@@ -2,7 +2,7 @@
   "id": "7c81d34c-8e5a-402b-9798-9f442630e678",
   "queryName": "Image Without Digest",
   "severity": "LOW",
-  "category": "Cloud Assets Management",
+  "category": "Insecure Configurations",
   "descriptionText": "Sees if Kubernetes image has digest on",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
   "platform": "Kubernetes"

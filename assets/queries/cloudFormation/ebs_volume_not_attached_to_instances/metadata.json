@@ -2,7 +2,7 @@
 	"id": "1819ac03-542b-4026-976b-f37addd59f3b",
 	"queryName": "EBS Volume Not Attached To Instances",
 	"severity": "MEDIUM",
-	"category": "Operational",
+	"category": "Availability",
 	"descriptionText": "EBS Volumes that are unattached to instances may contain sensitive data",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html",
 	"platform": "CloudFormation"

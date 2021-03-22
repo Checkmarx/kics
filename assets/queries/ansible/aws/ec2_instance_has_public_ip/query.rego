@@ -1,67 +1,66 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"amazon.aws.ec2", "ec2"}
+	ec2 := task[modules[m]]
+	checkState(object.get(ec2, "state", "undefined"))
 
-	ipValue := task["amazon.aws.ec2"].assign_public_ip
-	HasPublicIP(ipValue)
+	ansLib.isAnsibleTrue(ec2.assign_public_ip)
 
 	# There is no default value for assign_public_ip
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{amazon.aws.ec2}}.assign_public_ip", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.assign_public_ip", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{amazon.aws.ec2}}.assign_public_ip is false, 'no' or undefined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{amazon.aws.ec2}}.assign_public_ip is '%s'", [task.name, ipValue]),
+		"keyExpectedValue": "ec2.assign_public_ip is false, 'no' or undefined",
+		"keyActualValue": sprintf("ec2.assign_public_ip is '%s'", [ec2.assign_public_ip]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.ec2_launch_template", "ec2_launch_template"}
+	ec2_launch_template := task[modules[m]]
+	ansLib.checkState(ec2_launch_template)
 
-	ipValue := task["community.aws.ec2_launch_template"].network_interfaces.associate_public_ip_address
-	HasPublicIP(ipValue)
+	ipValue := ec2_launch_template.network_interfaces.associate_public_ip_address
+	ansLib.isAnsibleTrue(ipValue)
 
 	# There is no default value for associate_public_ip_address
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ec2_launch_template}}.network_interfaces.associate_public_ip_address", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network_interfaces.associate_public_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.ec2_launch_template}}.network_interfaces.associate_public_ip_address is false, 'no' or undefined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.ec2_launch_template}}.network_interfaces.associate_public_ip_address is '%s'", [task.name, ipValue]),
+		"keyExpectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is false, 'no' or undefined",
+		"keyActualValue": sprintf("ec2_launch_template.network_interfaces.associate_public_ip_address is '%s'", [ipValue]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.ec2_instance", "ec2_instance"}
+	ec2_instance := task[modules[m]]
+	checkState(object.get(ec2_instance, "state", "undefined"))
 
-	ipValue := task["community.aws.ec2_instance"].network.assign_public_ip
-	HasPublicIP(ipValue)
+	ipValue := ec2_instance.network.assign_public_ip
+	ansLib.isAnsibleTrue(ipValue)
 
 	# There is no default value for assign_public_ip
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ec2_instance}}.network.assign_public_ip", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network.assign_public_ip", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.ec2_instance}}.network.assign_public_ip is false, 'no' or undefined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.ec2_instance}}.network.assign_public_ip is '%s'", [task.name, ipValue]),
+		"keyExpectedValue": "ec2_instance.network.assign_public_ip is false, 'no' or undefined",
+		"keyActualValue": sprintf("ec2_instance.network.assign_public_ip is '%s'", [ipValue]),
 	}
 }
 
-HasPublicIP(value) {
-	lower(value) == "yes"
-} else {
-	lower(value) == "true"
-} else {
-	value == true
-}
+checkState("undefined") = true
+
+checkState("present") = true

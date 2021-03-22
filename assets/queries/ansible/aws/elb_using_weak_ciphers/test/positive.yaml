@@ -68,14 +68,14 @@
       - subnet-012345678
       - subnet-abcdef000
     listeners:
-      - Protocol: HTTP # Required. The protocol for connections from clients to the load balancer (HTTP or HTTPS) (case-sensitive).
-        Port: 80 # Required. The port on which the load balancer is listening.
+      - Protocol: HTTP
+        Port: 80
         # The security policy that defines which ciphers and protocols are supported. The default is the current predefined security policy.
-        Certificates: # The ARN of the certificate (only one certficate ARN should be provided)
+        Certificates:
           - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
         DefaultActions:
-          - Type: forward # Required.
-            TargetGroupName: # Required. The name of the target group
+          - Type: forward
+            TargetGroupName: target
     state: present
 - name: elb6
   community.aws.elb_network_lb:
@@ -87,13 +87,13 @@
       - subnet-012345678
       - subnet-abcdef000
     listeners:
-      - Protocol: HTTP # Required. The protocol for connections from clients to the load balancer (HTTP or HTTPS) (case-sensitive).
-        Port: 80 # Required. The port on which the load balancer is listening.
+      - Protocol: HTTP
+        Port: 80
         # The security policy that defines which ciphers and protocols are supported. The default is the current predefined security policy.
         SslPolicy: TLS_RSA_NULL_MD5
-        Certificates: # The ARN of the certificate (only one certficate ARN should be provided)
+        Certificates:
           - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
         DefaultActions:
-          - Type: forward # Required.
-            TargetGroupName: # Required. The name of the target group
+          - Type: forward
+            TargetGroupName: target
     state: present

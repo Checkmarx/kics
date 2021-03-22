@@ -1,10 +1,13 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"amazon.aws.s3_bucket", "s3_bucket"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	s3_bucket := task["amazon.aws.s3_bucket"]
+	task := ansLib.tasks[id][t]
+	s3_bucket := task[modules[m]]
+	ansLib.checkState(s3_bucket)
 
 	policy := s3_bucket.policy
 	policy.Statement[ix].Effect = "Allow"
@@ -14,8 +17,8 @@ CxPolicy[result] {
 	contains(action, "*")
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{s3_bucket}}.policy.Statement", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'Effect' is 'Allow'",
 		"keyActualValue": "'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",
@@ -23,9 +26,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	s3_bucket := task["amazon.aws.s3_bucket"]
+	task := ansLib.tasks[id][t]
+	s3_bucket := task[modules[m]]
+	ansLib.checkState(s3_bucket)
 
 	policy := s3_bucket.policy
 	policy.Statement[ix].Effect = "Allow"
@@ -35,8 +38,8 @@ CxPolicy[result] {
 	contains(action[_], "*")
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{s3_bucket}}.policy", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*' when 'Effect' is 'Allow'",
 		"keyActualValue": "'policy.Statement.Action' contains '*' when 'Effect' is 'Allow'",

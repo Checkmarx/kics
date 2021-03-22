@@ -2,7 +2,7 @@
 	"id": "4a8daf95-709d-4a36-9132-d3e19878fa34",
 	"queryName": "API Gateway Exposed To The Public Internet",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "The API Endpoint type in API Gateway should be set to PRIVATE so it's not exposed to the public internet",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html#cfn-apigateway-restapi-endpointconfiguration-types",
 	"platform": "CloudFormation"

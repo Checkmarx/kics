@@ -2,7 +2,7 @@
 	"id": "caa3479d-885d-4882-9aac-95e5e78ef5c2",
 	"queryName": "Image Pull Policy Of The Container Is Not Set To Always",
 	"severity": "LOW",
-	"category": "Cloud Assets Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Image Pull Policy of the container must be defined and set to Always",
 	"descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
 	"platform": "Kubernetes"

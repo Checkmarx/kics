@@ -1,15 +1,19 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+import data.generic.ansible as ansLib
 
-	task.azure_rm_storageaccount.network_acls.default_action == "Allow"
+modules := {"azure.azcollection.azure_rm_storageaccount", "azure_rm_storageaccount"}
+
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	storageaccount := task[modules[m]]
+	ansLib.checkState(storageaccount)
+
+	lower(storageaccount.network_acls.default_action) == "allow"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_storageaccount}}.network_acls.default_action", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network_acls.default_action", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_storageaccount.network_acls.default_action is not set",
 		"keyActualValue": "azure_rm_storageaccount.network_acls.default_action is 'Allow'",
@@ -17,30 +21,22 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	storageaccount := task[modules[m]]
+	ansLib.checkState(storageaccount)
 
-	task.azure_rm_storageaccount.network_acls.default_action == "Deny"
+	lower(storageaccount.network_acls.default_action) == "deny"
 
-	ip_rules := task.azure_rm_storageaccount.network_acls.ip_rules
+	ip_rules := storageaccount.network_acls.ip_rules
 
 	some j
 	ip_rules[j].value == "0.0.0.0/0"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_storageaccount}}.network_acls.ip_rules", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network_acls.ip_rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_storageaccount.network_acls.default_action is 'Deny' and azure_rm_storageaccount.network_acls.ip_rules does not contain value '0.0.0.0/0' ",
 		"keyActualValue": "azure_rm_storageaccount.network_acls.default_action is 'Deny' and azure_rm_storageaccount.network_acls.ip_rules contains value '0.0.0.0/0'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

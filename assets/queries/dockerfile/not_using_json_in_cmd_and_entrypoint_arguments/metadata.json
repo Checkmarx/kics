@@ -2,7 +2,7 @@
 	"id": "b86987e1-6397-4619-81d5-8807f2387c79",
 	"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
 	"severity": "MEDIUM",
-	"category": "Runtime",
+	"category": "Build Process",
 	"descriptionText": "Ensure that we are using JSON in the CMD and ENTRYPOINT Arguments",
 	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#entrypoint",
 	"platform": "Dockerfile"

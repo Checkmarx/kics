@@ -1,42 +1,40 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"amazon.aws.cloudformation", "cloudformation", "community.aws.cloudformation_stack_set", "cloudformation_stack_set"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	cloudformation := task[modules[m]]
+	ansLib.checkState(cloudformation)
 
-	modules := {"community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"}
-
-	object.get(task[modules[index]], "template_body", "undefined") == "undefined"
-	object.get(task[modules[index]], "template_url", "undefined") == "undefined"
-	object.get(task[modules[index]], "template", "undefined") == "undefined"
+	object.get(cloudformation, "template_body", "undefined") == "undefined"
+	object.get(cloudformation, "template_url", "undefined") == "undefined"
+	object.get(cloudformation, "template", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s has template, template_body or template_url set", [modules[index]]),
-		"keyActualValue": sprintf("%s does not have template, template_body or template_url set", [modules[index]]),
+		"keyExpectedValue": sprintf("%s has template, template_body or template_url set", [modules[m]]),
+		"keyActualValue": sprintf("%s does not have template, template_body or template_url set", [modules[m]]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-
+	task := ansLib.tasks[id][t]
+	cloudformation := task[modules[m]]
+	ansLib.checkState(cloudformation)
 	attributes := {"template_body", "template_url", "template"}
 
-	modules := {"community.aws.cloudformation_stack_set", "amazon.aws.cloudformation"}
-
-	count([x | obj := object.get(task[modules[index]], attributes[x], "undefined"); obj != "undefined"]) > 1
+	count([x | obj := object.get(cloudformation, attributes[x], "undefined"); obj != "undefined"]) > 1
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s does not have more than one of the attributes template, template_body and template_url set", [modules[index]]),
-		"keyActualValue": sprintf("%s has more than one of the attributes template, template_body and template_url set", [modules[index]]),
+		"keyExpectedValue": sprintf("%s does not have more than one of the attributes template, template_body and template_url set", [modules[m]]),
+		"keyActualValue": sprintf("%s has more than one of the attributes template, template_body and template_url set", [modules[m]]),
 	}
 }

@@ -1,26 +1,21 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	task := getTasks(document)[t]
-	firewall_rule := task.azure_rm_rediscachefirewallrule
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_rediscachefirewallrule", "azure_rm_rediscachefirewallrule"}
+	firewall_rule := task[modules[m]]
+	ansLib.checkState(firewall_rule)
 
 	firewall_rule.start_ip_address == "0.0.0.0"
 	firewall_rule.end_ip_address == "0.0.0.0"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_rediscachefirewallrule}}.start_ip_address", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.start_ip_address", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'azure_rm_rediscachefirewallrule' start_ip and end_ip are not equal to '0.0.0.0'",
-		"keyActualValue": "'azure_rm_rediscachefirewallrule' start_ip and end_ip are equal to '0.0.0.0'",
+		"keyExpectedValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are not equal to '0.0.0.0'",
+		"keyActualValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are equal to '0.0.0.0'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

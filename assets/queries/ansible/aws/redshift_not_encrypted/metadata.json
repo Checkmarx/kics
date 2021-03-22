@@ -2,7 +2,7 @@
 	"id": "6a647814-def5-4b85-88f5-897c19f509cd",
 	"queryName": "Redshift Not Encrypted",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Check if 'encrypted' field is false or undefined (default is false)",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
 	"platform": "Ansible"

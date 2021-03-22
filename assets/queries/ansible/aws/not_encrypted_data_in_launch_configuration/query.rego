@@ -1,64 +1,54 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.ec2_lc", "ec2_lc"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	ec2_lc := task[modules[m]]
+	ansLib.checkState(ec2_lc)
 
-	modules := {"community.aws.ec2_lc", "ec2_lc"}
-
-	object.get(task[modules[index]], "volumes", "undefined") == "undefined"
+	object.get(ec2_lc, "volumes", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.volumes is set", [modules[index]]),
-		"keyActualValue": sprintf("%s.volumes is undefined", [modules[index]]),
+		"keyExpectedValue": "ec2_lc.volumes is set",
+		"keyActualValue": "ec2_lc.volumes is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	ec2_lc := task[modules[m]]
+	ansLib.checkState(ec2_lc)
 
-	modules := {"community.aws.ec2_lc", "ec2_lc"}
-
-	object.get(task[modules[index]].volumes[j], "encrypted", "undefined") == "undefined"
+	object.get(ec2_lc.volumes[j], "encrypted", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.volumes", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.volumes", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.volumes[%d].encrypted is set", [modules[index], j]),
-		"keyActualValue": sprintf("%s.volumes[%d].encrypted is undefined", [modules[index], j]),
+		"keyExpectedValue": sprintf("ec2_lc.volumes[%d].encrypted is set", [j]),
+		"keyActualValue": sprintf("ec2_lc.volumes[%d].encrypted is undefined", [j]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	ec2_lc := task[modules[m]]
+	ansLib.checkState(ec2_lc)
 
-	modules := {"community.aws.ec2_lc", "ec2_lc"}
-
-	object.get(task[modules[index]].volumes[j], "ephemeral", "undefined") == "undefined"
-	isNoOrFalse(task[modules[index]].volumes[j].encrypted)
+	object.get(ec2_lc.volumes[j], "ephemeral", "undefined") == "undefined"
+	ansLib.isAnsibleFalse(ec2_lc.volumes[j].encrypted)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.volumes", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.volumes", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.volumes[%d].encrypted is set to true or yes", [modules[index], j]),
-		"keyActualValue": sprintf("%s.volumes[%d].encrypted is not set to true or yes", [modules[index], j]),
+		"keyExpectedValue": sprintf("ec2_lc.volumes[%d].encrypted is set to true or yes", [j]),
+		"keyActualValue": sprintf("ec2_lc.volumes[%d].encrypted is not set to true or yes", [j]),
 	}
-}
-
-isNoOrFalse(attribute) = allow {
-	possibilities := {"no", false}
-	attribute == possibilities[j]
-
-	allow = true
 }

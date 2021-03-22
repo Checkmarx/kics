@@ -4,11 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"sync"
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
@@ -24,6 +25,8 @@ const (
 	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
+	DefaultQueryDescription     = "Undefined"
+	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery      = `result = data.Cx.CxPolicy`
@@ -39,23 +42,17 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
 
-// QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
-// GetQueries gets all queries from a QueryMetadata list
-// GetGenericQuery gets a base query based in plataform's name
-type QueriesSource interface {
-	GetQueries() ([]model.QueryMetadata, error)
-	GetGenericQuery(platform string) (string, error)
-}
-
 // Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
 // TrackQueryLoad increments the number of loaded queries
 // TrackQueryExecution increments the number of queries executed
 // FailedDetectLine decrements the number of queries executed
+// GetOutputLines returns the number of lines to be displayed in results outputs
 type Tracker interface {
 	TrackQueryLoad(queryAggregation int)
 	TrackQueryExecution(queryAggregation int)
 	FailedDetectLine()
 	FailedComputeSimilarityID()
+	GetOutputLines() int
 }
 
 type preparedQuery struct {
@@ -97,16 +94,17 @@ var (
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
-	source QueriesSource,
+	queriesSource source.QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
+	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
-	queries, err := source.GetQueries()
+	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := source.GetGenericQuery("common")
+	commonGeneralQuery, err := queriesSource.GetGenericQuery("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
@@ -115,7 +113,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := source.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := queriesSource.GetGenericQuery(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.
@@ -181,8 +179,7 @@ func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progress
 	wg.Add(1)
 	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
 	if hideProgress {
-		// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-		progressBar.Writer = ioutil.Discard
+		progressBar.Writer = io.Discard
 	}
 	go progressBar.Start(wg)
 }

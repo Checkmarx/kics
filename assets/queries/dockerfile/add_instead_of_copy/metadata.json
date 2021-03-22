@@ -2,7 +2,7 @@
   "id": "9513a694-aa0d-41d8-be61-3271e056f36b",
   "queryName": "Add Instead of Copy",
   "severity": "LOW",
-  "category": "Image",
+  "category": "Build Process",
   "descriptionText": "Should use COPY instead of ADD unless, running a tar file",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#add",
   "platform": "Dockerfile"

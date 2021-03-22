@@ -1,12 +1,12 @@
 [
 	{
 		"queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
-		"severity": "HIGH",
+		"severity": "MEDIUM",
 		"line": 5
 	},
 	{
 		"queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
-		"severity": "HIGH",
+		"severity": "MEDIUM",
 		"line": 16
 	}
 ]

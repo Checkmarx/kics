@@ -1,13 +1,17 @@
 [
-	{
-		"queryName": "Container Resources Not Defined",
-		"severity": "MEDIUM",
-		"line": 7
-	},
-
-        {
-		"queryName": "Container Resources Not Defined",
-		"severity": "MEDIUM",
-		"line": 73
-	}
+  {
+    "queryName": "Container Resources Not Defined",
+    "severity": "MEDIUM",
+    "line": 7
+  },
+  {
+    "queryName": "Container Resources Not Defined",
+    "severity": "MEDIUM",
+    "line": 66
+  },
+  {
+    "queryName": "Container Resources Not Defined",
+    "severity": "MEDIUM",
+    "line": 127
+  }
 ]

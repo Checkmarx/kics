@@ -4,5 +4,5 @@
     state: present
     name: console-test-service
     cluster: new_cluster
-    task_definition: 'new_cluster-task:1'
+    task_definition: new_cluster-task:1
     desired_count: 0

@@ -1,4 +1,4 @@
-resource "google_compute_project_metadata" "login_true" {
+resource "google_compute_project_metadata" "negative1" {
   metadata = {
     enable-oslogin = true
   }

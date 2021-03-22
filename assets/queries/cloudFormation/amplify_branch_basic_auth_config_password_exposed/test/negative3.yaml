@@ -4,6 +4,7 @@ Parameters:
     Description: 'Password'
     Type: String
     Default: ""
+    NoEcho: true
   ParentUsername:
     Description: 'Username'
     Type: String

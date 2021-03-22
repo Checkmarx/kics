@@ -1,7 +1,7 @@
 #this code is a correct code for which the query should not find any result
 - name: create ad sp
   azure_ad_serviceprincipal:
-    app_id: "{{ app_id }}"
+    app_id: '{{ app_id }}'
     state: present
-    tenant: "{{ tenant_id }}"
+    tenant: '{{ tenant_id }}'
     ad_user: unpredictableName

@@ -1,15 +1,15 @@
 #this code is a correct code for which the query should not find any result
-resource "aws_iam_access_key" "lb" {
+resource "aws_iam_access_key" "negative1" {
   user    = aws_iam_user.lb.name
   pgp_key = "keybase:some_person_that_exists"
 }
 
-resource "aws_iam_user" "lb" {
+resource "aws_iam_user" "negative2" {
   name = "loadbalancer"
   path = "/system/"
 }
 
-resource "aws_iam_user_policy" "lb_ro1" {
+resource "aws_iam_user_policy" "negative3" {
   name = "test"
   user = aws_iam_user.lb.name
 

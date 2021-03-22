@@ -3,19 +3,18 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	instance := task["google.cloud.gcp_compute_instance"]
-	metadata := instance.metadata
-
+	task := ansLib.tasks[id][t]
+	modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
+	instance := task[modules[m]]
 	ansLib.checkState(instance)
-	ansLib.isAnsibleTrue(object.get(metadata, "serial-port-enable", "undefined"))
+
+	ansLib.isAnsibleTrue(instance.metadata["serial-port-enable"])
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_compute_instance}}.metadata.serial-port-enable", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.metadata.serial-port-enable", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.serial-port-enable' is undefined or set to false", [task.name]),
-		"keyActualValue": sprintf("'name=%s.{{google.cloud.gcp_compute_instance}}.metadata.serial-port-enable' is set to true", [task.name]),
+		"keyExpectedValue": "gcp_compute_instance.metadata.serial-port-enable is undefined or set to false",
+		"keyActualValue": "gcp_compute_instance.metadata.serial-port-enable is set to true",
 	}
 }

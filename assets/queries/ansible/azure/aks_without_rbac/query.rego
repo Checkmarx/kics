@@ -1,15 +1,19 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+import data.generic.ansible as ansLib
 
-	object.get(task.azure_rm_aks, "enable_rbac", "undefined") == "undefined"
+modules := {"azure.azcollection.azure_rm_aks", "azure_rm_aks"}
+
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	aks := task[modules[m]]
+	ansLib.checkState(aks)
+
+	object.get(aks, "enable_rbac", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_aks}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "azure_rm_aks.enable_rbac is defined",
 		"keyActualValue": "azure_rm_aks.enable_rbac is undefined",
@@ -17,30 +21,17 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	aks := task[modules[m]]
+	ansLib.checkState(aks)
 
-	not isYesOrTrue(task.azure_rm_aks.enable_rbac)
+	not ansLib.isAnsibleTrue(aks.enable_rbac)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_aks}}.enable_rbac", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_rbac", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_aks.enable_rbac is set to 'yes' or 'true'",
 		"keyActualValue": "azure_rm_aks.enable_rbac is not set to 'yes' or 'true'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isYesOrTrue(attribute) {
-	options := {"yes", true, "true"}
-	lower(attribute) == lower(options[j])
 }

@@ -3,18 +3,18 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	instance := task["google.cloud.gcp_compute_instance"]
-
+	task := ansLib.tasks[id][t]
+	modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
+	instance := task[modules[m]]
 	ansLib.checkState(instance)
+
 	ansLib.isAnsibleTrue(instance.can_ip_forward)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_compute_instance}}.can_ip_forward", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.can_ip_forward", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "{{google.cloud.gcp_compute_instance}}.can_ip_forward is false",
-		"keyActualValue": "{{google.cloud.gcp_compute_instance}}.can_ip_forward is true",
+		"keyExpectedValue": "gcp_compute_instance.can_ip_forward is false",
+		"keyActualValue": "gcp_compute_instance.can_ip_forward is true",
 	}
 }

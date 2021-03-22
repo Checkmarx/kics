@@ -1,21 +1,21 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	ecs := task["community.aws.ecs_service"]
-	ecsName := task.name
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.ecs_service", "ecs_service"}
+	ecs := task[modules[m]]
+	ansLib.checkState(ecs)
 
 	is_string(ecs.role)
 	contains(lower(ecs.role), "admin")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.ecs_service}}.role", [ecsName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.role", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.ecs_service.role is not an admin role",
-		"keyActualValue": "community.aws.ecs_service.role is an admin role",
+		"keyExpectedValue": "ecs_service.role is not an admin role",
+		"keyActualValue": "ecs_service.role is an admin role",
 	}
 }

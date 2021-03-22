@@ -1,8 +1,8 @@
-resource "aws_ecr_repository" "foo" {
+resource "aws_ecr_repository" "positive1" {
   name = "bar"
 }
 
-resource "aws_ecr_repository_policy" "foopolicy" {
+resource "aws_ecr_repository_policy" "positive2" {
   repository = aws_ecr_repository.foo.name
 
   policy = <<EOF

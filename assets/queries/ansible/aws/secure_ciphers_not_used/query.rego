@@ -1,26 +1,25 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	ansLib.isAnsibleFalse(task["community.aws.cloudfront_distribution"].viewer_certificate.cloudfront_default_certificate)
-	not checkMinPortocolVersion(task["community.aws.cloudfront_distribution"].viewer_certificate.minimum_protocol_version)
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
+	cloudfront_distribution := task[modules[m]]
+	ansLib.checkState(cloudfront_distribution)
+
+	ansLib.isAnsibleFalse(cloudfront_distribution.viewer_certificate.cloudfront_default_certificate)
+	not checkMinPortocolVersion(cloudfront_distribution.viewer_certificate.minimum_protocol_version)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.viewer_certificate.minimum_protocol_version", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version is TLSv1.1 or TLSv1.2", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version isn't TLSv1.1 or TLSv1.2", [task.name]),
+		"keyExpectedValue": "cloudfront_distribution.viewer_certificate.minimum_protocol_version is TLSv1.1 or TLSv1.2",
+		"keyActualValue": "cloudfront_distribution.viewer_certificate.minimum_protocol_version isn't TLSv1.1 or TLSv1.2",
 	}
 }
 
-checkMinPortocolVersion(version) {
-	version == "TLSv1.1"
-}
+checkMinPortocolVersion("TLSv1.1") = true
 
-checkMinPortocolVersion(version) {
-	version == "TLSv1.2"
-}
+checkMinPortocolVersion("TLSv1.2") = true

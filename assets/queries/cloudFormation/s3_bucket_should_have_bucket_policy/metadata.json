@@ -2,7 +2,7 @@
 	"id": "37fa8188-738b-42c8-bf82-6334ea567738",
 	"queryName": "S3 Bucket Should Have Bucket Policy",
 	"severity": "MEDIUM",
-	"category": "Storage",
+	"category": "Insecure Defaults",
 	"descriptionText": "Checks if S3 Bucket has the same name as a Bucket Policy, if it has, S3 Bucket has a Bucket Policy associated",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
 	"platform": "CloudFormation"

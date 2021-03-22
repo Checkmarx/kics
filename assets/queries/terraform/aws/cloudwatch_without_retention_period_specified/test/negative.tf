@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_log_group" "yada3" {
+resource "aws_cloudwatch_log_group" "negative1" {
   name = "Yada"
 
   tags = {

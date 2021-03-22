@@ -5,5 +5,5 @@
     container: foo
     blob: graylog.png
     src: ./files/graylog.png
-    content_type: 'application/image'
+    content_type: application/image
 # access mode defaults to private

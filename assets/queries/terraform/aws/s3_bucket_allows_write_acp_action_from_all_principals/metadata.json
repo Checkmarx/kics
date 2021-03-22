@@ -2,7 +2,7 @@
 	"id": "64a222aa-7793-4e40-915f-4b302c76e4d4",
 	"queryName": "S3 Bucket Allows Write_ACP Action From All Principals",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy",
 	"platform": "Terraform"

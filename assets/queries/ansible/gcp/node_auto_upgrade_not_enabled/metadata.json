@@ -2,7 +2,7 @@
 	"id": "d6e10477-2e19-4bcd-b8a8-19c65b89ccdf",
 	"queryName": "Node Auto Upgrade Not Enabled",
 	"severity": "HIGH",
-	"category": "Operational Efficiency",
+	"category": "Resource Management",
 	"descriptionText": "Node 'auto_upgrade' should be enabled for Kubernetes Clusters",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-management/auto_upgrade",
 	"platform": "Ansible"

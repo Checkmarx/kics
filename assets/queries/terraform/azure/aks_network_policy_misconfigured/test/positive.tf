@@ -1,4 +1,4 @@
-resource "azurerm_kubernetes_cluster" "no_policy" {
+resource "azurerm_kubernetes_cluster" "positive1" {
   name                = "example-aks1"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -23,7 +23,7 @@ resource "azurerm_kubernetes_cluster" "no_policy" {
   }
 }
 
-resource "azurerm_kubernetes_cluster" "no_profile" {
+resource "azurerm_kubernetes_cluster" "positive2" {
   name                = "example-aks2"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "no_profile" {
 
 }
 
-resource "azurerm_kubernetes_cluster" "invalid_np" {
+resource "azurerm_kubernetes_cluster" "positive3" {
   name                = "example-aks1"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

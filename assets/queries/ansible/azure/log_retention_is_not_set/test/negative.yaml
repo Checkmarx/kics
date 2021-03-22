@@ -1,4 +1,3 @@
----
 - name: Update PostgreSQL Server setting
   azure_rm_postgresqlconfiguration:
     resource_group: myResourceGroup

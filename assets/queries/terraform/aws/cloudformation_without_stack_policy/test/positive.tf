@@ -1,4 +1,4 @@
-resource "aws_cloudformation_stack" "network" {
+resource "aws_cloudformation_stack" "positive1" {
 
   name = "networking-stack"
 

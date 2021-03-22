@@ -2,7 +2,7 @@
 	"id": "61a94903-3cd3-4780-88ec-fc918819b9c8",
 	"queryName": "ELB Using Insecure Protocols",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "ELB Predefined or Custom Security Policies must not use insecure protocols, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the ELB Listeners must not have Policies that posses Protocols that coincide with any of a predefined list of insecure protocols.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
 	"platform": "CloudFormation"

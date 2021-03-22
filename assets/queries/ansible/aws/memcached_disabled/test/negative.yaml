@@ -1,6 +1,6 @@
 - name: Basic example
   community.aws.elasticache:
-    name: "test-please-delete"
+    name: test-please-delete
     state: present
     engine: memcached
     cache_engine_version: 5.1.10

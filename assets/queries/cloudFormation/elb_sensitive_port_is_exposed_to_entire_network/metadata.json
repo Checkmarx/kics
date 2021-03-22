@@ -2,7 +2,7 @@
 	"id": "78055456-f670-4d2e-94d5-392d1cf4f5e4",
 	"queryName": "ELB Sensitive Port Is Exposed To Entire Network",
 	"severity": "HIGH",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "The load balancer of the application with a sensitive port connection is exposed to the entire internet.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
 	"platform": "CloudFormation",

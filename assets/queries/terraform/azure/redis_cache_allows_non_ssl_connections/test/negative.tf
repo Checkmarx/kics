@@ -1,4 +1,4 @@
-resource "azurerm_redis_cache" "non_ssl_disabled" {
+resource "azurerm_redis_cache" "negative1" {
   name                = "example-cache"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -12,7 +12,7 @@ resource "azurerm_redis_cache" "non_ssl_disabled" {
   }
 }
 
-resource "azurerm_redis_cache" "non_ssl_disabled_too" {
+resource "azurerm_redis_cache" "negative2" {
   name                = "example-cache"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

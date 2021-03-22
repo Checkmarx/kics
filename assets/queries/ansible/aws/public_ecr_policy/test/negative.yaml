@@ -4,9 +4,9 @@
     policy:
       Version: '2008-10-17'
       Statement:
-        - Sid: read-only
-          Effect: Allow
-          Action:
-            - ecr:GetDownloadUrlForLayer
-            - ecr:BatchGetImage
-            - ecr:BatchCheckLayerAvailability
+      - Sid: read-only
+        Effect: Allow
+        Action:
+        - ecr:GetDownloadUrlForLayer
+        - ecr:BatchGetImage
+        - ecr:BatchCheckLayerAvailability

@@ -6,9 +6,9 @@
     region: us-east-1
     is_multi_region_trail: true
     enable_log_file_validation: true
-    cloudwatch_logs_role_arn: "arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role"
-    cloudwatch_logs_log_group_arn: "arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*"
-    kms_key_id: "alias/MyAliasName"
+    cloudwatch_logs_role_arn: arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role
+    cloudwatch_logs_log_group_arn: arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*
+    kms_key_id: alias/MyAliasName
     tags:
       environment: dev
       Name: default
@@ -20,9 +20,9 @@
     region: us-east-1
     is_multi_region_trail: true
     log_file_validation_enabled: true
-    cloudwatch_logs_role_arn: "arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role"
-    cloudwatch_logs_log_group_arn: "arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*"
-    kms_key_id: "alias/MyAliasName"
+    cloudwatch_logs_role_arn: arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role
+    cloudwatch_logs_log_group_arn: arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*
+    kms_key_id: alias/MyAliasName
     tags:
       environment: dev
       Name: default

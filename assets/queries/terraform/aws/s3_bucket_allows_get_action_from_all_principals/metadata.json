@@ -2,7 +2,7 @@
 	"id": "1df37f4b-7197-45ce-83f8-9994d2fcf885",
 	"queryName": "S3 Bucket Allows Get Action From All Principals",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "S3 Buckets must not allow Get Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Get, for all Principals.",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy",
 	"platform": "Terraform"

@@ -1,4 +1,4 @@
-resource "aws_organizations_policy" "all_features_allowed" {
+resource "aws_organizations_policy" "negative1" {
   name = "example"
 
   content = <<CONTENT

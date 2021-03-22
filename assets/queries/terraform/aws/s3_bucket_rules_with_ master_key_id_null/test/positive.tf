@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "mybucket" {
+resource "aws_s3_bucket" "positive1" {
   bucket = "mybucket"
 
   server_side_encryption_configuration {

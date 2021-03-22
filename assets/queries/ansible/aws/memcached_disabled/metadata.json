@@ -2,7 +2,7 @@
 	"id": "2d55ef88-b616-4890-b822-47f280763e89",
 	"queryName": "Memcached Disabled",
 	"severity": "HIGH",
-	"category": "Data Security",
+	"category": "Encryption",
 	"descriptionText": "Check if the Memcached is disabled on the ElastiCache",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-engine",
 	"platform": "Ansible"

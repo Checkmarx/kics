@@ -20,7 +20,7 @@
     service_account_file: "/tmp/auth.pem"
     state: present
     management:
-        auto_repair: yes
+      auto_repair: yes
 - name: create a third node pool
   google.cloud.gcp_container_node_pool:
     name: my-pool
@@ -32,5 +32,5 @@
     service_account_file: "/tmp/auth.pem"
     state: present
     management:
-        auto_repair: yes
-        auto_upgrade: no
+      auto_repair: yes
+      auto_upgrade: no

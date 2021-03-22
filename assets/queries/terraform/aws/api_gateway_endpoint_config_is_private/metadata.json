@@ -2,7 +2,7 @@
 	"id": "6b2739db-9c49-4db7-b980-7816e0c248c1",
 	"queryName": "API Gateway Endpoint Config is Private",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "Type of Endpoint Configuration is Private",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
 	"platform": "Terraform"

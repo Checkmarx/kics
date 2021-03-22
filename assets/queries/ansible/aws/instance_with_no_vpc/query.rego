@@ -1,20 +1,24 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.ec2_instance", "ec2_instance", "amazon.aws.ec2", "ec2"}
+	ec2 := task[modules[m]]
+	checkState(object.get(ec2, "state", "undefined"))
 
-	modules := {"community.aws.ec2_instance", "amazon.aws.ec2"}
-
-	object.get(task[modules[index]], "vpc_subnet_id", "undefined") == "undefined"
+	object.get(ec2, "vpc_subnet_id", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.vpc_subnet_id is set", [modules[index]]),
-		"keyActualValue": sprintf("%s.vpc_subnet_id is undefined", [modules[index]]),
+		"keyExpectedValue": sprintf("%s.vpc_subnet_id is set", [modules[m]]),
+		"keyActualValue": sprintf("%s.vpc_subnet_id is undefined", [modules[m]]),
 	}
 }
+
+checkState("undefined") = true
+
+checkState("present") = true

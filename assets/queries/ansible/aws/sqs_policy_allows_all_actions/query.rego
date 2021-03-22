@@ -1,19 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	sqsPolicy := task["community.aws.sqs_queue"]
-	sqsPolicyName := task.name
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.sqs_queue", "sqs_queue"}
+	sqsPolicy := task[modules[m]]
+	ansLib.checkState(sqsPolicy)
+
 	contains(sqsPolicy.policy.Statement[_].Action, "*")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Statement", [sqsPolicyName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Statement should not contain Action equal to '*'", [sqsPolicyName]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Statement contains Action equal to '*'", [sqsPolicyName]),
+		"keyExpectedValue": "sqs_queue.policy.Statement should not contain Action equal to '*'",
+		"keyActualValue": "sqs_queue.policy.Statement contains Action equal to '*'",
 	}
 }

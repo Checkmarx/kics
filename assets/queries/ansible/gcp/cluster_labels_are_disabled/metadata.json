@@ -2,7 +2,7 @@
 	"id": "fbe9b2d0-a2b7-47a1-a534-03775f3013f7",
 	"queryName": "Cluster Labels are Disabled",
 	"severity": "HIGH",
-	"category": "Operational Efficiency",
+	"category": "Insecure Configurations",
 	"descriptionText": "Kubernetes Clusters must be configured with labels, which means the attribute 'resource_labels' must be defined",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
 	"platform": "Ansible"

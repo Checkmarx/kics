@@ -2,7 +2,7 @@
 	"id": "56dad03e-e94f-4dd6-93a4-c253a03ff7a0",
 	"queryName": "Cosmos DB Account No Tags",
 	"severity": "MEDIUM",
-	"category": "Cloud Assets Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Cosmos DB Account must have a mapping of tags.",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account",
 	"platform": "Terraform"

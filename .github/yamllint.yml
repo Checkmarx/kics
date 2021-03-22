@@ -1,0 +1,10 @@
+extends: relaxed
+rules:
+  line-length:
+    max: 180
+    level: warning
+  indentation:
+    indent-sequences: consistent
+  comments-indentation: disable
+ignore: |
+  **/kms_key_with_vulnerable_policy/test/positive.yaml

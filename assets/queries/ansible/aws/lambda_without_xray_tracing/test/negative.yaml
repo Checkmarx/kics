@@ -3,10 +3,10 @@
     name: '{{ item.name }}'
     state: present
     zip_file: '{{ item.zip_file }}'
-    runtime: 'python2.7'
-    role: 'arn:aws:iam::987654321012:role/lambda_basic_execution'
-    handler: 'hello_python.my_handler'
-    tracing_mode: "Active"
+    runtime: python2.7
+    role: arn:aws:iam::987654321012:role/lambda_basic_execution
+    handler: hello_python.my_handler
+    tracing_mode: Active
     vpc_subnet_ids:
     - subnet-123abcde
     - subnet-edcba321
@@ -15,15 +15,15 @@
     - sg-edcba321
     environment_variables: '{{ item.env_vars }}'
     tags:
-      key1: 'value1'
+      key1: value1
   loop:
-    - name: HelloWorld
-      zip_file: hello-code.zip
-      env_vars:
-        key1: "first"
-        key2: "second"
-    - name: ByeBye
-      zip_file: bye-code.zip
-      env_vars:
-        key1: "1"
-        key2: "2
+  - name: HelloWorld
+    zip_file: hello-code.zip
+    env_vars:
+      key1: first
+      key2: second
+  - name: ByeBye
+    zip_file: bye-code.zip
+    env_vars:
+      key1: '1'
+      key2: '2'

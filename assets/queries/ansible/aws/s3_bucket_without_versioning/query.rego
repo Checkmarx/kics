@@ -1,37 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"amazon.aws.s3_bucket", "s3_bucket"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	bucket := task["amazon.aws.s3_bucket"]
-	bucketName := task.name
+	task := ansLib.tasks[id][t]
+	bucket := task[modules[m]]
+	ansLib.checkState(bucket)
 
 	object.get(bucket, "versioning", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}", [bucketName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "amazon.aws.s3_bucket should have versioning set to true",
-		"keyActualValue": "amazon.aws.s3_bucket does not have versioning (defaults to false)",
+		"keyExpectedValue": "s3_bucket should have versioning set to true",
+		"keyActualValue": "s3_bucket does not have versioning (defaults to false)",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	bucket := task["amazon.aws.s3_bucket"]
-	bucketName := task.name
+	task := ansLib.tasks[id][t]
+	bucket := task[modules[m]]
+	ansLib.checkState(bucket)
+
 	not ansLib.isAnsibleTrue(bucket.versioning)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.versioning", [bucketName]),
-		"issueType": "WrongValue",
-		"keyExpectedValue": "amazon.aws.s3_bucket should have versioning set to true",
-		"keyActualValue": "amazon.aws.s3_bucket does has versioning set to false",
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.versioning", [task.name, modules[m]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "s3_bucket should have versioning set to true",
+		"keyActualValue": "s3_bucket does has versioning set to false",
 	}
 }

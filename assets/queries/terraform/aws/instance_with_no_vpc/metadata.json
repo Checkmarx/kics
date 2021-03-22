@@ -2,7 +2,7 @@
 	"id": "a31a5a29-718a-4ff4-8001-a69e5e4d029e",
 	"queryName": "Instance With No VPC",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "Instance should be configured in VPC (Virtual Private Cloud)",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance",
 	"platform": "Terraform"

@@ -3,14 +3,14 @@
     name: myProfile
     location: eastus
     locations:
-      - eastus
-      - westus
+    - eastus
+    - westus
     categories:
-      - Write
-      - Action
-      - Delete
+    - Write
+    - Action
+    - Delete
     retention_policy:
-      enabled: False
+      enabled: false
       days: 1
     storage_account:
       resource_group: myResourceGroup

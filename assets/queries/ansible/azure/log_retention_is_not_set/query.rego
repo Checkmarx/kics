@@ -1,9 +1,12 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	task := getTasks(document)[t]
-	postgresql_configuration := task.azure_rm_postgresqlconfiguration
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_postgresqlconfiguration", "azure_rm_postgresqlconfiguration"}
+	postgresql_configuration := task[modules[m]]
+	ansLib.checkState(postgresql_configuration)
 
 	is_string(postgresql_configuration.name)
 	lower(postgresql_configuration.name) == "log_retention"
@@ -12,18 +15,10 @@ CxPolicy[result] {
 	lower(postgresql_configuration.value) != "on"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{azure_rm_postgresqlconfiguration}}.value", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.value", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'value' is equal to 'on'",
-		"keyActualValue": "'value' is not equal to 'on'",
+		"keyExpectedValue": "azure_rm_postgresqlconfiguration.value is equal to 'on'",
+		"keyActualValue": "azure_rm_postgresqlconfiguration.value is not equal to 'on'",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

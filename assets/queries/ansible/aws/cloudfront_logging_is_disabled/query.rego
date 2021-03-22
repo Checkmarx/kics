@@ -1,35 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	cloudfront := task["community.aws.cloudfront_distribution"]
+	task := ansLib.tasks[id][t]
+	cloudfront := task[modules[m]]
+	ansLib.checkState(cloudfront)
+
 	object.get(cloudfront, "logging", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}} logging is defined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}} logging is undefined", [task.name]),
+		"keyExpectedValue": "cloudfront_distribution.logging is defined",
+		"keyActualValue": "cloudfront_distribution.logging is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	cloudfront := task["community.aws.cloudfront_distribution"]
-	loggingE := cloudfront.logging
-	not ansLib.isAnsibleTrue(loggingE.enabled)
+	task := ansLib.tasks[id][t]
+	cloudfront := task[modules[m]]
+	ansLib.checkState(cloudfront)
+
+	not ansLib.isAnsibleTrue(cloudfront.logging.enabled)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.logging.enabled", [task.name2]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.logging.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.logging.enabled is true", [task.name2]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.logging.enabled is false", [task.name2]),
+		"keyExpectedValue": "cloudfront_distribution.logging.enabled is true",
+		"keyActualValue": "cloudfront_distribution.logging.enabled is false",
 	}
 }

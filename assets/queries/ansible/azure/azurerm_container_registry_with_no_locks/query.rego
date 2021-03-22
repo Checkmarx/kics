@@ -1,39 +1,27 @@
 package Cx
 
+import data.generic.ansible as ansLib
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_containerregistry", "azure_rm_containerregistry"}
+	containerRegistry := task[modules[m]]
+	ansLib.checkState(containerRegistry)
 
-    modules := {"azure.azcollection.azure_rm_containerregistry", "azure_rm_containerregistry"}
-
-	taskContainerRegistry := task[modules[index]]
-
-	not checkLocks(taskContainerRegistry)
+	not checkLocks(containerRegistry)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{%s}}.resource_group", [task.name, modules[index]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.resource_group", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.resource_group is referenced by an existing lock", [modules[index]]),
-		"keyActualValue": sprintf("%s.resource_group is not referenced by a lock", [modules[index]]),
+		"keyExpectedValue": "azure_rm_containerregistry.resource_group is referenced by an existing lock",
+		"keyActualValue": "azure_rm_containerregistry.resource_group is not referenced by a lock",
 	}
 }
 
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-checkLocks(taskContainerRegistry) {
-	document2 := input.document[x]
-	taskLock := getTasks(document2)[t2].azure_rm_lock
-	contains(taskLock, taskContainerRegistry.resource_group)
-}
-
-contains(taskLock, taskContainerRegistry) {
-	taskLock.resource_group == taskContainerRegistry
+checkLocks(containerRegistry) {
+	modules := {"azure.azcollection.azure_rm_lock", "azure_rm_lock"}
+	taskLock := ansLib.tasks[_][_][modules[_]]
+	ansLib.checkState(taskLock)
+	taskLock.resource_group == containerRegistry.resource_group
 }

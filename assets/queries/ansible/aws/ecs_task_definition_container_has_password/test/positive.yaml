@@ -7,7 +7,7 @@
       image: "nginx"
       portMappings:
       - containerPort: 8080
-        hostPort:      8080
+        hostPort: 8080
       env:
       - password: shhh
     launch_type: FARGATE

@@ -1,7 +1,7 @@
 - name: Start an instance and have it begin a Tower callback on boot v3
   community.aws.ec2_instance:
-    name: "tower-callback-test"
-    key_name: "prod-ssh-key"
+    name: tower-callback-test
+    key_name: prod-ssh-key
     vpc_subnet_id: subnet-5ca1ab1e
     security_group: default
     tower_callback:
@@ -14,7 +14,7 @@
     image_id: ami-123456
     cpu_credit_specification: unlimited
     tags:
-      SomeThing: "A value"
+      SomeThing: A value
 - name: Start an instance and have it begin a Tower callback on boot v4
   amazon.aws.ec2:
     key_name: mykey

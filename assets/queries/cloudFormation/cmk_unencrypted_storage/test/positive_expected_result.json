@@ -1,7 +1,7 @@
 [
   {
     "severity": "HIGH",
-    "line": 24,
+    "line": 36,
     "fileName": "positive3.yaml",
     "queryName": "CMK Unencrypted Storage"
   },
@@ -50,7 +50,7 @@
   {
     "queryName": "CMK Unencrypted Storage",
     "severity": "HIGH",
-    "line": 27,
+    "line": 37,
     "fileName": "positive6.json"
   },
   {
@@ -58,5 +58,29 @@
     "queryName": "CMK Unencrypted Storage",
     "severity": "HIGH",
     "line": 27
+  },
+  {
+    "fileName": "positive7.yaml",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 4
+  },
+  {
+    "fileName": "positive7.yaml",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 4
+  },
+  {
+    "fileName": "positive8.json",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 5
+  },
+  {
+    "fileName": "positive8.json",
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 5
   }
 ]

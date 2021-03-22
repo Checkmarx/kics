@@ -2,7 +2,7 @@
 	"id": "709e6da6-fa1f-44cc-8f17-7f25f96dadbe",
 	"queryName": "SageMaker Data Encryption Disabled",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "Amazon SageMaker's Notebook Instance must have its Data Encryption enabled, which means the attribute 'KmsKeyId' must be defined not empty or null.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html",
 	"platform": "CloudFormation"

@@ -59,14 +59,18 @@ func ChangeCurrentDir(desiredDir string) error {
 	for currentDir, err := os.Getwd(); GetCurrentDirName(currentDir) != desiredDir; currentDir, err = os.Getwd() {
 		if err == nil {
 			if err = os.Chdir(".."); err != nil {
-				fmt.Printf("change path error = %v", err)
-				return fmt.Errorf("change path error = %v", err)
+				fmt.Print(formatCurrentDirError(err))
+				return fmt.Errorf(formatCurrentDirError(err))
 			}
 		} else {
-			return fmt.Errorf("change path error = %v", err)
+			return fmt.Errorf(formatCurrentDirError(err))
 		}
 	}
 	return nil
+}
+
+func formatCurrentDirError(err error) string {
+	return fmt.Sprintf("change path error = %v", err)
 }
 
 // GetCurrentDirName returns current working directory
@@ -87,6 +91,18 @@ func StringifyStruct(v interface{}) (string, error) {
 	return string(jsonValue), nil
 }
 
+// MapToStringSlice extract slice of keys from a map[string]string
+func MapToStringSlice(stringKeyMap map[string]string) []string {
+	keys := make([]string, len(stringKeyMap))
+
+	i := 0
+	for k := range stringKeyMap {
+		keys[i] = k
+		i++
+	}
+	return keys
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
@@ -100,7 +116,7 @@ var SummaryMock = model.Summary{
 		{
 			QueryName: "ALB protocol is HTTP",
 			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  "HIGH",
+			Severity:  model.SeverityHigh,
 			Files: []model.VulnerableFile{
 				{
 					FileName:         "positive.tf",
@@ -126,10 +142,10 @@ var SummaryMock = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			"INFO":   0,
-			"LOW":    0,
-			"MEDIUM": 0,
-			"HIGH":   2,
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   2,
 		},
 		TotalCounter: 2,
 	},

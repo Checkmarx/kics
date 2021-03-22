@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_launch_configuration[%s].user_data_base64", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_launch_configuration[%s].user_data_base64 should not contain RSA Private Key", [name]),
+		"keyExpectedValue": sprintf("aws_launch_configuration[%s].user_data_base64 doesn't contain RSA Private Key", [name]),
 		"keyActualValue": sprintf("aws_launch_configuration[%s].user_data_base64 contains RSA Private Key", [name]),
 	}
 }

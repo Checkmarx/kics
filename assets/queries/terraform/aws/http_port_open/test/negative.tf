@@ -1,9 +1,9 @@
-resource "aws_security_group" "negative_http_1" {
+resource "aws_security_group" "negative1" {
   name        = "negative_http"
   description = "Doesn't get the HTTP port open"
 }
 
-resource "aws_security_group" "negative_http_2" {
+resource "aws_security_group" "negative2" {
 
   ingress {
     from_port   = 70
@@ -12,7 +12,7 @@ resource "aws_security_group" "negative_http_2" {
   }
 }
 
-resource "aws_security_group" "negative_http_3" {
+resource "aws_security_group" "negative3" {
 
   ingress {
     from_port   = 79

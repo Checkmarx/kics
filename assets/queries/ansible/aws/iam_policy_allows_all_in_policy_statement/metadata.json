@@ -2,7 +2,7 @@
   "id": "b5ed026d-a772-4f07-97f9-664ba0b116f8",
   "queryName": "IAM Policy Allows All ('*') In Policy Statement",
   "severity": "MEDIUM",
-  "category": "Identity and Access Management",
+  "category": "Access Control",
   "descriptionText": "IAM policies allow all ('*') in a statement action",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
   "platform": "Ansible"

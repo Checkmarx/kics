@@ -2,7 +2,7 @@
 	"id": "835d5497-a526-4aea-a23f-98a9afd1635f",
 	"queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
 	"severity": "HIGH",
-	"category": "Identity & Access Management",
+	"category": "Access Control",
 	"descriptionText": "S3 Buckets sould not be readable and writable to all users",
 	"descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html",
 	"platform": "CloudFormation"

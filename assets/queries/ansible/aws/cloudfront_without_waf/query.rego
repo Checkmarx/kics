@@ -1,20 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	redshiftCluster := task["community.aws.cloudfront_distribution"]
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
+	redshiftCluster := task[modules[m]]
+	ansLib.checkState(redshiftCluster)
 
 	not redshiftCluster.web_acl_id
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.cloudfront_distribution}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'web_acl_id' exists",
-		"keyActualValue": "'web_acl_id' is missing",
+		"keyExpectedValue": "cloudfront_distribution.web_acl_id is defined",
+		"keyActualValue": "cloudfront_distribution.web_acl_id is undefined",
 	}
 }
-

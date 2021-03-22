@@ -1,27 +1,20 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := getTasks(document)
-	task := tasks[t]
-	appGateway := task.azure_rm_appgateway
-	tier := appGateway.sku.tier
+import data.generic.ansible as ansLib
 
-	not startswith(tier, "waf")
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_appgateway", "azure_rm_appgateway"}
+	appgateway := task[modules[m]]
+	ansLib.checkState(appgateway)
+
+	not startswith(appgateway.sku.tier, "waf")
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_appgateway}}.sku.tier", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.sku.tier", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_appgateway.sku.tier should be 'waf' or 'waf_v2'",
-		"keyActualValue": sprintf("azure_rm_appgateway.sku.tier is %s", [tier]),
+		"keyActualValue": sprintf("azure_rm_appgateway.sku.tier is %s", [appgateway.sku.tier]),
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
 }

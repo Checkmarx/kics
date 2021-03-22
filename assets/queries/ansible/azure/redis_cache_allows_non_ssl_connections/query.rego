@@ -1,32 +1,20 @@
 package Cx
 
-CxPolicy[result] {
-	playbooks := getTasks(input.document[i])
-	redis_cache := playbooks[j]
-	instance := redis_cache.azure_rm_rediscache
+import data.generic.ansible as ansLib
 
-	isTrue(instance.enable_non_ssl_port)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_rediscache", "azure_rm_rediscache"}
+	instance := task[modules[m]]
+	ansLib.checkState(instance)
+
+	ansLib.isAnsibleTrue(instance.enable_non_ssl_port)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{azure_rm_rediscache}}.enable_non_ssl_port", [playbooks[j].name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_non_ssl_port", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{azure_rm_rediscache}}.enable_non_ssl_port is false or undefined", [playbooks[j].name]),
-		"keyActualValue": sprintf("name=%s.{{azure_rm_rediscache}}.enable_non_ssl_port is true", [playbooks[j].name]),
+		"keyExpectedValue": "azure_rm_rediscache.enable_non_ssl_port is false or undefined",
+		"keyActualValue": "azure_rm_rediscache.enable_non_ssl_port is true",
 	}
-}
-
-isTrue(attribute) {
-	attribute == "yes"
-} else {
-	attribute == true
-} else = false {
-	true
-}
-
-getTasks(document) = result {
-	result := document.playbooks[0].tasks
-} else = result {
-	object.get(document.playbooks[0], "tasks", "undefined") == "undefined"
-	result := document.playbooks
 }

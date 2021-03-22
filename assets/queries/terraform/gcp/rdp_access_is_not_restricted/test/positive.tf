@@ -1,4 +1,4 @@
-resource "google_compute_firewall" "rdp_allowed_port" {
+resource "google_compute_firewall" "positive1" {
   name    = "test-firewall"
   network = google_compute_network.default.name
   direction = "INGRESS"
@@ -15,7 +15,7 @@ resource "google_compute_firewall" "rdp_allowed_port" {
   source_tags = ["web"]
 }
 
-resource "google_compute_firewall" "rdp_allowed_range" {
+resource "google_compute_firewall" "positive2" {
   name    = "test-firewall"
   network = google_compute_network.default.name
 

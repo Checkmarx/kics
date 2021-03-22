@@ -2,53 +2,52 @@ package Cx
 
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	container_cluster := task["google.cloud.gcp_container_cluster"]
+modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	container_cluster := task[modules[m]]
 	ansLib.checkState(container_cluster)
+
 	object.get(container_cluster, "master_authorized_networks_config", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_cluster}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'master_authorized_networks_config' is defined",
-		"keyActualValue": "'master_authorized_networks_config' is undefined",
+		"keyExpectedValue": "gcp_container_cluster.master_authorized_networks_config is defined",
+		"keyActualValue": "gcp_container_cluster.master_authorized_networks_config is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	container_cluster := task["google.cloud.gcp_container_cluster"]
-
+	task := ansLib.tasks[id][t]
+	container_cluster := task[modules[m]]
 	ansLib.checkState(container_cluster)
+
 	object.get(container_cluster.master_authorized_networks_config, "enabled", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.master_authorized_networks_config", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'master_authorized_networks_config.enabled' is defined",
-		"keyActualValue": "'master_authorized_networks_config.enabled' is undefined",
+		"keyExpectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled is defined",
+		"keyActualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	container_cluster := task["google.cloud.gcp_container_cluster"]
-
+	task := ansLib.tasks[id][t]
+	container_cluster := task[modules[m]]
 	ansLib.checkState(container_cluster)
+
 	not ansLib.isAnsibleTrue(container_cluster.master_authorized_networks_config.enabled)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config.enabled", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.master_authorized_networks_config.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'master_authorized_networks_config.enabled' is true",
-		"keyActualValue": "'master_authorized_networks_config.enabled' is false",
+		"keyExpectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled is true",
+		"keyActualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is false",
 	}
 }

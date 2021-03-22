@@ -9,7 +9,7 @@
     rules:
       - proto: tcp
         ports:
-        - 2383
+          - 2383
         cidr_ip: 0.0.0.0/0
         rule_desc: allow all on port 2383
 
@@ -21,9 +21,9 @@
     profile: "{{ aws_profile }}"
     region: us-east-1
     rules:
-      - proto: udp
+      - proto: tcp
         ports:
-        - 2383
+          - 2383
         cidr_ip: 0.0.0.0/0
         rule_desc: allow all on port 2383
 
@@ -51,7 +51,7 @@
     rules:
       - proto: tcp
         ports:
-        - 2000 - 3000
+          - 2000-3000
         cidr_ip: 0.0.0.0/0
         rule_desc: allow all on port 2383
 
@@ -68,6 +68,3 @@
         from_port: 2000
         cidr_ip: 0.0.0.0/0
         rule_desc: allow all on port 2383
-
-
-

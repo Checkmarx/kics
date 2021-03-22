@@ -3,18 +3,18 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := ansLib.getTasks(document)[t]
-	cluster := task["google.cloud.gcp_container_cluster"]
-
+	task := ansLib.tasks[id][t]
+	modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
+	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
+
 	ansLib.isAnsibleTrue(cluster.legacy_abac.enabled)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.legacy_abac.enabled", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.legacy_abac.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "google.cloud.gcp_container_cluster.legacy_abac.enabled is false",
-		"keyActualValue": "google.cloud.gcp_container_cluster.legacy_abac.enabled is true",
+		"keyExpectedValue": "gcp_container_cluster.legacy_abac.enabled is false",
+		"keyActualValue": "gcp_container_cluster.legacy_abac.enabled is true",
 	}
 }

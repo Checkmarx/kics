@@ -1,4 +1,3 @@
----
 - name: create a managed zone
   google.cloud.gcp_dns_managed_zone:
     name: test_object
@@ -6,7 +5,7 @@
     description: test zone
     project: test_project
     auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
+    service_account_file: /tmp/auth.pem
     state: present
     dnssec_config:
       defaultKeySpecs:

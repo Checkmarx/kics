@@ -1,22 +1,22 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	pwPolicy := task["community.aws.iam_password_policy"]
-	pwPolicyName := task.name
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.iam_password_policy", "iam_password_policy"}
+	pwPolicy := task[modules[m]]
+	ansLib.checkState(pwPolicy)
 
 	searchKey := checkPwMaxAge(pwPolicy)
 	searchKey != "none"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_password_policy}}%s", [pwPolicyName, searchKey]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}%s", [task.name, modules[m], searchKey]),
 		"issueType": issueType(searchKey),
-		"keyExpectedValue": "community.aws.iam_password_policy should have the property 'pw_max_age/password_max_age' lower than 90",
-		"keyActualValue": "community.aws.iam_password_policy has the property 'pw_max_age/password_max_age' unassigned or greater than 90",
+		"keyExpectedValue": "iam_password_policy should have the property 'pw_max_age/password_max_age' lower than 90",
+		"keyActualValue": "iam_password_policy has the property 'pw_max_age/password_max_age' unassigned or greater than 90",
 	}
 }
 

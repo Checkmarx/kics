@@ -2,7 +2,7 @@
 	"id": "1e2341ba-a5cf-4f0a-a5f6-47e90c68ea89",
 	"queryName": "User Data Shell Script Is Encoded",
 	"severity": "HIGH",
-	"category": "Data Security",
+	"category": "Encryption",
 	"descriptionText": "User Data Shell Script must be encoded",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
 	"platform": "Ansible"

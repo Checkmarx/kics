@@ -1,4 +1,4 @@
-resource "aws_security_group" "allow_tls1" {
+resource "aws_security_group" "positive1" {
   name        = "allow_tls1"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -13,7 +13,7 @@ resource "aws_security_group" "allow_tls1" {
 }
 
 
-resource "aws_security_group" "allow_tls2" {
+resource "aws_security_group" "positive2" {
   name        = "allow_tls2"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -28,7 +28,7 @@ resource "aws_security_group" "allow_tls2" {
 }
 
 
-resource "aws_security_group" "allow_tls3" {
+resource "aws_security_group" "positive3" {
   name        = "allow_tls3"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -43,7 +43,7 @@ resource "aws_security_group" "allow_tls3" {
 }
 
 
-resource "aws_security_group" "allow_tls4" {
+resource "aws_security_group" "positive4" {
   name        = "allow_tls4"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -58,7 +58,7 @@ resource "aws_security_group" "allow_tls4" {
 }
 
 
-resource "aws_security_group" "allow_tls5" {
+resource "aws_security_group" "positive5" {
   name        = "allow_tls5"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -73,7 +73,7 @@ resource "aws_security_group" "allow_tls5" {
 }
 
 
-resource "aws_security_group" "allow_tls6" {
+resource "aws_security_group" "positive6" {
   name        = "allow_tls6"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -88,7 +88,7 @@ resource "aws_security_group" "allow_tls6" {
 }
 
 
-resource "aws_security_group" "allow_tls7" {
+resource "aws_security_group" "positive7" {
   name        = "allow_tls7"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -103,7 +103,7 @@ resource "aws_security_group" "allow_tls7" {
 }
 
 
-resource "aws_security_group" "allow_tls8" {
+resource "aws_security_group" "positive8" {
   name        = "allow_tls8"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id

@@ -1,4 +1,3 @@
----
 - name: create a instance
   google.cloud.gcp_compute_instance:
     name: test_object

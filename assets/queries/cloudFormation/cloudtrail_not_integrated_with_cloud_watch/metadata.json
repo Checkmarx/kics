@@ -2,7 +2,7 @@
 	"id": "65d07da5-9af5-44df-8983-52d2e6f24c44",
 	"queryName": "CloudTrail Not Integrated With Cloud Watch",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "CloudTrail should be integrated with CloudWatch",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html",
 	"platform": "CloudFormation"

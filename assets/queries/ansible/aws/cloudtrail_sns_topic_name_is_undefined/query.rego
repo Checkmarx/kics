@@ -1,34 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.cloudtrail", "cloudtrail"}
+
 CxPolicy[result] {
-	playbooks := ansLib.getTasks(input.document[i])
-	redis_cache := playbooks[j]
-	instance := redis_cache["community.aws.cloudtrail"]
+	task := ansLib.tasks[id][t]
+	instance := task[modules[m]]
+	ansLib.checkState(instance)
 
 	not instance.sns_topic_name
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}", [playbooks[j].name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is undefined", [playbooks[j].name]),
+		"keyExpectedValue": "cloudtrail.sns_topic_name is set",
+		"keyActualValue": "cloudtrail.sns_topic_name is undefined",
 	}
 }
 
 CxPolicy[result] {
-	playbooks := ansLib.getTasks(input.document[i])
-	redis_cache := playbooks[j]
-	instance := redis_cache["community.aws.cloudtrail"]
+	task := ansLib.tasks[id][t]
+	instance := task[modules[m]]
+	ansLib.checkState(instance)
 
 	instance.sns_topic_name == null
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name", [playbooks[j].name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.sns_topic_name", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [playbooks[j].name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [playbooks[j].name]),
+		"keyExpectedValue": "cloudtrail.sns_topic_name is set",
+		"keyActualValue": "cloudtrail.sns_topic_name is empty",
 	}
 }

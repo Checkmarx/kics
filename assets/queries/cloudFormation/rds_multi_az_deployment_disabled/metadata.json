@@ -2,7 +2,7 @@
 	"id": "2b1d4935-9acf-48a7-8466-10d18bf51a69",
 	"queryName": "RDS Multi-AZ Deployment Disabled",
 	"severity": "MEDIUM",
-	"category": "Backup and Disaster Recovery",
+	"category": "Backup",
 	"descriptionText": "AWS RDS Instance should have a multi-az deployment",
 	"descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html",
 	"platform": "CloudFormation"

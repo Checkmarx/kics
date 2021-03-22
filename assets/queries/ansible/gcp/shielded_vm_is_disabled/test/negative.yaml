@@ -6,7 +6,7 @@
     disks:
     - auto_delete: 'true'
       boot: 'true'
-      source: "{{ disk }}"
+      source: '{{ disk }}'
     - auto_delete: 'true'
       interface: NVME
       type: SCRATCH
@@ -18,15 +18,15 @@
     labels:
       environment: production
     network_interfaces:
-    - network: "{{ network }}"
+    - network: '{{ network }}'
       access_configs:
       - name: External NAT
-        nat_ip: "{{ address }}"
+        nat_ip: '{{ address }}'
         type: ONE_TO_ONE_NAT
     zone: us-central1-a
     project: test_project
     auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
+    service_account_file: /tmp/auth.pem
     state: present
     shielded_instance_config:
       enable_integrity_monitoring: yes

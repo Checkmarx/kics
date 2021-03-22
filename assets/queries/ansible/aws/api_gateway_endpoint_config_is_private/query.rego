@@ -1,20 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	redshiftCluster := task["community.aws.aws_api_gateway"]
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
+	redshiftCluster := task[modules[m]]
+	ansLib.checkState(redshiftCluster)
+
 	redshiftCluster.endpoint_type == "PRIVATE"
-	clusterName := task.name
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.aws_api_gateway}}.endpoint_type", [clusterName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.endpoint_type", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.aws_api_gateway.endpoint_type should be set to EDGE or REGIONAL",
-		"keyActualValue": "community.aws.aws_api_gateway.endpoint_type is PRIVATE",
+		"keyExpectedValue": "aws_api_gateway.endpoint_type should be set to EDGE or REGIONAL",
+		"keyActualValue": "aws_api_gateway.endpoint_type is PRIVATE",
 	}
 }
-

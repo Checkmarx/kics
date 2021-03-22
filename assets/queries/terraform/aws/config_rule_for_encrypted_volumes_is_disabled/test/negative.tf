@@ -1,4 +1,4 @@
-resource "aws_config_config_rule" "encrypted_vols_rule" {
+resource "aws_config_config_rule" "negative1" {
   name = "encrypted_vols_rule"
 
   source {
@@ -7,7 +7,7 @@ resource "aws_config_config_rule" "encrypted_vols_rule" {
   }
 }
 
-resource "aws_config_config_rule" "another_rule" {
+resource "aws_config_config_rule" "negative2" {
   name = "another_rule"
 
   source {

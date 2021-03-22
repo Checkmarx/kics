@@ -1,40 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	ec2Ami := task["amazon.aws.ec2_ami"]
-	ec2AmiName := task.name
-	devMap := ec2Ami.device_mapping
+modules := {"amazon.aws.ec2_ami", "ec2_ami"}
 
-	object.get(devMap, "encrypted", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	ec2Ami := task[modules[m]]
+	ansLib.checkState(ec2Ami)
+
+	object.get(ec2Ami.device_mapping, "encrypted", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_ami}}", [ec2AmiName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "amazon.aws.ec2_ami.device_mapping.device_name.encrypted should be set to true",
-		"keyActualValue": "amazon.aws.ec2_ami.device_mapping.device_name.encrypted is undefined",
+		"keyExpectedValue": "ec2_ami.device_mapping.device_name.encrypted should be set to true",
+		"keyActualValue": "ec2_ami.device_mapping.device_name.encrypted is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	ec2Ami := task["amazon.aws.ec2_ami"]
-	ec2AmiName := task.name
-	devMap := ec2Ami.device_mapping
-	not ansLib.isAnsibleTrue(devMap.encrypted)
+	task := ansLib.tasks[id][t]
+	ec2Ami := task[modules[m]]
+	ansLib.checkState(ec2Ami)
+
+	not ansLib.isAnsibleTrue(ec2Ami.device_mapping.encrypted)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_ami}}.device_mapping.encrypted", [ec2AmiName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.device_mapping.encrypted", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "amazon.aws.ec2_ami.device_mapping.encrypted should be set to true",
-		"keyActualValue": "amazon.aws.ec2_ami.device_mapping.encrypted is set to false",
+		"keyExpectedValue": "ec2_ami.device_mapping.encrypted should be set to true",
+		"keyActualValue": "ec2_ami.device_mapping.encrypted is set to false",
 	}
 }
-

@@ -7,11 +7,7 @@ on:
 jobs:
   integration-tests:
     name: integration-tests
-    strategy:
-      matrix:
-        go-version: [1.15.x]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
@@ -47,7 +43,7 @@ jobs:
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Run docker image and generate results.json
       run: |
-        time docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
+        docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
     - name: Assert queries_total > 0 in results.json
       id: assert_queries_total
       uses: sergeysova/jq-action@v2

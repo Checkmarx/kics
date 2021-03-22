@@ -2,7 +2,7 @@
 	"id": "76ddf32c-85b1-4808-8935-7eef8030ab36",
 	"queryName": "Batch Job Definition With Privileged Container Properties",
 	"severity": "HIGH",
-	"category": "Privileges",
+	"category": "Insecure Configurations",
 	"descriptionText": "Batch Job Definition should not have Privileged Container Properties",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html",
 	"platform": "CloudFormation"

@@ -2,7 +2,7 @@
   "id": "f861041c-8c9f-4156-acfc-5e6e524f5884",
   "queryName": "S3 Bucket Without Logging",
   "severity": "LOW",
-  "category": "Logging",
+  "category": "Observability",
   "descriptionText": "S3 bucket without logging",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
   "platform": "Terraform"

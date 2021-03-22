@@ -2,7 +2,7 @@
 	"id": "b3de4e4c-14be-4159-b99d-9ad194365e4c",
 	"queryName": "EC2 Subnet Mapping Public IP On Launch",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "EC2 Subnet should not have MapPublicIpOnLaunch set to true",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch",
 	"platform": "CloudFormation"

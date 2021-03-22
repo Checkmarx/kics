@@ -1,7 +1,7 @@
 ---
 - name: create a instance
   google.cloud.gcp_sql_instance:
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     region: us-central1
     project: test_project
     auth_kind: serviceaccount
@@ -9,7 +9,7 @@
     state: present
 - name: create a second instance
   google.cloud.gcp_sql_instance:
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     settings:
       tier: db-n1-standard-1
     region: us-central1
@@ -19,7 +19,7 @@
     state: present
 - name: create a third instance
   google.cloud.gcp_sql_instance:
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     settings:
       backup_configuration:
         binary_log_enabled: yes
@@ -31,7 +31,7 @@
     state: present
 - name: create a forth instance
   google.cloud.gcp_sql_instance:
-    name: "{{resource_name}}-2"
+    name: "{{ resource_name }}-2"
     settings:
       backup_configuration:
         binary_log_enabled: yes

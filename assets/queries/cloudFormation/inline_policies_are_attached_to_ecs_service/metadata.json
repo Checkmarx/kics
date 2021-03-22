@@ -1,8 +1,8 @@
 {
 	"id": "9e8c89b3-7997-4d15-93e4-7911b9db99fd",
 	"queryName": "Inline Policies Are Attached To ECS Service",
-	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"severity": "MEDIUM",
+	"category": "Insecure Configurations",
 	"descriptionText": "Check if any ECS service has inline policies attached, which are embedded directly into an entity (user, group,...), instead of the equivalent recommended managed policies.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
 	"platform": "CloudFormation"

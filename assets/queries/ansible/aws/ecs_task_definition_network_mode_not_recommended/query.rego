@@ -1,17 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	task["community.aws.ecs_taskdefinition"].network_mode != "awsvpc"
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.ecs_taskdefinition", "ecs_taskdefinition"}
+	ecs_taskdefinition := task[modules[m]]
+	ansLib.checkState(ecs_taskdefinition)
+
+	ecs_taskdefinition.network_mode != "awsvpc"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ecs_taskdefinition}}.network_mode", [task.name]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
-		"keyExpectedValue": "'community.aws.ecs_taskdefinition.network_mode' is 'awsvpc'",
-		"keyActualValue": sprintf("'community.aws.ecs_taskdefinition.network_mode' is '%s'", [task["community.aws.ecs_taskdefinition"].network_mode]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.network_mode", [task.name, modules[m]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'ecs_taskdefinition.network_mode' is 'awsvpc'",
+		"keyActualValue": sprintf("'ecs_taskdefinition.network_mode' is '%s'", [ecs_taskdefinition.network_mode]),
 	}
 }

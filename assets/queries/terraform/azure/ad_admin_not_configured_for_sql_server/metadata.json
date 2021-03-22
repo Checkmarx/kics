@@ -2,7 +2,7 @@
 	"id": "a3a055d2-9a2e-4cc9-b9fb-12850a1a3a4b",
 	"queryName": "AD Admin Not Configured For SQL Server",
 	"severity": "HIGH",
-	"category": "Identity and Access Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "The Active Directory Administrator is not configured for a SQL server",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_active_directory_administrator",
 	"platform": "Terraform"

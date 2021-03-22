@@ -1,22 +1,22 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	bucket := task["amazon.aws.s3_bucket"]
-	bucketName := task.name
+	task := ansLib.tasks[id][t]
+	modules := {"amazon.aws.s3_bucket", "s3_bucket"}
+	bucket := task[modules[m]]
+	ansLib.checkState(bucket)
 
 	bucket.policy.Statement[_].Effect == "Allow"
 	contains(lower(bucket.policy.Statement[_].Action), "list")
 	bucket.policy.Statement[_].Principal == "*"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.s3_bucket}}.policy.Statement", [bucketName]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("amazon.aws.s3_bucket[%s] does not allow List Action From All Principals", [bucketName]),
-		"keyActualValue": sprintf("amazon.aws.s3_bucket[%s] allows List Action From All Principals", [bucketName]),
+		"keyExpectedValue": sprintf("s3_bucket[%s] does not allow List Action From All Principals", [bucket.name]),
+		"keyActualValue": sprintf("s3_bucket[%s] allows List Action From All Principals", [bucket.name]),
 	}
 }

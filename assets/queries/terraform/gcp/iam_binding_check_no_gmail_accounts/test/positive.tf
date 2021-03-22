@@ -1,4 +1,4 @@
-resource "google_project_iam_binding" "project" {
+resource "google_project_iam_binding" "positive1" {
   project = "your-project-id"
   role    = "roles/editor"
 

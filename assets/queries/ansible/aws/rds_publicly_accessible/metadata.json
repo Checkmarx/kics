@@ -2,7 +2,7 @@
 	"id": "c09e3ca5-f08a-4717-9c87-3919c5e6d209",
 	"queryName": "RDS Publicly Accessible",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Access Control",
 	"descriptionText": "Check if 'publicly_accessible' field is true (default is false)",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-auto_minor_version_upgrade",
 	"platform": "Ansible"

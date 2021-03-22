@@ -2,7 +2,7 @@
   "id": "704dadd3-54fc-48ac-b6a0-02f170011473",
   "queryName": "GuardDuty Detector Disabled",
   "severity": "MEDIUM",
-  "category": "Logging",
+  "category": "Observability",
   "descriptionText": "Make sure that Amazon GuardDuty is Enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector#example-usage",
   "platform": "Terraform"

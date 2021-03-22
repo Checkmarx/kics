@@ -1,4 +1,4 @@
-resource "aws_iam_account_password_policy" "strict2" {
+resource "aws_iam_account_password_policy" "positive1" {
   minimum_password_length        = 8
   require_lowercase_characters   = true
   require_numbers                = true
@@ -9,7 +9,7 @@ resource "aws_iam_account_password_policy" "strict2" {
 }
 
 // comment
-resource "aws_iam_account_password_policy" "strict_without" {
+resource "aws_iam_account_password_policy" "positive2" {
   minimum_password_length        = 8
   require_lowercase_characters   = true
   require_numbers                = true

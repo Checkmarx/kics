@@ -1,34 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+modules := {"community.aws.ecs_ecr", "ecs_ecr"}
 
-	object.get(task["community.aws.ecs_ecr"], "image_tag_mutability", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	ecs_ecr := task[modules[m]]
+	ansLib.checkState(ecs_ecr)
+
+	object.get(ecs_ecr, "image_tag_mutability", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.ecs_ecr.image_tag_mutability is set ",
-		"keyActualValue": "community.aws.ecs_ecr.image_tag_mutability is undefined",
+		"keyExpectedValue": "ecs_ecr.image_tag_mutability is set ",
+		"keyActualValue": "ecs_ecr.image_tag_mutability is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	ecs_ecr := task[modules[m]]
+	ansLib.checkState(ecs_ecr)
 
-	task["community.aws.ecs_ecr"].image_tag_mutability != "immutable"
+	ecs_ecr.image_tag_mutability != "immutable"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}.image_tag_mutability", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.image_tag_mutability", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.ecs_ecr.image_tag_mutability is set to 'immutable'",
-		"keyActualValue": "community.aws.ecs_ecr.image_tag_mutability is not set to 'immutable'",
+		"keyExpectedValue": "ecs_ecr.image_tag_mutability is set to 'immutable'",
+		"keyActualValue": "ecs_ecr.image_tag_mutability is not set to 'immutable'",
 	}
 }

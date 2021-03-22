@@ -2,7 +2,7 @@
 	"id": "c1032cf7-3628-44e2-bd53-38c17cf31b6b",
 	"queryName": "Shared Service Account",
 	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
+	"category": "Secret Management",
 	"descriptionText": "A Service Account token is shared between workloads",
 	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 	"platform": "Kubernetes"

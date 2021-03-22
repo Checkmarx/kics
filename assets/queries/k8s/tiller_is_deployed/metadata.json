@@ -2,7 +2,7 @@
 	"id": "6d173be7-545a-46c6-a81d-2ae52ed1605d",
 	"queryName": "Tiller (Helm v2) Is Deployed",
 	"severity": "HIGH",
-	"category": "Cloud Assets Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Check if Tiller is deployed.",
 	"descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/",
 	"platform": "Kubernetes"

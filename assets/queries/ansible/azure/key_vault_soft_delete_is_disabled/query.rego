@@ -1,15 +1,19 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
-	task := getTasks(document)[t]
+import data.generic.ansible as ansLib
 
- 	keyvault := object.get(task.azure_rm_keyvault, "enable_soft_delete", "undefined")
-	isAnsibleFalse(keyvault)
+modules := {"azure.azcollection.azure_rm_keyvault", "azure_rm_keyvault"}
+
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	keyvault := task[modules[m]]
+	ansLib.checkState(keyvault)
+
+	ansLib.isAnsibleFalse(keyvault.enable_soft_delete)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_keyvault}}.enable_soft_delete", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_soft_delete", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_keyvault.enable_soft_delete is true",
 		"keyActualValue": "azure_rm_keyvault.enable_soft_delete is false",
@@ -17,32 +21,17 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	task := getTasks(document)[t]
+	task := ansLib.tasks[id][t]
+	keyvault := task[modules[m]]
+	ansLib.checkState(keyvault)
 
-	object.get(task.azure_rm_keyvault, "enable_soft_delete", "undefined") == "undefined"
+	object.get(keyvault, "enable_soft_delete", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_keyvault}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "azure_rm_keyvault.enable_soft_delete is defined",
 		"keyActualValue": "azure_rm_keyvault.enable_soft_delete is undefined",
 	}
-}
-
-getTasks(document) = result {
-	result := [body | playbook := document.playbooks[0]; body := playbook.tasks]
-	count(result) != 0
-} else = result {
-	result := [body | playbook := document.playbooks[_]; body := playbook]
-	count(result) != 0
-}
-
-isAnsibleFalse(answer) {
-	lower(answer) == "no"
-} else {
-	lower(answer) == "false"
-} else {
-	answer == false
 }

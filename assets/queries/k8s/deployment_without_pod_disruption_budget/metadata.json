@@ -2,7 +2,7 @@
 	"id": "b23e9b98-0cb6-4fc9-b257-1f3270442678",
 	"queryName": "Deployment Without PodDisruptionBudget",
 	"severity": "LOW",
-	"category": "High Availability",
+	"category": "Availability",
 	"descriptionText": "Deployments should be assigned with a PodDisruptionBudget to ensure high availability",
 	"descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/",
 	"platform": "Kubernetes"

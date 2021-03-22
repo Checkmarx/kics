@@ -2,7 +2,7 @@
 	"id": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
 	"queryName": "ALB protocol is HTTP",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "AWS Application Load Balancer (alb) should not listen on HTTP",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
 	"platform": "Ansible"

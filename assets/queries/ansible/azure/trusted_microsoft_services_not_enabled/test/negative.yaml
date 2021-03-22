@@ -7,13 +7,13 @@
       bypass: AzureServices,Metrics
       default_action: Deny
       virtual_network_rules:
-        - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
-          action: Allow
+      - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
+        action: Allow
       ip_rules:
-        - value: 1.2.3.4
-          action: Allow
-        - value: 123.234.123.0/24
-          action: Allow
+      - value: 1.2.3.4
+        action: Allow
+      - value: 123.234.123.0/24
+        action: Allow
 - name: configure firewall and virtual networks2
   azure_rm_storageaccount:
     resource_group: myResourceGroup
@@ -22,13 +22,13 @@
     network_acls:
       default_action: Deny
       virtual_network_rules:
-        - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
-          action: Allow
+      - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
+        action: Allow
       ip_rules:
-        - value: 1.2.3.4
-          action: Allow
-        - value: 123.234.123.0/24
-          action: Allow
+      - value: 1.2.3.4
+        action: Allow
+      - value: 123.234.123.0/24
+        action: Allow
 - name: configure firewall and virtual networks3
   azure_rm_storageaccount:
     resource_group: myResourceGroup
@@ -38,10 +38,10 @@
       default_action: Deny
       bypass: AzureServices
       virtual_network_rules:
-        - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
-          action: Allow
+      - id: /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet
+        action: Allow
       ip_rules:
-        - value: 1.2.3.4
-          action: Allow
-        - value: 123.234.123.0/24
-          action: Allow
+      - value: 1.2.3.4
+        action: Allow
+      - value: 123.234.123.0/24
+        action: Allow

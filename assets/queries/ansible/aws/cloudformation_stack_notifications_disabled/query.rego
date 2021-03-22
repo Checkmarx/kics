@@ -1,18 +1,20 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	modules := {"amazon.aws.cloudformation", "cloudformation"}
+	cloudformation := task[modules[m]]
+	ansLib.checkState(cloudformation)
 
-	object.get(task["amazon.aws.cloudformation"], "notification_arns", "undefined") == "undefined"
+	object.get(cloudformation, "notification_arns", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{amazon.aws.cloudformation}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "amazon.aws.cloudformation.notification_arns is set",
-		"keyActualValue": "amazon.aws.cloudformation.notification_arns is undefined",
+		"keyExpectedValue": "cloudformation.notification_arns is set",
+		"keyActualValue": "cloudformation.notification_arns is undefined",
 	}
 }

@@ -2,7 +2,7 @@
 	"id": "0d0c12b9-edce-4510-9065-13f6a758750c",
 	"queryName": "Redis Entirely Accessible",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Access Control",
 	"descriptionText": "Firewall rule allowing unrestricted access to Redis from the Internet",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html#parameter-start_ip_address",
 	"platform": "Ansible"

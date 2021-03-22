@@ -1,4 +1,3 @@
----
 - name: Ok Password policy for AWS account
   community.aws.iam_password_policy:
     state: present

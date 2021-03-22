@@ -1,4 +1,4 @@
-resource "aws_db_security_group" "default" {
+resource "aws_db_security_group" "positive1" {
   name = "rds_sg"
 
   ingress {

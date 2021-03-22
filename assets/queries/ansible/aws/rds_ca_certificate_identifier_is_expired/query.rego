@@ -1,34 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+modules := {"community.aws.rds_instance", "rds_instance"}
 
-	object.get(task["community.aws.rds_instance"], "ca_certificate_identifier", "undefined") == "undefined"
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	rds_instance := task[modules[m]]
+	ansLib.checkState(rds_instance)
+
+	object.get(rds_instance, "ca_certificate_identifier", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.rds_instance}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "RDS instance ca_certificate_identifier should be defined",
-		"keyActualValue": "RDS instance ca_certificate_identifier is undefined",
+		"keyExpectedValue": "rds_instance.ca_certificate_identifier should be defined",
+		"keyActualValue": "rds_instance.ca_certificate_identifier is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
+	task := ansLib.tasks[id][t]
+	rds_instance := task[modules[m]]
+	ansLib.checkState(rds_instance)
 
-	task["community.aws.rds_instance"].ca_certificate_identifier != "rds-ca-2019"
+	rds_instance.ca_certificate_identifier != "rds-ca-2019"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.rds_instance}}.ca_certificate_identifier", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.ca_certificate_identifier", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": ".publicly_accessible is false",
-		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
+		"keyExpectedValue": "rds_instance.ca_certificate_identifier is equal to 'rds-ca-2019'",
+		"keyActualValue": "rds_instance.ca_certificate_identifier is not equal to 'rds-ca-2019'",
 	}
 }

@@ -1,36 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.ecs_ecr", "ecs_ecr"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	cloudwatchlogs := task["community.aws.ecs_ecr"]
-	pol := cloudwatchlogs.policy.Statement[index].Principal
-	re_match("\\*", pol)
+	task := ansLib.tasks[id][t]
+	cloudwatchlogs := task[modules[m]]
+	ansLib.checkState(cloudwatchlogs)
+
+	re_match("\\*", cloudwatchlogs.policy.Statement[index].Principal)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}.policy", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Principal' is not equal to '*'",
-		"keyActualValue": "'policy.Principal' is equal to '*'",
+		"keyExpectedValue": "ecs_ecr.policy.Principal is not equal to '*'",
+		"keyActualValue": "ecs_ecr.policy.Principal is equal to '*'",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	cloudwatchlogs := task["community.aws.ecs_ecr"]
-	pol := cloudwatchlogs.policy
-	re_match("\"Principal\"\\ *:\\ *\"\\*\"", pol)
+	task := ansLib.tasks[id][t]
+	cloudwatchlogs := task[modules[m]]
+	ansLib.checkState(cloudwatchlogs)
+
+	re_match("\"Principal\"\\ *:\\ *\"\\*\"", cloudwatchlogs.policy)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ecs_ecr}}.policy", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'policy.Principal' is not equal '*'",
-		"keyActualValue": "'policy.Principal' is equal '*'",
+		"keyExpectedValue": "ecs_ecr.policy.Principal is not equal '*'",
+		"keyActualValue": "ecs_ecr.policy.Principal is equal '*'",
 	}
 }

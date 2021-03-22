@@ -1,9 +1,0 @@
-{
-	"id": "9c0acced-ee71-4dd9-a3ac-9af380416db4",
-	"queryName": "VPC Changes Without Alarms",
-	"severity": "MEDIUM",
-	"category": "Monitoring",
-	"descriptionText": "A log metric filter and alarm should exist for VPC changes",
-	"descriptionUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html",
-	"platform": "CloudFormation"
-}

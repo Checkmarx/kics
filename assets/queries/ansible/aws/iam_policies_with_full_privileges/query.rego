@@ -1,22 +1,23 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	awsApiGateway := task["community.aws.iam_managed_policy"]
-	contains(awsApiGateway.state, "present")
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
+	awsApiGateway := task[modules[m]]
+	ansLib.checkState(awsApiGateway)
+
 	resource := awsApiGateway.policy.Statement[_].Resource
 	contains(resource, "*")
 	action := awsApiGateway.policy.Statement[_].Action[j]
 	contains(action, "*")
-	clusterName := task.name
+
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.policy.Statement.Action", [clusterName]),
-		"issueType": "MissingValue",
-		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Action not contains '*'",
-		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Action contains '*'",
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement.Action", [task.name, modules[m]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Action not contains '*'",
+		"keyActualValue": "iam_managed_policy.policy.Statement.Action contains '*'",
 	}
 }

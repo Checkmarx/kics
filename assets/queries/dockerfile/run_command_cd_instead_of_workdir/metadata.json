@@ -2,7 +2,7 @@
 	"id": "f4a6bcd3-e231-4acf-993c-aa027be50d2e",
 	"queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
 	"severity": "MEDIUM",
-	"category": "Filesystem",
+	"category": "Build Process",
 	"descriptionText": "Use WORKDIR instead of proliferating instructions like RUN cd … && do-something, which are hard to read, troubleshoot, and maintain.",
 	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir",
 	"platform": "Dockerfile"

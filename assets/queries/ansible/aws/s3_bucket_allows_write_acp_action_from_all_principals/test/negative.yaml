@@ -4,8 +4,8 @@
     name: mys3bucket
     state: present
     policy:
-      Version: "2020-10-07"
+      Version: '2020-10-07'
       Statement:
       - Effect: Deny
         Action: WriteACP
-        Principal: "*"
+        Principal: '*'

@@ -2,41 +2,37 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := ["redshift", "community.aws.redshift"]
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	module := ["redshift", "community.aws.redshift"]
-	redshiftCluster := task[module[m]]
+	task := ansLib.tasks[id][t]
+	redshiftCluster := task[modules[m]]
 
 	redshiftCluster.command == "create"
 	object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, module[m]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
-		"keyActualValue": sprintf("%s.encrypted is undefined", [module[m]]),
+		"keyExpectedValue": "redshift.encrypted should be set to true",
+		"keyActualValue": "redshift.encrypted is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	module := ["redshift", "community.aws.redshift"]
-	redshiftCluster := task[module[m]]
+	task := ansLib.tasks[id][t]
+	redshiftCluster := task[modules[m]]
 
 	createOrModify(redshiftCluster.command)
 	not ansLib.isAnsibleTrue(redshiftCluster.encrypted)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, module[m]]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypted", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.encrypted should be set to true", [module[m]]),
-		"keyActualValue": sprintf("%s.encrypted is set to false", [module[m]]),
+		"keyExpectedValue": "redshift.encrypted should be set to true",
+		"keyActualValue": "redshift.encrypted is set to false",
 	}
 }
 

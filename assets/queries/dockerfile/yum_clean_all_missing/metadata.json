@@ -2,7 +2,7 @@
 	"id": "00481784-25aa-4a55-8633-3136dfcf4f37",
 	"queryName": "Yum Clean All Missing",
 	"severity": "MEDIUM",
-	"category": "Package Management",
+	"category": "Supply-Chain",
 	"descriptionText": "Need to use 'yum clean all' after using a 'yum install' command to clean package cached data and reduce image size",
 	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
 	"platform": "Dockerfile"

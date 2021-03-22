@@ -1,4 +1,3 @@
-#this code is a correct code for which the query should not find any result
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:

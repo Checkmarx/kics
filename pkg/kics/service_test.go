@@ -9,13 +9,13 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/source"
 )
 
 // TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them
@@ -23,7 +23,7 @@ func TestService(t *testing.T) {
 	mockParser, mockFilesSource := createParserSourceProvider("../../assets/queries/template")
 
 	type fields struct {
-		SourceProvider SourceProvider
+		SourceProvider provider.SourceProvider
 		Storage        Storage
 		Parser         *parser.Parser
 		Inspector      *engine.Inspector
@@ -102,7 +102,7 @@ func TestService(t *testing.T) {
 	}
 }
 
-func createParserSourceProvider(path string) (*parser.Parser, *source.FileSystemSourceProvider) {
+func createParserSourceProvider(path string) (*parser.Parser, *provider.FileSystemSourceProvider) {
 	mockParser, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
@@ -110,7 +110,7 @@ func createParserSourceProvider(path string) (*parser.Parser, *source.FileSystem
 		Add(&dockerParser.Parser{}).
 		Build([]string{""})
 
-	mockFilesSource, _ := source.NewFileSystemSourceProvider(path, []string{})
+	mockFilesSource, _ := provider.NewFileSystemSourceProvider(path, []string{})
 
 	return mockParser, mockFilesSource
 }

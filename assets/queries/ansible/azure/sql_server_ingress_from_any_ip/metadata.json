@@ -2,7 +2,7 @@
 	"id": "f4e9ff70-0f3b-4c50-a713-26cbe7ec4039",
 	"queryName": "SQLServer Ingress from Any IP",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "Check if all IPs are allowed, check from start 0.0.0.0 to end 255.255.255.255.",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html",
 	"platform": "Ansible"

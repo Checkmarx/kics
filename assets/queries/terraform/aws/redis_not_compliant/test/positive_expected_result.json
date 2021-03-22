@@ -2,6 +2,6 @@
 	{
 		"queryName": "Redis Not Compliant",
 		"severity": "HIGH",
-		"line": 8
+		"line": 7
 	}
 ]

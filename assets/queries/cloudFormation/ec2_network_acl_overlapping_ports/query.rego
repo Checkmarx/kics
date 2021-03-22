@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.PortRange", [name1]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.PortRange should be configured with a different unused port range to avoid overlapping'", [name1]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.PortRange has port rage config that is overlapping with others resources and cause ineffective rules'", [name1]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'", [name1]),
 	}
 }
 

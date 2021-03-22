@@ -2,7 +2,7 @@
 	"id": "bdf8dcb4-75df-4370-92c4-606e4ae6c4d3",
 	"queryName": "Redshift Cluster Publicly Accessible",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "AWS Redshift Clusters must not be publicly accessible, which means the attribute 'PubliclyAccessible' must be set to false",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
 	"platform": "CloudFormation"

@@ -1,7 +1,7 @@
 [
 	{
 		"queryName": "MAINTAINER Instruction Being Used",
-		"severity": "HIGH",
+		"severity": "LOW",
 		"line": 4
 	}
 ]

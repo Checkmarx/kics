@@ -1,4 +1,4 @@
-resource "aws_kms_key" "a" {
+resource "aws_kms_key" "positive1" {
   description             = "KMS key 1"
   
   is_enabled = true
@@ -8,7 +8,7 @@ resource "aws_kms_key" "a" {
 }
 
 
-resource "aws_kms_key" "a3" {
+resource "aws_kms_key" "positive2" {
   description             = "KMS key 1"
   
   is_enabled = true

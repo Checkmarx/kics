@@ -2,6 +2,8 @@ package Cx
 
 CxPolicy[result] {
 	document := input.document[i]
+	document.kind == "PodSecurityPolicy"
+
 	spec := document.spec
 	spec.privileged
 

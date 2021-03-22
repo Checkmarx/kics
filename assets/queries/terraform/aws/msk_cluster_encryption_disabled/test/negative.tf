@@ -1,10 +1,10 @@
-resource "aws_msk_cluster" "example1" {  
+resource "aws_msk_cluster" "negative1" {  
   encryption_info {
     encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
   }
 }
 
-resource "aws_msk_cluster" "example2" {  
+resource "aws_msk_cluster" "negative2" {  
   encryption_info {
     encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
     encryption_in_transit {
@@ -14,7 +14,7 @@ resource "aws_msk_cluster" "example2" {
   }
 }
 
-resource "aws_msk_cluster" "example3" {  
+resource "aws_msk_cluster" "negative3" {  
   encryption_info {
     encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
     encryption_in_transit {
@@ -23,7 +23,7 @@ resource "aws_msk_cluster" "example3" {
   }
 }
 
-resource "aws_msk_cluster" "example4" {  
+resource "aws_msk_cluster" "negative4" {  
   encryption_info {
     encryption_at_rest_kms_key_arn = aws_kms_key.kms.arn
     encryption_in_transit {

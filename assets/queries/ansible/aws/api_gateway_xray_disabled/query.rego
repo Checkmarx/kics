@@ -1,45 +1,37 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
+
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	tracing := task["community.aws.aws_api_gateway"]
+	task := ansLib.tasks[id][t]
+	tracing := task[modules[m]]
+	ansLib.checkState(tracing)
 
 	object.get(tracing, "tracing_enabled", "undefined") == "undefined"
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.aws_api_gateway}}", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.aws_api_gateway}}.tracing_enabled is defined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.aws_api_gateway}}.tracing_enabled is undefined", [task.name]),
+		"keyExpectedValue": "aws_api_gateway.tracing_enabled is defined",
+		"keyActualValue": "aws_api_gateway.tracing_enabled is undefined",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	tracing := task["community.aws.aws_api_gateway"]
-	tracingValue := tracing.tracing_enabled
+	task := ansLib.tasks[id][t]
+	tracing := task[modules[m]]
+	ansLib.checkState(tracing)
 
-	not isTracingEnabled(tracingValue)
+	not ansLib.isAnsibleTrue(tracing.tracing_enabled)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.aws_api_gateway}}.tracing_enabled", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.tracing_enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.aws_api_gateway}}.tracing_enabled is true", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.aws_api_gateway}}.tracing_enabled is false", [task.name]),
+		"keyExpectedValue": "aws_api_gateway.tracing_enabled is true",
+		"keyActualValue": "aws_api_gateway.tracing_enabled is false",
 	}
-}
-
-isTracingEnabled(value) {
-	lower(value) == "yes"
-} else {
-	lower(value) == "true"
-} else {
-	value == true
 }

@@ -2,7 +2,7 @@
 	"id": "ee12ad32-2863-4c0f-b13f-28272d115028",
 	"queryName": "ELB Access Log Disabled",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "ELB should have have access log enabled",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html",
 	"platform": "CloudFormation"

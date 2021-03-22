@@ -2,8 +2,8 @@
 	"id": "800fa019-49dd-421b-9042-7331fdd83fa2",
 	"queryName": "Access Key Is Not Rotated Within 90 Days",
 	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
-	"descriptionText": "Check if there isn't a rule that enforces access keys to be rotated within 90 days.",
+	"category": "Best Practices",
+	"descriptionText": "Check if there is a rule that enforces access keys to be rotated within 90 days.",
 	"descriptionUrl": "https://docs.amazonaws.cn/en_us/config/latest/developerguide/access-keys-rotated.html",
 	"platform": "CloudFormation"
 }

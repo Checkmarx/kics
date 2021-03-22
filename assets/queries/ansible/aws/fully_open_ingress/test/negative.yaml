@@ -1,4 +1,3 @@
----
 - name: example1
   amazon.aws.ec2_group:
     name: example1
@@ -6,12 +5,12 @@
     vpc_id: 12345
     region: eu-west-1
     rules:
-      - proto: tcp
-        ports:
-          - 80
-          - 443
-          - 8080-8099
-        cidr_ip: 172.16.17.0/24
+    - proto: tcp
+      ports:
+      - 80
+      - 443
+      - 8080-8099
+      cidr_ip: 172.16.17.0/24
 - name: example2
   amazon.aws.ec2_group:
     name: example2
@@ -19,13 +18,13 @@
     vpc_id: 12345
     region: eu-west-1
     rules:
-      - proto: tcp
-        ports:
-          - 80
-          - 443
-          - 8080-8099
-        cidr_ip:
-          - 172.16.1.0/24
+    - proto: tcp
+      ports:
+      - 80
+      - 443
+      - 8080-8099
+      cidr_ip:
+      - 172.16.1.0/24
 - name: example3
   amazon.aws.ec2_group:
     name: example3
@@ -33,12 +32,12 @@
     vpc_id: 12345
     region: eu-west-1
     rules:
-      - proto: tcp
-        ports:
-          - 80
-          - 443
-          - 8080-8099
-        cidr_ipv6: 2607:F8B0::/32
+    - proto: tcp
+      ports:
+      - 80
+      - 443
+      - 8080-8099
+      cidr_ipv6: 2607:F8B0::/32
 - name: example4
   amazon.aws.ec2_group:
     name: example4
@@ -46,11 +45,11 @@
     vpc_id: 12345
     region: eu-west-1
     rules:
-      - proto: tcp
-        ports:
-          - 80
-          - 443
-          - 8080-8099
-        cidr_ipv6:
-          - 64:ff9b::/96
-          - 2607:F8B0::/32
+    - proto: tcp
+      ports:
+      - 80
+      - 443
+      - 8080-8099
+      cidr_ipv6:
+      - 64:ff9b::/96
+      - 2607:F8B0::/32

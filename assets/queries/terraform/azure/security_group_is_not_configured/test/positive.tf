@@ -1,5 +1,5 @@
 #this is a problematic code where the query should report a result(s)
-resource "azure_virtual_network" "default1" {
+resource "azure_virtual_network" "positive1" {
   name          = "test-network"
   address_space = ["10.1.2.0/24"]
   location      = "West US"
@@ -10,7 +10,7 @@ resource "azure_virtual_network" "default1" {
   }
 }
 
-resource "azure_virtual_network" "default2" {
+resource "azure_virtual_network" "positive2" {
   name          = "test-network"
   address_space = ["10.1.2.0/24"]
   location      = "West US"

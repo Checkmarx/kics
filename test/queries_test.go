@@ -3,7 +3,8 @@ package test
 import (
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"io"
+	"os"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -12,7 +13,7 @@ import (
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
@@ -21,8 +22,7 @@ import (
 )
 
 func BenchmarkQueries(b *testing.B) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	queries := loadQueries(b)
 	for _, entry := range queries {
@@ -34,8 +34,7 @@ func BenchmarkQueries(b *testing.B) {
 }
 
 func TestQueries(t *testing.T) {
-	// TODO ioutil will be deprecated on go v1.16, so ioutil.Discard should be changed to io.Discard
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: ioutil.Discard})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
 
 	if testing.Short() {
 		t.Skip("skipping queries test in short mode.")
@@ -44,6 +43,22 @@ func TestQueries(t *testing.T) {
 	queries := loadQueries(t)
 	for _, entry := range queries {
 		testPositiveandNegativeQueries(t, entry)
+	}
+}
+
+func TestUniqueQueryIDs(t *testing.T) {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
+	queries := loadQueries(t)
+
+	queriesIdentifiers := make(map[string]string)
+
+	for _, entry := range queries {
+		metadata := source.ReadMetadata(entry.dir)
+		uuid := metadata["id"].(string)
+		duplicateDir, ok := queriesIdentifiers[uuid]
+		require.False(t, ok, "\nnon unique query found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+			uuid, entry.dir, duplicateDir)
+		queriesIdentifiers[uuid] = entry.dir
 	}
 }
 
@@ -68,7 +83,7 @@ func benchmarkPositiveandNegativeQueries(b *testing.B, entry queryEntry) {
 }
 
 func getExpectedVulnerabilities(tb testing.TB, entry queryEntry) []model.Vulnerability {
-	content, err := ioutil.ReadFile(entry.ExpectedPositiveResultFile())
+	content, err := os.ReadFile(entry.ExpectedPositiveResultFile())
 	require.NoError(tb, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile())
 
 	var expectedVulnerabilities []model.Vulnerability
@@ -85,9 +100,9 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctx := context.TODO()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries().
-		DoAndReturn(func() ([]model.QueryMetadata, error) {
-			q, err := query.ReadQuery(entry.dir)
+	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
+			q, err := source.ReadQuery(entry.dir)
 			require.NoError(tb, err)
 
 			return []model.QueryMetadata{q}, nil
@@ -111,6 +126,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
+		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{})
 
 	require.Nil(tb, err)

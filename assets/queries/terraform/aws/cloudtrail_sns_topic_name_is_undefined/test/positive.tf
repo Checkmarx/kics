@@ -1,8 +1,8 @@
-resource "aws_cloudtrail" "no_sns_topic" {
+resource "aws_cloudtrail" "positive1" {
   # ... other configuration ...
 }
 
-resource "aws_cloudtrail" "sns_topic_null" {
+resource "aws_cloudtrail" "positive2" {
   # ... other configuration ...
 
   sns_topic_name = null

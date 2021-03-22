@@ -1,9 +1,9 @@
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "positive1" {
   name     = "acceptanceTestResourceGroup1"
   location = "West US"
 }
 
-resource "azurerm_sql_server" "example" {
+resource "azurerm_sql_server" "positive2" {
   name                         = "myexamplesqlserver"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = "West US"
@@ -16,7 +16,7 @@ resource "azurerm_sql_server" "example" {
   }
 }
 
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "positive3" {
   name                     = "examplesa"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
@@ -24,7 +24,7 @@ resource "azurerm_storage_account" "example" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_sql_database" "example" {
+resource "azurerm_sql_database" "positive4" {
   name                = "myexamplesqldatabase"
   resource_group_name = azurerm_resource_group.example.name
   location            = "West US"
@@ -47,7 +47,7 @@ resource "azurerm_sql_database" "example" {
 }
 
 
-resource "azurerm_sql_database" "wihtout_threat_detection_policy" {
+resource "azurerm_sql_database" "positive5" {
   name                = "myexamplesqldatabase"
   resource_group_name = azurerm_resource_group.example.name
   location            = "West US"

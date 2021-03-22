@@ -2,7 +2,7 @@
   "id": "2f56b7ab-7fba-4e93-82f0-247e5ddeb239",
   "queryName": "MSK Cluster Logging Disabled",
   "severity": "MEDIUM",
-  "category": "Logging",
+  "category": "Observability",
   "descriptionText": "Ensure MSK Cluster Logging is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster#broker_logs",
   "platform": "Terraform"

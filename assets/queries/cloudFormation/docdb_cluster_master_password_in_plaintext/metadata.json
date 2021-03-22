@@ -2,7 +2,7 @@
 	"id": "39423ce4-9011-46cd-b6b1-009edcd9385d",
 	"queryName": "DocDB cluster master password in plaintext",
 	"severity": "MEDIUM",
-	"category": "Encryption and Key Management",
+	"category": "Secret Management",
 	"descriptionText": "DocDB DB Cluster master user password must not be in a plain text string or referenced in a parameter as a default value.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html",
 	"platform": "CloudFormation"

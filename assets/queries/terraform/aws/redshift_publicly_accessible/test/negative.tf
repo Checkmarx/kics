@@ -1,4 +1,4 @@
-resource "aws_redshift_cluster" "default" {
+resource "aws_redshift_cluster" "negative1" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"
   master_username    = "foo"

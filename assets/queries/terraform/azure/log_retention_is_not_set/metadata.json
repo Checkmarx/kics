@@ -2,7 +2,7 @@
 	"id": "ffb02aca-0d12-475e-b77c-a726f7aeff4b",
 	"queryName": "Log Retention Is Not Set",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_retention' is set to 'ON'",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
 	"platform": "Terraform"

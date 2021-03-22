@@ -1,36 +1,41 @@
 package Cx
+
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	user_data := task["community.aws.ec2_instance"].user_data
+modules := {"community.aws.ec2_instance", "ec2_instance"}
 
-	re_match("([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])", user_data)
+CxPolicy[result] {
+	task := ansLib.tasks[id][t]
+	ec2_instance := task[modules[m]]
+	checkState(object.get(ec2_instance, "state", "undefined"))
+
+	re_match("([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])", ec2_instance.user_data)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ec2_instance}}.user_data", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.user_data", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'community.aws.ec2_instance.user_data' doesn't contain access key",
-		"keyActualValue": "'community.aws.ec2_instance.user_data' contains access key",
+		"keyExpectedValue": "'ec2_instance.user_data' doesn't contain access key",
+		"keyActualValue": "'ec2_instance.user_data' contains access key",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-	tasks := ansLib.getTasks(document)
-	task := tasks[t]
-	user_data := task["community.aws.ec2_instance"].user_data
+	task := ansLib.tasks[id][t]
+	ec2_instance := task[modules[m]]
+	checkState(object.get(ec2_instance, "state", "undefined"))
 
-	re_match("[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])", user_data)
+	re_match("[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])", ec2_instance.user_data)
 
 	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("name=%s.{{community.aws.ec2_instance}}.user_data", [task.name]),
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.user_data", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'community.aws.ec2_instance.user_data' doesn't contain access key",
-		"keyActualValue": "'community.aws.ec2_instance.user_data' contains access key",
+		"keyExpectedValue": "'ec2_instance.user_data' doesn't contain access key",
+		"keyActualValue": "'ec2_instance.user_data' contains access key",
 	}
 }
+
+checkState("undefined") = true
+
+checkState("present") = true

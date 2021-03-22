@@ -2,7 +2,7 @@
 	"id": "de7f5e83-da88-4046-871f-ea18504b1d43",
 	"queryName": "ALB protocol is HTTP",
 	"severity": "HIGH",
-	"category": "Network Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "AWS Application Load Balancer (alb) should not listen on HTTP",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener",
 	"platform": "Terraform"

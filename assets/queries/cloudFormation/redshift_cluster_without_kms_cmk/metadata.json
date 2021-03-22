@@ -2,7 +2,7 @@
   "id": "de76a0d6-66d5-45c9-9022-f05545b85c78",
   "queryName": "Redshift Cluster Without KMS CMK",
   "severity": "HIGH",
-  "category": "Encryption and Key Management",
+  "category": "Encryption",
   "descriptionText": "AWS Redshift Cluster should have KMS CMK defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
   "platform": "CloudFormation"

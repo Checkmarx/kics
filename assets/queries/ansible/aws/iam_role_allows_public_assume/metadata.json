@@ -2,7 +2,7 @@
 	"id": "12a7a7ce-39d6-49dd-923d-aeb4564eb66c",
 	"queryName": "IAM Role Allows Public Assume",
 	"severity": "LOW",
-	"category": "Identity and Access Management",
+	"category": "Access Control",
 	"descriptionText": "IAM role allows All services or principals to assume it",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
 	"platform": "Ansible"

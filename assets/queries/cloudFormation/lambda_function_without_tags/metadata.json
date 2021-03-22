@@ -2,7 +2,7 @@
   "id": "8df8e857-bd59-44fa-9f4c-d77594b95b46",
   "queryName": "Lambda Function Without Tags",
   "severity": "MEDIUM",
-  "category": "Compute",
+  "category": "Insecure Configurations",
   "descriptionText": "AWS Lambda Functions must have associated tags.",
   "descriptionUrl": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html#how-to-tag-console",
   "platform": "CloudFormation"

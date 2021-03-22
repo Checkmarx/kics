@@ -2,7 +2,7 @@
 	"id": "59acb56b-2b10-4c2c-ba38-f2223c3f5cfc",
 	"queryName": "SQL Audit Retention",
 	"severity": "MEDIUM",
-	"category": "Logging",
+	"category": "Observability",
 	"descriptionText": "Make sure for SQL Servers that Auditing Retention is greater than 90 days",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
 	"platform": "Terraform"

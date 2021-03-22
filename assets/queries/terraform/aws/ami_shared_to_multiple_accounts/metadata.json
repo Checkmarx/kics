@@ -2,7 +2,7 @@
 	"id": "ba4e0031-3e9d-4d7d-b0d6-bd8f003f8698",
 	"queryName": "AMI Shared To Multiple Accounts",
 	"severity": "MEDIUM",
-	"category": "Network Security",
+	"category": "Insecure Configurations",
 	"descriptionText": "Limits access to AWS AMIs by checking if more than one account is using the same image",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ami_launch_permission",
 	"platform": "Terraform"

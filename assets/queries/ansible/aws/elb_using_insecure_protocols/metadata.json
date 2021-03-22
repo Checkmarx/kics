@@ -2,7 +2,7 @@
 	"id": "730a5951-2760-407a-b032-dd629b55c23a",
 	"queryName": "ELB Using Insecure Protocols",
 	"severity": "HIGH",
-	"category": "Encryption and Key Management",
+	"category": "Encryption",
 	"descriptionText": "ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'SslPolicy' of 'listeners' must not coincide with any of a predefined list of insecure protocols.",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
 	"platform": "Ansible"

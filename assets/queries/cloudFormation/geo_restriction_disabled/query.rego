@@ -8,8 +8,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionType", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionType should be enable with whitelist or blacklist", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enable and it should be", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionType should be enabled with whitelist or blacklist", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be", [name]),
 	}
 }
 

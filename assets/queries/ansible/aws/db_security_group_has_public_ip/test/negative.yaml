@@ -7,15 +7,15 @@
     aws_secret_key: SECRET
     aws_access_key: ACCESS
     rules:
-      - proto: tcp
-        from_port: 80
-        to_port: 80
-        cidr_ip: 10.1.1.1/32
+    - proto: tcp
+      from_port: 80
+      to_port: 80
+      cidr_ip: 10.1.1.1/32
   rules_egress:
-      - proto: tcp
-        from_port: 80
-        to_port: 80
-        cidr_ip: 10.1.1.1/32
-        group_name: example-other
+  - proto: tcp
+    from_port: 80
+    to_port: 80
+    cidr_ip: 10.1.1.1/32
+    group_name: example-other
         # description to use if example-other needs to be created
-        group_desc: other example EC2 group
+    group_desc: other example EC2 group

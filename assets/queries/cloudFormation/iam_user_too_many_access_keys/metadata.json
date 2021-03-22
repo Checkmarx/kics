@@ -2,7 +2,7 @@
 	"id": "48677914-6fdf-40ec-80c4-2b0e94079f54",
 	"queryName": "IAM User Has Too Many Access Keys",
 	"severity": "MEDIUM",
-	"category": "Identity and Access Management",
+	"category": "Insecure Configurations",
 	"descriptionText": "Check if any user has more than one access key, which increases the risk of unauthorized access and compromise of credentials.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html",
 	"platform": "CloudFormation"
