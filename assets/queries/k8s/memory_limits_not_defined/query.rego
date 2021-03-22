@@ -3,20 +3,21 @@ package Cx
 CxPolicy[result] {
 	document := input.document[i]
 	spec := document.spec
-	containers := spec.containers
-	limits := containers[c].resources.limits
 
-	exists_memory := object.get(limits, "memory", "undefined") != "undefined"
-	not exists_memory
+    types := {"initContainers", "containers"}
+	containers := spec[types[t]][c]
+
+    limits := containers.resources.limits
+	object.get(limits, "memory", "undefined") == "undefined"
 
 	metadata := document.metadata
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.containers[%d].name=%s.resources.limits.memory", [metadata.name, c, containers[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.limits", [metadata.name, types[t], containers.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s.resources.limits.memory is defined", [metadata.name, c, containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s.resources.limits.memory is undefined", [metadata.name, c, containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.limits.memory is defined", [metadata.name, types[t], containers.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.limits.memory is undefined", [metadata.name, types[t], containers.name]),
 	}
 }
 
@@ -24,114 +25,38 @@ CxPolicy[result] {
 	document := input.document[i]
 	spec := document.spec
 
-	exists_containers := object.get(spec, "containers", "undefined") != "undefined"
-	exists_containers
+    types := {"initContainers", "containers"}
+	containers := spec[types[t]][c]
 
-	containers := spec.containers
-	exists_resources := object.get(containers[c], "resources", "undefined") != "undefined"
-	not exists_resources
-
+	object.get(containers, "resources", "undefined") == "undefined"
 	metadata := document.metadata
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.containers[%d].name=%s.resources", [metadata.name, c, containers[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}", [metadata.name, types[t], containers.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s.resources are defined", [metadata.name, c, containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s.resources are undefined", [metadata.name, c, containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources are defined", [metadata.name, types[t],containers.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources are undefined", [metadata.name, types[t], containers.name]),
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+    document := input.document[i]
 	spec := document.spec
 
-	exists_containers := object.get(spec, "containers", "undefined") != "undefined"
-	exists_containers
+	types := {"initContainers", "containers"}
+	containers := spec[types[t]][c]
 
-	containers := spec.containers
-	exists_resources := object.get(containers[c], "resources", "undefined") != "undefined"
-	exists_resources
-
-	resources := spec.containers[c].resources
-	exists_limits := object.get(resources, "limits", "undefined") != "undefined"
-	not exists_limits
+	resources := containers.resources
+	object.get(resources, "limits", "undefined") == "undefined"
 
 	metadata := document.metadata
 
-	result := {
+result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.containers[%d].name=%s.resources.limits", [metadata.name, c, containers[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources", [metadata.name, types[t], containers.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s.resources.limits are defined", [metadata.name, c, containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.containers[%d].name=%s.resources.limits are undefined", [metadata.name, c, containers[c].name]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	spec := document.spec
-	initContainers := spec.initContainers
-	limits := initContainers[c].resources.limits
-
-	exists_memory := object.get(limits, "memory", "undefined") != "undefined"
-	not exists_memory
-
-	metadata := document.metadata
-
-	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.initContainers[%d].name=%s.resources.limits.memory", [metadata.name, c, initContainers[c].name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.initContainers[%d].name=%s.resources.limits.memory is defined", [metadata.name, c, initContainers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.initContainers[%d].name=%s.resources.limits.memory is undefined", [metadata.name, c, initContainers[c].name]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	spec := document.spec
-
-	exists_containers := object.get(spec, "initContainers", "undefined") != "undefined"
-	exists_containers
-
-	initContainers := spec.initContainers
-	exists_resources := object.get(initContainers[c], "resources", "undefined") != "undefined"
-	not exists_resources
-
-	metadata := document.metadata
-
-	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.initContainers[%d].name=%s.resources", [metadata.name, c, initContainers[c].name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.initContainers[%d].name=%s.resources are defined", [metadata.name, c, initContainers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.initContainers[%d].name=%s.resources are undefined", [metadata.name, c, initContainers[c].name]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	spec := document.spec
-
-	exists_containers := object.get(spec, "initContainers", "undefined") != "undefined"
-	exists_containers
-
-	initContainers := spec.initContainers
-	exists_resources := object.get(initContainers[c], "resources", "undefined") != "undefined"
-	exists_resources
-
-	resources := spec.initContainers[c].resources
-	exists_limits := object.get(resources, "limits", "undefined") != "undefined"
-	not exists_limits
-
-	metadata := document.metadata
-
-	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.initContainers[%d].name=%s.resources.limits", [metadata.name, c, initContainers[c].name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.initContainers[%d].name=%s.resources.limits are defined", [metadata.name, c, initContainers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.initContainers[%d].name=%s.resources.limits are undefined", [metadata.name, c, initContainers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.limits are defined", [metadata.name, types[t], containers.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources.limits are undefined", [metadata.name, types[t], containers.name]),
 	}
 }

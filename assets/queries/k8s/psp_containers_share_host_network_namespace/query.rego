@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.hostNetwork", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.hostNetwork", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'spec.hostNetwork' is false or undefined",
 		"keyActualValue": "'spec.hostNetwork' is true",

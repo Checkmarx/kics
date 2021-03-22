@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "metadata.name does not contain 'tiller'",
-		"keyActualValue": "document[%d].metadata.name contains 'tiller'",
+		"keyActualValue": "metadata.name contains 'tiller'",
 	}
 }
 

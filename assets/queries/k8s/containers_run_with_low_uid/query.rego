@@ -93,7 +93,7 @@ checkContainersOverride(spec, path, metadata, id) = result {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name=%s.%sspec.securityContext.runAsUser", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%sspec.securityContext.runAsUser", [metadata.name, path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%sspec.securityContext.runAsUser' is higher or equal to 10000", [path]),
 		"keyActualValue": sprintf("'%sspec.securityContext.runAsUser' is less than 10000", [path]),
@@ -109,7 +109,7 @@ checkContainersOverride(spec, path, metadata, id) = result {
 	isLowUID(containers[j])
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name=%s.%sspec.containers", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%sspec.containers", [metadata.name, path]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is higher or equal to 10000", [path, j]),
 		"keyActualValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is less than 10000", [path, j]),
@@ -124,7 +124,7 @@ checkContainersSet(spec, path, metadata, id) = result {
 	isSetUID(containers[j]) != true
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name=%s.%sspec.containers", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%sspec.containers", [metadata.name, path]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is set and higher or equal to 10000", [path, j]),
 		"keyActualValue": sprintf("'$sspec.containers[%d].securityContext.runAsUser' is undefined", [path, j]),
@@ -140,7 +140,7 @@ checkContainersSet(spec, path, metadata, id) = result {
 	isSetUID(containers[j]) != true
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name=%s.%sspec.containers", [metadata.name, path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%sspec.containers", [metadata.name, path]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is set and higher or equal to 10000", [path, j]),
 		"keyActualValue": sprintf("'%sspec.containers[%d].securityContext.runAsUser' is undefined", [path, j]),
