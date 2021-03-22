@@ -1,9 +1,9 @@
 {
-	"id": "65844ba3-03a1-40a8-b3dd-919f122e8c95",
-	"queryName": "RDS DBCluster Storage Encryption Disabled",
-	"severity": "MEDIUM",
-	"category": "Encryption",
-	"descriptionText": "RDS DBInstance should have storage encrypted set to true",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted",
-	"platform": "CloudFormation"
+  "id": "65844ba3-03a1-40a8-b3dd-919f122e8c95",
+  "queryName": "RDS DBCluster Storage Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "RDS DBCluster should have storage encrypted set to true",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted",
+  "platform": "CloudFormation"
 }
