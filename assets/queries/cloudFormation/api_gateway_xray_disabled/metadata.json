@@ -1,0 +1,9 @@
+{
+  "id": "4ab10c48-bedb-4deb-8f3b-ff12783b61de",
+  "queryName": "API Gateway X-Ray Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Xray Tracing is not enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-tracingenabled",
+  "platform": "CloudFormation"
+}
