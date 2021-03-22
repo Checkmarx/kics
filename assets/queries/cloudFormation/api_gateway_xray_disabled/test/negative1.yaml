@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "BatchJobDefinition"
 Resources:
-  ProdNeg2:
+  ProdNeg1:
     Type: AWS::ApiGateway::Stage
     Properties:
       StageName: Prod
