@@ -26,8 +26,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.LogPublishingOptions.%s.Enabled", [name, log]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is slow logs but is not enabled", [name, log]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is slow logs as is enabled", [name, log]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a slow log and is enabled", [name, logs]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a slow log but isn't enabled", [name, logs]),
 	}
 }
 
@@ -42,8 +42,8 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions exists", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not exist", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions is defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions is undefined", [name]),
 	}
 }
 
