@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cloudFormationLib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
@@ -35,7 +37,7 @@ CxPolicy[result] {
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 	cpuMem := {256, 512, 1024, 2048, 4096}
 	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
-	not contains(cpuMem, cpu)
+	not cloudFormationLib.arrayContains(cpu, cpuMem)
 	searchkey := createSearchKey(name2, taskDef.Properties.ContainerDefinitions[_])
 
 	result := {
@@ -50,7 +52,7 @@ CxPolicy[result] {
 checkMemory(res, memory) {
 	cpuMem := memory[res.Properties.ContainerDefinitions[_].Cpu]
 	mem := res.Properties.ContainerDefinitions[_].Memory
-	not contains(cpuMem, mem)
+	not cloudFormationLib.arrayContains(mem, cpuMem)
 }
 
 checkMemory(res, memory) {

@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.cloudformation as cloudFormationLib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 
-	isLoadBalancer(resource)
+	cloudFormationLib.isLoadBalancer(resource)
 	not internalALB(resource)
 	not associatedWAF(name)
 
@@ -14,14 +16,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'Resources.%s' has an 'internal' scheme and a 'WebACLAssociation' associated", [name]),
 		"keyActualValue": sprintf("'Resources.%s' doesn't have an 'internal' scheme or a 'WebACLAssociation' associated", [name]),
 	}
-}
-
-isLoadBalancer(resource) {
-	resource.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-}
-
-isLoadBalancer(resource) {
-	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 }
 
 internalALB(resource) {

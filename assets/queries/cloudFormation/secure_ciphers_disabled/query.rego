@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.cloudformation as cloudFormationLib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Properties.ViewerCertificate.CloudFrontDefaultCertificate == false
-	not checkMinPortocolVersion(resource.Properties.ViewerCertificate.MinimumProtocolVersion)
+	not cloudFormationLib.arrayContains(resource.Properties.ViewerCertificate.MinimumProtocolVersion, {"TLSv1.1", "TLSv1.2"})
 
 	result := {
 		"documentId": input.document[i].id,
@@ -12,12 +14,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2", [name]),
 	}
-}
-
-checkMinPortocolVersion(version) {
-	version == "TLSv1.1"
-}
-
-checkMinPortocolVersion(version) {
-	version == "TLSv1.2"
 }

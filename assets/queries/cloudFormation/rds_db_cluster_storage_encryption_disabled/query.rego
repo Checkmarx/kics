@@ -21,8 +21,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBCluster"
 	properties := resource.Properties
-	exists_se := object.get(properties, "StorageEncrypted", "undefined") != "undefined"
-	not exists_se
+    object.get(properties, "StorageEncrypted", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
