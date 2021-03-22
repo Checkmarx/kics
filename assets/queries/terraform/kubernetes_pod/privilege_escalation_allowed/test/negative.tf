@@ -94,7 +94,7 @@ resource "kubernetes_pod" "negative4" {
 
 
 
-resource "kubernetes_pod" "negative4" {
+resource "kubernetes_pod" "negative5" {
   metadata {
     name = "terraform-example"
   }
