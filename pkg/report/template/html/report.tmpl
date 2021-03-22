@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="./report.css" rel="stylesheet" />
+  <title>KICS Scan Result</title>
+</head>
+<body>
+  <div class="container">
+    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/">KICS.IO</a></div>
+    <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
+    <div class="counters">
+    {{- with .SeveritySummary -}}
+      <div class="severity">
+        <img src="vulnerability_fill.svg" alt="High" class="kics-orange" />
+        <span class="badge">{{ index .SeverityCounters (severity "high") }}</span>
+        <span class="caption">HIGH</span>
+      </div>
+      <div class="severity">
+        <img src="vulnerability_out.svg" alt="Medium" class="kics-orange" />
+        <span class="badge">{{ index .SeverityCounters (severity "medium") }}</span>
+        <span class="caption">MEDIUM</span>
+      </div>
+      <div class="severity">
+        <img src="vulnerability_out.svg" alt="Low" class="kics-purple" />
+        <span class="badge">{{ index .SeverityCounters (severity "low") }}</span>
+        <span class="caption">LOW</span>
+      </div>
+      <div class="severity">
+        <img src="info.svg" alt="Info" class="kics-purple" />
+        <span class="badge">{{ index .SeverityCounters (severity "info") }}</span>
+        <span class="caption">INFO</span>
+      </div>
+    {{- end}}
+    </div>
+    {{- range .Queries}}
+    <hr class="separator"/>
+    <div class="query">
+      <div class="query-info">
+        <div class="query-title">
+          <h2>
+            {{- if eq .Severity "HIGH" -}}
+            <img src="vulnerability_fill.svg" alt="High" title="High" class="kics-orange" style="width:20px" />
+            {{- end -}}
+            {{- if eq .Severity "MEDIUM" -}}
+            <img src="vulnerability_out.svg" alt="Medium" title="Medium" class="kics-orange" style="width:20px" />
+            {{- end -}}
+            {{- if eq .Severity "LOW" -}}
+            <img src="vulnerability_out.svg" alt="Low" title="Low" class="kics-purple" style="width:20px" />
+            {{- end -}}
+            {{- if eq .Severity "INFO" -}}
+            <img src="info.svg" alt="Info" title="Info" class="kics-purple" style="width:20px" />
+            {{- end -}}
+            {{- .QueryName -}}
+          </h2>
+          <span>{{ .QueryID }} - {{ .Platform }} - Category: {{ .Category }}</span>
+        </div>
+        <div class="query-details">
+          <span>{{ .Description }}</span>
+          <span>For more information, <a href="{{ .QueryURI }}">click here</a></span>
+        </div>
+      </div>
+      {{- range .Files}}
+      {{- $vulLine := .Line -}}
+      <div class="vulnerable-info">
+        <div class="vulnerable-info-header">
+          <strong>{{ .FileName }}</strong>
+          <span>Row {{ $vulLine }}</span>
+        </div>
+        <div class="code-box">
+          {{- with .VulnLines -}}
+          {{- $lines := .Lines -}}
+          {{- range $idx, $position := .Positions -}}
+          <div class="code-line {{ if eq $position $vulLine }}error{{ end }}">
+            <span class="code-line-counter">{{ $position }}</span><span class="code">{{index $lines $idx | trimSpaces }}</span>
+          </div>
+          {{- end -}}
+          {{- end}}
+        </div>
+      </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+    <div class="kics-message">
+      KICS is open and will always stay such. Both the scanning engine and the security queries are clear and open for the software development community.
+    </div>
+    <div class="love">
+      Spread the love:
+    </div>
+    <div class="social-networks">
+      <a href="https://github.com/Checkmarx/kics/">
+        <img src="github.svg" alt="GitHub" />
+      </a>
+    </div>
+    <div class="report-header-footer">
+      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx">Checkmarx</a>, global leader of Application Security Testing</span>
+    </div>
+  </div>
+</body>
+</html>

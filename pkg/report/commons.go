@@ -6,15 +6,18 @@ import (
 	"io"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 
 var templateFuncs = template.FuncMap{
-	"lower":    strings.ToLower,
-	"sprintf":  fmt.Sprintf,
-	"severity": getSeverities,
+	"lower":          strings.ToLower,
+	"sprintf":        fmt.Sprintf,
+	"severity":       getSeverities,
+	"getCurrentTime": getCurrentTime,
+	"trimSpaces":     trimSpaces,
 }
 
 var stringsSeverity = map[string]model.Severity{
@@ -24,8 +27,17 @@ var stringsSeverity = map[string]model.Severity{
 	"info":   model.AllSeverities[3],
 }
 
+func trimSpaces(value string) string {
+	return strings.TrimPrefix(value, " ")
+}
+
 func getSeverities(severity string) model.Severity {
 	return stringsSeverity[severity]
+}
+
+func getCurrentTime() string {
+	dt := time.Now()
+	return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }
 
 func copyFile(originalFilepath, destinationFilepath string) error {
