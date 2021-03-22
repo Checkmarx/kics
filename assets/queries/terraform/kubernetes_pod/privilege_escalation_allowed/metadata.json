@@ -1,0 +1,9 @@
+{
+  "id": "c878abb4-cca5-4724-92b9-289be68bd47c",
+  "queryName": "Privilege Escalation Allowed",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Admission of privileged containers should be minimized",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#allow_privilege_escalation",
+  "platform": "Terraform"
+}
