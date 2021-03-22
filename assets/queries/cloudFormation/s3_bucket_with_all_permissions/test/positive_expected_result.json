@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
     "line": 33,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
     "line": 42,
     "fileName": "positive1.yaml"
@@ -15,17 +15,17 @@
     "severity": "HIGH",
     "line": 50,
     "fileName": "positive1.yaml",
-    "queryName": "S3 Bucket Allows All Actions From All Principals"
+    "queryName": "S3 Bucket With All Permissions"
   },
   {
-    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
     "line": 86,
     "fileName": "positive1.yaml"
   },
   {
     "fileName": "positive2.json",
-    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
     "line": 56
   },
@@ -33,16 +33,16 @@
     "severity": "HIGH",
     "line": 71,
     "fileName": "positive2.json",
-    "queryName": "S3 Bucket Allows All Actions From All Principals"
+    "queryName": "S3 Bucket With All Permissions"
   },
   {
     "fileName": "positive2.json",
-    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
     "line": 91
   },
   {
-    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
     "line": 161,
     "fileName": "positive2.json"
