@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Enable", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "GuardDuty Detector should be Enabled",
-		"keyActualValue": "GuardDuty Detector is not Enabled",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Enable is set to true", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Enable is set to false", [name]),
 	}
 }

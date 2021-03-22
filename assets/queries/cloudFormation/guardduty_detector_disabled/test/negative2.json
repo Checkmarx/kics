@@ -3,7 +3,7 @@
     {
       "AWSTemplateFormatVersion": "2010-09-09",
       "Resources": {
-        "mydetector": {
+        "mydetector2": {
           "Properties": {
             "Enable": true,
             "FindingPublishingFrequency": "FIFTEEN_MINUTES"
