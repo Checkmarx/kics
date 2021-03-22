@@ -27,8 +27,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled exists", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled does not exist", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled is defined", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled is undefined", [name]),
 	}
 }
 
