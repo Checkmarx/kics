@@ -24,11 +24,11 @@ resource "kubernetes_pod" "negative4" {
       }
 
       liveness_probe = {
-        http_get {
+        http_get = {
           path = "/nginx_status"
           port = 80
 
-          http_header {
+          http_header = {
             name  = "X-Custom-Header"
             value = "Awesome"
           }
@@ -57,11 +57,11 @@ resource "kubernetes_pod" "negative4" {
       }
 
       liveness_probe = {
-        http_get {
+        http_get = {
           path = "/nginx_status"
           port = 80
 
-          http_header {
+          http_header = {
             name  = "X-Custom-Header"
             value = "Awesome"
           }
