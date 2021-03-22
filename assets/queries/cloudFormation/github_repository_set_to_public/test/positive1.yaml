@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
-  MyRepo:
+  MyRepo3:
     Type: AWS::CodeStar::GitHubRepository
     Properties:
       Code:

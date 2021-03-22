@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "MyRepo": {
+    "MyRepo6": {
       "Type": "AWS::CodeStar::GitHubRepository",
       "Properties": {
         "Code": {
