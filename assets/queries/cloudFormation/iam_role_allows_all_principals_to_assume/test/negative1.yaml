@@ -3,18 +3,17 @@ Resources:
   RootRole:
     Type: "AWS::IAM::Role"
     Properties:
-      AssumeRolePolicyDocument: <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
+      AssumeRolePolicyDocument: >
         {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-                "AWS": "arn:aws:iam::root"
-            },
-            "Effect": "Deny",
-            "Sid": ""
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Action": "sts:AssumeRole",
+                    "Principal": {
+                        "AWS": "arn:aws:iam::root"
+                    },
+                    "Effect": "Deny",
+                    "Sid": ""
+                }
+            ]
         }
-    ]
-}
-EOF
