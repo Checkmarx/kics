@@ -2,15 +2,18 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"azure.azcollection.azure_rm_sqlserver", "azure_rm_sqlserver"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	server := task.azure_rm_sqlserver
+	server := task[modules[m]]
+	ansLib.checkState(server)
 
 	ansLib.checkValue(server.admin_username)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_sqlserver}}.admin_username", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.admin_username", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_sqlserver.admin_username is not empty",
 		"keyActualValue": "azure_rm_sqlserver.admin_username is empty",
@@ -19,14 +22,15 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	server := task.azure_rm_sqlserver
+	server := task[modules[m]]
+	ansLib.checkState(server)
 
 	is_string(server.admin_username)
 	check_predictable(server.admin_username)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_sqlserver}}.admin_username", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.admin_username", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_sqlserver.admin_username is not predictable",
 		"keyActualValue": "azure_rm_sqlserver.admin_username is predictable",

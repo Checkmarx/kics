@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s has UsagePlan defined", [name]),
-		"keyActualValue": sprintf("Resources.%s has not UsagePlan defined", [name]),
+		"keyActualValue": sprintf("Resources.%s doesn't have UsagePlan defined", [name]),
 	}
 }
 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName are the same as the %s resource", [name, name]),
+		"keyExpectedValue": sprintf("Resources.%s has AWS::ApiGateway::UsagePlan associated, RestApiId and StageName are the same as the %s resource", [name, name]),
 		"keyActualValue": sprintf("Resources.%s should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the %s resource", [name, name]),
 	}
 }

@@ -13,7 +13,8 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/query"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
@@ -21,7 +22,6 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
@@ -32,22 +32,23 @@ import (
 )
 
 var (
-	path           string
-	queryPath      string
-	outputPath     string
-	payloadPath    string
-	excludePath    []string
-	excludeQueries []string
-	excludeResults []string
-	reportFormats  []string
-	cfgFile        string
-	verbose        bool
-	logFile        bool
-	noProgress     bool
-	types          []string
-	noColor        bool
-	min            bool
-	outputLines    int
+	path              string
+	queryPath         string
+	outputPath        string
+	payloadPath       string
+	excludeCategories []string
+	excludePath       []string
+	excludeIDs        []string
+	excludeResults    []string
+	reportFormats     []string
+	cfgFile           string
+	verbose           bool
+	logFile           bool
+	noProgress        bool
+	types             []string
+	noColor           bool
+	min               bool
+	outputLines       int
 )
 
 var scanCmd = &cobra.Command{
@@ -65,7 +66,7 @@ var listPlatformsCmd = &cobra.Command{
 	Use:   "list-platforms",
 	Short: "List supported platforms",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		for _, v := range query.ListSupportedPlatforms() {
+		for _, v := range source.ListSupportedPlatforms() {
 			fmt.Println(v)
 		}
 		return nil
@@ -121,21 +122,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		}
 		if !f.Changed && v.IsSet(f.Name) {
 			val := v.Get(f.Name)
-			switch t := val.(type) {
-			case []interface{}:
-				var paramSlice []string
-				for _, param := range t {
-					paramSlice = append(paramSlice, param.(string))
-				}
-				valStr := strings.Join(paramSlice, ",")
-				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", valStr)); err != nil {
-					log.Err(err).Msg("Failed to get Viper flags")
-				}
-			default:
-				if err := cmd.Flags().Set(f.Name, fmt.Sprintf("%v", val)); err != nil {
-					log.Err(err).Msg("Failed to get Viper flags")
-				}
-			}
+			setBoundFlags(f.Name, val, cmd)
 		}
 	})
 	for key, val := range settingsMap {
@@ -148,6 +135,24 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 				log.Err(err).Msg("Unable to show help message")
 			}
 			os.Exit(1)
+		}
+	}
+}
+
+func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
+	switch t := val.(type) {
+	case []interface{}:
+		var paramSlice []string
+		for _, param := range t {
+			paramSlice = append(paramSlice, param.(string))
+		}
+		valStr := strings.Join(paramSlice, ",")
+		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
+			log.Err(err).Msg("Failed to get Viper flags")
+		}
+	default:
+		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
+			log.Err(err).Msg("Failed to get Viper flags")
 		}
 	}
 }
@@ -185,10 +190,10 @@ func initScanCmd() {
 	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
 	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
-		fmt.Sprintf("(%s)", strings.Join(query.ListSupportedPlatforms(), ", ")))
+		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
 	scanCmd.Flags().StringSliceVarP(
-		&excludeQueries,
+		&excludeIDs,
 		"exclude-queries",
 		"",
 		[]string{},
@@ -204,6 +209,15 @@ func initScanCmd() {
 		"exclude results by providing the similarity ID of a result\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
+	)
+	scanCmd.Flags().StringSliceVarP(
+		&excludeCategories,
+		"exclude-categories",
+		"",
+		[]string{},
+		"exclude categories by providing its name\n"+
+			"can be provided multiple times or as a comma separated string\n"+
+			"example: 'Access control,Best practices'",
 	)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
@@ -235,7 +249,7 @@ func setupLogs() error {
 	return nil
 }
 
-func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
+func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 	var excludePaths []string
 	if payloadPath != "" {
 		excludePaths = append(excludePaths, payloadPath)
@@ -250,7 +264,7 @@ func getFileSystemSourceProvider() (*source.FileSystemSourceProvider, error) {
 		return nil, err
 	}
 
-	filesSource, err := source.NewFileSystemSourceProvider(absPath, excludePaths)
+	filesSource, err := provider.NewFileSystemSourceProvider(absPath, excludePaths)
 	if err != nil {
 		return nil, err
 	}
@@ -282,7 +296,7 @@ func scan() error {
 	}
 	scanStartTime := time.Now()
 
-	querySource := query.NewFilesystemSource(queryPath, types)
+	querySource := source.NewFilesystemSource(queryPath, types)
 
 	t, err := tracker.NewTracker(outputLines)
 	if err != nil {
@@ -290,6 +304,11 @@ func scan() error {
 	}
 
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
+
+	excludeQueries := source.ExcludeQueries{
+		ByIDs:        excludeIDs,
+		ByCategories: excludeCategories,
+	}
 
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
 	if err != nil {
@@ -347,15 +366,7 @@ func scan() error {
 
 	summary := model.CreateSummary(counters, result, scanID)
 
-	if err := printOutput(payloadPath, "payload", files.Combine(), []string{"json"}); err != nil {
-		return err
-	}
-
-	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
-		return err
-	}
-
-	if err := consoleHelpers.PrintResult(&summary, inspector.GetFailedQueries(), printer); err != nil {
+	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		return err
 	}
 
@@ -368,6 +379,23 @@ func scan() error {
 	}
 
 	return nil
+}
+
+func resolveOutputs(
+	summary *model.Summary,
+	documents model.Documents,
+	failedQueries map[string]error,
+	printer *consoleHelpers.Printer,
+) error {
+	if err := printOutput(payloadPath, "payload", documents, []string{"json"}); err != nil {
+		return err
+	}
+
+	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
+		return err
+	}
+
+	return consoleHelpers.PrintResult(summary, failedQueries, printer)
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string) error {

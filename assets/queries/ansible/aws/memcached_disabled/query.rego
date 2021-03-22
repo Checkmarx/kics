@@ -4,14 +4,17 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	modules := {"community.aws.elasticache", "elasticache"}
+	elasticache := task[modules[m]]
+	ansLib.checkState(elasticache)
 
-	task["community.aws.elasticache"].engine == "redis"
+	elasticache.engine == "redis"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.elasticache}}.engine", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.engine", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.elasticache}}.engine enables Memcached", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.elasticache}}.engine doesn't enable Memcached", [task.name]),
+		"keyExpectedValue": "elasticache.engine enables Memcached",
+		"keyActualValue": "elasticache.engine doesn't enable Memcached",
 	}
 }

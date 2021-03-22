@@ -25,7 +25,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should contain an Origin object", [name, name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should contain an Origins object", [name, name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig does not contain Origins object configured", [name]),
 	}
 }

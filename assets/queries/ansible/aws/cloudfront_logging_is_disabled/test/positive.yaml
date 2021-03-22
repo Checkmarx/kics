@@ -29,7 +29,7 @@
           - HEAD
     enabled: false
     comment: this is a CloudFront distribution with logging
-- name2: create a distribution with an origin, logging and default cache behavior
+- name: create a second distribution with an origin, logging and default cache behavior
   community.aws.cloudfront_distribution:
     state: present
     caller_reference: unique test distribution ID

@@ -3,15 +3,17 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t].azure_rm_sqlserver
+	modules := {"azure.azcollection.azure_rm_sqlserver", "azure_rm_sqlserver"}
+	task := ansLib.tasks[id][t]
+	sqlserver := task[modules[m]]
 
-	object.get(task, "ad_user", "undefined") == "undefined"
+	object.get(sqlserver, "ad_user", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{azure_rm_sqlserver}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'ad_user' is defined",
-		"keyActualValue": "'ad_user' is undefined",
+		"keyExpectedValue": "azure_rm_sqlserver.ad_user is defined",
+		"keyActualValue": "azure_rm_sqlserver.ad_user is undefined",
 	}
 }

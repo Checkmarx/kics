@@ -1,22 +1,27 @@
 [
-	{
-		"queryName": "Unpinned Package Version in Apk Add",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-	{
-		"queryName": "Unpinned Package Version in Apk Add",
-		"severity": "MEDIUM",
-		"line": 13
-	},
-	{
-		"queryName": "Unpinned Package Version in Apk Add",
-		"severity": "MEDIUM",
-		"line": 14
-	},
-	{
-		"queryName": "Unpinned Package Version in Apk Add",
-		"severity": "MEDIUM",
-		"line": 16
-	}
+  {
+    "queryName": "Unpinned Package Version in Apk Add",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Unpinned Package Version in Apk Add",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "Unpinned Package Version in Apk Add",
+    "severity": "MEDIUM",
+    "line": 14
+  },
+  {
+    "queryName": "Unpinned Package Version in Apk Add",
+    "severity": "MEDIUM",
+    "line": 16
+  },
+  {
+    "queryName": "Unpinned Package Version in Apk Add",
+    "severity": "MEDIUM",
+    "line": 18
+  }
 ]

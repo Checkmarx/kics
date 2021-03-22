@@ -2,32 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.efs", "efs"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	fs := task["community.aws.efs"]
+	efs := task[modules[m]]
+	ansLib.checkState(efs)
 
-	object.get(fs, "encrypt", "undefined") == "undefined"
+	object.get(efs, "encrypt", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.efs}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.efs.encrypt should be set to true",
-		"keyActualValue": "community.aws.efs.encrypt is undefined",
+		"keyExpectedValue": "efs.encrypt should be set to true",
+		"keyActualValue": "efs.encrypt is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	fs := task["community.aws.efs"]
+	efs := task[modules[m]]
+	ansLib.checkState(efs)
 
-	not ansLib.isAnsibleTrue(fs.encrypt)
+	not ansLib.isAnsibleTrue(efs.encrypt)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.efs}}.encrypt", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.encrypt", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.efs.encrypt should be set to true",
-		"keyActualValue": "community.aws.efs.encrypt is set to false",
+		"keyExpectedValue": "efs.encrypt should be set to true",
+		"keyActualValue": "efs.encrypt is set to false",
 	}
 }

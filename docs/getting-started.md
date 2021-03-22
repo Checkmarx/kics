@@ -2,7 +2,6 @@
 
 There are multiple ways to get KICS up and running:
 
-
 #### Docker
 
 KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:
@@ -15,6 +14,20 @@ docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkm
 ```
 
 You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used The default *./assets/queries* is built-in in the image.
+
+#### One-liner Install Script
+
+Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to `./bin` the queries will be placed alongside the binary in `./bin/assets/queries`:
+
+```sh
+curl -sfL https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh | bash
+```
+
+If you want to place it somewhere else like `/usr/local/bin`:
+
+```sh
+sudo curl -sfL https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh | bash -s -- -b /usr/local/bin
+```
 
 #### Binary
 
@@ -73,6 +86,9 @@ Available Commands:
 
 Flags:
       --config string             path to configuration file
+      --exclude-categories        exclude categories by providing its name
+                                  can be provided multiple times or as a comma separated string
+                                  example: 'Access control,Best practices'
   -e, --exclude-paths strings     exclude paths from scan
                                   supports glob and can be provided multiple times or as a quoted comma separated string
                                   example: './shouldNotScan/*,somefile.txt'

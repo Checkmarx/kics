@@ -2,30 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.lambda", "lambda"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	lambda := task[modules[m]]
+	ansLib.checkState(lambda)
 
-	object.get(task["community.aws.lambda"], "tracing_mode", "undefined") == "undefined"
+	object.get(lambda, "tracing_mode", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.lambda}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.lambda.tracing_mode is set",
-		"keyActualValue": "community.aws.lambda.tracing_mode is undefined",
+		"keyExpectedValue": "lambda.tracing_mode is set",
+		"keyActualValue": "lambda.tracing_mode is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	lambda := task[modules[m]]
+	ansLib.checkState(lambda)
 
-	task["community.aws.lambda"].tracing_mode != "Active"
+	lambda.tracing_mode != "Active"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.lambda}}.tracing_mode", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.tracing_mode", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.lambda.tracing_mode is set to 'Active'",
-		"keyActualValue": "community.aws.lambda.tracing_mode is not set to 'Active'",
+		"keyExpectedValue": "lambda.tracing_mode is set to 'Active'",
+		"keyActualValue": "lambda.tracing_mode is not set to 'Active'",
 	}
 }

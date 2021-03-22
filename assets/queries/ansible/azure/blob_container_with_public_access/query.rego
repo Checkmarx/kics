@@ -4,22 +4,21 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_storageblob", "azure_rm_storageblob"}
+	storageblob := task[modules[m]]
+	ansLib.checkState(storageblob)
 
-	hasPublicAccess(task.azure_rm_storageblob.public_access)
+	hasPublicAccess(lower(storageblob.public_access))
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{azure_rm_storageblob}}.public_access", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.public_access", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_storageblob.public_access is not set",
 		"keyActualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
 	}
 }
 
-hasPublicAccess(access) {
-	lower(access) == "blob"
-}
+hasPublicAccess("blob") = true
 
-hasPublicAccess(access) {
-	lower(access) == "container"
-}
+hasPublicAccess("container") = true

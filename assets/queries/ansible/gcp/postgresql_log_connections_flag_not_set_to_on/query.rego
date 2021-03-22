@@ -2,37 +2,39 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"google.cloud.gcp_sql_instance", "gcp_sql_instance"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	gcp_task := task["google.cloud.gcp_sql_instance"]
-
+	gcp_task := task[modules[m]]
 	ansLib.checkState(gcp_task)
+
 	contains(gcp_task.database_version, "POSTGRES")
 	IsMissingAttribute(gcp_task)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "{{google.cloud.gcp_sql_instance}}.settings.databaseFlags is defined",
-		"keyActualValue": "{{google.cloud.gcp_sql_instance}}.settings.databaseFlags is not defined",
+		"keyExpectedValue": "gcp_sql_instance.settings.databaseFlags is defined",
+		"keyActualValue": "gcp_sql_instance.settings.databaseFlags is not defined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	gcp_task := task["google.cloud.gcp_sql_instance"]
-
+	gcp_task := task[modules[m]]
 	ansLib.checkState(gcp_task)
+
 	contains(gcp_task.database_version, "POSTGRES")
 	ansLib.check_database_flags_content(gcp_task.settings.databaseFlags, "log_connections", "on")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_sql_instance}}.settings.databaseFlags", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.settings.databaseFlags", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "{{google.cloud.gcp_sql_instance}}.settings.databaseFlags has 'log_connections' flag set to 'on'",
-		"keyActualValue": "{{google.cloud.gcp_sql_instance}}.settings.databaseFlags has 'log_connections' flag set to 'off'",
+		"keyExpectedValue": "gcp_sql_instance.settings.databaseFlags has 'log_connections' flag set to 'on'",
+		"keyActualValue": "gcp_sql_instance.settings.databaseFlags has 'log_connections' flag set to 'off'",
 	}
 }
 

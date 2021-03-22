@@ -20,16 +20,3 @@
     password: "{{ password }}"
     allocated_storage: "{{ allocated_storage }}"
     enable_iam_database_authentication: false
-
-- name: remove the DB instance without a final snapshot
-  community.aws.rds_instance:
-    id: "{{ instance_id }}"
-    state: absent
-    skip_final_snapshot: True
-
-- name: remove the DB instance with a final snapshot
-  community.aws.rds_instance:
-    id: "{{ instance_id }}"
-    state: absent
-    final_snapshot_identifier: "{{ snapshot_id }}"
-    enable_iam_database_authentication: "no"

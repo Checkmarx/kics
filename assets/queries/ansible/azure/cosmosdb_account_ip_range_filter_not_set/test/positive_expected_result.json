@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "CosmosDB Account IP Range Filter Not Set",
-		"severity": "HIGH",
-		"line": 4
-	}
+  {
+    "queryName": "CosmosDB Account IP Range Filter Not Set",
+    "severity": "HIGH",
+    "line": 2
+  }
 ]

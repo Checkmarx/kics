@@ -59,14 +59,18 @@ func ChangeCurrentDir(desiredDir string) error {
 	for currentDir, err := os.Getwd(); GetCurrentDirName(currentDir) != desiredDir; currentDir, err = os.Getwd() {
 		if err == nil {
 			if err = os.Chdir(".."); err != nil {
-				fmt.Printf("change path error = %v", err)
-				return fmt.Errorf("change path error = %v", err)
+				fmt.Print(formatCurrentDirError(err))
+				return fmt.Errorf(formatCurrentDirError(err))
 			}
 		} else {
-			return fmt.Errorf("change path error = %v", err)
+			return fmt.Errorf(formatCurrentDirError(err))
 		}
 	}
 	return nil
+}
+
+func formatCurrentDirError(err error) string {
+	return fmt.Sprintf("change path error = %v", err)
 }
 
 // GetCurrentDirName returns current working directory

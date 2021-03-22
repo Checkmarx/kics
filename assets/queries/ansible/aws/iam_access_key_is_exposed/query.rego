@@ -3,17 +3,19 @@ package Cx
 import data.generic.ansible as ansLib
 
 CxPolicy[result] {
-	task = ansLib.tasks[id][t]
-	iamuser = task["community.aws.iam"]
+	task := ansLib.tasks[id][t]
+	modules := {"community.aws.iam", "iam"}
+	iamuser := task[modules[m]]
+	ansLib.checkState(iamuser)
 
 	lower(iamuser.access_key_state) == "active"
 	not contains(lower(iamuser.name), "root")
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam}}.access_key_state", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.access_key_state", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}}.{{community.aws.iam}}.name is 'root' for an active access key", [task.name]),
-		"keyActualValue": sprintf("{{%s}}.{{community.aws.iam}}.name is '%s' for an active access key", [task.name, iamuser.name]),
+		"keyExpectedValue": "iam.name is 'root' for an active access key",
+		"keyActualValue": sprintf("iam.name is '%s' for an active access key", [iamuser.name]),
 	}
 }

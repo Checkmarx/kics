@@ -9,6 +9,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/open-policy-agent/opa/ast"
@@ -40,14 +41,6 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
-
-// QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
-// GetQueries gets all queries from a QueryMetadata list
-// GetGenericQuery gets a base query based in plataform's name
-type QueriesSource interface {
-	GetQueries(excludeQueries []string) ([]model.QueryMetadata, error)
-	GetGenericQuery(platform string) (string, error)
-}
 
 // Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
 // TrackQueryLoad increments the number of loaded queries
@@ -101,17 +94,17 @@ var (
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
-	source QueriesSource,
+	queriesSource source.QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
-	excludeQueries []string,
+	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
-	queries, err := source.GetQueries(excludeQueries)
+	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := source.GetGenericQuery("common")
+	commonGeneralQuery, err := queriesSource.GetGenericQuery("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
@@ -120,7 +113,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := source.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := queriesSource.GetGenericQuery(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.

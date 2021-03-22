@@ -4,7 +4,8 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	awsApiGateway := task["community.aws.iam_managed_policy"]
+	modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
+	awsApiGateway := task[modules[m]]
 	ansLib.checkState(awsApiGateway)
 
 	resource := awsApiGateway.policy.Statement[_].Resource
@@ -14,9 +15,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.policy.Statement.Action", [task.name]),
-		"issueType": "MissingValue",
-		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Action not contains '*'",
-		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Action contains '*'",
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Statement.Action", [task.name, modules[m]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Action not contains '*'",
+		"keyActualValue": "iam_managed_policy.policy.Statement.Action contains '*'",
 	}
 }

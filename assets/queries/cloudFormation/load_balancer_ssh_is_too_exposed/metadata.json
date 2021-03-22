@@ -1,9 +1,0 @@
-{
-	"id": "4ad1f3ab-841f-45b6-ab5a-3cad7875c99b",
-	"queryName": "Load Balancer SSH Is Too Exposed",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "The load balancer of the application with SSH connection is too exposed to the public internet.",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
-	"platform": "CloudFormation"
-}

@@ -25,7 +25,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.AuthenticationConfiguration.ClientSecret", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' should start with with '{{resolve:secretsmanager:' or started with '{{resolve:ssm-secure:'", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.ClientSecret' does not started '{{resolve:secretsmanager:' or doesn't start with '{{resolve:ssm-secure:'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'", [name]),
 	}
 }

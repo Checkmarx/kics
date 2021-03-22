@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress has a correct port", [name]),
-		"keyActualValue": sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has a too exposed port", [name]),
+		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress has an exposed port", [name]),
+		"keyActualValue": sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has a too exposed port (20,21,22,23,115,137,138,2049,3389)", [name]),
 	}
 }
 

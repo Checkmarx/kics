@@ -2,41 +2,27 @@ package Cx
 
 import data.generic.ansible as ansLib
 
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	currentPort := task["amazon.aws.ec2_group"].rules[index].from_port
-	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ip
-
-	not portIsKnown(currentPort)
-	isEntireNetwork(cidr)
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is known", [index]),
-		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is unknown and is exposed to the entire Internet", [index]),
-	}
-}
+modules := {"amazon.aws.ec2_group", "ec2_group"}
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	currentPort := task["amazon.aws.ec2_group"].rules[index].from_port
-	cidr := task["amazon.aws.ec2_group"].rules[index].cidr_ipv6
+	ec2_group := task[modules[m]]
+	ansLib.checkState(ec2_group)
+	rule := ec2_group.rules[index]
 
-	not portIsKnown(currentPort)
-	isEntireNetwork(cidr)
+	not portIsKnown(rule.from_port)
+	isEntireNetwork(rule)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.rules", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is known", [index]),
-		"keyActualValue": sprintf("amazon.aws.ec2_group.rules[%d].from_port is unknown and is exposed to the entire Internet", [index]),
+		"keyExpectedValue": sprintf("ec2_group.rules[%d].from_port is known", [index]),
+		"keyActualValue": sprintf("ec2_group.rules[%d].from_port is unknown and is exposed to the entire Internet", [index]),
 	}
 }
 
-portIsKnown(port) = allow {
+portIsKnown(port) {
 	knownPorts := [
 		0, 20, 21, 22, 23, 25, 53, 57, 80, 88, 110, 119, 123, 135, 143, 137, 138, 139,
 		161, 162, 163, 164, 194, 318, 443, 514, 563, 636, 989, 990, 1433, 1434,
@@ -46,25 +32,24 @@ portIsKnown(port) = allow {
 	]
 
 	count({x | knownPorts[x]; knownPorts[x] == port}) != 0
-
-	allow = true
 }
 
-isEntireNetwork(cidr) = allow {
-	isArray := is_array(cidr)
+isEntireNetwork(rule) {
+	isEntire(rule.cidr_ip)
+}
 
+isEntireNetwork(rule) {
+	isEntire(rule.cidr_ipv6)
+}
+
+isEntire(cidr) {
+	is_array(cidr)
 	cidrs = {"0.0.0.0/0", "::/0"}
-
 	count({x | cidr[x]; cidr[x] == cidrs[j]}) != 0
-
-	allow = true
 }
 
-isEntireNetwork(cidr) = allow {
-	isString := is_string(cidr)
-
+isEntire(cidr) {
+	is_string(cidr)
 	cidrs = {"0.0.0.0/0", "::/0"}
 	cidr == cidrs[j]
-
-	allow = true
 }

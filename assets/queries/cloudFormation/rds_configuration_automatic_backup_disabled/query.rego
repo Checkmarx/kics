@@ -3,7 +3,8 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
-	resource.Properties.BackupRetentionPeriod == 0
+    backupRetentionPeriod = to_number(resource.Properties.BackupRetentionPeriod)
+	backupRetentionPeriod == 0
 
 	result := {
 		"documentId": input.document[i].id,

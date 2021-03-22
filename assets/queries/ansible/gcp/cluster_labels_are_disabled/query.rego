@@ -2,50 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	cluster := task["google.cloud.gcp_container_cluster"]
-
+	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
+
 	object.get(cluster, "resource_labels", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is defined", [task.name]),
-		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is undefined", [task.name]),
+		"keyExpectedValue": "gcp_container_cluster.resource_labels is defined",
+		"keyActualValue": "gcp_container_cluster.resource_labels is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	cluster := task["google.cloud.gcp_container_cluster"]
-
+	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
-	cluster.resource_labels == null
+
+	ansLib.checkValue(cluster.resource_labels)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.resource_labels", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.resource_labels", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is not null", [task.name]),
-		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is null", [task.name]),
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	cluster := task["google.cloud.gcp_container_cluster"]
-
-	ansLib.checkState(cluster)
-	count(cluster.resource_labels) == 0
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{google.cloud.gcp_container_cluster}}.resource_labels", [task.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is not empty", [task.name]),
-		"keyActualValue": sprintf("google.cloud.gcp_container_cluster[%s].resource_labels is empty", [task.name]),
+		"keyExpectedValue": "gcp_container_cluster.resource_labels is not null nor empty",
+		"keyActualValue": "gcp_container_cluster.resource_labels is null or empty",
 	}
 }

@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [nameSNS]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Subscription' is set)", [nameSNS]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.Subscription' is not set)", [nameSNS]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Subscription' is set", [nameSNS]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.Subscription' is not set", [nameSNS]),
 	}
 }

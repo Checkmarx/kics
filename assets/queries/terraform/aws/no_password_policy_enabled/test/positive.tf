@@ -1,9 +1,3 @@
-resource "aws_iam_user_login_profile" "positive1" {
-  user    = aws_iam_user.example.name
-  pgp_key = "keybase:some_person_that_exists"
-}
-
-
 resource "aws_iam_user_login_profile" "positive2" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
@@ -12,7 +6,6 @@ resource "aws_iam_user_login_profile" "positive2" {
 
   password_length = 15
 }
-
 
 resource "aws_iam_user_login_profile" "positive3" {
   user    = aws_iam_user.example.name
@@ -23,30 +16,12 @@ resource "aws_iam_user_login_profile" "positive3" {
   password_length = 13
 }
 
-
-resource "aws_iam_user_login_profile" "positive4" {
-  user    = aws_iam_user.example.name
-  pgp_key = "keybase:some_person_that_exists"
-
-  password_reset_required = true
-}
-
-
-resource "aws_iam_user_login_profile" "positive5" {
-  user    = aws_iam_user.example.name
-  pgp_key = "keybase:some_person_that_exists"
-
-  password_length = 15
-}
-
-
 resource "aws_iam_user_login_profile" "positive6" {
   user    = aws_iam_user.example.name
   pgp_key = "keybase:some_person_that_exists"
 
   password_length = 13
 }
-
 
 resource "aws_iam_user_login_profile" "positive7" {
   user    = aws_iam_user.example.name

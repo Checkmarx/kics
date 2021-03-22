@@ -1,13 +1,16 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
+
+modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	awsApiGateway := task["community.aws.iam_managed_policy"]
+	awsApiGateway := task[modules[m]]
 	ansLib.checkState(awsApiGateway)
 
-	policy := json_unmarshal(awsApiGateway.policy)
+	policy := commonLib.json_unmarshal(awsApiGateway.policy)
 	statement := policy.Statement[_]
 	resource := statement.Principal.AWS
 	contains(resource, "arn:aws:iam::")
@@ -16,16 +19,16 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
 		"issueType": "IncorrectAttribute",
-		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
-		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
+		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	awsApiGateway := task["community.aws.iam_managed_policy"]
+	awsApiGateway := task[modules[m]]
 	ansLib.checkState(awsApiGateway)
 
 	statement := awsApiGateway.policy.Statement[_]
@@ -36,19 +39,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{community.aws.iam_managed_policy}}.Statement.Principal.AWS", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
 		"issueType": "IncorrectAttribute",
-		"keyExpectedValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
-		"keyActualValue": "community.aws.iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
+		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
 	}
-}
-
-json_unmarshal(s) = result {
-	s == null
-	result := json.unmarshal("{}")
-}
-
-json_unmarshal(s) = result {
-	s != null
-	result := json.unmarshal(s)
 }

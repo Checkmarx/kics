@@ -4,14 +4,17 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	modules := {"community.aws.cloudtrail", "cloudtrail"}
+	cloudtrail := task[modules[m]]
+	ansLib.checkState(cloudtrail)
 
-	ansLib.isAnsibleFalse(task["community.aws.cloudtrail"].enable_logging)
+	ansLib.isAnsibleFalse(cloudtrail.enable_logging)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}.enable_logging", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.enable_logging", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.enable_logging is true", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.enable_logging is false", [task.name]),
+		"keyExpectedValue": "cloudtrail.enable_logging is true",
+		"keyActualValue": "cloudtrail.enable_logging is false",
 	}
 }
