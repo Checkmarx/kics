@@ -11,8 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.TracingEnabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled is false", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled is true", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled is true", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled is false", [name]),
 	}
 }
 
