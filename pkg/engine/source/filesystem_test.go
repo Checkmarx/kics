@@ -46,8 +46,8 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 	}
 }
 
-// TestFilesystemSource_GetGenericQuery tests the functions [GetGenericQuery()] and all the methods called by them
-func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
+// TestFilesystemSource_GetQueryLibrary tests the functions [GetQueryLibrary()] and all the methods called by them
+func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
@@ -146,13 +146,13 @@ func TestFilesystemSource_GetGenericQuery(t *testing.T) { // nolint
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
 
-			got, err := s.GetGenericQuery(tt.args.platform)
+			got, err := s.GetQueryLibrary(tt.args.platform)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("FilesystemSource.GetGenericQuery() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("FilesystemSource.GetQueryLibrary() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !strings.Contains(got, tt.contains) {
-				t.Errorf("FilesystemSource.GetGenericQuery() = %v, doesn't contains %v", got, tt.contains)
+				t.Errorf("FilesystemSource.GetQueryLibrary() = %v, doesn't contains %v", got, tt.contains)
 			}
 		})
 	}

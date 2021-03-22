@@ -5,3 +5,6 @@ var Version = "dev"
 
 // Fullname - Kics fullname
 const Fullname = "Keeping Infrastructure as Code Secure"
+
+// SCMCommit - Source control management commit identifier
+const SCMCommit = "N/A"

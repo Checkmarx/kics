@@ -99,12 +99,14 @@ func NewInspector(
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
+	log.Debug().Msg("engine.NewInspector()")
+
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to get queries")
+		return nil, errors.Wrap(err, "Failed to get queries")
 	}
 
-	commonGeneralQuery, err := queriesSource.GetGenericQuery("common")
+	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
@@ -113,7 +115,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := queriesSource.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.
@@ -191,6 +193,7 @@ func (c *Inspector) Inspect(
 	files model.FileMetadatas,
 	hideProgress bool,
 	baseScanPath string) ([]model.Vulnerability, error) {
+	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
 	_, err := json.Marshal(combinedFiles)
@@ -220,7 +223,7 @@ func (c *Inspector) Inspect(
 			sentry.CaptureException(err)
 			log.Err(err).
 				Str("scanID", scanID).
-				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
+				Msgf("Inspector. query executed with error, query=%s", query.metadata.Query)
 
 			c.failedQueries[query.metadata.Query] = err
 
@@ -267,15 +270,15 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	results, err := ctx.query.opaQuery.Eval(timeoutCtx, options...)
 	if err != nil {
 		if topdown.IsCancel(err) {
-			return nil, errors.Wrap(err, "query executing timeout exited")
+			return nil, errors.Wrap(err, "Query executing timeout exited")
 		}
 
-		return nil, errors.Wrap(err, "failed to evaluate query")
+		return nil, errors.Wrap(err, "fFiled to evaluate query")
 	}
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {
-			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
+			return nil, errors.Wrap(parseErr, "Failed to parse coverage module")
 		}
 
 		c.coverageReport = cov.Report(map[string]*ast.Module{

@@ -15,6 +15,11 @@ type Parser struct {
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	r := model.Document{}
 	err := json.Unmarshal(fileContent, &r)
+	if err != nil {
+		r := []model.Document{}
+		err = json.Unmarshal(fileContent, &r)
+		return r, err
+	}
 
 	return []model.Document{r}, errors.Wrap(err, "failed to unmarshall json content")
 }

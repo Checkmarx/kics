@@ -12,6 +12,7 @@ var generateIDCmd = &cobra.Command{
 	Use:   "generate-id",
 	Short: "Generates uuid for query",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		log.Trace().Msg("running 'generate-id' command")
 		_, err := fmt.Println(uuid.New().String())
 		if err != nil {
 			log.Err(err).Msg("failed to get uuid")

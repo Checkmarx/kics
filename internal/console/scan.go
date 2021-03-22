@@ -3,7 +3,6 @@ package console
 import (
 	_ "embed" // Embed kics CLI img
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -24,7 +23,6 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
-	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -42,13 +40,14 @@ var (
 	excludeResults    []string
 	reportFormats     []string
 	cfgFile           string
-	verbose           bool
-	logFile           bool
-	noProgress        bool
-	types             []string
-	noColor           bool
-	min               bool
-	outputLines       int
+
+	noProgress  bool
+	types       []string
+	noColor     bool
+	min         bool
+	outputLines int
+	//go:embed img/kics-console
+	banner string
 )
 
 var scanCmd = &cobra.Command{
@@ -58,6 +57,7 @@ var scanCmd = &cobra.Command{
 		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
+		log.Trace().Msg("running 'scan' command")
 		return scan()
 	},
 }
@@ -66,6 +66,7 @@ var listPlatformsCmd = &cobra.Command{
 	Use:   "list-platforms",
 	Short: "List supported platforms",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		log.Trace().Msg("running 'list-platforms' command")
 		for _, v := range source.ListSupportedPlatforms() {
 			fmt.Println(v)
 		}
@@ -74,6 +75,7 @@ var listPlatformsCmd = &cobra.Command{
 }
 
 func initializeConfig(cmd *cobra.Command) error {
+	log.Debug().Msg("initializing configuration file")
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -92,6 +94,7 @@ func initializeConfig(cmd *cobra.Command) error {
 		}
 		cfgFile = filepath.ToSlash(filepath.Join(path, "kics.config"))
 	}
+
 	v := viper.New()
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
@@ -111,13 +114,14 @@ func initializeConfig(cmd *cobra.Command) error {
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+	log.Debug().Msg("binding flags to configuration file")
 	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
 			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
-				log.Err(err).Msg("Failed to bind Viper flags")
+				log.Err(err).Msg("failed to bind Viper flags")
 			}
 		}
 		if !f.Changed && v.IsSet(f.Name) {
@@ -132,7 +136,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
 			err := cmd.Help()
 			if err != nil {
-				log.Err(err).Msg("Unable to show help message")
+				log.Err(err).Msg("unable to show help message")
 			}
 			os.Exit(1)
 		}
@@ -148,11 +152,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 		}
 		valStr := strings.Join(paramSlice, ",")
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
-			log.Err(err).Msg("Failed to get Viper flags")
+			log.Err(err).Msg("failed to get Viper flags")
 		}
 	default:
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
-			log.Err(err).Msg("Failed to get Viper flags")
+			log.Err(err).Msg("failed to get Viper flags")
 		}
 	}
 }
@@ -187,8 +191,6 @@ func initScanCmd() {
 	)
 	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
-	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
-	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
@@ -222,31 +224,10 @@ func initScanCmd() {
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("failed to add command required flags")
+		log.Err(err).Msg("Failed to add command required flags")
 	}
 
 	scanCmd.AddCommand(listPlatformsCmd)
-}
-
-func setupLogs() error {
-	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
-	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
-
-	if verbose {
-		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
-	}
-
-	if logFile {
-		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
-		if err != nil {
-			return err
-		}
-		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
-	}
-
-	mw := io.MultiWriter(consoleLogger, fileLogger)
-	log.Logger = log.Output(mw)
-	return nil
 }
 
 func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
@@ -279,30 +260,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-//go:embed img/kics-console
-var s string
-
-func scan() error {
-	if noColor {
-		color.Disable()
-	}
-
-	printer := consoleHelpers.NewPrinter(min)
-	printer.Success.Printf("\n%s\n\n", s)
-	fmt.Printf("Scanning with %s\n\n", getVersion())
-
-	if errlog := setupLogs(); errlog != nil {
-		return errlog
-	}
-	scanStartTime := time.Now()
-
-	querySource := source.NewFilesystemSource(queryPath, types)
-
-	t, err := tracker.NewTracker(outputLines)
-	if err != nil {
-		return err
-	}
-
+func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) {
 	excludeResultsMap := getExcludeResultsMap(excludeResults)
 
 	excludeQueries := source.ExcludeQueries{
@@ -312,12 +270,18 @@ func scan() error {
 
 	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	return inspector, nil
+}
 
+func createService(inspector *engine.Inspector,
+	t kics.Tracker,
+	store kics.Storage,
+	querySource source.FilesystemSource) (*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider()
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	combinedParser, err := parser.NewBuilder().
@@ -327,46 +291,81 @@ func scan() error {
 		Add(&dockerParser.Parser{}).
 		Build(querySource.Types)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	store := storage.NewMemoryStorage()
-
-	service := &kics.Service{
+	return &kics.Service{
 		SourceProvider: filesSource,
 		Storage:        store,
 		Parser:         combinedParser,
 		Inspector:      inspector,
 		Tracker:        t,
+	}, nil
+}
+
+func scan() error {
+	log.Debug().Msg("console.scan()")
+
+	if errlog := setupLogs(); errlog != nil {
+		return errlog
+	}
+
+	if noColor {
+		log.Debug().Msg("colors disabled")
+		color.Disable()
+	}
+
+	printer := consoleHelpers.NewPrinter(min)
+	printer.Success.Printf("\n%s\n\n", banner)
+
+	versionMsg := fmt.Sprintf("Scanning with %s\n\n", getVersion())
+	fmt.Println(versionMsg)
+	log.Info().Msgf(versionMsg)
+
+	scanStartTime := time.Now()
+
+	t, err := tracker.NewTracker(outputLines)
+	if err != nil {
+		log.Err(err)
+		return err
+	}
+
+	querySource := source.NewFilesystemSource(queryPath, types)
+	store := storage.NewMemoryStorage()
+
+	inspector, err := createInspector(t, querySource)
+	if err != nil {
+		log.Err(err)
+	}
+
+	service, err := createService(inspector, t, store, *querySource)
+	if err != nil {
+		log.Err(err)
 	}
 
 	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
+		log.Err(scanErr)
 		return scanErr
 	}
 
-	result, err := store.GetVulnerabilities(ctx, scanID)
+	results, err := store.GetVulnerabilities(ctx, scanID)
 	if err != nil {
+		log.Err(err)
 		return err
 	}
 
 	files, err := store.GetFiles(ctx, scanID)
 	if err != nil {
+		log.Err(err)
 		return err
 	}
 
 	elapsed := time.Since(scanStartTime)
 
-	counters := model.Counters{
-		ScannedFiles:           t.FoundFiles,
-		ParsedFiles:            t.ParsedFiles,
-		TotalQueries:           t.LoadedQueries,
-		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
-		FailedSimilarityID:     t.FailedSimilarityID,
-	}
-
-	summary := model.CreateSummary(counters, result, scanID)
+	summary := getSummary(t, results)
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
+		log.Err(err)
 		return err
 	}
 
@@ -379,6 +378,18 @@ func scan() error {
 	}
 
 	return nil
+}
+
+func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summary {
+	counters := model.Counters{
+		ScannedFiles:           t.FoundFiles,
+		ParsedFiles:            t.ParsedFiles,
+		TotalQueries:           t.LoadedQueries,
+		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
+		FailedSimilarityID:     t.FailedSimilarityID,
+	}
+
+	return model.CreateSummary(counters, results, scanID)
 }
 
 func resolveOutputs(
@@ -402,6 +413,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	if outputPath == "" {
 		return nil
 	}
+	log.Debug().Msgf("writing output to %s", outputPath)
+
 	if strings.Contains(outputPath, ".") {
 		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
 			formats = []string{filepath.Ext(outputPath)[1:]}

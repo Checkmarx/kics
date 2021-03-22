@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/rs/zerolog/log"
 )
 
 type kindParser interface {
@@ -23,6 +24,7 @@ type Builder struct {
 
 // NewBuilder creates a new Builder's reference
 func NewBuilder() *Builder {
+	log.Debug().Msg("parser.NewBuilder()")
 	return &Builder{}
 }
 

@@ -208,7 +208,7 @@ func (sr *sarifReport) buildCategory(category string) sarifDescriptorReference {
 	target.ReferenceID = sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex].DefinitionID
 	if categoryIndex == 0 {
 		if _, exists := categoriesNotFound[category]; !exists {
-			log.Warn().Msgf("Category %s not found.", category)
+			log.Warn().Msgf("category %s not found.", category)
 			categoriesNotFound[category] = true
 		}
 	}
