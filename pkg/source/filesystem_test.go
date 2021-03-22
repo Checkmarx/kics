@@ -61,10 +61,11 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		excludes map[string][]os.FileInfo
 	}
 	type args struct {
-		ctx        context.Context
-		in1        string
-		extensions model.Extensions
-		sink       Sink
+		ctx          context.Context
+		in1          string
+		extensions   model.Extensions
+		sink         Sink
+		resolverSink ResolverSink
 	}
 	tests := []struct {
 		name    string
@@ -84,7 +85,8 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
-				sink: mockSink,
+				sink:         mockSink,
+				resolverSink: mockErrResolverSink,
 			},
 			wantErr: false,
 		},
@@ -100,7 +102,8 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
-				sink: mockErrSink,
+				sink:         mockErrSink,
+				resolverSink: mockErrResolverSink,
 			},
 			wantErr: false,
 		},
@@ -116,7 +119,8 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
-				sink: mockSink,
+				sink:         mockSink,
+				resolverSink: mockResolverSink,
 			},
 			wantErr: false,
 		},
@@ -132,7 +136,8 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
-				sink: mockSink,
+				sink:         mockSink,
+				resolverSink: mockResolverSink,
 			},
 			wantErr: true,
 		},
@@ -143,10 +148,28 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
-				ctx:        nil,
-				in1:        "alb_protocol_is_http",
-				extensions: nil,
-				sink:       mockSink,
+				ctx:          nil,
+				in1:          "alb_protocol_is_http",
+				extensions:   nil,
+				sink:         mockSink,
+				resolverSink: mockResolverSink,
+			},
+			wantErr: true,
+		},
+		{
+			name: "err_resolver_sink",
+			fields: fields{
+				path:     "../../assets/queries/template/test/positive.tf",
+				excludes: map[string][]os.FileInfo{},
+			},
+			args: args{
+				ctx: nil,
+				in1: "template",
+				extensions: model.Extensions{
+					".dockerfile": dockerParser.Parser{},
+				},
+				sink:         mockSink,
+				resolverSink: mockErrResolverSink,
 			},
 			wantErr: true,
 		},
@@ -157,7 +180,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				path:     tt.fields.path,
 				excludes: tt.fields.excludes,
 			}
-			if err := s.GetSources(tt.args.ctx, tt.args.in1, tt.args.extensions, tt.args.sink); (err != nil) != tt.wantErr {
+			if err := s.GetSources(tt.args.ctx, tt.args.in1, tt.args.extensions, tt.args.sink, tt.args.resolverSink); (err != nil) != tt.wantErr {
 				t.Errorf("FileSystemSourceProvider.GetSources() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -225,5 +248,13 @@ var mockSink = func(ctx context.Context, filename string, content io.ReadCloser)
 }
 
 var mockErrSink = func(ctx context.Context, filename string, content io.ReadCloser) error {
+	return errors.New("")
+}
+
+var mockResolverSink = func(ctx context.Context, filename string) error {
+	return nil
+}
+
+var mockErrResolverSink = func(ctx context.Context, filename string) error {
 	return errors.New("")
 }

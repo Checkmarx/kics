@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/pkg/errors"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
 	"helm.sh/helm/v3/pkg/release"
@@ -23,8 +24,8 @@ type splitManifest struct {
 func (r *Resolver) Resolve(filePath string) (model.RenderedFiles, error) {
 	var rfiles = model.RenderedFiles{}
 	splits, err := renderHelm(filePath)
-	if err != nil {
-		return model.RenderedFiles{}, nil
+	if err != nil { // return error to be logged
+		return model.RenderedFiles{}, errors.New("failed to render helm chart")
 	}
 	for _, split := range *splits {
 		origpath := filepath.Join(filepath.Dir(filePath), split.path)
