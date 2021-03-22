@@ -4,7 +4,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource = document.resource.aws_apigatewayv2_stage[name]
 
-	not resource.access_log_settings
+	object.get(resource, "access_log_settings", "undefined") == "undefined"
 
 	result := {
 		"documentId": document.id,
