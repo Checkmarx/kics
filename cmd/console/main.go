@@ -13,6 +13,7 @@ func main() { // nolint:funlen,gocyclo
 		log.Err(err).Msg("failed to initialize sentry")
 	}
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	log.Debug().Msg("logger initialized")
 
 	console.Execute()
 }

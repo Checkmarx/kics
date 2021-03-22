@@ -58,6 +58,7 @@ var scanCmd = &cobra.Command{
 		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
+		log.Trace().Msg("running 'scan' command")
 		return scan()
 	},
 }
@@ -66,6 +67,7 @@ var listPlatformsCmd = &cobra.Command{
 	Use:   "list-platforms",
 	Short: "List supported platforms",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		log.Trace().Msg("running 'list-platforms' command")
 		for _, v := range source.ListSupportedPlatforms() {
 			fmt.Println(v)
 		}
@@ -74,6 +76,7 @@ var listPlatformsCmd = &cobra.Command{
 }
 
 func initializeConfig(cmd *cobra.Command) error {
+	log.Debug().Msg("initializing configuration")
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -117,7 +120,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
 			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
-				log.Err(err).Msg("Failed to bind Viper flags")
+				log.Err(err).Msg("failed to bind Viper flags")
 			}
 		}
 		if !f.Changed && v.IsSet(f.Name) {
@@ -132,7 +135,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
 			err := cmd.Help()
 			if err != nil {
-				log.Err(err).Msg("Unable to show help message")
+				log.Err(err).Msg("unable to show help message")
 			}
 			os.Exit(1)
 		}
@@ -158,6 +161,8 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanCmd() {
+	log.Trace().Msg("initializing 'scan' command")
+
 	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path or directory path to scan")
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
 	scanCmd.Flags().StringVarP(
@@ -229,14 +234,18 @@ func initScanCmd() {
 }
 
 func setupLogs() error {
+	log.Trace().Msg("setup up logs")
+
 	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
 
 	if verbose {
+		log.Debug().Msg("verbose mode, redirecting logs to stdout")
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 	}
 
 	if logFile {
+		log.Debug().Msg("creating info.log file")
 		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			return err
@@ -283,7 +292,9 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 var s string
 
 func scan() error {
+	log.Debug().Msg("starting scan")
 	if noColor {
+		log.Debug().Msg("desabling colors")
 		color.Disable()
 	}
 

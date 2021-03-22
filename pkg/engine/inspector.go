@@ -99,12 +99,14 @@ func NewInspector(
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
+	log.Debug().Msg("Creating new inspector")
+
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := queriesSource.GetGenericQuery("common")
+	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.
@@ -113,7 +115,7 @@ func NewInspector(
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := queriesSource.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.

@@ -23,12 +23,15 @@ var rootCmd = &cobra.Command{
 }
 
 func initialize() {
+	log.Trace().Msg("initializing kics command")
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(generateIDCmd)
 	rootCmd.AddCommand(scanCmd)
 
 	initScanCmd()
 	if insertScanCmd() {
+		log.Warn().Msg("DEPRECATION WARNING: adding 'scan' sub-command as argument" +
+			"since it was not provided, in for future versions use 'kics scan'")
 		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
 	}
 }
@@ -50,8 +53,9 @@ func Execute() {
 	defer sentry.Flush(timeMult * time.Second)
 	initialize()
 
+	log.Debug().Msg("executing kics command context")
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to run application")
+		log.Err(err).Msg("failed to run application")
 	}
 }

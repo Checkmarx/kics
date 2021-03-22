@@ -45,6 +45,8 @@ var (
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types []string) *FilesystemSource {
+	log.Debug().Msg("Creating new filesystem source")
+
 	if len(types) == 0 {
 		types = []string{""}
 	}
@@ -87,13 +89,14 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 	return libraryFilePath
 }
 
-// GetGenericQuery returns the library.rego for the platform passed in the argument
-func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
+// GetQueryLibrary returns the library.rego for the platform passed in the argument
+func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
+
 	pathToLib := GetPathToLibrary(platform, s.Source)
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
-		log.Err(err)
+		log.Err(err).Msgf("failed to get filesystem source rego library %s", pathToLib)
 	}
 
 	return string(content), err
@@ -213,6 +216,7 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 
 		return nil
 	}
+	defer f.Close()
 
 	var metadata map[string]interface{}
 	if err := json.NewDecoder(f).Decode(&metadata); err != nil {

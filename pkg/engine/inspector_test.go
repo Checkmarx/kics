@@ -411,7 +411,8 @@ func (m *mockSource) GetQueries(excludeQueries source.ExcludeQueries) ([]model.Q
 
 	return sources.GetQueries(excludeQueries)
 }
-func (m *mockSource) GetGenericQuery(platform string) (string, error) {
+
+func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()
 
 	pathToLib := source.GetPathToLibrary(platform, currentWorkdir)
