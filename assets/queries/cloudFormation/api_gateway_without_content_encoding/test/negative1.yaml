@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  RestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Body:
+        swagger: 2.0
+        info:
+            version: 0.0.1
+            title: test
+        basePath: /pete
+        schemes:
+            - https
+        definitions:
+            Empty:
+                type: object
+      MinimumCompressionSize: 0
+      Name: myApi
+      Parameters:
+          endpointConfigurationTypes: REGIONAL
