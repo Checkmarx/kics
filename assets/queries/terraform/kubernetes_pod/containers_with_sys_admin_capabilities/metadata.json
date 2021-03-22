@@ -1,0 +1,9 @@
+{
+  "id": "3f55386d-75cd-4e9a-ac47-167b26c04724",
+  "queryName": "Containers With Sys Admin Capabilities",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Containers should not have CAP_SYS_ADMIN Linux capability",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities-1",
+  "platform": "Terraform"
+}
