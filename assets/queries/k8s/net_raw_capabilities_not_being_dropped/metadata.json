@@ -1,0 +1,9 @@
+{
+  "id": "dbbc6705-d541-43b0-b166-dd4be8208b54",
+  "queryName": "NET_RAW Capabilities Not Being Dropped",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Containers should drop 'NET_RAW' or 'ALL' capabilities",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+  "platform": "Kubernetes"
+}
