@@ -45,7 +45,7 @@ var (
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types []string) *FilesystemSource {
-	log.Trace().Msg("source.NewFilesystemSource()")
+	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
 		types = []string{""}

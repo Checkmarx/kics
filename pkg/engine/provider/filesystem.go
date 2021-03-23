@@ -24,6 +24,7 @@ var ErrNotSupportedFile = errors.New("invalid file format")
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
 func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
+	log.Debug().Msgf("provider.NewFileSystemSourceProvider()")
 	ex := make(map[string][]os.FileInfo, len(excludes))
 	for _, exclude := range excludes {
 		excludePaths, err := getExcludePaths(exclude)
@@ -117,20 +118,20 @@ func closeFile(file *os.File, info os.FileInfo) {
 	if err := file.Close(); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).
-			Msgf("Filesystem couldn't close file, file=%s", info.Name())
+			Msgf("filesystem couldn't close file, file=%s", info.Name())
 	}
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-			log.Info().Msgf("Directory ignored: %s", path)
+			log.Info().Msgf("directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
 		return true, nil
 	}
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		log.Info().Msgf("File ignored: %s", path)
+		log.Info().Msgf("file ignored: %s", path)
 		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {

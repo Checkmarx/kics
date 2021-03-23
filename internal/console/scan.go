@@ -3,7 +3,6 @@ package console
 import (
 	_ "embed" // Embed kics CLI img
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -24,7 +23,6 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
-	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -42,14 +40,12 @@ var (
 	excludeResults    []string
 	reportFormats     []string
 	cfgFile           string
-	verbose           bool
-	logFile           bool
-	logLevel          string
-	noProgress        bool
-	types             []string
-	noColor           bool
-	min               bool
-	outputLines       int
+
+	noProgress  bool
+	types       []string
+	noColor     bool
+	min         bool
+	outputLines int
 	//go:embed img/kics-console
 	banner string
 )
@@ -79,7 +75,7 @@ var listPlatformsCmd = &cobra.Command{
 }
 
 func initializeConfig(cmd *cobra.Command) error {
-	log.Debug().Msg("initializing configuration")
+	log.Debug().Msg("initializing configuration file")
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -98,6 +94,7 @@ func initializeConfig(cmd *cobra.Command) error {
 		}
 		cfgFile = filepath.ToSlash(filepath.Join(path, "kics.config"))
 	}
+
 	v := viper.New()
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
@@ -117,6 +114,7 @@ func initializeConfig(cmd *cobra.Command) error {
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+	log.Debug().Msg("binding flags to configuration file")
 	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
 		settingsMap[f.Name] = true
@@ -154,18 +152,16 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 		}
 		valStr := strings.Join(paramSlice, ",")
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
-			log.Err(err).Msg("Failed to get Viper flags")
+			log.Err(err).Msg("failed to get Viper flags")
 		}
 	default:
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
-			log.Err(err).Msg("Failed to get Viper flags")
+			log.Err(err).Msg("failed to get Viper flags")
 		}
 	}
 }
 
 func initScanCmd() {
-	log.Trace().Msg("initializing 'scan' command")
-
 	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path or directory path to scan")
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
 	scanCmd.Flags().StringVarP(
@@ -195,9 +191,6 @@ func initScanCmd() {
 	)
 	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
-	scanCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
-	scanCmd.Flags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
-	scanCmd.Flags().StringVarP(&logLevel, "log-level", "", "INFO", "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
@@ -231,55 +224,10 @@ func initScanCmd() {
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("failed to add command required flags")
+		log.Err(err).Msg("Failed to add command required flags")
 	}
 
 	scanCmd.AddCommand(listPlatformsCmd)
-}
-
-func setLogLevel() {
-	switch logLevel {
-	case "TRACE":
-		zerolog.SetGlobalLevel(zerolog.TraceLevel)
-	case "DEBUG":
-		zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	case "INFO":
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	case "WARN":
-		zerolog.SetGlobalLevel(zerolog.WarnLevel)
-	case "ERROR":
-		zerolog.SetGlobalLevel(zerolog.ErrorLevel)
-	case "FATAL":
-		zerolog.SetGlobalLevel(zerolog.FatalLevel)
-	default:
-		log.Warn().Msg("invalid log level, setting default INFO level")
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	}
-}
-
-func setupLogs() error {
-	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
-	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
-
-	setLogLevel()
-
-	if verbose {
-		log.Debug().Msg("verbose mode, redirecting logs to stdout")
-		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
-	}
-
-	if logFile {
-		log.Debug().Msg("creating info.log file")
-		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
-		if err != nil {
-			return err
-		}
-		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
-	}
-
-	mw := io.MultiWriter(consoleLogger, fileLogger)
-	log.Logger = log.Output(mw)
-	return nil
 }
 
 func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
@@ -356,7 +304,7 @@ func createService(inspector *engine.Inspector,
 }
 
 func scan() error {
-	log.Trace().Msg("starting scan()")
+	log.Debug().Msg("console.scan()")
 
 	if errlog := setupLogs(); errlog != nil {
 		return errlog
