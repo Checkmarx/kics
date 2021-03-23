@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "MEDIUM",
+    "line": 48,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "MEDIUM",
+    "line": 51,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "line": 32,
+    "fileName": "positive6.json",
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 68,
+    "fileName": "positive5.json",
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 44,
+    "fileName": "positive4.json",
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "MEDIUM"
+  }
+]
