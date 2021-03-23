@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "A non kube-system workload should not have hostPath mounted",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod",
   "platform": "Cloudformation"
 }
