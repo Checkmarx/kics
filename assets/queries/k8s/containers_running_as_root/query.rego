@@ -4,7 +4,7 @@ import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	object.get(document, "kind", "undefined") == "Pod"
+    document.kind == "Pod"
 
 	spec := document.spec
 
@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	object.get(document, "kind", "undefined") == "CronJob"
+    document.kind == "CronJob"
 
 	spec := document.spec.jobTemplate.spec.template.spec
 
@@ -71,9 +71,10 @@ checkRootContainer(spec, path, metadata, id) = result {
 	not container.securityContext.runAsNonRoot
 	uid := container.securityContext.runAsUser
 	to_number(uid) <= 0
+
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("%s.%s", [path, types[x]]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.%s", [metadata.name, path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is higher than 0 and/or 'runAsNonRoot' is true", [path, types[x], j]),
 		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is 0 and 'runAsNonRoot' is not set to true", [path, types[x], j]),
@@ -86,9 +87,10 @@ checkRootContainer(spec, path, metadata, id) = result {
 	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
+
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s", [metadata.name, path, types[x]]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.{{%s}}.securityContext", [metadata.name, path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is defined", [path, types[x], j]),
 		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is undefined", [path, types[x], j]),
@@ -101,9 +103,10 @@ checkUserContainer(spec, path, metadata, id) = result {
 	container := spec[types[x]][j]
 	uid := container.securityContext.runAsUser
 	to_number(uid) <= 0
+
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s", [metadata.name, path, types[x]]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.%s", [metadata.name, path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is higher than 0 and/or 'runAsNonRoot' is true", [path, types[x], j]),
 		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is 0 and 'runAsNonRoot' is not set to true", [path, types[x], j]),
@@ -116,9 +119,10 @@ checkUserContainer(spec, path, metadata, id) = result {
 	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
+
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s", [metadata.name, path, types[x]]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.{{%s}}.securityContext", [metadata.name, path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is defined", [path, types[x], j]),
 		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is undefined", [path, types[x], j]),
