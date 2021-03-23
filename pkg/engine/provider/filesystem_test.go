@@ -176,7 +176,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				path:     tt.fields.path,
 				excludes: tt.fields.excludes,
 			}
-			if err := s.GetSources(tt.args.ctx, tt.args.in1, tt.args.extensions, tt.args.sink, tt.args.resolverSink); (err != nil) != tt.wantErr {
+			if err := s.GetSources(tt.args.ctx, tt.args.extensions, tt.args.sink, tt.args.resolverSink); (err != nil) != tt.wantErr {
 				t.Errorf("FileSystemSourceProvider.GetSources() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})

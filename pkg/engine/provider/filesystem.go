@@ -68,7 +68,7 @@ func (s *FileSystemSourceProvider) GetBasePath() string {
 }
 
 // GetSources tries to open file or directory and execute sink function on it
-func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string,
+func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {

@@ -10,20 +10,11 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
-	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
-
-// SourceProvider is the interface that wraps the basic GetSources method.
-// GetBasePath returns base path of FileSystemSourceProvider
-// GetSources receives context, receive ID, extensions supported and a sink function to save sources
-type SourceProvider interface {
-	GetBasePath() string
-	GetSources(ctx context.Context, scanID string, extensions model.Extensions, sink source.Sink, resolverSink source.ResolverSink) error
-}
 
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
 // SaveFile should append metadata to a file

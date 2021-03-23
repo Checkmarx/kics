@@ -24,7 +24,6 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
-	"github.com/Checkmarx/kics/pkg/source"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
