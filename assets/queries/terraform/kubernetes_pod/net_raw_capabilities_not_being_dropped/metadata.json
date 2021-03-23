@@ -1,0 +1,9 @@
+{
+  "id": "e5587d53-a673-4a6b-b3f2-ba07ec274def",
+  "queryName": "NET_RAW Capabilities Not Being Dropped",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Containers should drop 'NET_RAW' or 'ALL' capabilities",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#drop",
+  "platform": "Terraform"
+}

@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  MyRepo3:
+    Type: AWS::CodeStar::GitHubRepository
+    Properties:
+      Code:
+        S3:
+          Bucket: "my-bucket"
+          Key: "sourcecode.zip"
+          ObjectVersion: "1"
+      EnableIssues: true
+      IsPrivate: false
+      RepositoryAccessToken: '{{resolve:secretsmanager:your-secret-manager-name:SecretString:your-secret-manager-key}}'
+      RepositoryDescription: a description
+      RepositoryName: my-github-repo
+      RepositoryOwner: my-github-account

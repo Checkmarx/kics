@@ -1,0 +1,9 @@
+{
+	"id": "c09f4d3e-27d2-4d46-9453-abbe9687a64e",
+	"queryName": "User Data Contains Encoded Private Key",
+	"severity": "HIGH",
+	"category": "Encryption",
+	"descriptionText": "User Data contains an encoded RSA Private Key",
+	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
+	"platform": "Ansible"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "11e9a948-c6c3-4a0f-8dcf-b5cf1763cdbe",
+  "queryName": "Web App Accepting Traffic Other Than HTTPS",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Web app should only accept HTTPS traffic in Azure Web App Service.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#https_only",
+  "platform": "Terraform"
+}
