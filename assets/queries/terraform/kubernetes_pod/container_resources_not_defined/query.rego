@@ -31,7 +31,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s.security_context.read_only_root_filesystem", [name, types[x]]),
+		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.resources is set", [name, types[x]]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.resources is undefined", [name, types[x]]),
