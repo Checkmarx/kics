@@ -1,0 +1,9 @@
+{
+  "id": "86f92117-eed8-4614-9c6c-b26da20ff37f",
+  "queryName": "AKS RBAC Disabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#role_based_access_control",
+  "platform": "Terraform"
+}
