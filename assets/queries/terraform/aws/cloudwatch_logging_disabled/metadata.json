@@ -1,6 +1,6 @@
 {
 	"id": "7dbba512-e244-42dc-98bb-422339827967",
-	"queryName": "CloudWatch Logging Is Disabled",
+	"queryName": "CloudWatch Logging Disabled",
 	"severity": "MEDIUM",
 	"category": "Observability",
 	"descriptionText": "Check if CloudWatch logging is disabled for Route53 hosted zones",
