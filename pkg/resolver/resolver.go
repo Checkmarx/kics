@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/rs/zerolog/log"
 )
 
 // kindResolver is a type of resolver interface (ex: helm resolver)
@@ -57,6 +58,7 @@ func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.Resolved
 		if err != nil {
 			return model.ResolvedFiles{}, nil
 		}
+		log.Info().Msgf("rendered file: %s", filePath)
 		return obj, nil
 	}
 	// need to log here
@@ -65,7 +67,8 @@ func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.Resolved
 
 // GetType will analyze the filepath to determine which resolver to use
 func (r *Resolver) GetType(filePath string) model.FileKind {
-	if _, err := os.Stat(filepath.Join(filePath, "Chart.yaml")); err == nil {
+	_, err := os.Stat(filepath.Join(filePath, "Chart.yaml"))
+	if err == nil {
 		return model.KINDHELM
 	}
 	return model.KindCOMMON

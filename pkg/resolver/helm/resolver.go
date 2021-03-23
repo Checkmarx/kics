@@ -77,7 +77,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 		}
 		path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // get source of splitted yaml
 		// ignore auxiliary files used to render chart
-		if path[0] == "" || strings.Contains(path[0], "secrets.yaml") || strings.Contains(path[0], "secret.yaml") {
+		if path[0] == "" {
 			continue
 		}
 		if origData[filepath.FromSlash(path[0])] == nil {
