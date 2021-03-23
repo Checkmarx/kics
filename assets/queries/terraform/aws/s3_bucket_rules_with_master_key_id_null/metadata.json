@@ -1,6 +1,6 @@
 {
 	"id": "ad03cb46-f174-4674-bf8e-2880a7000edd",
-	"queryName": "S3 Bucket Rules With Master Key Id Null",
+	"queryName": "S3 Bucket SSE Disabled",
 	"severity": "HIGH",
 	"category": "Secret Management",
 	"descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
