@@ -1,0 +1,9 @@
+{
+  "id": "5ea624e4-c8b1-4bb3-87a4-4235a776adcc",
+  "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "SNS topic Publicity should not have 'Effect: Allow' and argument 'NotAction' at the same time. If it has 'Effect: Allow', the argument stated should be 'Action'.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy",
+  "platform": "Terraform"
+}
