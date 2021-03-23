@@ -1,8 +1,8 @@
-resource "aws_mq_broker" "logging_disabled" {
+resource "aws_mq_broker" "positive1" {
   broker_name = "no-logging"
 }
 
-resource "aws_mq_broker" "audit_logging_missing" {
+resource "aws_mq_broker" "positive2" {
   broker_name = "partial-logging"
 
   logs {
@@ -10,7 +10,7 @@ resource "aws_mq_broker" "audit_logging_missing" {
   }
 }
 
-resource "aws_mq_broker" "general_logging_disabled" {
+resource "aws_mq_broker" "positive3" {
   broker_name = "disabled-logging"
 
   logs {

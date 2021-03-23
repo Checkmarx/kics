@@ -1,4 +1,4 @@
-resource "aws_iam_role" "iam_for_lambda" {
+resource "aws_iam_role" "negative1" {
   name = "iam_for_lambda"
 
   assume_role_policy = <<EOF
@@ -18,7 +18,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
-resource "aws_lambda_function" "test_lambda" {
+resource "aws_lambda_function" "negative2" {
   filename      = "lambda_function_payload.zip"
   function_name = "lambda_function_name"
   role          = aws_iam_role.iam_for_lambda.arn

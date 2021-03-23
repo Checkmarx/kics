@@ -2,33 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	cloudfront := task["community.aws.cloudfront_distribution"]
+	cloudfront := task[modules[m]]
+	ansLib.checkState(cloudfront)
 
 	object.get(cloudfront, "logging", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}} logging is defined", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}} logging is undefined", [task.name]),
+		"keyExpectedValue": "cloudfront_distribution.logging is defined",
+		"keyActualValue": "cloudfront_distribution.logging is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	cloudfront := task["community.aws.cloudfront_distribution"]
-	loggingE := cloudfront.logging
+	cloudfront := task[modules[m]]
+	ansLib.checkState(cloudfront)
 
-	not ansLib.isAnsibleTrue(loggingE.enabled)
+	not ansLib.isAnsibleTrue(cloudfront.logging.enabled)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.logging.enabled", [task.name2]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.logging.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.logging.enabled is true", [task.name2]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudfront_distribution}}.logging.enabled is false", [task.name2]),
+		"keyExpectedValue": "cloudfront_distribution.logging.enabled is true",
+		"keyActualValue": "cloudfront_distribution.logging.enabled is false",
 	}
 }

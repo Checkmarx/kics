@@ -1,4 +1,4 @@
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "negative1" {
   name                = "storageaccountname"
   resource_group_name = azurerm_resource_group.example.name
 
@@ -17,7 +17,7 @@ resource "azurerm_storage_account" "example" {
   }
 }
 
-resource "azurerm_storage_account_network_rules" "test" {
+resource "azurerm_storage_account_network_rules" "negative2" {
   resource_group_name  = azurerm_resource_group.test.name
   storage_account_name = azurerm_storage_account.test.name
 

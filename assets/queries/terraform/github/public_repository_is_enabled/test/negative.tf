@@ -1,4 +1,4 @@
-resource "github_repository" "example" {
+resource "github_repository" "negative1" {
   name        = "example"
   description = "My awesome codebase"
 

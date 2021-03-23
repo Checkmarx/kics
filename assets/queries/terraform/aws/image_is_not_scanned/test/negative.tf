@@ -1,4 +1,4 @@
-resource "aws_ecr_repository" "negative" {
+resource "aws_ecr_repository" "negative1" {
   name                 = "bar"
   image_tag_mutability = "MUTABLE"
 

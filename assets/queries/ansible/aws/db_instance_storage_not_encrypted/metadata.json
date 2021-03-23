@@ -2,7 +2,7 @@
 	"id": "7dfb316c-a6c2-454d-b8a2-97f147b0c0ff",
 	"queryName": "DB Instance Storage Not Encrypted",
 	"severity": "HIGH",
-	"category": "Data Security",
+	"category": "Encryption",
 	"descriptionText": "The parameter storage_encrypted in aws_db_instance must be true (the default is false)",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html",
 	"platform": "Ansible"

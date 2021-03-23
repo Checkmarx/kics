@@ -1,4 +1,4 @@
-resource "aws_neptune_cluster" "encrypted" {
+resource "aws_neptune_cluster" "negative1" {
   cluster_identifier                  = "neptune-cluster-demo"
   engine                              = "neptune"
   backup_retention_period             = 5

@@ -12,7 +12,7 @@ module "acm" {
   }
 }
 
-resource "aws_cloudfront_distribution" "this" {
+resource "aws_cloudfront_distribution" "positive1" {
   origin {
     domain_name = var.public_alb_domain
     origin_id   = "alb"

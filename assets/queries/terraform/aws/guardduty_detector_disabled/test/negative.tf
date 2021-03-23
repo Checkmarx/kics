@@ -1,3 +1,3 @@
-resource "aws_guardduty_detector" "MyDetector" {
+resource "aws_guardduty_detector" "negative1" {
   enable = true
 }

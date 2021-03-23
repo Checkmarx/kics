@@ -1,5 +1,5 @@
 
-resource "aws_kinesis_firehose_delivery_stream" "example6" {
+resource "aws_kinesis_firehose_delivery_stream" "negative1" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 
@@ -13,7 +13,7 @@ resource "aws_kinesis_firehose_delivery_stream" "example6" {
 
 
 
-resource "aws_kinesis_firehose_delivery_stream" "example9" {
+resource "aws_kinesis_firehose_delivery_stream" "negative2" {
   name        = "${aws_s3_bucket.logs.bucket}-firehose"
   destination = "extended_s3"
 

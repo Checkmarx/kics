@@ -16,9 +16,18 @@ nav:
   - Getting Started:
       - Installation: getting-started.md
       - Configuration: configuration-file.md
-      - Queries: queries.md
       - Results: results.md
   - Architecture: architecture.md
+  - Queries: 
+      - General Info: queries.md
+      - Creating Queries: creating-queries.md
+      - Queries List:
+        - Ansible: queries/ansible-queries.md
+        - CloudFormation: queries/cloudformation-queries.md
+        - Common: queries/common-queries.md
+        - Dockerfile: queries/dockerfile-queries.md
+        - Kubernetes: queries/kubernetes-queries.md
+        - Terraform: queries/terraform-queries.md
   - Integrations:
       - Overview: integrations.md
       - Github Actions: integrations_ghactions.md
@@ -41,8 +50,12 @@ theme:
   include_sidebar: true
   sticky_navigation: true
 
+
 extra_css:
   - css/custom.css
+
+extra_javascript:
+  - js/custom.js
 
 # Plugins
 plugins:

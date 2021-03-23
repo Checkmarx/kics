@@ -1,20 +1,70 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
-	from := input.document[i].command[j]
-	instruction := from[k]
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
 
-	instruction.Cmd == "run"
+	count(resource.Value) == 1
+	commands := resource.Value[0]
 
-	contains(instruction.Value[0], "apk add")
-	not regex.match(`.*apk\s+add\s+(--[a-z]+\s)*(-[a-zA-z]{1}\s)*\s*[^- || --][A-Za-z0-9_-]+=(.+)`, instruction.Value[0])
-	searchKey := replace(instruction.Original, "     ", ".")
+	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands, -1)
+	apk != null
+
+	packages = dockerLib.getPackages(commands, apk)
+
+	length := count(packages)
+
+	some j
+	analyzePackages(j, packages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s", [searchKey]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
-		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [instruction.Value[0]]),
+		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[0]]),
 	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].command[name][_]
+	resource.Cmd == "run"
+
+	count(resource.Value) > 1
+
+	isApk(resource.Value)
+
+	resource.Value[j] != "apk"
+	resource.Value[j] != "add"
+
+	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	not dockerLib.withVersion(resource.Value[j])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+		"keyActualValue": sprintf("RUN instruction %s does not use package pinning form", [resource.Value[j]]),
+	}
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j == length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	not dockerLib.withVersion(currentPackage)
+}
+
+analyzePackages(j, currentPackage, packages, length) {
+	j != length - 1
+	regex.match("^[a-zA-Z]", currentPackage) == true
+	packages[plus(j, 1)] != "-v"
+	not dockerLib.withVersion(currentPackage)
+}
+
+isApk(command) {
+	contains(command[x], "apk")
+	contains(command[j], "add")
 }

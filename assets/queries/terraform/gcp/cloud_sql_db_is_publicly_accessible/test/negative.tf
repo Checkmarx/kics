@@ -1,4 +1,4 @@
-resource "google_sql_database_instance" "private_network" {
+resource "google_sql_database_instance" "negative1" {
 
   name   = "private-instance-1"
   database_version = "POSTGRES_11"
@@ -10,7 +10,7 @@ resource "google_sql_database_instance" "private_network" {
   }
 }
 
-resource "google_sql_database_instance" "authorized_networks" {
+resource "google_sql_database_instance" "negative2" {
   name             = "postgres-instance-2"
   database_version = "POSTGRES_11"
 

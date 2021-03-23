@@ -5,24 +5,24 @@ resource "aws_sqs_queue" "q" {
 resource "aws_sqs_queue_policy" "test" {
   queue_url = aws_sqs_queue.q.id
 
-  policy = <<POLICY
+  policy = <<EOF
 {
-   "Version": "2012-10-17",
-   "Id": "Queue1_Policy_UUID",
-   "Statement": [{
+  "Version": "2012-10-17",
+  "Id": "Queue1_Policy_UUID",
+  "Statement": [{
       "Sid":"Queue1_AnonymousAccess_AllActions_AllowlistIP",
       "Effect": "Allow",
       "Principal": "*",
       "Action": "sqs:*",
       "Resource": "arn:aws:sqs:*:111122223333:queue1",
       "Condition" : {
-         "IpAddress" : {
+        "IpAddress" : {
             "aws:SourceIp":"192.168.143.0/24"
-         }
+        }
       }
-   }]
+  }]
 }
-POLICY
+EOF
 }
 
 resource "aws_sqs_queue" "q_aws_array" {
@@ -36,7 +36,7 @@ resource "aws_sqs_queue" "q_aws" {
 resource "aws_sqs_queue_policy" "test_aws" {
   queue_url = aws_sqs_queue.q_aws.id
 
-  policy = <<POLICY
+  policy = <<EOF
 {
    "Version": "2012-10-17",
    "Id": "Queue1_Policy_UUID",
@@ -55,13 +55,13 @@ resource "aws_sqs_queue_policy" "test_aws" {
       }
    }]
 }
-POLICY
+EOF
 }
 
 resource "aws_sqs_queue_policy" "test_aws_array" {
   queue_url = aws_sqs_queue.q_aws_array.id
 
-  policy = <<POLICY
+  policy = <<EOF
 {
    "Version": "2012-10-17",
    "Id": "Queue1_Policy_UUID",
@@ -80,5 +80,5 @@ resource "aws_sqs_queue_policy" "test_aws_array" {
       }
    }]
 }
-POLICY
+EOF
 }

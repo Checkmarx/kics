@@ -4,7 +4,9 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	group := task["amazon.aws.ec2_group"]
+	modules := {"amazon.aws.ec2_group", "ec2_group"}
+	group := task[modules[m]]
+	ansLib.checkState(group)
 
 	searchKey := getCidrBlock(group)
 
@@ -14,10 +16,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{amazon.aws.ec2_group}}.%s", [task.name, searchKey]),
-		"issueType": "WrongValue",
-		"keyExpectedValue": sprintf("amazon.aws.ec2_group.%s should not contain the value '%s'", [errorPath, errorValue]),
-		"keyActualValue": sprintf("amazon.aws.ec2_group.%s contains value '%s'", [errorPath, errorValue]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], searchKey]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("ec2_group.%s should not contain the value '%s'", [errorPath, errorValue]),
+		"keyActualValue": sprintf("ec2_group.%s contains value '%s'", [errorPath, errorValue]),
 	}
 }
 

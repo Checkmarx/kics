@@ -1,4 +1,4 @@
-FROM golang:1.16.0-alpine3.12 as build_env
+FROM golang:1.16.2-alpine3.12 as build_env
 
 # Create a group and user
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
@@ -24,7 +24,7 @@ COPY . .
 USER root
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-  -ldflags "-X github.com/Checkmarx/kics/internal/console.Version=${VERSION}" -a -installsuffix cgo \
+  -ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION}" -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go
 USER Checkmarx
 

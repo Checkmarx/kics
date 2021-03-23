@@ -1,8 +1,8 @@
-resource "aws_s3_bucket" "b" {
+resource "aws_s3_bucket" "positive1" {
   bucket = "my_tf_test_bucket"
 }
 
-resource "aws_s3_bucket_policy" "b" {
+resource "aws_s3_bucket_policy" "positive2" {
   bucket = aws_s3_bucket.b.id
 
   policy = <<POLICY

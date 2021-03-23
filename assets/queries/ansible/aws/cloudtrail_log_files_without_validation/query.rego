@@ -2,36 +2,40 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.cloudtrail", "cloudtrail"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	cloudtrail := task[modules[m]]
+	ansLib.checkState(cloudtrail)
 
-	modules := {"community.aws.cloudtrail", "cloudtrail"}
-	object.get(task[modules[index]], "enable_log_file_validation", "undefined") == "undefined"
-	object.get(task[modules[index]], "log_file_validation_enabled", "undefined") == "undefined"
+	object.get(cloudtrail, "enable_log_file_validation", "undefined") == "undefined"
+	object.get(cloudtrail, "log_file_validation_enabled", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{%s}}", [task.name, modules[index]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.enable_log_file_validation or %s.log_file_validation_enabled is defined", [modules[index], modules[index]]),
-		"keyActualValue": sprintf("%s.enable_log_file_validation and %s.log_file_validation_enabled are undefined", [modules[index], modules[index]]),
+		"keyExpectedValue": "cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled is defined",
+		"keyActualValue": "cloudtrail.enable_log_file_validation and cloudtrail.log_file_validation_enabled are undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	modules := {"community.aws.cloudtrail", "cloudtrail"}
+	cloudtrail := task[modules[m]]
+	ansLib.checkState(cloudtrail)
 	attributes := {"enable_log_file_validation", "log_file_validation_enabled"}
 
-	attr := object.get(task[modules[index]], attributes[j], "undefined")
+	attr := object.get(cloudtrail, attributes[j], "undefined")
 	attr != "undefined"
 	not ansLib.isAnsibleTrue(attr)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{%s}}.%s", [task.name, modules[index], attributes[j]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], attributes[j]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.%s is set to true or yes", [modules[index], attributes[j]]),
-		"keyActualValue": sprintf("%s.%s is not set to true or yes", [modules[index], attributes[j]]),
+		"keyExpectedValue": sprintf("cloudtrail.%s is set to true or yes", [attributes[j]]),
+		"keyActualValue": sprintf("cloudtrail.%s is not set to true nor yes", [attributes[j]]),
 	}
 }

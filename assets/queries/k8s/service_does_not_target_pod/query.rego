@@ -11,10 +11,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.ports.name=%s.targetPort", [metadata.name, ports[j].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.ports.name={{%s}}.targetPort", [metadata.name, ports[j].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.ports=%s.targetPort has a Pod Port", [metadata.name, servicePorts.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.ports=%s.targetPort does not have a Pod Port", [metadata.name, servicePorts.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.ports={{%s}}.targetPort has a Pod Port", [metadata.name, servicePorts.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.ports={{%s}}.targetPort does not have a Pod Port", [metadata.name, servicePorts.name]),
 	}
 }
 
@@ -28,8 +28,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.selector", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.selector label refers to a Pod label ", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.selector label does not match with any Pod label", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.selector label refers to a Pod label ", [metadata.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}}.spec.selector label does not match with any Pod label", [metadata.name]),
 	}
 }
 

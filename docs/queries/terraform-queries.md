@@ -1,7 +1,7 @@
 ## Terraform Queries List
 This page contains all queries from Terraform, classified by severity level.
 
-### <span style="color:#C00">**High**</span>
+### Severity: <span style="color:#C00">**High**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -127,7 +127,7 @@ This page contains all queries from Terraform, classified by severity level.
 |S3 Bucket Rules With Master Key Id Null<br/><sup><sub>ad03cb46-f174-4674-bf8e-2880a7000edd</sub></sup>|Secret Management|If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#sse_algorithm">Documentation</a><br/>|
 
 
-### <span style="color:#C60">**Medium**</span>
+### Severity: <span style="color:#C60">**Medium**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -159,7 +159,6 @@ This page contains all queries from Terraform, classified by severity level.
 |ElasticSearch Encryption With KMS Is Disabled<br/><sup><sub>7af2f4a3-00d9-47f3-8d15-ca0888f4e5b2</sub></sup>|Encryption|Check if any ElasticSearch domain isn't encrypted with KMS|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain">Documentation</a><br/>|
 |Config Rule For Encrypted Volumes Is Disabled<br/><sup><sub>abdb29d4-5ca1-4e91-800b-b3569bbd788c</sub></sup>|Encryption|Check if AWS config rules do not identify Encrypted Volumes as a source.|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule">Documentation</a><br/>|
 |VM CSEK Encryption Is Disabled<br/><sup><sub>b1d51728-7270-4991-ac2f-fc26e2695b38</sub></sup>|Encryption|VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK), which means the attribute 'disk_encryption_key' must be defined and its sub attribute 'sha256' must also be defined and not empty|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_disk">Documentation</a><br/>|
-|IAM Password Without Reuse Prevention<br/><sup><sub>89806cdc-9c2e-4bd1-a0dc-53f339bcfb2a</sub></sup>|Insecure Configuarations|Check if IAM account password has the reuse password configured with 24|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy#password_reuse_prevention">Documentation</a><br/>|
 |Public Repository Is Enabled<br/><sup><sub>15d8a7fd-465a-4d15-a868-add86552f17b</sub></sup>|Insecure Configurations|Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')|<a href="https://www.terraform.io/docs/providers/github/r/repository.html">Documentation</a><br/>|
 |Container Host Pid Is True<br/><sup><sub>587d5d82-70cf-449b-9817-f60f9bccb88c</sub></sup>|Insecure Configurations|Minimize the admission of containers wishing to share the host process ID namespace|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_pid">Documentation</a><br/>|
 |Container Resources Not Defined<br/><sup><sub>60af03ff-a421-45c8-b214-6741035476fa</sub></sup>|Insecure Configurations|Kubernetes container should have resource limitations defined such as CPU and memory|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod">Documentation</a><br/>|
@@ -185,6 +184,7 @@ This page contains all queries from Terraform, classified by severity level.
 |CloudFormation Without Template<br/><sup><sub>91bea7b8-0c31-4863-adc9-93f6177266c4</sub></sup>|Insecure Configurations|AWS CloudFormation should have a template defined through the attribute template_url or attribute template_body|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack">Documentation</a><br/>|
 |Unchangeable password<br/><sup><sub>9ef7d25d-9764-4224-9968-fa321c56ef76</sub></sup>|Insecure Configurations|Unchangeable passwords in AWS password policy|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy">Documentation</a><br/>|
 |EKS Cluster Has Public Access<br/><sup><sub>42f4b905-3736-4213-bfe9-c0660518cda8</sub></sup>|Insecure Configurations|Amazon EKS public endpoint shoud be set to false|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster">Documentation</a><br/>|
+|IAM Password Without Reuse Prevention<br/><sup><sub>89806cdc-9c2e-4bd1-a0dc-53f339bcfb2a</sub></sup>|Insecure Configurations|Check if IAM account password has the reuse password configured with 24|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy#password_reuse_prevention">Documentation</a><br/>|
 |IAM Password Without Valid Minimum Length<br/><sup><sub>1bc1c685-e593-450e-88fb-19db4c82aa1d</sub></sup>|Insecure Configurations|Check if IAM account password has the required minimum length|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy">Documentation</a><br/>|
 |IAM Password Without Symbols<br/><sup><sub>7a70eed6-de3a-4da2-94da-a2bbc8fe2a48</sub></sup>|Insecure Configurations|Check if IAM account password has the required symbols|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy">Documentation</a><br/>|
 |Serial Ports Are Enabled For VM Instances<br/><sup><sub>97fa667a-d05b-4f16-9071-58b939f34751</sub></sup>|Insecure Configurations|Check if VM instance enables serial ports|<a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/>|
@@ -240,7 +240,7 @@ This page contains all queries from Terraform, classified by severity level.
 |Incorrect Password Policy Expiration<br/><sup><sub>ce60d060-efb8-4bfd-9cf7-ff8945d00d90</sub></sup>|Secret Management|No password exeration policy|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy">Documentation</a><br/>|
 
 
-### <span style="color:#CC0">**Low**</span>
+### Severity: <span style="color:#CC0">**Low**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -257,7 +257,7 @@ This page contains all queries from Terraform, classified by severity level.
 |Lambda Hardcoded AWS Access Key<br/><sup><sub>1402afd8-a95c-4e84-8b0b-6fb43758e6ce</sub></sup>|Secret Management|Lambda hardcoded AWS access/secret keys|<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function">Documentation</a><br/>|
 
 
-### <span style="color:#00C">**Info**</span>
+### Severity: <span style="color:#00C">**Info**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|

@@ -2,32 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.cloudtrail", "cloudtrail"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	instance := task["community.aws.cloudtrail"]
+	instance := task[modules[m]]
+	ansLib.checkState(instance)
 
 	not instance.sns_topic_name
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is undefined", [task.name]),
+		"keyExpectedValue": "cloudtrail.sns_topic_name is set",
+		"keyActualValue": "cloudtrail.sns_topic_name is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	instance := task["community.aws.cloudtrail"]
+	instance := task[modules[m]]
+	ansLib.checkState(instance)
 
 	instance.sns_topic_name == null
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.sns_topic_name", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is set", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.cloudtrail}}.sns_topic_name is empty", [task.name]),
+		"keyExpectedValue": "cloudtrail.sns_topic_name is set",
+		"keyActualValue": "cloudtrail.sns_topic_name is empty",
 	}
 }

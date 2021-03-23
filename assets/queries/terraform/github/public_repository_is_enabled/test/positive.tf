@@ -1,4 +1,4 @@
-resource "github_repository" "example1" {
+resource "github_repository" "positive1" {
   name        = "example"
   description = "My awesome codebase"
 
@@ -8,7 +8,7 @@ resource "github_repository" "example1" {
   }
 }
 
-resource "github_repository" "example2" {
+resource "github_repository" "positive2" {
   name        = "example"
   description = "My awesome codebase"
 
@@ -20,7 +20,7 @@ resource "github_repository" "example2" {
   }
 }
 
-resource "github_repository" "example3" {
+resource "github_repository" "positive3" {
   name        = "example"
   description = "My awesome codebase"
 

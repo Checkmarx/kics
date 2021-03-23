@@ -2,7 +2,7 @@
 	"id": "092bae86-6105-4802-99d2-99cd7e7431f3",
 	"queryName": "VM CSEK Encryption is Disabled",
 	"severity": "MEDIUM",
-	"category": "Encryption & Key Management",
+	"category": "Encryption",
 	"descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK), which means the attribute 'disk_encryption_key' must be defined and its sub attribute 'raw_key' must also be defined and not empty",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_disk_module.html",
 	"platform": "Ansible"

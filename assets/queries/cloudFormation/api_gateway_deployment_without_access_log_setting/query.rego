@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s has Stage defined", [name]),
-		"keyActualValue": sprintf("Resources.%s has not Stage defined", [name]),
+		"keyActualValue": sprintf("Resources.%s doesn't have Stage defined", [name]),
 	}
 }
 
@@ -21,14 +21,13 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
-	properties := resource.Properties
 	not settings_are_equal(document[i].Resources, name)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s have AWS::ApiGateway::Stage associated, DeploymentId.Ref is the same as the ApiGateway::Stage resource", [name]),
+		"keyExpectedValue": sprintf("Resources.%s has AWS::ApiGateway::Stage associated, DeploymentId.Ref is the same as the ApiGateway::Stage resource", [name]),
 		"keyActualValue": sprintf("Resources.%s should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource", [name]),
 	}
 }
@@ -38,11 +37,9 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
-	properties := resource.Properties
 	settings_are_equal(document[i].Resources, name)
 
-	exists_access_log_setting := object.get(properties, "StageDescription", "undefined") != "undefined"
-	not exists_access_log_setting
+    object.get(resource.Properties, "StageDescription", "undefined") = "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -58,12 +55,9 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
-	properties := resource.Properties
 	settings_are_equal(document[i].Resources, name)
 
-	stageDescription := properties.StageDescription
-	exists_access_log_setting := object.get(stageDescription, "AccessLogSetting", "undefined") != "undefined"
-	not exists_access_log_setting
+	object.get(resource.Properties.StageDescription, "AccessLogSetting", "undefined") = "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

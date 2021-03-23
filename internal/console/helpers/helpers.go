@@ -13,12 +13,18 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/gookit/color"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
+
+var reportGenerators = map[string]func(path, filename string, body interface{}) error{
+	"json":  report.PrintJSONReport,
+	"sarif": report.PrintSarifReport,
+}
 
 // ProgressBar represents a Progress
 // Writer is the writer output for progress bar
@@ -127,34 +133,25 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n\n")
-	for _, q := range summary.Queries.SortBySev() {
-		fmt.Printf("%s, Severity: %s, Results: %d\n", printer.PrintBySev(q.QueryName,
-			string(q.Severity)), printer.PrintBySev(string(q.Severity), string(q.Severity)), len(q.Files))
+	sortedQueries := summary.Queries.SortBySev()
+	for idx := range sortedQueries {
+		fmt.Printf(
+			"%s, Severity: %s, Results: %d\n",
+			printer.PrintBySev(sortedQueries[idx].QueryName, string(sortedQueries[idx].Severity)),
+			printer.PrintBySev(string(sortedQueries[idx].Severity), string(sortedQueries[idx].Severity)),
+			len(sortedQueries[idx].Files),
+		)
 		if !printer.minimal {
-			fmt.Printf("Description: %s\n", q.Description)
-			fmt.Printf("Platform: %s\n\n", q.Platform)
+			fmt.Printf("Description: %s\n", sortedQueries[idx].Description)
+			fmt.Printf("Platform: %s\n\n", sortedQueries[idx].Platform)
 		}
-		for i := 0; i < len(q.Files); i++ {
-			fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", i+1), string(q.Severity)),
-				q.Files[i].FileName, printer.Success.Sprint(q.Files[i].Line))
-			if !printer.minimal {
-				fmt.Println()
-				for idx, line := range q.Files[i].VulnLines.Lines {
-					if q.Files[i].VulnLines.Positions[idx] == q.Files[i].Line {
-						printer.Line.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], line)
-					} else {
-						fmt.Printf("\t\t%03d: %s\n", q.Files[i].VulnLines.Positions[idx], line)
-					}
-				}
-				fmt.Print("\n\n")
-			}
-		}
+		printFiles(&sortedQueries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
-	fmt.Printf("%s: %d\n", printer.High.Sprint(model.SeverityHigh), summary.SeveritySummary.SeverityCounters[model.SeverityHigh])
-	fmt.Printf("%s: %d\n", printer.Medium.Sprint(model.SeverityMedium), summary.SeveritySummary.SeverityCounters[model.SeverityMedium])
-	fmt.Printf("%s: %d\n", printer.Low.Sprint(model.SeverityLow), summary.SeveritySummary.SeverityCounters[model.SeverityLow])
-	fmt.Printf("%s: %d\n", printer.Info.Sprint(model.SeverityInfo), summary.SeveritySummary.SeverityCounters[model.SeverityInfo])
+	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
+	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
+	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
+	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 	log.
 		Info().
@@ -169,29 +166,26 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	return nil
 }
 
-// PrintToJSONFile prints on JSON file the summary results
-func PrintToJSONFile(path string, body interface{}) error {
-	f, err := os.OpenFile(filepath.Clean(path), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
-	if err != nil {
-		return err
+func printSeverityCounter(severity string, counter int, printColor color.RGBColor) {
+	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
+}
+
+func printFiles(query *model.VulnerableQuery, printer *Printer) {
+	for fileIdx := range query.Files {
+		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
+			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
+		if !printer.minimal {
+			fmt.Println()
+			for lineIdx, line := range query.Files[fileIdx].VulnLines.Lines {
+				if query.Files[fileIdx].VulnLines.Positions[lineIdx] == query.Files[fileIdx].Line {
+					printer.Line.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+				} else {
+					fmt.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+				}
+			}
+			fmt.Print("\n\n")
+		}
 	}
-	defer func() {
-		if err := f.Close(); err != nil {
-			log.Err(err).Msgf("failed to close file %s", path)
-		}
-
-		curDir, err := os.Getwd()
-		if err != nil {
-			log.Err(err).Msgf("failed to get current directory")
-		}
-
-		log.Info().Str("fileName", path).Msgf("Results saved to file %s", filepath.Join(curDir, path))
-	}()
-
-	encoder := json.NewEncoder(f)
-	encoder.SetIndent("", "\t")
-
-	return encoder.Encode(body)
 }
 
 // CustomConsoleWriter creates an output to print log in a files
@@ -246,6 +240,34 @@ func FileAnalyzer(path string) (string, error) {
 	}
 
 	return "", errors.New("invalid configuration file format")
+}
+
+// GenerateReport execute each report function to generate report
+func GenerateReport(path, filename string, body interface{}, formats []string) error {
+	var err error = nil
+	for _, format := range formats {
+		if err = reportGenerators[format](path, filename, body); err != nil {
+			log.Error().Msgf("failed to generate %s report", format)
+			break
+		}
+	}
+	return err
+}
+
+// ValidateReportFormats returns an error if output format is not supported
+func ValidateReportFormats(formats []string) error {
+	validFormats := make([]string, len(reportGenerators))
+	for reportFormats := range reportGenerators {
+		validFormats = append(validFormats, reportFormats)
+	}
+	for _, format := range formats {
+		if _, ok := reportGenerators[format]; !ok {
+			return fmt.Errorf(
+				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(validFormats, "\n")),
+			)
+		}
+	}
+	return nil
 }
 
 // NewPrinter initializes a new Printer

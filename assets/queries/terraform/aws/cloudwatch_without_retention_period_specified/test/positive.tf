@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_log_group" "yada" {
+resource "aws_cloudwatch_log_group" "positive1" {
   name = "Yada"
 
   tags = {
@@ -7,7 +7,7 @@ resource "aws_cloudwatch_log_group" "yada" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "yada2" {
+resource "aws_cloudwatch_log_group" "positive2" {
   name = "Yada"
 
   tags = {

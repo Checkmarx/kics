@@ -1,4 +1,4 @@
-resource "google_storage_bucket_iam_member" "member" {
+resource "google_storage_bucket_iam_member" "positive1" {
   bucket = google_storage_bucket.default.name
   role = "roles/storage.admin"
   member = "allUsers"
@@ -11,7 +11,7 @@ resource "google_storage_bucket_iam_member" "member" {
 }
 
 
-resource "google_storage_bucket_iam_member" "member2" {
+resource "google_storage_bucket_iam_member" "positive2" {
   bucket = google_storage_bucket.default.name
   role = "roles/storage.admin"
   members = ["user:john@example.com","allAuthenticatedUsers"]

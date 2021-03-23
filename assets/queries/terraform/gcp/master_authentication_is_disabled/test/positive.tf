@@ -1,5 +1,5 @@
 #this is a problematic code where the query should report a result(s)
-resource "google_container_cluster" "primary1" {
+resource "google_container_cluster" "positive1" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -10,7 +10,7 @@ resource "google_container_cluster" "primary1" {
   }
 }
 
-resource "google_container_cluster" "primary2" {
+resource "google_container_cluster" "positive2" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -25,7 +25,7 @@ resource "google_container_cluster" "primary2" {
   }
 }
 
-resource "google_container_cluster" "primary3" {
+resource "google_container_cluster" "positive3" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -40,7 +40,7 @@ resource "google_container_cluster" "primary3" {
   }
 }
 
-resource "google_container_cluster" "primary4" {
+resource "google_container_cluster" "positive4" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -54,7 +54,7 @@ resource "google_container_cluster" "primary4" {
   }
 }
 
-resource "google_container_cluster" "primary5" {
+resource "google_container_cluster" "positive5" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -70,7 +70,7 @@ resource "google_container_cluster" "primary5" {
   }
 }
 
-resource "google_container_cluster" "primary6" {
+resource "google_container_cluster" "positive6" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -86,7 +86,7 @@ resource "google_container_cluster" "primary6" {
   }
 }
 
-resource "google_container_cluster" "primary7" {
+resource "google_container_cluster" "positive7" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3

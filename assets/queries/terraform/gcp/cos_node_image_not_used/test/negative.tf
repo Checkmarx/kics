@@ -1,4 +1,4 @@
-resource "google_container_cluster" "primary" {
+resource "google_container_cluster" "negative1" {
   name     = "my-gke-cluster"
   location = "us-central1"
   remove_default_node_pool = true
@@ -6,7 +6,7 @@ resource "google_container_cluster" "primary" {
 }
 
 
-resource "google_container_node_pool" "primary-pool" {
+resource "google_container_node_pool" "negative2" {
   project = "gcp_project"
   name    = "primary-pool"
   region  = "us-west1"
@@ -17,7 +17,7 @@ resource "google_container_node_pool" "primary-pool" {
   }
 }
 
- resource "google_container_node_pool" "primary-pool2" {
+ resource "google_container_node_pool" "negative3" {
   project = "gcp_project"
   name    = "primary-pool2"
   region  = "us-west1"

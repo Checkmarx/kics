@@ -1,4 +1,4 @@
-resource "aws_api_gateway_rest_api" "example1" {
+resource "aws_api_gateway_rest_api" "positive1" {
   name = "regional-example"
 
   endpoint_configuration {
@@ -7,7 +7,7 @@ resource "aws_api_gateway_rest_api" "example1" {
 }
 
 
-resource "aws_api_gateway_rest_api" "example2" {
+resource "aws_api_gateway_rest_api" "positive2" {
   name = "regional-example"
 
   endpoint_configuration {
@@ -18,7 +18,7 @@ resource "aws_api_gateway_rest_api" "example2" {
 }
 
 
-resource "aws_api_gateway_rest_api" "example3" {
+resource "aws_api_gateway_rest_api" "positive3" {
   name = "regional-example"
 
   endpoint_configuration {

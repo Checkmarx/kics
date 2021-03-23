@@ -2,7 +2,7 @@
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
-    "line": 19,
+    "line": 4,
     "fileName": "positive1.yaml"
   },
   {
@@ -14,13 +14,13 @@
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
-    "line": 34,
+    "line": 5,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
-    "line": 17,
+    "line": 34,
     "fileName": "positive2.json"
   }
 ]

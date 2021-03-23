@@ -1,4 +1,4 @@
-resource "aws_default_security_group" "default1" {
+resource "aws_default_security_group" "positive1" {
   vpc_id = aws_vpc.mainvpc.id
 
   ingress {
@@ -10,7 +10,7 @@ resource "aws_default_security_group" "default1" {
   }
 }
 
-resource "aws_default_security_group" "default2" {
+resource "aws_default_security_group" "positive2" {
   vpc_id = aws_vpc.mainvpc.id
 
   egress {
@@ -21,7 +21,7 @@ resource "aws_default_security_group" "default2" {
   }
 }
 
-resource "aws_default_security_group" "default3" {
+resource "aws_default_security_group" "positive3" {
   vpc_id = aws_vpc.mainvpc.id
 
   ingress {

@@ -1,15 +1,15 @@
 ## Kubernetes Queries List
 This page contains all queries from Kubernetes, classified by severity level.
 
-### <span style="color:#C00">**High**</span>
+### Severity: <span style="color:#C00">**High**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
-|Host Aliases Undefined Or Empty<br/><sup><sub>72b03514-20ae-4409-8842-2dd70c2e25aa</sub></sup>|Insecure Configuration|A Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.hostAliases' must be defined and not empty or null.|<a href="https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/">Documentation</a><br/>|
 |Tiller Service Is Not Deleted<br/><sup><sub>8b862ca9-0fbd-4959-ad72-b6609bdaa22d</sub></sup>|Insecure Configurations|Check if there is any Tiller Service present|<a href="https://kubernetes.io/docs/concepts/services-networking/service">Documentation</a><br/>|
 |Privilege Escalation Allowed<br/><sup><sub>5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d</sub></sup>|Insecure Configurations|Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/>|
 |Container Is Privileged<br/><sup><sub>dd29336b-fe57-445b-a26e-e6aa867ae609</sub></sup>|Insecure Configurations|Do not allow container to be privileged.|<a href="https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers">Documentation</a><br/>|
 |Containers With Added Capabilities<br/><sup><sub>19ebaa28-fc86-4a58-bcfa-015c9e22fe40</sub></sup>|Insecure Configurations|Containers should not have added capability|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/>|
+|Host Aliases Undefined Or Empty<br/><sup><sub>72b03514-20ae-4409-8842-2dd70c2e25aa</sub></sup>|Insecure Configurations|A Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.hostAliases' must be defined and not empty or null.|<a href="https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/">Documentation</a><br/>|
 |Shared Host IPC Namespace<br/><sup><sub>cd290efd-6c82-4e9d-a698-be12ae31d536</sub></sup>|Insecure Configurations|Container should not share the host IPC namespace|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
 |Not Limited Capabilities For Pod Security Policy<br/><sup><sub>caa93370-791f-4fc6-814b-ba6ce0cb4032</sub></sup>|Insecure Configurations|Limit capabilities for a Pod Security Policy|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
 |Cluster Allows Unsafe Sysctls<br/><sup><sub>9127f0d9-2310-42e7-866f-5fd9d20dcbad</sub></sup>|Insecure Configurations|A Kubernetes Cluster must not allow Unsafe Sysctls, to prevent a pod from having any influence on any other pod on the node, harming the node's health or gaining CPU or memory resources outside of the resource limits of a pod. This means the 'spec.securityContext.sysctls' must not have an Unsafe Sysctls and that the atrribute 'allowedUnsafeSysctls' must be undefined.|<a href="https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/">Documentation</a><br/>|
@@ -23,7 +23,7 @@ This page contains all queries from Kubernetes, classified by severity level.
 |Tiller Deployment Is Accessible From Within The Cluster<br/><sup><sub>e17fa86a-6222-4584-a914-56e8f6c87e06</sub></sup>|Networking and Firewall|Check if any Tiller Deployment container allows access from within the cluster.|<a href="https://kubernetes.io/docs/concepts/containers/images/">Documentation</a><br/>|
 
 
-### <span style="color:#C60">**Medium**</span>
+### Severity: <span style="color:#C60">**Medium**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -36,7 +36,6 @@ This page contains all queries from Kubernetes, classified by severity level.
 |Resource With Allow Privilege Escalation<br/><sup><sub>0a7c420c-4568-4cec-ba36-4d42a6f9613b</sub></sup>|Best Practices|Minimize the admission of privileged resources|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
 |Root Containers Admitted<br/><sup><sub>e3aa0612-4351-4a0d-983f-aefea25cf203</sub></sup>|Best Practices|Containers must not be allowed to run with root privileges, which means the attributes 'privileged','allowPrivilegeEscalation' and 'readOnlyRootFilesystem' must be set to false, 'runAsUser.rule' must be set to 'MustRunAsNonRoot', and adding the root group must be forbidden|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
 |Incorrect Volume Claim Access Mode ReadWriteOnce<br/><sup><sub>3878dc92-8e5d-47cf-9cdd-7590f71d21b9</sub></sup>|Build Process|Stateful Sets must have one Volume Claim template with the access mode 'ReadWriteOnce'|<a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">Documentation</a><br/>|
-|Ingress Controller Exposes Workload<br/><sup><sub>69bbc5e3-0818-4150-89cc-1e989b48f23b</sub></sup>|Insecure Configuration|Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks|<a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Documentation</a><br/>|
 |PSP Allows Sharing Host IPC<br/><sup><sub>80f93444-b240-4ebb-a4c6-5c40b76c04ea</sub></sup>|Insecure Configurations|Pod Security Policy allows containers to share the host IPC namespace|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
 |Default Service Account In Use<br/><sup><sub>b93e973e-9066-4455-a63b-c1c0e1ec3a48</sub></sup>|Insecure Configurations|Default service accounts should not be actively used|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/>|
 |Workload Mounting With Sensitive OS Directory<br/><sup><sub>5308a7a8-06f8-45ac-bf10-791fe21de46e</sub></sup>|Insecure Configurations|Workload is mounting a volume with sensitive OS Directory|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
@@ -50,6 +49,7 @@ This page contains all queries from Kubernetes, classified by severity level.
 |Container Runs Unmasked<br/><sup><sub>f922827f-aab6-447c-832a-e1ff63312bd3</sub></sup>|Insecure Configurations|Check if a container has full access (unmasked) to the host’s /proc command, which would allow to retrieve sensitive information and possibly change the kernel parameters in runtime.|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/#allowedprocmounttypes">Documentation</a><br/>|
 |Containers With Capabilities Sys Admin<br/><sup><sub>235236ee-ad78-4065-bd29-61b061f28ce0</sub></sup>|Insecure Configurations|Containers should not have CAP_SYS_ADMIN Linux capability|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/>|
 |Pod Security Policy Set to Privileged<br/><sup><sub>c48e57d3-d642-4e0b-90db-37f807b41b91</sub></sup>|Insecure Configurations|Do not allow pod to request execution as privileged.|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#privileged">Documentation</a><br/>|
+|Ingress Controller Exposes Workload<br/><sup><sub>69bbc5e3-0818-4150-89cc-1e989b48f23b</sub></sup>|Insecure Configurations|Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks|<a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Documentation</a><br/>|
 |Service Account Name Undefined Or Empty<br/><sup><sub>591ade62-d6b0-4580-b1ae-209f80ba1cd9</sub></sup>|Insecure Defaults|A Pod should have a Service Account defined so to restrict Kubernetes API access, which means the attribute 'serviceAccountName' should be defined and not empty.|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/>|
 |Service Account Token Automount Not Disabled<br/><sup><sub>48471392-d4d0-47c0-b135-cdec95eb3eef</sub></sup>|Insecure Defaults|Service Account Tokens are automatically mounted even if not necessary|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server">Documentation</a><br/>|
 |Pod Misconfigured NetworkPolicy<br/><sup><sub>0401f71b-9c1e-4821-ab15-a955caa621be</sub></sup>|Networking and Firewall|Check if any pod is not being targeted by a proper network policy.|<a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Documentation</a><br/>|
@@ -64,7 +64,7 @@ This page contains all queries from Kubernetes, classified by severity level.
 |Shared Service Account<br/><sup><sub>c1032cf7-3628-44e2-bd53-38c17cf31b6b</sub></sup>|Secret Management|A Service Account token is shared between workloads|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Documentation</a><br/>|
 
 
-### <span style="color:#CC0">**Low**</span>
+### Severity: <span style="color:#CC0">**Low**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|

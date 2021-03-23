@@ -4,16 +4,17 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	storage_bucket := task["google.cloud.gcp_storage_bucket"]
-
+	modules := {"google.cloud.gcp_storage_bucket", "gcp_storage_bucket"}
+	storage_bucket := task[modules[m]]
 	ansLib.checkState(storage_bucket)
+
 	object.get(storage_bucket, "logging", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{google.cloud.gcp_storage_bucket}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "{{google.cloud.gcp_storage_bucket}}.logging is defined",
-		"keyActualValue": "{{google.cloud.gcp_storage_bucket}}.logging is undefined",
+		"keyExpectedValue": "gcp_storage_bucket.logging is defined",
+		"keyActualValue": "gcp_storage_bucket.logging is undefined",
 	}
 }

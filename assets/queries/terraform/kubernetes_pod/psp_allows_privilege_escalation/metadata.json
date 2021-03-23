@@ -1,0 +1,9 @@
+{
+  "id": "2bff9906-4e9b-4f71-9346-8ebedfdf43ef",
+  "queryName": "PSP Allows Privilege Escalation",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "PodSecurityPolicy should not allow privilege escalation",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allow_privilege_escalation",
+  "platform": "Terraform"
+}

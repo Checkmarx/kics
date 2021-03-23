@@ -2,7 +2,7 @@
 	"id": "83c5fa4c-e098-48fc-84ee-0a537287ddd2",
 	"queryName": "Fully Open Ingress",
 	"severity": "HIGH",
-	"category": "Network Ports Security",
+	"category": "Networking and Firewall",
 	"descriptionText": "Security groups allow ingress from 0.0.0.0/0",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
 	"platform": "Ansible"

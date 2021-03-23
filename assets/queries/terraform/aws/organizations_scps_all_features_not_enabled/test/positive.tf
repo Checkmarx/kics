@@ -1,4 +1,4 @@
-resource "aws_organizations_policy" "not_all_actions_allowed" {
+resource "aws_organizations_policy" "positive1" {
   name = "example"
 
   content = <<CONTENT
@@ -15,7 +15,7 @@ resource "aws_organizations_policy" "not_all_actions_allowed" {
 CONTENT
 }
 
-resource "aws_organizations_policy" "not_all_resources_allowed" {
+resource "aws_organizations_policy" "positive2" {
   name = "example"
   type = "SERVICE_CONTROL_POLICY"
   content = <<CONTENT
@@ -30,7 +30,7 @@ resource "aws_organizations_policy" "not_all_resources_allowed" {
 CONTENT
 }
 
-resource "aws_organizations_policy" "all_features_denied" {
+resource "aws_organizations_policy" "positive3" {
   name = "example"
 
   content = <<CONTENT

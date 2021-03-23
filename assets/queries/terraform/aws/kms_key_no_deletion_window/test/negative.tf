@@ -1,4 +1,4 @@
-resource "aws_kms_key" "a1" {
+resource "aws_kms_key" "negative1" {
   description             = "KMS key 1"
   
   is_enabled = true

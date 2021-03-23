@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [subnetName]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.VpcId should be defined", [subnetName]),
 		"keyActualValue": sprintf("Resources.%s.Properties.VpcId is undefined", [subnetName]),
 	}
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.NetworkInterfaces should be defined", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.NetworkInterfaces is undefined", [key]),
 	}

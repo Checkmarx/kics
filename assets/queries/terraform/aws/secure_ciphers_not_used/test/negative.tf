@@ -1,5 +1,5 @@
 #this code is a correct code for which the query should not find any result
-resource "aws_cloudfront_distribution" "s3_distribution_negative" {
+resource "aws_cloudfront_distribution" "negative1" {
   origin {
     domain_name = "mybucket"
     origin_id   = "myS3Origin"

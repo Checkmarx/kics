@@ -1,10 +1,10 @@
 #this code is a correct code for which the query should not find any result
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "negative1" {
   name     = "database-rg"
   location = "West US"
 }
 
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "negative2" {
   name                     = "examplesa"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
@@ -12,7 +12,7 @@ resource "azurerm_storage_account" "example" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_sql_server" "example" {
+resource "azurerm_sql_server" "negative3" {
   name                         = "mssqlserver"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = azurerm_resource_group.example.location

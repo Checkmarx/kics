@@ -2,7 +2,7 @@
 // comment
 // comment
 // comment
-resource "google_dns_managed_zone" "foo" {
+resource "google_dns_managed_zone" "positive1" {
   name     = "foobar"
   dns_name = "foo.bar."
 

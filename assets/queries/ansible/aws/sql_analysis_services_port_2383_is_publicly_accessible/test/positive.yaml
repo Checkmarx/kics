@@ -21,7 +21,7 @@
     profile: "{{ aws_profile }}"
     region: us-east-1
     rules:
-      - proto: udp
+      - proto: tcp
         ports:
           - 2383
         cidr_ip: 0.0.0.0/0

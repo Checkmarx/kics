@@ -2,9 +2,12 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.sqs_queue", "sqs_queue"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	sqsPolicy := task["community.aws.sqs_queue"]
+	sqsPolicy := task[modules[m]]
+	ansLib.checkState(sqsPolicy)
 
 	contains(sqsPolicy.policy.Statement[_].Principal, "*")
 	contains(sqsPolicy.policy.Statement[_].Effect, "Allow")
@@ -12,16 +15,17 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Principal", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal should not be equal to '*'", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal is equal to '*'", [task.name]),
+		"keyExpectedValue": "sqs_queue.policy.Principal should not be equal to '*'",
+		"keyActualValue": "sqs_queue.policy.Principal is equal to '*'",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	sqsPolicy := task["community.aws.sqs_queue"]
+	sqsPolicy := task[modules[m]]
+	ansLib.checkState(sqsPolicy)
 
 	contains(sqsPolicy.policy.Statement[_].Effect, "Allow")
 	contains(sqsPolicy.policy.Statement[_].Action, "*")
@@ -29,10 +33,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal.AWS", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.policy.Principal.AWS", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal.AWS should not be equal to '*'", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.sqs_queue}}.policy.Principal.AWS is equal to '*'", [task.name]),
+		"keyExpectedValue": "sqs_queue.policy.Principal.AWS should not be equal to '*'",
+		"keyActualValue": "sqs_queue.policy.Principal.AWS is equal to '*'",
 	}
 }
 

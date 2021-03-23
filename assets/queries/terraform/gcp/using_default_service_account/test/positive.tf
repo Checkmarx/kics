@@ -1,5 +1,5 @@
 #this is a problematic code where the query should report a result(s)
-resource "google_compute_instance" "default1" {
+resource "google_compute_instance" "positive1" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
@@ -22,7 +22,7 @@ resource "google_compute_instance" "default1" {
 
 }
 
-resource "google_compute_instance" "default2" {
+resource "google_compute_instance" "positive2" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
@@ -48,7 +48,7 @@ resource "google_compute_instance" "default2" {
   }
 }
 
-resource "google_compute_instance" "default3" {
+resource "google_compute_instance" "positive3" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
@@ -75,7 +75,7 @@ resource "google_compute_instance" "default3" {
   }
 }
 
-resource "google_compute_instance" "default4" {
+resource "google_compute_instance" "positive4" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
@@ -102,7 +102,7 @@ resource "google_compute_instance" "default4" {
   }
 }
 
-resource "google_compute_instance" "default5" {
+resource "google_compute_instance" "positive5" {
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"

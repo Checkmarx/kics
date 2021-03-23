@@ -1,7 +1,7 @@
 ## Dockerfile Queries List
 This page contains all queries from Dockerfile, classified by severity level.
 
-### <span style="color:#C00">**High**</span>
+### Severity: <span style="color:#C00">**High**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -19,7 +19,7 @@ This page contains all queries from Dockerfile, classified by severity level.
 |Yum Update Enabled<br/><sup><sub>8f6456be-0018-46db-9ce6-b3b6dc8d34d2</sub></sup>|Supply-Chain|Yum update is being used|<a href="https://docs.docker.com/engine/install/centos/#upgrade-docker-engine-1">Documentation</a><br/>|
 
 
-### <span style="color:#C60">**Medium**</span>
+### Severity: <span style="color:#C60">**Medium**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -56,7 +56,7 @@ This page contains all queries from Dockerfile, classified by severity level.
 |Image Version Using 'latest'<br/><sup><sub>f45ea400-6bbe-4501-9fc7-1c3d75c32067</sub></sup>|Supply-Chain|When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag|<a href="https://docs.docker.com/develop/dev-best-practices/">Documentation</a><br/>|
 
 
-### <span style="color:#CC0">**Low**</span>
+### Severity: <span style="color:#CC0">**Low**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
@@ -65,7 +65,7 @@ This page contains all queries from Dockerfile, classified by severity level.
 |Healthcheck Instruction Missing<br/><sup><sub>b03a748a-542d-44f4-bb86-9199ab4fd2d5</sub></sup>|Insecure Configurations|Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working|<a href="https://docs.docker.com/engine/reference/builder/#healthcheck">Documentation</a><br/>|
 
 
-### <span style="color:#00C">**Info**</span>
+### Severity: <span style="color:#00C">**Info**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|

@@ -2,24 +2,29 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.cloudwatchlogs_log_group", "cloudwatchlogs_log_group"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	cloudwatchlogs_log_group := task[modules[m]]
+	ansLib.checkState(cloudwatchlogs_log_group)
 
-	object.get(task["community.aws.cloudwatchlogs_log_group"], "retention", "undefined") == "undefined"
+	object.get(cloudwatchlogs_log_group, "retention", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudwatchlogs_log_group}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.cloudwatchlogs_log_group.retention is set",
-		"keyActualValue": "community.aws.cloudwatchlogs_log_group.retention is undefined",
+		"keyExpectedValue": "cloudwatchlogs_log_group.retention is set",
+		"keyActualValue": "cloudwatchlogs_log_group.retention is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-
-	value := task["community.aws.cloudwatchlogs_log_group"].retention
+	cloudwatchlogs_log_group := task[modules[m]]
+	ansLib.checkState(cloudwatchlogs_log_group)
+	value := cloudwatchlogs_log_group.retention
 
 	validValues = [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
 
@@ -27,9 +32,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.cloudwatchlogs_log_group}}.retention", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.retention", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "community.aws.cloudwatchlogs_log_group.retention is set and valid",
-		"keyActualValue": "community.aws.cloudwatchlogs_log_group.retention is set and invalid",
+		"keyExpectedValue": "cloudwatchlogs_log_group.retention is set and valid",
+		"keyActualValue": "cloudwatchlogs_log_group.retention is set and invalid",
 	}
 }

@@ -5,24 +5,23 @@ import data.generic.ansible as ansLib
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"azure.azcollection.azure_rm_containerregistry", "azure_rm_containerregistry"}
-	taskContainerRegistry := task[modules[index]]
+	containerRegistry := task[modules[m]]
+	ansLib.checkState(containerRegistry)
 
-	not checkLocks(taskContainerRegistry)
+	not checkLocks(containerRegistry)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{%s}}.resource_group", [task.name, modules[index]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.resource_group", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.resource_group is referenced by an existing lock", [modules[index]]),
-		"keyActualValue": sprintf("%s.resource_group is not referenced by a lock", [modules[index]]),
+		"keyExpectedValue": "azure_rm_containerregistry.resource_group is referenced by an existing lock",
+		"keyActualValue": "azure_rm_containerregistry.resource_group is not referenced by a lock",
 	}
 }
 
-checkLocks(taskContainerRegistry) {
-	taskLock := ansLib.tasks[_][_].azure_rm_lock
-	contains(taskLock, taskContainerRegistry.resource_group)
-}
-
-contains(taskLock, taskContainerRegistry) {
-	taskLock.resource_group == taskContainerRegistry
+checkLocks(containerRegistry) {
+	modules := {"azure.azcollection.azure_rm_lock", "azure_rm_lock"}
+	taskLock := ansLib.tasks[_][_][modules[_]]
+	ansLib.checkState(taskLock)
+	taskLock.resource_group == containerRegistry.resource_group
 }

@@ -3,6 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
+	count(resource.Value) == 1
 	command := resource.Value[0]
 
 	isValidUpdate(command)
@@ -22,11 +23,17 @@ isValidUpdate(command) {
 }
 
 isValidUpdate(command) {
+	contains(command, " --update ")
+}
+
+isValidUpdate(command) {
 	array_split := split(command, " ")
 
 	len = count(array_split)
 
-	array_split[minus(len, 1)] == "update"
+	update := {"update", "--update"}
+
+	array_split[minus(len, 1)] == update[j]
 }
 
 updateFollowedByInstall(command) {
@@ -36,6 +43,7 @@ updateFollowedByInstall(command) {
 		"reinstall",
 		"groupinstall",
 		"localinstall",
+		"add",
 	]
 
 	update := indexof(command, "update")

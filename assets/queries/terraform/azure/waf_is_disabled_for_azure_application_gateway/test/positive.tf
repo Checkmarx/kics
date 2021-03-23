@@ -1,4 +1,4 @@
-resource "azurerm_application_gateway" "disabled_waf" {
+resource "azurerm_application_gateway" "positive1" {
   name                = "example-appgateway"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -8,7 +8,7 @@ resource "azurerm_application_gateway" "disabled_waf" {
   }
 }
 
-resource "azurerm_application_gateway" "no_waf" {
+resource "azurerm_application_gateway" "positive2" {
   name                = "example-appgateway"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location

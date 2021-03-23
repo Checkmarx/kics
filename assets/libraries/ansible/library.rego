@@ -103,3 +103,37 @@ isPortInBounds(low, high, portNumber) {
 } else = false {
 	true
 }
+
+checkPortIsOpen(rule, portNumber) {
+	rule.from_port != -1
+	rule.from_port <= portNumber
+	rule.to_port >= portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.ports == portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.ports[_] == portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	mports := split(rule.ports, "-")
+	to_number(mports[0]) <= portNumber
+	to_number(mports[1]) >= portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	mports := split(rule.ports[_], "-")
+	to_number(mports[0]) <= portNumber
+	to_number(mports[1]) >= portNumber
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.from_port == -1
+}
+
+checkPortIsOpen(rule, portNumber) {
+	rule.to_port == -1
+}

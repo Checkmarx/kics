@@ -1,4 +1,4 @@
-resource "aws_default_security_group" "default" {
+resource "aws_default_security_group" "negative1" {
   vpc_id = aws_vpc.mainvpc.id
 
   ingress {

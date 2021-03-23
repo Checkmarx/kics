@@ -17,7 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
 		"keyActualValue": "'policy.Statement.Action' contain '*'",
-		"value": resource.bucket,
 	}
 }
 
@@ -38,7 +37,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
 		"keyActualValue": "'policy.Statement.Action' contain '*'",
-		"value": resource.bucket,
 	}
 }
 

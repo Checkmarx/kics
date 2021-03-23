@@ -19,7 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
 		"keyActualValue": "'policy.Statement.Principal.AWS' is equal '*'",
-		"value": queue_resource.name,
 	}
 }
 
@@ -42,7 +41,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Principal.AWS' is not equal '*'",
 		"keyActualValue": "'policy.Statement.Principal.AWS' is equal '*'",
-		"value": queue_resource.name,
 	}
 }
 
@@ -63,6 +61,5 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Principal' is not equal '*'",
 		"keyActualValue": "'policy.Statement.Principal' is equal '*'",
-		"value": queue_resource.name,
 	}
 }

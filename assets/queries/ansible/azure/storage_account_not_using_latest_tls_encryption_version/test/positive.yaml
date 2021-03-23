@@ -8,8 +8,9 @@
     minimum_tls_version: TLS1_0
     tags:
       testing: testing
-- name: remove account, if it exists
+- name: Create a second account with kind of FileStorage
   azure_rm_storageaccount:
     resource_group: myResourceGroup
-    name: clh0002
-    state: absent
+    name: clh0003
+    type: Premium_LRS
+    kind: FileStorage

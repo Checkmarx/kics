@@ -1,5 +1,5 @@
 //comment
-resource "aws_s3_bucket" "b" {
+resource "aws_s3_bucket" "positive1" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
-resource "aws_s3_bucket" "b_not_found" {
+resource "aws_s3_bucket" "positive2" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 

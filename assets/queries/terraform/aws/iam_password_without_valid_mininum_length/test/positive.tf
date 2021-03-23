@@ -1,4 +1,4 @@
-resource "aws_iam_account_password_policy" "no_mininum" {
+resource "aws_iam_account_password_policy" "positive1" {
   require_lowercase_characters   = true
   require_numbers                = true
   require_uppercase_characters   = true
@@ -6,7 +6,7 @@ resource "aws_iam_account_password_policy" "no_mininum" {
   allow_users_to_change_password = true
 }
 
-resource "aws_iam_account_password_policy" "low_minimum" {
+resource "aws_iam_account_password_policy" "positive2" {
   minimum_password_length        = 3
   require_lowercase_characters   = true
   require_numbers                = true

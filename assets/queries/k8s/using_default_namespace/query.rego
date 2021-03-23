@@ -26,7 +26,7 @@ CxPolicy[result] {
 	document := input.document[i]
 
     kind := document.kind
-    listKinds :=  ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+    listKinds :=  ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "Role", "RoleBinding", "ConfigMap", "Ingress"]
 	k8sLib.checkKind(kind, listKinds)
 
 	metadata = document.metadata

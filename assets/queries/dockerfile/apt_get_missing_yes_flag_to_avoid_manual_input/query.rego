@@ -63,5 +63,9 @@ avoidManualInput(command) {
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes)", command)
+}
+
+avoidManualInput(command) {
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)", command)
 }

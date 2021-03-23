@@ -1,4 +1,4 @@
-resource "google_dns_managed_zone" "example-zone" {
+resource "google_dns_managed_zone" "positive1" {
     name        = "example-zone"
     dns_name    = "example-${random_id.rnd.hex}.com."
     description = "Example DNS zone"

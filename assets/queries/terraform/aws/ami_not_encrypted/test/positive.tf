@@ -1,5 +1,5 @@
 
-resource "aws_ami" "example" {
+resource "aws_ami" "positive1" {
   name                = "terraform-example"
   virtualization_type = "hvm"
   root_device_name    = "/dev/xvda"
@@ -12,7 +12,7 @@ resource "aws_ami" "example" {
 }
 
 
-resource "aws_ami" "example2" {
+resource "aws_ami" "positive2" {
   name                = "terraform-example"
   virtualization_type = "hvm"
   root_device_name    = "/dev/xvda1"
@@ -26,7 +26,7 @@ resource "aws_ami" "example2" {
   }
 }
 
-resource "aws_ami" "example3" {
+resource "aws_ami" "positive3" {
   name                = "terraform-example"
   virtualization_type = "hvm"
   root_device_name    = "/dev/xvda1"

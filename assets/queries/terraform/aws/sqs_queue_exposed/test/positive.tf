@@ -1,5 +1,5 @@
 #this is a problematic code where the query should report a result(s)
-resource "aws_sqs_queue" "q" {
+resource "aws_sqs_queue" "positive1" {
   name = "examplequeue"
 
   policy = <<POLICY

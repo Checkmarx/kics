@@ -2,32 +2,36 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"community.aws.iam_password_policy", "iam_password_policy"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	policy := task["community.aws.iam_password_policy"]
+	policy := task[modules[m]]
+	ansLib.checkState(policy)
 
 	object.get(policy, "require_lowercase", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.iam_password_policy}}.require_lowercase", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.require_lowercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.iam_password_policy}} have 'require_lowercase' set and true", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.iam_password_policy}} have 'require_lowercase' undefined", [task.name]),
+		"keyExpectedValue": "iam_password_policy.require_lowercase is set and true",
+		"keyActualValue": "iam_password_policy.require_lowercase is undefined",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	policy := task["community.aws.iam_password_policy"]
+	policy := task[modules[m]]
+	ansLib.checkState(policy)
 
 	ansLib.isAnsibleFalse(policy.require_lowercase)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.iam_password_policy}}.require_lowercase", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.require_lowercase", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("name=%s.{{community.aws.iam_password_policy}}.require_lowercase is true", [task.name]),
-		"keyActualValue": sprintf("name=%s.{{community.aws.iam_password_policy}}.require_lowercase is false", [task.name]),
+		"keyExpectedValue": "iam_password_policy.require_lowercase is true",
+		"keyActualValue": "iam_password_policy.require_lowercase is false",
 	}
 }

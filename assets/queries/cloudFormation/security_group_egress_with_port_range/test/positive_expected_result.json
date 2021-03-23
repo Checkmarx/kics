@@ -1,6 +1,6 @@
 [
   {
-    "line": 17,
+    "line": 4,
     "fileName": "positive1.yaml",
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM"
@@ -9,18 +9,18 @@
     "fileName": "positive1.yaml",
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 22
   },
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
-    "line": 34,
+    "line": 5,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
-    "line": 22,
+    "line": 32,
     "fileName": "positive2.json"
   }
 ]

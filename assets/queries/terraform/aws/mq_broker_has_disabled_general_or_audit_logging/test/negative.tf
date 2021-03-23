@@ -1,4 +1,4 @@
-resource "aws_mq_broker" "logging_enabled" {
+resource "aws_mq_broker" "negative1" {
   broker_name = "example"
 
   configuration {

@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "negative1" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -7,11 +7,11 @@ resource "aws_db_instance" "default" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
   iam_database_authentication_enabled = true
   storage_encrypted = true
 }
-resource "aws_db_instance" "default2" {
+
+resource "aws_db_instance" "negative2" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -20,7 +20,6 @@ resource "aws_db_instance" "default2" {
   name                 = "mydb"
   username             = "foo"
   password             = "foobarbaz"
-  parameter_group_name = "default.mysql5.7"
   iam_database_authentication_enabled = false
-  kms_key_id = "${aws_kms_key.my_key.key_id}"
+  kms_key_id = aws_kms_key.my_key.key_id
 }

@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.ansible as ansLib
 
+modules := {"azure.azcollection.azure_rm_monitorlogprofile", "azure_rm_monitorlogprofile"}
+
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	azureMonitor := task.azure_rm_monitorlogprofile
-	retentionPolicy := azureMonitor.retention_policy
+	azureMonitor := task[modules[m]]
+	ansLib.checkState(azureMonitor)
 
-	not ansLib.isAnsibleTrue(retentionPolicy.enabled)
+	not ansLib.isAnsibleTrue(azureMonitor.retention_policy.enabled)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_monitorlogprofile}}.retention_policy.enabled", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.retention_policy.enabled", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_monitorlogprofile.retention_policy.enabled is true or yes",
 		"keyActualValue": "azure_rm_monitorlogprofile.retention_policy.enabled is false or no",
@@ -20,7 +22,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	azureMonitor := task.azure_rm_monitorlogprofile
+	azureMonitor := task[modules[m]]
+	ansLib.checkState(azureMonitor)
 	retentionPolicy := azureMonitor.retention_policy
 
 	ansLib.isAnsibleTrue(retentionPolicy.enabled)
@@ -29,7 +32,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_monitorlogprofile}}.retention_policy.days", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.retention_policy.days", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "azure_rm_monitorlogprofile.retention_policy.days is greater than 365 days or 0 (indefinitely)",
 		"keyActualValue": "azure_rm_monitorlogprofile.retention_policy.days is lesser than 365 days or different than 0 (indefinitely)",
@@ -38,13 +41,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	azureMonitor := task.azure_rm_monitorlogprofile
+	azureMonitor := task[modules[m]]
+	ansLib.checkState(azureMonitor)
 
 	object.get(azureMonitor, "retention_policy", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{azure_rm_monitorlogprofile}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "azure_rm_monitorlogprofile.retention_policy is defined",
 		"keyActualValue": "azure_rm_monitorlogprofile.retention_policy is undefined",

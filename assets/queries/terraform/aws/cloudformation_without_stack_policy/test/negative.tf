@@ -1,4 +1,4 @@
-resource "aws_cloudformation_stack" "network" {
+resource "aws_cloudformation_stack" "negative1" {
 
      name = "networking-stack"
 
@@ -6,12 +6,12 @@ resource "aws_cloudformation_stack" "network" {
      VPCCidr = "10.0.0.0/16"
      }
 
-     policy_url = ""
+     policy_url = "somepolicyurl"
 }
 
 
 
-resource "aws_cloudformation_stack" "network2" {
+resource "aws_cloudformation_stack" "negative2" {
 
      name = "networking-stack"
 
@@ -19,5 +19,5 @@ resource "aws_cloudformation_stack" "network2" {
      VPCCidr = "10.0.0.0/16"
      }
 
-     policy_body = ""
+     policy_body = "somepolicy"
 }

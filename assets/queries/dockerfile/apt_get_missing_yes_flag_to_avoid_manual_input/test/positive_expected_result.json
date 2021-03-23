@@ -1,12 +1,17 @@
 [
-	{
-		"queryName": "APT-GET Missing '-y' To Avoid Manual Input",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-	{
-		"queryName": "APT-GET Missing '-y' To Avoid Manual Input",
-		"severity": "MEDIUM",
-		"line": 3
-	}
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "MEDIUM",
+    "line": 4
+  }
 ]

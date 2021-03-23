@@ -1,4 +1,4 @@
-resource "azurerm_postgresql_server" "example" {
+resource "azurerm_postgresql_server" "negative1" {
   name                = "example-psqlserver"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

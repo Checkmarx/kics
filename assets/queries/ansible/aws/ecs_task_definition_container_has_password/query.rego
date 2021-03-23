@@ -4,17 +4,20 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	cont := task["community.aws.ecs_taskdefinition"].containers[j]
-	password := ["password", "pw", "pass"]
+	modules := {"community.aws.ecs_taskdefinition", "ecs_taskdefinition"}
+	ecs_taskdefinition := task[modules[m]]
+	ansLib.checkState(ecs_taskdefinition)
 
-	checkPassword(cont.env, password)
+	container := ecs_taskdefinition.containers[j]
+	password := ["password", "pw", "pass"]
+	checkPassword(container.env, password)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.ecs_taskdefinition}}.containers.name={{%s}}.env", [task.name, cont.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.containers.name={{%s}}.env", [task.name, modules[m], container.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'community.aws.ecs_taskdefinition.containers.env' doesn't have 'password' value",
-		"keyActualValue": "'community.aws.ecs_taskdefinition.containers.env' has 'password' value",
+		"keyExpectedValue": "'ecs_taskdefinition.containers.env' doesn't have 'password' value",
+		"keyActualValue": "'ecs_taskdefinition.containers.env' has 'password' value",
 	}
 }
 

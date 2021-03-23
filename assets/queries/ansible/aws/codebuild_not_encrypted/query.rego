@@ -4,14 +4,17 @@ import data.generic.ansible as ansLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
+	modules := {"community.aws.aws_codebuild", "aws_codebuild"}
+	aws_codebuild := task[modules[m]]
+	ansLib.checkState(aws_codebuild)
 
-	object.get(task["community.aws.aws_codebuild"], "encryption_key", "undefined") == "undefined"
+	object.get(aws_codebuild, "encryption_key", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name=%s.{{community.aws.aws_codebuild}}", [task.name]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "community.aws.aws_codebuild.encryption_key is set",
-		"keyActualValue": "community.aws.aws_codebuild.encryption_key is undefined",
+		"keyExpectedValue": "aws_codebuild.encryption_key is set",
+		"keyActualValue": "aws_codebuild.encryption_key is undefined",
 	}
 }

@@ -1,4 +1,4 @@
-resource "aws_elasticsearch_domain" "example" {
+resource "aws_elasticsearch_domain" "positive1" {
   domain_name           = "example"
   elasticsearch_version = "1.5"
 

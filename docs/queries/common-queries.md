@@ -1,7 +1,7 @@
 ## Common Queries List
 This page contains all queries from Common, classified by severity level.
 
-### <span style="color:#C00">**High**</span>
+### Severity: <span style="color:#C00">**High**</span>
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|

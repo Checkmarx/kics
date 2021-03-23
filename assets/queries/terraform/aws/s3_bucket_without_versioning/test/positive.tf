@@ -1,5 +1,5 @@
 //comment to offset
-resource "aws_s3_bucket" "b" {
+resource "aws_s3_bucket" "positive1" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 
@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "b" {
 }
 
 //comment to offset
-resource "aws_s3_bucket" "b_not_versioning" {
+resource "aws_s3_bucket" "positive2" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 
@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "b_not_versioning" {
 
 
 //comment to offset
-resource "aws_s3_bucket" "b_not_enabled" {
+resource "aws_s3_bucket" "positive3" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 

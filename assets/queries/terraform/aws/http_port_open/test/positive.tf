@@ -1,4 +1,4 @@
-resource "aws_security_group" "http_positive_tcp_1" {
+resource "aws_security_group" "positive1" {
   name        = "http_positive_tcp_1"
   description = "Gets the HTTP port open with the tcp protocol"
 
@@ -11,7 +11,7 @@ resource "aws_security_group" "http_positive_tcp_1" {
   }
 }
 
-resource "aws_security_group" "http_positive_tcp_2" {
+resource "aws_security_group" "positive2" {
   name        = "http_positive_tcp_2"
   description = "Gets the HTTP port open with the tcp protocol"
 

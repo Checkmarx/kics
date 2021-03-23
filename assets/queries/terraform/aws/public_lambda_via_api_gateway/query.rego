@@ -15,7 +15,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'source_arn' is not equal '/*/*'",
 		"keyActualValue": "'source_arn' is equal '/*/*'",
-		"value": resource.handler,
 	}
 }
 
