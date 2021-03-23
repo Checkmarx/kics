@@ -43,10 +43,6 @@ resource "kubernetes_pod" "positive1" {
       image = "nginx:1.7.9"
       name  = "example22222"
 
-      security_context = {
-        read_only_root_filesystem = false
-      }
-
       env = {
         name  = "environment"
         value = "test"
@@ -105,7 +101,7 @@ resource "kubernetes_pod" "positive2" {
       name  = "example"
 
       security_context = {
-        read_only_root_filesystem = false
+        allow_privilege_escalation = false
       }
 
       env {

@@ -12,6 +12,6 @@
   {
     "queryName": "Root Container Not Mounted As Read-only",
     "severity": "LOW",
-    "line": 108
+    "line": 103
   }
 ]
