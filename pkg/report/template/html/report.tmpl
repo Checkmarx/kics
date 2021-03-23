@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="./report.css" rel="stylesheet" />
   <title>KICS Scan Result</title>
+  {{ includeCSS "report.css" }}
 </head>
 <body>
   <div class="container">
-    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/">KICS.IO</a></div>
+    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" target="_blank">KICS.IO</a></div>
     <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
     <div class="counters">
     {{- with .SeveritySummary -}}
       <div class="severity">
-        <img src="vulnerability_fill.svg" alt="High" class="kics-orange" />
+        <div class="kics-orange icon">{{ includeSVG "vulnerability_fill.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "high") }}</span>
         <span class="caption">HIGH</span>
       </div>
       <div class="severity">
-        <img src="vulnerability_out.svg" alt="Medium" class="kics-orange" />
+        <div class="kics-orange icon">{{ includeSVG "vulnerability_out.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "medium") }}</span>
         <span class="caption">MEDIUM</span>
       </div>
       <div class="severity">
-        <img src="vulnerability_out.svg" alt="Low" class="kics-purple" />
+        <div class="kics-purple icon">{{ includeSVG "vulnerability_out.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "low") }}</span>
         <span class="caption">LOW</span>
       </div>
       <div class="severity">
-        <img src="info.svg" alt="Info" class="kics-purple" />
+        <div class="kics-purple icon">{{ includeSVG "info.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "info") }}</span>
         <span class="caption">INFO</span>
       </div>
@@ -41,45 +41,54 @@
         <div class="query-title">
           <h2>
             {{- if eq .Severity "HIGH" -}}
-            <img src="vulnerability_fill.svg" alt="High" title="High" class="kics-orange" style="width:20px" />
+            <div class="kics-orange">{{ includeSVG "vulnerability_fill.svg" }}</div>
             {{- end -}}
             {{- if eq .Severity "MEDIUM" -}}
-            <img src="vulnerability_out.svg" alt="Medium" title="Medium" class="kics-orange" style="width:20px" />
+            <div class="kics-orange">{{ includeSVG "vulnerability_out.svg" }}</div>
             {{- end -}}
             {{- if eq .Severity "LOW" -}}
-            <img src="vulnerability_out.svg" alt="Low" title="Low" class="kics-purple" style="width:20px" />
+            <div class="kics-purple">{{ includeSVG "vulnerability_out.svg" }}</div>
             {{- end -}}
             {{- if eq .Severity "INFO" -}}
-            <img src="info.svg" alt="Info" title="Info" class="kics-purple" style="width:20px" />
+            <div class="kics-purple">{{ includeSVG "info.svg" }}</div>
             {{- end -}}
             {{- .QueryName -}}
           </h2>
-          <span>{{ .QueryID }} - {{ .Platform }} - Category: {{ .Category }}</span>
+          <span class="query-id">{{ .QueryID }}</span>
+          <span><strong>Platform:</strong> {{ .Platform }}</span>
+          <span><strong>Category:</strong> {{ .Category }}</span>
         </div>
         <div class="query-details">
           <span>{{ .Description }}</span>
-          <span>For more information, <a href="{{ .QueryURI }}">click here</a></span>
+          <span>For more information, <a href="{{ .QueryURI }}" target="_blank">click here</a></span>
         </div>
       </div>
-      {{- range .Files}}
-      {{- $vulLine := .Line -}}
-      <div class="vulnerable-info">
-        <div class="vulnerable-info-header">
-          <strong>{{ .FileName }}</strong>
-          <span>Row {{ $vulLine }}</span>
-        </div>
-        <div class="code-box">
-          {{- with .VulnLines -}}
-          {{- $lines := .Lines -}}
-          {{- range $idx, $position := .Positions -}}
-          <div class="code-line {{ if eq $position $vulLine }}error{{ end }}">
-            <span class="code-line-counter">{{ $position }}</span><span class="code">{{index $lines $idx | trimSpaces }}</span>
+      <details>
+        <summary>Results</summary>
+        {{- range .Files}}
+        {{- $vulLine := .Line -}}
+        <div class="vulnerable-info">
+          <div class="vulnerable-info-header">
+            <strong>{{ .FileName }}</strong>
+            <span>Row {{ $vulLine }}</span>
           </div>
-          {{- end -}}
-          {{- end}}
+          <div class="vulnerable-info-details">
+            <span><strong>Expected:</strong> {{ .KeyExpectedValue }}</span>
+            <span><strong>Found:</strong> {{ .KeyActualValue }}</span>
+          </div>
+          <div class="code-box">
+            {{- with .VulnLines -}}
+            {{- $lines := .Lines -}}
+            {{- range $idx, $position := .Positions -}}
+            <div class="code-line {{ if eq $position $vulLine }}error{{ end }}">
+              <span class="code-line-counter">{{ $position }}</span><span class="code">{{index $lines $idx | trimSpaces }}</span>
+            </div>
+            {{- end -}}
+            {{- end}}
+          </div>
         </div>
-      </div>
-      {{- end -}}
+        {{- end -}}
+      </details>
     </div>
     {{- end -}}
     <div class="kics-message">
@@ -89,12 +98,12 @@
       Spread the love:
     </div>
     <div class="social-networks">
-      <a href="https://github.com/Checkmarx/kics/">
-        <img src="github.svg" alt="GitHub" />
+      <a href="https://github.com/Checkmarx/kics/" target="_blank">
+        <div>{{ includeSVG "github.svg" }}</div>
       </a>
     </div>
     <div class="report-header-footer">
-      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx">Checkmarx</a>, global leader of Application Security Testing</span>
+      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
     </div>
   </div>
 </body>

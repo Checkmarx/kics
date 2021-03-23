@@ -1,6 +1,7 @@
 package report
 
 import (
+	"bytes"
 	"fmt"
 	"html/template"
 	"os"
@@ -9,19 +10,55 @@ import (
 	"strings"
 
 	"github.com/rs/zerolog/log"
+	"github.com/tdewolff/minify/v2"
+	minifyCSS "github.com/tdewolff/minify/v2/css"
+	minifyHtml "github.com/tdewolff/minify/v2/html"
 )
 
 const (
 	templateFile = "report.tmpl"
 )
 
+var templatePath = ""
+
+func includeSVG(name string) template.HTML {
+	svg, err := os.ReadFile(filepath.Join(templatePath, name))
+	if err != nil {
+		log.Err(err).Msgf("failed to open svg: %s", name)
+		return ""
+	}
+	return template.HTML(string(svg)) //nolint
+}
+
+func includeCSS(name string) template.HTML {
+	css, err := os.ReadFile(filepath.Join(templatePath, name))
+	if err != nil {
+		log.Err(err).Msgf("failed to open svg: %s", name)
+		return ""
+	}
+	minifier := minify.New()
+	minifier.AddFunc("text/css", minifyCSS.Minify)
+	cssMinified, err := minifier.Bytes("text/css", css)
+	if err != nil {
+		return ""
+	}
+	return template.HTML("<style>" + string(cssMinified) + "</style>") //nolint
+}
+
 func PrintHTMLReport(path, filename string, body interface{}) error {
-	_, templatePath, _, ok := runtime.Caller(0)
+	if !strings.HasSuffix(filename, ".html") {
+		filename += ".html"
+	}
+
+	_, templatePathFromStack, _, ok := runtime.Caller(0)
 	if !ok {
 		return fmt.Errorf("report error: Report template not found")
 	}
-	path = filepath.Join(path, "html_report")
-	fullPath := filepath.Join(path, filename+".html")
+	templatePath = templatePathFromStack
+	templateFuncs["includeSVG"] = includeSVG
+	templateFuncs["includeCSS"] = includeCSS
+
+	fullPath := filepath.Join(path, filename)
 	templatePath = filepath.Join(filepath.Dir(templatePath), "template", "html")
 	t := template.Must(template.New(templateFile).Funcs(templateFuncs).ParseFiles(filepath.Join(templatePath, templateFile)))
 
@@ -30,21 +67,24 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 	if err != nil {
 		return err
 	}
-	defer closeFile(fullPath, filename+".html", f)
+	defer closeFile(fullPath, filename, f)
+	var buffer bytes.Buffer
 
-	resourceFiles, err := os.ReadDir(templatePath)
+	err = t.Execute(&buffer, body)
 	if err != nil {
 		return err
 	}
-	for _, resourceFile := range resourceFiles {
-		resourceName := resourceFile.Name()
-		if resourceFile.IsDir() || strings.HasSuffix(resourceName, ".tmpl") {
-			continue
-		}
-		if copyErr := copyFile(filepath.Join(templatePath, resourceName), filepath.Join(path, resourceName)); copyErr != nil {
-			log.Err(err).Msgf("failed to copy style file from template")
-		}
-	}
-	err = t.Execute(f, body)
+	minifier := minify.New()
+	minifier.AddFunc("text/html", minifyHtml.Minify)
+	minifier.Add("text/html", &minifyHtml.Minifier{
+		KeepDocumentTags: true,
+		KeepEndTags:      true,
+		KeepQuotes:       true,
+	})
+
+	minifierWriter := minifier.Writer("text/html", f)
+	defer minifierWriter.Close()
+
+	_, err = minifierWriter.Write(buffer.Bytes())
 	return err
 }

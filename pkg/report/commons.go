@@ -3,7 +3,6 @@ package report
 import (
 	"fmt"
 	"html/template"
-	"io"
 	"os"
 	"strings"
 	"time"
@@ -38,24 +37,6 @@ func getSeverities(severity string) model.Severity {
 func getCurrentTime() string {
 	dt := time.Now()
 	return fmt.Sprint(dt.Format("01/02/2006 15:04"))
-}
-
-func copyFile(originalFilepath, destinationFilepath string) error {
-	srcFile, err := os.Open(originalFilepath)
-	if err != nil {
-		return err
-	}
-	defer srcFile.Close()
-	destFile, err := os.Create(destinationFilepath)
-	if err != nil {
-		return err
-	}
-	defer destFile.Close()
-	_, err = io.Copy(destFile, srcFile)
-	if err != nil {
-		return err
-	}
-	return destFile.Sync()
 }
 
 func closeFile(path, filename string, file *os.File) {

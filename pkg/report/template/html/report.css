@@ -67,8 +67,8 @@ body {
   align-items: center;
 }
 
-.severity > img {
-  width: 75px;
+.severity > .icon > svg {
+  width: 80px;
   height: auto;
 }
 
@@ -80,8 +80,11 @@ body {
 }
 
 .kics-orange {
-  filter: invert(60%) sepia(79%) saturate(2789%) hue-rotate(333deg) brightness(97%) contrast(103%);
   color: #FC6E3A;
+}
+
+.kics-orange > svg {
+  fill: #FC6E3A;
 }
 
 .kics-orange ~ .badge {
@@ -89,8 +92,11 @@ body {
 }
 
 .kics-purple {
-  filter: invert(24%) sepia(39%) saturate(2335%) hue-rotate(228deg) brightness(92%) contrast(92%);
   color: #503E9E;
+}
+
+.kics-purple > svg {
+  fill: #503E9E;
 }
 
 .kics-purple ~ .badge {
@@ -108,8 +114,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   left: 60%;
   top: 50%;
@@ -133,8 +139,22 @@ body {
   width: 100%;
 }
 
-.query-title > span {
+.query-title > h2 {
+  display:flex;
+}
+
+.query-title > h2 > div {
+  width:20px;
+  margin-right: 12px;
+  margin-left: -30px;
+}
+
+.query-title > .query-id {
   font-size: x-small;
+}
+
+.query > * {
+  margin-left: 30px;
 }
 
 .query-info {
@@ -162,7 +182,7 @@ body {
   border-radius: 2px;
   display:flex;
   flex-direction: column;
-  margin: 6px 0;
+  margin: 6px 9px;
 }
 
 .vulnerable-info-header {
@@ -172,10 +192,20 @@ body {
   margin: 6px 9px;
 }
 
+.vulnerable-info-details {
+  display: flex;
+  flex-direction: column;
+  margin: 6px 9px;
+}
+
+.vulnerable-info-details > span > strong {
+  width: 5vw;
+}
+
 .code-box {
   display: flex;
   flex-direction: column;
-  background-color: #E8E8E8;
+  background-color: #F0F0F080;
 }
 
 .code-line {
@@ -186,7 +216,7 @@ body {
 }
 
 .code-box > .error {
-  background-color: #C005;
+  background-color: #FC6E3A50;
 }
 
 .code-line > .code-line-counter {
@@ -223,7 +253,7 @@ body {
   margin: 0 15px;
 }
 
-.social-networks > a > img {
+.social-networks > a > div > svg {
   width: 20px;
   height: 20px;
 }
@@ -245,4 +275,11 @@ a.checkmarx:hover, a.checkmarx:active {
   text-decoration: underline;
   color: #FFF;
   opacity: 0.8;
+}
+
+summary {
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  font-weight: bold;
 }
