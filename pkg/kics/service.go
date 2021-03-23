@@ -96,7 +96,8 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 
 			return errors.Wrap(err, "failed to save file content")
 		},
-		func(ctx context.Context, filename string) error {
+		func(ctx context.Context, filename string) error { // Sink used for resolver files and templates
+			s.Tracker.TrackFileFound()
 			kind := s.Resolver.GetType(filename)
 			if kind == model.KindCOMMON {
 				return nil

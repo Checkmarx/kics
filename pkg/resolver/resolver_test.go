@@ -62,7 +62,7 @@ func TestResolver_Resolve(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    model.RenderedFiles
+		want    model.ResolvedFiles
 		wantErr bool
 	}{
 		{
@@ -71,8 +71,8 @@ func TestResolver_Resolve(t *testing.T) {
 				filePath: filepath.FromSlash("../../test/fixtures/test_helm"),
 				kind:     model.KINDHELM,
 			},
-			want: model.RenderedFiles{
-				File: []model.RenderedFile{
+			want: model.ResolvedFiles{
+				File: []model.ResolvedFile{
 					{
 						SplitID:  "# KICS_HELM_ID_0:",
 						FileName: filepath.FromSlash("../../test/fixtures/test_helm/templates/service.yaml"),

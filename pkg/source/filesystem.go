@@ -89,12 +89,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string,
 			return err
 		}
 
-		/*
-			----------------------------
-				Resolver Render Part
-			----------------------------
-		*/
-
+		// ------------------ resolver --------------------------------
 		if info.IsDir() {
 			err = resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
 			if err != nil {
@@ -103,7 +98,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, _ string,
 					Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
 			}
 		}
-		// ----------------------------
+		// ------------------------------------------------------------
 
 		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path); shouldSkip {
 			return skipFolder

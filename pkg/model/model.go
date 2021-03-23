@@ -115,11 +115,13 @@ type QueryConfig struct {
 	Platform string
 }
 
-type RenderedFiles struct {
-	File []RenderedFile
+// ResolvedFiles keeps the information of all file/template resolved
+type ResolvedFiles struct {
+	File []ResolvedFile
 }
 
-type RenderedFile struct {
+// ResolvedFile keeps the information of a file/template resolved
+type ResolvedFile struct {
 	FileName     string
 	Content      []byte
 	OriginalData []byte

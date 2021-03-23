@@ -11,9 +11,11 @@ import (
 	"helm.sh/helm/v3/pkg/release"
 )
 
+// Resolver is an instance of the helm resolver
 type Resolver struct {
 }
 
+// splitManifest keeps the information of the manifest splitted by source
 type splitManifest struct {
 	path     string
 	content  []byte
@@ -21,15 +23,16 @@ type splitManifest struct {
 	splitID  string
 }
 
-func (r *Resolver) Resolve(filePath string) (model.RenderedFiles, error) {
-	var rfiles = model.RenderedFiles{}
+// Resolve will render the passed helm chart and return its content ready for parsing
+func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
+	var rfiles = model.ResolvedFiles{}
 	splits, err := renderHelm(filePath)
 	if err != nil { // return error to be logged
-		return model.RenderedFiles{}, errors.New("failed to render helm chart")
+		return model.ResolvedFiles{}, errors.New("failed to render helm chart")
 	}
 	for _, split := range *splits {
 		origpath := filepath.Join(filepath.Dir(filePath), split.path)
-		rfiles.File = append(rfiles.File, model.RenderedFile{
+		rfiles.File = append(rfiles.File, model.ResolvedFile{
 			FileName:     origpath,
 			Content:      split.content,
 			OriginalData: split.original,
@@ -39,53 +42,56 @@ func (r *Resolver) Resolve(filePath string) (model.RenderedFiles, error) {
 	return rfiles, nil
 }
 
+// SupportedTypes returns the supported fileKinds for this resolver
 func (r *Resolver) SupportedTypes() []model.FileKind {
 	return []model.FileKind{model.KINDHELM}
 }
 
-// renderHelm will use helm binary to render helm templates
+// renderHelm will use helm library to render helm charts
 func renderHelm(path string) (*[]splitManifest, error) {
 	client := newClient()
-	test, err := runInstall([]string{path}, client, &values.Options{})
+	manifest, err := runInstall([]string{path}, client, &values.Options{})
 	if err != nil {
 		return nil, err
 	}
-	return splitYaml(test)
+	return splitManifestYAML(manifest)
 }
 
-// splitYaml will split the rendered file and return its content by template as well as the template path
-func splitYaml(template *release.Release) (*[]splitManifest, error) {
-	templates := make([]*chart.File, 0)
-	templates = templateMaker(templates, template.Chart, template.Chart.Name())
-	splitSlice := []splitManifest{}
-	testSplit := strings.Split(template.Manifest, "---")
-	origData := convertToMap(templates)
-	for _, splited := range testSplit {
+// splitManifestYAML will split the rendered file and return its content by template as well as the template path
+func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
+	sources := make([]*chart.File, 0)
+	sources = updateName(sources, template.Chart, template.Chart.Name())
+	splitedManifest := []splitManifest{}
+	splitedSource := strings.Split(template.Manifest, "---") // split manifest by '---'
+	origData := toMap(sources)
+	for _, splited := range splitedSource {
 		var lineID string
 		for _, line := range strings.Split(splited, "\n") {
 			if strings.Contains(line, "# KICS_HELM_ID_") {
-				lineID = line
+				lineID = line // get auxiliary line id
 				break
 			}
 		}
-		path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // need to get id here to be passed
+		path := strings.Split(strings.TrimLeft(splited, "\n# Source:"), "\n") // get source of splitted yaml
+		// ignore auxiliary files used to render chart
 		if path[0] == "" || strings.Contains(path[0], "secrets.yaml") || strings.Contains(path[0], "secret.yaml") {
 			continue
 		}
 		if origData[path[0]] == nil {
 			continue
 		}
-		splitSlice = append(splitSlice, splitManifest{
+		splitedManifest = append(splitedManifest, splitManifest{
 			path:     path[0],
 			content:  []byte(splited),
-			original: origData[path[0]],
+			original: origData[path[0]], // get original data from template
 			splitID:  lineID,
 		})
 	}
-	return &splitSlice, nil
+	return &splitedManifest, nil
 }
 
-func convertToMap(files []*chart.File) map[string][]byte {
+// toMap will convert to map original data having the path as it's key
+func toMap(files []*chart.File) map[string][]byte {
 	mapFiles := make(map[string][]byte)
 	for _, file := range files {
 		mapFiles[file.Name] = file.Data
@@ -93,7 +99,8 @@ func convertToMap(files []*chart.File) map[string][]byte {
 	return mapFiles
 }
 
-func templateMaker(template []*chart.File, charts *chart.Chart, name string) []*chart.File {
+// updateName will update the templates name as well as its dependecies
+func updateName(template []*chart.File, charts *chart.Chart, name string) []*chart.File {
 	if name != charts.Name() {
 		name = filepath.Join(name, charts.Name())
 	}
@@ -102,7 +109,7 @@ func templateMaker(template []*chart.File, charts *chart.Chart, name string) []*
 	}
 	template = append(template, charts.Templates...)
 	for _, dep := range charts.Dependencies() {
-		template = templateMaker(template, dep, filepath.Join(name, "charts"))
+		template = updateName(template, dep, filepath.Join(name, "charts"))
 	}
 	return template
 }

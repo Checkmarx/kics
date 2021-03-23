@@ -7,16 +7,20 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
+// kindResolver is a type of resolver interface (ex: helm resolver)
+// Resolve will render file/template
+// SupportedTypes will return the file kinds that the resolver supports
 type kindResolver interface {
-	// GetKind() model.FileKind
-	Resolve(filePath string) (model.RenderedFiles, error)
+	Resolve(filePath string) (model.ResolvedFiles, error)
 	SupportedTypes() []model.FileKind
 }
 
+// Resolver is a struct containing the resolvers by file kind
 type Resolver struct {
 	resolvers map[model.FileKind]kindResolver
 }
 
+// Builder is a struct used to create a new resolver
 type Builder struct {
 	resolvers []kindResolver
 }
@@ -47,16 +51,16 @@ func (b *Builder) Build() (*Resolver, error) {
 }
 
 // Resolve will resolve the files according to its type
-func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.RenderedFiles, error) {
+func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.ResolvedFiles, error) {
 	if r, ok := r.resolvers[kind]; ok {
 		obj, err := r.Resolve(filePath)
 		if err != nil {
-			return model.RenderedFiles{}, nil
+			return model.ResolvedFiles{}, nil
 		}
 		return obj, nil
 	}
 	// need to log here
-	return model.RenderedFiles{}, nil
+	return model.ResolvedFiles{}, nil
 }
 
 // GetType will analyze the filepath to determine which resolver to use

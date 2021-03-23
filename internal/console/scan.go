@@ -250,7 +250,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 //go:embed img/kics-console
 var s string
 
-func scan() error {
+func scan() error { //nolint
 	if noColor {
 		color.Disable()
 	}
@@ -293,6 +293,7 @@ func scan() error {
 		return err
 	}
 
+	// combinedResolver to be used to resolve files and templates
 	combinedResolver, err := resolver.NewBuilder().
 		Add(&helm.Resolver{}).
 		Build()

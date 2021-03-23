@@ -27,7 +27,7 @@ func TestHelm_Resolve(t *testing.T) { // nolint
 	tests := []struct {
 		name    string
 		args    args
-		want    model.RenderedFiles
+		want    model.ResolvedFiles
 		wantErr bool
 	}{
 		{
@@ -35,8 +35,8 @@ func TestHelm_Resolve(t *testing.T) { // nolint
 			args: args{
 				filePath: filepath.FromSlash("../../../test/fixtures/test_helm"),
 			},
-			want: model.RenderedFiles{
-				File: []model.RenderedFile{
+			want: model.ResolvedFiles{
+				File: []model.ResolvedFile{
 					{
 						SplitID:  "# KICS_HELM_ID_0:",
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm/templates/service.yaml"),
@@ -91,7 +91,7 @@ spec:
 			args: args{
 				filePath: filepath.FromSlash("../../../test/fixtures/all_auth_users_get_read_access"),
 			},
-			want:    model.RenderedFiles{},
+			want:    model.ResolvedFiles{},
 			wantErr: true,
 		},
 		{
@@ -99,8 +99,8 @@ spec:
 			args: args{
 				filePath: filepath.FromSlash("../../../test/fixtures/test_helm_subchart"),
 			},
-			want: model.RenderedFiles{
-				File: []model.RenderedFile{
+			want: model.ResolvedFiles{
+				File: []model.ResolvedFile{
 					{
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm_subchart/templates/serviceaccount.yaml"),
 						SplitID:  "# KICS_HELM_ID_1:",

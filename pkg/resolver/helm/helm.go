@@ -70,6 +70,7 @@ func checkIfInstallable(ch *chart.Chart) error {
 	return errors.Errorf("%s charts are not installable", ch.Metadata.Type)
 }
 
+// newClient will create a new instance on helm client used to render the chart
 func newClient() *action.Install {
 	cfg := new(action.Configuration)
 	client := action.NewInstall(cfg)
@@ -82,8 +83,7 @@ func newClient() *action.Install {
 	return client
 }
 
-// reconstruct the file and give its id
-
+// setID will add auxiliary lines for each template as well as its dependencies
 func setID(chartReq *chart.Chart) *chart.Chart {
 	for _, temp := range chartReq.Templates {
 		temp = addID(temp) //nolint
@@ -94,6 +94,8 @@ func setID(chartReq *chart.Chart) *chart.Chart {
 	return chartReq
 }
 
+// addID will add auxiliary lines used to detect line
+// one for each "apiVersion:" where the id will be the line
 func addID(file *chart.File) *chart.File {
 	split := strings.Split(string(file.Data), "\n")
 	for i := 0; i < len(split); i++ {
