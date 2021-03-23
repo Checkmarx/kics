@@ -2,6 +2,7 @@ package helm
 
 import (
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -17,10 +18,11 @@ type Resolver struct {
 
 // splitManifest keeps the information of the manifest splitted by source
 type splitManifest struct {
-	path     string
-	content  []byte
-	original []byte
-	splitID  string
+	path       string
+	content    []byte
+	original   []byte
+	splitID    string
+	splitIDMap map[int]interface{}
 }
 
 // Resolve will render the passed helm chart and return its content ready for parsing
@@ -37,6 +39,7 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 			Content:      split.content,
 			OriginalData: split.original,
 			SplitID:      split.splitID,
+			IDInfo:       split.splitIDMap,
 		})
 	}
 	return rfiles, nil
@@ -80,11 +83,16 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 		if origData[path[0]] == nil {
 			continue
 		}
+		idMap, err := getIDMap(origData[path[0]])
+		if err != nil {
+			return nil, err
+		}
 		splitedManifest = append(splitedManifest, splitManifest{
-			path:     path[0],
-			content:  []byte(splited),
-			original: origData[path[0]], // get original data from template
-			splitID:  lineID,
+			path:       path[0],
+			content:    []byte(splited),
+			original:   origData[path[0]], // get original data from template
+			splitID:    lineID,
+			splitIDMap: idMap,
 		})
 	}
 	return &splitedManifest, nil
@@ -112,4 +120,34 @@ func updateName(template []*chart.File, charts *chart.Chart, name string) []*cha
 		template = updateName(template, dep, filepath.Join(name, "charts"))
 	}
 	return template
+}
+
+// getIdMap will construct a map with ids with the corresponding lines as keys
+// for use in detectline
+func getIDMap(originalData []byte) (map[int]interface{}, error) {
+	ids := make(map[int]interface{})
+	mapLines := make(map[int]int)
+	idHelm := -1
+	for line, stringLine := range strings.Split(string(originalData), "\n") {
+		if strings.Contains(stringLine, "# KICS_HELM_ID_") {
+			id, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(stringLine, "# KICS_HELM_ID_"), ":"))
+			if err != nil {
+				return nil, err
+			}
+			if idHelm == -1 {
+				idHelm = id
+				mapLines[line] = line
+			} else {
+				ids[idHelm] = mapLines
+				mapLines = make(map[int]int)
+				idHelm = id
+				mapLines[line] = line
+			}
+		} else if idHelm != -1 {
+			mapLines[line] = line
+		}
+	}
+	ids[idHelm] = mapLines
+
+	return ids, nil
 }

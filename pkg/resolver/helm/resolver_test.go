@@ -40,6 +40,8 @@ func TestHelm_Resolve(t *testing.T) { // nolint
 					{
 						SplitID:  "# KICS_HELM_ID_0:",
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm/templates/service.yaml"),
+						IDInfo: map[int]interface{}{0: map[int]int{0: 0, 1: 1, 2: 2, 3: 3, 4: 4,
+							5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16}},
 						Content: []byte(`
 # Source: test_helm/templates/service.yaml
 # KICS_HELM_ID_0:
@@ -104,6 +106,8 @@ spec:
 					{
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm_subchart/templates/serviceaccount.yaml"),
 						SplitID:  "# KICS_HELM_ID_1:",
+						IDInfo: map[int]interface{}{1: map[int]int{1: 1, 2: 2, 3: 3, 4: 4,
+							5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13}},
 						Content: []byte(`
 # Source: test_helm_subchart/templates/serviceaccount.yaml
 # KICS_HELM_ID_1:
@@ -136,6 +140,8 @@ metadata:
 					{
 						FileName: filepath.FromSlash("../../../test/fixtures/test_helm_subchart/charts/subchart/templates/service.yaml"),
 						SplitID:  "# KICS_HELM_ID_0:",
+						IDInfo: map[int]interface{}{0: map[int]int{0: 0, 1: 1, 2: 2, 3: 3, 4: 4,
+							5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16}},
 						Content: []byte(`
 # Source: test_helm_subchart/charts/subchart/templates/service.yaml
 # KICS_HELM_ID_0:

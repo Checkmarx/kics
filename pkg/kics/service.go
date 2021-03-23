@@ -128,6 +128,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 						FileName:     rfile.FileName,
 						Content:      string(rfile.Content),
 						HelmID:       rfile.SplitID,
+						IDInfo:       rfile.IDInfo,
 					}
 					files = s.saveToFile(ctx, &file, files)
 				}
