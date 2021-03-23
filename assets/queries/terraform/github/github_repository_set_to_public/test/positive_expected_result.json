@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "GitHub Repository Set To Public",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "GitHub Repository Set To Public",
+    "severity": "MEDIUM",
+    "line": 15
+  },
+  {
+    "queryName": "GitHub Repository Set To Public",
+    "severity": "MEDIUM",
+    "line": 28
+  }
+]

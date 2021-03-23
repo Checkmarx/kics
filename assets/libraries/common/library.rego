@@ -241,3 +241,18 @@ isCommonKey(p) {
 	black := bl[_]
 	contains(lower(p), black)
 }
+
+# verifies if the resource(statement.Principal.AWS) contains an ARN that points to a specific IAM user
+allowsAllPrincipalsToAssume(resource, statement) {
+	is_string(resource) == true
+	contains(resource, "arn:aws:iam::")
+	contains(resource, ":root")
+	not contains(statement.Effect, "Deny")
+}
+
+allowsAllPrincipalsToAssume(resource, statement) {
+	is_array(resource) == true
+	contains(resource[x], "arn:aws:iam::")
+	contains(resource[x], ":root")
+	not contains(statement.Effect, "Deny")
+}

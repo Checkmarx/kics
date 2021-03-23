@@ -10,7 +10,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BackupRetentionPeriod", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Resources.Properties.BackupRetentionPeriod' has backup enabled", [name]),
-		"keyActualValue": sprintf("'Resources.Properties.BackupRetentionPeriod' doesn't have backup enabled", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.BackupRetentionPeriod' is not equal to zero", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.BackupRetentionPeriod' is equal to zero", [name]),
 	}
 }

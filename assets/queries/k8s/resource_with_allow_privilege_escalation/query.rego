@@ -15,7 +15,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.%s.%s.%s.%s", [metadata.name, specInfo.path, types[x], contexts[c], properties[p]]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.%s.%s", [metadata.name, specInfo.path, types[x], contexts[c], properties[p]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s.%s.%s = false", [specInfo.path, types[x], contexts[c], properties[p]]),
 		"keyActualValue": sprintf("%s.%s.%s.%s = true", [specInfo.path, types[x], contexts[c], properties[p]]),

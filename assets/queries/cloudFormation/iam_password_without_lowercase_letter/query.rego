@@ -4,6 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	password := resource.Properties.LoginProfile.Password
 	is_string(password)
+    not contains(lower(password), "secretsmanager")
 	not regex.match(".*[a-z]", password)
 
 	result := {
