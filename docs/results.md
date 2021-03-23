@@ -2,6 +2,7 @@
 KICS can export results in multiple formats which can be seen on the following list:
 - JSON
 - SARIF
+- HTML
 
 To export in one of this formats, the flag output-path can be used with the file path and extension, for example:
 
@@ -15,7 +16,7 @@ KICS also can export multiple format in a single scan, to do this the flags outp
 where the output-path will be the directory containing all report files and report-formats all extensions wanted, like following example:
 
 ```bash
-./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "json,sarif"
+./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "json,sarif,html"
 ```
 
 The last command will execute the scan and save JSON and SARIF reports on output folder.
