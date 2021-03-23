@@ -41,10 +41,10 @@ var (
 	reportFormats     []string
 	cfgFile           string
 
-	noProgress  bool
-	types       []string
-	min         bool
-	outputLines int
+	noProgress   bool
+	types        []string
+	min          bool
+	previewLines int
 	//go:embed img/kics-console
 	banner string
 )
@@ -176,7 +176,7 @@ func initScanCmd() {
 		[]string{},
 		"formats in which the results will be exported (json, sarif)",
 	)
-	scanCmd.Flags().IntVarP(&outputLines, "preview-lines", "", 3, "number of lines to be display in CLI results (default: 3)")
+	scanCmd.Flags().IntVarP(&previewLines, "preview-lines", "", 3, "number of lines to be display in CLI results (default: 3)")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(
 		&excludePath,
@@ -307,17 +307,15 @@ func scan() error {
 	}
 
 	printer := consoleHelpers.NewPrinter(min)
-	if !Silent {
-		printer.Success.Printf("\n%s\n", banner)
-	}
+	printer.Success.Printf("\n%s\n", banner)
 
-	versionMsg := fmt.Sprintf("Scanning with %s\n\n", getVersion())
+	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", getVersion())
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
 	scanStartTime := time.Now()
 
-	t, err := tracker.NewTracker(outputLines)
+	t, err := tracker.NewTracker(previewLines)
 	if err != nil {
 		log.Err(err)
 		return err
@@ -391,6 +389,8 @@ func resolveOutputs(
 	failedQueries map[string]error,
 	printer *consoleHelpers.Printer,
 ) error {
+	log.Debug().Msg("console.resolveOutputs()")
+
 	if err := printOutput(payloadPath, "payload", documents, []string{"json"}); err != nil {
 		return err
 	}

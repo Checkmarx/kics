@@ -15,12 +15,12 @@ type CITracker struct {
 
 // NewTracker will create a new instance of a tracker with the number of lines to display in results output
 // number of lines can not be smaller than 1
-func NewTracker(outputLines int) (*CITracker, error) {
-	if outputLines < 1 {
+func NewTracker(previewLines int) (*CITracker, error) {
+	if previewLines < 1 {
 		return &CITracker{}, errors.New("output lines number minimum is 1")
 	}
 	return &CITracker{
-		lines: outputLines,
+		lines: previewLines,
 	}, nil
 }
 

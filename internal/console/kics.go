@@ -2,6 +2,7 @@ package console
 
 import (
 	"context"
+	"errors"
 	"io"
 	"os"
 	"time"
@@ -28,8 +29,7 @@ var (
 	logFile  bool
 	logLevel string
 	noColor  bool
-
-	Silent bool
+	silent   bool
 
 	rootCmd = &cobra.Command{
 		Use:   "kics",
@@ -44,7 +44,7 @@ func initialize() error {
 	rootCmd.PersistentFlags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	rootCmd.PersistentFlags().StringVarP(&logLevel, "log-level", "", "INFO", "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "also print logs in stdout increasing verbosity")
-	rootCmd.PersistentFlags().BoolVarP(&Silent, "silent", "s", false, "discards all stdout messages")
+	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silence stdout messages")
 	rootCmd.PersistentFlags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 
 	if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil {
@@ -85,6 +85,10 @@ func setupLogs() error {
 	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
 	setLogLevel()
 
+	if verbose && silent {
+		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
+	}
+
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 	}
@@ -101,13 +105,13 @@ func setupLogs() error {
 		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
 	}
 
-	if Silent {
+	if silent {
 		color.SetOutput(io.Discard)
 		os.Stdout = nil
-	} else {
-		mw := io.MultiWriter(consoleLogger, fileLogger)
-		log.Logger = log.Output(mw)
 	}
+
+	mw := io.MultiWriter(consoleLogger, fileLogger)
+	log.Logger = log.Output(mw)
 
 	return nil
 }
@@ -125,7 +129,7 @@ func insertScanCmd() bool {
 }
 
 // Execute starts kics execution
-func Execute() {
+func Execute() error {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
@@ -138,14 +142,19 @@ func Execute() {
 	if err := initialize(); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to run application")
+		return err
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
+		log.Err(err).Msg("Failed to run application")
+		return err
 	}
 
 	if err := setupLogs(); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize logs")
+		return err
 	}
+	return nil
 }
