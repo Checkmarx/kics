@@ -149,10 +149,6 @@ body {
   margin-left: -30px;
 }
 
-.query-title > .query-id {
-  font-size: x-small;
-}
-
 .query > * {
   margin-left: 30px;
 }
@@ -205,7 +201,7 @@ body {
 .code-box {
   display: flex;
   flex-direction: column;
-  background-color: #F0F0F080;
+  background-color: #503E9E10;
 }
 
 .code-line {

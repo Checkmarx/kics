@@ -54,23 +54,22 @@
             {{- end -}}
             {{- .QueryName -}}
           </h2>
-          <span class="query-id">{{ .QueryID }}</span>
           <span><strong>Platform:</strong> {{ .Platform }}</span>
           <span><strong>Category:</strong> {{ .Category }}</span>
         </div>
         <div class="query-details">
           <span>{{ .Description }}</span>
-          <span>For more information, <a href="{{ .QueryURI }}" target="_blank">click here</a></span>
+          <span><a href="{{ .QueryURI }}" target="_blank">{{ .QueryURI }}</a></span>
         </div>
       </div>
       <details>
-        <summary>Results</summary>
+        <summary>Results ({{ len .Files }})</summary>
         {{- range .Files}}
         {{- $vulLine := .Line -}}
         <div class="vulnerable-info">
           <div class="vulnerable-info-header">
-            <strong>{{ .FileName }}</strong>
-            <span>Row {{ $vulLine }}</span>
+            <strong>File: {{ .FileName }}</strong>
+            <span>Line {{ $vulLine }}</span>
           </div>
           <div class="vulnerable-info-details">
             <span><strong>Expected:</strong> {{ .KeyExpectedValue }}</span>
