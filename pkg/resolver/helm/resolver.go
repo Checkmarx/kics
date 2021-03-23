@@ -46,7 +46,7 @@ func (r *Resolver) SupportedTypes() []model.FileKind {
 // renderHelm will use helm binary to render helm templates
 func renderHelm(path string) (*[]splitManifest, error) {
 	client := newClient()
-	test, err := runInstall([]string{path}, client, &values.Options{}, nil)
+	test, err := runInstall([]string{path}, client, &values.Options{})
 	if err != nil {
 		return nil, err
 	}
