@@ -80,17 +80,17 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 		if path[0] == "" || strings.Contains(path[0], "secrets.yaml") || strings.Contains(path[0], "secret.yaml") {
 			continue
 		}
-		if origData[path[0]] == nil {
+		if origData[filepath.FromSlash(path[0])] == nil {
 			continue
 		}
-		idMap, err := getIDMap(origData[path[0]])
+		idMap, err := getIDMap(origData[filepath.FromSlash(path[0])])
 		if err != nil {
 			return nil, err
 		}
 		splitedManifest = append(splitedManifest, splitManifest{
 			path:       path[0],
-			content:    []byte(splited),
-			original:   origData[path[0]], // get original data from template
+			content:    []byte(strings.ReplaceAll(splited, "\r", "")),
+			original:   origData[filepath.FromSlash(path[0])], // get original data from template
 			splitID:    lineID,
 			splitIDMap: idMap,
 		})
@@ -102,7 +102,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 func toMap(files []*chart.File) map[string][]byte {
 	mapFiles := make(map[string][]byte)
 	for _, file := range files {
-		mapFiles[file.Name] = file.Data
+		mapFiles[file.Name] = []byte(strings.ReplaceAll(string(file.Data), "\r", ""))
 	}
 	return mapFiles
 }
