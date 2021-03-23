@@ -103,14 +103,13 @@ func NewInspector(
 
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to get queries")
+		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
 	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
-		log.
-			Err(err).
+		log.Err(err).
 			Msgf("Inspector failed to get general query, query=%s", "common")
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
@@ -118,8 +117,7 @@ func NewInspector(
 		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
-			log.
-				Err(err).
+			log.Err(err).
 				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
 
 			continue
@@ -138,8 +136,7 @@ func NewInspector(
 			).PrepareForEval(ctx)
 			if err != nil {
 				sentry.CaptureException(err)
-				log.
-					Err(err).
+				log.Err(err).
 					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
 
 				continue
@@ -158,7 +155,7 @@ func NewInspector(
 	queriesNumber := sumAllAggregatedQueries(opaQueries)
 
 	log.Info().
-		Msgf("Inspector initialized, number of queries=%d\n", queriesNumber)
+		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
 	return &Inspector{
 		queries:        opaQueries,
@@ -270,15 +267,15 @@ func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	results, err := ctx.query.opaQuery.Eval(timeoutCtx, options...)
 	if err != nil {
 		if topdown.IsCancel(err) {
-			return nil, errors.Wrap(err, "Query executing timeout exited")
+			return nil, errors.Wrap(err, "query executing timeout exited")
 		}
 
-		return nil, errors.Wrap(err, "fFiled to evaluate query")
+		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
 	if c.enableCoverageReport && cov != nil {
 		module, parseErr := ast.ParseModule(ctx.query.metadata.Query, ctx.query.metadata.Content)
 		if parseErr != nil {
-			return nil, errors.Wrap(parseErr, "Failed to parse coverage module")
+			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
 		}
 
 		c.coverageReport = cov.Report(map[string]*ast.Module{

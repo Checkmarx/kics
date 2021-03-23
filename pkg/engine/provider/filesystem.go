@@ -106,7 +106,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context, extensions mo
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).
-				Msgf("filesystem files provider couldn't parse file, file=%s", info.Name())
+				Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
 		}
 		return nil
 	})
@@ -118,20 +118,20 @@ func closeFile(file *os.File, info os.FileInfo) {
 	if err := file.Close(); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).
-			Msgf("filesystem couldn't close file, file=%s", info.Name())
+			Msgf("Filesystem couldn't close file, file=%s", info.Name())
 	}
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-			log.Info().Msgf("directory ignored: %s", path)
+			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
 		return true, nil
 	}
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		log.Info().Msgf("file ignored: %s", path)
+		log.Info().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {

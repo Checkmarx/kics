@@ -9,6 +9,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -22,7 +23,6 @@ import (
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/getsentry/sentry-go"
-	"github.com/gookit/color"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -43,7 +43,6 @@ var (
 
 	noProgress  bool
 	types       []string
-	noColor     bool
 	min         bool
 	outputLines int
 	//go:embed img/kics-console
@@ -57,7 +56,6 @@ var scanCmd = &cobra.Command{
 		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		log.Trace().Msg("running 'scan' command")
 		return scan()
 	},
 }
@@ -66,7 +64,6 @@ var listPlatformsCmd = &cobra.Command{
 	Use:   "list-platforms",
 	Short: "List supported platforms",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		log.Trace().Msg("running 'list-platforms' command")
 		for _, v := range source.ListSupportedPlatforms() {
 			fmt.Println(v)
 		}
@@ -75,7 +72,7 @@ var listPlatformsCmd = &cobra.Command{
 }
 
 func initializeConfig(cmd *cobra.Command) error {
-	log.Debug().Msg("initializing configuration file")
+	log.Debug().Msg("console.initializeConfig()")
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -85,14 +82,14 @@ func initializeConfig(cmd *cobra.Command) error {
 		if !info.IsDir() {
 			configpath = filepath.Dir(path)
 		}
-		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, "kics.config")))
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
 			}
 			return err
 		}
-		cfgFile = filepath.ToSlash(filepath.Join(path, "kics.config"))
+		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
 	}
 
 	v := viper.New()
@@ -114,14 +111,14 @@ func initializeConfig(cmd *cobra.Command) error {
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) {
-	log.Debug().Msg("binding flags to configuration file")
+	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
 			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
-				log.Err(err).Msg("failed to bind Viper flags")
+				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
 		if !f.Changed && v.IsSet(f.Name) {
@@ -136,7 +133,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
 			err := cmd.Help()
 			if err != nil {
-				log.Err(err).Msg("unable to show help message")
+				log.Err(err).Msg("Unable to show help message")
 			}
 			os.Exit(1)
 		}
@@ -152,11 +149,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 		}
 		valStr := strings.Join(paramSlice, ",")
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", valStr)); err != nil {
-			log.Err(err).Msg("failed to get Viper flags")
+			log.Err(err).Msg("Failed to get Viper flags")
 		}
 	default:
 		if err := cmd.Flags().Set(flagName, fmt.Sprintf("%v", val)); err != nil {
-			log.Err(err).Msg("failed to get Viper flags")
+			log.Err(err).Msg("Failed to get Viper flags")
 		}
 	}
 }
@@ -189,7 +186,6 @@ func initScanCmd() {
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
@@ -310,17 +306,14 @@ func scan() error {
 		return errlog
 	}
 
-	if noColor {
-		log.Debug().Msg("colors disabled")
-		color.Disable()
-	}
-
 	printer := consoleHelpers.NewPrinter(min)
-	printer.Success.Printf("\n%s\n\n", banner)
+	if !Silent {
+		printer.Success.Printf("\n%s\n", banner)
+	}
 
 	versionMsg := fmt.Sprintf("Scanning with %s\n\n", getVersion())
 	fmt.Println(versionMsg)
-	log.Info().Msgf(versionMsg)
+	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
 	scanStartTime := time.Now()
 
@@ -410,10 +403,10 @@ func resolveOutputs(
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+	log.Debug().Msg("console.printOutput()")
 	if outputPath == "" {
 		return nil
 	}
-	log.Debug().Msgf("writing output to %s", outputPath)
 
 	if strings.Contains(outputPath, ".") {
 		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
@@ -425,9 +418,11 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 		}
 	}
 
-	ok := consoleHelpers.ValidateReportFormats(formats)
-	if ok == nil {
-		ok = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
+	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
+
+	err := consoleHelpers.ValidateReportFormats(formats)
+	if err == nil {
+		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
 	}
-	return ok
+	return err
 }

@@ -27,6 +27,9 @@ bin
 # kics configuration file
 kics.config
 
+# Results
+results.json
+
 # Sarif file
 *.sarif
 

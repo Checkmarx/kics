@@ -95,7 +95,8 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
-		log.Err(err).Msgf("failed to get filesystem source rego library %s", pathToLib)
+		log.Err(err).
+			Msgf("Failed to get filesystem source rego library %s", pathToLib)
 	}
 
 	return string(content), err
@@ -164,6 +165,8 @@ func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.Qu
 		}
 		if checkQueryExclude(query.Metadata["id"], excludeQueries.ByIDs) ||
 			checkQueryExclude(query.Metadata["category"], excludeQueries.ByCategories) {
+			log.Debug().
+				Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
 			continue
 		}
 

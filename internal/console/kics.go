@@ -7,7 +7,9 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/getsentry/sentry-go"
+	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -25,6 +27,9 @@ var (
 	verbose  bool
 	logFile  bool
 	logLevel string
+	noColor  bool
+
+	Silent bool
 
 	rootCmd = &cobra.Command{
 		Use:   "kics",
@@ -38,7 +43,9 @@ func initialize() error {
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.PersistentFlags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	rootCmd.PersistentFlags().StringVarP(&logLevel, "log-level", "", "INFO", "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "increase verbosity")
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "also print logs in stdout increasing verbosity")
+	rootCmd.PersistentFlags().BoolVarP(&Silent, "silent", "s", false, "discards all stdout messages")
+	rootCmd.PersistentFlags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 
 	if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil {
 		return err
@@ -68,7 +75,7 @@ func setLogLevel() {
 	case "FATAL":
 		zerolog.SetGlobalLevel(zerolog.FatalLevel)
 	default:
-		log.Warn().Msg("invalid log level, setting default INFO level")
+		log.Warn().Msg("Invalid log level, setting default INFO level")
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	}
 }
@@ -76,25 +83,32 @@ func setLogLevel() {
 func setupLogs() error {
 	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
 	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
-
 	setLogLevel()
 
 	if verbose {
-		log.Debug().Msg("verbose mode, redirecting logs to stdout")
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 	}
 
+	if noColor {
+		color.Disable()
+	}
+
 	if logFile {
-		log.Debug().Msg("creating info.log file")
-		file, err := os.OpenFile("info.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+		file, err := os.OpenFile(constants.LogFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			return err
 		}
 		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
 	}
 
-	mw := io.MultiWriter(consoleLogger, fileLogger)
-	log.Logger = log.Output(mw)
+	if Silent {
+		color.SetOutput(io.Discard)
+		os.Stdout = nil
+	} else {
+		mw := io.MultiWriter(consoleLogger, fileLogger)
+		log.Logger = log.Output(mw)
+	}
+
 	return nil
 }
 
@@ -112,19 +126,26 @@ func insertScanCmd() bool {
 
 // Execute starts kics execution
 func Execute() {
+	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
+
+	err := sentry.Init(sentry.ClientOptions{})
+	if err != nil {
+		log.Err(err).Msg("Failed to initialize sentry")
+	}
 	defer sentry.Flush(timeMult * time.Second)
+
 	if err := initialize(); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("failed to run application")
+		log.Err(err).Msg("Failed to run application")
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("failed to run application")
 	}
 
 	if err := setupLogs(); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("failed to initialize logs")
+		log.Err(err).Msg("Failed to initialize logs")
 	}
 }
