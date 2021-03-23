@@ -118,7 +118,7 @@ Flags:
   -o, --output-path string           directory path to store reports
   -p, --path string                  path or directory path to scan
   -d, --payload-path string          path to store internal representation JSON file
-      --preview-lines int            number of lines to be display in CLI results (default: 3) (default 3)
+      --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default "./assets/queries")
       --report-formats strings       formats in which the results will be exported (json, sarif)
   -t, --type strings                 case insensitive list of platform types to scan

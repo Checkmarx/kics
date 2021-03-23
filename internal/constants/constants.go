@@ -14,3 +14,9 @@ const LogFile = "info.log"
 
 // DefaultConfigFilename - default configuration filename
 const DefaultConfigFilename = "kics.config"
+
+// MinimumPreviewLines - default minimum preview lines number
+const MinimumPreviewLines = 1
+
+// MinimumPreviewLines - default maximum preview lines number
+const MaximumPreviewLines = 30

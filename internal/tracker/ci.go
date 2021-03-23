@@ -1,6 +1,10 @@
 package tracker
 
-import "errors"
+import (
+	"fmt"
+
+	"github.com/Checkmarx/kics/internal/constants"
+)
 
 // CITracker contains information of how many queries were loaded and executed
 // and how many files were found and executed
@@ -16,8 +20,9 @@ type CITracker struct {
 // NewTracker will create a new instance of a tracker with the number of lines to display in results output
 // number of lines can not be smaller than 1
 func NewTracker(previewLines int) (*CITracker, error) {
-	if previewLines < 1 {
-		return &CITracker{}, errors.New("output lines number minimum is 1")
+	if previewLines < constants.MinimumPreviewLines || previewLines > constants.MaximumPreviewLines {
+		return &CITracker{},
+			fmt.Errorf("output lines minimum is %v and maximum is %v", constants.MinimumPreviewLines, constants.MaximumPreviewLines)
 	}
 	return &CITracker{
 		lines: previewLines,
