@@ -242,6 +242,7 @@ isCommonKey(p) {
 	contains(lower(p), black)
 }
 
+# verifies if the resource(statement.Principal.AWS) contains an ARN that points to a specific IAM user
 allowsAllPrincipalsToAssume(resource, statement) {
 	is_string(resource) == true
 	contains(resource, "arn:aws:iam::")
