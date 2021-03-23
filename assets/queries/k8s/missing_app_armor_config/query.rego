@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.annotations", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.annotations", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name[%s].annotations should contain key: '%s'", [metadata.name, expectedKey]),
 		"keyActualValue": sprintf("metadata.name[%s].annotations doesn't contain key: '%s'", [metadata.name, expectedKey]),
@@ -26,7 +26,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.annotations", [metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.annotations", [metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name[%s].annotations should contain AppArmor profile config: '%s'", [metadata.name, expectedKey]),
 		"keyActualValue": sprintf("metadata.name[%s].annotations doesn't contain AppArmor profile config: '%s'", [metadata.name, expectedKey]),
