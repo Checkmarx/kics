@@ -2,6 +2,6 @@
 	{
 		"queryName": "Readiness Probe Is Not Configured",
 		"severity": "MEDIUM",
-		"line": 8
+		"line": 9
 	}
 ]

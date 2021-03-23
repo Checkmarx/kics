@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Chown Flag Exists",
+    "severity": "LOW",
+    "line": 4
+  }
+]

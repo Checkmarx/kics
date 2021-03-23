@@ -13,10 +13,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.securityContext.capabilities.drop", [metadata.name, types[x], containers[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities.drop", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("In metadata.name=%s.spec.%s.name=%s.securityContext.capabilities.drop, 'ALL' should be listed ", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("In metadata.name=%s.spec.%s.name=%s.securityContext.capabilities.drop, 'ALL' is not listed", [metadata.name, types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("In metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities.drop, 'ALL' should be listed ", [metadata.name, types[x], containers[c].name]),
+		"keyActualValue": sprintf("In metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities.drop, 'ALL' is not listed", [metadata.name, types[x], containers[c].name]),
 	}
 }
 
@@ -33,10 +33,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.name=%s.securityContext.capabilities.drop", [metadata.name, types[x], containers[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.%s.name={{%s}}.securityContext.capabilities.drop", [metadata.name, types[x], containers[c].name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("In metadata.name=%s.spec.template.spec.%s.name=%s.securityContext.capabilities.drop, 'ALL' should be listed ", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("In metadata.name=%s.spec.template.spec.%s.name=%s.securityContext.capabilities.drop, 'ALL' is not listed", [metadata.name, types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("In metadata.name={{%s}}.spec.template.spec.%s.name={{%s}}.securityContext.capabilities.drop, 'ALL' should be listed ", [metadata.name, types[x], containers[c].name]),
+		"keyActualValue": sprintf("In metadata.name={{%s}}.spec.template.spec.%s.name={{%s}}.securityContext.capabilities.drop, 'ALL' is not listed", [metadata.name, types[x], containers[c].name]),
 	}
 }
 
