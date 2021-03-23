@@ -329,7 +329,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 		if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
 			log.Debug().
-				Msgf("Excluding result simID=%s", vulnerability.SimilarityID)
+				Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
 		} else {
 			vulnerabilities = append(vulnerabilities, vulnerability)
 		}

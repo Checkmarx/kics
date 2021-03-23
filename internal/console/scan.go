@@ -60,17 +60,6 @@ var scanCmd = &cobra.Command{
 	},
 }
 
-var listPlatformsCmd = &cobra.Command{
-	Use:   "list-platforms",
-	Short: "List supported platforms",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		for _, v := range source.ListSupportedPlatforms() {
-			fmt.Println(v)
-		}
-		return nil
-	},
-}
-
 func initializeConfig(cmd *cobra.Command) error {
 	log.Debug().Msg("console.initializeConfig()")
 	if cfgFile == "" {
@@ -222,8 +211,6 @@ func initScanCmd() {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to add command required flags")
 	}
-
-	scanCmd.AddCommand(listPlatformsCmd)
 }
 
 func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {

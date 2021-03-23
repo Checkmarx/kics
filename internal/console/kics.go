@@ -31,6 +31,8 @@ var (
 	noColor  bool
 	silent   bool
 
+	warnings = make(map[string]bool)
+
 	rootCmd = &cobra.Command{
 		Use:   "kics",
 		Short: "Keeping Infrastructure as Code Secure",
@@ -41,10 +43,11 @@ func initialize() error {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(generateIDCmd)
 	rootCmd.AddCommand(scanCmd)
+	rootCmd.AddCommand(listPlatformsCmd)
 	rootCmd.PersistentFlags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
 	rootCmd.PersistentFlags().StringVarP(&logLevel, "log-level", "", "INFO", "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "also print logs in stdout increasing verbosity")
-	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silence stdout messages")
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "write logs to stdout too (mutually exclusive with silent)")
+	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silence stdout messages (mutually exclusive with verbose)")
 	rootCmd.PersistentFlags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 
 	if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil {
@@ -53,8 +56,7 @@ func initialize() error {
 
 	initScanCmd()
 	if insertScanCmd() {
-		log.Warn().Msg("DEPRECATION WARNING: adding 'scan' sub-command as argument" +
-			" for future versions use 'kics scan'")
+		warnings["DEPRECATION WARNING: for future versions use 'kics scan'"] = true
 		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
 	}
 	return nil
@@ -75,7 +77,7 @@ func setLogLevel() {
 	case "FATAL":
 		zerolog.SetGlobalLevel(zerolog.FatalLevel)
 	default:
-		log.Warn().Msg("Invalid log level, setting default INFO level")
+		warnings["Invalid log level, setting default INFO level"] = true
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	}
 }
@@ -113,6 +115,10 @@ func setupLogs() error {
 	mw := io.MultiWriter(consoleLogger, fileLogger)
 	log.Logger = log.Output(mw)
 
+	for warn := range warnings {
+		log.Warn().Msgf("%v", warn)
+	}
+
 	return nil
 }
 
@@ -141,7 +147,13 @@ func Execute() error {
 
 	if err := initialize(); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to run application")
+		log.Err(err).Msg("Failed to initialize CLI")
+		return err
+	}
+
+	if err := setupLogs(); err != nil {
+		sentry.CaptureException(err)
+		log.Err(err).Msg("Failed to initialize logs")
 		return err
 	}
 
@@ -151,10 +163,5 @@ func Execute() error {
 		return err
 	}
 
-	if err := setupLogs(); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to initialize logs")
-		return err
-	}
 	return nil
 }
