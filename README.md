@@ -1,12 +1,14 @@
 [![checkmarx](https://img.shields.io/endpoint?url=https://pgp36n22ol.execute-api.eu-west-1.amazonaws.com/dev/cxflowcache-results?style=plastic&logoWidth=20&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADbklEQVRYhc2XTWidRRSGn3MJl1AkZFFcFCkFIYKCYMEgIhZEMtNS2kHBvxYbl1kUIqELQXHhQigtCK266EIoSt0YplbsTJGqaFFahC6yiiJFUIJ2IUGClJLj4vvu/X7uTC7cJOoLH5eZM3Ped37OOXPhP4akOl20XeAQsB+YAsZH9H8HuAVcAxa9CStDBbhgDyKcAfaMSJoVo8pZEd7wJqwNCHDRdlSZF+H0FhO3cR3FeBv+BOjUDM8InEZhm79pFT5w0Xb6Aly0Eyjvb+OqGxBVBzwJMAaA8jLCTrQ3olRbHNBv5TcKxoCH6e10z6cKKMeAr8ZKwsN94r5MABaAd7wJ6yMKwEU7A8SG/+J3Gqo78GBi7tXNkpf4giIUG1CYBOiUl2FHYuLNLSAH1SnQXQnDbYBOlkTZNHmRU+QbkG7bJsi3UF3CQbRS1OFoxwSeRplEuOpN+D1LHO048DbKfNJ3gXPQzANZuGh3CHyNchm4gPKji/axzNgp4BrKfN6jnvU23KwJSMhsds2iPF5rT6jqJy7ae2vEHRftUVR/QNm7wXoCIid6jTIMhYEc0BRzf/9ISpuI7EK54KI1qoyrckZgdsBXfTHCe8Cr3oQ7PdfVEQjNOG3mhC8z454CzolwQ4TZDeavIjwPHK+TVzswHJ+jfIhwNGGbHTL3e+CIN+HnlDF/B2rwJqwjzAFLw5RW0HXgJLAvRw79HUi8S1qavAl/uWifBb0BMjGEfQXkmDfhSr2zLHr3ACveFvknH4YJTd6EZUVe2ZBauQI8UicvI+Qt4A+EXxH9zkV7XyUgVbczuGjCIsqpxJy7wAmE/Ymn1wzK6yjdYqxMA+9C/wiq2ltbSR7Cayi7FZ4rZulPKnLkognXM7uyL9H3BPR2QGSwFEv+eLwJdxFeFOEBhEcReShLXvjrtkoxSFEIe2G4BkzWRWjxGs6iLGLLG42p+5ImOcCaN2G9J2AJaJRMgQMu2peAj0cty2WpfwE4kDAvQZWILgEzrQEd4CNgwUXzS/OM2ncm294N2bpwqS7gvMKbAjsTA/eCtJy0Y3RYuwlVbotwHspL6E1YFWXuX3iSg4LAnDdhtS+gFL2oxSN0eyEsICxWzRZctAfL0rpnK3kVbolw3JvwWVNPAi7aLsohZNN/Tv8GllEuI3zaLsX/C/wDM7pjD59N2pkAAAAASUVORK5CYII=)](https://sast.checkmarx.net/cxwebclient/portal#/projectState/702/Summary)
-[![codecov](https://codecov.io/gh/Checkmarx/kics/branch/master/graph/badge.svg?token=SN0NO4H46G)](https://codecov.io/gh/Checkmarx/kics)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Checkmarx/kics)](https://goreportcard.com/report/github.com/Checkmarx/kics)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ceddb5b1b37d4edfa56440842c6248a4)](https://www.codacy.com/gh/Checkmarx/kics/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Checkmarx/kics&amp;utm_campaign=Badge_Grade)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Checkmarx_kics&metric=alert_status)](https://sonarcloud.io/dashboard?id=Checkmarx_kics)
+[![codecov](https://codecov.io/gh/Checkmarx/kics/branch/master/graph/badge.svg?token=SN0NO4H46G)](https://codecov.io/gh/Checkmarx/kics)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Latest Release](https://img.shields.io/github/v/release/checkmarx/kics)](https://github.com/checkmarx/kics/releases)
+![Docker Pulls](https://img.shields.io/docker/pulls/checkmarx/kics)
 [![Documentation](https://img.shields.io/badge/docs-viewdocs-blue.svg?style=flat-square "Viewdocs")](https://docs.kics.io/)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-black.png" width="250">
 
