@@ -48,11 +48,11 @@ func TestHelm_Resolve(t *testing.T) { // nolint
 apiVersion: v1
 kind: Service
 metadata:
-  name: RELEASE-NAME-test_helm
+  name: kics-helm-test_helm
   labels:
     helm.sh/chart: test_helm-0.1.0
     app.kubernetes.io/name: test_helm
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -64,7 +64,7 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: test_helm
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
 `),
 						OriginalData: []byte(`# KICS_HELM_ID_0:
 apiVersion: v1
@@ -114,11 +114,11 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: RELEASE-NAME-test_helm_subchart
+  name: kics-helm-test_helm_subchart
   labels:
     helm.sh/chart: test_helm_subchart-0.1.0
     app.kubernetes.io/name: test_helm_subchart
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 `),
@@ -148,11 +148,11 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: RELEASE-NAME-subchart
+  name: kics-helm-subchart
   labels:
     helm.sh/chart: subchart-0.1.0
     app.kubernetes.io/name: subchart
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -164,7 +164,7 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: subchart
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
 `),
 						OriginalData: []byte(`# KICS_HELM_ID_0:
 apiVersion: v1

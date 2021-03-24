@@ -84,11 +84,11 @@ func TestResolver_Resolve(t *testing.T) {
 apiVersion: v1
 kind: Service
 metadata:
-  name: RELEASE-NAME-test_helm
+  name: kics-helm-test_helm
   labels:
     helm.sh/chart: test_helm-0.1.0
     app.kubernetes.io/name: test_helm
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -100,7 +100,7 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: test_helm
-    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/instance: kics-helm
 `),
 						OriginalData: []byte(`# KICS_HELM_ID_0:
 apiVersion: v1

@@ -55,7 +55,7 @@ func runInstall(args []string, client *action.Install,
 		return nil, err
 	}
 
-	client.Namespace = settings.Namespace()
+	client.Namespace = "kics-namespace"
 	return client.Run(chartRequested, vals)
 }
 
@@ -75,7 +75,7 @@ func newClient() *action.Install {
 	cfg := new(action.Configuration)
 	client := action.NewInstall(cfg)
 	client.DryRun = true
-	client.ReleaseName = "RELEASE-NAME"
+	client.ReleaseName = "kics-helm"
 	client.Replace = true // Skip the name check
 	client.ClientOnly = true
 	client.APIVersions = chartutil.VersionSet([]string{})
