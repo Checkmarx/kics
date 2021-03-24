@@ -22,6 +22,8 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/getsentry/sentry-go"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
@@ -282,7 +284,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 //go:embed img/kics-console
 var s string
 
-func scan() error {
+func scan() error { //nolint
 	if noColor {
 		color.Disable()
 	}
@@ -330,6 +332,14 @@ func scan() error {
 		return err
 	}
 
+	// combinedResolver to be used to resolve files and templates
+	combinedResolver, err := resolver.NewBuilder().
+		Add(&helm.Resolver{}).
+		Build()
+	if err != nil {
+		return err
+	}
+
 	store := storage.NewMemoryStorage()
 
 	service := &kics.Service{
@@ -338,6 +348,7 @@ func scan() error {
 		Parser:         combinedParser,
 		Inspector:      inspector,
 		Tracker:        t,
+		Resolver:       combinedResolver,
 	}
 
 	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
