@@ -2,6 +2,9 @@ package helm
 
 import (
 	"fmt"
+	"io"
+	"log"
+	"os"
 	"strings"
 
 	"github.com/pkg/errors"
@@ -23,9 +26,12 @@ var (
 
 func runInstall(args []string, client *action.Install,
 	valueOpts *values.Options) (*release.Release, error) {
+	log.SetOutput(io.Discard)
+	defer log.SetOutput(os.Stderr)
 	if client.Version == "" && client.Devel {
 		client.Version = ">0.0.0-0"
 	}
+
 	name, charts, err := client.NameAndChart(args)
 	if err != nil {
 		return nil, err

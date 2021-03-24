@@ -31,7 +31,7 @@ func TestGetType(t *testing.T) {
 			args: args{
 				filepath: filepath.FromSlash("../../test/fixtures/test_helm"),
 			},
-			want: model.KINDHELM,
+			want: model.KindHELM,
 		},
 		{
 			name: "get_no_type",
@@ -69,7 +69,7 @@ func TestResolver_Resolve(t *testing.T) {
 			name: "test_resolve_helm",
 			args: args{
 				filePath: filepath.FromSlash("../../test/fixtures/test_helm"),
-				kind:     model.KINDHELM,
+				kind:     model.KindHELM,
 			},
 			want: model.ResolvedFiles{
 				File: []model.ResolvedFile{

@@ -62,7 +62,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 	}
 	type args struct {
 		ctx          context.Context
-		in1          string
+		queryName    string
 		extensions   model.Extensions
 		sink         Sink
 		resolverSink ResolverSink
@@ -145,7 +145,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			},
 			args: args{
 				ctx:          nil,
-				in1:          "alb_protocol_is_http",
+				queryName:    "alb_protocol_is_http",
 				extensions:   nil,
 				sink:         mockSink,
 				resolverSink: mockResolverSink,
@@ -159,8 +159,8 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
-				ctx: nil,
-				in1: "template",
+				ctx:       nil,
+				queryName: "template",
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},

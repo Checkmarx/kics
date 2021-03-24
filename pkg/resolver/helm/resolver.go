@@ -47,7 +47,7 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 
 // SupportedTypes returns the supported fileKinds for this resolver
 func (r *Resolver) SupportedTypes() []model.FileKind {
-	return []model.FileKind{model.KINDHELM}
+	return []model.FileKind{model.KindHELM}
 }
 
 // renderHelm will use helm library to render helm charts

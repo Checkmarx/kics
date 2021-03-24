@@ -15,7 +15,7 @@ const (
 	KindYAML      FileKind = "YAML"
 	KindDOCKER    FileKind = "DOCKERFILE"
 	KindCOMMON    FileKind = "*"
-	KINDHELM      FileKind = "HELM"
+	KindHELM      FileKind = "HELM"
 )
 
 // Constants to describe vulnerability's severity

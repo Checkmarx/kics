@@ -69,7 +69,7 @@ func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.Resolved
 func (r *Resolver) GetType(filePath string) model.FileKind {
 	_, err := os.Stat(filepath.Join(filePath, "Chart.yaml"))
 	if err == nil {
-		return model.KINDHELM
+		return model.KindHELM
 	}
 	return model.KindCOMMON
 }

@@ -10,7 +10,7 @@ import (
 
 func TestHelm_SupportedTypes(t *testing.T) {
 	res := &Resolver{}
-	want := []model.FileKind{model.KINDHELM}
+	want := []model.FileKind{model.KindHELM}
 	t.Run("get_suported_type", func(t *testing.T) {
 		got := res.SupportedTypes()
 		if !reflect.DeepEqual(got, want) {
