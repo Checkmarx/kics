@@ -24,6 +24,7 @@ import (
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
 	"json":  report.PrintJSONReport,
 	"sarif": report.PrintSarifReport,
+	"html":  report.PrintHTMLReport,
 }
 
 // ProgressBar represents a Progress

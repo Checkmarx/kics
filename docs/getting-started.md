@@ -108,7 +108,7 @@ Flags:
   -d, --payload-path string       path to store internal representation JSON file
       --preview-lines int          number of lines to be display in CLI results (default: 3)
   -q, --queries-path string       path to directory with queries (default "./assets/queries")
-      --report-formats string     formats in which the results will be exported (json, sarif)
+      --report-formats string     formats in which the results will be exported (json, sarif, html)
   -t, --type strings              case insensitive list of platform types to scan
                                   (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
   -v, --verbose                   increase verbosity
