@@ -288,3 +288,6 @@ The last command will execute the scan and save JSON and SARIF reports on output
 	]
 }
 ```
+
+#### HTML
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
