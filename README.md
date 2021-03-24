@@ -36,9 +36,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Ansible" src="docs/img/logo-ansible.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
 </div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Helm" src="docs/img/logo-helm.png" style="min-width:110px;width:110px;height:101px">&nbsp;&nbsp;&nbsp;
-</div>
 </div>
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
