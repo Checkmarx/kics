@@ -29,11 +29,20 @@
 
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
-<img alt="Terraform" src="img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="CloudFormation" src="img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="img/logo-ansible.png" width="150">
+<div class="row" >
+    <div class="col-6 text-center" >
+        <img alt="Terraform" src="img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
+        <img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+        <img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 text-center" >
+        <img alt="CloudFormation" src="img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
+        <img alt="Ansible" src="img/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
+        <img alt="Helm" src="img/logo-helm.png" width="61" height="70">&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
