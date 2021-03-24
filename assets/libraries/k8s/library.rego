@@ -15,9 +15,3 @@ getSpecInfo(document) = specInfo { # this one can be also used for the result
 checkKind(currentKind, listKinds) {
 	currentKind == listKinds[i]
 }
-
-compareArrays(arrayOne, arrayTwo) {
-	upper(arrayOne[_]) == upper(arrayTwo[_])
-} else = false {
-	true
-}

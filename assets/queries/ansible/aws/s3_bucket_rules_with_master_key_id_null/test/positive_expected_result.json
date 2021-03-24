@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "S3 Bucket Rules With Master Key Id Null",
+		"queryName": "S3 Bucket SSE Disabled",
 		"severity": "HIGH",
 		"line": 6
 	}

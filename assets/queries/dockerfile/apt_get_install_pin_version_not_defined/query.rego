@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	isAptGet(resource.Value)
+	dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "apt-get"
@@ -47,11 +47,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Package '%s' has version defined", [resource.Value[j]]),
 		"keyActualValue": sprintf("Package '%s' does not have version defined", [resource.Value[j]]),
 	}
-}
-
-isAptGet(command) {
-	contains(command[x], "apt-get")
-	contains(command[j], "install")
 }
 
 analyzePackages(j, currentPackage, packages, length) {

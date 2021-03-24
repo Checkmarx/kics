@@ -27,36 +27,14 @@ commandHasNonInteractiveSwitch(command) {
 }
 
 commandHasZypperUsage(command) {
-	index := indexof(command, "zypper install")
+    list := ["zypper in", "zypper remove", "zypper rm", "zypper source-install", "zypper si", "zypper patch"][_]
+	index := indexof(command, list)
 	index != -1
 }
 
 commandHasZypperUsage(command) {
-	index := indexof(command, "zypper in")
-	index != -1
-}
-
-commandHasZypperUsage(command) {
-	index := indexof(command, "zypper remove")
-	index != -1
-}
-
-commandHasZypperUsage(command) {
-	index := indexof(command, "zypper rm")
-	index != -1
-}
-
-commandHasZypperUsage(command) {
-	index := indexof(command, "zypper source-install")
-	index != -1
-}
-
-commandHasZypperUsage(command) {
-	index := indexof(command, "zypper si")
-	index != -1
-}
-
-commandHasZypperUsage(command) {
-	index := indexof(command, "zypper patch")
-	index != -1
+    output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
+    output != null
+    index := indexof(command, output[0])
+    index != -1
 }

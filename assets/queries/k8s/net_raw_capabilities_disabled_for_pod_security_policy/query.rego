@@ -1,13 +1,13 @@
 package Cx
 
-import data.generic.k8s as k8sLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "PodSecurityPolicy"
 	metadata := document.metadata
 	spec := document.spec
-	not k8sLib.compareArrays(spec.requiredDropCapabilities, ["ALL", "NET_RAW"])
+	not commonLib.compareArrays(spec.requiredDropCapabilities, ["ALL", "NET_RAW"])
 
 	result := {
 		"documentId": input.document[i].id,

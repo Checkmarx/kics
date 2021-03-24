@@ -213,6 +213,7 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 
 		return nil
 	}
+	defer f.Close()
 
 	var metadata map[string]interface{}
 	if err := json.NewDecoder(f).Decode(&metadata); err != nil {

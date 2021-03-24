@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -21,7 +22,7 @@ CxPolicy[result] {
 	resources[_] == "secrets"
 
 	rules := document.rules[resource].verbs
-	k8sLib.compareArrays(ruleTaint, rules)
+	commonLib.compareArrays(ruleTaint, rules)
 
 	result := {
 		"documentId": document.id,
