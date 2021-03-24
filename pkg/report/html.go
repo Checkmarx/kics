@@ -2,47 +2,51 @@ package report
 
 import (
 	"bytes"
-	"fmt"
+	_ "embed" // used for embedding report static files
 	"html/template"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 
-	"github.com/rs/zerolog/log"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
 )
 
-const (
-	templateFile = "report.tmpl"
+var (
+	//go:embed template/html/report.tmpl
+	htmlTemplate string
+	//go:embed template/html/report.css
+	cssTemplate string
+	//go:embed template/html/github.svg
+	githubSVG string
+	//go:embed template/html/info.svg
+	infoSVG string
+	//go:embed template/html/vulnerability_fill.svg
+	vulnerabilityFillSVG string
+	//go:embed template/html/vulnerability_out.svg
+	vulnerabilityOutSVG string
 )
 
-var templatePath = ""
+var svgMap = map[string]string{
+	"github.svg":             githubSVG,
+	"info.svg":               infoSVG,
+	"vulnerability_fill.svg": vulnerabilityFillSVG,
+	"vulnerability_out.svg":  vulnerabilityOutSVG,
+}
 
 func includeSVG(name string) template.HTML {
-	svg, err := os.ReadFile(filepath.Join(templatePath, name))
-	if err != nil {
-		log.Err(err).Msgf("failed to open svg: %s", name)
-		return ""
-	}
-	return template.HTML(string(svg)) //nolint
+	return template.HTML(svgMap[name]) //nolint
 }
 
 func includeCSS(name string) template.HTML {
-	css, err := os.ReadFile(filepath.Join(templatePath, name))
-	if err != nil {
-		log.Err(err).Msgf("failed to open svg: %s", name)
-		return ""
-	}
 	minifier := minify.New()
 	minifier.AddFunc("text/css", minifyCSS.Minify)
-	cssMinified, err := minifier.Bytes("text/css", css)
+	cssMinified, err := minifier.String("text/css", cssTemplate)
 	if err != nil {
 		return ""
 	}
-	return template.HTML("<style>" + string(cssMinified) + "</style>") //nolint
+	return template.HTML("<style>" + cssMinified + "</style>") //nolint
 }
 
 // PrintHTMLReport creates a report file on HTML format
@@ -51,17 +55,11 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 		filename += ".html"
 	}
 
-	_, templatePathFromStack, _, ok := runtime.Caller(0)
-	if !ok {
-		return fmt.Errorf("report error: Report template not found")
-	}
-	templatePath = templatePathFromStack
 	templateFuncs["includeSVG"] = includeSVG
 	templateFuncs["includeCSS"] = includeCSS
 
 	fullPath := filepath.Join(path, filename)
-	templatePath = filepath.Join(filepath.Dir(templatePath), "template", "html")
-	t := template.Must(template.New(templateFile).Funcs(templateFuncs).ParseFiles(filepath.Join(templatePath, templateFile)))
+	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))
 
 	_ = os.MkdirAll(path, os.ModePerm)
 	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
