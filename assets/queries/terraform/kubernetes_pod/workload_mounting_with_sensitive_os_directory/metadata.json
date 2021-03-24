@@ -1,9 +1,9 @@
 {
-  "id": "5308a7a8-06f8-45ac-bf10-791fe21de46e",
+  "id": "a737be28-37d8-4bff-aa6d-1be8aa0a0015",
   "queryName": "Workload Mounting With Sensitive OS Directory",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Workload is mounting a volume with sensitive OS Directory",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
-  "platform": "Kubernetes"
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_path",
+  "platform": "Terraform"
 }
