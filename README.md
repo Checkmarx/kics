@@ -20,26 +20,13 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 #### Supported Platforms
 
-<div style="display:flex;flex:1;flex-wrap:wrap;align-items:center;justify-content:center">
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Terraform" src="docs/img/logo-terraform.png" width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
-</div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Kubernetes" src="docs/img/logo-k8s.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
-</div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Docker" src="docs/img/logo-docker.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
-</div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="CloudFormation" src="docs/img/logo-cf.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
-</div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Ansible" src="docs/img/logo-ansible.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
-</div>
-<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Helm" src="docs/img/logo-helm.png" style="min-width:110px;width:110px;height:101px">&nbsp;&nbsp;&nbsp;
-</div>
-</div>
+<img alt="Terraform" src="docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
+<br>
+<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Helm" src="docs/img/logo-helm.png" width="61" height="70">&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
