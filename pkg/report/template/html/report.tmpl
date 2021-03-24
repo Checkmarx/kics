@@ -80,7 +80,9 @@
             {{- $lines := .Lines -}}
             {{- range $idx, $position := .Positions -}}
             <div class="code-line {{ if eq $position $vulLine }}error{{ end }}">
+              {{- if lt $idx (len $lines) -}}
               <span class="code-line-counter">{{ $position }}</span><span class="code">{{index $lines $idx | trimSpaces }}</span>
+              {{- end -}}
             </div>
             {{- end -}}
             {{- end}}
