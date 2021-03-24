@@ -45,6 +45,7 @@ func includeCSS(name string) template.HTML {
 	return template.HTML("<style>" + string(cssMinified) + "</style>") //nolint
 }
 
+// PrintHTMLReport creates a report file on HTML format
 func PrintHTMLReport(path, filename string, body interface{}) error {
 	if !strings.HasSuffix(filename, ".html") {
 		filename += ".html"
