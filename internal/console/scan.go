@@ -175,7 +175,7 @@ func initScanCmd() {
 		"report-formats",
 		"",
 		[]string{},
-		"formats in which the results will be exported (json, sarif)",
+		"formats in which the results will be exported (json, sarif, html)",
 	)
 	scanCmd.Flags().IntVarP(&outputLines, "preview-lines", "", 3, "number of lines to be display in CLI results (default: 3)")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
