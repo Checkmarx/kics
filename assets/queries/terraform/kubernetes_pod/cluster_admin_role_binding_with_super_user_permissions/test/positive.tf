@@ -1,6 +1,6 @@
-resource "kubernetes_cluster_role_binding" "example" {
+resource "kubernetes_cluster_role_binding" "example2" {
   metadata {
-    name = "terraform-example"
+    name = "terraform-example2"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
