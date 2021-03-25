@@ -1,6 +1,6 @@
 {
   "id": "a2fdf451-89dd-451e-af92-bf6c0f4bab96",
-  "queryName": "Config Configuration Aggregator All Regions Not Enabled",
+  "queryName": "Configuration Aggregator to All Regions Disabled",
   "severity": "HIGH",
   "category": "Observability",
   "descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
