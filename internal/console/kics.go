@@ -35,7 +35,7 @@ var (
 
 	rootCmd = &cobra.Command{
 		Use:   "kics",
-		Short: "Keeping Infrastructure as Code Secure",
+		Short: constants.Fullname,
 	}
 )
 
