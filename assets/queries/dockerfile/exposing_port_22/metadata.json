@@ -1,0 +1,9 @@
+{
+  "id": "5907595b-5b6d-4142-b173-dbb0e73fbff8",
+  "queryName": "Exposing Port 22 (SSH)",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Expose only the ports that your application needs and avoid exposing ports like SSH (22)",
+  "descriptionUrl": "https://sysdig.com/blog/dockerfile-best-practices/",
+  "platform": "Dockerfile"
+}

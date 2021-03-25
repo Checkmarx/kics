@@ -1,0 +1,9 @@
+{
+  "id": "3de2d4ff-fe53-4fc9-95d3-2f8a69bf90d6",
+  "queryName": "Redshift Cluster Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure Logging is enabled for Redshift Cluster",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-loggingproperties",
+  "platform": "CloudFormation"
+}

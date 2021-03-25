@@ -60,6 +60,7 @@ This page contains all queries from Dockerfile, classified by severity level.
 
 |            Query            |Category|Description|Help|
 |-----------------------------|---|---|---|
+|Exposing Port 22 (SSH)<br/><sup><sub>5907595b-5b6d-4142-b173-dbb0e73fbff8</sub></sup>|Best Practices|Expose only the ports that your application needs and avoid exposing ports like SSH (22)|<a href="https://sysdig.com/blog/dockerfile-best-practices/">Documentation</a><br/>|
 |Chown Flag Exists<br/><sup><sub>aa93e17f-b6db-4162-9334-c70334e7ac28</sub></sup>|Best Practices|If the user only needs execution permissions on the file and not ownership, don't use --chown option|<a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/>|
 |MAINTAINER Instruction Being Used<br/><sup><sub>99614418-f82b-4852-a9ae-5051402b741c</sub></sup>|Best Practices|The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily|<a href="https://docs.docker.com/engine/reference/builder/#maintainer-deprecated">Documentation</a><br/>|
 |Add Instead of Copy<br/><sup><sub>9513a694-aa0d-41d8-be61-3271e056f36b</sub></sup>|Build Process|Should use COPY instead of ADD unless, running a tar file|<a href="https://docs.docker.com/engine/reference/builder/#add">Documentation</a><br/>|
