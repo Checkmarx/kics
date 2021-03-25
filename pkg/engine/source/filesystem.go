@@ -45,6 +45,8 @@ var (
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types []string) *FilesystemSource {
+	log.Debug().Msg("source.NewFilesystemSource()")
+
 	if len(types) == 0 {
 		types = []string{""}
 	}
@@ -87,13 +89,14 @@ func GetPathToLibrary(platform, relativeBasePath string) string {
 	return libraryFilePath
 }
 
-// GetGenericQuery returns the library.rego for the platform passed in the argument
-func (s *FilesystemSource) GetGenericQuery(platform string) (string, error) {
+// GetQueryLibrary returns the library.rego for the platform passed in the argument
+func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 	pathToLib := GetPathToLibrary(platform, s.Source)
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
-		log.Err(err)
+		log.Err(err).
+			Msgf("Failed to get filesystem source rego library %s", pathToLib)
 	}
 
 	return string(content), err
@@ -162,6 +165,8 @@ func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.Qu
 		}
 		if checkQueryExclude(query.Metadata["id"], excludeQueries.ByIDs) ||
 			checkQueryExclude(query.Metadata["category"], excludeQueries.ByCategories) {
+			log.Debug().
+				Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
 			continue
 		}
 

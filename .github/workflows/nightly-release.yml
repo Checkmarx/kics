@@ -108,6 +108,7 @@ jobs:
           tags: checkmarx/kics:nightly
           build-args: |
             VERSION=nightly-${{ steps.shorthash.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2
         with:
@@ -117,3 +118,4 @@ jobs:
           tags: checkmarx/kics:nightly-alpine
           build-args: |
             VERSION=nightly-${{ steps.shorthash.outputs.sha8 }}
+            COMMIT=${{ github.sha }}

@@ -33,12 +33,15 @@ func NewBuilder() *Builder {
 
 // Add will add kindResolvers for building the resolver
 func (b *Builder) Add(p kindResolver) *Builder {
+	log.Debug().Msgf("resolver.Add()")
 	b.resolvers = append(b.resolvers, p)
 	return b
 }
 
 // Build will create a new intance of a resolver
 func (b *Builder) Build() (*Resolver, error) {
+	log.Debug().Msg("resolver.Build()")
+
 	resolvers := make(map[model.FileKind]kindResolver, len(b.resolvers))
 	for _, resolver := range b.resolvers {
 		for _, typeRes := range resolver.SupportedTypes() {
@@ -58,7 +61,7 @@ func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.Resolved
 		if err != nil {
 			return model.ResolvedFiles{}, nil
 		}
-		log.Info().Msgf("rendered file: %s", filePath)
+		log.Debug().Msgf("resolver.Resolve() rendered file: %s", filePath)
 		return obj, nil
 	}
 	// need to log here
