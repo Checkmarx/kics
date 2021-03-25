@@ -4,8 +4,7 @@
     function_name: functionName
     alias: Dev
     statement_id: lambda-s3-myBucket-create-data-log
-    action: lambda:InvokeFunction
+    action: lambda:AddPermission
     principal: s3.amazonaws.com
     source_arn: arn:aws:s3:eu-central-1:123456789012:bucketName
     source_account: 123456789012
-  register: lambda_policy_action
