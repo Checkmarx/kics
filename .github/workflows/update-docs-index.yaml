@@ -34,6 +34,9 @@ jobs:
         with:
           title: Update documentation index page - ${{ steps.cversion.outputs.version }}
           token: ${{ secrets.KICS_BOT_PAT }}
+          delete-branch: true
+          branch: feature/kicsbot-update-docs-index
+          base: master
           body: |
             **Automated changes**
             Updating documentation index page.

@@ -28,6 +28,8 @@ jobs:
         with:
           title: Update queries documentation - ${{ github.run_id }}
           token: ${{ secrets.KICS_BOT_PAT }}
+          delete-branch: true
+          branch: feature/kicsbot-update-queries-docs
           body: |
             **Automated changes**
             Updating queries' documentation.
