@@ -1,29 +1,34 @@
+
 resource "kubernetes_pod" "positive1" {
   metadata {
     name = "terraform-example"
   }
 
   spec {
-    container {
+    container = [
+     {
       image = "nginx:1.7.9"
-      name  = "example"
+      name  = "example22"
 
+      security_context = {
+        read_only_root_filesystem = false
+      }
 
-      env {
+      env = {
         name  = "environment"
         value = "test"
       }
 
-      port {
+      port = {
         container_port = 8080
       }
 
-      liveness_probe {
-        http_get {
+      liveness_probe = {
+        http_get = {
           path = "/nginx_status"
           port = 80
 
-          http_header {
+          http_header = {
             name  = "X-Custom-Header"
             value = "Awesome"
           }
@@ -32,7 +37,38 @@ resource "kubernetes_pod" "positive1" {
         initial_delay_seconds = 3
         period_seconds        = 3
       }
-    }
+     }
+     ,
+     {
+      image = "nginx:1.7.9"
+      name  = "example22222"
+
+      env = {
+        name  = "environment"
+        value = "test"
+      }
+
+      port = {
+        container_port = 8080
+      }
+
+      liveness_probe = {
+        http_get = {
+          path = "/nginx_status"
+          port = 80
+
+          http_header = {
+            name  = "X-Custom-Header"
+            value = "Awesome"
+          }
+        }
+
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+     }
+   ]
+
 
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]
@@ -51,12 +87,6 @@ resource "kubernetes_pod" "positive1" {
     dns_policy = "None"
   }
 }
-
-
-
-
-
-
 
 
 
@@ -70,9 +100,9 @@ resource "kubernetes_pod" "positive2" {
       image = "nginx:1.7.9"
       name  = "example"
 
-
-      read_only_root_filesystem = false
-
+      security_context = {
+        allow_privilege_escalation = false
+      }
 
       env {
         name  = "environment"
@@ -99,6 +129,7 @@ resource "kubernetes_pod" "positive2" {
       }
     }
 
+
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]
       searches    = ["example.com"]
@@ -116,9 +147,3 @@ resource "kubernetes_pod" "positive2" {
     dns_policy = "None"
   }
 }
-
-
-
-
-
-
