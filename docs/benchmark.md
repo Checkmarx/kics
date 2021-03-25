@@ -4,14 +4,13 @@ The values below were obtained after scanning 150 open source projects with KICS
 the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AWS Cloudformation).
 
 
-| IaC Technology    | Query Accuracy<sup>1</sup>    | Query Coverage<sup>2</sup> | Scanned IaC files​ | Number of Results​ | Average Scan Time​ (s) | Average Project Size |
+| IaC Technology    | Query Accuracy<sup>1</sup>    | Query Coverage<sup>2</sup> | Scanned IaC files​ | Number of Results​ | Average Scan Time​ (s) | Average Project Size (MB) |
 | :---              | :---     | :---    | :--- | :---     | :---| :---|
-| Terraform​         | 99.3%​    | 45.53%​  | 1176​ | 854​      | TBD​ | TBD​ |
-| Docker​            | 81.8%​    | 68%​     | 1017​ | 4064​     | TBD​ | TBD |​
-| Kubernetes​        | 50.3%​    | 87.6%​   | 6089​ | 22436​    | TBD​ | TBD​ |​
-| CloudFormation​    | 74.1%    | 40.5%​   | 1769​ | 6376​     | TBD​ | TBD |​
-| Ansible ​          | 7% (?)   |​ 54%​     | 3367​ | 15310​    | TBD​ | TBD |​
-
+| Terraform​         | 99.7%​    | 46%     | 1176​ | 709      | 6.6  | 33.4​ |
+| Docker​            | 98.8%​​    | 68%​     | 1017​ | 5109     | 11   | 0.7 |​
+| Kubernetes​        | 99.3%​​    | 88.7%​   | 6089​ | 21753    | 7    | 90 |​
+| CloudFormation​    | 95%​      | 73%​     | 1769​ | 5343     | 10.2 | 4.8 |​
+| Ansible ​          | 100%     |​ 54%​     | 3367​ | 1320     | 23.3 | 4.1 |​
 
 ---
 
@@ -28,12 +27,12 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 
 |Measure                        | Value  |
 | :---                          | :---   |
-| **Average Accuracy**          | 98.5%  |    
-| **Total Number of Results**   | 32693  |
-| **Average Query Coverage**    | 66.35% |
+| **Average Accuracy**          | 98.6%  |    
+| **Total Number of Results**   | 34234  |
+| **Average Query Coverage**    | 66.4%  |
 | **Total Scanned IaC Files**   | 13418  |
-| **Average Scan Time**         |        |
-| **Average Project Size**      |        |
+| **Average Scan Time (s)**     | 11.2   |
+| **Average Project Size (MB)** | 26.6   |
 
 
 
