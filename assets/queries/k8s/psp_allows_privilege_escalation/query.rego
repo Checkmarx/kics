@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	document.kind == "PodSecurityPolicy"
 
-	object.get(document.spec, "allowPrivilegeEscalation", "undefined") == "undefined"
+	object.get(specInfo.spec, "allowPrivilegeEscalation", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,7 +27,7 @@ CxPolicy[result] {
 
 	document.kind == "PodSecurityPolicy"
 
-	document.spec.allowPrivilegeEscalation == true
+	specInfo.spec.allowPrivilegeEscalation == true
 
 	result := {
 		"documentId": input.document[i].id,

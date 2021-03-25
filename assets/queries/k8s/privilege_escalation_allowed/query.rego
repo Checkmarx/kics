@@ -8,7 +8,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types = {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index].securityContext, "allowPrivilegeEscalation", "undefined") == "undefined"
 
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types = {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 	containers[index].securityContext.allowPrivilegeEscalation == true
 
 	result := {
