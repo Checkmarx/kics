@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Unscanned ECR Image",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "Unscanned ECR Image",
+    "severity": "MEDIUM",
+    "line": 11
+  }
+]
