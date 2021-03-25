@@ -12,7 +12,15 @@
     var tableHeader = document.querySelectorAll(":not(.modal-body) > table > thead > tr > th")
     for (var i = 0; i < tableHeader.length; i++) {
       tableHeader[i].innerHTML = `${tableHeader[i].innerText} <span style="cursor:pointer;" onclick="executeSort(${i})">&uarr;&darr;</span><br/><input id="query-filter-${i}" type="text" onkeyup="filterQueryTable(${tableHeader.length})" onpaste="pasteFilter(${tableHeader.length})"/>`
-    }    
+    }
+    const csvFilename = `${window.location.href.match(/[a-zA-Z]*-queries/)[0]}.csv`
+    const table = document.querySelector(":not(.modal-body) > table")
+    const button = document.createElement("button")
+    button.innerHTML = "Download as csv"
+    button.addEventListener("click", function(){exportToCSV(csvFilename)});
+    console.log(table.parentNode)
+    table.parentNode.insertBefore(button, table)
+    console.log(table.parentNode)
   }
 })();
 
@@ -72,4 +80,39 @@ function removeElement(querySelector, parentElement) {
     }
     element.remove()
   }
+}
+
+function exportToCSV(filename) {
+  var csv = [];
+  var rows = document.querySelectorAll(":not(.modal-body) > table tr");
+  
+  for (var i = 0; i < rows.length; i++) {
+    var row = []
+    cols = rows[i].querySelectorAll("td, th")
+    for (var j = 0; j < cols.length; j++) {
+      var text = `"${cols[j].innerText.replace("\n", " ").replace('"','')}"`
+      console.log(cols[j].tagName)
+      if (cols[j].tagName == "TH") {
+        text = text.match(/[0-9a-zA-Z ]+/)[0]
+      }
+      row.push(text)
+    }
+    csv.push(row.join(","))   
+  }
+
+  // Download CSV file
+  downloadCSV(csv.join("\n"), filename)
+}
+
+function downloadCSV(csv, filename) {
+  var csvFile;
+  var downloadLink;
+
+  csvFile = new Blob([csv], {type: "text/csv"})
+  downloadLink = document.createElement("a")
+  downloadLink.download = filename
+  downloadLink.href = window.URL.createObjectURL(csvFile)
+  downloadLink.style.display = "none"
+  document.body.appendChild(downloadLink)
+  downloadLink.click()
 }
