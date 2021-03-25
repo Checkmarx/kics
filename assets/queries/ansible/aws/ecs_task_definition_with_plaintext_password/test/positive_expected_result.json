@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "ECS Task Definition Container With Plaintext Password",
+    "severity": "HIGH",
+    "line": 11
+  }
+]

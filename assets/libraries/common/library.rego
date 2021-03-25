@@ -256,3 +256,9 @@ allowsAllPrincipalsToAssume(resource, statement) {
 	contains(resource[x], ":root")
 	not contains(statement.Effect, "Deny")
 }
+
+compareArrays(arrayOne, arrayTwo) {
+	upper(arrayOne[_]) == upper(arrayTwo[_])
+} else = false {
+	true
+}

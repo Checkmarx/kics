@@ -17,7 +17,7 @@ nav:
       - Installation: getting-started.md
       - Configuration: configuration-file.md
       - Results: results.md
-  - Architecture: architecture.md
+      - Architecture: architecture.md
   - Queries: 
       - General Info: queries.md
       - Creating Queries: creating-queries.md
@@ -40,6 +40,7 @@ nav:
       - Plans: "https://github.com/Checkmarx/kics/projects"
       - Issues: "https://github.com/Checkmarx/kics/issues"
       - Releases: releases.md
+      - Benchmark: benchmark.md
   - Contribution: CONTRIBUTING.md
   - About: about.md
 
