@@ -7,7 +7,6 @@ CxPolicy[result] {
 	modules := {"community.aws.lambda_policy", "lambda_policy"}
 	lambda := task[modules[m]]
 
-	lambda.action == "lambda:AddPermission"
 	contains(lambda.principal, "*")
 
 	result := {
