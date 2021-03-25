@@ -1,11 +1,9 @@
 package Cx
 
-import data.generic.k8s as k8sLib
-
 CxPolicy[result] {
 	document := input.document[i]
 
-	k8sLib.checkMetadata(document.metadata)
+	checkMetadata(document.metadata)
 	metadata := document.metadata
 
 	result := {
@@ -38,7 +36,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 
-	k8sLib.checkMetadata(document.spec.template.metadata)
+	checkMetadata(document.spec.template.metadata)
 
 	metadata := document.metadata
 
@@ -67,4 +65,16 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'spec.template.spec.%s' doesn't have any Tiller containers", [types[x]]),
 		"keyActualValue": sprintf("'spec.template.spec.%s' contains a Tiller container", [types[x]]),
 	}
+}
+
+checkMetadata(metadata) {
+	contains(metadata.name, "tiller")
+}
+
+checkMetadata(metadata) {
+	object.get(metadata.labels, "app", "undefined") == "helm"
+}
+
+checkMetadata(metadata) {
+	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
 }

@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	isYum(resource.Value)
+    dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "yum"
@@ -47,11 +47,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "The package version should always be specified when using yum install",
 		"keyActualValue": sprintf("No version is specified in package '%s'", [resource.Value[j]]),
 	}
-}
-
-isYum(command) {
-	contains(command[x], "yum")
-	contains(command[j], "install")
 }
 
 analyzePackages(j, currentPackage, packages, length) {

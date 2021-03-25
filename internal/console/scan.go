@@ -22,6 +22,8 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -163,7 +165,7 @@ func initScanCmd() {
 		"report-formats",
 		"",
 		[]string{},
-		"formats in which the results will be exported (json, sarif)",
+		"formats in which the results will be exported (json, sarif, html)",
 	)
 	scanCmd.Flags().IntVarP(&previewLines, "preview-lines", "", 3, "number of lines to be display in CLI results (min: 1, max: 30)")
 	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
@@ -277,12 +279,21 @@ func createService(inspector *engine.Inspector,
 		return nil, err
 	}
 
+	// combinedResolver to be used to resolve files and templates
+	combinedResolver, err := resolver.NewBuilder().
+		Add(&helm.Resolver{}).
+		Build()
+	if err != nil {
+		return nil, err
+	}
+
 	return &kics.Service{
 		SourceProvider: filesSource,
 		Storage:        store,
 		Parser:         combinedParser,
 		Inspector:      inspector,
 		Tracker:        t,
+		Resolver:       combinedResolver,
 	}, nil
 }
 

@@ -67,7 +67,7 @@ KICS is able to infer the format without the need of file extension.
   "payload-path": "file path to store source internal representation in JSON format",
   "preview-lines": 3,
   "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
-  "report-formats": "formats in which the results will be exported (json, sarif)",
+  "report-formats": "formats in which the results will be exported (json, sarif, html)",
   "type": "type of queries to use in the scan",
   "verbose": true
 }
@@ -91,7 +91,7 @@ path: "path to file or directory to scan"
 payload-path: "file path to store source internal representation in JSON format"
 preview-lines: 3
 queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats: "formats in which the results will be exported (json, sarif)"
+report-formats: "formats in which the results will be exported (json, sarif, html)"
 type: "type of queries to use in the scan"
 verbose: true
 ```
@@ -114,7 +114,7 @@ path = "path to file or directory to scan"
 payload-path = "file path to store source internal representation in JSON format"
 preview-lines = 3
 queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats = "formats in which the results will be exported (json, sarif)"
+report-formats = "formats in which the results will be exported (json, sarif, html)"
 type = "type of queries to use in the scan"
 verbose = true
 ```
@@ -137,7 +137,7 @@ verbose = true
 "payload-path" = "file path to store source internal representation in JSON format"
 "preview-lines" = 3
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-"report-formats" = "formats in which the results will be exported (json, sarif)"
+"report-formats" = "formats in which the results will be exported (json, sarif, html)"
 "type" = "type of queries to use in the scan"
 "verbose" = true
 ```

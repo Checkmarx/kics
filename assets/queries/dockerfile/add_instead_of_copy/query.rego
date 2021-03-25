@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "add"
-	not tarfileChecker(resource.Value, ".tar")
-	not tarfileChecker(resource.Value, ".tar.")
+
+    not dockerLib.arrayContains(resource.Value, {".tar", ".tar."})
 
 	result := {
 		"documentId": input.document[i].id,
@@ -13,8 +15,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
 		"keyActualValue": sprintf("'ADD' %s", [resource.Value[0]]),
 	}
-}
-
-tarfileChecker(cmdValue, elem) {
-	contains(cmdValue[_], elem)
 }

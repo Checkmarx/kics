@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KICS Scan Result</title>
+  {{ includeCSS "report.css" }}
+</head>
+<body>
+  <div class="container">
+    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" target="_blank">KICS.IO</a></div>
+    <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
+    <div class="counters">
+    {{- with .SeveritySummary -}}
+      <div class="severity">
+        <div class="kics-orange icon">{{ includeSVG "vulnerability_fill.svg" }}</div>
+        <span class="badge">{{ index .SeverityCounters (severity "high") }}</span>
+        <span class="caption">HIGH</span>
+      </div>
+      <div class="severity">
+        <div class="kics-orange icon">{{ includeSVG "vulnerability_out.svg" }}</div>
+        <span class="badge">{{ index .SeverityCounters (severity "medium") }}</span>
+        <span class="caption">MEDIUM</span>
+      </div>
+      <div class="severity">
+        <div class="kics-purple icon">{{ includeSVG "vulnerability_out.svg" }}</div>
+        <span class="badge">{{ index .SeverityCounters (severity "low") }}</span>
+        <span class="caption">LOW</span>
+      </div>
+      <div class="severity">
+        <div class="kics-purple icon">{{ includeSVG "info.svg" }}</div>
+        <span class="badge">{{ index .SeverityCounters (severity "info") }}</span>
+        <span class="caption">INFO</span>
+      </div>
+    {{- end}}
+    </div>
+    {{- range .Queries}}
+    <hr class="separator"/>
+    <div class="query">
+      <div class="query-info">
+        <div class="query-title">
+          <h2>
+            {{- if eq .Severity "HIGH" -}}
+            <div class="kics-orange">{{ includeSVG "vulnerability_fill.svg" }}</div>
+            {{- end -}}
+            {{- if eq .Severity "MEDIUM" -}}
+            <div class="kics-orange">{{ includeSVG "vulnerability_out.svg" }}</div>
+            {{- end -}}
+            {{- if eq .Severity "LOW" -}}
+            <div class="kics-purple">{{ includeSVG "vulnerability_out.svg" }}</div>
+            {{- end -}}
+            {{- if eq .Severity "INFO" -}}
+            <div class="kics-purple">{{ includeSVG "info.svg" }}</div>
+            {{- end -}}
+            {{- .QueryName -}}
+          </h2>
+          <span><strong>Platform:</strong> {{ .Platform }}</span>
+          <span><strong>Category:</strong> {{ .Category }}</span>
+        </div>
+        <div class="query-details">
+          <span>{{ .Description }}</span>
+          <span><a href="{{ .QueryURI }}" target="_blank">{{ .QueryURI }}</a></span>
+        </div>
+      </div>
+      <details>
+        <summary>Results ({{ len .Files }})</summary>
+        {{- range .Files}}
+        {{- $vulLine := .Line -}}
+        <div class="vulnerable-info">
+          <div class="vulnerable-info-header">
+            <strong>File: {{ .FileName }}</strong>
+            <span>Line {{ $vulLine }}</span>
+          </div>
+          <div class="vulnerable-info-details">
+            <span><strong>Expected:</strong> {{ .KeyExpectedValue }}</span>
+            <span><strong>Found:</strong> {{ .KeyActualValue }}</span>
+          </div>
+          <div class="code-box">
+            {{- with .VulnLines -}}
+            {{- $lines := .Lines -}}
+            {{- range $idx, $position := .Positions -}}
+            <div class="code-line {{ if eq $position $vulLine }}error{{ end }}">
+              {{- if lt $idx (len $lines) -}}
+              <span class="code-line-counter">{{ $position }}</span><span class="code">{{index $lines $idx | trimSpaces }}</span>
+              {{- end -}}
+            </div>
+            {{- end -}}
+            {{- end}}
+          </div>
+        </div>
+        {{- end -}}
+      </details>
+    </div>
+    {{- end -}}
+    <hr class="separator"/>
+    <div class="kics-message">
+      KICS is open and will always stay such. Both the scanning engine and the security queries are clear and open for the software development community.
+    </div>
+    <div class="love">
+      Spread the love:
+    </div>
+    <div class="social-networks">
+      <a href="https://github.com/Checkmarx/kics/" target="_blank">
+        <div>{{ includeSVG "github.svg" }}</div>
+      </a>
+    </div>
+    <div class="report-header-footer">
+      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
+    </div>
+  </div>
+</body>
+</html>

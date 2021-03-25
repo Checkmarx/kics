@@ -3,7 +3,7 @@
   "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "CloudFront Minimum Protocol version should be higher than TLS 1.2",
+  "descriptionText": "CloudFront Minimum Protocol version should be at least TLS 1.2",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html",
   "platform": "CloudFormation"
 }

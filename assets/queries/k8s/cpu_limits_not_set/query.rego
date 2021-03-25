@@ -8,7 +8,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types := {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index].resources.limits, "cpu", "undefined") == "undefined"
 
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types := {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index].resources, "limits", "undefined") == "undefined"
 
@@ -46,7 +46,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types := {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index], "resources", "undefined") == "undefined"
 
