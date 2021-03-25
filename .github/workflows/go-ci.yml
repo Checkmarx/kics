@@ -21,7 +21,7 @@ jobs:
       uses: golangci/golangci-lint-action@v2.5.1
       with:
         version: v1.37
-        args: --timeout 2m --skip-dirs assets,docs
+        args: --timeout 5m --skip-dirs assets,docs
         skip-go-installation: true
   go-generate:
     name: go-generate
