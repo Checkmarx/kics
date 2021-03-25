@@ -8,7 +8,7 @@ require (
 	github.com/containerd/containerd v1.4.4 // indirect
 	github.com/getsentry/sentry-go v0.10.0
 	github.com/golang/mock v1.5.0
-	github.com/google/go-cmp v0.5.3 // indirect
+	github.com/golangci/golangci-lint v1.38.0 // indirect
 	github.com/google/uuid v1.2.0
 	github.com/gookit/color v1.3.8
 	github.com/hashicorp/hcl v1.0.0

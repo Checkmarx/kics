@@ -107,7 +107,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 					log.Err(err).
 						Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
 				}
-				return nil
+				//return nil
 				// ------------------------------------------------------------
 			}
 			return skipFolder
@@ -118,7 +118,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 			return errors.Wrap(err, "failed to open file")
 		}
 		defer closeFile(c, info)
-
+		//não esta na lista
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
 			sentry.CaptureException(err)
