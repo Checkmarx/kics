@@ -8,13 +8,13 @@ CxPolicy[result] {
 	redshiftCluster := task[modules[m]]
 	ansLib.checkState(redshiftCluster)
 
-	redshiftCluster.endpoint_type == "PRIVATE"
+	redshiftCluster.endpoint_type != "PRIVATE"
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.endpoint_type", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_api_gateway.endpoint_type should be set to EDGE or REGIONAL",
-		"keyActualValue": "aws_api_gateway.endpoint_type is PRIVATE",
+		"keyExpectedValue": "'aws_api_gateway.endpoint_type' is 'PRIVATE'",
+		"keyActualValue": "'aws_api_gateway.endpoint_type' is not 'PRIVATE'",
 	}
 }
