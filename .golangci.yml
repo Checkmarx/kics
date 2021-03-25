@@ -106,6 +106,7 @@ issues:
 
 run:
   timeout: 5m
+  allow-parallel-runners: true
   skip-dirs:
     - assets
     - docs
