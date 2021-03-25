@@ -64,7 +64,7 @@ So all you need is:
 
 ## KICS Command
 
-KICS has the following commands avaiable:
+KICS has the following commands available:
 
 ```txt
 Keeping Infrastructure as Code Secure

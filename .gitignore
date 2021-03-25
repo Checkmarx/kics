@@ -28,9 +28,9 @@ bin
 kics.config
 
 # Results
-results.json
+results.*
 
-# Sarif file
+# Sarif files
 *.sarif
 
 # coverage report
