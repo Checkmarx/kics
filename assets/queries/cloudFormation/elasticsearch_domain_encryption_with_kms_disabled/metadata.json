@@ -1,0 +1,9 @@
+{
+	"id": "d926aa95-0a04-4abc-b20c-acf54afe38a1",
+	"queryName": "ElasticSearch Encryption With KMS Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption",
+	"descriptionText": "Check if any ElasticSearch domain isn't encrypted with KMS.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-encryptionatrestoptions",
+	"platform": "CloudFormation"
+}
