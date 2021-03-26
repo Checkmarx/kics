@@ -15,7 +15,7 @@ CxPolicy[result] {
 	rule.to_port == 0
 
 	not isValidProto(rule.proto)
-	isEntireNetwork(rule[cidr_fields[_]])
+	ansLib.isEntireNetwork(rule[cidr_fields[_]])
 
 	result := {
 		"documentId": id,
@@ -24,18 +24,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("ec2_group.rules[%d] is restricted", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] is not restricted", [index]),
 	}
-}
-
-isEntireNetwork(cidr) {
-	is_array(cidr)
-	cidrs = {"0.0.0.0/0", "::/0"}
-	count({x | cidr[x]; cidr[x] == cidrs[j]}) != 0
-}
-
-isEntireNetwork(cidr) {
-	is_string(cidr)
-	cidrs = {"0.0.0.0/0", "::/0"}
-	cidr == cidrs[j]
 }
 
 isValidProto(proto) {

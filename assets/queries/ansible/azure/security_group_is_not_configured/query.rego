@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"azure.azcollection.azure_rm_subnet", "azure_rm_subnet"}
 
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	ansLib.checkState(subnet)
 	fields := ["security_group", "security_group_name"]
 
-	ansLib.checkValue(subnet[fields[f]])
+	commonLib.emptyOrNull(subnet[fields[f]])
 
 	result := {
 		"documentId": id,

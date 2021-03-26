@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"community.aws.cloudwatchlogs_log_group", "cloudwatchlogs_log_group"}
 
@@ -28,7 +29,7 @@ CxPolicy[result] {
 
 	validValues = [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
 
-	count({x | validValues[x]; validValues[x] == value}) == 0
+	not commonLib.inArray(validValues, value)
 
 	result := {
 		"documentId": id,

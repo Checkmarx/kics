@@ -43,7 +43,7 @@ CxPolicy[result] {
 	ansLib.checkState(cluster)
 	fields := ["enable_private_endpoint", "enable_private_nodes"]
 
-	not ansLib.isAnsibleTrue(cluster.private_cluster_config.enable_private_endpoint)
+	not ansLib.isAnsibleTrue(cluster.private_cluster_config[fields[f]])
 
 	result := {
 		"documentId": id,

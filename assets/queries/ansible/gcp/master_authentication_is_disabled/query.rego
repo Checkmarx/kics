@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
@@ -43,7 +44,7 @@ CxPolicy[result] {
 	ansLib.checkState(cluster)
 	fields := ["username", "password"]
 
-	ansLib.checkValue(cluster.master_auth[fields[f]])
+	commonLib.emptyOrNull(cluster.master_auth[fields[f]])
 
 	result := {
 		"documentId": id,
