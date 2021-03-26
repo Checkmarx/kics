@@ -7,8 +7,7 @@ This page contains all queries.
   {%- for severity in data[platform] -%}
     {%- for id in data[platform][severity] %}
 |{{data[platform][severity][id]['queryName']}}<br/><sup><sub>{{id}}</sub></sup>|{{platform -}}
-    |{{severity -}}
-    |{{data[platform][severity][id]['category'] -}}
+    |<span style="color:{{colors[severity]}}">{{severity}}</span>|{{data[platform][severity][id]['category'] -}}
     |{{data[platform][severity][id]['descriptionText'] -}}
     |<a href="{{data[platform][severity][id]['descriptionUrl']}}">Documentation</a><br/>|
     {%- endfor -%}
