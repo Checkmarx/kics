@@ -1,8 +1,7 @@
 [
-	{
-		"queryName": "S3 Bucket With All Permissions",
-		"severity": "LOW",
-		"line": 11,
-		"value": "S3B_181355"
-	}
+  {
+    "queryName": "S3 Bucket With All Permissions",
+    "severity": "LOW",
+    "line": 11
+  }
 ]

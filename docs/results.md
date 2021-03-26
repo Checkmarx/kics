@@ -2,6 +2,7 @@
 KICS can export results in multiple formats which can be seen on the following list:
 - JSON
 - SARIF
+- HTML
 
 To export in one of this formats, the flag output-path can be used with the file path and extension, for example:
 
@@ -15,7 +16,7 @@ KICS also can export multiple format in a single scan, to do this the flags outp
 where the output-path will be the directory containing all report files and report-formats all extensions wanted, like following example:
 
 ```bash
-./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "json,sarif"
+./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "json,sarif,html"
 ```
 
 The last command will execute the scan and save JSON and SARIF reports on output folder.
@@ -40,7 +41,7 @@ The last command will execute the scan and save JSON and SARIF reports on output
 			"platform": "Terraform",
 			"files": [
 				{
-					"file_name": "assets/queries/terraform/kubernetes_pod/container_allow_privilege_escalation_is_true/test/positive.tf",
+					"file_name": "assets/queries/terraform/kubernetes/container_allow_privilege_escalation_is_true/test/positive.tf",
 					"similarity_id": "063ed2389809f5f01ff420b63634700a9545c5e5130a6506568f925cdb0f8e13",
 					"line": 11,
 					"issue_type": "IncorrectValue",
@@ -119,7 +120,7 @@ The last command will execute the scan and save JSON and SARIF reports on output
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets/queries/terraform/kubernetes_pod/container_allow_privilege_escalation_is_true/test/positive.tf"
+									"uri": "assets/queries/terraform/kubernetes/container_allow_privilege_escalation_is_true/test/positive.tf"
 								},
 								"region": {
 									"startLine": 11
@@ -287,3 +288,6 @@ The last command will execute the scan and save JSON and SARIF reports on output
 	]
 }
 ```
+
+#### HTML
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">

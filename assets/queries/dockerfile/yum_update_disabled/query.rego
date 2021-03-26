@@ -1,10 +1,11 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-	cmd := ["yum update", "yum update-to", "yum upgrade", "yum upgrade-to"]
-	some x
-	contains(resource.Value[j], cmd[x])
+
+    dockerLib.arrayContains(resource.Value, {"yum update", "yum update-to", "yum upgrade", "yum upgrade-to"})
 
 	result := {
 		"documentId": input.document[i].id,

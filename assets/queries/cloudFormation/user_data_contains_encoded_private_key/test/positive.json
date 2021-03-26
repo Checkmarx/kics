@@ -1,0 +1,16 @@
+{
+  "Resources":{
+    "myLaunchConfig3":{
+      "Type":"AWS::AutoScaling::LaunchConfiguration",
+      "Properties":{
+        "ImageId":"ami-02354e95b39ca8dec",
+        "SecurityGroups":[ { "Ref":"myEC2SecurityGroup" }, "myExistingEC2SecurityGroup" ],
+        "InstanceType":"m1.large",
+        "KeyName":{
+          "Ref":"KeyName"
+        },
+        "UserData": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpzb21lS2V5"
+      }
+    }
+  }
+}

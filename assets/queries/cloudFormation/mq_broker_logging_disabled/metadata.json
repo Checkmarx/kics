@@ -1,0 +1,9 @@
+{
+	"id": "e519ed6a-8328-4b69-8eb7-8fa549ac3050",
+	"queryName": "MQ Broker Logging Disabled",
+	"severity": "MEDIUM",
+	"category": "Observability",
+	"descriptionText": "Check if MQ Brokers don't have logging enabled in any of the two options possible (audit and general).",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-logs",
+	"platform": "CloudFormation"
+}
