@@ -34,6 +34,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s[%s].metadata.namespace", [listKinds[x], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].metadata.namespace is not set to 'default'", [listKinds[x], name]),
-		"keyActualValue": sprintf("%s[%s].metadata is set to 'default'", [listKinds[x], name]),
+		"keyActualValue": sprintf("%s[%s].metadata.namespace is set to 'default'", [listKinds[x], name]),
 	}
 }
