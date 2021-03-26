@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "User Data Base64 Contains Encoded Private Key",
-		"severity": "HIGH",
-		"line": 5
-	}
-]

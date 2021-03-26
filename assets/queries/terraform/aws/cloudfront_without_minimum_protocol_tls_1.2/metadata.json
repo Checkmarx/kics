@@ -1,0 +1,9 @@
+{
+  "id": "00e5e55e-c2ff-46b3-a757-a7a1cd802456",
+  "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "CloudFront Minimum Protocol version should be at least TLS 1.2",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
+  "platform": "Terraform"
+}

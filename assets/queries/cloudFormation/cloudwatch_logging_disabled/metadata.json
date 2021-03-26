@@ -1,0 +1,9 @@
+{
+	"id": "0f0fb06b-0f2f-4374-8588-f2c7c348c7a0",
+	"queryName": "CloudWatch Logging Disabled",
+	"severity": "MEDIUM",
+	"category": "Observability",
+	"descriptionText": "Check if CloudWatch logging is disabled for Route53 hosted zones",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html#cfn-route53-hostedzone-queryloggingconfig",
+	"platform": "CloudFormation"
+}

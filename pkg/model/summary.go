@@ -2,6 +2,8 @@ package model
 
 import (
 	"sort"
+
+	"github.com/rs/zerolog/log"
 )
 
 // SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
@@ -60,6 +62,7 @@ type Summary struct {
 
 // CreateSummary creates a report for a single scan, based on its scanID
 func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string) Summary {
+	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
 	severitySummary := SeveritySummary{
 		ScanID: scanID,

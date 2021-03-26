@@ -108,14 +108,14 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			return []model.QueryMetadata{q}, nil
 		})
 
-	queriesSource.EXPECT().GetGenericQuery("common").
+	queriesSource.EXPECT().GetQueryLibrary("common").
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary("common")
 			require.NoError(tb, err)
 			return q, nil
 		})
 
-	queriesSource.EXPECT().GetGenericQuery(entry.platform).
+	queriesSource.EXPECT().GetQueryLibrary(entry.platform).
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary(entry.platform)
 			require.NoError(tb, err)
