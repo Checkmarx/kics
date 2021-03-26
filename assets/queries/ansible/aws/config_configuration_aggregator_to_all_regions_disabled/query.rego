@@ -8,30 +8,15 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	cloudwatchlogs := task[modules[m]]
 	ansLib.checkState(cloudwatchlogs)
+	fields := ["account_sources", "organization_source"]
 
-	not ansLib.isAnsibleTrue(cloudwatchlogs.account_sources.all_aws_regions)
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.account_sources.all_aws_regions", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_config_aggregator.account_sources' should have all_aws_regions set to true",
-		"keyActualValue": "'aws_config_aggregator.account_sources' has all_aws_regions set to false",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	cloudwatchlogs := task[modules[m]]
-	ansLib.checkState(cloudwatchlogs)
-
-	not ansLib.isAnsibleTrue(cloudwatchlogs.organization_source.all_aws_regions)
+	not ansLib.isAnsibleTrue(cloudwatchlogs[fields[f]].all_aws_regions)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.organization_source.all_aws_regions", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.%s.all_aws_regions", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_config_aggregator.organization_source' should have all_aws_regions set to true",
-		"keyActualValue": "'aws_config_aggregator.organization_source' has all_aws_regions set to false",
+		"keyExpectedValue": sprintf("'aws_config_aggregator.%s' should have all_aws_regions set to true", [fields[f]]),
+		"keyActualValue": sprintf("'aws_config_aggregator.%s' has all_aws_regions set to false", [fields[f]]),
 	}
 }

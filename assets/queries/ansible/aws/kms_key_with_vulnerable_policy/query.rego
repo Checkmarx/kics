@@ -8,9 +8,11 @@ CxPolicy[result] {
 	aws_kms := task[modules[m]]
 	ansLib.checkState(aws_kms)
 
-	policy_exists := object.get(aws_kms, "policy", "undefined") != "undefined"
-	statement = aws_kms.policy.Statement[_]
-	check_permission(statement) == true
+	statement := aws_kms.policy.Statement[_]
+
+	statement.Principal.AWS == "*"
+	statement.Action[i] == "kms:*"
+	statement.Resource == "*"
 
 	result := {
 		"documentId": id,
@@ -19,10 +21,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_kms.policy is correct",
 		"keyActualValue": "aws_kms.policy is incorrect, the policy statement is too exposed",
 	}
-}
-
-check_permission(statement) {
-	statement.Principal.AWS == "*"
-	statement.Action[i] == "kms:*"
-	statement.Resource == "*"
 }

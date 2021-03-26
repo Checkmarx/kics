@@ -24,15 +24,16 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
+	fields := ["enable_private_endpoint", "enable_private_nodes"]
 
-	object.get(cluster.private_cluster_config, "enable_private_nodes", "undefined") == "undefined"
+	object.get(cluster.private_cluster_config, fields[f], "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is defined",
-		"keyActualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is undefined",
+		"keyExpectedValue": sprintf("gcp_container_cluster.private_cluster_config.%s is defined", [fields[f]]),
+		"keyActualValue": sprintf("gcp_container_cluster.private_cluster_config.%s is undefined", [fields[f]]),
 	}
 }
 
@@ -40,46 +41,15 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
-
-	object.get(cluster.private_cluster_config, "enable_private_endpoint", "undefined") == "undefined"
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config", [task.name, modules[m]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is defined",
-		"keyActualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is undefined",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	cluster := task[modules[m]]
-	ansLib.checkState(cluster)
+	fields := ["enable_private_endpoint", "enable_private_nodes"]
 
 	not ansLib.isAnsibleTrue(cluster.private_cluster_config.enable_private_endpoint)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config.enable_private_endpoint", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config.%s", [task.name, modules[m], fields[f]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is true",
-		"keyActualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is false",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	cluster := task[modules[m]]
-	ansLib.checkState(cluster)
-
-	not ansLib.isAnsibleTrue(cluster.private_cluster_config.enable_private_nodes)
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.private_cluster_config.enable_private_nodes", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is true",
-		"keyActualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is false",
+		"keyExpectedValue": sprintf("gcp_container_cluster.private_cluster_config.%s is true", [fields[f]]),
+		"keyActualValue": sprintf("gcp_container_cluster.private_cluster_config.%s is false", [fields[f]]),
 	}
 }
