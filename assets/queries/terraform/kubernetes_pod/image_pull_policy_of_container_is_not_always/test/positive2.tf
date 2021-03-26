@@ -1,20 +1,3 @@
-resource "kubernetes_pod" "busybox" {
-  metadata {
-    name = "busybox-tf"
-  }
-
-  spec {
-    container {
-      image   = "busybox"
-      command = ["sleep", "3600"]
-      name    = "busybox"
-
-      image_pull_policy = "IfNotPresent"
-    }
-
-    restart_policy = "Always"
-  }
-}
 
 resource "kubernetes_deployment" "example" {
   metadata {
@@ -42,8 +25,8 @@ resource "kubernetes_deployment" "example" {
 
       spec {
         container {
-          image = "nginx:1.7.8"
-          name  = "example"
+          image             = "nginx:1.7.8"
+          name              = "example"
           image_pull_policy = "IfNotPresent"
 
           resources {

@@ -2,11 +2,13 @@
   {
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
     "severity": "LOW",
-    "line": 12
+    "line": 12,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
     "severity": "LOW",
-    "line": 47
+    "line": 30,
+    "fileName": "positive2.tf"
   }
 ]
