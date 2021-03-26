@@ -3,7 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudfront_distribution[name]
 	resource.viewer_certificate.cloudfront_default_certificate == false
-	not checkMinPortocolVersion(resource.viewer_certificate.minimum_protocol_version)
+	not checkMinProtocolVersion(resource.viewer_certificate.minimum_protocol_version)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,6 +14,6 @@ CxPolicy[result] {
 	}
 }
 
-checkMinPortocolVersion("TLSv1.1") = true
+checkMinProtocolVersion("TLSv1.1") = true
 
-checkMinPortocolVersion("TLSv1.2") = true
+checkMinProtocolVersion("TLSv1.2") = true

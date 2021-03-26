@@ -38,6 +38,6 @@ checkStatements(statement) {
 
 policy_check(statement) {
 	statement.Effect == "Allow"
-	commonLib.equalsOrElem(statement.Action, "*")
-	commonLib.equalsOrElem(statement.Resource, "*")
+	commonLib.equalsOrInArray(statement.Action, "*")
+	commonLib.equalsOrInArray(statement.Resource, "*")
 }

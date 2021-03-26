@@ -39,7 +39,7 @@ CxPolicy[result] {
 	resource.viewer_certificate.cloudfront_default_certificate == false
 	protocol_version := resource.viewer_certificate.minimum_protocol_version
 
-	not commonLib.elem(["TLSv1.2_2018", "TLSv1.2_2019"], protocol_version)
+	not commonLib.inArray(["TLSv1.2_2018", "TLSv1.2_2019"], protocol_version)
 
 	result := {
 		"documentId": document.id,

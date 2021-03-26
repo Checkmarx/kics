@@ -5,8 +5,8 @@ import data.generic.common as commonLib
 CxPolicy[result] {
 	firewall_rule := input.document[i].resource.azurerm_redis_firewall_rule[name]
 
-	not commonLib.privateIP(firewall_rule.start_ip)
-	not commonLib.privateIP(firewall_rule.end_ip)
+	not commonLib.isPrivateIP(firewall_rule.start_ip)
+	not commonLib.isPrivateIP(firewall_rule.end_ip)
 
 	result := {
 		"documentId": input.document[i].id,

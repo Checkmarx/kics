@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	statement.Effect == "Allow"
 	terraLib.anyPrincipal(statement)
-	commonLib.containsOrElemContains(statement.Action, "put")
+	commonLib.containsOrInArrayContains(statement.Action, "put")
 
 	result := {
 		"documentId": input.document[i].id,

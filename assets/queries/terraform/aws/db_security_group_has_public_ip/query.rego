@@ -5,7 +5,7 @@ import data.generic.common as commonLib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_security_group[name].ingress
 
-	not commonLib.privateIP(resource.cidr)
+	not commonLib.isPrivateIP(resource.cidr)
 
 	result := {
 		"documentId": input.document[i].id,

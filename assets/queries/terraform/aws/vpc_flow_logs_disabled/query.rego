@@ -8,7 +8,7 @@ CxPolicy[result] {
 	awsVpcId := sprintf("${aws_vpc.%s.id}", [name_vpc])
 
 	awsFlowLogsId := [vpc_id | vpc_id := resource.aws_flow_log[_].vpc_id]
-	not commonLib.elem(awsFlowLogsId, awsVpcId)
+	not commonLib.inArray(awsFlowLogsId, awsVpcId)
 
 	result := {
 		"documentId": input.document[i].id,

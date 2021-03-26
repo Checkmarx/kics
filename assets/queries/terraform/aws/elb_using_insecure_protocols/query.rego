@@ -8,7 +8,7 @@ CxPolicy[result] {
 	policy := input.document[i].resource.aws_load_balancer_policy[name]
 
 	protocol := policy.policy_attribute.name
-	commonLib.elem(insecure_protocols, protocol)
+	commonLib.inArray(insecure_protocols, protocol)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,7 +24,7 @@ CxPolicy[result] {
 
 	some j
 	protocol := policy.policy_attribute[j].name
-	commonLib.elem(insecure_protocols, protocol)
+	commonLib.inArray(insecure_protocols, protocol)
 
 	result := {
 		"documentId": input.document[i].id,

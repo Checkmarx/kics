@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	statement.Effect == "Allow"
 	statement.Resource == "*"
-	commonLib.equalsOrElem(statement.Action, "*")
+	commonLib.equalsOrInArray(statement.Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,

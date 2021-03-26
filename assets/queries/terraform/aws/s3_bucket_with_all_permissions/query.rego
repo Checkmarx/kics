@@ -9,7 +9,7 @@ CxPolicy[result] {
 	statement := policy.Statement[_]
 
 	statement.Effect == "Allow"
-	commonLib.containsOrElemContains(statement.Action, "*")
+	commonLib.containsOrInArrayContains(statement.Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,

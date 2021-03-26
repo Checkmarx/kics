@@ -30,7 +30,7 @@ between(value, min, max) {
 }
 
 # Checks if a list contains an item
-elem(list, item) {
+inArray(list, item) {
 	some i
 	list[i] == item
 }
@@ -41,31 +41,31 @@ emptyOrNull("") = true
 emptyOrNull(null) = true
 
 # Checks if an IP is private
-privateIP(ipVal) {
+isPrivateIP(ipVal) {
 	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
 	some i
 	net.cidr_contains(private_ips[i], ipVal)
 }
 
 # Check if field equals to value or if any element from field equals to value
-equalsOrElem(field, value) {
+equalsOrInArray(field, value) {
 	is_string(field)
 	lower(field) == value
 }
 
-equalsOrElem(field, value) {
+equalsOrInArray(field, value) {
 	is_array(field)
 	some i
 	lower(field[i]) == value
 }
 
 # Check if field contains value or if any element from field contains value
-containsOrElemContains(field, value) {
+containsOrInArrayContains(field, value) {
 	is_string(value)
 	contains(lower(field), value)
 }
 
-containsOrElemContains(field, value) {
+containsOrInArrayContains(field, value) {
 	is_array(field)
 	some i
 	contains(lower(field[i]), value)

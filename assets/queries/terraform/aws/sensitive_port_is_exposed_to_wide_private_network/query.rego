@@ -29,5 +29,5 @@ isTCPorUDP("UDP") = true
 
 isPrivateNetwork(resource) {
 	some i
-	commonLib.privateIP(resource.ingress.cidr_blocks[i])
+	commonLib.isPrivateIP(resource.ingress.cidr_blocks[i])
 }

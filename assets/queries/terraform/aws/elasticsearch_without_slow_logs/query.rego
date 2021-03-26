@@ -19,7 +19,7 @@ CxPolicy[result] {
 	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
 	logType := awsElasticsearchDomain.log_publishing_options.log_type
 
-	not commonLib.elem(["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"], logType)
+	not commonLib.inArray(["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"], logType)
 
 	result := {
 		"documentId": input.document[i].id,

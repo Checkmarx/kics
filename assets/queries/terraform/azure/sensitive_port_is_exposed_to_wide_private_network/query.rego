@@ -11,7 +11,7 @@ CxPolicy[result] {
 	protocol := terraLib.getProtocolList(resource.protocol)[_]
 
 	upper(resource.access) == "ALLOW"
-	commonLib.privateIP(resource.source_address_prefix)
+	commonLib.isPrivateIP(resource.source_address_prefix)
 	terraLib.containsPort(resource, portNumber)
 	isTCPorUDP(protocol)
 

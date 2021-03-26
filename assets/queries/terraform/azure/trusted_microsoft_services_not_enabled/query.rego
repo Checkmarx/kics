@@ -31,7 +31,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[name]
 	bypass := resource.network_rules.bypass
-	not commonLib.elem(bypass, "AzureServices")
+	not commonLib.inArray(bypass, "AzureServices")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -58,7 +58,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	network_rules := input.document[i].resource.azurerm_storage_account_network_rules[name]
 	bypass := network_rules.bypass
-	not commonLib.elem(bypass, "AzureServices")
+	not commonLib.inArray(bypass, "AzureServices")
 
 	result := {
 		"documentId": input.document[i].id,

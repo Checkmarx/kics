@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue_policy[name]
 
 	policy := commonLib.json_unmarshal(resource.policy)
-	commonLib.equalsOrElem(policy.Statement[idx].Action, "*")
+	commonLib.equalsOrInArray(policy.Statement[idx].Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,
