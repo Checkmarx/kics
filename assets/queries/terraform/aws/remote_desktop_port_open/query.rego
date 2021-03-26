@@ -1,12 +1,14 @@
 package Cx
 
-import data.generic.terraform as lib
+import data.generic.terraform as terraformLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name].ingress[x]
 	resource.cidr_blocks[j] == "0.0.0.0/0"
 	resource.protocol == "tcp"
-	portNumber := lib.getPort(3389, lib.portNumbers)
+    portNumber := 3389
+	terraformLib.confirmPort(portNumber, commonLib.tcpPortsMap)
 	resource.from_port <= portNumber
 	resource.to_port >= portNumber
 
@@ -23,7 +25,8 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name].ingress
 	resource.cidr_blocks[j] == "0.0.0.0/0"
 	resource.protocol == "tcp"
-	portNumber := lib.getPort(3389, lib.portNumbers)
+    portNumber := 3389
+	terraformLib.confirmPort(portNumber, commonLib.tcpPortsMap)
 	resource.from_port <= portNumber
 	resource.to_port >= portNumber
 

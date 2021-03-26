@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.terraform as lib
+import data.generic.common as commonLib
 
 portIsKnown(port, knownPorts) = allow {
 	count({x | knownPorts[x][0]; knownPorts[x][0] == port}) != 0
@@ -18,7 +18,7 @@ CxPolicy[result] {
 	currentPort := ingress[j].from_port
 	cidr := ingress[j].cidr_blocks
 
-	not portIsKnown(currentPort, lib.portNumbers)
+	not portIsKnown(currentPort, commonLib.tcpPortsMap)
 	isEntireNetwork(cidr)
 
 	result := {
