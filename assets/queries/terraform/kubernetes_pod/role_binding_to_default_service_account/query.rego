@@ -1,15 +1,17 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_service_account[name]
+	resource := input.document[i].resource.kubernetes_role_binding[name]
 
-	resource.metadata.name == "default"
+	resource.subject[k].kind == "ServiceAccount"
+
+	resource.subject[k].name == "default"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_service_account[%s].metadata.name", [name]),
+		"searchKey": sprintf("resource.kubernetes_role_binding[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_service_account[%s].metadata.name is not default", [name]),
-		"keyActualValue": sprintf("kubernetes_service_account[%s].metadata.name is default", [name]),
+		"keyExpectedValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name is not default", [name, k]),
+		"keyActualValue": sprintf("resource.kubernetes_role_binding[%s].subject[%d].name is default", [name, k]),
 	}
 }
