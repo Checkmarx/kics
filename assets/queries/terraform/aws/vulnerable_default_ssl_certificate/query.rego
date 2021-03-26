@@ -25,8 +25,8 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloudfront_default_certificate is 'false' or not defined",
-		"keyActualValue": "cloudfront_default_certificate is 'true'",
+		"keyExpectedValue": "Attribute 'cloudfront_default_certificate' is 'false' or not defined",
+		"keyActualValue": "Attribute 'cloudfront_default_certificate' is 'true'",
 	}
 }
 
@@ -44,7 +44,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' are defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
-		"keyActualValue": sprintf("'%s' is not defined", [attr[a]]),
+		"keyActualValue": sprintf("Attribute '%s' is not defined", [attr[a]]),
 	}
 }
 

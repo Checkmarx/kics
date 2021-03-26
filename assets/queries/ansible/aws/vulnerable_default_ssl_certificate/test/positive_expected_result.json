@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Vulnerable Default SSL Certificate",
+    "severity": "HIGH",
+    "line": 5
+  },
+  {
+    "queryName": "Vulnerable Default SSL Certificate",
+    "severity": "HIGH",
+    "line": 15
+  }
+]
