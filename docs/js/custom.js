@@ -16,7 +16,13 @@ var headerArray = [];
     for (var i = 0; i < tableHeader.length; i++) {
       headerArray.push(tableHeader[i].innerText.toLowerCase())
       if (!tableHeader[i].innerText.toLowerCase().includes("help")) {
-        tableHeader[i].innerHTML = `<span style="cursor:pointer;" onclick="executeSort(${i})">${tableHeader[i].innerText} &uarr;&darr;</span><br/><input id="query-filter-${i}" type="text" onkeyup="filterQueryTable(${tableHeader.length})" onpaste="pasteFilter(${tableHeader.length})"/>`
+        if (!tableHeader[i].innerText.toLowerCase().includes("description")) {
+          
+          tableHeader[i].innerHTML = `<span style="cursor:pointer;" onclick="executeSort(${i})">${tableHeader[i].innerText} &uarr;&darr;</span><br/><input id="query-filter-${i}" type="text" onkeyup="filterQueryTable(${tableHeader.length})" onpaste="pasteFilter(${tableHeader.length})"/>`
+        } else {
+          tableHeader[i].innerHTML = `<span>${tableHeader[i].innerText}</span><br/><input id="query-filter-${i}" type="text" onkeyup="filterQueryTable(${tableHeader.length})" onpaste="pasteFilter(${tableHeader.length})"/>`
+
+        }
       } else {
         tableHeader[i].style.verticalAlign = "initial";
       }
