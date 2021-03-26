@@ -17,9 +17,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
 	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
@@ -28,17 +28,17 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.security_context is set", [name, types[x]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.security_context is undefined", [name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.security_context is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.security_context is undefined", [resourceType, name, types[x]]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
 	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
@@ -47,9 +47,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context is set", [name, types[x], y]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context is undefined", [name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].security_context is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].security_context is undefined", [resourceType, name, types[x], y]),
 	}
 }
