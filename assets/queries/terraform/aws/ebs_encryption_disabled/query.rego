@@ -9,6 +9,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_ebs_encryption_by_default[%s].enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_ebs_encryption_by_default.encrypted' is true",
-		"keyActualValue": "aws_ebs_encryption_by_default.encrypted' is false",
+		"keyActualValue": "'aws_ebs_encryption_by_default.encrypted' is false",
 	}
 }

@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecr_repository_policy[name]
-	jsonPolicy := json.unmarshal(resource.policy)
-	policyStat := jsonPolicy.Statement[_]
-	policyStat.Effect == "Allow"
-	policyStat.Principal == "*"
+	policy := commonLib.json_unmarshal(resource.policy)
+	statement := policy.Statement[_]
+	statement.Effect == "Allow"
+	statement.Principal == "*"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s", [policyStat.Principal]),
+		"searchKey": sprintf("aws_ecr_repository_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Statement.Principal' doesn't contain '*'",
 		"keyActualValue": "'Statement.Principal' contains '*'",

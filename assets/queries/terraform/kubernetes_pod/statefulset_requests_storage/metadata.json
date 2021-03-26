@@ -1,0 +1,9 @@
+{
+  "id": "fcc2612a-1dfe-46e4-8ce6-0320959f0040",
+	"queryName": "StatefulSet Requests Storage",
+	"severity": "LOW",
+	"category": "Build Process",
+	"descriptionText": "A StatefulSet requests volume storage.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#volume_claim_template",
+	"platform": "Terraform"
+}

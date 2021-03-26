@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	org_policy := input.document[i].resource.aws_organizations_policy[name]
 
-	org_policy.type == "SERVICE_CONTROL_POLICY"
+	serviceControlPolicy(object.get(org_policy, "type", "undefined"))
 
-	content := json.unmarshal(org_policy.content)
+	content := commonLib.json_unmarshal(org_policy.content)
 
 	checkStatements(content.Statement)
 
@@ -18,64 +20,24 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	org_policy := input.document[i].resource.aws_organizations_policy[name]
+serviceControlPolicy("SERVICE_CONTROL_POLICY") = true
 
-	not org_policy.type # default is SERVICE_CONTROL_POLICY
-
-	content := json.unmarshal(org_policy.content)
-
-	checkStatements(content.Statement)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_organizations_policy[%s].content", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Statements allow all policy actions in all resources",
-		"keyActualValue": "Some or all statements don't allow all policy actions in all resources",
-	}
-}
+serviceControlPolicy("undefined") = true
 
 checkStatements(statements) {
 	is_array(statements)
 	some j
 	statement := statements[j]
-	not policy_check(statement, "*", "Allow", "*")
+	not policy_check(statement)
 }
 
 checkStatements(statement) {
-	not is_array(statement)
-	not policy_check(statement, "*", "Allow", "*")
+	is_object(statement)
+	not policy_check(statement)
 }
 
-policy_check(statement, action, effect, resource) {
-	statement.Effect == effect
-	is_action_array := is_array(statement.Action)
-	statement.Action[_] == action
-	is_resource_array := is_array(statement.Resource)
-	statement.Resource[_] == resource
-}
-
-policy_check(statement, action, effect, resource) {
-	statement.Effect == effect
-	is_action_array := is_array(statement.Action)
-	statement.Action[_] == action
-	is_resource_string := is_string(statement.Resource)
-	statement.Resource == resource
-}
-
-policy_check(statement, action, effect, resource) {
-	statement.Effect == effect
-	is_action_string := is_string(statement.Action)
-	statement.Action == action
-	is_resource_array := is_array(statement.Resource)
-	statement.Resource[_] == resource
-}
-
-policy_check(statement, action, effect, resource) {
-	statement.Effect == effect
-	is_action_string := is_string(statement.Action)
-	statement.Action == action
-	is_resource_string := is_string(statement.Resource)
-	statement.Resource == resource
+policy_check(statement) {
+	statement.Effect == "Allow"
+	commonLib.equalsOrInArray(statement.Action, "*")
+	commonLib.equalsOrInArray(statement.Resource, "*")
 }

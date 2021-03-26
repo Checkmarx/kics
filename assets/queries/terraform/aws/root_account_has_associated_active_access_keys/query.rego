@@ -8,7 +8,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_iam_access_key[%s]", [name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_iam_access_key[%s].status' is defined and set to 'Inactive'", [name]),
 		"keyActualValue": sprintf("'aws_iam_access_key[%s].status' is undefined, that defaults to 'Active'", [name]),
 	}

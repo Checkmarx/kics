@@ -1,0 +1,9 @@
+{
+  "id": "4ae8af91-5108-42cb-9471-3bdbe596eac9",
+  "queryName": "S3 Bucket With All Permissions",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is '*', for all Principals.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
+  "platform": "CloudFormation"
+}

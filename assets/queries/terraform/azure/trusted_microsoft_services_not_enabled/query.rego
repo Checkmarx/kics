@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[name]
 	object.get(resource, "network_rules", "undefined") == "undefined"
@@ -29,7 +31,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[name]
 	bypass := resource.network_rules.bypass
-	not arrayContains(bypass, "AzureServices")
+	not commonLib.inArray(bypass, "AzureServices")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -56,7 +58,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	network_rules := input.document[i].resource.azurerm_storage_account_network_rules[name]
 	bypass := network_rules.bypass
-	not arrayContains(bypass, "AzureServices")
+	not commonLib.inArray(bypass, "AzureServices")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -65,10 +67,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'bypass' contains 'AzureServices'",
 		"keyActualValue": "'bypass' does not contain 'AzureServices'",
 	}
-}
-
-arrayContains(items, elem) {
-	items[_] = elem
-} else = false {
-	true
 }
