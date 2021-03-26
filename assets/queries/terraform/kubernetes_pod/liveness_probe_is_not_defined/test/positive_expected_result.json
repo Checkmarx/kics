@@ -3,5 +3,10 @@
     "queryName": "Liveness Probe Is Not Defined",
     "severity": "MEDIUM",
     "line": 7
+  },
+  {
+    "queryName": "Liveness Probe Is Not Defined",
+    "severity": "MEDIUM",
+    "line": 64
   }
 ]
