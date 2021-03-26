@@ -14,10 +14,6 @@ CxPolicy[result] {
 	}
 }
 
-checkMinPortocolVersion(version) {
-	version == "TLSv1.1"
-}
+checkMinPortocolVersion("TLSv1.1") = true
 
-checkMinPortocolVersion(version) {
-	version == "TLSv1.2"
-}
+checkMinPortocolVersion("TLSv1.2") = true

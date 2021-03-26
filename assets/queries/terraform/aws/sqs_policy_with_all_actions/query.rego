@@ -1,9 +1,12 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
-	policy := input.document[i].resource.aws_sqs_queue_policy[name].policy
-	out := json.unmarshal(policy)
-	out.Statement[idx].Action = "*"
+	resource := input.document[i].resource.aws_sqs_queue_policy[name]
+
+	policy := commonLib.json_unmarshal(resource.policy)
+	commonLib.equalsOrElem(policy.Statement[idx].Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,

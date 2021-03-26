@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
@@ -37,7 +39,7 @@ CxPolicy[result] {
 	resource.viewer_certificate.cloudfront_default_certificate == false
 	protocol_version := resource.viewer_certificate.minimum_protocol_version
 
-	not containsProtocolVersion(["TLSv1.2_2018", "TLSv1.2_2019"], protocol_version)
+	not commonLib.elem(["TLSv1.2_2018", "TLSv1.2_2019"], protocol_version)
 
 	result := {
 		"documentId": document.id,
@@ -46,10 +48,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is TLSv1.2_x", [name]),
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version' is %s", [name, protocol_version]),
 	}
-}
-
-containsProtocolVersion(array, elem) {
-	array[_] == elem
-} else = false {
-	true
 }

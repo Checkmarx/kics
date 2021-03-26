@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
 	awsElasticsearchDomain.log_publishing_options.enabled == false
@@ -16,7 +18,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
 	logType := awsElasticsearchDomain.log_publishing_options.log_type
-	not contains(["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"], logType)
+
+	not commonLib.elem(["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"], logType)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,10 +28,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'log_publishing_options.log_type' is not INDEX_SLOW_LOGS or SEARCH_SLOW_LOGS  ",
 		"keyActualValue": "'log_publishing_options.enabled' is ES_APPLICATION_LOGS or AUDIT_LOGS",
 	}
-}
-
-contains(array, elem) {
-	array[_] == elem
-} else = false {
-	true
 }

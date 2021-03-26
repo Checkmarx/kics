@@ -1,35 +1,21 @@
 package Cx
 
+import data.generic.common as commonLib
+import data.generic.terraform as terraLib
+
 CxPolicy[result] {
-	policy := input.document[i].resource.aws_iam_role[name].assume_role_policy
-	re_match("Service", policy)
-	out := json.unmarshal(policy)
-	not out.Statement[ix].Effect
-	aws := out.Statement[ix].Principal.AWS
-	contains(aws, "*")
+	resource := input.document[i].resource.aws_iam_role[name]
+
+	re_match("Service", resource.assume_role_policy)
+	policy := commonLib.json_unmarshal(resource.assume_role_policy)
+	object.get(policy.Statement[ix], "Effect", "Allow") != "Deny"
+	terraLib.anyPrincipal(policy.Statement[ix])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
+		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'assume_role_policy.Statement.Principal.AWS' doesn't contain '*'",
-		"keyActualValue": "'assume_role_policy.Statement.Principal.AWS' contains '*'",
-	}
-}
-
-CxPolicy[result] {
-	policy := input.document[i].resource.aws_iam_role[name].assume_role_policy
-	re_match("Service", policy)
-	out := json.unmarshal(policy)
-	out.Statement[ix].Effect != "Deny"
-	aws := out.Statement[ix].Principal.AWS
-	contains(aws, "*")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'assume_role_policy.Statement.Principal.AWS' doesn't contain '*'",
-		"keyActualValue": "'assume_role_policy.Statement.Principal.AWS' contains '*'",
+		"keyExpectedValue": "'assume_role_policy.Statement.Principal' doesn't contain '*'",
+		"keyActualValue": "'assume_role_policy.Statement.Principal' contains '*'",
 	}
 }

@@ -4,7 +4,7 @@ CxPolicy[result] {
 	lb := {"aws_alb_listener", "aws_lb_listener"}
 	resource := input.document[i].resource[lb[idx]][name]
 
-	upper(resource.protocol) = "HTTP"
+	upper(resource.protocol) == "HTTP"
 	not resource.default_action.redirect.protocol
 
 	result := {
@@ -20,7 +20,7 @@ CxPolicy[result] {
 	lb := {"aws_alb_listener", "aws_lb_listener"}
 	resource := input.document[i].resource[lb[idx]][name]
 
-	upper(resource.protocol) = "HTTP"
+	upper(resource.protocol) == "HTTP"
 	upper(resource.default_action.redirect.protocol) != "HTTPS"
 
 	result := {

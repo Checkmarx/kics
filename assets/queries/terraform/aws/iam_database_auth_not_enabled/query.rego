@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-	object.get(resource,"iam_database_authentication_enabled","undefined") != "undefined"
+	object.get(resource, "iam_database_authentication_enabled", "undefined") != "undefined"
 	not resource.iam_database_authentication_enabled
 
 	result := {
@@ -16,7 +16,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-	object.get(resource,"iam_database_authentication_enabled","undefined") == "undefined"
+	object.get(resource, "iam_database_authentication_enabled", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

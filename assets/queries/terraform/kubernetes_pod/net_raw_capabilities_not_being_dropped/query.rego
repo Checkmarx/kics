@@ -1,10 +1,11 @@
 package Cx
 
+types := {"init_container", "container"}
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -23,7 +24,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -45,7 +45,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -64,7 +63,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -83,7 +81,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -102,7 +99,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -123,7 +119,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -142,7 +137,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true

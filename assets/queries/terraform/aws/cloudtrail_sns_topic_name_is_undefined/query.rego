@@ -3,7 +3,7 @@ package Cx
 CxPolicy[result] {
 	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
 
-	isDefined(cloudtrail)
+	isUndefined(cloudtrail)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,10 +14,10 @@ CxPolicy[result] {
 	}
 }
 
-isDefined(resource) {
+isUndefined(resource) {
 	object.get(resource, "sns_topic_name", "undefined") == "undefined"
 }
 
-isDefined(resource) {
+isUndefined(resource) {
 	resource.sns_topic_name == null
 }

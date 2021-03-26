@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "SNS Topic is Publicly Accessible For Subscription",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "SNS Topic is Publicly Accessible For Subscription",
+    "severity": "MEDIUM",
+    "line": 2
+  }
 ]

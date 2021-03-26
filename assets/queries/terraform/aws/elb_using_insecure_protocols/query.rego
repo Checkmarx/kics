@@ -1,9 +1,14 @@
 package Cx
 
+import data.generic.common as commonLib
+
+insecure_protocols := ["Protocol-SSLv2", "Protocol-SSLv3", "Protocol-TLSv1", "Protocol-TLSv1.1"]
+
 CxPolicy[result] {
-	some name
-	protocol := input.document[i].resource.aws_load_balancer_policy[name].policy_attribute.name
-	check_vulnerability(protocol)
+	policy := input.document[i].resource.aws_load_balancer_policy[name]
+
+	protocol := policy.policy_attribute.name
+	commonLib.elem(insecure_protocols, protocol)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,9 +20,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some name
-	protocol := input.document[i].resource.aws_load_balancer_policy[name].policy_attribute[_].name
-	check_vulnerability(protocol)
+	policy := input.document[i].resource.aws_load_balancer_policy[name]
+
+	some j
+	protocol := policy.policy_attribute[j].name
+	commonLib.elem(insecure_protocols, protocol)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,9 +33,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is not an insecure protocol", [name, protocol]),
 		"keyActualValue": sprintf("'aws_load_balancer_policy[%s].policy_attribute[%s]' is an insecure protocol", [name, protocol]),
 	}
-}
-
-check_vulnerability(val) {
-	insecure_protocols = {"Protocol-SSLv2", "Protocol-SSLv3", "Protocol-TLSv1", "Protocol-TLSv1.1"}
-	val == insecure_protocols[_]
 }

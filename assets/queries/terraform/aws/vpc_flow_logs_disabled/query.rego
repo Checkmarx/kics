@@ -1,11 +1,14 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource
 	awsVpc := resource.aws_vpc[name_vpc]
 	awsVpcId := sprintf("${aws_vpc.%s.id}", [name_vpc])
-	awsFlowLogsId := resource.aws_flow_log
-	contains(awsFlowLogsId, awsVpcId) == false
+
+	awsFlowLogsId := [vpc_id | vpc_id := resource.aws_flow_log[_].vpc_id]
+	not commonLib.elem(awsFlowLogsId, awsVpcId)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,10 +30,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id is defined", [name_logs]),
 		"keyActualValue": sprintf("aws_flow_log[%s].vpc_id is undefined", [name_logs]),
 	}
-}
-
-contains(array, elem) {
-	array[_].vpc_id == elem
-} else = false {
-	true
 }

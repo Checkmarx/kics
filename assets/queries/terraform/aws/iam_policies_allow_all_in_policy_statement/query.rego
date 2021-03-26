@@ -1,11 +1,14 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy_attachment"}
-	policy := input.document[i].resource[resourceType[idx]][name].policy
-	out := json.unmarshal(policy)
-	out.Statement[ix].Effect = "Allow"
-	out.Statement[ix].Resource = "*"
+	resource := input.document[i].resource[resourceType[idx]][name]
+
+	policy := commonLib.json_unmarshal(resource.policy)
+	policy.Statement[ix].Effect == "Allow"
+	policy.Statement[ix].Resource == "*"
 
 	result := {
 		"documentId": input.document[i].id,
