@@ -1,17 +1,24 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	types := {"kubernetes_pod": "spec.container", "kubernetes_deployment": "spec.template.spec.container"}
+	resource_prefix := types[x]
+	resource := input.document[i].resource[x][name]
 
-	container := resource.spec.container
+	path := checkPath(resource)
 
-	object.get(container.port, "host_port", "undefined") == "undefined"
-
+	object.get(path.port, "host_port", "undefined") == "undefined"
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.container.port", [name]),
+		"searchKey": sprintf("%s[%s].%s.port", [x, name, resource_prefix]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'host_port' is defined",
 		"keyActualValue": "Attribute 'host_port' is undefined",
 	}
+}
+
+checkPath(resource) = path {
+	path := resource.spec.template.spec.container
+} else = path {
+	path := resource.spec.container
 }
