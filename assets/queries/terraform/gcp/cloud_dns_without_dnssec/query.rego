@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_dns_managed_zone[%s].dnssec_config.state", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'dnssec_config.state' is equal 'on'",
-		"keyActualValue": "'dnssec_config.state' is not equal 'on'",
+		"keyExpectedValue": "'dnssec_config.state' is equal to 'on'",
+		"keyActualValue": "'dnssec_config.state' is not equal to 'on'",
 	}
 }
 
@@ -25,7 +25,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_dns_managed_zone[%s].dnssec_config.state", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'dnssec_config.state' is equal 'on'",
-		"keyActualValue": "'dnssec_config.state' is not equal 'on'",
+		"keyExpectedValue": "'dnssec_config.state' is equal to 'on'",
+		"keyActualValue": "'dnssec_config.state' is not equal to 'on'",
 	}
 }
