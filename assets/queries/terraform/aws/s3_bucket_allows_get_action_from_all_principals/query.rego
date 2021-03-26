@@ -1,13 +1,18 @@
 package Cx
 
+import data.generic.common as commonLib
+import data.generic.terraform as terraLib
+
 CxPolicy[result] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	policy := input.document[i].resource[pl[r]][name].policy
-	validate_json(policy)
-	pol := json.unmarshal(policy)
-	pol.Statement[idx].Effect = "Allow"
-	pol.Statement[idx].Principal = "*"
-	checkAction(pol.Statement[idx].Action)
+	resource := input.document[i].resource[pl[r]][name]
+
+	policy := commonLib.json_unmarshal(resource.policy)
+	statement := policy.Statement[_]
+
+	statement.Effect == "Allow"
+	terraLib.anyPrincipal(statement)
+	commonLib.containsOrInArrayContains(statement.Action, "get")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -16,36 +21,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Get' action", [pl[r], name]),
 		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Get' action", [pl[r], name]),
 	}
-}
-
-CxPolicy[result] {
-	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	policy := input.document[i].resource[pl[r]][name].policy
-	validate_json(policy)
-	pol := json.unmarshal(policy)
-	pol.Statement[idx].Effect = "Allow"
-	contains(pol.Statement[idx].Principal.AWS, "*")
-	checkAction(pol.Statement[idx].Action)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].policy.Action", [pl[r], name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Get' action", [pl[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Get' action", [pl[r], name]),
-	}
-}
-
-validate_json(string) {
-	not startswith(string, "$")
-}
-
-checkAction(action) {
-	is_string(action)
-	contains(lower(action), "get")
-}
-
-checkAction(action) {
-	is_array(action)
-	contains(lower(action[_]), "get")
 }

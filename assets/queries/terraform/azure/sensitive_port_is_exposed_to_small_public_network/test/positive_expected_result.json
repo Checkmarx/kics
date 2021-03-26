@@ -178,5 +178,15 @@
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
     "line": 134
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Small Public Network",
+    "severity": "MEDIUM",
+    "line": 134
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Small Public Network",
+    "severity": "MEDIUM",
+    "line": 134
   }
 ]

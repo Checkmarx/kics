@@ -1,15 +1,20 @@
 package Cx
 
+import data.generic.common as commonLib
+import data.generic.terraform as terraLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sns_topic[name]
-	jsonPolicy := json.unmarshal(resource.policy)
-	policyStat := jsonPolicy.Statement[_]
-	policyStat.Effect == "Allow"
-	policyStat.Principal.AWS == "*"
+
+	policy := commonLib.json_unmarshal(resource.policy)
+	statement := policy.Statement[_]
+
+	statement.Effect == "Allow"
+	terraLib.anyPrincipal(statement)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s", [policyStat.Principal.AWS]),
+		"searchKey": sprintf("aws_sns_topic[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'Statement.Principal.AWS' doesn't contain '*'",
 		"keyActualValue": "'Statement.Principal.AWS' contains '*'",
