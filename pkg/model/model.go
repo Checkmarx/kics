@@ -49,6 +49,13 @@ var (
 	}
 )
 
+// VulnerabilityLines is the representation of the found line for issue
+type VulnerabilityLines struct {
+	Line                 int
+	VulnLine             VulnLines
+	LineWithVulnerabilty string
+}
+
 // FileKind is the extension of a file
 type FileKind string
 
