@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Containers With Sys Admin Capabilities",
+    "severity": "MEDIUM",
+    "line": 12
+  }
+]

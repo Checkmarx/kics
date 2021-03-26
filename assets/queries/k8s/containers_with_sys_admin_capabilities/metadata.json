@@ -1,0 +1,9 @@
+{
+  "id": "235236ee-ad78-4065-bd29-61b061f28ce0",
+  "queryName": "Containers With Sys Admin Capabilities",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Containers should not have CAP_SYS_ADMIN Linux capability",
+  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+  "platform": "Kubernetes"
+}

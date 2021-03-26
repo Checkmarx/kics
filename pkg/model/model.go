@@ -15,6 +15,7 @@ const (
 	KindYAML      FileKind = "YAML"
 	KindDOCKER    FileKind = "DOCKERFILE"
 	KindCOMMON    FileKind = "*"
+	KindHELM      FileKind = "HELM"
 )
 
 // Constants to describe vulnerability's severity
@@ -71,6 +72,9 @@ type FileMetadata struct {
 	OriginalData string   `db:"orig_data"`
 	Kind         FileKind `db:"kind"`
 	FileName     string   `db:"file_name"`
+	Content      string
+	HelmID       string
+	IDInfo       map[int]interface{}
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -116,6 +120,20 @@ type QueryConfig struct {
 	Platform string
 }
 
+// ResolvedFiles keeps the information of all file/template resolved
+type ResolvedFiles struct {
+	File []ResolvedFile
+}
+
+// ResolvedFile keeps the information of a file/template resolved
+type ResolvedFile struct {
+	FileName     string
+	Content      []byte
+	OriginalData []byte
+	SplitID      string
+	IDInfo       map[int]interface{}
+}
+
 // Extensions represents a list of supported extensions
 type Extensions map[string]struct{}
 
@@ -149,10 +167,9 @@ type FileMetadatas []FileMetadata
 // ToMap creates a map of FileMetadatas, which the key is the FileMedata ID and the value is the FileMetadata
 func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	c := make(map[string]FileMetadata, len(m))
-	for _, i := range m {
-		c[i.ID] = i
+	for i := 0; i < len(m); i++ {
+		c[m[i].ID] = m[i]
 	}
-
 	return c
 }
 
@@ -167,16 +184,13 @@ type Document map[string]interface{}
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file
 func (m FileMetadatas) Combine() Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
-	for _, fm := range m {
-		if len(fm.Document) == 0 {
+	for i := 0; i < len(m); i++ {
+		if len(m[i].Document) == 0 {
 			continue
 		}
-
-		fm.Document["id"] = fm.ID
-		fm.Document["file"] = fm.FileName
-
-		documents.Documents = append(documents.Documents, fm.Document)
+		m[i].Document["id"] = m[i].ID
+		m[i].Document["file"] = m[i].FileName
+		documents.Documents = append(documents.Documents, m[i].Document)
 	}
-
 	return documents
 }

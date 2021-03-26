@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ElasticsearchDomain resource
+Parameters:
+  DomainName:
+    Description: User defined Elasticsearch Domain name
+    Type: String
+  ElasticsearchVersion:
+    Description: User defined Elasticsearch Version
+    Type: String
+  InstanceType:
+    Type: String
+  AvailabilityZone:
+    Type: String
+  CidrBlock:
+    Type: String
+  GroupDescription:
+    Type: String
+  SGName:
+    Type: String
+Resources:
+  ElasticsearchDomain:
+    Type: 'AWS::Elasticsearch::Domain'
+    Properties:
+      DomainName:
+        Ref: DomainName
+      ElasticsearchVersion:
+        Ref: ElasticsearchVersion
+      ElasticsearchClusterConfig:
+        InstanceCount: '1'
+        InstanceType:
+          Ref: InstanceType
+      EBSOptions:
+        EBSEnabled: 'true'
+        Iops: 0
+        VolumeSize: 10
+        VolumeType: standard
+      SnapshotOptions:
+        AutomatedSnapshotStartHour: '0'
+      AccessPolicies:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Deny
+            Principal:
+              AWS: '*'
+            Action: 'es:*'
+            Resource: '*'
+      AdvancedOptions:
+        rest.action.multi.allow_explicit_index: 'true'

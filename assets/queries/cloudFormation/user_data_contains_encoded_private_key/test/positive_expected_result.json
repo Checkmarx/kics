@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "User Data Contains Encoded Private Key",
+		"severity": "HIGH",
+		"line": 12,
+    "fileName": "positive.json"
+	},
+  {
+		"queryName": "User Data Contains Encoded Private Key",
+		"severity": "HIGH",
+		"line": 13,
+    "fileName": "positive.yaml"
+	}
+]

@@ -12,10 +12,9 @@ CxPolicy[result] {
 
 	policy := commonLib.json_unmarshal(awsApiGateway.policy)
 	statement := policy.Statement[_]
-	resource := statement.Principal.AWS
-	contains(resource, "arn:aws:iam::")
-	contains(resource, ":root")
-	not contains(statement.Effect, "Deny")
+	aws := statement.Principal.AWS
+
+	commonLib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {
 		"documentId": id,
@@ -32,10 +31,9 @@ CxPolicy[result] {
 	ansLib.checkState(awsApiGateway)
 
 	statement := awsApiGateway.policy.Statement[_]
-	resource := statement.Principal[j].AWS
-	contains(resource, "arn:aws:iam::")
-	contains(resource, ":root")
-	not contains(statement.Effect, "Deny")
+	aws := statement.Principal[j].AWS
+
+	commonLib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {
 		"documentId": id,

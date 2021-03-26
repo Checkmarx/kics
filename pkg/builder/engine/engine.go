@@ -223,7 +223,7 @@ func (e *Engine) checkComment(rg hcl.Range, walkHistory []build.PathItem, actual
 func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Comment, actualValue *string) {
 	tags, err := tagParser.Parse(comment.Value(), model.AllIssueTypesAsString)
 	if err != nil {
-		log.Err(err).Msgf("line %d: failed to parse comment '%s'", comment.Line(), comment.Value())
+		log.Err(err).Msgf("Line %d: failed to parse comment '%s'", comment.Line(), comment.Value())
 		return
 	}
 

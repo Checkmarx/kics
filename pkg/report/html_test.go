@@ -1,0 +1,45 @@
+package report
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
+	"github.com/stretchr/testify/require"
+	"golang.org/x/net/html"
+)
+
+var htmlTests = []struct {
+	caseTest       jsonCaseTest
+	expectedResult model.Summary
+}{
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMock,
+			path:     "./testdir",
+			filename: "testout",
+		},
+		expectedResult: test.SummaryMock,
+	},
+}
+
+// TestPrintHTMLReport tests the functions [PrintHTMLReport()] and all the methods called by them
+func TestPrintHTMLReport(t *testing.T) {
+	for idx, test := range htmlTests {
+		t.Run(fmt.Sprintf("HTML File test case %d", idx), func(t *testing.T) {
+			err := PrintHTMLReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			require.NoError(t, err)
+			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".html"))
+			htmlString, err := os.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".html"))
+			require.NoError(t, err)
+			valid, err := html.Parse(strings.NewReader(string(htmlString)))
+			require.NoError(t, err)
+			require.NotNil(t, valid)
+			os.RemoveAll(test.caseTest.path)
+		})
+	}
+}

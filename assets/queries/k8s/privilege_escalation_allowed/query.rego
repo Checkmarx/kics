@@ -8,16 +8,16 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types = {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index].securityContext, "allowPrivilegeEscalation", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s.securityContext", [metadata.name, specInfo.path, types[x], containers[index].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.%s[%s].securityContext is set", [specInfo.path, types[x], containers[index].name]),
-		"keyActualValue": sprintf("%s.%s[%s].securityContext is undefined", [specInfo.path, types[x], containers[index].name]),
+		"keyExpectedValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is set", [specInfo.path, types[x], containers[index].name]),
+		"keyActualValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is undefined", [specInfo.path, types[x], containers[index].name]),
 	}
 }
 
@@ -27,12 +27,12 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	types = {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 	containers[index].securityContext.allowPrivilegeEscalation == true
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s.securityContext.allowPrivilegeEscalation", [metadata.name, specInfo.path, types[x], containers[index].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is false", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s[%s].securityContext.allowPrivilegeEscalation is true", [specInfo.path, types[x], containers[index].name]),

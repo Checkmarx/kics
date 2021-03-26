@@ -24,6 +24,7 @@ import (
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
 	"json":  report.PrintJSONReport,
 	"sarif": report.PrintSarifReport,
+	"html":  report.PrintHTMLReport,
 }
 
 // ProgressBar represents a Progress
@@ -123,6 +124,7 @@ func WordWrap(s, identation string, limit int) string {
 
 // PrintResult prints on output the summary results
 func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
+	log.Debug().Msg("helpers.PrintResult()")
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
@@ -133,19 +135,18 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n\n")
-	sortedQueries := summary.Queries.SortBySev()
-	for idx := range sortedQueries {
+	for idx := range summary.Queries {
 		fmt.Printf(
 			"%s, Severity: %s, Results: %d\n",
-			printer.PrintBySev(sortedQueries[idx].QueryName, string(sortedQueries[idx].Severity)),
-			printer.PrintBySev(string(sortedQueries[idx].Severity), string(sortedQueries[idx].Severity)),
-			len(sortedQueries[idx].Files),
+			printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
+			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
+			len(summary.Queries[idx].Files),
 		)
 		if !printer.minimal {
-			fmt.Printf("Description: %s\n", sortedQueries[idx].Description)
-			fmt.Printf("Platform: %s\n\n", sortedQueries[idx].Platform)
+			fmt.Printf("Description: %s\n", summary.Queries[idx].Description)
+			fmt.Printf("Platform: %s\n\n", summary.Queries[idx].Platform)
 		}
-		printFiles(&sortedQueries[idx], printer)
+		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
@@ -153,15 +154,12 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
-	log.
-		Info().
-		Msgf("\n\nFiles scanned: %d\n"+
-			"Parsed files: %d\nQueries loaded: %d\n"+
-			"Queries failed to execute: %d\n",
-			summary.ScannedFiles, summary.ParsedFiles, summary.TotalQueries, summary.FailedToExecuteQueries)
-	log.
-		Info().
-		Msg("Inspector stopped\n")
+
+	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
+	log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
+	log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
+	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
+	log.Info().Msg("Inspector stopped")
 
 	return nil
 }
@@ -244,10 +242,11 @@ func FileAnalyzer(path string) (string, error) {
 
 // GenerateReport execute each report function to generate report
 func GenerateReport(path, filename string, body interface{}, formats []string) error {
+	log.Debug().Msgf("helpers.GenerateReport()")
 	var err error = nil
 	for _, format := range formats {
 		if err = reportGenerators[format](path, filename, body); err != nil {
-			log.Error().Msgf("failed to generate %s report", format)
+			log.Error().Msgf("Failed to generate %s report", format)
 			break
 		}
 	}
@@ -256,6 +255,8 @@ func GenerateReport(path, filename string, body interface{}, formats []string) e
 
 // ValidateReportFormats returns an error if output format is not supported
 func ValidateReportFormats(formats []string) error {
+	log.Debug().Msg("helpers.ValidateReportFormats()")
+
 	validFormats := make([]string, len(reportGenerators))
 	for reportFormats := range reportGenerators {
 		validFormats = append(validFormats, reportFormats)

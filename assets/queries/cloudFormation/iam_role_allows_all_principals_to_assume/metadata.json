@@ -1,0 +1,9 @@
+{
+  "id": "f80e3aa7-7b34-4185-954e-440a6894dde6",
+  "queryName": "IAM Role Allows All Principals To Assume",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "IAM role allows all services or principals to assume it",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-assumerolepolicydocument",
+  "platform": "CloudFormation"
+}

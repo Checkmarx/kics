@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.volumes.name=%s.hostPath.path", [metadata.name, volumes[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.volumes[%s].hostPath.path is not '/var/run/docker.sock'", [volumes[c].name]),
 		"keyActualValue": sprintf("spec.volumes[%s].hostPath.path is '/var/run/docker.sock'", [volumes[c].name]),
@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.volumes.name=%s.hostPath.path", [metadata.name, volumes[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.volumes[%s].hostPath.path is not '/var/run/docker.sock'", [volumes[c].name]),
 		"keyActualValue": sprintf("spec.volumes[%s].hostPath.path is '/var/run/docker.sock'", [volumes[c].name]),
@@ -50,7 +50,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("metadata.name=%s.spec.volumes.name=%s.hostPath.path", [metadata.name, volumes[c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[c].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.volumes[%s].hostPath.path is not '/var/run/docker.sock'", [volumes[c].name]),
 		"keyActualValue": sprintf("spec.volumes[%s].hostPath.path is '/var/run/docker.sock'", [volumes[c].name]),

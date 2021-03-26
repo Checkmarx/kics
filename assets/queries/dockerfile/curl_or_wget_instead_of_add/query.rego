@@ -1,7 +1,7 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][j]
 	resource.Cmd == "add"
 	httpRequestChecker(resource.Value)
 

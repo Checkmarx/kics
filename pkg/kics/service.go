@@ -9,6 +9,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -44,10 +45,12 @@ type Service struct {
 	Parser         *parser.Parser
 	Inspector      *engine.Inspector
 	Tracker        Tracker
+	Resolver       *resolver.Resolver
 }
 
 // StartScan executes scan over the context, using the scanID as reference
 func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool) error {
+	log.Debug().Msg("service.StartScan()")
 	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
 		ctx,
@@ -84,6 +87,45 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 			}
 
 			return errors.Wrap(err, "failed to save file content")
+		},
+		func(ctx context.Context, filename string) error { // Sink used for resolver files and templates
+			s.Tracker.TrackFileFound()
+			kind := s.Resolver.GetType(filename)
+			if kind == model.KindCOMMON {
+				return nil
+			}
+			resFiles, err := s.Resolver.Resolve(filename, kind)
+			if err != nil {
+				return errors.Wrap(err, "failed to render file content")
+			}
+			for _, rfile := range resFiles.File {
+				documents, _, err := s.Parser.Parse(rfile.FileName, rfile.Content)
+				if err != nil {
+					return errors.Wrap(err, "failed to parse file content")
+				}
+				for _, document := range documents {
+					_, err = json.Marshal(document)
+					if err != nil {
+						sentry.CaptureException(err)
+						log.Err(err).Msgf("failed to marshal content in file: %s", rfile.FileName)
+						continue
+					}
+
+					file := model.FileMetadata{
+						ID:           uuid.New().String(),
+						ScanID:       scanID,
+						Document:     document,
+						OriginalData: string(rfile.OriginalData),
+						Kind:         kind,
+						FileName:     rfile.FileName,
+						Content:      string(rfile.Content),
+						HelmID:       rfile.SplitID,
+						IDInfo:       rfile.IDInfo,
+					}
+					files = s.saveToFile(ctx, &file, files)
+				}
+			}
+			return nil
 		},
 	); err != nil {
 		return errors.Wrap(err, "failed to read sources")

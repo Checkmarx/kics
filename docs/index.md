@@ -9,12 +9,12 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.2.0</h4>
-        <p style="font-size:8pt">2021.03.10<p>
+        <h4>Version 1.2.1</h4>
+        <p style="font-size:8pt">2021.03.25<p>
         <h4>Downloads:</h4>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.0/kics_1.2.0_windows_x64.zip">Windows</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.0/kics_1.2.0_linux_x64.tar.gz">Linux</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.0/kics_1.2.0_darwin_x64.tar.gz">MacOS</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.1/kics_1.2.1_windows_x64.zip">Windows</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.1/kics_1.2.1_linux_x64.tar.gz">Linux</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.1/kics_1.2.1_darwin_x64.tar.gz">MacOS</a>
         <hr/>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/CONTRIBUTING">Contribute!</a>
     </div>
@@ -29,11 +29,26 @@
 
 KICS scans and detects issues in following Infrastructure as Code solutions:
 
-<img alt="Terraform" src="img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="CloudFormation" src="img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="img/logo-ansible.png" width="150">
+<div style="display:flex;flex:1;flex-wrap:wrap;align-items:center;justify-content:center">
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Terraform" src="img/logo-terraform.png" width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Kubernetes" src="img/logo-k8s.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Docker" src="img/logo-docker.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="CloudFormation" src="img/logo-cf.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Ansible" src="img/logo-ansible.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Helm" src="img/logo-helm.png" style="min-width:110px;width:110px;height:101px">&nbsp;&nbsp;&nbsp;
+</div>
+</div>
 
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
