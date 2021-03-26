@@ -9,6 +9,15 @@ builds:
       - windows
     goarch:
       - amd64
+      - arm
+      - arm64
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: linux
+        goarm: 7
+      - goos: linux
+        goarm: 6
     ldflags:
       - -X github.com/Checkmarx/kics/internal/constants.Version={{.Version}}
       - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{.Commit}}
@@ -22,7 +31,21 @@ archives:
       386: x32
     files:
       - LICENSE
-      - assets/queries
+      - assets/queries/**/metadata.json
+      - assets/queries/**/*.rego
       - assets/libraries
+brews:
+  - tap:
+      owner: checkmarx
+      name: homebrew-tap
+    folder: Formula
+    homepage:  https://github.com/Checkmarx/kics
+    description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your infrastructure-as-code
+    license: Apache
+    test: |
+      system "#{bin}/kics -v"
+    install: |-
+      bin.install "kics"
+
 release:
   prerelease: true
