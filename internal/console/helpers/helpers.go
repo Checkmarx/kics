@@ -135,18 +135,19 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n\n")
-	for idx := range summary.Queries {
+	sortedQueries := summary.Queries.SortBySev()
+	for idx := range sortedQueries {
 		fmt.Printf(
 			"%s, Severity: %s, Results: %d\n",
-			printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
-			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
-			len(summary.Queries[idx].Files),
+			printer.PrintBySev(sortedQueries[idx].QueryName, string(sortedQueries[idx].Severity)),
+			printer.PrintBySev(string(sortedQueries[idx].Severity), string(sortedQueries[idx].Severity)),
+			len(sortedQueries[idx].Files),
 		)
 		if !printer.minimal {
-			fmt.Printf("Description: %s\n", summary.Queries[idx].Description)
-			fmt.Printf("Platform: %s\n\n", summary.Queries[idx].Platform)
+			fmt.Printf("Description: %s\n", sortedQueries[idx].Description)
+			fmt.Printf("Platform: %s\n\n", sortedQueries[idx].Platform)
 		}
-		printFiles(&summary.Queries[idx], printer)
+		printFiles(&sortedQueries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
