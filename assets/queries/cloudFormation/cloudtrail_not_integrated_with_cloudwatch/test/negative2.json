@@ -28,7 +28,7 @@
                 "Service": "cloudtrail.amazonaws.com"
               },
               "Action": "s3:GetBucketAcl",
-              "Resource": null
+              "Resource": "value"
             },
             {
               "Sid": "AWSCloudTrailWrite",
@@ -37,7 +37,7 @@
                 "Service": "cloudtrail.amazonaws.com"
               },
               "Action": "s3:PutObject",
-              "Resource": null,
+              "Resource": "value",
               "Condition": {
                 "StringEquals": {
                   "s3:x-amz-acl": "bucket-owner-full-control"
