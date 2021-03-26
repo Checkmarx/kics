@@ -54,7 +54,7 @@ Resources:
               Service: "cloudtrail.amazonaws.com"
             Resource: "*"
             Action: "SNS:Publish"
-  myTrail:
+  myTrail2:
     DependsOn:
       - BucketPolicy
       - TopicPolicy
