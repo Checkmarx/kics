@@ -34,7 +34,7 @@ for path in parsed_args['input_path'][0].rglob('metadata.json'):
       template_dict[platform][severity] = {}
     if category not in template_dict[platform][severity]:
       template_dict[platform][severity][category] = {}
-      
+
     template_dict[platform][severity][category][metadata_dict['id']] = metadata_dict
 
 for file_format in parsed_args['formats']:
