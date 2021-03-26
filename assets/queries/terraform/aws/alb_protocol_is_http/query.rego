@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'default_action.redirect.protocol' is equal 'HTTPS'",
+		"keyExpectedValue": "'default_action.redirect.protocol' is equal to 'HTTPS'",
 		"keyActualValue": "'default_action.redirect.protocol' is missing",
 	}
 }
@@ -27,7 +27,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'default_action.redirect.protocol' is equal 'HTTPS'",
+		"keyExpectedValue": "'default_action.redirect.protocol' is equal to 'HTTPS'",
 		"keyActualValue": sprintf("'default_action.redirect.protocol' is equal '%s'", [resource.default_action.redirect.protocol]),
 	}
 }

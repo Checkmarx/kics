@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  ElasticacheCluster3:
+    Type: 'AWS::ElastiCache::CacheCluster'
+    Properties:
+      Engine: redis
+      CacheNodeType: cache.t2.micro
+      NumCacheNodes: '1'
+      VpcSecurityGroupIds:
+        - !GetAtt
+          - ElasticacheSecurityGroup
+          - GroupId

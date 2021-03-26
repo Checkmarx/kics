@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "Non Kube System Pod With Host Mount",
+    "severity": "MEDIUM",
+    "line": 53
+  },
+  {
+    "queryName": "Non Kube System Pod With Host Mount",
+    "severity": "MEDIUM",
+    "line": 113
+  },
+  {
+    "queryName": "Non Kube System Pod With Host Mount",
+    "severity": "MEDIUM",
+    "line": 173
+  },
+  {
+    "queryName": "Non Kube System Pod With Host Mount",
+    "severity": "MEDIUM",
+    "line": 233
+  }
+]
