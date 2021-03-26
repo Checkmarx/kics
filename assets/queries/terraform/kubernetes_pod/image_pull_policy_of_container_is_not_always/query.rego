@@ -1,19 +1,26 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	types := {"kubernetes_pod": "spec.container", "kubernetes_deployment": "spec.template.spec.container"}
+	resource_prefix := types[x]
+	resource := input.document[i].resource[x][name]
 
-	container := resource.spec.container
+	path := checkPath(resource)
 
-	container.image_pull_policy != "Always"
+	path.image_pull_policy != "Always"
 
-	not contains(container.image, ":latest")
-
+	not contains(path.image, ":latest")
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.container.image_pull_policy", [name]),
+		"searchKey": sprintf("%s[%s].%s.image_pull_policy", [x, name, resource_prefix]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'image_pull_policy' should be defined as 'Always'",
 		"keyActualValue": "Attribute 'image_pull_policy' is incorrect",
 	}
+}
+
+checkPath(resource) = path {
+	path := resource.spec.template.spec.container
+} else = path {
+	path := resource.spec.container
 }
