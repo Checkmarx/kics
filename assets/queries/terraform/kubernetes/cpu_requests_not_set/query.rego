@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.%s.resources", [resourceType, name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s.resources.requests", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources.requests.cpu is set", [resourceType, name, types[x]]),
 		"keyActualValue": sprintf("%s[%s].spec.%s.resources.requests.cpu is undefined", [resourceType, name, types[x]]),

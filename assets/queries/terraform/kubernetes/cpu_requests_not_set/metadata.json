@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "CPU requests should be set to ensure the sum of the resource requests of the scheduled Containers is less than the capacity of the node",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#security_context",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#requests",
   "platform": "Terraform"
 }
