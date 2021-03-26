@@ -2,11 +2,13 @@
   {
     "queryName": "Liveness Probe Is Not Defined",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Liveness Probe Is Not Defined",
     "severity": "MEDIUM",
-    "line": 64
+    "line": 27,
+    "fileName": "positive2.tf"
   }
 ]
