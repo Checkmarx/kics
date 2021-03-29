@@ -1,0 +1,9 @@
+{
+  "id": "67d086cf-d80a-49ef-b65c-4267c41a8ed7",
+  "queryName": "PSP Host Pid Is True",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Minimize the admission of containers wishing to share the host process ID namespace",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allow_privilege_escalation",
+  "platform": "Terraform"
+}
