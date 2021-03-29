@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.Resources[name]
@@ -22,7 +24,7 @@ CxPolicy[result] {
 	doc.Resources[k].Type == "AWS::EC2::SecurityGroupIngress"
 	doc.Resources[k].Properties.CidrIp == "0.0.0.0/0"
 	doc.Resources[k].Properties.ToPort == 0
-	array_contains(securityGroupList, doc.Resources[k].Properties.GroupId)
+    commonLib.inArray(securityGroupList, doc.Resources[k].Properties.GroupId)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,8 +40,4 @@ CxPolicy[result] {
 			doc.Resources[k].Properties.CidrIp,
 		]),
 	}
-}
-
-array_contains(arr, elm) {
-	arr[_] == elm
 }
