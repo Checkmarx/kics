@@ -20,7 +20,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_api_gateway_stage[%s].xray_tracing_enabled", [name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'aws_api_gateway_stage[%s].xray_tracing_enabled' is set", [name]),
 		"keyActualValue": sprintf("'aws_api_gateway_stage[%s].xray_tracing_enabled' is undefined", [name]),
 	}

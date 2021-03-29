@@ -22,7 +22,6 @@ nav:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
       - Queries List:
-        - All: queries/all-queries.md
         - Ansible: queries/ansible-queries.md
         - CloudFormation: queries/cloudformation-queries.md
         - Common: queries/common-queries.md

@@ -1,16 +1,6 @@
 package Cx
 
-import data.generic.terraform as lib
-
-portIsKnown(port, knownPorts) = allow {
-	count({x | knownPorts[x][0]; knownPorts[x][0] == port}) != 0
-	allow = true
-}
-
-isEntireNetwork(cidr) = allow {
-	count({x | cidr[x]; cidr[x] == "0.0.0.0/0"}) != 0
-	allow = true
-}
+import data.generic.terraform as terraLib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -18,7 +8,7 @@ CxPolicy[result] {
 	currentPort := ingress[j].from_port
 	cidr := ingress[j].cidr_blocks
 
-	not portIsKnown(currentPort, lib.portNumbers)
+	not knownPort(currentPort, terraLib.portNumbers)
 	isEntireNetwork(cidr)
 
 	result := {
@@ -38,4 +28,14 @@ getIngressList(ingress) = list {
 	list := [ingress]
 } else = null {
 	true
+}
+
+knownPort(port, knownPorts) {
+	some i
+	knownPorts[i][0] == port
+}
+
+isEntireNetwork(cidr) = allow {
+	count({x | cidr[x]; cidr[x] == "0.0.0.0/0"}) != 0
+	allow = true
 }
