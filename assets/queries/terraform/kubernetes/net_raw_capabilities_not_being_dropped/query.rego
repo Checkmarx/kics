@@ -3,9 +3,10 @@ package Cx
 types := {"init_container", "container"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -13,17 +14,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context.capabilities.drop is set", [name, types[x], y]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context.capabilities.drop is undefined", [name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].security_context.capabilities.drop is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("k%s[%s].spec.%s[%d].security_context.capabilities.drop is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -34,17 +36,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context.capabilities.drop is ALL or NET_RAW", [name, types[x], y]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context.capabilities.add is not ALL or NET_RAW", [name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].security_context.capabilities.drop is ALL or NET_RAW", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].security_context.capabilities.add is not ALL or NET_RAW", [resourceType, name, types[x], y]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -52,17 +55,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context.capabilities is set", [name, types[x], y]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context.capabilities is undefined", [name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].security_context.capabilities is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].security_context.capabilities is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -70,17 +74,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context is set", [name, types[x], y]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].security_context is undefined", [name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].security_context is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].security_context is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -88,17 +93,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s.security_context.capabilities", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities.drop is set", [name, types[x]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities.drop is undefined", [name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.security_context.capabilities.drop is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.security_context.capabilities.drop is undefined", [resourceType, name, types[x]]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -108,17 +114,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities.drop", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s.security_context.capabilities.drop", [resourceType, name, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities.drop is ALL or NET_RAW", [name, types[x]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities.drop is not ALL or NET_RAW", [name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.security_context.capabilities.drop is ALL or NET_RAW", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.security_context.capabilities.drop is not ALL or NET_RAW", [resourceType, name, types[x]]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -126,17 +133,18 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s.security_context", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s.security_context", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities is set", [name, types[x]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.security_context.capabilities is undefined", [name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.security_context.capabilities is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.security_context.capabilities is undefined", [resourceType, name, types[x]]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
+	spec := resource[name].spec
+	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -144,10 +152,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.security_context is set", [name, types[x]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.security_context is undefined", [name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.security_context is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.security_context is undefined", [resourceType, name, types[x]]),
 	}
 }
 
