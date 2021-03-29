@@ -12,6 +12,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
+// DetectKindLine defines a kindDetectLine type
 type DetectKindLine struct {
 }
 
@@ -29,14 +30,12 @@ type dupHistory struct {
 }
 
 const (
-	UndetectedVulnerabilityLine = -1
+	undetectedVulnerabilityLine = -1
 )
 
-/*
-	detectHelmLine is used to detect line on the helm template,
-	it looks only at the keys of the template and will make use of the auxiliary added
-	lines (ex: "# KICS_HELM_ID_")
-*/
+// DetectLine is used to detect line on the helm template,
+// it looks only at the keys of the template and will make use of the auxiliary added
+// lines (ex: "# KICS_HELM_ID_")
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	searchKey = fmt.Sprintf("%s.%s", strings.TrimRight(strings.TrimLeft(file.HelmID, "# "), ":"), searchKey)
@@ -97,7 +96,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
-		Line:     UndetectedVulnerabilityLine,
+		Line:     undetectedVulnerabilityLine,
 		VulnLine: model.VulnLines{},
 	}
 }
@@ -133,7 +132,8 @@ func (d detectCurlLine) detectCurrentLine(lines []string, str1,
 			}
 		} else if str1 != "" {
 			if strings.Contains(lines[i], str1) {
-				distances[i] = levenshtein.ComputeDistance(detector.ExtractLineFragment(strings.TrimSpace(lines[i]), str1, byKey), str1)
+				distances[i] = levenshtein.ComputeDistance(
+					detector.ExtractLineFragment(strings.TrimSpace(lines[i]), str1, byKey), str1)
 			}
 		}
 	}

@@ -20,7 +20,7 @@ const (
 	valuePartsLength = 2
 )
 
-// getBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
+// GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
 func GetBracketValues(expr string, list [][]string, restOfString string) [][]string {
 	var tempList []string
 	firstOpen := strings.Index(expr, "{{")
@@ -36,16 +36,22 @@ func GetBracketValues(expr string, list [][]string, restOfString string) [][]str
 		}
 		list = GetBracketValues(restOfString, list, "") // recursive call to the rest of the string
 	} else if switchVal > 0 { // if the position of  the first "}}" is bigger than than the position of "{{"
-		list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:]) // recursive with the value inside of curly brackets
+		// recursive with the value inside of curly brackets
+		list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
 	} else { // if the position of  the first "{{" is bigger than than the position of "}}"
 		nextClose := strings.Index(restOfString, "}}")
-		tempList = append(tempList, fmt.Sprintf("{{%s%s}}", expr, restOfString[nextClose:]), fmt.Sprintf("%s%s", expr, restOfString[nextClose:]))
+		tempList = append(tempList, fmt.Sprintf("{{%s%s}}", expr, restOfString[nextClose:]),
+			fmt.Sprintf("%s%s", expr, restOfString[nextClose:]))
 		list = append(list, tempList)
 		list = GetBracketValues(restOfString[nextClose+2:], list, "") // recursive call to the rest of the string
 	}
 	return list
 }
 
+// GenerateSubstrings returns the substrings used for line searching depending on search key
+// '.' is new line
+// '=' is value in the same line
+// '[]' is in the same line
 func GenerateSubstrings(key string, extractedString [][]string) (substr1Res, substr2Res string) {
 	var substr1, substr2 string
 	if parts := nameRegex.FindStringSubmatch(key); len(parts) == namePartsLength {
@@ -93,7 +99,7 @@ func generateSubstr(substr string, parts []string, leng int) string {
 	return substr
 }
 
-// getAdjacent is used to get the lines adjecent to the line that contains the vulnerability
+// GetAdjacentLines is used to get the lines adjecent to the line that contains the vulnerability
 // adj is the amount of lines wanted
 func GetAdjacentLines(idx, adj int, lines []string) model.VulnLines {
 	var endPos int
@@ -148,6 +154,7 @@ func generatePosArr(adj, start int) []int {
 	return posArr
 }
 
+// SelectLineWithMinimumDistance will search a map of levenshtein distances to find the minimum distance
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int {
 	minDistance, lineOfMinDistance := 1000000000000, startingFrom
 	for line, distance := range distances {
@@ -160,6 +167,7 @@ func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int 
 	return lineOfMinDistance
 }
 
+// ExtractLineFragment will prepare substr for line detection
 func ExtractLineFragment(line, substr string, key bool) string {
 	// If detecting line by keys only
 	if key {
@@ -192,7 +200,9 @@ func ExtractLineFragment(line, substr string, key bool) string {
 	return line[start+1 : end]
 }
 
-func DetectCurrentLine(lines []string, str1, str2 string, curLine int, foundOne bool) (foundRes bool, lineRes int, breakRes bool) {
+// DetectCurrentLine uses levenshtein distance to find the most acurate line for the vulnerability
+func DetectCurrentLine(lines []string, str1, str2 string,
+	curLine int, foundOne bool) (foundRes bool, lineRes int, breakRes bool) {
 	distances := make(map[int]int)
 	for i := curLine; i < len(lines); i++ {
 		if str1 != "" && str2 != "" {

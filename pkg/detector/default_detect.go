@@ -9,12 +9,13 @@ import (
 )
 
 const (
-	UndetectedVulnerabilityLine = -1
+	undetectedVulnerabilityLine = -1
 )
 
 type defaultDetectLine struct {
 }
 
+// DetectLine searches vulnerability line if kindDetectLine is not in detectors
 func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	text := strings.ReplaceAll(file.OriginalData, "\r", "")
@@ -49,7 +50,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
-		Line:     UndetectedVulnerabilityLine,
+		Line:     undetectedVulnerabilityLine,
 		VulnLine: model.VulnLines{},
 	}
 }

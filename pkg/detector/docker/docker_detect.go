@@ -10,17 +10,19 @@ import (
 	"github.com/rs/zerolog"
 )
 
+// DetectKindLine defines a kindDetectLine type
 type DetectKindLine struct {
 }
 
 const (
-	UndetectedVulnerabilityLine = -1
+	undetectedVulnerabilityLine = -1
 )
 
 var (
 	nameRegexDockerFileML = regexp.MustCompile(`.+\s+\\$`)
 )
 
+// DetectLine searches vulnerability line in docker files
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	text := strings.ReplaceAll(file.OriginalData, "\r", "")
@@ -38,7 +40,8 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	for _, key := range strings.Split(sKey, ".") {
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-		foundAtLeastOne, currentLine, isBreak = detector.DetectCurrentLine(lines, substr1, substr2, currentLine, foundAtLeastOne)
+		foundAtLeastOne, currentLine, isBreak = detector.DetectCurrentLine(lines, substr1, substr2,
+			currentLine, foundAtLeastOne)
 
 		if isBreak {
 			break
@@ -55,7 +58,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields.Warn().Msgf("Failed to detect Docker line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
-		Line:     UndetectedVulnerabilityLine,
+		Line:     undetectedVulnerabilityLine,
 		VulnLine: model.VulnLines{},
 	}
 }
