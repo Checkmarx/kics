@@ -43,8 +43,9 @@ jobs:
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Run docker image and generate results.json
+      # DO NOT MERGE - adding verbose flag to check integration error
       run: |
-        docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json"
+        docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json" --verbose --log-level DEBUG
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
