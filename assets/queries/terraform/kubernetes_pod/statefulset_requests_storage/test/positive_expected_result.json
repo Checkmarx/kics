@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "StatefulSet Requests Storage",
+		"severity": "LOW",
+		"line": 177
+	}
+]

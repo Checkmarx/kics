@@ -1,0 +1,9 @@
+{
+  "id": "d6653eee-2d4d-4e6a-976f-6794a497999a",
+  "queryName": "API Gateway Without Content Encoding",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Enable Content Encoding through the attribute 'MinimumCompressionSize'. This value should be greater than -1 and smaller than 10485760.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html",
+  "platform": "CloudFormation"
+}

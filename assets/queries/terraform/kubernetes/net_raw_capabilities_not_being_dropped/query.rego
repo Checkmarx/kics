@@ -1,5 +1,7 @@
 package Cx
 
+types := {"init_container", "container"}
+
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 

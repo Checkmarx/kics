@@ -15,10 +15,6 @@ CxPolicy[result] {
 	}
 }
 
-check_resources(resource) {
-	resource.aws_api_gateway_usage_plan[_]
-}
-
 settings_are_equal(resource, rest_api_id, stage_name) {
 	usage_plan := resource.aws_api_gateway_usage_plan[_]
 	usage_plan.api_stages.api_id == rest_api_id
