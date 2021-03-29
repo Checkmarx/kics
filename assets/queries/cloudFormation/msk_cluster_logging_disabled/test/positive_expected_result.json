@@ -1,0 +1,62 @@
+[
+  {
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 7,
+    "fileName": "positive4.json",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 12,
+    "fileName": "positive2.yaml",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 15,
+    "fileName": "positive2.yaml",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 18,
+    "fileName": "positive2.yaml",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 13,
+    "fileName": "positive5.json",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 17,
+    "fileName": "positive5.json",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 21,
+    "fileName": "positive5.json",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 12,
+    "fileName": "positive3.yaml",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 13,
+    "fileName": "positive6.json",
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "fc7c2c15-f5d0-4b80-adb2-c89019f8f62b",
+  "queryName": "MSK Cluster Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure MSK Cluster Logging is enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html",
+  "platform": "CloudFormation"
+}
