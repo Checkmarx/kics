@@ -12,6 +12,12 @@ resource "kubernetes_role" "example1" {
     resource_names = ["foo"]
     verbs          = ["create", "list", "watch"]
   }
+
+  rule {
+    api_groups = ["apps"]
+    resources  = ["deployments"]
+    verbs      = ["get", "list"]
+  }
 }
 
 resource "kubernetes_role" "example2" {
