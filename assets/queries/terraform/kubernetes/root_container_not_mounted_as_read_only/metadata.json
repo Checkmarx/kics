@@ -1,0 +1,9 @@
+{
+  "id": "d532566b-8d9d-4f3b-80bd-361fe802f9c2",
+  "queryName": "Root Container Not Mounted As Read-only",
+  "severity": "LOW",
+  "category": "Build Process",
+  "descriptionText": "Check if the root container filesystem is not being mounted as read-only.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#read_only_root_filesystem",
+  "platform": "Terraform"
+}

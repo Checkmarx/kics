@@ -9,10 +9,10 @@ type ExcludeQueries struct {
 	ByCategories []string
 }
 
-// QueriesSource wraps an interface that contains basic methods: GetQueries and GetGenericQuery
+// QueriesSource wraps an interface that contains basic methods: GetQueries and GetQueryLibrary
 // GetQueries gets all queries from a QueryMetadata list
-// GetGenericQuery gets a base query based in plataform's name
+// GetQueryLibrary gets a library of rego functions given a plataform's name
 type QueriesSource interface {
 	GetQueries(excludeQueries ExcludeQueries) ([]model.QueryMetadata, error)
-	GetGenericQuery(platform string) (string, error)
+	GetQueryLibrary(platform string) (string, error)
 }

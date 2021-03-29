@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Exposing Port 22 (SSH)",
+    "severity": "LOW",
+    "line": 3
+  }
+]

@@ -2,50 +2,22 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
-	not resource.network_policy
-	resource.addons_config
 
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'network_policy' is defined",
-		"keyActualValue": "Attribute 'network_policy' is undefined",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
-	resource.network_policy
-	not resource.addons_config
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'addons_config' is defined",
-		"keyActualValue": "Attribute 'addons_config' is undefined",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
-	not resource.network_policy
-	not resource.addons_config
+	not bothDefined(resource)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'network_policy' is defined and Attribute 'addons_config' is defined",
-		"keyActualValue": "Attribute 'network_policy' is undefined and Attribute 'addons_config' is undefined",
+		"keyActualValue": "Attribute 'network_policy' is undefined or Attribute 'addons_config' is undefined",
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
-	resource.network_policy
-	resource.addons_config
+
+	bothDefined(resource)
 	not resource.addons_config.network_policy_config
 
 	result := {
@@ -82,4 +54,9 @@ CxPolicy[result] {
 		"keyExpectedValue": "Attribute 'addons_config.network_policy_config.disabled' is false",
 		"keyActualValue": "Attribute 'addons_config.network_policy_config.disabled' is true",
 	}
+}
+
+bothDefined(resource) {
+	resource.network_policy
+	resource.addons_config
 }

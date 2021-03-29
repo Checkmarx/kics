@@ -9,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.days", [name]),
-		"issueType": "WrongValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.retention_policy.days' is bigger than 90)", [name]),
 		"keyActualValue": sprintf("'retention_policy.days' is bigger than 90 [%d])", [var]),
 	}
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].retention_policy.enabled", [name]),
-		"issueType": "WrongValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.retention_policy' should be enabled)", [name]),
 		"keyActualValue": sprintf("'%s.retention_policy' is disabled)", [name]),
 	}

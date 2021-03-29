@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Make sure that the 'Standard' pricing tiers were selected.",
-  "descriptionUrl": "https://docs.bridgecrew.io/docs/ensure-standard-pricing-tier-is-selected",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_subscription_pricing",
   "platform": "Terraform"
 }

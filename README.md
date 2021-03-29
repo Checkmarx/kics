@@ -41,7 +41,7 @@ Setting up and using KICS is super-easy.
 
 Interested in more advanced stuff?
 -   Deep dive into KICS [queries](docs/queries.md).
--   Understand how to [integrate](docs/integrations.md) KICS in your favourit CI/CD pipelines.
+-   Understand how to [integrate](docs/integrations.md) KICS in your favourite CI/CD pipelines.
 
 
 ## How it Works
@@ -63,14 +63,10 @@ KICS is a true community project. It's built as an open source from day one, and
 
 ## More
 
-<a href="https://www.kics.io" title="www.kics.io"><img src="docs/img/button_www-kics-io.png" align="right"></a>
-
 [KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
-Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 **Keeping Infrastructure as Code Secure!**
-
 
 ---
 

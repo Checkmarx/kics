@@ -2,26 +2,17 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket[name]
-	resource.acl == "public-read"
+	publicAccessACL(resource.acl)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s].acl=public-read", [name]),
+		"searchKey": sprintf("aws_s3_bucket[%s].acl=%s", [name, resource.acl]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'acl' is equal 'private'",
-		"keyActualValue": "'acl' is equal 'public-read'",
+		"keyActualValue": sprintf("'acl' is equal '%s'", [resource.acl]),
 	}
 }
 
-CxPolicy[result] {
-	resource := input.document[i].resource.aws_s3_bucket[name]
-	resource.acl == "public-read-write"
+publicAccessACL("public-read") = true
 
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s].acl=public-read-write", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'acl' is equal 'private'",
-		"keyActualValue": "'acl' is equal 'public-read-write'",
-	}
-}
+publicAccessACL("public-read-write") = true

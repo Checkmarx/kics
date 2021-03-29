@@ -3,7 +3,7 @@ version: "3"
 services:
   kics:
     platform: linux
-    image: checkmarx/kics
+    image: checkmarx/kics:${IMAGE_TAG:-dev}
     container_name: kics
     hostname: kics
     volumes:
@@ -11,4 +11,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+      args:
+        VERSION: ${VERSION:-local}
+        COMMIT: ${COMMIT}
     command: -p /path/ -v

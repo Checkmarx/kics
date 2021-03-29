@@ -124,6 +124,7 @@ func WordWrap(s, identation string, limit int) string {
 
 // PrintResult prints on output the summary results
 func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
+	log.Debug().Msg("helpers.PrintResult()")
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
 	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
@@ -154,15 +155,12 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
-	log.
-		Info().
-		Msgf("\n\nFiles scanned: %d\n"+
-			"Parsed files: %d\nQueries loaded: %d\n"+
-			"Queries failed to execute: %d\n",
-			summary.ScannedFiles, summary.ParsedFiles, summary.TotalQueries, summary.FailedToExecuteQueries)
-	log.
-		Info().
-		Msg("Inspector stopped\n")
+
+	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
+	log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
+	log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
+	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
+	log.Info().Msg("Inspector stopped")
 
 	return nil
 }
@@ -245,10 +243,11 @@ func FileAnalyzer(path string) (string, error) {
 
 // GenerateReport execute each report function to generate report
 func GenerateReport(path, filename string, body interface{}, formats []string) error {
+	log.Debug().Msgf("helpers.GenerateReport()")
 	var err error = nil
 	for _, format := range formats {
 		if err = reportGenerators[format](path, filename, body); err != nil {
-			log.Error().Msgf("failed to generate %s report", format)
+			log.Error().Msgf("Failed to generate %s report", format)
 			break
 		}
 	}
@@ -257,6 +256,8 @@ func GenerateReport(path, filename string, body interface{}, formats []string) e
 
 // ValidateReportFormats returns an error if output format is not supported
 func ValidateReportFormats(formats []string) error {
+	log.Debug().Msg("helpers.ValidateReportFormats()")
+
 	validFormats := make([]string, len(reportGenerators))
 	for reportFormats := range reportGenerators {
 		validFormats = append(validFormats, reportFormats)
