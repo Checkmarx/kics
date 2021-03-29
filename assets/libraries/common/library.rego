@@ -1,9 +1,5 @@
 package generic.common
 
-getDocument([]) = document { # is this really fully generic?
-	document := input.document
-}
-
 json_unmarshal(s) = result {
 	s == null
 	result := json.unmarshal("{}")

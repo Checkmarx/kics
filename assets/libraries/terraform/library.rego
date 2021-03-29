@@ -1,9 +1,5 @@
 package generic.terraform
 
-confirmPort(port, pN) {
-	pN[port]
-}
-
 # Checks if a TCP port is open in a rule
 openPort(rule, port) {
 	rule.cidr_blocks[_] == "0.0.0.0/0"
