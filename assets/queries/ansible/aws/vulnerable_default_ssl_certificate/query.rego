@@ -27,14 +27,16 @@ CxPolicy[result] {
 
 	ansLib.checkState(cloudfront)
 	hasCustomConfig(cloudfront.viewer_certificate)
-	object.get(cloudfront.viewer_certificate, "ssl_support_method", "undefined") == "undefined"
+
+	attr := {"ssl_support_method", "minimum_protocol_version"}
+	object.get(cloudfront.viewer_certificate, attr[a], "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.viewer_certificate", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'ssl_support_method' is defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
-		"keyActualValue": "Attribute 'ssl_support_method' is not defined",
+		"keyExpectedValue": sprintf("Attribute %s is defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.", [attr[a]]),
+		"keyActualValue": sprintf("Attribute '%s' is not defined", [attr[a]]),
 	}
 }
 
