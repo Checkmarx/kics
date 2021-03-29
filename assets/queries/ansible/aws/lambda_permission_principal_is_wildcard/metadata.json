@@ -1,0 +1,9 @@
+{
+  "id": "1d972c56-8ec2-48c1-a578-887adb09c57a",
+  "queryName": "Lambda Permission Principal Is Wildcard",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Lambda Permission Principal should not contain a wildcard.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
+  "platform": "Ansible"
+}

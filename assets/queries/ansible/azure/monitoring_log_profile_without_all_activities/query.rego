@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"azure.azcollection.azure_rm_monitorlogprofile", "azure_rm_monitorlogprofile"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	categories := azureMonitor.categories
 	elem := ["write", "action", "delete"][_]
 
-	not containsCategories(categories, elem)
+	not commonLib.inArray([c | c := lower(categories[_])], elem)
 
 	result := {
 		"documentId": id,
@@ -36,10 +37,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "azure_rm_monitorlogprofile.categories is defined",
 		"keyActualValue": "azure_rm_monitorlogprofile.categories is undefined",
 	}
-}
-
-containsCategories(categories, elem) {
-	lower(categories[_]) == elem
-} else = false {
-	true
 }

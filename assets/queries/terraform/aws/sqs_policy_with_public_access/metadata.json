@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "SQS policy with public access",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy",
   "platform": "Terraform"
 }

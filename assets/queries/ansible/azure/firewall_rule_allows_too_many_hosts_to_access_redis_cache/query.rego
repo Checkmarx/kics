@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,8 +9,8 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	occupied_hosts := getHosts(instance.start_ip_address)
-	all_hosts := getHosts(instance.end_ip_address)
+	occupied_hosts := commonLib.calc_IP_value(instance.start_ip_address)
+	all_hosts := commonLib.calc_IP_value(instance.end_ip_address)
 	available := abs(all_hosts - occupied_hosts)
 
 	available > 255
@@ -21,13 +22,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow up to 255 hosts",
 		"keyActualValue": sprintf("azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow %d hosts", [available]),
 	}
-}
-
-getHosts(ip) = nhosts {
-	nums := split(ip, ".")
-
-	# ip = x.y.z.w
-	# hosts = x * 2^24 + y * 2^16 + z * 2^8 + w
-	# 2^24 = 16777216  2^16 = 65536  2^8 = 256
-	nhosts := (((to_number(nums[0]) * 16777216) + (to_number(nums[1]) * 65536)) + (to_number(nums[2]) * 256)) + to_number(nums[3])
 }

@@ -1,0 +1,14 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-11T00:00:00Z",
+  "Resources": {
+    "MyRepository6": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "RepositoryName": "test-repository",
+        "ImageScanningConfiguration": {
+          "ScanOnPush": "false"
+        }
+      }
+    }
+  }
+}

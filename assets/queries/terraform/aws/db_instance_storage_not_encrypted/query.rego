@@ -2,10 +2,11 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-    object.get(resource,"storage_encrypted","undefined") != "undefined"
-    not resource.storage_encrypted
 
-	object.get(resource,"kms_key_id","undefined") == "undefined"
+	object.get(resource, "storage_encrypted", "undefined") != "undefined"
+	not resource.storage_encrypted
+
+	object.get(resource, "kms_key_id", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,9 +19,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-    object.get(resource,"storage_encrypted","undefined") == "undefined"
 
-	object.get(resource,"kms_key_id","undefined") == "undefined"
+	object.get(resource, "storage_encrypted", "undefined") == "undefined"
+	object.get(resource, "kms_key_id", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

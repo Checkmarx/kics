@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
-	resourceDefinition = resource.container_definitions
-	resourceJson = json_unmarshal(resourceDefinition)
-	env = resourceJson.containerDefinitions[_].environment[_]
-	contains(upper(env.name), upper("password"))
+
+	resourceJson := commonLib.json_unmarshal(resource.container_definitions)
+	env := resourceJson.containerDefinitions[_].environment[_]
+	contains(lower(env.name), "password")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,14 +16,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'container_definitions.environment.name' doesn't have password value",
 		"keyActualValue": "'container_definitions.environment.name' has password value",
 	}
-}
-
-json_unmarshal(s) = result {
-	s == null
-	result := json.unmarshal("{}")
-}
-
-json_unmarshal(s) = result {
-	s != null
-	result := json.unmarshal(s)
 }
