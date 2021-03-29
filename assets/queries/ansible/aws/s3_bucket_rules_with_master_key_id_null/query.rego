@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"amazon.aws.s3_bucket", "s3_bucket"}
 
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	ansLib.checkState(s3_bucket)
 
 	s3_bucket.encryption != "AES256"
-	ansLib.checkValue(s3_bucket.encryption_key_id)
+	commonLib.emptyOrNull(s3_bucket.encryption_key_id)
 
 	result := {
 		"documentId": id,
