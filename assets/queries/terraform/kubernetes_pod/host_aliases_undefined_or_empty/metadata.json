@@ -1,0 +1,9 @@
+{
+	"id": "5d05ea11-ae3e-470e-9864-97e55fb2b2e0",
+	"queryName": "Host Aliases Undefined Or Empty",
+	"severity": "HIGH",
+	"category": "Insecure Configurations",
+	"descriptionText": "A Kubernetes Pod should have Host Aliases defined as to prevent the container from modifying the file after a pod's containers have already been started. This means the attribute 'spec.host_aliases' must be defined and not empty or null.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_aliases",
+	"platform": "Terraform"
+}

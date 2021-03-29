@@ -2,8 +2,10 @@ package Cx
 
 CxPolicy[result] {
 	rule := input.document[i].resource.aws_security_group_rule[name]
-	rule.type == "ingress"
-	contains(rule.cidr_blocks[idx], "0.0.0.0/0")
+
+	lower(rule.type) == "ingress"
+	some j
+	contains(rule.cidr_blocks[j], "0.0.0.0/0")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -16,7 +18,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	ingrs := input.document[i].resource.aws_security_group[name].ingress
-	contains(ingrs.cidr_blocks[idx], "0.0.0.0/0")
+
+	some j
+	contains(ingrs.cidr_blocks[j], "0.0.0.0/0")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,8 +32,10 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	ingrs := input.document[i].resource.aws_security_group[name].ingress[x]
-	contains(ingrs.cidr_blocks[idx], "0.0.0.0/0")
+	ingrs := input.document[i].resource.aws_security_group[name].ingress[_]
+
+	some j
+	contains(ingrs.cidr_blocks[j], "0.0.0.0/0")
 
 	result := {
 		"documentId": input.document[i].id,

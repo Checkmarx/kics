@@ -1,0 +1,9 @@
+{
+  "id": "ad69e38a-d92e-4357-a8da-f2f29d545883",
+  "queryName": "Pod or Container Without Security Context",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "A security context defines privilege and access control settings for a Pod or Container",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#security_context",
+  "platform": "Terraform"
+}
