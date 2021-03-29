@@ -1,0 +1,9 @@
+{
+  "id": "87065ef8-de9b-40d8-9753-f4a4303e27a4",
+  "queryName": "Container Is Privileged",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Do not allow container to be privileged.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
+  "platform": "Terraform"
+}
