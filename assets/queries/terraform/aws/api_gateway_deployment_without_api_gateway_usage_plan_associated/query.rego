@@ -7,7 +7,7 @@ CxPolicy[result] {
 	not settings_are_equal(document.resource, deployment.rest_api_id, deployment.stage_name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("aws_api_gateway_deployment[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s] has a 'aws_api_gateway_usage_plan' resource associated. ", [name]),
