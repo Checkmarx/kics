@@ -10,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].metadata.labels", [resourceType, name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorretValue",
 		"keyExpectedValue": sprintf("%s[%s].metada.labels[%s] has valid label", [resourceType, name, key]),
 		"keyActualValue": sprintf("%s[%s].metada.labels[%s] has invalid label", [resourceType, name, key]),
 	}
