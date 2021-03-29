@@ -4,6 +4,6 @@
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "AWS DB Security Group's CIDR must be different than 0.0.0.0/0",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-db_security_groups",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
   "platform": "Ansible"
 }

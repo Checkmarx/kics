@@ -4,7 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
 
 	resource.kinesis_source_configuration
-    not resource.kinesis_source_configuration.kinesis_stream_arn
+	not resource.kinesis_source_configuration.kinesis_stream_arn
 	resource.server_side_encryption.enabled == true
 
 	result := {
@@ -20,7 +20,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
 
 	not resource.server_side_encryption
-    not resource.kinesis_source_configuration.kinesis_stream_arn
+	not resource.kinesis_source_configuration.kinesis_stream_arn
 
 	result := {
 		"documentId": input.document[i].id,
@@ -57,7 +57,7 @@ CxPolicy[result] {
 
 	key_type := resource.server_side_encryption.key_type
 
-	not isValidKeyType(key_type)
+	not validKeyType(key_type)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -77,8 +77,6 @@ CxPolicy[result] {
 
 	key_type := resource.server_side_encryption.key_type
 
-	isValidKeyType(key_type)
-
 	key_type == "CUSTOMER_MANAGED_CMK"
 
 	not resource.server_side_encryption.key_arn
@@ -92,12 +90,6 @@ CxPolicy[result] {
 	}
 }
 
-isValidKeyType(key_type) = allow {
-	key_type == "AWS_OWNED_CMK"
-	allow = true
-}
+validKeyType("AWS_OWNED_CMK") = true
 
-isValidKeyType(key_type) = allow {
-	key_type == "CUSTOMER_MANAGED_CMK"
-	allow = true
-}
+validKeyType("CUSTOMER_MANAGED_CMK") = true

@@ -13,7 +13,7 @@ portNumbers := [
 	[139, "NetBIOS Session Service"],
 	[161, "SNMP"],
 	[389, "LDAP"],
-    [443, "HTTPS"],
+	[443, "HTTPS"],
 	[445, "Microsoft-DS"],
 	[636, "LDAP SSL"],
 	[1433, "MSSQL Server"],
@@ -31,8 +31,8 @@ portNumbers := [
 	[5432, "PostgreSQL"],
 	[5500, "VNC Listener"],
 	[5900, "VNC Server"],
-    [5985, "WinRM for HTTP"],
-    [5986, "WinRM for HTTPS"],
+	[5985, "WinRM for HTTP"],
+	[5986, "WinRM for HTTPS"],
 	[6379, "Redis"],
 	[7000, "Cassandra Internode Communication"],
 	[7001, "Cassandra"],
@@ -40,7 +40,7 @@ portNumbers := [
 	[8000, "Known internal web port"],
 	[8080, "Known internal web port"],
 	[8140, "Puppet Master"],
-    [8443, "HTTPS Proxy"],
+	[8443, "HTTPS Proxy"],
 	[8888, "Cassandra OpsCenter Website"],
 	[9000, "Hadoop Name Node"],
 	[9042, "Cassandra Client"],
@@ -56,8 +56,73 @@ portNumbers := [
 	[61621, "Cassandra OpsCenter"],
 ]
 
-getPort(portN, pN) = n {
-	pos := pN[f][0]
-	pos == portN
-	n := pos
+# Checks if a TCP port is open in a rule
+openPort(rule, port) {
+	rule.cidr_blocks[_] == "0.0.0.0/0"
+	rule.protocol == "tcp"
+	containsPort(rule, port)
+}
+
+openPort(rules, port) {
+	rule := rules[_]
+	rule.cidr_blocks[_] == "0.0.0.0/0"
+	rule.protocol == "tcp"
+	containsPort(rule, port)
+}
+
+# Checks if a port is included in a rule
+containsPort(rule, port) {
+	rule.from_port <= port
+	rule.to_port >= port
+}
+
+else {
+	rule.from_port == 0
+	rule.to_port == 0
+}
+
+else {
+	regex.match(sprintf("(^|\\s|,)%d(-|,|$|\\s)", [port]), rule.destination_port_range)
+}
+
+else {
+	ports := split(rule.destination_port_range, ",")
+	sublist := split(ports[var], "-")
+	to_number(trim(sublist[0], " ")) <= port
+	to_number(trim(sublist[1], " ")) >= port
+}
+
+# Gets the list of protocols
+getProtocolList("-1") = protocols {
+	protocols := ["TCP", "UDP", "ICMP"]
+}
+
+getProtocolList("*") = protocols {
+	protocols := ["TCP", "UDP", "ICMP"]
+}
+
+getProtocolList(protocol) = protocols {
+	upper(protocol) == "TCP"
+	protocols := ["TCP"]
+}
+
+getProtocolList(protocol) = protocols {
+	upper(protocol) == "UDP"
+	protocols := ["UDP"]
+}
+
+# Checks if any principal are allowed ina policy
+anyPrincipal(statement) {
+	contains(statement.Principal, "*")
+}
+
+anyPrincipal(statement) {
+	is_string(statement.Principal.AWS)
+	contains(statement.Principal.AWS, "*")
+}
+
+anyPrincipal(statement) {
+	is_array(statement.Principal.AWS)
+	some i
+	contains(statement.Principal.AWS[i], "*")
 }

@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "AWS Lambda Functions must have associated tags.",
-  "descriptionUrl": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html#how-to-tag-console",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html",
   "platform": "CloudFormation"
 }
