@@ -1,0 +1,20 @@
+- name: create a basic distribution with defaults, tags and default SSL certificate
+  community.aws.cloudfront_distribution:
+    state: present
+    default_origin_domain_name: www.my-cloudfront-origin.com
+    viewer_certificate:
+      cloudfront_default_certificate: true
+    tags:
+      Name: example distribution
+      Project: example project
+      Priority: '1'
+- name: create a basic distribution with defaults, tags and misconfigured custom SSL certificate
+  community.aws.cloudfront_distribution:
+    state: present
+    default_origin_domain_name: www.my-cloudfront-origin.com
+    viewer_certificate:
+      acm_certificate_arn: arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+    tags:
+      Name: example distribution
+      Project: example project
+      Priority: '1'

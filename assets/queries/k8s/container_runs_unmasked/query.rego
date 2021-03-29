@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("metadata.name=%s.spec.allowedProcMountTypes", [document.metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedProcMountTypes", [document.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "AllowedProcMountTypes contains the value Default",
 		"keyActualValue": "AllowedProcMountTypes contains the value Unmasked",

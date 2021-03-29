@@ -1,16 +1,52 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	document := input.document[i]
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
-	certificateSource := input.document[i].Resources[name].Properties.DistributionConfig.ViewerCertificate.certificateSource
-	contains(certificateSource, "cloudfront")
+
+	value := resource.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate
+	isAttrTrue(value)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.certificateSource", [name]),
+		"documentId": document.id,
+		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.CloudfrontDefaultCertificate", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.certificateSource should be configured as a custom SSL certificate with certificateSource different than 'cloudfron'", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.certificateSource is configured as 'cloudfront'", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'false' or not defined.", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'.", [name]),
 	}
+}
+
+CxPolicy[result] {
+	document := input.document[i]
+	resource := document.Resources[name]
+	resource.Type == "AWS::CloudFront::Distribution"
+	attr := {"MinimumProtocolVersion", "SslSupportMethod"}
+
+	viewerCertificate := resource.Properties.DistributionConfig.ViewerCertificate
+
+	hasCustomConfig(viewerCertificate)
+	object.get(viewerCertificate, attr[a], "undefined") == "undefined"
+
+	result := {
+		"documentId": document.id,
+		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s is defined", [name, attr[a]]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s is not defined", [name, attr[a]]),
+	}
+}
+
+isAttrTrue(value) {
+	value == "true"
+} else {
+	value == true
+}
+
+hasCustomConfig(viewerCertificate) {
+	object.get(viewerCertificate, "IamCertificateId", "undefined") != "undefined"
+}
+
+hasCustomConfig(viewerCertificate) {
+	object.get(viewerCertificate, "AcmCertificateArn", "undefined") != "undefined"
 }

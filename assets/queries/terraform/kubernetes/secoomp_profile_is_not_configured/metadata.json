@@ -1,0 +1,9 @@
+{
+  "id": "455f2e0c-686d-4fcb-8b5f-3f953f12c43c",
+  "queryName": "Seccomp Profile Is Not Configured",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Check if any resource does not configure Seccomp default profile properly",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
+  "platform": "Terraform"
+}
