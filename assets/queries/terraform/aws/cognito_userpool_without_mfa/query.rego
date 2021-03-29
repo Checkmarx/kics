@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cognito_user_pool[name]
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cognito_user_pool[name]
 
-	not hasValidConfig(["ON", "OPTIONAL"], resource.mfa_configuration)
+	not lib.inArray(["ON", "OPTIONAL"], resource.mfa_configuration)
 
 	result := {
 		"documentId": document.id,
@@ -34,7 +36,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cognito_user_pool[name]
 
-	hasValidConfig(["ON", "OPTIONAL"], resource.mfa_configuration)
+	lib.inArray(["ON", "OPTIONAL"], resource.mfa_configuration)
 	not hasRemainingConfiguration(resource)
 
 	result := {
@@ -44,12 +46,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_cognito_user_pool[%s] has 'sms_configuration' or 'software_token_mfa_configuration' defined", [name]),
 		"keyActualValue": sprintf("aws_cognito_user_pool[%s] doesn't have 'sms_configuration' or 'software_token_mfa_configuration' defined", [name]),
 	}
-}
-
-hasValidConfig(array, elem) {
-	array[_] == elem
-} else = false {
-	true
 }
 
 hasRemainingConfiguration(resource) {
