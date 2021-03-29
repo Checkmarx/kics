@@ -1,0 +1,9 @@
+{
+  "id": "9025b2b3-e554-4842-ba87-db7aeec36d35",
+  "queryName": "Unscanned ECR Image",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Checks if the ECR Image has been scanned",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration",
+  "platform": "CloudFormation"
+}
