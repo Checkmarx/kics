@@ -1,0 +1,9 @@
+{
+	"id": "0ad60203-c050-4115-83b6-b94bde92541d",
+	"queryName": "Container Runs Unmasked",
+	"severity": "MEDIUM",
+	"category": "Insecure Configurations",
+	"descriptionText": "Check if a container has full access (unmasked) to the host’s /proc command, which would allow to retrieve sensitive information and possibly change the kernel parameters in runtime.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allowed_proc_mount_types",
+	"platform": "Terraform"
+}
