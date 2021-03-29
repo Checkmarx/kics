@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/rs/zerolog/log"
 )
 
 // MemoryStorage is scans' results representation
@@ -26,7 +27,6 @@ func (m *MemoryStorage) GetFiles(_ context.Context, _ string) (model.FileMetadat
 // SaveVulnerabilities adds a list of vulnerabilities to vulnerabilities collection
 func (m *MemoryStorage) SaveVulnerabilities(_ context.Context, vulnerabilities []model.Vulnerability) error {
 	m.vulnerabilities = append(m.vulnerabilities, vulnerabilities...)
-
 	return nil
 }
 
@@ -42,6 +42,7 @@ func (m *MemoryStorage) GetScanSummary(_ context.Context, _ []string) ([]model.S
 
 // NewMemoryStorage creates a new MemoryStorage empty and returns it
 func NewMemoryStorage() *MemoryStorage {
+	log.Debug().Msg("storage.NewMemoryStorage()")
 	return &MemoryStorage{
 		allFiles:        make(model.FileMetadatas, 0),
 		vulnerabilities: make([]model.Vulnerability, 0),

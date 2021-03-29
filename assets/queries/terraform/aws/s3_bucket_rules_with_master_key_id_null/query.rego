@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket[name]
 	ssec := resource.server_side_encryption_configuration
@@ -39,9 +41,5 @@ check_master_key(assed) {
 }
 
 check_master_key(assed) {
-	assed.kms_master_key_id == ""
-}
-
-check_master_key(assed) {
-	assed.kms_master_key_id == null
+	commonLib.emptyOrNull(assed.kms_master_key_id)
 }

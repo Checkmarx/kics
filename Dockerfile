@@ -7,16 +7,16 @@ USER Checkmarx
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
 
-
 ENV GOPRIVATE=github.com/Checkmarx/*
-ARG VERSION=development
+ARG VERSION="dev"
+ARG COMMIT="N/A"
 
 #Copy go mod and sum files
 COPY --chown=Checkmarx:Checkmarx go.mod .
 COPY --chown=Checkmarx:Checkmarx go.sum .
 
 # Get dependancies - will also be cached if we won't change mod/sum
-RUN go mod download -x
+RUN go mod download
 
 # COPY the source code as the last step
 COPY . .
@@ -24,8 +24,9 @@ COPY . .
 USER root
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-  -ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION}" -a -installsuffix cgo \
-  -o bin/kics cmd/console/main.go
+    -ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" \
+    -a -installsuffix cgo \
+    -o bin/kics cmd/console/main.go
 USER Checkmarx
 
 #Healthcheck the container

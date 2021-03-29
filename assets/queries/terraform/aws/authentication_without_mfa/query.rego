@@ -1,12 +1,12 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_policy[name]
 
-	poli := resource.policy
-	output := json.unmarshal(poli)
-
-	statement := output.Statement
+	policy := commonLib.json_unmarshal(resource.policy)
+	statement := policy.Statement
 
 	checkShortTermCredentials(input.document)
 
@@ -25,10 +25,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_policy[name]
 
-	poli := resource.policy
-	output := json.unmarshal(poli)
-
-	statement := output.Statement
+	policy := commonLib.json_unmarshal(resource.policy)
+	statement := policy.Statement
 
 	checkShortTermCredentials(input.document)
 

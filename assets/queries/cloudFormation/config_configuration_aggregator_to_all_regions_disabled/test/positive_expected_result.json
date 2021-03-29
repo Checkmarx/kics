@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 43,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "HIGH",
+    "line": 62,
+    "fileName": "positive2.json"
+  }
+]

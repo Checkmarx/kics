@@ -23,6 +23,54 @@ calc_IP_value(ip) = result {
 	result = (((to_number(ips[0]) * 16777216) + (to_number(ips[1]) * 65536)) + (to_number(ips[2]) * 256)) + to_number(ips[3])
 }
 
+# Checks if a value is within a range
+between(value, min, max) {
+	value >= min
+	value <= max
+}
+
+# Checks if a list contains an item
+inArray(list, item) {
+	some i
+	list[i] == item
+}
+
+# Checks if a value is empty ("") or null
+emptyOrNull("") = true
+
+emptyOrNull(null) = true
+
+# Checks if an IP is private
+isPrivateIP(ipVal) {
+	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+	some i
+	net.cidr_contains(private_ips[i], ipVal)
+}
+
+# Check if field equals to value or if any element from field equals to value
+equalsOrInArray(field, value) {
+	is_string(field)
+	lower(field) == value
+}
+
+equalsOrInArray(field, value) {
+	is_array(field)
+	some i
+	lower(field[i]) == value
+}
+
+# Check if field contains value or if any element from field contains value
+containsOrInArrayContains(field, value) {
+	is_string(value)
+	contains(lower(field), value)
+}
+
+containsOrInArrayContains(field, value) {
+	is_array(field)
+	some i
+	contains(lower(field[i]), value)
+}
+
 isDefaultPassword(p) {
 	ar = {
 		"!@",
@@ -255,4 +303,10 @@ allowsAllPrincipalsToAssume(resource, statement) {
 	contains(resource[x], "arn:aws:iam::")
 	contains(resource[x], ":root")
 	not contains(statement.Effect, "Deny")
+}
+
+compareArrays(arrayOne, arrayTwo) {
+	upper(arrayOne[_]) == upper(arrayTwo[_])
+} else = false {
+	true
 }

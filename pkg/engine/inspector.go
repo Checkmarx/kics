@@ -99,25 +99,25 @@ func NewInspector(
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
 	excludeResults map[string]bool) (*Inspector, error) {
+	log.Debug().Msg("engine.NewInspector()")
+
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := queriesSource.GetGenericQuery("common")
+	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
-		log.
-			Err(err).
+		log.Err(err).
 			Msgf("Inspector failed to get general query, query=%s", "common")
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
-		platformGeneralQuery, err := queriesSource.GetGenericQuery(metadata.Platform)
+		platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
 		if err != nil {
 			sentry.CaptureException(err)
-			log.
-				Err(err).
+			log.Err(err).
 				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
 
 			continue
@@ -136,8 +136,7 @@ func NewInspector(
 			).PrepareForEval(ctx)
 			if err != nil {
 				sentry.CaptureException(err)
-				log.
-					Err(err).
+				log.Err(err).
 					Msgf("Inspector failed to prepare query for evaluation, query=%s", metadata.Query)
 
 				continue
@@ -156,7 +155,7 @@ func NewInspector(
 	queriesNumber := sumAllAggregatedQueries(opaQueries)
 
 	log.Info().
-		Msgf("Inspector initialized, number of queries=%d\n", queriesNumber)
+		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
 	return &Inspector{
 		queries:        opaQueries,
@@ -191,6 +190,7 @@ func (c *Inspector) Inspect(
 	files model.FileMetadatas,
 	hideProgress bool,
 	baseScanPath string) ([]model.Vulnerability, error) {
+	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
 	_, err := json.Marshal(combinedFiles)
@@ -220,7 +220,7 @@ func (c *Inspector) Inspect(
 			sentry.CaptureException(err)
 			log.Err(err).
 				Str("scanID", scanID).
-				Msgf("inspector. query executed with error, query=%s", query.metadata.Query)
+				Msgf("Inspector. query executed with error, query=%s", query.metadata.Query)
 
 			c.failedQueries[query.metadata.Query] = err
 
@@ -329,7 +329,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 		if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
 			log.Debug().
-				Msgf("Excluding result simID=%s", vulnerability.SimilarityID)
+				Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
 		} else {
 			vulnerabilities = append(vulnerabilities, vulnerability)
 		}

@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	route := input.document[i].resource.aws_route53_record[name]
-	isRecordsEmpty(route.records)
+	commonLib.emptyOrNull(route.records)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -11,13 +13,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_route53_record.records is defined",
 		"keyActualValue": "aws_route53_record.records is undefined",
 	}
-}
-
-isRecordsEmpty(r) {
-	r == null
-}
-
-isRecordsEmpty(r) {
-	r != null
-	count(r) <= 0
 }

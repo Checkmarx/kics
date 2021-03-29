@@ -1,0 +1,9 @@
+{
+  "id": "ebb2118a-03bc-4d53-ab43-d8750f5cb8d3",
+  "queryName": "CloudTrail Not Integrated With CloudWatch",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "CloudTrail should be integrated with CloudWatch",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
+  "platform": "Ansible"
+}

@@ -12,26 +12,7 @@ CxPolicy[result] {
 	statement := awsApiGateway.policy.Statement[_]
 	resource := statement.Principal[j].AWS
 	contains(resource, "*")
-	not statement.Effect
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
-		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	awsApiGateway := task[modules[m]]
-	ansLib.checkState(awsApiGateway)
-
-	statement := awsApiGateway.policy.Statement[_]
-	resource := statement.Principal[j].AWS
-	contains(resource, "*")
-	not contains(statement.Effect, "Deny")
+	not contains(object.get(statement, "Effect", "undefined"), "Deny")
 
 	result := {
 		"documentId": id,

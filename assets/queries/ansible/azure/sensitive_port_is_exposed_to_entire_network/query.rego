@@ -2,8 +2,69 @@ package Cx
 
 import data.generic.ansible as ansLib
 
-getProtocol(resource) = protocol {
-	protocol := resource.protocol
+CxPolicy[result] {
+	#############	inputs
+	portNumbers := [
+		[22, "SSH"], # List of ports
+		[23, "Telnet"],
+		[25, "SMTP"],
+		[53, "DNS"],
+		[110, "POP3"],
+		[135, "MSSQL Debugger"],
+		[137, "NetBIOS Name Service"],
+		[138, "NetBIOS Datagram Service"],
+		[139, "NetBIOS Session Service"],
+		[161, "SNMP"],
+		[445, "Microsoft-DS"],
+		[636, "LDAP SSL"],
+		[1433, "MSSQL Server"],
+		[1434, "MSSQL Browser"],
+		[2382, "SQL Server Analysis"],
+		[2383, "SQL Server Analysis"],
+		[2484, "Oracle DB SSL"],
+		[3000, "Prevalent known internal port"],
+		[3020, "CIFS / SMB"],
+		[3306, "MySQL"],
+		[3389, "Remote Desktop"],
+		[4506, "SaltStack Master"],
+		[5432, "PostgreSQL"],
+		[5500, "VNC Listener"],
+		[5900, "VNC Server"],
+		[7001, "Cassandra"],
+		[8000, "Known internal web port"],
+		[8080, "Known internal web port"],
+		[8140, "Puppet Master"],
+		[9000, "Hadoop Name Node"],
+		[9090, "CiscoSecure, WebSM"],
+		[11214, "Memcached SSL"],
+		[11215, "Memcached SSL"],
+		[27018, "Mongo Web Portal"],
+		[61621, "Cassandra OpsCenter"],
+	]
+
+	task := ansLib.tasks[id][t]
+	modules := {"azure.azcollection.azure_rm_securitygroup", "azure_rm_securitygroup"}
+	securitygroup := task[modules[m]]
+	ansLib.checkState(securitygroup)
+	resource := securitygroup.rules[r]
+
+	portNumber := portNumbers[j][0]
+	portName := portNumbers[j][1]
+	protocol := getProtocolList(resource.protocol)[_]
+
+	upper(resource.access) == "ALLOW"
+	endswith(resource.source_address_prefix, "/0")
+	containsDestinationPort(portNumber, resource)
+	isTCPorUDP(protocol)
+
+	result := {
+		"documentId": id,
+		"searchKey": sprintf("name={{%s}}.{{%s}}.rules.name={{%s}}.destination_port_range", [task.name, modules[m], resource.name]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+	}
 }
 
 getProtocolList(protocol) = list {
@@ -49,87 +110,6 @@ else = containing {
 	containing := true
 }
 
-isAccessibleFromEntireNetwork(resource) = accessible {
-	endswith(resource.source_address_prefix, "/0")
-	accessible := true
-}
-
-isAllowed(resource) = allowed {
-	upper(resource.access) == "ALLOW"
-	allowed := true
-}
-
 isTCPorUDP(protocol) = is {
 	is := upper(protocol) != "ICMP"
-}
-
-CxPolicy[result] {
-	#############	inputs
-	portNumbers := [
-		[22, "SSH"], # List of ports
-		[23, "Telnet"],
-		[25, "SMTP"],
-		[53, "DNS"],
-		[110, "POP3"],
-		[135, "MSSQL Debugger"],
-		[137, "NetBIOS Name Service"],
-		[138, "NetBIOS Datagram Service"],
-		[139, "NetBIOS Session Service"],
-		[161, "SNMP"],
-		[445, "Microsoft-DS"],
-		[636, "LDAP SSL"],
-		[1433, "MSSQL Server"],
-		[1434, "MSSQL Browser"],
-		[2382, "SQL Server Analysis"],
-		[2383, "SQL Server Analysis"],
-		[2484, "Oracle DB SSL"],
-		[3000, "Prevalent known internal port"],
-		[3020, "CIFS / SMB"],
-		[3306, "MySQL"],
-		[3389, "Remote Desktop"],
-		[4506, "SaltStack Master"],
-		[5432, "PostgreSQL"],
-		[5500, "VNC Listener"],
-		[5900, "VNC Server"],
-		[7001, "Cassandra"],
-		[8000, "Known internal web port"],
-		[8080, "Known internal web port"],
-		[8140, "Puppet Master"],
-		[9000, "Hadoop Name Node"],
-		[9090, "CiscoSecure, WebSM"],
-		[11214, "Memcached SSL"],
-		[11215, "Memcached SSL"],
-		[27018, "Mongo Web Portal"],
-		[61621, "Cassandra OpsCenter"],
-	]
-
-	#############	document and resource
-	task := ansLib.tasks[id][t]
-	modules := {"azure.azcollection.azure_rm_securitygroup", "azure_rm_securitygroup"}
-	securitygroup := task[modules[m]]
-	ansLib.checkState(securitygroup)
-	resource := securitygroup.rules[r]
-	ruleName := resource.name
-
-	#############	get relevant fields
-	portNumber := portNumbers[j][0]
-	portName := portNumbers[j][1]
-	protocolList := getProtocolList(getProtocol(resource))
-	protocol := protocolList[k]
-
-	#############	Checks
-	isAllowed(resource)
-	isAccessibleFromEntireNetwork(resource)
-	containsDestinationPort(portNumber, resource)
-	isTCPorUDP(protocol)
-
-	#############	Result
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.rules.name={{%s}}.destination_port_range", [task.name, modules[m], ruleName]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s.azure_rm_securitygroup.rules", [portName, protocol, portNumber, ruleName]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s.azure_rm_securitygroup.rules", [portName, protocol, portNumber, ruleName]),
-	}
 }

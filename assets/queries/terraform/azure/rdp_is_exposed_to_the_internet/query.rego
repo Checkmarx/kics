@@ -1,5 +1,22 @@
 package Cx
 
+CxPolicy[result] {
+	resource := input.document[i].resource.azurerm_network_security_rule[var0]
+	upper(resource.access) == "ALLOW"
+
+	isRelevantProtocol(resource.protocol)
+	isRelevantPort(resource.destination_port_range)
+	isRelevantAddressPrefix(resource.source_address_prefix)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [var0]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' cannot be 3389", [var0]),
+		"keyActualValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' might be 3389", [var0]),
+	}
+}
+
 isRelevantProtocol(protocol) = allow {
 	upper(protocol) != "UDP"
 	upper(protocol) != "ICMP"
@@ -42,21 +59,4 @@ else = allow {
 else = allow {
 	prefix == "any"
 	allow = true
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_network_security_rule[var0]
-	upper(resource.access) == "ALLOW"
-
-	isRelevantProtocol(resource.protocol)
-	isRelevantPort(resource.destination_port_range)
-	isRelevantAddressPrefix(resource.source_address_prefix)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [var0]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' cannot be 3389", [var0]),
-		"keyActualValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' might be 3389", [var0]),
-	}
 }
