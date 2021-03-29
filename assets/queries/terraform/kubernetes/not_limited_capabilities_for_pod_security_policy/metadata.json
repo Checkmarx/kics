@@ -1,0 +1,9 @@
+{
+  "id": "2acb555f-f4ad-4b1b-b984-84e6588f4b05",
+  "queryName": "Not Limited Capabilities For Pod Security Policy",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Limit capabilities for a Pod Security Policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#required_drop_capabilities",
+  "platform": "Terraform"
+}
