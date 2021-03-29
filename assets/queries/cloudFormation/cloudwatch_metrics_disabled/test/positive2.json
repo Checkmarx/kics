@@ -1,0 +1,23 @@
+{
+  "Resources": {
+    "LambdaInvocationsAnomalyDetector4": {
+      "Type": "AWS::CloudWatch::AnomalyDetector",
+      "Properties": {
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda",
+        "Statistic": "Sum"
+      }
+    },
+    "LambdaInvocationsAlarm4": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmDescription": "Lambda invocations",
+        "AlarmName": "LambdaInvocationsAlarm",
+        "ComparisonOperator": "LessThanLowerOrGreaterThanUpperThreshold",
+        "EvaluationPeriods": 1,
+        "ThresholdMetricId": "ad1",
+        "TreatMissingData": "breaching"
+      }
+    }
+  }
+}
