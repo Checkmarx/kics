@@ -4,7 +4,7 @@ var headerArray = [];
 (function () {
   removeElement(".nav-item a[rel='prev']", true)
   removeElement(".nav-item a[rel='next']", true)
-  //
+  // For queries pages
   if (window.location.href.includes('/queries/') && window.location.href.includes('-queries')) {
     removeElement(".container .navbar-light", true)
     var updateElement = document.querySelector("[role='main']");
@@ -14,15 +14,29 @@ var headerArray = [];
     //add filter and sort
     var tableHeader = document.querySelectorAll(":not(.modal-body) > table > thead > tr > th")
     for (var i = 0; i < tableHeader.length; i++) {
+      const index = i;
       headerArray.push(tableHeader[i].innerText.toLowerCase())
+      const headerText = sanitize(tableHeader[i].innerText)
       if (!tableHeader[i].innerText.toLowerCase().includes("help")) {
-        if (!tableHeader[i].innerText.toLowerCase().includes("description")) {
-          
-          tableHeader[i].innerHTML = `<span style="cursor:pointer;" onclick="executeSort(${i})">${tableHeader[i].innerText} &uarr;&darr;</span><br/><input id="query-filter-${i}" type="text" onkeyup="filterQueryTable(${tableHeader.length})" onpaste="pasteFilter(${tableHeader.length})"/>`
-        } else {
-          tableHeader[i].innerHTML = `<span>${tableHeader[i].innerText}</span><br/><input id="query-filter-${i}" type="text" onkeyup="filterQueryTable(${tableHeader.length})" onpaste="pasteFilter(${tableHeader.length})"/>`
+        const spanSort = document.createElement("span")
+        spanSort.innerText = headerText
 
+        const inputFilter = document.createElement("input")
+        inputFilter.setAttribute("id", `query-filter-${i}`)
+        inputFilter.setAttribute("type", "text")
+        inputFilter.addEventListener("keyup", function(){filterQueryTable(tableHeader.length)});
+        inputFilter.addEventListener("paste", function () {pasteFilter(tableHeader.length)});
+        
+        const lineBreak = document.createElement("br")
+        if (!tableHeader[i].innerText.toLowerCase().includes("description")) {
+          spanSort.setAttribute("style", "cursor:pointer;")
+          spanSort.innerText += " ↑↓"
+          spanSort.addEventListener("click", function () {executeSort(index)});
         }
+        tableHeader[i].innerHTML = ""
+        tableHeader[i].appendChild(spanSort)
+        tableHeader[i].appendChild(lineBreak)
+        tableHeader[i].appendChild(inputFilter)
       } else {
         tableHeader[i].style.verticalAlign = "initial";
       }
@@ -30,11 +44,15 @@ var headerArray = [];
     const csvFilename = `${window.location.href.match(/[a-zA-Z]*-queries/)[0]}.csv`
     const table = document.querySelector(":not(.modal-body) > table")
     const button = document.createElement("button")
-    button.innerHTML = "Download"
+    button.innerText = "Download"
     button.addEventListener("click", function(){exportToCSV(csvFilename)});
     table.parentNode.insertBefore(button, table)
   }
 })();
+
+function sanitize(str) {
+  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
 
 function pasteFilter(numberOfColumns) {
   setTimeout(filterQueryTable, 100, numberOfColumns);
@@ -42,9 +60,14 @@ function pasteFilter(numberOfColumns) {
 
 function filterQueryTable(numberOfColumns) {
   var allLines = document.querySelectorAll(":not(.modal-body) > table > tbody > tr")
+
   hideRow = new Set();
   for (var i = 0; i < numberOfColumns; i++) {
-    var textToFilter = document.querySelector(`#query-filter-${i}`).value;
+    const input = document.querySelector(`#query-filter-${i}`)
+    var textToFilter = ""
+    if (input) {
+      textToFilter = input.value
+    }
     
     if (textToFilter) {
       allLines.forEach(line => {
@@ -114,7 +137,7 @@ function exportToCSV(filename) {
     var row = []
     cols = rows[i].querySelectorAll("td, th")
     for (var j = 0; j < cols.length; j++) {
-      var text = `"${cols[j].innerText.replace("\n", " ").replace('"','')}"`
+      var text = `"${cols[j].innerText.replace(/\\n/g, " ").replaceAll(/"/g,'')}"`
       if (cols[j].tagName == "TH") {
         text = text.match(/[0-9a-zA-Z ]+/)[0]
       } else if (headerArray[j] == "help") {
@@ -130,13 +153,10 @@ function exportToCSV(filename) {
 }
 
 function downloadCSV(csv, filename) {
-  var csvFile;
-  var downloadLink;
+  const downloadLink = document.createElement("a")
 
-  csvFile = new Blob([csv], {type: "text/csv"})
-  downloadLink = document.createElement("a")
   downloadLink.download = filename
-  downloadLink.href = window.URL.createObjectURL(csvFile)
+  downloadLink.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
   downloadLink.style.display = "none"
   document.body.appendChild(downloadLink)
   downloadLink.click()
