@@ -1,0 +1,9 @@
+{
+  "id": "bd6bd46c-57db-4887-956d-d372f21291b6",
+  "queryName": "Missing App Armor Config",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "Containers should be configured with AppArmor for any application to reduce its potential attack",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
+  "platform": "Terraform"
+}
