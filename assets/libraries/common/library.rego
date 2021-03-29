@@ -1,6 +1,6 @@
 package generic.common
 
-getDocument = document { # is this really fully generic?
+getDocument([]) = document { # is this really fully generic?
 	document := input.document
 }
 
