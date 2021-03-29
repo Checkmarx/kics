@@ -4,41 +4,7 @@ import data.generic.cloudformation as cloudFormationLib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::IAM::Role"
-	statement := resource.Properties.AssumeRolePolicyDocument.Statement[j]
-	statement.Effect == "Allow"
-	statement.Principal == "*"
-	cloudFormationLib.checkAction(statement.Action[k], "put")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement does not allow a 'Put' action from all principals", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement allows a 'Put' action from all principals", [name]),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::IAM::Role"
-	statement := resource.Properties.AssumeRolePolicyDocument.Statement[j]
-	statement.Effect == "Allow"
-	statement.Principal == "*"
-	cloudFormationLib.checkAction(statement.Action, "put")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement does not allow a 'Put' action from all principals", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.AssumeRolePolicyDocument.Statement allows a 'Put' action from all principals", [name]),
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::IAM::Policy"
+	resource.Type == "AWS::S3::BucketPolicy"
 	statement := resource.Properties.PolicyDocument.Statement[j]
 	statement.Effect == "Allow"
 	statement.Resource == "*"
@@ -55,7 +21,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::IAM::Policy"
+	resource.Type == "AWS::S3::BucketPolicy"
 	statement := resource.Properties.PolicyDocument.Statement[j]
 	statement.Effect == "Allow"
 	statement.Resource == "*"

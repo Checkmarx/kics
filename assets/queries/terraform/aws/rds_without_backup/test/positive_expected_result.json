@@ -2,13 +2,11 @@
   {
     "queryName": "RDS Without Backup",
     "severity": "MEDIUM",
-    "line": 16,
-    "value": "mydb"
+    "line": 16
   },
   {
     "queryName": "RDS Without Backup",
     "severity": "MEDIUM",
-    "line": 12,
-    "value": "mydb"
+    "line": 12
   }
 ]

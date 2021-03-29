@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Redshift Stack
+Resources:
+  RedshiftCluster3:
+    Type: AWS::Redshift::Cluster
+    Properties:
+      ClusterSubnetGroupName: !Ref RedshiftClusterSubnetGroup
+      ClusterType: !If [ SingleNode, single-node, multi-node ]
+      NumberOfNodes: !If [ SingleNode, !Ref 'AWS::NoValue', !Ref RedshiftNodeCount ] #'
+      DBName: !Sub ${DatabaseName}
+      IamRoles:
+        - !GetAtt RawDataBucketAccessRole.Arn
+      MasterUserPassword: !Ref MasterUserPassword
+      MasterUsername: !Ref MasterUsername
+      PubliclyAccessible: true
+      NodeType: dc1.large
+      Port: 5439
+      VpcSecurityGroupIds:
+        - !Sub ${RedshiftSecurityGroup}
+      PreferredMaintenanceWindow: Sun:09:15-Sun:09:45

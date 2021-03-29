@@ -21,6 +21,7 @@ jobs:
       uses: golangci/golangci-lint-action@v2.5.1
       with:
         version: v1.37
+        args: -c .golangci.yml
         skip-go-installation: true
   go-generate:
     name: go-generate

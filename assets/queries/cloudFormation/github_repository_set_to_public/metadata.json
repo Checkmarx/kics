@@ -1,0 +1,9 @@
+{
+  "id": "5906092d-5f74-490d-9a03-78febe0f65e1",
+  "queryName": "GitHub Repository Set To Public",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Repositories must be set to private, which means the attribute 'visibility' must be set to 'private' and/or the attribute 'private' must be set to true (the attribute 'visibility' overrides 'private')",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestar-githubrepository.html",
+  "platform": "CloudFormation"
+}

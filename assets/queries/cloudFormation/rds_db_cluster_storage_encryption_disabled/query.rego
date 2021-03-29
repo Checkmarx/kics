@@ -4,8 +4,7 @@ CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBCluster"
-	properties := resource.Properties
-	properties.StorageEncrypted == false
+	resource.Properties.StorageEncrypted == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,8 +19,7 @@ CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBCluster"
-	properties := resource.Properties
-    object.get(properties, "StorageEncrypted", "undefined") == "undefined"
+	object.get(resource.Properties, "StorageEncrypted", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

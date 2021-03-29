@@ -2,19 +2,16 @@
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 47,
-    "value": "examplequeue_aws"
+    "line": 47
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 72,
-    "value": "examplequeue_aws_array"
+    "line": 72
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 15,
-    "value": "examplequeue"
+    "line": 15
   }
 ]

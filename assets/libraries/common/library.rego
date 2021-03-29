@@ -298,3 +298,23 @@ tcpPortsMap = {
     61621: "Cassandra OpsCenter",
 }
 
+# verifies if the resource(statement.Principal.AWS) contains an ARN that points to a specific IAM user
+allowsAllPrincipalsToAssume(resource, statement) {
+	is_string(resource) == true
+	contains(resource, "arn:aws:iam::")
+	contains(resource, ":root")
+	not contains(statement.Effect, "Deny")
+}
+
+allowsAllPrincipalsToAssume(resource, statement) {
+	is_array(resource) == true
+	contains(resource[x], "arn:aws:iam::")
+	contains(resource[x], ":root")
+	not contains(statement.Effect, "Deny")
+}
+
+compareArrays(arrayOne, arrayTwo) {
+	upper(arrayOne[_]) == upper(arrayTwo[_])
+} else = false {
+	true
+}

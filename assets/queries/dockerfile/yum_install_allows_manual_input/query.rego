@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
@@ -24,7 +26,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	count(resource.Value) > 1
 
-	isYumInstallInList(resource.Value)
+    dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	not avoidManualInputInList(resource.Value)
 
@@ -51,11 +53,6 @@ avoidManualInput(command) {
 
 avoidManualInput(command) {
 	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)", command)
-}
-
-isYumInstallInList(command) {
-	contains(command[x], "yum")
-	contains(command[j], "install")
 }
 
 avoidManualInputInList(command) {

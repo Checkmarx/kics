@@ -46,3 +46,7 @@ udpPortsMap = {
     11214: "Memcached SSL",
     11215: "Memcached SSL",
 }
+
+getResourcesByType(resources, type) = list {
+    list = [resource | resources[i].Type == type; resource := resources[i]]
+}

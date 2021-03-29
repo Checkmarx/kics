@@ -35,6 +35,9 @@ jobs:
         with:
           title: Update install script - ${{ github.run_id }}
           token: ${{ secrets.KICS_BOT_PAT }}
+          delete-branch: true
+          branch: feature/kicsbot-update-install-script
+          base: master
           body: |
             **Automated changes**
             Updating oneliner godownloader installation script

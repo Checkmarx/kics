@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
+    "severity": "MEDIUM",
+    "line": 16
+  }
+]

@@ -155,7 +155,7 @@ func regoValueToString(i interface{}) string {
 
 		return fmt.Sprintf("{%s}", strings.Join(sts, ", "))
 	default:
-		log.Warn().Msgf("can't convert value, %T to string", i)
+		log.Warn().Msgf("Can't convert value, %T to string", i)
 		return ""
 	}
 }

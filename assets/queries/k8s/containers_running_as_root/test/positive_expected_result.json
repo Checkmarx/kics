@@ -2,6 +2,16 @@
 	{
 		"queryName": "Containers Running As Root",
 		"severity": "MEDIUM",
-		"line": 9
+		"line": 10
+	},
+  {
+		"queryName": "Containers Running As Root",
+		"severity": "MEDIUM",
+		"line": 28
+	},
+  {
+		"queryName": "Containers Running As Root",
+		"severity": "MEDIUM",
+		"line": 41
 	}
 ]

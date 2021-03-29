@@ -4,7 +4,9 @@
 ########################
 .DEFAULT_GOAL := help
 GOLINT := golangci-lint
-IMAGE_TAG := $(shell git rev-parse HEAD)
+COMMIT := $(shell git rev-parse HEAD)
+VERSION := snapshot-$(shell echo ${COMMIT} | cut -c1-8)
+IMAGE_TAG := dev
 
 .PHONY: clean
 clean: ## remove files created during build
@@ -40,7 +42,7 @@ lint: mod-tidy
 build: ## go build
 build: lint generate
 	$(call print-target)
-	go build -o bin/ -ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${IMAGE_TAG}" ./...
+	go build -o bin/ -ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" ./...
 	@mv bin/console bin/kics
 
 .PHONY: go-clean
@@ -75,7 +77,12 @@ cover: test
 .PHONY: docker
 docker: ## build docker image
 	$(call print-target)
-	docker build -t "kics:${IMAGE_TAG}" .
+	docker build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
+
+.PHONY: docker-compose
+dkr-compose: ## build docker image and runs docker-compose up
+	$(call print-target)
+	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
 
 .PHONY: release
 release: ## goreleaser --rm-dist

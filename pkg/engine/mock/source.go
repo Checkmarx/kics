@@ -35,21 +35,6 @@ func (m *MockQueriesSource) EXPECT() *MockQueriesSourceMockRecorder {
 	return m.recorder
 }
 
-// GetGenericQuery mocks base method.
-func (m *MockQueriesSource) GetGenericQuery(platform string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetGenericQuery", platform)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetGenericQuery indicates an expected call of GetGenericQuery.
-func (mr *MockQueriesSourceMockRecorder) GetGenericQuery(platform interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGenericQuery", reflect.TypeOf((*MockQueriesSource)(nil).GetGenericQuery), platform)
-}
-
 // GetQueries mocks base method.
 func (m *MockQueriesSource) GetQueries(excludeQueries source.ExcludeQueries) ([]model.QueryMetadata, error) {
 	m.ctrl.T.Helper()
@@ -63,4 +48,19 @@ func (m *MockQueriesSource) GetQueries(excludeQueries source.ExcludeQueries) ([]
 func (mr *MockQueriesSourceMockRecorder) GetQueries(excludeQueries interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries), excludeQueries)
+}
+
+// GetQueryLibrary mocks base method.
+func (m *MockQueriesSource) GetQueryLibrary(platform string) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetQueryLibrary", platform)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetQueryLibrary indicates an expected call of GetQueryLibrary.
+func (mr *MockQueriesSourceMockRecorder) GetQueryLibrary(platform interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueryLibrary", reflect.TypeOf((*MockQueriesSource)(nil).GetQueryLibrary), platform)
 }

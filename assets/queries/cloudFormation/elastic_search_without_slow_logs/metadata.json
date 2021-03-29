@@ -1,0 +1,9 @@
+{
+  "id": "086ea2eb-14a6-4fd4-914b-38e0bc8703e8",
+  "queryName": "ElasticSearch Without Slow Logs",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure that AWS Elasticsearch enables support for slow logs",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions",
+  "platform": "CloudFormation"
+}

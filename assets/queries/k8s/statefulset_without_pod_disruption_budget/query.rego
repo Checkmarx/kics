@@ -1,7 +1,5 @@
 package Cx
 
-import data.generic.k8s as k8sLib
-
 CxPolicy[result] {
 	statefulset := input.document[i]
 	statefulset.kind == "StatefulSet"

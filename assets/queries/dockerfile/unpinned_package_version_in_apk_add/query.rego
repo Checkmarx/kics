@@ -34,7 +34,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	isApk(resource.Value)
+    dockerLib.arrayContains(resource.Value, {"apk", "add"})
 
 	resource.Value[j] != "apk"
 	resource.Value[j] != "add"
@@ -62,9 +62,4 @@ analyzePackages(j, currentPackage, packages, length) {
 	regex.match("^[a-zA-Z]", currentPackage) == true
 	packages[plus(j, 1)] != "-v"
 	not dockerLib.withVersion(currentPackage)
-}
-
-isApk(command) {
-	contains(command[x], "apk")
-	contains(command[j], "add")
 }
