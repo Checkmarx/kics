@@ -1,0 +1,9 @@
+{
+  "id": "ddfc4eaa-af23-409f-b96c-bf5c45dc4daa",
+  "queryName": "HTTP Port Open",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The HTTP port is open in a Security Group",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
+  "platform": "CloudFormation"
+}
