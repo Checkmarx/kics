@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resources := {"aws_sns_topic", "aws_sns_topic_policy"}
@@ -7,10 +9,10 @@ CxPolicy[result] {
 
 	validate_json(policy)
 
-	pol := json.unmarshal(policy)
+	pol := commonLib.json_unmarshal(policy)
 	statement := pol.Statement[s]
 
-	statement.Effect = "Allow"
+	statement.Effect == "Allow"
 	statement.NotAction
 
 	result := {

@@ -1,52 +1,34 @@
 package Cx
 
+import data.generic.terraform as terraLib
 import data.generic.common as commonLib
 
-getFieldName(field) = name {
-	upper(field) == "NETWORK PORTS SECURITY"
-	name = "azurerm_network_security_rule"
+CxPolicy[result] {
+	resource := input.document[i].resource.azurerm_network_security_rule[name]
+
+	portContent := commonLib.tcpPortsMap[port]
+	portNumber = port
+	portName = portContent
+	protocol := terraLib.getProtocolList(resource.protocol)[_]
+
+	upper(resource.access) == "ALLOW"
+	isSmallPublicNetwork(resource)
+	terraLib.containsPort(resource, portNumber)
+	isTCPorUDP(protocol)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [name]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+	}
 }
 
-getResource(document, field) = resource {
-	resource := document.resource[field]
-}
+isTCPorUDP("TCP") = true
 
-getProtocol(resource) = protocol {
-	protocol = resource.protocol
-}
-
-getProtocolList(protocol) = list {
-	protocol == "*"
-	list = ["TCP", "UDP", "Icmp"]
-}
-
-else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-}
-
-else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
-else = list {
-	upper(protocol) == "ICMP"
-	list = ["Icmp"]
-}
-
-containsDestinationPort(port, resource) = containing {
-	regex.match(sprintf("(^|\\s|,)%d(-|,|$|\\s)", [port]), resource.destination_port_range)
-	containing = true
-}
-
-else = containing {
-	ports = split(resource.destination_port_range, ",")
-	sublist = split(ports[var], "-")
-	to_number(trim(sublist[0], " ")) <= port
-	to_number(trim(sublist[1], " ")) >= port
-	containing = true
-}
+isTCPorUDP("UDP") = true
 
 isSmallPublicNetwork(resource) = private {
 	endswith(resource.source_address_prefix, "/25")
@@ -63,47 +45,4 @@ isSmallPublicNetwork(resource) = private {
 } else = private {
 	endswith(resource.source_address_prefix, "/29")
 	private = true
-}
-
-isAllowed(resource) = allowed {
-	upper(resource.access) == "ALLOW"
-	allowed = true
-}
-
-isTCPorUDP(protocol) = is {
-	is = upper(protocol) != "ICMP"
-}
-
-CxPolicy[result] {
-	#############	inputs
-	tcpPortsMap := commonLib.tcpPortsMap
-
-	field = getFieldName("Network Ports Security") # Category/service used
-
-	#############	document and resource
-	document := commonLib.getDocument([])[i]
-	resource := getResource(document, field)[var0]
-
-	#############	get relevant fields
-	portContent := tcpPortsMap[port]
-	portNumber = port
-	portName = portContent
-	protocolList = getProtocolList(getProtocol(resource))
-	protocol = protocolList[k]
-
-	#############	Checks
-	isAllowed(resource)
-	isSmallPublicNetwork(resource)
-	containsDestinationPort(portNumber, resource)
-	isTCPorUDP(protocol)
-
-	#############	Result
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].destination_port_range", [field, var0]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
-	}
 }

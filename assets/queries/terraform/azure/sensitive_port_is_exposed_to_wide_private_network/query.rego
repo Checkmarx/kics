@@ -1,99 +1,30 @@
 package Cx
 
+import data.generic.terraform as terraLib
 import data.generic.common as commonLib
 
-getFieldName(field) = name {
-	upper(field) == "NETWORK PORTS SECURITY"
-	name = "azurerm_network_security_rule"
-}
-
-getResource(document, field) = resource {
-	resource := document.resource[field]
-}
-
-getProtocol(resource) = protocol {
-	protocol = resource.protocol
-}
-
-getProtocolList(protocol) = list {
-	protocol == "*"
-	list = ["TCP", "UDP", "Icmp"]
-}
-
-else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-}
-
-else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
-else = list {
-	upper(protocol) == "ICMP"
-	list = ["Icmp"]
-}
-
-containsDestinationPort(port, resource) = containing {
-	regex.match(sprintf("(^|\\s|,)%d(-|,|$|\\s)", [port]), resource.destination_port_range)
-	containing = true
-}
-
-else = containing {
-	ports = split(resource.destination_port_range, ",")
-	sublist = split(ports[var], "-")
-	to_number(trim(sublist[0], " ")) <= port
-	to_number(trim(sublist[1], " ")) >= port
-	containing = true
-}
-
-isPrivateNetwork(resource) = private {
-	privateIPs = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
-
-	resource.source_address_prefix == privateIPs[j]
-
-	private = true
-}
-
-isAllowed(resource) = allowed {
-	upper(resource.access) == "ALLOW"
-	allowed = true
-}
-
-isTCPorUDP(protocol) = is {
-	is = upper(protocol) != "ICMP"
-}
-
 CxPolicy[result] {
-	#############	inputs
-	tcpPortsMap := commonLib.tcpPortsMap
+	resource := input.document[i].resource.azurerm_network_security_rule[name]
 
-	field = getFieldName("Network Ports Security") # Category/service used
-
-	#############	document and resource
-	document := commonLib.getDocument([])[i]
-	resource := getResource(document, field)[var0]
-
-	#############	get relevant fields
-	portContent := tcpPortsMap[port]
+	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-	protocolList = getProtocolList(getProtocol(resource))
-	protocol = protocolList[k]
+	protocol := terraLib.getProtocolList(resource.protocol)[_]
 
-	#############	Checks
-	isAllowed(resource)
-	isPrivateNetwork(resource)
-	containsDestinationPort(portNumber, resource)
+	upper(resource.access) == "ALLOW"
+	commonLib.isPrivateIP(resource.source_address_prefix)
+	terraLib.containsPort(resource, portNumber)
 	isTCPorUDP(protocol)
 
-	#############	Result
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].destination_port_range", [field, var0]),
+		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %s[%s]", [portName, protocol, portNumber, field, var0]),
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
 	}
 }
+
+isTCPorUDP("TCP") = true
+
+isTCPorUDP("UDP") = true
