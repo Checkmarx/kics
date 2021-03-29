@@ -1,4 +1,4 @@
-resource "kubernetes_stateful_set" "prometheus" {
+resource "kubernetes_stateful_set" "prometheus1" {
   metadata {
     annotations = {
       SomeAnnotation = "foobar"
@@ -183,7 +183,7 @@ resource "kubernetes_stateful_set" "prometheus" {
   }
 }
 
-resource "kubernetes_service" "example" {
+resource "kubernetes_service" "example1" {
   metadata {
     name = "prometheus"
   }
