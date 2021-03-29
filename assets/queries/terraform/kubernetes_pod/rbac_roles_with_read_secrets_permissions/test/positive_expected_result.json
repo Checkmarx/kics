@@ -8,15 +8,5 @@
     "queryName": "RBAC Roles with Read Secrets Permissions",
     "severity": "MEDIUM",
     "line": 27
-  },
-  {
-    "queryName": "RBAC Roles with Read Secrets Permissions",
-    "severity": "MEDIUM",
-    "line": 47
-  },
-  {
-    "queryName": "RBAC Roles with Read Secrets Permissions",
-    "severity": "MEDIUM",
-    "line": 60
   }
 ]
