@@ -2,6 +2,6 @@
   {
     "queryName": "S3 Bucket With All Permissions",
     "severity": "HIGH",
-    "line": 8
+    "line": 5
   }
 ]
