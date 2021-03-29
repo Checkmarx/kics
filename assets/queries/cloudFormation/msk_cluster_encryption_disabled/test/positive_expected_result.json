@@ -1,0 +1,38 @@
+[
+  {
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "queryName": "MSK Cluster Encryption Disabled"
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive6.json"
+  }
+]

@@ -1,0 +1,12 @@
+- name: create a basic distribution with defaults, tags and custom SSL certificate
+  community.aws.cloudfront_distribution:
+    state: present
+    default_origin_domain_name: www.my-cloudfront-origin.com
+    viewer_certificate:
+      acm_certificate_arn: arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+      ssl_support_method: sni-only
+      minimum_protocol_version: TLS1.2_2018
+    tags:
+      Name: example distribution
+      Project: example project
+      Priority: '1'

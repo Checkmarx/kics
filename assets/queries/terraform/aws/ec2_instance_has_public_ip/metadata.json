@@ -1,0 +1,9 @@
+{
+  "id": "5a2486aa-facf-477d-a5c1-b010789459ce",
+  "queryName": "EC2 Instance Has Public IP",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "EC2 Instance should not have a public IP address.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address",
+  "platform": "Terraform"
+}
