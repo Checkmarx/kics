@@ -52,7 +52,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		}
 	}
 
-	logWithFields.Warn().Msgf("failed to detect Docker line, query response %s", searchKey)
+	logWithFields.Warn().Msgf("Failed to detect Docker line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
 		Line:     UndetectedVulnerabilityLine,

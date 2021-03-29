@@ -10,6 +10,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 )
 
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
@@ -48,7 +49,6 @@ type Service struct {
 // StartScan executes scan over the context, using the scanID as reference
 func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool) error {
 	log.Debug().Msg("service.StartScan()")
-	var files model.FileMetadatas
 	if err := s.SourceProvider.GetSources(
 		ctx,
 		s.Parser.SupportedExtensions(),
