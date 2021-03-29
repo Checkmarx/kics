@@ -5,11 +5,7 @@
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
-          "ViewerCertificate": {
-            "AcmCertificateArn": "some arn",
-            "MinimumProtocolVersion": "TLS1.2_2019",
-            "SslSupportMethod": "sni_only"
-          }
+          "Enabled": "true"
         }
       }
     }
