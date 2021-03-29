@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.viewer_certificate", [task.name, modules[m]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.viewer_certificate.cloudfront_default_certificate", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'cloudfront_default_certificate' is 'false' or not defined",
 		"keyActualValue": "Attribute 'cloudfront_default_certificate' is 'true'",
