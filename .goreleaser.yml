@@ -40,7 +40,7 @@ brews:
       name: homebrew-tap
     folder: Formula
     homepage:  https://github.com/Checkmarx/kics
-    description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your infrastructure-as-code
+    description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your IaC
     license: Apache
     test: |
       system "#{bin}/kics -v"

@@ -25,6 +25,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/getsentry/sentry-go"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -51,6 +52,10 @@ var (
 	banner string
 )
 
+const (
+	queriesPathCmdName = "queries-path"
+)
+
 var scanCmd = &cobra.Command{
 	Use:   "scan",
 	Short: "Executes a scan analysis",
@@ -58,7 +63,8 @@ var scanCmd = &cobra.Command{
 		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return scan()
+		changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+		return scan(changedDefaultQueryPath)
 	},
 }
 
@@ -154,7 +160,7 @@ func initScanCmd() {
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
 	scanCmd.Flags().StringVarP(
 		&queryPath,
-		"queries-path",
+		queriesPathCmdName,
 		"q",
 		"./assets/queries",
 		"path to directory with queries",
@@ -297,7 +303,7 @@ func createService(inspector *engine.Inspector,
 	}, nil
 }
 
-func scan() error {
+func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 
 	if errlog := setupLogs(); errlog != nil {
@@ -317,6 +323,16 @@ func scan() error {
 	if err != nil {
 		log.Err(err)
 		return err
+	}
+
+	if changedDefaultQueryPath {
+		log.Debug().Msgf("Trying to load queries from %s", queryPath)
+	} else {
+		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+		queryPath, err = consoleHelpers.GetDefaultQueryPath(queryPath)
+		if err != nil {
+			return errors.Wrap(err, "unable to find queries")
+		}
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)
