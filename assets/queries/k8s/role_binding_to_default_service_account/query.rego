@@ -2,6 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	document := input.document[i]
+	document.kind == "RoleBinding"
 	subjects := document.subjects
 	subjects[c].kind == "ServiceAccount"
 	subjects[c].name == "default"
