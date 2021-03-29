@@ -1,5 +1,6 @@
 package generic.cloudformation
 
+# Find out if the document has a resource type equals to 'AWS::SecretsManager::Secret'
 hasSecretManager(str, document) {
 	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])
 	document[selectedSecret].Type == "AWS::SecretsManager::Secret"
@@ -13,11 +14,6 @@ isLoadBalancer(resource) {
 # Check if the type is ELB
 isLoadBalancer(resource) {
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
-}
-
-# Check if array contains an element
-arrayContains(elem, array) {
-	array[_] == elem
 }
 
 # Check if there is an action inside an array
@@ -47,6 +43,7 @@ udpPortsMap = {
     11215: "Memcached SSL",
 }
 
+# Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
     list = [resource | resources[i].Type == type; resource := resources[i]]
 }

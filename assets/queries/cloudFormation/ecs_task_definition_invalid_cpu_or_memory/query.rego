@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -37,7 +37,7 @@ CxPolicy[result] {
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 	cpuMem := {256, 512, 1024, 2048, 4096}
 	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
-	not cloudFormationLib.arrayContains(cpu, cpuMem)
+	not commonLib.inArray(cpuMem, cpu)
 	searchkey := createSearchKey(name2, taskDef.Properties.ContainerDefinitions[_])
 
 	result := {
@@ -52,7 +52,7 @@ CxPolicy[result] {
 checkMemory(res, memory) {
 	cpuMem := memory[res.Properties.ContainerDefinitions[_].Cpu]
 	mem := res.Properties.ContainerDefinitions[_].Memory
-	not cloudFormationLib.arrayContains(mem, cpuMem)
+	not commonLib.inArray(cpuMem, mem)
 }
 
 checkMemory(res, memory) {

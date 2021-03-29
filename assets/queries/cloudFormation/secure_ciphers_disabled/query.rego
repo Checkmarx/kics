@@ -1,11 +1,11 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Properties.ViewerCertificate.CloudFrontDefaultCertificate == false
-	not cloudFormationLib.arrayContains(resource.Properties.ViewerCertificate.MinimumProtocolVersion, {"TLSv1.1", "TLSv1.2"})
+	not commonLib.inArray({"TLSv1.1", "TLSv1.2"}, resource.Properties.ViewerCertificate.MinimumProtocolVersion)
 
 	result := {
 		"documentId": input.document[i].id,

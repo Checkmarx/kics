@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.cloudformation as cloudFormationLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	doc.Resources[k].Type == "AWS::EC2::SecurityGroupIngress"
 	doc.Resources[k].Properties.CidrIp == "0.0.0.0/0"
 	doc.Resources[k].Properties.ToPort == 0
-    cloudFormationLib.arrayContains(doc.Resources[k].Properties.GroupId, securityGroupList)
+    commonLib.inArray(securityGroupList, doc.Resources[k].Properties.GroupId)
 
 	result := {
 		"documentId": input.document[i].id,
