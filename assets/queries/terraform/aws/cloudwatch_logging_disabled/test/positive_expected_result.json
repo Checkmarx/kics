@@ -1,0 +1,12 @@
+[
+	{
+		"queryName": "CloudWatch Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 1
+	},
+	{
+		"queryName": "CloudWatch Logging Disabled",
+		"severity": "MEDIUM",
+		"line": 10
+	}
+]

@@ -7,6 +7,7 @@ CxPolicy[result] {
 	distributionConfig := properties.Enabled
 	expectedvalue := "false"
 	distributionConfig == expectedvalue
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
@@ -21,6 +22,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties.DistributionConfig
 	object.get(properties, "Origins", "undefined") == "undefined"
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),

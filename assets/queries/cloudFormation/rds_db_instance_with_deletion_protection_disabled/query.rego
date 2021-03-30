@@ -21,8 +21,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	exists_dp := object.get(properties, "DeletionProtection", "undefined") != "undefined"
-	not exists_dp
+	object.get(properties, "DeletionProtection", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

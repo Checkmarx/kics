@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_rds_cluster[name]
 	cluster.kms_key_id == false
@@ -15,8 +17,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_rds_cluster[name]
+
 	object.get(cluster, "kms_key_id", "undefined") == "undefined"
-	engineModeProvisioned(cluster.engine_mode)
+	commonLib.emptyOrNull(cluster.engine_mode)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,12 +28,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_rds_cluster.kms_key_id is undefined and aws_rds_cluster.engine_mode not null or ''",
 		"keyActualValue": "aws_rds_cluster.kms_key_id is undefined and aws_rds_cluster.engine_mode is null or ''",
 	}
-}
-
-engineModeProvisioned(p) {
-	p == null
-}
-
-engineModeProvisioned(p) {
-	p == ""
 }

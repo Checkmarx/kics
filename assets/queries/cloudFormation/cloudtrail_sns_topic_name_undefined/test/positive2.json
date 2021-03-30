@@ -1,0 +1,41 @@
+{
+  "Resources": {
+    "myTrail5": {
+      "DependsOn": [
+        "BucketPolicy",
+        "TopicPolicy"
+      ],
+      "Type": "AWS::CloudTrail::Trail",
+      "Properties": {
+        "IsMultiRegionTrail": true,
+        "S3BucketName": {
+          "Ref": "S3Bucket"
+        },
+        "IsLogging": false
+      }
+    },
+    "myTrail6": {
+      "DependsOn": [
+        "BucketPolicy",
+        "TopicPolicy"
+      ],
+      "Type": "AWS::CloudTrail::Trail",
+      "Properties": {
+        "EnableLogFileValidation": false,
+        "S3BucketName": {
+          "Ref": "S3Bucket"
+        },
+        "SnsTopicName": "",
+        "IsLogging": false,
+        "IsMultiRegionTrail": true
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "OperatorEmail": {
+      "Description": "Email address to notify when new logs are published.",
+      "Type": "String"
+    }
+  }
+}

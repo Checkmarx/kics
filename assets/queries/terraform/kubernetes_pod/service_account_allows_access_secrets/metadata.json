@@ -1,0 +1,9 @@
+{
+	"id": "07fc3413-e572-42f7-9877-5c8fc6fccfb5",
+	"queryName": "Service Account Allows Access Secrets",
+	"severity": "MEDIUM",
+	"category": "Secret Management",
+	"descriptionText": "Kubernetes_role and Kubernetes_cluster_role when binded, should not use get, list or watch as verbs",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role_binding#subject",
+	"platform": "Terraform"
+}

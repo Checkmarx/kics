@@ -1,12 +1,13 @@
 package Cx
 
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+
 import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
 
-    kind := document.kind
-    listKinds :=  ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+	kind := document.kind
 	k8sLib.checkKind(kind, listKinds)
 
 	metadata = document.metadata
@@ -25,8 +26,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 
-    kind := document.kind
-    listKinds :=  ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+	kind := document.kind
 	k8sLib.checkKind(kind, listKinds)
 
 	metadata = document.metadata

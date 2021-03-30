@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"google.cloud.gcp_compute_disk", "gcp_compute_disk"}
 
@@ -41,7 +42,7 @@ CxPolicy[result] {
 	disk := task[modules[m]]
 	ansLib.checkState(disk)
 
-	ansLib.checkValue(disk.disk_encryption_key.raw_key)
+	commonLib.emptyOrNull(disk.disk_encryption_key.raw_key)
 
 	result := {
 		"documentId": id,

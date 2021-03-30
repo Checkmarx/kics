@@ -5,7 +5,7 @@ CxPolicy[result] {
 	profile := cluster.network_profile
 	policy := profile.network_policy
 
-	not isValidPolicy(policy)
+	not validPolicy(policy)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -43,10 +43,6 @@ CxPolicy[result] {
 	}
 }
 
-isValidPolicy(policy) {
-	policy == "azure"
-} else {
-	policy == "calico"
-} else = false {
-	true
-}
+validPolicy("azure") = true
+
+validPolicy("calico") = true

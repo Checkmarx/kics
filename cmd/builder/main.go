@@ -55,10 +55,10 @@ func main() {
 	rootCmd.Flags().StringVarP(&outPath, "out", "o", "", "path for out path")
 
 	if err := rootCmd.MarkFlagRequired("in"); err != nil {
-		log.Err(err).Msg("failed to add command required flags")
+		log.Err(err).Msg("Failed to add command required flags")
 	}
 	if err := rootCmd.MarkFlagRequired("out"); err != nil {
-		log.Err(err).Msg("failed to add command required flags")
+		log.Err(err).Msg("Failed to add command required flags")
 	}
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {

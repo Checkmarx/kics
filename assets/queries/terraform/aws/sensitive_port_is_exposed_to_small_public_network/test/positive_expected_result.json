@@ -1,5 +1,5 @@
 [
-	{
+  {
 		"queryName": "Sensitive Port Is Exposed To Small Public Network",
 		"severity": "MEDIUM",
 		"line": 6
@@ -25,6 +25,16 @@
 		"line": 6
 	},
 	{
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+	{
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 6
+	},
+  {
 		"queryName": "Sensitive Port Is Exposed To Small Public Network",
 		"severity": "MEDIUM",
 		"line": 6
@@ -48,6 +58,16 @@
 		"queryName": "Sensitive Port Is Exposed To Small Public Network",
 		"severity": "MEDIUM",
 		"line": 21
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 36
+	},
+	{
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 36
 	},
 	{
 		"queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -118,6 +138,46 @@
 		"queryName": "Sensitive Port Is Exposed To Small Public Network",
 		"severity": "MEDIUM",
 		"line": 96
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
+	},
+  {
+		"queryName": "Sensitive Port Is Exposed To Small Public Network",
+		"severity": "MEDIUM",
+		"line": 111
 	},
 	{
 		"queryName": "Sensitive Port Is Exposed To Small Public Network",

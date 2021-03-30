@@ -1,0 +1,9 @@
+{
+	"id": "e2c83c1f-84d7-4467-966c-ed41fd015bb9",
+	"queryName": "Ingress Controller Exposes Workload",
+	"severity": "MEDIUM",
+	"category": "Insecure Configurations",
+	"descriptionText": "Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/ingress#http",
+	"platform": "Terraform"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "ec28bf61-a474-4dbe-b414-6dd3a067d6f0",
+  "queryName": "Cognito UserPool Without MFA",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool",
+  "platform": "Terraform"
+}
