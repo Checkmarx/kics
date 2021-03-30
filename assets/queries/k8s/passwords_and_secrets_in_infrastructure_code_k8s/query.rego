@@ -8,7 +8,7 @@ CxPolicy[result] {
 	keyDoc = docs[father]
 
 	clearParse := ["playbooks", "tasks", "command", "resource", "Resources"]
-	not commonLib.equalsOrInArray(clearParse, father)
+	not commonLib.equalsOrInArray(clearParse, lower(father))
 
 	#get all string values from json
 	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"$]+\"[]\n\r,}]", json.marshal(keyDoc), -1)
