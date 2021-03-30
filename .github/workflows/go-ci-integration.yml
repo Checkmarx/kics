@@ -50,7 +50,7 @@ jobs:
       if: always()
       with:
         name: integration-logs-${{ github.event.pull_request.head.sha }}
-        path: ${PWD}/assets/queries/info.json
+        path: ${PWD}/assets/queries/info.log
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
