@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  OperatorEmail:
+    Description: "Email address to notify when new logs are published."
+    Type: String
+Resources:
+  myTrail3:
+    DependsOn:
+      - BucketPolicy
+      - TopicPolicy
+    Type: AWS::CloudTrail::Trail
+    Properties:
+      S3BucketName:
+        Ref: S3Bucket
+      IsLogging: false
+      IsMultiRegionTrail: true
+  myTrail4:
+    DependsOn:
+      - BucketPolicy
+      - TopicPolicy
+    Type: AWS::CloudTrail::Trail
+    Properties:
+      EnableLogFileValidation: false
+      S3BucketName:
+        Ref: S3Bucket
+      SnsTopicName: ""
+      IsLogging: false
+      IsMultiRegionTrail: true
