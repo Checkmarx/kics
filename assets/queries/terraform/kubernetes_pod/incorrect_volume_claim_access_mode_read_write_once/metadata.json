@@ -1,0 +1,9 @@
+{
+	"id": "26b047a9-0329-48fd-8fb7-05bbe5ba80ee",
+	"queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
+	"severity": "MEDIUM",
+	"category": "Build Process",
+	"descriptionText": "Kubernetes Stateful Sets must have one Volume Claim template with the access mode 'ReadWriteOnce'",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#volume_claim_template",
+	"platform": "Terraform"
+}

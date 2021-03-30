@@ -18,9 +18,9 @@
     "fileName": "positive2.json"
   },
   {
-    "line": 36,
-    "fileName": "positive2.json",
     "queryName": "S3 Bucket Allows Put Action From All Principals",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive2.json"
   }
 ]

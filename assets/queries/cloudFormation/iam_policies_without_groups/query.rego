@@ -6,6 +6,7 @@ CxPolicy[result] {
 	users := resource.Properties.Policies[_].Users
 	users != []
 	users != null
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Policies.Users", [name]),

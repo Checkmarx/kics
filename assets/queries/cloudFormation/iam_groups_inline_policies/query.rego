@@ -5,6 +5,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::IAM::Group"
 	policies := resource.Properties.Policies
 	policies != []
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Policies", [name]),

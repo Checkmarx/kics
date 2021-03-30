@@ -1,0 +1,9 @@
+{
+  "id": "60112997-8bd0-4c4c-9140-e5111706ea6f",
+  "queryName": "Open Access To Resources Through API",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Open access to back-end resources through API",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html",
+  "platform": "CloudFormation"
+}

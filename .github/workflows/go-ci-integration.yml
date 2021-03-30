@@ -43,12 +43,22 @@ jobs:
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Run docker image and generate results.json
-      # DO NOT MERGE - adding verbose flag to check integration error
       run: |
-        docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --no-progress -p "/path" -o "/path/results.json" --verbose --log-level=DEBUG
+        docker run -v ${PWD}/assets/queries:/path -e SENTRY_DSN=${{secrets.SENTRY_DSN}} kics:${{ github.sha }} --silent --log-file -p "/path" -o "/path/results.json"
+    - name: Archive test logs
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: integration-logs-${{ github.event.pull_request.head.sha }}
+        path: info.log
     - name: Display results
       run: |
         cat  ${PWD}/assets/queries/results.json
+    - name: Archive test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: integration-results-${{ github.event.pull_request.head.sha }}
+        path: ${PWD}/assets/queries/results.json
     - name: Assert results.json
       run: |
         set -eo pipefail

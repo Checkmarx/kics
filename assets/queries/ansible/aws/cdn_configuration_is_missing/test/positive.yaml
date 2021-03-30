@@ -1,0 +1,28 @@
+- name: create a distribution without an origin and with enabled=false
+  community.aws.cloudfront_distribution:
+    state: present
+    caller_reference: unique test distribution ID
+    default_cache_behavior:
+      target_origin_id: 'my test origin-000111'
+      forwarded_values:
+        query_string: true
+        cookies:
+          forward: all
+        headers:
+          - '*'
+      viewer_protocol_policy: allow-all
+      smooth_streaming: true
+      compress: true
+      allowed_methods:
+        items:
+          - GET
+          - HEAD
+        cached_methods:
+          - GET
+          - HEAD
+    enabled: false
+    logging:
+      enabled: true
+      include_cookies: false
+      bucket: mylogbucket.s3.amazonaws.com
+      prefix: myprefix/

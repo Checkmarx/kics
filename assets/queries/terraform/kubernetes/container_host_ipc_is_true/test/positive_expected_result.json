@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Shared Host IPC Namespace",
+    "severity": "HIGH",
+    "line": 8
+  }
+]

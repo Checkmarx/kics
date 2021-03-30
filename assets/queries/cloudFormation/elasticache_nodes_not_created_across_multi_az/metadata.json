@@ -1,0 +1,9 @@
+{
+  "id": "cfdef2e5-1fe4-4ef4-bea8-c56e08963150",
+  "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "Check if ElastiCache nodes are not being created across multi AZ",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html",
+  "platform": "CloudFormation"
+}
