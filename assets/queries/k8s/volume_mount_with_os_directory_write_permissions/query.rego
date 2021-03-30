@@ -1,8 +1,9 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	resource := input.document[i]
-	types := {"initContainers", "containers"}
 	containers := resource.spec[types[x]]
 	volumeMounts := containers[_].volumeMounts
 	is_OS_Dir(volumeMounts[v].mountPath)
@@ -19,7 +20,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	types := {"initContainers", "containers"}
 	containers := resource.spec[types[x]]
 	volumeMounts := containers[_].volumeMounts
 	is_OS_Dir(volumeMounts[v].mountPath)

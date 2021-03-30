@@ -1,0 +1,12 @@
+[
+  {
+    "line": 28,
+    "queryName": "Lambda Functions Without X-Ray Tracing",
+    "severity": "LOW"
+  },
+  {
+    "queryName": "Lambda Functions Without X-Ray Tracing",
+    "severity": "LOW",
+    "line": 45
+  }
+]

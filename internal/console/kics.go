@@ -3,8 +3,10 @@ package console
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -27,6 +29,7 @@ var (
 
 	verbose  bool
 	logFile  bool
+	logPath  string
 	logLevel string
 	noColor  bool
 	silent   bool
@@ -44,9 +47,25 @@ func initialize() error {
 	rootCmd.AddCommand(generateIDCmd)
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(listPlatformsCmd)
-	rootCmd.PersistentFlags().BoolVarP(&logFile, "log-file", "l", false, "writes log messages to info.log")
-	rootCmd.PersistentFlags().StringVarP(&logLevel, "log-level", "", "INFO", "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "write logs to stdout too (mutually exclusive with silent)")
+	rootCmd.PersistentFlags().BoolVarP(&logFile,
+		"log-file",
+		"l",
+		false,
+		"writes log messages to log file")
+	rootCmd.PersistentFlags().StringVarP(&logPath,
+		"log-path",
+		"",
+		"",
+		fmt.Sprintf("path to log files, (defaults to ${PWD}/%s)", constants.DefaultLogFile))
+	rootCmd.PersistentFlags().StringVarP(&logLevel,
+		"log-level",
+		"",
+		"INFO",
+		"determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose",
+		"v",
+		false,
+		"write logs to stdout too (mutually exclusive with silent)")
 	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silence stdout messages (mutually exclusive with verbose)")
 	rootCmd.PersistentFlags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
 
@@ -99,8 +118,16 @@ func setupLogs() error {
 		color.Disable()
 	}
 
+	if logPath == "" {
+		currentWorkDir, err := os.Getwd()
+		if err != nil {
+			return err
+		}
+		logPath = filepath.Join(currentWorkDir, constants.DefaultLogFile)
+	}
+
 	if logFile {
-		file, err := os.OpenFile(constants.LogFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+		file, err := os.OpenFile(logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			return err
 		}

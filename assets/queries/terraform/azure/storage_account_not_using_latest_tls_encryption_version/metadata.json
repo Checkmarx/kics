@@ -1,0 +1,9 @@
+{
+  "id": "8263f146-5e03-43e0-9cfe-db960d56d1e7",
+  "queryName": "Storage Account Not Using Latest TLS Encryption Version",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
+  "platform": "Terraform"
+}

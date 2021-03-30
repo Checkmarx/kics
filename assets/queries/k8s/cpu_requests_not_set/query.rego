@@ -2,12 +2,13 @@ package Cx
 
 import data.generic.k8s as k8sLib
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
-	types := {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index].resources.requests, "cpu", "undefined") == "undefined"
@@ -26,7 +27,6 @@ CxPolicy[result] {
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
-	types := {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index].resources, "requests", "undefined") == "undefined"
@@ -45,7 +45,6 @@ CxPolicy[result] {
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
-	types := {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index], "resources", "undefined") == "undefined"
