@@ -22,7 +22,7 @@ resource "kubernetes_stateful_set" "prometheus1" {
 
     selector {
       match_labels = {
-        k8s-app = "prometheus"
+        k8s-app = "prometheus1"
       }
     }
 
