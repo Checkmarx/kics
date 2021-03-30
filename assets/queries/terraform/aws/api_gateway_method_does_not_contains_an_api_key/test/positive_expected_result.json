@@ -1,0 +1,12 @@
+[
+  {
+    "line": 1,
+    "queryName": "API Gateway Method Does Not Contains An API Key",
+    "severity": "MEDIUM"
+  },
+  {
+    "line": 13,
+    "queryName": "API Gateway Method Does Not Contains An API Key",
+    "severity": "MEDIUM"
+  }
+]
