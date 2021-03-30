@@ -41,20 +41,19 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::MSK::Cluster"
 	properties := resource.Properties
-	logs := properties.LoggingInfo.BrokerLogs[log]
-	isResFalse(logs.Enabled)
+	logsName := properties.LoggingInfo.BrokerLogs[log]
+	logs := properties.LoggingInfo.BrokerLogs
+	not func(logs)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs.%s.Enabled", [name, log]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs.%s is enabled", [name, log]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs.%s is disabled", [name, log]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs is enabled", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs is disabled", [name]),
 	}
 }
 
-isResFalse(answer) {
-	answer == "false"
-} else {
-	answer == false
+func(logs) {
+	logs[_].Enabled == true
 }

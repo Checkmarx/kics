@@ -12,6 +12,10 @@
             "CloudWatchLogs": {
               "Enabled": false,
               "LogGroup": "aws_cloudwatch_log_group.test.name"
+            },
+            "S3": {
+              "Enabled": true,
+              "LogGroup": "s3.test.name"
             }
           }
         },
