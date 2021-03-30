@@ -16,7 +16,7 @@
         cookies:
           forward: all
         headers:
-         - '*'
+          - '*'
       viewer_protocol_policy: allow-all
       smooth_streaming: true
       compress: true
