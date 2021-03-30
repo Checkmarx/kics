@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: MSK Cluster with required properties.
 Resources:
-  TestCluster3:
+  TestCluster5:
     Type: 'AWS::MSK::Cluster'
     Properties:
       ClusterName: ClusterWithRequiredProperties

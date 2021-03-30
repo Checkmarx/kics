@@ -2,7 +2,7 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "MSK Cluster with required properties.",
   "Resources": {
-    "TestCluster7": {
+    "TestCluster9": {
       "Type": "AWS::MSK::Cluster",
       "Properties": {
         "ClusterName": "ClusterWithRequiredProperties",
