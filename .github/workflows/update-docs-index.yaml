@@ -32,8 +32,9 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Update documentation index page - ${{ steps.cversion.outputs.version }}
+          title: "[kicsbot] Update documentation index page - ${{ steps.cversion.outputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "[kicsbot] Update documentation index page"
           delete-branch: true
           branch: feature/kicsbot-update-docs-index
           base: master
