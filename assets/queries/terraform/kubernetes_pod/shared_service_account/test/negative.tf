@@ -99,7 +99,7 @@ resource "kubernetes_service_account" "example" {
     name = "example"
   }
   secret {
-    name = "${kubernetes_secret.example.metadata.0.name}"
+    name = kubernetes_secret.example.metadata.0.name
   }
 }
 

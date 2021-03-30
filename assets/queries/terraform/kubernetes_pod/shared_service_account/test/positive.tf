@@ -52,7 +52,7 @@ resource "kubernetes_service_account" "terraform-example" {
     name = "terraform-example"
   }
   secret {
-    name = "${kubernetes_secret.example.metadata.0.name}"
+    name = kubernetes_secret.example.metadata.0.name
   }
 }
 
