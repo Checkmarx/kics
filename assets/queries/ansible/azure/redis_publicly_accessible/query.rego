@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,8 +9,8 @@ CxPolicy[result] {
 	firewall_rule := task[modules[m]]
 	ansLib.checkState(firewall_rule)
 
-	not privateIP(firewall_rule.start_ip_address)
-	not privateIP(firewall_rule.end_ip_address)
+	not commonLib.isPrivateIP(firewall_rule.start_ip_address)
+	not commonLib.isPrivateIP(firewall_rule.end_ip_address)
 
 	result := {
 		"documentId": id,
@@ -18,9 +19,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "azure_rm_rediscachefirewallrule ip range is private",
 		"keyActualValue": "azure_rm_rediscachefirewallrule ip range is public",
 	}
-}
-
-privateIP(ip) {
-	private_ips = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
-	net.cidr_contains(private_ips[_], ip)
 }

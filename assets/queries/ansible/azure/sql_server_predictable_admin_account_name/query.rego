@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"azure.azcollection.azure_rm_sqlserver", "azure_rm_sqlserver"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	server := task[modules[m]]
 	ansLib.checkState(server)
 
-	ansLib.checkValue(server.admin_username)
+	commonLib.emptyOrNull(server.admin_username)
 
 	result := {
 		"documentId": id,

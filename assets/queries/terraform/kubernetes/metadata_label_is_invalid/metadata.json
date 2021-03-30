@@ -1,0 +1,9 @@
+{
+  "id": "bc3dabb6-fd50-40f8-b9ba-7429c9f1fb0e",
+  "queryName": "Metadata Label Is Invalid",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Check if any label in the metadata is invalid.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#labels",
+  "platform": "Terraform"
+}

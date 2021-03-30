@@ -8,7 +8,7 @@ CxPolicy[result] {
 	batch_job_definition := task[modules[m]]
 
 	ansLib.checkState(batch_job_definition)
-	batch_job_definition.privileged == true
+	ansLib.isAnsibleTrue(batch_job_definition.privileged)
 
 	result := {
 		"documentId": id,

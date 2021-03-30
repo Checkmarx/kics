@@ -1,0 +1,10 @@
+- name: Create a stack set with instances in two accounts
+  community.aws.cloudformation_stack_set:
+    name: my-stack
+    description: Test stack in two accounts
+    state: present
+    template_url: https://s3.amazonaws.com/my-bucket/cloudformation.template
+    accounts: [1234567890, 2345678901]
+    regions:
+    - us-east-1
+    purge_stacks: false

@@ -1,0 +1,9 @@
+{
+  "id": "2a52567c-abb8-4651-a038-52fa27c77aed",
+  "queryName": "Service With External Load Balance",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Service has an external load balancer, which may cause accessibility from other networks and the Internet",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service",
+  "platform": "Terraform"
+}

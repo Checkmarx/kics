@@ -1,0 +1,62 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template",
+  "Resources": {
+    "taskdefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "Volumes": [
+          {
+            "Host": {
+              "SourcePath": "/var/lib/docker/vfs/dir/"
+            },
+            "Name": "my-vol"
+          }
+        ],
+        "NetworkMode": "awsvpc",
+        "ContainerDefinitions": [
+          {
+            "EntryPoint": [
+              "/usr/sbin/apache2",
+              "-D",
+              "FOREGROUND"
+            ],
+            "Memory": 512,
+            "PortMappings": [
+              {
+                "ContainerPort": {
+                  "Ref": "AppContainerPort"
+                },
+                "HostPort": {
+                  "Ref": "AppHostPort"
+                }
+              }
+            ],
+            "MountPoints": [
+              {
+                "SourceVolume": "my-vol",
+                "ContainerPath": "/var/www/my-vol"
+              }
+            ],
+            "Image": "amazon/amazon-ecs-sample",
+            "Cpu": 256,
+            "HealthCheck": {
+              "Command": [
+                "CMD-SHELL",
+                "curl -f http://localhost:8080/ || exit 1"
+              ],
+              "Interval": 30,
+              "Retries": 3,
+              "StartPeriod": 1,
+              "Timeout": 5
+            },
+            "Essential": true,
+            "Name": {
+              "Ref": "AppName"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

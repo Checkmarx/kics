@@ -1,0 +1,9 @@
+{
+  "id": "17d5ba1d-7667-4729-b1a6-b11fde3db7f7",
+  "queryName": "Stack Retention Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudformation_stack_set_module.html#parameter-purge_stacks",
+  "platform": "Ansible"
+}

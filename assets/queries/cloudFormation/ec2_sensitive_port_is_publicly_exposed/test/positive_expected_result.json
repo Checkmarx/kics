@@ -20,6 +20,18 @@
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
     "line": 13,
     "fileName": "positive3.yaml"
   },
@@ -70,6 +82,18 @@
     "fileName": "positive6.json",
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH"
+  },
+  {
+    "line": 9,
+    "fileName": "positive6.json",
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive7.json"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
