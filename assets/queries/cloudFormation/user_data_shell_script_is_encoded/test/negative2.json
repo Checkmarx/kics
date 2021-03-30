@@ -1,36 +1,35 @@
 {
   "Resources": {
-    "MyIamInstanceProfile": {
-      "Type": "AWS::IAM::InstanceProfile",
+    "myLaunchConfig": {
+      "Type": "AWS::AutoScaling::LaunchConfiguration",
       "Properties": {
-        "InstanceProfileName": "MyIamInstanceProfile",
-        "Path": "/",
-        "Roles": [
-          "MyAdminRole"
-        ]
-      }
-    },
-    "MyLaunchTemplate": {
-      "Type": "AWS::EC2::LaunchTemplate",
-      "Properties": {
-        "LaunchTemplateName": "MyLaunchTemplate",
-        "LaunchTemplateData": {
-          "IamInstanceProfile": {
-            "Arn": {
-              "Fn::GetAtt": [
-                "MyIamInstanceProfile",
-                "Arn"
-              ]
+        "ImageId": {
+          "Ref": "LatestAmiId"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "myEC2SecurityGroup"
+          }
+        ],
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "VolumeSize": "30",
+              "VolumeType": "gp2"
             }
           },
-          "DisableApiTermination": "true",
-          "ImageId": "ami-04d5cc9b88example",
-          "InstanceType": "t2.micro",
-          "KeyName": "MyKeyPair",
-          "SecurityGroupIds": [
-            "sg-083cd3bfb8example"
-          ]
-        }
+          {
+            "DeviceName": "/dev/sdm",
+            "Ebs": {
+              "VolumeSize": "100",
+              "DeleteOnTermination": "false"
+            }
+          }
+        ]
       }
     }
   }
