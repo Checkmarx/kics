@@ -1,0 +1,9 @@
+{
+  "id": "51bed0ac-a8ae-407a-895e-90c6cb0610ce",
+  "queryName": "PSP Allows Sharing Host IPC",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Pod Security Policy allows containers to share the host IPC namespace",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#host_ipc",
+  "platform": "Terraform"
+}

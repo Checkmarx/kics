@@ -1,0 +1,9 @@
+{
+  "id": "17b30f8f-8dfb-4597-adf6-57600b6cf25e",
+  "queryName": "CloudTrail Not Integrated With CloudWatch",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "CloudTrail should be integrated with CloudWatch",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail",
+  "platform": "Terraform"
+}

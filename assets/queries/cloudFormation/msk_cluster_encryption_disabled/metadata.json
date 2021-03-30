@@ -1,0 +1,9 @@
+{
+  "id": "a976d63f-af0e-46e8-b714-8c1a9c4bf768",
+  "queryName": "MSK Cluster Encryption Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Ensure MSK Cluster encryption in rest and transit is enabled.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html",
+  "platform": "CloudFormation"
+}

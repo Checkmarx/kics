@@ -2,6 +2,6 @@
   {
     "queryName": "ECR Repository Has Public Access",
     "severity": "HIGH",
-    "line": 15
+    "line": 8
   }
 ]

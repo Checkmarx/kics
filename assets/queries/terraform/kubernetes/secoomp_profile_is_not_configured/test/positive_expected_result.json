@@ -1,0 +1,47 @@
+[
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 58
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 115
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 184
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 215
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 249
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 284
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 348
+  },
+  {
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 411
+  }
+]

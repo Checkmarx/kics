@@ -9,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
-		"issueType": "MissingAttribute", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy' exists", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy' is missing", [name]),
 	}
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.AccessLoggingPolicy.Enabled", [name]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy.Enabled' is true", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.AccessLoggingPolicy.Enabled' is false", [name]),
 	}

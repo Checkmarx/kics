@@ -1,22 +1,21 @@
 package Cx
 
 CxPolicy[result] {
-	ctMultiRegion := input.document[i].resource.aws_cloudtrail[name]
-	not ctMultiRegion.is_multi_region_trail
-	not ctMultiRegion.is_multi_region_trail == false
+	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+	object.get(cloudtrail, "is_multi_region_trail", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Cloud Trail Multi Region needs to be enabled",
-		"keyActualValue": "Cloud Trail Multi Region is disabled",
+		"keyExpectedValue": "Cloud Trail Multi Region is defined",
+		"keyActualValue": "Cloud Trail Multi Region is undefined",
 	}
 }
 
 CxPolicy[result] {
-	ctMultiRegion := input.document[i].resource.aws_cloudtrail[name]
-	ctMultiRegion.is_multi_region_trail == false
+	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+	cloudtrail.is_multi_region_trail == false
 
 	result := {
 		"documentId": input.document[i].id,

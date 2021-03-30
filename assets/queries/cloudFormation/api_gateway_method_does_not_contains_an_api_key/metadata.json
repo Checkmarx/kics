@@ -1,0 +1,9 @@
+{
+  "id": "3641d5b4-d339-4bc2-bfb9-208fe8d3477f",
+  "queryName": "API Gateway Method Does Not Contains An API Key",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "An API Key should be required on a method request.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html",
+  "platform": "CloudFormation"
+}

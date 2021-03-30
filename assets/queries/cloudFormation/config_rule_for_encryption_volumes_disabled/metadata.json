@@ -1,0 +1,9 @@
+{
+	"id": "1b6322d9-c755-4f8c-b804-32c19250f2d9",
+	"queryName": "Config Rule For Encrypted Volumes Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption",
+	"descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-source",
+	"platform": "CloudFormation"
+}

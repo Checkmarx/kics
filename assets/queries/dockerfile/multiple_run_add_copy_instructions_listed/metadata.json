@@ -1,0 +1,9 @@
+{
+  "id": "0008c003-79aa-42d8-95b8-1c2fe37dbfe6",
+  "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Multiple commands (RUN, Copy, And) should be grouped in order to reduce the number of layers.",
+  "descriptionUrl": "https://sysdig.com/blog/dockerfile-best-practices/",
+  "platform": "Dockerfile"
+}

@@ -32,6 +32,6 @@
         Action: "*"
         Resource: "*"
         Principal:
-        - AWS: "*"
+          AWS: "*"
     make_default: false
     state: present

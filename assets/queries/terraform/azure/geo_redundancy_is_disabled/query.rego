@@ -1,9 +1,8 @@
 package Cx
 
-
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
-	object.get(resource,"geo_redundant_backup_enabled","undefined") == "undefined"
+	object.get(resource, "geo_redundant_backup_enabled", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -16,9 +15,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
-	object.get(resource,"geo_redundant_backup_enabled","undefined") != "undefined"
+	object.get(resource, "geo_redundant_backup_enabled", "undefined") != "undefined"
 
-    not resource.geo_redundant_backup_enabled
+	not resource.geo_redundant_backup_enabled
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,0 +1,9 @@
+{
+  "id": "3360c01e-c8c0-4812-96a2-a6329b9b7f9f",
+  "queryName": "Role Binding To Default Service Account",
+  "severity": "HIGH",
+  "category": "Insecure Defaults",
+  "descriptionText": "No role nor cluster role should bind to a default service account",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role_binding#subject",
+  "platform": "Terraform"
+}

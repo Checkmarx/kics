@@ -3,8 +3,7 @@ package Cx
 CxPolicy[result] {
 	document := input.document
 	resources := document[i].Resources[name]
-	default_name := check_group_name(resources)
-	default_name
+	check_group_name(resources)
 
 	result := {
 		"documentId": input.document[i].id,
