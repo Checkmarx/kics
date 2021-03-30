@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.cloudformation as cldLib
 import data.generic.common as commonLib
 
 CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
@@ -8,7 +9,7 @@ CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
     commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
     properties := resource.Properties
-	properties.StorageEncrypted == false
+	cldLib.isCloudFormationFalse(properties.StorageEncrypted)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -74,7 +75,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
 	resource.Type == "AWS::Redshift::Cluster"
-	properties := resource.Properties.Encrypted == false
+	cldLib.isCloudFormationFalse(resource.Properties.Encrypted)
 
 	result := {
 		"documentId": input.document[i].id,

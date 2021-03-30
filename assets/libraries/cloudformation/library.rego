@@ -1,5 +1,12 @@
 package generic.cloudformation
 
+isCloudFormationFalse(answer) {
+	lower(answer) == "no"
+} else {
+	lower(answer) == "false"
+} else {
+	answer == false
+}
 # Find out if the document has a resource type equals to 'AWS::SecretsManager::Secret'
 hasSecretManager(str, document) {
 	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])
