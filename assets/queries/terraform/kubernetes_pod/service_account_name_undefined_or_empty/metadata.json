@@ -1,0 +1,9 @@
+{
+  "id": "24b132df-5cc7-4823-8029-f898e1c50b72",
+	"queryName": "Service Account Name Undefined Or Empty",
+	"severity": "MEDIUM",
+	"category": "Insecure Defaults",
+	"descriptionText": "A Kubernetes Pod should have a Service Account defined so to restrict Kubernetes API access, which means the attribute 'service_account_name' should be defined and not empty.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#service_account_name",
+	"platform": "Terraform"
+}
