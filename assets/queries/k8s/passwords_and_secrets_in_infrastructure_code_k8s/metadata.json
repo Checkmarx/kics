@@ -1,0 +1,9 @@
+{
+  "id": "2be8e053-518c-4ef6-af52-5dcca6bd5612",
+  "queryName": "Passwords And Secrets In Infrastructure Code Kubernetes",
+  "severity": "HIGH",
+  "category": "Secret Management",
+  "descriptionText": "Query to find passwords and secrets in infrastructure code.",
+  "descriptionUrl": "https://kics.io/",
+  "platform": "Kubernetes"
+}

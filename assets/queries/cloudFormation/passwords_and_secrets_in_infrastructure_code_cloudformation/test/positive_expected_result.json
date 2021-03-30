@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code CloudFormation",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code Docker",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive1.dockerfile"
+  }
+]

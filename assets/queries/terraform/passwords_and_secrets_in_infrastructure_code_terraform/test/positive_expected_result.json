@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code Terraform",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code Terraform",
+    "severity": "HIGH",
+    "line": 29,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code Terraform",
+    "severity": "HIGH",
+    "line": 69,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code Terraform",
+    "severity": "HIGH",
+    "line": 116,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code Terraform",
+    "severity": "HIGH",
+    "line": 118,
+    "fileName": "positive1.tf"
+  }
+]

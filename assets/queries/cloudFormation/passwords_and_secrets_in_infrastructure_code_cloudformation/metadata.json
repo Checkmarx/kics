@@ -1,9 +1,9 @@
 {
-  "id": "f996f3cb-00fc-480c-8973-8ab04d44a8cc",
-  "queryName": "Passwords And Secrets In Infrastructure Code",
+  "id": "b2bf2b32-ee9e-4288-92d4-315b2da87dff",
+  "queryName": "Passwords And Secrets In Infrastructure Code CloudFormation",
   "severity": "HIGH",
   "category": "Secret Management",
   "descriptionText": "Query to find passwords and secrets in infrastructure code.",
   "descriptionUrl": "https://kics.io/",
-  "platform": "Common"
+  "platform": "CloudFormation"
 }
