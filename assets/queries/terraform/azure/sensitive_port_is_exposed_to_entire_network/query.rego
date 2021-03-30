@@ -1,12 +1,14 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_network_security_rule[name]
 
-	portNumber := terraLib.portNumbers[j][0]
-	portName := terraLib.portNumbers[j][1]
+	portContent := commonLib.tcpPortsMap[port]
+	portNumber = port
+	portName = portContent
 	protocol := terraLib.getProtocolList(resource.protocol)[_]
 
 	upper(resource.access) == "ALLOW"

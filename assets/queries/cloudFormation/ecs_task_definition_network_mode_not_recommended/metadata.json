@@ -1,0 +1,9 @@
+{
+	"id": "027a4b7a-8a59-4938-a04f-ed532512cf45",
+	"queryName": "ECS Task Definition Network Mode Not Recommended",
+	"severity": "HIGH",
+	"category": "Insecure Configurations",
+	"descriptionText": "Network_Mode should be 'awsvpc' in ecs_task_definition. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-networkmode",
+	"platform": "CloudFormation"
+}

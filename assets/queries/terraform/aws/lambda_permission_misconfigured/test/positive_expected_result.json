@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Lambda Permission Misconfigured",
+    "severity": "LOW",
+    "line": 2
+  }
+]

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.cloudformation as cloudFormationLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	defaultToken := document.Parameters[paramName].Default
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not hasSecretManager(defaultToken, document.Resources)
+	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,7 +39,8 @@ CxPolicy[result] {
 	defaultToken := paramName
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not hasSecretManager(defaultToken, document.Resources)
+	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BasicAuthConfig.Password", [key]),
@@ -60,7 +63,8 @@ CxPolicy[result] {
 	defaultToken := paramName
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not hasSecretManager(defaultToken, document.Resources)
+	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.BasicAuthConfig.Password", [key]),
@@ -70,7 +74,3 @@ CxPolicy[result] {
 	}
 }
 
-hasSecretManager(str, document) {
-	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])
-	document[selectedSecret].Type == "AWS::SecretsManager::Secret"
-}

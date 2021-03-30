@@ -1,0 +1,20 @@
+[
+	{
+		"queryName": "Service Account Name Undefined Or Empty",
+		"severity": "MEDIUM",
+		"line": 6,
+    "fileName": "positive1.tf"
+	},
+  {
+		"queryName": "Service Account Name Undefined Or Empty",
+		"severity": "MEDIUM",
+		"line": 36,
+    "fileName": "positive2.tf"
+	},
+  {
+		"queryName": "Service Account Name Undefined Or Empty",
+		"severity": "MEDIUM",
+		"line": 36,
+    "fileName": "positive3.tf"
+	}
+]

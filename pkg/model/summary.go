@@ -105,6 +105,15 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		sevs[q[idx].Severity] += len(q[idx].Files)
 		severitySummary.TotalCounter += len(q[idx].Files)
 	}
+
+	severityOrder := map[Severity]int{SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
+	sort.Slice(queries, func(i, j int) bool {
+		if severityOrder[queries[i].Severity] == severityOrder[queries[j].Severity] {
+			return queries[i].QueryName < queries[j].QueryName
+		}
+		return severityOrder[queries[i].Severity] < severityOrder[queries[j].Severity]
+	})
+
 	severitySummary.SeverityCounters = sevs
 
 	return Summary{
@@ -112,13 +121,4 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		Queries:         queries,
 		SeveritySummary: severitySummary,
 	}
-}
-
-// SortBySev will sort queries by severity in an ascending order
-func (v VulnerableQuerySlice) SortBySev() VulnerableQuerySlice {
-	idxSev := map[Severity]int{SeverityInfo: 0, SeverityLow: 1, SeverityMedium: 2, SeverityHigh: 3}
-	sort.Slice(v, func(i, j int) bool {
-		return idxSev[v[i].Severity] < idxSev[v[j].Severity]
-	})
-	return v
 }

@@ -1,0 +1,9 @@
+{
+  "id": "4950837c-0ce5-4e42-9bee-a25eae73740b",
+  "queryName": "PSP Allows Containers To Share The Host Network Namespace",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Check if Pod Security Policies allow containers to share the host network namespace.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#host_network",
+  "platform": "Terraform"
+}
