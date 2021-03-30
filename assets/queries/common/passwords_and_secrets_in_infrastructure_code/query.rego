@@ -4,16 +4,23 @@ import data.generic.common as commonLib
 
 # search for harcoded secrets by looking for their values with a special chars and length
 CxPolicy[result] {
-	#get all string values from json
-	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"$]+\"[]\n\r,}]", json.marshal(input.document[id][name]), -1)
+	docs := input.document[id]
+	treatedDoc = checkName(docs, name, docs[name])
+	keyDoc = treatedDoc[y][father]
 
-	correctStrings := getCorrectStrings(replaceUniCode(allValues[_]))
+	clearParse := ["playbooks", "tasks", "command"]
+	not commonLib.equalsOrInArray(clearParse, father)
+
+	#get all string values from json
+	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"$]+\"[]\n\r,}]", json.marshal(keyDoc), -1)
+
+	correctStrings := getCorrectStrings(replaceUniCode(allValues[m]), father)
 
 	checkforvulnerability(correctStrings)
 
 	result := {
-		"documentId": input.document[id].id,
-		"searchKey": sprintf("%s=%s", [correctStrings.key, correctStrings.value]),
+		"documentId": docs.id,
+		"searchKey": sprintf("{{%s}}.%s=%s", [correctStrings.id, correctStrings.key, correctStrings.value]),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Hardcoded secret key should not appear in source",
 		"keyActualValue": correctStrings.value,
@@ -124,7 +131,7 @@ replaceUniCode(allValues) = treatedValue {
 }
 
 #construct correct strings based on dockerfile or other platform
-getCorrectStrings(allValues) = correctStrings {
+getCorrectStrings(allValues, name) = correctStrings {
 	#other platforms
 	not contains(split(allValues, "\":")[0], "Original")
 	allStrings = {"key": split(allValues, "\":")[0], "value": split(allValues, "\":")[1]}
@@ -133,6 +140,7 @@ getCorrectStrings(allValues) = correctStrings {
 	correctStrings = {
 		"key": substring(allStrings.key, 1, count(allStrings.key) - 1),
 		"value": substring(allStrings.value, 1, count(allStrings.value) - 3),
+		"id": name,
 	}
 } else = correctStrings {
 	#dockerfile
@@ -146,5 +154,18 @@ getCorrectStrings(allValues) = correctStrings {
 	correctStrings := {
 		"key": substring(allStrings.key, 0, count(allStrings.key)),
 		"value": substring(allStrings.value, 0, count(allStrings.value) - 2),
+		"id": name,
 	}
+}
+
+# clear parser added feilds
+checkName(document, name, docName) = treatedName {
+	clearAns := ["playbooks", "tasks"]
+	commonLib.equalsOrInArray(clearAns, name)
+	treatedName := [x | x := docName[int]]
+} else = treatedName {
+	name == "command"
+	treatedName := [x | x := docName]
+} else = treatedName {
+	treatedName := [x | x := document]
 }
