@@ -1,0 +1,9 @@
+{
+  "id": "58876b44-a690-4e9f-9214-7735fa0dd15d",
+  "queryName": "CronJob Deadline Not Configured",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "Cronjobs must have a configured deadline, which means the attribute 'starting_deadline_seconds' must be defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cron_job#starting_deadline_seconds",
+  "platform": "Terraform"
+}
