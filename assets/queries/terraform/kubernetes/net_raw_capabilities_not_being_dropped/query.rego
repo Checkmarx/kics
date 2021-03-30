@@ -6,7 +6,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -25,7 +24,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -47,7 +45,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -66,7 +63,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -85,7 +81,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -104,7 +99,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -125,7 +119,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -144,7 +137,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	spec := resource[name].spec
-	types := {"init_container", "container"}
 	containers := spec[types[x]]
 
 	is_object(containers) == true

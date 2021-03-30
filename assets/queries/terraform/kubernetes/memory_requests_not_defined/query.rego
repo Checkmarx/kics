@@ -10,14 +10,14 @@ CxPolicy[result] {
 
 	is_array(containers) == true
 
-	object.get(containers[y].resources.limits, "cpu", "undefined") == "undefined"
+	object.get(containers[y].resources.requests, "memory", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].resources.limits.cpu is set", [resourceType, name, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].spec.%s[%d].resources.limits.cpu is undefined", [resourceType, name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].resources.requests.memory is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].resources.requests.memory is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
@@ -29,14 +29,14 @@ CxPolicy[result] {
 
 	is_object(containers) == true
 
-	object.get(containers.resources.limits, "cpu", "undefined") == "undefined"
+	object.get(containers.resources.requests, "memory", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.%s.resources.limits", [resourceType, name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s.resources.requests", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources.limits.cpu is set", [resourceType, name, types[x]]),
-		"keyActualValue": sprintf("%s[%s].spec.%s.resources.limits.cpu is undefined", [resourceType, name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources.requests.memory is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.resources.requests.memory is undefined", [resourceType, name, types[x]]),
 	}
 }
 
@@ -84,14 +84,14 @@ CxPolicy[result] {
 
 	is_array(containers) == true
 
-	object.get(containers[y].resources, "limits", "undefined") == "undefined"
+	object.get(containers[y].resources, "requests", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].resources.limits is set", [resourceType, name, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].spec.%s[%d].resources.limits is undefined", [resourceType, name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].resources.requests is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].resources.requests is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
@@ -103,13 +103,13 @@ CxPolicy[result] {
 
 	is_object(containers) == true
 
-	object.get(containers.resources, "limits", "undefined") == "undefined"
+	object.get(containers.resources, "requests", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].spec.%s.resources", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources.limits is set", [resourceType, name, types[x]]),
-		"keyActualValue": sprintf("%s[%s].spec.%s.resources.limits is undefined", [resourceType, name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources.requests is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.resources.requests is undefined", [resourceType, name, types[x]]),
 	}
 }
