@@ -1,0 +1,23 @@
+{
+  "Resources": {
+    "MockMethod4": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "MyApi"
+        },
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "MyApi",
+            "RootResourceId"
+          ]
+        },
+        "HttpMethod": "GET",
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "Type": "MOCK"
+        }
+      }
+    }
+  }
+}
