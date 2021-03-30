@@ -1,0 +1,9 @@
+{
+  "id": "75be209d-1948-41f6-a8c8-e22dd0121134",
+  "queryName": "ECR Repository Is Publicly Accessible",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Amazon ECR image repositories shouldn't have public access",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html",
+  "platform": "CloudFormation"
+}

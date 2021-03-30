@@ -58,6 +58,7 @@ KICS is able to infer the format without the need of file extension.
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
   "log-file": true,
   "log-level": "INFO",
+  "log-path": "path to the log file",
   "silent": false,
   "minimal-ui": false,
   "no-color": false,
@@ -82,6 +83,7 @@ exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
 log-file: true
 log-level: INFO
+log-path: path to the log file
 silent: false
 no-color: false
 minimal-ui: false
@@ -105,6 +107,7 @@ exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
 log-file = true
 log-level = "INFO"
+log-path = "path to the log file"
 silent = false
 minimal-ui = false
 no-color = false
@@ -128,6 +131,7 @@ verbose = true
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
 "log-file" = true
 "log-level" = "INFO"
+"log-path" = "path to the log file"
 "silent" = false
 "minimal-ui" = false
 "no-color" = false

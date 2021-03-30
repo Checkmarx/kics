@@ -1,0 +1,9 @@
+{
+  "id": "71397b34-1d50-4ee1-97cb-c96c34676f74",
+  "queryName": "Lambda Functions Without X-Ray Tracing",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "AWS Lambda functions should have TracingConfig enabled. For this, property 'tracing_mode' should have the value 'Active'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html",
+  "platform": "Ansible"
+}

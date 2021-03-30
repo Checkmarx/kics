@@ -4,7 +4,7 @@ import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
-    document.kind == "Pod"
+	document.kind == "Pod"
 
 	spec := document.spec
 
@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-    document.kind == "CronJob"
+	document.kind == "CronJob"
 
 	spec := document.spec.jobTemplate.spec.template.spec
 
@@ -24,8 +24,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-    kind := document.kind
-    listKinds :=  ["Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
+	kind := document.kind
+	listKinds := ["Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
 	k8sLib.checkKind(kind, listKinds)
 
 	spec := document.spec.template.spec
@@ -64,9 +64,10 @@ checkRootParent(spec, path, metadata, id) = result {
 	result := checkRootContainer(spec, path, metadata, id)
 }
 
+types := {"initContainers", "containers"}
+
 checkRootContainer(spec, path, metadata, id) = result {
 	some j
-	types = {"initContainers", "containers"}
 	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	uid := container.securityContext.runAsUser
@@ -83,7 +84,6 @@ checkRootContainer(spec, path, metadata, id) = result {
 
 checkRootContainer(spec, path, metadata, id) = result {
 	some j
-	types = {"initContainers", "containers"}
 	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
@@ -99,7 +99,6 @@ checkRootContainer(spec, path, metadata, id) = result {
 
 checkUserContainer(spec, path, metadata, id) = result {
 	some j
-	types = {"initContainers", "containers"}
 	container := spec[types[x]][j]
 	uid := container.securityContext.runAsUser
 	to_number(uid) <= 0
@@ -115,7 +114,6 @@ checkUserContainer(spec, path, metadata, id) = result {
 
 checkUserContainer(spec, path, metadata, id) = result {
 	some j
-	types = {"initContainers", "containers"}
 	container := spec[types[x]][j]
 	not container.securityContext.runAsNonRoot
 	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
@@ -126,6 +124,5 @@ checkUserContainer(spec, path, metadata, id) = result {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is defined", [path, types[x], j]),
 		"keyActualValue": sprintf("'%s.%s[%d].securityContext.runAsUser' is undefined", [path, types[x], j]),
-
 	}
 }

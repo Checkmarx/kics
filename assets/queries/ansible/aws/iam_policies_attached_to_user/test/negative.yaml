@@ -1,12 +1,7 @@
-- name: Create IAM Managed Policy
-  community.aws.iam_managed_policy:
+- name: Assign a policy called Admin to the administrators group
+  community.aws.iam_policy:
     iam_type: group
-    policy_name: ManagedPolicy
-    policy:
-      Version: '2012-10-17'
-      Statement:
-      - Effect: Allow
-        Action: logs:CreateLogGroup
-        Resource: '*'
-    make_default: false
+    iam_name: administrators
+    policy_name: Admin
     state: present
+    policy_document: admin_policy.json

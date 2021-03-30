@@ -1,0 +1,9 @@
+{
+  "id": "8152e0cf-d2f0-47ad-96d5-d003a76eabd1",
+  "queryName": "Lambda Functions Without X-Ray Tracing",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "AWS Lambda functions should have TracingConfig enabled. For this, property 'tracing_Config.mode' should have the value 'Active'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config",
+  "platform": "Terraform"
+}

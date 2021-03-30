@@ -81,8 +81,9 @@ Available Commands:
 
 Flags:
   -h, --help               help for kics
-  -l, --log-file           writes log messages to info.log
+  -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
+      --log-path string    path to log files, (defaults to ${PWD}/info.log)
       --no-color           disable CLI color output
   -s, --silent             silence stdout messages (mutually exclusive with verbose)
   -v, --verbose            write logs to stdout too (mutually exclusive with silent)
@@ -125,8 +126,9 @@ Flags:
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
 
 Global Flags:
-  -l, --log-file           writes log messages to info.log
+  -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
+      --log-path string    path to log files, (defaults to ${PWD}/info.log)
       --no-color           disable CLI color output
   -s, --silent             silence stdout messages (mutually exclusive with verbose)
   -v, --verbose            write logs to stdout too (mutually exclusive with silent)
