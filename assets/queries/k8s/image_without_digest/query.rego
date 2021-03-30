@@ -1,10 +1,11 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	image := containers[c].image
 	not contains(image, "@")
@@ -22,7 +23,6 @@ CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	object.get(containers[k], "image", "undefined") == "undefined"
 
