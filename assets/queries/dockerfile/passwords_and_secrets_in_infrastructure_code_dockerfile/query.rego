@@ -5,7 +5,7 @@ import data.generic.common as commonLib
 # search for harcoded secrets by looking for their values with a special chars and length
 CxPolicy[result] {
 	docs := input.document[id]
-	keyDoc = docs[y][father]
+	keyDoc = docs[platform][father]
 
 	#get all string values from json
 	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"$]+\"[]\n\r,}]", json.marshal(keyDoc), -1)

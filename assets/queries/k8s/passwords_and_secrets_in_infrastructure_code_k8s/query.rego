@@ -7,6 +7,7 @@ CxPolicy[result] {
 	docs := input.document[id]
 	keyDoc = docs[father]
 
+	# DEV: As new platforms get added to kics, this query needs to be updated
 	clearParse := ["playbooks", "tasks", "command", "resource", "Resources"]
 	not commonLib.equalsOrInArray(clearParse, lower(father))
 
