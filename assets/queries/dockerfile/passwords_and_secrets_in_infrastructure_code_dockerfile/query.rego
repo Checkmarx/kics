@@ -7,6 +7,8 @@ CxPolicy[result] {
 	docs := input.document[id]
 	keyDoc = docs[platform][father]
 
+	platform == "command"
+
 	#get all string values from json
 	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"$]+\"[]\n\r,}]", json.marshal(keyDoc), -1)
 
