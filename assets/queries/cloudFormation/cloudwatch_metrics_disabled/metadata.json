@@ -3,7 +3,7 @@
   "queryName": "CloudWatch Metrics Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "See if CloudWatch Metrics is Enabled",
+  "descriptionText": "Checks if CloudWatch Metrics is Enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html",
   "platform": "CloudFormation"
 }
