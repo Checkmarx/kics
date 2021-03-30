@@ -2,6 +2,6 @@
   {
     "queryName": "StatefulSets Without Service Name",
     "severity": "LOW",
-    "line": 29
+    "line": 45
   }
 ]

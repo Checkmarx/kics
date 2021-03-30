@@ -1,3 +1,19 @@
+resource "kubernetes_service" "example1" {
+  metadata {
+    name = "prometheus"
+  }
+  spec {
+    cluster_ip = "None"
+    session_affinity = "ClientIP"
+    port {
+      port        = 8080
+      target_port = 80
+    }
+
+    type = "LoadBalancer"
+  }
+}
+
 resource "kubernetes_stateful_set" "prometheus1" {
   metadata {
     annotations = {
@@ -180,24 +196,5 @@ resource "kubernetes_stateful_set" "prometheus1" {
         }
       }
     }
-  }
-}
-
-resource "kubernetes_service" "example1" {
-  metadata {
-    name = "prometheus"
-  }
-  spec {
-    cluster_ip = "None"
-    selector = {
-      app = kubernetes_pod.example.metadata.0.labels.app
-    }
-    session_affinity = "ClientIP"
-    port {
-      port        = 8080
-      target_port = 80
-    }
-
-    type = "LoadBalancer"
   }
 }
