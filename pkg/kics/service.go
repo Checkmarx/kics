@@ -62,9 +62,14 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 				return errors.Wrapf(err, "failed to get file content: %s", filename)
 			}
 
+			content, err = s.Parser.Resolve(*content, filename)
+			if err != nil {
+				return errors.Wrapf(err, "failed to resolve file content: %s", filename)
+			}
+
 			documents, kind, err := s.Parser.Parse(filename, *content)
 			if err != nil {
-				return errors.Wrap(err, "failed to parse file content")
+				return errors.Wrapf(err, "failed to parse file content %s", filename)
 			}
 			for _, document := range documents {
 				_, err = json.Marshal(document)

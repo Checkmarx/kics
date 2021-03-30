@@ -14,6 +14,7 @@ type kindParser interface {
 	SupportedExtensions() []string
 	SupportedTypes() []string
 	Parse(filePath string, fileContent []byte) ([]model.Document, error)
+	Resolve(fileContent []byte, filename string) (*[]byte, error)
 }
 
 // Builder is a representation of parsers that will be construct
@@ -64,6 +65,23 @@ var ErrNotSupportedFile = errors.New("unsupported file to parse")
 type Parser struct {
 	parsers    map[string]kindParser
 	extensions model.Extensions
+}
+
+// Resolve - replace or modifies in-memory content before parsing
+func (c *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+	ext := filepath.Ext(filename)
+	if ext == "" {
+		ext = filepath.Base(filename)
+	}
+	if p, ok := c.parsers[ext]; ok {
+		obj, err := p.Resolve(fileContent, filename)
+		if err != nil {
+			return nil, err
+		}
+
+		return obj, nil
+	}
+	return nil, ErrNotSupportedFile
 }
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and

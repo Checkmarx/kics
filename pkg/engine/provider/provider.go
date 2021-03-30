@@ -20,5 +20,5 @@ type ResolverSink func(ctx context.Context, filename string) error
 type SourceProvider interface {
 	GetBasePath() string
 	GetSources(ctx context.Context, extensions model.Extensions, sink Sink, resolverSink ResolverSink) error
-	checkConditions(info os.FileInfo, extensions model.Extensions, path string) (checkCondition, error)
+	checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error)
 }
