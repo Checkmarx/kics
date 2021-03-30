@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "SSL Enforce Is Disabled",
-		"severity": "HIGH",
-		"line": 2
-	},
-	{
-		"queryName": "SSL Enforce Is Disabled",
-		"severity": "HIGH",
-		"line": 21
-	}
+  {
+    "queryName": "SSL Enforce Disabled",
+    "severity": "HIGH",
+    "line": 2
+  },
+  {
+    "queryName": "SSL Enforce Disabled",
+    "severity": "HIGH",
+    "line": 21
+  }
 ]

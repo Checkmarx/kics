@@ -1,0 +1,9 @@
+{
+  "id": "29f35127-98e6-43af-8ec1-201b79f99604",
+  "queryName": "Admin User Enabled For Container Registry",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Admin user is enabled for Container Registry",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html",
+  "platform": "Ansible"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "8010e17a-00e9-4635-a692-90d6bcec68bd",
+  "queryName": "Default Security Groups With Unrestricted Traffic",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Check if default security group does not restrict all inbound and outbound traffic.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+  "platform": "Ansible"
+}

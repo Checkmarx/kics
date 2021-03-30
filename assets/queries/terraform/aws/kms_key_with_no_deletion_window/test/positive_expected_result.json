@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "KMS Key With No Deletion Window",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "KMS Key With No Deletion Window",
+    "severity": "HIGH",
+    "line": 18
+  }
+]

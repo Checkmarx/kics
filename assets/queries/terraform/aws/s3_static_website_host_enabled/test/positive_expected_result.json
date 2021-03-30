@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "S3 Static Website Host Enabled",
+    "severity": "HIGH",
+    "line": 6
+  }
+]
