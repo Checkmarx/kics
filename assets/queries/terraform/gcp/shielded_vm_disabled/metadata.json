@@ -1,0 +1,9 @@
+{
+  "id": "1b44e234-3d73-41a8-9954-0b154135280e",
+  "queryName": "Shielded VM Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shielded_instance_config' must be defined and its sub attributes 'enable_secure_boot', 'enable_vtpm' and 'enable_integrity_monitoring' must be set to true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#shielded_instance_config",
+  "platform": "Terraform"
+}

@@ -3,7 +3,7 @@
   "queryName": "CA certificate Identifier is outdated",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "The CA certificate Identifier must be rds-ca-2019",
+  "descriptionText": "The CA certificate Identifier must be 'rds-ca-2019'.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
   "platform": "Terraform"
 }

@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "IP Aliasing Disabled",
+    "severity": "HIGH",
+    "line": 2
+  },
+  {
+    "queryName": "IP Aliasing Disabled",
+    "severity": "HIGH",
+    "line": 31
+  },
+  {
+    "queryName": "IP Aliasing Disabled",
+    "severity": "HIGH",
+    "line": 50
+  }
+]

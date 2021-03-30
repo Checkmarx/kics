@@ -1,0 +1,9 @@
+{
+  "id": "218413a0-c716-4b94-9e08-0bb70d854709",
+  "queryName": "Secure Ciphers Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Check if secure ciphers aren't used in CloudFront",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
+  "platform": "Ansible"
+}

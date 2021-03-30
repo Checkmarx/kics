@@ -1,0 +1,9 @@
+{
+  "id": "4f615f3e-fb9c-4fad-8b70-2e9f781806ce",
+  "queryName": "DB Security Group Open To Large Scope",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The IP address in a DB Security Group must not have more than 256 hosts.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
+  "platform": "Terraform"
+}

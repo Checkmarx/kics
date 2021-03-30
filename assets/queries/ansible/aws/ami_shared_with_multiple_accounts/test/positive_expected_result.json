@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "AMI Shared With Multiple Accounts",
+    "severity": "MEDIUM",
+    "line": 5
+  },
+  {
+    "queryName": "AMI Shared With Multiple Accounts",
+    "severity": "MEDIUM",
+    "line": 11
+  }
+]
