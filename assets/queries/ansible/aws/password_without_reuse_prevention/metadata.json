@@ -1,0 +1,9 @@
+{
+  "id": "6f5f5444-1422-495f-81ef-24cefd61ed2c",
+  "queryName": "Password Without Reuse Prevention",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "Password policy `password_reuse_prevention` doesn't exist or is equal to 0",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html#parameter-pw_reuse_prevent",
+  "platform": "Ansible"
+}

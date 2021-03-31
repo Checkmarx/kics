@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "PostgreSQL Misconfigured Log Messages Flag",
+    "severity": "MEDIUM",
+    "line": 11
+  }
+]

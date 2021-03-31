@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Hardcoded AWS Access Key",
+    "severity": "LOW",
+    "line": 7
+  }
+]
