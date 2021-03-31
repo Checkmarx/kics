@@ -1,0 +1,9 @@
+{
+  "id": "ae53ce91-42b5-46bf-a84f-9a13366a4f13",
+  "queryName": "SNS Topic is Publicly Accessible For Subscription",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Ensure appropriate subscribers to each SNS topic",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription",
+  "platform": "CloudFormation"
+}

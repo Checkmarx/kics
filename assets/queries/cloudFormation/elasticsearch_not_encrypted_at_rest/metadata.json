@@ -1,0 +1,9 @@
+{
+  "id": "86a248ab-0e01-4564-a82a-878303e253bb",
+  "queryName": "ElasticSearch Not Encrypted At Rest",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Check if ElasticSearch encryption is disabled at Rest",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-encryptionatrestoptions",
+  "platform": "CloudFormation"
+}

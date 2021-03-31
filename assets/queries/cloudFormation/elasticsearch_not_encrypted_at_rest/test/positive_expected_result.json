@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "ElasticSearch Not Encrypted At Rest",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Not Encrypted At Rest",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "line": 8,
+    "fileName": "positive3.json",
+    "queryName": "ElasticSearch Not Encrypted At Rest",
+    "severity": "MEDIUM"
+  },
+  {
+    "queryName": "ElasticSearch Not Encrypted At Rest",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive4.json"
+  }
+]

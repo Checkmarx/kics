@@ -1,0 +1,9 @@
+{
+  "id": "b8a9852c-9943-4973-b8d5-77dae9352851",
+  "queryName": "EFS Without Tags",
+  "severity": "LOW",
+  "category": "Build Process",
+  "descriptionText": "Amazon Elastic Filesystem should have filesystem tags associated",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html",
+  "platform": "Ansible"
+}

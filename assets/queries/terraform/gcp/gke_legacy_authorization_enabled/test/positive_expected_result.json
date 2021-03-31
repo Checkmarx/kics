@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "GKE Legacy Authorization Enabled",
+    "severity": "HIGH",
+    "line": 6
+  }
+]

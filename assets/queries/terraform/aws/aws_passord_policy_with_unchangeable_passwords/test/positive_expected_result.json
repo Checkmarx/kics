@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "AWS Password Policy With Unchangeable Passwords",
+    "severity": "MEDIUM",
+    "line": 12
+  }
+]

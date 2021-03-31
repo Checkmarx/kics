@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Automatic Minor Upgrades Disabled",
+    "severity": "HIGH",
+    "line": 13
+  }
+]

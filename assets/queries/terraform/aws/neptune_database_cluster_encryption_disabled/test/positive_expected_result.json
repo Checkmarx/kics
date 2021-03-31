@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 19
+  }
+]

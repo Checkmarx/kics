@@ -1,0 +1,9 @@
+{
+  "id": "c010082c-76e0-4b91-91d9-6e8439e455dd",
+  "queryName": "Cloud Storage Bucket Is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Cloud Storage Bucket is anonymously or publicly accessible",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam#member/members",
+  "platform": "Terraform"
+}
