@@ -1,10 +1,11 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	object.get(container, "securityContext", "undefined") == "undefined"
 
@@ -22,7 +23,6 @@ CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	securityContext := container.securityContext
 	object.get(securityContext, "readOnlyRootFilesystem", "undefined") == "undefined"
@@ -41,7 +41,6 @@ CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	container.securityContext.readOnlyRootFilesystem == false
 

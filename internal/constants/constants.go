@@ -10,7 +10,7 @@ const Fullname = "Keeping Infrastructure as Code Secure"
 const SCMCommit = "N/A"
 
 // LogFile - logfile name
-const LogFile = "info.log"
+const DefaultLogFile = "info.log"
 
 // DefaultConfigFilename - default configuration filename
 const DefaultConfigFilename = "kics.config"

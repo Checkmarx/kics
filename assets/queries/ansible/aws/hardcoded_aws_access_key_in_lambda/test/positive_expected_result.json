@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "MEDIUM",
+    "line": 32
+  }
+]
