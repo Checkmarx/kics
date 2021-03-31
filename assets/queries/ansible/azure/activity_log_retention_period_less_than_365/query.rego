@@ -28,7 +28,7 @@ CxPolicy[result] {
 	retentionPolicy := azureMonitor.retention_policy
 
 	ansLib.isAnsibleTrue(retentionPolicy.enabled)
-	commonLib.between(retentionPolicy.days, 1, 364)
+	commonLib.between(retentionPolicy.days, 1, 365)
 
 	result := {
 		"documentId": id,
