@@ -8,6 +8,7 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
+	"github.com/rs/zerolog/log"
 	"github.com/zclconf/go-cty/cty"
 	ctyconvert "github.com/zclconf/go-cty/cty/convert"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
@@ -255,5 +256,9 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
 }
 
 func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) {
-	return "${" + c.rangeSource(expr.Range()) + "}", nil
+	expression := c.rangeSource(expr.Range())
+	if strings.HasPrefix(expression, "var.") {
+		log.Warn().Msgf("Variable ${%s} value not found", expression)
+	}
+	return "${" + expression + "}", nil
 }

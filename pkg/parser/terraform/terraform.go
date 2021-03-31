@@ -1,8 +1,6 @@
 package terraform
 
 import (
-	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -11,13 +9,10 @@ import (
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
-	"github.com/zclconf/go-cty/cty"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
 const RetriesDefaultValue = 50
-
-var inputVariableMap = make(converter.InputVariableMap)
 
 // Converter returns content json, error line, error
 type Converter func(file *hcl.File, inputVariables converter.InputVariableMap) (model.Document, int, error)
@@ -38,60 +33,8 @@ func NewDefault() *Parser {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	err := getInputVariables(filepath.Dir(filename))
-	if err != nil {
-		return &fileContent, err
-	}
+	getInputVariables(filepath.Dir(filename))
 	return &fileContent, nil
-}
-
-func getInputVariables(currentPath string) error {
-	terraformFilepath := filepath.Join(currentPath, "terraform.tfvars")
-	file, err := os.ReadFile(terraformFilepath)
-	if err != nil {
-		return err
-	}
-	var f *hcl.File
-	if strings.HasSuffix(terraformFilepath, ".json") {
-		// f, _ = hcljson.Parse(file, terraformFilepath)
-		if f == nil || f.Body == nil {
-			return nil
-		}
-	} else {
-		f, _ = hclsyntax.ParseConfig(file, terraformFilepath, hcl.Pos{Line: 1, Column: 1})
-		if f == nil || f.Body == nil {
-			return nil
-		}
-	}
-
-	err = checkTfvarsValid(f, terraformFilepath)
-	if err != nil {
-		return err
-	}
-
-	attrs := f.Body.(*hclsyntax.Body).Attributes
-	variables := make(converter.InputVariableMap)
-	for name, attr := range attrs {
-		value, _ := attr.Expr.Value(&hcl.EvalContext{})
-		variables[name] = value
-	}
-	inputVariableMap["var"] = cty.ObjectVal(variables)
-	return nil
-}
-
-func checkTfvarsValid(f *hcl.File, filename string) error {
-	content, _, _ := f.Body.PartialContent(&hcl.BodySchema{
-		Blocks: []hcl.BlockHeaderSchema{
-			{
-				Type:       "variable",
-				LabelNames: []string{"name"},
-			},
-		},
-	})
-	if len(content.Blocks) > 0 {
-		return fmt.Errorf("failed to get variables from %s, .tfvars file is used to assing values not to declare new variables", filename)
-	}
-	return nil
 }
 
 // Parse execute parser for the content in a file
