@@ -1,0 +1,9 @@
+{
+  "id": "e71d0bc7-d9e8-4e6e-ae90-0a4206db6f40",
+  "queryName": "Root Account Has Active Access Keys",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "The AWS Root Account must not have active access keys associated, which means if there are access keys associated to the Root Account, they must be inactive.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_module.html",
+  "platform": "Ansible"
+}

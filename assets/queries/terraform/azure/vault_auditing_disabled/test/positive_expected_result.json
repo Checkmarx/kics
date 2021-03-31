@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Vault Auditing Disabled",
+    "severity": "HIGH",
+    "line": 16
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 17
+  },
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 30
+  },
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 48
+  },
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 61
+  },
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 83
+  }
+]

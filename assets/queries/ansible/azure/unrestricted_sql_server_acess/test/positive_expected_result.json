@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "MEDIUM",
+    "line": 10
+  }
+]
