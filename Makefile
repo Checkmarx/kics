@@ -117,6 +117,11 @@ generate-queries-docs: ## generate queries catalog md files
 		-t .github/generators/templates
 	@echo "\033[36mQueries catalog updated\033[0m"
 
+.PHONY: integration
+integration: ## run kics against all its samples
+	$(call print-target)
+	@go run cmd/console/main.go -p assets/queries --log-level DEBUG --log-file
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
