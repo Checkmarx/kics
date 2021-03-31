@@ -1,0 +1,9 @@
+{
+  "id": "826abb30-3cd5-4e0b-a93b-67729b4f7e63",
+  "queryName": "RBAC Roles with Read Secrets Permissions",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Minimize access to secrets (RBAC)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role#rule",
+  "platform": "Terraform"
+}

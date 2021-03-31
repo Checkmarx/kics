@@ -3,5 +3,15 @@
     "queryName": "Invalid Image",
     "severity": "LOW",
     "line": 8
+  },
+  {
+    "queryName": "Invalid Image",
+    "severity": "LOW",
+    "line": 19
+  },
+  {
+    "queryName": "Invalid Image",
+    "severity": "LOW",
+    "line": 30
   }
 ]

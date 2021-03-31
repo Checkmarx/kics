@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "StatefulSet Without PodDisruptionBudget",
+    "severity": "LOW",
+    "line": 23
+  }
+]

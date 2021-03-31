@@ -10,6 +10,10 @@ jobs:
     name: Update install script
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
       - name: Checkout project
         uses: actions/checkout@v2
         with:
@@ -33,9 +37,10 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Update install script - ${{ github.run_id }}
+          title: "[kicsbot] Update install script"
           token: ${{ secrets.KICS_BOT_PAT }}
           delete-branch: true
+          commit-message: "[kicsbot] Update install script"
           branch: feature/kicsbot-update-install-script
           base: master
           body: |

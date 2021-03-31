@@ -1,0 +1,9 @@
+{
+  "id": "265d9725-2fb8-42a2-bc57-3279c5db82d5",
+  "queryName": "Lambda Function Without Tags",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS Lambda Functions must have associated tags.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html",
+  "platform": "Ansible"
+}
