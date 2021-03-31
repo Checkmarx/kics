@@ -1,45 +1,21 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket[name]
-	policy := resource.policy
-	validate_json(policy)
-	out := json.unmarshal(policy)
-	out.Statement[ix].Effect = "Allow"
-	action := out.Statement[ix].Action
 
-	is_string(action)
-	contains(action, "*")
+	policy := commonLib.json_unmarshal(resource.policy)
+	statement := policy.Statement[_]
+
+	statement.Effect == "Allow"
+	commonLib.containsOrInArrayContains(statement.Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s].policy.Statement.Action", [name]),
+		"searchKey": sprintf("aws_s3_bucket[%s].policy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
 		"keyActualValue": "'policy.Statement.Action' contain '*'",
 	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.aws_s3_bucket[name]
-	policy := resource.policy
-	validate_json(policy)
-	out := json.unmarshal(policy)
-	out.Statement[ix].Effect = "Allow"
-	action := out.Statement[ix].Action
-
-	is_array(action)
-	contains(action[_], "*")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s].policy.Statement.Action", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' doesn't contain '*'",
-		"keyActualValue": "'policy.Statement.Action' contain '*'",
-	}
-}
-
-validate_json(string) {
-	not startswith(string, "$")
 }

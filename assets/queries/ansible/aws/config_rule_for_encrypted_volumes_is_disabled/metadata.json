@@ -1,6 +1,6 @@
 {
   "id": "7674a686-e4b1-4a95-83d4-1fd53c623d84",
-  "queryName": "Config Rule For Encrypted Volumes Is Disabled",
+  "queryName": "Config Rule For Encrypted Volumes Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",

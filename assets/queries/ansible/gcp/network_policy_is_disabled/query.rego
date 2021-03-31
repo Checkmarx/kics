@@ -8,31 +8,16 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
+	fields := ["network_policy", "addons_config"]
 
-	object.get(cluster, "network_policy", "undefined") == "undefined"
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.network_policy is defined",
-		"keyActualValue": "gcp_container_cluster.network_policy is undefined",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	cluster := task[modules[m]]
-	ansLib.checkState(cluster)
-
-	object.get(cluster, "addons_config", "undefined") == "undefined"
+	object.get(cluster, fields[f], "undefined") == "undefined"
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.addons_config is defined",
-		"keyActualValue": "gcp_container_cluster.addons_config is undefined",
+		"keyExpectedValue": sprintf("gcp_container_cluster.%s is defined", [fields[f]]),
+		"keyActualValue": sprintf("gcp_container_cluster.%s is undefined", [fields[f]]),
 	}
 }
 

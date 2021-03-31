@@ -1,5 +1,5 @@
 # Binaries for programs and plugins
-./bin
+bin
 *.exe
 *.exe~
 *.dll
@@ -27,5 +27,11 @@
 # kics configuration file
 kics.config
 
-# Sarif file
+# Results
+results.*
+
+# Sarif files
 *.sarif
+
+# coverage report
+coverage.html

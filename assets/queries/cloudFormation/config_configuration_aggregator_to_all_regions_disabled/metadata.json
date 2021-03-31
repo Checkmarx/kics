@@ -1,0 +1,9 @@
+{
+	"id": "9f3cf08e-72a2-4eb1-8007-e3b1b0e10d4d",
+	"queryName": "Configuration Aggregator to All Regions Disabled",
+	"severity": "HIGH",
+	"category": "Observability",
+	"descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationaggregator.html",
+	"platform": "CloudFormation"
+}

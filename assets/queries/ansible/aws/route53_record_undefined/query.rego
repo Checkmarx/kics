@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"community.aws.route53", "route53"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	route53 := task[modules[m]]
 	ansLib.checkState(route53)
 
-	ansLib.checkValue(route53.value)
+	commonLib.emptyOrNull(route53.value)
 
 	result := {
 		"documentId": id,

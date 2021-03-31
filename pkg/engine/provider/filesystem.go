@@ -29,6 +29,7 @@ var ErrNotSupportedFile = errors.New("invalid file format")
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
 func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
+	log.Debug().Msgf("provider.NewFileSystemSourceProvider()")
 	ex := make(map[string][]os.FileInfo, len(excludes))
 	for _, exclude := range excludes {
 		excludePaths, err := getExcludePaths(exclude)

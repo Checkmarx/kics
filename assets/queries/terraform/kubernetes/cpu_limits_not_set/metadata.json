@@ -1,0 +1,9 @@
+{
+  "id": "5f4735ce-b9ba-4d95-a089-a37a767b716f",
+  "queryName": "CPU Limits Not Set",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#limits",
+  "platform": "Terraform"
+}

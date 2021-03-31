@@ -2,9 +2,9 @@ package Cx
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_elasticache_cluster[name]
-	cluster.engine == "memcached"
-	to_number(cluster.num_cache_nodes) > 1
 
+	lower(cluster.engine) == "memcached"
+	to_number(cluster.num_cache_nodes) > 1
 	not cluster.az_mode
 
 	result := {
@@ -18,10 +18,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_elasticache_cluster[name]
-	cluster.engine == "memcached"
-	to_number(cluster.num_cache_nodes) > 1
 
-	cluster.az_mode != "cross-az"
+	lower(cluster.engine) == "memcached"
+	to_number(cluster.num_cache_nodes) > 1
+	lower(cluster.az_mode) != "cross-az"
 
 	result := {
 		"documentId": input.document[i].id,

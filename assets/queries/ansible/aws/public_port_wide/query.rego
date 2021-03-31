@@ -14,7 +14,7 @@ CxPolicy[result] {
 	toPort - fromPort > 0
 
 	cidr := ec2_group.rules[index].cidr_ip
-	isEntireNetwork(cidr)
+	ansLib.isEntireNetwork(cidr)
 
 	result := {
 		"documentId": id,
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	toPort - fromPort > 0
 
 	cidr := ec2_group.rules[index].cidr_ipv6
-	isEntireNetwork(cidr)
+	ansLib.isEntireNetwork(cidr)
 
 	result := {
 		"documentId": id,
@@ -44,16 +44,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("ec2_group.rules[%d] doesn't have public port wide", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] has public port wide", [index]),
 	}
-}
-
-isEntireNetwork(cidr) {
-	is_array(cidr)
-	cidrs = {"0.0.0.0/0", "::/0"}
-	count({x | cidr[x]; cidr[x] == cidrs[j]}) != 0
-}
-
-isEntireNetwork(cidr) {
-	is_string(cidr)
-	cidrs = {"0.0.0.0/0", "::/0"}
-	cidr == cidrs[j]
 }

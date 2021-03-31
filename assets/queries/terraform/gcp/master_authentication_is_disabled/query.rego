@@ -15,88 +15,39 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
-	resource.master_auth.password
-	not resource.master_auth.username
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'master_auth.username' is defined",
-		"keyActualValue": "Attribute 'master_auth.username' is undefined",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
-	resource.master_auth.username
-	not resource.master_auth.password
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'master_auth.password' is defined",
-		"keyActualValue": "Attribute 'master_auth.password' is undefined",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
 	resource.master_auth
-	not resource.master_auth.username
-	not resource.master_auth.password
+	not bothDefined(resource.master_auth)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'master_auth.username' is defined and Attribute 'master_auth.password' is defined",
-		"keyActualValue": "Attribute 'master_auth.username' is undefined and Attribute 'master_auth.password' is undefined",
+		"keyActualValue": "Attribute 'master_auth.username' is undefined or Attribute 'master_auth.password' is undefined",
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
 	resource.master_auth
-	count(resource.master_auth.username) == 0
-	count(resource.master_auth.password) > 0
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'master_auth.username' is not empty",
-		"keyActualValue": "Attribute 'master_auth.username' is empty",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
-	resource.master_auth
-	count(resource.master_auth.username) > 0
-	count(resource.master_auth.password) == 0
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'master_auth.password' is not empty",
-		"keyActualValue": "Attribute 'master_auth.password' is empty",
-	}
-}
-
-CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
-	resource.master_auth
-	count(resource.master_auth.username) == 0
-	count(resource.master_auth.password) == 0
+	bothDefined(resource.master_auth)
+	not bothFilled(resource.master_auth)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_container_cluster[%s].master_auth", [primary]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'master_auth.username' is not empty and Attribute 'master_auth.password' is not empty",
-		"keyActualValue": "Attribute 'master_auth.username' is empty and Attribute 'master_auth.password' is empty",
+		"keyActualValue": "Attribute 'master_auth.username' is empty or Attribute 'master_auth.password' is empty",
 	}
+}
+
+bothDefined(master_auth) {
+	master_auth.username
+	master_auth.password
+}
+
+bothFilled(master_auth) {
+	count(master_auth.username) > 0
+	count(master_auth.password) > 0
 }
