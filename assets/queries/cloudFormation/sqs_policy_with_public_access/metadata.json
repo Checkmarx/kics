@@ -1,0 +1,9 @@
+{
+  "id": "9b6a3f5b-5fd6-40ee-9bc0-ed604911212d",
+  "queryName": "SQS Policy With Public Access",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Checks for dangerous permissions in Action statements in an SQS Queue Policy. This is deemed a potential security risk as it would allow various attacks to the queue",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html",
+  "platform": "CloudFormation"
+}

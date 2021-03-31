@@ -1,0 +1,9 @@
+{
+  "id": "e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5",
+  "queryName": "Fully Open Ingress",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "ECS Service's security group should not allow unrestricted access to all ports from all IPv4 addresses",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html#create-a-base-security-group",
+  "platform": "CloudFormation"
+}

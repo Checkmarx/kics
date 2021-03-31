@@ -1,0 +1,9 @@
+{
+  "id": "3f2cf811-88fa-4eda-be45-7a191a18aba9",
+  "queryName": "Misconfigured Password Policy Expiration",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "No password expiration policy",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html",
+  "platform": "Ansible"
+}

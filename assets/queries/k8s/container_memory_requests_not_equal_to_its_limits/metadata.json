@@ -1,0 +1,9 @@
+{
+  "id": "aafa7d94-62de-4fbf-8838-b69ee217b0e6",
+  "queryName": "Container Memory Requests Not Equal To It's Limits",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "A Pod's Containers must have the same Memory requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.memory' must equal 'limits.memory', and both be defined.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+  "platform": "Kubernetes"
+}

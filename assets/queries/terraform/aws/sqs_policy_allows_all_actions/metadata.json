@@ -1,0 +1,9 @@
+{
+  "id": "816ea8cf-d589-442d-a917-2dd0ce0e45e3",
+  "queryName": "SQS Policy Allows All Actions",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "SQS policy allows ALL (*) actions",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy",
+  "platform": "Terraform"
+}
