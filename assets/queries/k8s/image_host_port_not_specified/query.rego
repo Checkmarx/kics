@@ -1,10 +1,11 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	ports := containers[c].ports
 	object.get(ports[k], "hostPort", "undefined") != "undefined"
@@ -22,7 +23,6 @@ CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	spec := document.spec.template.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	ports := containers[c].ports
 	object.get(ports[k], "hostPort", "undefined") != "undefined"

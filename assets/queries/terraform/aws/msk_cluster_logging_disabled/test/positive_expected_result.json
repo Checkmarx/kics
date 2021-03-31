@@ -12,6 +12,6 @@
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 20
+    "line": 15
   }
 ]

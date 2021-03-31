@@ -10,6 +10,10 @@ jobs:
     name: Update index docs links
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
       - name: Checkout project
         uses: actions/checkout@v2
         with:
@@ -32,8 +36,9 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Update documentation index page - ${{ steps.cversion.outputs.version }}
+          title: "[kicsbot] Update documentation index page - ${{ steps.cversion.outputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "[kicsbot] Update documentation index page"
           delete-branch: true
           branch: feature/kicsbot-update-docs-index
           base: master

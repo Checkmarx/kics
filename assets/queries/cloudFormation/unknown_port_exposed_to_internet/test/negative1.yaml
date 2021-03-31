@@ -1,0 +1,12 @@
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Expose known ports to client host
+        VpcId:
+          Ref: myVPC
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 20
+          ToPort: 23
+          CidrIp: 0.0.0.0/0

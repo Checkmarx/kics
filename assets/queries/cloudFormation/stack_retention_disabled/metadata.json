@@ -1,0 +1,9 @@
+{
+  "id": "fe974ae9-858e-4991-bbd5-e040a834679f",
+  "queryName": "Stack Retention Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html#cfn-cloudformation-stackset-autodeployment-retainstacksonaccountremoval",
+  "platform": "CloudFormation"
+}

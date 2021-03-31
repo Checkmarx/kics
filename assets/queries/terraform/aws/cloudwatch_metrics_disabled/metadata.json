@@ -4,6 +4,7 @@
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Enable the CloudWatch Metrics",
+  "descriptionText": "Checks if CloudWatch Metrics is Enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#metrics_enabled",
   "platform": "Terraform"
 }

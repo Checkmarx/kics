@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 5
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]
