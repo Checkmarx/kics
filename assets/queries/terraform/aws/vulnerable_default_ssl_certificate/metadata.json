@@ -1,0 +1,9 @@
+{
+  "id": "3a1e94df-6847-4c0e-a3b6-6c6af4e128ef",
+  "queryName": "Vulnerable Default SSL Certificate",
+  "severity": "HIGH",
+  "category": "Insecure Defaults",
+  "descriptionText": "CloudFront web distributions should use custom (and not default) SSL certificates. Custom SSL certificates allow only defined users to access content by using an alternate domain name instead of the default one.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
+  "platform": "Terraform"
+}

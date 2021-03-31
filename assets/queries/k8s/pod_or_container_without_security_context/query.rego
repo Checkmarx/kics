@@ -8,14 +8,14 @@ CxPolicy[result] {
 
 	metadata := document.metadata
 
-	spec := document.spec
+	spec := specInfo.spec
 
 	document.kind == "Pod"
 
 	object.get(spec, "securityContext", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s has a security context", [metadata.name, specInfo.path]),
@@ -30,12 +30,12 @@ CxPolicy[result] {
 	metadata := document.metadata
 
     types := {"initContainers", "containers"}
-	containers := document.spec[types[x]]
+	containers := specInfo.spec[types[x]]
 
 	object.get(containers[index], "securityContext", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"keyExpectedValue": sprintf("%s.%s.name=%s has a security context", [specInfo.path, types[x], containers[index].name]),

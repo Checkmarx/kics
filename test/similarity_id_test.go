@@ -273,14 +273,14 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			return []model.QueryMetadata{q}, nil
 		})
 
-	queriesSource.EXPECT().GetGenericQuery("common").
+	queriesSource.EXPECT().GetQueryLibrary("common").
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
 
-	queriesSource.EXPECT().GetGenericQuery(testParams.platform).
+	queriesSource.EXPECT().GetQueryLibrary(testParams.platform).
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary(testParams.platform)
 			require.NoError(t, err)

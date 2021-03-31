@@ -13,7 +13,7 @@ CxPolicy[result] {
 	rule := ec2_group.rules[index]
 	rule.cidr_ip == "0.0.0.0/0"
 	rule.proto == "tcp"
-	ansLib.checkPortIsOpen(rule, 2383)
+	ansLib.isPortInRule(rule, 2383)
 
 	result := {
 		"documentId": id,

@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating ECS service
+Resources:
+  LambdaInvocationsAnomalyDetector:
+    Type: AWS::CloudWatch::AnomalyDetector
+    Properties:
+      MetricName: Invocations
+      Namespace: AWS/Lambda
+      Stat: Sum
+
+  LambdaInvocationsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Lambda invocations
+      AlarmName: LambdaInvocationsAlarm
+      ComparisonOperator: LessThanLowerOrGreaterThanUpperThreshold
+      EvaluationPeriods: 1
+      Metrics:
+      - Expression: ANOMALY_DETECTION_BAND(m1, 2)
+        Id: ad1
+      - Id: m1
+        MetricStat:
+          Metric:
+            MetricName: Invocations
+            Namespace: AWS/Lambda
+          Period: !!int 86400
+          Stat: Sum
+      ThresholdMetricId: ad1
+      TreatMissingData: breaching

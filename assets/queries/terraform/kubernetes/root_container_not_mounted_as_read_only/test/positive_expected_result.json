@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Root Container Not Mounted As Read-only",
+    "severity": "LOW",
+    "line": 8
+  },
+  {
+    "queryName": "Root Container Not Mounted As Read-only",
+    "severity": "LOW",
+    "line": 8
+  },
+  {
+    "queryName": "Root Container Not Mounted As Read-only",
+    "severity": "LOW",
+    "line": 103
+  }
+]

@@ -1,13 +1,12 @@
 package Cx
 
-import data.generic.k8s as k8sLib
+types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
 
 	isTiller(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -29,7 +28,6 @@ CxPolicy[result] {
 
 	isTiller(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -54,7 +52,6 @@ CxPolicy[result] {
 
 	isTillerTemplate(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -74,7 +71,6 @@ CxPolicy[result] {
 
 	isTillerTemplate(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -93,12 +89,12 @@ CxPolicy[result] {
 ############################################################
 isTiller(document) {
 	document.spec.containers
-	k8sLib.checkMetadata(document.metadata)
+	checkMetadata(document.metadata)
 }
 
 isTillerTemplate(document) {
 	document.spec.template.spec.containers
-	k8sLib.checkMetadata(document.spec.template.metadata)
+	checkMetadata(document.spec.template.metadata)
 }
 
 ##############################################################
@@ -117,4 +113,16 @@ localAddress(arg) {
 
 localAddress(arg) {
 	contains(arg, "127.0.0.1")
+}
+
+checkMetadata(metadata) {
+	contains(metadata.name, "tiller")
+}
+
+checkMetadata(metadata) {
+	object.get(metadata.labels, "app", "undefined") == "helm"
+}
+
+checkMetadata(metadata) {
+	contains(object.get(metadata.labels, "name", "undefined"), "tiller")
 }

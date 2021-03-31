@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Missing App Armor Config",
+    "severity": "LOW",
+    "line": 4
+  },
+  {
+    "queryName": "Missing App Armor Config",
+    "severity": "LOW",
+    "line": 58
+  }
+]

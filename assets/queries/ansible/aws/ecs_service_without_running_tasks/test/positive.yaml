@@ -1,0 +1,13 @@
+- name: ECS Service
+  community.aws.ecs_service:
+    state: present
+    name: test-service
+    cluster: test-cluster
+    task_definition: test-task-definition
+    desired_count: 3
+    placement_constraints:
+      - type: memberOf
+        expression: 'attribute:flavor==test'
+    placement_strategy:
+      - type: binpack
+        field: memory

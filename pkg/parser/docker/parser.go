@@ -43,7 +43,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	parsed, err := parser.Parse(reader)
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to parse Dockerfile")
+		return nil, errors.Wrap(err, "failed to parse Dockerfile")
 	}
 
 	fromValue := "args"
@@ -81,11 +81,11 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	j, err := json.Marshal(resource)
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to Marshal Dockerfile")
+		return nil, errors.Wrap(err, "failed to Marshal Dockerfile")
 	}
 
 	if err := json.Unmarshal(j, &doc); err != nil {
-		return nil, errors.Wrap(err, "Failed to Unmarshal Dockerfile")
+		return nil, errors.Wrap(err, "failed to Unmarshal Dockerfile")
 	}
 
 	documents = append(documents, *doc)

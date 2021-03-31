@@ -1,0 +1,9 @@
+{
+	"id": "482b7d26-0bdb-4b5f-bf6f-545826c0a3dd",
+	"queryName": "CloudTrail SNS Topic Name Undefined",
+	"severity": "MEDIUM",
+	"category": "Observability",
+	"descriptionText": "Check if SNS topic name is set for CloudTrail",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail",
+	"platform": "Terraform"
+}

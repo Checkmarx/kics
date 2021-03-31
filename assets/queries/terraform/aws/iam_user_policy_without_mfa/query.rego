@@ -1,11 +1,15 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
-	resource := input.document[i].resource
-	policy := json.unmarshal(resource.aws_iam_user_policy[name].policy)
+	resource := input.document[i].resource.aws_iam_user_policy[name]
+
+	policy := commonLib.json_unmarshal(resource.policy)
 	statement := policy.Statement[_]
-	statement.Action = "sts:AssumeRole"
-	statement.Effect = "Allow"
+
+	statement.Action == "sts:AssumeRole"
+	statement.Effect == "Allow"
 	checkRoot(statement)
 	not checkMFA(statement)
 

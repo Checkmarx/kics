@@ -1,6 +1,6 @@
 {
 	"id": "77b6f1e2-bde4-4a6a-ae7e-a40659ff1576",
-	"queryName": "EC2 network ACL overlapping ports",
+	"queryName": "EC2 Network ACL Overlapping Ports",
 	"severity": "HIGH",
 	"category": "Networking and Firewall",
 	"descriptionText": "NetworkACL Entries are reusing or overlapping ports which may create ineffective rules",

@@ -1,0 +1,9 @@
+{
+  "id": "829ce3b8-065c-41a3-ad57-e0accfea82d2",
+  "queryName": "Unknown Port Exposed To Internet",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Security Group should not have an unknown port exposed to the entire Internet",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
+  "platform": "CloudFormation"
+}

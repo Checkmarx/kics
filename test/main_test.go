@@ -23,18 +23,18 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		"../assets/queries/terraform/aws":            {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/azure":          {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/gcp":            {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/github":         {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/terraform/kubernetes_pod": {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
-		"../assets/queries/k8s":                      {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
-		"../assets/queries/cloudFormation":           {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
-		"../assets/queries/ansible/aws":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
-		"../assets/queries/ansible/gcp":              {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
-		"../assets/queries/ansible/azure":            {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
-		"../assets/queries/dockerfile":               {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
-		"../assets/queries/common":                   {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
+		"../assets/queries/terraform/aws":        {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/azure":      {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/k8s":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
+		"../assets/queries/cloudFormation":       {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/ansible/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/gcp":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/dockerfile":           {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
+		"../assets/queries/common":               {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 	}
 )
 

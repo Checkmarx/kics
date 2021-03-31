@@ -4,6 +4,6 @@
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "AWS Lambda Functions should not have roles with policies granting full administrative privileges.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-lambda.html",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html",
   "platform": "CloudFormation"
 }
