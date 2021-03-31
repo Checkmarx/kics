@@ -1,0 +1,9 @@
+{
+  "id": "52ffcfa6-6c70-4ea6-8376-d828d3961669",
+  "queryName": "CloudTrail Log File Validation Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "CloudTrail log file validation should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_log_file_validation",
+  "platform": "Terraform"
+}
