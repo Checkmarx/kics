@@ -21,14 +21,10 @@ CxPolicy[result] {
 	}
 }
 
-lambdaAction(action) {
-	action == "lambda:*"
-} else {
-	action == "lambda:InvokeFunction"
-}
+lambdaAction("lambda:*") = true
 
-principalAllowAPIGateway(principal) {
-	principal == "*"
-} else {
-	principal == "apigateway.amazonaws.com"
-}
+lambdaAction("lambda:InvokeFunction") = true
+
+principalAllowAPIGateway("*") = true
+
+principalAllowAPIGateway("apigateway.amazonaws.com") = true

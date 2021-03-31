@@ -1,0 +1,9 @@
+{
+  "id": "21719347-d02b-497d-bda4-04a03c8e5b61",
+  "queryName": "Memory Requests Not Defined",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "Memory requests should be specified",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#requests",
+  "platform": "Terraform"
+}

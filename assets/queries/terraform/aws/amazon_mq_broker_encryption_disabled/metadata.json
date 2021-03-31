@@ -1,0 +1,9 @@
+{
+  "id": "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
+  "queryName": "AmazonMQ Broker Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "AmazonMQ Broker should have Encryption Options defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker",
+  "platform": "Terraform"
+}

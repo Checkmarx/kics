@@ -1,8 +1,11 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"community.aws.elb_network_lb", "elb_network_lb", "community.aws.elb_application_lb", "elb_application_lb"}
+
+insecure_protocols := ["Protocol-SSLv2", "Protocol-SSLv3", "Protocol-TLSv1", "Protocol-TLSv1.1"]
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -41,7 +44,7 @@ CxPolicy[result] {
 	elb := task[modules[m]]
 	ansLib.checkState(elb)
 
-	check_vulnerability(elb.listeners[j].SslPolicy)
+	commonLib.inArray(insecure_protocols, elb.listeners[j].SslPolicy)
 
 	result := {
 		"documentId": id,
@@ -50,9 +53,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.listeners.SslPolicy is a secure protocol", [modules[m]]),
 		"keyActualValue": sprintf("%s.listeners.SslPolicy is an insecure protocol", [modules[m]]),
 	}
-}
-
-check_vulnerability(val) {
-	insecure_protocols = {"Protocol-SSLv2", "Protocol-SSLv3", "Protocol-TLSv1", "Protocol-TLSv1.1"}
-	val == insecure_protocols[_]
 }

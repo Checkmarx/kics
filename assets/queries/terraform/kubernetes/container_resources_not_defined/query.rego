@@ -1,10 +1,11 @@
 package Cx
 
-CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+types := {"init_container", "container"}
 
-	spec := resource.spec
-	types := {"init_container", "container"}
+CxPolicy[result] {
+	resource := input.document[i].resource[resourceType]
+
+	spec := resource[name].spec
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -12,18 +13,17 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].resources is set", [name, types[x], y]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].resources is undefined", [name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].resources is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].resources is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
-	types := {"init_container", "container"}
+	spec := resource[name].spec
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -31,18 +31,17 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.resources is set", [name, types[x]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.resources is undefined", [name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.resources is undefined", [resourceType, name, types[x]]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
-	types := {"init_container", "container"}
+	spec := resource[name].spec
 	containers := spec[types[x]]
 
 	is_array(containers) == true
@@ -53,18 +52,17 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s[%d].resources.%s is set", [name, types[x], y, resources[z]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s[%d].resources.%s is undefined", [name, types[x], y, resources[z]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].resources.%s is set", [resourceType, name, types[x], y, resources[z]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].resources.%s is undefined", [resourceType, name, types[x], y, resources[z]]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	resource := input.document[i].resource[resourceType]
 
-	spec := resource.spec
-	types := {"init_container", "container"}
+	spec := resource[name].spec
 	containers := spec[types[x]]
 
 	is_object(containers) == true
@@ -75,9 +73,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("kubernetes_pod[%s].spec.%s.resources", [name, types[x]]),
+		"searchKey": sprintf("%s[%s].spec.%s.resources", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("kubernetes_pod[%s].spec.%s.resources.%s is set", [name, types[x], resources[z]]),
-		"keyActualValue": sprintf("kubernetes_pod[%s].spec.%s.resources.%s is undefined", [name, types[x], resources[z]]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.resources.%s is set", [resourceType, name, types[x], resources[z]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.resources.%s is undefined", [resourceType, name, types[x], resources[z]]),
 	}
 }

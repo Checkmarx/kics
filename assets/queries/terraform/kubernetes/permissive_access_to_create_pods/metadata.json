@@ -1,0 +1,9 @@
+{
+  "id": "522d4a64-4dc9-44bd-9240-7d8a0d5cb5ba",
+  "queryName": "Permissive Access to Create Pods",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "The permission to create pods in a cluster should be restricted because it allows privilege escalation.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role#rule",
+  "platform": "Terraform"
+}

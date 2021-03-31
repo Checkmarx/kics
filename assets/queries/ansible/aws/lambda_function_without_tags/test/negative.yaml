@@ -1,0 +1,10 @@
+- name: add tags
+  community.aws.lambda:
+    name: 'Lambda function'
+    state: present
+    zip_file: 'code.zip'
+    runtime: 'python2.7'
+    role: 'arn:aws:iam::987654321012:role/lambda_basic_execution'
+    handler: 'hello_python.my_handler'
+    tags:
+      key1: 'value1'

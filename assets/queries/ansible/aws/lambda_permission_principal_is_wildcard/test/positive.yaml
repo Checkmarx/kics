@@ -1,0 +1,10 @@
+- name: Lambda S3 event notification
+  community.aws.lambda_policy:
+    state: present
+    function_name: functionName
+    alias: Dev
+    statement_id: lambda-s3-myBucket-create-data-log
+    action: lambda:AddPermission
+    principal: "*"
+    source_arn: arn:aws:s3:eu-central-1:123456789012:bucketName
+    source_account: 123456789012

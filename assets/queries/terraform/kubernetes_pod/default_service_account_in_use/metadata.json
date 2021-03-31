@@ -1,0 +1,9 @@
+{
+  "id": "737a0dd9-0aaa-4145-8118-f01778262b8a",
+  "queryName": "Default Service Account In Use",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Default service accounts should not be actively used",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account#automount_service_account_token",
+  "platform": "Terraform"
+}

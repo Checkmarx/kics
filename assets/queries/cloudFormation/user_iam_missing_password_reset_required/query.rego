@@ -6,6 +6,7 @@ CxPolicy[result] {
 	loginProfile := resource.Properties.LoginProfile
 	loginProfile.Password
 	loginProfile.PasswordResetRequired == false
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.LoginProfile.PasswordResetRequired", [name]),
@@ -20,6 +21,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::IAM::User"
 	loginProfile := resource.Properties
 	object.get(loginProfile, "LoginProfile", "undefined") == "undefined"
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -35,6 +37,7 @@ CxPolicy[result] {
 	passwordResetRequired := resource.Properties.LoginProfile
 	count(passwordResetRequired) == 1
 	passwordResetRequired.Password
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.LoginProfile", [name]),

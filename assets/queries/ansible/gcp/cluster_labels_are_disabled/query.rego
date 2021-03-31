@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 
-	ansLib.checkValue(cluster.resource_labels)
+	commonLib.emptyOrNull(cluster.resource_labels)
 
 	result := {
 		"documentId": id,

@@ -1,11 +1,15 @@
 package Cx
 
+import data.generic.cloudformation as cldLib
+import data.generic.common as commonLib
+
 CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 	document := input.document[i]
 	resource := document.Resources[key]
-	checkTypeStorage(resource.Type)
-	properties := resource.Properties
-	properties.StorageEncrypted == false
+    commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
+
+    properties := resource.Properties
+	cldLib.isCloudFormationFalse(properties.StorageEncrypted)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,7 +23,7 @@ CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 	document := input.document[i]
 	resource := document.Resources[key]
-	checkTypeStorage(resource.Type)
+    commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
 	properties := resource.Properties
 	object.get(properties, "StorageEncrypted", "undefined") == "undefined"
@@ -36,7 +40,8 @@ CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
-	checkTypeKmsKey(resource.Type)
+	commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::Redshift::Cluster"}, resource.Type)
+
 	properties := resource.Properties
 	object.get(properties, "KmsKeyId", "undefined") == "undefined"
 
@@ -53,6 +58,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
 	resource.Type == "AWS::Redshift::Cluster"
+
 	properties := resource.Properties
 	object.get(properties, "Encrypted", "undefined") == "undefined"
 
@@ -69,7 +75,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
 	resource.Type == "AWS::Redshift::Cluster"
-	properties := resource.Properties.Encrypted == false
+	cldLib.isCloudFormationFalse(resource.Properties.Encrypted)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -78,14 +84,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.Encrypted should be true", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.Encrypted is false", [key]),
 	}
-}
-
-checkTypeStorage(type){
-	listDb := {"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}
-	type == listDb[_]
-}
-
-checkTypeKmsKey(type) {
-    listTypes := {"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::Redshift::Cluster"}
-    type == listTypes[_]
 }

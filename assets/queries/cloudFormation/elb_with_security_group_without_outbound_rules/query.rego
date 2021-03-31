@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.cloudformation as cloudFormationLib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 
-	isLoadBalancer(resource)
+	cloudFormationLib.isLoadBalancer(resource)
 	securityGroups := resource.Properties.SecurityGroups
 
 	some sg
@@ -17,14 +19,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' is %s", [securityGroup, value.expected]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' is %s", [securityGroup, value.actual]),
 	}
-}
-
-isLoadBalancer(resource) {
-	resource.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-}
-
-isLoadBalancer(resource) {
-	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 }
 
 withoutOutboundRules(securityGroupName) = result {

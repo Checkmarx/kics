@@ -1,6 +1,6 @@
 {
 	"id": "2c161e58-cb52-454f-abea-6470c37b5e6e",
-	"queryName": "RDS DBInstance With Deletion Protection Disabled",
+	"queryName": "RDS With Deletion Protection Disabled",
 	"severity": "LOW",
 	"category": "Backup",
 	"descriptionText": "RDS DBInstance should have deletion protection set to true",
