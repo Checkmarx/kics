@@ -1,6 +1,6 @@
 {
 	"id": "39423ce4-9011-46cd-b6b1-009edcd9385d",
-	"queryName": "DocDB cluster master password in plaintext",
+	"queryName": "DocDB Cluster Master Password In Plaintext",
 	"severity": "MEDIUM",
 	"category": "Secret Management",
 	"descriptionText": "DocDB DB Cluster master user password must not be in a plain text string or referenced in a parameter as a default value.",
