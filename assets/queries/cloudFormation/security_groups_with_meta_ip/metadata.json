@@ -1,6 +1,6 @@
 {
 	"id": "adcd0082-e90b-4b63-862b-21899f6e6a48",
-	"queryName": "Security Groups With Meta Ip",
+	"queryName": "Security Groups With Meta IP",
 	"severity": "HIGH",
 	"category": "Networking and Firewall",
 	"descriptionText": "Security Groups allows 0.0.0.0/0 for all ports and protocols.",

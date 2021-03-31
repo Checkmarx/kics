@@ -1,0 +1,9 @@
+{
+  "id": "228c4c19-feeb-4c18-848c-800ac70fdfb7",
+  "queryName": "Image Without Digest",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Sees if Kubernetes image has digest on",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
+  "platform": "Terraform"
+}

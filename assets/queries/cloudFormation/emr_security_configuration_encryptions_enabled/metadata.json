@@ -1,6 +1,6 @@
 {
 	"id": "5b033ec8-f079-4323-b5c8-99d4620433a9",
-	"queryName": "EMR Security Configuration Encryptions Enabled",
+	"queryName": "EMR Security Configuration Encryption Disabled",
 	"severity": "MEDIUM",
 	"category": "Encryption",
 	"descriptionText": "EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.",
