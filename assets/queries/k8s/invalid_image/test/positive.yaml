@@ -20,6 +20,7 @@ spec:
       imagePullPolicy: Always
       command: [ "echo", "SUCCESS" ]
 ---
+apiVersion: v1
 kind: Pod
 metadata:
   name: private-image-test-3344
