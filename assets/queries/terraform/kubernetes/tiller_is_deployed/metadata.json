@@ -1,0 +1,9 @@
+{
+  "id": "ca2fba76-c1a7-4afd-be67-5249f861cb0e",
+  "queryName": "Tiller (Helm v2) Is Deployed",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Check if Tiller is deployed.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
+  "platform": "Terraform"
+}
