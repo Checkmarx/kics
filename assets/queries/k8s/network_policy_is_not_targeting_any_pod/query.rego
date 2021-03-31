@@ -6,7 +6,7 @@ CxPolicy[result] {
 
 	object.get(document, "kind", "undefined") == "NetworkPolicy"
 
-	object.get(document.spec, "podSelector", "undefined") != null
+	object.get(document.spec.podSelector, "matchLabels", "undefined") != "undefined"
 
 	targetLabels := document.spec.podSelector.matchLabels
 	findTargettedPod(targetLabels[key], key) == false
