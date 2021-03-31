@@ -33,7 +33,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].image is not empty or latest", [resourceType, name, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].spec.%s[%d].image is empty or latest", [resourceType, name, types[x], y]),
 	}
@@ -70,7 +70,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].spec.%s.image", [resourceType, name, types[x]]),
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].spec.%s.image is not empty or latest", [resourceType, name, types[x]]),
 		"keyActualValue": sprintf("%s[%s].spec.%s.image is empty or latest", [resourceType, name, types[x]]),
 	}
