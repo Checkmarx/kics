@@ -99,3 +99,23 @@ func TestParser_Parse(t *testing.T) {
 		}
 	}
 }
+
+// Test_Resolve tests the functions [Resolve()] and all the methods called by them
+func Test_Resolve(t *testing.T) {
+	parser := &Parser{}
+	have := `
+		FROM openjdk:11-jdk
+		VOLUME /tmp
+		ADD http://source.file/package.file.tar.gz /temp
+		RUN tar --xjf /temp/package.file.tar.gz \
+  			&& make -C /tmp/package.file \
+  			&& rm /tmp/ package.file.tar.gz
+		ARG JAR_FILE
+		ADD ${JAR_FILE} app.jar
+		ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+		`
+
+	resolved, err := parser.Resolve([]byte(have), "Dockerfile")
+	require.NoError(t, err)
+	require.Equal(t, []byte(have), *resolved)
+}

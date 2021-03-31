@@ -58,3 +58,19 @@ martin2:
 	require.Len(t, playbook, 1)
 	require.Contains(t, playbook[0]["playbooks"].([]interface{})[0].(map[string]interface{})["name"], "bucket2")
 }
+
+// Test_Resolve tests the functions [Resolve()] and all the methods called by them
+func Test_Resolve(t *testing.T) {
+	have := `
+	martin:
+		name: test
+	---
+	martin2:
+		name: test2
+	`
+	parser := &Parser{}
+
+	resolved, err := parser.Resolve([]byte(have), "test.yaml")
+	require.NoError(t, err)
+	require.Equal(t, []byte(have), *resolved)
+}
