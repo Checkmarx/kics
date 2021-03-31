@@ -1,9 +1,10 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "Pod"
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][c]
 	rec := {"requests", "limits"}
 
@@ -21,7 +22,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "Pod"
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][c]
 
 	container.resources.requests.memory != container.resources.limits.memory

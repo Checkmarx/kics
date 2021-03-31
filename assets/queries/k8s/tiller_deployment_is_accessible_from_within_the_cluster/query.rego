@@ -1,11 +1,12 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 
 	isTiller(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -27,7 +28,6 @@ CxPolicy[result] {
 
 	isTiller(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -52,7 +52,6 @@ CxPolicy[result] {
 
 	isTillerTemplate(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
@@ -72,7 +71,6 @@ CxPolicy[result] {
 
 	isTillerTemplate(document)
 
-	types := {"initContainers", "containers"}
 	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 

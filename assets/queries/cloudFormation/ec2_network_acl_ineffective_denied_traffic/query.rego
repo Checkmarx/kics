@@ -7,6 +7,7 @@ CxPolicy[result] {
 	cidr := resource.Properties.CidrBlock
 	not contains(cidr, "0.0.0.0/0")
 	contains(action, "deny")
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.CidrBlock", [name]),

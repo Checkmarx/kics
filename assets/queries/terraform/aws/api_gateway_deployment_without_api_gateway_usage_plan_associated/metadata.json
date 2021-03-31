@@ -1,0 +1,9 @@
+{
+  "id": "b3a59b8e-94a3-403e-b6e2-527abaf12034",
+  "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "API Gateway Deployment should have API Gateway UsagePlan defined and associated.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment",
+  "platform": "Terraform"
+}

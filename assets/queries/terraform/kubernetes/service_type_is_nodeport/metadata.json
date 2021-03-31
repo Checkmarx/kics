@@ -1,0 +1,9 @@
+{
+  "id": "5c281bf8-d9bb-47f2-b909-3f6bb11874ad",
+  "queryName": "Service Type is NodePort",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Service type should not be NodePort",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service#type",
+  "platform": "Terraform"
+}

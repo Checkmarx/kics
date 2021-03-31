@@ -1,0 +1,12 @@
+Resources:
+  MockMethod3:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      RestApiId: !Ref MyApi
+      ResourceId: !GetAtt
+        - MyApi
+        - RootResourceId
+      HttpMethod: GET
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK

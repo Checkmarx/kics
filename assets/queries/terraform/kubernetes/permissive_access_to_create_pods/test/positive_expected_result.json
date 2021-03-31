@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 35,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 51,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 67,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 21,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 33,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "LOW",
+    "line": 45,
+    "fileName": "positive2.tf"
+  }
+]

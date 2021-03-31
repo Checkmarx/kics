@@ -5,8 +5,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::SageMaker::NotebookInstance"
 
-	exists_subnet_id := object.get(resource.Properties, "SubnetId", "undefined") != "undefined"
-	not exists_subnet_id
+	object.get(resource.Properties, "SubnetId", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,

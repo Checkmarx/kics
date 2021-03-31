@@ -1,10 +1,11 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
-    document := input.document[i]
+	document := input.document[i]
 	spec := document.spec
 
-    types := {"initContainers", "containers"}
 	containers := spec[types[t]][c]
 
 	requests := containers.resources.requests
@@ -25,7 +26,6 @@ CxPolicy[result] {
 	document := input.document[i]
 	spec := document.spec
 
-    types := {"initContainers", "containers"}
 	containers := spec[types[t]][c]
 
 	object.get(containers, "resources", "undefined") == "undefined"
@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}", [metadata.name, types[t], containers.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources are defined", [metadata.name, types[t],containers.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources are defined", [metadata.name, types[t], containers.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.resources are undefined", [metadata.name, types[t], containers.name]),
 	}
 }
@@ -44,7 +44,6 @@ CxPolicy[result] {
 	document := input.document[i]
 	spec := document.spec
 
-	types := {"initContainers", "containers"}
 	containers := spec[types[t]][c]
 
 	resources := containers.resources

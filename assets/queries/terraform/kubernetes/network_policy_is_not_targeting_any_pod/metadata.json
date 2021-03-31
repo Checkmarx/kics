@@ -1,0 +1,9 @@
+{
+  "id": "b80b14c6-aaa2-4876-b651-8a48b6c32fbf",
+  "queryName": "Network Policy Is Not Targeting Any Pod",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Check if any network policy is not targeting any pod.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/network_policy#match_labels",
+  "platform": "Terraform"
+}

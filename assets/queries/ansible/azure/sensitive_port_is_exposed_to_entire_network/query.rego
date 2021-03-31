@@ -1,46 +1,11 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	#############	inputs
-	portNumbers := [
-		[22, "SSH"], # List of ports
-		[23, "Telnet"],
-		[25, "SMTP"],
-		[53, "DNS"],
-		[110, "POP3"],
-		[135, "MSSQL Debugger"],
-		[137, "NetBIOS Name Service"],
-		[138, "NetBIOS Datagram Service"],
-		[139, "NetBIOS Session Service"],
-		[161, "SNMP"],
-		[445, "Microsoft-DS"],
-		[636, "LDAP SSL"],
-		[1433, "MSSQL Server"],
-		[1434, "MSSQL Browser"],
-		[2382, "SQL Server Analysis"],
-		[2383, "SQL Server Analysis"],
-		[2484, "Oracle DB SSL"],
-		[3000, "Prevalent known internal port"],
-		[3020, "CIFS / SMB"],
-		[3306, "MySQL"],
-		[3389, "Remote Desktop"],
-		[4506, "SaltStack Master"],
-		[5432, "PostgreSQL"],
-		[5500, "VNC Listener"],
-		[5900, "VNC Server"],
-		[7001, "Cassandra"],
-		[8000, "Known internal web port"],
-		[8080, "Known internal web port"],
-		[8140, "Puppet Master"],
-		[9000, "Hadoop Name Node"],
-		[9090, "CiscoSecure, WebSM"],
-		[11214, "Memcached SSL"],
-		[11215, "Memcached SSL"],
-		[27018, "Mongo Web Portal"],
-		[61621, "Cassandra OpsCenter"],
-	]
+	tcpPortsMap := commonLib.tcpPortsMap
 
 	task := ansLib.tasks[id][t]
 	modules := {"azure.azcollection.azure_rm_securitygroup", "azure_rm_securitygroup"}
@@ -48,8 +13,9 @@ CxPolicy[result] {
 	ansLib.checkState(securitygroup)
 	resource := securitygroup.rules[r]
 
-	portNumber := portNumbers[j][0]
-	portName := portNumbers[j][1]
+	portContent := tcpPortsMap[port]
+	portNumber = port
+	portName = portContent
 	protocol := getProtocolList(resource.protocol)[_]
 
 	upper(resource.access) == "ALLOW"

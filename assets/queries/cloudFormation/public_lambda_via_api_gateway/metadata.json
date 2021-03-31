@@ -1,0 +1,9 @@
+{
+  "id": "57b12981-3816-4c31-b190-a1e614361dd2",
+  "queryName": "Public Lambda via API Gateway",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Allowing to run lambda function using public API Gateway",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html",
+  "platform": "CloudFormation"
+}

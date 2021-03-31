@@ -1,0 +1,9 @@
+{
+  "id": "3ddf3417-424d-420d-8275-0724dc426520",
+  "queryName": "Lambda Permission Misconfigured",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Lambda permission may be misconfigured if the action field is not filled in by 'lambda:InvokeFunction'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
+  "platform": "Ansible"
+}
