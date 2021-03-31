@@ -1,0 +1,9 @@
+{
+	"id": "3e09413f-471e-40f3-8626-990c79ae63f3",
+	"queryName": "CloudTrail SNS Topic Name Undefined",
+	"severity": "MEDIUM",
+	"category": "Observability",
+	"descriptionText": "Check if SNS topic name is set for CloudTrail",
+	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-snstopicname",
+	"platform": "CloudFormation"
+}

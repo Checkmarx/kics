@@ -1,7 +1,5 @@
 package Cx
 
-import data.generic.dockerfile as dockerLib
-
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "env"
@@ -9,7 +7,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("FROM={{%s}}.ENV={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s ' doesn't exist", [resource.Original]),
 		"keyActualValue": sprintf("'%s ' exists", [resource.Original]),
@@ -23,7 +21,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("FROM={{%s}}.LABEL={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s ' doesn't exist", [resource.Original]),
 		"keyActualValue": sprintf("'%s ' exists", [resource.Original]),
@@ -38,7 +36,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s ' doesn't exist", [resource.Original]),
 		"keyActualValue": sprintf("'%s ' exists", [resource.Original]),
@@ -46,14 +44,13 @@ CxPolicy[result] {
 }
 
 hasSecret(resource) {
-	options := {" -p ", "--passwordfile"}
 	count(resource.Value) == 1
-	contains(resource.Value[0], options[j])
+	contains(resource.Value[0], "--passwordfile")
 }
 
 hasSecret(resource) {
 	count(resource.Value) > 1
-    dockerLib.arrayContains(resource.Value, {"-p", "--passwordfile"})
+	contains(resource.Value[_], "--passwordfile")
 }
 
 checkSecret(cmd) {

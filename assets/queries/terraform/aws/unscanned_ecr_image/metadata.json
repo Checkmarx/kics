@@ -1,0 +1,9 @@
+{
+  "id": "9630336b-3fed-4096-8173-b9afdfe346a7",
+  "queryName": "Unscanned ECR Image",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Checks if the ECR Image has been scanned",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push",
+  "platform": "Terraform"
+}

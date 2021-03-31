@@ -1,0 +1,9 @@
+{
+  "id": "17172bc2-56fb-4f17-916f-a014147706cd",
+  "queryName": "Cluster Admin Rolebinding With Superuser Permissions",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "Ensure that the cluster-admin role is only used where required (RBAC)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding#name",
+  "platform": "Terraform"
+}

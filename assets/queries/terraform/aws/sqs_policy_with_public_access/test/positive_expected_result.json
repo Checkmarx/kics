@@ -2,16 +2,16 @@
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 47
+    "line": 8
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 72
+    "line": 39
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 64
   }
 ]

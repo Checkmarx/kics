@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "CDN Configuration Is Missing",
+    "severity": "LOW",
+    "line": 2
+  },
+  {
+    "queryName": "CDN Configuration Is Missing",
+    "severity": "LOW",
+    "line": 23
+  }
+]

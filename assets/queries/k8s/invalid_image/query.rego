@@ -1,10 +1,11 @@
 package Cx
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document
 	metadata := document[i].metadata
 	spec := document[i].spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	object.get(containers[c], "image", "undefined") == "undefined"
 
@@ -21,7 +22,6 @@ CxPolicy[result] {
 	document := input.document
 	metadata := document[i].metadata
 	spec := document[i].spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	images = containers[c].image
 	check_content(images)
@@ -36,13 +36,7 @@ CxPolicy[result] {
 }
 
 check_content(images) {
-	images == ""
-}
+	options := {"", "latest", null}
 
-check_content(images) {
-	images == "latest"
-}
-
-check_content(images) {
-	images == null
+	images == options[j]
 }

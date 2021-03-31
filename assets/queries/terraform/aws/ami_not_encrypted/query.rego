@@ -21,7 +21,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_ami[%s]", [name]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "One of 'rule.ebs_block_device.encrypted' is 'true'",
 		"keyActualValue": "One of 'rule.ebs_block_device' is undefined",
 	}

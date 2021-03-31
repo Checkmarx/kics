@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_eks_cluster[name]
-	resource.vpc_config.endpoint_public_access = true
+	resource.vpc_config.endpoint_public_access == true
 
 	result := {
 		"documentId": input.document[i].id,

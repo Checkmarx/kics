@@ -41,7 +41,7 @@ The last command will execute the scan and save JSON and SARIF reports on output
 			"platform": "Terraform",
 			"files": [
 				{
-					"file_name": "assets/queries/terraform/kubernetes_pod/container_allow_privilege_escalation_is_true/test/positive.tf",
+					"file_name": "assets/queries/terraform/kubernetes/container_allow_privilege_escalation_is_true/test/positive.tf",
 					"similarity_id": "063ed2389809f5f01ff420b63634700a9545c5e5130a6506568f925cdb0f8e13",
 					"line": 11,
 					"issue_type": "IncorrectValue",
@@ -120,7 +120,7 @@ The last command will execute the scan and save JSON and SARIF reports on output
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets/queries/terraform/kubernetes_pod/container_allow_privilege_escalation_is_true/test/positive.tf"
+									"uri": "assets/queries/terraform/kubernetes/container_allow_privilege_escalation_is_true/test/positive.tf"
 								},
 								"region": {
 									"startLine": 11

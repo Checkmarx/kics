@@ -14,10 +14,6 @@ CxPolicy[result] {
 	}
 }
 
-checkEndIP(ip) {
-	ip = "0.0.0.0"
-}
+checkEndIP("0.0.0.0") = true
 
-checkEndIP(ip) {
-	ip == "255.255.255.255"
-}
+checkEndIP("255.255.255.255") = true

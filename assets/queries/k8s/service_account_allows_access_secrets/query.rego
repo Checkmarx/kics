@@ -9,7 +9,6 @@ CxPolicy[result] {
 
 	validKind := ["Role", "ClusterRole"]
 	ruleTaint := ["get", "watch", "list", "*"]
-	resourcesTaint := ["secrets"]
 
 	kind := document.kind
 	k8sLib.checkKind(kind, validKind)
@@ -36,7 +35,6 @@ CxPolicy[result] {
 bindingExists(name, kind) {
 	kind == "Role"
 
-	some roleBinding
 	input.document[roleBinding].kind == "RoleBinding"
 	input.document[roleBinding].subjects[_].kind == "ServiceAccount"
 	input.document[roleBinding].roleRef.kind == "Role"
@@ -44,7 +42,6 @@ bindingExists(name, kind) {
 } else {
 	kind == "ClusterRole"
 
-	some roleBinding
 	input.document[roleBinding].kind == "ClusterRoleBinding"
 	input.document[roleBinding].subjects[_].kind == "ServiceAccount"
 	input.document[roleBinding].roleRef.kind == "ClusterRole"

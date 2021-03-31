@@ -15,11 +15,12 @@ CxPolicy[result] {
 	}
 }
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	types := {"initContainers", "containers"}
 	contains(object.get(document.spec[types[x]][j], "image", "undefined"), "tiller")
 
 	metadata := document.metadata
@@ -53,7 +54,6 @@ CxPolicy[result] {
 	document := input.document[i]
 
 	some j
-	types := {"initContainers", "containers"}
 	contains(object.get(document.spec.template.spec[types[x]][j], "image", "undefined"), "tiller")
 
 	metadata := document.metadata

@@ -5,6 +5,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EC2::NetworkAclEntry"
 	protocol := resource.Properties.Protocol
 	not checkValue(protocol)
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Protocol", [name]),

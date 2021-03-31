@@ -1,0 +1,9 @@
+{
+	"id": "f74b9c43-161a-4799-bc95-0b0ec81801b9",
+	"queryName": "Shared Service Account",
+	"severity": "MEDIUM",
+	"category": "Secret Management",
+	"descriptionText": "A Service Account token is shared between workloads",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#service_account_name",
+	"platform": "Terraform"
+}

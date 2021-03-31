@@ -12,6 +12,10 @@ jobs:
     name: Update queries documentation
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -26,8 +30,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Update queries documentation - ${{ github.run_id }}
+          title: "[kicsbot] Update queries catalog"
           token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "[kicsbot] Update queries catalog"
           delete-branch: true
           branch: feature/kicsbot-update-queries-docs
           body: |

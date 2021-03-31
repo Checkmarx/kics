@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"amazon.aws.ec2_group", "ec2_group"}
 
@@ -31,25 +32,13 @@ portIsKnown(port) {
 		27018, 61621,
 	]
 
-	count({x | knownPorts[x]; knownPorts[x] == port}) != 0
+	commonLib.inArray(knownPorts, port)
 }
 
 isEntireNetwork(rule) {
-	isEntire(rule.cidr_ip)
+	ansLib.isEntireNetwork(rule.cidr_ip)
 }
 
 isEntireNetwork(rule) {
-	isEntire(rule.cidr_ipv6)
-}
-
-isEntire(cidr) {
-	is_array(cidr)
-	cidrs = {"0.0.0.0/0", "::/0"}
-	count({x | cidr[x]; cidr[x] == cidrs[j]}) != 0
-}
-
-isEntire(cidr) {
-	is_string(cidr)
-	cidrs = {"0.0.0.0/0", "::/0"}
-	cidr == cidrs[j]
+	ansLib.isEntireNetwork(rule.cidr_ipv6)
 }

@@ -2,7 +2,8 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticache_cluster[name]
-	min_version_string = "4.0.10"
+	min_version_string := "4.0.10"
+
 	eval_version_number(resource.engine_version) < eval_version_number(min_version_string)
 
 	result := {
@@ -15,6 +16,6 @@ CxPolicy[result] {
 }
 
 eval_version_number(engine_version) = numeric_version {
-	version = split(engine_version, ".")
-	numeric_version = ((to_number(version[0]) * 100) + (to_number(version[1]) * 10)) + to_number(version[2])
+	version := split(engine_version, ".")
+	numeric_version := ((to_number(version[0]) * 100) + (to_number(version[1]) * 10)) + to_number(version[2])
 }

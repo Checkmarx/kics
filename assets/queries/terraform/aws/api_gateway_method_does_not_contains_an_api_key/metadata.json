@@ -1,0 +1,9 @@
+{
+  "id": "671211c5-5d2a-4e97-8867-30fc28b02216",
+  "queryName": "API Gateway Method Does Not Contains An API Key",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "An API Key should be required on a method request.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method",
+  "platform": "Terraform"
+}
