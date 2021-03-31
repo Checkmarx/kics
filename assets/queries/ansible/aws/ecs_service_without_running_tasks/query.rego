@@ -11,7 +11,7 @@ CxPolicy[result] {
 	object.get(ecs_service, "deployment_configuration", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.deployment_configuration is defined", [modules[m]]),
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	not checkContent(ecs_service.deployment_configuration)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.deployment_configuration", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.deployment_configuration has at least 1 task running", [modules[m]]),
