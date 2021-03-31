@@ -3,5 +3,15 @@
     "queryName": "StatefulSets Without Service Name",
     "severity": "LOW",
     "line": 45
+  },
+  {
+    "queryName": "StatefulSets Without Service Name",
+    "severity": "LOW",
+    "line": 230
+  },
+  {
+    "queryName": "StatefulSets Without Service Name",
+    "severity": "LOW",
+    "line": 415
   }
 ]
