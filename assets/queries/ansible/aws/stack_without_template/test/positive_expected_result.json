@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "Stack Without Template",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Stack Without Template",
+    "severity": "MEDIUM",
+    "line": 15
+  },
+  {
+    "queryName": "Stack Without Template",
+    "severity": "MEDIUM",
+    "line": 30
+  },
+  {
+    "queryName": "Stack Without Template",
+    "severity": "MEDIUM",
+    "line": 40
+  }
+]

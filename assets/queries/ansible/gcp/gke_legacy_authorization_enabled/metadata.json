@@ -1,0 +1,9 @@
+{
+  "id": "300a9964-b086-41f7-9378-b6de3ba1c32b",
+  "queryName": "GKE Legacy Authorization Enabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Engine Clusters must have Legacy Authorization set to disabled, which means the attribute 'legacy_abac.enabled' must be false.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
+  "platform": "Ansible"
+}

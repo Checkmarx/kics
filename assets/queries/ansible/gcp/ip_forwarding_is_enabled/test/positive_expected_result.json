@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IP Forwarding is Enabled",
-		"severity": "MEDIUM",
-		"line": 22
-	}
-]

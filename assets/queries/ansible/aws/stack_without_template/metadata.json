@@ -1,0 +1,9 @@
+{
+  "id": "32d31f1f-0f83-4721-b7ec-1e6948c60145",
+  "queryName": "Stack Without Template",
+  "severity": "MEDIUM",
+  "category": "Build Process",
+  "descriptionText": "AWS CloudFormation should have a template defined through the attribute template, template_url or attribute template_body",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html",
+  "platform": "Ansible"
+}
