@@ -70,6 +70,11 @@ var scanCmd = &cobra.Command{
 
 func initializeConfig(cmd *cobra.Command) error {
 	log.Debug().Msg("console.initializeConfig()")
+	v := viper.New()
+	v.SetEnvPrefix("KICS")
+	v.AutomaticEnv()
+	bindFlags(cmd, v)
+
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -89,7 +94,6 @@ func initializeConfig(cmd *cobra.Command) error {
 		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
 	}
 
-	v := viper.New()
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
@@ -101,8 +105,7 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("KICS_")
-	v.AutomaticEnv()
+
 	bindFlags(cmd, v)
 	return nil
 }
@@ -114,7 +117,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
+			variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
+			if err := v.BindEnv(f.Name, variableName); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}

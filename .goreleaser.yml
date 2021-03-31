@@ -43,9 +43,17 @@ brews:
     description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your IaC
     license: Apache
     test: |
-      system "#{bin}/kics -v"
+      system "#{bin}/kics version"
     install: |-
+      pkgshare.mkpath
+      cp_r "assets", pkgshare
       bin.install "kics"
-
+    custom_block: |
+      def caveats
+        <<~EOS
+          To use KICS default queries add KICS_QUERIES_PATH env to your ~/.zshrc or ~/.zprofile:
+              "echo 'export KICS_QUERIES_PATH=#{pkgshare}/assets/queries' >> ~/.zshrc"
+        EOS
+      end
 release:
   prerelease: true
