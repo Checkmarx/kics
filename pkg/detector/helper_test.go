@@ -136,7 +136,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 	tests := []struct {
 		name string
 		args args
-		want model.VulnLines
+		want []model.VulnLines
 	}{
 		{
 			name: "test_start_of_file",
@@ -150,12 +150,18 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{1, 2, 3},
-				Lines: []string{
-					"firstline",
-					"secondline",
-					"thirdline",
+			want: []model.VulnLines{
+				{
+					Position: 1,
+					Line:     "firstline",
+				},
+				{
+					Position: 2,
+					Line:     "secondline",
+				},
+				{
+					Position: 3,
+					Line:     "thirdline",
 				},
 			},
 		},
@@ -171,12 +177,18 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{3, 4, 5},
-				Lines: []string{
-					"secondline",
-					"thirdline",
-					"forthline",
+			want: []model.VulnLines{
+				{
+					Position: 3,
+					Line:     "secondline",
+				},
+				{
+					Position: 4,
+					Line:     "thirdline",
+				},
+				{
+					Position: 5,
+					Line:     "forthline",
 				},
 			},
 		},
@@ -192,12 +204,18 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{1, 2, 3},
-				Lines: []string{
-					"firstline",
-					"secondline",
-					"thirdline",
+			want: []model.VulnLines{
+				{
+					Position: 1,
+					Line:     "firstline",
+				},
+				{
+					Position: 2,
+					Line:     "secondline",
+				},
+				{
+					Position: 3,
+					Line:     "thirdline",
 				},
 			},
 		},
@@ -213,11 +231,14 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{2, 3},
-				Lines: []string{
-					"secondline",
-					"thirdline",
+			want: []model.VulnLines{
+				{
+					Position: 2,
+					Line:     "secondline",
+				},
+				{
+					Position: 3,
+					Line:     "thirdline",
 				},
 			},
 		},
@@ -233,11 +254,14 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{1, 2},
-				Lines: []string{
-					"firstline",
-					"secondline",
+			want: []model.VulnLines{
+				{
+					Position: 1,
+					Line:     "firstline",
+				},
+				{
+					Position: 2,
+					Line:     "secondline",
 				},
 			},
 		},
@@ -253,10 +277,10 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{4},
-				Lines: []string{
-					"forthline",
+			want: []model.VulnLines{
+				{
+					Position: 4,
+					Line:     "forthline",
 				},
 			},
 		},
@@ -272,13 +296,22 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: model.VulnLines{
-				Positions: []int{1, 2, 3, 4},
-				Lines: []string{
-					"firstline",
-					"secondline",
-					"thirdline",
-					"forthline",
+			want: []model.VulnLines{
+				{
+					Position: 1,
+					Line:     "firstline",
+				},
+				{
+					Position: 2,
+					Line:     "secondline",
+				},
+				{
+					Position: 3,
+					Line:     "thirdline",
+				},
+				{
+					Position: 4,
+					Line:     "forthline",
 				},
 			},
 		},

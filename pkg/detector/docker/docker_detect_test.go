@@ -19,12 +19,18 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 		{
 			expected: model.VulnerabilityLines{
 				Line: 10,
-				VulnLine: model.VulnLines{
-					Positions: []int{9, 10, 11},
-					Lines: []string{
-						"RUN apk update",
-						"RUN apk update && apk upgrade && apk add kubectl=1.20.0-r0 \\",
-						"\t&& rm -rf /var/cache/apk/*",
+				VulnLine: []model.VulnLines{
+					{
+						Position: 9,
+						Line:     "RUN apk update",
+					},
+					{
+						Position: 10,
+						Line:     "RUN apk update && apk upgrade && apk add kubectl=1.20.0-r0 \\",
+					},
+					{
+						Position: 11,
+						Line:     "\t&& rm -rf /var/cache/apk/*",
 					},
 				},
 			},
@@ -51,12 +57,18 @@ ENTRYPOINT ["kubectl"]
 		{
 			expected: model.VulnerabilityLines{
 				Line: 17,
-				VulnLine: model.VulnLines{
-					Positions: []int{16, 17, 18},
-					Lines: []string{
-						"ARG JAR_FILE",
-						"ADD ${JAR_FILE} apps.jar",
-						"",
+				VulnLine: []model.VulnLines{
+					{
+						Position: 16,
+						Line:     "ARG JAR_FILE",
+					},
+					{
+						Position: 17,
+						Line:     "ADD ${JAR_FILE} apps.jar",
+					},
+					{
+						Position: 18,
+						Line:     "",
 					},
 				},
 			},
@@ -88,12 +100,18 @@ ADD ${JAR_FILE} apps.jar
 		{
 			expected: model.VulnerabilityLines{
 				Line: 6,
-				VulnLine: model.VulnLines{
-					Positions: []int{5, 6, 7},
-					Lines: []string{
-						`	&& apk add kubectl=1.20.0-r0 \`,
-						"	&& rm -rf /var/cache/apk/*",
-						`ENTRYPOINT ["kubectl"]`,
+				VulnLine: []model.VulnLines{
+					{
+						Position: 5,
+						Line: `	&& apk add kubectl=1.20.0-r0 \`,
+					},
+					{
+						Position: 6,
+						Line: "	&& rm -rf /var/cache/apk/*",
+					},
+					{
+						Position: 7,
+						Line:     `ENTRYPOINT ["kubectl"]`,
 					},
 				},
 			},

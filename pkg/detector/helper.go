@@ -101,7 +101,7 @@ func generateSubstr(substr string, parts []string, leng int) string {
 
 // GetAdjacentLines is used to get the lines adjecent to the line that contains the vulnerability
 // adj is the amount of lines wanted
-func GetAdjacentLines(idx, adj int, lines []string) model.VulnLines {
+func GetAdjacentLines(idx, adj int, lines []string) []model.VulnLines {
 	var endPos int
 	var startPos int
 	if adj <= len(lines) {
@@ -126,32 +126,29 @@ func GetAdjacentLines(idx, adj int, lines []string) model.VulnLines {
 
 	switch idx {
 	case 0:
-		return model.VulnLines{ // case vulnerability is the first line of the file
-			Positions: generatePosArr(adj, 1),
-			Lines:     lines[:adj],
-		}
-	case len(lines) - 1: // case vulnerability is the last line of the file
-		return model.VulnLines{
-			Positions: generatePosArr(adj, startPos+1),
-			Lines:     lines[len(lines)-adj:],
-		}
+		// case vulnerability is the first line of the file
+		return createVulnLines(1, lines[:adj])
+	case len(lines) - 1:
+		// case vulnerability is the last line of the file
+		return createVulnLines(startPos+1, lines[len(lines)-adj:])
 	default:
-		return model.VulnLines{ // case vulnerability is in the midle of the file
-			Positions: generatePosArr(adj, startPos+1),
-			Lines:     lines[startPos:endPos],
-		}
+		// case vulnerability is in the midle of the file
+		return createVulnLines(startPos+1, lines[startPos:endPos])
 	}
 }
 
-// generatePosArr is the function that will  generate the array that contains the lines numbers
+// createVulnLines is the function that will  generate the array that contains the lines numbers
 // used to alter the color of the line that contains the vulnerability
-func generatePosArr(adj, start int) []int {
-	posArr := make([]int, adj)
-	for i := 0; i < adj; i++ {
-		posArr[i] = start
-		start++
+func createVulnLines(startPos int, lines []string) []model.VulnLines {
+	vulns := make([]model.VulnLines, len(lines))
+	for idx, line := range lines {
+		vulns[idx] = model.VulnLines{
+			Line:     line,
+			Position: startPos,
+		}
+		startPos++
 	}
-	return posArr
+	return vulns
 }
 
 // SelectLineWithMinimumDistance will search a map of levenshtein distances to find the minimum distance

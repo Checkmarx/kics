@@ -15,16 +15,16 @@ type SeveritySummary struct {
 
 // VulnerableFile contains information of a vulnerable file and where the vulnerability was found
 type VulnerableFile struct {
-	FileName         string    `json:"file_name"`
-	SimilarityID     string    `json:"similarity_id"`
-	Line             int       `json:"line"`
-	VulnLines        VulnLines `json:"-"`
-	IssueType        IssueType `json:"issue_type"`
-	SearchKey        string    `json:"search_key"`
-	SearchValue      string    `json:"search_value"`
-	KeyExpectedValue string    `json:"expected_value"`
-	KeyActualValue   string    `json:"actual_value"`
-	Value            *string   `json:"value"`
+	FileName         string      `json:"file_name"`
+	SimilarityID     string      `json:"similarity_id"`
+	Line             int         `json:"line"`
+	VulnLines        []VulnLines `json:"-"`
+	IssueType        IssueType   `json:"issue_type"`
+	SearchKey        string      `json:"search_key"`
+	SearchValue      string      `json:"search_value"`
+	KeyExpectedValue string      `json:"expected_value"`
+	KeyActualValue   string      `json:"actual_value"`
+	Value            *string     `json:"value"`
 }
 
 // VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable

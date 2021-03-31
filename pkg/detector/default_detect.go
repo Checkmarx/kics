@@ -51,6 +51,6 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
 	return model.VulnerabilityLines{
 		Line:     undetectedVulnerabilityLine,
-		VulnLine: model.VulnLines{},
+		VulnLine: []model.VulnLines{},
 	}
 }

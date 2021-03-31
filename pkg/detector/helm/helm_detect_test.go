@@ -56,9 +56,11 @@ spec:
 			},
 			want: model.VulnerabilityLines{
 				Line: 10,
-				VulnLine: model.VulnLines{
-					Positions: []int{10},
-					Lines:     []string{"  containers:"},
+				VulnLine: []model.VulnLines{
+					{
+						Position: 10,
+						Line:     "  containers:",
+					},
 				},
 				LineWithVulnerabilty: "  containers:",
 			},
@@ -107,9 +109,11 @@ spec:
 			},
 			want: model.VulnerabilityLines{
 				Line: 9,
-				VulnLine: model.VulnLines{
-					Positions: []int{9},
-					Lines:     []string{"spec:"},
+				VulnLine: []model.VulnLines{
+					{
+						Position: 9,
+						Line:     "spec:",
+					},
 				},
 				LineWithVulnerabilty: "spec:",
 			},
@@ -166,9 +170,11 @@ spec:
 			},
 			want: model.VulnerabilityLines{
 				Line: 26,
-				VulnLine: model.VulnLines{
-					Positions: []int{26},
-					Lines:     []string{"  containers:"},
+				VulnLine: []model.VulnLines{
+					{
+						Position: 26,
+						Line:     "  containers:",
+					},
 				},
 				LineWithVulnerabilty: "  containers:",
 			},

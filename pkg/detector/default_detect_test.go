@@ -50,12 +50,18 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line: 3,
-				VulnLine: model.VulnLines{
-					Positions: []int{2, 3, 4},
-					Lines: []string{
-						`						bucket = "my-tf-test-bucket"`,
-						`						acl    = "authenticated-read"`,
-						"",
+				VulnLine: []model.VulnLines{
+					{
+						Position: 2,
+						Line: `						bucket = "my-tf-test-bucket"`,
+					},
+					{
+						Position: 3,
+						Line: `						acl    = "authenticated-read"`,
+					},
+					{
+						Position: 4,
+						Line:     "",
 					},
 				},
 				LineWithVulnerabilty: "",
@@ -87,12 +93,18 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line: 7,
-				VulnLine: model.VulnLines{
-					Positions: []int{6, 7, 8},
-					Lines: []string{
-						`						  Name        = "My bucket"`,
-						`						  Environment = "Dev.123"`,
-						`						  Environment = "test"`,
+				VulnLine: []model.VulnLines{
+					{
+						Position: 6,
+						Line: `						  Name        = "My bucket"`,
+					},
+					{
+						Position: 7,
+						Line: `						  Environment = "Dev.123"`,
+					},
+					{
+						Position: 8,
+						Line: `						  Environment = "test"`,
 					},
 				},
 				LineWithVulnerabilty: "",
@@ -124,7 +136,7 @@ func Test_detectLine(t *testing.T) { //nolint
 			},
 			want: model.VulnerabilityLines{
 				Line:     -1,
-				VulnLine: model.VulnLines{},
+				VulnLine: []model.VulnLines{},
 			},
 		},
 	}
