@@ -1,6 +1,6 @@
 {
 	"id": "800fa019-49dd-421b-9042-7331fdd83fa2",
-	"queryName": "Access Key Is Not Rotated Within 90 Days",
+	"queryName": "High Access Key Rotation Period",
 	"severity": "MEDIUM",
 	"category": "Best Practices",
 	"descriptionText": "Check if there is a rule that enforces access keys to be rotated within 90 days.",
