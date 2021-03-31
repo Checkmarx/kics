@@ -38,6 +38,7 @@ brews:
   - tap:
       owner: checkmarx
       name: homebrew-tap
+      token: "{{ .Env.KICS_BOT_PAT }}"
     folder: Formula
     homepage:  https://github.com/Checkmarx/kics
     description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your IaC
