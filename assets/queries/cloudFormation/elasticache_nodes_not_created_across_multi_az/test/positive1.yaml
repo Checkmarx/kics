@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  myCacheCluster3:
+    Type: 'AWS::ElastiCache::CacheCluster'
+    Properties:
+      AZMode: single-az
+      CacheNodeType: cache.m3.medium
+      Engine: memcached
+      NumCacheNodes: '3'
+      PreferredAvailabilityZones:
+        - us-west-2a
+        - us-west-2a
+        - us-west-2b

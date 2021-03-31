@@ -3,9 +3,8 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CertificateManager::Certificate"
-	expectedKey := "*"
 	domainName := input.document[i].Resources[name].Properties.DomainName
-	domainName == expectedKey
+	domainName == "*"
 
 	result := {
 		"documentId": input.document[i].id,

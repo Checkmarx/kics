@@ -1,0 +1,9 @@
+{
+  "id": "5b6d53dd-3ba3-4269-b4d7-f82e880e43c3",
+  "queryName": "Liveness Probe Is Not Defined",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "Liveness Probe must be defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#liveness_probe",
+  "platform": "Terraform"
+}

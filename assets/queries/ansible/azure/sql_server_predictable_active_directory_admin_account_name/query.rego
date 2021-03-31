@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as commonLib
 
 modules := {"azure.azcollection.azure_ad_serviceprincipal", "azure_ad_serviceprincipal"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	ad := task[modules[m]]
 	ansLib.checkState(ad)
 
-	ansLib.checkValue(ad.ad_user)
+	commonLib.emptyOrNull(ad.ad_user)
 
 	result := {
 		"documentId": id,

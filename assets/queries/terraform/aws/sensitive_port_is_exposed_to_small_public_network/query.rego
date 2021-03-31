@@ -1,12 +1,14 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 
-	portNumber := terraLib.portNumbers[j][0]
-	portName := terraLib.portNumbers[j][1]
+	portContent := commonLib.tcpPortsMap[port]
+	portNumber = port
+	portName = portContent
 	protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
 
 	isSmallPublicNetwork(resource)

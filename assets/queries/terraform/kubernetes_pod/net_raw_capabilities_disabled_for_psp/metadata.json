@@ -1,0 +1,9 @@
+{
+  "id": "9aa32890-ac1a-45ee-81ca-5164e2098556",
+  "queryName": "NET_RAW Capabilities Disabled for PSP",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Containers need to have NET_RAW or All as drop capabilities",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#required_drop_capabilities",
+  "platform": "Terraform"
+}

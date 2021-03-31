@@ -1,13 +1,16 @@
 package generic.ansible
 
+# Global variable with all tasks in input
 tasks := TasksPerDocument
 
+# Builds an object that stores all tasks for each document id
 TasksPerDocument[id] = result {
 	document := input.document[i]
 	id := document.id
 	result := getTasks(document)
 }
 
+# Function used to get all tasks from a document
 getTasks(document) = result {
 	document.playbooks[0].tasks
 	result := [task |
@@ -21,6 +24,7 @@ getTasks(document) = result {
 	]
 }
 
+# Function used to get all nested tasks inside a block task ("block", "always", "rescue")
 getTasksFromBlocks(playbook) = result {
 	playbook.block
 	result := [task |
@@ -33,22 +37,26 @@ getTasksFromBlocks(playbook) = result {
 	true
 }
 
+# Validates the path of a nested element inside a block task to assure it's a task
 validPath(path) {
 	count(path) > 1
 	validGroup(path[minus(count(path), 2)])
 }
 
+# Identifies a block task
 validGroup("block") = true
 
 validGroup("always") = true
 
 validGroup("rescue") = true
 
+# Checks if a task is not an absent task
 checkState(task) {
 	state := object.get(task, "state", "undefined")
 	state != "absent"
 }
 
+# Checks if a variable has 'true' value in Ansible
 isAnsibleTrue(answer) {
 	lower(answer) == "yes"
 } else {
@@ -57,20 +65,13 @@ isAnsibleTrue(answer) {
 	answer == true
 }
 
+# Checks if a variable has 'false' value in Ansible
 isAnsibleFalse(answer) {
 	lower(answer) == "no"
 } else {
 	lower(answer) == "false"
 } else {
 	answer == false
-}
-
-checkValue(val) {
-	count(val) == 0
-}
-
-checkValue(val) {
-	val == null
 }
 
 check_database_flags_content(database_flags, flagName, flagValue) {
@@ -88,52 +89,61 @@ allowsPort(allowed, port) {
 	some i
 	contains(allowed.ports[i], "-")
 	port_bounds := split(allowed.ports[i], "-")
-	low := port_bounds[0]
-	high := port_bounds[1]
-	isPortInBounds(low, high, portNumber)
+	low := to_number(port_bounds[0])
+	high := to_number(port_bounds[1])
+
+	low <= portNumber
+	high >= portNumber
 } else {
 	allowed.ports[_] == port
 } else = false {
 	true
 }
 
-isPortInBounds(low, high, portNumber) {
-	to_number(low) <= portNumber
-	to_number(high) >= portNumber
-} else = false {
-	true
-}
-
-checkPortIsOpen(rule, portNumber) {
+# Checks if a given port is included in a network rule
+isPortInRule(rule, portNumber) {
 	rule.from_port != -1
 	rule.from_port <= portNumber
 	rule.to_port >= portNumber
 }
 
-checkPortIsOpen(rule, portNumber) {
+isPortInRule(rule, portNumber) {
 	rule.ports == portNumber
 }
 
-checkPortIsOpen(rule, portNumber) {
+isPortInRule(rule, portNumber) {
 	rule.ports[_] == portNumber
 }
 
-checkPortIsOpen(rule, portNumber) {
+isPortInRule(rule, portNumber) {
 	mports := split(rule.ports, "-")
 	to_number(mports[0]) <= portNumber
 	to_number(mports[1]) >= portNumber
 }
 
-checkPortIsOpen(rule, portNumber) {
+isPortInRule(rule, portNumber) {
 	mports := split(rule.ports[_], "-")
 	to_number(mports[0]) <= portNumber
 	to_number(mports[1]) >= portNumber
 }
 
-checkPortIsOpen(rule, portNumber) {
+isPortInRule(rule, portNumber) {
 	rule.from_port == -1
 }
 
-checkPortIsOpen(rule, portNumber) {
+isPortInRule(rule, portNumber) {
 	rule.to_port == -1
+}
+
+# Checks if CIDR represents entire network
+isEntireNetwork(cidr) {
+	is_array(cidr)
+	cidrs = {"0.0.0.0/0", "::/0"}
+	count({x | cidr[x]; cidr[x] == cidrs[j]}) != 0
+}
+
+isEntireNetwork(cidr) {
+	is_string(cidr)
+	cidrs = {"0.0.0.0/0", "::/0"}
+	cidr == cidrs[j]
 }

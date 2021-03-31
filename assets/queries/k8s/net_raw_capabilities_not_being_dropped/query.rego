@@ -2,17 +2,18 @@ package Cx
 
 import data.generic.common as commonLib
 
+types := {"initContainers", "containers"}
+
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == "Pod"
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 	capabilities := spec.containers[k].securityContext.capabilities
-    not commonLib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
+	not commonLib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
 
-    result := {
+	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities.drop", [metadata.name, types[x], containers[k].name]),
 		"issueType": "IncorrectValue",
@@ -26,7 +27,6 @@ CxPolicy[result] {
 	document.kind == "Pod"
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 
 	object.get(spec.containers[k].securityContext.capabilities, "drop", "undefined") == "undefined"
@@ -45,7 +45,6 @@ CxPolicy[result] {
 	document.kind == "Pod"
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 
 	object.get(spec.containers[k].securityContext, "capabilities", "undefined") == "undefined"
@@ -64,7 +63,6 @@ CxPolicy[result] {
 	document.kind == "Pod"
 	metadata := document.metadata
 	spec := document.spec
-	types := {"initContainers", "containers"}
 	containers := spec[types[x]]
 
 	object.get(spec.containers[k], "securityContext", "undefined") == "undefined"

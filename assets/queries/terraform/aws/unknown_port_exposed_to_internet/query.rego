@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	currentPort := ingress[j].from_port
 	cidr := ingress[j].cidr_blocks
 
-	not knownPort(currentPort, terraLib.portNumbers)
+	not knownPort(currentPort, commonLib.tcpPortsMap)
 	isEntireNetwork(cidr)
 
 	result := {

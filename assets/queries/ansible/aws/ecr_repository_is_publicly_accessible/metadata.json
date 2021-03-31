@@ -1,0 +1,9 @@
+{
+  "id": "fb5a5df7-6d74-4243-ab82-ff779a958bfd",
+  "queryName": "ECR Repository Is Publicly Accessible",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Amazon ECR image repositories shouldn't have public access",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_ecr_module.html#parameter-policy",
+  "platform": "Ansible"
+}

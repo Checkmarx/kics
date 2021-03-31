@@ -4,6 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	restrictionType := input.document[i].Resources[name].Properties[j].Restrictions.GeoRestriction.RestrictionType
 	check_action(restrictionType)
+
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Restrictions.GeoRestriction.RestrictionType", [name]),

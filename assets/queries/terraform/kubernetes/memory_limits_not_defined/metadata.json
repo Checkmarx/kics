@@ -1,0 +1,9 @@
+{
+  "id": "fd097ed0-7fe6-4f58-8b71-fef9f0820a21",
+  "queryName": "Memory Limits Not Defined",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "Memory limits should be specified",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#limits",
+  "platform": "Terraform"
+}
