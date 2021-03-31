@@ -76,15 +76,10 @@
             <span><strong>Found:</strong> {{ .KeyActualValue }}</span>
           </div>
           <div class="code-box">
-            {{- with .VulnLines -}}
-            {{- $lines := .Lines -}}
-            {{- range $idx, $position := .Positions -}}
-            <div class="code-line {{ if eq $position $vulLine }}error{{ end }}">
-              {{- if lt $idx (len $lines) -}}
-              <span class="code-line-counter">{{ $position }}</span><span class="code">{{index $lines $idx | trimSpaces }}</span>
-              {{- end -}}
+            {{- range .VulnLines -}}
+            <div class="code-line {{ if eq .Position $vulLine }}error{{ end }}">
+              <span class="code-line-counter">{{ .Position }}</span><span class="code">{{ trimSpaces .Line }}</span>
             </div>
-            {{- end -}}
             {{- end}}
           </div>
         </div>
