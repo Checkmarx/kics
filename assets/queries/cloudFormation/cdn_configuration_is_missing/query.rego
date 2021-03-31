@@ -1,33 +1,41 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	document := input.document[i]
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
-	properties := resource.Properties.DistributionConfig
-	distributionConfig := properties.Enabled
-	expectedvalue := "false"
-	distributionConfig == expectedvalue
+	distributionConfig := resource.Properties.DistributionConfig
+
+	isFalse(distributionConfig.Enabled)
 
 	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
+		"documentId": document.id,
+		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig.Enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should be true", [name, name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is configured as false", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is 'true'", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled is configured as 'false'", [name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	document := input.document[i]
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties.DistributionConfig
+
 	object.get(properties, "Origins", "undefined") == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s.Properties.DistributionConfig", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.Enabled should contain an Origins object", [name, name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig does not contain Origins object configured", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig contains an 'Origins' object", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig does not contain an 'Origins' object configured", [name]),
 	}
+}
+
+isFalse(value) {
+	value == false
+} else {
+	value == "false"
 }

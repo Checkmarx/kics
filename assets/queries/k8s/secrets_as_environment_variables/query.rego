@@ -2,12 +2,12 @@ package Cx
 
 import data.generic.k8s as k8sLib
 
+containers := ["containers", "initContainers"]
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
-
-	containers := ["containers", "initContainers"]
 
 	specInfo.spec[containers[c]][j].env[k].valueFrom.secretKeyRef
 
@@ -27,8 +27,6 @@ CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
-
-	containers := ["containers", "initContainers"]
 
 	specInfo.spec[containers[c]][j].envFrom[k].secretRef
 

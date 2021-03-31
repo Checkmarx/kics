@@ -1,0 +1,9 @@
+{
+  "id": "91f16d09-689e-4926-aca7-155157f634ed",
+  "queryName": "ECS Service Without Running Tasks",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "ECS Service should have at least 1 task running",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service",
+  "platform": "Terraform"
+}
