@@ -1,0 +1,9 @@
+{
+  "id": "e76cca7c-c3f9-4fc9-884c-b2831168ebd8",
+  "queryName": "Invalid Image",
+  "severity": "LOW",
+  "category": "Supply-Chain",
+  "descriptionText": "Image must be defined and not be empty or equal to latest.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
+  "platform": "Terraform"
+}
