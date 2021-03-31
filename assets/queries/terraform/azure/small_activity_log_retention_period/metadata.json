@@ -1,0 +1,9 @@
+{
+  "id": "2b856bf9-8e8c-4005-875f-303a8cba3918",
+  "queryName": "Small Activity Log Retention Period",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure that Activity Log Retention is set 365 days or greater",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_log_profile",
+  "platform": "Terraform"
+}

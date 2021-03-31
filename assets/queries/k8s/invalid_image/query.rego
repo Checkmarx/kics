@@ -36,13 +36,7 @@ CxPolicy[result] {
 }
 
 check_content(images) {
-	images == ""
-}
+	options := {"", "latest", null}
 
-check_content(images) {
-	images == "latest"
-}
-
-check_content(images) {
-	images == null
+	images == options[j]
 }
