@@ -1,0 +1,9 @@
+{
+  "id": "48c3bc58-6959-4f27-b647-4fedeace23be",
+  "queryName": "User Data Shell Script Is Encoded",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "User Data Shell Script must be encoded",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-userdata",
+  "platform": "CloudFormation"
+}
