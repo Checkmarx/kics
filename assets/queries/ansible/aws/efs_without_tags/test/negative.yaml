@@ -1,0 +1,10 @@
+- name: EFS provisioning
+  community.aws.efs:
+    state: present
+    name: myTestEFS
+    tags:
+      Name: myTestNameTag
+      purpose: file-storage
+    targets:
+      - subnet_id: subnet-748c5d03
+        security_groups: [ "sg-1a2b3c4d" ]
