@@ -34,8 +34,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
 
-	monitor.retention_policy.enabled == true
 	retentionPolicy := monitor.retention_policy
+	retentionPolicy.enabled == true
 	commonLib.between(retentionPolicy.days, 1, 365)
 
 	result := {
