@@ -1,0 +1,9 @@
+{
+  "id": "f5c45127-1d28-4b49-a692-0b97da1c3a84",
+  "queryName": "ECS Service Without Running Tasks",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "ECS Service should have at least 1 task running",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_service_module.html#ansible-collections-community-aws-ecs-service-module",
+  "platform": "Ansible"
+}
