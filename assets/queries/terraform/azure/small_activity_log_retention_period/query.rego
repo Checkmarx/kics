@@ -5,7 +5,8 @@ import data.generic.common as commonLib
 CxPolicy[result] {
 	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
 
-	object.get(monitor, "retention_policy", "undefined") == "undefined"
+	monitor.retention_policy.enabled == true
+	object.get(monitor.retention_policy, "days", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -35,7 +36,7 @@ CxPolicy[result] {
 
 	monitor.retention_policy.enabled == true
 	retentionPolicy := monitor.retention_policy
-	commonLib.between(retentionPolicy.days, 1, 364)
+	commonLib.between(retentionPolicy.days, 1, 365)
 
 	result := {
 		"documentId": input.document[i].id,

@@ -39,8 +39,7 @@ resource "azurerm_monitor_log_profile" "positive2" {
   storage_account_id = azurerm_storage_account.example.id
 
   retention_policy {
-    enabled = false
-    days    = 7
+    enabled = true
   }
 }
 
@@ -64,23 +63,4 @@ resource "azurerm_monitor_log_profile" "positive3" {
   retention_policy {
     enabled = false
   }
-}
-
-resource "azurerm_monitor_log_profile" "positive4" {
-  name = "default"
-
-  categories = [
-    "Action",
-    "Delete",
-    "Write",
-  ]
-
-  locations = [
-    "westus",
-    "global",
-  ]
-
-  servicebus_rule_id = "${azurerm_eventhub_namespace.example.id}/authorizationrules/RootManageSharedAccessKey"
-  storage_account_id = azurerm_storage_account.example.id
-
 }
