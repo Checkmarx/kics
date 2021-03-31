@@ -1,0 +1,9 @@
+{
+  "id": "ac1564a3-c324-4747-9fa1-9dfc234dace0",
+  "queryName": "Shared Host Network Namespace",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Container should not share the host network namespace",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",
+  "platform": "Terraform"
+}
