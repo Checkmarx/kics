@@ -246,7 +246,7 @@ func TestInspect(t *testing.T) { //nolint
 					QueryURI:         "https://github.com/Checkmarx/kics/",
 					Severity:         model.SeverityInfo,
 					Line:             -1,
-					VulnLines:        []model.VulnLines{},
+					VulnLines:        []model.CodeLine{},
 					IssueType:        "IncorrectValue",
 					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
 					KeyExpectedValue: "'COPY' app.jar",

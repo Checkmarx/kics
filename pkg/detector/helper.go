@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/agnivade/levenshtein"
 )
@@ -99,9 +100,9 @@ func generateSubstr(substr string, parts []string, leng int) string {
 	return substr
 }
 
-// GetAdjacentLines is used to get the lines adjecent to the line that contains the vulnerability
+// GetAdjacentVulnLines is used to get the lines adjecent to the line that contains the vulnerability
 // adj is the amount of lines wanted
-func GetAdjacentLines(idx, adj int, lines []string) []model.VulnLines {
+func GetAdjacentVulnLines(idx, adj int, lines []string) []model.CodeLine {
 	var endPos int
 	var startPos int
 	if adj <= len(lines) {
@@ -139,10 +140,10 @@ func GetAdjacentLines(idx, adj int, lines []string) []model.VulnLines {
 
 // createVulnLines is the function that will  generate the array that contains the lines numbers
 // used to alter the color of the line that contains the vulnerability
-func createVulnLines(startPos int, lines []string) []model.VulnLines {
-	vulns := make([]model.VulnLines, len(lines))
+func createVulnLines(startPos int, lines []string) []model.CodeLine {
+	vulns := make([]model.CodeLine, len(lines))
 	for idx, line := range lines {
-		vulns[idx] = model.VulnLines{
+		vulns[idx] = model.CodeLine{
 			Line:     line,
 			Position: startPos,
 		}
@@ -153,7 +154,7 @@ func createVulnLines(startPos int, lines []string) []model.VulnLines {
 
 // SelectLineWithMinimumDistance will search a map of levenshtein distances to find the minimum distance
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int {
-	minDistance, lineOfMinDistance := 1000000000000, startingFrom
+	minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
 	for line, distance := range distances {
 		if distance < minDistance || distance == minDistance && line < lineOfMinDistance {
 			minDistance = distance

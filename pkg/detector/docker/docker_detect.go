@@ -50,16 +50,16 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{
-			Line:     currentLine + 1,
-			VulnLine: detector.GetAdjacentLines(currentLine, outputLines, strings.Split(text, "\n")),
+			Line:      currentLine + 1,
+			VulnLines: detector.GetAdjacentVulnLines(currentLine, outputLines, strings.Split(text, "\n")),
 		}
 	}
 
 	logWithFields.Warn().Msgf("Failed to detect Docker line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
-		Line:     undetectedVulnerabilityLine,
-		VulnLine: []model.VulnLines{},
+		Line:      undetectedVulnerabilityLine,
+		VulnLines: []model.CodeLine{},
 	}
 }
 

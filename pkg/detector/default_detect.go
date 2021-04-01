@@ -42,15 +42,15 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{
-			Line:     currentLine + 1,
-			VulnLine: GetAdjacentLines(currentLine, outputLines, lines),
+			Line:      currentLine + 1,
+			VulnLines: GetAdjacentVulnLines(currentLine, outputLines, lines),
 		}
 	}
 
 	logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
-		Line:     undetectedVulnerabilityLine,
-		VulnLine: []model.VulnLines{},
+		Line:      undetectedVulnerabilityLine,
+		VulnLines: []model.CodeLine{},
 	}
 }

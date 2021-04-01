@@ -136,7 +136,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 	tests := []struct {
 		name string
 		args args
-		want []model.VulnLines
+		want []model.CodeLine
 	}{
 		{
 			name: "test_start_of_file",
@@ -150,7 +150,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -177,7 +177,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 3,
 					Line:     "secondline",
@@ -204,7 +204,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -231,7 +231,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 2,
 					Line:     "secondline",
@@ -254,7 +254,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -277,7 +277,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 4,
 					Line:     "forthline",
@@ -296,7 +296,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 					"forthline",
 				},
 			},
-			want: []model.VulnLines{
+			want: []model.CodeLine{
 				{
 					Position: 1,
 					Line:     "firstline",
@@ -319,7 +319,7 @@ func TestGetAdjacents(t *testing.T) { //nolint
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := GetAdjacentLines(tt.args.idx, tt.args.adj, tt.args.lines)
+			got := GetAdjacentVulnLines(tt.args.idx, tt.args.adj, tt.args.lines)
 			gotStrVulnerabilities, err := test.StringifyStruct(got)
 			require.Nil(t, err)
 			wantStrVulnerabilities, err := test.StringifyStruct(tt.want)

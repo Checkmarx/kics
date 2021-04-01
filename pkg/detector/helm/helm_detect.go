@@ -88,7 +88,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		curLineRes.lineRes = removeLines(curLineRes.lineRes, lineRemove)
 		return model.VulnerabilityLines{
 			Line:                 curLineRes.lineRes + 1,
-			VulnLine:             detector.GetAdjacentLines(curLineRes.lineRes, outputLines, lines),
+			VulnLines:            detector.GetAdjacentVulnLines(curLineRes.lineRes, outputLines, lines),
 			LineWithVulnerabilty: strings.Split(lines[curLineRes.lineRes], ": ")[0],
 		}
 	}
@@ -96,8 +96,8 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
 
 	return model.VulnerabilityLines{
-		Line:     undetectedVulnerabilityLine,
-		VulnLine: []model.VulnLines{},
+		Line:      undetectedVulnerabilityLine,
+		VulnLines: []model.CodeLine{},
 	}
 }
 
