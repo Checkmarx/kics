@@ -21,10 +21,10 @@ const MinimumPreviewLines = 1
 // MaximumPreviewLines - default maximum preview lines number
 const MaximumPreviewLines = 30
 
-// DetectLineError - Exit Status code for failed to detect line
+// DetectLineErrorCode - Exit Status code for failed to detect line
 const DetectLineErrorCode = 110
 
-// EngineError - Exit Status code for error in engine
+// EngineErrorCode - Exit Status code for error in engine
 const EngineErrorCode = 126
 
 // SignalInterruptCode - Exit Status code for a signal interrupt
