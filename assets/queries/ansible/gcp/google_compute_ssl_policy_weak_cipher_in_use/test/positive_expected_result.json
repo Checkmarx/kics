@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Google Compute SSL Policy Weak Cipher In Use",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Google Compute SSL Policy Weak Cipher In Use",
+    "severity": "MEDIUM",
+    "line": 16
+  }
+]

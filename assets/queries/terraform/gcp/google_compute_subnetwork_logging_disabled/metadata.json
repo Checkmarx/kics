@@ -1,0 +1,9 @@
+{
+  "id": "40430747-442d-450a-a34f-dc57149f4609",
+  "queryName": "Google Compute Subnetwork Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "This query checks if logs are enabled for a Google Compute Subnetwork resource.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork",
+  "platform": "Terraform"
+}

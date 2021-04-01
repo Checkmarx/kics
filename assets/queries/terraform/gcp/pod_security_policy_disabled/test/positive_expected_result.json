@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Pod Security Policy Disabled",
+    "severity": "HIGH",
+    "line": 2
+  },
+  {
+    "queryName": "Pod Security Policy Disabled",
+    "severity": "HIGH",
+    "line": 17
+  }
+]

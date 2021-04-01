@@ -1,0 +1,9 @@
+{
+  "id": "ea0ed1c7-9aef-4464-b7c7-94c762da3640",
+  "queryName": "DB Security Group Open To Large Scope",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The IP address in a DB Security Group must not have more than 256 hosts.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
+  "platform": "Ansible"
+}

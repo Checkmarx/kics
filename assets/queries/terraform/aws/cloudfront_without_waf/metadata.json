@@ -3,7 +3,7 @@
   "queryName": "Cloudfront Without WAF",
   "severity": "LOW",
   "category": "Networking and Firewall",
-  "descriptionText": "CloudFront Distribution without WAF enabled",
+  "descriptionText": "All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
   "platform": "Terraform"
 }

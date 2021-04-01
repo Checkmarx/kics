@@ -1,0 +1,9 @@
+{
+  "id": "857f8808-e96a-4ba8-a9b7-f2d4ec6cad94",
+  "queryName": "Automatic Minor Upgrades Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "RDS instance auto minor version upgrade feature must be true",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-auto_minor_version_upgrade",
+  "platform": "Ansible"
+}

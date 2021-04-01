@@ -1,0 +1,9 @@
+{
+  "id": "89806cdc-9c2e-4bd1-a0dc-53f339bcfb2a",
+  "queryName": "Password Without Reuse Prevention",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "Check if IAM account password has the reuse password configured with 24",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy#password_reuse_prevention",
+  "platform": "Terraform"
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 25
+  },
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 19
+  }
+]

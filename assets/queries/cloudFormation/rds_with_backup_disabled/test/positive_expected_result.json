@@ -1,0 +1,14 @@
+[
+  {
+    "fileName": "positive1.yaml",
+    "queryName": "RDS With Backup Disabled",
+    "severity": "MEDIUM",
+    "line": 14
+  },
+  {
+    "queryName": "RDS With Backup Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.json"
+  }
+]
