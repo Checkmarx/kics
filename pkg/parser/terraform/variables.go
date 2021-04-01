@@ -14,27 +14,29 @@ import (
 
 var inputVariableMap = make(converter.InputVariableMap)
 
-func getParsedFile(filename string) (*hcl.File, error) {
+func mergeMaps(baseMap, newItems converter.InputVariableMap) {
+	for key, value := range newItems {
+		baseMap[key] = value
+	}
+}
+
+func parseFile(filename string) (*hcl.File, error) {
 	file, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
 
 	parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
-	if parsedFile == nil || parsedFile.Body == nil {
-		log.Warn().Msgf("Couldn't parse file %s", filename)
-		return nil, nil
-	}
 
 	return parsedFile, nil
 }
 
-func getInputVariablesDefaultValues(filename string) (converter.InputVariableMap, error) {
-	parseFile, err := getParsedFile(filename)
-	if err != nil || parseFile == nil {
+func setInputVariablesDefaultValues(filename string) (converter.InputVariableMap, error) {
+	parsedFile, err := parseFile(filename)
+	if err != nil || parsedFile == nil {
 		return nil, err
 	}
-	content, _, _ := parseFile.Body.PartialContent(&hcl.BodySchema{
+	content, _, _ := parsedFile.Body.PartialContent(&hcl.BodySchema{
 		Blocks: []hcl.BlockHeaderSchema{
 			{
 				Type:       "variable",
@@ -48,7 +50,7 @@ func getInputVariablesDefaultValues(filename string) (converter.InputVariableMap
 			continue
 		}
 		attr, _ := block.Body.JustAttributes()
-		if attr == nil {
+		if attr == nil || len(attr) == 0 {
 			continue
 		}
 		if defaultValue, exists := attr["default"]; exists {
@@ -75,7 +77,7 @@ func checkTfvarsValid(f *hcl.File, filename string) error {
 }
 
 func getInputVariablesFromFile(filename string) (converter.InputVariableMap, error) {
-	parsedFile, err := getParsedFile(filename)
+	parsedFile, err := parseFile(filename)
 	if err != nil || parsedFile == nil {
 		return nil, err
 	}
@@ -93,12 +95,6 @@ func getInputVariablesFromFile(filename string) (converter.InputVariableMap, err
 	return variables, nil
 }
 
-func mergeMaps(baseMap, newMap converter.InputVariableMap) {
-	for key, value := range newMap {
-		baseMap[key] = value
-	}
-}
-
 func getInputVariables(currentPath string) {
 	variablesMap := make(converter.InputVariableMap)
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
@@ -106,7 +102,7 @@ func getInputVariables(currentPath string) {
 		log.Error().Msg("Error getting .tf files")
 	}
 	for _, tfFile := range tfFiles {
-		variables, errDefaultValues := getInputVariablesDefaultValues(tfFile)
+		variables, errDefaultValues := setInputVariablesDefaultValues(tfFile)
 		if errDefaultValues != nil {
 			log.Error().Msgf("Error getting default values from %s", tfFile)
 			log.Err(errDefaultValues)
