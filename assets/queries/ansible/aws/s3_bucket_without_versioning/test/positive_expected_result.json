@@ -1,12 +1,12 @@
 [
   {
     "queryName": "S3 Bucket Without Versioning",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3
   },
   {
     "queryName": "S3 Bucket Without Versioning",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 15
   }
 ]

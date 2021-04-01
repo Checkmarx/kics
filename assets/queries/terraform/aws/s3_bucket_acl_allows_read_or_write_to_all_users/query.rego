@@ -1,24 +1,18 @@
 package Cx
 
-import data.generic.common as commonLib
-import data.generic.terraform as terraLib
-
 CxPolicy[result] {
-	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	resource := input.document[i].resource[pl[r]][name]
-
-	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
-
-	statement.Effect == "Allow"
-	terraLib.anyPrincipal(statement)
-	commonLib.containsOrInArrayContains(statement.Action, "write_acp")
+	resource := input.document[i].resource.aws_s3_bucket[name]
+	publicAccessACL(resource.acl)
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].policy", [pl[r], name]),
+		"searchKey": sprintf("aws_s3_bucket[%s].acl=%s", [name, resource.acl]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Write_ACP' action", [pl[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Write_ACP' action", [pl[r], name]),
+		"keyExpectedValue": "'acl' is equal 'private'",
+		"keyActualValue": sprintf("'acl' is equal '%s'", [resource.acl]),
 	}
 }
+
+publicAccessACL("public-read") = true
+
+publicAccessACL("public-read-write") = true

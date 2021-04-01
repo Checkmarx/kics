@@ -1,0 +1,9 @@
+{
+  "id": "cc997676-481b-4e93-aa81-d19f8c5e9b12",
+  "queryName": "EBS Volume Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "The value on AWS EBS Volume Cluster Encryption must be true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#encrypted",
+  "platform": "Terraform"
+}

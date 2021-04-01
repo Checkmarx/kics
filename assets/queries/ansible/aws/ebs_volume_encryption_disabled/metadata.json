@@ -1,0 +1,9 @@
+{
+  "id": "4b6012e7-7176-46e4-8108-e441785eae57",
+  "queryName": "EBS Volume Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "EBS Encryption should be enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_vol_module.html#parameter-encrypted",
+  "platform": "Ansible"
+}

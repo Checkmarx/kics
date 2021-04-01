@@ -1,7 +1,7 @@
 [
   {
     "queryName": "IAM Policies With Full Privileges",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5
   }
 ]
