@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "High KMS Rotation Period",
+    "severity": "HIGH",
+    "line": 4
+  },
+  {
+    "queryName": "High KMS Rotation Period",
+    "severity": "HIGH",
+    "line": 7
+  }
+]

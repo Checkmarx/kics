@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "Check Secret Expiration Is Set",
-		"severity": "HIGH",
-		"line": 1
-	}
-]

@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Cloudfront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Cloudfront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 62
+  }
+]

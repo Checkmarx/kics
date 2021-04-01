@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "Small MSSQL Audit Retention Period",
+    "severity": "MEDIUM",
+    "line": 11
+  },
+  {
+    "queryName": "Small MSSQL Audit Retention Period",
+    "severity": "MEDIUM",
+    "line": 29
+  },
+  {
+    "queryName": "Small MSSQL Audit Retention Period",
+    "severity": "MEDIUM",
+    "line": 47
+  },
+  {
+    "queryName": "Small MSSQL Audit Retention Period",
+    "severity": "MEDIUM",
+    "line": 67
+  }
+]

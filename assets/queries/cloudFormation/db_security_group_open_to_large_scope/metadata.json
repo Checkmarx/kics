@@ -1,0 +1,9 @@
+{
+  "id": "0104165b-02d5-426f-abc9-91fb48189899",
+  "queryName": "DB Security Group Open To Large Scope",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The IP address in a DB Security Group must not have more than 256 hosts.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+  "platform": "CloudFormation"
+}

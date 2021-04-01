@@ -1,0 +1,9 @@
+{
+  "id": "f34c0c25-47b4-41eb-9c79-249b4dd47b89",
+  "queryName": "IP Forwarding Enabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'can_ip_forward' must not be true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_instance",
+  "platform": "Terraform"
+}

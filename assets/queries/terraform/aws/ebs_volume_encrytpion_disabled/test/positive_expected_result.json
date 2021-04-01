@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "EBS Volume Encryption Disabled",
+    "severity": "HIGH",
+    "line": 4
+  }
+]

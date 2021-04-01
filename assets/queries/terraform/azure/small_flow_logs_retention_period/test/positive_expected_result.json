@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "Small Flow Logs Retention Period",
+    "severity": "MEDIUM",
+    "line": 10
+  },
+  {
+    "queryName": "Small Flow Logs Retention Period",
+    "severity": "MEDIUM",
+    "line": 23
+  },
+  {
+    "queryName": "Small Flow Logs Retention Period",
+    "severity": "MEDIUM",
+    "line": 27
+  },
+  {
+    "queryName": "Small Flow Logs Retention Period",
+    "severity": "MEDIUM",
+    "line": 43
+  }
+]

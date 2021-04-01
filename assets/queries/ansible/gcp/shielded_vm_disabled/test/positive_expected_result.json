@@ -1,0 +1,37 @@
+[
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 42
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 65
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 88
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 112
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 137
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
+    "line": 162
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Google Project Auto Create Network Disabled",
+    "severity": "MEDIUM",
+    "line": 8
+  },
+  {
+    "queryName": "Google Project Auto Create Network Disabled",
+    "severity": "MEDIUM",
+    "line": 5
+  }
+]

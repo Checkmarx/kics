@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
+    "severity": "LOW",
+    "line": 7
+  },
+  {
+    "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
+    "severity": "LOW",
+    "line": 70
+  }
+]
