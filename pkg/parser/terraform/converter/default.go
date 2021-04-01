@@ -14,6 +14,7 @@ import (
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
 
+// InputVariableMap represents a set of terraform input variables
 type InputVariableMap map[string]cty.Value
 
 var inputVarMap = make(InputVariableMap)
