@@ -4,12 +4,6 @@ name: go-ci
 on:
   pull_request:
     branches: [master]
-    paths-ignore:
-    - 'docs/**'
-    - README.md
-    - mkdocs.yml
-    - Dockerfile
-    - Dockerfile.integration
 
 jobs:
   lint:
