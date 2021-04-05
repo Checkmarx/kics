@@ -80,6 +80,7 @@ Available Commands:
   version        Displays the current version
 
 Flags:
+      --ci                 display only log messages to CLI output
   -h, --help               help for kics
   -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
