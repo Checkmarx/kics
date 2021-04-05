@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 55
+  }
+]
