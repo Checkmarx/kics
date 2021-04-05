@@ -3,11 +3,7 @@ package Cx
 CxPolicy[result] {
 	stateful := input.document[i].resource.kubernetes_stateful_set[name]
 
-	statefulNamespace := stateful.metadata.namespace
-
-	statefulServiceName := stateful.spec.service_name
-
-	count({x | resource := input.document[_].resource.kubernetes_service[x]; resource.spec.cluster_ip == "None"; statefulNamespace == resource.metadata.namespace; statefulServiceName == resource.metadata.name; labelsMatch(stateful, resource) == true}) == 0
+	count({x | resource := input.document[_].resource.kubernetes_service[x]; resource.spec.cluster_ip == "None"; stateful.metadata.namespace == resource.metadata.namespace; stateful.spec.service_name == resource.metadata.name; labelsMatch(stateful, resource) == true}) == 0
 
 	result := {
 		"documentId": input.document[i].id,

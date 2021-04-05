@@ -1,15 +1,16 @@
-#this code is a correct code for which the query should not find any result
+#this is a problematic code where the query should report a result(s)
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
+  namespace: nginx
   labels:
-    app: nginx
+    app: nginx2
 spec:
   ports:
   - port: 80
     name: web
-  clusterIP: None
+  clusterIP: All
   selector:
     app: nginx
 ---
@@ -17,6 +18,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: web
+  namespace: nginx
 spec:
   selector:
     matchLabels:
