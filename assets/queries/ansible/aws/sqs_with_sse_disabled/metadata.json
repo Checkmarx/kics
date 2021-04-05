@@ -1,0 +1,9 @@
+{
+  "id": "e1e7b278-2a8b-49bd-a26e-66a7f70b17eb",
+  "queryName": "SQS with SSE disabled",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": " SQS Queue should be protected with CMK encryption",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#ansible-collections-community-aws-sqs-queue-module",
+  "platform": "Ansible"
+}

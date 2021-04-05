@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "SQL DB Instance Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "SQL DB Instance Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 24
+  },
+  {
+    "queryName": "SQL DB Instance Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 41
+  },
+  {
+    "queryName": "SQL DB Instance Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 56
+  }
+]

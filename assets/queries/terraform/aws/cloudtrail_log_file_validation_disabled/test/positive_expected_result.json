@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 1
+  },
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 9
+  }
+]

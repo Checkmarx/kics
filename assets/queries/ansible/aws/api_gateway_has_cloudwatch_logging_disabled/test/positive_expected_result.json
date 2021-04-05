@@ -1,7 +1,0 @@
-[
-  {
-    "queryName": "API Gateway Has Cloudwatch Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 3
-  }
-]

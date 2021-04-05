@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Client Certificate Disabled",
+    "severity": "HIGH",
+    "line": 3
+  },
+  {
+    "queryName": "Client Certificate Disabled",
+    "severity": "HIGH",
+    "line": 18
+  },
+  {
+    "queryName": "Client Certificate Disabled",
+    "severity": "HIGH",
+    "line": 37
+  }
+]

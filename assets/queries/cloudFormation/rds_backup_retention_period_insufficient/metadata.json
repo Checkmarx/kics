@@ -1,6 +1,6 @@
 {
   "id": "e649a218-d099-4550-86a4-1231e1fcb60d",
-  "queryName": "RDS Backup Retention Period Insufficient",
+  "queryName": "Low RDS Backup Retention Period",
   "severity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "AWS RDS backup retention policy should be at least 7 days",

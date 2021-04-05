@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "PostgreSQL Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 7
+  },
+  {
+    "queryName": "PostgreSQL Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "PostgreSQL Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 19
+  },
+  {
+    "queryName": "PostgreSQL Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 25
+  },
+  {
+    "queryName": "PostgreSQL Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 31
+  },
+  {
+    "queryName": "PostgreSQL Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 37
+  }
+]

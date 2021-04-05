@@ -1,0 +1,9 @@
+{
+  "id": "65c1bc7a-4835-4ac4-a2b6-13d310b0648d",
+  "queryName": "Cluster Labels Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must be configured with labels, which means the attribute 'resource_labels' must be defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+  "platform": "Terraform"
+}

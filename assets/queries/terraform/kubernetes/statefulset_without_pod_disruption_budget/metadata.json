@@ -1,0 +1,9 @@
+{
+  "id": "7249e3b0-9231-4af3-bc5f-5daf4988ecbf",
+  "queryName": "StatefulSet Without PodDisruptionBudget",
+  "severity": "LOW",
+  "category": "Availability",
+  "descriptionText": "StatefulSets should be assigned with a PodDisruptionBudget to ensure high availability",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector",
+  "platform": "Terraform"
+}

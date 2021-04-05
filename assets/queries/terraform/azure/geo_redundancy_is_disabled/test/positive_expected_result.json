@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "Geo Redundancy Is Disabled",
-		"severity": "HIGH",
-		"line": 2
-	},
-	{
-		"queryName": "Geo Redundancy Is Disabled",
-		"severity": "HIGH",
-		"line": 31
-	}
+  {
+    "queryName": "Geo Redundancy Is Disabled",
+    "severity": "HIGH",
+    "line": 2
+  },
+  {
+    "queryName": "Geo Redundancy Is Disabled",
+    "severity": "HIGH",
+    "line": 31
+  }
 ]

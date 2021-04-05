@@ -1,0 +1,9 @@
+{
+  "id": "875b86b1-7fd4-4728-9a18-de63d87ad82f",
+  "queryName": "Lambda Function Without Tags",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS Lambda Functions must have associated tags.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function",
+  "platform": "Terraform"
+}

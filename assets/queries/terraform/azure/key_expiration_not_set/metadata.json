@@ -1,0 +1,9 @@
+{
+  "id": "4d080822-5ee2-49a4-8984-68f3d4c890fc",
+  "queryName": "Key Expiration Not Set",
+  "severity": "HIGH",
+  "category": "Secret Management",
+  "descriptionText": "Make sure that for all keys the expiration date is set",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key",
+  "platform": "Terraform"
+}

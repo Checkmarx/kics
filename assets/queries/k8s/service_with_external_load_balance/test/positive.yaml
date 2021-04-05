@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-service 05
+  name: sample-service 05334443
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: 'false'
 spec:
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-service 06
+  name: sample-service 07
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: 'false'
 spec:
@@ -44,7 +44,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-service 07
+  name: sample-service 08
   annotations:
     networking.gke.io/load-balancer-type: 'External'
 spec:
@@ -59,7 +59,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-service 08
+  name: sample-service 09
   annotations:
     cloud.google.com/load-balancer-type: 'External'
 spec:

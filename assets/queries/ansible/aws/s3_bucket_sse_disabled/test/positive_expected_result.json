@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "S3 Bucket SSE Disabled",
+    "severity": "HIGH",
+    "line": 6
+  }
+]

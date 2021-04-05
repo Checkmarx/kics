@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 11
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 37
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "VM CSEK Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "VM CSEK Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 22
+  },
+  {
+    "queryName": "VM CSEK Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 37
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "f83121ea-03da-434f-9277-9cd247ab3047",
+  "queryName": "VPC FlowLogs Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "VPC hasn't got any FlowLog associated",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc",
+  "platform": "Terraform"
+}

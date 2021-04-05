@@ -1,0 +1,9 @@
+{
+  "id": "ad03cb46-f174-4674-bf8e-2880a7000edd",
+  "queryName": "S3 Bucket SSE Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#sse_algorithm",
+  "platform": "Terraform"
+}

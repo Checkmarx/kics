@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Role Assignment Of Guest Users",
-		"severity": "HIGH",
-		"line": 3
-	}
+  {
+    "queryName": "Role Assignment Of Guest Users",
+    "severity": "HIGH",
+    "line": 3
+  }
 ]

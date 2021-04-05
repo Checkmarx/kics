@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "IAM Binding Check No Gmail Accounts",
-		"severity": "HIGH",
-		"line": 6
-	}
-]

@@ -1,0 +1,9 @@
+{
+  "id": "66477506-6abb-49ed-803d-3fa174cd5f6a",
+  "queryName": "Launch Configuration Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS Autoscaling Launch Configurations should have encryption enabled",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
+  "platform": "Ansible"
+}

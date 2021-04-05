@@ -1,6 +1,6 @@
 {
   "id": "07dda8de-d90d-469e-9b37-1aca53526ced",
-  "queryName": "S3 Bucket ACL Allows Read Or Write to AllUsers",
+  "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "S3 Buckets sould not be readable and writable to all users",

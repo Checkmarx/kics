@@ -1,6 +1,6 @@
 {
 	"id": "493d9591-6249-47bf-8dc0-5c10161cc558",
-	"queryName": "Security Groups Without VPC",
+	"queryName": "Security Groups Without VPC Attached",
 	"severity": "MEDIUM",
 	"category": "Networking and Firewall",
 	"descriptionText": "Security Groups must have a VPC.",
