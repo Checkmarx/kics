@@ -1,9 +1,13 @@
-resource "kubernetes_service" "example1" {
+resource "kubernetes_service" "example22" {
   metadata {
-    name = "prometheus"
+    name = "prometheus22"
+    namespace = "prometheus22"
   }
   spec {
     cluster_ip = "None"
+    selector = {
+      k8s-app = "prometheus22"
+    }
     session_affinity = "ClientIP"
     port {
       port        = 8080
@@ -14,7 +18,7 @@ resource "kubernetes_service" "example1" {
   }
 }
 
-resource "kubernetes_stateful_set" "prometheus1" {
+resource "kubernetes_stateful_set" "prometheus22" {
   metadata {
     annotations = {
       SomeAnnotation = "foobar"
@@ -27,7 +31,8 @@ resource "kubernetes_stateful_set" "prometheus1" {
       version                           = "v2.2.1"
     }
 
-    name = "prometheus"
+    name = "prometheus22"
+    namespace = "prometheus22"
   }
 
   spec {
@@ -35,26 +40,25 @@ resource "kubernetes_stateful_set" "prometheus1" {
     replicas               = 1
     revision_history_limit = 5
 
-
     selector {
       match_labels = {
-        k8s-app = "prometheus1"
+        k8s-app = "prometheus22"
       }
     }
 
-    service_name = "prometheus"
+    service_name = "prometheus22"
 
     template {
       metadata {
         labels = {
-          k8s-app = "prometheus"
+          k8s-app = "prometheus22"
         }
 
         annotations = {}
       }
 
       spec {
-        service_account_name = "prometheus"
+        service_account_name = "prometheus22"
 
         init_container {
           name              = "init-chown-data"
