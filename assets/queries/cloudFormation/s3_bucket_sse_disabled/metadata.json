@@ -1,0 +1,9 @@
+{
+  "id": "64ab651b-f5b2-4af0-8c89-ddd03c4d0e61",
+  "queryName": "S3 Bucket SSE Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html",
+  "platform": "CloudFormation"
+}

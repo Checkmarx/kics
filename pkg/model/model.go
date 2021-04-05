@@ -49,6 +49,13 @@ var (
 	}
 )
 
+// VulnerabilityLines is the representation of the found line for issue
+type VulnerabilityLines struct {
+	Line                 int
+	VulnLines            []CodeLine
+	LineWithVulnerabilty string
+}
+
 // FileKind is the extension of a file
 type FileKind string
 
@@ -58,10 +65,10 @@ type Severity string
 // IssueType is the issue's type string representation
 type IssueType string
 
-// VulnLines is the lines containing and adjecent to the vulnerability line with their respective positions
-type VulnLines struct {
-	Positions []int
-	Lines     []string
+// CodeLine is the lines containing and adjecent to the vulnerability line with their respective positions
+type CodeLine struct {
+	Position int
+	Line     string
 }
 
 // FileMetadata is a representation of basic information and content of a file
@@ -91,27 +98,27 @@ type QueryMetadata struct {
 // Vulnerability is a representation of a detected vulnerability in scanned files
 // after running a query
 type Vulnerability struct {
-	ID               int       `json:"id"`
-	ScanID           string    `db:"scan_id" json:"-"`
-	SimilarityID     string    `db:"similarity_id" json:"similarityID"`
-	FileID           string    `db:"file_id" json:"-"`
-	FileName         string    `db:"file_name" json:"fileName"`
-	QueryID          string    `db:"query_id" json:"queryID"`
-	QueryName        string    `db:"query_name" json:"queryName"`
-	QueryURI         string    `json:"-"`
-	Category         string    `json:"category"`
-	Description      string    `json:"description"`
-	Platform         string    `db:"platform" json:"platform"`
-	Severity         Severity  `json:"severity"`
-	Line             int       `json:"line"`
-	VulnLines        VulnLines `json:"vulnLines"`
-	IssueType        IssueType `db:"issue_type" json:"issueType"`
-	SearchKey        string    `db:"search_key" json:"searchKey"`
-	SearchValue      string    `db:"search_value" json:"searchValue"`
-	KeyExpectedValue string    `db:"key_expected_value" json:"expectedValue"`
-	KeyActualValue   string    `db:"key_actual_value" json:"actualValue"`
-	Value            *string   `db:"value" json:"value"`
-	Output           string    `json:"-"`
+	ID               int        `json:"id"`
+	ScanID           string     `db:"scan_id" json:"-"`
+	SimilarityID     string     `db:"similarity_id" json:"similarityID"`
+	FileID           string     `db:"file_id" json:"-"`
+	FileName         string     `db:"file_name" json:"fileName"`
+	QueryID          string     `db:"query_id" json:"queryID"`
+	QueryName        string     `db:"query_name" json:"queryName"`
+	QueryURI         string     `json:"-"`
+	Category         string     `json:"category"`
+	Description      string     `json:"description"`
+	Platform         string     `db:"platform" json:"platform"`
+	Severity         Severity   `json:"severity"`
+	Line             int        `json:"line"`
+	VulnLines        []CodeLine `json:"vulnLines"`
+	IssueType        IssueType  `db:"issue_type" json:"issueType"`
+	SearchKey        string     `db:"search_key" json:"searchKey"`
+	SearchValue      string     `db:"search_value" json:"searchValue"`
+	KeyExpectedValue string     `db:"key_expected_value" json:"expectedValue"`
+	KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
+	Value            *string    `db:"value" json:"value"`
+	Output           string     `json:"-"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query

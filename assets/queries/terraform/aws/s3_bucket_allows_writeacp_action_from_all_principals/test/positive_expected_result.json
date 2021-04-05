@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "S3 Bucket Allows WriteACP Action From All Principals",
+    "severity": "HIGH",
+    "line": 8
+  },
+  {
+    "queryName": "S3 Bucket Allows WriteACP Action From All Principals",
+    "severity": "HIGH",
+    "line": 31
+  }
+]

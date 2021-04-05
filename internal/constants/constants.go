@@ -1,5 +1,7 @@
 package constants
 
+import "math"
+
 // Version - current KICS version
 var Version = "dev"
 
@@ -29,3 +31,6 @@ const EngineErrorCode = 126
 
 // SignalInterruptCode - Exit Status code for a signal interrupt
 const SignalInterruptCode = 130
+
+// MaxInteger - max possible integer in golang
+const MaxInteger = math.MaxInt64

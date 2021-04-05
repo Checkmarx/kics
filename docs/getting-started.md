@@ -80,6 +80,7 @@ Available Commands:
   version        Displays the current version
 
 Flags:
+      --ci                 display only log messages to CLI output
   -h, --help               help for kics
   -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
@@ -127,6 +128,7 @@ Flags:
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
 
 Global Flags:
+      --ci                 display only log messages to CLI output
   -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
       --log-path string    path to log files, (defaults to ${PWD}/info.log)

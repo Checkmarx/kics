@@ -1,9 +1,9 @@
 {
-  "id": "64a222aa-7793-4e40-915f-4b302c76e4d4",
+  "id": "38c5ee0d-7f22-4260-ab72-5073048df100",
   "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "S3 Buckets must not allow Write_ACP Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Write_ACP, for all Principals.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy",
+  "descriptionText": "S3 bucket with public READ/WRITE access",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
   "platform": "Terraform"
 }
