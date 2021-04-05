@@ -16,11 +16,13 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/pkg/resolver/helm"
 )
 
 // TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them
 func TestService(t *testing.T) {
-	mockParser, mockFilesSource := createParserSourceProvider("../../assets/queries/template")
+	mockParser, mockFilesSource, mockResolver := createParserSourceProvider("../../test/fixtures/test_helm")
 
 	type fields struct {
 		SourceProvider provider.SourceProvider
@@ -28,6 +30,7 @@ func TestService(t *testing.T) {
 		Parser         *parser.Parser
 		Inspector      *engine.Inspector
 		Tracker        Tracker
+		Resolver       *resolver.Resolver
 	}
 	type args struct {
 		ctx     context.Context
@@ -53,6 +56,7 @@ func TestService(t *testing.T) {
 				Tracker:        &tracker.CITracker{},
 				Storage:        storage.NewMemoryStorage(),
 				SourceProvider: mockFilesSource,
+				Resolver:       mockResolver,
 			},
 			args: args{
 				ctx:     nil,
@@ -73,6 +77,7 @@ func TestService(t *testing.T) {
 			Parser:         tt.fields.Parser,
 			Inspector:      tt.fields.Inspector,
 			Tracker:        tt.fields.Tracker,
+			Resolver:       tt.fields.Resolver,
 		}
 		t.Run(fmt.Sprintf(tt.name+"_get_vulnerabilities"), func(t *testing.T) {
 			got, err := s.GetVulnerabilities(tt.args.ctx, tt.args.scanID)
@@ -102,7 +107,8 @@ func TestService(t *testing.T) {
 	}
 }
 
-func createParserSourceProvider(path string) (*parser.Parser, *provider.FileSystemSourceProvider) {
+func createParserSourceProvider(path string) (*parser.Parser,
+	*provider.FileSystemSourceProvider, *resolver.Resolver) {
 	mockParser, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
@@ -112,5 +118,7 @@ func createParserSourceProvider(path string) (*parser.Parser, *provider.FileSyst
 
 	mockFilesSource, _ := provider.NewFileSystemSourceProvider(path, []string{})
 
-	return mockParser, mockFilesSource
+	mockResolver, _ := resolver.NewBuilder().Add(&helm.Resolver{}).Build()
+
+	return mockParser, mockFilesSource, mockResolver
 }
