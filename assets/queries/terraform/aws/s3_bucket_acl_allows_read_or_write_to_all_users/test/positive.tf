@@ -1,51 +1,27 @@
 resource "aws_s3_bucket" "positive1" {
-  bucket = "my_tf_test_bucket"
+  bucket = "my-tf-test-bucket"
+  acl    = "public-read"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+
+  versioning {
+    enabled = true
+  }
 }
 
-resource "aws_s3_bucket_policy" "positive2" {
-  bucket = aws_s3_bucket.b.id
+resource "aws_s3_bucket" "positive2" {
+  bucket = "my-tf-test-bucket"
+  acl    = "public-read-write"
 
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Id": "MYBUCKETPOLICY",
-  "Statement": [
-    {
-      "Sid": "IPAllow",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:Write_ACP",
-      "Resource": "arn:aws:s3:::my_tf_test_bucket/*",
-      "Condition": {
-         "IpAddress": {"aws:SourceIp": "8.8.8.8/32"}
-      }
-    }
-  ]
-}
-POLICY
-}
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
 
-resource "aws_s3_bucket_policy" "positive3" {
-  bucket = aws_s3_bucket.b.id
-
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Id": "MYBUCKETPOLICY",
-  "Statement": [
-    {
-      "Sid": "IPAllow",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
-      "Action": "s3:Write_ACP",
-      "Resource": "arn:aws:s3:::my_tf_test_bucket/*",
-      "Condition": {
-         "IpAddress": {"aws:SourceIp": "8.8.8.8/32"}
-      }
-    }
-  ]
-}
-POLICY
+  versioning {
+    enabled = true
+  }
 }

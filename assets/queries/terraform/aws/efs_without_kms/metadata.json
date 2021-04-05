@@ -1,0 +1,9 @@
+{
+  "id": "25d251f3-f348-4f95-845c-1090e41a615c",
+  "queryName": "EFS Without KMS",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Elastic File System (EFS) must have KMS Key ID",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#kms_key_id",
+  "platform": "Terraform"
+}

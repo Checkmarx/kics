@@ -69,23 +69,6 @@ type Parser struct {
 	extensions model.Extensions
 }
 
-// Resolve - replace or modifies in-memory content before parsing
-func (c *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
-	ext := filepath.Ext(filename)
-	if ext == "" {
-		ext = filepath.Base(filename)
-	}
-	if p, ok := c.parsers[ext]; ok {
-		obj, err := p.Resolve(fileContent, filename)
-		if err != nil {
-			return nil, err
-		}
-
-		return obj, nil
-	}
-	return nil, ErrNotSupportedFile
-}
-
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
@@ -94,7 +77,11 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 		ext = filepath.Base(filePath)
 	}
 	if p, ok := c.parsers[ext]; ok {
-		obj, err := p.Parse(filePath, fileContent)
+		resolved, err := p.Resolve(fileContent, filePath)
+		if err != nil {
+			return nil, "", err
+		}
+		obj, err := p.Parse(filePath, *resolved)
 		if err != nil {
 			return nil, "", err
 		}
