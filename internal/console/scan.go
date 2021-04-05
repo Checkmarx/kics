@@ -4,8 +4,10 @@ import (
 	_ "embed" // Embed kics CLI img
 	"fmt"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -49,6 +51,7 @@ var (
 	previewLines int
 	//go:embed img/kics-console
 	banner string
+	force  bool
 )
 
 var scanCmd = &cobra.Command{
@@ -58,6 +61,7 @@ var scanCmd = &cobra.Command{
 		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
+		gracefulShutdown()
 		return scan()
 	},
 }
@@ -178,6 +182,7 @@ func initScanCmd() {
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
 	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
+	scanCmd.Flags().BoolVarP(&force, "force", "", false, "return status code 0 even if there are results")
 	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
 		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
@@ -363,9 +368,14 @@ func scan() error {
 	log.Info().Msgf(elapsedStrFormat, elapsed)
 
 	if summary.FailedToExecuteQueries > 0 {
-		os.Exit(1)
+		os.Exit(constants.DetectLineErrorCode)
 	}
+	status := 0
 
+	if !force {
+		status = consoleHelpers.ExitCodeCal(&summary)
+	}
+	os.Exit(status)
 	return nil
 }
 
@@ -423,4 +433,14 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
 	}
 	return err
+}
+
+// gracefulShutdown catches signal interrupt and returns the appropriate exit code
+func gracefulShutdown() {
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-c
+		os.Exit(constants.SignalInterruptCode)
+	}()
 }

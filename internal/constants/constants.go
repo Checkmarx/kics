@@ -23,5 +23,14 @@ const MinimumPreviewLines = 1
 // MaximumPreviewLines - default maximum preview lines number
 const MaximumPreviewLines = 30
 
+// DetectLineErrorCode - Exit Status code for failed to detect line
+const DetectLineErrorCode = 110
+
+// EngineErrorCode - Exit Status code for error in engine
+const EngineErrorCode = 126
+
+// SignalInterruptCode - Exit Status code for a signal interrupt
+const SignalInterruptCode = 130
+
 // MaxInteger - max possible integer in golang
 const MaxInteger = math.MaxInt64
