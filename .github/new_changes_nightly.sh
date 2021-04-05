@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 CHANGES=$(git log --oneline $(git describe --tags --match 'nightly' --abbrev=0)..HEAD)
 if [[ -n ${CHANGES} ]]; then
-  echo true
+  echo 'yes'
 else
-  echo false
+  echo 'no'
 fi
