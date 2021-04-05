@@ -174,11 +174,11 @@ func printFiles(query *model.VulnerableQuery, printer *Printer) {
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
 		if !printer.minimal {
 			fmt.Println()
-			for lineIdx, line := range query.Files[fileIdx].VulnLines.Lines {
-				if query.Files[fileIdx].VulnLines.Positions[lineIdx] == query.Files[fileIdx].Line {
-					printer.Line.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+			for _, line := range query.Files[fileIdx].VulnLines {
+				if line.Position == query.Files[fileIdx].Line {
+					printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				} else {
-					fmt.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+					fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				}
 			}
 			fmt.Print("\n\n")
@@ -297,4 +297,24 @@ func (p *Printer) PrintBySev(content, sev string) string {
 		return p.Info.Sprintf(content)
 	}
 	return content
+}
+
+// ExitCodeCal calculate exit code base on severity of results
+func ExitCodeCal(summary *model.Summary) int {
+	var exitValue = 0
+	// codeArr is needed to make sure 'for' cycle is made in an ordered fashion
+	codeArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO"}
+	codeMap := map[model.Severity]int{"HIGH": 5, "MEDIUM": 4, "LOW": 3, "INFO": 2}
+	exitMap := summary.SeveritySummary.SeverityCounters
+	for _, sev := range codeArr {
+		if exitMap[sev] > 0 {
+			if exitValue == 0 {
+				exitValue = codeMap[sev] * 10
+				continue
+			}
+			exitValue += codeMap[sev]
+		}
+	}
+
+	return exitValue
 }
