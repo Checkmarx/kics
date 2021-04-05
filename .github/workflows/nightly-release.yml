@@ -17,10 +17,10 @@ jobs:
           fetch-depth: 0
       - name: Check if there are new commits since last nightly
         id: sincelasttag
-        run: echo "::set-output name=commits=$(git log --oneline $(git describe --tags --match 'nightly' --abbrev=0)..HEAD)"
+        run: echo "::set-output name=commits=$(bash ./.github/new_changes.sh)"
   goreleaser:
     needs: pre_release_job
-    if: ${{ needs.pre_release_job.outputs.commits != '' }}
+    if: ${{ needs.pre_release_job.outputs.commits == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -104,7 +104,7 @@ jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     needs: pre_release_job
-    if: ${{ needs.pre_release_job.outputs.commits != '' }}
+    if: ${{ needs.pre_release_job.outputs.commits == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
