@@ -9,7 +9,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("kubernetes_service[%s].spec.type", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_service[name].spec.type is not 'NodePort'", [name]),
-		"keyActualValue": sprintf("kubernetes_service[name].spec.type is 'NodePort'", [name]),
+		"keyExpectedValue": sprintf("kubernetes_service[%s].spec.type is not 'NodePort'", [name]),
+		"keyActualValue": sprintf("kubernetes_service[%s].spec.type is 'NodePort'", [name]),
 	}
 }

@@ -1,0 +1,9 @@
+{
+  "id": "a9a13d4f-f17a-491b-b074-f54bffffcb4a",
+  "queryName": "Service Account Token Automount Not Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Defaults",
+  "descriptionText": "Service Account Tokens are automatically mounted even if not necessary",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#automount_service_account_token",
+  "platform": "Terraform"
+}
