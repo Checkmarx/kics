@@ -4,6 +4,6 @@
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Verifies if Kubernetes workload's host port is specified",
-  "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#exposing-the-service",
   "platform": "Kubernetes"
 }
