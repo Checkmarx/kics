@@ -79,13 +79,7 @@ jobs:
         go mod vendor
     - name: Test and Generate Report
       run: |
-        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version ${{ matrix.go-version }} -package-name "github.com/Checkmarx/kics/test" > test-report-${{ matrix.os }}.xml
-    - name: Archive unit tests report
-      uses: actions/upload-artifact@v2
-      with:
-        name: unit-tests-report-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}
-        path: |
-          test-report*.xml
+        go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1
     - name: CodeCov
       if: matrix.os == 'ubuntu-latest'
       run: |
