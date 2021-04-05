@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
       - name: Check if there are new commits since last nightly
         id: lasttag
-        run: echo "::set-output name=newchanges=$(bash ./.github/new_changes_nightly.sh)"
+        run: echo "::set-output name=newchanges::$(bash ./.github/new_changes_nightly.sh)"
   goreleaser:
     needs: pre_release_job
     if: ${{ needs.pre_release_job.outputs.changes == 'yes' }}
