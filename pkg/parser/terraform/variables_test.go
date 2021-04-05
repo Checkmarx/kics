@@ -2,6 +2,7 @@ package terraform
 
 import (
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
@@ -121,7 +122,7 @@ resource "test" "test1" {
 				require.Nil(t, parsedFile)
 			} else {
 				require.NoError(t, err)
-				require.Equal(t, tt.want, string(parsedFile.Bytes))
+				require.Equal(t, tt.want, strings.ReplaceAll(string(parsedFile.Bytes), "\r", ""))
 			}
 		})
 	}
