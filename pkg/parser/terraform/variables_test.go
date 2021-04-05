@@ -68,14 +68,14 @@ func TestParseFile(t *testing.T) {
 	tests := []fileTest{
 		{
 			name:     "Should parse variable file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/terraform.tfvars"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "terraform.tfvars"),
 			want: `test_terraform = "terraform.tfvars"
 `,
 			wantErr: false,
 		},
 		{
 			name:     "Should parse terraform file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/test.tf"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
 			want: `variable "local_default_var" {
   type    = "string"
   default = "local_default"
@@ -107,7 +107,7 @@ resource "test" "test1" {
 		},
 		{
 			name:     "Should get error when trying to parse inexistent file",
-			filename: filepath.FromSlash("not_found.tf"),
+			filename: filepath.Join(".", "not_found.tf"),
 			want:     "",
 			wantErr:  true,
 		},
@@ -131,7 +131,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 	tests := []inputVarTest{
 		{
 			name:     "Should get default variable values from tf file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/test.tf"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test.tf"),
 			want: converter.InputVariableMap{
 				"local_default_var": cty.StringVal("local_default"),
 			},
@@ -139,7 +139,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		},
 		{
 			name:     "Should get default variable values from tf file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/variables.tf"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "variables.tf"),
 			want: converter.InputVariableMap{
 				"default_var_file": cty.StringVal("default_var_file"),
 			},
@@ -147,7 +147,7 @@ func TestSetInputVariablesDefaultValues(t *testing.T) {
 		},
 		{
 			name:     "Should get empty map from variable blockless file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/test_without_variables_block.tf"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "test_without_variables_block.tf"),
 			want:     converter.InputVariableMap{},
 			wantErr:  false,
 		},
@@ -176,7 +176,7 @@ func TestGetInputVariablesFromFile(t *testing.T) {
 	tests := []inputVarTest{
 		{
 			name:     "Should get variables from file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/variable_set.auto.tfvars"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "variable_set.auto.tfvars"),
 			want: converter.InputVariableMap{
 				"test1": cty.BoolVal(false),
 				"test2": cty.TupleVal([]cty.Value{cty.BoolVal(false), cty.BoolVal(true)}),
@@ -191,7 +191,7 @@ func TestGetInputVariablesFromFile(t *testing.T) {
 		},
 		{
 			name:     "Should get an error when trying to set input variables from inexistent file",
-			filename: filepath.FromSlash("../../../test/fixtures/test_terraform_variables/invalid.auto.tfvars"),
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_variables", "invalid.auto.tfvars"),
 			want:     nil,
 			wantErr:  true,
 		},
