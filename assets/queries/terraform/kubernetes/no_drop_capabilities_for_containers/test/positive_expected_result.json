@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 8
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 105
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 200
+  }
+]
