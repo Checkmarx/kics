@@ -74,24 +74,6 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-
-	containers := resource[name].spec[types[x]]
-
-	is_object(containers) == true
-
-	hasSecretKeyRef(containers)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.%s.env", [resourceType, name, types[x]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s.env.value_from.secret_key_ref is undefined", [resourceType, name, types[x]]),
-		"keyActualValue": sprintf("%s[%s].spec.%s.env.value_from.secret_key_ref is set", [resourceType, name, types[x]]),
-	}
-}
-
 hasSecretKeyRef(container) {
 	is_array(container.env) == true
 
