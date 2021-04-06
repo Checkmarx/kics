@@ -204,6 +204,13 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 	case *hclsyntax.TemplateJoinExpr:
 		return c.convertTemplateFor(v.Tuple.(*hclsyntax.ForExpr))
 	default:
+		// try to evaluate with variables
+		valueConverted, _ := expr.Value(&hcl.EvalContext{
+			Variables: inputVarMap,
+		})
+		if valueConverted.Type().FriendlyName() == "string" {
+			return valueConverted.AsString(), nil
+		}
 		// treating as an embedded expression
 		return c.wrapExpr(expr)
 	}
