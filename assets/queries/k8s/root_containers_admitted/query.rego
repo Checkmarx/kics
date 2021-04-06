@@ -5,7 +5,7 @@ CxPolicy[result] {
 	document.kind == "PodSecurityPolicy"
 	spec := document.spec
 
-	privilege := {"privileged", "allowPrivilegeEscalation", "readOnlyRootFilesystem"}
+	privilege := {"privileged", "allowPrivilegeEscalation"}
 
 	spec[privilege[p]] == true
 
