@@ -15,10 +15,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.container", [resourceType, name]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.container.readiness_probe is set", [resourceType, name]),
-		"keyActualValue": sprintf("%s[%s].spec.containter.readiness_probe is undefined", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s.readiness_probe is set", [resourceType, name, types[x]]),
+		"keyActualValue": sprintf("%s[%s].spec.%s.readiness_probe is undefined", [resourceType, name, types[x]]),
 	}
 }
 
@@ -35,10 +35,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.container", [resourceType, name]),
+		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.container[%d].readiness_probe is set", [resourceType, name, y]),
-		"keyActualValue": sprintf("%s[%s].spec.containter[%d].readiness_probe is undefined", [resourceType, name, y]),
+		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].readiness_probe is set", [resourceType, name, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].spec.%s[%d].readiness_probe is undefined", [resourceType, name, types[x], y]),
 	}
 }
 
