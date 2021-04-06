@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "API Gateway Without Security Policy",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "API Gateway Without Security Policy",
+    "severity": "HIGH",
+    "line": 7
+  }
+]
