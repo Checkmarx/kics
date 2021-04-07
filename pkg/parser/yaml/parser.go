@@ -37,6 +37,9 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to Parse YAML")
 		}
+		if documents == nil {
+			return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
+		}
 	}
 
 	return documents, nil

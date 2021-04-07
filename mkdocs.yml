@@ -67,10 +67,3 @@ plugins:
 google_analytics:
   - UA-186818347-2
   - auto
-
-
-markdown_extensions:
-  - toc:
-      permalink: true
-      toc_depth: 2
-      separator: "_"

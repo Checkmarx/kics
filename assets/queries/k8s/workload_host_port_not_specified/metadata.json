@@ -1,0 +1,9 @@
+{
+  "id": "2b1836f1-dcce-416e-8e16-da8c71920633",
+  "queryName": "Workload Host Port Not Specified",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Verifies if Kubernetes workload's host port is specified",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#exposing-the-service",
+  "platform": "Kubernetes"
+}

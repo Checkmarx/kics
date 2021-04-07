@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "StatefulSet Without Service Name",
+    "severity": "LOW",
+    "line": 26
+  }
+]
