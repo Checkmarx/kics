@@ -114,7 +114,6 @@ Flags:
   -x, --exclude-results strings      exclude results by providing the similarity ID of a result
                                      can be provided multiple times or as a comma separated string
                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
-      --force                        return status code 0 even if there are results
   -h, --help                         help for scan
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
