@@ -15,7 +15,7 @@ import (
 const RetriesDefaultValue = 50
 
 // Converter returns content json, error line, error
-type Converter func(file *hcl.File) (model.Document, int, error)
+type Converter func(file *hcl.File, inputVariables converter.InputVariableMap) (model.Document, int, error)
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
@@ -29,6 +29,12 @@ func NewDefault() *Parser {
 		numOfRetries: RetriesDefaultValue,
 		convertFunc:  converter.DefaultConverted,
 	}
+}
+
+// Resolve - replace or modifies in-memory content before parsing
+func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+	getInputVariables(filepath.Dir(filename))
+	return &fileContent, nil
 }
 
 // Parse execute parser for the content in a file
@@ -90,5 +96,5 @@ func (p *Parser) doParse(content []byte, fileName string) (json model.Document, 
 		return nil, line, errors.Wrap(err, "failed to parse file")
 	}
 
-	return p.convertFunc(file)
+	return p.convertFunc(file, inputVariableMap)
 }

@@ -6,9 +6,10 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.0
 	github.com/containerd/containerd v1.4.4 // indirect
+	github.com/fatih/color v1.10.0 // indirect
 	github.com/getsentry/sentry-go v0.10.0
 	github.com/golang/mock v1.5.0
-	github.com/google/go-cmp v0.5.3 // indirect
+	github.com/google/go-cmp v0.5.4 // indirect
 	github.com/google/uuid v1.2.0
 	github.com/gookit/color v1.4.0
 	github.com/hashicorp/hcl v1.0.0
@@ -16,6 +17,8 @@ require (
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/moby/buildkit v0.8.2
+	github.com/onsi/ginkgo v1.14.2 // indirect
+	github.com/onsi/gomega v1.10.4 // indirect
 	github.com/open-policy-agent/opa v0.27.1
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pkg/errors v0.9.1

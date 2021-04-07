@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/stretchr/testify/require"
+	"github.com/zclconf/go-cty/cty"
 )
 
 // TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them (test with nested block)
@@ -30,7 +31,7 @@ block "label_one" "label_two" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file)
+	body, _, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
@@ -59,7 +60,7 @@ block "label_one" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file)
+	body, _, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
@@ -96,7 +97,44 @@ block "label_one" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file)
+	body, _, err := DefaultConverted(file, InputVariableMap{})
+	if err != nil {
+		t.Fatal("parse bytes:", err)
+	}
+	inputMarsheld, err := json.Marshal(body)
+	if err != nil {
+		t.Errorf("Error Marshling: %s", err)
+	}
+	compareTest(t, inputMarsheld, expected)
+}
+
+// TestInputVariables tests if it is replacing variables
+func TestInputVariables(t *testing.T) {
+	input := `
+block "label_one" {
+	attribute = "${var.test}"
+	attribute1 = var.test
+	attribute2 = "${var.test}-concat"
+}
+`
+
+	expected := `{
+	"block": {
+		"label_one": {
+			"attribute": "my-test",
+			"attribute1": "my-test",
+			"attribute2": "my-test-concat"
+		}
+	}
+}`
+
+	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
+
+	body, _, err := DefaultConverted(file, InputVariableMap{
+		"var": cty.ObjectVal(map[string]cty.Value{
+			"test": cty.StringVal("my-test"),
+		}),
+	})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
@@ -155,7 +193,7 @@ data "terraform_remote_state" "remote" {
 	config = {
 		profile = var.profile
 		region  = var.region
-		bucket  = "mybucket"
+		bucket  = "${var.bucket}-mybucket"
 		key     = "mykey"
 	}
 }
@@ -210,10 +248,10 @@ variable "region" {
 				"remote": {
 					"backend": "s3",
 					"config": {
-						"bucket": "mybucket",
+						"bucket": "bucket-mybucket",
 						"key": "mykey",
 						"profile": "${var.profile}",
-						"region": "${var.region}"
+						"region": "us-east-1"
 					}
 				}
 			}
@@ -228,7 +266,7 @@ variable "region" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file)
+	body, _, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}

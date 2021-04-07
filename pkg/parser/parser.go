@@ -15,6 +15,7 @@ type kindParser interface {
 	SupportedExtensions() []string
 	SupportedTypes() []string
 	Parse(filePath string, fileContent []byte) ([]model.Document, error)
+	Resolve(fileContent []byte, filename string) (*[]byte, error)
 }
 
 // Builder is a representation of parsers that will be construct
@@ -76,7 +77,11 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 		ext = filepath.Base(filePath)
 	}
 	if p, ok := c.parsers[ext]; ok {
-		obj, err := p.Parse(filePath, fileContent)
+		resolved, err := p.Resolve(fileContent, filePath)
+		if err != nil {
+			return nil, "", err
+		}
+		obj, err := p.Parse(filePath, *resolved)
 		if err != nil {
 			return nil, "", err
 		}

@@ -61,7 +61,7 @@ function pasteFilter(numberOfColumns) {
 function filterQueryTable(numberOfColumns) {
   var allLines = document.querySelectorAll(":not(.modal-body) > table > tbody > tr")
 
-  hideRow = new Set();
+  var hideRow = new Set();
   for (var i = 0; i < numberOfColumns; i++) {
     const input = document.querySelector(`#query-filter-${i}`)
     var textToFilter = ""
@@ -105,7 +105,10 @@ function sortFunction(index) {
   return function (a, b) {
     const severityA = severityOrder[a.children[index].innerText.toLowerCase().trim()]
     const severityB = severityOrder[b.children[index].innerText.toLowerCase().trim()]
-    return severityA == severityB ? 0: severityA < severityB ? -1*sortOrder : 1*sortOrder
+    if (severityA == severityB) {
+      return 0
+    } 
+    return severityA < severityB ? -1*sortOrder : 1*sortOrder
   }
 }
 
@@ -135,7 +138,7 @@ function exportToCSV(filename) {
   
   for (var i = 0; i < rows.length; i++) {
     var row = []
-    cols = rows[i].querySelectorAll("td, th")
+    var cols = rows[i].querySelectorAll("td, th")
     for (var j = 0; j < cols.length; j++) {
       var text = `"${cols[j].innerText.replace(/\\n/g, " ").replaceAll(/"/g,'')}"`
       if (cols[j].tagName == "TH") {

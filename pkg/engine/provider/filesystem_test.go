@@ -200,7 +200,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 		fields fields
 		args   args
 		want   struct {
-			got checkCondition
+			got bool
 			err error
 		}
 	}{
@@ -218,13 +218,10 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				path: "../../assets/queries",
 			},
 			want: struct {
-				got checkCondition
+				got bool
 				err error
 			}{
-				got: checkCondition{
-					skip:  false,
-					isDir: true,
-				},
+				got: true,
 				err: nil,
 			},
 		},
