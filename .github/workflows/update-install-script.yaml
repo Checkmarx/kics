@@ -3,7 +3,7 @@ name: update-install-script
 on:
   workflow_dispatch:
   release:
-    type: [published]
+    type: [created]
 
 jobs:
   update-install:

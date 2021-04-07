@@ -16,7 +16,7 @@ jobs:
         id: get-version
         run: |
           git fetch --prune --unshallow --tags
-          echo "::set-output name=version::$(git describe --tags --abbrev=0)"
+          echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
