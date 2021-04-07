@@ -3,6 +3,7 @@ package converter
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -10,6 +11,7 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty"
+	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
 
 // TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them (test with nested block)
@@ -118,15 +120,11 @@ block "label_one" {
 }
 `
 
-	expected := `{
-	"block": {
-		"label_one": {
-			"attribute": "my-test",
-			"attribute1": "my-test",
-			"attribute2": "my-test-concat"
-		}
+	expected := map[string]string{
+		"attribute":  "my-test",
+		"attribute1": "my-test",
+		"attribute2": "my-test-concat",
 	}
-}`
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
@@ -138,11 +136,18 @@ block "label_one" {
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
-	inputMarsheld, err := json.Marshal(body)
-	if err != nil {
-		t.Errorf("Error Marshling: %s", err)
+	for key, value := range expected {
+		t.Run(fmt.Sprintf("body['block']['label_one'][%s] should be equal to %s", key, value), func(t *testing.T) {
+			gotValue := ""
+			if token, ok := body["block"].(model.Document)["label_one"].(model.Document)[key].(ctyjson.SimpleJSONValue); ok {
+				gotValue = token.Value.AsString()
+			} else {
+				gotValue = body["block"].(model.Document)["label_one"].(model.Document)[key].(string)
+			}
+
+			require.Equal(t, value, gotValue)
+		})
 	}
-	compareTest(t, inputMarsheld, expected)
 }
 
 // TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them
