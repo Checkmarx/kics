@@ -298,23 +298,3 @@ func (p *Printer) PrintBySev(content, sev string) string {
 	}
 	return content
 }
-
-// ExitCodeCal calculate exit code base on severity of results
-func ExitCodeCal(summary *model.Summary) int {
-	var exitValue = 0
-	// codeArr is needed to make sure 'for' cycle is made in an ordered fashion
-	codeArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO"}
-	codeMap := map[model.Severity]int{"HIGH": 5, "MEDIUM": 4, "LOW": 3, "INFO": 2}
-	exitMap := summary.SeveritySummary.SeverityCounters
-	for _, sev := range codeArr {
-		if exitMap[sev] > 0 {
-			if exitValue == 0 {
-				exitValue = codeMap[sev] * 10
-				continue
-			}
-			exitValue += codeMap[sev]
-		}
-	}
-
-	return exitValue
-}
