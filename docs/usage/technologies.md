@@ -37,7 +37,7 @@ resource "aws_launch_configuration" "example" {
 }
 ```
 
-Considering `var.data = a123B` and `var.price = 1.023`, it would be parsed like the following example:
+Considering `var.data = "a123B"` and `var.price = 1.023`, it would be parsed like the following example:
 
 ```hcl
 resource "aws_launch_configuration" "example" {

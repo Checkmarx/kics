@@ -25,6 +25,8 @@ The last command will execute the scan and save JSON and SARIF reports on output
 
 ## JSON
 
+JSON reports are sorted by severity (from high to info) and should looks like as following:
+
 ```json
 {
 	"files_scanned": 2,
@@ -65,6 +67,9 @@ The last command will execute the scan and save JSON and SARIF reports on output
 }
 ```
 ## SARIF
+
+SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.0 standard](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html) and looks like:
+
 ```json
 {
 	"$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
@@ -290,4 +295,7 @@ The last command will execute the scan and save JSON and SARIF reports on output
 ```
 
 ## HTML
+
+HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
+
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
