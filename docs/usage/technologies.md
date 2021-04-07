@@ -16,7 +16,24 @@ KICS supports Docker files with `.dockerfile` extension.
 
 ## Helm
 
-TBD
+KICS supports Helm by rendering charts and running Kubernetes queries against the rendered manifest.
+
+The charts file structure must be as explained by Helm: https://helm.sh/docs/topics/charts/#the-chart-file-structure.
+
+Results are displayed against original Helm files:
+
+```
+Service With External Load Balance, Severity: MEDIUM, Results: 1
+Description: Service has an external load balancer, which may cause accessibility from other networks and the Internet
+Platform: Kubernetes
+
+        [1]: /charts/nginx-ingress/templates/controller-service.yaml:20
+
+                019:     release: {{ template "nginx-ingress.releaseLabel" . }}
+                020:   name: {{ template "nginx-ingress.controller.fullname" . }}
+                021: spec:
+
+```
 
 ## Kubernetes
 
@@ -26,7 +43,7 @@ KICS supports Kubernetes files with `.yaml` extension.
 
 KICS support `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
 
-Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call: 
+Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
 
 ```hcl
 resource "aws_launch_configuration" "example" {
