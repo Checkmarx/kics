@@ -1,0 +1,9 @@
+{
+  "id": "c606ba1d-d736-43eb-ac24-e16108f3a9e0",
+  "queryName": "IP Aliasing Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribut 'ip_allocation_policy' must be defined and, if defined, the attribute 'networking_mode' must be VPC_NATIVE ",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+  "platform": "Terraform"
+}

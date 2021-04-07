@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "PostgreSQL Log Connections Disabled",
+    "severity": "HIGH",
+    "line": 5
+  },
+  {
+    "queryName": "PostgreSQL Log Connections Disabled",
+    "severity": "HIGH",
+    "line": 16
+  }
+]

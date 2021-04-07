@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "MySQL SSL Connection Disabled",
+    "severity": "HIGH",
+    "line": 17
+  },
+  {
+    "queryName": "MySQL SSL Connection Disabled",
+    "severity": "HIGH",
+    "line": 21
+  }
+]

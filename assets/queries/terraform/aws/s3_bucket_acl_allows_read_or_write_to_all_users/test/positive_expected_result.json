@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "HIGH",
+    "line": 3
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "HIGH",
+    "line": 17
+  }
+]

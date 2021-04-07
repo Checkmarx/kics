@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 19
+  },
+  {
+    "queryName": "Node Auto Upgrade Disabled",
+    "severity": "HIGH",
+    "line": 36
+  }
+]

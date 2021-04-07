@@ -1,0 +1,27 @@
+[
+  {
+    "queryName": "GKE Basic Authentication Enabled",
+    "severity": "HIGH",
+    "line": 3
+  },
+  {
+    "queryName": "GKE Basic Authentication Enabled",
+    "severity": "HIGH",
+    "line": 18
+  },
+  {
+    "queryName": "GKE Basic Authentication Enabled",
+    "severity": "HIGH",
+    "line": 32
+  },
+  {
+    "queryName": "GKE Basic Authentication Enabled",
+    "severity": "HIGH",
+    "line": 47
+  },
+  {
+    "queryName": "GKE Basic Authentication Enabled",
+    "severity": "HIGH",
+    "line": 63
+  }
+]

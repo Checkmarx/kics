@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Container Requests Not Equal To It's Limits",
+    "severity": "LOW",
+    "line": 11
+  },
+  {
+    "queryName": "Container Requests Not Equal To It's Limits",
+    "severity": "LOW",
+    "line": 22
+  },
+  {
+    "queryName": "Container Requests Not Equal To It's Limits",
+    "severity": "LOW",
+    "line": 26
+  },
+  {
+    "queryName": "Container Requests Not Equal To It's Limits",
+    "severity": "LOW",
+    "line": 36
+  },
+  {
+    "queryName": "Container Requests Not Equal To It's Limits",
+    "severity": "LOW",
+    "line": 47
+  },
+  {
+    "queryName": "Container Requests Not Equal To It's Limits",
+    "severity": "LOW",
+    "line": 51
+  }
+]

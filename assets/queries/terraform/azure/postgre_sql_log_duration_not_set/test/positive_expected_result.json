@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "PostgreSQL Log Duration Not Set",
+    "severity": "MEDIUM",
+    "line": 6
+  },
+  {
+    "queryName": "PostgreSQL Log Duration Not Set",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "PostgreSQL Log Duration Not Set",
+    "severity": "MEDIUM",
+    "line": 20
+  }
+]

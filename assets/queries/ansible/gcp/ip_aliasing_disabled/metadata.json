@@ -1,0 +1,9 @@
+{
+  "id": "ed672a9f-fbf0-44d8-a47d-779501b0db05",
+  "queryName": "IP Aliasing Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must be created with Alias IP ranges enabled, which means the attribute 'ip_allocation_policy' must be defined and the subattribute 'use_ip_aliases' must be set to 'yes'.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
+  "platform": "Ansible"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "3b30e3d6-c99b-4318-b38f-b99db74578b5",
+  "queryName": "Private Cluster Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'private_cluster_config' must be defined and the attributes 'enable_private_endpoint' and 'enable_private_nodes' must be true.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
+  "platform": "Ansible"
+}

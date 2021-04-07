@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "SSH Access Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 6
+  }
+]

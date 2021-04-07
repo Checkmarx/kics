@@ -1,19 +1,17 @@
 [
-	{
-		"queryName": "Authentication Without MFA",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-
-	{
-		"queryName": "Authentication Without MFA",
-		"severity": "MEDIUM",
-		"line": 9
-	},
-
-	{
-		"queryName": "Authentication Without MFA",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "Authentication Without MFA",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Authentication Without MFA",
+    "severity": "MEDIUM",
+    "line": 9
+  },
+  {
+    "queryName": "Authentication Without MFA",
+    "severity": "MEDIUM",
+    "line": 9
+  }
 ]

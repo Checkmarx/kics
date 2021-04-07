@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "SQS Policy Allows All Actions",
+    "severity": "MEDIUM",
+    "line": 17
+  }
+]

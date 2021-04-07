@@ -1,0 +1,9 @@
+{
+  "id": "0f139403-303f-467c-96bd-e717e6cfd62d",
+  "queryName": "CloudFront Without WAF",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-webaclid",
+  "platform": "CloudFormation"
+}

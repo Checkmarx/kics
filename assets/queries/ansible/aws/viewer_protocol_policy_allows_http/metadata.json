@@ -1,0 +1,9 @@
+{
+  "id": "a6d27cf7-61dc-4bde-ae08-3b353b609f76",
+  "queryName": "Viewer Protocol Policy Allows HTTP",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
+  "platform": "Ansible"
+}

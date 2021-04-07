@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Encryption On Managed Disk Disabled",
+    "severity": "MEDIUM",
+    "line": 10
+  },
+  {
+    "queryName": "Encryption On Managed Disk Disabled",
+    "severity": "MEDIUM",
+    "line": 18
+  }
+]

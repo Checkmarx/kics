@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Service Control Policies Disabled",
+    "severity": "MEDIUM",
+    "line": 4
+  },
+  {
+    "queryName": "Service Control Policies Disabled",
+    "severity": "MEDIUM",
+    "line": 21
+  },
+  {
+    "queryName": "Service Control Policies Disabled",
+    "severity": "MEDIUM",
+    "line": 36
+  }
+]

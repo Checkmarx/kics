@@ -1,0 +1,9 @@
+{
+  "id": "60af03ff-a421-45c8-b214-6741035476fa",
+  "queryName": "Container Resources Limits Undefined",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes container should have resource limitations defined such as CPU and memory",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod",
+  "platform": "Terraform"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Password Without Reuse Prevention",
+    "severity": "MEDIUM",
+    "line": 3
+  },
+  {
+    "queryName": "Password Without Reuse Prevention",
+    "severity": "MEDIUM",
+    "line": 23
+  },
+  {
+    "queryName": "Password Without Reuse Prevention",
+    "severity": "MEDIUM",
+    "line": 26
+  }
+]

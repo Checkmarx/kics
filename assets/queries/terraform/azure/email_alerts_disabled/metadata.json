@@ -1,0 +1,9 @@
+{
+  "id": "9db38e87-f6aa-4b5e-a1ec-7266df259409",
+  "queryName": "Email Alerts Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that alerts notifications are set to 'On' in the Azure Security Center Contact",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact",
+  "platform": "Terraform"
+}

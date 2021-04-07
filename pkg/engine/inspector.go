@@ -9,6 +9,9 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/pkg/detector"
+	"github.com/Checkmarx/kics/pkg/detector/docker"
+	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
@@ -40,7 +43,8 @@ var ErrNoResult = errors.New("query: not result")
 var ErrInvalidResult = errors.New("query: invalid result format")
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
-type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}) (model.Vulnerability, error)
+type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
+	detector *detector.DetectLine) (model.Vulnerability, error)
 
 // Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
 // TrackQueryLoad increments the number of loaded queries
@@ -68,6 +72,7 @@ type Inspector struct {
 	tracker        Tracker
 	failedQueries  map[string]error
 	excludeResults map[string]bool
+	detector       *detector.DetectLine
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
@@ -157,12 +162,17 @@ func NewInspector(
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
+	lineDetctor := detector.NewDetectLine(tracker.GetOutputLines()).
+		Add(helm.DetectKindLine{}, model.KindHELM).
+		Add(docker.DetectKindLine{}, model.KindDOCKER)
+
 	return &Inspector{
 		queries:        opaQueries,
 		vb:             vb,
 		tracker:        tracker,
 		failedQueries:  failedQueries,
 		excludeResults: excludeResults,
+		detector:       lineDetctor,
 	}, nil
 }
 
@@ -310,7 +320,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
-		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem)
+		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).

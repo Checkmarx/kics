@@ -1,0 +1,9 @@
+{
+  "id": "9192e0f9-eca5-4056-9282-ae2a736a4088",
+  "queryName": "Pod Security Policy Disabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters must have Pod Security Policy controller enabled, which means there must be a 'pod_security_policy_config' with the 'enabled' attribute equal to true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+  "platform": "Terraform"
+}

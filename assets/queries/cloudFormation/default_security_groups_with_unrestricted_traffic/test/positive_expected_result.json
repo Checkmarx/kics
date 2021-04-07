@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Default Security Groups With Unrestricted Traffic",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive2.json"
+  }
+]

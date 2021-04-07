@@ -1,0 +1,9 @@
+{
+  "id": "a187ac47-8163-42ce-8a63-c115236be6fb",
+  "queryName": "Azure Container Registry With No Locks",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Azurerm Container Registry Must Contain Associated Locks ",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry",
+  "platform": "Terraform"
+}

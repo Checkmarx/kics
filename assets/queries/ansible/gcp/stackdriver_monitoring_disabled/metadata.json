@@ -1,0 +1,9 @@
+{
+  "id": "20dcd953-a8b8-4892-9026-9afa6d05a525",
+  "queryName": "Stackdriver Monitoring Disabled",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must be defined and different than 'none'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
+  "platform": "Ansible"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 9
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 24
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 44
+  }
+]
