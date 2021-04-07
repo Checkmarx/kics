@@ -1,4 +1,4 @@
-## Results
+# Results
 KICS can export results in multiple formats which can be seen on the following list:
 - JSON
 - SARIF
@@ -21,9 +21,11 @@ where the output-path will be the directory containing all report files and repo
 
 The last command will execute the scan and save JSON and SARIF reports on output folder.
 
-### Report examples
+# Report examples
 
-#### JSON
+## JSON
+
+JSON reports are sorted by severity (from high to info) and should looks like as following:
 
 ```json
 {
@@ -64,7 +66,10 @@ The last command will execute the scan and save JSON and SARIF reports on output
 	"total_counter": 1
 }
 ```
-#### SARIF
+## SARIF
+
+SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.0 standard](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html) and looks like:
+
 ```json
 {
 	"$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
@@ -289,5 +294,8 @@ The last command will execute the scan and save JSON and SARIF reports on output
 }
 ```
 
-#### HTML
+## HTML
+
+HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
+
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
