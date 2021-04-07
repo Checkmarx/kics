@@ -11,6 +11,9 @@ import (
 
 	"github.com/Checkmarx/kics/internal/tracker"
 
+	"github.com/Checkmarx/kics/pkg/detector"
+	"github.com/Checkmarx/kics/pkg/detector/docker"
+	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
@@ -110,6 +113,9 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 
 // TestInspect tests the functions [Inspect()] and all the methods called by them
 func TestInspect(t *testing.T) { //nolint
+	inspDetector := detector.NewDetectLine(3).
+		Add(helm.DetectKindLine{}, model.KindHELM).
+		Add(docker.DetectKindLine{}, model.KindDOCKER)
 	ctx := context.Background()
 	opaQuery, _ := rego.New(
 		rego.Query(regoQuery),
@@ -240,6 +246,7 @@ func TestInspect(t *testing.T) { //nolint
 					QueryURI:         "https://github.com/Checkmarx/kics/",
 					Severity:         model.SeverityInfo,
 					Line:             -1,
+					VulnLines:        []model.CodeLine{},
 					IssueType:        "IncorrectValue",
 					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
 					KeyExpectedValue: "'COPY' app.jar",
@@ -288,6 +295,7 @@ func TestInspect(t *testing.T) { //nolint
 				enableCoverageReport: tt.fields.enableCoverageReport,
 				coverageReport:       tt.fields.coverageReport,
 				excludeResults:       tt.fields.excludeResults,
+				detector:             inspDetector,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, filepath.FromSlash("assets/queries/"))
 			if tt.wantErr {

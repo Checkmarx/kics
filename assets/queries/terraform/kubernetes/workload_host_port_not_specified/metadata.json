@@ -1,0 +1,9 @@
+{
+  "id": "4e74cf4f-ff65-4c1a-885c-67ab608206ce",
+  "queryName": "Workload Host Port Not Specified",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Verifies if Kubernetes workload's host port is specified",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_port",
+  "platform": "Terraform"
+}

@@ -6,27 +6,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  goreleaser:
+  pre_release_job:
     runs-on: ubuntu-latest
+    outputs:
+      changes: ${{ steps.lasttag.outputs.newchanges }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Check if there are new commits since last nightly
-        id: sincelasttag
-        run: echo "::set-output name=commits=$(git log --oneline $(git describe --tags --match 'nightly' --abbrev=0)..HEAD)"
+        id: lasttag
+        run: echo "::set-output name=newchanges::$(bash ./.github/new_changes_nightly.sh)"
+  goreleaser:
+    needs: pre_release_job
+    if: ${{ needs.pre_release_job.outputs.changes == 'yes' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set up Go
-        if: steps.sincelasttag.outputs.commits != ""
         uses: actions/setup-go@v2
         with:
           go-version: 1.16
       - name: Set short hash
-        if: steps.sincelasttag.outputs.commits != ""
         id: shorthash
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
       - name: Run GoReleaser
-        if: steps.sincelasttag.outputs.commits != ""
         uses: goreleaser/goreleaser-action@v2
         with:
           version: latest
@@ -34,7 +42,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: delete release
-        if: steps.sincelasttag.outputs.commits != ""
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
           delete_release: true # default: false
@@ -42,7 +49,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
-        if: steps.sincelasttag.outputs.commits != ""
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -53,11 +59,9 @@ jobs:
           draft: false
           prerelease: true
       - name: Display assets
-        if: steps.sincelasttag.outputs.commits != ""
         run: |
           ls -l /home/runner/work/kics/kics/dist
       - name: Upload Release Asset Linux
-        if: steps.sincelasttag.outputs.commits != ""
         id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
         env:
@@ -68,7 +72,6 @@ jobs:
           asset_name: kics_nightly-release_linux_amd64.tar.gz
           asset_content_type: application/gzip
       - name: Upload Release Asset Darwin
-        if: steps.sincelasttag.outputs.commits != ""
         id: upload-release-asset-darwin
         uses: actions/upload-release-asset@v1
         env:
@@ -79,7 +82,6 @@ jobs:
           asset_name: kics_nightly-release_darwin_amd64.tar.gz
           asset_content_type: application/gzip
       - name: Upload Release Asset Windows
-        if: steps.sincelasttag.outputs.commits != ""
         id: upload-release-asset-windows
         uses: actions/upload-release-asset@v1
         env:
@@ -90,7 +92,6 @@ jobs:
           asset_name: kics_nightly-release_windows_amd64.zip
           asset_content_type: application/zip
       - name: Upload Release Asset Checksum
-        if: steps.sincelasttag.outputs.commits != ""
         id: upload-release-asset-checksums
         uses: actions/upload-release-asset@v1
         env:
@@ -102,10 +103,15 @@ jobs:
           asset_content_type: text/plain
   push_to_registry:
     name: Push Docker image to Docker Hub
+    needs: pre_release_job
+    if: ${{ needs.pre_release_job.outputs.changes == 'yes' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Set short hash
+        id: shorthash
+        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub

@@ -218,7 +218,12 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 
 		return nil
 	}
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Err(err).
+				Msgf("Queries provider can't close file, file=%s", filepath.Clean(path.Join(queryDir, MetadataFileName)))
+		}
+	}()
 
 	var metadata map[string]interface{}
 	if err := json.NewDecoder(f).Decode(&metadata); err != nil {

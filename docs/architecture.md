@@ -12,7 +12,7 @@ So far have written 1000+ ready-to-use queries that cover a wide range of vulner
 
 KICS has a pluggable architecture with extensible pipeline of parsing IaC languages, which allows an easy integration of new IaC languages and queries.
 
-At a high very level, KICS is composed of the following main components: a command line interface, parser, queries execution engine,  IaC providers,  security queries, and results writer.
+At a very high level, KICS is composed of the following main components: a command line interface, parser, queries execution engine,  IaC providers,  security queries, and results writer.
 
 - Command Line Interface => Provides CLI input to KICS.
 - Parser => responsible for parsing input IaC files (terraform and others)
