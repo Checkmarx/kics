@@ -11,6 +11,7 @@ import (
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
+	minifyJS "github.com/tdewolff/minify/v2/js"
 )
 
 var (
@@ -18,6 +19,8 @@ var (
 	htmlTemplate string
 	//go:embed template/html/report.css
 	cssTemplate string
+	//go:embed template/html/report.js
+	jsTemplate string
 	//go:embed template/html/github.svg
 	githubSVG string
 	//go:embed template/html/info.svg
@@ -49,6 +52,16 @@ func includeCSS(name string) template.HTML {
 	return template.HTML("<style>" + cssMinified + "</style>") //nolint
 }
 
+func includeJS(name string) template.HTML {
+	minifier := minify.New()
+	minifier.AddFunc("text/javascript", minifyJS.Minify)
+	jsMinified, err := minifier.String("text/javascript", jsTemplate)
+	if err != nil {
+		return ""
+	}
+	return template.HTML("<script>" + jsMinified + "</script>") //nolint
+}
+
 // PrintHTMLReport creates a report file on HTML format
 func PrintHTMLReport(path, filename string, body interface{}) error {
 	if !strings.HasSuffix(filename, ".html") {
@@ -57,6 +70,7 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 
 	templateFuncs["includeSVG"] = includeSVG
 	templateFuncs["includeCSS"] = includeCSS
+	templateFuncs["includeJS"] = includeJS
 
 	fullPath := filepath.Join(path, filename)
 	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))

@@ -61,9 +61,14 @@ body {
 .severity {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   position: relative;
   margin: 0 22px;
   align-items: center;
+}
+
+.severity > .caption.selected {
+  text-decoration: underline overline;
 }
 
 .badge {
@@ -278,4 +283,8 @@ summary {
   user-select: none;
   font-size: 18px;
   font-weight: bold;
+}
+
+.hide {
+  display: none;
 }

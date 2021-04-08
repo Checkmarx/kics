@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KICS Scan Result</title>
   {{ includeCSS "report.css" }}
+  {{ includeJS "report.js" }}
 </head>
 <body>
   <div class="container">
@@ -12,79 +13,86 @@
     <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
     <div class="counters">
     {{- with .SeveritySummary -}}
-      <div class="severity">
+      <div class="severity" onclick="filter('HIGH')">
         <div class="kics-orange icon">{{ includeSVG "vulnerability_fill.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "high") }}</span>
         <span class="caption">HIGH</span>
       </div>
-      <div class="severity">
+      <div class="severity" onclick="filter('MEDIUM')">
         <div class="kics-orange icon">{{ includeSVG "vulnerability_out.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "medium") }}</span>
         <span class="caption">MEDIUM</span>
       </div>
-      <div class="severity">
+      <div class="severity" onclick="filter('LOW')">
         <div class="kics-purple icon">{{ includeSVG "vulnerability_out.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "low") }}</span>
         <span class="caption">LOW</span>
       </div>
-      <div class="severity">
+      <div class="severity" onclick="filter('INFO')">
         <div class="kics-purple icon">{{ includeSVG "info.svg" }}</div>
         <span class="badge">{{ index .SeverityCounters (severity "info") }}</span>
         <span class="caption">INFO</span>
       </div>
     {{- end}}
+      <div class="severity" onclick="filter('TOTAL')">
+        <div class="kics-orange icon">{{ includeSVG "info.svg" }}</div>
+        <span class="badge">{{ .TotalCounter }}</span>
+        <span class="caption selected">TOTAL</span>
+      </div>
     </div>
     {{- range .Queries}}
-    <hr class="separator"/>
-    <div class="query">
-      <div class="query-info">
-        <div class="query-title">
-          <h2>
-            {{- if eq .Severity "HIGH" -}}
-            <div class="kics-orange">{{ includeSVG "vulnerability_fill.svg" }}</div>
-            {{- end -}}
-            {{- if eq .Severity "MEDIUM" -}}
-            <div class="kics-orange">{{ includeSVG "vulnerability_out.svg" }}</div>
-            {{- end -}}
-            {{- if eq .Severity "LOW" -}}
-            <div class="kics-purple">{{ includeSVG "vulnerability_out.svg" }}</div>
-            {{- end -}}
-            {{- if eq .Severity "INFO" -}}
-            <div class="kics-purple">{{ includeSVG "info.svg" }}</div>
-            {{- end -}}
-            {{- .QueryName -}}
-          </h2>
-          <span><strong>Platform:</strong> {{ .Platform }}</span>
-          <span><strong>Category:</strong> {{ .Category }}</span>
-        </div>
-        <div class="query-details">
-          <span>{{ .Description }}</span>
-          <span><a href="{{ .QueryURI }}" target="_blank">{{ .QueryURI }}</a></span>
-        </div>
-      </div>
-      <details>
-        <summary>Results ({{ len .Files }})</summary>
-        {{- range .Files}}
-        {{- $vulLine := .Line -}}
-        <div class="vulnerable-info">
-          <div class="vulnerable-info-header">
-            <strong>File: {{ .FileName }}</strong>
-            <span>Line {{ $vulLine }}</span>
+    <div data-type="severity" data-name="{{.Severity}}">
+      <hr class="separator"/>
+      <div class="query">
+        <div class="query-info">
+          <div class="query-title">
+            <h2>
+              {{- if eq .Severity "HIGH" -}}
+              <div class="kics-orange">{{ includeSVG "vulnerability_fill.svg" }}</div>
+              {{- end -}}
+              {{- if eq .Severity "MEDIUM" -}}
+              <div class="kics-orange">{{ includeSVG "vulnerability_out.svg" }}</div>
+              {{- end -}}
+              {{- if eq .Severity "LOW" -}}
+              <div class="kics-purple">{{ includeSVG "vulnerability_out.svg" }}</div>
+              {{- end -}}
+              {{- if eq .Severity "INFO" -}}
+              <div class="kics-purple">{{ includeSVG "info.svg" }}</div>
+              {{- end -}}
+              {{- .QueryName -}}
+            </h2>
+            <span><strong>Platform:</strong> {{ .Platform }}</span>
+            <span><strong>Category:</strong> {{ .Category }}</span>
           </div>
-          <div class="vulnerable-info-details">
-            <span><strong>Expected:</strong> {{ .KeyExpectedValue }}</span>
-            <span><strong>Found:</strong> {{ .KeyActualValue }}</span>
+          <div class="query-details">
+            <span>{{ .Description }}</span>
+            <span><a href="{{ .QueryURI }}" target="_blank">{{ .QueryURI }}</a></span>
           </div>
-          <div class="code-box">
-            {{- range .VulnLines -}}
-            <div class="code-line {{ if eq .Position $vulLine }}error{{ end }}">
-              <span class="code-line-counter">{{ .Position }}</span><span class="code">{{ trimSpaces .Line }}</span>
+        </div>
+        <details>
+          <summary>Results ({{ len .Files }})</summary>
+          {{- range .Files}}
+          {{- $vulLine := .Line -}}
+          <div class="vulnerable-info">
+            <div class="vulnerable-info-header">
+              <strong>File: {{ .FileName }}</strong>
+              <span>Line {{ $vulLine }}</span>
             </div>
-            {{- end}}
+            <div class="vulnerable-info-details">
+              <span><strong>Expected:</strong> {{ .KeyExpectedValue }}</span>
+              <span><strong>Found:</strong> {{ .KeyActualValue }}</span>
+            </div>
+            <div class="code-box">
+              {{- range .VulnLines -}}
+              <div class="code-line {{ if eq .Position $vulLine }}error{{ end }}">
+                <span class="code-line-counter">{{ .Position }}</span><span class="code">{{ trimSpaces .Line }}</span>
+              </div>
+              {{- end}}
+            </div>
           </div>
-        </div>
-        {{- end -}}
-      </details>
+          {{- end -}}
+        </details>
+      </div>
     </div>
     {{- end -}}
     <hr class="separator"/>
