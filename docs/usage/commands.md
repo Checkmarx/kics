@@ -16,13 +16,13 @@ Available Commands:
   version        Displays the current version
 
 Flags:
-      --ci                 display only log messages to CLI output
+      --ci                 display only log messages to CLI output (mutually exclusive with silent)
   -h, --help               help for kics
   -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
       --log-path string    path to log files, (defaults to ${PWD}/info.log)
       --no-color           disable CLI color output
-  -s, --silent             silence stdout messages (mutually exclusive with verbose)
+  -s, --silent             silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose            write logs to stdout too (mutually exclusive with silent)
 
 Use "kics [command] --help" for more information about a command.
@@ -63,12 +63,12 @@ Flags:
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
 
 Global Flags:
-      --ci                 display only log messages to CLI output
+      --ci                 display only log messages to CLI output (mutually exclusive with silent)
   -l, --log-file           writes log messages to log file
       --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
       --log-path string    path to log files, (defaults to ${PWD}/info.log)
       --no-color           disable CLI color output
-  -s, --silent             silence stdout messages (mutually exclusive with verbose)
+  -s, --silent             silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose            write logs to stdout too (mutually exclusive with silent)
 ```
 
