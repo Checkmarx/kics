@@ -278,13 +278,13 @@ a.checkmarx:active {
   opacity: 0.8;
 }
 
+.hide {
+  display: none;
+}
+
 summary {
   cursor: pointer;
   user-select: none;
   font-size: 18px;
   font-weight: bold;
-}
-
-.hide {
-  display: none;
 }
