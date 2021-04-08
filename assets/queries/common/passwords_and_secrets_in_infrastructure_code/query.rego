@@ -12,7 +12,7 @@ CxPolicy[result] {
 	not commonLib.equalsOrInArray(clearParse, father)
 
 	#get all string values from json
-	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"$]+\"[]\n\r,}]", json.marshal(keyDoc), -1)
+	allValues = regex.find_n("\"[^\"]+\"\\s*:\\s*\"[^\"]+\"[]\n\r,}]", json.marshal(keyDoc), -1)
 
 	correctStrings := getCorrectStrings(replaceUniCode(allValues[m]), father)
 
@@ -20,7 +20,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": docs.id,
-		"searchKey": sprintf("{{%s}}.%s=%s", [correctStrings.id, correctStrings.key, correctStrings.value]),
+		"searchKey": sprintf("{{%s}}.%s={{%s}}", [correctStrings.id, correctStrings.key, correctStrings.value]),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Hardcoded secret key should not appear in source",
 		"keyActualValue": correctStrings.value,
@@ -71,7 +71,7 @@ checkforvulnerability(correctStrings) { #ignore ascii cases
 	count(regex.find_n("[a-z]+", correctStrings.value, -1)) > 0
 	count(regex.find_n("[A-Z]+", correctStrings.value, -1)) > 0
 	count(regex.find_n("[0-9]+", correctStrings.value, -1)) > 0
-	count(regex.find_n("^[^\\s_]+$", correctStrings.value, -1)) > 0
+	count(regex.find_n("^[^\\s_]+", correctStrings.value, -1)) > 0
 
 	#remove common key and values
 	checkCommon(correctStrings)
