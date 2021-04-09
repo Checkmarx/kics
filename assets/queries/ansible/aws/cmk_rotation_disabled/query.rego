@@ -7,7 +7,7 @@ CxPolicy[result] {
 	kms := task["community.aws.aws_kms"]
 	ansLib.checkState(kms)
 
-	kms.enable == true
+	kms.enabled == true
 	object.get(kms, "pending_window", "undefined") == "undefined"
 	object.get(kms, "enable_key_rotation", "undefined") == "undefined"
 
@@ -25,7 +25,7 @@ CxPolicy[result] {
 	kms := task["community.aws.aws_kms"]
 	ansLib.checkState(kms)
 
-	kms.enable == true
+	kms.enabled == true
 	object.get(kms, "pending_window", "undefined") == "undefined"
 	kms.enable_key_rotation == false
 
