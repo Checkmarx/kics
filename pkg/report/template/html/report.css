@@ -61,9 +61,14 @@ body {
 .severity {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   position: relative;
   margin: 0 22px;
   align-items: center;
+}
+
+.severity > .caption.selected {
+  text-decoration: underline overline;
 }
 
 .badge {
@@ -271,6 +276,10 @@ a.checkmarx:active {
   text-decoration: underline;
   color: #fff;
   opacity: 0.8;
+}
+
+.hide {
+  display: none;
 }
 
 summary {
