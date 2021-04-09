@@ -2,11 +2,13 @@
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 2,
+    "fileName": "positive2.yaml"
   }
 ]

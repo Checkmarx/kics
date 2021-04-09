@@ -9,7 +9,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_autoscaling_group[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set", [name]),
+		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
 		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is undefined", [name]),
 	}
 }

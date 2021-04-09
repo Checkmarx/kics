@@ -3,7 +3,7 @@
   "queryName": "Auto Scaling Group With No Associated ELB",
   "severity": "MEDIUM",
   "category": "Availability",
-  "descriptionText": "AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'LoadBalancerNames' must be defined and not empty.",
+  "descriptionText": "AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'load_balancers' must be defined and not empty.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_asg_module.html#parameter-load_balancers",
   "platform": "Ansible"
 }

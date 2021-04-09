@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.load_balancers is set", [modules[m]]),
+		"keyExpectedValue": sprintf("%s.load_balancers is set and not empty", [modules[m]]),
 		"keyActualValue": sprintf("%s.load_balancers is undefined", [modules[m]]),
 	}
 }
