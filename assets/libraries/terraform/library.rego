@@ -71,13 +71,13 @@ anyPrincipal(statement) {
 	contains(statement.Principal.AWS[i], "*")
 }
 
-getSpecInfo(document) = specInfo { # this one can be also used for the result
-	spec := document.spec.job_template.spec.template.spec
+getSpecInfo(resource) = specInfo { # this one can be also used for the result
+	spec := resource.spec.job_template.spec.template.spec
 	specInfo := {"spec": spec, "path": "spec.job_template.spec.template.spec"}
 } else = specInfo {
-	spec := document.spec.template.spec
+	spec := resource.spec.template.spec
 	specInfo := {"spec": spec, "path": "spec.template.spec"}
 } else = specInfo {
-	spec := document.spec
+	spec := resource.spec
 	specInfo := {"spec": spec, "path": "spec"}
 }
