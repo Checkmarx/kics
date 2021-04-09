@@ -3,6 +3,7 @@ package provider
 import (
 	"context"
 	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
+	"github.com/Checkmarx/kics/test"
 	"github.com/pkg/errors"
 )
 
@@ -185,7 +187,16 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 
 // TestFileSystemSourceProvider_checkConditions tests the functions [checkConditions()] and all the methods called by them
 func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
-	infoFile, _ := os.Stat("../../../assets/queries")
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Errorf("failed to change dir: %s", err)
+	}
+	infoFile, err := os.Stat(filepath.FromSlash("assets/queries"))
+	checkStatErr(t, err)
+	fileInfoSlice := []fs.FileInfo{
+		infoFile,
+	}
+	infoHelm, errHelm := os.Stat(filepath.FromSlash("test/fixtures/test_helm"))
+	checkStatErr(t, errHelm)
 	type fields struct {
 		path     string
 		excludes map[string][]os.FileInfo
@@ -195,19 +206,20 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 		extensions model.Extensions
 		path       string
 	}
+	type want struct {
+		got bool
+		err error
+	}
 	tests := []struct {
 		name   string
 		fields fields
 		args   args
-		want   struct {
-			got bool
-			err error
-		}
+		want   want
 	}{
 		{
 			name: "check_conditions",
 			fields: fields{
-				path:     "../../assets/queries",
+				path:     filepath.FromSlash("assets/queries"),
 				excludes: nil,
 			},
 			args: args{
@@ -215,14 +227,47 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				extensions: model.Extensions{
 					".dockerfile": dockerParser.Parser{},
 				},
-				path: "../../assets/queries",
+				path: filepath.FromSlash("assets/queries"),
 			},
-			want: struct {
-				got bool
-				err error
-			}{
+			want: want{
 				got: true,
 				err: nil,
+			},
+		},
+		{
+			name: "check_conditions_chart",
+			fields: fields{
+				path:     filepath.FromSlash("test/fixtures/test_helm"),
+				excludes: nil,
+			},
+			args: args{
+				info:       infoHelm,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("test/fixtures/test_helm"),
+			},
+			want: want{
+				got: false,
+				err: nil,
+			},
+		},
+		{
+			name: "should_skip_folder",
+			fields: fields{
+				path: filepath.FromSlash("assets/queries"),
+				excludes: map[string][]fs.FileInfo{
+					"queries": fileInfoSlice,
+				},
+			},
+			args: args{
+				info: infoFile,
+				extensions: model.Extensions{
+					".dockerfile": dockerParser.Parser{},
+				},
+				path: filepath.FromSlash("assets/queries"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
 			},
 		},
 	}
@@ -233,7 +278,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				excludes: tt.fields.excludes,
 			}
 			if got, err := s.checkConditions(tt.args.info, tt.args.extensions, tt.args.path); got != tt.want.got || err != tt.want.err {
-				t.Errorf("FileSystemSourceProvider.checkConditions() = %v, want %v", got, tt.want)
+				t.Errorf("FileSystemSourceProvider.checkConditions() = %v, want %v", err, tt.want)
 			}
 		})
 	}
@@ -253,4 +298,10 @@ var mockResolverSink = func(ctx context.Context, filename string) error {
 
 var mockErrResolverSink = func(ctx context.Context, filename string) error {
 	return errors.New("")
+}
+
+func checkStatErr(t *testing.T, err error) {
+	if err != nil {
+		t.Errorf("failed to get info: %s", err)
+	}
 }
