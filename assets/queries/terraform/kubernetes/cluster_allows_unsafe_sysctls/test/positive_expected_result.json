@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.tf"
+  }
+]
