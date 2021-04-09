@@ -11,4 +11,3 @@
     tags:
       - environment: production
         propagate_at_launch: no
-
