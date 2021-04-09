@@ -1,4 +1,5 @@
-resource "kubernetes_pod" "negative3" {
+
+resource "kubernetes_pod" "test2" {
   metadata {
     name = "terraform-example"
   }
@@ -11,9 +12,7 @@ resource "kubernetes_pod" "negative3" {
         name  = "example"
 
         security_context = {
-          capabilities = {
-            drop = ["ALL"]
-          }
+          allow_privilege_escalation = false
         }
 
         env = {
