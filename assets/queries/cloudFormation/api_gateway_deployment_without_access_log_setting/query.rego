@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
-	not check_resources_type(document[i].Resources)
+	not check_resources_type("AWS::ApiGateway::Stage")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,6 +21,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
+	check_resources_type("AWS::ApiGateway::Stage")
 	not settings_are_equal(document[i].Resources, name)
 
 	result := {
@@ -37,9 +38,10 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
+	check_resources_type("AWS::ApiGateway::Stage")
 	settings_are_equal(document[i].Resources, name)
 
-    object.get(resource.Properties, "StageDescription", "undefined") = "undefined"
+	object.get(resource.Properties, "StageDescription", "undefined") = "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -55,6 +57,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
+	check_resources_type("AWS::ApiGateway::Stage")
 	settings_are_equal(document[i].Resources, name)
 
 	object.get(resource.Properties.StageDescription, "AccessLogSetting", "undefined") = "undefined"
@@ -68,8 +71,9 @@ CxPolicy[result] {
 	}
 }
 
-check_resources_type(resource) {
-	resource[_].Type == "AWS::ApiGateway::Stage"
+check_resources_type(resourceType) {
+	resource := input.document[_].Resources
+	resource[_].Type == resourceType
 }
 
 settings_are_equal(resource, deploymentName) {

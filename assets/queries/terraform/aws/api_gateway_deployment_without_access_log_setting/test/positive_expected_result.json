@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]
