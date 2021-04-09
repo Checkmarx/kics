@@ -24,7 +24,7 @@ var inputVarMap = make(InputVariableMap)
 
 // DefaultConverted an hcl File to a toJson serializable object
 // This assumes that the body is a hclsyntax.Body
-var DefaultConverted = func(file *hcl.File, inputVariables InputVariableMap) (model.Document, int, error) {
+var DefaultConverted = func(file *hcl.File, inputVariables InputVariableMap) (model.Document, error) {
 	inputVarMap = inputVariables
 	c := converter{bytes: file.Bytes}
 	body, err := c.convertBody(file.Body.(*hclsyntax.Body))
@@ -32,13 +32,13 @@ var DefaultConverted = func(file *hcl.File, inputVariables InputVariableMap) (mo
 	if err != nil {
 		sentry.CaptureException(err)
 		if er, ok := err.(*hcl.Diagnostic); ok && er.Subject != nil {
-			return nil, er.Subject.Start.Line, err
+			return nil, err
 		}
 
-		return nil, 0, err
+		return nil, err
 	}
 
-	return body, 0, nil
+	return body, nil
 }
 
 type converter struct {
