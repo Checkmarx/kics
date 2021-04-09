@@ -1,0 +1,6 @@
+- name: Update IAM policy on an existing KMS key1
+  community.aws.aws_kms:
+    alias: my-kms-key
+    policy: '{"Version": "2012-10-17", "Id": "my-kms-key-permissions", "Statement": [ { <SOME STATEMENT> } ]}'
+    state: present
+    enabled: false

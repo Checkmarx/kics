@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "CMK Is Unusable",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "CMK Is Unusable",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.yaml"
+  }
+]
