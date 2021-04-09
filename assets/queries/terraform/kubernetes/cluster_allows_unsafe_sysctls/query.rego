@@ -18,7 +18,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	sysctl := resource.spec.security_context.sysctl[x].name
-	checkUnsafe(sysctl)
+	check_unsafe(sysctl)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	}
 }
 
-checkUnsafe(sysctl) {
+check_unsafe(sysctl) {
 	safeSysctls = {"kernel.shm_rmid_forced", "net.ipv4.ip_local_port_range", "net.ipv4.tcp_syncookies", "net.ipv4.ping_group_range"}
 	not safeSysctls[sysctl]
 }

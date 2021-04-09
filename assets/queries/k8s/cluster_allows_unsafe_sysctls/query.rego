@@ -24,7 +24,7 @@ CxPolicy[result] {
 	spec := document.spec
 
 	sysctl := spec.securityContext.sysctls[_].name
-	checkUnsafe(sysctl)
+	check_unsafe(sysctl)
 
 	metadata := document.metadata
 
@@ -37,7 +37,7 @@ CxPolicy[result] {
 	}
 }
 
-checkUnsafe(sysctl) {
+check_unsafe(sysctl) {
 	safeSysctls = {"kernel.shm_rmid_forced", "net.ipv4.ip_local_port_range", "net.ipv4.tcp_syncookies", "net.ipv4.ping_group_range"}
 	not safeSysctls[sysctl]
 }
