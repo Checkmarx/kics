@@ -38,12 +38,14 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 
 // Parse execute parser for the content in a file
 func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
-	var (
-		fc       model.Document
-		parseErr error
-	)
+	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	fc, parseErr = p.doParse(content, filepath.Base(path))
+	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
+		err := diagnostics.Errs()[0]
+		return nil, err
+	}
+
+	fc, parseErr := p.convertFunc(file, inputVariableMap)
 
 	return []model.Document{fc}, errors.Wrap(parseErr, "failed terraform parse")
 }
@@ -61,15 +63,4 @@ func (p *Parser) SupportedTypes() []string {
 // GetKind returns Terraform kind parser
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindTerraform
-}
-
-func (p *Parser) doParse(content []byte, fileName string) (json model.Document, err error) {
-	file, diagnostics := hclsyntax.ParseConfig(content, fileName, hcl.Pos{Byte: 0, Line: 1, Column: 1})
-
-	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
-		err := diagnostics.Errs()[0]
-		return nil, err
-	}
-
-	return p.convertFunc(file, inputVariableMap)
 }
