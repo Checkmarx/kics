@@ -2,117 +2,119 @@ package Cx
 
 create := "create"
 
+resourceTypes := ["kubernetes_role", "kubernetes_cluster_role"]
+
 pods := "pods"
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	resource[name].rule[ru].verbs[l] == create
-	resource[name].rule[ru].resources[r] == pods
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	resource.rule[ru].verbs[l] == create
+	resource.rule[ru].resources[r] == pods
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, create]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_role[%s].rule.verbs should not contain the value 'create' when kubernetes_role[%s].rule.resources contains the value 'pods'", [name, name]),
-		"keyActualValue": sprintf("kubernetes_role[%s].rule.verbs contains the value 'create' and kubernetes_role[%s].rule.resources contains the value 'pods'", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains the value 'create' and %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	resource[name].rule[ru].verbs[l] == create
-	isWildCardValue(resource[name].rule[ru].resources[r])
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	resource.rule[ru].verbs[l] == create
+	isWildCardValue(resource.rule[ru].resources[r])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, create]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_role[%s].rule.verbs should not contain the value 'create' when kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
-		"keyActualValue": sprintf("kubernetes_role[%s].rule.verbs contains the value 'create' and kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains the value 'create' and %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	isWildCardValue(resource[name].rule[ru].verbs[l])
-	resource[name].rule[ru].resources[r] == pods
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	isWildCardValue(resource.rule[ru].verbs[l])
+	resource.rule[ru].resources[r] == pods
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, resourceType.metadata.name, resource.rule[ru].verbs[l]]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule[ru].verbs[l]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain a wildcard value when metadata.name=%s.rules.resources contains the value 'pods'", [resourceType.metadata.name, resourceType.metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.rules.verbs contains a wildcard value and metadata.name=%s.rules.resources contains the value 'pods'", [resourceType.metadata.name, resourceType.metadata.name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain a wildcard value when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains a wildcard value and %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	isWildCardValue(resource[name].rule[ru].verbs[l])
-	isWildCardValue(resource[name].rule[ru].resources[r])
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	isWildCardValue(resource.rule[ru].verbs[l])
+	isWildCardValue(resource.rule[ru].resources[r])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, resource.rule[ru].verbs[l]]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule[ru].verbs[l]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_role[%s].rule.verbs should not contain a wildcard value when kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
-		"keyActualValue": sprintf("kubernetes_role[%s].rule.verbs contains a wildcard value and kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain a wildcard value when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains a wildcard value and %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	resource[name].rule.verbs[l] == create
-	resource[name].rule.resources[r] == pods
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	resource.rule.verbs[l] == create
+	resource.rule.resources[r] == pods
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, create]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_role[%s].rule.verbs should not contain the value 'create' when kubernetes_role[%s].rule.resources contains the value 'pods'", [name, name]),
-		"keyActualValue": sprintf("kubernetes_role[%s].rule.verbs contains the value 'create' and kubernetes_role[%s].rule.resources contains the value 'pods'", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains the value 'create' and %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	resource[name].rule.verbs[l] == create
-	isWildCardValue(resource[name].rule.resources[r])
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	resource.rule.verbs[l] == create
+	isWildCardValue(resource.rule.resources[r])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, create]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_role[%s].rule.verbs should not contain the value 'create' when kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
-		"keyActualValue": sprintf("kubernetes_role[%s].rule.verbs contains the value 'create' and kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain the value 'create' when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains the value 'create' and %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	isWildCardValue(resource[name].rule.verbs[l])
-	resource[name].rule.resources[r] == pods
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	isWildCardValue(resource.rule.verbs[l])
+	resource.rule.resources[r] == pods
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, resource[name].rule.verbs[l]]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule.verbs[l]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain a wildcard value when metadata.name=%s.rules.resources contains the value 'pods'", [name, name]),
-		"keyActualValue": sprintf("metadata.name=%s.rules.verbs contains a wildcard value and metadata.name=%s.rules.resources contains the value 'pods'", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verb should not contain a wildcard value when %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verb contains a wildcard value and %s[%s].rule.resources contains the value 'pods'", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
-	isWildCardValue(resource[name].rule.verbs[l])
-	isWildCardValue(resource[name].rule.resources[r])
+	resource := input.document[i].resource[resourceTypes[t]][name]
+	isWildCardValue(resource.rule.verbs[l])
+	isWildCardValue(resource.rule.resources[r])
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceType, name, resource[name].rule.verbs[l]]),
+		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule.verbs[l]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("kubernetes_role[%s].rule.verbs should not contain a wildcard value when kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
-		"keyActualValue": sprintf("kubernetes_role[%s].rule.verbs contains a wildcard value and kubernetes_role[%s].rule.resources contains a wildcard value", [name, name]),
+		"keyExpectedValue": sprintf("%s[%s].rule.verbs should not contain a wildcard value when %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
+		"keyActualValue": sprintf("%s[%s].rule.verbs contains a wildcard value and %s[%s].rule.resources contains a wildcard value", [resourceTypes[t], name, resourceTypes[t], name]),
 	}
 }
 

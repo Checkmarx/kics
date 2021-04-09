@@ -1,0 +1,9 @@
+{
+  "id": "8657197e-3f87-4694-892b-8144701d83c1",
+  "queryName": "Readiness Probe Is Not Configured",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "Check if Readiness Probe is not configured.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#readiness_probe",
+  "platform": "Terraform"
+}
