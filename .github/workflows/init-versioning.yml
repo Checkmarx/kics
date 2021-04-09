@@ -9,9 +9,16 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-bootswatch mike
+      - name: Get Release version
+        id: get-version
+        run: |
+          git fetch --prune --unshallow --tags
+          echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
+      - name: Install Dependencies
+        run: pip install mkdocs-bootswatch mike
+      - name: Mike deployment
       - run: |
           mike delete --all
-          mike deploy 1.2.2 latest
+          mike deploy ${{ steps.get-version.outputs.version }} latest
           mike deploy develop
-          mike set-default 1.2.2
+          mike set-default ${{ steps.get-version.outputs.version }}
