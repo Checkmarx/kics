@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers[y].volume_mount
 	is_object(volumeMounts) == true
-	is_OS_Dir(volumeMounts)
+	is_os_dir(volumeMounts)
 	volumeMounts.read_only == false
 
 	result := {
@@ -34,7 +34,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers[y].volume_mount
 	is_array(volumeMounts) == true
-	is_OS_Dir(volumeMounts[j])
+	is_os_dir(volumeMounts[j])
 	volumeMounts[j].read_only == false
 
 	result := {
@@ -56,7 +56,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers.volume_mount
 	is_object(volumeMounts) == true
-	is_OS_Dir(volumeMounts)
+	is_os_dir(volumeMounts)
 	volumeMounts.read_only == false
 
 	result := {
@@ -78,7 +78,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers.volume_mount
 	is_array(volumeMounts) == true
-	is_OS_Dir(volumeMounts[j])
+	is_os_dir(volumeMounts[j])
 	volumeMounts[j].read_only == false
 
 	result := {
@@ -100,7 +100,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers[y].volume_mount
 	is_object(volumeMounts) == true
-	is_OS_Dir(volumeMounts)
+	is_os_dir(volumeMounts)
 
 	object.get(volumeMounts, "read_only", "undefined") == "undefined"
 
@@ -123,7 +123,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers[y].volume_mount
 	is_array(volumeMounts) == true
-	is_OS_Dir(volumeMounts[j])
+	is_os_dir(volumeMounts[j])
 
 	object.get(volumeMounts[j], "read_only", "undefined") == "undefined"
 
@@ -146,7 +146,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers.volume_mount
 	is_object(volumeMounts) == true
-	is_OS_Dir(volumeMounts)
+	is_os_dir(volumeMounts)
 
 	object.get(volumeMounts, "read_only", "undefined") == "undefined"
 
@@ -169,7 +169,7 @@ CxPolicy[result] {
 
 	volumeMounts := containers.volume_mount
 	is_array(volumeMounts) == true
-	is_OS_Dir(volumeMounts[j])
+	is_os_dir(volumeMounts[j])
 
 	object.get(volumeMounts[j], "read_only", "undefined") == "undefined"
 
@@ -182,7 +182,7 @@ CxPolicy[result] {
 	}
 }
 
-is_OS_Dir(volumeMounts) = result {
+is_os_dir(volumeMounts) = result {
 	hostSensitiveDir = {"/bin", "/sbin", "/boot", "/cdrom", "/dev", "/etc", "/home", "/lib", "/media", "/proc", "/root", "/run", "/seLinux", "/srv", "/usr", "/var"}
 	result = startswith(volumeMounts.mount_path, hostSensitiveDir[_])
 } else = result {
