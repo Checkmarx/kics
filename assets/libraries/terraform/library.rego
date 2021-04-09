@@ -70,3 +70,14 @@ anyPrincipal(statement) {
 	some i
 	contains(statement.Principal.AWS[i], "*")
 }
+
+getSpecInfo(resource) = specInfo { # this one can be also used for the result
+	spec := resource.spec.job_template.spec.template.spec
+	specInfo := {"spec": spec, "path": "spec.job_template.spec.template.spec"}
+} else = specInfo {
+	spec := resource.spec.template.spec
+	specInfo := {"spec": spec, "path": "spec.template.spec"}
+} else = specInfo {
+	spec := resource.spec
+	specInfo := {"spec": spec, "path": "spec"}
+}
