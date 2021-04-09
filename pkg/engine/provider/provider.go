@@ -12,7 +12,7 @@ import (
 type Sink func(ctx context.Context, filename string, content io.ReadCloser) error
 
 // ResolverSink defines a sink function to be passed as reference to functions for resolved files/templates
-type ResolverSink func(ctx context.Context, filename string) error
+type ResolverSink func(ctx context.Context, filename string) ([]string, error)
 
 // SourceProvider is the interface that wraps the basic GetSources method.
 // GetBasePath returns base path of FileSystemSourceProvider

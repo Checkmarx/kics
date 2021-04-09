@@ -26,30 +26,39 @@ var ErrNotSupportedFile = errors.New("invalid file format")
 func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSourceProvider, error) {
 	log.Debug().Msgf("provider.NewFileSystemSourceProvider()")
 	ex := make(map[string][]os.FileInfo, len(excludes))
+	fs := &FileSystemSourceProvider{
+		path:     filepath.FromSlash(path),
+		excludes: ex,
+	}
 	for _, exclude := range excludes {
 		excludePaths, err := getExcludePaths(exclude)
 		if err != nil {
 			return nil, err
 		}
-		for _, excludePath := range excludePaths {
-			info, err := os.Stat(excludePath)
-			if err != nil {
-				if os.IsNotExist(err) {
-					continue
-				}
-				return nil, errors.Wrap(err, "failed to open excluded file")
-			}
-			if _, ok := ex[info.Name()]; !ok {
-				ex[info.Name()] = make([]os.FileInfo, 0)
-			}
-			ex[info.Name()] = append(ex[info.Name()], info)
+		if err := fs.AddExcluded(excludePaths); err != nil {
+			return nil, err
 		}
 	}
 
-	return &FileSystemSourceProvider{
-		path:     filepath.FromSlash(path),
-		excludes: ex,
-	}, nil
+	return fs, nil
+}
+
+// TODO: NEDDS UNIT TESTS
+func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
+	for _, excludePath := range excludePaths {
+		info, err := os.Stat(excludePath)
+		if err != nil {
+			if os.IsNotExist(err) {
+				continue
+			}
+			return errors.Wrap(err, "failed to open excluded file")
+		}
+		if _, ok := s.excludes[info.Name()]; !ok {
+			s.excludes[info.Name()] = make([]os.FileInfo, 0)
+		}
+		s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
+	}
+	return nil
 }
 
 func getExcludePaths(pathExpressions string) ([]string, error) {
@@ -71,6 +80,7 @@ func (s *FileSystemSourceProvider) GetBasePath() string {
 // GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
+	beenRendered := false
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
@@ -99,12 +109,20 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 		}
 
 		// ------------------ Helm resolver --------------------------------
+		// TODO: NEEDS REFACTORING
 		if info.IsDir() {
-			err = resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
-			if err != nil {
-				sentry.CaptureException(err)
-				log.Err(err).
-					Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+			if !beenRendered { // This variable will block helm from re-rendering subcharts
+				excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
+				if errRes != nil {
+					sentry.CaptureException(errRes)
+					log.Err(errRes).
+						Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+					return nil // so beRendered flag isn't alterd
+				}
+				if errAdd := s.AddExcluded(excluded); errAdd != nil {
+					log.Err(errAdd).Msgf("got an error whooo")
+				}
+				beenRendered = true
 			}
 			return nil
 		}

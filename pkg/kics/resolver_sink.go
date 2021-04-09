@@ -11,20 +11,24 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (s *Service) resolverSink(ctx context.Context, filename, scanID string) error {
-	s.Tracker.TrackFileFound()
+func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]string, error) {
 	kind := s.Resolver.GetType(filename)
 	if kind == model.KindCOMMON {
-		return nil
+		return []string{}, nil
 	}
 	resFiles, err := s.Resolver.Resolve(filename, kind)
 	if err != nil {
-		return errors.Wrap(err, "failed to render file content")
+		return []string{}, errors.Wrap(err, "failed to render file content")
 	}
-	for _, rfile := range resFiles.File {
+
+	excluded := make([]string, len(resFiles.File))
+
+	for idx, rfile := range resFiles.File {
+		s.Tracker.TrackFileFound()
+		excluded[idx] = rfile.FileName
 		documents, _, err := s.Parser.Parse(rfile.FileName, rfile.Content)
 		if err != nil {
-			return errors.Wrap(err, "failed to parse file content")
+			return []string{}, errors.Wrap(err, "failed to parse file content")
 		}
 		for _, document := range documents {
 			_, err = json.Marshal(document)
@@ -47,6 +51,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) err
 			}
 			s.saveToFile(ctx, &file)
 		}
+		s.Tracker.TrackFileParse()
 	}
-	return nil
+	return excluded, nil
 }

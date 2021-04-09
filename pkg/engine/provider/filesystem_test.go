@@ -292,12 +292,12 @@ var mockErrSink = func(ctx context.Context, filename string, content io.ReadClos
 	return errors.New("")
 }
 
-var mockResolverSink = func(ctx context.Context, filename string) error {
-	return nil
+var mockResolverSink = func(ctx context.Context, filename string) ([]string, error) {
+	return []string{}, nil
 }
 
-var mockErrResolverSink = func(ctx context.Context, filename string) error {
-	return errors.New("")
+var mockErrResolverSink = func(ctx context.Context, filename string) ([]string, error) {
+	return []string{}, errors.New("")
 }
 
 func checkStatErr(t *testing.T, err error) {
