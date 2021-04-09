@@ -1,13 +1,16 @@
 package Cx
 
+import data.generic.terraform as terraLib
+
 types := {"init_container", "container"}
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	not resourceEqual(resourceType)
+	not resource_equal(resourceType)
 
-	container := resource[name].spec[types[x]]
+	specInfo := terraLib.getSpecInfo(resource[name])
+	container := specInfo.spec[types[x]]
 
 	is_object(container) == true
 
@@ -15,19 +18,20 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s.readiness_probe is set", [resourceType, name, types[x]]),
-		"keyActualValue": sprintf("%s[%s].spec.%s.readiness_probe is undefined", [resourceType, name, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s.readiness_probe is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyActualValue": sprintf("%s[%s].%s.%s.readiness_probe is undefined", [resourceType, name, specInfo.path, types[x]]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
-	not resourceEqual(resourceType)
+	not resource_equal(resourceType)
 
-	container := resource[name].spec[types[x]]
+	specInfo := terraLib.getSpecInfo(resource[name])
+	container := specInfo.spec[types[x]]
 
 	is_array(container) == true
 
@@ -35,14 +39,14 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].spec.%s[%d].readiness_probe is set", [resourceType, name, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].spec.%s[%d].readiness_probe is undefined", [resourceType, name, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is set", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is undefined", [resourceType, name, specInfo.path, types[x], y]),
 	}
 }
 
-resourceEqual(type) {
+resource_equal(type) {
 	resources := {"kubernetes_cron_job", "kubernetes_job"}
 
 	type == resources[_]

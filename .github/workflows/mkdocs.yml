@@ -13,8 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: toko-bifrost/ms-teams-deploy-card@master
+        if: always()
+        with:
+          github-token: ${{ secrets.KICS_BOT_PAT }}
+          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
+          card-layout-start: cozy
+          card-layout-exit: complete
+          show-on-start: true
+          show-on-exit: true
+          custom-actions: |
+            - name: View CI Logs
+              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
+            - name: View HEAD Commit
+              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-bootswatch
-      - run: mkdocs gh-deploy --force
+      - run: pip install mkdocs-bootswatch mike
+      - run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - run: mike deploy develop -u

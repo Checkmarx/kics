@@ -1,0 +1,13 @@
+- name: elb12
+  community.aws.ec2_asg:
+    name: special
+    load_balancers: [ 'lb1', 'lb2' ]
+    availability_zones: [ 'eu-west-1a', 'eu-west-1b' ]
+    launch_config_name: 'lc-1'
+    min_size: 1
+    max_size: 10
+    desired_capacity: 5
+    vpc_zone_identifier: [ 'subnet-abcd1234', 'subnet-1a2b3c4d' ]
+    tags:
+      - environment: production
+        propagate_at_launch: no

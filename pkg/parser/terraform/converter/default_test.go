@@ -33,7 +33,7 @@ block "label_one" "label_two" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file, InputVariableMap{})
+	body, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
@@ -62,7 +62,7 @@ block "label_one" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file, InputVariableMap{})
+	body, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
@@ -99,7 +99,7 @@ block "label_one" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file, InputVariableMap{})
+	body, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
@@ -128,7 +128,7 @@ block "label_one" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file, InputVariableMap{
+	body, err := DefaultConverted(file, InputVariableMap{
 		"var": cty.ObjectVal(map[string]cty.Value{
 			"test": cty.StringVal("my-test"),
 		}),
@@ -271,7 +271,7 @@ variable "region" {
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
-	body, _, err := DefaultConverted(file, InputVariableMap{})
+	body, err := DefaultConverted(file, InputVariableMap{})
 	if err != nil {
 		t.Fatal("parse bytes:", err)
 	}
