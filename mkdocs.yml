@@ -60,6 +60,7 @@ extra_css:
 
 extra_javascript:
   - js/custom.js
+  - js/version-mike.js
 
 # Plugins
 plugins:

@@ -1,13 +1,6 @@
-name: mkdocs
-
+name: init-versioning
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'docs/**'
-      - 'mkdocs.yml'
-
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,4 +10,8 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-bootswatch mike
-      - run: mike deploy develop -u
+      - run: |
+          mike delete --all
+          mike deploy 1.2.2 latest
+          mike deploy develop
+          mike set-default 1.2.2
