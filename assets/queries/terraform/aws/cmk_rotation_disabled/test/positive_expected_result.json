@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive2.tf"
+  }
+]
