@@ -52,6 +52,10 @@ jobs:
           python-version: 3.x
       - name: Create a new docs version
         run: pip install mkdocs-bootswatch mike
+      - name: Config KICSBot git user
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Deploy mike version
         run: |
           mike deploy ${{ steps.cversion.outputs.version }} latest -u
