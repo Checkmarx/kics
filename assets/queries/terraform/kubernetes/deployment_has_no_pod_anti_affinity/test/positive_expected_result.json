@@ -2,21 +2,25 @@
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
-    "line": 25
+    "line": 25,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
-    "line": 87
+    "line": 26,
+    "fileName": "positive2.tf"
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
-    "line": 164
+    "line": 26,
+    "fileName": "positive3.tf"
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
-    "line": 245
+    "line": 26,
+    "fileName": "positive4.tf"
   }
 ]

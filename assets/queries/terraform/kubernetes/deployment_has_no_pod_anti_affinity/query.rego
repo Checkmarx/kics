@@ -99,7 +99,7 @@ CxPolicy[result] {
 	templateLabels := resource.spec.template.metadata.labels
 	selectorLabels := pref.pod_affinity_term.label_selector.match_labels
 
-	matchLabels(templateLabels, selectorLabels) == false
+	match_labels(templateLabels, selectorLabels) == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -154,7 +154,7 @@ CxPolicy[result] {
 	templateLabels := resource.spec.template.metadata.labels
 	selectorLabels := pref.label_selector.match_labels
 
-	matchLabels(templateLabels, selectorLabels) == false
+	match_labels(templateLabels, selectorLabels) == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -165,7 +165,7 @@ CxPolicy[result] {
 	}
 }
 
-matchLabels(templateLabels, selectorLabels) {
+match_labels(templateLabels, selectorLabels) {
 	some Key
 	templateLabels[Key] == selectorLabels[Key]
 } else = false {

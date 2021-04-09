@@ -109,7 +109,7 @@ CxPolicy[result] {
 	templateLabels := deployment.spec.template.metadata.labels
 	selectorLabels := pref.podAffinityTerm.labelSelector.matchLabels
 
-	matchLabels(templateLabels, selectorLabels) == false
+	match_labels(templateLabels, selectorLabels) == false
 
 	metadata := deployment.metadata
 	result := {
@@ -168,7 +168,7 @@ CxPolicy[result] {
 	templateLabels := deployment.spec.template.metadata.labels
 	selectorLabels := pref.labelSelector.matchLabels
 
-	matchLabels(templateLabels, selectorLabels) == false
+	match_labels(templateLabels, selectorLabels) == false
 
 	metadata := deployment.metadata
 	result := {
@@ -180,7 +180,7 @@ CxPolicy[result] {
 	}
 }
 
-matchLabels(templateLabels, selectorLabels) {
+match_labels(templateLabels, selectorLabels) {
 	some Key
 	templateLabels[Key] == selectorLabels[Key]
 } else = false {
