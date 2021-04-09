@@ -34,4 +34,9 @@ jobs:
       - run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - run: mike deploy develop -u
+      - name: Create develop docs
+        run: mike deploy develop -u
+      - name: Publish changes
+        run: |
+          git checkout gh-pages
+          git push origin gh-pages
