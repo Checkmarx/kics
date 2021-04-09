@@ -146,6 +146,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		if err != nil {
 			return true, nil
 		}
+		return false, nil
 	}
 
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
