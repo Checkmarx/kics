@@ -2,21 +2,19 @@
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 8,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "MEDIUM",
-    "line": 39
+    "line": 8,
+    "fileName": "positive2.tf"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "MEDIUM",
-    "line": 11
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "MEDIUM",
-    "line": 37
+    "line": 8,
+    "fileName": "positive3.tf"
   }
 ]
