@@ -300,10 +300,6 @@ func createService(inspector *engine.Inspector,
 func scan() error {
 	log.Debug().Msg("console.scan()")
 
-	if errlog := setupLogs(); errlog != nil {
-		return errlog
-	}
-
 	printer := consoleHelpers.NewPrinter(min)
 	printer.Success.Printf("\n%s\n", banner)
 

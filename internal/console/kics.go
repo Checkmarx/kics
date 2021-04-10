@@ -4,15 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io"
 	"os"
-	"path/filepath"
 	"time"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/getsentry/sentry-go"
-	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -27,15 +24,14 @@ const (
 var (
 	ctx = context.Background()
 
-	verbose  bool
-	logFile  bool
-	logPath  string
-	logLevel string
-	noColor  bool
-	silent   bool
-	ci       bool
-
-	warnings = make(map[string]bool)
+	verbose   bool
+	logFile   bool
+	logPath   string
+	logLevel  string
+	logFormat string
+	noColor   bool
+	silent    bool
+	ci        bool
 
 	rootCmd = &cobra.Command{
 		Use:   "kics",
@@ -49,31 +45,42 @@ func initialize() error {
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(listPlatformsCmd)
 	rootCmd.PersistentFlags().BoolVarP(&logFile,
-		"log-file",
-		"l",
+		printer.LogFileFlag,
+		printer.LogFileShorthand,
 		false,
 		"writes log messages to log file")
 	rootCmd.PersistentFlags().StringVarP(&logPath,
-		"log-path",
+		printer.LogPathFlag,
 		"",
 		"",
 		fmt.Sprintf("path to log files, (defaults to ${PWD}/%s)", constants.DefaultLogFile))
 	rootCmd.PersistentFlags().StringVarP(&logLevel,
-		"log-level",
+		printer.LogLevelFlag,
 		"",
 		"INFO",
 		"determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose",
-		"v",
+	rootCmd.PersistentFlags().StringVarP(&logFormat,
+		printer.LogFormatFlag,
+		printer.LogFormatShorthand,
+		printer.LogFormatPretty,
+		fmt.Sprintf("determines log format (%s,%s)", printer.LogFormatPretty, printer.LogFormatJSON))
+	rootCmd.PersistentFlags().BoolVarP(&verbose,
+		printer.VerboseFlag,
+		printer.VerboseShorthand,
 		false,
 		"write logs to stdout too (mutually exclusive with silent)")
-	rootCmd.PersistentFlags().BoolVarP(&silent, "silent",
-		"s",
+	rootCmd.PersistentFlags().BoolVarP(&silent,
+		printer.SilentFlag,
+		printer.SilentShorthand,
 		false,
 		"silence stdout messages (mutually exclusive with verbose and ci)")
-	rootCmd.PersistentFlags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
+	rootCmd.PersistentFlags().BoolVarP(&noColor,
+		printer.NoColorFlag,
+		"",
+		false,
+		"disable CLI color output")
 	rootCmd.PersistentFlags().BoolVarP(&ci,
-		"ci",
+		printer.CIFlag,
 		"",
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
@@ -84,37 +91,14 @@ func initialize() error {
 
 	initScanCmd()
 	if insertScanCmd() {
-		warnings["DEPRECATION WARNING: for future versions use 'kics scan'"] = true
+		log.Warn().Msg("WARNING: for future versions use 'kics scan'")
 		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
 	}
+
 	return nil
 }
 
-func setLogLevel() {
-	switch logLevel {
-	case "TRACE":
-		zerolog.SetGlobalLevel(zerolog.TraceLevel)
-	case "DEBUG":
-		zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	case "INFO":
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	case "WARN":
-		zerolog.SetGlobalLevel(zerolog.WarnLevel)
-	case "ERROR":
-		zerolog.SetGlobalLevel(zerolog.ErrorLevel)
-	case "FATAL":
-		zerolog.SetGlobalLevel(zerolog.FatalLevel)
-	default:
-		warnings["Invalid log level, setting default INFO level"] = true
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	}
-}
-
-func setupLogs() error {
-	consoleLogger := zerolog.ConsoleWriter{Out: io.Discard}
-	fileLogger := zerolog.ConsoleWriter{Out: io.Discard}
-	setLogLevel()
-
+func validateFlags() error {
 	if verbose && silent {
 		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
 	}
@@ -122,50 +106,6 @@ func setupLogs() error {
 	if ci && silent {
 		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
 	}
-
-	if verbose {
-		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
-	}
-
-	if noColor {
-		color.Disable()
-		consoleLogger.NoColor = true
-	}
-
-	if logPath == "" {
-		currentWorkDir, err := os.Getwd()
-		if err != nil {
-			return err
-		}
-		logPath = filepath.Join(currentWorkDir, constants.DefaultLogFile)
-	}
-
-	if logFile {
-		file, err := os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
-		if err != nil {
-			return err
-		}
-		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: file, NoColor: true})
-	}
-
-	if silent {
-		color.SetOutput(io.Discard)
-		os.Stdout = nil
-	}
-
-	if ci {
-		color.SetOutput(io.Discard)
-		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout, NoColor: true}
-		os.Stdout = nil
-	}
-
-	mw := io.MultiWriter(consoleLogger, fileLogger)
-	log.Logger = log.Output(mw)
-
-	for warn := range warnings {
-		log.Warn().Msgf("%v", warn)
-	}
-
 	return nil
 }
 
@@ -184,7 +124,6 @@ func insertScanCmd() bool {
 // Execute starts kics execution
 func Execute() error {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
 	err := sentry.Init(sentry.ClientOptions{})
 	if err != nil {
@@ -198,7 +137,13 @@ func Execute() error {
 		return err
 	}
 
-	if err := setupLogs(); err != nil {
+	if err := validateFlags(); err != nil {
+		sentry.CaptureException(err)
+		log.Err(err)
+		return err
+	}
+
+	if err := printer.ConfigurePrinterOutput(rootCmd.PersistentFlags()); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize logs")
 		return err
