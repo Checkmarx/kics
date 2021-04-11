@@ -31,6 +31,11 @@ type Command struct {
 	JSON      bool
 }
 
+// Resolve - replace or modifies in-memory content before parsing
+func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+	return &fileContent, nil
+}
+
 // Parse - parses dockerfile to Json
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document

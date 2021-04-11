@@ -1,0 +1,9 @@
+{
+  "id": "21cef75f-289f-470e-8038-c7cee0664164",
+  "queryName": "No Drop Capabilities for Containers",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Sees if Kubernetes Drop Capabilities exists to ensure containers security context",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#drop",
+  "platform": "Terraform"
+}

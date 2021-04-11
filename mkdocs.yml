@@ -12,13 +12,15 @@ repo_url: https://github.com/Checkmarx/kics/
 
 # Navigation
 nav:
-  - Home: index.md
   - Getting Started:
       - Installation: getting-started.md
       - Configuration: configuration-file.md
       - Results: results.md
       - Architecture: architecture.md
-  - Queries: 
+      - Usage:
+        - KICS Commands: usage/commands.md
+        - Techonologies: usage/technologies.md
+  - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
       - Queries List:
@@ -58,6 +60,7 @@ extra_css:
 
 extra_javascript:
   - js/custom.js
+  - js/version-mike.js
 
 # Plugins
 plugins:

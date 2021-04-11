@@ -1,0 +1,9 @@
+{
+  "id": "a227ec01-f97a-4084-91a4-47b350c1db54",
+  "queryName": "S3 Bucket Without Versioning",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "S3 bucket versioning should be enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
+  "platform": "CloudFormation"
+}

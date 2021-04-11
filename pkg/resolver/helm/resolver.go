@@ -123,7 +123,7 @@ func updateName(template []*chart.File, charts *chart.Chart, name string) []*cha
 }
 
 // getIdMap will construct a map with ids with the corresponding lines as keys
-// for use in detectline
+// for use in detector
 func getIDMap(originalData []byte) (map[int]interface{}, error) {
 	ids := make(map[int]interface{})
 	mapLines := make(map[int]int)

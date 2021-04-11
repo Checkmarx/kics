@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i]
 	containers := resource.spec[types[x]]
 	volumeMounts := containers[_].volumeMounts
-	is_OS_Dir(volumeMounts[v].mountPath)
+	is_os_dir(volumeMounts[v].mountPath)
 	volumeMounts[v].readOnly == false
 
 	result := {
@@ -22,7 +22,7 @@ CxPolicy[result] {
 	resource := input.document[i]
 	containers := resource.spec[types[x]]
 	volumeMounts := containers[_].volumeMounts
-	is_OS_Dir(volumeMounts[v].mountPath)
+	is_os_dir(volumeMounts[v].mountPath)
 	object.get(volumeMounts[v], "readOnly", "undefined") == "undefined"
 
 	result := {
@@ -34,7 +34,7 @@ CxPolicy[result] {
 	}
 }
 
-is_OS_Dir(mountPath) = result {
+is_os_dir(mountPath) = result {
 	hostSensitiveDir = {"/bin", "/sbin", "/boot", "/cdrom", "/dev", "/etc", "/home", "/lib", "/media", "/proc", "/root", "/run", "/seLinux", "/srv", "/usr", "/var"}
 	result = startswith(mountPath, hostSensitiveDir[_])
 } else = result {

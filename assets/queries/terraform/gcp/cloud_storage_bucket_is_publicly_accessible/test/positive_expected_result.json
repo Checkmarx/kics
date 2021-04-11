@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Cloud Storage Bucket Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 4
+  },
+  {
+    "queryName": "Cloud Storage Bucket Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 17
+  }
+]

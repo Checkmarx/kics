@@ -1,0 +1,9 @@
+{
+  "id": "a62a99d1-8196-432f-8f80-3c100b05d62a",
+  "queryName": "Volume Mount With OS Directory Write Permissions",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "Containers can mount sensitive folders from the hosts, giving them potentially dangerous access to critical host configurations and binaries.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#volume_mount",
+  "platform": "Terraform"
+}

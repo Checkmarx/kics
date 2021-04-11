@@ -19,11 +19,6 @@ type FileSystemSourceProvider struct {
 	excludes map[string][]os.FileInfo
 }
 
-type checkCondition struct {
-	skip  bool
-	isDir bool
-}
-
 // ErrNotSupportedFile - error representing when a file format is not supported by KICS
 var ErrNotSupportedFile = errors.New("invalid file format")
 
@@ -99,20 +94,21 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 			return err
 		}
 
-		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path); shouldSkip.skip || shouldSkip.isDir {
-			// ------------------ resolver --------------------------------
-			if shouldSkip.isDir && !shouldSkip.skip {
-				err = resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
-				if err != nil {
-					sentry.CaptureException(err)
-					log.Err(err).
-						Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
-				}
-				return nil
-				// ------------------------------------------------------------
-			}
+		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path); shouldSkip {
 			return skipFolder
 		}
+
+		// ------------------ Helm resolver --------------------------------
+		if info.IsDir() {
+			err = resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
+			if err != nil {
+				sentry.CaptureException(err)
+				log.Err(err).
+					Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+			}
+			return nil
+		}
+		// ------------------------------------------------------------
 
 		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
@@ -140,37 +136,27 @@ func closeFile(file *os.File, info os.FileInfo) {
 	}
 }
 
-func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (checkCondition, error) {
+func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
-			return checkCondition{
-				skip:  true,
-				isDir: true,
-			}, filepath.SkipDir
+			return true, filepath.SkipDir
 		}
-		return checkCondition{
-			skip:  false,
-			isDir: true,
-		}, nil
+		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+		if err != nil {
+			return true, nil
+		}
+		return false, nil
 	}
+
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 		log.Info().Msgf("File ignored: %s", path)
-		return checkCondition{
-			skip:  true,
-			isDir: false,
-		}, nil
+		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {
-		return checkCondition{
-			skip:  true,
-			isDir: false,
-		}, nil
+		return true, nil
 	}
-	return checkCondition{
-		skip:  false,
-		isDir: false,
-	}, nil
+	return false, nil
 }
 
 func containsFile(fileList []os.FileInfo, target os.FileInfo) bool {

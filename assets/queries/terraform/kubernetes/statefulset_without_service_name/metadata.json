@@ -1,0 +1,9 @@
+{
+  "id": "420e6360-47bb-46f6-9072-b20ed22c842d",
+  "queryName": "StatefulSet Without Service Name",
+  "severity": "LOW",
+  "category": "Availability",
+  "descriptionText": "Check if the StatefulSet have a headless 'serviceName'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector",
+  "platform": "Terraform"
+}

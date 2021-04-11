@@ -174,11 +174,11 @@ func printFiles(query *model.VulnerableQuery, printer *Printer) {
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
 		if !printer.minimal {
 			fmt.Println()
-			for lineIdx, line := range query.Files[fileIdx].VulnLines.Lines {
-				if query.Files[fileIdx].VulnLines.Positions[lineIdx] == query.Files[fileIdx].Line {
-					printer.Line.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+			for _, line := range query.Files[fileIdx].VulnLines {
+				if line.Position == query.Files[fileIdx].Line {
+					printer.Line.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				} else {
-					fmt.Printf("\t\t%03d: %s\n", query.Files[fileIdx].VulnLines.Positions[lineIdx], line)
+					fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				}
 			}
 			fmt.Print("\n\n")

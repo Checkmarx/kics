@@ -24,7 +24,7 @@ CxPolicy[result] {
 	spec := document.spec
 
 	sysctl := spec.securityContext.sysctls[_].name
-	check_Unsafe(sysctl)
+	check_unsafe(sysctl)
 
 	metadata := document.metadata
 
@@ -32,12 +32,12 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"searchKey": sprintf("metadata.name=%s.spec.securityContext.sysctls", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.securityContext.sysctls does not have an Unsafe Sysctl", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.securityContext.sysctls has an Unsafe Sysctl", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name=%s.spec.securityContext.sysctls does not have an unsafe sysctl", [metadata.name]),
+		"keyActualValue": sprintf("metadata.name=%s.spec.securityContext.sysctls has an unsafe sysctl", [metadata.name]),
 	}
 }
 
-check_Unsafe(sysctl) {
+check_unsafe(sysctl) {
 	safeSysctls = {"kernel.shm_rmid_forced", "net.ipv4.ip_local_port_range", "net.ipv4.tcp_syncookies", "net.ipv4.ping_group_range"}
 	not safeSysctls[sysctl]
 }

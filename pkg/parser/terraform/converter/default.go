@@ -8,30 +8,37 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
+	"github.com/rs/zerolog/log"
 	"github.com/zclconf/go-cty/cty"
 	ctyconvert "github.com/zclconf/go-cty/cty/convert"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
+
+// InputVariableMap represents a set of terraform input variables
+type InputVariableMap map[string]cty.Value
+
+var inputVarMap = make(InputVariableMap)
 
 // This file is attributed to https://github.com/tmccombs/hcl2json.
 // convertBlock() is manipulated for combining the both blocks and labels for one given resource.
 
 // DefaultConverted an hcl File to a toJson serializable object
 // This assumes that the body is a hclsyntax.Body
-var DefaultConverted = func(file *hcl.File) (model.Document, int, error) {
+var DefaultConverted = func(file *hcl.File, inputVariables InputVariableMap) (model.Document, error) {
+	inputVarMap = inputVariables
 	c := converter{bytes: file.Bytes}
 	body, err := c.convertBody(file.Body.(*hclsyntax.Body))
 
 	if err != nil {
 		sentry.CaptureException(err)
 		if er, ok := err.(*hcl.Diagnostic); ok && er.Subject != nil {
-			return nil, er.Subject.Start.Line, err
+			return nil, err
 		}
 
-		return nil, 0, err
+		return nil, err
 	}
 
-	return body, 0, nil
+	return body, nil
 }
 
 type converter struct {
@@ -135,7 +142,14 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		}
 		return m, nil
 	default:
-		return c.wrapExpr(expr), nil
+		// try to evaluate with variables
+		valueConverted, _ := expr.Value(&hcl.EvalContext{
+			Variables: inputVarMap,
+		})
+		if !valueConverted.Type().HasDynamicTypes() {
+			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
+		}
+		return c.wrapExpr(expr)
 	}
 }
 
@@ -190,8 +204,15 @@ func (c *converter) convertStringPart(expr hclsyntax.Expression) (string, error)
 	case *hclsyntax.TemplateJoinExpr:
 		return c.convertTemplateFor(v.Tuple.(*hclsyntax.ForExpr))
 	default:
+		// try to evaluate with variables
+		valueConverted, _ := expr.Value(&hcl.EvalContext{
+			Variables: inputVarMap,
+		})
+		if valueConverted.Type().FriendlyName() == "string" {
+			return valueConverted.AsString(), nil
+		}
 		// treating as an embedded expression
-		return c.wrapExpr(expr), nil
+		return c.wrapExpr(expr)
 	}
 }
 
@@ -242,6 +263,10 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
 	return builder.String(), nil
 }
 
-func (c *converter) wrapExpr(expr hclsyntax.Expression) string {
-	return "${" + c.rangeSource(expr.Range()) + "}"
+func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) {
+	expression := c.rangeSource(expr.Range())
+	if strings.HasPrefix(expression, "var.") {
+		log.Warn().Msgf("Variable ${%s} value not found", expression)
+	}
+	return "${" + expression + "}", nil
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
+    "line": 25
+  },
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
+    "line": 88
+  },
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
+    "line": 144
+  },
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
+    "line": 162
+  }
+]

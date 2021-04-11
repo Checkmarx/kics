@@ -345,11 +345,13 @@ func scan(changedDefaultQueryPath bool) error {
 	inspector, err := createInspector(t, querySource)
 	if err != nil {
 		log.Err(err)
+		return err
 	}
 
 	service, err := createService(inspector, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
+		return err
 	}
 
 	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {

@@ -1,7 +1,0 @@
-[
-	{
-		"queryName": "Vault with disabled Audit",
-		"severity": "HIGH",
-		"line": 16
-	}
-]

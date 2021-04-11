@@ -33,6 +33,7 @@ var (
 	logLevel string
 	noColor  bool
 	silent   bool
+	ci       bool
 
 	warnings = make(map[string]bool)
 
@@ -66,8 +67,16 @@ func initialize() error {
 		"v",
 		false,
 		"write logs to stdout too (mutually exclusive with silent)")
-	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silence stdout messages (mutually exclusive with verbose)")
+	rootCmd.PersistentFlags().BoolVarP(&silent, "silent",
+		"s",
+		false,
+		"silence stdout messages (mutually exclusive with verbose and ci)")
 	rootCmd.PersistentFlags().BoolVarP(&noColor, "no-color", "", false, "disable CLI color output")
+	rootCmd.PersistentFlags().BoolVarP(&ci,
+		"ci",
+		"",
+		false,
+		"display only log messages to CLI output (mutually exclusive with silent)")
 
 	if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil {
 		return err
@@ -110,12 +119,17 @@ func setupLogs() error {
 		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
 	}
 
+	if ci && silent {
+		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
+	}
+
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
 	}
 
 	if noColor {
 		color.Disable()
+		consoleLogger.NoColor = true
 	}
 
 	if logPath == "" {
@@ -127,7 +141,7 @@ func setupLogs() error {
 	}
 
 	if logFile {
-		file, err := os.OpenFile(logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+		file, err := os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			return err
 		}
@@ -136,6 +150,12 @@ func setupLogs() error {
 
 	if silent {
 		color.SetOutput(io.Discard)
+		os.Stdout = nil
+	}
+
+	if ci {
+		color.SetOutput(io.Discard)
+		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout, NoColor: true}
 		os.Stdout = nil
 	}
 

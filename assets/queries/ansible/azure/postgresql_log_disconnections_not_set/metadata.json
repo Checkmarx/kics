@@ -1,0 +1,9 @@
+{
+  "id": "054d07b5-941b-4c28-8eef-18989dc62323",
+  "queryName": "PostgreSQL Log Disconnections Not Set",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_disconnections' is set to 'ON'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
+  "platform": "Ansible"
+}

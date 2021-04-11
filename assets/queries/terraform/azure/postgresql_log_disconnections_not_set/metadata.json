@@ -1,0 +1,9 @@
+{
+  "id": "07f7134f-9f37-476e-8664-670c218e4702",
+  "queryName": "PostgreSQL Log Disconnections Not Set",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_disconnections' is set to 'ON'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
+  "platform": "Terraform"
+}

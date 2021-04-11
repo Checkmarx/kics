@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Storage Container Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 9
+  },
+  {
+    "queryName": "Storage Container Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 17
+  }
+]

@@ -3,7 +3,7 @@ name: update-docs-index
 on:
   workflow_dispatch:
   release:
-    type: [published]
+    type: [created]
 
 jobs:
   update-index:
@@ -16,14 +16,14 @@ jobs:
           access_token: ${{ github.token }}
       - name: Checkout project
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: Get current date
         id: cdate
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
       - name: Get release version
         id: cversion
-        run: echo "::set-output name=version::$(git describe --tags --abbrev=0 | cut -c2-)"
+        run: |
+          git fetch --prune --unshallow --tags
+          echo "::set-output name=version::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
       - name: Print variables
         run: |
           echo "Version :: ${{ steps.cversion.outputs.version }}"
@@ -47,3 +47,17 @@ jobs:
             Updating documentation index page.
             Triggered by SHA: _${{ github.sha }}_
           labels: documentation
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Create a new docs version
+        run: pip install mkdocs-bootswatch mike
+      - name: Config KICSBot git user
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Deploy mike version
+        run: |
+          mike deploy ${{ steps.cversion.outputs.version }} latest -u
+          mike set-default ${{ steps.cversion.outputs.version }}
+      

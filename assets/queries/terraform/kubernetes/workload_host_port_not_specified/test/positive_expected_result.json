@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Workload Host Port Not Specified",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Workload Host Port Not Specified",
+    "severity": "LOW",
+    "line": 41,
+    "fileName": "positive2.tf"
+  }
+]
