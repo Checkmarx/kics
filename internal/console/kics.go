@@ -85,6 +85,11 @@ func initialize() error {
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
 
+	err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead")
+	if err != nil {
+		return err
+	}
+
 	if err := viper.BindPFlags(rootCmd.PersistentFlags()); err != nil {
 		return err
 	}

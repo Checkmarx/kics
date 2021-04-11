@@ -51,8 +51,33 @@ var (
 	banner string
 )
 
+const (
+	scanCommandStr          = "scan"
+	pathFlag                = "path"
+	pathFlagShorthand       = "p"
+	configFlag              = "config"
+	queriesPathFlag         = "queries-path"
+	queriesPathShorthand    = "q"
+	outputPathFlag          = "output-path"
+	outputPathShorthand     = "o"
+	reportFormatsFlag       = "report-formats"
+	previewLinesFlag        = "preview-lines"
+	excludePathsFlag        = "exclude-paths"
+	excludePathsShorthand   = "e"
+	minimalUIFlag           = "minimal-ui"
+	payloadPathFlag         = "payload-path"
+	payloadPathShorthand    = "d"
+	typeFlag                = "type"
+	typeShorthand           = "t"
+	noProgressFlag          = "no-progress"
+	excludeQueriesFlag      = "exclude-queries"
+	excludeResultsFlag      = "exclude-results"
+	excludeResutlsShorthand = "x"
+	excludeCategoriesFlag   = "exclude-categories"
+)
+
 var scanCmd = &cobra.Command{
-	Use:   "scan",
+	Use:   scanCommandStr,
 	Short: "Executes a scan analysis",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		return initializeConfig(cmd)
@@ -60,6 +85,7 @@ var scanCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return scan()
 	},
+	TraverseChildren: true,
 }
 
 func initializeConfig(cmd *cobra.Command) error {
@@ -150,58 +176,84 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanCmd() {
-	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path or directory path to scan")
-	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
-	scanCmd.Flags().StringVarP(
-		&queryPath,
-		"queries-path",
-		"q",
+	scanCmd.Flags().StringVarP(&path,
+		pathFlag,
+		pathFlagShorthand,
+		"",
+		"path or directory path to scan")
+	scanCmd.Flags().StringVarP(&cfgFile,
+		configFlag,
+		"",
+		"",
+		"path to configuration file")
+	scanCmd.Flags().StringVarP(&queryPath,
+		queriesPathFlag,
+		queriesPathShorthand,
 		"./assets/queries",
 		"path to directory with queries",
 	)
-	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store reports")
-	scanCmd.Flags().StringSliceVarP(
-		&reportFormats,
-		"report-formats",
+	scanCmd.Flags().StringVarP(&outputPath,
+		outputPathFlag,
+		outputPathShorthand,
+		"",
+		"directory path to store reports")
+	scanCmd.Flags().StringSliceVarP(&reportFormats,
+		reportFormatsFlag,
 		"",
 		[]string{},
 		"formats in which the results will be exported (json, sarif, html)",
 	)
-	scanCmd.Flags().IntVarP(&previewLines, "preview-lines", "", 3, "number of lines to be display in CLI results (min: 1, max: 30)")
-	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
-	scanCmd.Flags().StringSliceVarP(
-		&excludePath,
-		"exclude-paths",
-		"e",
+	scanCmd.Flags().IntVarP(&previewLines,
+		previewLinesFlag,
+		"",
+		3,
+		"number of lines to be display in CLI results (min: 1, max: 30)")
+	scanCmd.Flags().StringVarP(&payloadPath,
+		payloadPathFlag,
+		payloadPathShorthand,
+		"",
+		"path to store internal representation JSON file")
+	scanCmd.Flags().StringSliceVarP(&excludePath,
+		excludePathsFlag,
+		excludePathsShorthand,
 		[]string{},
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
-	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
-		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
-	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
-	scanCmd.Flags().StringSliceVarP(
-		&excludeIDs,
-		"exclude-queries",
+	scanCmd.Flags().BoolVarP(&min,
+		minimalUIFlag,
+		"",
+		false,
+		"simplified version of CLI output")
+	scanCmd.Flags().StringSliceVarP(&types,
+		typeFlag,
+		typeShorthand,
+		[]string{""},
+		"case insensitive list of platform types to scan\n"+
+			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
+	scanCmd.Flags().BoolVarP(&noProgress,
+		noProgressFlag,
+		"",
+		false,
+		"hides the progress bar")
+	scanCmd.Flags().StringSliceVarP(&excludeIDs,
+		excludeQueriesFlag,
 		"",
 		[]string{},
 		"exclude queries by providing the query ID\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
-	scanCmd.Flags().StringSliceVarP(
-		&excludeResults,
-		"exclude-results",
-		"x",
+	scanCmd.Flags().StringSliceVarP(&excludeResults,
+		excludeResultsFlag,
+		excludeResutlsShorthand,
 		[]string{},
 		"exclude results by providing the similarity ID of a result\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
 	)
-	scanCmd.Flags().StringSliceVarP(
-		&excludeCategories,
-		"exclude-categories",
+	scanCmd.Flags().StringSliceVarP(&excludeCategories,
+		excludeCategoriesFlag,
 		"",
 		[]string{},
 		"exclude categories by providing its name\n"+

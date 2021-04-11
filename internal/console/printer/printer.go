@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
@@ -49,8 +50,11 @@ var (
 	loggerFile *os.File
 )
 
+// ConfigurePrinterOutput - configures stdout and log options with given FlagSet
 func ConfigurePrinterOutput(flags *pflag.FlagSet) error {
 	flagsMap := make(map[string]interface{})
+
+	logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
 
 	flags.VisitAll(func(f *pflag.Flag) {
 		switch f.Value.Type() {
@@ -69,13 +73,14 @@ func ConfigurePrinterOutput(flags *pflag.FlagSet) error {
 		}
 	}
 
-	if flags.Lookup(LogFormatFlag).Value.String() == LogFormatPretty {
+	if logFormat == LogFormatPretty {
 		log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
 	}
 
 	return nil
 }
 
+// NoColor - disables ASCII color codes
 func NoColor(opt interface{}) error {
 	noColor := opt.(bool)
 	if noColor {
@@ -85,6 +90,7 @@ func NoColor(opt interface{}) error {
 	return nil
 }
 
+// Verbose - redirects log entries to stdout
 func Verbose(opt interface{}) error {
 	verbose := opt.(bool)
 	if verbose {
@@ -93,6 +99,7 @@ func Verbose(opt interface{}) error {
 	return nil
 }
 
+// Silent - disables stdout output
 func Silent(opt interface{}) error {
 	silent := opt.(bool)
 	if silent {
@@ -102,6 +109,7 @@ func Silent(opt interface{}) error {
 	return nil
 }
 
+// CI - enable only log messages to CLI output
 func CI(opt interface{}) error {
 	ci := opt.(bool)
 	if ci {
@@ -112,6 +120,7 @@ func CI(opt interface{}) error {
 	return nil
 }
 
+// LogFormat - configures the logs format (JSON,pretty)
 func LogFormat(opt interface{}) error {
 	logFormat := opt.(string)
 	if logFormat == LogFormatJSON {
@@ -120,6 +129,7 @@ func LogFormat(opt interface{}) error {
 	return nil
 }
 
+// LogPath - sets the log files location
 func LogPath(opt interface{}) error {
 	logPath := opt.(string)
 	var err error
@@ -130,12 +140,14 @@ func LogPath(opt interface{}) error {
 		}
 	}
 	loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile, NoColor: true})
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
+// LogFile - enables write to log file
 func LogFile(opt interface{}) error {
 	logFile := opt.(bool)
 	if logFile {
@@ -144,6 +156,7 @@ func LogFile(opt interface{}) error {
 	return nil
 }
 
+// LogLevel - sets log level
 func LogLevel(opt interface{}) error {
 	logLevel := opt.(string)
 	switch logLevel {
