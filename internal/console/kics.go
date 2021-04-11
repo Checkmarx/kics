@@ -2,7 +2,6 @@ package console
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"os"
 	"time"
@@ -103,17 +102,6 @@ func initialize() error {
 	return nil
 }
 
-func validateFlags() error {
-	if verbose && silent {
-		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
-	}
-
-	if ci && silent {
-		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
-	}
-	return nil
-}
-
 func insertScanCmd() bool {
 	if len(os.Args) > 1 && os.Args[1][0] == '-' {
 		if os.Args[1][1] != '-' {
@@ -139,18 +127,6 @@ func Execute() error {
 	if err := initialize(); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize CLI")
-		return err
-	}
-
-	if err := validateFlags(); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err)
-		return err
-	}
-
-	if err := printer.ConfigurePrinterOutput(rootCmd.PersistentFlags()); err != nil {
-		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to initialize logs")
 		return err
 	}
 

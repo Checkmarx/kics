@@ -1,6 +1,7 @@
 package printer
 
 import (
+	"errors"
 	"io"
 	"os"
 	"path/filepath"
@@ -34,14 +35,16 @@ const (
 
 var (
 	optionsMap = map[string]func(opt interface{}) error{
-		CIFlag:        CI,
-		LogFileFlag:   LogFile,
-		LogLevelFlag:  LogLevel,
-		LogPathFlag:   LogPath,
-		NoColorFlag:   NoColor,
-		SilentFlag:    Silent,
-		VerboseFlag:   Verbose,
-		LogFormatFlag: LogFormat,
+		CIFlag:       CI,
+		LogFileFlag:  LogFile,
+		LogLevelFlag: LogLevel,
+		LogPathFlag:  LogPath,
+		NoColorFlag:  NoColor,
+		SilentFlag:   Silent,
+		VerboseFlag:  Verbose,
+		LogFormatFlag: func(opt interface{}) error {
+			return nil
+		},
 	}
 
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
@@ -50,33 +53,58 @@ var (
 	loggerFile *os.File
 )
 
-// ConfigurePrinterOutput - configures stdout and log options with given FlagSet
-func ConfigurePrinterOutput(flags *pflag.FlagSet) error {
-	flagsMap := make(map[string]interface{})
+// SetupPrinter - configures stdout and log options with given FlagSet
+func SetupPrinter(flags *pflag.FlagSet) error {
+	err := validateFlags(flags)
+	if err != nil {
+		return err
+	}
 
-	logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
-
-	flags.VisitAll(func(f *pflag.Flag) {
+	for flagName, optionFunc := range optionsMap {
+		f := flags.Lookup(flagName)
 		switch f.Value.Type() {
 		case "string":
-			flagsMap[f.Name] = f.Value.String()
+			value := f.Value.String()
+			err = optionFunc(value)
+			if err != nil {
+				return err
+			}
 		case "bool":
-			flagValue, _ := strconv.ParseBool(f.Value.String())
-			flagsMap[f.Name] = flagValue
-		}
-	})
-
-	for flagName, flagValue := range flagsMap {
-		err := optionsMap[flagName](flagValue)
-		if err != nil {
-			return err
+			value, _ := strconv.ParseBool(f.Value.String())
+			err = optionFunc(value)
+			if err != nil {
+				return err
+			}
 		}
 	}
 
-	if logFormat == LogFormatPretty {
-		log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
+	// LogFormat needs to be the last option
+	logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
+	err = LogFormat(logFormat)
+	if err != nil {
+		return err
 	}
 
+	return nil
+}
+
+func getFlagValue(flagName string, flags *pflag.FlagSet) bool {
+	v, _ := strconv.ParseBool(flags.Lookup(flagName).Value.String())
+	return v
+}
+
+func validateFlags(flags *pflag.FlagSet) error {
+	if getFlagValue(VerboseFlag, flags) && getFlagValue(SilentFlag, flags) {
+		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
+	}
+
+	if getFlagValue(VerboseFlag, flags) && getFlagValue(CIFlag, flags) {
+		return errors.New("can't provide 'verbose' and 'ci' flags simultaneously")
+	}
+
+	if getFlagValue(CIFlag, flags) && getFlagValue(SilentFlag, flags) {
+		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
+	}
 	return nil
 }
 
@@ -120,11 +148,15 @@ func CI(opt interface{}) error {
 	return nil
 }
 
-// LogFormat - configures the logs format (JSON,pretty)
+// LogFormat - configures the logs format (JSON,pretty).
 func LogFormat(opt interface{}) error {
 	logFormat := opt.(string)
 	if logFormat == LogFormatJSON {
 		os.Stdout = nil
+	} else if logFormat == LogFormatPretty {
+		log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
+	} else {
+		return errors.New("invalid log format")
 	}
 	return nil
 }
@@ -140,10 +172,10 @@ func LogPath(opt interface{}) error {
 		}
 	}
 	loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
-	fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile, NoColor: true})
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 

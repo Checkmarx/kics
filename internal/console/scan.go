@@ -9,6 +9,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -80,16 +81,29 @@ var scanCmd = &cobra.Command{
 	Use:   scanCommandStr,
 	Short: "Executes a scan analysis",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-		return initializeConfig(cmd)
+		err := initializeConfig(cmd)
+		if err != nil {
+			return err
+		}
+		err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+		if err != nil {
+			return err
+		}
+		return nil
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return scan()
 	},
-	TraverseChildren: true,
 }
 
 func initializeConfig(cmd *cobra.Command) error {
 	log.Debug().Msg("console.initializeConfig()")
+
+	v := viper.New()
+	v.SetEnvPrefix("KICS")
+	v.AutomaticEnv()
+	bindFlags(cmd, v)
+
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -109,7 +123,6 @@ func initializeConfig(cmd *cobra.Command) error {
 		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
 	}
 
-	v := viper.New()
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
@@ -121,8 +134,6 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("KICS_")
-	v.AutomaticEnv()
 	bindFlags(cmd, v)
 	return nil
 }
