@@ -151,6 +151,7 @@ var SummaryMock = model.Summary{
 	},
 }
 
+// ComplexSummaryMock a summary with more results to be used without running kics scan
 var ComplexSummaryMock = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           2,
