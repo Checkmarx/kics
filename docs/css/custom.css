@@ -6,3 +6,11 @@
 .hide-column-query-table {
   display: none;
 }
+
+#navbar-collapse {
+  overflow-y: hidden;
+}
+
+#version-selector {
+  width: 200px;
+}
