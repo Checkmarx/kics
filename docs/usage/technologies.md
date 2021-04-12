@@ -1,4 +1,4 @@
-# Techonologies
+# Technologies
 
 KICS support multiple technologies, following you will find more details about each technology.
 
