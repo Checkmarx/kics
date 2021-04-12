@@ -43,7 +43,7 @@ func NewFileSystemSourceProvider(path string, excludes []string) (*FileSystemSou
 	return fs, nil
 }
 
-// TODO: NEDDS UNIT TESTS
+// AddExcluded add new excluded files to the File System Source Provider
 func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 	for _, excludePath := range excludePaths {
 		info, err := os.Stat(excludePath)
@@ -80,7 +80,7 @@ func (s *FileSystemSourceProvider) GetBasePath() string {
 // GetSources tries to open file or directory and execute sink function on it
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
-	beenRendered := false
+	resolved := false
 	fileInfo, err := os.Stat(s.path)
 	if err != nil {
 		return errors.Wrap(err, "failed to open path")
@@ -104,29 +104,26 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 			return err
 		}
 
-		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path); shouldSkip {
+		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip {
 			return skipFolder
 		}
 
 		// ------------------ Helm resolver --------------------------------
-		// TODO: NEEDS REFACTORING
 		if info.IsDir() {
-			if !beenRendered { // This variable will block helm from re-rendering subcharts
-				excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
-				if errRes != nil {
-					sentry.CaptureException(errRes)
-					log.Err(errRes).
-						Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
-					return nil // so beRendered flag isn't alterd
-				}
-				if errAdd := s.AddExcluded(excluded); errAdd != nil {
-					log.Err(errAdd).Msgf("got an error whooo")
-				}
-				beenRendered = true
+			excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
+			if errRes != nil {
+				sentry.CaptureException(errRes)
+				log.Err(errRes).
+					Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+				return nil
 			}
+			if errAdd := s.AddExcluded(excluded); errAdd != nil {
+				log.Err(errAdd).Msgf("Filesystem files provider couldn't exclude rendered Chart files, Chart=%s", info.Name())
+			}
+			resolved = true
 			return nil
 		}
-		// ------------------------------------------------------------
+		// -----------------------------------------------------------------
 
 		c, err := os.Open(filepath.Clean(path))
 		if err != nil {
@@ -154,7 +151,8 @@ func closeFile(file *os.File, info os.FileInfo) {
 	}
 }
 
-func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions, path string) (bool, error) {
+func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
+	path string, resolved bool) (bool, error) {
 	if info.IsDir() {
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
@@ -162,6 +160,9 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		}
 		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
 		if err != nil {
+			return true, nil
+		}
+		if resolved {
 			return true, nil
 		}
 		return false, nil

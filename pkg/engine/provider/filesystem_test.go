@@ -171,6 +171,22 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			},
 			wantErr: true,
 		},
+		{
+			name: "test_helm_source_provider",
+			fields: fields{
+				path:     "../../../test/fixtures/test_helm_subchart",
+				excludes: map[string][]os.FileInfo{},
+			},
+			args: args{
+				ctx: nil,
+				extensions: model.Extensions{
+					".dockerfile": dockerParser.Parser{},
+				},
+				sink:         mockSink,
+				resolverSink: mockResolverSink,
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -180,6 +196,41 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			}
 			if err := s.GetSources(tt.args.ctx, tt.args.extensions, tt.args.sink, tt.args.resolverSink); (err != nil) != tt.wantErr {
 				t.Errorf("FileSystemSourceProvider.GetSources() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestFileSystemSourceProvider_GetBasePath(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Errorf("failed to change dir: %s", err)
+	}
+	fsystem, err := initFs(filepath.FromSlash("test"), []string{})
+	if err != nil {
+		t.Errorf("failed to initialize a new File System Source Provider")
+	}
+	type feilds struct {
+		fs *FileSystemSourceProvider
+	}
+	tests := []struct {
+		name   string
+		feilds feilds
+		want   string
+	}{
+		{
+			name: "test_get_base_path",
+			feilds: feilds{
+				fs: fsystem,
+			},
+			want: "test",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.feilds.fs.GetBasePath()
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("GetBasePath() = %v, want = %v", got, tt.want)
 			}
 		})
 	}
@@ -277,8 +328,61 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				path:     tt.fields.path,
 				excludes: tt.fields.excludes,
 			}
-			if got, err := s.checkConditions(tt.args.info, tt.args.extensions, tt.args.path); got != tt.want.got || err != tt.want.err {
+			if got, err := s.checkConditions(tt.args.info, tt.args.extensions, tt.args.path, false); got != tt.want.got || err != tt.want.err {
 				t.Errorf("FileSystemSourceProvider.checkConditions() = %v, want %v", err, tt.want)
+			}
+		})
+	}
+}
+
+// TestFileSystemSourceProvider_AddExcluded tests the functions [AddExcluded()] and all the methods called by them
+func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Errorf("failed to change dir: %s", err)
+	}
+	fsystem, err := initFs(filepath.FromSlash("test"), []string{})
+	if err != nil {
+		t.Errorf("failed to initialize a new File System Source Provider")
+	}
+	type feilds struct {
+		fs *FileSystemSourceProvider
+	}
+	type args struct {
+		excludePaths []string
+	}
+	tests := []struct {
+		name    string
+		feilds  feilds
+		args    args
+		want    []string
+		wantErr bool
+	}{
+		{
+			name: "test_add_excluded",
+			feilds: feilds{
+				fs: fsystem,
+			},
+			args: args{
+				excludePaths: []string{
+					"test/fixtures/config_test",
+				},
+			},
+			want: []string{
+				"config_test",
+			},
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := tt.feilds.fs.AddExcluded(tt.args.excludePaths)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("AddExcluded() = %v, wantErr = %v", err, tt.wantErr)
+			}
+			got := getFSExcludes(tt.feilds.fs)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("AddExcluded() = %v, want = %v", got, tt.want)
 			}
 		})
 	}
@@ -304,4 +408,17 @@ func checkStatErr(t *testing.T, err error) {
 	if err != nil {
 		t.Errorf("failed to get info: %s", err)
 	}
+}
+
+// initFs creates a new instance of File System Source Provider
+func initFs(path string, excluded []string) (*FileSystemSourceProvider, error) {
+	return NewFileSystemSourceProvider(path, excluded)
+}
+
+func getFSExcludes(fsystem *FileSystemSourceProvider) []string {
+	excluded := make([]string, 0)
+	for key := range fsystem.excludes {
+		excluded = append(excluded, key)
+	}
+	return excluded
 }
