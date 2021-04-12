@@ -20,6 +20,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	text := strings.ReplaceAll(file.OriginalData, "\r", "")
 	lines := strings.Split(text, "\n")
+	var isBreak bool
 	foundAtLeastOne := false
 	currentLine := 0
 	var extractedString [][]string
@@ -31,7 +32,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
-		var isBreak bool
+
 		foundAtLeastOne, currentLine, isBreak = DetectCurrentLine(lines, substr1, substr2, currentLine, foundAtLeastOne)
 
 		if isBreak {
