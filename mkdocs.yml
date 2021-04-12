@@ -19,7 +19,7 @@ nav:
       - Architecture: architecture.md
       - Usage:
         - KICS Commands: usage/commands.md
-        - Techonologies: usage/technologies.md
+        - Technologies: usage/technologies.md
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
