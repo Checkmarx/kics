@@ -135,7 +135,8 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n\n")
-	for idx := range summary.Queries {
+	for index := range summary.Queries {
+		idx := len(summary.Queries) - index - 1
 		fmt.Printf(
 			"%s, Severity: %s, Results: %d\n",
 			printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
