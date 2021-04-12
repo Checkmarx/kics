@@ -115,7 +115,10 @@ func getInputVariables(currentPath string) {
 		log.Error().Msg("Error getting .auto.tfvars files")
 	}
 
-	if _, err := os.Stat(filepath.Join(currentPath, "terraform.tfvars")); err == nil {
+	_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
+	if err != nil {
+		log.Info().Msg("terraform.tfvars not found")
+	} else {
 		tfVarsFiles = append(tfVarsFiles, filepath.Join(currentPath, "terraform.tfvars"))
 	}
 

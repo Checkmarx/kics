@@ -1,4 +1,4 @@
-//go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE
+// Package model (go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE)
 package model
 
 import (
@@ -180,12 +180,12 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	return c
 }
 
-//easyjson:json
+// Documents (easyjson:json)
 type Documents struct {
 	Documents []Document `json:"document"`
 }
 
-//easyjson:json
+// Document (easyjson:json)
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file
