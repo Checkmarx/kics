@@ -25,6 +25,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/getsentry/sentry-go"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -51,6 +52,10 @@ var (
 	banner string
 )
 
+const (
+	queriesPathCmdName = "queries-path"
+)
+
 var scanCmd = &cobra.Command{
 	Use:   "scan",
 	Short: "Executes a scan analysis",
@@ -58,12 +63,18 @@ var scanCmd = &cobra.Command{
 		return initializeConfig(cmd)
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return scan()
+		changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+		return scan(changedDefaultQueryPath)
 	},
 }
 
 func initializeConfig(cmd *cobra.Command) error {
 	log.Debug().Msg("console.initializeConfig()")
+	v := viper.New()
+	v.SetEnvPrefix("KICS")
+	v.AutomaticEnv()
+	bindFlags(cmd, v)
+
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -83,7 +94,6 @@ func initializeConfig(cmd *cobra.Command) error {
 		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
 	}
 
-	v := viper.New()
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
@@ -95,8 +105,7 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("KICS_")
-	v.AutomaticEnv()
+
 	bindFlags(cmd, v)
 	return nil
 }
@@ -108,7 +117,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
+			variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
+			if err := v.BindEnv(f.Name, variableName); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
@@ -154,7 +164,7 @@ func initScanCmd() {
 	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
 	scanCmd.Flags().StringVarP(
 		&queryPath,
-		"queries-path",
+		queriesPathCmdName,
 		"q",
 		"./assets/queries",
 		"path to directory with queries",
@@ -297,7 +307,7 @@ func createService(inspector *engine.Inspector,
 	}, nil
 }
 
-func scan() error {
+func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 
 	if errlog := setupLogs(); errlog != nil {
@@ -317,6 +327,16 @@ func scan() error {
 	if err != nil {
 		log.Err(err)
 		return err
+	}
+
+	if changedDefaultQueryPath {
+		log.Debug().Msgf("Trying to load queries from %s", queryPath)
+	} else {
+		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+		queryPath, err = consoleHelpers.GetDefaultQueryPath(queryPath)
+		if err != nil {
+			return errors.Wrap(err, "unable to find queries")
+		}
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)
