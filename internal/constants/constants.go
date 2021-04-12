@@ -11,7 +11,7 @@ const Fullname = "Keeping Infrastructure as Code Secure"
 // SCMCommit - Source control management commit identifier
 const SCMCommit = "N/A"
 
-// LogFile - logfile name
+// DefaultLogFile - logfile name
 const DefaultLogFile = "info.log"
 
 // DefaultConfigFilename - default configuration filename
