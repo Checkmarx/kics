@@ -22,7 +22,6 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	lines := strings.Split(text, "\n")
 	foundAtLeastOne := false
 	currentLine := 0
-	isBreak := false
 	var extractedString [][]string
 	extractedString = GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
@@ -32,7 +31,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 
 	for _, key := range strings.Split(sanitizedSubstring, ".") {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
-
+		var isBreak bool
 		foundAtLeastOne, currentLine, isBreak = DetectCurrentLine(lines, substr1, substr2, currentLine, foundAtLeastOne)
 
 		if isBreak {

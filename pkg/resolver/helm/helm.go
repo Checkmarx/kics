@@ -93,9 +93,15 @@ func newClient() *action.Install {
 func setID(chartReq *chart.Chart) *chart.Chart {
 	for _, temp := range chartReq.Templates {
 		temp = addID(temp) //nolint
+		if temp != nil {
+			continue
+		}
 	}
 	for _, dep := range chartReq.Dependencies() {
 		dep = setID(dep) //nolint
+		if dep != nil {
+			continue
+		}
 	}
 	return chartReq
 }
