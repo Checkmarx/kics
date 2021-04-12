@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
   "Resources": {
-    "MyLoadBalancerV2": {
+    "MyLoadBalancerV22222": {
       "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties": {
         "Scheme": "internet-facing",
