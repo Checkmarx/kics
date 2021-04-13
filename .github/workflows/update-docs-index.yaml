@@ -63,5 +63,5 @@ jobs:
       - name: Publish changes
         run: |
           git checkout gh-pages
-          git push origin gh-pages
+          git push origin gh-pages --force
 
