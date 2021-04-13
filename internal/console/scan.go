@@ -58,7 +58,6 @@ const (
 	pathFlag                = "path"
 	pathFlagShorthand       = "p"
 	configFlag              = "config"
-	queriesPathFlag         = "queries-path"
 	queriesPathShorthand    = "q"
 	outputPathFlag          = "output-path"
 	outputPathShorthand     = "o"
