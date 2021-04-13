@@ -228,7 +228,7 @@ func LogFile(opt interface{}) error {
 // LogLevel - sets log level
 func LogLevel(opt interface{}) error {
 	logLevel := opt.(string)
-	switch logLevel {
+	switch strings.ToUpper(logLevel) {
 	case "TRACE":
 		zerolog.SetGlobalLevel(zerolog.TraceLevel)
 	case "DEBUG":
