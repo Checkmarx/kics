@@ -19,7 +19,6 @@ func TestPrinter_LogPath(t *testing.T) {
 		name    string
 		args    args
 		wantErr bool
-		remove  string
 	}{
 		{
 			name: "test_log_path",
@@ -27,7 +26,6 @@ func TestPrinter_LogPath(t *testing.T) {
 				"",
 			},
 			wantErr: false,
-			remove:  "info.log",
 		},
 		{
 			name: "test_log_path_error",
@@ -35,7 +33,6 @@ func TestPrinter_LogPath(t *testing.T) {
 				"kics/error",
 			},
 			wantErr: true,
-			remove:  "",
 		},
 	}
 
@@ -44,13 +41,6 @@ func TestPrinter_LogPath(t *testing.T) {
 			err := LogPath(tt.args.opt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogPath() = %v, wantErr = %v", err, tt.wantErr)
-			}
-			// Remove created info.log in tests
-			if tt.remove != "" {
-				err := os.Remove(tt.remove)
-				if err != nil {
-					t.Errorf("failed to remove file: %s", tt.remove)
-				}
 			}
 		})
 	}
