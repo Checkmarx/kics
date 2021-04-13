@@ -17,6 +17,8 @@ jobs:
           access_token: ${{ github.token }}
       - name: Checkout project
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Get current date
         id: cdate
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
