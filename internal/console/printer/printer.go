@@ -35,13 +35,17 @@ const (
 
 var (
 	optionsMap = map[string]func(opt interface{}) error{
-		CIFlag:       CI,
+		CIFlag: func(opt interface{}) error {
+			return nil
+		},
 		LogFileFlag:  LogFile,
 		LogLevelFlag: LogLevel,
 		LogPathFlag:  LogPath,
 		NoColorFlag:  NoColor,
-		SilentFlag:   Silent,
-		VerboseFlag:  Verbose,
+		SilentFlag: func(opt interface{}) error {
+			return nil
+		},
+		VerboseFlag: Verbose,
 		LogFormatFlag: func(opt interface{}) error {
 			return nil
 		},
@@ -50,7 +54,10 @@ var (
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
 	fileLogger    = zerolog.ConsoleWriter{Out: io.Discard}
 
-	loggerFile *os.File
+	outFileLogger    interface{}
+	outConsoleLogger interface{}
+
+	loggerFile interface{}
 )
 
 // SetupPrinter - configures stdout and log options with given FlagSet
@@ -81,6 +88,16 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 	// LogFormat needs to be the last option
 	logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
 	err = LogFormat(logFormat)
+	if err != nil {
+		return err
+	}
+
+	err = Silent(getFlagValue(SilentFlag, flags))
+	if err != nil {
+		return err
+	}
+
+	err = CI(getFlagValue(CIFlag, flags))
 	if err != nil {
 		return err
 	}
@@ -133,6 +150,7 @@ func Silent(opt interface{}) error {
 	if silent {
 		color.SetOutput(io.Discard)
 		os.Stdout = nil
+		log.Logger = log.Output(zerolog.MultiLevelWriter(io.Discard, outFileLogger.(io.Writer)))
 	}
 	return nil
 }
@@ -142,7 +160,7 @@ func CI(opt interface{}) error {
 	ci := opt.(bool)
 	if ci {
 		color.SetOutput(io.Discard)
-		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout, NoColor: true}
+		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger.(io.Writer), outFileLogger.(io.Writer)))
 		os.Stdout = nil
 	}
 	return nil
@@ -152,9 +170,14 @@ func CI(opt interface{}) error {
 func LogFormat(opt interface{}) error {
 	logFormat := opt.(string)
 	if logFormat == LogFormatJSON {
-		os.Stdout = nil
+		log.Logger = log.Output(zerolog.MultiLevelWriter(os.Stdout, loggerFile.(io.Writer)))
+		outFileLogger = loggerFile
+		outConsoleLogger = os.Stdout
 	} else if logFormat == LogFormatPretty {
+		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile.(io.Writer), NoColor: true})
 		log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
+		outFileLogger = fileLogger
+		outConsoleLogger = zerolog.ConsoleWriter{Out: os.Stdout, NoColor: true}
 	} else {
 		return errors.New("invalid log format")
 	}
@@ -165,7 +188,14 @@ func LogFormat(opt interface{}) error {
 func LogPath(opt interface{}) error {
 	logPath := opt.(string)
 	var err error
-	if logPath == "" {
+	switch logPath {
+	case "skip-KICS-log-path":
+		if loggerFile == nil {
+			loggerFile = io.Discard
+			return nil
+		}
+		return nil
+	case "":
 		logPath, err = getDefaultLogPath()
 		if err != nil {
 			return err
@@ -175,7 +205,6 @@ func LogPath(opt interface{}) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
@@ -183,7 +212,15 @@ func LogPath(opt interface{}) error {
 func LogFile(opt interface{}) error {
 	logFile := opt.(bool)
 	if logFile {
-		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile, NoColor: true})
+		logPath, err := getDefaultLogPath()
+		if err != nil {
+			return err
+		}
+		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+		if err != nil {
+			return err
+		}
+		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile.(io.Writer), NoColor: true})
 	}
 	return nil
 }
@@ -205,7 +242,7 @@ func LogLevel(opt interface{}) error {
 	case "FATAL":
 		zerolog.SetGlobalLevel(zerolog.FatalLevel)
 	default:
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+		return errors.New("invalid log level")
 	}
 	return nil
 }

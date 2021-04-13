@@ -32,6 +32,8 @@ var (
 	silent    bool
 	ci        bool
 
+	warning []string
+
 	rootCmd = &cobra.Command{
 		Use:   "kics",
 		Short: constants.Fullname,
@@ -51,7 +53,7 @@ func initialize() error {
 	rootCmd.PersistentFlags().StringVarP(&logPath,
 		printer.LogPathFlag,
 		"",
-		"",
+		"skip-KICS-log-path",
 		fmt.Sprintf("path to log files, (defaults to ${PWD}/%s)", constants.DefaultLogFile))
 	rootCmd.PersistentFlags().StringVarP(&logLevel,
 		printer.LogLevelFlag,
@@ -95,7 +97,7 @@ func initialize() error {
 
 	initScanCmd()
 	if insertScanCmd() {
-		log.Warn().Msg("WARNING: for future versions use 'kics scan'")
+		warning = append(warning, "WARNING: for future versions use 'kics scan'")
 		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
 	}
 
