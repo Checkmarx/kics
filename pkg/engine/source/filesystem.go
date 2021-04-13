@@ -40,6 +40,7 @@ var (
 		"Dockerfile":     "dockerfile",
 		"Kubernetes":     "k8s",
 		"Terraform":      "terraform",
+		"OpenAPI":        "openapi",
 	}
 )
 
@@ -250,6 +251,8 @@ func getPlatform(queryPath string) string {
 		return "k8s"
 	} else if strings.Contains(queryPath, "terraform") {
 		return "terraform"
+	} else if strings.Contains(queryPath, "openAPI") {
+		return "openAPI"
 	}
 
 	return "unknown"

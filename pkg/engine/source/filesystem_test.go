@@ -325,6 +325,13 @@ func Test_getPlatform(t *testing.T) {
 			want: "k8s",
 		},
 		{
+			name: "get_platform_open_api",
+			args: args{
+				queryPath: "../test/openAPI/test",
+			},
+			want: "openAPI",
+		},
+		{
 			name: "get_platform_terraform",
 			args: args{
 				queryPath: "../test/terraform/test",
@@ -348,6 +355,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"CloudFormation",
 		"Dockerfile",
 		"Kubernetes",
+		"OpenAPI",
 		"Terraform",
 	}
 	actual := ListSupportedPlatforms()
