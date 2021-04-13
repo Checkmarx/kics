@@ -46,7 +46,8 @@ function addVersion() {
 
     var title = document.querySelector("#navbar-collapse");
     container.style.height = "30px";
-    title.parentNode.insertBefore(container, title.nextSibling);
+    title.appendChild(container);
+
   };
   xhr.send();
 }
