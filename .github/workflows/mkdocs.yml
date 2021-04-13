@@ -34,9 +34,15 @@ jobs:
       - run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Create develop docs
-        run: mike deploy develop -u
-      - name: Publish changes
+      - name: Pull changes from gh-pages branch
         run: |
           git checkout gh-pages
-          git push origin gh-pages --force
+          git pull origin gh-pages
+          git checkout master
+      - name: Update develop docs
+        # this will create a new commit in gh-pages branch
+        run: mike deploy develop -u
+      - name: Publish changes in gh-pages
+        run: |
+          git checkout gh-pages
+          git push origin gh-pages
