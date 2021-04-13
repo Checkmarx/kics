@@ -34,19 +34,19 @@ const (
 )
 
 var (
-	optionsMap = map[string]func(opt interface{}) error{
-		CIFlag: func(opt interface{}) error {
+	optionsMap = map[string]func(opt interface{}, changed bool) error{
+		CIFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
 		LogFileFlag:  LogFile,
 		LogLevelFlag: LogLevel,
 		LogPathFlag:  LogPath,
 		NoColorFlag:  NoColor,
-		SilentFlag: func(opt interface{}) error {
+		SilentFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
 		VerboseFlag: Verbose,
-		LogFormatFlag: func(opt interface{}) error {
+		LogFormatFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
 	}
@@ -72,13 +72,13 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 		switch f.Value.Type() {
 		case "string":
 			value := f.Value.String()
-			err = optionFunc(value)
+			err = optionFunc(value, f.Changed)
 			if err != nil {
 				return err
 			}
 		case "bool":
 			value, _ := strconv.ParseBool(f.Value.String())
-			err = optionFunc(value)
+			err = optionFunc(value, f.Changed)
 			if err != nil {
 				return err
 			}
@@ -87,17 +87,17 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 
 	// LogFormat needs to be the last option
 	logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
-	err = LogFormat(logFormat)
+	err = LogFormat(logFormat, flags.Lookup(LogFormatFlag).Changed)
 	if err != nil {
 		return err
 	}
 
-	err = Silent(getFlagValue(SilentFlag, flags))
+	err = Silent(getFlagValue(SilentFlag, flags), flags.Lookup(SilentFlag).Changed)
 	if err != nil {
 		return err
 	}
 
-	err = CI(getFlagValue(CIFlag, flags))
+	err = CI(getFlagValue(CIFlag, flags), flags.Lookup(CIFlag).Changed)
 	if err != nil {
 		return err
 	}
@@ -126,7 +126,7 @@ func validateFlags(flags *pflag.FlagSet) error {
 }
 
 // NoColor - disables ASCII color codes
-func NoColor(opt interface{}) error {
+func NoColor(opt interface{}, changed bool) error {
 	noColor := opt.(bool)
 	if noColor {
 		color.Disable()
@@ -136,7 +136,7 @@ func NoColor(opt interface{}) error {
 }
 
 // Verbose - redirects log entries to stdout
-func Verbose(opt interface{}) error {
+func Verbose(opt interface{}, changed bool) error {
 	verbose := opt.(bool)
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
@@ -145,7 +145,7 @@ func Verbose(opt interface{}) error {
 }
 
 // Silent - disables stdout output
-func Silent(opt interface{}) error {
+func Silent(opt interface{}, changed bool) error {
 	silent := opt.(bool)
 	if silent {
 		color.SetOutput(io.Discard)
@@ -156,7 +156,7 @@ func Silent(opt interface{}) error {
 }
 
 // CI - enable only log messages to CLI output
-func CI(opt interface{}) error {
+func CI(opt interface{}, changed bool) error {
 	ci := opt.(bool)
 	if ci {
 		color.SetOutput(io.Discard)
@@ -167,7 +167,7 @@ func CI(opt interface{}) error {
 }
 
 // LogFormat - configures the logs format (JSON,pretty).
-func LogFormat(opt interface{}) error {
+func LogFormat(opt interface{}, changed bool) error {
 	logFormat := opt.(string)
 	if logFormat == LogFormatJSON {
 		log.Logger = log.Output(zerolog.MultiLevelWriter(os.Stdout, loggerFile.(io.Writer)))
@@ -185,17 +185,17 @@ func LogFormat(opt interface{}) error {
 }
 
 // LogPath - sets the log files location
-func LogPath(opt interface{}) error {
+func LogPath(opt interface{}, changed bool) error {
 	logPath := opt.(string)
 	var err error
-	switch logPath {
-	case "skip-KICS-log-path":
+	if !changed {
 		if loggerFile == nil {
 			loggerFile = io.Discard
 			return nil
 		}
 		return nil
-	case "":
+	}
+	if logPath == "" {
 		logPath, err = getDefaultLogPath()
 		if err != nil {
 			return err
@@ -209,7 +209,7 @@ func LogPath(opt interface{}) error {
 }
 
 // LogFile - enables write to log file
-func LogFile(opt interface{}) error {
+func LogFile(opt interface{}, changed bool) error {
 	logFile := opt.(bool)
 	if logFile {
 		logPath, err := getDefaultLogPath()
@@ -226,7 +226,7 @@ func LogFile(opt interface{}) error {
 }
 
 // LogLevel - sets log level
-func LogLevel(opt interface{}) error {
+func LogLevel(opt interface{}, changed bool) error {
 	logLevel := opt.(string)
 	switch strings.ToUpper(logLevel) {
 	case "TRACE":

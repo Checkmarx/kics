@@ -38,7 +38,7 @@ func TestPrinter_LogPath(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := LogPath(tt.args.opt)
+			err := LogPath(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogPath() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -113,7 +113,7 @@ func TestPrinter_LogLevel(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := LogLevel(tt.args.opt)
+			err := LogLevel(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogLevel = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -145,7 +145,7 @@ func TestPrinter_CI(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			outConsoleLogger = io.Discard
 			outFileLogger = io.Discard
-			err := CI(tt.args.opt)
+			err := CI(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("CI() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -172,7 +172,7 @@ func TestPrinter_Verbose(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := Verbose(tt.args.opt)
+			err := Verbose(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Verbose() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -203,7 +203,7 @@ func TestPrinter_Silent(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			outConsoleLogger = io.Discard
 			outFileLogger = io.Discard
-			err := Silent(tt.args.opt)
+			err := Silent(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Silent() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -229,7 +229,7 @@ func TestPrinter_LogFile(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := LogFile(tt.args.opt)
+			err := LogFile(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogFile() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -268,7 +268,7 @@ func TestPrinter_LogFormat(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := LogFormat(tt.args.opt)
+			err := LogFormat(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogFormat() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -295,7 +295,7 @@ func TestPrinter_NoColor(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := NoColor(tt.args.opt)
+			err := NoColor(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NoColor() = %v, wantErr = %v", err, tt.wantErr)
 			}

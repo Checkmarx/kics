@@ -53,7 +53,7 @@ func initialize() error {
 	rootCmd.PersistentFlags().StringVarP(&logPath,
 		printer.LogPathFlag,
 		"",
-		"skip-KICS-log-path",
+		"",
 		fmt.Sprintf("path to log files, (defaults to ${PWD}/%s)", constants.DefaultLogFile))
 	rootCmd.PersistentFlags().StringVarP(&logLevel,
 		printer.LogLevelFlag,
