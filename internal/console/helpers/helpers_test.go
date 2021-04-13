@@ -20,21 +20,23 @@ var printTests = []struct {
 	expectedResult string
 }{
 	{
-		caseTest: test.SummaryMock,
-		expectedResult: "Files scanned: 1\n" +
-			"Parsed files: 1\n" +
-			"Queries loaded: 1\n" +
+		caseTest: test.ComplexSummaryMock,
+		expectedResult: "Files scanned: 2\n" +
+			"Parsed files: 2\n" +
+			"Queries loaded: 2\n" +
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
+			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
+			"\t[1]: positive.tf:1\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
 			"\t[1]: positive.tf:25\n" +
 			"\t[2]: positive.tf:19\n\n" +
 			"Results Summary:\n" +
 			"HIGH: 2\n" +
-			"MEDIUM: 0\n" +
+			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 2\n\n",
+			"TOTAL: 3\n\n",
 	},
 }
 

@@ -1,0 +1,9 @@
+{
+  "id": "7350fa23-dcf7-4938-916d-6a60b0c73b50",
+  "queryName": "CMK Is Unusable",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "AWS Key Management Service (KMS) must only possess usable Customer Master Keys (CMK), which means the CMKs must have the attribute 'is_enabled' set to true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key#is_enabled",
+  "platform": "Terraform"
+}

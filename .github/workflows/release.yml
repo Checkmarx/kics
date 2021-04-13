@@ -38,3 +38,4 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}

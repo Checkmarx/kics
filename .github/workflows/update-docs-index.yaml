@@ -3,15 +3,16 @@ name: update-docs-index
 on:
   workflow_dispatch:
   release:
-    type: [created]
+    type: [published]
 
 jobs:
   update-index:
     name: Update index docs links
     runs-on: ubuntu-latest
+    if: "!github.event.release.prerelease"
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.8.0
+        uses: styfle/cancel-workflow-action@0.9.0
         with:
           access_token: ${{ github.token }}
       - name: Checkout project
@@ -52,8 +53,22 @@ jobs:
           python-version: 3.x
       - name: Create a new docs version
         run: pip install mkdocs-bootswatch mike
+      - name: Config KICSBot git user
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Pull changes from gh-pages branch
+        run: |
+          git checkout gh-pages
+          git pull origin gh-pages
+          git checkout master
       - name: Deploy mike version
+        # this will create a new commit in gh-pages branch
         run: |
           mike deploy ${{ steps.cversion.outputs.version }} latest -u
           mike set-default ${{ steps.cversion.outputs.version }}
-      
+      - name: Publish changes
+        run: |
+          git checkout gh-pages
+          git push origin gh-pages
+
