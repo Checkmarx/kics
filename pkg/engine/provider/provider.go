@@ -3,7 +3,6 @@ package provider
 import (
 	"context"
 	"io"
-	"os"
 
 	"github.com/Checkmarx/kics/pkg/model"
 )
@@ -20,5 +19,4 @@ type ResolverSink func(ctx context.Context, filename string) ([]string, error)
 type SourceProvider interface {
 	GetBasePath() string
 	GetSources(ctx context.Context, extensions model.Extensions, sink Sink, resolverSink ResolverSink) error
-	checkConditions(info os.FileInfo, extensions model.Extensions, path string, resolved bool) (bool, error)
 }

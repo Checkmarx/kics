@@ -159,10 +159,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 			return true, filepath.SkipDir
 		}
 		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-		if err != nil {
-			return true, nil
-		}
-		if resolved {
+		if err != nil || resolved {
 			return true, nil
 		}
 		return false, nil
