@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: toko-bifrost/ms-teams-deploy-card@master
         if: always()
         with:
@@ -34,4 +36,15 @@ jobs:
       - run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - run: mike deploy develop -u
+      - name: Pull changes from gh-pages branch
+        run: |
+          git checkout gh-pages
+          git pull origin gh-pages
+          git checkout master
+      - name: Update develop docs
+        # this will create a new commit in gh-pages branch
+        run: mike deploy develop -u
+      - name: Publish changes in gh-pages
+        run: |
+          git checkout gh-pages
+          git push origin gh-pages

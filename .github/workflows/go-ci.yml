@@ -47,7 +47,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - name: Cancel Previous Runs
-      uses: styfle/cancel-workflow-action@0.8.0
+      uses: styfle/cancel-workflow-action@0.9.0
       with:
         access_token: ${{ github.token }}
     - name: Set up Go 1.x
@@ -61,7 +61,7 @@ jobs:
     - name: Run Go mod tidy
       run: go mod tidy
     - name: Cache dependencies
-      uses: actions/cache@v2.1.4
+      uses: actions/cache@v2.1.5
       with:
         path: |
           ~/go/pkg/mod

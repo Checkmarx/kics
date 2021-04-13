@@ -26,6 +26,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/getsentry/sentry-go"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -75,6 +76,7 @@ const (
 	excludeResultsFlag      = "exclude-results"
 	excludeResutlsShorthand = "x"
 	excludeCategoriesFlag   = "exclude-categories"
+	queriesPathCmdName      = "queries-path"
 )
 
 var scanCmd = &cobra.Command{
@@ -92,7 +94,8 @@ var scanCmd = &cobra.Command{
 		return nil
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return scan()
+		changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+		return scan(changedDefaultQueryPath)
 	},
 }
 
@@ -134,6 +137,7 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
+
 	bindFlags(cmd, v)
 	return nil
 }
@@ -145,7 +149,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
+			variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
+			if err := v.BindEnv(f.Name, variableName); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
@@ -197,8 +202,9 @@ func initScanCmd() {
 		"",
 		"",
 		"path to configuration file")
-	scanCmd.Flags().StringVarP(&queryPath,
-		queriesPathFlag,
+	scanCmd.Flags().StringVarP(
+		&queryPath,
+		queriesPathCmdName,
 		queriesPathShorthand,
 		"./assets/queries",
 		"path to directory with queries",
@@ -360,7 +366,7 @@ func createService(inspector *engine.Inspector,
 	}, nil
 }
 
-func scan() error {
+func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 
 	for _, warn := range warning {
@@ -380,6 +386,16 @@ func scan() error {
 	if err != nil {
 		log.Err(err)
 		return err
+	}
+
+	if changedDefaultQueryPath {
+		log.Debug().Msgf("Trying to load queries from %s", queryPath)
+	} else {
+		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+		queryPath, err = consoleHelpers.GetDefaultQueryPath(queryPath)
+		if err != nil {
+			return errors.Wrap(err, "unable to find queries")
+		}
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)

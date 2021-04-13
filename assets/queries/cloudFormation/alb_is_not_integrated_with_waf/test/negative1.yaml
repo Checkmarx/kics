@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-    MyLoadBalancer:
+    MyLoadBalancer9:
         Type: AWS::ElasticLoadBalancing::LoadBalancer
         Properties:
           AvailabilityZones:
@@ -19,6 +19,6 @@ Resources:
       Type: "AWS::WAFRegional::WebACLAssociation"
       Properties:
         ResourceArn:
-          Ref: MyLoadBalancer
+          Ref: MyLoadBalancer9
         WebACLId:
           Ref: MyWebACL

@@ -24,7 +24,6 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 
 ### Global Measures
 
-
 |Measure                        | Value  |
 | :---                          | :---   |
 | **Average Accuracy**          | 98.6%  |

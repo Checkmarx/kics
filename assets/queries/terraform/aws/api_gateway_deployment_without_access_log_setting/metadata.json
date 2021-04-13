@@ -1,0 +1,9 @@
+{
+  "id": "625abc0e-f980-4ac9-a775-f7519ee34296",
+  "queryName": "API Gateway Deployment Without Access Log Setting",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "API Gateway Deployment should have access log setting defined when connected to an API Gateway Stage.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment",
+  "platform": "Terraform"
+}

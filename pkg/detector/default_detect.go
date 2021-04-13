@@ -20,9 +20,9 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	text := strings.ReplaceAll(file.OriginalData, "\r", "")
 	lines := strings.Split(text, "\n")
+	var isBreak bool
 	foundAtLeastOne := false
 	currentLine := 0
-	isBreak := false
 	var extractedString [][]string
 	extractedString = GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
