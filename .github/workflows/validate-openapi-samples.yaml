@@ -3,8 +3,8 @@ name: validate-openapi-samples
 on:
   pull_request:
     paths:
-    - "assets/queries/openapi/**/test/*.yaml"
-    - "assets/queries/openapi/**/test/*.json"
+    - "assets/queries/openAPI/**/test/*.yaml"
+    - "assets/queries/openAPI/**/test/*.json"
 
 jobs:
   lint-yaml-samples:
