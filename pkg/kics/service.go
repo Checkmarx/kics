@@ -55,7 +55,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
 			return s.sink(ctx, filename, scanID, rc)
 		},
-		func(ctx context.Context, filename string) error { // Sink used for resolver files and templates
+		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
 			return s.resolverSink(ctx, filename, scanID)
 		},
 	); err != nil {
@@ -112,6 +112,5 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) {
 	err := s.Storage.SaveFile(ctx, file)
 	if err == nil {
 		s.files = append(s.files, *file)
-		s.Tracker.TrackFileParse()
 	}
 }

@@ -46,6 +46,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		}
 		s.saveToFile(ctx, &file)
 	}
+	s.Tracker.TrackFileParse()
 
 	return errors.Wrap(err, "failed to save file content")
 }

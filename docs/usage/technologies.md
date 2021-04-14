@@ -1,6 +1,6 @@
 # Technologies
 
-KICS support multiple technologies, following you will find more details about each technology.
+KICS support multiple technologies, in the next sections you will find more details about each technology.
 
 ## Ansible
 
@@ -8,11 +8,11 @@ KICS supports Ansible files with `.yaml` extension.
 
 ## CloudFormation
 
-KICS supports CloudFormation files with `.json` or `.yaml` extension.
+KICS supports CloudFormation templates with `.json` or `.yaml` extension.
 
 ## Docker
 
-KICS supports Docker files with `.dockerfile` extension.
+KICS supports Docker files named `Dockerfile` or with `.dockerfile` extension.
 
 ## Helm
 
@@ -37,11 +37,13 @@ Platform: Kubernetes
 
 ## Kubernetes
 
-KICS supports Kubernetes files with `.yaml` extension.
+KICS supports Kubernetes manifests with `.yaml` extension.
 
 ## Terraform
 
-KICS support `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
+KICS supports Terraform's HCL files with `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
+
+### Limitations
 
 Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
 
