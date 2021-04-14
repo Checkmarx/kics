@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 47,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 44,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 49,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 30,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 28,
+    "filename": "positive7.yaml"
+  },
+  {
+    "queryName": "Operations Security Field should not have an empty array",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive8.yaml"
+  }
+]
