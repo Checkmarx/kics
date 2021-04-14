@@ -10,7 +10,7 @@ CxPolicy [ result ] {
 	result := {
                 "documentId": 		doc.id,
                 "searchKey": 	    "openapi",
-                "issueType":		"Missing Value",
+                "issueType":		"MissingAttribute",
                 "keyExpectedValue": "A default security schema should be defined",
                 "keyActualValue": 	"A default security schema is not defined"
               }
