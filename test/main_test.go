@@ -35,6 +35,7 @@ var (
 		"../assets/queries/ansible/azure":        {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":           {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
 		"../assets/queries/common":               {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
+		"../assets/queries/openAPI":              {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 	}
 )
 

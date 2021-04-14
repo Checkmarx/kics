@@ -1,0 +1,9 @@
+{
+  "id": "d674aea4-ba8b-454b-bb97-88a772ea33f0",
+  "queryName": "Security array is empty",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Security object need to be defined with a default values and, if needed, specified for particular cases on securityScheme",
+  "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
+  "platform": "openAPI"
+}
