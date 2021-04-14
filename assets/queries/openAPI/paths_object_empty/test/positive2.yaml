@@ -4,5 +4,8 @@ info:
   version: 1.0.0
 paths:
 security:
-- OAuth2:
-  - readOnly
+- exampleSecurity: []
+components:
+  exampleSecurity:
+    type: http
+    scheme: basic

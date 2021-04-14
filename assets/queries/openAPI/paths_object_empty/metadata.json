@@ -5,5 +5,5 @@
   "category": "Build Process",
   "descriptionText": "Paths object may be empty due to ACL constraints, meaning they are not exposed",
   "descriptionUrl": "https://swagger.io/specification/#paths-object",
-  "platform": "openAPI"
+  "platform": "OpenAPI"
 }
