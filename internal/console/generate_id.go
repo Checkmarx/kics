@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// NewGenerateIDCmd creates a new instance of the generate-id Command
 func NewGenerateIDCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "generate-id",

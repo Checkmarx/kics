@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// NewListPlatformsCmd creates a new instance of the list-platforms Command
 func NewListPlatformsCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "list-platforms",
