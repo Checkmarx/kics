@@ -1,0 +1,14 @@
+name: Lint Workflows
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint GitHub Actions Workflows
+        uses: cschleiden/actions-linter@v1
+        with:
+          workflows: '[".github/workflows/*.yaml"]'
