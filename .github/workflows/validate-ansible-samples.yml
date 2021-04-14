@@ -19,5 +19,5 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: assets/queries/ansible/
-          config_file: .github/yamllint.yml
+          config_file: .github/yamllint_ansible.yml
           strict: true
