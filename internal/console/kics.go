@@ -42,7 +42,7 @@ var (
 
 func initialize() error {
 	rootCmd.AddCommand(NewVersionCmd())
-	rootCmd.AddCommand(generateIDCmd)
+	rootCmd.AddCommand(NewGenerateIDCmd())
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(NewListPlatformsCmd())
 	rootCmd.PersistentFlags().BoolVarP(&logFile,

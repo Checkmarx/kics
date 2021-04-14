@@ -1,22 +1,25 @@
 package console
 
 import (
-	"regexp"
-	"strings"
+	"bytes"
+	"io"
+	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
 // TestGenerateIDCommand tests kics generate ID command
-func TestGenerateIDCommand(t *testing.T) {
-	t.Run("Tests if generates a valid uuid", func(t *testing.T) {
-		validUUID := regexp.MustCompile(test.ValidUUIDRegex)
 
-		out, err := test.CaptureCommandOutput(generateIDCmd, nil)
-
-		require.NoError(t, err)
-		require.True(t, validUUID.MatchString(strings.TrimSpace(out)))
-	})
+func TestConsole_NewGenerateIDCmd(t *testing.T) {
+	cmd := NewGenerateIDCmd()
+	b := bytes.NewBufferString("")
+	cmd.SetOut(b)
+	err := cmd.Execute()
+	require.NoError(t, err)
+	out, err := io.ReadAll(b)
+	require.NoError(t, err)
+	if reflect.DeepEqual(string(out), "") {
+		t.Errorf("generate-id is empty")
+	}
 }

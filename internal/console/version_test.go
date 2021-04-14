@@ -13,7 +13,7 @@ import (
 func TestConsole_NewVersionCmd(t *testing.T) {
 	cmd := NewVersionCmd()
 	b := bytes.NewBufferString("")
-	cmd.SetOutput(b)
+	cmd.SetOut(b)
 	err := cmd.Execute()
 	require.NoError(t, err)
 	out, err := io.ReadAll(b)
