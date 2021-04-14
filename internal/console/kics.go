@@ -35,7 +35,7 @@ var (
 	warning []string
 )
 
-// NewKicsCmd creates a new instance of the kics Command
+// NewKICSCmd creates a new instance of the kics Command
 func NewKICSCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "kics",

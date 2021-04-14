@@ -171,7 +171,7 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
 		if val == true {
 			continue
 		} else {
-			return errors.New(fmt.Sprintf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name()))
+			return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
 		}
 	}
 	return nil
