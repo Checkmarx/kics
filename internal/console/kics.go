@@ -41,7 +41,7 @@ var (
 )
 
 func initialize() error {
-	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(NewVersionCmd())
 	rootCmd.AddCommand(generateIDCmd)
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(NewListPlatformsCmd())

@@ -1,19 +1,26 @@
 package console
 
 import (
-	"fmt"
+	"bytes"
+	"io"
+	"reflect"
+	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
-// TestVersionCommand tests kics version command
-func TestVersionCommand(t *testing.T) {
-	t.Run("Tests if prints current version", func(t *testing.T) {
-		out, err := test.CaptureCommandOutput(versionCmd, nil)
-
-		require.NoError(t, err)
-		require.Equal(t, fmt.Sprintf("%s\n", getVersion()), out)
-	})
+func TestConsole_NewVersionCmd(t *testing.T) {
+	cmd := NewVersionCmd()
+	b := bytes.NewBufferString("")
+	cmd.SetOutput(b)
+	err := cmd.Execute()
+	require.NoError(t, err)
+	out, err := io.ReadAll(b)
+	require.NoError(t, err)
+	got := strings.Trim(string(out), "\n")
+	v := getVersion()
+	if !reflect.DeepEqual(got, v) {
+		t.Errorf("version = %v, expect = %v", got, v)
+	}
 }
