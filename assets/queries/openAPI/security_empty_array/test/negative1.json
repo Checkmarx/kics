@@ -42,7 +42,13 @@
   },
   "security":[
     {
-      "OAuth2": ["readOnly"]
+      "exampleSecurity": []
     }
-  ]
+  ],
+  "components": {
+    "exampleSecurity": {
+      "type": "http",
+      "scheme": "basic"
+    }
+  }
 }
