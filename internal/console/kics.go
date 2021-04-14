@@ -44,7 +44,7 @@ func initialize() error {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(generateIDCmd)
 	rootCmd.AddCommand(scanCmd)
-	rootCmd.AddCommand(listPlatformsCmd)
+	rootCmd.AddCommand(NewListPlatformsCmd())
 	rootCmd.PersistentFlags().BoolVarP(&logFile,
 		printer.LogFileFlag,
 		printer.LogFileShorthand,
