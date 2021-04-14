@@ -62,6 +62,7 @@ var (
 		"Resource Management":     "CAT011",
 		"Secret Management":       "CAT012",
 		"Supply-Chain":            "CAT013",
+		"Structure and Semantics": "CAT014",
 	}
 
 	CategoriesKeys = MapToStringSlice(AvailableCategories)
