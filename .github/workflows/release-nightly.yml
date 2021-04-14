@@ -55,8 +55,8 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          version: latest
-          args: release --rm-dist --config="./.goreleaser-nightly.yml"
+          version: v0.160.0
+          args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-nightly.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: delete release

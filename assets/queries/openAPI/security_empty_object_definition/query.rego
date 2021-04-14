@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("security[%d]", [idx]),
+		"searchKey": "security",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Global security field definition should not have an empty object",
 		"keyActualValue": "Global security field definition has an empty object",
