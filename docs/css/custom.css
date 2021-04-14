@@ -7,8 +7,10 @@
   display: none;
 }
 
-#navbar-collapse {
-  overflow-y: hidden;
+@media (max-width: 991px) {
+  #navbar-collapse {
+    overflow-y: hidden;
+  }
 }
 
 #version-selector {
