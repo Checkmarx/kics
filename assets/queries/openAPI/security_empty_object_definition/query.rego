@@ -8,8 +8,7 @@ CxPolicy[result] {
 	object.get(doc, "security", "undefined") != "undefined"
 
 	count(doc.security) > 0
-	securityItem := doc.security[idx]
-
+	securityItem := doc.security[_]
 	securityItem == {}
 
 	result := {
