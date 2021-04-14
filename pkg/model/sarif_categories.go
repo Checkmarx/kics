@@ -54,10 +54,10 @@ var categories = map[string]sarifTaxanomyDefinition{
 		DefinitionID:   categoryIdentifier + "005",
 		DefinitionName: "Build Process",
 		DefinitionShortDescription: sarifMessage{
-			Text: "Insecure configurations when building/deploying Docker images",
+			Text: "Insecure configurations when building/deploying",
 		},
 		DefinitionFullDescription: sarifMessage{
-			Text: "Insecure configurations when building/deploying Docker images",
+			Text: "Insecure configurations when building/deploying",
 		},
 	},
 	"Encryption": {
@@ -138,6 +138,16 @@ var categories = map[string]sarifTaxanomyDefinition{
 		},
 		DefinitionFullDescription: sarifMessage{
 			Text: "Dependency version management",
+		},
+	},
+	"Structure and Semantics": {
+		DefinitionID:   categoryIdentifier + "014",
+		DefinitionName: "Structure and Semantics",
+		DefinitionShortDescription: sarifMessage{
+			Text: "Malformed document structure or inadequate semantics",
+		},
+		DefinitionFullDescription: sarifMessage{
+			Text: "Malformed document structure or inadequate semantics",
 		},
 	},
 }
