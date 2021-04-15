@@ -1,0 +1,45 @@
+name: validate-openapi-samples
+
+on:
+  pull_request:
+    paths:
+    - "assets/queries/openAPI/**/test/*.yaml"
+    - "assets/queries/openAPI/**/test/*.json"
+
+jobs:
+  lint-yaml-samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: assets/queries/openAPI/
+          config_file: .github/yamllint.yml
+          strict: true
+  lint-json-samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Installing jsonlint
+        run: |
+          npm install -g jsonlint
+          npm show jsonlint
+          which jsonlint
+      - name: Running JSON lint
+        run: |
+          python3 -u ".github/validators/validate-syntax.py" \
+            "assets/queries/openapi/**/test/*.json" \
+            --linter jsonlint \
+            --skip ".github/validators/openapi-skip-list" -vv
+
+

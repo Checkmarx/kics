@@ -31,6 +31,7 @@ nav:
         - Dockerfile: queries/dockerfile-queries.md
         - Kubernetes: queries/kubernetes-queries.md
         - Terraform: queries/terraform-queries.md
+        - OpenAPI: queries/openapi-queries.md
   - Integrations:
       - Overview: integrations.md
       - Github Actions: integrations_ghactions.md
