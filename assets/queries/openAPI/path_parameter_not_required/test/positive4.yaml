@@ -28,7 +28,3 @@ paths:
         description: ID of the API version
         schema:
           type: integer
-components:
-  exampleSecurity:
-    type: http
-    scheme: basic

@@ -29,7 +29,3 @@ paths:
         required: false
         schema:
           type: integer
-components:
-  exampleSecurity:
-    type: http
-    scheme: basic

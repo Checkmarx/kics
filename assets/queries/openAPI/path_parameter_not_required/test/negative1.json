@@ -50,11 +50,5 @@
         }
       ]
     }
-  },
-  "components": {
-    "exampleSecurity": {
-      "type": "http",
-      "scheme": "basic"
-    }
   }
 }
