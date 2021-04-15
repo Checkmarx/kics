@@ -3,9 +3,3 @@ info:
   title: Simple API overview
   version: 1.0.0
 paths:
-security:
-- exampleSecurity: []
-components:
-  exampleSecurity:
-    type: http
-    scheme: basic

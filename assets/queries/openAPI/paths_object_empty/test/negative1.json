@@ -39,16 +39,5 @@
         }
       }
     }
-  },
-  "security": [
-    {
-      "exampleSecurity": []
-    }
-  ],
-  "components": {
-    "exampleSecurity": {
-      "type": "http",
-      "scheme": "basic"
-    }
   }
 }
