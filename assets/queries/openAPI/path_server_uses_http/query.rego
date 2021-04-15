@@ -5,15 +5,15 @@ import data.generic.openapi as openAPILib
 CxPolicy[result] {
 	doc := input.document[i]
 	openAPILib.checkOpenAPI(doc) != "undefined"
-	server := doc.servers[n]
+	paths := doc.paths[path][oper].servers[n]
 
-	regex.match("^(http:)", server.url)
+	regex.match("^(http:)", paths.url)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.servers.url={{%s}}", [server.url]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "A default security schema should be defined",
-		"keyActualValue": "A default security schema is not defined",
+		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.servers.url={{%s}}", [path, oper, paths.url]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Path Server Object url uses 'HTTPS' protocol",
+		"keyActualValue": "Path Server Object url uses 'HTTP' protocol",
 	}
 }

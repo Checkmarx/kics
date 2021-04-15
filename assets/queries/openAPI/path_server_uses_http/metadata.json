@@ -3,7 +3,7 @@
   "queryName": "Path Server Object Uses HTTP",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "The property 'url' in the Server Object should only allow 'HTTPS' protocols to ensure an encrypted connection",
+  "descriptionText": "The property 'url' in the Path Server Object should only allow 'HTTPS' protocols to ensure an encrypted connection",
   "descriptionUrl": "https://swagger.io/specification/#server-object",
   "platform": "OpenAPI"
 }
