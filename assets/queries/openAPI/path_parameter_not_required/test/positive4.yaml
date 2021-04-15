@@ -28,8 +28,6 @@ paths:
         description: ID of the API version
         schema:
           type: integer
-security:
-  - exampleSecurity: []
 components:
   exampleSecurity:
     type: http

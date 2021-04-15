@@ -29,8 +29,6 @@ paths:
         required: false
         schema:
           type: integer
-security:
-  - exampleSecurity: []
 components:
   exampleSecurity:
     type: http

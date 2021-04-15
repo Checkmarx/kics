@@ -50,11 +50,6 @@
       ]
     }
   },
-  "security": [
-    {
-      "exampleSecurity": []
-    }
-  ],
   "components": {
     "exampleSecurity": {
       "type": "http",

@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}}", [name, param.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Path parameter has the feild 'required' and set to 'true' for location 'path'",
-		"keyActualValue": "Path parameter feild 'required' is missing for location 'path'",
+		"keyExpectedValue": "Path parameter has the field 'required' and set to 'true' for location 'path'",
+		"keyActualValue": "Path parameter field 'required' is missing for location 'path'",
 	}
 }
 
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}}.required", [name, param.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Path parameter feild 'required' is set to 'true' for location 'path'",
-		"keyActualValue": "Path parameter feild 'required' is set to 'false' for location 'path'",
+		"keyExpectedValue": "Path parameter field 'required' is set to 'true' for location 'path'",
+		"keyActualValue": "Path parameter field 'required' is set to 'false' for location 'path'",
 	}
 }
