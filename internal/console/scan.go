@@ -78,24 +78,27 @@ const (
 	queriesPathCmdName      = "queries-path"
 )
 
-var scanCmd = &cobra.Command{
-	Use:   scanCommandStr,
-	Short: "Executes a scan analysis",
-	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-		err := initializeConfig(cmd)
-		if err != nil {
-			return err
-		}
-		err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
-		if err != nil {
-			return err
-		}
-		return nil
-	},
-	RunE: func(cmd *cobra.Command, args []string) error {
-		changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
-		return scan(changedDefaultQueryPath)
-	},
+// NewScanCmd creates a new instance of the scan Command
+func NewScanCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   scanCommandStr,
+		Short: "Executes a scan analysis",
+		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+			err := initializeConfig(cmd)
+			if err != nil {
+				return err
+			}
+			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+			if err != nil {
+				return err
+			}
+			return nil
+		},
+		RunE: func(cmd *cobra.Command, args []string) error {
+			changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+			return scan(changedDefaultQueryPath)
+		},
+	}
 }
 
 func initializeConfig(cmd *cobra.Command) error {
@@ -104,7 +107,10 @@ func initializeConfig(cmd *cobra.Command) error {
 	v := viper.New()
 	v.SetEnvPrefix("KICS")
 	v.AutomaticEnv()
-	bindFlags(cmd, v)
+	errBind := bindFlags(cmd, v)
+	if errBind != nil {
+		return errBind
+	}
 
 	if cfgFile == "" {
 		configpath := path
@@ -137,11 +143,14 @@ func initializeConfig(cmd *cobra.Command) error {
 		return err
 	}
 
-	bindFlags(cmd, v)
+	errBind = bindFlags(cmd, v)
+	if errBind != nil {
+		return errBind
+	}
 	return nil
 }
 
-func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
 	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
@@ -162,14 +171,10 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		if val == true {
 			continue
 		} else {
-			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
-			err := cmd.Help()
-			if err != nil {
-				log.Err(err).Msg("Unable to show help message")
-			}
-			os.Exit(1)
+			return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
 		}
 	}
+	return nil
 }
 
 func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
@@ -190,7 +195,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 	}
 }
 
-func initScanCmd() {
+func initScanCmd(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringVarP(&path,
 		pathFlag,
 		pathFlagShorthand,
