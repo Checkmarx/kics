@@ -16,8 +16,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security", [path, operation]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Security operation field array, when declared, should not be empty",
-		"keyActualValue": "Security operation field array is declared and empty",
+		"keyExpectedValue": "Security operation field should not be empty object",
+		"keyActualValue": "Security operation field is an empty object",
 	}
 }
 
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security", [path, operation]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Security operation field array, when declared, should not be empty",
-		"keyActualValue": "Security operation field array is declared and empty",
+		"keyExpectedValue": "Security operation field array should not have an empty object",
+		"keyActualValue": "Security operation field array has an empty object",
 	}
 }
