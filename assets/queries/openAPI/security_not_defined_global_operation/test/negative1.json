@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Simple API overview",
+    "title": "Simple API Overview",
     "version": "1.0.0"
   },
   "paths": {
@@ -40,5 +40,15 @@
       }
     }
   },
-  "security": []
+  "security":[
+    {
+      "exampleSecurity": []
+    }
+  ],
+  "components": {
+    "exampleSecurity": {
+      "type": "http",
+      "scheme": "basic"
+    }
+  }
 }
