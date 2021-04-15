@@ -1,10 +1,10 @@
 package Cx
 
-import data.generic.openapi as openAPILib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openAPILib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) != "undefined"
 
 	operationObject := doc.paths[path][operation]
 	object.get(operationObject, "security", "undefined") != "undefined"
@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openAPILib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) != "undefined"
 
 	operationObject := doc.paths[path][operation]
 	object.get(operationObject, "security", "undefined") != "undefined"
