@@ -24,8 +24,3 @@ paths:
                         rel: self
 security:
 - {}
-- exampleSecurity: []
-components:
-  exampleSecurity:
-    type: http
-    scheme: basic
