@@ -10,7 +10,11 @@
         "operationId": "listVersionsv2",
         "summary": "List API versions",
         "security": [
-          "admin"
+          {
+            "OAuth2": [
+              "admin"
+            ]
+          }
         ],
         "responses": {
           "200": {

@@ -8,19 +8,19 @@
   {
     "queryName": "Operations security field has an empty array",
     "severity": "HIGH",
-    "line": 47,
+    "line": 51,
     "filename": "positive2.json"
   },
   {
     "queryName": "Operations security field has an empty array",
     "severity": "HIGH",
-    "line": 44,
+    "line": 51,
     "filename": "positive3.json"
   },
   {
     "queryName": "Operations security field has an empty array",
     "severity": "HIGH",
-    "line": 49,
+    "line": 53,
     "filename": "positive4.json"
   },
   {
@@ -32,19 +32,19 @@
   {
     "queryName": "Operations security field has an empty array",
     "severity": "HIGH",
-    "line": 30,
+    "line": 31,
     "filename": "positive6.yaml"
   },
   {
     "queryName": "Operations security field has an empty array",
     "severity": "HIGH",
-    "line": 28,
+    "line": 31,
     "filename": "positive7.yaml"
   },
   {
     "queryName": "Operations security field has an empty array",
     "severity": "HIGH",
-    "line": 31,
+    "line": 32,
     "filename": "positive8.yaml"
   }
 ]
