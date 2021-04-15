@@ -60,17 +60,18 @@ jobs:
         persist-credentials: false
     - name: Run Go mod tidy
       run: go mod tidy
+    - name: Get cache paths
+      id: go-cache-paths
+      run: |
+        echo "::set-output name=go-build::$(go env GOCACHE)"
+        echo "::set-output name=go-mod::$(go env GOMODCACHE)"
     - name: Cache dependencies
       uses: actions/cache@v2.1.5
       with:
-        path: |
-          ~/go/pkg/mod
-          ~/.cache/go-build
-          ~/Library/Caches/go-build
-          %LocalAppData%\go-build
+        path: ${{ steps.go-cache-paths.outputs.go-build }}
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-${{ env.cache-name }}
           ${{ runner.OS }}-build-
           ${{ runner.OS }}-
     - name: Get go-junit-report module
@@ -83,6 +84,7 @@ jobs:
         go mod vendor
     - name: Test and Generate Report
       run: |
+        set +o pipefail
         go test -mod=vendor -v ./... -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version ${{ matrix.go-version }} -package-name "github.com/Checkmarx/kics/test" > test-report-${{ matrix.os }}.xml
     - name: Archive unit tests report
       uses: actions/upload-artifact@v2
@@ -106,3 +108,17 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: results.sarif
+  metrics:
+    name: test-metrics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+      - name: Install zsh
+        run: sudo apt install zsh
+      - name: Run test metrics script
+        run: zsh .github/scripts/get-test-metrics.sh
