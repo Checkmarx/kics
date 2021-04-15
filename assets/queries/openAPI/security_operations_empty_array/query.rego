@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	operationObject := doc.paths[path][operation]
 	object.get(operationObject, "security", "undefined") != "undefined"
+
+	is_array(operationObject.security)
 	count(operationObject.security) == 0
 
 	result := {
