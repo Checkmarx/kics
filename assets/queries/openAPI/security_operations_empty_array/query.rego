@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.%s.%s.security", [path, operation]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security", [path, operation]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Security operation field array, when declared, should not be empty",
 		"keyActualValue": "Security operation field array is declared and empty",
