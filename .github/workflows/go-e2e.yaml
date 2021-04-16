@@ -1,4 +1,3 @@
-
 name: go-e2e
 
 on:
@@ -14,22 +13,25 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - name: Cancel Previous Runs
-      uses: styfle/cancel-workflow-action@0.9.0
-      with:
-        access_token: ${{ github.token }}
-    - name: Set up Go 1.x
-      uses: actions/setup-go@v2
-      with:
-        go-version: ${{ matrix.go-version }}
-    - name: Check out code
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-    - name: Build binary
-      run: make build
-    - name: Run E2E Tests
-      env:
-        E2E_KICS_BINARY: ./bin/kics
-      run: |
-        go test "github.com/Checkmarx/kics/e2e" -v
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Build binary
+        run: make build
+      - name: Run E2E Tests
+        env:
+          E2E_KICS_BINARY: ${PWD}/bin/kics
+        run: |
+          env
+          ls -la
+          ls -la bin
+          go test "github.com/Checkmarx/kics/e2e" -v
