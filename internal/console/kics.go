@@ -33,18 +33,22 @@ var (
 	ci        bool
 
 	warning []string
+)
 
-	rootCmd = &cobra.Command{
+// NewKICSCmd creates a new instance of the kics Command
+func NewKICSCmd() *cobra.Command {
+	return &cobra.Command{
 		Use:   "kics",
 		Short: constants.Fullname,
 	}
-)
+}
 
-func initialize() error {
-	rootCmd.AddCommand(versionCmd)
-	rootCmd.AddCommand(generateIDCmd)
+func initialize(rootCmd *cobra.Command) error {
+	scanCmd := NewScanCmd()
+	rootCmd.AddCommand(NewVersionCmd())
+	rootCmd.AddCommand(NewGenerateIDCmd())
 	rootCmd.AddCommand(scanCmd)
-	rootCmd.AddCommand(listPlatformsCmd)
+	rootCmd.AddCommand(NewListPlatformsCmd())
 	rootCmd.PersistentFlags().BoolVarP(&logFile,
 		printer.LogFileFlag,
 		printer.LogFileShorthand,
@@ -95,8 +99,8 @@ func initialize() error {
 		return err
 	}
 
-	initScanCmd()
-	if insertScanCmd() {
+	initScanCmd(scanCmd)
+	if insertScanCmd(scanCmd) {
 		warning = append(warning, "WARNING: for future versions use 'kics scan'")
 		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
 	}
@@ -104,7 +108,7 @@ func initialize() error {
 	return nil
 }
 
-func insertScanCmd() bool {
+func insertScanCmd(scanCmd *cobra.Command) bool {
 	if len(os.Args) > 1 && os.Args[1][0] == '-' {
 		if os.Args[1][1] != '-' {
 			flag := os.Args[1][1:]
@@ -120,13 +124,15 @@ func insertScanCmd() bool {
 func Execute() error {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
+	rootCmd := NewKICSCmd()
+
 	err := sentry.Init(sentry.ClientOptions{})
 	if err != nil {
 		log.Err(err).Msg("Failed to initialize sentry")
 	}
 	defer sentry.Flush(timeMult * time.Second)
 
-	if err := initialize(); err != nil {
+	if err := initialize(rootCmd); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize CLI")
 		return err
