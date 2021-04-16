@@ -5,5 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Global security definition must not have empty objects",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
-  "platform": "openAPI"
+  "platform": "OpenAPI"
 }
