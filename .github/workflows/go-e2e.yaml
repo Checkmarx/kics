@@ -44,8 +44,16 @@ jobs:
           ${{ runner.OS }}-
     - name: Build binary
       run: make build
+    - name: Get Binary Path
+      id: getbin
+      run: |
+        #!/usr/bin/env python3
+        import os
+        path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'bin', 'kics')
+        print(f"::set-output name=kics::{path}")
+      shell: python {0}
     - name: Run E2E Tests
       env:
-        E2E_KICS_BINARY: ${{ github.workspace }}/bin/kics
+        E2E_KICS_BINARY: ${{ steps.getbin.outputs.kics }}
       run: |
         go test "github.com/Checkmarx/kics/e2e" -v
