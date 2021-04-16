@@ -5,15 +5,30 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 )
 
-func runCommandAndReturnOutput(args []string) (stdout string, err error) {
+type cmdOutput struct {
+	output []string
+	status int
+}
+
+func runCommand(args []string) (*cmdOutput, error) {
 	cmd := exec.Command(args[0], args[1:]...) //nolint
-	stdOutput, err := cmd.Output()
+	stdOutput, err := cmd.CombinedOutput()
 	if err != nil {
-		return "", err
+		if exitError, ok := err.(*exec.ExitError); ok {
+			return &cmdOutput{
+				output: strings.Split(string(stdOutput), "\n"),
+				status: exitError.ExitCode(),
+			}, nil
+		}
+		return &cmdOutput{}, err
 	}
-	return string(stdOutput), nil
+	return &cmdOutput{
+		output: strings.Split(string(stdOutput), "\n"),
+		status: 0,
+	}, nil
 }
 
 func readFixture(testName string) (string, error) {
@@ -32,12 +47,12 @@ func readFile(path string) (string, error) {
 	return string(bytes), nil
 }
 
-func getKICSBinaryPath(path string) string {
+func getKICSBinaryPath(path string) []string {
 	var rtnPath string
 	if path == "" {
 		rtnPath = os.Getenv("E2E_KICS_BINARY")
 	} else {
 		rtnPath = path
 	}
-	return rtnPath
+	return []string{rtnPath}
 }
