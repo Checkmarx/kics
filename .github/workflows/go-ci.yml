@@ -58,8 +58,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
-    - name: Run Go mod tidy
-      run: go mod tidy
     - name: Get cache paths
       id: go-cache-paths
       run: |
@@ -84,7 +82,8 @@ jobs:
         go mod vendor
     - name: Test and Generate Report
       run: |
-        go test -mod=vendor -v $(go list ./... | grep -v e2e/) -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version ${{ matrix.go-version }} -package-name "github.com/Checkmarx/kics/test" > test-report-${{ matrix.os }}.xml
+        set +o pipefail
+        go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version ${{ matrix.go-version }} -package-name "github.com/Checkmarx/kics/test" > test-report-${{ matrix.os }}.xml
     - name: Archive unit tests report
       uses: actions/upload-artifact@v2
       with:
