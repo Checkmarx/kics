@@ -6,7 +6,7 @@ paths:
   "/":
     get:
       responses:
-        '200':
+        "200":
           description: the user being returned
           content:
             application/json:
@@ -23,14 +23,14 @@ paths:
                 userId: $request.path.id
   "/users/{userid}/address":
     parameters:
-    - name: userid
-      in: path
-      required: true
-      description: the user identifier, as userId
-      schema:
-        type: string
+      - name: userid
+        in: path
+        required: true
+        description: the user identifier, as userId
+        schema:
+          type: string
     get:
       operationId: getUserAddress
       responses:
-        '200':
+        "200":
           description: the user's address
