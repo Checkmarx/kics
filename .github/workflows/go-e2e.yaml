@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         go-version: [1.16.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Cancel Previous Runs
@@ -44,9 +44,6 @@ jobs:
           ${{ runner.OS }}-
     - name: Build binary
       run: make build
-    - run: |
-        ls
-        ls bin
     - name: Get Binary Path
       id: getbin
       run: |
