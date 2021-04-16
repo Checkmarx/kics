@@ -45,9 +45,8 @@ jobs:
     - name: Build binary
       run: make build
     - run: |
-        set +o pipefail
-        python --version
-        python3 --version || true
+        ls
+        ls bin
     - name: Get Binary Path
       id: getbin
       run: |
