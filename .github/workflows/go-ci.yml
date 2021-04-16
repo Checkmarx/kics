@@ -108,17 +108,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: results.sarif
-  metrics:
-    name: test-metrics
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Source
-        uses: actions/checkout@v2
-      - name: Set up Go 1.x
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.16.x
-      - name: Install zsh
-        run: sudo apt install zsh
-      - name: Run test metrics script
-        run: zsh .github/scripts/get-test-metrics.sh
