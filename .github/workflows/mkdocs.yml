@@ -42,8 +42,10 @@ jobs:
           git pull origin gh-pages
           git checkout master
       - name: Update develop docs
-        # this will create a new commit in gh-pages branch
-        run: mike deploy develop -u
+        # this will create two new commits in gh-pages branch
+        run: |
+          mike delete develop
+          mike deploy develop
       - name: Publish changes in gh-pages
         run: |
           git checkout gh-pages

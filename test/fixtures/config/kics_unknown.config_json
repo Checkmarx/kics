@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "log-file": true,
+  "type": [
+    "CloudFormation",
+    "Dockerfile"
+  ],
+  "unkown": ""
+}

@@ -288,7 +288,7 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 func ValidateReportFormats(formats []string) error {
 	log.Debug().Msg("helpers.ValidateReportFormats()")
 
-	validFormats := make([]string, len(reportGenerators))
+	validFormats := make([]string, 0, len(reportGenerators))
 	for reportFormats := range reportGenerators {
 		validFormats = append(validFormats, reportFormats)
 	}
