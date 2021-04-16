@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive7.yaml"
+  },
+  {
+    "queryName": "Global security field has an empty object",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive8.yaml"
+  }
+]
