@@ -4,7 +4,7 @@ import data.generic.openapi as openAPILib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openAPILib.checkOpenAPI(doc) != "undefined"
+	openAPILib.check_openapi(doc) != "undefined"
 	paths := doc.paths[path][oper].servers[n]
 
 	regex.match("^(http:)", paths.url)
