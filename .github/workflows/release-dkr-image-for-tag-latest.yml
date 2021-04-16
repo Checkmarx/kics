@@ -1,4 +1,4 @@
-name: release-manual-docker-tag
+name: release-manual-docker-tag-latest
 
 on:
   workflow_dispatch:
@@ -6,9 +6,6 @@ on:
       tag:
         description: 'Git Tag'
         required: true
-      latest:
-        description: 'true if latest image tag applies'
-        default: 'false'
 
 jobs:
   push_to_registry:
@@ -41,44 +38,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push scratch to Docker Hub
-        if: ${{ github.event.inputs.latest }} == 'true'
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}
-          build-args: |
-            VERSION=${{ github.event.inputs.tag }}
-            COMMIT=${{ github.sha }}
-      - name: Push scratch to Docker Hub
-        if: ${{ github.event.inputs.latest }} != 'true'
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ github.event.inputs.tag }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
-        if: ${{ github.event.inputs.latest }} == 'true'
         uses: docker/build-push-action@v2
         with:
           context: .
           file: ./Dockerfile.integration
           push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}-alpine
-          build-args: |
-            VERSION=${{ github.event.inputs.tag }}
-            COMMIT=${{ github.sha }}
-      - name: Push alpine to Docker Hub
-        if: ${{ github.event.inputs.latest }} != 'true'
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile.integration
-          push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}-alpine
+          tags: checkmarx/kics:latest-alpine,checkmarx/kics:${{ github.event.inputs.tag }}-alpine
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
