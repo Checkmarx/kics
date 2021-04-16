@@ -1,10 +1,10 @@
 package Cx
 
-import data.generic.openapi as openAPILib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openAPILib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) != "undefined"
     object.get(doc, "servers", "undefined") == "undefined"
 
 	result := {
@@ -18,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openAPILib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) != "undefined"
 	object.get(doc, "servers", "undefined") != "undefined"
 
     count(doc.servers) > 0
