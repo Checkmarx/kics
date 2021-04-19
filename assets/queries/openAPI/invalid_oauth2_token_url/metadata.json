@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": " OAuth2 security scheme flow requires a valid URL in the tokenUrl field",
-  "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
+  "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
   "platform": "OpenAPI"
 }

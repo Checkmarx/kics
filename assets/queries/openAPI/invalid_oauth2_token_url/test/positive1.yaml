@@ -20,4 +20,6 @@ components:
       flows:
         authorizationCode:
           authorizationUrl: https://api.my.company.com/oauth/authorize
-          tokenUrl: http:|//my.inval`d.com
+          tokenUrl: http://example.com#@evil.com/
+          scopes:
+            read:api: read your apis

@@ -21,3 +21,5 @@ components:
         authorizationCode:
           authorizationUrl: https://api.my.company.com/oauth/authorize
           tokenUrl: https://api.my.company.com/oauth/token
+          scopes:
+            read:api: read your apis

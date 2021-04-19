@@ -8,9 +8,10 @@ components:
       type: oauth2
       description: For more information, see https://api.my.company.com/docs/oauth
       flows:
-        authorizationCode:
-          authorizationUrl: https://api.my.company.com/oauth/authorize
+        password:
           tokenUrl: inval`id
+          scopes:
+            read:api: read your apis
 paths:
   "/":
     get:

@@ -22,13 +22,12 @@
   },
   "components": {
     "securitySchemes": {
-      "oAuth2AuthCodePos1": {
+      "oAuth2AuthCodePos3": {
         "type": "oauth2",
         "description": "For more information, see https://api.my.company.com/docs/oauth",
         "flows": {
-          "authorizationCode": {
-            "authorizationUrl": "https://api.my.company.com/oauth/authorize",
-            "tokenUrl": "http://example.com#@evil.com/",
+          "clientCredentials": {
+            "tokenUrl": "httxps//|api",
             "scopes": {
               "read:api": "read your apis"
             }
