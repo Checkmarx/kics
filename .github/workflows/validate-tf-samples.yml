@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           persist-credentials: false
       - name: Get tflint
         env:
@@ -26,8 +25,8 @@ jobs:
             && cd "${PROJDIR}"
       - name: Run tflint
         run: |
-          python3 -u .github/validators/validate-syntax.py \
+          python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/terraform/**/**/test/*.tf" \
             --linter .bin/tflint \
-            --skip '.github/validators/tf-skip-list' \
+            --skip '.github/scripts/samples-linters/ignore-list/terraform' \
             --verbose --tmp --redirect
