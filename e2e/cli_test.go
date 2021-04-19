@@ -97,7 +97,7 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"--payload-path", "fixtures/payload.json"},
+					"--payload-path", "fixtures/payload.json", "-q", "../assets/queries"},
 			},
 			expectedOut: []string{
 				"E2E_CLI_005",
@@ -128,7 +128,8 @@ func Test_E2E_CLI(t *testing.T) {
 				want, err := prepareExpected(tt.args.expectedOut[arg])
 				require.NoError(t, err, "Reading a fixture should not yield an error")
 				// Check Number of Lines
-				require.Equal(t, len(want), len(out.output), "\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(want), len(out.output))
+				require.Equal(t, len(want), len(out.output),
+					"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(want), len(out.output))
 				// Check output lines
 				for idx := range want {
 					checkLine(t, out.output[idx], want[idx], idx+1)
