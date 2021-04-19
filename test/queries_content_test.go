@@ -65,6 +65,18 @@ var (
 		"Structure and Semantics": "CAT014",
 	}
 
+	// TODO uncomment this test once all metadata are fixed
+	// availablePlatforms = map[string]string{
+	// 	"Ansible":        "true",
+	// 	"CloudFormation": "true",
+	// 	"Common":         "true",
+	// 	"Dockerfile":     "true",
+	// 	"Kubernetes":     "true",
+	// 	"OpenAPI":        "true",
+	// 	"Terraform":      "true",
+	// }
+	// platformKeys = MapToStringSlice(availablePlatforms)
+
 	CategoriesKeys = MapToStringSlice(AvailableCategories)
 
 	searchValueProperty = "searchValue"
@@ -95,6 +107,8 @@ var (
 		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
 			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
 			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)
+			// _, ok := availablePlatforms[platformValue]
+			// require.True(tb, ok, "%s is not a valid platform must be one of:\n%v", platformValue, strings.Join(platformKeys, "\n"))
 		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
 			switch urlValue := value.(type) {
