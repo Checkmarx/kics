@@ -39,6 +39,12 @@ confirmPorts(servicePorts) {
 	types := {"initContainers", "containers"}
 	containers := pod.spec[types[x]][j]
 	containers.ports[k].containerPort == servicePorts.targetPort
+} else {
+	stateful_set := input.document[i]
+	stateful_set.kind == "StatefulSet"
+	types := {"initContainers", "containers"}
+	containers := stateful_set.spec.template.spec[types[x]][j]
+	containers.ports[k].containerPort == servicePorts.targetPort
 } else = false {
 	true
 }
@@ -47,6 +53,10 @@ contains(string) {
 	pod := input.document[i]
 	pod.kind == "Pod"
 	pod.metadata.labels[_] == string
+} else {
+	stateful_set := input.document[i]
+	stateful_set.kind == "StatefulSet"
+	stateful_set.metadata.labels[_] == string
 } else = false {
 	true
 }
