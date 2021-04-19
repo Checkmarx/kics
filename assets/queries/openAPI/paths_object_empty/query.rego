@@ -1,10 +1,10 @@
 package Cx
 
-import data.generic.openapi as openAPILib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openAPILib.checkOpenAPI(doc) != "undefined"
+	openapi_lib.check_openapi(doc) != "undefined"
 	object.get(doc, "paths", "undefined") != "undefined"
 
 	check_paths_object(doc.paths)
