@@ -39,20 +39,5 @@
         }
       }
     }
-  },
-  "security": [
-    {
-      "exampleSecurity": []
-    }
-  ],
-  "components": {
-    "securitySchemes": [
-      {
-        "exampleSecurity": {
-          "type": "http",
-          "scheme": "basic"
-        }
-      }
-    ]
   }
 }

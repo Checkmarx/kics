@@ -40,19 +40,21 @@
       }
     }
   },
-  "security": [
-    {
-      "exampleSecurity": []
-    }
-  ],
   "components": {
-    "securitySchemes": [
-      {
-        "exampleSecurity": {
-          "type": "http",
-          "scheme": "basic"
+    "securitySchemes": {
+      "oAuth2AuthCodeNeg2": {
+        "type": "oauth2",
+        "description": "For more information, see https://api.my.company.com/docs/oauth",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://api.invalid.company.com#@evil.com/oauth/authorize",
+            "scopes": {
+              "write:api": "modify apis in your account",
+              "read:api": "read your apis"
+            }
+          }
         }
       }
-    ]
+    }
   }
 }

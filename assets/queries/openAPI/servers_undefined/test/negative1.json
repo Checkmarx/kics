@@ -40,19 +40,10 @@
       }
     }
   },
-  "security": [
+  "servers": [
     {
-      "exampleSecurity": []
+      "url": "https://my.api.server.com/",
+      "description": "My API Server"
     }
-  ],
-  "components": {
-    "securitySchemes": [
-      {
-        "exampleSecurity": {
-          "type": "http",
-          "scheme": "basic"
-        }
-      }
-    ]
-  }
+  ]
 }

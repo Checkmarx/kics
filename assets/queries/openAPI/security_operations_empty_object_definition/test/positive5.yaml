@@ -1,12 +1,13 @@
 openapi: 3.0.0
 info:
-  title: Simple API Overview
+  title: Simple API overview
   version: 1.0.0
 paths:
   "/":
     get:
       operationId: listVersionsv2
       summary: List API versions
+      security: {}
       responses:
         '200':
           description: 200 response
@@ -23,9 +24,5 @@ paths:
                       - href: http://127.0.0.1:8774/v2/
                         rel: self
 security:
-- exampleSecurity: []
-components:
-  securitySchemes:
-  - exampleSecurity:
-      type: http
-      scheme: basic
+- OAuth2:
+  - read

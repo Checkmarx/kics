@@ -22,10 +22,14 @@ paths:
                       links:
                       - href: http://127.0.0.1:8774/v2/
                         rel: self
-security:
-- exampleSecurity: []
 components:
   securitySchemes:
-  - exampleSecurity:
-      type: http
-      scheme: basic
+    oAuth2AuthCodeNeg2:
+      type: oauth2
+      description: For more information, see https://api.my.company.com/docs/oauth
+      flows:
+        implicit:
+          authorizationUrl: https://api.invalid.comp@#any.com/oauth/authorize
+          scopes:
+            write:api: modify apis in your account
+            read:api: read your apis
