@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "A default security schema should be defined",
-		"keyActualValue": "A default security schema is not defined",
+		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.parameters type should be defined", [name, params.name]),
+		"keyActualValue": sprintf("openapi.paths.{{%s}}.parameters type is not defined", [name, params.name]),
 	}
 }
 
@@ -31,8 +31,25 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.components.parameters.name={{%s}}", [params.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "A default security schema should be defined",
-		"keyActualValue": "A default security schema is not defined",
+		"keyExpectedValue": sprintf("openapi.components.parameters type should be defined", [params.name]),
+		"keyActualValue": sprintf("openapi.components.parameters type is not defined", [params.name]),
+	}
+}
+
+CxPolicy[result] {
+	doc := input.document[i]
+	openapi_lib.check_openapi(doc) != "undefined"
+	params := doc.paths[name][oper].parameters[n]
+	object.get(params, "$ref", "undefined") == "undefined"
+
+	check_parameters(params)
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.parameters.name={{%s}}", [name, oper, params.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.{{%s}}.parameters type should be defined", [name, oper, params.name]),
+		"keyActualValue": sprintf("openapi.paths.{{%s}}.{{%s}}.parameters type is not defined", [name, oper, params.name]),
 	}
 }
 

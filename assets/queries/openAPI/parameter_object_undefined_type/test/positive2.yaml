@@ -33,3 +33,10 @@ paths:
         required: true
         schema:
           type: string
+  /users/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The user ID
