@@ -24,9 +24,12 @@ jobs:
           python-version: '3.x'
       - name: Update docs
         run: |
-          pip3 install -r .github/generators/requirements.txt
-          python3 -u .github/generators/docs_generator.py -p ./assets/queries/ \
-            -o ./docs/queries/ -f md -t .github/generators/templates
+          pip3 install -r .github/scripts/docs-generator/requirements.txt
+          python3 -u .github/scripts/docs-generator/docs-generator.py \
+            -p ./assets/queries/ \
+            -o ./docs/queries/ \
+            -f md \
+            -t .github/scripts/docs-generator/templates
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:

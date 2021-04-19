@@ -12,20 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           persist-credentials: false
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: assets/queries/openAPI/
-          config_file: .github/yamllint.yml
+          config_file: .github/scripts/samples-linters/yamllint.yml
           strict: true
   lint-json-samples:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v2
         with:
@@ -37,9 +35,9 @@ jobs:
           which jsonlint
       - name: Running JSON lint
         run: |
-          python3 -u ".github/validators/validate-syntax.py" \
+          python3 -u ".github/scripts/samples-linters/validate-syntax.py" \
             "assets/queries/openapi/**/test/*.json" \
             --linter jsonlint \
-            --skip ".github/validators/openapi-skip-list" -vv
+            --skip ".github/scripts/samples-linters/ignore-list/openapi" -vv
 
 

@@ -35,3 +35,4 @@ Resources:
         ClientSecret: "{{resolve:ssm-secure:123456}}"
         RefreshToken: "Atzr|1234"
       VendorId: "1234"
+      # trigger validation
