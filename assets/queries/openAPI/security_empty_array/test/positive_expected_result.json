@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "Global security field has an empty array",
+    "queryName": "Global Security Field Has An Empty Array",
     "severity": "HIGH",
     "line": 2,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Global security field has an empty array",
+    "queryName": "Global Security Field Has An Empty Array",
     "severity": "HIGH",
     "line": 43,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Global security field has an empty array",
+    "queryName": "Global Security Field Has An Empty Array",
     "severity": "HIGH",
     "line": 1,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Global security field has an empty array",
+    "queryName": "Global Security Field Has An Empty Array",
     "severity": "HIGH",
     "line": 25,
     "filename": "positive4.yaml"
