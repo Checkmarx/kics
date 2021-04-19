@@ -1,0 +1,9 @@
+{
+  "id": "b1a7fcb0-2afe-4d5c-a6a1-4e6311fc29e7",
+  "queryName": "Invalid Contact Email",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Contact Object Email should be a valid email",
+  "descriptionUrl": "https://swagger.io/specification/#contact-object",
+  "platform": "OpenAPI"
+}
