@@ -1,0 +1,9 @@
+{
+  "id": "5aea1d7e-b834-4749-b143-2c7ec3bd5922",
+  "queryName": "Invalid Tag External Documentation URL",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Tag External Documentation URL should be a valid URL",
+  "descriptionUrl": "https://swagger.io/specification/#external-documentation-object",
+  "platform": "OpenAPI"
+}
