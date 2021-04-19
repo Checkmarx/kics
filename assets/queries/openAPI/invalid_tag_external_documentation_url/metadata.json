@@ -4,6 +4,6 @@
   "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "Tag External Documentation URL should be a valid URL",
-  "descriptionUrl": "https://swagger.io/specification/#tag-object",
+  "descriptionUrl": "https://swagger.io/specification/#external-documentation-object",
   "platform": "OpenAPI"
 }
