@@ -1,23 +1,21 @@
-name: release-docker-image
+name: release-manual-docker-tag-latest
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git Tag'
+        required: true
 
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    if: "!github.event.release.prerelease"
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Get Release version
-        id: get-version
-        run: |
-          git fetch --prune --unshallow --tags
-          echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
+        with:
+          ref: ${{ github.event.inputs.tag }}
       - uses: toko-bifrost/ms-teams-deploy-card@master
         if: always()
         with:
@@ -44,9 +42,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ github.event.inputs.tag }}
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2
@@ -54,7 +52,7 @@ jobs:
           context: .
           file: ./Dockerfile.integration
           push: true
-          tags: checkmarx/kics:latest-alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
+          tags: checkmarx/kics:latest-alpine,checkmarx/kics:${{ github.event.inputs.tag }}-alpine
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}

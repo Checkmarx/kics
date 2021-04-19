@@ -4,6 +4,20 @@
     "title": "Simple API Overview",
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "https://development.gigantic-server.com/v1",
+      "description": "Development server"
+    },
+    {
+      "url": "https://staging.gigantic-server.com/v1",
+      "description": "Staging server"
+    },
+    {
+      "url": "https://api.gigantic-server.com/v1",
+      "description": "Production server"
+    }
+  ],
   "paths": {
     "/": {
       "get": {
@@ -40,15 +54,14 @@
       }
     }
   },
-  "security": [
+  "security":[
     {
       "exampleSecurity": []
     }
   ],
   "components": {
     "exampleSecurity": {
-      "type": "http",
-      "scheme": "basic"
+      "type": "https"
     }
   }
 }
