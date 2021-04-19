@@ -6,11 +6,8 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	object.get(doc, "components", "undefined") != "undefined"
-	object.get(doc.components, "securitySchemes", "undefined") != "undefined"
 	sec_scheme := doc.components.securitySchemes[key]
 	sec_scheme.type == "oauth2"
-	object.get(sec_scheme.flows, "authorizationCode", "undefined") != "undefined"
 	url := sec_scheme.flows.authorizationCode.authorizationUrl
 
 	not openapi_lib.is_valid_url(url)
@@ -28,11 +25,8 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	object.get(doc, "components", "undefined") != "undefined"
-	object.get(doc.components, "securitySchemes", "undefined") != "undefined"
 	sec_scheme := doc.components.securitySchemes[key]
 	sec_scheme.type == "oauth2"
-	object.get(sec_scheme.flows, "implicit", "undefined") != "undefined"
 	url := sec_scheme.flows.implicit.authorizationUrl
 
 	not openapi_lib.is_valid_url(url)
