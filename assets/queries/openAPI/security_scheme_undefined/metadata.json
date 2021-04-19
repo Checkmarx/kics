@@ -1,6 +1,6 @@
 {
   "id": "8db5544e-4874-4baa-9322-e9f75a2d219e",
-  "queryName": "Field securityScheme on Components is undefined",
+  "queryName": "Field 'securityScheme' On Components Is Undefined",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Components' securityScheme field must have a valid scheme",
