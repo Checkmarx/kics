@@ -1,0 +1,61 @@
+name: go-e2e
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  unit-tests:
+    name: e2e-tests
+    strategy:
+      matrix:
+        go-version: [1.16.x]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Print go env
+        run: go env
+      - name: Get cache paths
+        id: go-cache-paths
+        run: |
+          echo "::set-output name=go-build::$(go env GOCACHE)"
+          echo "::set-output name=go-mod::$(go env GOMODCACHE)"
+      - name: Cache dependencies
+        uses: actions/cache@v2.1.5
+        with:
+          path: ${{ steps.go-cache-paths.outputs.go-build }}
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: Build binary
+        run: make build
+      - name: Get Binary Path
+        id: getbin
+        run: |
+          #!/usr/bin/env python3
+          import os
+          path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'bin', 'kics')
+          print(f"::set-output name=kics::{path}")
+          queries_path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'assets', 'queries')
+          print(f"::set-output name=queries::{queries_path}")
+        shell: python3 {0}
+      - name: Run E2E Tests
+        env:
+          E2E_KICS_BINARY: ${{ steps.getbin.outputs.kics }}
+          E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
+        run: |
+          go test "github.com/Checkmarx/kics/e2e" -v
