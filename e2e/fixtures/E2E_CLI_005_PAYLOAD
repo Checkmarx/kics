@@ -1,8 +1,8 @@
 {
 	"document": [
 		{
-			"id": "42f99d44-5a8c-4986-9d63-bf5baad91166",
-			"file": "kics/test/fixtures/tc-sim01/positive1.tf",
+			"id": "0",
+			"file": "file",
 			"resource": {
 				"aws_redshift_cluster": {
 					"default": {

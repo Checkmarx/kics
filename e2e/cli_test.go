@@ -3,10 +3,14 @@ package e2e
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -176,8 +180,37 @@ func fileCheck(t *testing.T, remove, payload string) {
 	require.Equal(t, len(wantPayload), len(expectPayload),
 		"\nExpected file number of lines:%d\nKics file number of lines:%d\n", len(wantPayload), len(expectPayload))
 	checkJSONFile(t, wantPayload, expectPayload)
+	err = os.Remove(filepath.Join("fixtures", remove))
+	require.NoError(t, err)
 }
 
 func checkJSONFile(t *testing.T, expect, want []string) { // Needs to fixed
-	require.Equal(t, expect, want)
+	var wantI model.Documents
+	var expecI model.Documents
+	errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expecI)
+	require.NoError(t, errE, "Unmarshaling JSON file should not yield an error")
+	errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
+	require.NoError(t, errW, "Unmarshaling JSON file should not yield an error")
+	setFields(t, wantI, expecI, "payload")
+}
+
+func setFields(t *testing.T, want, expect model.Documents, location string) {
+	switch location {
+	case "payload":
+		for _, docs := range want.Documents {
+			require.NotNil(t, docs["id"]) // Here additional checks may be added as length of id, or contains in file
+			require.NotNil(t, docs["file"])
+			docs["id"] = "0"
+			docs["file"] = "file"
+		}
+		if !reflect.DeepEqual(expect, want) {
+			expectStr, err := test.StringifyStruct(expect)
+			require.NoError(t, err)
+			wantStr, err := test.StringifyStruct(want)
+			require.NoError(t, err)
+			t.Errorf("Expected:\n%v\n,want:\n%v\n", expectStr, wantStr)
+		}
+	case "result": // TODO
+	default:
+	}
 }
