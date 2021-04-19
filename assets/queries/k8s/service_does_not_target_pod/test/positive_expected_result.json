@@ -2,11 +2,13 @@
   {
     "queryName": "Service Does Not Target Pod",
     "severity": "LOW",
-    "line": 14
+    "line": 7,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Service Does Not Target Pod",
     "severity": "LOW",
-    "line": 24
+    "line": 14,
+    "fileName": "positive2.yaml"
   }
 ]

@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           persist-credentials: false
       - name: Get Hadolint
         run: |
@@ -21,8 +20,8 @@ jobs:
           chmod +x .bin/hadolint
       - name: Validate dockerfiles syntax
         run: |
-          python3 -u .github/validators/validate-syntax.py \
+          python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/docker/**/test/*.dockerfile" \
             --linter .bin/hadolint \
-            --skip dkr-skip-list \
-            --extra ' -c .github/hadolint.yml'
+            --skip .github/scripts/samples-linters/ignore-list/docker \
+            --extra ' -c .github/scripts/samples-linters/hadolint.yml'
