@@ -49,7 +49,7 @@ build-all: lint generate
 
 .PHONY: build
 build: ## go build
-build: lint generate
+build: generate
 	$(call print-target)
 	@go build -o ${TARGET_BIN} \
 		-ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" \

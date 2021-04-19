@@ -5,6 +5,7 @@ import data.generic.openapi as openapi_lib
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
+
 	object.get(doc, "security", "undefined") == "undefined"
 
 	result := {
@@ -19,6 +20,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
+
 	object.get(doc, "security", "undefined") != "undefined"
 
 	count(doc.security) == 0

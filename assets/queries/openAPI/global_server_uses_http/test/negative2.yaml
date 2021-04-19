@@ -35,3 +35,4 @@ security:
 components:
   exampleSecurity:
     type: https
+# trigger validation

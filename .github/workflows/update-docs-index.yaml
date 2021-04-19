@@ -59,18 +59,7 @@ jobs:
         run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Pull changes from gh-pages branch
-        run: |
-          git checkout gh-pages
-          git pull origin gh-pages
-          git checkout master
       - name: Deploy mike version
-        # this will create a new commit in gh-pages branch
         run: |
-          mike deploy ${{ steps.cversion.outputs.version }} latest -u
-          mike set-default ${{ steps.cversion.outputs.version }}
-      - name: Publish changes
-        run: |
-          git checkout gh-pages
-          git push origin gh-pages
+          mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force
 
