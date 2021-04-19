@@ -1,6 +1,6 @@
 {
   "id": "663c442d-f918-4f62-b096-0bf5dcbeb655",
-  "queryName": "Operations security field has an empty array",
+  "queryName": "Security Field On Operations Has An Empty Array",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Security object for operations, if defined, must define a security scheme, otherwise it should be considered an error",
