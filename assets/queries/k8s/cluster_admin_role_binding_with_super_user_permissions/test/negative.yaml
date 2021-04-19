@@ -10,3 +10,4 @@ roleRef:
   kind: ClusterRole
   name: view
   apiGroup: ""
+# trigger validation
