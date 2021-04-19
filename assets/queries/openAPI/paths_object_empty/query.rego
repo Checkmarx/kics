@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openAPILib.checkOpenAPI(doc) != "undefined"
 	object.get(doc, "paths", "undefined") != "undefined"
 
-	checkPathsObject(doc.paths)
+	check_paths_object(doc.paths)
 
 	result := {
 		"documentId": doc.id,
@@ -18,11 +18,11 @@ CxPolicy[result] {
 	}
 }
 
-checkPathsObject(paths) {
+check_paths_object(paths) {
 	count(paths) == 0
 }
 
 # In yaml an empty object is parsed into null
-checkPathsObject(paths) {
+check_paths_object(paths) {
 	paths == null
 }
