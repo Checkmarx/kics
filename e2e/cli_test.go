@@ -112,7 +112,7 @@ var tests = []struct {
 }
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := getKICSBinaryPath("/usr/local/bin/kics")
+	kicsPath := getKICSBinaryPath("")
 
 	for _, tt := range tests {
 		for arg := range tt.args.args {
