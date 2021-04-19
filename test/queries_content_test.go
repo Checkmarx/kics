@@ -66,16 +66,16 @@ var (
 	}
 
 	// TODO uncomment this test once all metadata are fixed
-	// availablePlatforms = map[string]string{
-	// 	"Ansible":        "true",
-	// 	"CloudFormation": "true",
-	// 	"Common":         "true",
-	// 	"Dockerfile":     "true",
-	// 	"Kubernetes":     "true",
-	// 	"OpenAPI":        "true",
-	// 	"Terraform":      "true",
-	// }
-	// platformKeys = MapToStringSlice(availablePlatforms)
+	availablePlatforms = map[string]string{
+		"Ansible":        "ansible",
+		"CloudFormation": "cloudFormation",
+		"Common":         "common",
+		"Dockerfile":     "dockerfile",
+		"Kubernetes":     "k8s",
+		"OpenAPI":        "openAPI",
+		"Terraform":      "terraform",
+	}
+	platformKeys = MapToStringSlice(availablePlatforms)
 
 	CategoriesKeys = MapToStringSlice(AvailableCategories)
 
@@ -98,7 +98,7 @@ var (
 			categoryValue := testMetadataFieldStringType(tb, value, "category", metadataPath)
 			require.NotEmpty(tb, categoryValue, "empty category in query metadata file %s", metadataPath)
 			_, ok := AvailableCategories[categoryValue]
-			require.True(tb, ok, "%s is not a valid category must be one of:\n%v", categoryValue, strings.Join(CategoriesKeys, "\n"))
+			require.True(tb, ok, "%s in metadata: %s\nis not a valid category must be one of:\n%v", categoryValue, metadataPath, strings.Join(CategoriesKeys, "\n"))
 		},
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
@@ -107,8 +107,9 @@ var (
 		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
 			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
 			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)
-			// _, ok := availablePlatforms[platformValue]
-			// require.True(tb, ok, "%s is not a valid platform must be one of:\n%v", platformValue, strings.Join(platformKeys, "\n"))
+			platformDir, ok := availablePlatforms[platformValue]
+			require.True(tb, ok, "%s in metadata: %s\nis not a valid platform must be one of:\n%v", platformValue, metadataPath, strings.Join(platformKeys, "\n"))
+			require.True(tb, strings.Contains(metadataPath, path.Join("assets", "queries", platformDir)), "platform and query directory mismatch platform:\n%s\nmetadata:\n%s", platformValue, metadataPath)
 		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
 			switch urlValue := value.(type) {
