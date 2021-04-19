@@ -17,3 +17,4 @@
       - Type: forward
         TargetGroupName: targetname
     state: present
+    # trigger validation

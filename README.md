@@ -67,7 +67,6 @@ Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on G
 
 **Keeping Infrastructure as Code Secure!**
 
-
 ---
 
 &copy; 2021 Checkmarx Ltd. All Rights Reserved.
