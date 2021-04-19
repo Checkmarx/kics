@@ -7,3 +7,7 @@ check_openapi(doc) = version {
 } else = version {
 	version = "undefined"
 }
+
+is_valid_url(url) {
+	regex.match(`^(https?):\/\/(-\.)?([^\s\/?\.#-]+([-\.\/])?)+(\/[^\s]*)?$`, url)
+}
