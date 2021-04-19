@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "queryName": "Security array is empty",
     "severity": "HIGH",
     "line": 43,
@@ -10,5 +11,29 @@
     "severity": "HIGH",
     "line": 25,
     "filename": "positive2.yaml"
+=======
+    "queryName": "Global Security Field Has An Empty Array",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Security Field Has An Empty Array",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Global Security Field Has An Empty Array",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Global Security Field Has An Empty Array",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive4.yaml"
+>>>>>>> master
   }
 ]

@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@v2
         with:
@@ -29,20 +28,20 @@ jobs:
       - name: Validate ALL cloudformation template samples
         if: github.event_name == 'workflow_dispatch'
         run: |
-          python3 -u ".github/validators/validate-syntax.py" \
+          python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/cloudFormation/**/test/*.yaml" \
             "assets/queries/cloudFormation/**/test/*.json" \
             --linter /home/runner/.local/bin/cfn-lint \
-            --extra " --info --config-file .github/.cfnlintrc.yml" \
-            --skip ".github/validators/cfn-skip-list" \
+            --extra " --info --config-file .github/scripts/samples-linters/.cfnlintrc.yml" \
+            --skip ".github/scripts/samples-linters/ignore-list/cloudformation" \
             --verbose
       - name: Validate CHANGED cloudformation template samples
         if: github.event_name != 'workflow_dispatch'
         run: |
-          python3 -u ".github/validators/validate-syntax.py" \
+          python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/cloudFormation/**/test/*.yaml" \
             "assets/queries/cloudFormation/**/test/*.json" \
             --diff ${HOME}/files.json \
             --linter /home/runner/.local/bin/cfn-lint \
-            --extra " --info --config-file .github/.cfnlintrc.yml" \
-            --skip ".github/validators/cfn-skip-list" -vv
+            --extra " --info --config-file .github/scripts/samples-linters/.cfnlintrc.yml" \
+            --skip ".github/scripts/samples-linters/ignore-list/cloudformation" -vv
