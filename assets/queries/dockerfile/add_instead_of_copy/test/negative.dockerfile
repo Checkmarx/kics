@@ -7,3 +7,4 @@ ADD http://source.file/package.file.tar.gz /temp
 RUN tar -xjf /temp/package.file.tar.gz \
   && make -C /tmp/package.file \
   && rm /tmp/ package.file.tar.gz
+# trigger validation

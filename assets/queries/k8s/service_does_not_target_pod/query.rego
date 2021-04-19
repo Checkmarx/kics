@@ -1,13 +1,16 @@
 package Cx
 
+import data.generic.k8s as k8sLib
+
 CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
 	metadata := service.metadata
 	ports := service.spec.ports
 	servicePorts := ports[j]
-	contains(service.spec.selector[_])
-	confirmPorts(servicePorts) == false
+	label := service.spec.selector[_]
+	match_label(label)
+	not confirmPorts(label, servicePorts)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,7 +25,8 @@ CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
 	metadata := service.metadata
-	contains(service.spec.selector[_]) == false
+	label := service.spec.selector[_]
+	not match_label(label)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -33,20 +37,20 @@ CxPolicy[result] {
 	}
 }
 
-confirmPorts(servicePorts) {
-	pod := input.document[i]
-	pod.kind == "Pod"
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
+
+confirmPorts(label, servicePorts) {
+	resource := input.document[_]
+	resource.kind == listKinds[x]
+	resource.metadata.labels[_] == label
+	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
-	containers := pod.spec[types[x]][j]
-	containers.ports[k].containerPort == servicePorts.targetPort
-} else = false {
-	true
+	containers := specInfo.spec[types[j]]
+	containers[_].ports[_].containerPort == servicePorts.targetPort
 }
 
-contains(string) {
-	pod := input.document[i]
-	pod.kind == "Pod"
-	pod.metadata.labels[_] == string
-} else = false {
-	true
+match_label(string) {
+	resource := input.document[_]
+	resource.kind == listKinds[x]
+	resource.metadata.labels[_] == string
 }
