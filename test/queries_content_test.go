@@ -98,7 +98,9 @@ var (
 			categoryValue := testMetadataFieldStringType(tb, value, "category", metadataPath)
 			require.NotEmpty(tb, categoryValue, "empty category in query metadata file %s", metadataPath)
 			_, ok := AvailableCategories[categoryValue]
-			require.True(tb, ok, "%s in metadata: %s\nis not a valid category must be one of:\n%v", categoryValue, metadataPath, strings.Join(CategoriesKeys, "\n"))
+			require.True(tb, ok,
+				"%s in metadata: %s\nis not a valid category must be one of:\n%v",
+				categoryValue, metadataPath, strings.Join(CategoriesKeys, "\n"))
 		},
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
@@ -108,8 +110,11 @@ var (
 			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
 			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)
 			platformDir, ok := availablePlatforms[platformValue]
-			require.True(tb, ok, "%s in metadata: %s\nis not a valid platform must be one of:\n%v", platformValue, metadataPath, strings.Join(platformKeys, "\n"))
-			require.True(tb, strings.Contains(metadataPath, path.Join("assets", "queries", platformDir)), "platform and query directory mismatch platform:\n%s\nmetadata:\n%s", platformValue, metadataPath)
+			require.True(tb, ok,
+				"%s in metadata: %s\nis not a valid platform must be one of:\n%v",
+				platformValue, metadataPath, strings.Join(platformKeys, "\n"))
+			require.True(tb, strings.Contains(filepath.Clean(metadataPath), path.Join("assets", "queries", platformDir)),
+				"platform and query directory mismatch platform:\n%s\nmetadata:\n%s", platformValue, metadataPath)
 		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
 			switch urlValue := value.(type) {
