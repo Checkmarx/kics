@@ -50,9 +50,12 @@ jobs:
           import os
           path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'bin', 'kics')
           print(f"::set-output name=kics::{path}")
+          queries_path = os.path.join(os.environ['GITHUB_WORKSPACE'], 'assets', 'queries')
+          print(f"::set-output name=queries::{queries_path}")
         shell: python3 {0}
       - name: Run E2E Tests
         env:
           E2E_KICS_BINARY: ${{ steps.getbin.outputs.kics }}
+          E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
           go test "github.com/Checkmarx/kics/e2e" -v
