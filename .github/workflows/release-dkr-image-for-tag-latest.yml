@@ -1,4 +1,4 @@
-name: release-manual-docker-tag
+name: release-manual-docker-tag-latest
 
 on:
   workflow_dispatch:
@@ -42,7 +42,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ github.event.inputs.tag }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
@@ -52,7 +52,7 @@ jobs:
           context: .
           file: ./Dockerfile.integration
           push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}-alpine
+          tags: checkmarx/kics:latest-alpine,checkmarx/kics:${{ github.event.inputs.tag }}-alpine
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
