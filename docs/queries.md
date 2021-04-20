@@ -7,7 +7,7 @@ CxPolicy [ result ] {
    resource := input.document[i].resource.aws_s3_bucket[name]
    role = "public-read"
    resource.acl == role
-   
+
    result := {
         "documentId": 		input.document[i].id,
         "searchKey": 	    sprintf("aws_s3_bucket[%s].acl", [name]),
