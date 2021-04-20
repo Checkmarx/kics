@@ -1,0 +1,9 @@
+{
+  "id": "d86655c0-92f6-4ffc-b4d5-5b5775804c27",
+  "queryName": "Responses With Wrong HTTP Status Code",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "HTTP Responses status code should be in range of [200-599]",
+  "descriptionUrl": "https://swagger.io/specification/#responses-object",
+  "platform": "OpenAPI"
+}
