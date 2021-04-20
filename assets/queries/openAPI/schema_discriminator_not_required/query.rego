@@ -57,16 +57,16 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	schema := doc.paths[path][operation].requestBody[r].content[c].schema
+	schema := doc.paths[path][operation].requestBody.content[c].schema
 	discriminator := schema.discriminator.propertyName
 	not required(schema, discriminator)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.{{%s}}.content.{{%s}}.schema.discriminator.propertyName", [path, operation, r, c]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.discriminator.propertyName", [path, operation, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.{{%s}}.content.{{%s}}.schema.discriminator.propertyName is a required property", [path, operation, r, c]),
-		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.{{%s}}.content.{{%s}}.schema.discriminator.propertyName is not a required property", [path, operation, r, c]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.discriminator.propertyName is a required property", [path, operation, c]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.discriminator.propertyName is not a required property", [path, operation, c]),
 	}
 }
 
