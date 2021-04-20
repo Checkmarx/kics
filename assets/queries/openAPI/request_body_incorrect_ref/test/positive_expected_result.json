@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Request Body With Incorrect Ref",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Request Body With Incorrect Ref",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.yaml"
+  }
+]
