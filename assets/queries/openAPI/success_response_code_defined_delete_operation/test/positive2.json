@@ -10,9 +10,6 @@
         "operationId": "deleteItem",
         "summary": "Delete item",
         "responses": {
-          "204": {
-            "description": "Item deleted successfully"
-          },
           "default": {
             "description": "Error",
             "schema": {
@@ -25,6 +22,9 @@
         "operationId": "updateItem",
         "summary": "Update item",
         "responses": {
+          "204": {
+            "description": "Item updated successfully"
+          },
           "default": {
             "description": "Error",
             "schema": {

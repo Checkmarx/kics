@@ -6,6 +6,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 	response := doc.paths[n][oper].responses
+	oper == "delete"
 
 	object.get(response, "200", "undefined") == "undefined"
 	object.get(response, "201", "undefined") == "undefined"
