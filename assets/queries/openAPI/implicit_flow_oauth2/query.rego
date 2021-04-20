@@ -6,8 +6,6 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	object.get(doc, "components", "undefined") != "undefined"
-	object.get(doc.components, "securitySchemes", "undefined") != "undefined"
 	sec_scheme := doc.components.securitySchemes[key]
 	sec_scheme.type == "oauth2"
 	object.get(sec_scheme.flows, "implicit", "undefined") != "undefined"
