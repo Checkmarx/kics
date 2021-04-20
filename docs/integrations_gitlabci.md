@@ -4,8 +4,16 @@ You can integrate KICS into your GitLab CI/CD pipelines.
 
 This provides you the ability to run KICS scans in your GitLab repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).
 
+### Including Template
 
-### Tutorial
+You can integrate KICS into your pipeline by [including](https://docs.gitlab.com/ee/ci/yaml/includes.html) our template in your `gitlabci.yaml`:
+
+```yaml
+include:
+  - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlabci-template.yml
+```
+
+### Full Pipeline Tutorial
 
 The following tutorial is a possible way of using KICS in GitLab CI. You can be creative and come up with different solutions that fit your pipelines.
 

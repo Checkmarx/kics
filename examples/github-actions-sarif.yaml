@@ -1,0 +1,39 @@
+name: Scan with KICS docker-runner
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  kics-job:
+    runs-on: ubuntu-latest
+    name: kics-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Mkdir results-dir
+        # make sure results dir is created
+        run: mkdir -p results-dir
+      - name: Run KICS Scan with SARIF result
+        uses: checkmarx/kics-action@docker-runner
+        with:
+          path: 'terraform'
+          # when provided with a directory on output_path
+          # it will generate the specified reports file named 'results.{extension}'
+          # in this example it will generate:
+          # - results-dir/results.json
+          # - results-dir/results.sarif
+          output_path: results-dir
+          platform_type: terraform
+          output_formats: 'json,sarif'
+          exclude_paths: "terraform/gcp/big_data.tf,terraform/azure"
+          # look for the queries' ID in its metadata.json
+          exclude_queries: 0437633b-daa6-4bbc-8526-c0d2443b946e
+      - name: Show results
+        run: |
+          cat results-dir/results.sarif
+          cat results-dir/results.json
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results-dir/results.sarif

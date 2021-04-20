@@ -4,6 +4,7 @@ bin
 docs
 site
 test
+examples
 .editorconfig
 .gitignore
 .golangci.yml
