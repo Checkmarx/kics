@@ -9,7 +9,7 @@ paths:
       summary: Delete item
       responses:
         '204':
-          description: Item updated successfully
+          description: Item deleted successfully
         default:
           description: Error
           schema:
