@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
-		"keyActualValue": "Delete does not have any successful code",
+		"keyExpectedValue": "Put should have at least one successful code (200, 201, 202 or 204)",
+		"keyActualValue": "Put does not have any successful code",
 	}
 }
