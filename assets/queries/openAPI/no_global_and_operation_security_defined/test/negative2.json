@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Simple API overview",
+    "title": "Simple API Overview",
     "version": "1.0.0"
   },
   "paths": {
@@ -9,6 +9,11 @@
       "get": {
         "operationId": "listVersionsv2",
         "summary": "List API versions",
+        "security": [
+          {
+            "exampleSecurity": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "200 response",
@@ -40,5 +45,10 @@
       }
     }
   },
-  "security": []
+  "components": {
+    "exampleSecurity": {
+      "type": "http",
+      "scheme": "basic"
+    }
+  }
 }

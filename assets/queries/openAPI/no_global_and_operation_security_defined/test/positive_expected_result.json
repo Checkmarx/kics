@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "No Global And Operation Security Defined",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "No Global And Operation Security Defined",
+    "severity": "HIGH",
+    "line": 46,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "No Global And Operation Security Defined",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "No Global And Operation Security Defined",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive4.yaml"
+  }
+]

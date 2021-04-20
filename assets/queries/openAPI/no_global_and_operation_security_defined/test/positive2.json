@@ -9,6 +9,11 @@
       "get": {
         "operationId": "listVersionsv2",
         "summary": "List API versions",
+        "security": [
+          {
+            "exampleSecurity": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "200 response",
@@ -37,8 +42,22 @@
             }
           }
         }
+      },
+      "patch": {
+        "operationId": "validateVersionsPathv2",
+        "summary": "Validate operation",
+        "responses": {
+          "204": {
+            "description": "204 response"
+          }
+        }
       }
     }
   },
-  "security": []
+  "components": {
+    "exampleSecurity": {
+      "type": "http",
+      "scheme": "basic"
+    }
+  }
 }

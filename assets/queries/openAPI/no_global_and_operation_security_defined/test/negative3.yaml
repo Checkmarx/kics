@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Simple API
+  title: Simple API Overview
   version: 1.0.0
 paths:
   "/":
@@ -22,3 +22,9 @@ paths:
                       links:
                       - href: http://127.0.0.1:8774/v2/
                         rel: self
+security:
+- exampleSecurity: []
+components:
+  exampleSecurity:
+    type: http
+    scheme: basic
