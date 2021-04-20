@@ -114,6 +114,10 @@ var tests = []struct {
 func Test_E2E_CLI(t *testing.T) {
 	kicsPath := getKICSBinaryPath("")
 
+	if testing.Short() {
+		t.Skip("skipping E2E tests in short mode.")
+	}
+
 	for _, tt := range tests {
 		for arg := range tt.args.args {
 			t.Run(fmt.Sprintf("%s_%d", tt.name, arg), func(t *testing.T) {

@@ -70,24 +70,14 @@ jobs:
           ${{ runner.OS }}-build-${{ env.cache-name }}
           ${{ runner.OS }}-build-
           ${{ runner.OS }}-
-    - name: Get go-junit-report module
-      env:
-        GO111MODULE: off
-      run: |
-        go get -u github.com/jstemmer/go-junit-report
     - name: Get Modules
       run: |
         go mod vendor
     - name: Test and Generate Report
       run: |
-        set +o pipefail
-        go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile cover.out 2>&1 | go-junit-report -set-exit-code -go-version ${{ matrix.go-version }} -package-name "github.com/Checkmarx/kics/test" > test-report-${{ matrix.os }}.xml
-    - name: Archive unit tests report
-      uses: actions/upload-artifact@v2
-      with:
-        name: unit-tests-report-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}
-        path: |
-          test-report*.xml
+        echo "::group::Unit Tests"
+        go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out
+        echo "::endgroup::"
   security-scan:
     name: security-scan
     runs-on: ubuntu-latest
