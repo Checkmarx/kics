@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+  contact:
+    name: "contact"
+    email: "user@gmail.com"
+components:
+  requestBodies:
+    CreateCustomer:
+      description: Create a new customer
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              filename:
+                type: array
+                items:
+                  type: string
+                  format: binary
