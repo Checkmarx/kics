@@ -42,7 +42,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.links", [path, operation, r]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.links.address.operationId", [path, operation, r]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("paths%s.%s.responses.%s.links.address.operationId points to an operationId of an operation object", [path, operation, r]),
 		"keyActualValue": sprintf("paths.%s.%s.responses.%s.links.address.operationId does not point to an operationId of an operation object", [path, operation, r]),

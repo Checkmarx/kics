@@ -8,7 +8,7 @@
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
-    "line": 26,
+    "line": 28,
     "filename": "positive2.json"
   },
   {
@@ -26,7 +26,7 @@
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
-    "line": 19,
+    "line": 21,
     "filename": "positive5.yaml"
   },
   {
