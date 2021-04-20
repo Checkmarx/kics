@@ -17,7 +17,7 @@ paths:
       summary: Update item
       responses:
         '204':
-          description: Item deleted successfully
+          description: Item updated successfully
         default:
           description: Error
           schema:
