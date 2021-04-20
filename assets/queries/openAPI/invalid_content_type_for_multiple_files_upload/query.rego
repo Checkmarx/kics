@@ -12,6 +12,7 @@ CxPolicy[result] {
 	p == options[x]
 
 	property.type == "array"
+	property.items.format == "binary"
 	c != "multipart/form-data"
 
 	result := {
@@ -31,6 +32,7 @@ CxPolicy[result] {
 	p == options[x]
 
 	property.type == "array"
+	property.items.format == "binary"
 	c != "multipart/form-data"
 
 	result := {
