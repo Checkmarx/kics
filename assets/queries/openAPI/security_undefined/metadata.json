@@ -1,0 +1,9 @@
+{
+  "id": "8af270ce-298b-4405-9922-82a10aee7a4f",
+  "queryName": "Global Security Field Is Undefined",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securitySchemes",
+  "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
+  "platform": "OpenAPI"
+}
