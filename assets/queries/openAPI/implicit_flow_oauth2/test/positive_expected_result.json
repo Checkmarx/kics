@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Implicit Flow in OAuth2",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Implicit Flow in OAuth2",
+    "severity": "MEDIUM",
+    "line": 37,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Implicit Flow in OAuth2",
+    "severity": "MEDIUM",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Implicit Flow in OAuth2",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Implicit Flow in OAuth2",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Implicit Flow in OAuth2",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive6.yaml"
+  }
+]
