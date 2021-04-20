@@ -6,11 +6,11 @@ This provides you the ability to run KICS scans in your GitLab repositories and 
 
 ### Including Template
 
-You can integrate KICS into your pipeline by [including](https://docs.gitlab.com/ee/ci/yaml/includes.html) our template in your `gitlabci.yaml`:
+You can integrate KICS into your pipeline by [including](https://docs.gitlab.com/ee/ci/yaml/includes.html) our [versioned](https://docs.gitlab.com/ee/development/cicd/templates.html#versioning) [template](https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml) in your `gitlabci.yaml`:
 
 ```yaml
 include:
-  - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/cx-kics-gitlabci-template.yaml
+  - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml
 ```
 
 ### Full Pipeline Tutorial

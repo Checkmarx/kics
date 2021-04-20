@@ -1,5 +1,8 @@
-#
 # Include this file in your .gitlab-ci.yml file to automate & integrate Checkmarx KICS' security scans.
+#
+# include documentation https://docs.gitlab.com/ee/ci/yaml/includes.html
+#
+# defined as in https://docs.gitlab.com/ee/development/cicd/templates.html#versioning
 #
 # These variables can be overridden in your .gitlab-ci.yml file or as envionrment variables.
 #
