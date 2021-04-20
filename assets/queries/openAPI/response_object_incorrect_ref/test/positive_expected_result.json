@@ -2,25 +2,13 @@
   {
     "queryName": "Response Object With Incorrect Ref",
     "severity": "INFO",
-    "line": 47,
+    "line": 44,
     "filename": "positive1.json"
   },
   {
     "queryName": "Response Object With Incorrect Ref",
     "severity": "INFO",
-    "line": 10,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Response Object With Incorrect Ref",
-    "severity": "INFO",
-    "line": 30,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Response Object With Incorrect Ref",
-    "severity": "INFO",
-    "line": 8,
+    "line": 27,
     "filename": "positive2.yaml"
   }
 ]

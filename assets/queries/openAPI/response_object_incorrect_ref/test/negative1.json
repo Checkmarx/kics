@@ -6,9 +6,6 @@
   },
   "components": {
     "responses": {
-      "Error": {
-        "$ref": "#/components/responses/Success"
-      },
       "Success": {
         "description": "200 response",
         "content": {

@@ -17,19 +17,3 @@ CxPolicy[result] {
 		"keyActualValue": "HTTP responses status codes are not in range of [200-599]",
 	}
 }
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-	response := doc.components.responses[name]
-
-	not startswith(response["$ref"], "#/components/responses")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("openapi.components.responses.{{%s}}.$ref={{%s}}", [name, response["$ref"]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "HTTP responses status codes are in range of [200-599]",
-		"keyActualValue": "HTTP responses status codes are not in range of [200-599]",
-	}
-}
