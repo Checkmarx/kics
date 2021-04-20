@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Schema Discriminator Not Required",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive4.yaml"
+  }
+]

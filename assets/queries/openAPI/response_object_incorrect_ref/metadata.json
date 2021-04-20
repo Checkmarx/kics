@@ -1,0 +1,9 @@
+{
+  "id": "b3871dd8-9333-4d6c-bd52-67eb898b71ab",
+  "queryName": "Response Object With Incorrect Ref",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Response Object reference must always point to '#components/responses'",
+  "descriptionUrl": "https://swagger.io/specification/#responses-object",
+  "platform": "OpenAPI"
+}

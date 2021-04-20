@@ -1,0 +1,43 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: kics
+  displayName: kics
+
+  jobs:
+  - job: runKics
+    displayName: runKics
+    steps:
+      - script: |
+          get_latest_kics_release() {
+            curl --silent "https://api.github.com/repos/Checkmarx/kics/releases/latest" |
+              grep '"tag_name":' |
+              sed -E 's/.*"([^"]+)".*/\1/'
+          }
+
+          OS=$(uname -s)
+          LATEST_TAG=$(get_latest_kics_release)
+          LATEST_VERSION=${LATEST_TAG#v}
+          PACKAGE_NAME=kics_${LATEST_VERSION}_${OS}_x64.tar.gz
+          TARGET_DIR=/home/vsts/kics
+
+          mkdir -p ${TARGET_DIR}
+          wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
+
+          echo '--- START SCANNING ---'
+          ${TARGET_DIR}/kics --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
+
+          TOTAL_SEVERITY_COUNTER=`grep '"total_counter"':' ' kics-results.json | awk {'print $2'}`
+          export SEVERITY_COUNTER_HIGH=`grep '"HIGH"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          SEVERITY_COUNTER_MEDIUM=`grep '"INFO"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          SEVERITY_COUNTER_LOW=`grep '"LOW"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          SEVERITY_COUNTER_INFO=`grep '"MEDIUM"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          echo "TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER"
+
+          if [ "$SEVERITY_COUNTER_HIGH" -ge "1" ]; then
+            echo "Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS" && exit 1;
+          fi

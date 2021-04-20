@@ -8,7 +8,7 @@
   {
     "queryName": "SageMaker Enabling Internet Access",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 8,
     "fileName": "positive2.json"
   }
 ]
