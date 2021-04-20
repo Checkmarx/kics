@@ -190,12 +190,24 @@ func ExtractLineFragment(line, substr string, key bool) string {
 		end++
 	}
 
-	result := line[start+1 : end]
+	return removeExtras(line, start, end)
+}
+
+func removeExtras(result string, start, end int) string {
 	// workaround for selecting yaml keys
-	if result[len(result)-1] == ':' {
+	if result[end-1] == ':' {
 		end--
 	}
-	return line[start+1 : end]
+
+	if result[end-1] == '"' {
+		end--
+	}
+
+	if result[start+1] == '"' {
+		start++
+	}
+
+	return result[start+1 : end]
 }
 
 // DetectCurrentLine uses levenshtein distance to find the most acurate line for the vulnerability

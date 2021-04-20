@@ -25,14 +25,14 @@
   },
   {
     "severity": "LOW",
-    "line": 31,
+    "line": 5,
     "fileName": "positive4.json",
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
-    "line": 31,
+    "line": 5,
     "fileName": "positive4.json"
   },
   {

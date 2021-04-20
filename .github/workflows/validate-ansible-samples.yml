@@ -13,11 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           persist-credentials: false
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: assets/queries/ansible/
-          config_file: .github/yamllint_ansible.yml
+          config_file: .github/scripts/samples-linters/yamllint_ansible.yml
           strict: true

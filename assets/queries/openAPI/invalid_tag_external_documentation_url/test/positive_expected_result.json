@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Invalid Tag External Documentation URL",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Tag External Documentation URL",
+    "severity": "INFO",
+    "line": 57,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Tag External Documentation URL",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Invalid Tag External Documentation URL",
+    "severity": "INFO",
+    "line": 36,
+    "filename": "positive2.yaml"
+  }
+]

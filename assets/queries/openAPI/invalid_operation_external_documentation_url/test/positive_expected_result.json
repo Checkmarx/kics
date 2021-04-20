@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Invalid Operation External Documentation URL",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Operation External Documentation URL",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive2.yaml"
+  }
+]

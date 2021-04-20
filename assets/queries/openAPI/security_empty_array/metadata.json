@@ -1,9 +1,9 @@
 {
   "id": "d674aea4-ba8b-454b-bb97-88a772ea33f0",
-  "queryName": "Global security field has an empty array",
+  "queryName": "Global Security Field Has An Empty Array",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "Security object need to be defined with a default values and, if needed, specified for particular cases on securityScheme",
+  "descriptionText": "Security object need to have defined rules in its array and rules should be defined on securityScheme",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
   "platform": "OpenAPI"
 }

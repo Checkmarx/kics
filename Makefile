@@ -49,7 +49,7 @@ build-all: lint generate
 
 .PHONY: build
 build: ## go build
-build: lint generate
+build: generate
 	$(call print-target)
 	@go build -o ${TARGET_BIN} \
 		-ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" \
@@ -72,11 +72,28 @@ test-short: generate
 	@go test -short ./...
 
 .PHONY: test
-test: ## Run tests with race detector and code covarage
-test: generate
+test: ## Run all tests
+test: test-race-cover test-e2e
 	$(call print-target)
-	@go test -race -covermode=atomic -coverprofile=coverage.out ./...
+
+.PHONY: test-race-cover
+test-race-cover: ## Run tests with race detector and code coverage
+test-race-cover: generate
+	$(call print-target)
+	@go test -race -covermode=atomic -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
+
+.PHONY: test-coverage-report
+test-coverage-report: ## Run unit tests and generate test coverage report
+test-coverage-report: test-race-cover
+	@python3 .github/scripts/get-coverage.py coverage.out
+	@echo "Generating coverage.html"
 	@go tool cover -html=coverage.out -o coverage.html
+
+.PHONY: test-e2e
+test-e2e: ## Run E2E tests
+test-e2e: build
+	$(call print-target)
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v
 
 .PHONY: cover
 cover: ## generate coverage report

@@ -1,0 +1,9 @@
+{
+  "id": "b481d46c-9c61-480f-86d9-af07146dc4a4",
+  "queryName": "Schema Discriminator Not Required",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The discriminator property in the Schema Object should be a required property",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

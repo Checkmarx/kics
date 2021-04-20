@@ -7,7 +7,6 @@ on:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -36,17 +35,6 @@ jobs:
       - run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Pull changes from gh-pages branch
-        run: |
-          git checkout gh-pages
-          git pull origin gh-pages
-          git checkout master
       - name: Update develop docs
-        # this will create two new commits in gh-pages branch
         run: |
-          mike delete develop
-          mike deploy develop
-      - name: Publish changes in gh-pages
-        run: |
-          git checkout gh-pages
-          git push origin gh-pages
+          mike deploy develop --push --force

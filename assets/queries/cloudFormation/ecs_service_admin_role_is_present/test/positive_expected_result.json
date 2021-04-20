@@ -8,7 +8,7 @@
   {
     "queryName": "ECS Service Admin Role Is Present",
     "severity": "HIGH",
-    "line": 178,
+    "line": 66,
     "fileName": "positive2.json"
   }
 ]

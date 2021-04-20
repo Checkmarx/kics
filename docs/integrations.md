@@ -8,3 +8,5 @@ We provide plugins for some CI/CD tools. For some others we provide a tutorial o
 - Integrate KICS with [Azure Pipelines](integrations_azurepipelines.md)
 - Integrate KICS with [Bitbucket Pipelines](integrations_bitbucketpipelines.md)
 - More soon...
+
+The pipelines examples can be found in our [GitHub Repository](https://github.com/Checkmarx/kics/tree/master/examples)
