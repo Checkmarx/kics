@@ -18,7 +18,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_vpc[%s].default", [name]),
+		"searchKey": sprintf("aws_vpc[%s].default=true", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'aws_vpc.default' is false",
 		"keyActualValue": "'aws_vpc.default' is true",
