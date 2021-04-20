@@ -1,0 +1,9 @@
+{
+  "id": "46facedc-f243-4108-ab33-583b807d50b0",
+  "queryName": "Parameter Object With Undefined Type",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "A Parameter Object must contain either a 'schema' property, or a 'content' property",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}
