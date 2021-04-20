@@ -6,7 +6,7 @@ The purpose of this docs is to describe KICS' E2E test suite
 
 There are several ways to execute the E2E tests.
 
-### TLDR;
+### TLDR
 
 This steps will build the kics and then run the E2E using the built binary (placed by default under `${PWD}/bin/kics`)
 

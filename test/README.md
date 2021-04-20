@@ -6,7 +6,7 @@ The purpose of this docs is to describe KICS' tests
 
 There are several ways to execute the E2E tests.
 
-### TLDR;
+### TLDR
 
 This command will execute all go tests:
 

@@ -12,9 +12,11 @@ class Arguments:
 
 class BaseItem:
     def __init__(self, **kw):
+        """Inits the BaseItem object."""
         self.__dict__.update(kw)
 
     def __repr__(self):
+        """Converts the BaseItem object to string."""
         return f"{self.__class__.__name__}(**{self.__dict__!r})"
 
 
