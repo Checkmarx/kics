@@ -10,5 +10,17 @@
     "severity": "INFO",
     "line": 40,
     "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter Object With Incorrect Ref",
+    "severity": "INFO",
+    "line": 65,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object With Incorrect Ref",
+    "severity": "INFO",
+    "line": 45,
+    "filename": "positive2.yaml"
   }
 ]

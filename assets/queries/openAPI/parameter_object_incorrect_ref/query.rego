@@ -16,3 +16,18 @@ CxPolicy[result] {
 		"keyActualValue": "Parameter Object ref doesn't point to '#components/parameters'",
 	}
 }
+
+CxPolicy[result] {
+	doc := input.document[i]
+	openapi_lib.check_openapi(doc) != "undefined"
+	params := doc.paths[name][oper].parameters[n]
+	not startswith(params["$ref"], "#components/parameters/")
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("openapi.paths.%s.%s.parameters", [name, oper]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Parameter Object ref points to '#components/parameters'",
+		"keyActualValue": "Parameter Object ref doesn't point to '#components/parameters'",
+	}
+}

@@ -40,3 +40,7 @@ paths:
     parameters:
       - $ref: "#path/parameters/idParam"
       - $ref: "#components/schemas/idParam"
+  /user/id:
+    get:
+      parameters:
+        - $ref: "#path/parameters/idParam"
