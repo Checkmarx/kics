@@ -54,15 +54,15 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	url := doc.paths[path][operation].requestBody[r].content[c].schema.externalDocs.url
+	url := doc.paths[path][operation].requestBody.content[c].schema.externalDocs.url
 	not openapi_lib.is_valid_url(url)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.{{%s}}.content.{{%s}}.schema.externalDocs.url", [path, operation, r, c]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.externalDocs.url", [path, operation, c]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.{{%s}}.content.{{%s}}.schema.externalDocs.url has a valid URL", [path, operation, r, c]),
-		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.{{%s}}.content.{{%s}}.schema.externalDocs.url has a invalid URL", [path, operation, r, c]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.externalDocs.url has a valid URL", [path, operation, c]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.externalDocs.url has a invalid URL", [path, operation, c]),
 	}
 }
 
