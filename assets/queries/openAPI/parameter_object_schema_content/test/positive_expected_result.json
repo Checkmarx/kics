@@ -8,7 +8,19 @@
   {
     "queryName": "Parameter Object With Schema And Content",
     "severity": "INFO",
+    "line": 73,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object With Schema And Content",
+    "severity": "INFO",
     "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter Object With Schema And Content",
+    "severity": "INFO",
+    "line": 45,
     "filename": "positive2.yaml"
   },
   {

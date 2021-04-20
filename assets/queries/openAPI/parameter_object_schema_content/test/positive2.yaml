@@ -38,3 +38,17 @@ paths:
               properties:
                 name:
                   type: string
+  /users/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The user ID
+          schema:
+            type: integer
+            minimum: 1
+          content:
+          application/json:
+            schema:
+              type: integer
