@@ -10,7 +10,7 @@ You can integrate KICS into your pipeline by [including](https://docs.gitlab.com
 
 ```yaml
 include:
-  - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlabci-template.yml
+  - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/cx-kics-gitlabci-template.yaml
 ```
 
 ### Full Pipeline Tutorial
