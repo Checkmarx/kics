@@ -18,9 +18,6 @@
             }
           }
         }
-      },
-      "Api": {
-        "$ref": "#/components/requestBodies/List"
       }
     }
   },

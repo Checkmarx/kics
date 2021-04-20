@@ -13,8 +13,6 @@ components:
             type: array
             items:
               type: integer
-    Api:
-      $ref: "#/paths/requestBodies/List"
 paths:
   "/":
     get:
