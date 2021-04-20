@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 5,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive4.yaml"
+  }
+]

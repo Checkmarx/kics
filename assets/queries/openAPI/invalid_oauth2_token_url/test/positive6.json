@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oAuth2AuthCodePos3": {
+        "type": "oauth2",
+        "description": "For more information, see https://api.my.company.com/docs/oauth",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "httxps//|api",
+            "scopes": {
+              "read:api": "read your apis"
+            }
+          }
+        }
+      }
+    }
+  }
+}
