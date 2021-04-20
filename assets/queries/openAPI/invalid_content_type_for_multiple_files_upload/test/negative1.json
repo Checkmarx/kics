@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0",
+    "contact": {
+      "name": "contact",
+      "email": "user@gmail.com"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filename": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
