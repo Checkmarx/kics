@@ -16,8 +16,10 @@ paths:
       operationId: updateItem
       summary: Update item
       responses:
+        '201':
+          description: Item created successfully
         '204':
-          description: Item deleted successfully
+          description: Item updated successfully
         default:
           description: Error
           schema:
