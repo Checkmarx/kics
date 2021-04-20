@@ -7,6 +7,23 @@ paths:
     get:
       operationId: listVersionsv2
       summary: List API versions
+      parameters:
+        - name: id
+          in: header
+          description: id to be passed as a header
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+          style: simple
+        - name: ID
+          in: header
+          description: ID to fetch
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: 200 response
