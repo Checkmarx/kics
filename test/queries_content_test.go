@@ -113,7 +113,7 @@ var (
 			require.True(tb, ok,
 				"%s in metadata: %s\nis not a valid platform must be one of:\n%v",
 				platformValue, metadataPath, strings.Join(platformKeys, "\n"))
-			require.True(tb, strings.Contains(filepath.Clean(metadataPath), path.Join("assets", "queries", platformDir)),
+			require.True(tb, strings.Contains(filepath.Clean(metadataPath), filepath.Join("assets", "queries", platformDir)),
 				"platform and query directory mismatch platform:\n%s\nmetadata:\n%s", platformValue, metadataPath)
 		},
 		"descriptionUrl": func(tb testing.TB, value interface{}, metadataPath string) {
@@ -267,7 +267,7 @@ func testMetadataURL(tb testing.TB, url, metadataPath string) {
 }
 
 func testUnmarshalMetadata(tb testing.TB, entry queryEntry) (meta map[string]interface{}, metadataPath string) {
-	metadataPath = path.Join(entry.dir, source.MetadataFileName)
+	metadataPath = filepath.Join(entry.dir, source.MetadataFileName)
 	content, err := os.ReadFile(metadataPath)
 	require.NoError(tb, err, "can't read query metadata file %s", metadataPath)
 
