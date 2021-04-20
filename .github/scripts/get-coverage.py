@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 import itertools
+import os
+import re
+import sys
 import typing
 from argparse import ArgumentParser
-
-import sys
-import re
 
 
 class Arguments:
@@ -120,6 +121,8 @@ def main():
     lines = load_coverage(args)
     stats = calc_file_stats(lines)
     total = total_cov(stats)
+    if os.environ.get('GITHUB_RUN_ID'):
+        print(f"::set-output name=coverage::{total}")
     print(f"Total coverage: {total}")
 
 
