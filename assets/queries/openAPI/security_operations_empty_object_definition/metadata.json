@@ -1,0 +1,9 @@
+{
+  "id": "baade968-7467-41e4-bf22-83ca222f5800",
+  "queryName": "Security Field On Operations Has An Empty Object Definition",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Security object for operations should not be empty object or has any empty object definition",
+  "descriptionUrl": "https://swagger.io/specification/#operation-object",
+  "platform": "OpenAPI"
+}

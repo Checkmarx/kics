@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Get Release version
         id: get-version
         run: |
@@ -29,7 +31,7 @@ jobs:
           show-on-exit: true
           custom-actions: |
             - name: View CI Logs
-              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
+              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
       - name: Set up Docker Buildx

@@ -1,0 +1,29 @@
+{
+	"document": [
+		{
+			"resource": {
+				"aws_redshift_cluster": {
+					"default": {
+						"node_type": "dc1.large",
+						"cluster_type": "single-node",
+						"cluster_identifier": "tf-redshift-cluster",
+						"database_name": "mydb",
+						"master_username": "foo",
+						"master_password": "Mustbe8characters"
+					},
+					"default1": {
+						"database_name": "mydb",
+						"master_username": "foo",
+						"master_password": "Mustbe8characters",
+						"node_type": "dc1.large",
+						"cluster_type": "single-node",
+						"publicly_accessible": true,
+						"cluster_identifier": "tf-redshift-cluster"
+					}
+				}
+			},
+			"id": "e0b25b59-9543-45b3-986b-59bef03b72c5",
+			"file": "/home/reigota/kics/test/fixtures/tc-sim01/positive1.tf"
+		}
+	]
+}

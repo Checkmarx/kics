@@ -1,0 +1,9 @@
+{
+  "id": "0de50145-e845-47f4-9a15-23bcf2125710",
+  "queryName": "Path Parameter Not Required",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The property 'required' determines whether the parameter is mandatory. If the parameter location is 'path', this property is required and its value must be true.",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}
