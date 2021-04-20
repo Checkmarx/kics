@@ -1,0 +1,40 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "the user being returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                }
+              }
+            },
+            "links": {
+              "address": {
+                "server": {
+                  "url": "https://development.gigantic-server.com/v1"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "listVersionsv2"
+      }
+    }
+  }
+}
