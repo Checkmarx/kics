@@ -9,15 +9,14 @@ builds:
       - windows
     goarch:
       - amd64
-      - arm
       - arm64
     ignore:
       - goos: darwin
         goarch: 386
       - goos: linux
         goarm: 7
-      - goos: linux
-        goarm: 6
+      - goos: windows
+        goarm: 7
     ldflags:
       - -X github.com/Checkmarx/kics/internal/constants.Version={{.Version}}
       - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{.Commit}}
