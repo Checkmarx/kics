@@ -1,0 +1,9 @@
+{
+  "id": "4a1f3d75-ab73-41b2-83e7-06a93dc3a75a",
+  "queryName": "Implicit Flow in OAuth2",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "There is a 'securityScheme' using implicit flow on OAuth2, which is deprecated",
+  "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
+  "platform": "OpenAPI"
+}
