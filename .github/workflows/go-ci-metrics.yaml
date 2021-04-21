@@ -38,7 +38,7 @@ jobs:
         id: testcov
         run: make test-coverage-report
       - name: Generate badge
-        if: ${{ github.event_name }} != "pull_request"
+        if: ${{ github.event_name == "push" }}
         run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
