@@ -108,7 +108,7 @@ COMMON_QUERIES=$(list_common_queries | wc -l)
 DKR_QUERIES=$(list_docker_queries | wc -l)
 OPENAPI_QUERIES=$(list_openapi_queries | wc -l)
 TF_QUERIES=$(list_terraform_queries | wc -l)
-TOTAL_QUERIES=$((${TF_QUERIES} + ${DKR_QUERIES} + ${ANSIBLE_QUERIES} + ${CFN_QUERIES} + ${OPENAPI_SAMPLES} + ${COMMON_QUERIES}))
+TOTAL_QUERIES=$((${TF_QUERIES} + ${DKR_QUERIES} + ${ANSIBLE_QUERIES} + ${CFN_QUERIES} + ${OPENAPI_QUERIES} + ${COMMON_QUERIES}))
 
 echo "::group::Queries Metrics"
 print_sep
