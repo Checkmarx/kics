@@ -46,7 +46,10 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
         <img alt="Ansible" src="img/logo-ansible.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Helm" src="img/logo-helm.png" style="min-width:110px;width:110px;height:101px">&nbsp;&nbsp;&nbsp;
+        <img alt="OpenAPI" src="img/logo-openapi.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="OpenAPI" src="img/logo-helm.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
 </div>
 </div>
 
