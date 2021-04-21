@@ -21,15 +21,15 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 #### Supported Platforms
 
-<img alt="Terraform" src="docs/img/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Terraform" src="docs/img/logo-terraform.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="Docker" src="docs/img/logo-docker.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
-<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="Ansible" src="docs/img/logo-ansible.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
-<img alt="Helm" src="docs/img/logo-helm.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Helm" src="docs/img/logo-helm.png" width="150" style="margin-top:10px">&nbsp;&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
