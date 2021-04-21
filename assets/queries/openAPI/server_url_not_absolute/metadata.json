@@ -1,0 +1,9 @@
+{
+  "id": "a0bf7382-5d5a-4224-924c-3db8466026c9",
+  "queryName": "Server URL Not Absolute",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The Server URL should be an absolute URL",
+  "descriptionUrl": "https://swagger.io/specification/#server-object",
+  "platform": "OpenAPI"
+}
