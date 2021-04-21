@@ -28,9 +28,23 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set up Go 1.x
         uses: actions/setup-go@v2
         with:
           go-version: 1.16.x
       - name: Run test metrics script
+        id: testcov
         run: make test-coverage-report
+      - name: Generate badge
+        if: ${{ github.event_name }} != "pull_request"
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout gh-pages
+          curl -L https://img.shields.io/badge/Go%20Coverage-${{ steps.testcov.outputs.coverage }}%25-${{ steps.testcov.outputs.color }}.svg > coverage.svg
+          git add coverage.svg
+          git add coverage.html
+          git commit -m 'chore: updating coverage'
+          git push origin gh-pages
