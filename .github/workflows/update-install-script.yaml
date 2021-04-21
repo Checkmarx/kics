@@ -32,8 +32,25 @@ jobs:
             && chmod +x godownloader \
             && rm -vf $(basename "${FULL_URL}") \
             && cd "${PROJDIR}"
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip3 install ruamel.yaml
+      - name: Remove 'brews' from .goreleaser.yaml
+        id: filter
+        run: |
+          #!/usr/bin/env python3
+          import ruamel.yaml
+          with open('.goreleaser.yml', 'r') as file:
+            file_obj = ruamel.yaml.load(file, Loader=ruamel.yaml.RoundTripLoader)
+            del file_obj['brews']
+            file_content = ruamel.yaml.dump(file_obj, Dumper=ruamel.yaml.RoundTripDumper)
+            print(f"::set-output name=goreleaser::{file_content}", end='')
+        shell: python3 {0}
       - name: Update install.sh
-        run: ./.bin/godownloader --repo Checkmarx/kics > install.sh
+        run: ./.bin/godownloader --repo Checkmarx/kics <(echo ${{ steps.outputs.filter.goreleaser }}) > install.sh
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
