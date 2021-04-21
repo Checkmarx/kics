@@ -6,7 +6,6 @@ on:
       - "master"
   pull_request:
     branches: [master]
-
 jobs:
   metrics:
     name: test-metrics
@@ -19,9 +18,11 @@ jobs:
         with:
           go-version: 1.16.x
       - name: Install zsh
-        run: sudo apt install zsh
+        run: |
+          sudo apt update -q
+          sudo apt install zsh cloc -y
       - name: Run test metrics script
-        run: zsh .github/scripts/get-test-metrics.sh
+        run: zsh -c "time ./.github/scripts/get-test-metrics.sh"
   coverage:
     name: test-coverage
     runs-on: ubuntu-latest
@@ -32,5 +33,7 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.16.x
+      - name: Get dependencies
+        run: make vendor
       - name: Run test metrics script
         run: make test-coverage-report
