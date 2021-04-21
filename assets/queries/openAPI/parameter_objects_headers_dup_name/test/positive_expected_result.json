@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name",
+    "severity": "INFO",
+    "line": 68,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name",
+    "severity": "INFO",
+    "line": 9,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive4.yaml"
+  }
+]
