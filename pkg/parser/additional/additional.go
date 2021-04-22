@@ -92,7 +92,6 @@ func getExpirationDate(datetime string) [3]int {
 }
 
 func expirationDateFromPemCertificate(filePath string) [3]int {
-
 	out, err := exec.Command("openssl", "x509", "-in", filePath, "-noout", "-dates").Output()
 	if err != nil {
 		log.Error().Msgf("Failed to execute command 'openssl x509 -in %s -noout -dates'", filePath)
@@ -118,7 +117,6 @@ func getBitRSAKeyBit(filePath string) int {
 	checkConvertingError(err)
 
 	return rsabits
-
 }
 
 func getFullPath(path, attributeContent, regex string) string {
@@ -132,7 +130,6 @@ func getFullPath(path, attributeContent, regex string) string {
 
 // AddCertificateInfo gets and adds certificate information of a certificate file
 func AddCertificateInfo(path, content string) map[string]interface{} {
-
 	var filePath string
 
 	if _, err := os.Stat(content); err != nil { // content is not a full valid path or is an incomplete path
@@ -147,6 +144,7 @@ func AddCertificateInfo(path, content string) map[string]interface{} {
 		attributes := make(map[string]interface{})
 		attributes["file"] = filePath
 		attributes["expiration_date"] = expirationDate
+
 		rsaKeyBits := getBitRSAKeyBit(filePath)
 		if rsaKeyBits != -1 {
 			attributes["bit_rsa_key"] = rsaKeyBits
@@ -171,7 +169,6 @@ func convert(m map[interface{}]interface{}) map[string]interface{} {
 }
 
 func readFile(filePath string) map[string]interface{} {
-
 	var result map[string]interface{}
 
 	content, err := os.ReadFile(filePath)
@@ -182,13 +179,13 @@ func readFile(filePath string) map[string]interface{} {
 	fileExtension := filepath.Ext(filePath)
 
 	if fileExtension == ".json" {
-		err := json.Unmarshal([]byte(content), &result)
+		err := json.Unmarshal(content, &result)
 		if err != nil {
 			log.Error().Msgf("Failed to unmarshal '%s'", fileExtension)
 		}
 	} else if fileExtension == ".yaml" || fileExtension == ".yml" {
 		var resultYaml map[interface{}]interface{}
-		err := yaml.Unmarshal([]byte(content), &resultYaml)
+		err := yaml.Unmarshal(content, &resultYaml)
 		if err != nil {
 			log.Error().Msgf("Failed to unmarshal '%s'", fileExtension)
 		}
