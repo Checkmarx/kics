@@ -16,14 +16,14 @@ Available Commands:
   version        Displays the current version
 
 Flags:
-      --ci                 display only log messages to CLI output (mutually exclusive with silent)
-  -h, --help               help for kics
-  -l, --log-file           writes log messages to log file
-      --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
-      --log-path string    path to log files, (defaults to ${PWD}/info.log)
-      --no-color           disable CLI color output
-  -s, --silent             silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose            write logs to stdout too (mutually exclusive with silent)
+      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+  -h, --help                help for kics
+  -f, --log-format string   determines log format (pretty,json) (default "pretty")
+      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
+      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --no-color            disable CLI color output
+  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 
 Use "kics [command] --help" for more information about a command.
 ```
@@ -60,16 +60,16 @@ Flags:
   -q, --queries-path string          path to directory with queries (default "./assets/queries")
       --report-formats strings       formats in which the results will be exported (json, sarif, html)
   -t, --type strings                 case insensitive list of platform types to scan
-                                     (Ansible, CloudFormation, Dockerfile, Kubernetes, Terraform)
+                                     (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
-      --ci                 display only log messages to CLI output (mutually exclusive with silent)
-  -l, --log-file           writes log messages to log file
-      --log-level string   determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
-      --log-path string    path to log files, (defaults to ${PWD}/info.log)
-      --no-color           disable CLI color output
-  -s, --silent             silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose            write logs to stdout too (mutually exclusive with silent)
+      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+  -f, --log-format string   determines log format (pretty,json) (default "pretty")
+      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
+      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --no-color            disable CLI color output
+  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 ```
 
 The other commands have no further options.
