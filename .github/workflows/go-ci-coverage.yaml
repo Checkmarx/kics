@@ -56,16 +56,16 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: ${{ runner.os }}-coverage-latest
-          path: latest-coverage.html
+          path: latest-coverage
       - name: Download Badge svg
         uses: actions/download-artifact@master
         with:
           name: ${{ runner.os }}-badge-latest
-          path: latest-coverage.svg
+          path: latest-coverage
       - name: Generate badge
         run: |
-          mv latest-coverage.html coverage.html
-          mv latest-coverage.svg coverage.svg
+          mv latest-coverage/coverage.html coverage.html
+          mv latest-coverage/coverage.svg coverage.svg
           git add coverage.svg
           git add coverage.html
           git status
