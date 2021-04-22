@@ -20,7 +20,9 @@ jobs:
           go-version: 1.16.x
       - name: Run test metrics script
         id: testcov
-        run: make test-coverage-report
+        run: |
+          make test-coverage-report
+          echo "::set-output name=report::$(cat coverage.html)"
       - name: Generate badge
         run: |
           ls -la
@@ -29,6 +31,8 @@ jobs:
           git checkout gh-pages
           echo 'Generating badge'
           curl -sL https://img.shields.io/badge/Go%20Coverage-${{ steps.testcov.outputs.coverage }}%25-${{ steps.testcov.outputs.color }}.svg > coverage.svg
+          echo ${{ steps.testcov.outputs.report }} > coverage.html
+          git status
           ls -la
           git add coverage.svg
           git add coverage.html
