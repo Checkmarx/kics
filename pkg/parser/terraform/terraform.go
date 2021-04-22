@@ -4,6 +4,7 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/additional"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
@@ -47,7 +48,32 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
 
-	return []model.Document{fc}, errors.Wrap(parseErr, "failed terraform parse")
+	json := []model.Document{fc}
+
+	var resourcesElements model.Document
+	var elements model.Document
+	var certInfo map[string]interface{}
+
+	for _, documents := range json { // iterate over documents
+		if documents["resource"] != nil {
+			for _, resources := range documents["resource"].(model.Document) { // iterate over resources
+				resourcesElements = resources.(model.Document)
+				for _, v2 := range resourcesElements { // resource name
+					elements = v2.(model.Document)
+					for k, v3 := range elements { // resource elements
+						if k == "certificate_body" {
+							certInfo = additional.AddCertificateInfo(path, v3.(string))
+							if certInfo != nil {
+								elements["certificate_body"] = certInfo
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return json, errors.Wrap(parseErr, "failed terraform parse")
 }
 
 // SupportedExtensions returns Terraform extensions

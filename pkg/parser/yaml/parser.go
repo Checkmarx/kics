@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/additional"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
@@ -24,7 +25,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 }
 
 // Parse parses yaml/yml file and returns it as a Document
-func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
+func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
@@ -38,7 +39,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	if documents == nil {
 		var err error
-		documents, err = playbookParser(fileContent)
+		documents, err = playbookParser(filePath, fileContent)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to Parse YAML")
 		}
@@ -65,7 +66,7 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
 
-func playbookParser(fileContent []byte) ([]model.Document, error) {
+func playbookParser(filePath string, fileContent []byte) ([]model.Document, error) {
 	doc := &model.Document{}
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 	arr := make([]map[string]interface{}, 0)
@@ -86,6 +87,33 @@ func playbookParser(fileContent []byte) ([]model.Document, error) {
 		}
 		doc = &model.Document{}
 		arr = make([]map[string]interface{}, 0)
+	}
+
+	var elements map[string]interface{}
+	var certInfo map[string]interface{}
+	var swaggerInfo map[string]interface{}
+
+	for _, documentPlaybooks := range documents { // iterate over documents
+		for _, resources := range documentPlaybooks["playbooks"].([]interface{}) { // iterate over playbooks
+			for _, v := range resources.(map[string]interface{}) {
+				_, ok := v.(map[string]interface{})
+				if ok {
+					elements = v.(map[string]interface{})
+					if elements["certificate"] != nil {
+						certInfo = additional.AddCertificateInfo(filePath, elements["certificate"].(string))
+						if certInfo != nil {
+							elements["certificate"] = certInfo
+						}
+					}
+					if elements["swagger_file"] != nil {
+						swaggerInfo = additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
+						if swaggerInfo != nil {
+							elements["swagger_file"] = swaggerInfo
+						}
+					}
+				}
+			}
+		}
 	}
 
 	return documents, nil
