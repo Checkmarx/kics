@@ -57,8 +57,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity", [metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and/or 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' is set",
-		"keyActualValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' is undefined",
+		"keyExpectedValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and/or 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' are/is set",
+		"keyActualValue": "'spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution' and 'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution' are undefined",
 	}
 }
 
@@ -109,7 +109,7 @@ CxPolicy[result] {
 	templateLabels := deployment.spec.template.metadata.labels
 	selectorLabels := pref.podAffinityTerm.labelSelector.matchLabels
 
-	matchLabels(templateLabels, selectorLabels) == false
+	match_labels(templateLabels, selectorLabels) == false
 
 	metadata := deployment.metadata
 	result := {
@@ -168,7 +168,7 @@ CxPolicy[result] {
 	templateLabels := deployment.spec.template.metadata.labels
 	selectorLabels := pref.labelSelector.matchLabels
 
-	matchLabels(templateLabels, selectorLabels) == false
+	match_labels(templateLabels, selectorLabels) == false
 
 	metadata := deployment.metadata
 	result := {
@@ -180,7 +180,7 @@ CxPolicy[result] {
 	}
 }
 
-matchLabels(templateLabels, selectorLabels) {
+match_labels(templateLabels, selectorLabels) {
 	some Key
 	templateLabels[Key] == selectorLabels[Key]
 } else = false {

@@ -9,9 +9,10 @@ jobs:
   update-index:
     name: Update index docs links
     runs-on: ubuntu-latest
+    if: "!github.event.release.prerelease"
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.8.0
+        uses: styfle/cancel-workflow-action@0.9.0
         with:
           access_token: ${{ github.token }}
       - name: Checkout project
@@ -23,7 +24,8 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
       - name: Get release version
         id: cversion
-        run: echo "::set-output name=version::$(git describe --tags --abbrev=0 | cut -c2-)"
+        run: |
+          echo "::set-output name=version::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
       - name: Print variables
         run: |
           echo "Version :: ${{ steps.cversion.outputs.version }}"
@@ -47,3 +49,16 @@ jobs:
             Updating documentation index page.
             Triggered by SHA: _${{ github.sha }}_
           labels: documentation
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Create a new docs version
+        run: pip install mkdocs-bootswatch mike
+      - name: Config KICSBot git user
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Deploy mike version
+        run: |
+          mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force
+

@@ -1,0 +1,9 @@
+{
+  "id": "c5bb7461-aa57-470b-a714-3bc3d74f4669",
+  "queryName": "Link Object OperationId Does Not Target Operation Object",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Link object 'OperationId' should target an existing operation object in the OpenAPI definition",
+  "descriptionUrl": "https://swagger.io/specification/#link-object",
+  "platform": "OpenAPI"
+}

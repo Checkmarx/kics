@@ -1,4 +1,4 @@
-// +build tools
+// Package tools (+build tools)
 package tools
 
 // Manage tool dependencies via go.mod.

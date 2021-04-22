@@ -1,0 +1,9 @@
+{
+  "id": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+  "queryName": "ALB Is Not Integrated With WAF",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafregional_web_acl_association",
+  "platform": "Terraform"
+}

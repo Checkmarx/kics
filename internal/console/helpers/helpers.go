@@ -135,7 +135,8 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
 	}
 	fmt.Printf("------------------------------------\n\n")
-	for idx := range summary.Queries {
+	for index := range summary.Queries {
+		idx := len(summary.Queries) - index - 1
 		fmt.Printf(
 			"%s, Severity: %s, Results: %d\n",
 			printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
@@ -253,11 +254,41 @@ func GenerateReport(path, filename string, body interface{}, formats []string) e
 	return err
 }
 
+// GetExecutableDirectory - returns the path to the directory containing KICS executable
+func GetExecutableDirectory() string {
+	log.Debug().Msg("helpers.GetExecutableDirectory()")
+	path, err := os.Executable()
+	if err != nil {
+		log.Err(err)
+	}
+	return filepath.Dir(path)
+}
+
+// GetDefaultQueryPath - returns the default query path
+func GetDefaultQueryPath(queriesPath string) (string, error) {
+	log.Debug().Msg("helpers.GetDefaultQueryPath()")
+	executableDirPath := GetExecutableDirectory()
+	queriesDirectory := filepath.Join(executableDirPath, queriesPath)
+	if _, err := os.Stat(queriesDirectory); os.IsNotExist(err) {
+		currentWorkDir, err := os.Getwd()
+		if err != nil {
+			return "", err
+		}
+		queriesDirectory = filepath.Join(currentWorkDir, queriesPath)
+		if _, err := os.Stat(queriesDirectory); os.IsNotExist(err) {
+			return "", err
+		}
+	}
+
+	log.Debug().Msgf("Queries found in %s", queriesDirectory)
+	return queriesDirectory, nil
+}
+
 // ValidateReportFormats returns an error if output format is not supported
 func ValidateReportFormats(formats []string) error {
 	log.Debug().Msg("helpers.ValidateReportFormats()")
 
-	validFormats := make([]string, len(reportGenerators))
+	validFormats := make([]string, 0, len(reportGenerators))
 	for reportFormats := range reportGenerators {
 		validFormats = append(validFormats, reportFormats)
 	}

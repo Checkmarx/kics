@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Invalid Content Type For Multiple Files Upload",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Content Type For Multiple Files Upload",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Invalid Content Type For Multiple Files Upload",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Invalid Content Type For Multiple Files Upload",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive4.yaml"
+  }
+]

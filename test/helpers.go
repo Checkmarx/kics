@@ -103,6 +103,49 @@ func MapToStringSlice(stringKeyMap map[string]string) []string {
 	return keys
 }
 
+var queryHigh = model.VulnerableQuery{
+	QueryName: "ALB protocol is HTTP",
+	QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
+	Severity:  model.SeverityHigh,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         "positive.tf",
+			Line:             25,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+		},
+		{
+			FileName:         "positive.tf",
+			Line:             19,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
+			Value:            nil,
+		},
+	},
+}
+
+var queryMedium = model.VulnerableQuery{
+	QueryName: "AmazonMQ Broker Encryption Disabled",
+	QueryID:   "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
+	Severity:  model.SeverityMedium,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         "positive.tf",
+			Line:             1,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "resource.aws_mq_broker[positive1]",
+			KeyExpectedValue: "resource.aws_mq_broker[positive1].encryption_options is defined",
+			KeyActualValue:   "resource.aws_mq_broker[positive1].encryption_options is not defined",
+			Value:            nil,
+		},
+	},
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
@@ -113,31 +156,7 @@ var SummaryMock = model.Summary{
 		FailedToExecuteQueries: 0,
 	},
 	Queries: []model.VulnerableQuery{
-		{
-			QueryName: "ALB protocol is HTTP",
-			QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-			Severity:  model.SeverityHigh,
-			Files: []model.VulnerableFile{
-				{
-					FileName:         "positive.tf",
-					Line:             25,
-					IssueType:        "MissingAttribute",
-					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-					KeyActualValue:   "'default_action.redirect.protocol' is missing",
-					Value:            nil,
-				},
-				{
-					FileName:         "positive.tf",
-					Line:             19,
-					IssueType:        "IncorrectValue",
-					SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-					KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-					KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
-					Value:            nil,
-				},
-			},
-		},
+		queryHigh,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
@@ -148,5 +167,30 @@ var SummaryMock = model.Summary{
 			model.SeverityHigh:   2,
 		},
 		TotalCounter: 2,
+	},
+}
+
+// ComplexSummaryMock a summary with more results to be used without running kics scan
+var ComplexSummaryMock = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           2,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.VulnerableQuery{
+		queryHigh,
+		queryMedium,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 1,
+			model.SeverityHigh:   2,
+		},
+		TotalCounter: 3,
 	},
 }

@@ -1,0 +1,9 @@
+{
+  "id": "26f06397-36d8-4ce7-b993-17711261d777",
+  "queryName": "Invalid Content Type For Multiple Files Upload",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Content Type should be set to 'multipart/form-data' in case of uploading an arbitrary number of files (array)",
+  "descriptionUrl": "https://swagger.io/docs/specification/describing-request-body/file-upload/",
+  "platform": "OpenAPI"
+}

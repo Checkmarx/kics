@@ -1,6 +1,6 @@
 ## KICS Benchmark
 
-The values below were obtained after scanning 150 open source projects with KICS (v1.2.0) covering 
+The values below were obtained after scanning 150 open source projects with KICS (v1.2.0) covering
 the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AWS Cloudformation).
 
 
@@ -24,10 +24,9 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 
 ### Global Measures
 
-
 |Measure                        | Value  |
 | :---                          | :---   |
-| **Average Accuracy**          | 98.6%  |    
+| **Average Accuracy**          | 98.6%  |
 | **Total Number of Results**   | 34234  |
 | **Average Query Coverage**    | 66.4%  |
 | **Total Scanned IaC Files**   | 13418  |

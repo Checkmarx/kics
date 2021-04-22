@@ -11,6 +11,11 @@ import (
 type Parser struct {
 }
 
+// Resolve - replace or modifies in-memory content before parsing
+func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+	return &fileContent, nil
+}
+
 // Parse parses json file and returns it as a Document
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	r := model.Document{}
@@ -36,5 +41,5 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedTypes returns types supported by this parser, which are cloudFormation
 func (p *Parser) SupportedTypes() []string {
-	return []string{"CloudFormation"}
+	return []string{"CloudFormation", "OpenAPI"}
 }

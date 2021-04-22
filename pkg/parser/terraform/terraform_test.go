@@ -11,7 +11,7 @@ var (
 	have = `
 resource "aws_s3_bucket" "b" {
   bucket = "S3B_541"
-  acl    = public-read"
+  acl    = "public-read"
 
   tags = {
     Name        = "My bucket"
@@ -48,4 +48,13 @@ func Test_Parser(t *testing.T) {
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")
 	require.Contains(t, document[0]["resource"], "aws_s3_bucket")
+}
+
+// Test_Resolve tests the functions [Resolve()] and all the methods called by them
+func Test_Resolve(t *testing.T) {
+	parser := NewDefault()
+
+	resolved, err := parser.Resolve([]byte(have), "test.tf")
+	require.NoError(t, err)
+	require.Equal(t, []byte(have), *resolved)
 }

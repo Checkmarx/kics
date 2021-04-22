@@ -27,7 +27,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	text := strings.ReplaceAll(file.OriginalData, "\r", "")
 	lines := prepareDockerFileLines(text)
-	isBreak := false
+	var isBreak bool
 	foundAtLeastOne := false
 	currentLine := 0
 	var extractedString [][]string

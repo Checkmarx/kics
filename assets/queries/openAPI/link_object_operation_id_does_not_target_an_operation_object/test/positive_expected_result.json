@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Link Object OperationId Does Not Target Operation Object",
+    "severity": "INFO",
+    "line": 71,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Link Object OperationId Does Not Target Operation Object",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Link Object OperationId Does Not Target Operation Object",
+    "severity": "INFO",
+    "line": 68,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Link Object OperationId Does Not Target Operation Object",
+    "severity": "INFO",
+    "line": 51,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Link Object OperationId Does Not Target Operation Object",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Link Object OperationId Does Not Target Operation Object",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive6.yaml"
+  }
+]

@@ -18,6 +18,11 @@ type Playbooks struct {
 	Tasks []map[string]interface{} `json:"playbooks"`
 }
 
+// Resolve - replace or modifies in-memory content before parsing
+func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
+	return &fileContent, nil
+}
+
 // Parse parses yaml/yml file and returns it as a Document
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
@@ -37,6 +42,9 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to Parse YAML")
 		}
+		if documents == nil {
+			return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
+		}
 	}
 
 	return documents, nil
@@ -49,7 +57,7 @@ func (p *Parser) SupportedExtensions() []string {
 
 // SupportedTypes returns types supported by this parser, which are ansible, cloudFormation, k8s
 func (p *Parser) SupportedTypes() []string {
-	return []string{"Ansible", "CloudFormation", "Kubernetes"}
+	return []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI"}
 }
 
 // GetKind returns YAML constant kind

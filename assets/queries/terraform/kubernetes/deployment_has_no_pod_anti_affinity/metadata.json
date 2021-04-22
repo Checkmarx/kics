@@ -1,0 +1,9 @@
+{
+  "id": "461ed7e4-f8d5-4bc1-b3c6-64ddb4fd00a3",
+  "queryName": "Deployment Has No PodAntiAffinity",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "Check if Deployment resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#affinity",
+  "platform": "Terraform"
+}

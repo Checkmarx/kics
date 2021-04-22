@@ -6,3 +6,13 @@
 .hide-column-query-table {
   display: none;
 }
+
+@media (max-width: 991px) {
+  #navbar-collapse {
+    overflow-y: hidden;
+  }
+}
+
+#version-selector {
+  width: 200px;
+}

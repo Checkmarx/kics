@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 11
+  },
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 20
+  }
+]

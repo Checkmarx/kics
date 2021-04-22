@@ -9,12 +9,12 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.2.1</h4>
-        <p style="font-size:8pt">2021.03.25<p>
+        <h4>Version 1.2.4</h4>
+        <p style="font-size:8pt">2021.04.21<p>
         <h4>Downloads:</h4>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.1/kics_1.2.1_windows_x64.zip">Windows</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.1/kics_1.2.1_linux_x64.tar.gz">Linux</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.1/kics_1.2.1_darwin_x64.tar.gz">MacOS</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.4/kics_1.2.4_windows_x64.zip">Windows</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.4/kics_1.2.4_linux_x64.tar.gz">Linux</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.4/kics_1.2.4_darwin_x64.tar.gz">MacOS</a>
         <hr/>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/CONTRIBUTING">Contribute!</a>
     </div>
@@ -46,7 +46,10 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
         <img alt="Ansible" src="img/logo-ansible.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Helm" src="img/logo-helm.png" style="min-width:110px;width:110px;height:101px">&nbsp;&nbsp;&nbsp;
+        <img alt="OpenAPI" src="img/logo-openapi.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
+</div>
+<div style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="OpenAPI" src="img/logo-helm.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
 </div>
 </div>
 
@@ -98,3 +101,4 @@ Looking for more info? Explore KICS project in details:
 
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
+

@@ -8,14 +8,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var generateIDCmd = &cobra.Command{
-	Use:   "generate-id",
-	Short: "Generates uuid for query",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		_, err := fmt.Println(uuid.New().String())
-		if err != nil {
-			log.Err(err).Msg("failed to get uuid")
-		}
-		return err
-	},
+// NewGenerateIDCmd creates a new instance of the generate-id Command
+func NewGenerateIDCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "generate-id",
+		Short: "Generates uuid for query",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			_, err := fmt.Fprintln(cmd.OutOrStdout(), uuid.New().String())
+			if err != nil {
+				log.Err(err).Msg("failed to get uuid")
+			}
+			return err
+		},
+	}
 }

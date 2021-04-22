@@ -22,7 +22,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"Ansible", "CloudFormation", "Kubernetes"}, p.SupportedTypes())
+	require.Equal(t, []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI"}, p.SupportedTypes())
 }
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
@@ -57,4 +57,20 @@ martin2:
 	require.NoError(t, err)
 	require.Len(t, playbook, 1)
 	require.Contains(t, playbook[0]["playbooks"].([]interface{})[0].(map[string]interface{})["name"], "bucket2")
+}
+
+// Test_Resolve tests the functions [Resolve()] and all the methods called by them
+func Test_Resolve(t *testing.T) {
+	have := `
+	martin:
+		name: test
+	---
+	martin2:
+		name: test2
+	`
+	parser := &Parser{}
+
+	resolved, err := parser.Resolve([]byte(have), "test.yaml")
+	require.NoError(t, err)
+	require.Equal(t, []byte(have), *resolved)
 }

@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
   "Resources": {
-    "MyLoadBalancer": {
+    "MyLoadBalancer8": {
       "Properties": {
         "Listeners": [
           {
@@ -30,7 +30,7 @@
           "Ref": "MyWebACL"
         },
         "ResourceArn": {
-          "Ref": "MyLoadBalancer"
+          "Ref": "MyLoadBalancer8"
         }
       }
     }

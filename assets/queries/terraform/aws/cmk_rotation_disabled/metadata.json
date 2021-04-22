@@ -1,0 +1,9 @@
+{
+  "id": "22fbfeac-7b5a-421a-8a27-7a2178bb910b",
+  "queryName": "CMK Rotation Disabled",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'enable_key_rotation' must be set to 'true' when the key is enabled.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key#enable_key_rotation",
+  "platform": "Terraform"
+}

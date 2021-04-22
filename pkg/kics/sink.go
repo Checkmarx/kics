@@ -20,6 +20,10 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
 
+	if err != nil {
+		return errors.Wrapf(err, "failed to resolve file content: %s", filename)
+	}
+
 	documents, kind, err := s.Parser.Parse(filename, *content)
 	if err != nil {
 		return errors.Wrap(err, "failed to parse file content")
@@ -42,6 +46,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		}
 		s.saveToFile(ctx, &file)
 	}
+	s.Tracker.TrackFileParse()
 
 	return errors.Wrap(err, "failed to save file content")
 }

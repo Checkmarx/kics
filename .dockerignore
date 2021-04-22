@@ -4,12 +4,12 @@ bin
 docs
 site
 test
+examples
 .editorconfig
 .gitignore
 .golangci.yml
 .goreleaser.nightly.yml
 .goreleaser.yml
-codecov.yml
 cx.configuration
 docker-compose.yml
 Dockerfile

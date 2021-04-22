@@ -11,6 +11,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -27,6 +28,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/getsentry/sentry-go"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -54,20 +56,67 @@ var (
 	force  bool
 )
 
-var scanCmd = &cobra.Command{
-	Use:   "scan",
-	Short: "Executes a scan analysis",
-	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-		return initializeConfig(cmd)
-	},
-	RunE: func(cmd *cobra.Command, args []string) error {
-		gracefulShutdown()
-		return scan()
-	},
+const (
+	scanCommandStr          = "scan"
+	pathFlag                = "path"
+	pathFlagShorthand       = "p"
+	configFlag              = "config"
+	queriesPathShorthand    = "q"
+	outputPathFlag          = "output-path"
+	outputPathShorthand     = "o"
+	reportFormatsFlag       = "report-formats"
+	previewLinesFlag        = "preview-lines"
+	excludePathsFlag        = "exclude-paths"
+	excludePathsShorthand   = "e"
+	minimalUIFlag           = "minimal-ui"
+	payloadPathFlag         = "payload-path"
+	payloadPathShorthand    = "d"
+	typeFlag                = "type"
+	typeShorthand           = "t"
+	noProgressFlag          = "no-progress"
+	excludeQueriesFlag      = "exclude-queries"
+	excludeResultsFlag      = "exclude-results"
+	excludeResutlsShorthand = "x"
+	excludeCategoriesFlag   = "exclude-categories"
+	queriesPathCmdName      = "queries-path"
+	forceFlag               = "force"
+)
+
+// NewScanCmd creates a new instance of the scan Command
+func NewScanCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   scanCommandStr,
+		Short: "Executes a scan analysis",
+		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+			err := initializeConfig(cmd)
+			if err != nil {
+				return err
+			}
+			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+			if err != nil {
+				return err
+			}
+			return nil
+		},
+		RunE: func(cmd *cobra.Command, args []string) error {
+			changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+			gracefulShutdown()
+			return scan(changedDefaultQueryPath)
+		},
+	}
 }
 
 func initializeConfig(cmd *cobra.Command) error {
 	log.Debug().Msg("console.initializeConfig()")
+
+	v := viper.New()
+	v.SetEnvPrefix("KICS")
+	v.AutomaticEnv()
+	errBind := bindFlags(cmd, v)
+	if errBind != nil {
+		return errBind
+	}
+
 	if cfgFile == "" {
 		configpath := path
 		info, err := os.Stat(path)
@@ -87,7 +136,6 @@ func initializeConfig(cmd *cobra.Command) error {
 		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
 	}
 
-	v := viper.New()
 	base := filepath.Base(cfgFile)
 	v.SetConfigName(base)
 	v.AddConfigPath(filepath.Dir(cfgFile))
@@ -99,20 +147,23 @@ func initializeConfig(cmd *cobra.Command) error {
 	if err := v.ReadInConfig(); err != nil {
 		return err
 	}
-	v.SetEnvPrefix("KICS_")
-	v.AutomaticEnv()
-	bindFlags(cmd, v)
+
+	errBind = bindFlags(cmd, v)
+	if errBind != nil {
+		return errBind
+	}
 	return nil
 }
 
-func bindFlags(cmd *cobra.Command, v *viper.Viper) {
+func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
 	log.Debug().Msg("console.bindFlags()")
 	settingsMap := v.AllSettings()
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
 		settingsMap[f.Name] = true
 		if strings.Contains(f.Name, "-") {
 			envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
-			if err := v.BindEnv(f.Name, fmt.Sprintf("%s_%s", "KICS", envVarSuffix)); err != nil {
+			variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
+			if err := v.BindEnv(f.Name, variableName); err != nil {
 				log.Err(err).Msg("Failed to bind Viper flags")
 			}
 		}
@@ -125,14 +176,10 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) {
 		if val == true {
 			continue
 		} else {
-			fmt.Printf("Unknown configuration key: '%s'\nShowing help for '%s' command:\n\n", key, cmd.Name())
-			err := cmd.Help()
-			if err != nil {
-				log.Err(err).Msg("Unable to show help message")
-			}
-			os.Exit(1)
+			return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
 		}
 	}
+	return nil
 }
 
 func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
@@ -153,60 +200,87 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 	}
 }
 
-func initScanCmd() {
-	scanCmd.Flags().StringVarP(&path, "path", "p", "", "path or directory path to scan")
-	scanCmd.Flags().StringVarP(&cfgFile, "config", "", "", "path to configuration file")
+func initScanCmd(scanCmd *cobra.Command) {
+	scanCmd.Flags().StringVarP(&path,
+		pathFlag,
+		pathFlagShorthand,
+		"",
+		"path or directory path to scan")
+	scanCmd.Flags().StringVarP(&cfgFile,
+		configFlag,
+		"",
+		"",
+		"path to configuration file")
 	scanCmd.Flags().StringVarP(
 		&queryPath,
-		"queries-path",
-		"q",
+		queriesPathCmdName,
+		queriesPathShorthand,
 		"./assets/queries",
 		"path to directory with queries",
 	)
-	scanCmd.Flags().StringVarP(&outputPath, "output-path", "o", "", "directory path to store reports")
-	scanCmd.Flags().StringSliceVarP(
-		&reportFormats,
-		"report-formats",
+	scanCmd.Flags().StringVarP(&outputPath,
+		outputPathFlag,
+		outputPathShorthand,
+		"",
+		"directory path to store reports")
+	scanCmd.Flags().StringSliceVarP(&reportFormats,
+		reportFormatsFlag,
 		"",
 		[]string{},
 		"formats in which the results will be exported (json, sarif, html)",
 	)
-	scanCmd.Flags().IntVarP(&previewLines, "preview-lines", "", 3, "number of lines to be display in CLI results (min: 1, max: 30)")
-	scanCmd.Flags().StringVarP(&payloadPath, "payload-path", "d", "", "path to store internal representation JSON file")
-	scanCmd.Flags().StringSliceVarP(
-		&excludePath,
-		"exclude-paths",
-		"e",
+	scanCmd.Flags().IntVarP(&previewLines,
+		previewLinesFlag,
+		"",
+		3,
+		"number of lines to be display in CLI results (min: 1, max: 30)")
+	scanCmd.Flags().StringVarP(&payloadPath,
+		payloadPathFlag,
+		payloadPathShorthand,
+		"",
+		"path to store internal representation JSON file")
+	scanCmd.Flags().StringSliceVarP(&excludePath,
+		excludePathsFlag,
+		excludePathsShorthand,
 		[]string{},
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVarP(&min, "minimal-ui", "", false, "simplified version of CLI output")
-	scanCmd.Flags().BoolVarP(&force, "force", "", false, "return status code 0 even if there are results")
-	scanCmd.Flags().StringSliceVarP(&types, "type", "t", []string{""}, "case insensitive list of platform types to scan\n"+
-		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
-	scanCmd.Flags().BoolVarP(&noProgress, "no-progress", "", false, "hides the progress bar")
-	scanCmd.Flags().StringSliceVarP(
-		&excludeIDs,
-		"exclude-queries",
+	scanCmd.Flags().BoolVarP(&min,
+		minimalUIFlag,
+		"",
+		false,
+		"simplified version of CLI output")
+	scanCmd.Flags().BoolVarP(&force, forceFlag, "", false, "return status code 0 even if there are results")
+	scanCmd.Flags().StringSliceVarP(&types,
+		typeFlag,
+		typeShorthand,
+		[]string{""},
+		"case insensitive list of platform types to scan\n"+
+			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
+	scanCmd.Flags().BoolVarP(&noProgress,
+		noProgressFlag,
+		"",
+		false,
+		"hides the progress bar")
+	scanCmd.Flags().StringSliceVarP(&excludeIDs,
+		excludeQueriesFlag,
 		"",
 		[]string{},
 		"exclude queries by providing the query ID\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
-	scanCmd.Flags().StringSliceVarP(
-		&excludeResults,
-		"exclude-results",
-		"x",
+	scanCmd.Flags().StringSliceVarP(&excludeResults,
+		excludeResultsFlag,
+		excludeResutlsShorthand,
 		[]string{},
 		"exclude results by providing the similarity ID of a result\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
 	)
-	scanCmd.Flags().StringSliceVarP(
-		&excludeCategories,
-		"exclude-categories",
+	scanCmd.Flags().StringSliceVarP(&excludeCategories,
+		excludeCategoriesFlag,
 		"",
 		[]string{},
 		"exclude categories by providing its name\n"+
@@ -302,11 +376,11 @@ func createService(inspector *engine.Inspector,
 	}, nil
 }
 
-func scan() error {
+func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 
-	if errlog := setupLogs(); errlog != nil {
-		return errlog
+	for _, warn := range warning {
+		log.Warn().Msgf(warn)
 	}
 
 	printer := consoleHelpers.NewPrinter(min)
@@ -324,17 +398,29 @@ func scan() error {
 		return err
 	}
 
+	if changedDefaultQueryPath {
+		log.Debug().Msgf("Trying to load queries from %s", queryPath)
+	} else {
+		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+		queryPath, err = consoleHelpers.GetDefaultQueryPath(queryPath)
+		if err != nil {
+			return errors.Wrap(err, "unable to find queries")
+		}
+	}
+
 	querySource := source.NewFilesystemSource(queryPath, types)
 	store := storage.NewMemoryStorage()
 
 	inspector, err := createInspector(t, querySource)
 	if err != nil {
 		log.Err(err)
+		return err
 	}
 
 	service, err := createService(inspector, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
+		return err
 	}
 
 	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {

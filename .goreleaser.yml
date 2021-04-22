@@ -9,6 +9,14 @@ builds:
       - windows
     goarch:
       - amd64
+      - arm64
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: linux
+        goarm: 7
+      - goos: windows
+        goarm: 7
     ldflags:
       - -X github.com/Checkmarx/kics/internal/constants.Version={{.Version}}
       - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{.Commit}}
@@ -22,7 +30,34 @@ archives:
       386: x32
     files:
       - LICENSE
-      - assets/queries
+      - assets/queries/**/metadata.json
+      - assets/queries/**/*.rego
       - assets/libraries
+brews:
+  - tap:
+      owner: checkmarx
+      name: homebrew-tap
+      token: "{{ .Env.KICS_BOT_PAT }}"
+    folder: Formula
+    homepage:  https://github.com/Checkmarx/kics
+    description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your IaC
+    license: Apache
+    test: |
+      system "#{bin}/kics version"
+    install: |-
+      pkgshare.mkpath
+      cp_r "assets", pkgshare
+      bin.install "kics"
+    custom_block: |
+      def caveats
+        <<~EOS
+          KICS queries are placed under #{pkgshare}/assets/queries
+
+          To use KICS default queries add KICS_QUERIES_PATH env to your ~/.zshrc or ~/.zprofile:
+              "echo 'export KICS_QUERIES_PATH=#{pkgshare}/assets/queries' >> ~/.zshrc"
+
+          usage of CLI flag --queries-path takes precedence.
+        EOS
+      end
 release:
   prerelease: true
