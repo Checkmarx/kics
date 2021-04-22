@@ -21,12 +21,13 @@ type metricType interface {
 type metricProfile interface{ Stop() }
 
 // Metrics - structure to keep information relevant to the metrics calculation
+// Disable - disables metric calculations
 type Metrics struct {
 	metric    metricType
 	metricsID string
 	location  string
 	profile   metricProfile
-	disable   bool
+	Disable   bool
 	tempDIR   string
 }
 
@@ -37,18 +38,20 @@ func InitializeMetrics(metric *pflag.Flag) (*Metrics, error) {
 	metrics := &Metrics{}
 	switch strings.ToLower(metricStr) {
 	case "cpu":
+		metrics.Disable = false
 		metrics.metric = cpuMetric{}
 	case "mem":
 		metrics.metric = memMetric{}
+		metrics.Disable = false
 	case "":
-		metrics.disable = true
+		metrics.Disable = true
 	default:
-		metrics.disable = true
+		metrics.Disable = true
 		err = fmt.Errorf("unknonwn metric: %s (available metrics: cpu, mem)", metricStr)
 	}
 
 	// Create temporary dir to keep pprof file
-	if !metrics.disable {
+	if !metrics.Disable {
 		temp, errCreate := os.MkdirTemp(".", "*")
 		if errCreate != nil {
 			err = errCreate
@@ -63,7 +66,7 @@ func InitializeMetrics(metric *pflag.Flag) (*Metrics, error) {
 
 // Start - starts gathering metrics for the location specified
 func (m *Metrics) Start(location string) {
-	if m.disable {
+	if m.Disable {
 		return
 	}
 	log.Debug().Msgf("Started %s profiling for %s", m.metricsID, location)
@@ -73,7 +76,7 @@ func (m *Metrics) Start(location string) {
 
 // Stop - stops gathering metrics and logs the result
 func (m *Metrics) Stop() {
-	if m.disable {
+	if m.Disable {
 		return
 	}
 	profile := fmt.Sprintf("%s.pprof", strings.ToLower(m.metricsID))

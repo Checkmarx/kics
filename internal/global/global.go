@@ -5,5 +5,8 @@ import (
 )
 
 var (
-	Metric *metrics.Metrics
+	// Metric is the global metrics object
+	Metric = &metrics.Metrics{
+		Disable: true,
+	}
 )
