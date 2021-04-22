@@ -31,6 +31,7 @@ var (
 	noColor   bool
 	silent    bool
 	ci        bool
+	metric    string
 
 	warning []string
 )
@@ -89,9 +90,17 @@ func initialize(rootCmd *cobra.Command) error {
 		"",
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
+	rootCmd.PersistentFlags().StringVarP(&metric,
+		"metrics",
+		"",
+		"",
+		"display metrics for the steps of kics exucution (CPU, MEM)")
 
-	err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead")
-	if err != nil {
+	if err := rootCmd.PersistentFlags().MarkHidden("metrics"); err != nil {
+		return err
+	}
+
+	if err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead"); err != nil {
 		return err
 	}
 
@@ -132,7 +141,7 @@ func Execute() error {
 	}
 	defer sentry.Flush(timeMult * time.Second)
 
-	if err := initialize(rootCmd); err != nil {
+	if err = initialize(rootCmd); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize CLI")
 		return err

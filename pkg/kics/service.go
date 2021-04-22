@@ -4,6 +4,7 @@ import (
 	"context"
 	"io"
 
+	"github.com/Checkmarx/kics/internal/global"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -49,6 +50,7 @@ type Service struct {
 // StartScan executes scan over the context, using the scanID as reference
 func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool) error {
 	log.Debug().Msg("service.StartScan()")
+	global.Metric.Start("get_sources")
 	if err := s.SourceProvider.GetSources(
 		ctx,
 		s.Parser.SupportedExtensions(),
@@ -61,14 +63,15 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 	); err != nil {
 		return errors.Wrap(err, "failed to read sources")
 	}
-
+	global.Metric.Stop()
+	global.Metric.Start("inspect")
 	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePath())
 	if err != nil {
 		return errors.Wrap(err, "failed to inspect files")
 	}
 
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
-
+	global.Metric.Stop()
 	return errors.Wrap(err, "failed to save vulnerabilities")
 }
 

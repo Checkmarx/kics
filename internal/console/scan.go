@@ -11,6 +11,8 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/internal/global"
+	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -84,12 +86,17 @@ func NewScanCmd() *cobra.Command {
 		Use:   scanCommandStr,
 		Short: "Executes a scan analysis",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			err := initializeConfig(cmd)
-			if err != nil {
+			if err := initializeConfig(cmd); err != nil {
 				return err
 			}
-			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+			if err := internalPrinter.SetupPrinter(cmd.InheritedFlags()); err != nil {
+				return err
+			}
+			var err error
+			global.Metric, err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("metrics"))
 			if err != nil {
+				sentry.CaptureException(err)
+				log.Err(err).Msg("Failed to initialize Metrics")
 				return err
 			}
 			return nil

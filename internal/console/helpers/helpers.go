@@ -12,6 +12,7 @@ import (
 	"sync"
 
 	"github.com/BurntSushi/toml"
+	"github.com/Checkmarx/kics/internal/global"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/gookit/color"
@@ -244,6 +245,7 @@ func FileAnalyzer(path string) (string, error) {
 // GenerateReport execute each report function to generate report
 func GenerateReport(path, filename string, body interface{}, formats []string) error {
 	log.Debug().Msgf("helpers.GenerateReport()")
+	global.Metric.Start("generate_report")
 	var err error = nil
 	for _, format := range formats {
 		if err = reportGenerators[format](path, filename, body); err != nil {
@@ -251,6 +253,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string) e
 			break
 		}
 	}
+	global.Metric.Stop()
 	return err
 }
 
