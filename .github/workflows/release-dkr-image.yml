@@ -3,7 +3,6 @@ name: release-docker-image
 on:
   release:
     types: [published]
-  workflow_dispatch:
 
 jobs:
   push_to_registry:
@@ -59,3 +58,35 @@ jobs:
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
+      - name: Update repo description
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: docs/dockerhub.md
+      - name: Export Image Digests
+        run: |
+          VERSION=${{ steps.get-version.outputs.version }}
+
+          docker inspect --format='{{.RepoDigests}}' \
+            checkmarx/kics:$VERSION | sed -r 's/\[checkmarx\/kics@(sha256:)(.*)\]/\1\2/g' > digest
+
+          printf "|%-30s| %70s|\n" "$VERSION" "$(cat digest)" >> docs/docker-images-digest.md
+
+          docker inspect --format='{{.RepoDigests}}' \
+            checkmarx/kics:$VERSION-alpine | sed -r 's/\[checkmarx\/kics@(sha256:)(.*)\]/\1\2/g' > digest-latest
+
+          printf "|%-30s| %70s|\n" "${VERSION}-alpine" "$(cat digest-latest)" >> docs/docker-images-digest.md
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: "[kicsbot] Update Images Digest"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "[kicsbot] Update Images Digest"
+          delete-branch: true
+          branch: feature/kicsbot-update-queries-docs
+          body: |
+            **Automated changes**
+            Updating docker images digests
+            Triggered by SHA: _${{ github.sha }}_
+          labels: documentation
