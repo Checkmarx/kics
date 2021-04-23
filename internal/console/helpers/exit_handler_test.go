@@ -62,8 +62,7 @@ var resultsExitCodeTests = []struct {
 	},
 }
 
-// TestResultsExitCode tests the functions [ResultsExitCode()] and all the methods called by them
-func TestResultsExitCode(t *testing.T) {
+func TestExitHandler_ResultsExitCode(t *testing.T) {
 	for idx, testCase := range resultsExitCodeTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
 			shouldFail = testCase.caseTest.failOn
@@ -133,8 +132,7 @@ var initShouldIgnoreExitCodeTests = []struct {
 	},
 }
 
-// TestInitShouldIgnoreArg tests the functions [InitShouldIgnoreArg()] and all the methods called by them
-func TestInitShouldIgnoreArg(t *testing.T) {
+func TestExitHandler_InitShouldIgnoreArg(t *testing.T) {
 	for idx, testCase := range initShouldIgnoreExitCodeTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
 			shouldIgnore = "none"
@@ -200,8 +198,7 @@ var initShouldFailTests = []struct {
 	},
 }
 
-// TestInitShouldFailArg tests the functions [InitShouldFailArg()] and all the methods called by them
-func TestInitShouldFailArg(t *testing.T) {
+func TestExitHandler_InitShouldFailArg(t *testing.T) {
 	for idx, testCase := range initShouldFailTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
 			shouldFail = make(map[string]struct{})
@@ -238,8 +235,7 @@ var showResultsTests = []struct {
 	},
 }
 
-// TestShowError tests the functions [ShowError()] and all the methods called by them
-func TestShowError(t *testing.T) {
+func TestExitHandler_ShowError(t *testing.T) {
 	for idx, testCase := range showResultsTests {
 		t.Run(fmt.Sprintf("Print test case %d", idx), func(t *testing.T) {
 			shouldIgnore = testCase.caseTest
