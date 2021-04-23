@@ -1,0 +1,73 @@
+name: go-ci-coverage
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  coverage:
+    name: generate-coverage
+    runs-on: ubuntu-latest
+    outputs:
+      coverage: ${{ steps.testcov.outputs.coverage }}
+      color: ${{ steps.testcov.outputs.color }}
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+      - name: Run test metrics script
+        id: testcov
+        run: |
+          make test-coverage-report
+          cat coverage.html
+      - name: Generate badge
+        run: |
+          curl -L \
+            https://img.shields.io/badge/Go%20Coverage-${{ steps.testcov.outputs.coverage }}%25-${{ steps.testcov.outputs.color }}.svg > coverage.svg
+          cat coverage.svg
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ runner.os }}-badge-latest
+          path: coverage.svg
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ runner.os }}-coverage-latest
+          path: coverage.html
+  publish:
+    name: publish-coverage
+    runs-on: ubuntu-latest
+    needs: coverage
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - name: Configure git commit author
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Download Coverage Report
+        uses: actions/download-artifact@master
+        with:
+          name: ${{ runner.os }}-coverage-latest
+          path: latest-coverage
+      - name: Download Badge svg
+        uses: actions/download-artifact@master
+        with:
+          name: ${{ runner.os }}-badge-latest
+          path: latest-coverage
+      - name: Generate badge
+        run: |
+          mv latest-coverage/coverage.html coverage.html
+          mv latest-coverage/coverage.svg coverage.svg
+          git add coverage.svg
+          git add coverage.html
+          git status
+          git commit -m 'chore: updating coverage'
+          git push origin gh-pages

@@ -1,9 +1,6 @@
 name: go-ci-metrics
 
 on:
-  push:
-    branches:
-      - "master"
   pull_request:
     branches: [master]
 jobs:
@@ -23,17 +20,3 @@ jobs:
           sudo apt install zsh cloc -y
       - name: Run test metrics script
         run: zsh -c "time ./.github/scripts/get-test-metrics.sh"
-  coverage:
-    name: test-coverage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Source
-        uses: actions/checkout@v2
-      - name: Set up Go 1.x
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.16.x
-      - name: Get dependencies
-        run: make vendor
-      - name: Run test metrics script
-        run: make test-coverage-report
