@@ -135,7 +135,7 @@ var tests = []struct {
 		name: "E2E-CLI-007",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 		},
 		wantStatus: 0,
@@ -155,7 +155,7 @@ var tests = []struct {
 		name: "E2E-CLI-008",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/"},
+				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 			expectedOut: []string{"E2E_CLI_008"},
 		},
@@ -167,7 +167,7 @@ var tests = []struct {
 		name: "E2E-CLI-009",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples", "--no-progress"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf", "--no-progress"},
 			},
 		},
 		wantStatus: 0,
@@ -184,7 +184,7 @@ var tests = []struct {
 		name: "E2E-CLI-010",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples", "-t", "xml", "--silent"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf", "-t", "xml", "--silent"},
 			},
 		},
 		validation: func(outputText string) bool {
@@ -200,7 +200,7 @@ var tests = []struct {
 		name: "E2E-CLI-011",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples",
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
 					"-t", "TeRraFOrM", "--silent", "--payload-path", "fixtures/payload.json"},
 			},
 			expectedPayload: []string{
@@ -238,6 +238,42 @@ var tests = []struct {
 			expectedOut: []string{
 				"E2E_CLI_013",
 			},
+		},
+		wantStatus: 0,
+	},
+	// E2E-CLI-014 - KICS preview-lines command must delimit the number of
+	// code lines that are displayed in each scan results code block.
+	{
+		name: "E2E-CLI-014",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--preview-lines", "1", "--no-color", "--no-progress",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		validation: func(outputText string) bool {
+			// only the match1 must be true
+			match1, _ := regexp.MatchString(`001\: resource \"aws_redshift_cluster\" \"default1\" \{`, outputText)
+			match2, _ := regexp.MatchString(`002\:   publicly_accessible = false`, outputText)
+			return match1 && !match2
+		},
+		wantStatus: 0,
+	},
+	// E2E-CLI-015 KICS scan with --no-color flag
+	// must disable the colored outputs of kics in the CLI
+	{
+		name: "E2E-CLI-015",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`HIGH: \d+`, outputText)
+			match2, _ := regexp.MatchString(`MEDIUM: \d+`, outputText)
+			match3, _ := regexp.MatchString(`LOW: \d+`, outputText)
+			match4, _ := regexp.MatchString(`INFO: \d+`, outputText)
+			return match1 && match2 && match3 && match4
 		},
 		wantStatus: 0,
 	},
