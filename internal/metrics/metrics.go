@@ -1,12 +1,11 @@
 package metrics
 
 import (
+	"bytes"
 	"fmt"
-	"os"
-	"os/exec"
-	"path/filepath"
 	"strings"
 
+	"github.com/google/pprof/profile"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
 )
@@ -14,11 +13,12 @@ import (
 // Start - starts gathering metrics based on the type of metrics and writes metrics to string
 // Stop - stops gathering metrics for the type of metrics specified
 type metricType interface {
-	Start(location, path string) metricProfile
-	Stop(metricProfile)
+	start()
+	stop()
+	getWriter() *bytes.Buffer
+	getIndex() int
+	getMap() map[string]float64
 }
-
-type metricProfile interface{ Stop() }
 
 // Metrics - structure to keep information relevant to the metrics calculation
 // Disable - disables metric calculations
@@ -26,9 +26,7 @@ type Metrics struct {
 	metric    metricType
 	metricsID string
 	location  string
-	profile   metricProfile
 	Disable   bool
-	tempDIR   string
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
@@ -39,9 +37,9 @@ func InitializeMetrics(metric *pflag.Flag) (*Metrics, error) {
 	switch strings.ToLower(metricStr) {
 	case "cpu":
 		metrics.Disable = false
-		metrics.metric = cpuMetric{}
+		metrics.metric = &cpuMetric{}
 	case "mem":
-		metrics.metric = memMetric{}
+		metrics.metric = &memMetric{}
 		metrics.Disable = false
 	case "":
 		metrics.Disable = true
@@ -52,12 +50,6 @@ func InitializeMetrics(metric *pflag.Flag) (*Metrics, error) {
 
 	// Create temporary dir to keep pprof file
 	if !metrics.Disable {
-		temp, errCreate := os.MkdirTemp(".", "*")
-		if errCreate != nil {
-			err = errCreate
-		}
-
-		metrics.tempDIR = temp
 		metrics.metricsID = metricStr
 	}
 
@@ -69,9 +61,11 @@ func (m *Metrics) Start(location string) {
 	if m.Disable {
 		return
 	}
+
 	log.Debug().Msgf("Started %s profiling for %s", m.metricsID, location)
+
 	m.location = location
-	m.profile = m.metric.Start(location, m.tempDIR)
+	m.metric.start()
 }
 
 // Stop - stops gathering metrics and logs the result
@@ -79,33 +73,56 @@ func (m *Metrics) Stop() {
 	if m.Disable {
 		return
 	}
-	profile := fmt.Sprintf("%s.pprof", strings.ToLower(m.metricsID))
 	log.Debug().Msgf("Stopped %s profiling for %s", m.metricsID, m.location)
-	m.metric.Stop(m.profile)
 
-	if err := m.readFile(filepath.Join(m.tempDIR, profile)); err != nil {
-		log.Error().Msgf("failed to get metrics from %s: %s", m.location, err)
+	m.metric.stop()
+
+	p, err := profile.Parse(m.metric.getWriter())
+	if err != nil {
+		log.Error().Msgf("failed to parse profile on %s: %s", m.location, err)
 	}
+
+	if err := p.CheckValid(); err != nil {
+		log.Error().Msgf("invalid profile on %s: %s", m.location, err)
+	}
+
+	total := getTotal(p, m.metric.getIndex())
+	log.Info().
+		Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID), m.location, formatTotal(total, m.metric.getMap()))
 }
 
-func (m *Metrics) readFile(profile string) error {
-	// Remove temporary directory
-	defer func() {
-		if err := os.RemoveAll(m.tempDIR); err != nil {
-			log.Error().Msgf("failed to remove metric temporary dir %s: %s", m.tempDIR, err)
+// Get total goes through the profile samples summing their values according to
+// the type of profile
+func getTotal(prof *profile.Profile, idx int) int64 {
+	var total, diffTotal int64
+	for _, sample := range prof.Sample {
+		var v int64
+		v = sample.Value[idx]
+		if v < 0 {
+			v = -v
 		}
-	}()
-	// Since profiling in golang creates a binary pprof file we need to call pprof tool
-	// to the information we need
-	cmd := exec.Command("go", "tool", "pprof", "-list", "total", profile)
-	b, err := cmd.Output()
-	if err != nil {
-		return err
+		total += v
+		if sample.DiffBaseSample() {
+			diffTotal += v
+		}
+	}
+	if diffTotal > 0 {
+		total = diffTotal
 	}
 
-	// Get information of total metric usage
-	lines := strings.Split(string(b), "\n")
-	log.Info().Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID), m.location, lines[0])
+	return total
+}
 
-	return nil
+// formatTotal parses total value into a human readble way
+func formatTotal(b int64, typeMap map[string]float64) string {
+	value := float64(b)
+	var formatter float64
+	var mesure string
+	for k, u := range typeMap {
+		if u >= formatter && (value/u) >= 1.0 {
+			formatter = u
+			mesure = k
+		}
+	}
+	return fmt.Sprintf("%.2f%s", value/formatter, mesure)
 }
