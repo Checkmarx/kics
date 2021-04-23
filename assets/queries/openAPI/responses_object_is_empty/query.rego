@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.openapi as openapi_lib
 
+options := {null, {}}
+
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	options := {null, {}}
 	doc.paths[path][op].responses == options[x]
 
 	result := {
@@ -22,7 +23,6 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	options := {null, {}}
 	doc.components.responses == options[x]
 
 	result := {
