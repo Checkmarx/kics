@@ -23,14 +23,14 @@ const (
 var (
 	ctx = context.Background()
 
-	verbose   bool
+	ci        bool
 	logFile   bool
-	logPath   string
-	logLevel  string
 	logFormat string
+	logLevel  string
+	logPath   string
 	noColor   bool
 	silent    bool
-	ci        bool
+	verbose   bool
 
 	warning []string
 )
