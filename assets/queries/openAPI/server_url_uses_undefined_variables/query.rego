@@ -77,8 +77,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url", [r, l]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url uses server object variables defined in the server object variables", [l]),
-		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url does not use server object variables defined in the server object variables", [l]),
+		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url uses server object variables defined in the server object variables", [r, l]),
+		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url does not use server object variables defined in the server object variables", [r, l]),
 	}
 }
 

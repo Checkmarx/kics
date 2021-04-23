@@ -77,8 +77,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url", [r, l]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url has an absolute URL", [l]),
-		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url does not have an absolute URL", [l]),
+		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url has an absolute URL", [r, l]),
+		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url does not have an absolute URL", [r, l]),
 	}
 }
 
