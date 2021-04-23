@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Schema Items Undefined",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Items Undefined",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Items Undefined",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Items Undefined",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive4.yaml"
+  }
+]
