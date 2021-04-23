@@ -52,7 +52,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema", [path, operation, parameter]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema.items is set", [path, operation, parameter]),
-		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema.items is not set", [path, operation, parameter]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema.items is undefined", [path, operation, parameter]),
 	}
 }
 
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema", [path, operation, c]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.items is set", [path, operation, c]),
-		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.items is not set", [path, operation, c]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.items is undefined", [path, operation, c]),
 	}
 }
 
@@ -88,7 +88,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema", [r, c]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema.items is set", [r, c]),
-		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema.items is not set", [r, c]),
+		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema.items is undefined", [r, c]),
 	}
 }
 
@@ -106,7 +106,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("components.parameters.{{%s}}.schema", [parameter]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("components.parameters.{{%s}}.schema.items is set", [parameter]),
-		"keyActualValue": sprintf("components.parameters.{{%s}}.schema.items is not set", [parameter]),
+		"keyActualValue": sprintf("components.parameters.{{%s}}.schema.items is undefined", [parameter]),
 	}
 }
 
@@ -124,7 +124,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("components.responses.{{%s}}.content.{{%s}}.schema", [r, c]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("components.responses.{{%s}}.content.{{%s}}.schema.items is set", [r, c]),
-		"keyActualValue": sprintf("components.responses.{{%s}}.content.{{%s}}.schema.items is not set", [r, c]),
+		"keyActualValue": sprintf("components.responses.{{%s}}.content.{{%s}}.schema.items is undefined", [r, c]),
 	}
 }
 
@@ -141,7 +141,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.schemas.{{%s}}", [s]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("components.schemas.{{%s}} is a required property", [s]),
-		"keyActualValue": sprintf("components.schemas.{{%s}} is not a required property", [s]),
+		"keyExpectedValue": sprintf("components.schemas.{{%s}}.items is set", [s]),
+		"keyActualValue": sprintf("components.schemas.{{%s}}.items is undefined", [s]),
 	}
 }
