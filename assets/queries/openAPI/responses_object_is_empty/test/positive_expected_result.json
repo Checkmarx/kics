@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Responses Object Is Empty",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Responses Object Is Empty",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive2.yaml"
+  }
+]
