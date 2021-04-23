@@ -304,24 +304,13 @@ HTML reports are sorted by severity (from high to info), the results will have q
 
 ## Results Status Code
 
-| Code      | Description                                   |
+| Code          | Description                               |
 | --------------| ------------------------------------------|
 | `0`           | No Results were Found                     |
-| `50`          | Found only    `HIGH` Results              |
-| `40`          | Found only    `MEDIUM` Results            |
-| `30`          | Found only    `LOW` Results               |
-| `20`          | Found only    `INFO` Results              |
-| `59`          | Found Results with all severities         |
-| `57`          | Found `HIGH`, `MEDIUM` and `LOW` Results  |
-| `56`          | Found `HIGH`, `MEDIUM` and `INFO` ResultS |
-| `55`          | Found `HIGH`, `INFO` and `LOW` Results    |
-| `54`          | Found `HIGH`, and `MEDIUM` Results        |
-| `53`          | Found `HIGH`, and `LOW` Results           |
-| `52`          | Found `HIGH`, and `INFO` Results          |
-| `45`          | Found `MEDIUM`, `INFO` and `LOW` Results  |
-| `43`          | Found `MEDIUM`, and `LOW` Results         |
-| `42`          | Found `MEDIUM`, and `INFO` Results        |
-| `32`          | Found `LOW`, and `INFO` Results           |
+| `50`          | Found any `HIGH` Results                  |
+| `40`          | Found any `MEDIUM` Results                |
+| `30`          | Found any `LOW` Results                   |
+| `20`          | Found any `INFO` Results                  |
 
 ## Error Status Code
 
@@ -329,4 +318,3 @@ HTML reports are sorted by severity (from high to info), the results will have q
 | --------------| ------------------------------------------|
 | `126`         | Engine Error                              |
 | `130`         | Signal-Interrupt                          |
-| `110`         | Failed to detect line                     |

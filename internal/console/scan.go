@@ -300,7 +300,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		[]string{"high", "medium", "low", "info"},
 		"which kind of results should return an exit code different from 0\n"+
 			"accetps: high, medium, low and info\n"+
-			"example: 'high,low'",
+			"example: \"high,low\"",
 	)
 	scanCmd.Flags().StringVarP(&ignoreOnExit,
 		ignoreOnExitFlag,
@@ -313,14 +313,6 @@ func initScanFlags(scanCmd *cobra.Command) {
 
 func initScanCmd(scanCmd *cobra.Command) {
 	initScanFlags(scanCmd)
-	scanCmd.PersistentFlags().StringVarP(&ignoreOnExit,
-		ignoreOnExitFlag,
-		"",
-		"none",
-		"defines which kind of non-zero exits code should be ignored\n"+
-			"accepts: all, results, errors, none\n"+
-			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
-	)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
