@@ -70,7 +70,7 @@ var tests = []struct {
 			},
 			expectedOut: []string{"E2E_CLI_003"},
 		},
-		wantStatus: 1,
+		wantStatus: 126,
 	},
 	// E2E-CLI-004 - KICS scan command had a mandatory flag -p the CLI should exhibit
 	// an error message and return exit code 1
@@ -88,7 +88,7 @@ var tests = []struct {
 				"E2E_CLI_004",
 			},
 		},
-		wantStatus: 1,
+		wantStatus: 126,
 	},
 	// E2E-CLI-005 - KICS scan with -- payload-path flag should create a file with the
 	// passed name containing the payload of the files scanned
@@ -106,7 +106,7 @@ var tests = []struct {
 				"E2E_CLI_005_PAYLOAD",
 			},
 		},
-		wantStatus:    0,
+		wantStatus:    50,
 		removePayload: []string{"payload.json"},
 	},
 }
