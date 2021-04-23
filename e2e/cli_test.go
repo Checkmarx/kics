@@ -135,7 +135,7 @@ var tests = []struct {
 		name: "E2E-CLI-007",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-p", "fixtures/samples"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples"},
 			},
 		},
 		wantStatus: 0,
@@ -155,7 +155,7 @@ var tests = []struct {
 		name: "E2E-CLI-008",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--silent", "-p", "fixtures/samples/"},
+				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/"},
 			},
 			expectedOut: []string{"E2E_CLI_008"},
 		},
@@ -167,7 +167,7 @@ var tests = []struct {
 		name: "E2E-CLI-009",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-p", "fixtures/samples", "--no-progress"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples", "--no-progress"},
 			},
 		},
 		wantStatus: 0,
@@ -184,7 +184,7 @@ var tests = []struct {
 		name: "E2E-CLI-010",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-p", "fixtures/samples", "-t", "xml", "--silent"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples", "-t", "xml", "--silent"},
 			},
 		},
 		validation: func(outputText string) bool {
@@ -200,7 +200,8 @@ var tests = []struct {
 		name: "E2E-CLI-011",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-p", "fixtures/samples", "-t", "TeRraFOrM", "--silent", "--payload-path", "fixtures/payload.json"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples",
+					"-t", "TeRraFOrM", "--silent", "--payload-path", "fixtures/payload.json"},
 			},
 			expectedPayload: []string{
 				"E2E_CLI_011_PAYLOAD",
@@ -215,7 +216,7 @@ var tests = []struct {
 		name: "E2E-CLI-012",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "-p", "../test/fixtures/tc-sim01/positive1.tf", "--minimal-ui"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "../test/fixtures/tc-sim01/positive1.tf", "--minimal-ui"},
 			},
 		},
 		wantStatus: 0,
