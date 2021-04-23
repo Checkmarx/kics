@@ -27,6 +27,7 @@ func ResultsExitCode(summary *model.Summary) int {
 	return 0
 }
 
+// InitShouldIgnoreArg initializes what kind of errors should be used on exit codes
 func InitShouldIgnoreArg(arg string) error {
 	validArgs := []string{"none", "all", "results", "errors"}
 	for _, validArg := range validArgs {
@@ -38,6 +39,7 @@ func InitShouldIgnoreArg(arg string) error {
 	return fmt.Errorf("unknown argument for --ignore-on-exit: %s\nvalid arguments:\n  %s", arg, strings.Join(validArgs, "\n  "))
 }
 
+// InitShouldFailArg initializes which kind of vulnerability severity should changes exit code
 func InitShouldFailArg(args []string) error {
 	possibleArgs := map[string]struct{}{
 		"high":   {},
@@ -63,6 +65,7 @@ func InitShouldFailArg(args []string) error {
 	return nil
 }
 
+// ShowError returns true if should show error, otherwise returns false
 func ShowError(kind string) bool {
 	return strings.EqualFold(shouldIgnore, "none") || (!strings.EqualFold(shouldIgnore, "all") && !strings.EqualFold(shouldIgnore, kind))
 }
