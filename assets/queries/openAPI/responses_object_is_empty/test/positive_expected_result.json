@@ -8,7 +8,19 @@
   {
     "queryName": "Responses Object Is Empty",
     "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Responses Object Is Empty",
+    "severity": "INFO",
     "line": 10,
-    "filename": "positive2.yaml"
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Responses Object Is Empty",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive4.yaml"
   }
 ]

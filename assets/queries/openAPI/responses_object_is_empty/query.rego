@@ -11,9 +11,25 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.responses", [path, op]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [path, op]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.{{%s}}.responses is not empty", [path, op]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}}.{{%s}}.responses is empty", [path, op]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses is not empty", [path, op]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses is empty", [path, op]),
+	}
+}
+
+CxPolicy[result] {
+	doc := input.document[i]
+	openapi_lib.check_openapi(doc) != "undefined"
+
+	options := {null, {}}
+	doc.components.responses == options[x]
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": "components.responses",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "components.responses is not empty",
+		"keyActualValue": "components.responsesis empty",
 	}
 }
