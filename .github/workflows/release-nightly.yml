@@ -174,18 +174,20 @@ jobs:
         run: |
           VERSION=nightly
 
+          COMMIT_SHA8=${{ needs.pre_release_job.outputs.sha8 }}
+          DATE=$(date +'%Y-%m-%d')
           DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}")
           ALPINE_DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}-alpine")
 
-          echo "${VERSION},${DIGEST}" >> docs/digests.csv
-          echo "${VERSION},${ALPINE_DIGEST}" >> docs/digests.csv
+          echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/nightly.csv
+          echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
       - name: Generate .md table
         run: |
           pip install csvtomd
-          csvtomd docs/digests.csv > docs/digests.md
+          csvtomd docs/docker/nightly.csv > docs/docker/nightly.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:

@@ -71,15 +71,15 @@ jobs:
           DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}")
           ALPINE_DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}-alpine")
 
-          echo "${VERSION},${DIGEST}" >> docs/digests.csv
-          echo "${VERSION},${ALPINE_DIGEST}" >> docs/digests.csv
+          echo "${VERSION},${DIGEST}" >> docs/docker/digests.csv
+          echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
       - name: Generate .md table
         run: |
           pip install csvtomd
-          csvtomd docs/digests.csv > docs/digests.md
+          csvtomd docs/docker/digests.csv > docs/docker/digests.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
