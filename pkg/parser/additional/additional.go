@@ -20,39 +20,6 @@ func checkConvertingError(err error) {
 	}
 }
 
-func convertMonth(month string) int {
-	var output int
-
-	switch month {
-	case "Jan":
-		output = 1
-	case "Fev":
-		output = 2
-	case "Mar":
-		output = 3
-	case "Apr":
-		output = 4
-	case "May":
-		output = 5
-	case "Jun":
-		output = 6
-	case "Jul":
-		output = 7
-	case "Aug":
-		output = 8
-	case "Sep":
-		output = 9
-	case "Oct":
-		output = 10
-	case "Nov":
-		output = 11
-	case "Dez":
-		output = 12
-	}
-
-	return output
-}
-
 func getRegexMatch(regex, text string) string {
 	var re = regexp.MustCompile(regex)
 	clean := re.FindAllString(text, -1)
@@ -69,9 +36,24 @@ func getExpirationDate(datetime string) [3]int {
 	expirationInfo := getRegexMatch(`(notAfter=)[a-zA-Z]+[ ]+[0-9]{1,2}[ ]([0-9]{2}:[0-9]{2}:[0-9]{2})[ ][0-9]{4}`, datetime)
 	clean := strings.Split(expirationInfo, "=")
 
+	months := map[string]int{
+		"Jan": 1,
+		"Feb": 2,
+		"Mar": 3,
+		"Apr": 4,
+		"May": 5,
+		"Jun": 6,
+		"Jul": 7,
+		"Aug": 8,
+		"Sep": 9,
+		"Oct": 10,
+		"Nov": 11,
+		"Dec": 12,
+	}
+
 	// pick month
 	cleanMonth := getRegexMatch(`^[a-zA-Z]+`, clean[1])
-	month := convertMonth(cleanMonth)
+	month := months[cleanMonth]
 
 	// pick year
 	cleanYear := getRegexMatch(`[0-9]{4}`, clean[1])
