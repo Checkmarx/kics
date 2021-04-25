@@ -62,9 +62,12 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 					elements = v2.(model.Document)
 					for k, v3 := range elements { // resource elements
 						if k == "certificate_body" {
-							certInfo = additional.AddCertificateInfo(path, v3.(string))
-							if certInfo != nil {
-								elements["certificate_body"] = certInfo
+							ok, content := additional.CheckCertificateBody(v3.(string))
+							if ok {
+								certInfo = additional.AddCertificateInfo(path, content)
+								if certInfo != nil {
+									elements["certificate_body"] = certInfo
+								}
 							}
 						}
 					}
