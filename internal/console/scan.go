@@ -92,11 +92,11 @@ func NewScanCmd() *cobra.Command {
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			err := initializeConfig(cmd)
 			if err != nil {
-				return err
+				return errors.New("initialization error - " + err.Error())
 			}
 			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
 			if err != nil {
-				return err
+				return errors.New("initialization error - " + err.Error())
 			}
 			return nil
 		},
