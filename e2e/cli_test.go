@@ -72,7 +72,7 @@ var tests = []struct {
 		},
 		wantStatus: 1,
 	},
-	// E2E-CLI-004 - KICS scan command had a mandatory flag -p the CLI should exhibit
+	// E2E-CLI-004 - KICS has an invalid flag combination
 	// an error message and return exit code 1
 	{
 		name: "E2E-CLI-004",
@@ -108,6 +108,24 @@ var tests = []struct {
 		},
 		wantStatus:    0,
 		removePayload: []string{"payload.json"},
+	},
+	// E2E-CLI-016 - KICS has an invalid flag or invalid command
+	// an error message and return exit code 1
+	{
+		name: "E2E-CLI-016",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--invalid-flag"},
+				[]string{"--invalid-flag"},
+				[]string{"invalid"},
+			},
+			expectedOut: []string{
+				"E2E_CLI_016_INVALID_SCAN_FLAG",
+				"E2E_CLI_016_INVALID_FLAG",
+				"E2E_CLI_016_INVALID_COMMAND",
+			},
+		},
+		wantStatus: 1,
 	},
 }
 

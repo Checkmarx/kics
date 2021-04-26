@@ -1,4 +1,4 @@
-Error: initialization error - can't provide 'verbose' and 'ci' flags simultaneously
+Error: unknown flag: --invalid-flag
 Usage:
   kics scan [flags]
 
