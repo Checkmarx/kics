@@ -31,6 +31,7 @@ var (
 	logPath   string
 	noColor   bool
 	silent    bool
+	profiling string
 	verbose   bool
 
 	warning []string
@@ -90,9 +91,13 @@ func initialize(rootCmd *cobra.Command) error {
 		"",
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
+	rootCmd.PersistentFlags().StringVarP(&profiling,
+		"profiling",
+		"",
+		"",
+		"enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)")
 
-	err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead")
-	if err != nil {
+	if err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead"); err != nil {
 		return err
 	}
 
@@ -133,7 +138,7 @@ func Execute() error {
 	}
 	defer sentry.Flush(timeMult * time.Second)
 
-	if err := initialize(rootCmd); err != nil {
+	if err = initialize(rootCmd); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize CLI")
 		return err

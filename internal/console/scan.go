@@ -13,6 +13,7 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -95,6 +96,10 @@ func NewScanCmd() *cobra.Command {
 				return errors.New("initialization error - " + err.Error())
 			}
 			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+			if err != nil {
+				return errors.New("initialization error - " + err.Error())
+			}
+			err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
 			if err != nil {
 				return errors.New("initialization error - " + err.Error())
 			}
