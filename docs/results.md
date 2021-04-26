@@ -299,3 +299,22 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
+
+# Exit Status Code
+
+## Results Status Code
+
+| Code          | Description                               |
+| --------------| ------------------------------------------|
+| `0`           | No Results were Found                     |
+| `50`          | Found any `HIGH` Results                  |
+| `40`          | Found any `MEDIUM` Results                |
+| `30`          | Found any `LOW` Results                   |
+| `20`          | Found any `INFO` Results                  |
+
+## Error Status Code
+
+| Code      | Description                                   |
+| --------------| ------------------------------------------|
+| `126`         | Engine Error                              |
+| `130`         | Signal-Interrupt                          |
