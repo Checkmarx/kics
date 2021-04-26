@@ -471,3 +471,11 @@ func TestHelpers_WordWrap(t *testing.T) {
 		})
 	}
 }
+
+func TestHelpers_ListReportFormats(t *testing.T) {
+	formats := ListReportFormats()
+	for _, format := range formats {
+		_, ok := reportGenerators[format]
+		require.True(t, ok)
+	}
+}

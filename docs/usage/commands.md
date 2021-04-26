@@ -51,6 +51,12 @@ Flags:
   -x, --exclude-results strings      exclude results by providing the similarity ID of a result
                                      can be provided multiple times or as a comma separated string
                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
+      --fail-on                      which kind of results should return an exit code different from 0
+                                     accetps: high, medium, low and info
+                                     example: "high,low"
+      --ignoreOnExitFlag             defines which kind of non-zero exits code should be ignored
+                                     accepts: all, results, errors, none
+                                     example: if 'results' is set, only engine errors will make KICS exit code different from 0
   -h, --help                         help for scan
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar

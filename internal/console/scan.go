@@ -4,8 +4,10 @@ import (
 	_ "embed" // Embed kics CLI img
 	"fmt"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
@@ -36,48 +38,52 @@ import (
 )
 
 var (
-	path              string
-	queryPath         string
-	outputPath        string
-	payloadPath       string
-	excludeCategories []string
-	excludePath       []string
-	excludeIDs        []string
-	excludeResults    []string
-	reportFormats     []string
-	cfgFile           string
-
-	noProgress   bool
-	types        []string
-	min          bool
-	previewLines int
 	//go:embed img/kics-console
 	banner string
+
+	cfgFile           string
+	excludeCategories []string
+	excludeIDs        []string
+	excludePath       []string
+	excludeResults    []string
+	failOn            []string
+	ignoreOnExit      string
+	min               bool
+	noProgress        bool
+	outputPath        string
+	path              string
+	payloadPath       string
+	previewLines      int
+	queryPath         string
+	reportFormats     []string
+	types             []string
 )
 
 const (
-	scanCommandStr          = "scan"
-	pathFlag                = "path"
-	pathFlagShorthand       = "p"
 	configFlag              = "config"
-	queriesPathShorthand    = "q"
-	outputPathFlag          = "output-path"
-	outputPathShorthand     = "o"
-	reportFormatsFlag       = "report-formats"
-	previewLinesFlag        = "preview-lines"
+	excludeCategoriesFlag   = "exclude-categories"
 	excludePathsFlag        = "exclude-paths"
 	excludePathsShorthand   = "e"
-	minimalUIFlag           = "minimal-ui"
-	payloadPathFlag         = "payload-path"
-	payloadPathShorthand    = "d"
-	typeFlag                = "type"
-	typeShorthand           = "t"
-	noProgressFlag          = "no-progress"
 	excludeQueriesFlag      = "exclude-queries"
 	excludeResultsFlag      = "exclude-results"
 	excludeResutlsShorthand = "x"
-	excludeCategoriesFlag   = "exclude-categories"
+	failOnFlag              = "fail-on"
+	ignoreOnExitFlag        = "ignore-on-exit"
+	minimalUIFlag           = "minimal-ui"
+	noProgressFlag          = "no-progress"
+	outputPathFlag          = "output-path"
+	outputPathShorthand     = "o"
+	pathFlag                = "path"
+	pathFlagShorthand       = "p"
+	payloadPathFlag         = "payload-path"
+	payloadPathShorthand    = "d"
+	previewLinesFlag        = "preview-lines"
 	queriesPathCmdName      = "queries-path"
+	queriesPathShorthand    = "q"
+	reportFormatsFlag       = "report-formats"
+	scanCommandStr          = "scan"
+	typeFlag                = "type"
+	typeShorthand           = "t"
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -103,6 +109,13 @@ func NewScanCmd() *cobra.Command {
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+			if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil {
+				return err
+			}
+			if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
+				return err
+			}
+			gracefulShutdown()
 			return scan(changedDefaultQueryPath)
 		},
 	}
@@ -202,7 +215,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 	}
 }
 
-func initScanCmd(scanCmd *cobra.Command) {
+func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringVarP(&path,
 		pathFlag,
 		pathFlagShorthand,
@@ -288,6 +301,25 @@ func initScanCmd(scanCmd *cobra.Command) {
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'Access control,Best practices'",
 	)
+	scanCmd.Flags().StringSliceVarP(&failOn,
+		failOnFlag,
+		"",
+		[]string{"high", "medium", "low", "info"},
+		"which kind of results should return an exit code different from 0\n"+
+			"accetps: high, medium, low and info\n"+
+			"example: \"high,low\"",
+	)
+	scanCmd.Flags().StringVarP(&ignoreOnExit,
+		ignoreOnExitFlag,
+		"",
+		"none",
+		"defines which kind of non-zero exits code should be ignored\n"+"accepts: all, results, errors, none\n"+
+			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
+	)
+}
+
+func initScanCmd(scanCmd *cobra.Command) {
+	initScanFlags(scanCmd)
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
@@ -454,10 +486,10 @@ func scan(changedDefaultQueryPath bool) error {
 	fmt.Printf(elapsedStrFormat, elapsed)
 	log.Info().Msgf(elapsedStrFormat, elapsed)
 
-	if summary.FailedToExecuteQueries > 0 {
-		os.Exit(1)
+	exitCode := consoleHelpers.ResultsExitCode(&summary)
+	if consoleHelpers.ShowError("results") && exitCode != 0 {
+		os.Exit(exitCode)
 	}
-
 	return nil
 }
 
@@ -507,6 +539,9 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 			outputPath = filepath.Dir(outputPath)
 		}
 	}
+	if len(formats) == 0 {
+		formats = consoleHelpers.ListReportFormats()
+	}
 
 	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
 
@@ -515,4 +550,16 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
 	}
 	return err
+}
+
+// gracefulShutdown catches signal interrupt and returns the appropriate exit code
+func gracefulShutdown() {
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-c
+		if consoleHelpers.ShowError("errors") {
+			os.Exit(constants.SignalInterruptCode)
+		}
+	}()
 }

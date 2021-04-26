@@ -287,18 +287,23 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 	return queriesDirectory, nil
 }
 
+// ListReportFormats return a slice with all supported report formats
+func ListReportFormats() []string {
+	supportedFormats := make([]string, 0, len(reportGenerators))
+	for reportFormats := range reportGenerators {
+		supportedFormats = append(supportedFormats, reportFormats)
+	}
+	return supportedFormats
+}
+
 // ValidateReportFormats returns an error if output format is not supported
 func ValidateReportFormats(formats []string) error {
 	log.Debug().Msg("helpers.ValidateReportFormats()")
 
-	validFormats := make([]string, 0, len(reportGenerators))
-	for reportFormats := range reportGenerators {
-		validFormats = append(validFormats, reportFormats)
-	}
 	for _, format := range formats {
 		if _, ok := reportGenerators[format]; !ok {
 			return fmt.Errorf(
-				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(validFormats, "\n")),
+				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(ListReportFormats(), "\n")),
 			)
 		}
 	}
