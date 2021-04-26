@@ -81,12 +81,12 @@ type Inspector struct {
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
 // the query compiled and its payload
 type QueryContext struct {
-	ctx          context.Context
-	scanID       string
-	files        map[string]model.FileMetadata
-	query        *preparedQuery
-	payload      model.Documents
-	baseScanPath string
+	ctx           context.Context
+	scanID        string
+	files         map[string]model.FileMetadata
+	query         *preparedQuery
+	payload       model.Documents
+	baseScanPaths []string
 }
 
 var (
@@ -199,7 +199,7 @@ func (c *Inspector) Inspect(
 	scanID string,
 	files model.FileMetadatas,
 	hideProgress bool,
-	baseScanPath string) ([]model.Vulnerability, error) {
+	baseScanPaths []string) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -219,12 +219,12 @@ func (c *Inspector) Inspect(
 		}
 
 		vuls, err := c.doRun(&QueryContext{
-			ctx:          ctx,
-			scanID:       scanID,
-			files:        files.ToMap(),
-			query:        query,
-			payload:      combinedFiles,
-			baseScanPath: baseScanPath,
+			ctx:           ctx,
+			scanID:        scanID,
+			files:         files.ToMap(),
+			query:         query,
+			payload:       combinedFiles,
+			baseScanPaths: baseScanPaths,
 		})
 		if err != nil {
 			sentry.CaptureException(err)

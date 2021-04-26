@@ -9,7 +9,7 @@ import (
 )
 
 type computeSimilarityIDParams struct {
-	basePath    string
+	basePaths   []string
 	filePath    string
 	queryID     string
 	searchKey   string
@@ -26,14 +26,14 @@ var (
 			name: "Changed file name",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "test.yaml"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "TCP,22",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "test1.yaml"), // change
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
@@ -48,14 +48,14 @@ var (
 			name: "Changed queryID",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "test.yaml"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "test.yaml"),
 					queryID:     "OTHER-8d74-49ef-87f8-b9613b63b6a8", // change
 					searchKey:   "Resources.MySearchKeyExample",
@@ -70,14 +70,14 @@ var (
 			name: "Changed searchKey",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "test.yaml"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "test.yaml"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MyOther.SearchKey", // change
@@ -92,14 +92,14 @@ var (
 			name: "Changed filepath dir",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "filesystem", "test.yaml"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "filesystem", "other", "test.yaml"), // change
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
@@ -114,14 +114,14 @@ var (
 			name: "No changes",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "directory", "file.tf"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "TCP,22",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "directory", "file.tf"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
@@ -136,14 +136,14 @@ var (
 			name: "Relative directory resolution",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "directory", "..", "infra.tf"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("my", "test", "infra.tf"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
@@ -158,14 +158,14 @@ var (
 			name: "No changes, empty searchValue",
 			calls: []computeSimilarityIDParams{
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("..", "test", "assets", "queries", "sample.dockerfile"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
 					searchValue: "",
 				},
 				{
-					basePath:    filepath.Join("my", "test"),
+					basePaths:   []string{filepath.Join("my", "test")},
 					filePath:    filepath.Join("..", "test", "assets", "queries", "sample.dockerfile"),
 					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
 					searchKey:   "Resources.MySearchKeyExample",
@@ -183,11 +183,11 @@ var (
 func TestComputeSimilarityID(t *testing.T) {
 	for _, tc := range similarityIDTests {
 		t.Run(tc.name, func(tt *testing.T) {
-			firstHash, err := ComputeSimilarityID(tc.calls[0].basePath, tc.calls[0].filePath, tc.calls[0].queryID, tc.calls[0].searchKey,
+			firstHash, err := ComputeSimilarityID(tc.calls[0].basePaths, tc.calls[0].filePath, tc.calls[0].queryID, tc.calls[0].searchKey,
 				tc.calls[0].searchValue)
 			require.NoError(tt, err)
 			require.NotEmpty(tt, *firstHash)
-			secondHash, err := ComputeSimilarityID(tc.calls[1].basePath, tc.calls[1].filePath, tc.calls[1].queryID, tc.calls[1].searchKey,
+			secondHash, err := ComputeSimilarityID(tc.calls[1].basePaths, tc.calls[1].filePath, tc.calls[1].queryID, tc.calls[1].searchKey,
 				tc.calls[1].searchValue)
 			require.NoError(tt, err)
 			require.NotEmpty(tt, *secondHash)

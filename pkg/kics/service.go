@@ -62,7 +62,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 		return errors.Wrap(err, "failed to read sources")
 	}
 
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePath())
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePaths())
 	if err != nil {
 		return errors.Wrap(err, "failed to inspect files")
 	}

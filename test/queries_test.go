@@ -132,7 +132,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true, BaseTestsScanPath)
+	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true, []string{BaseTestsScanPath})
 	require.Nil(tb, err)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
 }

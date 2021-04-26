@@ -34,7 +34,7 @@ import (
 )
 
 var (
-	path              string
+	path              []string
 	queryPath         string
 	outputPath        string
 	payloadPath       string
@@ -113,22 +113,26 @@ func initializeConfig(cmd *cobra.Command) error {
 	}
 
 	if cfgFile == "" {
-		configpath := path
-		info, err := os.Stat(path)
-		if err != nil {
-			return nil
-		}
-		if !info.IsDir() {
-			configpath = filepath.Dir(path)
-		}
-		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
-		if err != nil {
-			if os.IsNotExist(err) {
+		if len(path) > 1 {
+			log.Warn().Msgf("Any kics.config file will be ignored, please use --config if kics.config is wanted")
+		} else {
+			configpath := path[0]
+			info, err := os.Stat(configpath)
+			if err != nil {
 				return nil
 			}
-			return err
+			if !info.IsDir() {
+				configpath = filepath.Dir(configpath)
+			}
+			_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+			if err != nil {
+				if os.IsNotExist(err) {
+					return nil
+				}
+				return err
+			}
+			cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
 		}
-		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
 	}
 
 	base := filepath.Base(cfgFile)
@@ -196,11 +200,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanCmd(scanCmd *cobra.Command) {
-	scanCmd.Flags().StringVarP(&path,
+	scanCmd.Flags().StringSliceVarP(&path,
 		pathFlag,
 		pathFlagShorthand,
-		"",
-		"path or directory path to scan")
+		[]string{},
+		"paths or directories path to scan\nexample: \"./somepath,somefile.txt\"")
 	scanCmd.Flags().StringVarP(&cfgFile,
 		configFlag,
 		"",
@@ -297,13 +301,16 @@ func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 	if len(excludePath) > 0 {
 		excludePaths = append(excludePaths, excludePath...)
 	}
-
-	absPath, err := filepath.Abs(path)
-	if err != nil {
-		return nil, err
+	absPaths := make([]string, len(path))
+	for _, scanPath := range path {
+		absPath, err := filepath.Abs(scanPath)
+		if err != nil {
+			return nil, err
+		}
+		absPaths = append(absPaths, absPath)
 	}
 
-	filesSource, err := provider.NewFileSystemSourceProvider(absPath, excludePaths)
+	filesSource, err := provider.NewFileSystemSourceProvider(absPaths, excludePaths)
 	if err != nil {
 		return nil, err
 	}
