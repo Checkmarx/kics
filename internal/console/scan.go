@@ -91,17 +91,13 @@ func NewScanCmd() *cobra.Command {
 		Use:   scanCommandStr,
 		Short: "Executes a scan analysis",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			if err := initializeConfig(cmd); err != nil {
-				return err
-			}
-			if err := internalPrinter.SetupPrinter(cmd.InheritedFlags()); err != nil {
-				return err
+			err := initializeConfig(cmd)
+			if err != nil {
+				return errors.New("initialization error - " + err.Error())
 			}
 			err := metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
 			if err != nil {
-				sentry.CaptureException(err)
-				log.Err(err).Msg("Failed to initialize Metrics")
-				return err
+				return errors.New("initialization error - " + err.Error())
 			}
 			return nil
 		},
