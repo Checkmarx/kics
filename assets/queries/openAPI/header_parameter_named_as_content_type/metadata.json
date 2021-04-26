@@ -1,0 +1,9 @@
+{
+  "id": "72d259ca-9741-48dd-9f62-eb11f2936b37",
+  "queryName": "Header Parameter Named as 'Content-Type'",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "The header Parameter should not be named as 'Content-Type'. If so, it will be ignored.",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}
