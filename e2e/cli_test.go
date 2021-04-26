@@ -138,7 +138,7 @@ var tests = []struct {
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 		},
-		wantStatus: 0,
+		wantStatus: 50,
 		validation: func(outputText string) bool {
 			match1, _ := regexp.MatchString(`Files scanned: \d+`, outputText)
 			match2, _ := regexp.MatchString(`Parsed files: \d+`, outputText)
@@ -159,7 +159,7 @@ var tests = []struct {
 			},
 			expectedOut: []string{"E2E_CLI_008"},
 		},
-		wantStatus: 0,
+		wantStatus: 50,
 	},
 	// E2E-CLI-009 - kics scan with no-progress flag should perform a scan
 	// without showing progress bar in the CLI
@@ -170,7 +170,7 @@ var tests = []struct {
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf", "--no-progress"},
 			},
 		},
-		wantStatus: 0,
+		wantStatus: 50,
 		validation: func(outputText string) bool {
 			getProgressRegex := "Executing queries:"
 			match, _ := regexp.MatchString(getProgressRegex, outputText)
@@ -188,11 +188,11 @@ var tests = []struct {
 			},
 		},
 		validation: func(outputText string) bool {
-			unknownArgRegex := regexp.MustCompile(`Error: unknown argument: \[xml\]`)
+			unknownArgRegex := regexp.MustCompile(`Error: unknown argument for --type: \[xml\]`)
 			match := unknownArgRegex.MatchString(outputText)
 			return match
 		},
-		wantStatus: 1,
+		wantStatus: 126,
 	},
 	// E2E-CLI-011 - KICS  scan with a valid case insensitive --type flag
 	// must perform the scan successfully and return exit code 0
@@ -207,7 +207,7 @@ var tests = []struct {
 				"E2E_CLI_011_PAYLOAD",
 			},
 		},
-		wantStatus:    0,
+		wantStatus:    50,
 		removePayload: []string{"payload.json"},
 	},
 	// E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
@@ -219,7 +219,7 @@ var tests = []struct {
 				[]string{"scan", "-q", "../assets/queries", "-p", "../test/fixtures/tc-sim01/positive1.tf", "--minimal-ui"},
 			},
 		},
-		wantStatus: 0,
+		wantStatus: 50,
 		validation: func(outputText string) bool {
 			match1, _ := regexp.MatchString("Description:", outputText)
 			match2, _ := regexp.MatchString("Platform:", outputText)
@@ -257,7 +257,7 @@ var tests = []struct {
 			match2, _ := regexp.MatchString(`002\:   publicly_accessible = false`, outputText)
 			return match1 && !match2
 		},
-		wantStatus: 0,
+		wantStatus: 40,
 	},
 	// E2E-CLI-015 KICS scan with --no-color flag
 	// must disable the colored outputs of kics in the CLI
@@ -275,7 +275,7 @@ var tests = []struct {
 			match4, _ := regexp.MatchString(`INFO: \d+`, outputText)
 			return match1 && match2 && match3 && match4
 		},
-		wantStatus: 0,
+		wantStatus: 50,
 	},
 	// E2E-CLI-016 - KICS has an invalid flag or invalid command
 	// an error message and return exit code 1
@@ -295,7 +295,7 @@ var tests = []struct {
 				"E2E_CLI_016_INVALID_SHOTHAND",
 			},
 		},
-		wantStatus: 1,
+		wantStatus: 126,
 	},
 }
 
