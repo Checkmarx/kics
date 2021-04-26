@@ -11,6 +11,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
@@ -91,6 +92,10 @@ func NewScanCmd() *cobra.Command {
 		Short: "Executes a scan analysis",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			err := initializeConfig(cmd)
+			if err != nil {
+				return errors.New("initialization error - " + err.Error())
+			}
+			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
 			if err != nil {
 				return errors.New("initialization error - " + err.Error())
 			}
