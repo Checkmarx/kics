@@ -100,7 +100,7 @@ func (c *Parser) SupportedExtensions() model.Extensions {
 func validateArguments(types, validArgs []string) error {
 	validArgs = removeDuplicateValues(validArgs)
 	if invalidType, ok, _ := contains(types, validArgs); !ok {
-		return fmt.Errorf("unknown argument: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgs, "\n  "))
+		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgs, "\n  "))
 	}
 	return nil
 }

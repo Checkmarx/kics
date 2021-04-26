@@ -50,7 +50,7 @@ jobs:
       run: |
         docker run -v ${PWD}/assets/queries:/path \
           -e SENTRY_DSN=${{secrets.SENTRY_DSN}} \
-          kics:${{ github.sha }} --silent --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/results.json"
+          kics:${{ github.sha }} --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/results.json"
     - name: Archive test logs
       uses: actions/upload-artifact@v2
       if: always()
