@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Header Response Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Response Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 39,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Response Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Header Response Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.yaml"
+  }
+]
