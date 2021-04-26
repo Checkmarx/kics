@@ -31,7 +31,7 @@ var (
 	noColor   bool
 	silent    bool
 	ci        bool
-	metric    string
+	profiling string
 
 	warning []string
 )
@@ -90,15 +90,11 @@ func initialize(rootCmd *cobra.Command) error {
 		"",
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
-	rootCmd.PersistentFlags().StringVarP(&metric,
-		"metrics",
+	rootCmd.PersistentFlags().StringVarP(&profiling,
+		"profiling",
 		"",
 		"",
-		"display metrics for the steps of kics exucution (CPU, MEM)")
-
-	if err := rootCmd.PersistentFlags().MarkHidden("metrics"); err != nil {
-		return err
-	}
+		"enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)")
 
 	if err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead"); err != nil {
 		return err

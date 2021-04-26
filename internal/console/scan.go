@@ -93,7 +93,7 @@ func NewScanCmd() *cobra.Command {
 				return err
 			}
 			var err error
-			global.Metric, err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("metrics"))
+			global.Metric, err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).Msg("Failed to initialize Metrics")

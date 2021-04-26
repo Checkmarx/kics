@@ -45,7 +45,7 @@ func InitializeMetrics(metric *pflag.Flag) (*Metrics, error) {
 		metrics.Disable = true
 	default:
 		metrics.Disable = true
-		err = fmt.Errorf("unknonwn metric: %s (available metrics: cpu, mem)", metricStr)
+		err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metricStr)
 	}
 
 	// Create temporary dir to keep pprof file
@@ -91,7 +91,7 @@ func (m *Metrics) Stop() {
 		Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID), m.location, formatTotal(total, m.metric.getMap()))
 }
 
-// Get total goes through the profile samples summing their values according to
+// getTotal goes through the profile samples summing their values according to
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 {
 	var total, diffTotal int64
