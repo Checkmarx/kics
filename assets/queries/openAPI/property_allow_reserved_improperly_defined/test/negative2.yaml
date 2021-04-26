@@ -27,6 +27,7 @@ paths:
         in: query
         description: ID of the API version
         required: true
+        allowReserved: true
         schema:
           type: integer
   /users/{id}:
@@ -35,6 +36,7 @@ paths:
         - in: query
           name: id
           required: true
+          allowReserved: true
           description: The user ID
           schema:
             type: integer

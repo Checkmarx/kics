@@ -44,6 +44,7 @@
           "in": "query",
           "description": "ID of the API the version",
           "required": true,
+          "allowReserved": true,
           "schema": {
             "type": "integer"
           }
@@ -57,6 +58,7 @@
             "in": "query",
             "name": "id",
             "required": true,
+            "allowReserved": true,
             "description": "The user ID",
             "schema": {
               "type": "integer",
