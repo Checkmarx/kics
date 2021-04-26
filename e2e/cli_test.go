@@ -118,11 +118,13 @@ var tests = []struct {
 				[]string{"scan", "--invalid-flag"},
 				[]string{"--invalid-flag"},
 				[]string{"invalid"},
+				[]string{"-i"},
 			},
 			expectedOut: []string{
 				"E2E_CLI_016_INVALID_SCAN_FLAG",
 				"E2E_CLI_016_INVALID_FLAG",
 				"E2E_CLI_016_INVALID_COMMAND",
+				"E2E_CLI_016_INVALID_SHOTHAND",
 			},
 		},
 		wantStatus: 1,

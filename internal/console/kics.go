@@ -141,7 +141,8 @@ func Execute() error {
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
-		if !(strings.HasPrefix(err.Error(), "unknown flag") ||
+		if !(strings.HasPrefix(err.Error(), "unknown shorthand flag") ||
+			strings.HasPrefix(err.Error(), "unknown flag") ||
 			strings.HasPrefix(err.Error(), "unknown command") ||
 			strings.HasPrefix(err.Error(), "initialization error -")) {
 			log.Err(err).Msg("Failed to run application")
