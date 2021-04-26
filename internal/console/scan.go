@@ -97,8 +97,7 @@ func NewScanCmd() *cobra.Command {
 			if err := internalPrinter.SetupPrinter(cmd.InheritedFlags()); err != nil {
 				return err
 			}
-			var err error
-			err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+			err := metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).Msg("Failed to initialize Metrics")
