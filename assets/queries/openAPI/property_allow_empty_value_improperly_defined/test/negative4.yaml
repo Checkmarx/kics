@@ -27,7 +27,7 @@ paths:
         in: query
         description: ID of the API version
         required: true
-        allowReserved: true
+        allowEmptyValue: true
         content:
           application/json:
             schema:

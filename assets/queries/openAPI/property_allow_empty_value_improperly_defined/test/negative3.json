@@ -44,7 +44,7 @@
           "in": "query",
           "description": "ID of the API the version",
           "required": true,
-          "allowReserved": true,
+          "allowEmptyValue": true,
           "content": {
             "application/json": {
               "schema": {
