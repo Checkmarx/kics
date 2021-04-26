@@ -1,6 +1,6 @@
 ## KICS Accuracy Benchmark
 
-The values below were obtained after scanning 150 open source projects with KICS (v1.2.0) covering
+The values below were obtained after scanning 150 open source projects with KICS (1.2.x) covering
 the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AWS Cloudformation).
 
 
@@ -36,7 +36,7 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 ---
 ## KICS Profiling
 
-Running Kics with ```--profiling``` flag will log the CPU/MEM metrics used for:
+Running Kics with `--profiling` flag will log the CPU/MEM metrics used for:
 
 - Getting Queries
 - Parsing Files
@@ -49,7 +49,7 @@ Keep in mind that profiling will periodically stop KICS to retrieve the wanted m
 
 ### CPU Profiling
 
-Flag: ```--profiling CPU```
+Flag: `--profiling CPU`
 
 ```text
 9:43AM INF Scanning with Keeping Infrastructure as Code Secure dev
@@ -71,7 +71,7 @@ Flag: ```--profiling CPU```
 ---
 ### MEM Profiling
 
-Flag: ```--profiling MEM```
+Flag: `--profiling MEM`
 
 ```text
 9:43AM INF Scanning with Keeping Infrastructure as Code Secure dev

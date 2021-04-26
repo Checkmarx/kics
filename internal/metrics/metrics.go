@@ -10,6 +10,13 @@ import (
 	"github.com/spf13/pflag"
 )
 
+var (
+	// Metric is the global metrics object
+	Metric = &Metrics{
+		Disable: true,
+	}
+)
+
 // Start - starts gathering metrics based on the type of metrics and writes metrics to string
 // Stop - stops gathering metrics for the type of metrics specified
 type metricType interface {
@@ -30,30 +37,29 @@ type Metrics struct {
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric *pflag.Flag) (*Metrics, error) {
+func InitializeMetrics(metric *pflag.Flag) error {
 	metricStr := metric.Value.String()
 	var err error
-	metrics := &Metrics{}
 	switch strings.ToLower(metricStr) {
 	case "cpu":
-		metrics.Disable = false
-		metrics.metric = &cpuMetric{}
+		Metric.Disable = false
+		Metric.metric = &cpuMetric{}
 	case "mem":
-		metrics.metric = &memMetric{}
-		metrics.Disable = false
+		Metric.metric = &memMetric{}
+		Metric.Disable = false
 	case "":
-		metrics.Disable = true
+		Metric.Disable = true
 	default:
-		metrics.Disable = true
+		Metric.Disable = true
 		err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metricStr)
 	}
 
 	// Create temporary dir to keep pprof file
-	if !metrics.Disable {
-		metrics.metricsID = metricStr
+	if !Metric.Disable {
+		Metric.metricsID = metricStr
 	}
 
-	return metrics, err
+	return err
 }
 
 // Start - starts gathering metrics for the location specified

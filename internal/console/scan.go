@@ -13,7 +13,6 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
 	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/internal/global"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -99,7 +98,7 @@ func NewScanCmd() *cobra.Command {
 				return err
 			}
 			var err error
-			global.Metric, err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+			err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).Msg("Failed to initialize Metrics")

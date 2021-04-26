@@ -188,7 +188,7 @@ var tests = []struct {
 			},
 		},
 		validation: func(outputText string) bool {
-			unknownArgRegex := regexp.MustCompile(`Error: unknown argument: \[xml\]`)
+			unknownArgRegex := regexp.MustCompile(`Error: unknown argument for --type: \[xml\]`)
 			match := unknownArgRegex.MatchString(outputText)
 			return match
 		},
