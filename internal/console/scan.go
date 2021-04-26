@@ -500,6 +500,9 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 			outputPath = filepath.Dir(outputPath)
 		}
 	}
+	if len(formats) == 0 {
+		formats = consoleHelpers.ListReportFormats()
+	}
 
 	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
 
