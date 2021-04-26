@@ -1,4 +1,5 @@
 Error: required flag(s) "path" not set
+
 Usage:
   kics scan [flags]
 
