@@ -174,8 +174,7 @@ kics scan --config kics-config.json
 kics scan
 ```
 
-**Note**: If more than one path is given, KICS will warn that `--config` must be used to explicit decide
-which config file should be used and will not load any configuration file as code.
+**Note**: If more than one path is given, KICS will warn that `--config` must be used to explicit decide.
 
 #### Environment variables
 KICS also accepts environment variables to fill flags values. To use it you just need to have the flag with a `KICS_` prefix. For example:
