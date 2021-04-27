@@ -12,16 +12,16 @@ https://github.com/Checkmarx/kics
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see the full list of CLI options below)
 
-```txt
+```sh
 docker pull checkmarx/kics:latest
 ```
 
 Scan a directory
-```txt
+```sh
 docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```
 Scan a single file
-```txt
+```sh
 docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest -p "/path" -o "/path/results.json"
 ```
 
