@@ -247,7 +247,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true, BaseTestsScanPath)
+	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(t, entry.PositiveFiles(t)), true, []string{BaseTestsScanPath})
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()
