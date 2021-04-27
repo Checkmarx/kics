@@ -1,6 +1,7 @@
 package console
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -47,6 +48,19 @@ func TestConsole_Execute(t *testing.T) { //nolint
 			args: []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"), "-q",
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 				"-x", "c8f2b4b2a74bca2aa6d94336c144f9713524b745c1a3590e6492e98d819e352d"},
+			wantErr: false,
+			remove:  "",
+		},
+		{
+			name: "test_kics_multiple_paths",
+			args: []string{
+				"kics",
+				"-p",
+				fmt.Sprintf("%s,%s",
+					filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
+					filepath.FromSlash("../../test/fixtures/tc-sim01/positive2.tf")),
+				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
+			},
 			wantErr: false,
 			remove:  "",
 		},

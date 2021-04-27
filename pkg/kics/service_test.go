@@ -116,7 +116,7 @@ func createParserSourceProvider(path string) (*parser.Parser,
 		Add(&dockerParser.Parser{}).
 		Build([]string{""})
 
-	mockFilesSource, _ := provider.NewFileSystemSourceProvider(path, []string{})
+	mockFilesSource, _ := provider.NewFileSystemSourceProvider([]string{path}, []string{})
 
 	mockResolver, _ := resolver.NewBuilder().Add(&helm.Resolver{}).Build()
 

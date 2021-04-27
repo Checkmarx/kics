@@ -2,7 +2,7 @@ name: goreleaser-scheduled
 
 on:
   schedule:
-  - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
   workflow_dispatch:
 
 jobs:
@@ -170,3 +170,34 @@ jobs:
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
+      - name: Export Image Digests
+        run: |
+          VERSION=nightly
+
+          COMMIT_SHA8=${{ needs.pre_release_job.outputs.sha8 }}
+          DATE=$(date +'%Y-%m-%d')
+          DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}")
+          ALPINE_DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}-alpine")
+
+          echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/nightly.csv
+          echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Generate .md table
+        run: |
+          pip install csvtomd
+          csvtomd docs/docker/nightly.csv > docs/docker/nightly.md
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: "docs(kicsbot): update images digest"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "docs(kicsbot): update images digest"
+          delete-branch: true
+          branch: feature/kicsbot-update-queries-docs
+          body: |
+            **Automated Changes**
+            Updating docker images digests
+            Triggered by SHA: _${{ github.sha }}_
+          labels: documentation

@@ -5,4 +5,4 @@ Closes #
 -
 -
 
-I submit this contribution under Apache-2.0 license.
+I submit this contribution under the Apache-2.0 license.

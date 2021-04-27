@@ -4,10 +4,18 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"path/filepath"
+	"strings"
 )
 
 // ComputeSimilarityID This function receives four string parameters and computes a sha256 hash
-func ComputeSimilarityID(basePath, filePath, queryID, searchKey, searchValue string) (*string, error) {
+func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searchValue string) (*string, error) {
+	basePath := ""
+	for _, path := range basePaths {
+		if strings.Contains(filePath, filepath.ToSlash(path)) {
+			basePath = filepath.ToSlash(path)
+			break
+		}
+	}
 	standardizedPath, err := standardizeToRelativePath(basePath, filePath)
 	if err != nil {
 		return nil, err

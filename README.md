@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Checkmarx_kics&metric=alert_status)](https://sonarcloud.io/dashboard?id=Checkmarx_kics)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Latest Release](https://img.shields.io/github/v/release/checkmarx/kics)](https://github.com/checkmarx/kics/releases)
-![Docker Pulls](https://img.shields.io/docker/pulls/checkmarx/kics)
+[![Docker Pulls](https://img.shields.io/docker/pulls/checkmarx/kics)](https://hub.docker.com/r/checkmarx/kics)
 [![Documentation](https://img.shields.io/badge/docs-viewdocs-blue.svg?style=flat-square "Viewdocs")](https://docs.kics.io/)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
