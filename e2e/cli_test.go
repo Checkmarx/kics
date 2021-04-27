@@ -82,12 +82,10 @@ var tests = []struct {
 		name: "E2E-CLI-004",
 		args: args{
 			args: []cmdArgs{
-				[]string{"--ci", "--verbose"},
 				[]string{"scan", "--ci", "--verbose"},
 				[]string{"--ci", "scan", "--verbose"},
 			},
 			expectedOut: []string{
-				"E2E_CLI_004",
 				"E2E_CLI_004",
 				"E2E_CLI_004",
 			},
