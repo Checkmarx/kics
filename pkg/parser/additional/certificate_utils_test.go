@@ -19,8 +19,9 @@ func TestAddCertificateInfo(t *testing.T) {
 func TestGetCertificateInfo(t *testing.T) {
 	filePath := filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem")
 
-	date, _ := getCertificateInfo(filePath)
+	date, err := getCertificateInfo(filePath)
 
+	require.NoError(t, err)
 	require.NotEmpty(t, date)
 	require.Equal(t, ".pem", filepath.Ext(filePath))
 }
@@ -28,8 +29,7 @@ func TestGetCertificateInfo(t *testing.T) {
 func TestCheckCertificateBody(t *testing.T) {
 	content := "${file(certificate.pem)}"
 
-	ok, pem := CheckCertificateBody(content)
+	pem := CheckCertificate(content)
 
-	require.True(t, ok)
 	require.NotEmpty(t, pem)
 }

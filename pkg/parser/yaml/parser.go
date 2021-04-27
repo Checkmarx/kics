@@ -66,6 +66,40 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
 
+func addExtraInfo(documents []model.Document, filePath string) []model.Document {
+	var elements map[string]interface{}
+	var certInfo map[string]interface{}
+	var swaggerInfo map[string]interface{}
+
+	for _, documentPlaybooks := range documents { // iterate over documents
+		for _, resources := range documentPlaybooks["playbooks"].([]interface{}) { // iterate over playbooks
+			for _, v := range resources.(map[string]interface{}) {
+				_, ok := v.(map[string]interface{})
+				if ok {
+					elements = v.(map[string]interface{})
+					if elements["certificate"] != nil {
+						content := additional.CheckCertificate(elements["certificate"].(string))
+						if content != "" {
+							certInfo = additional.AddCertificateInfo(filePath, content)
+							if certInfo != nil {
+								elements["certificate"] = certInfo
+							}
+						}
+					}
+					if elements["swagger_file"] != nil {
+						swaggerInfo = additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
+						if swaggerInfo != nil {
+							elements["swagger_file"] = swaggerInfo
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return documents
+}
+
 func playbookParser(filePath string, fileContent []byte) ([]model.Document, error) {
 	doc := &model.Document{}
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
@@ -89,32 +123,5 @@ func playbookParser(filePath string, fileContent []byte) ([]model.Document, erro
 		arr = make([]map[string]interface{}, 0)
 	}
 
-	var elements map[string]interface{}
-	var certInfo map[string]interface{}
-	var swaggerInfo map[string]interface{}
-
-	for _, documentPlaybooks := range documents { // iterate over documents
-		for _, resources := range documentPlaybooks["playbooks"].([]interface{}) { // iterate over playbooks
-			for _, v := range resources.(map[string]interface{}) {
-				_, ok := v.(map[string]interface{})
-				if ok {
-					elements = v.(map[string]interface{})
-					if elements["certificate"] != nil {
-						certInfo = additional.AddCertificateInfo(filePath, elements["certificate"].(string))
-						if certInfo != nil {
-							elements["certificate"] = certInfo
-						}
-					}
-					if elements["swagger_file"] != nil {
-						swaggerInfo = additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
-						if swaggerInfo != nil {
-							elements["swagger_file"] = swaggerInfo
-						}
-					}
-				}
-			}
-		}
-	}
-
-	return documents, nil
+	return addExtraInfo(documents, filePath), nil
 }

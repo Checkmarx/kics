@@ -37,19 +37,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil
 }
 
-// Parse execute parser for the content in a file
-func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
-	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
-
-	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
-		err := diagnostics.Errs()[0]
-		return nil, err
-	}
-
-	fc, parseErr := p.convertFunc(file, inputVariableMap)
-
-	json := []model.Document{fc}
-
+func addExtraInfo(json []model.Document, path string) []model.Document {
 	var resourcesElements model.Document
 	var elements model.Document
 	var certInfo map[string]interface{}
@@ -62,8 +50,8 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 					elements = v2.(model.Document)
 					for k, v3 := range elements { // resource elements
 						if k == "certificate_body" {
-							ok, content := additional.CheckCertificateBody(v3.(string))
-							if ok {
+							content := additional.CheckCertificate(v3.(string))
+							if content != "" {
 								certInfo = additional.AddCertificateInfo(path, content)
 								if certInfo != nil {
 									elements["certificate_body"] = certInfo
@@ -76,7 +64,21 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 		}
 	}
 
-	return json, errors.Wrap(parseErr, "failed terraform parse")
+	return json
+}
+
+// Parse execute parser for the content in a file
+func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
+	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
+
+	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
+		err := diagnostics.Errs()[0]
+		return nil, err
+	}
+
+	fc, parseErr := p.convertFunc(file, inputVariableMap)
+
+	return addExtraInfo([]model.Document{fc}, path), errors.Wrap(parseErr, "failed terraform parse")
 }
 
 // SupportedExtensions returns Terraform extensions

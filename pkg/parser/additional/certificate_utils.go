@@ -4,43 +4,45 @@ import (
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
+	"errors"
 	"os"
 	"path/filepath"
 	"regexp"
 )
 
-// CheckCertificateBody verifies if the attribute 'certificate_body' refers a file
-func CheckCertificateBody(content string) (b bool, s string) {
-	var re = regexp.MustCompile(`[0-9a-zA-Z-/\\_]+\.pem`)
-	match := re.FindAllString(content, -1)
-
-	if match == nil {
-		return false, ""
-	}
-
-	return true, match[0]
+type certInfo struct {
+	date        [3]int
+	rsaKeyBytes int
 }
 
-func getCertificateInfo(filePath string) (a [3]int, i int) {
+// CheckCertificateBody verifies if the attribute 'certificate_body' refers a file
+func CheckCertificate(content string) string {
+	var re = regexp.MustCompile(`[0-9a-zA-Z-/\\_]+\.pem`)
+	match := re.FindString(content)
+
+	return match
+}
+
+func getCertificateInfo(filePath string) (certInfo, error) {
 	certPEM, err := os.ReadFile(filePath)
 
 	if err != nil {
-		panic("Failed to read the file " + filePath)
+		return certInfo{}, err
 	}
 
 	block, _ := pem.Decode(certPEM)
 	if block == nil {
-		panic("Failed to parse the certificate PEM " + filePath)
+		return certInfo{}, errors.New("failed to parse the certificate PEM")
 	}
 	cert, err := x509.ParseCertificate(block.Bytes)
 	if err != nil {
-		panic("Failed to parse the certificate" + filePath)
+		return certInfo{}, err
 	}
 
-	var date [3]int
-	date[0] = cert.NotAfter.Year()
-	date[1] = int(cert.NotAfter.Month())
-	date[2] = cert.NotAfter.Day()
+	var certDate [3]int
+	certDate[0] = cert.NotAfter.Year()
+	certDate[1] = int(cert.NotAfter.Month())
+	certDate[2] = cert.NotAfter.Day()
 
 	var rsaBytes int
 
@@ -52,7 +54,7 @@ func getCertificateInfo(filePath string) (a [3]int, i int) {
 		rsaBytes = -1
 	}
 
-	return date, rsaBytes
+	return certInfo{date: certDate, rsaKeyBytes: rsaBytes}, nil
 }
 
 // AddCertificateInfo gets and adds certificate information of a certificate file
@@ -65,15 +67,19 @@ func AddCertificateInfo(path, content string) map[string]interface{} {
 		filePath = content
 	}
 
-	date, rsaBytes := getCertificateInfo(filePath)
+	date, err := getCertificateInfo(filePath)
 
-	attributes := make(map[string]interface{})
-	attributes["file"] = filePath
-	attributes["expiration_date"] = date
+	if err == nil {
+		attributes := make(map[string]interface{})
+		attributes["file"] = filePath
+		attributes["expiration_date"] = date.date
 
-	if rsaBytes != -1 {
-		attributes["rsa_key_bytes"] = rsaBytes
+		if date.rsaKeyBytes != -1 {
+			attributes["rsa_key_bytes"] = date.rsaKeyBytes
+		}
+
+		return attributes
 	}
 
-	return attributes
+	return nil
 }
