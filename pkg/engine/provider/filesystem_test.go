@@ -41,6 +41,20 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			name: "new_filesystem_source_provider",
+			args: args{
+				paths: []string{"./test", "./test2"},
+				excludes: []string{
+					".tf",
+				},
+			},
+			want: &FileSystemSourceProvider{
+				paths:    []string{filepath.FromSlash("./test"), filepath.FromSlash("./test2")},
+				excludes: make(map[string][]os.FileInfo, 1),
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -209,26 +223,37 @@ func TestFileSystemSourceProvider_GetBasePath(t *testing.T) {
 	if err != nil {
 		t.Errorf("failed to initialize a new File System Source Provider")
 	}
-	type feilds struct {
+	fsystem2, err := initFs([]string{filepath.FromSlash("test"), filepath.FromSlash("test2")}, []string{})
+	if err != nil {
+		t.Errorf("failed to initialize a new File System Source Provider")
+	}
+	type fields struct {
 		fs *FileSystemSourceProvider
 	}
 	tests := []struct {
 		name   string
-		feilds feilds
+		fields fields
 		want   []string
 	}{
 		{
 			name: "test_get_base_path",
-			feilds: feilds{
+			fields: fields{
 				fs: fsystem,
 			},
 			want: []string{"test"},
+		},
+		{
+			name: "test_get_base_path_multiples",
+			fields: fields{
+				fs: fsystem2,
+			},
+			want: []string{"test", "test2"},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := tt.feilds.fs.GetBasePaths()
+			got := tt.fields.fs.GetBasePaths()
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("GetBasePath() = %v, want = %v", got, tt.want)
 			}

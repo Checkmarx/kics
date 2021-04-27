@@ -27,8 +27,8 @@ func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourcePro
 	log.Debug().Msgf("provider.NewFileSystemSourceProvider()")
 	ex := make(map[string][]os.FileInfo, len(excludes))
 	osPaths := make([]string, len(paths))
-	for _, path := range paths {
-		osPaths = append(osPaths, filepath.FromSlash(path))
+	for idx, path := range paths {
+		osPaths[idx] = filepath.FromSlash(path)
 	}
 	fs := &FileSystemSourceProvider{
 		paths:    osPaths,

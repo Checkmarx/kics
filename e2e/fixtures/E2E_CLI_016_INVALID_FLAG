@@ -1,5 +1,4 @@
-Keeping Infrastructure as Code Secure
-
+Error: unknown flag: --invalid-flag
 Usage:
   kics [command]
 
@@ -22,3 +21,4 @@ Flags:
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 
 Use "kics [command] --help" for more information about a command.
+

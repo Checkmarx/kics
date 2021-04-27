@@ -10,6 +10,7 @@ require (
 	github.com/getsentry/sentry-go v0.10.0
 	github.com/golang/mock v1.5.0
 	github.com/google/go-cmp v0.5.4 // indirect
+	github.com/google/pprof v0.0.0-20210413054141-7c2eacd09c8d
 	github.com/google/uuid v1.2.0
 	github.com/gookit/color v1.4.2
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 // indirect

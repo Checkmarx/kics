@@ -18,20 +18,20 @@ nav:
       - Results: results.md
       - Architecture: architecture.md
       - Usage:
-        - KICS Commands: usage/commands.md
-        - Technologies: usage/technologies.md
+          - KICS Commands: usage/commands.md
+          - Technologies: usage/technologies.md
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
       - Queries List:
-        - All: queries/all-queries.md
-        - Ansible: queries/ansible-queries.md
-        - CloudFormation: queries/cloudformation-queries.md
-        - Common: queries/common-queries.md
-        - Dockerfile: queries/dockerfile-queries.md
-        - Kubernetes: queries/kubernetes-queries.md
-        - Terraform: queries/terraform-queries.md
-        - OpenAPI: queries/openapi-queries.md
+          - All: queries/all-queries.md
+          - Ansible: queries/ansible-queries.md
+          - CloudFormation: queries/cloudformation-queries.md
+          - Common: queries/common-queries.md
+          - Dockerfile: queries/dockerfile-queries.md
+          - Kubernetes: queries/kubernetes-queries.md
+          - Terraform: queries/terraform-queries.md
+          - OpenAPI: queries/openapi-queries.md
   - Integrations:
       - Overview: integrations.md
       - Github Actions: integrations_ghactions.md
@@ -43,7 +43,7 @@ nav:
       - Plans: "https://github.com/Checkmarx/kics/projects"
       - Issues: "https://github.com/Checkmarx/kics/issues"
       - Releases: releases.md
-      - Benchmark: benchmark.md
+      - Performance: performance.md
   - Contribution: CONTRIBUTING.md
   - About: about.md
 
@@ -54,7 +54,6 @@ theme:
   favicon: img/logo/kics-logo-text.png
   include_sidebar: true
   sticky_navigation: true
-
 
 extra_css:
   - css/custom.css
@@ -69,3 +68,10 @@ plugins:
 google_analytics:
   - UA-186818347-2
   - auto
+
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 2
+      separator: "_"

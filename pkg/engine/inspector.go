@@ -9,6 +9,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
@@ -106,6 +107,7 @@ func NewInspector(
 	excludeResults map[string]bool) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
+	metrics.Metric.Start("get_queries")
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
@@ -158,6 +160,8 @@ func NewInspector(
 	failedQueries := make(map[string]error)
 
 	queriesNumber := sumAllAggregatedQueries(opaQueries)
+
+	metrics.Metric.Stop()
 
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d", queriesNumber)

@@ -45,6 +45,28 @@ var (
 			},
 		},
 		{
+			name: "Changed file name with multiple paths",
+			calls: []computeSimilarityIDParams{
+				{
+					basePaths:   []string{filepath.Join("my", "test"), filepath.Join("my", "other", "test")},
+					filePath:    filepath.Join("my", "test", "test.yaml"),
+					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
+					searchKey:   "Resources.MySearchKeyExample",
+					searchValue: "TCP,22",
+				},
+				{
+					basePaths:   []string{filepath.Join("my", "test")},
+					filePath:    filepath.Join("my", "test", "test1.yaml"), // change
+					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
+					searchKey:   "Resources.MySearchKeyExample",
+					searchValue: "TCP,22",
+				},
+			},
+			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
+				require.NotEqual(t, *firstHash, *secondHash)
+			},
+		},
+		{
 			name: "Changed queryID",
 			calls: []computeSimilarityIDParams{
 				{
