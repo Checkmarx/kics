@@ -1,0 +1,9 @@
+{
+  "id": "8aee4754-970d-4c5f-8142-a49dfe388b1a",
+  "queryName": "Server Object Variable Not Used",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Every defined Server Variable Object should be used in a Service URL.",
+  "descriptionUrl": "https://swagger.io/specification/#server-variable-object",
+  "platform": "OpenAPI"
+}

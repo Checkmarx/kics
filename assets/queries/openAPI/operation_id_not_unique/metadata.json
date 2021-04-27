@@ -1,0 +1,9 @@
+{
+  "id": "c254adc4-ef25-46e1-8270-b7944adb4198",
+  "queryName": "OperationId Not Unique",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "OperationId should be unique when defined",
+  "descriptionUrl": "https://swagger.io/specification/#operation-object",
+  "platform": "OpenAPI"
+}

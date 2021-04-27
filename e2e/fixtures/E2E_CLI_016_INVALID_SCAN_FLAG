@@ -1,4 +1,4 @@
-Error: required flag(s) "path" not set
+Error: unknown flag: --invalid-flag
 Usage:
   kics scan [flags]
 

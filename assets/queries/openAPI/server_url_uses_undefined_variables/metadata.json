@@ -1,0 +1,9 @@
+{
+  "id": "8d0921d6-4131-461f-a253-99e873f8f77e",
+  "queryName": "Server URL Uses Undefined Variables",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Any variable used in the Service URL should be defined in the Service Object through 'variables'.",
+  "descriptionUrl": "https://swagger.io/specification/#server-object",
+  "platform": "OpenAPI"
+}
