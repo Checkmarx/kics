@@ -1,0 +1,9 @@
+{
+  "id": "20a482d5-c5d9-4a7a-b7a4-60d0805047b4",
+  "queryName": "Security Operation Field Undefined",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Security operation field should be defined in '#/components/securitySchemes'",
+  "descriptionUrl": "https://swagger.io/specification/#operation-object",
+  "platform": "OpenAPI"
+}
