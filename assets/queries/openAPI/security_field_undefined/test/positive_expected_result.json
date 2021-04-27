@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Security Field Undefined",
+    "severity": "INFO",
+    "line": 45,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Field Undefined",
+    "severity": "INFO",
+    "line": 45,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Security Field Undefined",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Security Field Undefined",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]
