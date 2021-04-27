@@ -49,6 +49,6 @@
 
 
 
-Have an idea?  
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.  
+Have an idea?
+Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
