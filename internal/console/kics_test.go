@@ -15,7 +15,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 	}{
 		{
 			name: "test_kics",
-			args: []string{"kics", "--path", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
+			args: []string{"kics", "scan", "--path", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
 				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf")},
 			wantErr: false,
 			remove:  "",
@@ -29,14 +29,14 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name: "test_kics_payload_flag",
-			args: []string{"kics", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"), "-q",
+			args: []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"), "-q",
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"), "-d", "payload.json"},
 			wantErr: false,
 			remove:  "payload.json",
 		},
 		{
 			name: "test_kics_exclude_flag",
-			args: []string{"kics", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01"), "-q",
+			args: []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01"), "-q",
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 				"-e", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf")},
 			wantErr: false,
@@ -44,7 +44,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name: "test_kics_exclude_results_flag",
-			args: []string{"kics", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"), "-q",
+			args: []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"), "-q",
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 				"-x", "c8f2b4b2a74bca2aa6d94336c144f9713524b745c1a3590e6492e98d819e352d"},
 			wantErr: false,
@@ -52,7 +52,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		},
 		{
 			name:    "test_kics_no_queries_flag",
-			args:    []string{"kics", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf")},
+			args:    []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf")},
 			wantErr: true,
 			remove:  "",
 		},
@@ -88,6 +88,13 @@ func TestConsole_Execute(t *testing.T) { //nolint
 			name:    "test_kics_generate_id_cmd",
 			args:    []string{"kics", "generate-id"},
 			wantErr: false,
+			remove:  "",
+		},
+		{
+			name: "test_kics_fail_without_scan",
+			args: []string{"kics", "--path", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
+				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf")},
+			wantErr: true,
 			remove:  "",
 		},
 	}
