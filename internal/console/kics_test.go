@@ -55,6 +55,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 			name: "test_kics_multiple_paths",
 			args: []string{
 				"kics",
+				"scan",
 				"-p",
 				fmt.Sprintf("%s,%s",
 					filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
