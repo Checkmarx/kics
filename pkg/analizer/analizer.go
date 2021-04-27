@@ -21,19 +21,21 @@ const (
 	yaml = ".yaml"
 )
 
-func Analize(path string) []string {
+func Analize(paths []string) []string {
 	metrics.Metric.Start("file_type_analizer")
 	var files []string
 	var wg sync.WaitGroup
 	results := make(chan string)
 
-	if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-		if !info.IsDir() {
-			files = append(files, path)
+	for _, path := range paths {
+		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+			if !info.IsDir() {
+				files = append(files, path)
+			}
+			return nil
+		}); err != nil {
+			log.Error().Msgf("failed to analize path %s: %s", path, err)
 		}
-		return nil
-	}); err != nil {
-		log.Error().Msgf("%v", err)
 	}
 
 	for _, file := range files {
