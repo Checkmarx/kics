@@ -50,7 +50,7 @@ var (
 	min               bool
 	noProgress        bool
 	outputPath        string
-	path              string
+	path              []string
 	payloadPath       string
 	previewLines      int
 	queryPath         string
@@ -131,13 +131,20 @@ func initializeConfig(cmd *cobra.Command) error {
 	}
 
 	if cfgFile == "" {
-		configpath := path
-		info, err := os.Stat(path)
+		if len(path) == 0 {
+			return nil
+		}
+		if len(path) > 1 {
+			warning = append(warning, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+			return nil
+		}
+		configpath := path[0]
+		info, err := os.Stat(configpath)
 		if err != nil {
 			return nil
 		}
 		if !info.IsDir() {
-			configpath = filepath.Dir(path)
+			configpath = filepath.Dir(configpath)
 		}
 		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
 		if err != nil {
@@ -146,7 +153,7 @@ func initializeConfig(cmd *cobra.Command) error {
 			}
 			return err
 		}
-		cfgFile = filepath.ToSlash(filepath.Join(path, constants.DefaultConfigFilename))
+		cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
 	}
 
 	base := filepath.Base(cfgFile)
@@ -214,11 +221,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanFlags(scanCmd *cobra.Command) {
-	scanCmd.Flags().StringVarP(&path,
+	scanCmd.Flags().StringSliceVarP(&path,
 		pathFlag,
 		pathFlagShorthand,
-		"",
-		"path or directory path to scan")
+		[]string{},
+		"paths or directories to scan\nexample: \"./somepath,somefile.txt\"")
 	scanCmd.Flags().StringVarP(&cfgFile,
 		configFlag,
 		"",
@@ -334,13 +341,16 @@ func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 	if len(excludePath) > 0 {
 		excludePaths = append(excludePaths, excludePath...)
 	}
-
-	absPath, err := filepath.Abs(path)
-	if err != nil {
-		return nil, err
+	absPaths := make([]string, len(path))
+	for idx, scanPath := range path {
+		absPath, err := filepath.Abs(scanPath)
+		if err != nil {
+			return nil, err
+		}
+		absPaths[idx] = absPath
 	}
 
-	filesSource, err := provider.NewFileSystemSourceProvider(absPath, excludePaths)
+	filesSource, err := provider.NewFileSystemSourceProvider(absPaths, excludePaths)
 	if err != nil {
 		return nil, err
 	}

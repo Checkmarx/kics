@@ -85,19 +85,19 @@ exclude-results: "exclude results by providing a list of similarity IDs of a res
 log-file: true
 log-level: INFO
 log-path: path to the log file
-silent: false
-no-color: false
 minimal-ui: false
+no-color: false
 no-progress: false
 output-path: "directory path to store reports"
 path: "path to file or directory to scan"
 payload-path: "file path to store source internal representation in JSON format"
 preview-lines: 3
+profiling: "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
 report-formats: "formats in which the results will be exported (json, sarif, html)"
+silent: false
 type: "type of queries to use in the scan"
 verbose: true
-profiling: "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 ```
 
 #### TOML Format
@@ -110,7 +110,6 @@ exclude-results = "exclude results by providing a list of similarity IDs of a re
 log-file = true
 log-level = "INFO"
 log-path = "path to the log file"
-silent = false
 minimal-ui = false
 no-color = false
 no-progress = false
@@ -118,11 +117,12 @@ output-path = "directory path to store reports"
 path = "path to file or directory to scan"
 payload-path = "file path to store source internal representation in JSON format"
 preview-lines = 3
+profiling = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
 report-formats = "formats in which the results will be exported (json, sarif, html)"
+silent = false
 type = "type of queries to use in the scan"
 verbose = true
-profiling = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 ```
 
 #### HCL Format
@@ -135,7 +135,6 @@ profiling = "enables performance profiler that prints resource consumption metri
 "log-file" = true
 "log-level" = "INFO"
 "log-path" = "path to the log file"
-"silent" = false
 "minimal-ui" = false
 "no-color" = false
 "no-progress" = false
@@ -143,11 +142,12 @@ profiling = "enables performance profiler that prints resource consumption metri
 "path" = "path to file or directory to scan"
 "payload-path" = "file path to store source internal representation in JSON format"
 "preview-lines" = 3
+"profiling" = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
 "report-formats" = "formats in which the results will be exported (json, sarif, html)"
+"silent" = false
 "type" = "type of queries to use in the scan"
 "verbose" = true
-"profiling" = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 ```
 
 ---
@@ -174,4 +174,17 @@ kics scan --config kics-config.json
 kics scan
 ```
 
-**Note**: CLI flags will have priority over the configuration file properties!
+**Note**: If more than one path is given, KICS will warn that `--config` must be used to explicit decide.
+
+#### Environment variables
+KICS also accepts environment variables to fill flags values. To use it you just need to have the flag with a `KICS_` prefix. For example:
+
+- To use path flag as environment variable, you should have `KICS_PATH` on your environment;
+- To use multiple names variables, like `--output-path`, you should use it with `KICS_` and each word separated by `_`, e.g.: `KICS_OUTPUT_PATH`
+
+## Flags precedence
+KICS will use the following precende to fill flags:
+
+- CLI flags
+- Environment variables
+- Configuration file

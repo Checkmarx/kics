@@ -297,7 +297,7 @@ func TestInspect(t *testing.T) { //nolint
 				excludeResults:       tt.fields.excludeResults,
 				detector:             inspDetector,
 			}
-			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, filepath.FromSlash("assets/queries/"))
+			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, []string{filepath.FromSlash("assets/queries/")})
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)

@@ -101,7 +101,7 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"--payload-path", "fixtures/payload.json", "-q", "../assets/queries"},
+					"--payload-path", "fixtures/payload.json"},
 			},
 			expectedOut: []string{
 				"E2E_CLI_005",
@@ -296,6 +296,20 @@ var tests = []struct {
 			},
 		},
 		wantStatus: 126,
+	},
+	// E2E-CLI-018 - KICS scan with multiple paths
+	{
+		name: "E2E-CLI-018",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf,fixtures/samples/terraform-single.tf"},
+			},
+			expectedOut: []string{
+				"E2E_CLI_018",
+			},
+		},
+		wantStatus:    50,
+		removePayload: []string{"payload.json"},
 	},
 }
 
