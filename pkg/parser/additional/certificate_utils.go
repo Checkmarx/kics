@@ -15,7 +15,7 @@ type certInfo struct {
 	rsaKeyBytes int
 }
 
-// CheckCertificateBody verifies if the attribute 'certificate_body' refers a file
+// CheckCertificate verifies if the attribute 'certificate_body' refers a file
 func CheckCertificate(content string) string {
 	var re = regexp.MustCompile(`[0-9a-zA-Z-/\\_]+\.pem`)
 	match := re.FindString(content)
