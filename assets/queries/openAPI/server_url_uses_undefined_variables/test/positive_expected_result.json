@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Server URL Uses Undefined Variables",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Server URL Uses Undefined Variables",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Server URL Uses Undefined Variables",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Server URL Uses Undefined Variables",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive4.yaml"
+  }
+]
