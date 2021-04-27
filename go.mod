@@ -25,7 +25,7 @@ require (
 	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/onsi/ginkgo v1.15.0 // indirect
 	github.com/onsi/gomega v1.10.5 // indirect
-	github.com/open-policy-agent/opa v0.27.1
+	github.com/open-policy-agent/opa v0.28.0
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.21.0
