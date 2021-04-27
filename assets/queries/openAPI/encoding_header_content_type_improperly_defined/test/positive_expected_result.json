@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Encoding Header 'Content-Type' Improperly Defined",
+    "severity": "INFO",
+    "line": 70,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Encoding Header 'Content-Type' Improperly Defined",
+    "severity": "INFO",
+    "line": 36,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Encoding Header 'Content-Type' Improperly Defined",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Encoding Header 'Content-Type' Improperly Defined",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]
