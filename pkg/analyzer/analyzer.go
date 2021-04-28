@@ -28,7 +28,7 @@ var (
 	k8sRegex         = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
 	k8sRegexKind     = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
 	k8sRegexMetadata = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	k8sRegexSpec     = regexp.MustCompile("(\\s*\"spec\":)|(\\s*k8sRegexSpec:)")
+	k8sRegexSpec     = regexp.MustCompile("(\\s*\"spec\":)|(\\s*spec:)")
 )
 
 const (
