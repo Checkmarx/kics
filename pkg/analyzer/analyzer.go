@@ -59,7 +59,7 @@ func Analyze(paths []string) ([]string, error) {
 	}
 
 	go func() {
-		// close channel results when worker has fineshed writing into it
+		// close channel results when worker has finished writing into it
 		defer close(results)
 		wg.Wait()
 	}()
@@ -77,7 +77,7 @@ func Analyze(paths []string) ([]string, error) {
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
-// writes the awnser to the results channel
+// writes the answer to the results channel
 func worker(path string, results chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ext := filepath.Ext(path)
