@@ -36,6 +36,13 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: "analyze_test_mult_checks_path",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/openAPI_test")},
+			want:    []string{"kubernetes"}, // ansible is added because of unknown type in values.yaml
+			wantErr: false,
+		},
+		{
 			name: "analyze_test_error_path",
 			paths: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/Dockserfile"),

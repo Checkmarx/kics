@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
@@ -11,13 +12,23 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// openAPIRegex - Regex that finds OpenAPI defining property
-// cloudRegex - Regex that finds Cloud Formation defining property
-// k8sRegex - Regex that finds Kubernetes defining property
+// openAPIRegex - Regex that finds OpenAPI defining property "openapi"
+// openAPIRegexInfo - Regex that finds OpenAPI defining property "info"
+// openAPIRegexPath - Regex that finds OpenAPI defining property "paths"
+// cloudRegex - Regex that finds Cloud Formation defining property "Resources"
+// k8sRegex - Regex that finds Kubernetes defining property "apiVersion"
+// k8sRegexKind - Regex that finds Kubernetes defining property "kind"
+// k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
+// k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)")
-	cloudRegex   = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex     = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	openAPIRegex     = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)")
+	openAPIRegexInfo = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	cloudRegex       = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex         = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind     = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	k8sRegexSpec     = regexp.MustCompile("(\\s*\"spec\":)|(\\s*k8sRegexSpec:)")
 )
 
 const (
@@ -97,6 +108,35 @@ func worker(path string, results chan<- string, wg *sync.WaitGroup) {
 	}
 }
 
+// regexSlice is a struct to contain a slice of regex
+type regexSlice struct {
+	regex []*regexp.Regexp
+}
+
+// types is a map that contains the regex by type
+var types = map[string]regexSlice{
+	"openapi": {
+		regex: []*regexp.Regexp{
+			openAPIRegex,
+			openAPIRegexInfo,
+			openAPIRegexPath,
+		},
+	},
+	"kubernetes": {
+		regex: []*regexp.Regexp{
+			k8sRegex,
+			k8sRegexKind,
+			k8sRegexMetadata,
+			k8sRegexSpec,
+		},
+	},
+	"cloudformation": {
+		regex: []*regexp.Regexp{
+			cloudRegex,
+		},
+	},
+}
+
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext
 func checkContent(path string, results chan<- string, ext string) {
@@ -105,26 +145,38 @@ func checkContent(path string, results chan<- string, ext string) {
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
 	}
-	// OpenAPI
-	if openAPIRegex.Match(content) {
-		results <- "openapi"
-		return
+
+	returnType := ""
+
+	// Sort map so that CloudFormation (type that as less requireds) goes last
+	keys := make([]string, 0, len(types))
+	for k := range types {
+		keys = append(keys, k)
 	}
-	// Cloud Formation
-	if cloudRegex.Match(content) {
-		results <- "cloudformation"
-		return
+
+	sort.Sort(sort.Reverse(sort.StringSlice(keys)))
+
+	for _, key := range keys {
+		check := true
+		for _, typeRegex := range types[key].regex {
+			if res := typeRegex.Match(content); !res {
+				check = false
+				break
+			}
+		}
+		// If all regexs passed and there wasn't a type already assigned
+		if check && returnType == "" {
+			returnType = key
+		}
 	}
-	// Kubernetes
-	if k8sRegex.Match(content) {
-		results <- "kubernetes"
-		return
-	}
-	// Since Ansible as no defining property
-	// and no other type was found for YAML assume its Ansible
-	if ext == yaml || ext == yml {
+
+	if returnType != "" {
+		// write to channel type of file
+		results <- returnType
+	} else if ext == yaml || ext == yml {
+		// Since Ansible as no defining property
+		// and no other type was found for YAML assume its Ansible
 		results <- "ansible"
-		return
 	}
 }
 
