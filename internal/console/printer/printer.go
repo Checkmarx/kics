@@ -60,6 +60,8 @@ var (
 	loggerFile interface{}
 )
 
+var initialized bool = false
+
 // SetupPrinter - configures stdout and log options with given FlagSet
 func SetupPrinter(flags *pflag.FlagSet) error {
 	err := validateFlags(flags)
@@ -101,8 +103,13 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 	if err != nil {
 		return err
 	}
-
+	initialized = true
 	return nil
+}
+
+// IsInitialized returns true if printer is ready, false otherwise
+func IsInitialized() bool {
+	return initialized
 }
 
 func getFlagValue(flagName string, flags *pflag.FlagSet) bool {
