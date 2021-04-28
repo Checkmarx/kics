@@ -37,7 +37,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil
 }
 
-func processContent(elements model.Document, content string, path string) {
+func processContent(elements model.Document, content, path string) {
 	var certInfo map[string]interface{}
 	if content != "" {
 		certInfo = additional.AddCertificateInfo(path, content)
@@ -54,7 +54,6 @@ func processElements(elements model.Document, path string) {
 		}
 		content := additional.CheckCertificate(v3.(string))
 		processContent(elements, content, path)
-
 	}
 }
 

@@ -67,15 +67,13 @@ func (p *Parser) GetKind() model.FileKind {
 }
 
 func processSwaggerContent(elements map[string]interface{}, filePath string) {
-	var swaggerInfo map[string]interface{}
-	swaggerInfo = additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
+	swaggerInfo := additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
 	if swaggerInfo != nil {
 		elements["swagger_file"] = swaggerInfo
 	}
-
 }
 
-func processCertContent(elements map[string]interface{}, content string, filePath string) {
+func processCertContent(elements map[string]interface{}, content, filePath string) {
 	var certInfo map[string]interface{}
 	if content != "" {
 		certInfo = additional.AddCertificateInfo(filePath, content)
@@ -88,11 +86,9 @@ func processCertContent(elements map[string]interface{}, content string, filePat
 func processElements(elements map[string]interface{}, filePath string) {
 	if elements["certificate"] != nil {
 		processCertContent(elements, additional.CheckCertificate(elements["certificate"].(string)), filePath)
-
 	}
 	if elements["swagger_file"] != nil {
 		processSwaggerContent(elements, filePath)
-
 	}
 }
 

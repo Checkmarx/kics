@@ -8,3 +8,5 @@ assets/queries/terraform/aws/hardcoded_aws_access_key/test/positive.tf
 assets/queries/terraform/aws/hardcoded_aws_access_key/test/negative.tf
 assets/queries/terraform/aws/iam_role_allows_all_principals_to_assume/test/positive.tf
 assets/queries/terraform/aws/iam_role_allows_all_principals_to_assume/test/negative.tf
+assets/queries/terraform/aws/certificate_rsa_key_bytes_lower_than_128/test/positive2.tf
+assets/queries/terraform/aws/certificate_rsa_key_bytes_lower_than_128/test/negative2.tf
