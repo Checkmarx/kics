@@ -37,30 +37,44 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil
 }
 
-func addExtraInfo(json []model.Document, path string) []model.Document {
+func processContent(elements model.Document, content string, path string) {
+	var certInfo map[string]interface{}
+	if content != "" {
+		certInfo = additional.AddCertificateInfo(path, content)
+		if certInfo != nil {
+			elements["certificate_body"] = certInfo
+		}
+	}
+}
+
+func processElements(elements model.Document, path string) {
+	for k, v3 := range elements { // resource elements
+		if !(k == "certificate_body") {
+			continue
+		}
+		content := additional.CheckCertificate(v3.(string))
+		processContent(elements, content, path)
+
+	}
+}
+
+func processResources(doc model.Document, path string) {
 	var resourcesElements model.Document
 	var elements model.Document
-	var certInfo map[string]interface{}
 
+	for _, resources := range doc { // iterate over resources
+		resourcesElements = resources.(model.Document)
+		for _, v2 := range resourcesElements { // resource name
+			elements = v2.(model.Document)
+			processElements(elements, path)
+		}
+	}
+}
+
+func addExtraInfo(json []model.Document, path string) []model.Document {
 	for _, documents := range json { // iterate over documents
 		if documents["resource"] != nil {
-			for _, resources := range documents["resource"].(model.Document) { // iterate over resources
-				resourcesElements = resources.(model.Document)
-				for _, v2 := range resourcesElements { // resource name
-					elements = v2.(model.Document)
-					for k, v3 := range elements { // resource elements
-						if k == "certificate_body" {
-							content := additional.CheckCertificate(v3.(string))
-							if content != "" {
-								certInfo = additional.AddCertificateInfo(path, content)
-								if certInfo != nil {
-									elements["certificate_body"] = certInfo
-								}
-							}
-						}
-					}
-				}
-			}
+			processResources(documents["resource"].(model.Document), path)
 		}
 	}
 

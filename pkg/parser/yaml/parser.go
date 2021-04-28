@@ -66,32 +66,43 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
 
-func addExtraInfo(documents []model.Document, filePath string) []model.Document {
-	var elements map[string]interface{}
-	var certInfo map[string]interface{}
+func processSwaggerContent(elements map[string]interface{}, filePath string) {
 	var swaggerInfo map[string]interface{}
+	swaggerInfo = additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
+	if swaggerInfo != nil {
+		elements["swagger_file"] = swaggerInfo
+	}
 
+}
+
+func processCertContent(elements map[string]interface{}, content string, filePath string) {
+	var certInfo map[string]interface{}
+	if content != "" {
+		certInfo = additional.AddCertificateInfo(filePath, content)
+		if certInfo != nil {
+			elements["certificate"] = certInfo
+		}
+	}
+}
+
+func processElements(elements map[string]interface{}, filePath string) {
+	if elements["certificate"] != nil {
+		processCertContent(elements, additional.CheckCertificate(elements["certificate"].(string)), filePath)
+
+	}
+	if elements["swagger_file"] != nil {
+		processSwaggerContent(elements, filePath)
+
+	}
+}
+
+func addExtraInfo(documents []model.Document, filePath string) []model.Document {
 	for _, documentPlaybooks := range documents { // iterate over documents
 		for _, resources := range documentPlaybooks["playbooks"].([]interface{}) { // iterate over playbooks
 			for _, v := range resources.(map[string]interface{}) {
 				_, ok := v.(map[string]interface{})
 				if ok {
-					elements = v.(map[string]interface{})
-					if elements["certificate"] != nil {
-						content := additional.CheckCertificate(elements["certificate"].(string))
-						if content != "" {
-							certInfo = additional.AddCertificateInfo(filePath, content)
-							if certInfo != nil {
-								elements["certificate"] = certInfo
-							}
-						}
-					}
-					if elements["swagger_file"] != nil {
-						swaggerInfo = additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
-						if swaggerInfo != nil {
-							elements["swagger_file"] = swaggerInfo
-						}
-					}
+					processElements(v.(map[string]interface{}), filePath)
 				}
 			}
 		}
