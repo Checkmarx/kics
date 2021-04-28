@@ -66,6 +66,8 @@ So all you need is:
 
 ---
 
+**Note**: KICS does not executes scan by default anymore
+
 ## Next Steps
 - [Understand how to configure KICS](configuration-file.md) so you can have a better KICS experience.
 - [Explore KICS commands](usage/commands.md) to see what you can do with KICS.
