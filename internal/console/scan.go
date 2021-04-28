@@ -16,7 +16,7 @@ import (
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/analizer"
+	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -450,8 +450,8 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	if types[0] == "" {
-		types = analizer.Analize(path)
+	if types[0] == "" { // if '--type' flag was given skip file analyzing
+		types = analyzer.Analyze(path)
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)
