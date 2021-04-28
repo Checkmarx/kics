@@ -381,6 +381,18 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 	return inspector, nil
 }
 
+func analyzePaths(paths, types []string) ([]string, error) {
+	var err error
+	if types[0] == "" { // if '--type' flag was given skip file analyzing
+		types, err = analyzer.Analyze(paths)
+		if err != nil {
+			log.Err(err)
+			return []string{}, err
+		}
+	}
+	return types, nil
+}
+
 func createService(inspector *engine.Inspector,
 	t kics.Tracker,
 	store kics.Storage,
@@ -450,8 +462,8 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	if types[0] == "" { // if '--type' flag was given skip file analyzing
-		types = analyzer.Analyze(path)
+	if types, err = analyzePaths(path, types); err != nil {
+		return err
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)

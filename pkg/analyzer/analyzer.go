@@ -7,6 +7,7 @@ import (
 	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
 
@@ -26,7 +27,7 @@ const (
 
 // Analyze will go through the paths given and determine what type of queries to load
 // based on the extension of the file and the content
-func Analyze(paths []string) []string {
+func Analyze(paths []string) ([]string, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 
@@ -38,6 +39,9 @@ func Analyze(paths []string) []string {
 
 	// get all the files inside the given paths
 	for _, path := range paths {
+		if _, err := os.Stat(path); err != nil {
+			return []string{}, errors.Wrap(err, "failed to analyze path")
+		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 			if !info.IsDir() {
 				files = append(files, path)
@@ -69,7 +73,7 @@ func Analyze(paths []string) []string {
 	}
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
-	return availableTypes
+	return availableTypes, nil
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
