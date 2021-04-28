@@ -3,7 +3,6 @@ package console
 import (
 	"context"
 	"fmt"
-	"os"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/console/printer"
@@ -105,24 +104,7 @@ func initialize(rootCmd *cobra.Command) error {
 	}
 
 	initScanCmd(scanCmd)
-	if insertScanCmd(scanCmd) {
-		warning = append(warning, "WARNING: for future versions use 'kics scan'")
-		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
-	}
-
 	return nil
-}
-
-func insertScanCmd(scanCmd *cobra.Command) bool {
-	if len(os.Args) > 1 && os.Args[1][0] == '-' {
-		if os.Args[1][1] != '-' {
-			flag := os.Args[1][1:]
-			return scanCmd.Flags().ShorthandLookup(flag) != nil
-		}
-		flag := os.Args[1][2:]
-		return scanCmd.Flag(flag) != nil
-	}
-	return false
 }
 
 // Execute starts kics execution

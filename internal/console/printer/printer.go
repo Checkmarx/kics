@@ -57,10 +57,9 @@ var (
 	outFileLogger    interface{}
 	outConsoleLogger interface{}
 
-	loggerFile interface{}
+	loggerFile  interface{}
+	initialized bool
 )
-
-var initialized bool = false
 
 // SetupPrinter - configures stdout and log options with given FlagSet
 func SetupPrinter(flags *pflag.FlagSet) error {
