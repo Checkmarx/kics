@@ -34,7 +34,7 @@ type Validation func(string) bool
 var tests = []struct {
 	name          string
 	args          args
-	wantStatus    int
+	wantStatus    []int
 	removePayload []string
 	validation    Validation
 }{
@@ -50,7 +50,7 @@ var tests = []struct {
 			expectedPayload: []string{},
 		},
 		removePayload: []string{},
-		wantStatus:    0,
+		wantStatus:    []int{0},
 	},
 	// E2E-CLI-002 - KICS scan command should display a help text in the CLI when provided with the
 	// --help flag and it should describe the options related with scan plus the global options
@@ -62,7 +62,7 @@ var tests = []struct {
 			},
 			expectedOut: []string{"E2E_CLI_002"},
 		},
-		wantStatus: 0,
+		wantStatus: []int{0},
 	},
 	// E2E-CLI-003 - KICS scan command had a mandatory flag -p the CLI should exhibit
 	// an error message and return exit code 1
@@ -74,7 +74,7 @@ var tests = []struct {
 			},
 			expectedOut: []string{"E2E_CLI_003"},
 		},
-		wantStatus: 126,
+		wantStatus: []int{126},
 	},
 	// E2E-CLI-004 - KICS has an invalid flag combination
 	// an error message and return exit code 1
@@ -90,7 +90,7 @@ var tests = []struct {
 				"E2E_CLI_004",
 			},
 		},
-		wantStatus: 126,
+		wantStatus: []int{126, 126, 126},
 	},
 	// E2E-CLI-005 - KICS scan with -- payload-path flag should create a file with the
 	// passed name containing the payload of the files scanned
@@ -108,7 +108,7 @@ var tests = []struct {
 				"E2E_CLI_005_PAYLOAD",
 			},
 		},
-		wantStatus:    50,
+		wantStatus:    []int{50},
 		removePayload: []string{"payload.json"},
 	},
 	// E2E-CLI-006 - KICS generate-id should exhibit
@@ -120,7 +120,7 @@ var tests = []struct {
 				[]string{"generate-id"},
 			},
 		},
-		wantStatus: 0,
+		wantStatus: []int{0},
 		validation: func(outputText string) bool {
 			uuidRegex := "[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}"
 			match, _ := regexp.MatchString(uuidRegex, outputText)
@@ -136,7 +136,7 @@ var tests = []struct {
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 		},
-		wantStatus: 50,
+		wantStatus: []int{50},
 		validation: func(outputText string) bool {
 			match1, _ := regexp.MatchString(`Files scanned: \d+`, outputText)
 			match2, _ := regexp.MatchString(`Parsed files: \d+`, outputText)
@@ -157,7 +157,7 @@ var tests = []struct {
 			},
 			expectedOut: []string{"E2E_CLI_008"},
 		},
-		wantStatus: 50,
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-009 - kics scan with no-progress flag should perform a scan
 	// without showing progress bar in the CLI
@@ -168,7 +168,7 @@ var tests = []struct {
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf", "--no-progress"},
 			},
 		},
-		wantStatus: 50,
+		wantStatus: []int{50},
 		validation: func(outputText string) bool {
 			getProgressRegex := "Executing queries:"
 			match, _ := regexp.MatchString(getProgressRegex, outputText)
@@ -190,7 +190,7 @@ var tests = []struct {
 			match := unknownArgRegex.MatchString(outputText)
 			return match
 		},
-		wantStatus: 126,
+		wantStatus: []int{126},
 	},
 	// E2E-CLI-011 - KICS  scan with a valid case insensitive --type flag
 	// must perform the scan successfully and return exit code 0
@@ -205,7 +205,7 @@ var tests = []struct {
 				"E2E_CLI_011_PAYLOAD",
 			},
 		},
-		wantStatus:    50,
+		wantStatus:    []int{50},
 		removePayload: []string{"payload.json"},
 	},
 	// E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
@@ -217,7 +217,7 @@ var tests = []struct {
 				[]string{"scan", "-q", "../assets/queries", "-p", "../test/fixtures/tc-sim01/positive1.tf", "--minimal-ui"},
 			},
 		},
-		wantStatus: 50,
+		wantStatus: []int{50},
 		validation: func(outputText string) bool {
 			match1, _ := regexp.MatchString("Description:", outputText)
 			match2, _ := regexp.MatchString("Platform:", outputText)
@@ -237,7 +237,7 @@ var tests = []struct {
 				"E2E_CLI_013",
 			},
 		},
-		wantStatus: 0,
+		wantStatus: []int{0},
 	},
 	// E2E-CLI-014 - KICS preview-lines command must delimit the number of
 	// code lines that are displayed in each scan results code block.
@@ -255,7 +255,7 @@ var tests = []struct {
 			match2, _ := regexp.MatchString(`002\:   publicly_accessible = false`, outputText)
 			return match1 && !match2
 		},
-		wantStatus: 40,
+		wantStatus: []int{40},
 	},
 	// E2E-CLI-015 KICS scan with --no-color flag
 	// must disable the colored outputs of kics in the CLI
@@ -273,7 +273,7 @@ var tests = []struct {
 			match4, _ := regexp.MatchString(`INFO: \d+`, outputText)
 			return match1 && match2 && match3 && match4
 		},
-		wantStatus: 50,
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-016 - KICS has an invalid flag or invalid command
 	// an error message and return exit code 1
@@ -293,21 +293,122 @@ var tests = []struct {
 				"E2E_CLI_016_INVALID_SHOTHAND",
 			},
 		},
-		wantStatus: 126,
+		wantStatus: []int{126, 126, 126, 126},
 	},
-	// E2E-CLI-018 - KICS scan with multiple paths
+	// E2E-CLI-017 - KICS scan command with the -v (--verbose) flag
+	// should display additional informations in the CLI, such as 'Inspector initialized'...
+	{
+		name: "E2E-CLI-017",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "-v", "--no-progress", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`Inspector initialized, number of queries=\d+`, outputText)
+			match2, _ := regexp.MatchString(`Inspector stopped`, outputText)
+			return match1 && match2
+		},
+		wantStatus: []int{50},
+	},
+	// E2E-CLI-018  - KICS scan command with --exclude-categories flag should
+	// not run queries that are part of the provided categories.
 	{
 		name: "E2E-CLI-018",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--exclude-categories", "Observability", "-s",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+
+				[]string{"scan", "-s",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		wantStatus: []int{0, 40},
+	},
+	// E2E-CLI-019 - KICS scan with multiple paths
+	// should run a scan for all provided paths/files
+	{
+		name: "E2E-CLI-019",
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf,fixtures/samples/terraform-single.tf"},
 			},
 			expectedOut: []string{
-				"E2E_CLI_018",
+				"E2E_CLI_019",
 			},
 		},
-		wantStatus:    50,
+		wantStatus:    []int{50},
 		removePayload: []string{"payload.json"},
+	},
+	// E2E-CLI-020 - KICS scan with --exclude-queries flag
+	// should not run queries that was provided in this flag.
+	{
+		name: "E2E-CLI-020",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa", "-s",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		wantStatus: []int{0},
+	},
+	// E2E-CLI-021 - KICS can return different status code based in the scan results (High/Medium/Low..)
+	// when excluding categories/queries and losing results we can get a different status code.
+	{
+		name: "E2E-CLI-021",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan",
+					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
+
+				[]string{"scan", "--exclude-categories", "Access Control,Encryption",
+					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
+
+				[]string{"scan", "--exclude-categories", "Access Control,Encryption",
+					"--exclude-queries", "568a4d22-3517-44a6-a7ad-6a7eed88722c",
+					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
+
+				[]string{"scan", "--exclude-categories", "Access Control,Encryption,Observability",
+					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
+			},
+		},
+		wantStatus: []int{50, 40, 30, 0},
+	},
+	// E2E-CLI-022 - Kics  scan command with --profiling CPU and -v flags
+	// must display CPU usage in the CLI
+	{
+		name: "E2E-CLI-022",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--profiling", "CPU", "-v",
+					"--no-progress", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Total CPU usage for inspect: \d+`, outputText)
+			return match
+		},
+		wantStatus: []int{50},
+	},
+	// E2E-CLI-023 - Kics  scan command with --profiling MEM and -v flags
+	// must display MEM usage in the CLI
+	{
+		name: "E2E-CLI-023",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--profiling", "MEM", "-v",
+					"--no-progress", "--no-color", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Total MEM usage for inspect: \d+`, outputText)
+			return match
+		},
+		wantStatus: []int{50},
 	},
 }
 
@@ -325,8 +426,8 @@ func Test_E2E_CLI(t *testing.T) {
 				// Check command Error
 				require.NoError(t, err, "Capture output should not yield an error")
 				// Check exit status code
-				if !reflect.DeepEqual(out.status, tt.wantStatus) {
-					t.Errorf("kics status = %v, want status = %v", out.status, tt.wantStatus)
+				if !reflect.DeepEqual(out.status, tt.wantStatus[arg]) {
+					t.Errorf("kics status = %v, want status = %v", out.status, tt.wantStatus[arg])
 				}
 
 				if tt.validation != nil {
