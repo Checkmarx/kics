@@ -3,7 +3,6 @@ package console
 import (
 	"context"
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/console/printer"
@@ -128,10 +127,7 @@ func Execute() error {
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
-		if !(strings.HasPrefix(err.Error(), "unknown shorthand flag") ||
-			strings.HasPrefix(err.Error(), "unknown flag") ||
-			strings.HasPrefix(err.Error(), "unknown command") ||
-			strings.HasPrefix(err.Error(), "initialization error -")) {
+		if printer.IsInitialized() {
 			log.Err(err).Msg("Failed to run application")
 		}
 		return err
