@@ -16,7 +16,7 @@ Paste one of the pipeline examples bellow:
 
 Save and run your pipeline.
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-paste-success.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-success.png" width="850">
 
 Click on the build number to download the reports stored as artifacts.
 
