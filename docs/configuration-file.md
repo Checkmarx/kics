@@ -28,7 +28,7 @@ queries-path: "assets/queries"
 output-path: "results.json"
 ```
 
-> 📝 flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
+> 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
 ---
 
