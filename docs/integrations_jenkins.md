@@ -6,7 +6,25 @@ This provides you the ability to run KICS scans in as a stage in your pipeline.
 
 ## Declarative pipelines:
 
+Create a new pipeline clicking on **New Item** on the left menu bar, then fill in the name of your pipeline and select the option "pipeline":
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-creating-pipeline.png" width="850">
+
+Paste one of the pipeline examples bellow:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-paste-pipeline.png" width="850">
+
+Save and run your pipeline.
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-paste-success.png" width="850">
+
+Click on the build number to download the reports stored as artifacts.
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-artifacts.png" width="850">
+
 ### Install and run
+
+The following pipeline uses downloads KICS binaries and place them under `/usr/bin/kics` before scanning a project:
 
 ```groovy
 pipeline {
@@ -46,7 +64,7 @@ def installKICS(){
 
 ### Using Docker
 
-The following pipeline uses KICS Docker image to scan and to publishes the HTML report in Jenkins.
+The following pipeline uses KICS docker image to scan a project and publishes the HTML report in Jenkins.
 
 Plugins required:
 - [HTML Publisher Plugin](https://plugins.jenkins.io/htmlpublisher/)
@@ -88,9 +106,7 @@ pipeline {
 }
 ```
 
-The report will be published in pure HTML by default, if you want to enable your browser to load css and javascript you have to configure a custom Content-Security-Policy HTTP header.
-
-:warning:
+The report will be published in pure HTML by default, if you want to enable your browser to load css and javascript embedded in the report.html you'll have to configure a custom Content-Security-Policy HTTP header.
 
 | 📝 &nbsp; WARNING                                                    |
 |:---------------------------------------------------------------------|
@@ -101,6 +117,7 @@ The report will be published in pure HTML by default, if you want to enable your
 Go to **Manage Jenkins** > **Script Console**
 
 Paste the following script and run:
+
 ```groovy
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-scripts; default-src *; style-src * http://* 'unsafe-inline' 'unsafe-eval'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'");
 ```
