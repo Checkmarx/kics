@@ -389,6 +389,7 @@ func analyzePaths(paths, types []string) ([]string, error) {
 			log.Err(err)
 			return []string{}, err
 		}
+		log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
 	}
 	return types, nil
 }
