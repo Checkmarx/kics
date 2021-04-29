@@ -16,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -380,6 +381,19 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 	return inspector, nil
 }
 
+func analyzePaths(paths, types []string) ([]string, error) {
+	var err error
+	if types[0] == "" { // if '--type' flag was given skip file analyzing
+		types, err = analyzer.Analyze(paths)
+		if err != nil {
+			log.Err(err)
+			return []string{}, err
+		}
+		log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
+	}
+	return types, nil
+}
+
 func createService(inspector *engine.Inspector,
 	t kics.Tracker,
 	store kics.Storage,
@@ -447,6 +461,10 @@ func scan(changedDefaultQueryPath bool) error {
 		if err != nil {
 			return errors.Wrap(err, "unable to find queries")
 		}
+	}
+
+	if types, err = analyzePaths(path, types); err != nil {
+		return err
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)

@@ -1,5 +1,5 @@
 {
-  "resources": {
+  "Resources": {
     "dynamodbKMSKey": {
       "Type": "AWS::KMS::Key",
       "Properties": {
