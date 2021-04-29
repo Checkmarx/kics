@@ -8,7 +8,7 @@ KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target=
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)
 
-```txt
+```shell
 docker pull checkmarx/kics:latest
 docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
 ```
@@ -23,14 +23,14 @@ You can provide your own path to the queries directory with `-q` CLI option (see
 
 Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to `./bin` the queries will be placed alongside the binary in `./bin/assets/queries`:
 
-```sh
-curl -sfL https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh | bash
+```shell
+curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
 ```
 
 If you want to place it somewhere else like `/usr/local/bin`:
 
-```sh
-sudo curl -sfL https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh | bash -s -- -b /usr/local/bin
+```shell
+sudo curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash -s -- -b /usr/local/bin
 ```
 
 #### Binary
@@ -45,23 +45,23 @@ So all you need is:
 1. Download KICS binaries based on your OS
 1. Extract files
 1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)
-   ```
-   ./kics scan -p <path-of-your-project-to-scan> -o <output-results.json>
+   ```shell
+   ./kics scan -p '<path-of-your-project-to-scan>' -o '<output-results.json>'
    ```
 
 #### Build from Sources
 
 1. Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>
 1. Clone the repository:
-   ```
+   ```shell
    git clone https://github.com/Checkmarx/kics.git
    ```
-   ```
+   ```shell
    cd kics
    ```
 1. Kick a scan!
-   ```
-   go run ./cmd/console/main.go scan -p <path-of-your-project-to-scan> -o <output-results.json>
+   ```shell
+   go run ./cmd/console/main.go scan -p '<path-of-your-project-to-scan>' -o '<output-results.json>'
    ```
 
 ---
