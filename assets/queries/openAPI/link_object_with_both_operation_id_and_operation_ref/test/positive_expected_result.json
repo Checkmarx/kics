@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Link Object With Both 'operationId' And 'operationRef'",
+    "severity": "INFO",
+    "line": 70,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Link Object With Both 'operationId' And 'operationRef'",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Link Object With Both 'operationId' And 'operationRef'",
+    "severity": "INFO",
+    "line": 67,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Link Object With Both 'operationId' And 'operationRef'",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Link Object With Both 'operationId' And 'operationRef'",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Link Object With Both 'operationId' And 'operationRef'",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive6.yaml"
+  }
+]
