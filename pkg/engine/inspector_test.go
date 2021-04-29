@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 
@@ -296,6 +297,7 @@ func TestInspect(t *testing.T) { //nolint
 				coverageReport:       tt.fields.coverageReport,
 				excludeResults:       tt.fields.excludeResults,
 				detector:             inspDetector,
+				queryExecTimeout:     time.Duration(60) * time.Second,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files, true, []string{filepath.FromSlash("assets/queries/")})
 			if tt.wantErr {

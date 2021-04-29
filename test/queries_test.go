@@ -127,7 +127,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
 		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
-		map[string]bool{})
+		map[string]bool{}, 60)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)

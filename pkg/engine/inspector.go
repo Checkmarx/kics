@@ -33,8 +33,7 @@ const (
 	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
-	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 60 * time.Second
+	regoQuery = `result = data.Cx.CxPolicy`
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -75,9 +74,9 @@ type Inspector struct {
 	excludeResults map[string]bool
 	detector       *detector.DetectLine
 
-	enableCoverageReport    bool
-	coverageReport          cover.Report
-	queryExecTimeoutSeconds time.Duration
+	enableCoverageReport bool
+	coverageReport       cover.Report
+	queryExecTimeout     time.Duration
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -176,13 +175,13 @@ func NewInspector(
 	log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
 
 	return &Inspector{
-		queries:                 opaQueries,
-		vb:                      vb,
-		tracker:                 tracker,
-		failedQueries:           failedQueries,
-		excludeResults:          excludeResults,
-		detector:                lineDetctor,
-		queryExecTimeoutSeconds: queryExecTimeout,
+		queries:          opaQueries,
+		vb:               vb,
+		tracker:          tracker,
+		failedQueries:    failedQueries,
+		excludeResults:   excludeResults,
+		detector:         lineDetctor,
+		queryExecTimeout: queryExecTimeout,
 	}, nil
 }
 
@@ -273,7 +272,7 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 }
 
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeoutSeconds)
+	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
 	defer cancel()
 
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
