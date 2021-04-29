@@ -41,6 +41,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push scratch to Docker Hub
         uses: docker/build-push-action@v2
+        id: build_scratch
         with:
           context: .
           push: true
@@ -50,6 +51,7 @@ jobs:
             COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2
+        id: build_alpine
         with:
           context: .
           file: ./Dockerfile.integration
@@ -68,8 +70,8 @@ jobs:
         run: |
           VERSION=${{ steps.get-version.outputs.version }}
 
-          DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}")
-          ALPINE_DIGEST=$(bash .github/scripts/get-digest.sh "checkmarx/kics:${VERSION}-alpine")
+          DIGEST=${{ steps.build_scratch.outputs.digest }}
+          ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
 
           echo "${VERSION},${DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv

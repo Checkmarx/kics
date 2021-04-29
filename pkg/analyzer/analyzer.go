@@ -37,8 +37,8 @@ const (
 )
 
 // Analyze will go through the paths given and determine what type of queries to load
-// based on the extension of the file and the content and what files to ignore
-func Analyze(paths []string) (typesRes, exlcudedRes []string, errRes error) {
+// based on the extension of the file and the content
+func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 

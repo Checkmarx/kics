@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/rs/zerolog"
+	"github.com/stretchr/testify/require"
 )
 
 type args struct {
@@ -305,4 +306,8 @@ func TestPrinter_NoColor(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestPrinter_IsInitialized(t *testing.T) {
+	require.False(t, IsInitialized())
 }
