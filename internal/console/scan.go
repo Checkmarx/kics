@@ -381,17 +381,22 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 	return inspector, nil
 }
 
-func analyzePaths(paths, types []string) ([]string, error) {
+// analyzePaths will analyze the paths to scan to determine which type of queries to load
+// and which files should be ignored, it then updates the types and exclude flags variables
+// with the results found
+func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) {
 	var err error
+	exc := make([]string, 0)
 	if types[0] == "" { // if '--type' flag was given skip file analyzing
-		types, err = analyzer.Analyze(paths)
+		types, exc, err = analyzer.Analyze(paths)
 		if err != nil {
 			log.Err(err)
-			return []string{}, err
+			return []string{}, []string{}, err
 		}
 		log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
 	}
-	return types, nil
+	exclude = append(exclude, exc...)
+	return types, exclude, nil
 }
 
 func createService(inspector *engine.Inspector,
@@ -463,7 +468,7 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	if types, err = analyzePaths(path, types); err != nil {
+	if types, excludePath, err = analyzePaths(path, types, excludePath); err != nil {
 		return err
 	}
 

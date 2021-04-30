@@ -36,13 +36,12 @@ const (
 	yaml = ".yaml"
 )
 
-// Analyze will go through the paths given and determine what type of queries to load
-// based on the extension of the file and the content
-func Analyze(paths []string) ([]string, error) {
+// Analyze will go through the slice paths given and determine what type of queries should be loaded
+// should be loaded based on the extension of the file and the content
+func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 
-	availableTypes := make([]string, 0)
 	var files []string
 	var wg sync.WaitGroup
 	// results is the channel shared by the workers that contains the types found
@@ -51,7 +50,7 @@ func Analyze(paths []string) ([]string, error) {
 	// get all the files inside the given paths
 	for _, path := range paths {
 		if _, err := os.Stat(path); err != nil {
-			return []string{}, errors.Wrap(err, "failed to analyze path")
+			return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
 		}
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 			if !info.IsDir() {
@@ -63,33 +62,36 @@ func Analyze(paths []string) ([]string, error) {
 		}
 	}
 
+	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
+	unwanted := make(chan string, len(files))
+
 	for _, file := range files {
 		wg.Add(1)
 		// analyze the files concurrently
-		go worker(file, results, &wg)
+		go worker(file, results, unwanted, &wg)
 	}
 
 	go func() {
-		// close channel results when worker has finished writing into it
-		defer close(results)
+		// close channel results when the worker has finished writing into it
+		defer func() {
+			close(unwanted)
+			close(results)
+		}()
 		wg.Wait()
 	}()
 
-	for i := range results {
-		// read channel results and if type received is not in return slice
-		// add it
-		if !contains(availableTypes, i) {
-			availableTypes = append(availableTypes, i)
-		}
-	}
+	availableTypes := createSlice(results)
+	unwantedPaths := createSlice(unwanted)
+
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
-	return availableTypes, nil
+	return availableTypes, unwantedPaths, nil
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
-func worker(path string, results chan<- string, wg *sync.WaitGroup) {
+// if no types were found, the worker will write the path of the file in the unwanted channel
+func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ext := filepath.Ext(path)
 	if ext == "" {
@@ -104,7 +106,7 @@ func worker(path string, results chan<- string, wg *sync.WaitGroup) {
 		results <- "terraform"
 	// Cloud Formation, Ansible, OpenAPI
 	case yaml, yml, ".json":
-		checkContent(path, results, ext)
+		checkContent(path, results, unwanted, ext)
 	}
 }
 
@@ -138,12 +140,13 @@ var types = map[string]regexSlice{
 }
 
 // checkContent will determine the file type by content when worker was unable to
-// determine by ext
-func checkContent(path string, results chan<- string, ext string) {
+// determine by ext, if no type was determined checkContent adds it to unwanted channel
+func checkContent(path string, results, unwanted chan<- string, ext string) {
 	// get file content
 	content, err := os.ReadFile(path)
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
+		return
 	}
 
 	returnType := ""
@@ -174,10 +177,24 @@ func checkContent(path string, results chan<- string, ext string) {
 		// write to channel type of file
 		results <- returnType
 	} else if ext == yaml || ext == yml {
-		// Since Ansible as no defining property
-		// and no other type was found for YAML assume its Ansible
+		// Since Ansible has no defining property
+		// and no other type matched for YAML file extension, assume the file type is Ansible
 		results <- "ansible"
+	} else {
+		// No type was determined (ignore on parser)
+		unwanted <- path
 	}
+}
+
+// createSlice creates a slice from the channel given removing any duplicates
+func createSlice(chanel chan string) []string {
+	slice := make([]string, 0)
+	for i := range chanel {
+		if !contains(slice, i) {
+			slice = append(slice, i)
+		}
+	}
+	return slice
 }
 
 // contains is a simple method to check if a slice
