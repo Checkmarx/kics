@@ -61,7 +61,7 @@ So all you need is:
    ```
 1. Kick a scan!
    ```shell
-   go run ./cmd/console/main.go scan -p '<path-of-your-project-to-scan>' -o '<output-results.json>'
+   go run ./cmd/console/main.go scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
    ```
 
 ---
