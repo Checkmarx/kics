@@ -1,0 +1,9 @@
+{
+  "id": "cf5ba5d2-5ad5-4582-8200-325fa75f606d",
+  "queryName": "Missing Required Property",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Required properties should be defined",
+  "descriptionUrl": "https://swagger.io/specification/",
+  "platform": "OpenAPI"
+}

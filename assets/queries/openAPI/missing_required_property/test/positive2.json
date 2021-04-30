@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.0",
+  "info": {},
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions"
+      }
+    }
+  }
+}
