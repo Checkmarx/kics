@@ -32,11 +32,11 @@ type args struct {
 type Validation func(string) bool
 
 var tests = []struct {
-	name          string
-	args          args
-	wantStatus    []int
-	removePayload []string
-	validation    Validation
+	name        string
+	args        args
+	wantStatus  []int
+	removeFiles []string
+	validation  Validation
 }{
 	// E2E_CLI_001 - KICS command should display a help text in the CLI when provided with the
 	// 	 --help flag and it should describe the available commands plus the global flags
@@ -46,11 +46,9 @@ var tests = []struct {
 			args: []cmdArgs{
 				[]string{"--help"},
 			},
-			expectedOut:     []string{"E2E_CLI_001"},
-			expectedPayload: []string{},
+			expectedOut: []string{"E2E_CLI_001"},
 		},
-		removePayload: []string{},
-		wantStatus:    []int{0},
+		wantStatus: []int{0},
 	},
 	// E2E-CLI-002 - KICS scan command should display a help text in the CLI when provided with the
 	// --help flag and it should describe the options related with scan plus the global options
@@ -99,7 +97,7 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"--payload-path", "fixtures/payload.json"},
+					"--payload-path", "output/payload.json"},
 			},
 			expectedOut: []string{
 				"E2E_CLI_005",
@@ -108,8 +106,8 @@ var tests = []struct {
 				"E2E_CLI_005_PAYLOAD",
 			},
 		},
-		wantStatus:    []int{50},
-		removePayload: []string{"payload.json"},
+		wantStatus:  []int{50},
+		removeFiles: []string{"payload.json"},
 	},
 	// E2E-CLI-006 - KICS generate-id should exhibit
 	// a valid UUID in the CLI and return exit code 0
@@ -199,14 +197,14 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"-t", "TeRraFOrM", "--silent", "--payload-path", "fixtures/payload.json"},
+					"-t", "TeRraFOrM", "--silent", "--payload-path", "output/payload.json"},
 			},
 			expectedPayload: []string{
 				"E2E_CLI_011_PAYLOAD",
 			},
 		},
-		wantStatus:    []int{50},
-		removePayload: []string{"payload.json"},
+		wantStatus:  []int{50},
+		removeFiles: []string{"payload.json"},
 	},
 	// E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
 	// without showing detailed results on each line of code
@@ -339,8 +337,7 @@ var tests = []struct {
 				"E2E_CLI_019",
 			},
 		},
-		wantStatus:    []int{50},
-		removePayload: []string{"payload.json"},
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-020 - KICS scan with --exclude-queries flag
 	// should not run queries that was provided in this flag.
@@ -410,6 +407,146 @@ var tests = []struct {
 		},
 		wantStatus: []int{50},
 	},
+	// E2E-CLI-024  - KICS version command
+	// should display the version of the kics in the CLI.
+	{
+		name: "E2E-CLI-024",
+		args: args{
+			args: []cmdArgs{
+				[]string{"version"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Keeping Infrastructure as Code Secure`, outputText)
+			return match
+		},
+		wantStatus: []int{0},
+	},
+	// E2E-CLI-025 - KICS scan command with --fail-on flag should
+	// return status code different from 0 only when results match the severity provided in this flag
+	{
+		name: "E2E-CLI-025",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--fail-on", "info,low",
+					"-s", "-q", "../assets/queries", "-p", "../assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive.dockerfile"},
+
+				[]string{"scan", "--fail-on", "info",
+					"-s", "-q", "../assets/queries", "-p", "../assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive.dockerfile"},
+			},
+		},
+		wantStatus: []int{30, 20},
+	},
+	// E2E-CLI-026 - KICS scan command with --ignore-on-exit flag
+	// should return status code 0 if the provided flag occurs.
+	// Example: '--ignore-on-exit errors' -> Returns 0 if an error was found, instead of 126/130...
+	{
+		name: "E2E-CLI-026",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--ignore-on-exit",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.invalid.name"},
+
+				[]string{"scan", "--ignore-on-exit", "errors",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.invalid.name"},
+
+				[]string{"scan", "--ignore-on-exit", "errors",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+
+				[]string{"scan", "--ignore-on-exit", "all",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		wantStatus: []int{126, 0, 40, 0},
+	},
+	// E2E-CLI-027 - KICS scan command with --exclude-paths
+	// should not perform the scan on the files/folders provided by this flag
+	{
+		name: "E2E-CLI-027",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--exclude-paths", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf",
+					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Files scanned: 1`, outputText)
+			return match
+		},
+		wantStatus: []int{50},
+	},
+
+	// E2E-CLI-028 - KICS scan command with --log-format
+	// should modify the view structure of output messages in the CLI (json/pretty)
+	{
+		name: "E2E-CLI-028",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--log-format", "json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`{"level":"info"`, outputText)
+			match2, _ := regexp.MatchString(`"message":"Inspector initialized, number of queries=\d+"`, outputText)
+			return match1 && match2
+		},
+
+		wantStatus: []int{40},
+	},
+
+	// E2E-CLI-029 - KICS scan command with --config flag
+	// should load a config file that provides commands and arguments to kics.
+	{
+		name: "E2E-CLI-029",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--config", "fixtures/samples/config.json"},
+
+				[]string{"scan", "--config", "fixtures/samples/config.json", "--silent"},
+			},
+		},
+
+		wantStatus: []int{40, 126},
+	},
+	// E2E-CLI-030 - Kics scan command with --output-path flags
+	// should export the result files to the path provided by this flag.
+	{
+		name: "E2E-CLI-030",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--output-path", "output",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		removeFiles: []string{
+			"results.json",
+			"results.sarif",
+			"results.html",
+		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-031 - Kics  scan command with --report-formats and --output-path flags
+	// should export the results based on the formats provided by this flag.
+	{
+		name: "E2E-CLI-031",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--output-path", "output", "--report-formats", "json,sarif",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		removeFiles: []string{
+			"results.json",
+			"results.sarif",
+		},
+		wantStatus: []int{40},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
@@ -452,10 +589,11 @@ func Test_E2E_CLI(t *testing.T) {
 					}
 				}
 
-				if tt.args.expectedPayload != nil {
-					// Check payload files
-					for _, file := range tt.removePayload {
-						fileCheck(t, file, tt.args.expectedPayload[arg])
+				if tt.removeFiles != nil {
+					// Remove created files
+					for _, file := range tt.removeFiles {
+						err = os.Remove(filepath.Join("output", file))
+						require.NoError(t, err)
 					}
 				}
 			})
@@ -505,8 +643,6 @@ func fileCheck(t *testing.T, remove, payload string) {
 	require.Equal(t, len(wantPayload), len(expectPayload),
 		"\nExpected file number of lines:%d\nKics file number of lines:%d\n", len(wantPayload), len(expectPayload))
 	checkJSONFile(t, wantPayload, expectPayload)
-	err = os.Remove(filepath.Join("fixtures", remove))
-	require.NoError(t, err)
 }
 
 func checkJSONFile(t *testing.T, expect, want []string) { // Needs to fixed
