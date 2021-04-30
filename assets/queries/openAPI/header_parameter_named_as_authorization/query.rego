@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	params := doc.paths[name].parameters[n]
 
-	improperly_defined(params)
+	openapi_lib.improperly_defined(params, "Authorization")
 
 	result := {
 		"documentId": doc.id,
@@ -23,7 +23,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	params := doc.paths[name][oper].parameters[n]
 
-	improperly_defined(params)
+	openapi_lib.improperly_defined(params, "Authorization")
 
 	result := {
 		"documentId": doc.id,
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	params := doc.components.parameters[n]
 
-	improperly_defined(params)
+	openapi_lib.improperly_defined(params, "Authorization")
 
 	result := {
 		"documentId": doc.id,
@@ -48,9 +48,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("openapi.components.parameters.name={{%s}} is not 'Authorization'", [params.name]),
 		"keyActualValue": sprintf("openapi.components.parameters.name={{%s}} is 'Authorization'", [params.name]),
 	}
-}
-
-improperly_defined(params) {
-	params.in == "header"
-	params.name == "Authorization"
 }
