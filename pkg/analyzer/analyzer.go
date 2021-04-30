@@ -36,8 +36,8 @@ const (
 	yaml = ".yaml"
 )
 
-// Analyze will go through the paths given and determine what type of queries to load
-// based on the extension of the file and the content
+// Analyze will go through the slice paths given and determine what type of queries should be loaded
+// should be loaded based on the extension of the file and the content
 func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
@@ -62,7 +62,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 		}
 	}
 
-	// unwanted is the channel shared by the workers that contains the unwanted files to remove from the parser
+	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
 	unwanted := make(chan string, len(files))
 
 	for _, file := range files {
@@ -72,7 +72,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 	}
 
 	go func() {
-		// close channel results when worker has fineshed writing into it
+		// close channel results when the worker has finished writing into it
 		defer func() {
 			close(unwanted)
 			close(results)
@@ -89,8 +89,8 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) {
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
-// writes the awnser to the results channel
-// if no type was found worker will wright into unwanted channel the path of the file
+// writes the answer to the results channel
+// if no types were found, the worker will write the path of the file in the unwanted channel
 func worker(path string, results, unwanted chan<- string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ext := filepath.Ext(path)
@@ -177,8 +177,8 @@ func checkContent(path string, results, unwanted chan<- string, ext string) {
 		// write to channel type of file
 		results <- returnType
 	} else if ext == yaml || ext == yml {
-		// Since Ansible as no defining property
-		// and no other type was found for YAML assume its Ansible
+		// Since Ansible has no defining property
+		// and no other type matched for YAML file extension, assume the file type is Ansible
 		results <- "ansible"
 	} else {
 		// No type was determined (ignore on parser)

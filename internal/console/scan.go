@@ -381,6 +381,9 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 	return inspector, nil
 }
 
+// analyzePaths will analyze the paths to scan to determine which type of queries to load
+// and which files should be ignored, it then updates the types and exclude flags variables
+// with the results found
 func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) {
 	var err error
 	exc := make([]string, 0)
