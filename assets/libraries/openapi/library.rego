@@ -12,7 +12,7 @@ is_valid_url(url) {
 	regex.match(`^(https?):\/\/(-\.)?([^\s\/?\.#-]+([-\.\/])?)+(\/[^\s]*)?$`, url)
 }
 
-improperly_defined(params, v1, v2) {
-	params.in == v1
-	params.name == v2
+improperly_defined(params, value) {
+	params.in == "header"
+	params.name == value
 }

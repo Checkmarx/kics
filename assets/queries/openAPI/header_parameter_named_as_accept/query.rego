@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	params := doc.paths[name].parameters[n]
 
-	openapi_lib.improperly_defined(params, "header", "Accept")
+	openapi_lib.improperly_defined(params, "Accept")
 
 	result := {
 		"documentId": doc.id,
@@ -23,7 +23,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	params := doc.paths[name][oper].parameters[n]
 
-	openapi_lib.improperly_defined(params, "header", "Accept")
+	openapi_lib.improperly_defined(params, "Accept")
 
 	result := {
 		"documentId": doc.id,
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	params := doc.components.parameters[n]
 
-	openapi_lib.improperly_defined(params, "header", "Accept")
+	openapi_lib.improperly_defined(params, "Accept")
 
 	result := {
 		"documentId": doc.id,
