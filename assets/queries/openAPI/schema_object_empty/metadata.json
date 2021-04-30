@@ -1,0 +1,9 @@
+{
+  "id": "500ce696-d501-41dd-86eb-eceb011a386f",
+  "queryName": "Schema Object is Empty",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The Schema Object should not be empty to avoid accepting any JSON values",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
