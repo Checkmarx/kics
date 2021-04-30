@@ -4,8 +4,8 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/additional"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
@@ -40,7 +40,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 func processContent(elements model.Document, content, path string) {
 	var certInfo map[string]interface{}
 	if content != "" {
-		certInfo = additional.AddCertificateInfo(path, content)
+		certInfo = utils.AddCertificateInfo(path, content)
 		if certInfo != nil {
 			elements["certificate_body"] = certInfo
 		}
@@ -52,7 +52,7 @@ func processElements(elements model.Document, path string) {
 		if !(k == "certificate_body") {
 			continue
 		}
-		content := additional.CheckCertificate(v3.(string))
+		content := utils.CheckCertificate(v3.(string))
 		processContent(elements, content, path)
 	}
 }

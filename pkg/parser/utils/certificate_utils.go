@@ -1,4 +1,4 @@
-package additional
+package utils
 
 import (
 	"crypto/rsa"
@@ -8,6 +8,8 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+
+	"github.com/rs/zerolog/log"
 )
 
 type certInfo struct {
@@ -81,6 +83,8 @@ func AddCertificateInfo(path, content string) map[string]interface{} {
 
 		return attributes
 	}
+
+	log.Error().Msgf("Failed to get certificate path %s: %s", filePath, err)
 
 	return nil
 }

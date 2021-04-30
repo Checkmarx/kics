@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/additional"
+	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
@@ -67,7 +67,7 @@ func (p *Parser) GetKind() model.FileKind {
 }
 
 func processSwaggerContent(elements map[string]interface{}, filePath string) {
-	swaggerInfo := additional.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
+	swaggerInfo := utils.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
 	if swaggerInfo != nil {
 		elements["swagger_file"] = swaggerInfo
 	}
@@ -76,7 +76,7 @@ func processSwaggerContent(elements map[string]interface{}, filePath string) {
 func processCertContent(elements map[string]interface{}, content, filePath string) {
 	var certInfo map[string]interface{}
 	if content != "" {
-		certInfo = additional.AddCertificateInfo(filePath, content)
+		certInfo = utils.AddCertificateInfo(filePath, content)
 		if certInfo != nil {
 			elements["certificate"] = certInfo
 		}
@@ -85,7 +85,7 @@ func processCertContent(elements map[string]interface{}, content, filePath strin
 
 func processElements(elements map[string]interface{}, filePath string) {
 	if elements["certificate"] != nil {
-		processCertContent(elements, additional.CheckCertificate(elements["certificate"].(string)), filePath)
+		processCertContent(elements, utils.CheckCertificate(elements["certificate"].(string)), filePath)
 	}
 	if elements["swagger_file"] != nil {
 		processSwaggerContent(elements, filePath)
