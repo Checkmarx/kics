@@ -1,7 +1,5 @@
 openapi: 3.0.0
 info:
-  title: Simple API Overview
-  version: 1.0.0
 paths:
   "/":
     get:
@@ -22,9 +20,3 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-components:
-  securitySchemes:
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
