@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	responses := doc.paths[n][oper].responses
 
-	count({x | response := responses[x]; regex.match(`^2[0-9]{2}$`, x) == true}) == 0
+	count({x | response := responses[x]; regex.match(`^20[0124]$`, x) == true}) == 0
 
 	result := {
 		"documentId": doc.id,
