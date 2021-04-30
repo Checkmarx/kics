@@ -136,7 +136,7 @@ func initializeConfig(cmd *cobra.Command) error {
 			return nil
 		}
 		if len(path) > 1 {
-			warning = append(warning, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
 			return nil
 		}
 		configpath := path[0]
@@ -433,15 +433,14 @@ func createService(inspector *engine.Inspector,
 
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
-
-	for _, warn := range warning {
+	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
 	}
 
 	printer := consoleHelpers.NewPrinter(min)
 	printer.Success.Printf("\n%s\n", banner)
 
-	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", getVersion())
+	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 

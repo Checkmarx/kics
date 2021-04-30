@@ -1,4 +1,8 @@
-# KICS Command
+# KICS CLI
+
+KICS is a command line tool, and should be used in a terminal. The next section describes the usage, the same help content is displayed when kics is provided with the `--help` flag.
+
+## KICS Command
 
 KICS has the following commands available:
 
@@ -84,3 +88,12 @@ Global Flags:
 The other commands have no further options.
 
 ---
+
+## Disable Telemetry
+
+You can disable KICS telemetry with `KICS_COLLECT_TELEMETRY` environment variable set to `0` or `false` e.g:
+
+```sh
+KICS_COLLECT_TELEMETRY=0 ./bin/kics version
+# 'KICS telemetry disabled' message should appear in the logs
+```

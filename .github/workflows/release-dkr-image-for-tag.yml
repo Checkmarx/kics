@@ -64,6 +64,7 @@ jobs:
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
       - name: Push alpine to Docker Hub
         if: ${{ hashFiles('Dockerfile.integration') }} != ""
         uses: docker/build-push-action@v2
@@ -75,3 +76,4 @@ jobs:
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}

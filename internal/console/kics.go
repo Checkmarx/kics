@@ -3,6 +3,7 @@ package console
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/console/printer"
@@ -15,11 +16,13 @@ import (
 )
 
 const (
-	scanID   = "console"
-	timeMult = 2
+	scanID = "console"
 )
 
 var (
+	// warnings - a buffer to accumulate warnings before the printer gets initialized
+	warnings = make([]string, 0)
+
 	ctx = context.Background()
 
 	ci        bool
@@ -31,8 +34,6 @@ var (
 	silent    bool
 	profiling string
 	verbose   bool
-
-	warning []string
 )
 
 // NewKICSCmd creates a new instance of the kics Command
@@ -111,15 +112,11 @@ func initialize(rootCmd *cobra.Command) error {
 func Execute() error {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
+	enableTelemetry()
+
 	rootCmd := NewKICSCmd()
 
-	err := sentry.Init(sentry.ClientOptions{})
-	if err != nil {
-		log.Err(err).Msg("Failed to initialize sentry")
-	}
-	defer sentry.Flush(timeMult * time.Second)
-
-	if err = initialize(rootCmd); err != nil {
+	if err := initialize(rootCmd); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to initialize CLI")
 		return err
@@ -134,4 +131,32 @@ func Execute() error {
 	}
 
 	return nil
+}
+
+func enableTelemetry() {
+	enableTelemetry, found := os.LookupEnv("KICS_COLLECT_TELEMETRY")
+	if found && (enableTelemetry == "0" || enableTelemetry == "false") {
+		initSentry("")
+	} else {
+		initSentry(constants.SentryDSN)
+	}
+}
+
+func initSentry(dsn string) {
+	var err error
+	if dsn == "" {
+		warnings = append(warnings, "KICS telemetry disabled")
+		err = sentry.Init(sentry.ClientOptions{
+			Release: constants.GetRelease(),
+		})
+	} else {
+		err = sentry.Init(sentry.ClientOptions{
+			Dsn:     dsn,
+			Release: constants.GetRelease(),
+		})
+	}
+	if err != nil {
+		log.Err(err).Msg("Failed to initialize sentry")
+	}
+	sentry.Flush(constants.SentryRefreshRate * time.Second)
 }
