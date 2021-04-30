@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"strings"
 	"sync"
 	"time"
 
@@ -203,7 +204,8 @@ func (c *Inspector) Inspect(
 	scanID string,
 	files model.FileMetadatas,
 	hideProgress bool,
-	baseScanPaths []string) ([]model.Vulnerability, error) {
+	baseScanPaths []string,
+	platforms []string) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -218,6 +220,9 @@ func (c *Inspector) Inspect(
 	var wg sync.WaitGroup
 	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
 	for idx, query := range c.queries {
+		if !contains(platforms, query.metadata.Platform) {
+			continue
+		}
 		if !hideProgress {
 			currentQuery <- float64(idx)
 		}
@@ -354,4 +359,21 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	}
 
 	return vulnerabilities, nil
+}
+
+// contains is a simple method to check if a slice
+// contains an entry
+func contains(s []string, e string) bool {
+	if e == "common" {
+		return true
+	}
+	if e == "k8s" {
+		e = "kubernetes"
+	}
+	for _, a := range s {
+		if strings.ToLower(a) == strings.ToLower(e) {
+			return true
+		}
+	}
+	return false
 }

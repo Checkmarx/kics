@@ -3,6 +3,7 @@ package kics
 import (
 	"context"
 	"io"
+	"sync"
 
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -48,9 +49,10 @@ type Service struct {
 }
 
 // StartScan executes scan over the context, using the scanID as reference
-func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool) error {
+func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool, errCh chan<- error, wg *sync.WaitGroup) {
 	log.Debug().Msg("service.StartScan()")
 	metrics.Metric.Start("get_sources")
+	defer wg.Done()
 	if err := s.SourceProvider.GetSources(
 		ctx,
 		s.Parser.SupportedExtensions(),
@@ -61,18 +63,20 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 			return s.resolverSink(ctx, filename, scanID)
 		},
 	); err != nil {
-		return errors.Wrap(err, "failed to read sources")
+		errCh <- errors.Wrap(err, "failed to read sources")
 	}
 	metrics.Metric.Stop()
 	metrics.Metric.Start("inspect")
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePaths())
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePaths(), s.Parser.Platform)
 	if err != nil {
-		return errors.Wrap(err, "failed to inspect files")
+		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
 
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	metrics.Metric.Stop()
-	return errors.Wrap(err, "failed to save vulnerabilities")
+	if err != nil {
+		errCh <- errors.Wrap(err, "failed to save vulnerabilities")
+	}
 }
 
 /*

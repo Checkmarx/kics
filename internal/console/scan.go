@@ -28,6 +28,7 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
+	"github.com/Checkmarx/kics/pkg/scanner"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -383,7 +384,7 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 func createService(inspector *engine.Inspector,
 	t kics.Tracker,
 	store kics.Storage,
-	querySource source.FilesystemSource) (*kics.Service, error) {
+	querySource source.FilesystemSource) ([]*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider()
 	if err != nil {
 		return nil, err
@@ -407,14 +408,19 @@ func createService(inspector *engine.Inspector,
 		return nil, err
 	}
 
-	return &kics.Service{
-		SourceProvider: filesSource,
-		Storage:        store,
-		Parser:         combinedParser,
-		Inspector:      inspector,
-		Tracker:        t,
-		Resolver:       combinedResolver,
-	}, nil
+	services := make([]*kics.Service, 0, len(combinedParser))
+
+	for _, parser := range combinedParser {
+		services = append(services, &kics.Service{
+			SourceProvider: filesSource,
+			Storage:        store,
+			Parser:         parser,
+			Inspector:      inspector,
+			Tracker:        t,
+			Resolver:       combinedResolver,
+		})
+	}
+	return services, nil
 }
 
 func scan(changedDefaultQueryPath bool) error {
@@ -458,15 +464,15 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	service, err := createService(inspector, t, store, *querySource)
+	services, err := createService(inspector, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
 		return err
 	}
 
-	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
-		log.Err(scanErr)
-		return scanErr
+	if err := scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
+		log.Err(err)
+		return err
 	}
 
 	results, err := store.GetVulnerabilities(ctx, scanID)
