@@ -33,8 +33,7 @@ const (
 	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
-	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 60 * time.Second
+	regoQuery = `result = data.Cx.CxPolicy`
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -77,6 +76,7 @@ type Inspector struct {
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
+	queryExecTimeout     time.Duration
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -104,7 +104,8 @@ func NewInspector(
 	vb VulnerabilityBuilder,
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
-	excludeResults map[string]bool) (*Inspector, error) {
+	excludeResults map[string]bool,
+	queryTimeout int) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
@@ -170,13 +171,17 @@ func NewInspector(
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
+	queryExecTimeout := time.Duration(queryTimeout) * time.Second
+	log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
+
 	return &Inspector{
-		queries:        opaQueries,
-		vb:             vb,
-		tracker:        tracker,
-		failedQueries:  failedQueries,
-		excludeResults: excludeResults,
-		detector:       lineDetctor,
+		queries:          opaQueries,
+		vb:               vb,
+		tracker:          tracker,
+		failedQueries:    failedQueries,
+		excludeResults:   excludeResults,
+		detector:         lineDetctor,
+		queryExecTimeout: queryExecTimeout,
 	}, nil
 }
 
@@ -267,7 +272,7 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 }
 
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, executeTimeout)
+	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
 	defer cancel()
 
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
