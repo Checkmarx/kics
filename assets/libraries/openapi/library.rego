@@ -24,5 +24,5 @@ incorrect_ref(ref, object) {
 		"requestBody": "#/components/requestBodies",
 	}
 
-	not contains(ref, references[object])
+	regex.match(references[object], ref) == false
 }
