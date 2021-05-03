@@ -8,32 +8,66 @@ CxPolicy[result] {
 
 	[path, value] = walk(docs)
 	is_string(value)
-	value = replaceUniCode(value)
-	checkObject := prepare_object(key, value)
-
+	value = replace_unicode(value)
+	checkObjects := prepare_object(path[minus(count(path), 1)], value)
+	checkObject := checkObjects[_]
 	check_vulnerability(checkObject)
+	allPath := [x | merge_path(path[i]) != ""; x := merge_path(path[i])]
+	resolvedPath := resolve_path(checkObject, allPath)
 	result := {
 		"documentId": docs.id,
-		"searchKey": sprintf("%s", [concat(".", path)]),
+		"searchKey": resolvedPath,
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Hardcoded secret key should not appear in source",
 		"keyActualValue": value,
 	}
 }
 
-prepare_object(key, value) = obj {
-	contains(value, "=")
+merge_path(pathItem) = item {
+	not is_string(pathItem)
+	item := ""
+} else = item {
+	clearParse := ["playbooks", "tasks", "command", "original"]
+	commonLib.equalsOrInArray(clearParse, lower(pathItem))
+	item := ""
+} else = item {
+	contains(pathItem, ".")
+	item := sprintf("{{%s}}", [pathItem])
+} else = item {
+	item := pathItem
+}
 
-	obj := {
-		"key": path[minus(count(path), 1)],
-		"value": value,
-	}
+resolve_path(obj, path) = resolved {
+	obj.id != ""
+	resolved := sprintf("FROM={{%s}}.{{%s}}", [concat(".", path), obj.id])
+} else = resolved {
+	resolved := concat(".", path)
 }
 
 prepare_object(key, value) = obj {
-	obj := {
-		"key": path[minus(count(path), 1)],
+	#dockerfile
+	key == "Original"
+	args := split(value, " ")
+	obj := [x | x := create_docker_object(args[_], value)]
+} else = obj {
+	obj := [{
+		"key": key,
 		"value": value,
+		"id": "",
+	}]
+}
+
+create_docker_object(value, original) = obj {
+	contains(value, "=")
+	splitted := split(value, "=")
+	count(splitted) > 1
+	k := splitted[0]
+	is_string(k)
+	v := concat("", array.slice(splitted, 1, count(splitted)))
+	obj := {
+		"key": k,
+		"value": v,
+		"id": original,
 	}
 }
 
@@ -135,36 +169,7 @@ check_common(correctStrings) {
 }
 
 #replace unicode values to avoid false positives
-replaceUniCode(allValues) = treatedValue {
+replace_unicode(allValues) = treatedValue {
 	treatedValue_first := replace(allValues, "\\u003c", "<")
 	treatedValue = replace(treatedValue_first, "\\u003e", ">")
-}
-
-#this will be removed, but still needs as example
-#construct correct strings based on dockerfile or other platform
-getCorrectStrings(allValues, name) = correctStrings {
-	#other platforms
-	not contains(split(allValues, "\":")[0], "Original")
-	allStrings = {"key": split(allValues, "\":")[0], "value": split(allValues, "\":")[1]}
-
-	#remove trailling quotation marks
-	correctStrings = {
-		"key": substring(allStrings.key, 1, count(allStrings.key) - 1),
-		"value": substring(allStrings.value, 1, count(allStrings.value) - 3),
-		"id": name,
-	}
-} else = correctStrings {
-	#dockerfile
-	contains(split(allValues, "\":")[0], "Original")
-
-	#replace "=" with spaces to check for problems with for the various formats of ENV in dockerfile
-	treatedValue := replace(allValues, "=", " ")
-	allStrings := {"key": split(split(treatedValue, ":")[1], " ")[1], "value": split(split(treatedValue, ":")[1], " ")[2]}
-
-	#remove trailling quotation marks
-	correctStrings := {
-		"key": substring(allStrings.key, 0, count(allStrings.key)),
-		"value": substring(allStrings.value, 0, count(allStrings.value) - 2),
-		"id": name,
-	}
 }
