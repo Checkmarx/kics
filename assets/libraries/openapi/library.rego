@@ -24,5 +24,5 @@ incorrect_ref(ref, object) {
 		"requestBody": "#/components/requestBodies",
 	}
 
-	not startswith(ref, references[object])
+	not contains(ref, references[object])
 }
