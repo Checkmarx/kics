@@ -49,7 +49,7 @@ type Service struct {
 }
 
 // StartScan executes scan over the context, using the scanID as reference
-func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool, errCh chan<- error, wg *sync.WaitGroup, currentQuery chan<- float64) {
+func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress bool, errCh chan<- error, wg *sync.WaitGroup) {
 	log.Debug().Msg("service.StartScan()")
 	metrics.Metric.Start("get_sources")
 	defer wg.Done()
@@ -67,7 +67,7 @@ func (s *Service) StartScan(ctx context.Context, scanID string, hideProgress boo
 	}
 	metrics.Metric.Stop()
 	metrics.Metric.Start("inspect")
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePaths(), s.Parser.Platform, currentQuery)
+	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePaths(), s.Parser.Platform)
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
