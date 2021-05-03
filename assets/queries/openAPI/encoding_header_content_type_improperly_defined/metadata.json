@@ -1,0 +1,9 @@
+{
+  "id": "4cd8de87-b595-48b6-ab3c-1904567135ab",
+  "queryName": "Encoding Header 'Content-Type' Improperly Defined",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Encoding Map Key should not define a 'Content-Type' in the 'headers' field. If so, it will be ignored.",
+  "descriptionUrl": "https://swagger.io/specification/#media-type-object",
+  "platform": "OpenAPI"
+}
