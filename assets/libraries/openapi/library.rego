@@ -25,5 +25,5 @@ incorrect_ref(ref, object) {
 		"links": "#/components/links/",
 	}
 
-	not contains(ref, references[object])
+	regex.match(references[object], ref) == false
 }
