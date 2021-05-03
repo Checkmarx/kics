@@ -7,12 +7,12 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	req := doc.paths[n][oper].requestBody
 
-	not startswith(req["$ref"], "#/components/requestBodies")
+	openapi_lib.incorrect_ref(req["$ref"], "requestBody")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.paths.%s.%s.requestBody.$ref={{%s}}", [n, oper, req["$ref"]]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Request body ref points to '#components/requestBodies'",
 		"keyActualValue": "Request body ref doesn't point to '#components/requestBodies'",
 	}

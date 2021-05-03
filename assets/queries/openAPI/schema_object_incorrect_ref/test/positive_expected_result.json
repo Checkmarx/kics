@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Schema Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 76,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 46,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive4.yaml"
+  }
+]

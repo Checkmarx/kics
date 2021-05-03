@@ -7,13 +7,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 	response := doc.paths[n][oper].responses[code]
 
-	not startswith(response["$ref"], "#/components/responses")
+	openapi_lib.incorrect_ref(response["$ref"], "responses")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("openapi.paths.%s.%s.responses.%s.$ref={{%s}}", [n, oper, code, response["$ref"]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "HTTP responses status codes are in range of [200-599]",
-		"keyActualValue": "HTTP responses status codes are not in range of [200-599]",
+		"keyExpectedValue": "Response ref points to '#/components/responses'",
+		"keyActualValue": "Response ref does not point to '#/components/responses'",
 	}
 }
