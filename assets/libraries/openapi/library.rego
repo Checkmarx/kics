@@ -16,3 +16,14 @@ improperly_defined(params, value) {
 	params.in == "header"
 	params.name == value
 }
+
+incorrect_ref(ref, object) {
+	references := {
+		"schema": "#/components/schemas/",
+		"responses": "#/components/responses/",
+		"requestBody": "#/components/requestBodies/",
+		"links": "#/components/links/",
+	}
+
+	not contains(ref, references[object])
+}

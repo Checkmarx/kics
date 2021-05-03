@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Simple API overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      responses:
+        "200":
+          description: the user being returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+          links:
+            l:
+              $ref: "#components/linfks/address"
+components:
+  schemas:
+    Pet:
+      $ref: "../models/pet.yaml"
+    User:
+      $ref: "https://api.example.com/v2/openapi.yaml#/components/schemas/User"
+  responses:
+    GenericError:
+      $ref: "../template-api.yaml#/components/responses/GenericError"
+  links:
+    address:
+      operationId: getUssssserAddress
+      parameters:
+        userId: $request.path.id
