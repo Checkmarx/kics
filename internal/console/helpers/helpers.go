@@ -31,11 +31,12 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 // ProgressBar represents a Progress
 // Writer is the writer output for progress bar
 type ProgressBar struct {
-	Writer   io.Writer
-	label    string
-	space    int
-	total    float64
-	progress chan float64
+	Writer          io.Writer
+	label           string
+	space           int
+	total           float64
+	currentProgress float64
+	progress        chan float64
 }
 
 // Printer wil print console output with colors
@@ -80,13 +81,14 @@ func (p *ProgressBar) Start(wg *sync.WaitGroup) {
 		const hundredPercent = 100
 		formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
 		for {
-			currentProgress, ok := <-p.progress
-			if !ok || currentProgress >= p.total {
+			newProgress, ok := <-p.progress
+			p.currentProgress += newProgress
+			if !ok || p.currentProgress >= p.total {
 				fmt.Fprintf(p.Writer, formmatingString, strings.Repeat("=", p.space), 100.0, strings.Repeat("=", p.space))
 				break
 			}
 
-			percentage := currentProgress / p.total * hundredPercent
+			percentage := p.currentProgress / p.total * hundredPercent
 			convertedPercentage := int(math.Round(float64(p.space+p.space) / hundredPercent * math.Round(percentage)))
 			if percentage >= hundredPercent/2 {
 				firstHalfPercentage = strings.Repeat("=", p.space)
