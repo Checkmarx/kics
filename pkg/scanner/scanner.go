@@ -20,7 +20,6 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 	currentQuery := make(chan float64, 1)
 	var wgProg sync.WaitGroup
 
-	fmt.Println(services.GetQueriesLength())
 	startProgressBar(noProgress, services.GetQueriesLength(), &wgProg, currentQuery)
 	for _, service := range services {
 		wg.Add(1)
@@ -52,7 +51,7 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 func (s serviceSlice) GetQueriesLength() int {
 	count := 0
 	for _, service := range s {
-		count += service.Inspector.GetQueriesByPlat(service.Parser.Platform)
+		count += service.Inspector.LenQueriesByPlat(service.Parser.Platform)
 	}
 	return count
 }

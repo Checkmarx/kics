@@ -512,7 +512,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summa
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
 		TotalQueries:           t.LoadedQueries,
-		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
+		FailedToExecuteQueries: t.ExecutingQueries - t.ExecutedQueries,
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 

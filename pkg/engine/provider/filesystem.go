@@ -94,6 +94,9 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 		if !fileInfo.IsDir() {
 			c, openFileErr := openScanFile(scanPath, extensions)
 			if openFileErr != nil {
+				if openFileErr == ErrNotSupportedFile {
+					continue
+				}
 				return openFileErr
 			}
 			if sinkErr := sink(ctx, scanPath, c); sinkErr != nil {

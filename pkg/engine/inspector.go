@@ -51,6 +51,7 @@ type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}
 // GetOutputLines returns the number of lines to be displayed in results outputs
 type Tracker interface {
 	TrackQueryLoad(queryAggregation int)
+	TrackQueryExecuting(queryAggregation int)
 	TrackQueryExecution(queryAggregation int)
 	FailedDetectLine()
 	FailedComputeSimilarityID()
@@ -154,6 +155,7 @@ func NewInspector(
 			})
 		}
 	}
+
 	failedQueries := make(map[string]error)
 
 	queriesNumber := sumAllAggregatedQueries(opaQueries)
@@ -204,9 +206,9 @@ func (c *Inspector) Inspect(
 
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
-	for _, query := range c.queries {
-		if !contains(platforms, query.metadata.Platform) {
-			continue
+	for _, query := range c.getQueriesByPlat(platforms) {
+		if !hideProgress {
+			currentQuery <- float64(1)
 		}
 
 		vuls, err := c.doRun(&QueryContext{
@@ -231,23 +233,30 @@ func (c *Inspector) Inspect(
 		vulnerabilities = append(vulnerabilities, vuls...)
 
 		c.tracker.TrackQueryExecution(query.metadata.Aggregation)
-
-		if !hideProgress {
-			currentQuery <- float64(1)
-		}
 	}
 
 	return vulnerabilities, nil
 }
 
-func (c *Inspector) GetQueriesByPlat(platforms []string) int {
+func (c *Inspector) LenQueriesByPlat(platforms []string) int {
 	count := 0
 	for _, query := range c.queries {
 		if contains(platforms, query.metadata.Platform) {
+			c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
 			count++
 		}
 	}
 	return count
+}
+
+func (c *Inspector) getQueriesByPlat(platforms []string) []*preparedQuery {
+	queries := make([]*preparedQuery, 0)
+	for _, query := range c.queries {
+		if contains(platforms, query.metadata.Platform) {
+			queries = append(queries, query)
+		}
+	}
+	return queries
 }
 
 // EnableCoverageReport enables the flag to create a coverage report
