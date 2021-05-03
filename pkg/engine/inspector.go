@@ -4,12 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"strings"
-	"sync"
 	"time"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
@@ -189,15 +186,6 @@ func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
 	return sum
 }
 
-func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
-	wg.Add(1)
-	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
-	if hideProgress {
-		progressBar.Writer = io.Discard
-	}
-	go progressBar.Start(wg)
-}
-
 // Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(
 	ctx context.Context,
@@ -205,7 +193,8 @@ func (c *Inspector) Inspect(
 	files model.FileMetadatas,
 	hideProgress bool,
 	baseScanPaths []string,
-	platforms []string) ([]model.Vulnerability, error) {
+	platforms []string,
+	currentQuery chan<- float64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -216,9 +205,6 @@ func (c *Inspector) Inspect(
 
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
-	currentQuery := make(chan float64, 1)
-	var wg sync.WaitGroup
-	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
 	for idx, query := range c.queries {
 		if !contains(platforms, query.metadata.Platform) {
 			continue
@@ -250,8 +236,6 @@ func (c *Inspector) Inspect(
 
 		c.tracker.TrackQueryExecution(query.metadata.Aggregation)
 	}
-	close(currentQuery)
-	wg.Wait()
 	fmt.Println("\r")
 	return vulnerabilities, nil
 }
