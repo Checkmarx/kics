@@ -1,0 +1,9 @@
+{
+  "id": "ba066cda-e808-450d-92b6-f29109754d45",
+  "queryName": "Callback Object With Incorrect Ref",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Callback Object reference must always point to '#components/callbacks'",
+  "descriptionUrl": "https://swagger.io/specification/#callback-object",
+  "platform": "OpenAPI"
+}
