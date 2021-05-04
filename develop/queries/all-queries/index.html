@@ -4365,19 +4365,27 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Defined for Delete Operation<br/><sup><sub>3b497874-ae59-46dd-8d72-1868a3b8f150</sub></sup></td>
+<td>Success Response Code Undefined for Get Operation<br/><sup><sub>b2f275be-7d64-4064-b418-be6b431363a7</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Delete should define at least one success response (200, 201, 202 or 204)</td>
+<td>Get should define at least one success response (200 or 202)</td>
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Defined for Put Operation<br/><sup><sub>60b5f56b-66ff-4e1c-9b62-5753e16825bc</sub></sup></td>
+<td>Success Response Code Undefined for Put Operation<br/><sup><sub>60b5f56b-66ff-4e1c-9b62-5753e16825bc</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
 <td>Put should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Delete Operation<br/><sup><sub>3b497874-ae59-46dd-8d72-1868a3b8f150</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Delete should define at least one success response (200, 201, 202 or 204)</td>
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4389,7 +4397,7 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Defined for Post Operation<br/><sup><sub>f368dd2d-9344-4146-a05b-7c6faa1269ad</sub></sup></td>
+<td>Success Response Code Undefined for Post Operation<br/><sup><sub>f368dd2d-9344-4146-a05b-7c6faa1269ad</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -4397,7 +4405,7 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Defined for Patch Operation<br/><sup><sub>1908a8ee-927d-4166-8f18-241152170cc1</sub></sup></td>
+<td>Success Response Code Undefined for Patch Operation<br/><sup><sub>1908a8ee-927d-4166-8f18-241152170cc1</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -4461,6 +4469,14 @@
 <td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Header Parameter Named as 'Accept'<br/><sup><sub>f2702af5-6016-46cb-bbc8-84c766032095</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>The header Parameter should not be named as 'Accept'. If so, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Operation Without Successful HTTP Status Code<br/><sup><sub>48e9e1fe-cf79-45b5-93e6-8b55ae5dadfd</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -4499,6 +4515,14 @@
 <td>Best Practices</td>
 <td>The Header Response should not be named as 'Content-Type'. If so, it will be ignored.</td>
 <td><a href="https://swagger.io/specification/#response-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Header Parameter Named as 'Content-Type'<br/><sup><sub>72d259ca-9741-48dd-9f62-eb11f2936b37</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>The header Parameter should not be named as 'Content-Type'. If so, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Invalid Contact URL<br/><sup><sub>332cf2ad-380d-4b90-b436-46f8e635cf38</sub></sup></td>
@@ -4613,6 +4637,14 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Schema Object Incorrect Ref<br/><sup><sub>4cac7ace-b0fb-477d-830d-65395d9109d9</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object reference must always point to '#components/schemas'</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Operation Field Undefined<br/><sup><sub>20a482d5-c5d9-4a7a-b7a4-60d0805047b4</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -4693,6 +4725,14 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Callback Object With Incorrect Ref<br/><sup><sub>ba066cda-e808-450d-92b6-f29109754d45</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Callback Object reference must always point to '#components/callbacks'</td>
+<td><a href="https://swagger.io/specification/#callback-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Schema Discriminator Mismatch Defined Properties<br/><sup><sub>40d3df21-c170-4dbe-9c02-4289b51f994f</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -4723,6 +4763,14 @@
 <td>Structure and Semantics</td>
 <td>The property 'required' determines whether the parameter is mandatory. If the parameter location is 'path', this property is required and its value must be true.</td>
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Responses Object Is Empty<br/><sup><sub>990eaf09-d6f1-4c3c-b174-a517b1de8917</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Responses Object should not be empty</td>
+<td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Servers Array Undefined<br/><sup><sub>c66ebeaa-676c-40dc-a3ff-3e49395dcd5e</sub></sup></td>
