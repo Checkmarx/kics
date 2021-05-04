@@ -33,9 +33,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: "docs(kicsbot): update queries catalog"
+          title: "docs(queries): update queries catalog"
           token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "docs(kicsbot): update queries catalog"
+          commit-message: "docs(queries): update queries catalog"
           delete-branch: true
           branch: feature/kicsbot-update-queries-docs
           body: |

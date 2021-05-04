@@ -69,5 +69,5 @@ jobs:
           git add coverage.svg
           git add coverage.html
           git status
-          git commit -m 'chore: updating coverage'
+          git commit -m 'chore(tests): updating test coverage report and badge'
           git push origin gh-pages
