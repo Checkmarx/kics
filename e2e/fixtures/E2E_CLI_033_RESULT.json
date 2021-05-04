@@ -1,0 +1,40 @@
+{
+	"files_scanned": 1,
+	"files_parsed": 1,
+	"files_failed_to_scan": 0,
+	"queries_total": 519,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"queries": [
+		{
+			"query_name": "Redshift Cluster Logging Disabled",
+			"query_id": "15ffbacc-fa42-4f6f-a57d-2feac7365caa",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"files": [
+				{
+					"file_name": "file",
+					"similarity_id": "",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_redshift_cluster[default1]",
+					"search_value": "",
+					"expected_value": "'aws_redshift_cluster.logging' is true",
+					"actual_value": "'aws_redshift_cluster.logging' is undefined",
+					"value": null
+				}
+			],
+			"category": "Observability",
+			"description": "Make sure Logging is enabled for Redshift Cluster"
+		}
+	],
+	"scan_id": "console",
+	"severity_counters": {
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 1
+	},
+	"total_counter": 1
+}

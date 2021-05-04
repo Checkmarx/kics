@@ -14,8 +14,8 @@
 			"platform": "Terraform",
 			"files": [
 				{
-					"file_name": "/Users/rogeriop-macbook/git/kics/e2e/fixtures/samples/terraform-single.tf",
-					"similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
+					"file_name": "file",
+					"similarity_id": "",
 					"line": 1,
 					"issue_type": "MissingAttribute",
 					"search_key": "aws_redshift_cluster[default1]",

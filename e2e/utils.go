@@ -1,14 +1,11 @@
 package e2e
 
 import (
-	"encoding/json"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
-
-	"github.com/Checkmarx/kics/pkg/model"
 )
 
 type cmdOutput struct {
@@ -34,8 +31,8 @@ func runCommand(args []string) (*cmdOutput, error) {
 	}, nil
 }
 
-func readFixture(testName string) (string, error) {
-	return readFile(filepath.Join("fixtures", testName))
+func readFixture(testName string, folder string) (string, error) {
+	return readFile(filepath.Join(folder, testName))
 }
 
 func readFile(path string) (string, error) {
@@ -60,28 +57,4 @@ func getKICSBinaryPath(path string) []string {
 		rtnPath = path
 	}
 	return []string{rtnPath}
-}
-
-func readResultsJSON(path string) (*model.Summary, error) {
-	resultsContent, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	results := model.Summary{}
-
-	err = json.Unmarshal(resultsContent, &results)
-	if err != nil {
-		return nil, err
-	}
-	return &results, nil
-}
-
-func getExpectedResultsJSON(path string) (*model.Summary, error) {
-	expectedResultsPath := filepath.Join("fixtures", filepath.Clean(path))
-
-	results, err := readResultsJSON(expectedResultsPath)
-	if err != nil {
-		return nil, err
-	}
-	return results, nil
 }

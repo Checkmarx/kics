@@ -10,6 +10,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -25,7 +27,7 @@ type args struct {
 	args            []cmdArgs // args to pass to kics binary
 	expectedOut     []string  // path to file with expected output
 	expectedPayload []string
-	expectedResults []string
+	expectedResult  []string
 }
 
 type Validation func(string) bool
@@ -37,10 +39,10 @@ var tests = []struct {
 	removeFiles []string
 	validation  Validation
 }{
-	// E2E_CLI_001 - KICS command should display a help text in the CLI when provided with the
+	// E2E-CLI-001 - KICS command should display a help text in the CLI when provided with the
 	// 	 --help flag and it should describe the available commands plus the global flags
 	{
-		name: "E2E_CLI_001",
+		name: "E2E-CLI-001",
 		args: args{
 			args: []cmdArgs{
 				[]string{"--help"},
@@ -87,7 +89,7 @@ var tests = []struct {
 				"E2E_CLI_004",
 			},
 		},
-		wantStatus: []int{126, 126, 126},
+		wantStatus: []int{126, 126},
 	},
 	// E2E-CLI-005 - KICS scan with -- payload-path flag should create a file with the
 	// passed name containing the payload of the files scanned
@@ -96,17 +98,17 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"--payload-path", "output/payload.json"},
+					"--payload-path", "output/E2E_CLI_005_PAYLOAD.json"},
 			},
 			expectedOut: []string{
 				"E2E_CLI_005",
 			},
 			expectedPayload: []string{
-				"E2E_CLI_005_PAYLOAD",
+				"E2E_CLI_005_PAYLOAD.json",
 			},
 		},
 		wantStatus:  []int{50},
-		removeFiles: []string{"payload.json"},
+		removeFiles: []string{"E2E_CLI_005_PAYLOAD.json"},
 	},
 	// E2E-CLI-006 - KICS generate-id should exhibit
 	// a valid UUID in the CLI and return exit code 0
@@ -196,14 +198,14 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"-t", "TeRraFOrM", "--silent", "--payload-path", "output/payload.json"},
+					"-t", "TeRraFOrM", "--silent", "--payload-path", "output/E2E_CLI_011_PAYLOAD.json"},
 			},
 			expectedPayload: []string{
-				"E2E_CLI_011_PAYLOAD",
+				"E2E_CLI_011_PAYLOAD.json",
 			},
 		},
 		wantStatus:  []int{50},
-		removeFiles: []string{"payload.json"},
+		removeFiles: []string{"E2E_CLI_011_PAYLOAD.json"},
 	},
 	// E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
 	// without showing detailed results on each line of code
@@ -551,28 +553,48 @@ var tests = []struct {
 		name: "E2E-CLI-032",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan",
-					"--output-path",
-					"output/E2E-CLI-032.json",
-					"-q",
-					"../assets/queries",
-					"-p",
-					"fixtures/samples/terraform-single.tf",
+				[]string{"scan", "--output-path", "output/E2E_CLI_032_RESULT.json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
 				},
 			},
-			expectedResults: []string{
-				"E2E-CLI-032.json",
+			expectedResult: []string{
+				"E2E_CLI_032_RESULT.json",
 			},
 		},
 		removeFiles: []string{
-			"E2E-CLI-032.json",
+			"E2E_CLI_032_RESULT.json",
+		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-033 - KICS scan command with --output-path and --payload-path flags
+	// should performe a scan and create result file(s) and payload file
+	{
+		name: "E2E-CLI-033",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan",
+					"--output-path", "output/E2E_CLI_033_RESULT.json",
+					"--payload-path", "output/E2E_CLI_033_PAYLOAD.json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
+				},
+			},
+			expectedResult: []string{
+				"E2E_CLI_033_RESULT.json",
+			},
+			expectedPayload: []string{
+				"E2E_CLI_033_PAYLOAD.json",
+			},
+		},
+		removeFiles: []string{
+			"E2E_CLI_033_RESULT.json",
+			"E2E_CLI_033_PAYLOAD.json",
 		},
 		wantStatus: []int{40},
 	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := getKICSBinaryPath("")
+	kicsPath := getKICSBinaryPath("C:\\Users\\lucasm\\Documents\\golang\\kics\\kics\\bin\\kics.exe")
 
 	if testing.Short() {
 		t.Skip("skipping E2E tests in short mode.")
@@ -586,7 +608,7 @@ func Test_E2E_CLI(t *testing.T) {
 				require.NoError(t, err, "Capture output should not yield an error")
 				// Check exit status code
 				if !reflect.DeepEqual(out.status, tt.wantStatus[arg]) {
-					t.Errorf("kics status = %v, want status = %v", out.status, tt.wantStatus[arg])
+					t.Errorf("kics status = %v, actual status = %v", out.status, tt.wantStatus[arg])
 				}
 
 				if tt.validation != nil {
@@ -596,21 +618,19 @@ func Test_E2E_CLI(t *testing.T) {
 					}
 				}
 
-				if tt.args.expectedResults != nil {
-					for _, resultPath := range tt.args.expectedResults {
-						actualResults, errActual := readResultsJSON(filepath.Join("output", fmt.Sprintf("%s.json", tt.name)))
-						require.NoError(t, errActual)
-						expectedResults, errExpectResults := getExpectedResultsJSON(resultPath)
-						require.NoError(t, errExpectResults)
+				if tt.args.expectedResult != nil {
+					// Check result file
+					fileCheck(t, tt.args.expectedResult[arg], tt.args.expectedResult[arg], "result")
+				}
 
-						ok := reflect.DeepEqual(actualResults, expectedResults)
-						require.True(t, ok, "Expected and actual results are not equal")
-					}
+				if tt.args.expectedPayload != nil {
+					// Check payload file
+					fileCheck(t, tt.args.expectedPayload[arg], tt.args.expectedPayload[arg], "payload")
 				}
 
 				if tt.args.expectedOut != nil {
 					// Get and preapare expected output
-					want, errPrep := prepareExpected(tt.args.expectedOut[arg])
+					want, errPrep := prepareExpected(tt.args.expectedOut[arg], "fixtures")
 					require.NoError(t, errPrep, "Reading a fixture should not yield an error")
 
 					// Check Number of Lines
@@ -635,15 +655,14 @@ func Test_E2E_CLI(t *testing.T) {
 	}
 }
 
-func prepareExpected(path string) ([]string, error) {
-	cont, err := readFixture(path)
+func prepareExpected(path string, folder string) ([]string, error) {
+	cont, err := readFixture(path, folder)
 	if err != nil {
 		return []string{}, err
 	}
 	if strings.Contains(cont, "\r\n") {
 		return strings.Split(cont, "\r\n"), nil
 	}
-
 	return strings.Split(cont, "\n"), nil
 }
 
@@ -669,43 +688,61 @@ func checkJSONLog(t *testing.T, expec, want logMsg) {
 		"\nExpected Output line msg\n%s\nKICS Output line msg:\n%s\n", expec.Message, want.Message)
 }
 
-// func fileCheck(t *testing.T, remove, payload string) {
-// 	wantPayload, err := prepareExpected(payload)
-// 	require.NoError(t, err, "Reading a fixture should not yield an error")
-// 	expectPayload, err := prepareExpected(remove)
-// 	require.NoError(t, err, "Reading a fixture should not yield an error")
-// 	require.Equal(t, len(wantPayload), len(expectPayload),
-// 		"\nExpected file number of lines:%d\nKics file number of lines:%d\n", len(wantPayload), len(expectPayload))
-// 	checkJSONFile(t, wantPayload, expectPayload)
-// }
+func fileCheck(t *testing.T, outputPayload, payload string, location string) {
+	wantPayload, err := prepareExpected(payload, "fixtures")
+	require.NoError(t, err, "Reading a fixture should not yield an error")
+	expectPayload, err := prepareExpected(outputPayload, "output")
+	require.NoError(t, err, "Reading a fixture should not yield an error")
+	require.Equal(t, len(wantPayload), len(expectPayload),
+		"\n[%s] Expected file number of lines:%d\nKics file number of lines:%d\n", location, len(wantPayload), len(expectPayload))
+	setFields(t, wantPayload, expectPayload, location)
+}
 
-// func checkJSONFile(t *testing.T, expect, want []string) { // Needs to fixed
-// 	var wantI model.Documents
-// 	var expecI model.Documents
-// 	errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expecI)
-// 	require.NoError(t, errE, "Unmarshaling JSON file should not yield an error")
-// 	errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
-// 	require.NoError(t, errW, "Unmarshaling JSON file should not yield an error")
-// 	setFields(t, wantI, expecI, "payload")
-// }
+func setFields(t *testing.T, expect, want []string, location string) {
+	switch location {
 
-// func setFields(t *testing.T, want, expect model.Documents, location string) {
-// 	switch location {
-// 	case "payload":
-// 		for _, docs := range want.Documents {
-// 			require.NotNil(t, docs["id"]) // Here additional checks may be added as length of id, or contains in file
-// 			require.NotNil(t, docs["file"])
-// 			docs["id"] = "0"
-// 			docs["file"] = "file"
-// 		}
-// 		if !reflect.DeepEqual(expect, want) {
-// 			expectStr, err := test.StringifyStruct(expect)
-// 			require.NoError(t, err)
-// 			wantStr, err := test.StringifyStruct(want)
-// 			require.NoError(t, err)
-// 			t.Errorf("Expected:\n%v\n,want:\n%v\n", expectStr, wantStr)
-// 		}
-// 	case "result": // TODO
-// 	default:
-// 	}
-// }
+	case "payload":
+		var wantI model.Documents
+		var expectI model.Documents
+		errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectI)
+		require.NoError(t, errE, "[payload] Unmarshaling JSON file should not yield an error")
+		errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
+		require.NoError(t, errW, "[payload] Unmarshaling JSON file should not yield an error")
+
+		for _, docs := range wantI.Documents {
+			require.NotNil(t, docs["id"]) // Here additional checks may be added as length of id, or contains in file
+			require.NotNil(t, docs["file"])
+			docs["id"] = "0"
+			docs["file"] = "file"
+		}
+
+		if !reflect.DeepEqual(expectI, wantI) {
+			expectStr, err := test.StringifyStruct(expectI)
+			require.NoError(t, err)
+			wantStr, err := test.StringifyStruct(wantI)
+			require.NoError(t, err)
+			t.Errorf("Expected:\n%v\n,Actual:\n%v\n", expectStr, wantStr)
+		}
+
+	case "result":
+		expectI := model.Summary{}
+		wantI := model.Summary{}
+
+		errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectI)
+		require.NoError(t, errE, "[result] Unmarshaling JSON file should not yield an error")
+		errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
+		require.NoError(t, errW, "[result] Unmarshaling JSON file should not yield an error")
+
+		wantI.FailedSimilarityID = 0 // SIMILARITY ID - ERROR
+		for i := range wantI.Queries {
+			for j := range expectI.Queries[i].Files {
+				wantI.Queries[i].Files[j].FileName = "file"
+				wantI.Queries[i].Files[j].SimilarityID = ""
+			}
+		}
+
+		ok := reflect.DeepEqual(expectI, wantI)
+		require.True(t, ok, "Expected:\n%v\n,Actual:\n%v\n", expectI, wantI)
+	default:
+	}
+}
