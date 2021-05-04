@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.%s.%s.responses.%s.$ref={{%s}}", [n, oper, c, call_back["$ref"]]),
+		"searchKey": sprintf("paths.%s.%s.responses.%s.$ref", [n, oper, c]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Callback ref points to '#/components/callbacks'",
 		"keyActualValue": "Callback ref does not point to '#/components/callbacks'",
