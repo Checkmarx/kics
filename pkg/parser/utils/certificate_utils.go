@@ -64,7 +64,10 @@ func getCertificateInfo(filePath string) (certInfo, error) {
 func AddCertificateInfo(path, content string) map[string]interface{} {
 	var filePath string
 
-	if _, err := os.Stat(content); err != nil { // content is not a full valid path or is an incomplete path
+	_, err := os.Stat(content)
+
+	if err != nil { // content is not a full valid path or is an incomplete path
+		log.Trace().Msgf("path to the certificate content is not a valid: %s", content)
 		filePath = filepath.Join(filepath.Dir(path), content)
 	} else { // content is a full valid path
 		filePath = content
