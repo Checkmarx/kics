@@ -594,7 +594,7 @@ var tests = []struct {
 }
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := getKICSBinaryPath("C:\\Users\\lucasm\\Documents\\golang\\kics\\kics\\bin\\kics.exe")
+	kicsPath := getKICSBinaryPath("")
 
 	if testing.Short() {
 		t.Skip("skipping E2E tests in short mode.")
