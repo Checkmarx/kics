@@ -94,6 +94,9 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 		if !fileInfo.IsDir() {
 			c, openFileErr := openScanFile(scanPath, extensions)
 			if openFileErr != nil {
+				if openFileErr == ErrNotSupportedFile {
+					continue
+				}
 				return openFileErr
 			}
 			if sinkErr := sink(ctx, scanPath, c); sinkErr != nil {
@@ -185,7 +188,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	}
 
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		log.Info().Msgf("File ignored: %s", path)
+		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {

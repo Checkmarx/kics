@@ -3,12 +3,9 @@ package engine
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-	"io"
-	"sync"
+	"strings"
 	"time"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
@@ -53,6 +50,7 @@ type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{}
 // GetOutputLines returns the number of lines to be displayed in results outputs
 type Tracker interface {
 	TrackQueryLoad(queryAggregation int)
+	TrackQueryExecuting(queryAggregation int)
 	TrackQueryExecution(queryAggregation int)
 	FailedDetectLine()
 	FailedComputeSimilarityID()
@@ -158,6 +156,7 @@ func NewInspector(
 			})
 		}
 	}
+
 	failedQueries := make(map[string]error)
 
 	queriesNumber := sumAllAggregatedQueries(opaQueries)
@@ -193,22 +192,15 @@ func sumAllAggregatedQueries(opaQueries []*preparedQuery) int {
 	return sum
 }
 
-func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
-	wg.Add(1)
-	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
-	if hideProgress {
-		progressBar.Writer = io.Discard
-	}
-	go progressBar.Start(wg)
-}
-
 // Inspect scan files and return the a list of vulnerabilities found on the process
 func (c *Inspector) Inspect(
 	ctx context.Context,
 	scanID string,
 	files model.FileMetadatas,
 	hideProgress bool,
-	baseScanPaths []string) ([]model.Vulnerability, error) {
+	baseScanPaths []string,
+	platforms []string,
+	currentQuery chan<- float64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -219,12 +211,9 @@ func (c *Inspector) Inspect(
 
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
-	currentQuery := make(chan float64, 1)
-	var wg sync.WaitGroup
-	startProgressBar(hideProgress, len(c.queries), &wg, currentQuery)
-	for idx, query := range c.queries {
+	for _, query := range c.getQueriesByPlat(platforms) {
 		if !hideProgress {
-			currentQuery <- float64(idx)
+			currentQuery <- float64(1)
 		}
 
 		vuls, err := c.doRun(&QueryContext{
@@ -250,10 +239,30 @@ func (c *Inspector) Inspect(
 
 		c.tracker.TrackQueryExecution(query.metadata.Aggregation)
 	}
-	close(currentQuery)
-	wg.Wait()
-	fmt.Println("\r")
+
 	return vulnerabilities, nil
+}
+
+// LenQueriesByPlat returns the number of queries by platforms
+func (c *Inspector) LenQueriesByPlat(platforms []string) int {
+	count := 0
+	for _, query := range c.queries {
+		if contains(platforms, query.metadata.Platform) {
+			c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
+			count++
+		}
+	}
+	return count
+}
+
+func (c *Inspector) getQueriesByPlat(platforms []string) []*preparedQuery {
+	queries := make([]*preparedQuery, 0)
+	for _, query := range c.queries {
+		if contains(platforms, query.metadata.Platform) {
+			queries = append(queries, query)
+		}
+	}
+	return queries
 }
 
 // EnableCoverageReport enables the flag to create a coverage report
@@ -359,4 +368,21 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	}
 
 	return vulnerabilities, nil
+}
+
+// contains is a simple method to check if a slice
+// contains an entry
+func contains(s []string, e string) bool {
+	if e == "common" {
+		return true
+	}
+	if e == "k8s" {
+		e = "kubernetes"
+	}
+	for _, a := range s {
+		if strings.EqualFold(a, e) {
+			return true
+		}
+	}
+	return false
 }
