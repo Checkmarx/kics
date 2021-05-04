@@ -13,10 +13,9 @@ CxPolicy[result] {
 	checkObject := checkObjects[_]
 	check_vulnerability(checkObject)
 	allPath := [x | merge_path(path[i]) != ""; x := merge_path(path[i])]
-	resolvedPath := resolve_path(checkObject, allPath)
 	result := {
 		"documentId": docs.id,
-		"searchKey": resolvedPath,
+		"searchKey": resolve_path(checkObject, allPath),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Hardcoded secret key should not appear in source",
 		"keyActualValue": value,
@@ -39,7 +38,7 @@ merge_path(pathItem) = item {
 
 resolve_path(obj, path) = resolved {
 	obj.id != ""
-	resolved := sprintf("FROM={{%s}}.{{%s}}", [concat(".", path), obj.id])
+	resolved := sprintf("FROM=%s.{{%s}}", [concat(".", path), obj.id])
 } else = resolved {
 	resolved := concat(".", path)
 }
