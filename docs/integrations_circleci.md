@@ -1,0 +1,47 @@
+# Running KICS in CircleCI
+
+You can integrate KICS into your CircleCI workflows.
+
+This document provides you with an example on how to run KICS scans in a pipeline.
+
+## Example setup with GitHub:
+
+Enable CircleCI to access your personal profile or GitHub organization.
+
+Create a `.circleci` directory in your project's root and place a `config.yaml` inside:
+
+```yaml
+version: 2.1
+jobs:
+  kics:
+    docker:
+      - image: checkmarx/kics:latest-alpine
+    steps:
+      - checkout
+      - run:
+          name: Run KICS
+          command: |
+            /app/bin/kics scan -p ${PWD} -o ~/results.json --ci
+      - store_artifacts:
+          path: ~/results.json
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      # etc...
+      - kics
+
+```
+
+After running a pipeline you will be able to see the Run KICS step inside the workflow details:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-build.png" width="850">
+
+Go to the artifacts tab to inspect the results:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-artifacts.png" width="850">
+
+The results will be displayed in plain text:
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-results.png" width="850">
