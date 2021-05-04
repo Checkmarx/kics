@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Header Parameter Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 58,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 36,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type'",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]
