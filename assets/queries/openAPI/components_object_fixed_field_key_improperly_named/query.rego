@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	obj := doc.components[field][key]
-	regex.match(`^[a-zA-Z0-9\\.\\-_]+$`, key) == false
+	not is_alphanumeric(key)
 
 	result := {
 		"documentId": doc.id,
@@ -16,4 +16,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("components.{{%s}}.{{%s}} is properly named", [field, key]),
 		"keyActualValue": sprintf("components.{{%s}}.{{%s}}is improperly named", [field, key]),
 	}
+}
+
+is_alphanumeric(key) {
+	regex.match(`^[a-zA-Z0-9\\.\\-_]+$`, key) == true
 }
