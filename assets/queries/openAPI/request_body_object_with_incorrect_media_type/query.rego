@@ -36,5 +36,7 @@ CxPolicy[result] {
 
 incorrect_media_type(content, media_type) {
 	object.get(content, "encoding", "undefined") != "undefined"
-	regex.match("((^multipart/[a-zA-Z-]+)|application/x-www-form-urlencoded)", media_type) == false
+
+	media_types := {"multipart/", "application/x-www-form-urlencoded"}
+	count({x | m := media_types[x]; startswith(media_type, m) == true}) == 0
 }
