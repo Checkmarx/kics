@@ -266,7 +266,7 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
 func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) {
 	expression := c.rangeSource(expr.Range())
 	if strings.HasPrefix(expression, "var.") {
-		log.Warn().Msgf("Variable ${%s} value not found", expression)
+		log.Trace().Msgf("Variable ${%s} value not found", expression)
 	}
 	return "${" + expression + "}", nil
 }

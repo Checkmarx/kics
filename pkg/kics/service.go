@@ -5,7 +5,6 @@ import (
 	"io"
 	"sync"
 
-	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -70,7 +69,6 @@ func (s *Service) StartScan(
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
 	}
-	metrics.Metric.Start("inspect")
 	vulnerabilities, err := s.Inspector.Inspect(
 		ctx,
 		scanID,
@@ -84,7 +82,6 @@ func (s *Service) StartScan(
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
-	metrics.Metric.Stop()
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to save vulnerabilities")
 	}
