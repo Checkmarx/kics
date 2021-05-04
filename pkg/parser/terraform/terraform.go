@@ -5,6 +5,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
@@ -36,6 +37,49 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil
 }
 
+func processContent(elements model.Document, content, path string) {
+	var certInfo map[string]interface{}
+	if content != "" {
+		certInfo = utils.AddCertificateInfo(path, content)
+		if certInfo != nil {
+			elements["certificate_body"] = certInfo
+		}
+	}
+}
+
+func processElements(elements model.Document, path string) {
+	for k, v3 := range elements { // resource elements
+		if !(k == "certificate_body") {
+			continue
+		}
+		content := utils.CheckCertificate(v3.(string))
+		processContent(elements, content, path)
+	}
+}
+
+func processResources(doc model.Document, path string) {
+	var resourcesElements model.Document
+	var elements model.Document
+
+	for _, resources := range doc { // iterate over resources
+		resourcesElements = resources.(model.Document)
+		for _, v2 := range resourcesElements { // resource name
+			elements = v2.(model.Document)
+			processElements(elements, path)
+		}
+	}
+}
+
+func addExtraInfo(json []model.Document, path string) []model.Document {
+	for _, documents := range json { // iterate over documents
+		if documents["resource"] != nil {
+			processResources(documents["resource"].(model.Document), path)
+		}
+	}
+
+	return json
+}
+
 // Parse execute parser for the content in a file
 func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
@@ -47,7 +91,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
 
-	return []model.Document{fc}, errors.Wrap(parseErr, "failed terraform parse")
+	return addExtraInfo([]model.Document{fc}, path), errors.Wrap(parseErr, "failed terraform parse")
 }
 
 // SupportedExtensions returns Terraform extensions

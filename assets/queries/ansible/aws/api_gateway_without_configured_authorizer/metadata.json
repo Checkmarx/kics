@@ -1,0 +1,9 @@
+{
+  "id": "b16cdb37-ce15-4ab2-8401-d42b05d123fc",
+  "queryName": "API Gateway Without Configured Authorizer",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "API Gateway REST API should have an API Gateway Authorizer",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html",
+  "platform": "Ansible"
+}

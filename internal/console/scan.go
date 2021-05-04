@@ -29,6 +29,7 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
+	"github.com/Checkmarx/kics/pkg/scanner"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -138,7 +139,7 @@ func initializeConfig(cmd *cobra.Command) error {
 			return nil
 		}
 		if len(path) > 1 {
-			warning = append(warning, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
 			return nil
 		}
 		configpath := path[0]
@@ -397,7 +398,7 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
 func createService(inspector *engine.Inspector,
 	t kics.Tracker,
 	store kics.Storage,
-	querySource source.FilesystemSource) (*kics.Service, error) {
+	querySource source.FilesystemSource) ([]*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider()
 	if err != nil {
 		return nil, err
@@ -421,27 +422,31 @@ func createService(inspector *engine.Inspector,
 		return nil, err
 	}
 
-	return &kics.Service{
-		SourceProvider: filesSource,
-		Storage:        store,
-		Parser:         combinedParser,
-		Inspector:      inspector,
-		Tracker:        t,
-		Resolver:       combinedResolver,
-	}, nil
+	services := make([]*kics.Service, 0, len(combinedParser))
+
+	for _, parser := range combinedParser {
+		services = append(services, &kics.Service{
+			SourceProvider: filesSource,
+			Storage:        store,
+			Parser:         parser,
+			Inspector:      inspector,
+			Tracker:        t,
+			Resolver:       combinedResolver,
+		})
+	}
+	return services, nil
 }
 
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
-
-	for _, warn := range warning {
+	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
 	}
 
 	printer := consoleHelpers.NewPrinter(min)
 	printer.Success.Printf("\n%s\n", banner)
 
-	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", getVersion())
+	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
@@ -476,15 +481,15 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	service, err := createService(inspector, t, store, *querySource)
+	services, err := createService(inspector, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
 		return err
 	}
 
-	if scanErr := service.StartScan(ctx, scanID, noProgress); scanErr != nil {
-		log.Err(scanErr)
-		return scanErr
+	if err = scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
+		log.Err(err)
+		return err
 	}
 
 	results, err := store.GetVulnerabilities(ctx, scanID)
@@ -524,7 +529,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summa
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
 		TotalQueries:           t.LoadedQueries,
-		FailedToExecuteQueries: t.LoadedQueries - t.ExecutedQueries,
+		FailedToExecuteQueries: t.ExecutingQueries - t.ExecutedQueries,
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
@@ -582,10 +587,12 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 func gracefulShutdown() {
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-	go func() {
+	showErrors := consoleHelpers.ShowError("errors")
+	interruptCode := constants.SignalInterruptCode
+	go func(showErrors bool, interruptCode int) {
 		<-c
-		if consoleHelpers.ShowError("errors") {
-			os.Exit(constants.SignalInterruptCode)
+		if showErrors {
+			os.Exit(interruptCode)
 		}
-	}()
+	}(showErrors, interruptCode)
 }

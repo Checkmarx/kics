@@ -10,8 +10,11 @@ builds:
     goarch:
       - amd64
     ldflags:
-      - -X github.com/Checkmarx/kics/internal/constants.Version={{.Version}}-{{.ShortCommit}}
-      - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{.Commit}}
+      - -s
+      - -w
+      - -X github.com/Checkmarx/kics/internal/constants.Version={{ .Version }}-{{ .ShortCommit }}
+      - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{ .Commit }}
+      - -X github.com/Checkmarx/kics/internal/constants.SentryDSN={{ .Env.SENTRY_DSN }}
 archives:
   - builds: [kics]
     format_overrides:

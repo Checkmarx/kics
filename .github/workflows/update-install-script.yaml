@@ -54,10 +54,10 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: "chore(kicsbot): update install script"
+          title: "chore(install): update install script"
           token: ${{ secrets.KICS_BOT_PAT }}
           delete-branch: true
-          commit-message: "chore(kicsbot): update install script"
+          commit-message: "chore(install): update install script"
           branch: feature/kicsbot-update-install-script
           base: master
           body: |

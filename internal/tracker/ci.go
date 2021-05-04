@@ -10,6 +10,7 @@ import (
 // and how many files were found and executed
 type CITracker struct {
 	LoadedQueries      int
+	ExecutingQueries   int
 	ExecutedQueries    int
 	FoundFiles         int
 	ParsedFiles        int
@@ -37,6 +38,11 @@ func (c *CITracker) GetOutputLines() int {
 // TrackQueryLoad adds a loaded query
 func (c *CITracker) TrackQueryLoad(queryAggregation int) {
 	c.LoadedQueries += queryAggregation
+}
+
+// TrackQueryExecuting adds a executing queries
+func (c *CITracker) TrackQueryExecuting(queryAggregation int) {
+	c.ExecutingQueries += queryAggregation
 }
 
 // TrackQueryExecution adds a query executed

@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/item": {
+      "trace": {
+        "operationId": "traceItem",
+        "summary": "Trace item",
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "default": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateItem",
+        "summary": "Update item",
+        "responses": {
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "8bfed1c6-2d59-4924-bc7f-9b9d793ed0df",
+  "queryName": "Parameter Object Content With Multiple Entries",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The map content property of the parameter object should only contain one entry",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}

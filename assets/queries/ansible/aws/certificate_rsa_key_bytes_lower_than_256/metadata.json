@@ -1,0 +1,9 @@
+{
+  "id": "d5ec2080-340a-4259-b885-f833c4ea6a31",
+  "queryName": "Certificate RSA Key Bytes Lower Than 256",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The certificate should use a RSA key with a length equal to or higher than 256 bytes",
+  "descriptionUrl": "https://docs.ansible.com/ansible/2.10/collections/community/aws/aws_acm_module.html",
+  "platform": "Ansible"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Certificate RSA Key Bytes Lower Than 256",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Certificate RSA Key Bytes Lower Than 256",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive2.tf"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "874d68a3-bfbe-4a4b-aaa0-9e74d7da634b",
+  "queryName": "Certificate RSA Key Bytes Lower Than 256",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The certificate should use a RSA key with a length equal to or higher than 256 bytes",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
+  "platform": "Terraform"
+}
