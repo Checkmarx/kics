@@ -155,6 +155,28 @@ var (
 			},
 		},
 		{
+			name: "Windows path to file",
+			calls: []computeSimilarityIDParams{
+				{
+					basePaths:   []string{".\\my\\test\\file.tf"},
+					filePath:    ".\\my\\test\\file.tf",
+					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
+					searchKey:   "Resources.MySearchKeyExample",
+					searchValue: "TCP,22",
+				},
+				{
+					basePaths:   []string{filepath.Join(".", "my", "test", "file.tf")},
+					filePath:    filepath.Join(".", "my", "test", "file.tf"),
+					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
+					searchKey:   "Resources.MySearchKeyExample",
+					searchValue: "TCP,22",
+				},
+			},
+			expectedFunction: func(t *testing.T, firstHash, secondHash *string) {
+				require.Equal(t, *firstHash, *secondHash)
+			},
+		},
+		{
 			name: "Relative directory resolution",
 			calls: []computeSimilarityIDParams{
 				{
