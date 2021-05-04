@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Parameter Object Content With Multiple Entries",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object Content With Multiple Entries",
+    "severity": "INFO",
+    "line": 78,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object Content With Multiple Entries",
+    "severity": "INFO",
+    "line": 44,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Parameter Object Content With Multiple Entries",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Parameter Object Content With Multiple Entries",
+    "severity": "INFO",
+    "line": 48,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Parameter Object Content With Multiple Entries",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]
