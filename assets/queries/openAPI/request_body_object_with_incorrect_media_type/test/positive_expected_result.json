@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Request Body Object With Incorrect Media Type",
+    "severity": "INFO",
+    "line": 64,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Request Body Object With Incorrect Media Type",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Request Body Object With Incorrect Media Type",
+    "severity": "INFO",
+    "line": 41,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Request Body Object With Incorrect Media Type",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive4.yaml"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "58f06434-a88c-4f74-826c-db7e10cc7def",
+  "queryName": "Request Body Object With Incorrect Media Type",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The field 'content' of the request body object should be set to 'multipart' or 'application/x-www-form-urlencoded' when field 'encoding' is set.",
+  "descriptionUrl": "https://swagger.io/specification/#media-type-object",
+  "platform": "OpenAPI"
+}
