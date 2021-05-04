@@ -1,8 +1,8 @@
 ## Contribution
 
-We would like to THANK YOU for considering contributing to KICS!  
+We would like to THANK YOU for considering contributing to KICS!
 
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.  
+KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
 
 Within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
@@ -12,7 +12,7 @@ Good news! You don't have to contribute code. There are plenty of ways you can c
 
 - Reporting new [bugs or issues](https://github.com/Checkmarx/kics/issues)
 - Help triaging issues
-- Improving and translating the documentation 
+- Improving and translating the documentation
 - Volunteering to maintain the project
 
 #### Code of Conduct
@@ -26,34 +26,35 @@ By participating and contributing to the project, you agree to uphold our [Code 
 Follow the instructions below to setup local KICS development environment and push your changes.
 
 1. Fork the `kics` repo on GitHub.
-1. Clone your fork locally:  
-   ```
+1. Clone your fork locally:
+   ```shell
    git clone https://github.com/Checkmarx/kics.git
    ```
-1. Create a branch for local development.  
-Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>* or *hotfix/issue#-descriptive-name*):  
-   ```
+1. Create a branch for local development.
+Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>* or *hotfix/issue#-descriptive-name*):
+   ```shell
    git checkout -b <name-of-your-issue>
    ```
 1. Make your changes locally.
-1. Validate your changes to reassure they meet project quality and contribution standards:  
-   ```
+1. Validate your changes to reassure they meet project quality and contribution standards:
+   ```shell
    golint .
-   ```  
    ```
+   ```shell
    go mod vendor
-   ```  
    ```
+   ```shell
    go test -mod=vendor -v ./...
    ```
-1. Commit your changes and push your branch to GitHub:  
-   ```
+1. Commit your changes and push your branch to GitHub:
+   ```shell
    git add .
-   ```  
    ```
-   git commit
-   ```  
+   We recommend following [conventional commits messages](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
+   ```shell
+   git commit -m "feat(CLI): add new flag --blabla"
    ```
+   ```shell
    git push --set-upstream origin <name-of-your-issue>
    ```
 1. Submit a pull request on GitHub website.

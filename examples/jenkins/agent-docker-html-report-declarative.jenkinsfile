@@ -1,0 +1,32 @@
+pipeline {
+    agent {
+        docker {
+            image 'ubuntu:latest'
+        }
+    }
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+    stages {
+        stage('Checkout Code') {
+          steps {
+              git branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples'
+              stash includes: '**/*', name: 'source'
+          }
+        }
+        stage('KICS scan') {
+            steps {
+                script {
+                    docker.image('checkmarx/kics:latest-alpine').inside("--entrypoint=''") {
+                      unstash 'source'
+                      sh('/app/bin/kics -p \$(pwd) -q /app/bin/assets/queries --ci -o results.html')
+                      archiveArtifacts(artifacts: 'results.html', fingerprint: true)
+                      publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '.', reportFiles: 'results.html', reportName: 'KICS Results', reportTitles: ''])
+                    }
+                }
+            }
+        }
+    }
+}

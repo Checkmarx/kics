@@ -37,10 +37,9 @@ func (b *Builder) Add(p kindParser) *Builder {
 
 // Build prepares parsers and associates a parser to its extension and returns it
 func (b *Builder) Build(types []string) ([]*Parser, error) {
-	paresrs := make([]*Parser, 0, len(b.parsers))
+	parserSlice := make([]*Parser, 0, len(b.parsers))
 	var suportedTypes []string
 	for _, parser := range b.parsers {
-		// parsers := make(map[string]kindParser, len(b.parsers))
 		var parsers kindParser
 		extensions := make(model.Extensions, len(b.parsers))
 		platforms := parser.SupportedTypes()
@@ -50,7 +49,7 @@ func (b *Builder) Build(types []string) ([]*Parser, error) {
 			for _, ext := range parser.SupportedExtensions() {
 				extensions[ext] = struct{}{}
 			}
-			paresrs = append(paresrs, &Parser{
+			parserSlice = append(parserSlice, &Parser{
 				parsers:    parsers,
 				extensions: extensions,
 				Platform:   platforms,
@@ -62,7 +61,7 @@ func (b *Builder) Build(types []string) ([]*Parser, error) {
 		return []*Parser{}, err
 	}
 
-	return paresrs, nil
+	return parserSlice, nil
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS

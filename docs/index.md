@@ -16,7 +16,7 @@
         <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.4/kics_1.2.4_linux_x64.tar.gz">Linux</a>
         <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.2.4/kics_1.2.4_darwin_x64.tar.gz">MacOS</a>
         <hr/>
-        <a class="btn btn-outline-success"  href="https://docs.kics.io/CONTRIBUTING">Contribute!</a>
+        <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
 

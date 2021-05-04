@@ -3,7 +3,7 @@ name: goreleaser
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   goreleaser:
@@ -39,3 +39,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}

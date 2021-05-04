@@ -1,0 +1,9 @@
+{
+  "id": "d4e43db5-54d8-4dda-b3c2-0dc6f31a46bd",
+  "queryName": "Header Response Named as 'Content-Type'",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "The Header Response should not be named as 'Content-Type'. If so, it will be ignored.",
+  "descriptionUrl": "https://swagger.io/specification/#response-object",
+  "platform": "OpenAPI"
+}

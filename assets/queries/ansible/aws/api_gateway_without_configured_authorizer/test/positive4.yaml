@@ -1,0 +1,21 @@
+- name: Setup AWS API Gateway setup on AWS and deploy API 222
+  aws_api_gateway:
+    swagger_text: |
+      openapi: 3.0.0
+      info:
+        title: Sample API
+        description: Optional multiline or single-line description
+        version: 0.1.9
+      components:
+        ssecuritySchemes:
+          request_authorizer_single_stagevar:
+            type: apiKey
+            name: Unused
+            in: header
+            x-amazon-apigateway-authtype: custom
+    stage: production
+    cache_enabled: true
+    cache_size: "1.6"
+    tracing_enabled: true
+    endpoint_type: EDGE
+    state: present

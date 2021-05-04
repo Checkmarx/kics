@@ -8,6 +8,7 @@ COMMIT := $(shell git rev-parse HEAD)
 VERSION := snapshot-$(shell echo ${COMMIT} | cut -c1-8)
 IMAGE_TAG := dev
 TARGET_BIN ?= bin/kics
+CONSTANTS_PATH = github.com/Checkmarx/kics/internal/constants
 
 .PHONY: clean
 clean: ## remove files created during build
@@ -16,6 +17,7 @@ clean: ## remove files created during build
 	rm -rf bin
 	rm -rf vendor
 	rm -f coverage.*
+	rm -rf **/*.log
 
 .PHONY: mod-tidy
 mod-tidy: ## go mod tidy - download and cleanup modules
@@ -44,15 +46,14 @@ build-all: ## go build for both kics and query builder
 build-all: lint generate
 	$(call print-target)
 	@go build -o bin/ \
-		-ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" ./...
+		-ldflags "-X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.SCMCommit=${COMMIT}" ./...
 	@mv bin/console bin/kics
 
 .PHONY: build
 build: ## go build
 build: generate
 	$(call print-target)
-	@go build -o ${TARGET_BIN} \
-		-ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" \
+	@go build -o ${TARGET_BIN} -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION}" \
 		cmd/console/main.go
 
 .PHONY: go-clean

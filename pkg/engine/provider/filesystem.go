@@ -188,7 +188,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	}
 
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		log.Info().Msgf("File ignored: %s", path)
+		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	if !extensions.Include(filepath.Ext(path)) && !extensions.Include(filepath.Base(path)) {

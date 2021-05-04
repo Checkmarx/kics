@@ -1,0 +1,9 @@
+{
+  "id": "a5375be3-521c-43bb-9eab-e2432e368ee4",
+  "queryName": "Unknown Prefix",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "The media type prefix should be set as 'application', 'audio', 'font', 'example', 'image', 'message', 'model', 'multipart', 'text' or 'video'",
+  "descriptionUrl": "https://swagger.io/specification/#media-type-object",
+  "platform": "OpenAPI"
+}

@@ -127,12 +127,22 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
 		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
-		map[string]bool{})
+		map[string]bool{}, 60)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	vulnerabilities, err := inspector.Inspect(ctx, scanID, getFileMetadatas(tb, filesPath), true, []string{BaseTestsScanPath})
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	currentQuery := make(chan float64)
+
+	vulnerabilities, err := inspector.Inspect(
+		ctx,
+		scanID,
+		getFileMetadatas(tb, filesPath),
+		true, []string{BaseTestsScanPath},
+		platforms,
+		currentQuery,
+	)
 	require.Nil(tb, err)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
 }

@@ -1,0 +1,8 @@
+- name: Setup AWS API Gateway setup on AWS and deploy API definition2
+  aws_api_gateway:
+    stage: production
+    cache_enabled: true
+    cache_size: "1.6"
+    tracing_enabled: true
+    endpoint_type: EDGE
+    state: present

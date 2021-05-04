@@ -16,36 +16,51 @@ import (
 func TestParser_Parse(t *testing.T) {
 	p := initilizeBuilder()
 
-	docs, kind, err := p.Parse("test.json", []byte(`
+	for _, parser := range p {
+		if _, ok := parser.extensions[".json"]; !ok {
+			continue
+		}
+		docs, kind, err := parser.Parse("test.json", []byte(`
 {
 	"martin": {
-		"name": "Martin D'vloper"
+		"name": "CxBraga"
 	}
 }
 `))
-	require.NoError(t, err)
-	require.Len(t, docs, 1)
-	require.Contains(t, docs[0], "martin")
-	require.Equal(t, model.KindJSON, kind)
+		require.NoError(t, err)
+		require.Len(t, docs, 1)
+		require.Contains(t, docs[0], "martin")
+		require.Equal(t, model.KindJSON, kind)
+	}
 
-	docs, kind, err = p.Parse("test.yaml", []byte(`
+	for _, parser := range p {
+		if _, ok := parser.extensions[".yaml"]; !ok {
+			continue
+		}
+		docs, kind, err := parser.Parse("test.yaml", []byte(`
 martin:
-  name: Martin D'vloper
+  name: CxBraga
 `))
-	require.NoError(t, err)
-	require.Len(t, docs, 1)
-	require.Contains(t, docs[0], "martin")
-	require.Equal(t, model.KindYAML, kind)
+		require.NoError(t, err)
+		require.Len(t, docs, 1)
+		require.Contains(t, docs[0], "martin")
+		require.Equal(t, model.KindYAML, kind)
+	}
 
-	docs, kind, err = p.Parse("Dockerfile", []byte(`
-	FROM foo
-	COPY . /
-	RUN echo hello
+	for _, parser := range p {
+		if _, ok := parser.extensions[".dockerfile"]; !ok {
+			continue
+		}
+		docs, kind, err := parser.Parse("Dockerfile", []byte(`
+FROM foo
+COPY . /
+RUN echo hello
 `))
 
-	require.NoError(t, err)
-	require.Len(t, docs, 1)
-	require.Equal(t, model.KindDOCKER, kind)
+		require.NoError(t, err)
+		require.Len(t, docs, 1)
+		require.Equal(t, model.KindDOCKER, kind)
+	}
 }
 
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
@@ -55,18 +70,26 @@ func TestParser_Empty(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error building parser: %s", err)
 	}
-	doc, kind, err := p.Parse("test.json", nil)
-	require.Nil(t, doc)
-	require.Equal(t, model.FileKind(""), kind)
-	require.Error(t, err)
-	require.Equal(t, ErrNotSupportedFile, err)
+	for _, parser := range p {
+		doc, kind, err := parser.Parse("test.json", nil)
+		require.Nil(t, doc)
+		require.Equal(t, model.FileKind(""), kind)
+		require.Error(t, err)
+		require.Equal(t, ErrNotSupportedFile, err)
+	}
 }
 
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := initilizeBuilder()
+	extensions := make(map[string]struct{})
 
-	extensions := p.SupportedExtensions()
+	for _, parser := range p {
+		got := parser.SupportedExtensions()
+		for key := range got {
+			extensions[key] = struct{}{}
+		}
+	}
 	require.NotNil(t, extensions)
 	require.Contains(t, extensions, ".json")
 	require.Contains(t, extensions, ".tf")
@@ -75,7 +98,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, "Dockerfile")
 }
 
-func initilizeBuilder() *Parser {
+func initilizeBuilder() []*Parser {
 	bd, _ := NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).

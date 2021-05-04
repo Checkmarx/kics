@@ -126,23 +126,24 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 	combinedParser := getCombinedParser()
 	files := make(model.FileMetadatas, 0)
 
-	parsedDocuments, kind, err := combinedParser.Parse(filePath, content)
-	require.NoError(t, err)
-	for _, document := range parsedDocuments {
-		files = append(files, model.FileMetadata{
-			ID:           uuid.NewString(),
-			ScanID:       scanID,
-			Document:     document,
-			OriginalData: string(content),
-			Kind:         kind,
-			FileName:     filePath,
-		})
+	for _, parser := range combinedParser {
+		parsedDocuments, kind, err := parser.Parse(filePath, content)
+		for _, document := range parsedDocuments {
+			require.NoError(t, err)
+			files = append(files, model.FileMetadata{
+				ID:           uuid.NewString(),
+				ScanID:       scanID,
+				Document:     document,
+				OriginalData: string(content),
+				Kind:         kind,
+				FileName:     filePath,
+			})
+		}
 	}
-
 	return files
 }
 
-func getCombinedParser() *parser.Parser {
+func getCombinedParser() []*parser.Parser {
 	bd, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).

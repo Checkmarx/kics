@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Sample CloudFormation template for DynamoDB with customer managed CMK
-resources:
+Resources:
   dynamodbKMSKey:
     Type: AWS::KMS::Key
     Properties:
@@ -9,8 +9,7 @@ resources:
         Version: "2012-10-17"
         Id: "key-default-1"
         Statement:
-         -
-            Sid: "Allow administration of the key"
+          - Sid: "Allow administration of the key"
             Effect: "Allow"
             Principal:
               AWS: "arn:aws:iam::123456789012:user/ana"
@@ -28,8 +27,7 @@ resources:
               - "kms:ScheduleKeyDeletion"
               - "kms:CancelKeyDeletion"
             Resource: "*"
-         -
-            Sid: "Allow use of the key"
+          - Sid: "Allow use of the key"
             Effect: "Allow"
             Principal:
               AWS: "arn:aws:iam::123456789012:user/ana"
@@ -47,12 +45,10 @@ resources:
     Properties:
       TableName: "dynamodb-kms"
       AttributeDefinitions:
-        -
-          AttributeName: pk
+        - AttributeName: pk
           AttributeType: S
       KeySchema:
-        -
-          AttributeName: pk
+        - AttributeName: pk
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
       SSESpecification:

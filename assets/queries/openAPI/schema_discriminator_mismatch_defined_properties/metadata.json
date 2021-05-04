@@ -1,0 +1,9 @@
+{
+  "id": "40d3df21-c170-4dbe-9c02-4289b51f994f",
+  "queryName": "Schema Discriminator Mismatch Defined Properties",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema discriminator values should match defined properties.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

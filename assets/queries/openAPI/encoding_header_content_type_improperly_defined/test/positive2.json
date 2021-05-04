@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0",
+    "contact": {
+      "name": "contact",
+      "url": "https://www.google.com/",
+      "email": "user@gmail.c"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "discriminator": {
+                    "propertyName": "petType"
+                  },
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "encoding": {
+                  "profileImage": {
+                    "headers": {
+                      "Content-Type": {
+                        "contentType": "image/png, image/jpeg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "listVersionsv2",
+        "summary": "List API versions"
+      }
+    }
+  }
+}
