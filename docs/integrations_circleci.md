@@ -34,7 +34,7 @@ workflows:
 
 ```
 
-After running a pipeline you will be able to see the Run KICS step inside the workflow details:
+After running a pipeline, you will be able to see "Run KICS" step inside workflow's details:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-build.png" width="850">
 
@@ -42,6 +42,6 @@ Go to the artifacts tab to inspect the results:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-artifacts.png" width="850">
 
-The results will be displayed in plain text:
+Results will be displayed in plain text:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-results.png" width="850">
