@@ -15,6 +15,7 @@ type serviceSlice []*kics.Service
 
 // StartScan will run concurrent scans by parser
 func StartScan(ctx context.Context, scanID string, noProgress bool, services serviceSlice) error {
+	defer metrics.Metric.Stop()
 	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
@@ -47,7 +48,6 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 		close(errCh)
 		return err
 	}
-	metrics.Metric.Stop()
 	return nil
 }
 
