@@ -19,9 +19,11 @@ improperly_defined(params, value) {
 
 incorrect_ref(ref, object) {
 	references := {
-		"schema": "#/components/schemas",
-		"responses": "#/components/responses",
-		"requestBody": "#/components/requestBodies",
+		"schema": "#/components/schemas/",
+		"responses": "#/components/responses/",
+		"requestBody": "#/components/requestBodies/",
+		"links": "#/components/links/",
+		"callbacks": "#/components/callbacks/",
 	}
 
 	regex.match(references[object], ref) == false
