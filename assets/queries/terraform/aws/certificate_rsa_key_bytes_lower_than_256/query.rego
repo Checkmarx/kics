@@ -7,13 +7,13 @@ CxPolicy[result] {
 
 	resourceType == services[_]
 
-	resource[name].certificate_body.rsa_key_bytes <= 128
+	resource[name].certificate_body.rsa_key_bytes < 256
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].certificate_body", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].certificate_body uses a RSA key with length higher than 128 bytes", [resourceType, name]),
-		"keyActualValue": sprintf("%s[%s].certificate_body does not use a RSA key with length higher than 128 bytes", [resourceType, name]),
+		"keyExpectedValue": sprintf("%s[%s].certificate_body uses a RSA key with a length equal to or higher than 256 bytes", [resourceType, name]),
+		"keyActualValue": sprintf("%s[%s].certificate_body does not use a RSA key with a length equal to or higher than 256 bytes", [resourceType, name]),
 	}
 }
