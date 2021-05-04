@@ -734,6 +734,7 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		require.NoError(t, errW, "[result] Unmarshaling JSON file should not yield an error")
 
 		wantI.FailedSimilarityID = 0 // SIMILARITY ID - ERROR
+		wantI.TotalQueries = 0
 		for i := range wantI.Queries {
 			for j := range expectI.Queries[i].Files {
 				wantI.Queries[i].Files[j].FileName = "file"

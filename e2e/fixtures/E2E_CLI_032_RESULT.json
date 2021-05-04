@@ -2,7 +2,7 @@
 	"files_scanned": 1,
 	"files_parsed": 1,
 	"files_failed_to_scan": 0,
-	"queries_total": 519,
+	"queries_total": 0,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"queries": [
