@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/queries/ansible-queries/">
+        <link rel="canonical" href="http://www.kics.io/develop/queries/ansible-queries/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Ansible - KICS</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../../css/custom.css" rel="stylesheet">
+        <link href="../../css/version-select.css" rel="stylesheet">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
         <script src="../../js/bootstrap.min.js" defer></script>
@@ -1238,6 +1239,13 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Certificate RSA Key Bytes Lower Than 256<br/><sup><sub>d5ec2080-340a-4259-b885-f833c4ea6a31</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The certificate should use a RSA key with a length equal to or higher than 256 bytes</td>
+<td><a href="https://docs.ansible.com/ansible/2.10/collections/community/aws/aws_acm_module.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Instance With No VPC<br/><sup><sub>61d1a2d0-4db8-405a-913d-5d2ce49dff6f</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -1250,13 +1258,6 @@
 <td>Insecure Configurations</td>
 <td>Unchangeable passwords in AWS password policy</td>
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Certificate RSA Key Bytes Lower Than 128<br/><sup><sub>d5ec2080-340a-4259-b885-f833c4ea6a31</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>The certificate should use a RSA key with length higher than 128 bytes</td>
-<td><a href="https://docs.ansible.com/ansible/2.10/collections/community/aws/aws_acm_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ECR Image Tag Not Immutable<br/><sup><sub>60bfbb8a-c72f-467f-a6dd-a46b7d612789</sub></sup></td>
@@ -1668,6 +1669,7 @@
         <script src="../../js/custom.js" defer></script>
         <script src="../../js/version-mike.js" defer></script>
         <script src="../../search/main.js" defer></script>
+        <script src="../../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
