@@ -28,7 +28,7 @@ queries-path: "assets/queries"
 output-path: "results.json"
 ```
 
-> 📝 flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
+> 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
 
 ---
 
@@ -70,6 +70,7 @@ KICS is able to infer the format without the need of file extension.
   "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
   "report-formats": "formats in which the results will be exported (json, sarif, html)",
   "type": "type of queries to use in the scan",
+  "timeout": "number of seconds the query has to execute before being canceled",
   "verbose": true,
   "profiling": "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 }
@@ -97,6 +98,7 @@ queries-path: "path to directory with queries (default ./assets/queries) (defaul
 report-formats: "formats in which the results will be exported (json, sarif, html)"
 silent: false
 type: "type of queries to use in the scan"
+timeout: "number of seconds the query has to execute before being canceled"
 verbose: true
 ```
 
@@ -122,6 +124,7 @@ queries-path = "path to directory with queries (default ./assets/queries) (defau
 report-formats = "formats in which the results will be exported (json, sarif, html)"
 silent = false
 type = "type of queries to use in the scan"
+timeout = "number of seconds the query has to execute before being canceled"
 verbose = true
 ```
 
@@ -147,6 +150,7 @@ verbose = true
 "report-formats" = "formats in which the results will be exported (json, sarif, html)"
 "silent" = false
 "type" = "type of queries to use in the scan"
+"timeout" = "number of seconds the query has to execute before being canceled"
 "verbose" = true
 ```
 

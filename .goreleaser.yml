@@ -18,8 +18,11 @@ builds:
       - goos: windows
         goarm: 7
     ldflags:
-      - -X github.com/Checkmarx/kics/internal/constants.Version={{.Version}}
-      - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{.Commit}}
+      - -s
+      - -w
+      - -X github.com/Checkmarx/kics/internal/constants.Version={{ .Version }}
+      - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{ .Commit }}
+      - -X github.com/Checkmarx/kics/internal/constants.SentryDSN={{ .Env.SENTRY_DSN }}
 archives:
   - builds: [kics]
     format_overrides:
@@ -39,7 +42,7 @@ brews:
       name: homebrew-tap
       token: "{{ .Env.KICS_BOT_PAT }}"
     folder: Formula
-    homepage:  https://github.com/Checkmarx/kics
+    homepage: https://github.com/Checkmarx/kics
     description: Find security vulnerabilities, compliance issues, and infrastructure misconfigurations in your IaC
     license: Apache
     test: |

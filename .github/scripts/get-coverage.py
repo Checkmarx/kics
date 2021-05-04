@@ -120,17 +120,17 @@ def main():
     args = parse_args()
     lines = load_coverage(args)
     stats = calc_file_stats(lines)
-    total = total_cov(stats)
+    total = round(total_cov(stats))
     if os.environ.get('GITHUB_RUN_ID'):
         if total >= 90:
-          color = 'brightgreen'
+            color = 'brightgreen'
         elif total >= 80:
-          color = 'green'
+            color = 'green'
         elif total >= 75:
-          color = 'orange'
+            color = 'orange'
         else:
-          color = 'red'
-        print("::set-output name=coverage::%.2f" % (total))
+            color = 'red'
+        print(f"::set-output name=coverage::{total}")
         print(f"::set-output name=color::{color}")
     print(f"Total coverage: {total}")
 

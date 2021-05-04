@@ -16,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -57,6 +58,7 @@ var (
 	queryPath         string
 	reportFormats     []string
 	types             []string
+	queryExecTimeout  int
 )
 
 const (
@@ -84,6 +86,7 @@ const (
 	scanCommandStr          = "scan"
 	typeFlag                = "type"
 	typeShorthand           = "t"
+	queryExecTimeoutFlag    = "timeout"
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -136,7 +139,7 @@ func initializeConfig(cmd *cobra.Command) error {
 			return nil
 		}
 		if len(path) > 1 {
-			warning = append(warning, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
 			return nil
 		}
 		configpath := path[0]
@@ -223,19 +226,15 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 
 func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVarP(&path,
-		pathFlag,
-		pathFlagShorthand,
+		pathFlag, pathFlagShorthand,
 		[]string{},
 		"paths or directories to scan\nexample: \"./somepath,somefile.txt\"")
 	scanCmd.Flags().StringVarP(&cfgFile,
 		configFlag,
-		"",
-		"",
+		"", "",
 		"path to configuration file")
-	scanCmd.Flags().StringVarP(
-		&queryPath,
-		queriesPathCmdName,
-		queriesPathShorthand,
+	scanCmd.Flags().StringVarP(&queryPath,
+		queriesPathCmdName, queriesPathShorthand,
 		"./assets/queries",
 		"path to directory with queries",
 	)
@@ -256,36 +255,30 @@ func initScanFlags(scanCmd *cobra.Command) {
 		3,
 		"number of lines to be display in CLI results (min: 1, max: 30)")
 	scanCmd.Flags().StringVarP(&payloadPath,
-		payloadPathFlag,
-		payloadPathShorthand,
+		payloadPathFlag, payloadPathShorthand,
 		"",
 		"path to store internal representation JSON file")
 	scanCmd.Flags().StringSliceVarP(&excludePath,
-		excludePathsFlag,
-		excludePathsShorthand,
+		excludePathsFlag, excludePathsShorthand,
 		[]string{},
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
 	scanCmd.Flags().BoolVarP(&min,
-		minimalUIFlag,
-		"",
+		minimalUIFlag, "",
 		false,
 		"simplified version of CLI output")
 	scanCmd.Flags().StringSliceVarP(&types,
-		typeFlag,
-		typeShorthand,
+		typeFlag, typeShorthand,
 		[]string{""},
 		"case insensitive list of platform types to scan\n"+
 			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
 	scanCmd.Flags().BoolVarP(&noProgress,
-		noProgressFlag,
-		"",
+		noProgressFlag, "",
 		false,
 		"hides the progress bar")
 	scanCmd.Flags().StringSliceVarP(&excludeIDs,
-		excludeQueriesFlag,
-		"",
+		excludeQueriesFlag, "",
 		[]string{},
 		"exclude queries by providing the query ID\n"+
 			"can be provided multiple times or as a comma separated string\n"+
@@ -300,28 +293,29 @@ func initScanFlags(scanCmd *cobra.Command) {
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
 	)
 	scanCmd.Flags().StringSliceVarP(&excludeCategories,
-		excludeCategoriesFlag,
-		"",
+		excludeCategoriesFlag, "",
 		[]string{},
 		"exclude categories by providing its name\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'Access control,Best practices'",
 	)
 	scanCmd.Flags().StringSliceVarP(&failOn,
-		failOnFlag,
-		"",
+		failOnFlag, "",
 		[]string{"high", "medium", "low", "info"},
 		"which kind of results should return an exit code different from 0\n"+
 			"accetps: high, medium, low and info\n"+
 			"example: \"high,low\"",
 	)
 	scanCmd.Flags().StringVarP(&ignoreOnExit,
-		ignoreOnExitFlag,
-		"",
+		ignoreOnExitFlag, "",
 		"none",
 		"defines which kind of non-zero exits code should be ignored\n"+"accepts: all, results, errors, none\n"+
 			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
 	)
+	scanCmd.Flags().IntVarP(&queryExecTimeout,
+		queryExecTimeoutFlag, "",
+		60,
+		"number of seconds the query has to execute before being canceled")
 }
 
 func initScanCmd(scanCmd *cobra.Command) {
@@ -374,11 +368,31 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		ByCategories: excludeCategories,
 	}
 
-	inspector, err := engine.NewInspector(ctx, querySource, engine.DefaultVulnerabilityBuilder, t, excludeQueries, excludeResultsMap)
+	inspector, err := engine.NewInspector(ctx,
+		querySource, engine.DefaultVulnerabilityBuilder,
+		t, excludeQueries, excludeResultsMap, queryExecTimeout)
 	if err != nil {
 		return nil, err
 	}
 	return inspector, nil
+}
+
+// analyzePaths will analyze the paths to scan to determine which type of queries to load
+// and which files should be ignored, it then updates the types and exclude flags variables
+// with the results found
+func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) {
+	var err error
+	exc := make([]string, 0)
+	if types[0] == "" { // if '--type' flag was given skip file analyzing
+		types, exc, err = analyzer.Analyze(paths)
+		if err != nil {
+			log.Err(err)
+			return []string{}, []string{}, err
+		}
+		log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))
+	}
+	exclude = append(exclude, exc...)
+	return types, exclude, nil
 }
 
 func createService(inspector *engine.Inspector,
@@ -425,15 +439,14 @@ func createService(inspector *engine.Inspector,
 
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
-
-	for _, warn := range warning {
+	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
 	}
 
 	printer := consoleHelpers.NewPrinter(min)
 	printer.Success.Printf("\n%s\n", banner)
 
-	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", getVersion())
+	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
@@ -453,6 +466,10 @@ func scan(changedDefaultQueryPath bool) error {
 		if err != nil {
 			return errors.Wrap(err, "unable to find queries")
 		}
+	}
+
+	if types, excludePath, err = analyzePaths(path, types, excludePath); err != nil {
+		return err
 	}
 
 	querySource := source.NewFilesystemSource(queryPath, types)

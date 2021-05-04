@@ -241,6 +241,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 		trk,
 		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 		map[string]bool{},
+		60,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 2,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 2,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 2,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Missing Mandatory Fields for Minimum Working File",
+    "severity": "INFO",
+    "line": 2,
+    "filename": "positive4.yaml"
+  }
+]

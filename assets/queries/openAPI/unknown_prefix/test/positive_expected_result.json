@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Unknown Prefix",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Unknown Prefix",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Prefix",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Unknown Prefix",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive4.yaml"
+  }
+]

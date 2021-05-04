@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 
@@ -297,6 +298,7 @@ func TestInspect(t *testing.T) { //nolint
 				coverageReport:       tt.fields.coverageReport,
 				excludeResults:       tt.fields.excludeResults,
 				detector:             inspDetector,
+				queryExecTimeout:     time.Duration(60) * time.Second,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
 				true, []string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
@@ -350,12 +352,13 @@ func TestNewInspector(t *testing.T) { // nolint
 		},
 	})
 	type args struct {
-		ctx            context.Context
-		source         source.QueriesSource
-		vb             VulnerabilityBuilder
-		tracker        Tracker
-		excludeQueries source.ExcludeQueries
-		excludeResults map[string]bool
+		ctx              context.Context
+		source           source.QueriesSource
+		vb               VulnerabilityBuilder
+		tracker          Tracker
+		excludeQueries   source.ExcludeQueries
+		excludeResults   map[string]bool
+		queryExecTimeout int
 	}
 	tests := []struct {
 		name    string
@@ -374,7 +377,8 @@ func TestNewInspector(t *testing.T) { // nolint
 					ByIDs:        []string{},
 					ByCategories: []string{},
 				},
-				excludeResults: map[string]bool{},
+				excludeResults:   map[string]bool{},
+				queryExecTimeout: 60,
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -386,7 +390,14 @@ func TestNewInspector(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewInspector(tt.args.ctx, tt.args.source, tt.args.vb, tt.args.tracker, tt.args.excludeQueries, tt.args.excludeResults)
+			got, err := NewInspector(tt.args.ctx,
+				tt.args.source,
+				tt.args.vb,
+				tt.args.tracker,
+				tt.args.excludeQueries,
+				tt.args.excludeResults,
+				tt.args.queryExecTimeout)
+
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
 				return

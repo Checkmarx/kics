@@ -1,6 +1,6 @@
 {
   "Description": "Sample CloudFormation template for DynamoDB with AWS-Owned CMK",
-  "resources": {
+  "Resources": {
     "DynamoDBOnDemandTable4": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
