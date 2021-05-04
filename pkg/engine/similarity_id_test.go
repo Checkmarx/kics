@@ -155,7 +155,7 @@ var (
 			},
 		},
 		{
-			name: "Windows path hardcoded",
+			name: "Windows path to file",
 			calls: []computeSimilarityIDParams{
 				{
 					basePaths:   []string{".\\my\\test\\file.tf"},
