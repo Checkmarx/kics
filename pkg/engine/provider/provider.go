@@ -17,6 +17,6 @@ type ResolverSink func(ctx context.Context, filename string) ([]string, error)
 // GetBasePath returns base path of FileSystemSourceProvider
 // GetSources receives context, receive ID, extensions supported and a sink function to save sources
 type SourceProvider interface {
-	GetBasePath() string
+	GetBasePaths() []string
 	GetSources(ctx context.Context, extensions model.Extensions, sink Sink, resolverSink ResolverSink) error
 }

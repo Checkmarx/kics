@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Security Operation Field Undefined",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Operation Field Undefined",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Security Operation Field Undefined",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Security Operation Field Undefined",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive4.yaml"
+  }
+]

@@ -11,3 +11,8 @@ check_openapi(doc) = version {
 is_valid_url(url) {
 	regex.match(`^(https?):\/\/(-\.)?([^\s\/?\.#-]+([-\.\/])?)+(\/[^\s]*)?$`, url)
 }
+
+improperly_defined(params, value) {
+	params.in == "header"
+	params.name == value
+}

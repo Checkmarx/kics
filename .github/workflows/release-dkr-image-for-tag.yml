@@ -1,11 +1,14 @@
-name: release-manual-docker-tag
+name: release-manual-docker-tag-latest
 
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Git Tag'
+        description: "Git Tag"
         required: true
+      latest:
+        description: "true if image is latest"
+        default: "false"
 
 jobs:
   push_to_registry:
@@ -30,6 +33,21 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+      - name: Prepare
+        id: prep
+        run: |
+          DOCKER_IMAGE=Checkmarx/kics
+          VERSION=${{ github.event.inputs.tag }}
+          TAGS="${DOCKER_IMAGE}:${VERSION}"
+          ALPINE_TAGS="${DOCKER_IMAGE}:${VERSION}-alpine"
+
+          if [ "${{ github.event.inputs.latest }}" = "true" ]; then
+            TAGS=${TAGS},${DOCKER_IMAGE}:latest
+            ALPINE_TAGS="{TAGS},${DOCKER_IMAGE}:latest-alpine"
+          fi
+
+          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=alpine_tags::${ALPINE_TAGS}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -42,10 +60,11 @@ jobs:
         with:
           context: .
           push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}
+          tags: ${{ steps.prep.outputs.tags }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
       - name: Push alpine to Docker Hub
         if: ${{ hashFiles('Dockerfile.integration') }} != ""
         uses: docker/build-push-action@v2
@@ -53,7 +72,8 @@ jobs:
           context: .
           file: ./Dockerfile.integration
           push: true
-          tags: checkmarx/kics:${{ github.event.inputs.tag }}-alpine
+          tags: ${{ steps.prep.outputs.alpine_tags }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}

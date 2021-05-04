@@ -17,3 +17,11 @@ Every release is packed with:
 If waiting for a new release it's not enough, we also provide nightly builds that include the latest changes.
 
 You can find our releases <a href="https://github.com/Checkmarx/kics/releases" target="_blank">here</a>.
+
+## Docker Images
+
+KICS docker images are pushed to [DockerHub](https://hub.docker.com/repository/docker/checkmarx/kics)
+
+List of images digests:
+- [Release versions](./docker-img/digests.md)
+- [Nightly images](./docker-img/nightly.md)

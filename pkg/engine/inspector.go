@@ -9,6 +9,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
@@ -32,8 +33,7 @@ const (
 	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
-	regoQuery      = `result = data.Cx.CxPolicy`
-	executeTimeout = 60 * time.Second
+	regoQuery = `result = data.Cx.CxPolicy`
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -76,17 +76,18 @@ type Inspector struct {
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
+	queryExecTimeout     time.Duration
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
 // the query compiled and its payload
 type QueryContext struct {
-	ctx          context.Context
-	scanID       string
-	files        map[string]model.FileMetadata
-	query        *preparedQuery
-	payload      model.Documents
-	baseScanPath string
+	ctx           context.Context
+	scanID        string
+	files         map[string]model.FileMetadata
+	query         *preparedQuery
+	payload       model.Documents
+	baseScanPaths []string
 }
 
 var (
@@ -103,9 +104,11 @@ func NewInspector(
 	vb VulnerabilityBuilder,
 	tracker Tracker,
 	excludeQueries source.ExcludeQueries,
-	excludeResults map[string]bool) (*Inspector, error) {
+	excludeResults map[string]bool,
+	queryTimeout int) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
+	metrics.Metric.Start("get_queries")
 	queries, err := queriesSource.GetQueries(excludeQueries)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
@@ -159,6 +162,8 @@ func NewInspector(
 
 	queriesNumber := sumAllAggregatedQueries(opaQueries)
 
+	metrics.Metric.Stop()
+
 	log.Info().
 		Msgf("Inspector initialized, number of queries=%d", queriesNumber)
 
@@ -166,13 +171,17 @@ func NewInspector(
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER)
 
+	queryExecTimeout := time.Duration(queryTimeout) * time.Second
+	log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
+
 	return &Inspector{
-		queries:        opaQueries,
-		vb:             vb,
-		tracker:        tracker,
-		failedQueries:  failedQueries,
-		excludeResults: excludeResults,
-		detector:       lineDetctor,
+		queries:          opaQueries,
+		vb:               vb,
+		tracker:          tracker,
+		failedQueries:    failedQueries,
+		excludeResults:   excludeResults,
+		detector:         lineDetctor,
+		queryExecTimeout: queryExecTimeout,
 	}, nil
 }
 
@@ -199,7 +208,7 @@ func (c *Inspector) Inspect(
 	scanID string,
 	files model.FileMetadatas,
 	hideProgress bool,
-	baseScanPath string) ([]model.Vulnerability, error) {
+	baseScanPaths []string) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -219,12 +228,12 @@ func (c *Inspector) Inspect(
 		}
 
 		vuls, err := c.doRun(&QueryContext{
-			ctx:          ctx,
-			scanID:       scanID,
-			files:        files.ToMap(),
-			query:        query,
-			payload:      combinedFiles,
-			baseScanPath: baseScanPath,
+			ctx:           ctx,
+			scanID:        scanID,
+			files:         files.ToMap(),
+			query:         query,
+			payload:       combinedFiles,
+			baseScanPaths: baseScanPaths,
 		})
 		if err != nil {
 			sentry.CaptureException(err)
@@ -263,7 +272,7 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 }
 
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
-	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, executeTimeout)
+	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
 	defer cancel()
 
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}

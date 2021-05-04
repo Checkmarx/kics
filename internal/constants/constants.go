@@ -1,27 +1,54 @@
 package constants
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-// Version - current KICS version
-var Version = "dev"
+var (
+	// Version - current KICS version
+	Version = "development"
+	// SCMCommit - Source control management commit identifier
+	SCMCommit = "NOCOMMIT"
+	// SentryDSN - sentry DSN, unset for disabling
+	SentryDSN = ""
+)
 
-// Fullname - KICS fullname
-const Fullname = "Keeping Infrastructure as Code Secure"
+const (
+	// Fullname - KICS fullname
+	Fullname = "Keeping Infrastructure as Code Secure"
 
-// SCMCommit - Source control management commit identifier
-const SCMCommit = "N/A"
+	// DefaultLogFile - logfile name
+	DefaultLogFile = "info.log"
 
-// DefaultLogFile - logfile name
-const DefaultLogFile = "info.log"
+	// DefaultConfigFilename - default configuration filename
+	DefaultConfigFilename = "kics.config"
 
-// DefaultConfigFilename - default configuration filename
-const DefaultConfigFilename = "kics.config"
+	// MinimumPreviewLines - default minimum preview lines number
+	MinimumPreviewLines = 1
 
-// MinimumPreviewLines - default minimum preview lines number
-const MinimumPreviewLines = 1
+	// MaximumPreviewLines - default maximum preview lines number
+	MaximumPreviewLines = 30
 
-// MaximumPreviewLines - default maximum preview lines number
-const MaximumPreviewLines = 30
+	// EngineErrorCode - Exit Status code for error in engine
+	EngineErrorCode = 126
 
-// MaxInteger - max possible integer in golang
-const MaxInteger = math.MaxInt64
+	// SignalInterruptCode - Exit Status code for a signal interrupt
+	SignalInterruptCode = 130
+
+	// MaxInteger - max possible integer in golang
+	MaxInteger = math.MaxInt64
+
+	// SentryRefreshRate - sentry telemetry refresh rate
+	SentryRefreshRate = 2
+)
+
+// GetRelease - returns the current release in the format 'kics@version' to be used by sentry
+func GetRelease() string {
+	return fmt.Sprintf("kics@%s", Version)
+}
+
+// GetVersion - returns the current version in the format 'Keeping Infrastructure as Code Secure <version>'
+func GetVersion() string {
+	return fmt.Sprintf("%s %s", Fullname, Version)
+}

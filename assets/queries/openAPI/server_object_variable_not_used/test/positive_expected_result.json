@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Server Object Variable Not Used",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Server Object Variable Not Used",
+    "severity": "INFO",
+    "line": 35,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Server Object Variable Not Used",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Server Object Variable Not Used",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive4.yaml"
+  }
+]

@@ -42,8 +42,10 @@ func readFile(path string) (string, error) {
 	}
 	bytes, err := io.ReadAll(ostat)
 	if err != nil {
+		ostat.Close()
 		return "", err
 	}
+	ostat.Close()
 	return string(bytes), nil
 }
 

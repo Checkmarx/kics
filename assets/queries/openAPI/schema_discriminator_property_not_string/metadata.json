@@ -1,0 +1,9 @@
+{
+  "id": "dadc2f36-1f5a-46c0-8289-75e626583123",
+  "queryName": "Schema Discriminator Property Not String",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema discriminator property should be a string",
+  "descriptionUrl": "https://swagger.io/specification/#discriminator-object",
+  "platform": "OpenAPI"
+}

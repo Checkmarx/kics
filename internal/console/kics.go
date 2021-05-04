@@ -16,23 +16,24 @@ import (
 )
 
 const (
-	scanID   = "console"
-	timeMult = 2
+	scanID = "console"
 )
 
 var (
+	// warnings - a buffer to accumulate warnings before the printer gets initialized
+	warnings = make([]string, 0)
+
 	ctx = context.Background()
 
-	verbose   bool
+	ci        bool
 	logFile   bool
-	logPath   string
-	logLevel  string
 	logFormat string
+	logLevel  string
+	logPath   string
 	noColor   bool
 	silent    bool
-	ci        bool
-
-	warning []string
+	profiling string
+	verbose   bool
 )
 
 // NewKICSCmd creates a new instance of the kics Command
@@ -89,9 +90,13 @@ func initialize(rootCmd *cobra.Command) error {
 		"",
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
+	rootCmd.PersistentFlags().StringVarP(&profiling,
+		"profiling",
+		"",
+		"",
+		"enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)")
 
-	err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead")
-	if err != nil {
+	if err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead"); err != nil {
 		return err
 	}
 
@@ -100,37 +105,16 @@ func initialize(rootCmd *cobra.Command) error {
 	}
 
 	initScanCmd(scanCmd)
-	if insertScanCmd(scanCmd) {
-		warning = append(warning, "WARNING: for future versions use 'kics scan'")
-		os.Args = append([]string{os.Args[0], "scan"}, os.Args[1:]...)
-	}
-
 	return nil
-}
-
-func insertScanCmd(scanCmd *cobra.Command) bool {
-	if len(os.Args) > 1 && os.Args[1][0] == '-' {
-		if os.Args[1][1] != '-' {
-			flag := os.Args[1][1:]
-			return scanCmd.Flags().ShorthandLookup(flag) != nil
-		}
-		flag := os.Args[1][2:]
-		return scanCmd.Flag(flag) != nil
-	}
-	return false
 }
 
 // Execute starts kics execution
 func Execute() error {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
-	rootCmd := NewKICSCmd()
+	enableTelemetry()
 
-	err := sentry.Init(sentry.ClientOptions{})
-	if err != nil {
-		log.Err(err).Msg("Failed to initialize sentry")
-	}
-	defer sentry.Flush(timeMult * time.Second)
+	rootCmd := NewKICSCmd()
 
 	if err := initialize(rootCmd); err != nil {
 		sentry.CaptureException(err)
@@ -140,9 +124,39 @@ func Execute() error {
 
 	if err := rootCmd.ExecuteContext(ctx); err != nil {
 		sentry.CaptureException(err)
-		log.Err(err).Msg("Failed to run application")
+		if printer.IsInitialized() {
+			log.Err(err).Msg("Failed to run application")
+		}
 		return err
 	}
 
 	return nil
+}
+
+func enableTelemetry() {
+	enableTelemetry, found := os.LookupEnv("KICS_COLLECT_TELEMETRY")
+	if found && (enableTelemetry == "0" || enableTelemetry == "false") {
+		initSentry("")
+	} else {
+		initSentry(constants.SentryDSN)
+	}
+}
+
+func initSentry(dsn string) {
+	var err error
+	if dsn == "" {
+		warnings = append(warnings, "KICS telemetry disabled")
+		err = sentry.Init(sentry.ClientOptions{
+			Release: constants.GetRelease(),
+		})
+	} else {
+		err = sentry.Init(sentry.ClientOptions{
+			Dsn:     dsn,
+			Release: constants.GetRelease(),
+		})
+	}
+	if err != nil {
+		log.Err(err).Msg("Failed to initialize sentry")
+	}
+	sentry.Flush(constants.SentryRefreshRate * time.Second)
 }

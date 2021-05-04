@@ -12,6 +12,7 @@ import (
 	"sync"
 
 	"github.com/BurntSushi/toml"
+	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/gookit/color"
@@ -244,6 +245,7 @@ func FileAnalyzer(path string) (string, error) {
 // GenerateReport execute each report function to generate report
 func GenerateReport(path, filename string, body interface{}, formats []string) error {
 	log.Debug().Msgf("helpers.GenerateReport()")
+	metrics.Metric.Start("generate_report")
 	var err error = nil
 	for _, format := range formats {
 		if err = reportGenerators[format](path, filename, body); err != nil {
@@ -251,6 +253,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string) e
 			break
 		}
 	}
+	metrics.Metric.Stop()
 	return err
 }
 
@@ -284,18 +287,23 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 	return queriesDirectory, nil
 }
 
+// ListReportFormats return a slice with all supported report formats
+func ListReportFormats() []string {
+	supportedFormats := make([]string, 0, len(reportGenerators))
+	for reportFormats := range reportGenerators {
+		supportedFormats = append(supportedFormats, reportFormats)
+	}
+	return supportedFormats
+}
+
 // ValidateReportFormats returns an error if output format is not supported
 func ValidateReportFormats(formats []string) error {
 	log.Debug().Msg("helpers.ValidateReportFormats()")
 
-	validFormats := make([]string, 0, len(reportGenerators))
-	for reportFormats := range reportGenerators {
-		validFormats = append(validFormats, reportFormats)
-	}
 	for _, format := range formats {
 		if _, ok := reportGenerators[format]; !ok {
 			return fmt.Errorf(
-				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(validFormats, "\n")),
+				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(ListReportFormats(), "\n")),
 			)
 		}
 	}

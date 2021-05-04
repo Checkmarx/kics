@@ -34,7 +34,7 @@ jobs:
             && cd "${PROJDIR}"
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: "3.x"
       - name: Install dependencies
         run: |
           pip3 install ruamel.yaml
@@ -54,14 +54,14 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: "[kicsbot] Update install script"
+          title: "chore(install): update install script"
           token: ${{ secrets.KICS_BOT_PAT }}
           delete-branch: true
-          commit-message: "[kicsbot] Update install script"
+          commit-message: "chore(install): update install script"
           branch: feature/kicsbot-update-install-script
           base: master
           body: |
-            **Automated changes**
+            **Automated Changes**
             Updating oneliner godownloader installation script
             Triggered by SHA: _${{ github.sha }}_
           labels: CI

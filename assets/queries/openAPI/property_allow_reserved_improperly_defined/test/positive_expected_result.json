@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 59,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]

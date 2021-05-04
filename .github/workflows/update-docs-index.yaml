@@ -38,14 +38,14 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: "[kicsbot] Update documentation index page - ${{ steps.cversion.outputs.version }}"
+          title: "docs(index): updating links in index page - ${{ steps.cversion.outputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "[kicsbot] Update documentation index page"
+          commit-message: "docs(index): updating links in index page"
           delete-branch: true
           branch: feature/kicsbot-update-docs-index
           base: master
           body: |
-            **Automated changes**
+            **Automated Changes**
             Updating documentation index page.
             Triggered by SHA: _${{ github.sha }}_
           labels: documentation
@@ -61,4 +61,3 @@ jobs:
       - name: Deploy mike version
         run: |
           mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force
-

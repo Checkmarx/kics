@@ -292,7 +292,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
 		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
-		map[string]bool{})
+		map[string]bool{}, 60)
 
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
@@ -306,7 +306,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.sampleContent(t),
 		),
 		true,
-		BaseTestsScanPath,
+		[]string{BaseTestsScanPath},
 	)
 	require.Nil(t, err)
 	return vulnerabilities

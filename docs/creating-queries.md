@@ -3,12 +3,12 @@
 The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, that can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
 
 ```bash
-go run ./cmd/console/main.go -p "pathToTestData" -d "pathToGenerateJson"
+go run ./cmd/console/main.go scan -p "pathToTestData" -d "pathToGenerateJson"
 ```
 
 So for example, if we wanted to transform a .tf file in ./code/test we could type:
 ```bash
-go run ./cmd/console/main.go -p  "./src/test" -d "src/test/input.json"
+go run ./cmd/console/main.go scan -p  "./src/test" -d "src/test/input.json"
 ```
 After having the .json that will be our Rego input, we can begin to write queries.
 To test and debug there are two ways:

@@ -2,7 +2,7 @@
 
 KICS queries are written in OPA (Rego).
 
-```Opa
+```rego
 CxPolicy [ result ] {
    resource := input.document[i].resource.aws_s3_bucket[name]
    role = "public-read"

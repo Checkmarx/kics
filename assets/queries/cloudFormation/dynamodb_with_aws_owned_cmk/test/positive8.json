@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-10",
   "Description": "Sample CloudFormation template for DynamoDB with AWS-Owned CMK",
-  "resources": {
+  "Resources": {
     "DynamoDBOnDemandTable5": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {

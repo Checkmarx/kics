@@ -13,8 +13,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("servers.url=%s", [url]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("servers.{{%s}}.url has an absolute URL", [s]),
-		"keyActualValue": sprintf("servers.{{%s}}.url does not have an absolute URL", [s]),
+		"keyExpectedValue": sprintf("servers.{{%d}}.url has an absolute URL", [s]),
+		"keyActualValue": sprintf("servers.{{%d}}.url does not have an absolute URL", [s]),
 	}
 }
 
@@ -29,8 +29,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.servers.url=%s", [path, operation, url]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.servers.{{%s}}.url has an absolute URL", [path, operation, s]),
-		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.servers.{{%s}}.url does not have an absolute URL", [path, operation, s]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.servers.{{%d}}.url has an absolute URL", [path, operation, s]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.servers.{{%d}}.url does not have an absolute URL", [path, operation, s]),
 	}
 }
 
@@ -45,8 +45,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.servers.url=%s", [path, url]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("paths.{{%s}}.servers.{{%s}}.url has an absolute URL", [path, s]),
-		"keyActualValue": sprintf("paths.{{%s}}.servers.{{%s}}.url does not have an absolute URL", [path, s]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.servers.{{%d}}.url has an absolute URL", [path, s]),
+		"keyActualValue": sprintf("paths.{{%s}}.servers.{{%d}}.url does not have an absolute URL", [path, s]),
 	}
 }
 
@@ -77,8 +77,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url", [r, l]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url has an absolute URL", [l]),
-		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url does not have an absolute URL", [l]),
+		"keyExpectedValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url has an absolute URL", [r, l]),
+		"keyActualValue": sprintf("components.responses.{{%s}}.links.{{%s}}.server.url does not have an absolute URL", [r, l]),
 	}
 }
 

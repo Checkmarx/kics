@@ -1,0 +1,9 @@
+{
+  "id": "cf5ba5d2-5ad5-4582-8200-325fa75f606d",
+  "queryName": "Missing Mandatory Fields for Minimum Working File",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Mandatory fields for a minimum working file (such as 'info', 'info.version', 'info.title', and 'paths') should be defined.",
+  "descriptionUrl": "https://swagger.io/specification/#openapi-object",
+  "platform": "OpenAPI"
+}
