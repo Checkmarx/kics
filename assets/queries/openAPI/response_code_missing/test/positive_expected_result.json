@@ -1,0 +1,134 @@
+[
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Response Code Missing",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.yaml"
+  }
+]
