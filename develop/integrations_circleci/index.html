@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/develop/integrations_jenkins/">
+        <link rel="canonical" href="http://www.kics.io/develop/integrations_circleci/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Jenkins - KICS</title>
+        <title>Running KICS in CircleCI - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -130,7 +130,7 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -155,7 +155,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Jenkins</a>
+    <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
 </li>
                                 </ul>
                             </li>
@@ -199,17 +199,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../integrations_gitlabci/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../roadmap/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations_jenkins.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations_circleci.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -229,9 +219,9 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#running_kics_in_jenkins" class="nav-link">Running KICS in Jenkins</a>
+            <li class="nav-item" data-level="1"><a href="#running_kics_in_circleci" class="nav-link">Running KICS in CircleCI</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#declarative_pipelines" class="nav-link">Declarative pipelines:</a>
+            <li class="nav-item" data-level="2"><a href="#example_setup_with_github" class="nav-link">Example setup with GitHub:</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -242,114 +232,40 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="running_kics_in_jenkins">Running KICS in Jenkins<a class="headerlink" href="#running_kics_in_jenkins" title="Permanent link">&para;</a></h1>
-<p>You can integrate KICS into your Jenkins CI/CD pipelines.</p>
-<p>This provides you the ability to run KICS scans as a stage in your pipeline.</p>
-<h2 id="declarative_pipelines">Declarative pipelines:<a class="headerlink" href="#declarative_pipelines" title="Permanent link">&para;</a></h2>
-<p>Create a new pipeline clicking on <strong>New Item</strong> on the left menu bar, then fill in the name of your pipeline and select the option "pipeline":</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-creating-pipeline.png" width="850"></p>
-<p>Paste one of the pipeline examples bellow:</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-paste-pipeline.png" width="850"></p>
-<p>Save and run your pipeline.</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-success.png" width="850"></p>
-<p>Click on the build number to download the reports stored as artifacts.</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-artifacts.png" width="850"></p>
-<h3 id="install_and_run">Install and run<a class="headerlink" href="#install_and_run" title="Permanent link">&para;</a></h3>
-<p>The following pipeline uses downloads KICS binaries and place them under <code>/usr/bin/kics</code> before scanning a project:</p>
-<pre><code class="language-groovy">pipeline {
-  agent any
-  stages {
-    stage('Checkout Code') {
-      steps {
-        git(branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples')
-      }
-    }
-    // Other stages ...
-    stage('KICS scan') {
-      steps {
-        installKICS()
-        sh &quot;mkdir -p results&quot;
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --report-formats &quot;json,sarif,html&quot;')
-        archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
-      }
-    }
-  }
-}
+<h1 id="running_kics_in_circleci">Running KICS in CircleCI<a class="headerlink" href="#running_kics_in_circleci" title="Permanent link">&para;</a></h1>
+<p>You can integrate KICS into your CircleCI workflows.</p>
+<p>This document provides you with an example on how to run KICS scans in a pipeline.</p>
+<h2 id="example_setup_with_github">Example setup with GitHub:<a class="headerlink" href="#example_setup_with_github" title="Permanent link">&para;</a></h2>
+<p>Enable CircleCI to access your personal profile or GitHub organization.</p>
+<p>Create a <code>.circleci</code> directory in your project's root and place a <code>config.yaml</code> inside:</p>
+<pre><code class="language-yaml">version: 2.1
+jobs:
+  kics:
+    docker:
+      - image: checkmarx/kics:latest-alpine
+    steps:
+      - checkout
+      - run:
+          name: Run KICS
+          command: |
+            /app/bin/kics scan -p ${PWD} -o ~/results.json --ci
+      - store_artifacts:
+          path: ~/results.json
 
-def installKICS(){
-  def installScript = '''
-    LATEST_VERSION=1.2.4
-    if ! command -v /usr/bin/kics; then
-      wget -q -c https://github.com/Checkmarx/kics/releases/download/v${LATEST_VERSION}/kics_${LATEST_VERSION}_Linux_x64.tar.gz -O /tmp/kics.tar.gz
-      tar xfzv /tmp/kics.tar.gz -C /usr/bin
-      rm -f kics.tar.gz
-    fi
-    /usr/bin/kics version
-  '''
+workflows:
+  version: 2
+  build:
+    jobs:
+      # etc...
+      - kics
 
-  sh(script: installScript)
-}
 </code></pre>
-<h3 id="using_docker">Using Docker<a class="headerlink" href="#using_docker" title="Permanent link">&para;</a></h3>
-<p>The following pipeline uses KICS docker image to scan a project and publishes the HTML report in Jenkins.</p>
-<p>Plugins required:
-- <a href="https://plugins.jenkins.io/htmlpublisher/">HTML Publisher Plugin</a>
-- <a href="https://plugins.jenkins.io/docker-plugin/">Docker Plugin</a>
-- <a href="https://plugins.jenkins.io/docker-workflow/">Docker Pipeline Plugin</a></p>
-<pre><code class="language-groovy">pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest'
-        }
-    }
-    options {
-        timeout(time: 30, unit: 'MINUTES')
-        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-        disableConcurrentBuilds()
-    }
-    stages {
-        stage('Checkout Code') {
-          steps {
-              git branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples'
-              stash includes: '**/*', name: 'source'
-          }
-        }
-        stage('KICS scan') {
-            steps {
-                script {
-                    docker.image('checkmarx/kics:latest-alpine').inside(&quot;--entrypoint=''&quot;) {
-                      unstash 'source'
-                      sh('/app/bin/kics -p \$(pwd) -q /app/bin/assets/queries --ci -o results.html')
-                      archiveArtifacts(artifacts: 'results.html', fingerprint: true)
-                      publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '.', reportFiles: 'results.html', reportName: 'KICS Results', reportTitles: ''])
-                    }
-                }
-            }
-        }
-    }
-}
-</code></pre>
-<p>The report will be published in pure HTML by default, if you want to enable your browser to load css and javascript embedded in the report.html you'll have to configure a custom Content-Security-Policy HTTP header.</p>
-<table>
-<thead>
-<tr>
-<th align="left">📝 &nbsp; WARNING</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Only disable Jenkins security features if you know what you're doing</td>
-</tr>
-</tbody>
-</table>
-<p></br></p>
-<p>Go to <strong>Manage Jenkins</strong> &gt; <strong>Script Console</strong></p>
-<p>Paste the following script and run:</p>
-<pre><code class="language-groovy">System.setProperty(&quot;hudson.model.DirectoryBrowserSupport.CSP&quot;, &quot;sandbox allow-scripts; default-src *; style-src * http://* 'unsafe-inline' 'unsafe-eval'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'&quot;);
-</code></pre>
-<p>Jenkins will exhibit the following warning:</p>
-<pre><code>The default Content-Security-Policy is currently overridden using the hudson.model.DirectoryBrowserSupport.CSP system property, which is a potential security issue when browsing untrusted files. As an alternative, you can set up a resource root URL that Jenkins will use to serve some static files without adding Content-Security-Policy headers.
-</code></pre></div>
+<p>After running a pipeline, you will be able to see "Run KICS" step inside workflow's details:</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-build.png" width="850"></p>
+<p>Go to the artifacts tab to inspect the results:</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-artifacts.png" width="850"></p>
+<p>Results will be displayed in plain text:</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-results.png" width="850"></p></div>
             </div>
         </div>
 
