@@ -7,12 +7,15 @@ import (
 	"sync"
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/kics"
 )
 
 type serviceSlice []*kics.Service
 
+// StartScan will run concurrent scans by parser
 func StartScan(ctx context.Context, scanID string, noProgress bool, services serviceSlice) error {
+	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
 	errCh := make(chan error)
@@ -44,6 +47,7 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 		close(errCh)
 		return err
 	}
+	metrics.Metric.Stop()
 	return nil
 }
 

@@ -238,6 +238,7 @@ func (c *Inspector) Inspect(
 	return vulnerabilities, nil
 }
 
+// LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int {
 	count := 0
 	for _, query := range c.queries {

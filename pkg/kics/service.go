@@ -57,7 +57,6 @@ func (s *Service) StartScan(
 	wg *sync.WaitGroup,
 	currentQuery chan<- float64) {
 	log.Debug().Msg("service.StartScan()")
-	metrics.Metric.Start("get_sources")
 	defer wg.Done()
 	if err := s.SourceProvider.GetSources(
 		ctx,
@@ -71,7 +70,6 @@ func (s *Service) StartScan(
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
 	}
-	metrics.Metric.Stop()
 	metrics.Metric.Start("inspect")
 	vulnerabilities, err := s.Inspector.Inspect(
 		ctx,
