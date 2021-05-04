@@ -127,10 +127,10 @@ func TestProgressBar(t *testing.T) {
 			}
 			go progressBar.Start(&wg)
 			if tt.shouldCheckOutput {
-				for i := 0; i < 101; i++ {
-					progress <- float64(i)
+				for i := 0; i < 100; i++ {
+					progress <- float64(1)
 				}
-				progress <- float64(100)
+				progress <- float64(1)
 			}
 			wg.Wait()
 			splittedOut := strings.Split(out.String(), "\r")

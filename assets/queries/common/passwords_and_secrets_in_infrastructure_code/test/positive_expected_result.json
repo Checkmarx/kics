@@ -32,7 +32,19 @@
   {
     "queryName": "Passwords And Secrets In Infrastructure Code",
     "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code",
+    "severity": "HIGH",
     "line": 69,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code",
+    "severity": "HIGH",
+    "line": 89,
     "fileName": "positive4.tf"
   },
   {
@@ -51,6 +63,12 @@
     "queryName": "Passwords And Secrets In Infrastructure Code",
     "severity": "HIGH",
     "line": 3,
+    "fileName": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code",
+    "severity": "HIGH",
+    "line": 7,
     "fileName": "positive5.dockerfile"
   },
   {

@@ -13,12 +13,8 @@ func NewVersionCmd() *cobra.Command {
 		Use:   "version",
 		Short: "Displays the current version",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Fprintf(cmd.OutOrStdout(), "%s\n", getVersion())
+			fmt.Fprintf(cmd.OutOrStdout(), "%s\n", constants.GetVersion())
 			return nil
 		},
 	}
-}
-
-func getVersion() string {
-	return fmt.Sprintf("%s %s", constants.Fullname, constants.Version)
 }

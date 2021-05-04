@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0",
+    "contact": {
+      "name": "contact",
+      "email": "user@gmail.com"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "request_authorizer_single_stagevar": {
+        "type": "apiKey",
+        "name": "Unused",
+        "in": "header",
+        "x-amazon-apigateway-authtype": "custom",
+        "x-amazon-apigateway-authorizer": {
+          "type": "request",
+          "identitySource": "stageVariables.stage",
+          "authorizerCredentials": "arn:aws:iam::123456789012:role/AWSepIntegTest-CS-LambdaRole",
+          "authorizerUri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:123456789012:function:APIGateway-Request-Authorizer:vtwo/invocations",
+          "authorizerResultTtlInSeconds": 300
+        }
+      }
+    }
+  }
+}

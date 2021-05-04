@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Success Response Code Undefined for Delete Operation",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Delete Operation",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Delete Operation",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Delete Operation",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.yaml"
+  }
+]

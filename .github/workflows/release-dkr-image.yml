@@ -49,6 +49,7 @@ jobs:
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2
         id: build_alpine
@@ -60,6 +61,7 @@ jobs:
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v2
         with:

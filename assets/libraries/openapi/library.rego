@@ -23,6 +23,7 @@ incorrect_ref(ref, object) {
 		"responses": "#/components/responses/",
 		"requestBody": "#/components/requestBodies/",
 		"links": "#/components/links/",
+		"callbacks": "#/components/callbacks/",
 	}
 
 	regex.match(references[object], ref) == false

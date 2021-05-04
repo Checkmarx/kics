@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/utils"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
@@ -24,7 +25,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 }
 
 // Parse parses yaml/yml file and returns it as a Document
-func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
+func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, error) {
 	var documents []model.Document
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
@@ -38,7 +39,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 
 	if documents == nil {
 		var err error
-		documents, err = playbookParser(fileContent)
+		documents, err = playbookParser(filePath, fileContent)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to Parse YAML")
 		}
@@ -65,7 +66,48 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
 
-func playbookParser(fileContent []byte) ([]model.Document, error) {
+func processSwaggerContent(elements map[string]interface{}, filePath string) {
+	swaggerInfo := utils.AddSwaggerInfo(filePath, elements["swagger_file"].(string))
+	if swaggerInfo != nil {
+		elements["swagger_file"] = swaggerInfo
+	}
+}
+
+func processCertContent(elements map[string]interface{}, content, filePath string) {
+	var certInfo map[string]interface{}
+	if content != "" {
+		certInfo = utils.AddCertificateInfo(filePath, content)
+		if certInfo != nil {
+			elements["certificate"] = certInfo
+		}
+	}
+}
+
+func processElements(elements map[string]interface{}, filePath string) {
+	if elements["certificate"] != nil {
+		processCertContent(elements, utils.CheckCertificate(elements["certificate"].(string)), filePath)
+	}
+	if elements["swagger_file"] != nil {
+		processSwaggerContent(elements, filePath)
+	}
+}
+
+func addExtraInfo(documents []model.Document, filePath string) []model.Document {
+	for _, documentPlaybooks := range documents { // iterate over documents
+		for _, resources := range documentPlaybooks["playbooks"].([]interface{}) { // iterate over playbooks
+			for _, v := range resources.(map[string]interface{}) {
+				_, ok := v.(map[string]interface{})
+				if ok {
+					processElements(v.(map[string]interface{}), filePath)
+				}
+			}
+		}
+	}
+
+	return documents
+}
+
+func playbookParser(filePath string, fileContent []byte) ([]model.Document, error) {
 	doc := &model.Document{}
 	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 	arr := make([]map[string]interface{}, 0)
@@ -88,5 +130,5 @@ func playbookParser(fileContent []byte) ([]model.Document, error) {
 		arr = make([]map[string]interface{}, 0)
 	}
 
-	return documents, nil
+	return addExtraInfo(documents, filePath), nil
 }

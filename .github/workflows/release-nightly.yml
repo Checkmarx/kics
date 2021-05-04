@@ -59,6 +59,7 @@ jobs:
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-nightly.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       - name: delete release
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:

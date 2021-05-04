@@ -7,6 +7,7 @@ Integrate KICS with:
 
 - [Azure Pipelines](integrations_azurepipelines.md)
 - [Bitbucket Pipelines](integrations_bitbucketpipelines.md)
+- [CircleCI](integrations_circleci.md)
 - [Github Actions](integrations_ghactions.md)
 - [GitLab CI](integrations_gitlabci.md)
 - [Jenkins](integrations_jenkins.md)
