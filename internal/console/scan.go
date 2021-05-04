@@ -470,7 +470,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	if err := scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
+	if err = scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
 		log.Err(err)
 		return err
 	}

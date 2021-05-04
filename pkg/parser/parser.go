@@ -40,7 +40,6 @@ func (b *Builder) Build(types []string) ([]*Parser, error) {
 	paresrs := make([]*Parser, 0, len(b.parsers))
 	var suportedTypes []string
 	for _, parser := range b.parsers {
-		// parsers := make(map[string]kindParser, len(b.parsers))
 		var parsers kindParser
 		extensions := make(model.Extensions, len(b.parsers))
 		platforms := parser.SupportedTypes()

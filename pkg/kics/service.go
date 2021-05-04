@@ -73,11 +73,18 @@ func (s *Service) StartScan(
 	}
 	metrics.Metric.Stop()
 	metrics.Metric.Start("inspect")
-	vulnerabilities, err := s.Inspector.Inspect(ctx, scanID, s.files, hideProgress, s.SourceProvider.GetBasePaths(), s.Parser.Platform, currentQuery)
+	vulnerabilities, err := s.Inspector.Inspect(
+		ctx,
+		scanID,
+		s.files,
+		hideProgress,
+		s.SourceProvider.GetBasePaths(),
+		s.Parser.Platform,
+		currentQuery,
+	)
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
-
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	metrics.Metric.Stop()
 	if err != nil {

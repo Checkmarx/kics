@@ -8,7 +8,6 @@ import (
 
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/rs/zerolog/log"
 )
 
 type serviceSlice []*kics.Service
@@ -19,8 +18,10 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 	errCh := make(chan error)
 	currentQuery := make(chan float64, 1)
 	var wgProg sync.WaitGroup
-
-	startProgressBar(noProgress, services.GetQueriesLength(), &wgProg, currentQuery)
+	total := services.GetQueriesLength()
+	if total != 0 {
+		startProgressBar(noProgress, total, &wgProg, currentQuery)
+	}
 	for _, service := range services {
 		wg.Add(1)
 		go service.StartScan(ctx, scanID, noProgress, errCh, &wg, currentQuery)
@@ -38,11 +39,9 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 
 	select {
 	case <-wgDone:
-		log.Error().Msg("Waiting finished")
 		break
 	case err := <-errCh:
 		close(errCh)
-		log.Error().Msgf("Received Error %s", err)
 		return err
 	}
 	return nil

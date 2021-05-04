@@ -374,7 +374,7 @@ func contains(s []string, e string) bool {
 		e = "kubernetes"
 	}
 	for _, a := range s {
-		if strings.ToLower(a) == strings.ToLower(e) {
+		if strings.EqualFold(a, e) {
 			return true
 		}
 	}
