@@ -570,10 +570,12 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 func gracefulShutdown() {
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-	go func() {
+	showErrors := consoleHelpers.ShowError("errors")
+	interruptCode := constants.SignalInterruptCode
+	go func(showErrors bool, interruptCode int) {
 		<-c
-		if consoleHelpers.ShowError("errors") {
-			os.Exit(constants.SignalInterruptCode)
+		if showErrors {
+			os.Exit(interruptCode)
 		}
-	}()
+	}(showErrors, interruptCode)
 }
