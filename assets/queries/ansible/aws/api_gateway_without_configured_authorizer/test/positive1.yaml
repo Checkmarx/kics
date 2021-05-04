@@ -1,0 +1,31 @@
+- name: Setup AWS API Gateway setup on AWS and deploy API definition
+  community.aws.aws_api_gateway:
+    swagger_dict:
+      {
+        "openapi": "3.0.0",
+        "info":
+          {
+            "title": "Simple API Overview",
+            "version": "1.0.0",
+            "contact": { "name": "contact", "email": "user@gmail.com" },
+          },
+        "components":
+          {
+            "securitySchemes":
+              {
+                "request_authorizer_single_stagevar":
+                  {
+                    "type": "apiKey",
+                    "name": "Unused",
+                    "in": "header",
+                    "x-amazon-apigateway-authtype": "custom",
+                  },
+              },
+          },
+      }
+    stage: production
+    cache_enabled: true
+    cache_size: "1.6"
+    tracing_enabled: true
+    endpoint_type: EDGE
+    state: present
