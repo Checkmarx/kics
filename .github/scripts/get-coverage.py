@@ -120,7 +120,9 @@ def main():
     args = parse_args()
     lines = load_coverage(args)
     stats = calc_file_stats(lines)
-    total = round(total_cov(stats))
+    float_cov = total_cov(stats)
+    print(float_cov)
+    total = round(float_cov)
     if os.environ.get('GITHUB_RUN_ID'):
         if total >= 90:
             color = 'brightgreen'
