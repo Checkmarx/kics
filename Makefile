@@ -89,7 +89,7 @@ test-cover: generate
 	$(call print-target)
 	@go test -covermode=atomic -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
 
-.PHONY: §ge-report
+.PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report
 test-coverage-report: test-cover
 	@python3 .github/scripts/get-coverage.py coverage.out
