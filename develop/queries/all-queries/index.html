@@ -14,7 +14,7 @@
         <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../../css/custom.css" rel="stylesheet">
-
+        <link href="../../css/version-select.css" rel="stylesheet">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
         <script src="../../js/bootstrap.min.js" defer></script>
@@ -4389,6 +4389,14 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Success Response Code Undefined for Head Operation<br/><sup><sub>3b066059-f411-4554-ac8d-96f32bff90da</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Head should define at least one success response (200 or 202)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Success Response Code Undefined for Trace Operation<br/><sup><sub>105e20dd-8449-4d71-95c6-d5dac96639af</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4410,6 +4418,14 @@
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
 <td>Patch should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Response Code Missing<br/><sup><sub>6c35d2c6-09f2-4e5c-a094-e0e91327071d</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>500, 429 and 400 responses should be defined for all operations, except head operation. 415 response should be defined for the post, put, and patch operations. 404 response should be defined for the get, put, head, delete operations. 200 response should be defined for options operation. 401 and 403 response should be defined for all operations when the security field is defined.</td>
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4442,6 +4458,14 @@
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
 <td>Tag External Documentation URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Global External Documentation URL<br/><sup><sub>b2d9dbf6-539c-4374-a1fd-210ddf5563a8</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Global External Documentation URL should be a valid URL</td>
 <td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4565,6 +4589,14 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Encoding Map Key Mismatch Schema Defined Properties<br/><sup><sub>cd7a52cf-8d7f-4cfe-bbeb-6306d23f576b</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Encoding Map Key should be set in schema defined properties</td>
+<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Parameter Objects Headers With Duplicated Name<br/><sup><sub>05505192-ba2c-4a81-9b25-dcdbcc973746</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -4685,6 +4717,14 @@
 <td><a href="https://swagger.io/specification/#server-variable-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Request Body Object With Incorrect Media Type<br/><sup><sub>58f06434-a88c-4f74-826c-db7e10cc7def</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The field 'content' of the request body object should be set to 'multipart' or 'application/x-www-form-urlencoded' when field 'encoding' is set.</td>
+<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Property 'allowEmptyValue' Improperly Defined<br/><sup><sub>4bcbcd52-3028-469f-bc14-02c7dbba2df2</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -4717,12 +4757,28 @@
 <td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Components Object Fixed Field Key Improperly Named<br/><sup><sub>151331e2-11f4-4bb6-bd35-9a005e695087</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Components object fixed fields (schemas, responses, parameters, examples, requestBodies, headers, securitySchemes, links, and callbacks) should use keys that match the following REGEX: <code>^[a-zA-Z0-9\.\-_]+$</code></td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Server URL Uses Undefined Variables<br/><sup><sub>8d0921d6-4131-461f-a253-99e873f8f77e</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
 <td>Any variable used in the Service URL should be defined in the Service Object through 'variables'.</td>
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Link Object Incorrect Ref<br/><sup><sub>b9db8a10-020c-49ca-88c6-780e5fdb4328</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Link object reference must always point to '#components/links'</td>
+<td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Callback Object With Incorrect Ref<br/><sup><sub>ba066cda-e808-450d-92b6-f29109754d45</sub></sup></td>
@@ -7902,7 +7958,7 @@
         <script src="../../js/custom.js" defer></script>
         <script src="../../js/version-mike.js" defer></script>
         <script src="../../search/main.js" defer></script>
-
+        <script src="../../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
