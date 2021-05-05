@@ -93,8 +93,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 
 		return obj, c.parsers.GetKind(), nil
 	}
-
-	return nil, "", ErrNotSupportedFile
+	return nil, "break", ErrNotSupportedFile
 }
 
 // SupportedExtensions returns extensions supported by KICS
