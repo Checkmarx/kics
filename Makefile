@@ -91,7 +91,7 @@ test-cover: generate
 
 .PHONY: §ge-report
 test-coverage-report: ## Run unit tests and generate test coverage report
-test-coverage-report: test-race-cover
+test-coverage-report: test-cover
 	@python3 .github/scripts/get-coverage.py coverage.out
 	@echo "Generating coverage.html"
 	@go tool cover -html=coverage.out -o coverage.html
