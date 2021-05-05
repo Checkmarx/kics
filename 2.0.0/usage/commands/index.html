@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.kics.io/2.0.0/usage/commands/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>KICS Commands - KICS</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link href="../../css/custom.css" rel="stylesheet">
+        <link href="../../css/version-select.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-186818347-2', 'auto');
+            ga('send', 'pageview');
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">KICS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../getting-started/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../configuration-file/" class="dropdown-item">Configuration</a>
+</li>
+                                    
+<li>
+    <a href="../../results/" class="dropdown-item">Results</a>
+</li>
+                                    
+<li>
+    <a href="../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Usage</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="./" class="dropdown-item active">KICS Commands</a>
+</li>
+            
+<li>
+    <a href="../technologies/" class="dropdown-item">Technologies</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Queries <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../queries/" class="dropdown-item">General Info</a>
+</li>
+                                    
+<li>
+    <a href="../../creating-queries/" class="dropdown-item">Creating Queries</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Queries List</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../queries/all-queries/" class="dropdown-item">All</a>
+</li>
+            
+<li>
+    <a href="../../queries/ansible-queries/" class="dropdown-item">Ansible</a>
+</li>
+            
+<li>
+    <a href="../../queries/cloudformation-queries/" class="dropdown-item">CloudFormation</a>
+</li>
+            
+<li>
+    <a href="../../queries/common-queries/" class="dropdown-item">Common</a>
+</li>
+            
+<li>
+    <a href="../../queries/dockerfile-queries/" class="dropdown-item">Dockerfile</a>
+</li>
+            
+<li>
+    <a href="../../queries/kubernetes-queries/" class="dropdown-item">Kubernetes</a>
+</li>
+            
+<li>
+    <a href="../../queries/terraform-queries/" class="dropdown-item">Terraform</a>
+</li>
+            
+<li>
+    <a href="../../queries/openapi-queries/" class="dropdown-item">OpenAPI</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../integrations/" class="dropdown-item">Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_azurepipelines/" class="dropdown-item">Azure DevOps</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_bitbucketpipelines/" class="dropdown-item">Bitbucket Pipelines</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_circleci/" class="dropdown-item">CircleCI</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_ghactions/" class="dropdown-item">Github Actions</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_gitlabci/" class="dropdown-item">Gitlab CI</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_jenkins/" class="dropdown-item">Jenkins</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../roadmap/" class="dropdown-item">Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/projects" class="dropdown-item">Plans</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/issues" class="dropdown-item">Issues</a>
+</li>
+                                    
+<li>
+    <a href="../../releases/" class="dropdown-item">Releases</a>
+</li>
+                                    
+<li>
+    <a href="../../performance/" class="dropdown-item">Performance</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../CONTRIBUTING/" class="nav-link">Contribution</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../architecture/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../technologies/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/usage/commands.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#kics_cli" class="nav-link">KICS CLI</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#kics_command" class="nav-link">KICS Command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#scan_command_options" class="nav-link">Scan Command Options</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#disable_telemetry" class="nav-link">Disable Telemetry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="kics_cli">KICS CLI<a class="headerlink" href="#kics_cli" title="Permanent link">&para;</a></h1>
+<p>KICS is a command line tool, and should be used in a terminal. The next section describes the usage, the same help content is displayed when kics is provided with the <code>--help</code> flag.</p>
+<h2 id="kics_command">KICS Command<a class="headerlink" href="#kics_command" title="Permanent link">&para;</a></h2>
+<p>KICS has the following commands available:</p>
+<pre><code class="language-txt">Keeping Infrastructure as Code Secure
+
+Usage:
+  kics [command]
+
+Available Commands:
+  generate-id    Generates uuid for query
+  help           Help about any command
+  list-platforms List supported platforms
+  scan           Executes a scan analysis
+  version        Displays the current version
+
+Flags:
+      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+  -h, --help                help for kics
+  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
+      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
+      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --no-color            disable CLI color output
+      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+
+Use &quot;kics [command] --help&quot; for more information about a command.
+</code></pre>
+<h2 id="scan_command_options">Scan Command Options<a class="headerlink" href="#scan_command_options" title="Permanent link">&para;</a></h2>
+<pre><code class="language-txt">Executes a scan analysis
+
+Usage:
+  kics scan [flags]
+
+Flags:
+      --config string                path to configuration file
+      --exclude-categories strings   exclude categories by providing its name
+                                     can be provided multiple times or as a comma separated string
+                                     example: 'Access control,Best practices'
+  -e, --exclude-paths strings        exclude paths from scan
+                                     supports glob and can be provided multiple times or as a quoted comma separated string
+                                     example: './shouldNotScan/*,somefile.txt'
+      --exclude-queries strings      exclude queries by providing the query ID
+                                     can be provided multiple times or as a comma separated string
+                                     example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
+  -x, --exclude-results strings      exclude results by providing the similarity ID of a result
+                                     can be provided multiple times or as a comma separated string
+                                     example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
+      --fail-on strings              which kind of results should return an exit code different from 0
+                                     accetps: high, medium, low and info
+                                     example: &quot;high,low&quot; (default [high,medium,low,info])
+  -h, --help                         help for scan
+      --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
+                                     accepts: all, results, errors, none
+                                     example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
+      --minimal-ui                   simplified version of CLI output
+      --no-progress                  hides the progress bar
+  -o, --output-path string           directory path to store reports
+  -p, --path strings                 paths or directories to scan
+                                     example: &quot;./somepath,somefile.txt&quot;
+  -d, --payload-path string          path to store internal representation JSON file
+      --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
+  -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
+      --report-formats strings       formats in which the results will be exported (json, sarif, html)
+      --timeout int                  number of seconds the query has to execute before being canceled (default 60)
+  -t, --type strings                 case insensitive list of platform types to scan
+                                     (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
+
+Global Flags:
+      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
+      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
+      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --no-color            disable CLI color output
+      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+
+</code></pre>
+<p>The other commands have no further options.</p>
+<hr />
+<h2 id="disable_telemetry">Disable Telemetry<a class="headerlink" href="#disable_telemetry" title="Permanent link">&para;</a></h2>
+<p>You can disable KICS telemetry with <code>KICS_COLLECT_TELEMETRY</code> environment variable set to <code>0</code> or <code>false</code> e.g:</p>
+<pre><code class="language-sh">KICS_COLLECT_TELEMETRY=0 ./bin/kics version
+# 'KICS telemetry disabled' message should appear in the logs
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>&copy; 2021 Checkmarx Ltd. All Rights Reserved.</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../js/custom.js" defer></script>
+        <script src="../../js/version-mike.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+        <script src="../../js/version-select.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
