@@ -24,7 +24,7 @@ jobs:
       - name: Run test metrics script
         id: testcov
         run: |
-          make test-cover
+          make test-coverage-report
           cat coverage.html
       - name: Generate badge
         run: |
