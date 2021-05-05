@@ -1268,8 +1268,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="280">{
-                if val == true </span><span class="cov9" title="279">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="276">{
+                if val == true </span><span class="cov9" title="275">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -4202,7 +4202,7 @@ func NewFilesystemSource(source string, types []string) *FilesystemSource <span 
 func ListSupportedPlatforms() []string <span class="cov1" title="1">{
         keys := make([]string, len(supportedPlatforms))
         i := 0
-        for k := range supportedPlatforms </span><span class="cov5" title="6">{
+        for k := range supportedPlatforms </span><span class="cov6" title="6">{
                 keys[i] = k
                 i++
         }</span>
@@ -4221,7 +4221,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov6" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="26">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="24">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov5" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -4280,7 +4280,7 @@ func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.Qu
                                 return err
                         }</span>
 
-                        <span class="cov6" title="7">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov5" title="6">{
+                        <span class="cov6" title="7">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov6" title="6">{
                                 return nil
                         }</span>
 
@@ -4384,7 +4384,7 @@ func getPlatform(queryPath string) string <span class="cov6" title="8">{
                 return "common"
         }</span> else<span class="cov6" title="7"> if strings.Contains(queryPath, "ansible") </span><span class="cov1" title="1">{
                 return "ansible"
-        }</span> else<span class="cov5" title="6"> if strings.Contains(queryPath, "cloudFormation") </span><span class="cov1" title="1">{
+        }</span> else<span class="cov6" title="6"> if strings.Contains(queryPath, "cloudFormation") </span><span class="cov1" title="1">{
                 return "cloudFormation"
         }</span> else<span class="cov5" title="5"> if strings.Contains(queryPath, "dockerfile") </span><span class="cov1" title="1">{
                 return "dockerfile"
