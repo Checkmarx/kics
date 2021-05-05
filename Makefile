@@ -77,15 +77,21 @@ test: ## Run all tests
 test: test-race-cover test-e2e
 	$(call print-target)
 
-.PHONY: test-race-cover
-test-race-cover: ## Run tests with race detector and code coverage
-test-race-cover: generate
+.PHONY: test-race
+test-race: ## Run tests with race detector
+test-race: generate
 	$(call print-target)
-	@go test -race -covermode=atomic -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
+	@go test -race $(shell go list ./... | grep -v e2e)
+
+.PHONY: test-cover
+test-cover: ## Run tests with code coverage
+test-cover: generate
+	$(call print-target)
+	@go test -covermode=atomic -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report
-test-coverage-report: test-race-cover
+test-coverage-report: test-cover
 	@python3 .github/scripts/get-coverage.py coverage.out
 	@echo "Generating coverage.html"
 	@go tool cover -html=coverage.out -o coverage.html
