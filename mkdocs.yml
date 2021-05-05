@@ -36,6 +36,7 @@ nav:
       - Overview: integrations.md
       - Azure DevOps: integrations_azurepipelines.md
       - Bitbucket Pipelines: integrations_bitbucketpipelines.md
+      - CircleCI: integrations_circleci.md
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
