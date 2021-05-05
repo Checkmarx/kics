@@ -17,6 +17,7 @@ nav:
       - Configuration: configuration-file.md
       - Results: results.md
       - Architecture: architecture.md
+      - Changes in v2.0.0: changes.md
       - Usage:
           - KICS Commands: usage/commands.md
           - Technologies: usage/technologies.md
@@ -70,7 +71,6 @@ plugins:
 google_analytics:
   - UA-186818347-2
   - auto
-
 
 markdown_extensions:
   - toc:
