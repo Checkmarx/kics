@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/develop/architecture/">
+        <link rel="canonical" href="http://www.kics.io/develop/changes/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Architecture - KICS</title>
+        <title>Changes in v2.0.0 - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -61,11 +61,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Architecture</a>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
 </li>
                                     
 <li>
-    <a href="../changes/" class="dropdown-item">Changes in v2.0.0</a>
+    <a href="./" class="dropdown-item active">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -207,17 +207,17 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../results/" class="nav-link">
+                                <a rel="prev" href="../architecture/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../changes/" class="nav-link">
+                                <a rel="next" href="../usage/commands/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/architecture.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/changes.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -237,18 +237,24 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#overview" class="nav-link">Overview</a>
+            <li class="nav-item" data-level="1"><a href="#changes_in_v200" class="nav-link">Changes in v2.0.0</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#breaking_changes" class="nav-link">Breaking Changes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="2"><a href="#high_level_architecture" class="nav-link">High Level Architecture</a>
+            <li class="nav-item" data-level="2"><a href="#new_flags" class="nav-link">New Flags</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="2"><a href="#execution_flow" class="nav-link">Execution Flow</a>
+            <li class="nav-item" data-level="2"><a href="#updated_flags" class="nav-link">Updated Flags</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#kics_engine" class="nav-link">KICS Engine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -256,31 +262,70 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>KICS is 100% open source is written in Golang using Open Policy Agent (<a href="https://www.openpolicyagent.org/" target="_blank">OPA</a>).</p>
-<p>Golang speed, simplicity and reliability made it the perfect choice for writing KICS, while <a href="https://www.openpolicyagent.org/docs/latest/policy-language/" target="_blank">Rego</a> as a query language, was a native choice to implement security queries.</p>
-<p>So far have written 1000+ ready-to-use queries that cover a wide range of vulnerabilities checks for AWS, GCP, Azure and other cloud providers.</p>
+<h1 id="changes_in_v200">Changes in v2.0.0<a class="headerlink" href="#changes_in_v200" title="Permanent link">&para;</a></h1>
 <hr />
-<h2 id="high_level_architecture">High Level Architecture<a class="headerlink" href="#high_level_architecture" title="Permanent link">&para;</a></h2>
-<p>KICS has a pluggable architecture with extensible pipeline of parsing IaC languages, which allows an easy integration of new IaC languages and queries.</p>
-<p>At a very high level, KICS is composed of the following main components: a command line interface, parser, queries execution engine,  IaC providers,  security queries, and results writer.</p>
+<h2 id="breaking_changes">Breaking Changes<a class="headerlink" href="#breaking_changes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Command Line Interface =&gt; Provides CLI input to KICS.</li>
-<li>Parser =&gt; responsible for parsing input IaC files (terraform and others)</li>
-<li>IaC Providers =&gt; Converts IaC language into normalized JSON</li>
-<li>Queries Execution Engine =&gt; applies REGO queries against normalized JSON</li>
-<li>Security Queries =&gt; pre-built REGO queries for each security and misconfiguration</li>
-<li>Writer =&gt; Writes results into JSON format</li>
+<li>KICS does not execute scan as default anymore</li>
+<li>Semantic exit code added based on scan results</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/high-level-arch.png">
-<br/></p>
 <hr />
-<h2 id="execution_flow">Execution Flow<a class="headerlink" href="#execution_flow" title="Permanent link">&para;</a></h2>
-<p>The sequence diagram below depicts interaction of the main KICS components:
-<br/>
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-1.png">
-<br/>
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png"></p></div>
+<h2 id="new_flags">New Flags<a class="headerlink" href="#new_flags" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timeout</code></td>
+<td>number of seconds the query has to execute before being canceled (default 60)</td>
+</tr>
+<tr>
+<td><code>profiling</code></td>
+<td>enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)</td>
+</tr>
+<tr>
+<td><code>fail-on</code></td>
+<td>which kind of results should return an exit code different from 0 accetps: high, medium, low and info example: "high,low" (default [high,medium,low,info])</td>
+</tr>
+<tr>
+<td><code>ignore-on-exit</code></td>
+<td>defines which kind of non-zero exits code should be ignored accepts: all, results, errors, none example: if 'results' is set, only engine errors will make KICS exit code different</td>
+</tr>
+</tbody>
+</table>
+<h2 id="updated_flags">Updated Flags<a class="headerlink" href="#updated_flags" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>flag</th>
+<th>shorthand</th>
+<th>Description</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>-p</code></td>
+<td>paths or directories to scan</td>
+<td><code>path</code> flag now accepts multiple values</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kics_engine">KICS Engine<a class="headerlink" href="#kics_engine" title="Permanent link">&para;</a></h2>
+<hr />
+<h4 id="timeout_queries">Timeout Queries<a class="headerlink" href="#timeout_queries" title="Permanent link">&para;</a></h4>
+<p>Query execution timeout is now parametrized, the flag <code>timeout</code> will override the default value (60 seconds)</p>
+<h4 id="multiple_paths">Multiple paths<a class="headerlink" href="#multiple_paths" title="Permanent link">&para;</a></h4>
+<p>KICS can now scan multiple paths (WARNING: For multiple paths, kics.config will not be loaded automatically, configuration flag must be explicitly used to load any configuration file.)</p>
+<h4 id="concurrent_scans">Concurrent Scans<a class="headerlink" href="#concurrent_scans" title="Permanent link">&para;</a></h4>
+<p>For performance improvements, KICS will now run scans concurrently by parser.</p>
+<h4 id="analyzer">Analyzer<a class="headerlink" href="#analyzer" title="Permanent link">&para;</a></h4>
+<p>KICS will now do a pre-scan analysis to determine which type of queries and parsers to load. The analyzer will also exclude non Infrastructure as Code files. (WARNING: Using the <code>type</code> flag will disable the analyzer)</p></div>
             </div>
         </div>
 
