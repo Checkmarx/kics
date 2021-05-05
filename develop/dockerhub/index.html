@@ -254,21 +254,47 @@
 <p>https://github.com/Checkmarx/kics</p>
 <h2 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h2>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see the full list of CLI options below)</p>
+<p>NOTE: from v2.0.0 KICS does not execute <code>scan</code> command by default anymore.</p>
 <pre><code class="language-sh">docker pull checkmarx/kics:latest
 </code></pre>
 <p>Scan a directory</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
 </code></pre>
 <p>Scan a single file</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
 </code></pre>
 <h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
 <p>Usage:</p>
-<pre><code class="language-txt">Available Commands:
-  generate-id Generates uuid for query
-  help        Help about any command
-  scan        Executes a scan analysis
-  version     Displays the current version
+<pre><code class="language-txt">Keeping Infrastructure as Code Secure
+
+Usage:
+  kics [command]
+
+Available Commands:
+  generate-id    Generates uuid for query
+  help           Help about any command
+  list-platforms List supported platforms
+  scan           Executes a scan analysis
+  version        Displays the current version
+
+Flags:
+      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+  -h, --help                help for kics
+  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
+      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
+      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --no-color            disable CLI color output
+      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+
+Use &quot;kics [command] --help&quot; for more information about a command.
+</code></pre>
+<p>Scan command:</p>
+<pre><code class="language-txt">Executes a scan analysis
+
+Usage:
+  kics scan [flags]
 
 Flags:
       --config string                path to configuration file
@@ -284,15 +310,23 @@ Flags:
   -x, --exclude-results strings      exclude results by providing the similarity ID of a result
                                      can be provided multiple times or as a comma separated string
                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
+      --fail-on strings              which kind of results should return an exit code different from 0
+                                     accetps: high, medium, low and info
+                                     example: &quot;high,low&quot; (default [high,medium,low,info])
   -h, --help                         help for scan
+      --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
+                                     accepts: all, results, errors, none
+                                     example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
   -o, --output-path string           directory path to store reports
-  -p, --path string                  path or directory path to scan
+  -p, --path strings                 paths or directories to scan
+                                     example: &quot;./somepath,somefile.txt&quot;
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
       --report-formats strings       formats in which the results will be exported (json, sarif, html)
+      --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
 
@@ -302,6 +336,7 @@ Global Flags:
       --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
       --log-path string     path to log files, (defaults to ${PWD}/info.log)
       --no-color            disable CLI color output
+      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
   -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 </code></pre></div>
