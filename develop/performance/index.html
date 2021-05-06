@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/performance/">
+        <link rel="canonical" href="http://www.kics.io/develop/performance/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Performance - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -318,7 +319,7 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 <p><sup>2</sup> Query Coverage = Query with results / Queries</p>
 <hr />
 <p><br/></p>
-<h3>Global Measures</h3>
+<h3 id="global_measures">Global Measures<a class="headerlink" href="#global_measures" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -364,7 +365,7 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 </ul>
 <p>Keep in mind that profiling will periodically stop KICS to retrieve the wanted metrics, meaning KICS execution time will increase substantially.</p>
 <hr />
-<h3>CPU Profiling</h3>
+<h3 id="cpu_profiling">CPU Profiling<a class="headerlink" href="#cpu_profiling" title="Permanent link">&para;</a></h3>
 <p>Flag: <code>--profiling CPU</code></p>
 <pre><code class="language-text">9:43AM INF Scanning with Keeping Infrastructure as Code Secure dev
 9:43AM INF Total CPU usage for get_queries: 6.56s &lt;-
@@ -383,7 +384,7 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
 9:43AM INF Scan duration: 21.1476197s
 </code></pre>
 <hr />
-<h3>MEM Profiling</h3>
+<h3 id="mem_profiling">MEM Profiling<a class="headerlink" href="#mem_profiling" title="Permanent link">&para;</a></h3>
 <p>Flag: <code>--profiling MEM</code></p>
 <pre><code class="language-text">9:43AM INF Scanning with Keeping Infrastructure as Code Secure dev
 9:43AM INF Total MEM usage for get_queries: 237.96MB &lt;-
@@ -417,6 +418,7 @@ the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AW
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
