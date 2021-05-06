@@ -17,7 +17,7 @@ nav:
       - Configuration: configuration-file.md
       - Results: results.md
       - Architecture: architecture.md
-      - Changes in v2.0.0: changes.md
+      - Changes in v1.3.0: changes.md
       - Usage:
           - KICS Commands: usage/commands.md
           - Technologies: usage/technologies.md
