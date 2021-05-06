@@ -12,7 +12,7 @@ https://github.com/Checkmarx/kics
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see the full list of CLI options below)
 
-NOTE: from v2.0.0 KICS does not execute `scan` command by default anymore.
+NOTE: from v1.3.0 KICS does not execute `scan` command by default anymore.
 
 
 ```sh

@@ -1,4 +1,4 @@
-# Changes in v2.0.0
+# Changes in v1.3.0
 ---
 
 ## Breaking Changes
