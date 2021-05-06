@@ -65,7 +65,7 @@
 				
 				<option value="file4">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (58.6%)</option>
+				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.5%)</option>
 				
 				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (81.4%)</option>
 				
@@ -813,6 +813,7 @@ import (
         "io"
         "os"
         "path/filepath"
+        "sort"
         "strconv"
         "strings"
 
@@ -849,7 +850,6 @@ var (
                 LogFileFlag:  LogFile,
                 LogLevelFlag: LogLevel,
                 LogPathFlag:  LogPath,
-                NoColorFlag:  NoColor,
                 SilentFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
                         return nil
                 }</span>,
@@ -857,6 +857,18 @@ var (
                 LogFormatFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
                         return nil
                 }</span>,
+                NoColorFlag: NoColor,
+        }
+
+        optionsOrderMap = map[int]string{
+                1: CIFlag,
+                2: LogFileFlag,
+                3: LogLevelFlag,
+                4: LogPathFlag,
+                5: SilentFlag,
+                6: VerboseFlag,
+                7: LogFormatFlag,
+                8: NoColorFlag,
         }
 
         consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
@@ -876,18 +888,25 @@ func SetupPrinter(flags *pflag.FlagSet) error <span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov0" title="0">for flagName, optionFunc := range optionsMap </span><span class="cov0" title="0">{
-                f := flags.Lookup(flagName)
+        <span class="cov0" title="0">keys := make([]int, 0, len(optionsOrderMap))
+        for k := range optionsOrderMap </span><span class="cov0" title="0">{
+                keys = append(keys, k)
+        }</span>
+
+        <span class="cov0" title="0">sort.Ints(keys)
+
+        for _, key := range keys </span><span class="cov0" title="0">{
+                f := flags.Lookup(optionsOrderMap[key])
                 switch f.Value.Type() </span>{
                 case "string":<span class="cov0" title="0">
                         value := f.Value.String()
-                        err = optionFunc(value, f.Changed)
+                        err = optionsMap[optionsOrderMap[key]](value, f.Changed)
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
                 case "bool":<span class="cov0" title="0">
                         value, _ := strconv.ParseBool(f.Value.String())
-                        err = optionFunc(value, f.Changed)
+                        err = optionsMap[optionsOrderMap[key]](value, f.Changed)
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
@@ -1268,8 +1287,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="273">{
-                if val == true </span><span class="cov9" title="272">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="275">{
+                if val == true </span><span class="cov9" title="274">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
