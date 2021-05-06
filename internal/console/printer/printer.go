@@ -45,10 +45,10 @@ var (
 			return nil
 		},
 		VerboseFlag: Verbose,
-		NoColorFlag: NoColor,
 		LogFormatFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
+		NoColorFlag: NoColor,
 	}
 
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
