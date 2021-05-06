@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Link Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 52,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Link Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Link Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Link Object Incorrect Ref",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive4.yaml"
+  }
+]

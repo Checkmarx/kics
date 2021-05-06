@@ -36,28 +36,32 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types []string) (*Parser, error) {
+func (b *Builder) Build(types []string) ([]*Parser, error) {
+	parserSlice := make([]*Parser, 0, len(b.parsers))
 	var suportedTypes []string
-	parsers := make(map[string]kindParser, len(b.parsers))
-	extensions := make(model.Extensions, len(b.parsers))
 	for _, parser := range b.parsers {
-		suportedTypes = append(suportedTypes, parser.SupportedTypes()...)
+		var parsers kindParser
+		extensions := make(model.Extensions, len(b.parsers))
+		platforms := parser.SupportedTypes()
+		suportedTypes = append(suportedTypes, platforms...)
 		if _, _, ok := contains(types, parser.SupportedTypes()); ok {
+			parsers = parser
 			for _, ext := range parser.SupportedExtensions() {
-				parsers[ext] = parser
 				extensions[ext] = struct{}{}
 			}
+			parserSlice = append(parserSlice, &Parser{
+				parsers:    parsers,
+				extensions: extensions,
+				Platform:   platforms,
+			})
 		}
 	}
 
 	if err := validateArguments(types, suportedTypes); err != nil {
-		return &Parser{}, err
+		return []*Parser{}, err
 	}
 
-	return &Parser{
-		parsers:    parsers,
-		extensions: extensions,
-	}, nil
+	return parserSlice, nil
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS
@@ -65,8 +69,9 @@ var ErrNotSupportedFile = errors.New("unsupported file to parse")
 
 // Parser is a struct that associates a parser to its supported extensions
 type Parser struct {
-	parsers    map[string]kindParser
+	parsers    kindParser
 	extensions model.Extensions
+	Platform   []string
 }
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
@@ -76,20 +81,19 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 	if ext == "" {
 		ext = filepath.Base(filePath)
 	}
-	if p, ok := c.parsers[ext]; ok {
-		resolved, err := p.Resolve(fileContent, filePath)
+	if _, ok := c.extensions[ext]; ok {
+		resolved, err := c.parsers.Resolve(fileContent, filePath)
 		if err != nil {
 			return nil, "", err
 		}
-		obj, err := p.Parse(filePath, *resolved)
+		obj, err := c.parsers.Parse(filePath, *resolved)
 		if err != nil {
 			return nil, "", err
 		}
 
-		return obj, p.GetKind(), nil
+		return obj, c.parsers.GetKind(), nil
 	}
-
-	return nil, "", ErrNotSupportedFile
+	return nil, "break", ErrNotSupportedFile
 }
 
 // SupportedExtensions returns extensions supported by KICS

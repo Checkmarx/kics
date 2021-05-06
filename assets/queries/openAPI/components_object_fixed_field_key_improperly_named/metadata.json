@@ -1,0 +1,9 @@
+{
+  "id": "151331e2-11f4-4bb6-bd35-9a005e695087",
+  "queryName": "Components Object Fixed Field Key Improperly Named",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Components object fixed fields (schemas, responses, parameters, examples, requestBodies, headers, securitySchemes, links, and callbacks) should use keys that match the following REGEX: `^[a-zA-Z0-9\\.\\-_]+$`",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

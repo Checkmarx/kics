@@ -11,7 +11,7 @@ import (
 func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searchValue string) (*string, error) {
 	basePath := ""
 	for _, path := range basePaths {
-		if strings.Contains(filePath, filepath.ToSlash(path)) {
+		if strings.Contains(filepath.ToSlash(filePath), filepath.ToSlash(path)) {
 			basePath = filepath.ToSlash(path)
 			break
 		}

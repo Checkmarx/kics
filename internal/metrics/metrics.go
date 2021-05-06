@@ -3,6 +3,7 @@ package metrics
 import (
 	"bytes"
 	"fmt"
+	"math"
 	"strings"
 
 	"github.com/google/pprof/profile"
@@ -130,5 +131,11 @@ func formatTotal(b int64, typeMap map[string]float64) string {
 			mesure = k
 		}
 	}
-	return fmt.Sprintf("%.2f%s", value/formatter, mesure)
+
+	metric := value / formatter
+	if math.IsNaN(metric) {
+		metric = 0
+	}
+
+	return fmt.Sprintf("%.2f%s", metric, mesure)
 }

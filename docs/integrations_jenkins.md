@@ -2,7 +2,7 @@
 
 You can integrate KICS into your Jenkins CI/CD pipelines.
 
-This provides you the ability to run KICS scans in as a stage in your pipeline.
+This provides you the ability to run KICS scans as a stage in your pipeline.
 
 ## Declarative pipelines:
 

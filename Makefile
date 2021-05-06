@@ -8,6 +8,7 @@ COMMIT := $(shell git rev-parse HEAD)
 VERSION := snapshot-$(shell echo ${COMMIT} | cut -c1-8)
 IMAGE_TAG := dev
 TARGET_BIN ?= bin/kics
+CONSTANTS_PATH = github.com/Checkmarx/kics/internal/constants
 
 .PHONY: clean
 clean: ## remove files created during build
@@ -16,6 +17,7 @@ clean: ## remove files created during build
 	rm -rf bin
 	rm -rf vendor
 	rm -f coverage.*
+	rm -rf **/*.log
 
 .PHONY: mod-tidy
 mod-tidy: ## go mod tidy - download and cleanup modules
@@ -44,15 +46,14 @@ build-all: ## go build for both kics and query builder
 build-all: lint generate
 	$(call print-target)
 	@go build -o bin/ \
-		-ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" ./...
+		-ldflags "-X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.SCMCommit=${COMMIT}" ./...
 	@mv bin/console bin/kics
 
 .PHONY: build
 build: ## go build
 build: generate
 	$(call print-target)
-	@go build -o ${TARGET_BIN} \
-		-ldflags "-X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT}" \
+	@go build -o ${TARGET_BIN} -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION}" \
 		cmd/console/main.go
 
 .PHONY: go-clean
@@ -76,15 +77,21 @@ test: ## Run all tests
 test: test-race-cover test-e2e
 	$(call print-target)
 
-.PHONY: test-race-cover
-test-race-cover: ## Run tests with race detector and code coverage
-test-race-cover: generate
+.PHONY: test-race
+test-race: ## Run tests with race detector
+test-race: generate
 	$(call print-target)
-	@go test -race -covermode=atomic -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
+	@go test -race $(shell go list ./... | grep -v e2e)
+
+.PHONY: test-cover
+test-cover: ## Run tests with code coverage
+test-cover: generate
+	$(call print-target)
+	@go test -covermode=atomic -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report
-test-coverage-report: test-race-cover
+test-coverage-report: test-cover
 	@python3 .github/scripts/get-coverage.py coverage.out
 	@echo "Generating coverage.html"
 	@go tool cover -html=coverage.out -o coverage.html

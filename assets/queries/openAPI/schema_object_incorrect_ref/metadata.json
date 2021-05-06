@@ -1,0 +1,9 @@
+{
+  "id": "4cac7ace-b0fb-477d-830d-65395d9109d9",
+  "queryName": "Schema Object Incorrect Ref",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema Object reference must always point to '#components/schemas'",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

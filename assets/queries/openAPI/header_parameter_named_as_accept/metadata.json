@@ -1,0 +1,9 @@
+{
+  "id": "f2702af5-6016-46cb-bbc8-84c766032095",
+  "queryName": "Header Parameter Named as 'Accept'",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "The header Parameter should not be named as 'Accept'. If so, it will be ignored.",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}
