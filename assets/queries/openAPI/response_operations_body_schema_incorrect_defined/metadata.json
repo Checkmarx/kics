@@ -1,0 +1,9 @@
+{
+  "id": "a92be1d5-d762-484a-86d6-8cd0907ba100",
+  "queryName": "Response on operations that should not have a body has declared content",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "If a response is head or its code is 204 or 304, it shouldn't have a content defined",
+  "descriptionUrl": "https://swagger.io/docs/specification/describing-responses/",
+  "platform": "OpenAPI"
+}
