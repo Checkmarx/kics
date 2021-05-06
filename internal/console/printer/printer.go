@@ -41,11 +41,11 @@ var (
 		LogFileFlag:  LogFile,
 		LogLevelFlag: LogLevel,
 		LogPathFlag:  LogPath,
-		NoColorFlag:  NoColor,
 		SilentFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
 		VerboseFlag: Verbose,
+		NoColorFlag: NoColor,
 		LogFormatFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
