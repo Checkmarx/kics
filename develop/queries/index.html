@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.kics.io/queries/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>General Info - KICS</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link href="../css/custom.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-186818347-2', 'auto');
+            ga('send', 'pageview');
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">KICS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../getting-started/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../configuration-file/" class="dropdown-item">Configuration</a>
+</li>
+                                    
+<li>
+    <a href="../results/" class="dropdown-item">Results</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Usage</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../usage/commands/" class="dropdown-item">KICS Commands</a>
+</li>
+            
+<li>
+    <a href="../usage/technologies/" class="dropdown-item">Technologies</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Queries <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">General Info</a>
+</li>
+                                    
+<li>
+    <a href="../creating-queries/" class="dropdown-item">Creating Queries</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Queries List</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="all-queries/" class="dropdown-item">All</a>
+</li>
+            
+<li>
+    <a href="ansible-queries/" class="dropdown-item">Ansible</a>
+</li>
+            
+<li>
+    <a href="cloudformation-queries/" class="dropdown-item">CloudFormation</a>
+</li>
+            
+<li>
+    <a href="common-queries/" class="dropdown-item">Common</a>
+</li>
+            
+<li>
+    <a href="dockerfile-queries/" class="dropdown-item">Dockerfile</a>
+</li>
+            
+<li>
+    <a href="kubernetes-queries/" class="dropdown-item">Kubernetes</a>
+</li>
+            
+<li>
+    <a href="terraform-queries/" class="dropdown-item">Terraform</a>
+</li>
+            
+<li>
+    <a href="openapi-queries/" class="dropdown-item">OpenAPI</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../integrations/" class="dropdown-item">Overview</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_azurepipelines/" class="dropdown-item">Azure DevOps</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_bitbucketpipelines/" class="dropdown-item">Bitbucket Pipelines</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_circleci/" class="dropdown-item">CircleCI</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_ghactions/" class="dropdown-item">Github Actions</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_gitlabci/" class="dropdown-item">Gitlab CI</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/projects" class="dropdown-item">Plans</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/issues" class="dropdown-item">Issues</a>
+</li>
+                                    
+<li>
+    <a href="../releases/" class="dropdown-item">Releases</a>
+</li>
+                                    
+<li>
+    <a href="../performance/" class="dropdown-item">Performance</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../CONTRIBUTING/" class="nav-link">Contribution</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../usage/technologies/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../creating-queries/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/queries.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#queries" class="nav-link">Queries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+<p>KICS queries are written in OPA (Rego).</p>
+<pre><code class="language-rego">CxPolicy [ result ] {
+   resource := input.document[i].resource.aws_s3_bucket[name]
+   role = &quot;public-read&quot;
+   resource.acl == role
+
+   result := {
+        &quot;documentId&quot;:       input.document[i].id,
+        &quot;searchKey&quot;:        sprintf(&quot;aws_s3_bucket[%s].acl&quot;, [name]),
+        &quot;issueType&quot;:        &quot;IncorrectValue&quot;,
+        &quot;keyExpectedValue&quot;: sprintf(&quot;aws_s3_bucket[%s].acl is private&quot;, [name]),
+        &quot;keyActualValue&quot;:   sprintf(&quot;aws_s3_bucket[%s].acl is %s&quot;, [name, role])
+    }
+}
+</code></pre>
+<h4>Anatomy</h4>
+<p>The anatomy of a query is straightforward. It builds up a policy and defines the result.</p>
+<p>The <strong>policy</strong> builds the pattern that breaks the <em>security</em> of the infrastructure code and which the query is looking for.</p>
+<p>The <strong>result</strong> defines the specific data used to present the <em>vulnerability</em> in the infrastructure code.</p>
+<h4>Metadata</h4>
+<p>Each query has a metadata.json companion file with all the relevant information about the <em>vulnerability</em>, including 
+the severity, category and its description.</p>
+<p>For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;5738faf3-3fe6-4614-a93d-f0003242d4f9&quot;,
+  &quot;queryName&quot;: &quot;All Users Group Gets Read Access&quot;,
+  &quot;severity&quot;: &quot;HIGH&quot;,
+  &quot;category&quot;: &quot;Identity and Access Management&quot;,
+  &quot;descriptionText&quot;: &quot;It's not recommended to allow read access for all user groups.&quot;,
+  &quot;descriptionUrl&quot;: &quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl&quot;,
+  &quot;platform&quot;: &quot;Terraform&quot;
+}
+</code></pre>
+<h4>Organization</h4>
+<p>Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped 
+under provider (e.g., aws, gcp, azure, etc.) when applicable.</p>
+<p>Per each query created, it is mandatory the creation of <strong>test cases</strong> with, at least, one negative and positive case and a JSON file 
+with data about the expected results, as shown below:</p>
+<pre><code class="language-json">[
+  {
+    &quot;queryName&quot;: &quot;All Users Group Gets Read Access&quot;,
+    &quot;severity&quot;: &quot;HIGH&quot;,
+    &quot;line&quot;: 3
+  }
+]
+</code></pre>
+<p>Summarizing, the following is the expected file tree for a query:</p>
+<pre><code class="language-none">- &lt;technology&gt;
+    |- &lt;provider&gt;
+    |   |- &lt;queryfolder&gt;
+    |   |   |- test
+    |   |   |   |- positive&lt;.ext&gt;
+    |   |   |   |- negative&lt;.ext&gt;
+    |   |   |   |- positive_expected_result.json
+    |   |   |- metadata.json
+    |   |   |- query.rego
+</code></pre>
+<p>Also, a query can contains multiples positive and negative files, but all cases files names must start with negative or positive and
+each positive file must be referencered on <code>positive_expected_result.json</code>, as shown below:</p>
+<pre><code class="language-json">[
+  {
+    &quot;queryName&quot;: &quot;ELB Sensitive Port Is Exposed To Entire Network&quot;,
+    &quot;severity&quot;: &quot;HIGH&quot;,
+    &quot;line&quot;: 37,
+    &quot;fileName&quot;: &quot;positive1.yaml&quot;
+  },
+  {
+    &quot;queryName&quot;: &quot;ELB Sensitive Port Is Exposed To Entire Network&quot;,
+    &quot;severity&quot;: &quot;HIGH&quot;,
+    &quot;line&quot;: 22,
+    &quot;fileName&quot;: &quot;positive2.yaml&quot;
+  }
+]
+</code></pre>
+<p>And the file tree should be as follows:</p>
+<pre><code class="language-none">- &lt;technology&gt;
+    |- &lt;provider&gt;
+    |   |- &lt;queryfolder&gt;
+    |   |   |- test
+    |   |   |   |- positive1&lt;.ext&gt;
+    |   |   |   |- positive2&lt;.ext&gt;
+    |   |   |   |- negative1&lt;.ext&gt;
+    |   |   |   |- negative2&lt;.ext&gt;
+    |   |   |   |- positive_expected_result.json
+    |   |   |- metadata.json
+    |   |   |- query.rego
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>&copy; 2021 Checkmarx Ltd. All Rights Reserved.</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../js/custom.js" defer></script>
+        <script src="../js/version-mike.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

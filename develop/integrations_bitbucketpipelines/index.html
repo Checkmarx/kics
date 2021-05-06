@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.kics.io/integrations_bitbucketpipelines/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Bitbucket Pipelines - KICS</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link href="../css/custom.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-186818347-2', 'auto');
+            ga('send', 'pageview');
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">KICS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../getting-started/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../configuration-file/" class="dropdown-item">Configuration</a>
+</li>
+                                    
+<li>
+    <a href="../results/" class="dropdown-item">Results</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Usage</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../usage/commands/" class="dropdown-item">KICS Commands</a>
+</li>
+            
+<li>
+    <a href="../usage/technologies/" class="dropdown-item">Technologies</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Queries <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../queries/" class="dropdown-item">General Info</a>
+</li>
+                                    
+<li>
+    <a href="../creating-queries/" class="dropdown-item">Creating Queries</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Queries List</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../queries/all-queries/" class="dropdown-item">All</a>
+</li>
+            
+<li>
+    <a href="../queries/ansible-queries/" class="dropdown-item">Ansible</a>
+</li>
+            
+<li>
+    <a href="../queries/cloudformation-queries/" class="dropdown-item">CloudFormation</a>
+</li>
+            
+<li>
+    <a href="../queries/common-queries/" class="dropdown-item">Common</a>
+</li>
+            
+<li>
+    <a href="../queries/dockerfile-queries/" class="dropdown-item">Dockerfile</a>
+</li>
+            
+<li>
+    <a href="../queries/kubernetes-queries/" class="dropdown-item">Kubernetes</a>
+</li>
+            
+<li>
+    <a href="../queries/terraform-queries/" class="dropdown-item">Terraform</a>
+</li>
+            
+<li>
+    <a href="../queries/openapi-queries/" class="dropdown-item">OpenAPI</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../integrations/" class="dropdown-item">Overview</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_azurepipelines/" class="dropdown-item">Azure DevOps</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Bitbucket Pipelines</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_circleci/" class="dropdown-item">CircleCI</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_ghactions/" class="dropdown-item">Github Actions</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_gitlabci/" class="dropdown-item">Gitlab CI</a>
+</li>
+                                    
+<li>
+    <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/projects" class="dropdown-item">Plans</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/issues" class="dropdown-item">Issues</a>
+</li>
+                                    
+<li>
+    <a href="../releases/" class="dropdown-item">Releases</a>
+</li>
+                                    
+<li>
+    <a href="../performance/" class="dropdown-item">Performance</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../CONTRIBUTING/" class="nav-link">Contribution</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../integrations_azurepipelines/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../integrations_circleci/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations_bitbucketpipelines.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#integrate_kics_with_bitbucket_pipelines" class="nav-link">Integrate KICS with Bitbucket Pipelines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="integrate_kics_with_bitbucket_pipelines">Integrate KICS with Bitbucket Pipelines<a class="headerlink" href="#integrate_kics_with_bitbucket_pipelines" title="Permanent link">&para;</a></h2>
+<p>You can integrate KICS into Bitbucket Pipelines CI/CD.</p>
+<p>This provides you the ability to run KICS scans in your Bitbucket repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
+<h3>Example configuration</h3>
+<pre><code class="language-yaml">image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        name: 'Cx KICS'
+        script:
+          - LATEST_KICS_TAG=$(curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; | grep '&quot;tag_name&quot;:' | sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/')
+          - LATEST_KICS_VERSION=${LATEST_KICS_TAG#v}
+          - wget -q -c &quot;https://github.com/Checkmarx/kics/releases/download/${LATEST_KICS_TAG}/kics_${LATEST_KICS_VERSION}_linux_x64.tar.gz&quot; -O - | tar -xz --directory /usr/bin &amp;&gt;/dev/null
+          - kics -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
+          - TOTAL_SEVERITY_COUNTER=`grep '&quot;totalCounter&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'}`
+          - export SEVERITY_COUNTER_HIGH=`grep '&quot;HIGH&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          - SEVERITY_COUNTER_MEDIUM=`grep '&quot;INFO&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          - SEVERITY_COUNTER_LOW=`grep '&quot;LOW&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          - SEVERITY_COUNTER_INFO=`grep '&quot;MEDIUM&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
+          - echo &quot;TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER&quot;
+          - if [ &quot;$SEVERITY_COUNTER_HIGH&quot; -ge &quot;1&quot; ];then echo &quot;Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS&quot; &amp;&amp; exit 1;fi
+        artifacts:
+          - kics-results.json
+
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>&copy; 2021 Checkmarx Ltd. All Rights Reserved.</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../js/custom.js" defer></script>
+        <script src="../js/version-mike.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
