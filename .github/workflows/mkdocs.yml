@@ -37,4 +37,4 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Update develop docs
         run: |
-          mike deploy develop --push --force
+          mike deploy develop --push --force --rebase
