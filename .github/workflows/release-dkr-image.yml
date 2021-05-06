@@ -63,13 +63,14 @@ jobs:
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-      - name: Update repo description
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          readme-filepath: docs/dockerhub.md
-          repository: checkmarx/kics
+      # TODO: investigate why this is not working
+      #- name: Update repo description
+      #  uses: peter-evans/dockerhub-description@v2
+      #  with:
+      #    username: ${{ secrets.DOCKER_USERNAME }}
+      #    password: ${{ secrets.DOCKER_PASSWORD }}
+      #    readme-filepath: docs/dockerhub.md
+      #    repository: checkmarx/kics
       - name: Export Image Digests
         run: |
           VERSION=${{ steps.get-version.outputs.version }}
