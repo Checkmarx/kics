@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -51,6 +52,17 @@ var (
 		NoColorFlag: NoColor,
 	}
 
+	optionsOrderMap = map[int]string{
+		1: CIFlag,
+		2: LogFileFlag,
+		3: LogLevelFlag,
+		4: LogPathFlag,
+		5: SilentFlag,
+		6: VerboseFlag,
+		7: LogFormatFlag,
+		8: NoColorFlag,
+	}
+
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
 	fileLogger    = zerolog.ConsoleWriter{Out: io.Discard}
 
@@ -68,18 +80,25 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 		return err
 	}
 
-	for flagName, optionFunc := range optionsMap {
-		f := flags.Lookup(flagName)
+	keys := make([]int, 0, len(optionsOrderMap))
+	for k := range optionsOrderMap {
+		keys = append(keys, k)
+	}
+
+	sort.Ints(keys)
+
+	for _, key := range keys {
+		f := flags.Lookup(optionsOrderMap[key])
 		switch f.Value.Type() {
 		case "string":
 			value := f.Value.String()
-			err = optionFunc(value, f.Changed)
+			err = optionsMap[optionsOrderMap[key]](value, f.Changed)
 			if err != nil {
 				return err
 			}
 		case "bool":
 			value, _ := strconv.ParseBool(f.Value.String())
-			err = optionFunc(value, f.Changed)
+			err = optionsMap[optionsOrderMap[key]](value, f.Changed)
 			if err != nil {
 				return err
 			}
