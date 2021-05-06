@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/queries/">
+        <link rel="canonical" href="http://www.kics.io/develop/queries/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>General Info - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -261,11 +262,11 @@
     }
 }
 </code></pre>
-<h4>Anatomy</h4>
+<h4 id="anatomy">Anatomy<a class="headerlink" href="#anatomy" title="Permanent link">&para;</a></h4>
 <p>The anatomy of a query is straightforward. It builds up a policy and defines the result.</p>
 <p>The <strong>policy</strong> builds the pattern that breaks the <em>security</em> of the infrastructure code and which the query is looking for.</p>
 <p>The <strong>result</strong> defines the specific data used to present the <em>vulnerability</em> in the infrastructure code.</p>
-<h4>Metadata</h4>
+<h4 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h4>
 <p>Each query has a metadata.json companion file with all the relevant information about the <em>vulnerability</em>, including 
 the severity, category and its description.</p>
 <p>For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.</p>
@@ -279,7 +280,7 @@ the severity, category and its description.</p>
   &quot;platform&quot;: &quot;Terraform&quot;
 }
 </code></pre>
-<h4>Organization</h4>
+<h4 id="organization">Organization<a class="headerlink" href="#organization" title="Permanent link">&para;</a></h4>
 <p>Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped 
 under provider (e.g., aws, gcp, azure, etc.) when applicable.</p>
 <p>Per each query created, it is mandatory the creation of <strong>test cases</strong> with, at least, one negative and positive case and a JSON file 
@@ -349,6 +350,7 @@ each positive file must be referencered on <code>positive_expected_result.json</
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

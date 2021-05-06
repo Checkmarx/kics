@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/getting-started/">
+        <link rel="canonical" href="http://www.kics.io/develop/getting-started/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Installation - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -252,7 +253,7 @@
 
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>There are multiple ways to get KICS up and running:</p>
-<h4>Docker</h4>
+<h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
 <p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)</p>
 <pre><code class="language-shell">docker pull checkmarx/kics:latest
@@ -261,14 +262,14 @@ docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkm
 <p>We also provide alpine based docker image with <code>latest-alpine</code>.</p>
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
 <p>You can provide your own path to the queries directory with <code>-q</code> CLI option (see CLI Options section below), otherwise the default directory will be used The default <em>./assets/queries</em> is built-in in the image.</p>
-<h4>One-liner Install Script</h4>
+<h4 id="one-liner_install_script">One-liner Install Script<a class="headerlink" href="#one-liner_install_script" title="Permanent link">&para;</a></h4>
 <p>Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to <code>./bin</code> the queries will be placed alongside the binary in <code>./bin/assets/queries</code>:</p>
 <pre><code class="language-shell">curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
 </code></pre>
 <p>If you want to place it somewhere else like <code>/usr/local/bin</code>:</p>
 <pre><code class="language-shell">sudo curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash -s -- -b /usr/local/bin
 </code></pre>
-<h4>Binary</h4>
+<h4 id="binary">Binary<a class="headerlink" href="#binary" title="Permanent link">&para;</a></h4>
 <p>KICS release process is pretty straightforward.
 When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
 Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries</p>
@@ -281,7 +282,7 @@ Our security queries will be included in the ZIP files and tarballs, so that you
    <code>shell
    ./kics scan -p '&lt;path-of-your-project-to-scan&gt;' -o '&lt;output-results.json&gt;'</code></li>
 </ol>
-<h4>Build from Sources</h4>
+<h4 id="build_from_sources">Build from Sources<a class="headerlink" href="#build_from_sources" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a></li>
 <li>Clone the repository:
@@ -319,6 +320,7 @@ Our security queries will be included in the ZIP files and tarballs, so that you
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

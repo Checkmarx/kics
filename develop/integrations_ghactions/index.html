@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/integrations_ghactions/">
+        <link rel="canonical" href="http://www.kics.io/develop/integrations_ghactions/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Github Actions - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -263,7 +264,7 @@
 <h2 id="integration_with_github_actions">Integration with Github Actions<a class="headerlink" href="#integration_with_github_actions" title="Permanent link">&para;</a></h2>
 <p>You can integrate KICS into your Github Actions CI/CD pipelines with a specific KICS Github Action.</p>
 <p>This provides you the ability to run KICS scans in your Github repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
-<h4>Tutorial</h4>
+<h4 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">&para;</a></h4>
 <ol>
 <li>
 <p>Edit the workflow file you want to integrate KICS in</p>
@@ -287,7 +288,7 @@
     verbose: # optional
 </code></pre>
 <p>Refer to <a href="https://github.com/Checkmarx/kics-github-action">kics-github-action</a> repository for a full list of parameters</p>
-<h3>GitHub Actions integration with SARIF</h3>
+<h3 id="github_actions_integration_with_sarif">GitHub Actions integration with SARIF<a class="headerlink" href="#github_actions_integration_with_sarif" title="Permanent link">&para;</a></h3>
 <p>KICS has an option to generate results on SARIF format, which can be integrated with many CI tools, <a href="https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/integrating-with-code-scanning">including GitHub Actions</a>.</p>
 <p>The following workflow shows how to integrate KICS with GitHub Actions:</p>
 <pre><code class="language-YAML">steps:
@@ -416,7 +417,7 @@ jobs:
         with:
           sarif_file: results-dir/results.sarif
 </code></pre>
-<h4>Resources</h4>
+<h4 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
 <ul>
 <li>KICS GitHub Action in <a href="https://github.com/marketplace/actions/kics-github-action" target="_blank">Github Marketplace</a>.</li>
 <li>KICS Github Action <a href="https://github.com/Checkmarx/kics-github-action" target="_blank" >Project Repository</a>.</li>
@@ -438,6 +439,7 @@ jobs:
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

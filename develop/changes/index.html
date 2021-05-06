@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/changes/">
+        <link rel="canonical" href="http://www.kics.io/develop/changes/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Changes in v2.0.0 - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -317,13 +318,13 @@
 </table>
 <h2 id="kics_engine">KICS Engine<a class="headerlink" href="#kics_engine" title="Permanent link">&para;</a></h2>
 <hr />
-<h4>Timeout Queries</h4>
+<h4 id="timeout_queries">Timeout Queries<a class="headerlink" href="#timeout_queries" title="Permanent link">&para;</a></h4>
 <p>Query execution timeout is now parametrized, the flag <code>timeout</code> will override the default value (60 seconds)</p>
-<h4>Multiple paths</h4>
+<h4 id="multiple_paths">Multiple paths<a class="headerlink" href="#multiple_paths" title="Permanent link">&para;</a></h4>
 <p>KICS can now scan multiple paths (WARNING: For multiple paths, kics.config will not be loaded automatically, configuration flag must be explicitly used to load any configuration file.)</p>
-<h4>Concurrent Scans</h4>
+<h4 id="concurrent_scans">Concurrent Scans<a class="headerlink" href="#concurrent_scans" title="Permanent link">&para;</a></h4>
 <p>For performance improvements, KICS will now run scans concurrently by parser.</p>
-<h4>Analyzer</h4>
+<h4 id="analyzer">Analyzer<a class="headerlink" href="#analyzer" title="Permanent link">&para;</a></h4>
 <p>KICS will now do a pre-scan analysis to determine which type of queries and parsers to load. The analyzer will also exclude non Infrastructure as Code files. (WARNING: Using the <code>type</code> flag will disable the analyzer)</p></div>
             </div>
         </div>
@@ -341,6 +342,7 @@
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

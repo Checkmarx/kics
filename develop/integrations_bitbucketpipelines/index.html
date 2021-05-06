@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/integrations_bitbucketpipelines/">
+        <link rel="canonical" href="http://www.kics.io/develop/integrations_bitbucketpipelines/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Bitbucket Pipelines - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -248,7 +249,7 @@
 <h2 id="integrate_kics_with_bitbucket_pipelines">Integrate KICS with Bitbucket Pipelines<a class="headerlink" href="#integrate_kics_with_bitbucket_pipelines" title="Permanent link">&para;</a></h2>
 <p>You can integrate KICS into Bitbucket Pipelines CI/CD.</p>
 <p>This provides you the ability to run KICS scans in your Bitbucket repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
-<h3>Example configuration</h3>
+<h3 id="example_configuration">Example configuration<a class="headerlink" href="#example_configuration" title="Permanent link">&para;</a></h3>
 <pre><code class="language-yaml">image: atlassian/default-image:2
 
 pipelines:
@@ -287,6 +288,7 @@ pipelines:
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
