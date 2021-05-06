@@ -260,6 +260,27 @@
 </thead>
 <tbody>
 <tr>
+<td>No Global And Operation Security Defined<br/><sup><sub>96729c6b-7400-4d9e-9807-17f00cdde4d2</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>All paths should have security scheme, if it is omitted, global security field should be defined</td>
+<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Global Security Field Is Undefined<br/><sup><sub>8af270ce-298b-4405-9922-82a10aee7a4f</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>Global security field should be defined to prevent API to have insecure paths and have this rules defined on securitySchemes</td>
+<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Global Security Field Has An Empty Array<br/><sup><sub>d674aea4-ba8b-454b-bb97-88a772ea33f0</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>Security object need to have defined rules in its array and rules should be defined on securityScheme</td>
+<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Field On Operations Has An Empty Array<br/><sup><sub>663c442d-f918-4f62-b096-0bf5dcbeb655</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
@@ -274,20 +295,6 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Global security field has an empty object<br/><sup><sub>543e38f4-1eee-479e-8eb0-15257013aa0a</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>Global security definition must not have empty objects</td>
-<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>No Global And Operation Security Defined<br/><sup><sub>96729c6b-7400-4d9e-9807-17f00cdde4d2</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>All paths should have security scheme, if it is omitted, global security field should be defined</td>
-<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Field 'securityScheme' On Components Is Undefined<br/><sup><sub>8db5544e-4874-4baa-9322-e9f75a2d219e</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
@@ -295,24 +302,17 @@
 <td><a href="https://swagger.io/specification/#security-scheme-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Global Security Field Has An Empty Array<br/><sup><sub>d674aea4-ba8b-454b-bb97-88a772ea33f0</sub></sup></td>
+<td>Global security field has an empty object<br/><sup><sub>543e38f4-1eee-479e-8eb0-15257013aa0a</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
-<td>Security object need to have defined rules in its array and rules should be defined on securityScheme</td>
+<td>Global security definition must not have empty objects</td>
 <td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Global Security Field Is Undefined<br/><sup><sub>8af270ce-298b-4405-9922-82a10aee7a4f</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Access Control</td>
-<td>Global security field should be defined to prevent API to have insecure paths and have this rules defined on securitySchemes</td>
-<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid OAuth2 Authorization URL<br/><sup><sub>52c0d841-60d6-4a81-88dd-c35fef36d315</sub></sup></td>
+<td>Implicit Flow in OAuth2<br/><sup><sub>4a1f3d75-ab73-41b2-83e7-06a93dc3a75a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
-<td>The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL</td>
+<td>There is a 'securityScheme' using implicit flow on OAuth2, which is deprecated</td>
 <td><a href="https://swagger.io/specification/#oauth-flow-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -323,10 +323,10 @@
 <td><a href="https://swagger.io/specification/#oauth-flow-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Implicit Flow in OAuth2<br/><sup><sub>4a1f3d75-ab73-41b2-83e7-06a93dc3a75a</sub></sup></td>
+<td>Invalid OAuth2 Authorization URL<br/><sup><sub>52c0d841-60d6-4a81-88dd-c35fef36d315</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
-<td>There is a 'securityScheme' using implicit flow on OAuth2, which is deprecated</td>
+<td>The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL</td>
 <td><a href="https://swagger.io/specification/#oauth-flow-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -351,34 +351,6 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Get Operation<br/><sup><sub>b2f275be-7d64-4064-b418-be6b431363a7</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Get should define at least one success response (200 or 202)</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Success Response Code Undefined for Put Operation<br/><sup><sub>60b5f56b-66ff-4e1c-9b62-5753e16825bc</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Put should define at least one success response (200, 201, 202 or 204)</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Success Response Code Undefined for Delete Operation<br/><sup><sub>3b497874-ae59-46dd-8d72-1868a3b8f150</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Delete should define at least one success response (200, 201, 202 or 204)</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Success Response Code Undefined for Head Operation<br/><sup><sub>3b066059-f411-4554-ac8d-96f32bff90da</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Head should define at least one success response (200 or 202)</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Success Response Code Undefined for Trace Operation<br/><sup><sub>105e20dd-8449-4d71-95c6-d5dac96639af</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -393,6 +365,48 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Success Response Code Undefined for Head Operation<br/><sup><sub>3b066059-f411-4554-ac8d-96f32bff90da</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Head should define at least one success response (200 or 202)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Response on operations that should have a body has undefined schema<br/><sup><sub>a92be1d5-d762-484a-86d6-8cd0907ba100</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>If a response is not head or its code is not 204 or 304, it should have a schema defined</td>
+<td><a href="https://swagger.io/docs/specification/describing-responses/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Response Code Missing<br/><sup><sub>6c35d2c6-09f2-4e5c-a094-e0e91327071d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>500, 429 and 400 responses should be defined for all operations, except head operation. 415 response should be defined for the post, put, and patch operations. 404 response should be defined for the get, put, head, delete operations. 200 response should be defined for options operation. 401 and 403 response should be defined for all operations when the security field is defined.</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Delete Operation<br/><sup><sub>3b497874-ae59-46dd-8d72-1868a3b8f150</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Delete should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default Response Undefined On Operations<br/><sup><sub>86e3702f-c868-44b2-b61d-ea5316c18110</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Operations responses should have a default response defined</td>
+<td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Put Operation<br/><sup><sub>60b5f56b-66ff-4e1c-9b62-5753e16825bc</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Put should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Success Response Code Undefined for Patch Operation<br/><sup><sub>1908a8ee-927d-4166-8f18-241152170cc1</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -400,10 +414,10 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Response Code Missing<br/><sup><sub>6c35d2c6-09f2-4e5c-a094-e0e91327071d</sub></sup></td>
+<td>Success Response Code Undefined for Get Operation<br/><sup><sub>b2f275be-7d64-4064-b418-be6b431363a7</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>500, 429 and 400 responses should be defined for all operations, except head operation. 415 response should be defined for the post, put, and patch operations. 404 response should be defined for the get, put, head, delete operations. 200 response should be defined for options operation. 401 and 403 response should be defined for all operations when the security field is defined.</td>
+<td>Get should define at least one success response (200 or 202)</td>
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -421,46 +435,11 @@
 <td><a href="https://swagger.io/specification/#oauth-flow-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Path Without Operation<br/><sup><sub>84c826c9-1893-4b34-8cdd-db97645b4bf3</sub></sup></td>
+<td>Encoding Header 'Content-Type' Improperly Defined<br/><sup><sub>4cd8de87-b595-48b6-ab3c-1904567135ab</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
-<td>Path object should have at least one operation object defined</td>
-<td><a href="https://swagger.io/specification/#path-item-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid Tag External Documentation URL<br/><sup><sub>5aea1d7e-b834-4749-b143-2c7ec3bd5922</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Tag External Documentation URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid Global External Documentation URL<br/><sup><sub>b2d9dbf6-539c-4374-a1fd-210ddf5563a8</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Global External Documentation URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid Contact Email<br/><sup><sub>b1a7fcb0-2afe-4d5c-a6a1-4e6311fc29e7</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Contact Object Email should be a valid email</td>
-<td><a href="https://swagger.io/specification/#contact-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid License URL<br/><sup><sub>9239c289-9e4c-4d92-8be1-9d506057c971</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>License Object URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#license-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid Operation External Documentation URL<br/><sup><sub>5ea61624-3733-4a3a-8ca4-b96fec9c5aeb</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Operation External Documentation URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
+<td>Encoding Map Key should not define a 'Content-Type' in the 'headers' field. If so, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Header Parameter Named as 'Accept'<br/><sup><sub>f2702af5-6016-46cb-bbc8-84c766032095</sub></sup></td>
@@ -468,6 +447,27 @@
 <td>Best Practices</td>
 <td>The header Parameter should not be named as 'Accept'. If so, it will be ignored.</td>
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Path Without Operation<br/><sup><sub>84c826c9-1893-4b34-8cdd-db97645b4bf3</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Path object should have at least one operation object defined</td>
+<td><a href="https://swagger.io/specification/#path-item-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Header Response Named as 'Content-Type'<br/><sup><sub>d4e43db5-54d8-4dda-b3c2-0dc6f31a46bd</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>The Header Response should not be named as 'Content-Type'. If so, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#response-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Contact URL<br/><sup><sub>332cf2ad-380d-4b90-b436-46f8e635cf38</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Contact Object URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#contact-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Operation Without Successful HTTP Status Code<br/><sup><sub>48e9e1fe-cf79-45b5-93e6-8b55ae5dadfd</sub></sup></td>
@@ -484,11 +484,11 @@
 <td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Header Parameter Named as 'Authorization'<br/><sup><sub>8c84f75e-5048-4926-a4cb-33e7b3431300</sub></sup></td>
+<td>Invalid Tag External Documentation URL<br/><sup><sub>5aea1d7e-b834-4749-b143-2c7ec3bd5922</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
-<td>The header Parameter should not be named as 'Authorization'. If so, it will be ignored.</td>
-<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+<td>Tag External Documentation URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Unknown Prefix<br/><sup><sub>a5375be3-521c-43bb-9eab-e2432e368ee4</sub></sup></td>
@@ -498,11 +498,25 @@
 <td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Header Response Named as 'Content-Type'<br/><sup><sub>d4e43db5-54d8-4dda-b3c2-0dc6f31a46bd</sub></sup></td>
+<td>Invalid Contact Email<br/><sup><sub>b1a7fcb0-2afe-4d5c-a6a1-4e6311fc29e7</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
-<td>The Header Response should not be named as 'Content-Type'. If so, it will be ignored.</td>
-<td><a href="https://swagger.io/specification/#response-object">Documentation</a><br/></td>
+<td>Contact Object Email should be a valid email</td>
+<td><a href="https://swagger.io/specification/#contact-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid License URL<br/><sup><sub>9239c289-9e4c-4d92-8be1-9d506057c971</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>License Object URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#license-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Global External Documentation URL<br/><sup><sub>b2d9dbf6-539c-4374-a1fd-210ddf5563a8</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Global External Documentation URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Header Parameter Named as 'Content-Type'<br/><sup><sub>72d259ca-9741-48dd-9f62-eb11f2936b37</sub></sup></td>
@@ -512,46 +526,39 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid Contact URL<br/><sup><sub>332cf2ad-380d-4b90-b436-46f8e635cf38</sub></sup></td>
+<td>Invalid Operation External Documentation URL<br/><sup><sub>5ea61624-3733-4a3a-8ca4-b96fec9c5aeb</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
-<td>Contact Object URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#contact-object">Documentation</a><br/></td>
+<td>Operation External Documentation URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Encoding Header 'Content-Type' Improperly Defined<br/><sup><sub>4cd8de87-b595-48b6-ab3c-1904567135ab</sub></sup></td>
+<td>Header Parameter Named as 'Authorization'<br/><sup><sub>8c84f75e-5048-4926-a4cb-33e7b3431300</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
-<td>Encoding Map Key should not define a 'Content-Type' in the 'headers' field. If so, it will be ignored.</td>
-<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Property 'allowReserved' Improperly Defined<br/><sup><sub>7f203940-39c4-4ea7-91ee-7aba16bca9e2</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Property 'allowReserved' should be only defined for query parameters</td>
+<td>The header Parameter should not be named as 'Authorization'. If so, it will be ignored.</td>
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Server URL Not Absolute<br/><sup><sub>a0bf7382-5d5a-4224-924c-3db8466026c9</sub></sup></td>
+<td>Schema Discriminator Mismatch Defined Properties<br/><sup><sub>40d3df21-c170-4dbe-9c02-4289b51f994f</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>The Server URL should be an absolute URL</td>
-<td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
+<td>Schema discriminator values should match defined properties.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Parameter Object Content With Multiple Entries<br/><sup><sub>8bfed1c6-2d59-4924-bc7f-9b9d793ed0df</sub></sup></td>
+<td>Link Object OperationId Does Not Target Operation Object<br/><sup><sub>c5bb7461-aa57-470b-a714-3bc3d74f4669</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>The map content property of the parameter object should only contain one entry</td>
-<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+<td>Link object 'OperationId' should target an existing operation object in the OpenAPI definition</td>
+<td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Encoding Map Key Mismatch Schema Defined Properties<br/><sup><sub>cd7a52cf-8d7f-4cfe-bbeb-6306d23f576b</sub></sup></td>
+<td>Server Object Variable Not Used<br/><sup><sub>8aee4754-970d-4c5f-8142-a49dfe388b1a</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Encoding Map Key should be set in schema defined properties</td>
-<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
+<td>Every defined Server Variable Object should be used in a Service URL.</td>
+<td><a href="https://swagger.io/specification/#server-variable-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Parameter Objects Headers With Duplicated Name<br/><sup><sub>05505192-ba2c-4a81-9b25-dcdbcc973746</sub></sup></td>
@@ -561,32 +568,11 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Missing Mandatory Fields for Minimum Working File<br/><sup><sub>cf5ba5d2-5ad5-4582-8200-325fa75f606d</sub></sup></td>
+<td>Responses Object Is Empty<br/><sup><sub>990eaf09-d6f1-4c3c-b174-a517b1de8917</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Mandatory fields for a minimum working file (such as 'info', 'info.version', 'info.title', and 'paths') should be defined.</td>
-<td><a href="https://swagger.io/specification/#openapi-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>OperationId Not Unique<br/><sup><sub>c254adc4-ef25-46e1-8270-b7944adb4198</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>OperationId should be unique when defined</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Responses With Wrong HTTP Status Code<br/><sup><sub>d86655c0-92f6-4ffc-b4d5-5b5775804c27</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>HTTP Responses status code should be in range of [200-599]</td>
+<td>Responses Object should not be empty</td>
 <td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Parameter Object With Undefined Type<br/><sup><sub>46facedc-f243-4108-ab33-583b807d50b0</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>A Parameter Object must contain either a 'schema' property, or a 'content' property</td>
-<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Response Object With Incorrect Ref<br/><sup><sub>b3871dd8-9333-4d6c-bd52-67eb898b71ab</sub></sup></td>
@@ -603,32 +589,11 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Security Field Undefined<br/><sup><sub>ab1263c2-81df-46f0-9f2c-0b62fdb68419</sub></sup></td>
+<td>Link Object With Both 'operationId' And 'operationRef'<br/><sup><sub>60fb6621-9f02-473b-9424-ba9a825747d3</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Security field should be defined in '#/components/securitySchemes'</td>
-<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema With Both ReadOnly And WriteOnly<br/><sup><sub>d2361d58-361c-49f0-9e50-b957fd608b29</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema should not have both 'writeOnly' and 'readOnly' set to true</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema Object Incorrect Ref<br/><sup><sub>4cac7ace-b0fb-477d-830d-65395d9109d9</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema Object reference must always point to '#components/schemas'</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Security Operation Field Undefined<br/><sup><sub>20a482d5-c5d9-4a7a-b7a4-60d0805047b4</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Security operation field should be defined in '#/components/securitySchemes'</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+<td>Link object 'OperationId' should not have both 'operationId' and 'operationRef' defined since they are mutually exclusive.</td>
+<td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Request Body With Incorrect Ref<br/><sup><sub>0f6cd0ab-c366-4595-84fc-fbd8b9901e4d</sub></sup></td>
@@ -638,6 +603,27 @@
 <td><a href="https://swagger.io/specification/#request-body-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Encoding Map Key Mismatch Schema Defined Properties<br/><sup><sub>cd7a52cf-8d7f-4cfe-bbeb-6306d23f576b</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Encoding Map Key should be set in schema defined properties</td>
+<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Field Undefined<br/><sup><sub>ab1263c2-81df-46f0-9f2c-0b62fdb68419</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Security field should be defined in '#/components/securitySchemes'</td>
+<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Server URL Not Absolute<br/><sup><sub>a0bf7382-5d5a-4224-924c-3db8466026c9</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The Server URL should be an absolute URL</td>
+<td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Parameter Object With Incorrect Ref<br/><sup><sub>d40f27e6-15fb-4b56-90f8-fc0ff0291c51</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -645,18 +631,46 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Discriminator Not Required<br/><sup><sub>b481d46c-9c61-480f-86d9-af07146dc4a4</sub></sup></td>
+<td>Path Parameter Not Required<br/><sup><sub>0de50145-e845-47f4-9a15-23bcf2125710</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>The discriminator property in the Schema Object should be a required property</td>
+<td>The property 'required' determines whether the parameter is mandatory. If the parameter location is 'path', this property is required and its value must be true.</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Discriminator Property Not String<br/><sup><sub>dadc2f36-1f5a-46c0-8289-75e626583123</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema discriminator property should be a string</td>
+<td><a href="https://swagger.io/specification/#discriminator-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Callback Object With Incorrect Ref<br/><sup><sub>ba066cda-e808-450d-92b6-f29109754d45</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Callback Object reference must always point to '#components/callbacks'</td>
+<td><a href="https://swagger.io/specification/#callback-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Non-Array Schema With Items<br/><sup><sub>20cb3159-b219-496b-8dac-54ae3ab2021a</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Non-Array Schema should not have 'items' defined</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Server Object Variable Not Used<br/><sup><sub>8aee4754-970d-4c5f-8142-a49dfe388b1a</sub></sup></td>
+<td>Schema With Both ReadOnly And WriteOnly<br/><sup><sub>d2361d58-361c-49f0-9e50-b957fd608b29</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Every defined Server Variable Object should be used in a Service URL.</td>
-<td><a href="https://swagger.io/specification/#server-variable-object">Documentation</a><br/></td>
+<td>Schema should not have both 'writeOnly' and 'readOnly' set to true</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Content Type For Multiple Files Upload<br/><sup><sub>26f06397-36d8-4ce7-b993-17711261d777</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Content Type should be set to 'multipart/form-data' in case of uploading an arbitrary number of files (array)</td>
+<td><a href="https://swagger.io/docs/specification/describing-request-body/file-upload/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Request Body Object With Incorrect Media Type<br/><sup><sub>58f06434-a88c-4f74-826c-db7e10cc7def</sub></sup></td>
@@ -673,11 +687,18 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid Content Type For Multiple Files Upload<br/><sup><sub>26f06397-36d8-4ce7-b993-17711261d777</sub></sup></td>
+<td>Parameter Object With Schema And Content<br/><sup><sub>31dd6fc0-f274-493b-9614-e063086c19fc</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Content Type should be set to 'multipart/form-data' in case of uploading an arbitrary number of files (array)</td>
-<td><a href="https://swagger.io/docs/specification/describing-request-body/file-upload/">Documentation</a><br/></td>
+<td>A Parameter Object must contain either a 'schema' property, or a 'content' property, but not both since they are mutually exclusive</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Discriminator Not Required<br/><sup><sub>b481d46c-9c61-480f-86d9-af07146dc4a4</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The discriminator property in the Schema Object should be a required property</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Paths Object is Empty<br/><sup><sub>815021c8-a50c-46d9-b192-24f71072c400</sub></sup></td>
@@ -687,25 +708,46 @@
 <td><a href="https://swagger.io/specification/#paths-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Link Object With Both 'operationId' And 'operationRef'<br/><sup><sub>60fb6621-9f02-473b-9424-ba9a825747d3</sub></sup></td>
+<td>Missing Mandatory Fields for Minimum Working File<br/><sup><sub>cf5ba5d2-5ad5-4582-8200-325fa75f606d</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Link object 'OperationId' should not have both 'operationId' and 'operationRef' defined since they are mutually exclusive.</td>
-<td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
+<td>Mandatory fields for a minimum working file (such as 'info', 'info.version', 'info.title', and 'paths') should be defined.</td>
+<td><a href="https://swagger.io/specification/#openapi-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Components Object Fixed Field Key Improperly Named<br/><sup><sub>151331e2-11f4-4bb6-bd35-9a005e695087</sub></sup></td>
+<td>Property 'allowReserved' Improperly Defined<br/><sup><sub>7f203940-39c4-4ea7-91ee-7aba16bca9e2</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Components object fixed fields (schemas, responses, parameters, examples, requestBodies, headers, securitySchemes, links, and callbacks) should use keys that match the following REGEX: <code>^[a-zA-Z0-9\.\-_]+$</code></td>
-<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+<td>Property 'allowReserved' should be only defined for query parameters</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Server URL Uses Undefined Variables<br/><sup><sub>8d0921d6-4131-461f-a253-99e873f8f77e</sub></sup></td>
+<td>Parameter Object With Undefined Type<br/><sup><sub>46facedc-f243-4108-ab33-583b807d50b0</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Any variable used in the Service URL should be defined in the Service Object through 'variables'.</td>
-<td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
+<td>A Parameter Object must contain either a 'schema' property, or a 'content' property</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Object Incorrect Ref<br/><sup><sub>4cac7ace-b0fb-477d-830d-65395d9109d9</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object reference must always point to '#components/schemas'</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Responses With Wrong HTTP Status Code<br/><sup><sub>d86655c0-92f6-4ffc-b4d5-5b5775804c27</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>HTTP Responses status code should be in range of [200-599]</td>
+<td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Parameter Object Content With Multiple Entries<br/><sup><sub>8bfed1c6-2d59-4924-bc7f-9b9d793ed0df</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The map content property of the parameter object should only contain one entry</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Link Object Incorrect Ref<br/><sup><sub>b9db8a10-020c-49ca-88c6-780e5fdb4328</sub></sup></td>
@@ -715,48 +757,6 @@
 <td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Callback Object With Incorrect Ref<br/><sup><sub>ba066cda-e808-450d-92b6-f29109754d45</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Callback Object reference must always point to '#components/callbacks'</td>
-<td><a href="https://swagger.io/specification/#callback-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema Discriminator Mismatch Defined Properties<br/><sup><sub>40d3df21-c170-4dbe-9c02-4289b51f994f</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema discriminator values should match defined properties.</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema Discriminator Property Not String<br/><sup><sub>dadc2f36-1f5a-46c0-8289-75e626583123</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema discriminator property should be a string</td>
-<td><a href="https://swagger.io/specification/#discriminator-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Link Object OperationId Does Not Target Operation Object<br/><sup><sub>c5bb7461-aa57-470b-a714-3bc3d74f4669</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Link object 'OperationId' should target an existing operation object in the OpenAPI definition</td>
-<td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Path Parameter Not Required<br/><sup><sub>0de50145-e845-47f4-9a15-23bcf2125710</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>The property 'required' determines whether the parameter is mandatory. If the parameter location is 'path', this property is required and its value must be true.</td>
-<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Responses Object Is Empty<br/><sup><sub>990eaf09-d6f1-4c3c-b174-a517b1de8917</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Responses Object should not be empty</td>
-<td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Servers Array Undefined<br/><sup><sub>c66ebeaa-676c-40dc-a3ff-3e49395dcd5e</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -764,18 +764,32 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Non-Array Schema With Items<br/><sup><sub>20cb3159-b219-496b-8dac-54ae3ab2021a</sub></sup></td>
+<td>OperationId Not Unique<br/><sup><sub>c254adc4-ef25-46e1-8270-b7944adb4198</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Non-Array Schema should not have 'items' defined</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+<td>OperationId should be unique when defined</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Parameter Object With Schema And Content<br/><sup><sub>31dd6fc0-f274-493b-9614-e063086c19fc</sub></sup></td>
+<td>Security Operation Field Undefined<br/><sup><sub>20a482d5-c5d9-4a7a-b7a4-60d0805047b4</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>A Parameter Object must contain either a 'schema' property, or a 'content' property, but not both since they are mutually exclusive</td>
-<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+<td>Security operation field should be defined in '#/components/securitySchemes'</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Server URL Uses Undefined Variables<br/><sup><sub>8d0921d6-4131-461f-a253-99e873f8f77e</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Any variable used in the Service URL should be defined in the Service Object through 'variables'.</td>
+<td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Components Object Fixed Field Key Improperly Named<br/><sup><sub>151331e2-11f4-4bb6-bd35-9a005e695087</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Components object fixed fields (schemas, responses, parameters, examples, requestBodies, headers, securitySchemes, links, and callbacks) should use keys that match the following REGEX: <code>^[a-zA-Z0-9\.\-_]+$</code></td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table></div>
