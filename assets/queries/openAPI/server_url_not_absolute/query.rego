@@ -71,7 +71,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	url := doc.components.responses[r].links[l].server.url
-	openapi_lib.content_allowed("", r)
 	not openapi_lib.is_valid_url(url)
 
 	result := {

@@ -54,7 +54,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	response := doc.components.responses[r]
-	openapi_lib.content_allowed("", r)
 	header_info := check_content_header(response)
 
 	result := {

@@ -56,7 +56,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_properties := doc.components.responses[r].content[c]
-	openapi_lib.content_allowed("", r)
 	not match(c)
 
 	result := {

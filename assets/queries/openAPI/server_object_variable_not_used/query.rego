@@ -79,7 +79,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	server := doc.components.responses[r].links[l].server
-	openapi_lib.content_allowed("", r)
 
 	server.variables[x]
 	variables_not_used(x, server.url)

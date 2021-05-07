@@ -7,7 +7,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	link := doc.components.responses[r].links[l]
-	openapi_lib.content_allowed("", r)
 	openapi_lib.incorrect_ref(link["$ref"], "links")
 
 	result := {
