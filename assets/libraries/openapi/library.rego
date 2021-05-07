@@ -31,6 +31,5 @@ incorrect_ref(ref, object) {
 
 content_allowed(operation, code) {
 	operation != "head"
-	cds := {"204", "304"}
-	code != cds[_]
+	all([code != "204", code != "304"])
 }
