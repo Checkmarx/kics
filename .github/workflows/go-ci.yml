@@ -6,8 +6,22 @@ on:
     branches: [master]
 
 jobs:
+  pre_job:
+    name: check_run
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+    - name: Check file changes
+      id: skip_check
+      uses: fkirc/skip-duplicate-actions@master
+      with:
+        cancel_others: true
+        paths_ignore: '["docs/**", "**/**.md", "examples"]'
   lint:
     name: lint
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +37,8 @@ jobs:
         skip-go-installation: true
   go-generate:
     name: go-generate
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
     steps:
     - name: Set up Go 1.x
@@ -38,6 +54,8 @@ jobs:
       run: make generate
   unit-tests:
     name: unit-tests
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     strategy:
       matrix:
         go-version: [1.16.x]
@@ -80,6 +98,8 @@ jobs:
         echo "::endgroup::"
   security-scan:
     name: security-scan
+    needs: pre_job
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
     env:
       GO111MODULE: on
