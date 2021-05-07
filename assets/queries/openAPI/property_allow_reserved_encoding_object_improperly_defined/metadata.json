@@ -1,0 +1,9 @@
+{
+  "id": "00b50d55-3f68-4d79-acc6-03139d3dbfb5",
+  "queryName": "Property 'allowReserved' of Encoding Object Improperly Defined",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Property 'allowReserved' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}
