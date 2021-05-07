@@ -42,7 +42,7 @@ jobs:
           mike deploy develop
       - name: Fix version selector
         run: |
-          g checkout gh-pages
+          git checkout gh-pages
           find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
           find . -type f -name "*.html" -exec sed -i -E '/<link href="(.)*css\/version-select.css" rel="stylesheet"/d' {} +
           find . -type f -name "version-select.css" -exec rm -f {} +
