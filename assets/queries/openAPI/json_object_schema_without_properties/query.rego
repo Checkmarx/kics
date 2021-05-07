@@ -12,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema.$ref", [path, operation, r, c]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.parameters.{{%s}}.schema.$ref", [path, parameter]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema.$ref", [path, operation, parameter]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
@@ -60,7 +60,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.$ref", [path, operation, c]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
@@ -76,7 +76,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema.$ref", [r, c]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
@@ -92,7 +92,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.parameters.{{%s}}.schema.$ref", [parameter]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
@@ -108,7 +108,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.content.{{%s}}.schema.$ref", [r, c]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute/IncorrectValue",
 		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
 		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
 	}
