@@ -7,6 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.paths[path][operation].responses[r].content[c].schema
+	openapi_lib.content_allowed(operation, r)
 	discriminator := schema.discriminator.propertyName
 	not match(schema, discriminator)
 
@@ -109,6 +110,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.components.responses[r].content[c].schema
+	openapi_lib.content_allowed("", r)
 	discriminator := schema.discriminator.propertyName
 	not match(schema, discriminator)
 

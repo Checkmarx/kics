@@ -9,6 +9,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.paths[path][op].responses == options[x]
+	openapi_lib.content_allowed(op, "")
 
 	result := {
 		"documentId": doc.id,

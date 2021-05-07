@@ -23,6 +23,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	op := doc.components.responses[r].links[l].operationId
+	openapi_lib.content_allowed("", r)
 	not check_link(doc, op)
 
 	result := {
@@ -39,6 +40,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	op := doc.paths[path][operation].responses[r].links[l].operationId
+	openapi_lib.content_allowed(operation, r)
 	not check_link(doc, op)
 
 	result := {

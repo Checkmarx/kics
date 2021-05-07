@@ -71,6 +71,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	server := doc.components.responses[r].links[l].server
+	openapi_lib.content_allowed("", r)
 	variables_undefined(server)
 
 	result := {
@@ -87,6 +88,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	server := doc.paths[path][operation].responses[r].links[l].server
+	openapi_lib.content_allowed(operation, r)
 
 	variables_undefined(server)
 

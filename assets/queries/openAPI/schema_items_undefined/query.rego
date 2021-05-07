@@ -7,6 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.paths[path][operation].responses[r].content[c].schema
+	openapi_lib.content_allowed(operation, r)
 
 	schema.type == "array"
 	not schema.items
@@ -115,6 +116,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.components.responses[r].content[c].schema
+	openapi_lib.content_allowed("", r)
 
 	schema.type == "array"
 	not schema.items
