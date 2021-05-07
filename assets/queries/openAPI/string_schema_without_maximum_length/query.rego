@@ -7,6 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.paths[path][operation].responses[r].content[c].schema
+	openapi_lib.content_allowed(operation, r)
 	undefined_properties(doc, schema)
 
 	result := {
@@ -103,6 +104,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.components.responses[r].content[c].schema
+	openapi_lib.content_allowed("", r)
 	undefined_properties(doc, schema)
 
 	result := {
