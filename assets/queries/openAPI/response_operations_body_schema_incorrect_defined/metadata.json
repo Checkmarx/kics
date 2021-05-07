@@ -1,5 +1,5 @@
 {
-  "id": "a92be1d5-d762-484a-86d6-8cd0907ba100",
+  "id": "12a7210b-f4b4-47d0-acac-0a819e2a0ca3",
   "queryName": "Response on operations that should not have a body has declared content",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
