@@ -9,14 +9,15 @@ CxPolicy[result] {
 
 	cmd := value[0]
 
+	splittedCmd := regex.split(`(\&\& | \|\| | \| | \& | \;)`, cmd)
+
+	currentCmd := splittedCmd[_]
 	installCmd := ["npm install ", "npm i ", "npm add "][_]
-	searchIndex := indexof(cmd, installCmd)
+	searchIndex := indexof(currentCmd, installCmd)
 
 	searchIndex != -1
 
-	npmInstallCmd := trimCmdEnd(substring(cmd, searchIndex + count(installCmd), (count(cmd) - searchIndex) - count(installCmd)))
-
-	not isValidInstall(npmInstallCmd)
+	not isValidInstall(currentCmd)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -52,17 +53,6 @@ CxPolicy[result] {
 
 isRunCmd(com) {
 	com.Cmd == "run"
-}
-
-trimCmdEnd(cmd) = trimmed {
-	termOps := ["&&", "||", "|", "&", ";"]
-
-	splitStr := split(cmd, " ")
-	splitStr[i] == termOps[j]
-	indexTerm := indexof(cmd, termOps[j])
-	trimmed := substring(cmd, 0, count(cmd) - indexTerm)
-} else = cmd {
-	true
 }
 
 isValidInstall(install) {
