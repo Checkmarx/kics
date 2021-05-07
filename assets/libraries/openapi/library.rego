@@ -31,6 +31,31 @@ incorrect_ref(ref, object) {
 
 content_allowed(operation, code) {
 	operation != "head"
-	cds := {"204", "304"}
-	code != cds[_]
+	all([code != "204", code != "304"])
+}
+
+is_ref(schema) {
+	count(schema) == 1
+	object.get(schema, "$ref", "undefined") != "undefined"
+}
+
+check_string_schema(doc, s, field) {
+	component_schema := doc.components.schemas[sc]
+	sc == s
+	component_schema.properties[p].type == "string"
+	object.get(component_schema.properties[p], field, "undefined") == "undefined"
+}
+
+undefined_properties_in_schema(doc, schema, field) {
+	is_ref(schema)
+	r := split(schema["$ref"], "/")
+	count(r) == 4
+	s := r[3]
+	check_string_schema(doc, s, field)
+}
+
+undefined_properties_in_schema(doc, schema, field) {
+	not is_ref(schema)
+	schema.type == "string"
+	object.get(schema, field, "undefined") == "undefined"
 }
