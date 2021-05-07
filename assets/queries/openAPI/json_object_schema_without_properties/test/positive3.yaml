@@ -28,12 +28,6 @@ components:
       type: object
       discriminator:
         propertyName: petType
-      properties:
-        code:
-          type: string
-          format: int32
-        message:
-          type: string
       required:
         - petType
   requestBodies:

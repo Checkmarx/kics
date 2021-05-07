@@ -2,7 +2,7 @@
   {
     "queryName": "JSON Object Schema Without Properties",
     "severity": "MEDIUM",
-    "line": 76,
+    "line": 67,
     "filename": "positive1.json"
   },
   {
@@ -14,7 +14,7 @@
   {
     "queryName": "JSON Object Schema Without Properties",
     "severity": "MEDIUM",
-    "line": 46,
+    "line": 40,
     "filename": "positive3.yaml"
   },
   {

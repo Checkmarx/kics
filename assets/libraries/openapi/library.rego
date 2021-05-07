@@ -31,6 +31,18 @@ incorrect_ref(ref, object) {
 
 content_allowed(operation, code) {
 	operation != "head"
-	cds := {"204", "304"}
-	code != cds[_]
+	all([code != "204", code != "304"])
+}
+
+check_content(doc, s, field) {
+	component_schema := doc.components.schemas[sc]
+	sc == s
+	object.get(component_schema, field, "undefined") == "undefined"
+}
+
+undefined_field_in_json_object(doc, schema_ref, field) {
+	r := split(schema_ref, "/")
+	count(r) == 4
+	s := r[3]
+	check_content(doc, s, field)
 }

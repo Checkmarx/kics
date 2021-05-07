@@ -8,14 +8,14 @@ CxPolicy[result] {
 
 	schema_ref := doc.paths[path][operation].responses[r].content[c].schema["$ref"]
 	openapi_lib.content_allowed(operation, r)
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema.$ref", [path, operation, r, c]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
 }
 
@@ -24,14 +24,14 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.paths[path].parameters[parameter].schema["$ref"]
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.parameters.{{%s}}.schema.$ref", [path, parameter]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
 }
 
@@ -40,14 +40,14 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.paths[path][operation].parameters[parameter].schema["$ref"]
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema.$ref", [path, operation, parameter]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
 }
 
@@ -56,14 +56,14 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.paths[path][operation].requestBody.content[c].schema["$ref"]
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.$ref", [path, operation, c]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
 }
 
@@ -72,14 +72,14 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.components.requestBodies[r].content[c].schema["$ref"]
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema.$ref", [r, c]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
 }
 
@@ -88,14 +88,14 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.components.parameters[parameter].schema["$ref"]
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.parameters.{{%s}}.schema.$ref", [parameter]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
 }
 
@@ -104,32 +104,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.components.responses[r].content[c].schema["$ref"]
-	openapi_lib.content_allowed("", r)
-	undefined_properties(doc, schema_ref)
+	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.responses.{{%s}}.content.{{%s}}.schema.$ref", [r, c]),
 		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has properties defined and 'additionalProperties' set to false",
-		"keyActualValue": "Schema of the JSON object does not have properties defined and/or 'additionalProperties' set to false",
+		"keyExpectedValue": "Schema of the JSON object has 'properties' defined",
+		"keyActualValue": "Schema of the JSON object does not have 'properties' defined",
 	}
-}
-
-correct_definition(component_schema) {
-	object.get(component_schema, "properties", "undefined") != "undefined"
-	component_schema.additionalProperties == false
-}
-
-check_content(doc, s) {
-	component_schema := doc.components.schemas[sc]
-	sc == s
-	not correct_definition(component_schema)
-}
-
-undefined_properties(doc, schema_ref) {
-	r := split(schema_ref, "/")
-	count(r) == 4
-	s := r[3]
-	check_content(doc, s)
 }
