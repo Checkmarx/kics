@@ -115,6 +115,7 @@ func checkLine(t *testing.T, expec, want string, line int) {
 }
 
 func setFields(t *testing.T, expect, want []string, location string) {
+	filekey := "file"
 	switch location {
 	case "payload":
 		var wantI model.Documents
@@ -125,7 +126,6 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		require.NoError(t, errW, "[payload] Unmarshaling JSON file should not yield an error")
 
 		idKey := "id"
-		filekey := "file"
 		for _, docs := range wantI.Documents {
 			// Here additional checks may be added as length of id, or contains in file
 			require.NotNil(t, docs[idKey])
@@ -154,7 +154,7 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		wantI.TotalQueries = 0
 		for i := range wantI.Queries {
 			for j := range expectI.Queries[i].Files {
-				wantI.Queries[i].Files[j].FileName = "file"
+				wantI.Queries[i].Files[j].FileName = filekey
 			}
 		}
 
