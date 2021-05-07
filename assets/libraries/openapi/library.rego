@@ -28,3 +28,8 @@ incorrect_ref(ref, object) {
 
 	regex.match(references[object], ref) == false
 }
+
+is_security_scheme_http_basic(securitySchemes){
+    lower(securitySchemes.regularSecurity.type) == "http"
+    lower(securitySchemes.regularSecurity.scheme) == "basic"
+}
