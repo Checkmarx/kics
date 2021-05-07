@@ -1,0 +1,8 @@
+.table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.hide-column-query-table {
+  display: none;
+}

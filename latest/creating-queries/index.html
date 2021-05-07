@@ -64,7 +64,7 @@
 </li>
                                     
 <li>
-    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+    <a href="../changes/" class="dropdown-item">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -258,12 +258,12 @@ To test and debug there are two ways:</p>
 <li><a href="https://play.openpolicyagent.org/">Using Rego playground</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=tsandall.opa">Install Open Policy Agent extension</a> in VS Code and create a simple folder with a .rego file for the query and a input.json for the sample to test against</li>
 </ul>
-<h4>Testing</h4>
+<h4 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h4>
 <p>For a query to be considered complete, it must be compliant with at least one positive and one negative test case. To run the unit tests you can run this command:</p>
 <pre><code class="language-bash">make test
 </code></pre>
 <p>Check if the new test was added correctly and if all tests are passing locally. If succeeds, a Pull Request can now be created.</p>
-<h4>Guidelines</h4>
+<h4 id="guidelines">Guidelines<a class="headerlink" href="#guidelines" title="Permanent link">&para;</a></h4>
 <p>Filling metadata.json:</p>
 <ul>
 <li><code>id</code> should be filled with a UUID. You can use the built-in command to generate this:</li>

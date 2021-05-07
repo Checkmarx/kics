@@ -64,7 +64,7 @@
 </li>
                                     
 <li>
-    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+    <a href="../changes/" class="dropdown-item">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -261,11 +261,11 @@
     }
 }
 </code></pre>
-<h4>Anatomy</h4>
+<h4 id="anatomy">Anatomy<a class="headerlink" href="#anatomy" title="Permanent link">&para;</a></h4>
 <p>The anatomy of a query is straightforward. It builds up a policy and defines the result.</p>
 <p>The <strong>policy</strong> builds the pattern that breaks the <em>security</em> of the infrastructure code and which the query is looking for.</p>
 <p>The <strong>result</strong> defines the specific data used to present the <em>vulnerability</em> in the infrastructure code.</p>
-<h4>Metadata</h4>
+<h4 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h4>
 <p>Each query has a metadata.json companion file with all the relevant information about the <em>vulnerability</em>, including 
 the severity, category and its description.</p>
 <p>For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.</p>
@@ -279,7 +279,7 @@ the severity, category and its description.</p>
   &quot;platform&quot;: &quot;Terraform&quot;
 }
 </code></pre>
-<h4>Organization</h4>
+<h4 id="organization">Organization<a class="headerlink" href="#organization" title="Permanent link">&para;</a></h4>
 <p>Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped 
 under provider (e.g., aws, gcp, azure, etc.) when applicable.</p>
 <p>Per each query created, it is mandatory the creation of <strong>test cases</strong> with, at least, one negative and positive case and a JSON file 

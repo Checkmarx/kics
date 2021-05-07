@@ -64,7 +64,7 @@
 </li>
                                     
 <li>
-    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+    <a href="../changes/" class="dropdown-item">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -248,12 +248,12 @@
 <h2 id="integrate_kics_with_gitlab_ci">Integrate KICS with GitLab CI<a class="headerlink" href="#integrate_kics_with_gitlab_ci" title="Permanent link">&para;</a></h2>
 <p>You can integrate KICS into your GitLab CI/CD pipelines.</p>
 <p>This provides you the ability to run KICS scans in your GitLab repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
-<h3>Including Template</h3>
+<h3 id="including_template">Including Template<a class="headerlink" href="#including_template" title="Permanent link">&para;</a></h3>
 <p>You can integrate KICS into your pipeline by <a href="https://docs.gitlab.com/ee/ci/yaml/includes.html">including</a> our <a href="https://docs.gitlab.com/ee/development/cicd/templates.html#versioning">versioned</a> <a href="https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml">template</a> in your <code>gitlabci.yaml</code>:</p>
 <pre><code class="language-yaml">include:
   - remote: https://raw.githubusercontent.com/checkmarx/kics/master/examples/gitlab/KICS.v1.gitlabci.yaml
 </code></pre>
-<h3>Full Example</h3>
+<h3 id="full_example">Full Example<a class="headerlink" href="#full_example" title="Permanent link">&para;</a></h3>
 <pre><code class="language-yaml">image: alpine
 
 before_script:
@@ -297,13 +297,13 @@ kics-results:
     - if [ &quot;$SEVERITY_COUNTER_HIGH&quot; -ge &quot;1&quot; ];then echo &quot;Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY ISSUES&quot; &amp;&amp; exit 1;fi
 </code></pre>
 <hr />
-<h3>Example Results</h3>
+<h3 id="example_results">Example Results<a class="headerlink" href="#example_results" title="Permanent link">&para;</a></h3>
 <p>When your pipeline executes, it will run this job. If KICS finds any issues, it will fail the build.</p>
-<h4>Pipeline Failure</h4>
+<h4 id="pipeline_failure">Pipeline Failure<a class="headerlink" href="#pipeline_failure" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_failure.png" width="850"></p>
-<h4>Pipeline Success</h4>
+<h4 id="pipeline_success">Pipeline Success<a class="headerlink" href="#pipeline_success" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_success.png" width="850"></p>
-<h4>Download Artifact</h4>
+<h4 id="download_artifact">Download Artifact<a class="headerlink" href="#download_artifact" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850"></p></div>
             </div>
         </div>

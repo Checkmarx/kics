@@ -64,7 +64,7 @@
 </li>
                                     
 <li>
-    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+    <a href="../changes/" class="dropdown-item">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -303,7 +303,7 @@ output-path: &quot;results.json&quot;
 <p>KICS is able to infer the format without the need of file extension.</p>
 <hr />
 <h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
-<h4>JSON Format</h4>
+<h4 id="json_format">JSON Format<a class="headerlink" href="#json_format" title="Permanent link">&para;</a></h4>
 <pre><code class="language-JSON">{
   &quot;exclude-categories&quot;: &quot;exclude categories by providing its name&quot;,
   &quot;exclude-paths&quot;: &quot;exclude paths or files from scan&quot;,
@@ -328,7 +328,7 @@ output-path: &quot;results.json&quot;
   &quot;profiling&quot;: &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
 }
 </code></pre>
-<h4>YAML Format</h4>
+<h4 id="yaml_format">YAML Format<a class="headerlink" href="#yaml_format" title="Permanent link">&para;</a></h4>
 <pre><code class="language-YAML">exclude-categories: &quot;exclude categories by providing its name&quot;
 exclude-paths: &quot;exclude paths or files from scan&quot;
 exclude-queries: &quot;exclude queries by providing the query ID&quot;
@@ -351,7 +351,7 @@ type: &quot;type of queries to use in the scan&quot;
 timeout: &quot;number of seconds the query has to execute before being canceled&quot;
 verbose: true
 </code></pre>
-<h4>TOML Format</h4>
+<h4 id="toml_format">TOML Format<a class="headerlink" href="#toml_format" title="Permanent link">&para;</a></h4>
 <pre><code class="language-TOML">exclude-categories = &quot;exclude categories by providing its name&quot;
 exclude-paths = &quot;exclude paths or files from scan&quot;
 exclude-queries = &quot;exclude queries by providing the query ID&quot;
@@ -374,7 +374,7 @@ type = &quot;type of queries to use in the scan&quot;
 timeout = &quot;number of seconds the query has to execute before being canceled&quot;
 verbose = true
 </code></pre>
-<h4>HCL Format</h4>
+<h4 id="hcl_format">HCL Format<a class="headerlink" href="#hcl_format" title="Permanent link">&para;</a></h4>
 <pre><code class="language-hcl">&quot;exclude-categories&quot; = &quot;exclude categories by providing its name&quot;
 &quot;exclude-paths&quot; = &quot;exclude paths or files from scan&quot;
 &quot;exclude-queries&quot; = &quot;exclude queries by providing the query ID&quot;
@@ -400,7 +400,7 @@ verbose = true
 <hr />
 <h2 id="how_to_use">How to Use<a class="headerlink" href="#how_to_use" title="Permanent link">&para;</a></h2>
 <p>You can enclose all your configurations in a file and use it in two different ways.</p>
-<h4>Command Argument File</h4>
+<h4 id="command_argument_file">Command Argument File<a class="headerlink" href="#command_argument_file" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Create a file with any name/any extension. For the sake of example, let's call it <code>kics-config.json</code></li>
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
@@ -408,7 +408,7 @@ verbose = true
 </ol>
 <pre><code>kics scan --config kics-config.json
 </code></pre>
-<h4>Configuration as Code</h4>
+<h4 id="configuration_as_code">Configuration as Code<a class="headerlink" href="#configuration_as_code" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Create a file named <code>kics.config</code> and place it in the root of your project repository.</li>
 <li>Add the necessary configurations as shown in the templates section in any of the supported formats.</li>
@@ -417,7 +417,7 @@ verbose = true
 <pre><code>kics scan
 </code></pre>
 <p><strong>Note</strong>: If more than one path is given, KICS will warn that <code>--config</code> must be used to explicit decide.</p>
-<h4>Environment variables</h4>
+<h4 id="environment_variables">Environment variables<a class="headerlink" href="#environment_variables" title="Permanent link">&para;</a></h4>
 <p>KICS also accepts environment variables to fill flags values. To use it you just need to have the flag with a <code>KICS_</code> prefix. For example:</p>
 <ul>
 <li>To use path flag as environment variable, you should have <code>KICS_PATH</code> on your environment;</li>

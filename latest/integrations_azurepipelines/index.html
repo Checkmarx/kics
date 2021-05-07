@@ -64,7 +64,7 @@
 </li>
                                     
 <li>
-    <a href="../changes/" class="dropdown-item">Changes in v1.3.0</a>
+    <a href="../changes/" class="dropdown-item">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -248,7 +248,7 @@
 <h2 id="integrate_kics_with_azure_pipelines">Integrate KICS with Azure Pipelines<a class="headerlink" href="#integrate_kics_with_azure_pipelines" title="Permanent link">&para;</a></h2>
 <p>You can integrate KICS into your Azure Pipelines CI/CD.</p>
 <p>This provides you the ability to run KICS scans in your GitLab repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
-<h3>Tutorial</h3>
+<h3 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">&para;</a></h3>
 <p>The following tutorial is a possible way of using KICS in Azure Pipelines CI. You can be creative and come up with different solutions that fit your pipelines.</p>
 <p>In this case we instruct the job to download and use the latest Linux version of KICS.</p>
 <p>1- Edit or add a new azure-pipelines.yml file in the root of your repository</p>
@@ -337,11 +337,11 @@ stages:
           fi
 </code></pre>
 <hr />
-<h3>Example Results</h3>
+<h3 id="example_results">Example Results<a class="headerlink" href="#example_results" title="Permanent link">&para;</a></h3>
 <p>When your pipeline executes, it will run this job. If KICS finds any issues, it will fail the build.</p>
-<h4>Pipeline Failure</h4>
+<h4 id="pipeline_failure">Pipeline Failure<a class="headerlink" href="#pipeline_failure" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_azure_pipelines_failure.png" width="850"></p>
-<h4>Pipeline Success</h4>
+<h4 id="pipeline_success">Pipeline Success<a class="headerlink" href="#pipeline_success" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_azure_pipelines_success.png" width="850"></p></div>
             </div>
         </div>

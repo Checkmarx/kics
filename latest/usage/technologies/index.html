@@ -64,7 +64,7 @@
 </li>
                                     
 <li>
-    <a href="../../changes/" class="dropdown-item">Changes in v1.3.0</a>
+    <a href="../../changes/" class="dropdown-item">Changes in v2.0.0</a>
 </li>
                                     
   <li class="dropdown-submenu">
@@ -296,7 +296,7 @@ Platform: Kubernetes
 <p>KICS supports Kubernetes manifests with <code>.yaml</code> extension.</p>
 <h2 id="terraform">Terraform<a class="headerlink" href="#terraform" title="Permanent link">&para;</a></h2>
 <p>KICS supports Terraform's HCL files with <code>.tf</code> extension and input variables using <code>terraform.tfvars</code> or files with <code>.auto.tfvars</code> extension that are in same directory of <code>.tf</code> files.</p>
-<h3>Limitations</h3>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
 <pre><code class="language-hcl">resource &quot;aws_launch_configuration&quot; &quot;example&quot; {
   image_id      = data.aws_ami.ubuntu.id
