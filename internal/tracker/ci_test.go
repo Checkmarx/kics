@@ -17,6 +17,7 @@ func TestCITracker(t *testing.T) {
 	type fields struct {
 		LoadedQueries      int
 		ExecutedQueries    int
+		ExecutingQueries   int
 		FoundFiles         int
 		ParsedFiles        int
 		FailedSimilarityID int
@@ -31,6 +32,7 @@ func TestCITracker(t *testing.T) {
 			fields: fields{
 				LoadedQueries:      0,
 				ExecutedQueries:    0,
+				ExecutingQueries:   0,
 				FoundFiles:         0,
 				ParsedFiles:        0,
 				FailedSimilarityID: 0,
@@ -43,6 +45,7 @@ func TestCITracker(t *testing.T) {
 		c := &CITracker{
 			LoadedQueries:      tt.fields.LoadedQueries,
 			ExecutedQueries:    tt.fields.ExecutedQueries,
+			ExecutingQueries:   tt.fields.ExecutingQueries,
 			FoundFiles:         tt.fields.FoundFiles,
 			ParsedFiles:        tt.fields.ParsedFiles,
 			FailedSimilarityID: tt.fields.FailedSimilarityID,
@@ -67,13 +70,17 @@ func TestCITracker(t *testing.T) {
 			c.TrackFileParse()
 			require.Equal(t, 1, c.ParsedFiles)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_FailedDetectLine"), func(t *testing.T) {
-			c.FailedDetectLine()
-			require.Equal(t, 0, c.ExecutedQueries)
+		t.Run(fmt.Sprintf(tt.name+"_TrackQueryExecuting"), func(t *testing.T) {
+			c.TrackQueryExecuting(1)
+			require.Equal(t, 1, c.ExecutingQueries)
 		})
 		t.Run(fmt.Sprintf(tt.name+"_FailedComputeSimilarityID"), func(t *testing.T) {
 			c.FailedComputeSimilarityID()
 			require.Equal(t, 1, c.FailedSimilarityID)
+		})
+		t.Run(fmt.Sprintf(tt.name+"_FailedDetectLine"), func(t *testing.T) {
+			c.FailedDetectLine()
+			require.Equal(t, 0, c.ExecutedQueries)
 		})
 		t.Run(fmt.Sprintf(tt.name+"_GetOutputLines"), func(t *testing.T) {
 			got := c.GetOutputLines()
