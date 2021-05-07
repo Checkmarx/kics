@@ -2,7 +2,7 @@
   {
     "queryName": "Property 'allowReserved' of Encoding Object Ignored",
     "severity": "INFO",
-    "line": 64,
+    "line": 49,
     "filename": "positive1.json"
   },
   {
@@ -14,7 +14,7 @@
   {
     "queryName": "Property 'allowReserved' of Encoding Object Ignored",
     "severity": "INFO",
-    "line": 41,
+    "line": 31,
     "filename": "positive3.yaml"
   },
   {

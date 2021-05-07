@@ -27,7 +27,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.encoding.{{%s}}", [r, x]),
+		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}", [r, x]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} is 'application/x-www-form-urlencoded' when 'allowReserved' is set", [r, x]),
 		"keyActualValue": sprintf("components.requestBodies.{{%s}}.content.{{%s}} is not 'application/x-www-form-urlencoded' when 'allowReserved' is set", [r, x]),
