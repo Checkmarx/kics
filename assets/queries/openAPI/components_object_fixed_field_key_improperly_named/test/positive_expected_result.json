@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Components Object Fixed Field Key Improperly Named",
+    "severity": "INFO",
+    "line": 45,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Components Object Fixed Field Key Improperly Named",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.yaml"
+  }
+]

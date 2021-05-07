@@ -1,0 +1,9 @@
+{
+  "id": "cd7a52cf-8d7f-4cfe-bbeb-6306d23f576b",
+  "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Encoding Map Key should be set in schema defined properties",
+  "descriptionUrl": "https://swagger.io/specification/#media-type-object",
+  "platform": "OpenAPI"
+}

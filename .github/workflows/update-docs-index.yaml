@@ -60,4 +60,4 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Deploy mike version
         run: |
-          mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force
+          mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force --rebase

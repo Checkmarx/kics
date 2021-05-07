@@ -17,6 +17,7 @@ nav:
       - Configuration: configuration-file.md
       - Results: results.md
       - Architecture: architecture.md
+      - Changes in v1.3.0: changes.md
       - Usage:
           - KICS Commands: usage/commands.md
           - Technologies: usage/technologies.md
@@ -36,6 +37,7 @@ nav:
       - Overview: integrations.md
       - Azure DevOps: integrations_azurepipelines.md
       - Bitbucket Pipelines: integrations_bitbucketpipelines.md
+      - CircleCI: integrations_circleci.md
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
@@ -69,7 +71,6 @@ plugins:
 google_analytics:
   - UA-186818347-2
   - auto
-
 
 markdown_extensions:
   - toc:

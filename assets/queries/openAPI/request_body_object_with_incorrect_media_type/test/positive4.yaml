@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                discriminator:
+                  propertyName: petType
+                properties:
+                  code:
+                    type: string
+                    format: binary
+                  message:
+                    type: string
+              encoding:
+                code:
+                  contentType: image/png, image/jpeg
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+              properties:
+                code:
+                  type: string
+                  format: binary
+            encoding:
+              code:
+                contentType: image/png, image/jpeg
