@@ -391,7 +391,7 @@ var tests = []struct {
 			},
 		},
 		validation: func(outputText string) bool {
-      match, _ := regexp.MatchString(`Total MEM usage for start_scan: \d+`, outputText)
+			match, _ := regexp.MatchString(`Total MEM usage for start_scan: \d+`, outputText)
 			return match
 		},
 		wantStatus: []int{50},
