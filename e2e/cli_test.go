@@ -406,7 +406,7 @@ var tests = []struct {
 			},
 		},
 		validation: func(outputText string) bool {
-			match, _ := regexp.MatchString(`Keeping Infrastructure as Code Secure`, outputText)
+			match, _ := regexp.MatchString(`Keeping Infrastructure as Code Secure [0-9a-zA-Z]+`, outputText)
 			return match
 		},
 		wantStatus: []int{0},

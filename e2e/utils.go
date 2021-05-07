@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"reflect"
 	"strings"
 	"testing"
 
@@ -81,10 +80,10 @@ func checkJSONLog(t *testing.T, expec, want logMsg) {
 		"\nExpected Output line msg\n%s\nKICS Output line msg:\n%s\n", expec.Message, want.Message)
 }
 
-func fileCheck(t *testing.T, outputPayload, payload, location string) {
-	wantPayload, err := prepareExpected(payload, "fixtures")
+func fileCheck(t *testing.T, expectedPayloadID, wantedPayloadID, location string) {
+	wantPayload, err := prepareExpected(wantedPayloadID, "fixtures")
 	require.NoError(t, err, "Reading a fixture should not yield an error")
-	expectPayload, err := prepareExpected(outputPayload, "output")
+	expectPayload, err := prepareExpected(expectedPayloadID, "output")
 	require.NoError(t, err, "Reading a fixture should not yield an error")
 	require.Equal(t, len(wantPayload), len(expectPayload),
 		"\n[%s] Expected file number of lines:%d\nKics file number of lines:%d\n", location, len(wantPayload), len(expectPayload))
@@ -125,20 +124,24 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
 		require.NoError(t, errW, "[payload] Unmarshaling JSON file should not yield an error")
 
+		idKey := "id"
+		filekey := "file"
 		for _, docs := range wantI.Documents {
-			require.NotNil(t, docs["id"]) // Here additional checks may be added as length of id, or contains in file
-			require.NotNil(t, docs["file"])
-			docs["id"] = "0"
-			docs["file"] = "file" //nolint
+			// Here additional checks may be added as length of id, or contains in file
+			require.NotNil(t, docs[idKey])
+			require.NotNil(t, docs[filekey])
+			docs[idKey] = "0"
+			docs[filekey] = filekey
 		}
 
-		if !reflect.DeepEqual(expectI, wantI) {
-			expectStr, err := test.StringifyStruct(expectI)
-			require.NoError(t, err)
-			wantStr, err := test.StringifyStruct(wantI)
-			require.NoError(t, err)
-			t.Errorf("Expected:\n%v\n,Actual:\n%v\n", expectStr, wantStr)
-		}
+		expectStr, err := test.StringifyStruct(expectI)
+		require.NoError(t, err)
+		wantStr, err := test.StringifyStruct(wantI)
+		require.NoError(t, err)
+
+		require.Equal(t, expectI, wantI,
+			"\nExpected:\n%v\n,Actual:\n%v\n", expectStr, wantStr)
+
 	case "result":
 		expectI := model.Summary{}
 		wantI := model.Summary{}
@@ -155,8 +158,7 @@ func setFields(t *testing.T, expect, want []string, location string) {
 			}
 		}
 
-		ok := reflect.DeepEqual(expectI, wantI)
-		require.True(t, ok, "Expected:\n%v\n,Actual:\n%v\n", expectI, wantI)
-	default:
+		require.Equal(t, expectI, wantI,
+			"\nExpected:\n%v\n,Actual:\n%v\n", expectI, wantI)
 	}
 }
