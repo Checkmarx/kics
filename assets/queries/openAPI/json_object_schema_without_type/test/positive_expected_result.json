@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "JSON Object Schema Without Type",
+    "severity": "MEDIUM",
+    "line": 75,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type",
+    "severity": "MEDIUM",
+    "line": 45,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive4.yaml"
+  }
+]
