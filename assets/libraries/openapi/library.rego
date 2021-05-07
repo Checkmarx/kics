@@ -28,3 +28,8 @@ incorrect_ref(ref, object) {
 
 	regex.match(references[object], ref) == false
 }
+
+content_allowed(operation, code) {
+	operation != "head"
+	all([code != "204", code != "304"])
+}
