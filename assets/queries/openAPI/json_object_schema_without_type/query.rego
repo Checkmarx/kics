@@ -104,7 +104,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_ref := doc.components.responses[r].content[c].schema["$ref"]
-	openapi_lib.content_allowed("", r)
 	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
 
 	result := {
