@@ -70,6 +70,7 @@ KICS is a true community project. It's built as an open source from day one, and
 [KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
+
 **Keeping Infrastructure as Code Secure!**
 
 ---
