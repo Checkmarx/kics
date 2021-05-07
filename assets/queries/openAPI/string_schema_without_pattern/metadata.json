@@ -1,0 +1,9 @@
+{
+  "id": "00b78adf-b83f-419c-8ed8-c6018441dd3a",
+  "queryName": "String Schema Without Pattern",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "String schema should have 'pattern' defined.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
