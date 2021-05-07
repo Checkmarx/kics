@@ -7,6 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_properties := doc.paths[path][operation].responses[r].content[c].schema.properties
+	openapi_lib.content_allowed(operation, r)
 	encoding_key := doc.paths[path][operation].responses[r].content[c].encoding[e]
 
 	not match(schema_properties, e)
@@ -61,6 +62,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema_properties := doc.components.responses[r].content[c].schema.properties
+	openapi_lib.content_allowed("", r)
 	encoding_key := doc.components.responses[r].content[c].encoding[e]
 
 	not match(schema_properties, e)
