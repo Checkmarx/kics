@@ -1,0 +1,9 @@
+{
+  "id": "181bd815-767e-4e95-a24d-bb3c87328e19",
+  "queryName": "Numeric Schema Without Minimum",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Numeric schema (type set to 'integer' or 'number') should have 'minimum' defined.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
