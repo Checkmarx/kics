@@ -195,7 +195,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			},
 			feilds: feilds{
 				value:      "mem",
-				allocation: []string{"1", "2", "3"},
+				allocation: []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
 			},
 			disabled: false,
 		},
