@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Property 'style' of Encoding Object Ignored",
+    "severity": "INFO",
+    "line": 49,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property 'style' of Encoding Object Ignored",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Property 'style' of Encoding Object Ignored",
+    "severity": "INFO",
+    "line": 31,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Property 'style' of Encoding Object Ignored",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive4.yaml"
+  }
+]

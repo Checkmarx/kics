@@ -1,0 +1,9 @@
+{
+  "id": "d3ea644a-9a5c-4fee-941f-f8a6786c0470",
+  "queryName": "Property 'style' of Encoding Object Ignored",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Property 'style' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.",
+  "descriptionUrl": "https://swagger.io/specification/#encoding-object",
+  "platform": "OpenAPI"
+}
