@@ -2,8 +2,7 @@ resource "aws_config_configuration_aggregator" "positive1" {
   name = "example"
 
   account_aggregation_source {
-    all_regions = false
-
+    role_arn    = aws_iam_role.organization.arn
   }
 }
 
