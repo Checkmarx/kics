@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 	"time"
@@ -241,7 +240,6 @@ func metricFunc(allocation []string, location string) {
 				case <-done:
 					return
 				default:
-					fmt.Println("hello")
 				}
 			}
 		}()

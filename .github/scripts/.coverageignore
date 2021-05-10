@@ -1,0 +1,4 @@
+*/**/model_easyjson.go
+test/*.go
+pkg/engine/mock/*.go
+*/**/*_test.go
