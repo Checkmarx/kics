@@ -67,7 +67,7 @@ var (
 	fileLogger    = zerolog.ConsoleWriter{Out: io.Discard}
 
 	outFileLogger    interface{}
-	outConsoleLogger interface{}
+	outConsoleLogger = io.Discard
 
 	loggerFile  interface{}
 	initialized bool
@@ -165,6 +165,7 @@ func Verbose(opt interface{}, changed bool) error {
 	verbose := opt.(bool)
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
+		outConsoleLogger = os.Stdout
 	}
 	return nil
 }
@@ -185,7 +186,7 @@ func CI(opt interface{}, changed bool) error {
 	ci := opt.(bool)
 	if ci {
 		color.SetOutput(io.Discard)
-		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger.(io.Writer), outFileLogger.(io.Writer)))
+		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, outFileLogger.(io.Writer)))
 		os.Stdout = nil
 	}
 	return nil
@@ -195,7 +196,7 @@ func CI(opt interface{}, changed bool) error {
 func LogFormat(opt interface{}, changed bool) error {
 	logFormat := opt.(string)
 	if logFormat == LogFormatJSON {
-		log.Logger = log.Output(zerolog.MultiLevelWriter(os.Stdout, loggerFile.(io.Writer)))
+		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, loggerFile.(io.Writer)))
 		outFileLogger = loggerFile
 		outConsoleLogger = os.Stdout
 	} else if logFormat == LogFormatPretty {
