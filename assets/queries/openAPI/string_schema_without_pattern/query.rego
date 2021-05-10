@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	schema := doc.paths[path][operation].responses[r].content[c].schema
 	openapi_lib.content_allowed(operation, r)
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.paths[path].parameters[parameter].schema
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -40,7 +40,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.paths[path][operation].parameters[parameter].schema
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -56,7 +56,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.paths[path][operation].requestBody.content[c].schema
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -72,7 +72,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.components.requestBodies[r].content[c].schema
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -88,7 +88,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.components.parameters[parameter].schema
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -104,7 +104,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	schema := doc.components.responses[r].content[c].schema
-	openapi_lib.undefined_properties_in_schema(doc, schema, "pattern")
+	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "pattern")
 
 	result := {
 		"documentId": doc.id,
