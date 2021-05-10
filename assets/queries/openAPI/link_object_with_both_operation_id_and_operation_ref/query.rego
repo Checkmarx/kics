@@ -39,6 +39,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	link := doc.paths[path][operation].responses[r].links[l]
+	openapi_lib.content_allowed(operation, r)
 	check_link(link)
 
 	result := {

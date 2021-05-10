@@ -74,7 +74,7 @@ test-short: generate
 
 .PHONY: test
 test: ## Run all tests
-test: test-race-cover test-e2e
+test: test-cover test-e2e
 	$(call print-target)
 
 .PHONY: test-race

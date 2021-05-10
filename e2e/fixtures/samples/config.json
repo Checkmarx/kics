@@ -1,0 +1,6 @@
+{
+    "path": "fixtures/samples/terraform-single.tf",
+    "verbose": true,
+    "type": "Dockerfile,Kubernetes,Terraform",
+    "queries-path": "../assets/queries"
+}
