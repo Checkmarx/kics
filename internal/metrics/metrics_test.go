@@ -240,6 +240,7 @@ func metricFunc(allocation []string, location string) {
 				case <-done:
 					return
 				default:
+					continue
 				}
 			}
 		}()
