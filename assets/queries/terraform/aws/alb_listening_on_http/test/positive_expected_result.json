@@ -2,11 +2,19 @@
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "HIGH",
-    "line": 25
+    "line": 11,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "HIGH",
-    "line": 19
+    "line": 17,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "HIGH",
+    "line": 58,
+    "fileName": "positive2.tf"
   }
 ]

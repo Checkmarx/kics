@@ -1,11 +1,3 @@
-resource "aws_lb" "negative1" {
-  # ...
-}
-
-resource "aws_lb_target_group" "negative2" {
-  # ...
-}
-
 resource "aws_lb_listener" "negative3" {
   load_balancer_arn = aws_lb.front_end.arn
   port              = "80"
