@@ -39,23 +39,23 @@ is_ref(schema) {
 	object.get(schema, "$ref", "undefined") != "undefined"
 }
 
-check_string_schema(doc, s, field) {
+check_string_schema(doc, s, type, field) {
 	component_schema := doc.components.schemas[sc]
 	sc == s
-	component_schema.properties[p].type == "string"
+	component_schema.properties[p].type == type
 	object.get(component_schema.properties[p], field, "undefined") == "undefined"
 }
 
-undefined_properties_in_schema(doc, schema, field) {
+undefined_properties_in_schema(doc, schema, type, field) {
 	is_ref(schema)
 	r := split(schema["$ref"], "/")
 	count(r) == 4
 	s := r[3]
-	check_string_schema(doc, s, field)
+	check_string_schema(doc, s, type, field)
 }
 
-undefined_properties_in_schema(doc, schema, field) {
+undefined_properties_in_schema(doc, schema, type, field) {
 	not is_ref(schema)
-	schema.type == "string"
+	schema.type == type
 	object.get(schema, field, "undefined") == "undefined"
 }
