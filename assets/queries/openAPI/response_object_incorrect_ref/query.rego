@@ -6,7 +6,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 	response := doc.paths[n][oper].responses[code]
-
+	openapi_lib.content_allowed(oper, code)
 	openapi_lib.incorrect_ref(response["$ref"], "responses")
 
 	result := {
