@@ -1,0 +1,9 @@
+{
+  "id": "d15db953-a553-4b8a-9a14-a3d62ea3d79d",
+  "queryName": "Components Callback Definition Is Unused",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Components callbacks definitions should be referenced or removed from Open API definition",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

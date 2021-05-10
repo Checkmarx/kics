@@ -6,7 +6,9 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	header_info := check_content_header(doc.paths[path][operation].responses[r])
+	response := doc.paths[path][operation].responses[r]
+	openapi_lib.content_allowed(operation, r)
+	header_info := check_content_header(response)
 
 	result := {
 		"documentId": doc.id,
@@ -51,7 +53,8 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	header_info := check_content_header(doc.components.responses[r])
+	response := doc.components.responses[r]
+	header_info := check_content_header(response)
 
 	result := {
 		"documentId": doc.id,
