@@ -1,4 +1,4 @@
-resource "aws_rds_cluster" "negative1" {
+resource "aws_rds_cluster" "positive3" {
   cluster_identifier  = "cloudrail-test-non-encrypted"
   engine              = "aurora-mysql"
   engine_version      = "5.7.mysql_aurora.2.03.2"
@@ -7,5 +7,5 @@ resource "aws_rds_cluster" "negative1" {
   master_username     = "administrator"
   master_password     = "cloudrail-TEST-password"
   skip_final_snapshot = true
-  storage_encrypted   = true
+  storage_encrypted   = false
 }

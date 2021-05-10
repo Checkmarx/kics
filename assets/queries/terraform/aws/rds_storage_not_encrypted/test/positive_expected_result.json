@@ -2,11 +2,13 @@
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
-    "line": 16
+    "line": 10,
+    "fileName": "positive2.tf"
   }
 ]
