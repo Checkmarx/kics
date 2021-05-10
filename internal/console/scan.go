@@ -117,9 +117,17 @@ func NewScanCmd() *cobra.Command {
 			if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
 				return err
 			}
-			directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
-			if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
-				return err
+			if outputPath != "" {
+				directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
+				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+					return err
+				}
+			}
+			if payloadPath != "" {
+				directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
+				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+					return err
+				}
 			}
 			gracefulShutdown()
 			return scan(changedDefaultQueryPath)

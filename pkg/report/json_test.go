@@ -37,6 +37,9 @@ func TestPrintJSONReport(t *testing.T) {
 	for idx, test := range jsonTests {
 		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
 			var err error
+			if err = os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
+				t.Fatal(err)
+			}
 			err = PrintJSONReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
