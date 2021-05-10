@@ -1,0 +1,9 @@
+{
+  "id": "0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3",
+  "queryName": "Redshift Cluster Without VPC",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
+  "platform": "Terraform"
+}
