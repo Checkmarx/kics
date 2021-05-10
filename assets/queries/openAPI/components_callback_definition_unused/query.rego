@@ -13,7 +13,6 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.callbacks.{{%s}}", [callback]),
-		"t": callbackRef,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Callback should be used as reference somewhere",
 		"keyActualValue": "Callback is not used as reference",
