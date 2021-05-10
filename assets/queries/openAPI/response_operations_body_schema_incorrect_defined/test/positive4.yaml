@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+  contact:
+    name: contact
+    url: https://www.google.com/
+    email: user@gmail.com
+paths:
+  "/":
+    head:
+      operationId: headers
+      summary: headers
+      responses:
+        "200":
+          description: wrong example
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/ApiVersion"
+components:
+  schemas:
+    ApiVersion:
+      type: object
+      discriminator:
+        propertyName: ApiVersion
+      properties:
+        code:
+          type: integer
+          format: int32
+        version:
+          type: string
