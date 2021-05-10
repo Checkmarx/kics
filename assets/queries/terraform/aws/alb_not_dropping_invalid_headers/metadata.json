@@ -1,0 +1,9 @@
+{
+  "id": "6e3fd2ed-5c83-4c68-9679-7700d224d379",
+  "queryName": "ALB Not Dropping Invalid Headers",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#drop_invalid_header_fields",
+  "platform": "Terraform"
+}
