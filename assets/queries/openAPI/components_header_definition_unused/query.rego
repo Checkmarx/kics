@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.headers.{{%s}}", [header]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "header should be used as reference somewhere",
-		"keyActualValue": "header is not used as reference",
+		"keyExpectedValue": "Header should be used as reference somewhere",
+		"keyActualValue": "Header is not used as reference",
 	}
 }
