@@ -7,9 +7,8 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.parameters[parameter]
-	parameterRef := sprintf("#/components/parameters/%s", [parameter])
+	openapi_lib.check_reference_exists(doc, parameter, "parameters")
 
-	count({parameterRef | [_, value] := walk(doc); parameterRef == value["$ref"]}) == 0
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.parameters.{{%s}}", [parameter]),
