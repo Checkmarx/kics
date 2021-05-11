@@ -7,13 +7,11 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.callbacks[callback]
-	callbackRef := sprintf("#/components/callbacks/%s", [callback])
+	openapi_lib.check_reference_exists(doc, callback, "callbacks")
 
-	count({callbackRef | [_, value] := walk(doc); callbackRef == value["$ref"]}) == 0
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.callbacks.{{%s}}", [callback]),
-		"t": callbackRef,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Callback should be used as reference somewhere",
 		"keyActualValue": "Callback is not used as reference",
