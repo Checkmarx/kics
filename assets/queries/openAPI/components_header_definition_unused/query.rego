@@ -7,9 +7,8 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.headers[header]
-	headerRef := sprintf("#/components/headers/%s", [header])
+	openapi_lib.check_reference_exists(doc, header, "headers")
 
-	count({headerRef | [_, value] := walk(doc); headerRef == value["$ref"]}) == 0
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.headers.{{%s}}", [header]),
