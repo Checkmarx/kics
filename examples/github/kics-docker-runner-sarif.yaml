@@ -15,9 +15,10 @@ jobs:
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-action@docker-runner
+        uses: checkmarx/kics-action@latest
         with:
-          path: 'terraform'
+          # comma separated list of paths
+          path: 'terraform,my-subdir,my-other-subdir/my-file.tf'
           # when provided with a directory on output_path
           # it will generate the specified reports file named 'results.{extension}'
           # in this example it will generate:
@@ -25,6 +26,8 @@ jobs:
           # - results-dir/results.sarif
           output_path: results-dir
           platform_type: terraform
+          # Will exit with status code 0 even if results are found
+          ignore_on_exit: results
           output_formats: 'json,sarif'
           exclude_paths: "terraform/gcp/big_data.tf,terraform/azure"
           # look for the queries' ID in its metadata.json
