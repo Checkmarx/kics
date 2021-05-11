@@ -1,0 +1,9 @@
+{
+  "id": "50de3b5b-6465-4e06-a9b0-b4c2ba34326b",
+  "queryName": "Header Object Without Schema",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "The header object should have schema defined",
+  "descriptionUrl": "https://swagger.io/specification/#header-object",
+  "platform": "OpenAPI"
+}

@@ -75,7 +75,6 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 	fullPath := filepath.Join(path, filename)
 	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))
 
-	_ = os.MkdirAll(path, os.ModePerm)
 	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err

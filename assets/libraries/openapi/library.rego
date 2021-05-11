@@ -46,3 +46,9 @@ undefined_field_in_json_object(doc, schema_ref, field) {
 	s := r[3]
 	check_content(doc, s, field)
 }
+
+check_reference_exists(doc, referenceName, type) {
+	ref := sprintf("#/components/%s/%s", [type, referenceName])
+
+	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+}
