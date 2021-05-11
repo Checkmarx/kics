@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Header Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 71,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 42,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Header Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 43,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Header Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive4.yaml"
+  }
+]
