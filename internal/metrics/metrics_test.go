@@ -239,6 +239,8 @@ func metricFunc(allocation []string, location string) {
 	for _, alloc := range allocation {
 		t = append(t, alloc)
 		strings.Join(t, "")
+	}
+	for range allocation {
 		go func() {
 			for {
 				select {

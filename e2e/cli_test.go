@@ -472,7 +472,7 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 
-				[]string{"scan", "--log-format", "json",
+				[]string{"scan", "--log-format", "json", "--verbose",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
@@ -575,6 +575,26 @@ var tests = []struct {
 			"E2E_CLI_033_RESULT.json",
 			"E2E_CLI_033_PAYLOAD.json",
 		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-034 - KICS scan command with --log-format without --verbose
+	// should not output log messages in the CLI (json)
+	{
+		name: "E2E-CLI-034",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--log-format", "json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`{"level":"info"`, outputText)
+			match2, _ := regexp.MatchString(`"message":"Inspector initialized, number of queries=\d+"`, outputText)
+			return !match1 && !match2
+		},
+
 		wantStatus: []int{40},
 	},
 }
