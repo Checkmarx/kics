@@ -29,6 +29,9 @@ var sarifTests = []struct {
 func TestPrintSarifReport(t *testing.T) {
 	for idx, test := range sarifTests {
 		t.Run(fmt.Sprintf("Sarif File test case %d", idx), func(t *testing.T) {
+			if err := os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
+				t.Fatal(err)
+			}
 			err := PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".sarif"))
