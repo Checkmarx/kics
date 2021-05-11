@@ -117,6 +117,18 @@ func NewScanCmd() *cobra.Command {
 			if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
 				return err
 			}
+			if outputPath != "" {
+				directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
+				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+					return err
+				}
+			}
+			if payloadPath != "" {
+				directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
+				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+					return err
+				}
+			}
 			gracefulShutdown()
 			return scan(changedDefaultQueryPath)
 		},
@@ -555,21 +567,30 @@ func resolveOutputs(
 	return consoleHelpers.PrintResult(summary, failedQueries, printer)
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string) error {
-	log.Debug().Msg("console.printOutput()")
-	if outputPath == "" {
-		return nil
-	}
-
+func createReportDir(outputPath, filename string, formats []string) (outDir, outFile string, outFormats []string) {
 	if strings.Contains(outputPath, ".") {
 		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
-			formats = []string{filepath.Ext(outputPath)[1:]}
+			err := consoleHelpers.ValidateReportFormats([]string{filepath.Ext(outputPath)[1:]})
+			if err != nil {
+				log.Trace().Msgf("Extension not supported %s, will create directory instead", filepath.Ext(outputPath)[1:])
+			} else {
+				formats = []string{filepath.Ext(outputPath)[1:]}
+			}
 		}
 		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
 			filename = filepath.Base(outputPath)
 			outputPath = filepath.Dir(outputPath)
 		}
 	}
+	return outputPath, filename, formats
+}
+
+func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+	log.Debug().Msg("console.printOutput()")
+	if outputPath == "" {
+		return nil
+	}
+	outputPath, filename, formats = createReportDir(outputPath, filename, formats)
 	if len(formats) == 0 {
 		formats = consoleHelpers.ListReportFormats()
 	}
