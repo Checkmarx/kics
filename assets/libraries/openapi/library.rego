@@ -33,3 +33,9 @@ content_allowed(operation, code) {
 	operation != "head"
 	all([code != "204", code != "304"])
 }
+
+check_reference_exists(doc, referenceName, type) {
+	ref := sprintf("#/components/%s/%s", [type, referenceName])
+
+	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+}
