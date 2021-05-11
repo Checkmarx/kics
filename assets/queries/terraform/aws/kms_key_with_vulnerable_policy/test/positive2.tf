@@ -1,4 +1,4 @@
-resource "aws_kms_key" "negative1" {
+resource "aws_kms_key" "positive1" {
   description             = "KMS key 1"
   deletion_window_in_days = 10
 
@@ -9,16 +9,11 @@ resource "aws_kms_key" "negative1" {
       {
         "Sid":"AddCannedAcl",
         "Effect":"Allow",
-        "Principal": { "AWS": "123456789012" },
+        "Principal": "*",
         "Action":["kms:*"],
         "Resource":"*"
       }
     ]
   }
   POLICY
-}
-
-resource "aws_kms_key" "negative2" {
-  description             = "KMS key 1"
-  deletion_window_in_days = 10
 }
