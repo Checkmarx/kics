@@ -4,6 +4,7 @@ import os
 import re
 import sys
 import typing
+import glob
 from argparse import ArgumentParser
 
 
@@ -83,8 +84,21 @@ def calc_file_stats(lines: typing.List[LineStats]) -> typing.List[FileStats]:
     lines.sort(key=key)
 
     out = []
+    exclude = []
+
+    with open(os.path.dirname(os.path.realpath(__file__)) + "/.coverageignore", "r") as fd:
+        for line in fd.read().splitlines():
+            for name in glob.glob(line):
+                exclude.append(name)
+
+    print("::group::Excluded paths")
+    print('\n'.join(exclude))
+    print("::endgroup::")
 
     for filename, group in itertools.groupby(lines, key=key):
+        filename = filename.replace("github.com/Checkmarx/kics/", "")
+        if filename in exclude:
+            continue
         group = list(group)
         group.sort(key=lambda i: i.line_to)
 

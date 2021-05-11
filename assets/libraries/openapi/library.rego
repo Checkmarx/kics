@@ -59,3 +59,9 @@ undefined_properties_in_schema(doc, schema, type, field) {
 	schema.type == type
 	object.get(schema, field, "undefined") == "undefined"
 }
+
+check_reference_exists(doc, referenceName, type) {
+	ref := sprintf("#/components/%s/%s", [type, referenceName])
+
+	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+}
