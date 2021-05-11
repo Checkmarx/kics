@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Simple API overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "50":
+          description: Server error response
+          content:
+            application/json:
+              examples:
+                foo:
+                  value:
+                    versions:
+                      - status: CURRENT
+                        updated: "2011-01-21T11:33:21Z"
+                        id: v2.0
+                        links:
+                          - href: http://127.0.0.1:8774/v2/
+                            rel: self
+        "6xx":
+          description: "[600-699] response"
+          headers:
+            X-Rate-Limit-Limit:
+              description: The number of allowed requests in the current period
+          content:
+            application/json:
+              examples:
+                foo:
+                  value:
+                    versions:
+                      - status: CURRENT
+                        updated: "2011-01-21T11:33:21Z"
+                        id: v2.0
+                        links:
+                          - href: http://127.0.0.1:8774/v2/
+                            rel: self
