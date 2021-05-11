@@ -1,31 +1,34 @@
 package Cx
 
-import data.generic.common as commonLib
-
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_rds_cluster[name]
-	cluster.kms_key_id == false
+
+	not is_serverless(cluster)
+	object.get(cluster, "storage_encrypted", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_rds_cluster[%s].kms_key_id", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_rds_cluster.kms_key_id is true",
-		"keyActualValue": "aws_rds_cluster.kms_key_id is false",
+		"searchKey": sprintf("aws_rds_cluster[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "aws_rds_cluster.storage_encrypted is set to true",
+		"keyActualValue": "aws_rds_cluster.storage_encrypted is undefined",
 	}
 }
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_rds_cluster[name]
 
-	object.get(cluster, "kms_key_id", "undefined") == "undefined"
-	commonLib.emptyOrNull(cluster.engine_mode)
+	cluster.storage_encrypted != true
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_rds_cluster[%s]", [name]),
+		"searchKey": sprintf("aws_rds_cluster[%s].storage_encrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_rds_cluster.kms_key_id is undefined and aws_rds_cluster.engine_mode not null or ''",
-		"keyActualValue": "aws_rds_cluster.kms_key_id is undefined and aws_rds_cluster.engine_mode is null or ''",
+		"keyExpectedValue": "aws_rds_cluster.storage_encrypted is set to true",
+		"keyActualValue": "aws_rds_cluster.storage_encrypted is set to false",
 	}
+}
+
+is_serverless(cluster) {
+	cluster.engine_mode == "serverless"
 }
