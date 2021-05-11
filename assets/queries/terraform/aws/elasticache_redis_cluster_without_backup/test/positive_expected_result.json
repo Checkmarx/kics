@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "ElastiCache Redis Cluster Without Backup",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "ElastiCache Redis Cluster Without Backup",
+    "severity": "MEDIUM",
+    "line": 16
+  }
+]
