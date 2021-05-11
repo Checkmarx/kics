@@ -5,7 +5,7 @@ CxPolicy[result] {
 	types := {"aws_alb", "aws_lb"}
 	name == types[x]
 	res := resource[m]
-	res.load_balancer_type == "application"
+	check_load_balancer_type(res)
 	res.drop_invalid_header_fields == false
 
 	result := {
@@ -22,7 +22,7 @@ CxPolicy[result] {
 	types := {"aws_alb", "aws_lb"}
 	name == types[x]
 	res := resource[m]
-	res.load_balancer_type == "application"
+	check_load_balancer_type(res)
 	object.get(res, "drop_invalid_header_fields", "undefined") == "undefined"
 
 	result := {
@@ -32,4 +32,12 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s[{{%s}}].drop_invalid_header_fields is set to true", [types[x], m]),
 		"keyActualValue": sprintf("%s[{{%s}}].drop_invalid_header_fields is missing", [types[x], m]),
 	}
+}
+
+check_load_balancer_type(res) {
+	res.load_balancer_type == "application"
+} else {
+	object.get(res, "load_balancer_type", "undefined") == "undefined"
+} else = false {
+	true
 }
