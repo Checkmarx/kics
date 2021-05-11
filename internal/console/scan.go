@@ -572,7 +572,7 @@ func createReportDir(outputPath, filename string, formats []string) (outDir, out
 		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
 			err := consoleHelpers.ValidateReportFormats([]string{filepath.Ext(outputPath)[1:]})
 			if err != nil {
-				log.Trace().Msgf("Not supported extension %s, will create directory instead", filepath.Ext(outputPath)[1:])
+				log.Trace().Msgf("Extension not supported %s, will create directory instead", filepath.Ext(outputPath)[1:])
 			} else {
 				formats = []string{filepath.Ext(outputPath)[1:]}
 			}
