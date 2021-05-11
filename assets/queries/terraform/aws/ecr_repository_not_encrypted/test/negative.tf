@@ -8,6 +8,6 @@ resource "aws_ecr_repository" "foo2" {
 
   encryption_configuration {
     encryption_type = "KMS"
-    kms_key = arn:aws:kms:region:account-id:key/key-id
+    kms_key = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
   }
 }
