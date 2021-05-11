@@ -7,14 +7,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.examples[example]
-	exampleRef := sprintf("#/components/examples/%s", [example])
+	openapi_lib.check_reference_exists(doc, example, "examples")
 
-	count({exampleRef | [_, value] := walk(doc); exampleRef == value["$ref"]}) == 0
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.examples.{{%s}}", [example]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "example should be used as reference somewhere",
-		"keyActualValue": "example is not used as reference",
+		"keyExpectedValue": "Example should be used as reference somewhere",
+		"keyActualValue": "Example is not used as reference",
 	}
 }
