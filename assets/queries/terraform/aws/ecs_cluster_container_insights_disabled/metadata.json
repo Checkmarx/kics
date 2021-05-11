@@ -1,0 +1,9 @@
+{
+  "id": "97cb0688-369a-4d26-b1f7-86c4c91231bc",
+  "queryName": "ECS Cluster with Container Insights Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "ECS Cluster should enable container insights",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#setting",
+  "platform": "Terraform"
+}
