@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "ECR Repository Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 1
+  }
+]
