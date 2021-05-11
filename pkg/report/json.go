@@ -13,7 +13,6 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 		filename += ".json"
 	}
 	fullPath := filepath.Join(path, filename)
-	_ = os.MkdirAll(path, os.ModePerm)
 
 	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {

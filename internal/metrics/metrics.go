@@ -3,6 +3,7 @@ package metrics
 import (
 	"bytes"
 	"fmt"
+	"math"
 	"strings"
 
 	"github.com/google/pprof/profile"
@@ -34,6 +35,7 @@ type Metrics struct {
 	metricsID string
 	location  string
 	Disable   bool
+	total     int64
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
@@ -44,12 +46,16 @@ func InitializeMetrics(metric *pflag.Flag) error {
 	case "cpu":
 		Metric.Disable = false
 		Metric.metric = &cpuMetric{}
+		Metric.total = 0
 	case "mem":
+		Metric.total = 0
 		Metric.metric = &memMetric{}
 		Metric.Disable = false
 	case "":
+		Metric.total = 0
 		Metric.Disable = true
 	default:
+		Metric.total = 0
 		Metric.Disable = true
 		err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metricStr)
 	}
@@ -95,6 +101,7 @@ func (m *Metrics) Stop() {
 	total := getTotal(p, m.metric.getIndex())
 	log.Info().
 		Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID), m.location, formatTotal(total, m.metric.getMap()))
+	m.total = total
 }
 
 // getTotal goes through the profile samples summing their values according to
@@ -130,5 +137,11 @@ func formatTotal(b int64, typeMap map[string]float64) string {
 			mesure = k
 		}
 	}
-	return fmt.Sprintf("%.2f%s", value/formatter, mesure)
+
+	metric := value / formatter
+	if math.IsNaN(metric) {
+		metric = 0
+	}
+
+	return fmt.Sprintf("%.2f%s", metric, mesure)
 }

@@ -26,8 +26,11 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 	for idx, rfile := range resFiles.File {
 		s.Tracker.TrackFileFound()
 		excluded[idx] = rfile.FileName
-		documents, _, err := s.Parser.Parse(rfile.FileName, rfile.Content)
+		documents, retParse, err := s.Parser.Parse(rfile.FileName, rfile.Content)
 		if err != nil {
+			if retParse == "break" {
+				return []string{}, nil
+			}
 			return []string{}, errors.Wrap(err, "failed to parse file content")
 		}
 		for _, document := range documents {

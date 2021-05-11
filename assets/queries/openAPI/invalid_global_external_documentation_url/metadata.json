@@ -1,0 +1,9 @@
+{
+  "id": "b2d9dbf6-539c-4374-a1fd-210ddf5563a8",
+  "queryName": "Invalid Global External Documentation URL",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Global External Documentation URL should be a valid URL",
+  "descriptionUrl": "https://swagger.io/specification/#external-documentation-object",
+  "platform": "OpenAPI"
+}

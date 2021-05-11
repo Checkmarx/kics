@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
+    "severity": "INFO",
+    "line": 70,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
+    "severity": "INFO",
+    "line": 36,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]

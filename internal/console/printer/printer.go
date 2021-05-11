@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -41,7 +42,6 @@ var (
 		LogFileFlag:  LogFile,
 		LogLevelFlag: LogLevel,
 		LogPathFlag:  LogPath,
-		NoColorFlag:  NoColor,
 		SilentFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
@@ -49,13 +49,25 @@ var (
 		LogFormatFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
+		NoColorFlag: NoColor,
+	}
+
+	optionsOrderMap = map[int]string{
+		1: CIFlag,
+		2: LogFileFlag,
+		3: LogLevelFlag,
+		4: LogPathFlag,
+		5: SilentFlag,
+		6: VerboseFlag,
+		7: LogFormatFlag,
+		8: NoColorFlag,
 	}
 
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
 	fileLogger    = zerolog.ConsoleWriter{Out: io.Discard}
 
 	outFileLogger    interface{}
-	outConsoleLogger interface{}
+	outConsoleLogger = io.Discard
 
 	loggerFile  interface{}
 	initialized bool
@@ -68,18 +80,25 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 		return err
 	}
 
-	for flagName, optionFunc := range optionsMap {
-		f := flags.Lookup(flagName)
+	keys := make([]int, 0, len(optionsOrderMap))
+	for k := range optionsOrderMap {
+		keys = append(keys, k)
+	}
+
+	sort.Ints(keys)
+
+	for _, key := range keys {
+		f := flags.Lookup(optionsOrderMap[key])
 		switch f.Value.Type() {
 		case "string":
 			value := f.Value.String()
-			err = optionFunc(value, f.Changed)
+			err = optionsMap[optionsOrderMap[key]](value, f.Changed)
 			if err != nil {
 				return err
 			}
 		case "bool":
 			value, _ := strconv.ParseBool(f.Value.String())
-			err = optionFunc(value, f.Changed)
+			err = optionsMap[optionsOrderMap[key]](value, f.Changed)
 			if err != nil {
 				return err
 			}
@@ -146,6 +165,7 @@ func Verbose(opt interface{}, changed bool) error {
 	verbose := opt.(bool)
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
+		outConsoleLogger = os.Stdout
 	}
 	return nil
 }
@@ -166,7 +186,7 @@ func CI(opt interface{}, changed bool) error {
 	ci := opt.(bool)
 	if ci {
 		color.SetOutput(io.Discard)
-		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger.(io.Writer), outFileLogger.(io.Writer)))
+		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, outFileLogger.(io.Writer)))
 		os.Stdout = nil
 	}
 	return nil
@@ -176,7 +196,7 @@ func CI(opt interface{}, changed bool) error {
 func LogFormat(opt interface{}, changed bool) error {
 	logFormat := opt.(string)
 	if logFormat == LogFormatJSON {
-		log.Logger = log.Output(zerolog.MultiLevelWriter(os.Stdout, loggerFile.(io.Writer)))
+		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, loggerFile.(io.Writer)))
 		outFileLogger = loggerFile
 		outConsoleLogger = os.Stdout
 	} else if logFormat == LogFormatPretty {
@@ -207,7 +227,7 @@ func LogPath(opt interface{}, changed bool) error {
 			return err
 		}
 	}
-	loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, os.ModePerm)
 	if err != nil {
 		return err
 	}
@@ -222,7 +242,7 @@ func LogFile(opt interface{}, changed bool) error {
 		if err != nil {
 			return err
 		}
-		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_APPEND|os.O_CREATE|os.O_WRONLY, os.ModePerm)
+		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			return err
 		}

@@ -9,10 +9,11 @@ jobs:
     name: integration-tests
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
         with:
-          access_token: ${{ github.token }}
+          cancel_others: true
+          paths_ignore: '["docs/**", "**/**.md", "examples"]'
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
         with:
@@ -42,7 +43,6 @@ jobs:
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
@@ -50,7 +50,6 @@ jobs:
       - name: Run docker image and generate results.json
         run: |
           docker run -v ${PWD}/assets/queries:/path \
-            -e SENTRY_DSN=${{secrets.SENTRY_DSN}} \
             kics:${{ github.sha }} scan --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/results.json"
       - name: Archive test logs
         uses: actions/upload-artifact@v2

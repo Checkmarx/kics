@@ -28,7 +28,7 @@ func readFile(filePath string) (map[string]interface{}, error) {
 
 	content, err := os.ReadFile(filePath)
 	if err != nil {
-		log.Error().Msgf("Failed to read %s", filePath)
+		log.Trace().Msgf("failed to read %s", filePath)
 		return nil, err
 	}
 

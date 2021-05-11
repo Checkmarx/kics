@@ -52,7 +52,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - name: Create a new docs version
+      - name: Install dependencies
         run: pip install mkdocs-bootswatch mike
       - name: Config KICSBot git user
         run: |
@@ -60,4 +60,13 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Deploy mike version
         run: |
-          mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force
+          mike deploy ${{ steps.cversion.outputs.version }} latest -u
+      - name: Fix version selector
+        run: |
+          git checkout gh-pages
+          find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
+          find . -type f -name "*.html" -exec sed -i -E '/<link href="(.)*css\/version-select.css" rel="stylesheet"/d' {} +
+          find . -type f -name "version-select.css" -exec rm -f {} +
+          find . -type f -name "version-select.js" -exec rm -f {} +
+          git commit -a --amend --no-edit
+          git push origin gh-pages
