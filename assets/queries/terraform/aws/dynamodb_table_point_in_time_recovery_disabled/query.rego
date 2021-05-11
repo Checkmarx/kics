@@ -29,18 +29,3 @@ CxPolicy[result] {
 		"keyActualValue": "aws_dynamodb_table.point_in_time_recovery is missing",
 	}
 }
-
-CxPolicy[result] {
-	resource := input.document[i].resource[name]
-	name == "aws_dynamodb_table"
-	res := resource[m]
-	object.get(res.point_in_time_recovery, "enabled", "undefined") == "undefined"
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_dynamodb_table[{{%s}}].point_in_time_recovery", [m]),
-		"issueType": "MissingAttribute", #"MissingAttribute" / "RedundantAttribute"
-		"keyExpectedValue": "aws_dynamodb_table.point_in_time_recovery.enabled is set to true",
-		"keyActualValue": "aws_dynamodb_table.point_in_time_recovery.enabled is missing",
-	}
-}
