@@ -15,6 +15,5 @@ CxPolicy[result] {
 }
 
 container_insights_enabled(resource) {
-	resource.setting.name == "containerInsights"
 	resource.setting.value == "enabled"
 }
