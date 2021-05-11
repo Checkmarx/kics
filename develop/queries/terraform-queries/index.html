@@ -462,6 +462,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Log Group Not Encrypted<br/><sup><sub>0afbcfe9-d341-4b92-a64c-7e6de0543879</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS CloudWatch Log groups should be encrypted using KMS</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>S3 Bucket SSE Disabled<br/><sup><sub>ad03cb46-f174-4674-bf8e-2880a7000edd</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -500,7 +507,7 @@
 <td>RDS Storage Not Encrypted<br/><sup><sub>3199c26c-7871-4cb3-99c2-10a59244ce7f</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
-<td>Check if RDS Cluster Storage isn't encrypted. Happens when 'kms_key_id' field is 'false' or undefined and 'engine_mode' field is null or empty.</td>
+<td>Check if RDS Cluster Storage isn't encrypted. Happens when 'storage_encrypted' is not set to 'true'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#storage_encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -607,6 +614,13 @@
 <td>Encryption</td>
 <td>AWS Kinesis Server data at rest should have Server Side Encryption (SSE) enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_firehose_delivery_stream#server_side_encryption">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Athena Database Not Encrypted<br/><sup><sub>b2315cae-b110-4426-81e0-80bb8640cdd3</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS Athena Database data in S3 should be encrypted</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_database#encryption_configuration">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>MSK Cluster Encryption Disabled<br/><sup><sub>6db52fa6-d4da-4608-908a-89f0c59e743e</sub></sup></td>
@@ -1414,6 +1428,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>ElastiCache Redis Cluster Without Backup<br/><sup><sub>8fdb08a0-a868-4fdf-9c27-ccab0237f1ab</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Backup</td>
+<td>ElastiCache Redis cluster should have 'snapshot_retention_limit' higher than 0</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#snapshot_retention_limit">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>SQL Server Predictable Admin Account Name<br/><sup><sub>2ab6de9a-0136-415c-be92-79d2e4fd750f</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
@@ -1440,6 +1461,20 @@
 <td>Best Practices</td>
 <td>AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Cluster With Backup Disabled<br/><sup><sub>e542bd46-58c4-4e0f-a52a-1fb4f9548e02</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>RDS Cluster backup retention period should be specifically defined</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ALB Not Dropping Invalid Headers<br/><sup><sub>6e3fd2ed-5c83-4c68-9679-7700d224d379</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice when using Application Load Balancers to drop invalid header fields</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#drop_invalid_header_fields">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Password Without Symbol<br/><sup><sub>7a70eed6-de3a-4da2-94da-a2bbc8fe2a48</sub></sup></td>
@@ -1561,6 +1596,20 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>ElastiCache Replication Group Not Encrypted At Rest<br/><sup><sub>76976de7-c7b1-4f64-a94f-90c1345914c2</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>ElastiCache Replication Group encryption should be enabled at Rest</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#at_rest_encryption_enabled">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECR Repository Not Encrypted<br/><sup><sub>0e32d561-4b5a-4664-a6e3-a3fa85649157</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>ECR (Elastic Container Registry) Repository encryption should be set</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#encryption_configuration">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ElasticSearch Not Encrypted At Rest<br/><sup><sub>24e16922-4330-4e9d-be8a-caa90299466a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
@@ -1636,6 +1685,13 @@
 <td>Insecure Configurations</td>
 <td>Check if any MQ Broker is not publicly accessible</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redshift Cluster Without VPC<br/><sup><sub>0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Redshift Cluster should be configured in VPC (Virtual Private Cloud)</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Password Without Lowercase Letter<br/><sup><sub>bbc7c137-6c7b-4fc4-984a-0c88e91fcaf9</sub></sup></td>
@@ -2506,6 +2562,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>ECS Cluster with Container Insights Disabled<br/><sup><sub>97cb0688-369a-4d26-b1f7-86c4c91231bc</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>ECS Cluster should enable container insights</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#setting">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Lambda Functions Without X-Ray Tracing<br/><sup><sub>8152e0cf-d2f0-47ad-96d5-d003a76eabd1</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
@@ -2574,6 +2637,34 @@
 <td>Supply-Chain</td>
 <td>Image must be defined and not be empty or equal to latest.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DynamoDB Table Point In Time Recovery Disabled<br/><sup><sub>741f1291-47ac-4a85-a07b-3d32a9d6bd3e</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice to have point in time recovery enabled for DynamoDB Table</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table#point_in_time_recovery">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Rules Without Description<br/><sup><sub>68eb4bf3-f9bf-463d-b5cf-e029bb446d2e</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice for all rules in AWS Security Group to have a description</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Not EBS Optimized<br/><sup><sub>60224630-175a-472a-9e23-133827040766</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs_optimized">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Group Without Description<br/><sup><sub>cb3f5ed6-0d18-40de-a93d-b3538db31e8c</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>It's considered a best practice for AWS Security Group to have a description</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table></div>
