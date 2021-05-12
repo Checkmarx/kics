@@ -1,0 +1,9 @@
+{
+  "id": "4766d3ea-241c-4ee6-93ff-c380c996bd1a",
+  "queryName": "DOCDB Cluster Without KMS",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS DOCDB Cluster should be encrypted with a KMS encryption key",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#kms_key_id",
+  "platform": "Terraform"
+}
