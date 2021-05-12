@@ -65,3 +65,14 @@ check_reference_exists(doc, referenceName, type) {
 
 	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
 }
+
+concat_path(path) = concatenated {
+	concatenated := concat(".", [x | x := resolve_path(path[_])])
+}
+
+resolve_path(pathItem) = resolved {
+	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
+	resolved := sprintf("{{%s}}", [pathItem])
+} else = pathItem {
+	true
+}
