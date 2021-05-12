@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "DOCDB Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "DOCDB Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive1.tf"
+  }
+]
