@@ -1,0 +1,9 @@
+{
+  "id": "698a464e-bb3e-4ba8-ab5e-e6599b7644a0",
+  "queryName": "Components Parameter Definition Is Unused",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Components parameters definitions should be referenced or removed from Open API definition",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}
