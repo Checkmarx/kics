@@ -1,0 +1,9 @@
+{
+  "id": "5fb49a69-8d46-4495-a2f8-9c8c622b2b6e",
+  "queryName": "S3 Bucket Object Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "S3 Bucket Object should have server-side encryption enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#server_side_encryption",
+  "platform": "Terraform"
+}
