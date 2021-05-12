@@ -1,0 +1,9 @@
+{
+  "id": "f11aec39-858f-4b6f-b946-0a1bf46c0c87",
+  "queryName": "DAX Cluster Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS DAX Cluster should have server-side encryption at rest",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dax_cluster#enabled",
+  "platform": "Terraform"
+}
