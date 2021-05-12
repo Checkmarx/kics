@@ -1,0 +1,9 @@
+{
+  "id": "6b76f589-9713-44ab-97f5-59a3dba1a285",
+  "queryName": "Components Request Body Definition Is Unused",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Components request bodies definitions should be referenced or removed from Open API definition",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}
