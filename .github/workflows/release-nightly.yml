@@ -69,7 +69,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -192,7 +192,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/nightly.csv > docs/docker/nightly.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v3.9.1
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}
