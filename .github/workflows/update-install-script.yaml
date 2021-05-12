@@ -15,7 +15,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
       - name: Get Godownloader
@@ -32,7 +32,7 @@ jobs:
             && chmod +x godownloader \
             && rm -vf $(basename "${FULL_URL}") \
             && cd "${PROJDIR}"
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2.2.2
         with:
           python-version: "3.x"
       - name: Install dependencies
