@@ -1,7 +1,6 @@
 package e2e
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -10,16 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
-
-type logMsg struct {
-	Level    string `json:"level"`
-	ErrorMgs string `json:"error"`
-	Message  string `json:"message"`
-}
 
 type cmdArgs []string
 
@@ -27,30 +18,29 @@ type args struct {
 	args            []cmdArgs // args to pass to kics binary
 	expectedOut     []string  // path to file with expected output
 	expectedPayload []string
+	expectedResult  []string
 }
 
 type Validation func(string) bool
 
 var tests = []struct {
-	name          string
-	args          args
-	wantStatus    []int
-	removePayload []string
-	validation    Validation
+	name        string
+	args        args
+	wantStatus  []int
+	removeFiles []string
+	validation  Validation
 }{
-	// E2E_CLI_001 - KICS command should display a help text in the CLI when provided with the
+	// E2E-CLI-001 - KICS command should display a help text in the CLI when provided with the
 	// 	 --help flag and it should describe the available commands plus the global flags
 	{
-		name: "E2E_CLI_001",
+		name: "E2E-CLI-001",
 		args: args{
 			args: []cmdArgs{
 				[]string{"--help"},
 			},
-			expectedOut:     []string{"E2E_CLI_001"},
-			expectedPayload: []string{},
+			expectedOut: []string{"E2E_CLI_001"},
 		},
-		removePayload: []string{},
-		wantStatus:    []int{0},
+		wantStatus: []int{0},
 	},
 	// E2E-CLI-002 - KICS scan command should display a help text in the CLI when provided with the
 	// --help flag and it should describe the options related with scan plus the global options
@@ -90,7 +80,7 @@ var tests = []struct {
 				"E2E_CLI_004",
 			},
 		},
-		wantStatus: []int{126, 126, 126},
+		wantStatus: []int{126, 126},
 	},
 	// E2E-CLI-005 - KICS scan with -- payload-path flag should create a file with the
 	// passed name containing the payload of the files scanned
@@ -99,17 +89,17 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--silent", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"--payload-path", "fixtures/payload.json"},
+					"--payload-path", "output/E2E_CLI_005_PAYLOAD.json"},
 			},
 			expectedOut: []string{
 				"E2E_CLI_005",
 			},
 			expectedPayload: []string{
-				"E2E_CLI_005_PAYLOAD",
+				"E2E_CLI_005_PAYLOAD.json",
 			},
 		},
-		wantStatus:    []int{50},
-		removePayload: []string{"payload.json"},
+		wantStatus:  []int{50},
+		removeFiles: []string{"E2E_CLI_005_PAYLOAD.json"},
 	},
 	// E2E-CLI-006 - KICS generate-id should exhibit
 	// a valid UUID in the CLI and return exit code 0
@@ -199,14 +189,14 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
-					"-t", "TeRraFOrM", "--silent", "--payload-path", "fixtures/payload.json"},
+					"-t", "TeRraFOrM", "--silent", "--payload-path", "output/E2E_CLI_011_PAYLOAD.json"},
 			},
 			expectedPayload: []string{
-				"E2E_CLI_011_PAYLOAD",
+				"E2E_CLI_011_PAYLOAD.json",
 			},
 		},
-		wantStatus:    []int{50},
-		removePayload: []string{"payload.json"},
+		wantStatus:  []int{50},
+		removeFiles: []string{"E2E_CLI_011_PAYLOAD.json"},
 	},
 	// E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
 	// without showing detailed results on each line of code
@@ -317,8 +307,7 @@ var tests = []struct {
 		name: "E2E-CLI-018",
 		args: args{
 			args: []cmdArgs{
-
-				[]string{"scan", "--exclude-categories", "Observability", "-s",
+				[]string{"scan", "--exclude-categories", "Observability,Insecure Configurations", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
 				[]string{"scan", "-s",
@@ -339,8 +328,7 @@ var tests = []struct {
 				"E2E_CLI_019",
 			},
 		},
-		wantStatus:    []int{50},
-		removePayload: []string{"payload.json"},
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-020 - KICS scan with --exclude-queries flag
 	// should not run queries that was provided in this flag.
@@ -348,8 +336,7 @@ var tests = []struct {
 		name: "E2E-CLI-020",
 		args: args{
 			args: []cmdArgs{
-
-				[]string{"scan", "--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa", "-s",
+				[]string{"scan", "--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa,0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
@@ -361,7 +348,6 @@ var tests = []struct {
 		name: "E2E-CLI-021",
 		args: args{
 			args: []cmdArgs{
-
 				[]string{"scan",
 					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 
@@ -410,6 +396,207 @@ var tests = []struct {
 		},
 		wantStatus: []int{50},
 	},
+	// E2E-CLI-024  - KICS version command
+	// should display the version of the kics in the CLI.
+	{
+		name: "E2E-CLI-024",
+		args: args{
+			args: []cmdArgs{
+				[]string{"version"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Keeping Infrastructure as Code Secure [0-9a-zA-Z]+`, outputText)
+			return match
+		},
+		wantStatus: []int{0},
+	},
+	// E2E-CLI-025 - KICS scan command with --fail-on flag should
+	// return status code different from 0 only when results match the severity provided in this flag
+	{
+		name: "E2E-CLI-025",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--fail-on", "info,low",
+					"-s", "-q", "../assets/queries", "-p", "../assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive.dockerfile"},
+
+				[]string{"scan", "--fail-on", "info",
+					"-s", "-q", "../assets/queries", "-p", "../assets/queries/dockerfile/apk_add_using_local_cache_path/test/positive.dockerfile"},
+			},
+		},
+		wantStatus: []int{30, 20},
+	},
+	// E2E-CLI-026 - KICS scan command with --ignore-on-exit flag
+	// should return status code 0 if the provided flag occurs.
+	// Example: '--ignore-on-exit errors' -> Returns 0 if an error was found, instead of 126/130...
+	{
+		name: "E2E-CLI-026",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--ignore-on-exit",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.invalid.name"},
+
+				[]string{"scan", "--ignore-on-exit", "errors",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.invalid.name"},
+
+				[]string{"scan", "--ignore-on-exit", "errors",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+
+				[]string{"scan", "--ignore-on-exit", "all",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		wantStatus: []int{126, 0, 40, 0},
+	},
+	// E2E-CLI-027 - KICS scan command with --exclude-paths
+	// should not perform the scan on the files/folders provided by this flag
+	{
+		name: "E2E-CLI-027",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--exclude-paths", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf",
+					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/"},
+			},
+		},
+		validation: func(outputText string) bool {
+			match, _ := regexp.MatchString(`Files scanned: 1`, outputText)
+			return match
+		},
+		wantStatus: []int{50},
+	},
+
+	// E2E-CLI-028 - KICS scan command with --log-format
+	// should modify the view structure of output messages in the CLI (json/pretty)
+	{
+		name: "E2E-CLI-028",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--log-format", "json", "--verbose",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`{"level":"info"`, outputText)
+			match2, _ := regexp.MatchString(`"message":"Inspector initialized, number of queries=\d+"`, outputText)
+			return match1 && match2
+		},
+
+		wantStatus: []int{40},
+	},
+
+	// E2E-CLI-029 - KICS scan command with --config flag
+	// should load a config file that provides commands and arguments to kics.
+	{
+		name: "E2E-CLI-029",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--config", "fixtures/samples/config.json"},
+
+				[]string{"scan", "--config", "fixtures/samples/config.json", "--silent"},
+			},
+		},
+
+		wantStatus: []int{40, 126},
+	},
+	// E2E-CLI-030 - Kics scan command with --output-path flags
+	// should export the result files to the path provided by this flag.
+	{
+		name: "E2E-CLI-030",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		removeFiles: []string{
+			"results.json",
+			"results.sarif",
+			"results.html",
+		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-031 - Kics  scan command with --report-formats and --output-path flags
+	// should export the results based on the formats provided by this flag.
+	{
+		name: "E2E-CLI-031",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output", "--report-formats", "json,sarif",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+		removeFiles: []string{
+			"results.json",
+			"results.sarif",
+		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-032 - KICS scan command with --output-path flag
+	// and check the results.json report format
+	{
+		name: "E2E-CLI-032",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output/E2E_CLI_032_RESULT.json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
+				},
+			},
+			expectedResult: []string{
+				"E2E_CLI_032_RESULT.json",
+			},
+		},
+		removeFiles: []string{
+			"E2E_CLI_032_RESULT.json",
+		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-033 - KICS scan command with --output-path and --payload-path flags
+	// should performe a scan and create result file(s) and payload file
+	{
+		name: "E2E-CLI-033",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan",
+					"--output-path", "output/E2E_CLI_033_RESULT.json",
+					"--payload-path", "output/E2E_CLI_033_PAYLOAD.json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
+				},
+			},
+			expectedResult: []string{
+				"E2E_CLI_033_RESULT.json",
+			},
+			expectedPayload: []string{
+				"E2E_CLI_033_PAYLOAD.json",
+			},
+		},
+		removeFiles: []string{
+			"E2E_CLI_033_RESULT.json",
+			"E2E_CLI_033_PAYLOAD.json",
+		},
+		wantStatus: []int{40},
+	},
+	// E2E-CLI-034 - KICS scan command with --log-format without --verbose
+	// should not output log messages in the CLI (json)
+	{
+		name: "E2E-CLI-034",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--log-format", "json",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		validation: func(outputText string) bool {
+			match1, _ := regexp.MatchString(`{"level":"info"`, outputText)
+			match2, _ := regexp.MatchString(`"message":"Inspector initialized, number of queries=\d+"`, outputText)
+			return !match1 && !match2
+		},
+
+		wantStatus: []int{40},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
@@ -427,7 +614,7 @@ func Test_E2E_CLI(t *testing.T) {
 				require.NoError(t, err, "Capture output should not yield an error")
 				// Check exit status code
 				if !reflect.DeepEqual(out.status, tt.wantStatus[arg]) {
-					t.Errorf("kics status = %v, want status = %v", out.status, tt.wantStatus[arg])
+					t.Errorf("actual status = %v, expected status = %v", out.status, tt.wantStatus[arg])
 				}
 
 				if tt.validation != nil {
@@ -437,12 +624,22 @@ func Test_E2E_CLI(t *testing.T) {
 					}
 				}
 
+				if tt.args.expectedResult != nil {
+					// Check result file
+					fileCheck(t, tt.args.expectedResult[arg], tt.args.expectedResult[arg], "result")
+				}
+
+				if tt.args.expectedPayload != nil {
+					// Check payload file
+					fileCheck(t, tt.args.expectedPayload[arg], tt.args.expectedPayload[arg], "payload")
+				}
+
 				if tt.args.expectedOut != nil {
 					// Get and preapare expected output
-					want, err := prepareExpected(tt.args.expectedOut[arg])
-					require.NoError(t, err, "Reading a fixture should not yield an error")
+					want, errPrep := prepareExpected(tt.args.expectedOut[arg], "fixtures")
+					require.NoError(t, errPrep, "Reading a fixture should not yield an error")
 
-					// Check Number of Lines
+					// Check number of Lines
 					require.Equal(t, len(want), len(out.output),
 						"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(want), len(out.output))
 
@@ -452,90 +649,14 @@ func Test_E2E_CLI(t *testing.T) {
 					}
 				}
 
-				if tt.args.expectedPayload != nil {
-					// Check payload files
-					for _, file := range tt.removePayload {
-						fileCheck(t, file, tt.args.expectedPayload[arg])
+				if tt.removeFiles != nil {
+					// Remove created files
+					for _, file := range tt.removeFiles {
+						err = os.Remove(filepath.Join("output", file))
+						require.NoError(t, err)
 					}
 				}
 			})
 		}
-	}
-}
-
-func prepareExpected(path string) ([]string, error) {
-	cont, err := readFixture(path)
-	if err != nil {
-		return []string{}, err
-	}
-	if strings.Contains(cont, "\r\n") {
-		return strings.Split(cont, "\r\n"), nil
-	}
-
-	return strings.Split(cont, "\n"), nil
-}
-
-func checkLine(t *testing.T, expec, want string, line int) {
-	logExp := logMsg{}
-	logWant := logMsg{}
-	errE := json.Unmarshal([]byte(expec), &logExp)
-	errW := json.Unmarshal([]byte(want), &logWant)
-	if errE == nil && errW == nil {
-		checkJSONLog(t, logExp, logWant)
-	} else {
-		require.Equal(t, expec, want,
-			"\nExpected Output line\n%s\nKICS Output line:\n%s\n line: %d", want, expec, line)
-	}
-}
-
-func checkJSONLog(t *testing.T, expec, want logMsg) {
-	require.Equal(t, expec.Level, want.Level,
-		"\nExpected Output line log level\n%s\nKICS Output line log level:\n%s\n", want.Level, expec.Level)
-	require.Equal(t, expec.ErrorMgs, want.ErrorMgs,
-		"\nExpected Output line error msg\n%s\nKICS Output line error msg:\n%s\n", expec.ErrorMgs, want.ErrorMgs)
-	require.Equal(t, expec.Message, want.Message,
-		"\nExpected Output line msg\n%s\nKICS Output line msg:\n%s\n", expec.Message, want.Message)
-}
-
-func fileCheck(t *testing.T, remove, payload string) {
-	wantPayload, err := prepareExpected(payload)
-	require.NoError(t, err, "Reading a fixture should not yield an error")
-	expectPayload, err := prepareExpected(remove)
-	require.NoError(t, err, "Reading a fixture should not yield an error")
-	require.Equal(t, len(wantPayload), len(expectPayload),
-		"\nExpected file number of lines:%d\nKics file number of lines:%d\n", len(wantPayload), len(expectPayload))
-	checkJSONFile(t, wantPayload, expectPayload)
-	err = os.Remove(filepath.Join("fixtures", remove))
-	require.NoError(t, err)
-}
-
-func checkJSONFile(t *testing.T, expect, want []string) { // Needs to fixed
-	var wantI model.Documents
-	var expecI model.Documents
-	errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expecI)
-	require.NoError(t, errE, "Unmarshaling JSON file should not yield an error")
-	errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
-	require.NoError(t, errW, "Unmarshaling JSON file should not yield an error")
-	setFields(t, wantI, expecI, "payload")
-}
-
-func setFields(t *testing.T, want, expect model.Documents, location string) {
-	switch location {
-	case "payload":
-		for _, docs := range want.Documents {
-			require.NotNil(t, docs["id"]) // Here additional checks may be added as length of id, or contains in file
-			require.NotNil(t, docs["file"])
-			docs["id"] = "0"
-			docs["file"] = "file"
-		}
-		if !reflect.DeepEqual(expect, want) {
-			expectStr, err := test.StringifyStruct(expect)
-			require.NoError(t, err)
-			wantStr, err := test.StringifyStruct(want)
-			require.NoError(t, err)
-			t.Errorf("Expected:\n%v\n,want:\n%v\n", expectStr, wantStr)
-		}
-	case "result": // TODO
-	default:
 	}
 }

@@ -1,0 +1,9 @@
+{
+  "id": "76976de7-c7b1-4f64-a94f-90c1345914c2",
+  "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "ElastiCache Replication Group encryption should be enabled at Rest",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#at_rest_encryption_enabled",
+  "platform": "Terraform"
+}

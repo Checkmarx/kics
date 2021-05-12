@@ -9,7 +9,7 @@ resource "aws_kms_key" "negative1" {
       {
         "Sid":"AddCannedAcl",
         "Effect":"Allow",
-        "Principal": "*",
+        "Principal": { "AWS": "123456789012" },
         "Action":["kms:*"],
         "Resource":"*"
       }

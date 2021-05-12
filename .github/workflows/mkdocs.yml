@@ -11,7 +11,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
       - uses: toko-bifrost/ms-teams-deploy-card@master
@@ -28,13 +28,25 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-bootswatch mike
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-bootswatch mike
       - run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Update develop docs
         run: |
-          mike deploy develop --push --force --rebase
+          mike deploy develop
+      - name: Fix version selector
+        run: |
+          git checkout gh-pages
+          find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
+          find . -type f -name "*.html" -exec sed -i -E '/<link href="(.)*css\/version-select.css" rel="stylesheet"/d' {} +
+          find . -type f -name "version-select.css" -exec rm -f {} +
+          find . -type f -name "version-select.js" -exec rm -f {} +
+          git commit -a --amend --no-edit
+          git push origin gh-pages
+

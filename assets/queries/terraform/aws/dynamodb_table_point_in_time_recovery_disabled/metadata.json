@@ -1,0 +1,9 @@
+{
+  "id": "741f1291-47ac-4a85-a07b-3d32a9d6bd3e",
+  "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "It's considered a best practice to have point in time recovery enabled for DynamoDB Table",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table#point_in_time_recovery",
+  "platform": "Terraform"
+}

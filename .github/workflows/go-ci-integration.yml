@@ -9,12 +9,13 @@ jobs:
     name: integration-tests
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
         with:
-          access_token: ${{ github.token }}
+          cancel_others: false
+          paths_ignore: '["docs/**", "**/**.md", "examples"]'
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
         with:
           persist-credentials: false
       - name: Set up Docker Buildx
@@ -31,7 +32,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v2.4.0
         with:
           load: true
           context: ./

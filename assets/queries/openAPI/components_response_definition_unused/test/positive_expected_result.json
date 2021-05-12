@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Components Response Definition Is Unused",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Components Response Definition Is Unused",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive2.yaml"
+  }
+]

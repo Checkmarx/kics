@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Security Group Rules Without Description",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group Rules Without Description",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.tf"
+  }
+]

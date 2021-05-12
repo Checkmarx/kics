@@ -2,6 +2,7 @@ package engine
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -420,6 +421,144 @@ func TestNewInspector(t *testing.T) { // nolint
 			require.NotNil(t, got.vb)
 		})
 	}
+}
+
+func TestEngine_contains(t *testing.T) {
+	type args struct {
+		s []string
+		e string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "test_contains_common",
+			args: args{
+				s: []string{""},
+				e: "common",
+			},
+			want: true,
+		},
+		{
+			name: "test_contains_k8s",
+			args: args{
+				s: []string{"kubernetes"},
+				e: "k8s",
+			},
+			want: true,
+		},
+		{
+			name: "test_contains_k8s",
+			args: args{
+				s: []string{"terraform", "dockerfile", "cloudformation"},
+				e: "terraform",
+			},
+			want: true,
+		},
+		{
+			name: "test_not_contains",
+			args: args{
+				s: []string{"dockerfile", "cloudformation"},
+				e: "terraform",
+			},
+			want: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := contains(tt.args.s, tt.args.e)
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestEngine_LenQueriesByPlat(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+
+	type args struct {
+		queriesPath string
+		platform    []string
+	}
+	tests := []struct {
+		name string
+		args args
+		min  int
+	}{
+		{
+			name: "test_len_queries_plat",
+			args: args{
+				queriesPath: filepath.FromSlash("./assets/queries"),
+				platform:    []string{"terraform"},
+			},
+			min: 100,
+		},
+		{
+			name: "test_len_queries_plat_common",
+			args: args{
+				queriesPath: filepath.FromSlash("./assets/queries"),
+				platform:    []string{"common"},
+			},
+			min: 0,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ins := newInspectorInstance(t, tt.args.queriesPath)
+			got := ins.LenQueriesByPlat(tt.args.platform)
+			require.True(t, got > tt.min)
+		})
+	}
+}
+
+func TestEngine_GetFailedQueries(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+	type args struct {
+		queriesPath     string
+		nrFailedQueries int
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		{
+			name: "test_get_failed_queries",
+			args: args{
+				queriesPath:     filepath.FromSlash("./assets/queries"),
+				nrFailedQueries: 5,
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ins := newInspectorInstance(t, tt.args.queriesPath)
+			fail := make([]string, tt.args.nrFailedQueries)
+			for idx := range fail {
+				ins.failedQueries[fmt.Sprint(idx)] = nil
+			}
+			got := ins.GetFailedQueries()
+			require.Equal(t, tt.args.nrFailedQueries, len(got))
+		})
+	}
+}
+
+func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
+	querySource := source.NewFilesystemSource(queryPath, []string{""})
+	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
+		detector *detector.DetectLine) (model.Vulnerability, error) {
+		return model.Vulnerability{}, nil
+	}
+	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.ExcludeQueries{}, map[string]bool{}, 60)
+	require.NoError(t, err)
+	return ins
 }
 
 type mockSource struct {

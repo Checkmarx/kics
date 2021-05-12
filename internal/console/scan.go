@@ -117,6 +117,18 @@ func NewScanCmd() *cobra.Command {
 			if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
 				return err
 			}
+			if outputPath != "" {
+				directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
+				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+					return err
+				}
+			}
+			if payloadPath != "" {
+				directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
+				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+					return err
+				}
+			}
 			gracefulShutdown()
 			return scan(changedDefaultQueryPath)
 		},
@@ -229,9 +241,8 @@ func initScanFlags(scanCmd *cobra.Command) {
 		pathFlag, pathFlagShorthand,
 		[]string{},
 		"paths or directories to scan\nexample: \"./somepath,somefile.txt\"")
-	scanCmd.Flags().StringVarP(&cfgFile,
-		configFlag,
-		"", "",
+	scanCmd.Flags().StringVar(&cfgFile,
+		configFlag, "",
 		"path to configuration file")
 	scanCmd.Flags().StringVarP(&queryPath,
 		queriesPathCmdName, queriesPathShorthand,
@@ -243,15 +254,13 @@ func initScanFlags(scanCmd *cobra.Command) {
 		outputPathShorthand,
 		"",
 		"directory path to store reports")
-	scanCmd.Flags().StringSliceVarP(&reportFormats,
+	scanCmd.Flags().StringSliceVar(&reportFormats,
 		reportFormatsFlag,
-		"",
 		[]string{},
 		"formats in which the results will be exported (json, sarif, html)",
 	)
-	scanCmd.Flags().IntVarP(&previewLines,
+	scanCmd.Flags().IntVar(&previewLines,
 		previewLinesFlag,
-		"",
 		3,
 		"number of lines to be display in CLI results (min: 1, max: 30)")
 	scanCmd.Flags().StringVarP(&payloadPath,
@@ -264,8 +273,8 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVarP(&min,
-		minimalUIFlag, "",
+	scanCmd.Flags().BoolVar(&min,
+		minimalUIFlag,
 		false,
 		"simplified version of CLI output")
 	scanCmd.Flags().StringSliceVarP(&types,
@@ -273,12 +282,12 @@ func initScanFlags(scanCmd *cobra.Command) {
 		[]string{""},
 		"case insensitive list of platform types to scan\n"+
 			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
-	scanCmd.Flags().BoolVarP(&noProgress,
-		noProgressFlag, "",
+	scanCmd.Flags().BoolVar(&noProgress,
+		noProgressFlag,
 		false,
 		"hides the progress bar")
-	scanCmd.Flags().StringSliceVarP(&excludeIDs,
-		excludeQueriesFlag, "",
+	scanCmd.Flags().StringSliceVar(&excludeIDs,
+		excludeQueriesFlag,
 		[]string{},
 		"exclude queries by providing the query ID\n"+
 			"can be provided multiple times or as a comma separated string\n"+
@@ -292,28 +301,28 @@ func initScanFlags(scanCmd *cobra.Command) {
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
 	)
-	scanCmd.Flags().StringSliceVarP(&excludeCategories,
-		excludeCategoriesFlag, "",
+	scanCmd.Flags().StringSliceVar(&excludeCategories,
+		excludeCategoriesFlag,
 		[]string{},
 		"exclude categories by providing its name\n"+
 			"can be provided multiple times or as a comma separated string\n"+
 			"example: 'Access control,Best practices'",
 	)
-	scanCmd.Flags().StringSliceVarP(&failOn,
-		failOnFlag, "",
+	scanCmd.Flags().StringSliceVar(&failOn,
+		failOnFlag,
 		[]string{"high", "medium", "low", "info"},
 		"which kind of results should return an exit code different from 0\n"+
 			"accetps: high, medium, low and info\n"+
 			"example: \"high,low\"",
 	)
-	scanCmd.Flags().StringVarP(&ignoreOnExit,
-		ignoreOnExitFlag, "",
+	scanCmd.Flags().StringVar(&ignoreOnExit,
+		ignoreOnExitFlag,
 		"none",
 		"defines which kind of non-zero exits code should be ignored\n"+"accepts: all, results, errors, none\n"+
 			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
 	)
-	scanCmd.Flags().IntVarP(&queryExecTimeout,
-		queryExecTimeoutFlag, "",
+	scanCmd.Flags().IntVar(&queryExecTimeout,
+		queryExecTimeoutFlag,
 		60,
 		"number of seconds the query has to execute before being canceled")
 }
@@ -555,21 +564,30 @@ func resolveOutputs(
 	return consoleHelpers.PrintResult(summary, failedQueries, printer)
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string) error {
-	log.Debug().Msg("console.printOutput()")
-	if outputPath == "" {
-		return nil
-	}
-
+func createReportDir(outputPath, filename string, formats []string) (outDir, outFile string, outFormats []string) {
 	if strings.Contains(outputPath, ".") {
 		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
-			formats = []string{filepath.Ext(outputPath)[1:]}
+			err := consoleHelpers.ValidateReportFormats([]string{filepath.Ext(outputPath)[1:]})
+			if err != nil {
+				log.Trace().Msgf("Extension not supported %s, will create directory instead", filepath.Ext(outputPath)[1:])
+			} else {
+				formats = []string{filepath.Ext(outputPath)[1:]}
+			}
 		}
 		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
 			filename = filepath.Base(outputPath)
 			outputPath = filepath.Dir(outputPath)
 		}
 	}
+	return outputPath, filename, formats
+}
+
+func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+	log.Debug().Msg("console.printOutput()")
+	if outputPath == "" {
+		return nil
+	}
+	outputPath, filename, formats = createReportDir(outputPath, filename, formats)
 	if len(formats) == 0 {
 		formats = consoleHelpers.ListReportFormats()
 	}

@@ -1,0 +1,9 @@
+{
+  "id": "962fa01e-b791-4dcc-b04a-4a3e7389be5e",
+  "queryName": "Components Schema Definition Is Unused",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Components schemas definitions should be referenced or removed from Open API definition",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

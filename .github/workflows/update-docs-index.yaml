@@ -16,7 +16,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
       - name: Get current date
@@ -36,7 +36,7 @@ jobs:
           sed -E -i "s/(<p.*>)[0-9]{4}\.[0-9]{2}\.[0-9]{2}<p>/\1${{ steps.cdate.outputs.date }}<p>/" docs/index.md
           sed -E -i "s/(<a.*href=\"https:\/\/github.com\/Checkmarx\/kics\/releases\/download\/).*(\/kics_).*(_[a-z]+_.*>)/\1v${{ steps.cversion.outputs.version }}\2${{ steps.cversion.outputs.version }}\3/g" docs/index.md
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v3.9.1
         with:
           title: "docs(index): updating links in index page - ${{ steps.cversion.outputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}
@@ -49,10 +49,10 @@ jobs:
             Updating documentation index page.
             Triggered by SHA: _${{ github.sha }}_
           labels: documentation
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
-      - name: Create a new docs version
+      - name: Install dependencies
         run: pip install mkdocs-bootswatch mike
       - name: Config KICSBot git user
         run: |
@@ -60,4 +60,13 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Deploy mike version
         run: |
-          mike deploy ${{ steps.cversion.outputs.version }} latest -u --push --force --rebase
+          mike deploy ${{ steps.cversion.outputs.version }} latest -u
+      - name: Fix version selector
+        run: |
+          git checkout gh-pages
+          find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
+          find . -type f -name "*.html" -exec sed -i -E '/<link href="(.)*css\/version-select.css" rel="stylesheet"/d' {} +
+          find . -type f -name "version-select.css" -exec rm -f {} +
+          find . -type f -name "version-select.js" -exec rm -f {} +
+          git commit -a --amend --no-edit
+          git push origin gh-pages
