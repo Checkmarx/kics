@@ -81,3 +81,11 @@ getSpecInfo(resource) = specInfo { # this one can be also used for the result
 	spec := resource.spec
 	specInfo := {"spec": spec, "path": "spec"}
 }
+
+empty_array(arr) {
+	arr == []
+} else {
+	arr == null
+} else {
+	false
+}
