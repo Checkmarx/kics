@@ -411,3 +411,11 @@ check_resource_tags(p) {
 
 	resource[p]
 }
+
+empty_array(arr) {
+	arr == []
+} else {
+	arr == null
+} else {
+	false
+}
