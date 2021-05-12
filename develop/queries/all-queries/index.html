@@ -4180,6 +4180,14 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Numeric Schema Without Maximum<br/><sup><sub>2ea04bef-c769-409e-9179-ee3a50b5c0ac</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Success Response Code Undefined for Trace Operation<br/><sup><sub>105e20dd-8449-4d71-95c6-d5dac96639af</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -5642,6 +5650,22 @@
 <td>Encryption</td>
 <td>User Data Base64 contains an encoded RSA Private Key</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DOCDB Cluster Without KMS<br/><sup><sub>4766d3ea-241c-4ee6-93ff-c380c996bd1a</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS DOCDB Cluster should be encrypted with a KMS encryption key</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#kms_key_id">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DAX Cluster Not Encrypted<br/><sup><sub>f11aec39-858f-4b6f-b946-0a1bf46c0c87</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS DAX Cluster should have server-side encryption at rest</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dax_cluster#enabled">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>RDS Storage Not Encrypted<br/><sup><sub>3199c26c-7871-4cb3-99c2-10a59244ce7f</sub></sup></td>
