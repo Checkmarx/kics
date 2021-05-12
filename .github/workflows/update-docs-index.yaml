@@ -49,7 +49,7 @@ jobs:
             Updating documentation index page.
             Triggered by SHA: _${{ github.sha }}_
           labels: documentation
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
       - name: Install dependencies
