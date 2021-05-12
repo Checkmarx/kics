@@ -82,7 +82,7 @@ jobs:
           ls -l /home/runner/work/kics/kics/dist
       - name: Upload Release Asset Linux
         id: upload-release-asset-linux
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -92,7 +92,7 @@ jobs:
           asset_content_type: application/gzip
       - name: Upload Release Asset Darwin
         id: upload-release-asset-darwin
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -102,7 +102,7 @@ jobs:
           asset_content_type: application/gzip
       - name: Upload Release Asset Windows
         id: upload-release-asset-windows
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -112,7 +112,7 @@ jobs:
           asset_content_type: application/zip
       - name: Upload Release Asset Checksum
         id: upload-release-asset-checksums
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -154,7 +154,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push scratch to Docker Hub
         id: build_scratch
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v2.4.0
         with:
           context: .
           push: true
@@ -164,7 +164,7 @@ jobs:
             COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v2.4.0
         with:
           context: .
           file: ./Dockerfile.integration
