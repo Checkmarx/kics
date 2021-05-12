@@ -4,7 +4,7 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) != "undefined"
 
 	scheme := doc.components.securitySchemes[x]
 	lower(scheme.type) == "http"
