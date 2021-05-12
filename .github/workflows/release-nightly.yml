@@ -53,7 +53,7 @@ jobs:
         with:
           go-version: 1.16
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2
+        uses: goreleaser/goreleaser-action@v2.5.0
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-nightly.yml"
@@ -82,7 +82,7 @@ jobs:
           ls -l /home/runner/work/kics/kics/dist
       - name: Upload Release Asset Linux
         id: upload-release-asset-linux
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -92,7 +92,7 @@ jobs:
           asset_content_type: application/gzip
       - name: Upload Release Asset Darwin
         id: upload-release-asset-darwin
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -102,7 +102,7 @@ jobs:
           asset_content_type: application/gzip
       - name: Upload Release Asset Windows
         id: upload-release-asset-windows
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -112,7 +112,7 @@ jobs:
           asset_content_type: application/zip
       - name: Upload Release Asset Checksum
         id: upload-release-asset-checksums
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
