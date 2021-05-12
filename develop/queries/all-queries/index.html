@@ -4092,6 +4092,14 @@
 <td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Cleartext Credentials With Basic Authentication For Operation<br/><sup><sub>86b1fa30-9790-4980-994d-a27e0f6f27c1</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>Cleartext credentials over unencrypted channel should not be accepted for the operation</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Field On Operations Has An Empty Array<br/><sup><sub>663c442d-f918-4f62-b096-0bf5dcbeb655</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C00">High</span></td>
@@ -5858,6 +5866,14 @@
 <td>Encryption</td>
 <td>Check if the Memcached is disabled on the ElastiCache</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>API Gateway Method Settings Cache Not Encrypted<br/><sup><sub>b7c9a40c-23e4-4a2d-8d39-a3352f10f288</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>API Gateway Method Settings Cache should be encrypted</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#cache_data_encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Kinesis Not Encrypted With KMS<br/><sup><sub>862fe4bf-3eec-4767-a517-40f378886b88</sub></sup></td>
@@ -8234,6 +8250,22 @@
 <td>Best Practices</td>
 <td>It's considered a best practice for AWS Security Group to have a description</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RDS Without Logging<br/><sup><sub>8d7f7b8c-6c7c-40f8-baa6-62006c6c7b56</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Observability</td>
+<td>RDS does not have any kind of logger</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#enabled_cloudwatch_logs_exports">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Neptune Logging Is Disabled<br/><sup><sub>45cff7b6-3b80-40c1-ba7b-2cf480678bb8</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Observability</td>
+<td>Neptune logging should be enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table></div>
