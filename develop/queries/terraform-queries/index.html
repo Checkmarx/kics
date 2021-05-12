@@ -462,6 +462,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>DOCDB Cluster Not Encrypted<br/><sup><sub>bc1f9009-84a0-490f-ae09-3e0ea6d74ad6</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS DOCDB Cluster storage should be encrypted</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#storage_encrypted">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudWatch Log Group Not Encrypted<br/><sup><sub>0afbcfe9-d341-4b92-a64c-7e6de0543879</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -586,6 +593,13 @@
 <td>Encryption</td>
 <td>Base64 Shell Script must be encoded</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Object Not Encrypted<br/><sup><sub>5fb49a69-8d46-4495-a2f8-9c8c622b2b6e</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>S3 Bucket Object should have server-side encryption enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#server_side_encryption">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AMI Not Encrypted<br/><sup><sub>8bbb242f-6e38-4127-86d4-d8f0b2687ae2</sub></sup></td>
@@ -1636,6 +1650,13 @@
 <td>Encryption</td>
 <td>Enable Content Encoding through the attribute 'minimum_compression_size'. This value should be greater than -1 and smaller than 10485760</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>DynamoDB Table Not Encrypted<br/><sup><sub>ce089fd4-1406-47bd-8aad-c259772bb294</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>AWS DynamoDB Tables should have server-side encryption</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table#server_side_encryption">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>High Google KMS Crypto Key Rotation Period<br/><sup><sub>d8c57c4e-bf6f-4e32-a2bf-8643532de77b</sub></sup></td>

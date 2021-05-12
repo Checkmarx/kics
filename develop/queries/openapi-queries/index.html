@@ -350,6 +350,13 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>String Schema Without Maximum Length<br/><sup><sub>8c8261c2-19a9-4ef7-ad37-b8bc7bdd4d85</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>String schema should have 'maxLength' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Schema Object is Empty<br/><sup><sub>500ce696-d501-41dd-86eb-eceb011a386f</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -462,6 +469,13 @@
 <td><a href="https://swagger.io/specification/#oauth-flow-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Property 'style' of Encoding Object Ignored<br/><sup><sub>d3ea644a-9a5c-4fee-941f-f8a6786c0470</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Property 'style' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#encoding-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Encoding Header 'Content-Type' Improperly Defined<br/><sup><sub>4cd8de87-b595-48b6-ab3c-1904567135ab</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
@@ -481,6 +495,13 @@
 <td>Best Practices</td>
 <td>Property 'allowReserved' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.</td>
 <td><a href="https://swagger.io/specification/#encoding-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Components Request Body Definition Is Unused<br/><sup><sub>6b76f589-9713-44ab-97f5-59a3dba1a285</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components request bodies definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Path Without Operation<br/><sup><sub>84c826c9-1893-4b34-8cdd-db97645b4bf3</sub></sup></td>
@@ -504,6 +525,13 @@
 <td><a href="https://swagger.io/specification/#contact-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Components Schema Definition Is Unused<br/><sup><sub>962fa01e-b791-4dcc-b04a-4a3e7389be5e</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components schemas definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Operation Without Successful HTTP Status Code<br/><sup><sub>48e9e1fe-cf79-45b5-93e6-8b55ae5dadfd</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
@@ -516,6 +544,13 @@
 <td>Best Practices</td>
 <td>Schema External Documentation URL should be a valid URL</td>
 <td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Components Link Definition Is Unused<br/><sup><sub>c19779a9-5774-4d2f-a3a1-a99831730375</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components links definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Invalid Tag External Documentation URL<br/><sup><sub>5aea1d7e-b834-4749-b143-2c7ec3bd5922</sub></sup></td>
@@ -532,11 +567,25 @@
 <td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Components Parameter Definition Is Unused<br/><sup><sub>698a464e-bb3e-4ba8-ab5e-e6599b7644a0</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components parameters definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Invalid Contact Email<br/><sup><sub>b1a7fcb0-2afe-4d5c-a6a1-4e6311fc29e7</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
 <td>Contact Object Email should be a valid email</td>
 <td><a href="https://swagger.io/specification/#contact-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Components Header Definition Is Unused<br/><sup><sub>a68da022-e95a-4bc2-97d3-481e0bd6d446</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components headers definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Invalid License URL<br/><sup><sub>9239c289-9e4c-4d92-8be1-9d506057c971</sub></sup></td>
@@ -560,6 +609,13 @@
 <td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Components Example Definition Is Unused<br/><sup><sub>b05bb927-2df5-43cc-8d7b-6825c0e71625</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components examples definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Header Parameter Named as 'Content-Type'<br/><sup><sub>72d259ca-9741-48dd-9f62-eb11f2936b37</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
@@ -579,6 +635,13 @@
 <td>Best Practices</td>
 <td>The header Parameter should not be named as 'Authorization'. If so, it will be ignored.</td>
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Components Response Definition Is Unused<br/><sup><sub>9c3ea128-7e9a-4b4c-8a32-75ad17a2d3ae</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Components responses definitions should be referenced or removed from Open API definition</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Schema Discriminator Mismatch Defined Properties<br/><sup><sub>40d3df21-c170-4dbe-9c02-4289b51f994f</sub></sup></td>
