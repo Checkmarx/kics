@@ -17,7 +17,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_instance[name]
 
-    resource.monitoring == false
+	resource.monitoring == false
 
 	result := {
 		"documentId": input.document[i].id,

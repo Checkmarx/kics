@@ -1,13 +1,13 @@
 [
   {
     "queryName": "EC2 Instance Monitoring Disabled",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 17,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 17,
     "fileName": "positive2.tf"
   }
