@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_method_settings[name].settings
-	check_cache_enabled(resource)
+	resource.caching_enabled == true
 	resource.cache_data_encrypted == false
 
 	result := {
@@ -16,7 +16,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_method_settings[name].settings
-	check_cache_enabled(resource)
+	resource.caching_enabled == true
 	object.get(resource, "cache_data_encrypted", "undefined") == "undefined"
 
 	result := {
@@ -26,12 +26,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is set to true",
 		"keyActualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is missing",
 	}
-}
-
-check_cache_enabled(resource) = false {
-	object.get(resource, "caching_enabled", "undefined") == "undefined"
-} else {
-	resource.caching_enabled == true
-} else = false {
-	true
 }
