@@ -2,7 +2,7 @@
   "files_scanned": 1,
   "files_parsed": 1,
   "files_failed_to_scan": 0,
-  "queries_total": 0,
+  "queries_total": 542,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "queries": [
@@ -60,14 +60,36 @@
       ],
       "category": "Insecure Configurations",
       "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)"
+    },
+    {
+      "query_name": "Resource Not Using Tags",
+      "query_id": "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+      "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
+      "severity": "INFO",
+      "platform": "Terraform",
+      "files": [
+        {
+          "file_name": "file",
+          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "aws_redshift_cluster[{{default1}}]",
+          "search_value": "",
+          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined",
+          "actual_value": "aws_redshift_cluster[{{default1}}].tags is missing",
+          "value": null
+        }
+      ],
+      "category": "Best Practices",
+      "description": "AWS services resource tags are an essential part of managing components"
     }
   ],
   "scan_id": "console",
   "severity_counters": {
     "HIGH": 0,
-    "INFO": 0,
+    "INFO": 1,
     "LOW": 0,
     "MEDIUM": 3
   },
-  "total_counter": 3
+  "total_counter": 4
 }
