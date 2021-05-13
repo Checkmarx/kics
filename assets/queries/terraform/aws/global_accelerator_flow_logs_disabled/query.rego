@@ -8,10 +8,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("aws_globalaccelerator_accelerator[%s]", [name]),
+		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled is defined", [name]),
-		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled is not defined", [name]),
+		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined", [name]),
+		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is not defined", [name]),
 	}
 }
 
@@ -23,10 +23,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("aws_globalaccelerator_accelerator[%s].attributes", [name]),
+		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}].attributes", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled is defined", [name]),
-		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled is not defined", [name]),
+		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined", [name]),
+		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is not defined", [name]),
 	}
 }
 
@@ -38,9 +38,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled", [name]),
+		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled", [name]),
 		"issueType": "IncorretValue",
-		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled is true", [name]),
-		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[%s].flow_logs_enabled is false", [name]),
+		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is true", [name]),
+		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is false", [name]),
 	}
 }
