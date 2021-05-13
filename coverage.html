@@ -1309,8 +1309,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="288">{
-                if val == true </span><span class="cov9" title="287">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="284">{
+                if val == true </span><span class="cov9" title="283">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1984,13 +1984,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="42">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="42">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2008,7 +2008,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2350,7 +2350,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="29">{
+        for _, a := range s </span><span class="cov8" title="30">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3751,7 +3751,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4542,28 +4542,28 @@ func ListSupportedPlatforms() []string <span class="cov1" title="1">{
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov5" title="7">{
+func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov6" title="7">{
         var libraryPath string
-        if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) &gt; -1 </span><span class="cov5" title="7">{
+        if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) &gt; -1 </span><span class="cov6" title="7">{
                 libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries"))] + filepath.FromSlash("/libraries")
         }</span> else<span class="cov0" title="0"> {
                 libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
         }</span>
 
-        <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+        <span class="cov6" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="34">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="33">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov5" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
                 }
         }
 
-        <span class="cov5" title="7">return libraryFilePath</span>
+        <span class="cov6" title="7">return libraryFilePath</span>
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
-func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <span class="cov5" title="7">{
+func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <span class="cov6" title="7">{
         pathToLib := GetPathToLibrary(platform, s.Source)
 
         content, err := os.ReadFile(filepath.Clean(pathToLib))
@@ -4572,7 +4572,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <spa
                         Msgf("Failed to get filesystem source rego library %s", pathToLib)
         }</span>
 
-        <span class="cov5" title="7">return string(content), err</span>
+        <span class="cov6" title="7">return string(content), err</span>
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
@@ -4611,7 +4611,7 @@ func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.Qu
                                 return err
                         }</span>
 
-                        <span class="cov5" title="7">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov5" title="6">{
+                        <span class="cov6" title="7">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov5" title="6">{
                                 return nil
                         }</span>
 
@@ -4713,7 +4713,7 @@ func ReadMetadata(queryDir string) map[string]interface{} <span class="cov3" tit
 func getPlatform(queryPath string) string <span class="cov6" title="8">{
         if strings.Contains(queryPath, "common") </span><span class="cov1" title="1">{
                 return "common"
-        }</span> else<span class="cov5" title="7"> if strings.Contains(queryPath, "ansible") </span><span class="cov1" title="1">{
+        }</span> else<span class="cov6" title="7"> if strings.Contains(queryPath, "ansible") </span><span class="cov1" title="1">{
                 return "ansible"
         }</span> else<span class="cov5" title="6"> if strings.Contains(queryPath, "cloudFormation") </span><span class="cov1" title="1">{
                 return "cloudFormation"
