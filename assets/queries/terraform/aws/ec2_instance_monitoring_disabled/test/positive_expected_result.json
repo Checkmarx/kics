@@ -8,7 +8,7 @@
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "INFO",
-    "line": 17,
+    "line": 20,
     "fileName": "positive2.tf"
   }
 ]
