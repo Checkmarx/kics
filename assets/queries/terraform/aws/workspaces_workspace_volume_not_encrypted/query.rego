@@ -9,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].workspace_properties.%s", [name, volumes[n].value]),
-		"issueType": "MissingAttribute", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_workspaces_workspace.%s is set to true", [volumes[n].key]),
 		"keyActualValue": sprintf("aws_workspaces_workspace.%s is missing", [volumes[n].key]),
 	}
