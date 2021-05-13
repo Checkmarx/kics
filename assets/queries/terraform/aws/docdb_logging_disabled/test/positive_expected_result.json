@@ -8,19 +8,19 @@
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "LOW",
-    "line": 20,
-    "filename": "positive1.tf"
+    "line": 10,
+    "filename": "positive2.tf"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "LOW",
-    "line": 32,
-    "filename": "positive1.tf"
+    "line": 10,
+    "filename": "positive3.tf"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "LOW",
-    "line": 44,
-    "filename": "positive1.tf"
+    "line": 10,
+    "filename": "positive4.tf"
   }
 ]

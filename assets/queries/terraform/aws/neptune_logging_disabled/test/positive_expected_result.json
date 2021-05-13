@@ -8,13 +8,13 @@
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "INFO",
-    "line": 19,
-    "filename": "positive1.tf"
+    "line": 9,
+    "filename": "positive2.tf"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "INFO",
-    "line": 30,
-    "filename": "positive1.tf"
+    "line": 9,
+    "filename": "positive3.tf"
   }
 ]
