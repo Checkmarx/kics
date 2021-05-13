@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Global Accelerator Flow Logs Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Global Accelerator Flow Logs Disabled",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Global Accelerator Flow Logs Disabled",
+    "severity": "LOW",
+    "line": 24,
+    "filename": "positive1.tf"
+  }
+]
