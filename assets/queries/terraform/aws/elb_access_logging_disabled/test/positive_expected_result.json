@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ELB Access Logging Disabled",
+    "severity": "INFO",
+    "line": 9,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "ELB Access Logging Disabled",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive2.tf"
+  }
+]
