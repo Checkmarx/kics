@@ -7,7 +7,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_instance.%s", [name]),
+		"searchKey": sprintf("aws_instance.{{%s}}", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_instance.%s.monitoring should be defined", [name]),
 		"keyActualValue": sprintf("aws_instance.%s.monitoring is undefined", [name]),
