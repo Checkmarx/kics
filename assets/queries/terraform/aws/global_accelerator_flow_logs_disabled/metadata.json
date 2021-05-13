@@ -3,7 +3,7 @@
   "queryName": "Global Accelerator Flow Logs Disabled",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "Gloabal Accelerator should have flow logs enabled",
+  "descriptionText": "Global Accelerator should have flow logs enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/globalaccelerator_accelerator#flow_logs_enabled",
   "platform": "Terraform"
 }
