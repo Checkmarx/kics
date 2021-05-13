@@ -1,0 +1,10 @@
+{
+  "id": "b9033580-6886-401a-8631-5f19f5bb24c7",
+  "queryName": "Workspaces Workspace Volume Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS Workspaces Workspace data stored in volumes should be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/workspaces_workspace#root_volume_encryption_enabled",
+  "platform": "Terraform",
+  "aggregation": 2
+}
