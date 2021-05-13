@@ -2,16 +2,7 @@
   {
     "queryName": "Elasticsearch Without Slow Logs",
     "severity": "MEDIUM",
-    "line": 6
-  },
-  {
-    "queryName": "Elasticsearch Without Slow Logs",
-    "severity": "MEDIUM",
-    "line": 13
-  },
-  {
-    "queryName": "Elasticsearch Without Slow Logs",
-    "severity": "MEDIUM",
-    "line": 18
+    "line": 4,
+    "filename": "positive1.tf"
   }
 ]
