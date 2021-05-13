@@ -20,7 +20,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_elb[{{%s}}].access_logs.enabled", [name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_elb[{{%s}}].access_logs.enabled' is true", [name]),
 		"keyActualValue": sprintf("'aws_elb[{{%s}}].access_logs.enabled' is false", [name]),
 	}
