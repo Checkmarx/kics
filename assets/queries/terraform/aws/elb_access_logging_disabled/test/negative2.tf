@@ -1,4 +1,4 @@
-resource "aws_elb" "postive1" {
+resource "aws_elb" "negative2" {
   name               = "foobar-terraform-elb"
   availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
 
@@ -6,7 +6,7 @@ resource "aws_elb" "postive1" {
     bucket        = "foo"
     bucket_prefix = "bar"
     interval      = 60
-    enabled = false
+    enabled = true
   }
 
   listener {
