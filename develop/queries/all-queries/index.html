@@ -5860,6 +5860,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#auto_minor_version_upgrade">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Athena Workgroup Not Encrypted<br/><sup><sub>d364984a-a222-4b5f-a8b0-e23ab19ebff3</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Athena Workgroup query results should be encrypted, for all queries that run in the workgroup</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_workgroup#encryption_configuration">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Memcached Disabled<br/><sup><sub>4bd15dd9-8d5e-4008-8532-27eb0c3706d3</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -5922,6 +5930,14 @@
 <td>Encryption</td>
 <td>It's not recommended to use plaintext environment variables for sensitive information, such as credential data.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Sagemaker Notebook Instance Without KMS<br/><sup><sub>f3674e0c-f6be-43fa-b71c-bf346d1aed99</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS SageMaker should encrypt model artifacts at rest using Amazon S3 server-side encryption with an AWS KMS</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_notebook_instance#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CA certificate Identifier is outdated<br/><sup><sub>9f40c07e-699e-4410-8856-3ba0f2e3a2dd</sub></sup></td>
@@ -6980,6 +6996,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Secretsmanager Secret Without KMS<br/><sup><sub>a2f548f2-188c-4fff-b172-e9a6acb216bd</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>AWS Secretmanager should use AWS KMS customer master key (CMK) to encrypt the secret values in the versions stored in the secret</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#kms_key_id">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ElasticSearch Encryption With KMS Disabled<br/><sup><sub>7af2f4a3-00d9-47f3-8d15-ca0888f4e5b2</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7732,14 +7756,6 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>API Gateway V2 Stage Access Logging Settings Not Defined<br/><sup><sub>9111f9a5-6b80-40f9-bc82-c05f970779c3</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>API Gateway V2 Stage should have Access Logging Settings defined.</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_stage">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>CloudTrail Not Integrated With CloudWatch<br/><sup><sub>17b30f8f-8dfb-4597-adf6-57600b6cf25e</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7834,6 +7850,14 @@
 <td>Observability</td>
 <td>Make sure that Amazon GuardDuty is Enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector#example-usage">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Api Gateway Access Logging Disabled<br/><sup><sub>1b6799eb-4a7a-4b04-9001-8cceb9999326</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>RDS does not have any kind of logger</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#access_log_settings">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Google Compute Subnetwork Logging Disabled<br/><sup><sub>40430747-442d-450a-a34f-dc57149f4609</sub></sup></td>
@@ -8244,6 +8268,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs_optimized">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Resource Not Using Tags<br/><sup><sub>e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>AWS services resource tags are an essential part of managing components</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Group Without Description<br/><sup><sub>cb3f5ed6-0d18-40de-a93d-b3538db31e8c</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#00C">Info</span></td>
@@ -8266,6 +8298,14 @@
 <td>Observability</td>
 <td>Neptune logging should be enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Monitoring Disabled<br/><sup><sub>23b70e32-032e-4fa6-ba5c-82f56b9980e6</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Observability</td>
+<td>EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#monitoring">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table></div>
