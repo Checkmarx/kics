@@ -314,7 +314,7 @@ var tests = []struct {
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
-		wantStatus: []int{0, 40},
+		wantStatus: []int{20, 40},
 	},
 	// E2E-CLI-019 - KICS scan with multiple paths
 	// should run a scan for all provided paths/files
@@ -340,7 +340,7 @@ var tests = []struct {
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
-		wantStatus: []int{0},
+		wantStatus: []int{20},
 	},
 	// E2E-CLI-021 - KICS can return different status code based in the scan results (High/Medium/Low..)
 	// when excluding categories/queries and losing results we can get a different status code.
