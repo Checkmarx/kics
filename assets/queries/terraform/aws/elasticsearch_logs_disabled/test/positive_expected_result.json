@@ -8,7 +8,7 @@
   {
     "queryName": "Elasticsearch Log is disabled",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive1.tf"
+    "line": 1,
+    "filename": "positive2.tf"
   }
 ]
