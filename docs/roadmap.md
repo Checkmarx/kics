@@ -5,12 +5,11 @@
 | Not-Started | **Milestone 8** | Jun 2021 | |
 |  | Google Deployment Manager support |  | TBA |
 | Not-Started | **Milestone 7** | May 2021 | |
+|  | Schemas support OpenAPI 3.0|  | TBA |
+|  | Schemas support OpenAPI 2.0 (Swagger) |  | TBA |
+|  | Schemas support gRPC |  | TBA |
 |  | Azure Resource Manager support |  | TBA |
-| In-Progress | **Milestone 6** | Apr 2021 | |
-| In-Progress | Terraform - Parameters files support |  | TBA|
-|  | Schemas support OpenAPI |  | TBA |
-|  | Schemas support Swagger |  | TBA |
-|  | Distribution platforms: Homebrew, Chocolatey|  | TBA|
+
 
 ---
 <br/>
@@ -19,6 +18,9 @@
 
 | Status | Milestone | ETA | Release |
 | :--- | :--- | :--- | :--- |
+| Completed | **Milestone 6** | Apr 2021 | |
+|  | Terraform - Parameters files support |  | v.1.2.3|
+|  | Distribution platforms: Homebrew, Chocolatey|  | v1.3.0|
 | Completed | **Milestone 5** | Mar 2021 | |
 |  | Helm support |  | v1.2.1 |
 |  | Reporting - add HTML format |  | v1.2.1|
