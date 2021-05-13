@@ -7,6 +7,11 @@
   {
     "queryName": "Elasticsearch Without Slow Logs",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 13
+  },
+  {
+    "queryName": "Elasticsearch Without Slow Logs",
+    "severity": "MEDIUM",
+    "line": 18
   }
 ]
