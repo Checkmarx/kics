@@ -1,0 +1,9 @@
+{
+  "id": "56f6a008-1b14-4af4-b9b2-ab7cf7e27641",
+  "queryName": "DocDB Logging Is Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "DocDB logging should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#enabled_cloudwatch_logs_exports",
+  "platform": "Terraform"
+}

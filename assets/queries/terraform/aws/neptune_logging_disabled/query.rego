@@ -26,24 +26,26 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_neptune_cluster[{{%s}}].enable_cloudwatch_logs_exports", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports should have one of the following values: %s", [validTypeConcat]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: %s", [validTypeConcat]),
 		"keyActualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is empty",
 	}
 }
 
 CxPolicy[result] {
 	logs := input.document[i].resource.aws_neptune_cluster[name].enable_cloudwatch_logs_exports
-	logsSet := {log | log := logs[_]}
-	invalidTypes := logsSet - validTypes
+	not terraform_lib.empty_array(logs)
 
-	count(invalidTypes) > 0
+	logsSet := {log | log := logs[_]}
+	missingTypes := validTypes - logsSet
+
+	count(missingTypes) > 0
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_neptune_cluster[{{%s}}].enable_cloudwatch_logs_exports", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports should have one of the following values: %s", [validTypeConcat]),
-		"keyActualValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports has the following invalid values: %s", [concat(", ", invalidTypes)]),
+		"keyExpectedValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: %s", [validTypeConcat]),
+		"keyActualValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: %s", [concat(", ", missingTypes)]),
 	}
 }
