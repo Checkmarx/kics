@@ -1,0 +1,9 @@
+{
+  "id": "f3674e0c-f6be-43fa-b71c-bf346d1aed99",
+  "queryName": "Sagemaker Notebook Instance Without KMS",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS SageMaker should encrypt model artifacts at rest using Amazon S3 server-side encryption with an AWS KMS",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_notebook_instance#kms_key_id",
+  "platform": "Terraform"
+}
