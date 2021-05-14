@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	ref := value["$ref"]
-	checkComponents := openapi_lib.check_reference_unexists(doc, ref, "callbacks")
+	checkComponents := openapi_lib.check_reference_unexisting(doc, ref, "callbacks")
 
 	result := {
 		"documentId": doc.id,

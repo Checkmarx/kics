@@ -79,7 +79,7 @@ check_unused_reference(doc, referenceName, type) {
 	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
 }
 
-check_reference_unexists(doc, reference, type) = checkComponents {
+check_reference_unexisting(doc, reference, type) = checkComponents {
 	refString := sprintf("#/components/%s/", [type])
 	startswith(reference, refString)
 	checkComponents := trim_prefix(reference, refString)
