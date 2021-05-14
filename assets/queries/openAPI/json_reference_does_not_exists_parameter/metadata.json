@@ -1,0 +1,9 @@
+{
+  "id": "2e275f16-b627-4d3f-ae73-a6153a23ae8f",
+  "queryName": "Parameter JSON Reference Does Not Exists",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Parameter reference should exists on components field",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

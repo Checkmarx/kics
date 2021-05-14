@@ -87,12 +87,15 @@ check_reference_unexisting(doc, reference, type) = checkComponents {
 }
 
 concat_path(path) = concatenated {
-	concatenated := concat(".", [x | x := resolve_path(path[_])])
+	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
 }
 
 resolve_path(pathItem) = resolved {
 	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
 	resolved := sprintf("{{%s}}", [pathItem])
+} else = resolved {
+	is_number(pathItem)
+	resolved := ""
 } else = pathItem {
 	true
 }
