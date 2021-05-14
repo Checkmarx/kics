@@ -57,27 +57,36 @@ func processElements(elements model.Document, path string) {
 	}
 }
 
-func processResources(doc model.Document, path string) {
+func processResources(doc model.Document, path string) error {
 	var resourcesElements model.Document
 	var elements model.Document
 
 	for _, resources := range doc { // iterate over resources
 		resourcesElements = resources.(model.Document)
 		for _, v2 := range resourcesElements { // resource name
-			elements = v2.(model.Document)
-			processElements(elements, path)
+			switch t := v2.(type) {
+			case []interface{}:
+				return errors.New("failed to process resources")
+			case interface{}:
+				elements = t.(model.Document)
+				processElements(elements, path)
+			}
 		}
 	}
+	return nil
 }
 
-func addExtraInfo(json []model.Document, path string) []model.Document {
+func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
 	for _, documents := range json { // iterate over documents
 		if documents["resource"] != nil {
-			processResources(documents["resource"].(model.Document), path)
+			err := processResources(documents["resource"].(model.Document), path)
+			if err != nil {
+				return []model.Document{}, err
+			}
 		}
 	}
 
-	return json
+	return json, nil
 }
 
 // Parse execute parser for the content in a file
@@ -90,8 +99,12 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, error) {
 	}
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
+	json, err := addExtraInfo([]model.Document{fc}, path)
+	if err != nil {
+		return json, errors.Wrap(err, "failed terraform parse")
+	}
 
-	return addExtraInfo([]model.Document{fc}, path), errors.Wrap(parseErr, "failed terraform parse")
+	return json, errors.Wrap(parseErr, "failed terraform parse")
 }
 
 // SupportedExtensions returns Terraform extensions

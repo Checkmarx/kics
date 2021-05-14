@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "DynamoDB Table Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "DynamoDB Table Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 30,
+    "filename": "positive1.tf"
+  }
+]

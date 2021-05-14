@@ -307,14 +307,14 @@ var tests = []struct {
 		name: "E2E-CLI-018",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--exclude-categories", "Observability", "-s",
+				[]string{"scan", "--exclude-categories", "Observability,Insecure Configurations", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
 				[]string{"scan", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
-		wantStatus: []int{0, 40},
+		wantStatus: []int{20, 40},
 	},
 	// E2E-CLI-019 - KICS scan with multiple paths
 	// should run a scan for all provided paths/files
@@ -336,11 +336,11 @@ var tests = []struct {
 		name: "E2E-CLI-020",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa", "-s",
+				[]string{"scan", "--exclude-queries", "15ffbacc-fa42-4f6f-a57d-2feac7365caa,0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3", "-s",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
-		wantStatus: []int{0},
+		wantStatus: []int{20},
 	},
 	// E2E-CLI-021 - KICS can return different status code based in the scan results (High/Medium/Low..)
 	// when excluding categories/queries and losing results we can get a different status code.
@@ -614,7 +614,7 @@ func Test_E2E_CLI(t *testing.T) {
 				require.NoError(t, err, "Capture output should not yield an error")
 				// Check exit status code
 				if !reflect.DeepEqual(out.status, tt.wantStatus[arg]) {
-					t.Errorf("kics status = %v, actual status = %v", out.status, tt.wantStatus[arg])
+					t.Errorf("actual status = %v, expected status = %v", out.status, tt.wantStatus[arg])
 				}
 
 				if tt.validation != nil {

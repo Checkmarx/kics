@@ -1,0 +1,9 @@
+{
+  "id": "b7c9a40c-23e4-4a2d-8d39-a3352f10f288",
+  "queryName": "API Gateway Method Settings Cache Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "API Gateway Method Settings Cache should be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#cache_data_encrypted",
+  "platform": "Terraform"
+}

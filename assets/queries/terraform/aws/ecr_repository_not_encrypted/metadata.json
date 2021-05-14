@@ -1,0 +1,9 @@
+{
+  "id": "0e32d561-4b5a-4664-a6e3-a3fa85649157",
+  "queryName": "ECR Repository Not Encrypted",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "ECR (Elastic Container Registry) Repository encryption should be set",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#encryption_configuration",
+  "platform": "Terraform"
+}

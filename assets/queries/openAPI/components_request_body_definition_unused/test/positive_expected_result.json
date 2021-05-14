@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Components Request Body Definition Is Unused",
+    "severity": "INFO",
+    "line": 35,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Components Request Body Definition Is Unused",
+    "severity": "INFO",
+    "line": 23,
+    "filename": "positive2.yaml"
+  }
+]

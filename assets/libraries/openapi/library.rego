@@ -47,8 +47,45 @@ undefined_field_in_json_object(doc, schema_ref, field) {
 	check_content(doc, s, field)
 }
 
+is_ref(schema) {
+	count(schema) == 1
+	object.get(schema, "$ref", "undefined") != "undefined"
+}
+
+check_string_schema(doc, s, type, field) {
+	component_schema := doc.components.schemas[sc]
+	sc == s
+	component_schema.properties[p].type == type
+	object.get(component_schema.properties[p], field, "undefined") == "undefined"
+}
+
+undefined_properties_in_schema(doc, schema, type, field) {
+	is_ref(schema)
+	r := split(schema["$ref"], "/")
+	count(r) == 4
+	s := r[3]
+	check_string_schema(doc, s, type, field)
+}
+
+undefined_properties_in_schema(doc, schema, type, field) {
+	not is_ref(schema)
+	schema.type == type
+	object.get(schema, field, "undefined") == "undefined"
+}
+
 check_reference_exists(doc, referenceName, type) {
 	ref := sprintf("#/components/%s/%s", [type, referenceName])
 
 	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+}
+
+concat_path(path) = concatenated {
+	concatenated := concat(".", [x | x := resolve_path(path[_])])
+}
+
+resolve_path(pathItem) = resolved {
+	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
+	resolved := sprintf("{{%s}}", [pathItem])
+} else = pathItem {
+	true
 }

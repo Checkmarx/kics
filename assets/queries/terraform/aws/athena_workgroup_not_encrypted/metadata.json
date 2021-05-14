@@ -1,0 +1,9 @@
+{
+  "id": "d364984a-a222-4b5f-a8b0-e23ab19ebff3",
+  "queryName": "Athena Workgroup Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Athena Workgroup query results should be encrypted, for all queries that run in the workgroup",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_workgroup#encryption_configuration",
+  "platform": "Terraform"
+}
