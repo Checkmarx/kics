@@ -1,0 +1,9 @@
+{
+  "id": "e2ffa504-d22a-4c94-b6c5-f661849d2db7",
+  "queryName": "JSON Object Schema Without Type",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Schema of the JSON object should have 'type' defined.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
