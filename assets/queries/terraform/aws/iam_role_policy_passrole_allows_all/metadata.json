@@ -1,0 +1,9 @@
+{
+  "id": "e39bee8c-fe54-4a3f-824d-e5e2d1cca40a",
+  "queryName": "IAM Role Policy passRole Allows All",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Using the iam:passrole action with wildcards (*) in the resource can be overly permissive because it allows iam:passrole permissions on multiple resources",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-security-warning-pass-role-with-star-in-resource",
+  "platform": "Terraform"
+}
