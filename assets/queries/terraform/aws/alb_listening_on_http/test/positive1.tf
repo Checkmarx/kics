@@ -1,8 +1,6 @@
-resource "aws_lb_listener" "positive3" {
-  load_balancer_arn = aws_lb.front_end.arn
-  port              = "80"
-  protocol          = "HTTP"
-
+resource "aws_lb_listener" "listener5" {
+  load_balancer_arn = aws_lb.test3.arn
+  port = 80
   default_action {
     type = "redirect"
 
@@ -14,8 +12,9 @@ resource "aws_lb_listener" "positive3" {
   }
 }
 
-resource "aws_alb_listener" "positive4" {
-  load_balancer_arn = aws_lb.front_end.arn
-  port              = "8080"
-  protocol          = "HTTP"
+resource "aws_lb" "test3" {
+  name = "test123"
+  load_balancer_type = "application"
+  subnets = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+  internal = true
 }

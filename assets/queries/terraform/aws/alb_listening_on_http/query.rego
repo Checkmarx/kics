@@ -5,7 +5,8 @@ lb := {"aws_alb_listener", "aws_lb_listener"}
 CxPolicy[result] {
 	resource := input.document[i].resource[lb[idx]][name]
 
-	upper(resource.protocol) == "HTTP"
+	check_application(resource)
+	is_http(resource)
 	not resource.default_action.redirect.protocol
 
 	result := {
@@ -20,7 +21,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource[lb[idx]][name]
 
-	upper(resource.protocol) == "HTTP"
+	check_application(resource)
+	is_http(resource)
 	upper(resource.default_action.redirect.protocol) != "HTTPS"
 
 	result := {
@@ -32,15 +34,27 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	resource := input.document[i].resource.aws_lb_target_group[name]
+is_http(resource) {
 	upper(resource.protocol) == "HTTP"
+}
 
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_lb_target_group[%s].protocol", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'aws_lb_target_group.protocol' is equal to 'HTTPS'",
-		"keyActualValue": sprintf("'aws_lb_target_group.protocol' is equal '%s'", [resource.protocol]),
-	}
+is_http(resource) {
+	object.get(resource, "protocol", "undefined") == "undefined"
+}
+
+is_application(resource) {
+	resource.load_balancer_type == "application"
+}
+
+is_application(resource) {
+	object.get(resource, "load_balancer_type", "undefined") == "undefined"
+}
+
+check_application(resource) {
+	lbs := {"aws_alb", "aws_lb"}
+	lb_info := split(resource.load_balancer_arn, ".")
+	lb_name = lb_info[1]
+	lb := input.document[_].resource[lbs[idx]][name]
+	lb_name == name
+	is_application(lb)
 }

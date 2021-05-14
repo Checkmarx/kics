@@ -1,21 +1,20 @@
-resource "aws_lb_listener" "negative3" {
-  load_balancer_arn = aws_lb.front_end.arn
-  port              = "80"
-  protocol          = "HTTP"
-
+resource "aws_lb_listener" "listener55" {
+  load_balancer_arn = aws_lb.test33.arn
+  port = 80
   default_action {
     type = "redirect"
 
     redirect {
-      port        = "443"
+      port        = "80"
       protocol    = "HTTPS"
-      status_code = "HTTP_301"
+      status_code = "HTTPS_301"
     }
   }
 }
 
-resource "aws_alb_listener" "negative4" {
-  load_balancer_arn = aws_lb.front_end.arn
-  port              = "443"
-  protocol          = "HTTPS"
+resource "aws_lb" "test33" {
+  name = "test123"
+  load_balancer_type = "application"
+  subnets = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+  internal = true
 }
