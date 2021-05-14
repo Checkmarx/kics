@@ -1,0 +1,9 @@
+{
+  "id": "f79b9d26-e945-44e7-98a1-b93f0f7a68a0",
+  "queryName": "Media Type Object Without Schema",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The Media Type Object should have the attribute 'schema' defined",
+  "descriptionUrl": "https://swagger.io/specification/#media-type-object",
+  "platform": "OpenAPI"
+}
