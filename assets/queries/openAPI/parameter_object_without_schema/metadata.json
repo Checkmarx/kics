@@ -1,0 +1,9 @@
+{
+  "id": "8fe1846f-52cc-4413-ace9-1933d7d23672",
+  "queryName": "Parameter Object Without Schema",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The Parameter Object should have the attribute 'schema' defined",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI"
+}
