@@ -1,9 +1,9 @@
-resource "aws_workspaces_workspace" "example" {
+resource "aws_workspaces_workspace" "example_2" {
   directory_id = aws_workspaces_directory.example.id
   bundle_id    = data.aws_workspaces_bundle.value_windows_10.id
   user_name    = "john.doe"
 
-  root_volume_encryption_enabled = true
+  user_volume_encryption_enabled = true
   volume_encryption_key          = "alias/aws/workspaces"
 
   workspace_properties {
