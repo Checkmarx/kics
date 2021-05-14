@@ -1,0 +1,9 @@
+{
+  "id": "967eb3e6-26fc-497d-8895-6428beb6e8e2",
+  "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Elasticsearch Domain encryption should be enabled node to node",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#node_to_node_encryption",
+  "platform": "Terraform"
+}
