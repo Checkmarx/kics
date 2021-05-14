@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.links[link]
-	openapi_lib.check_reference_exists(doc, link, "links")
+	openapi_lib.check_unused_reference(doc, link, "links")
 
 	result := {
 		"documentId": doc.id,

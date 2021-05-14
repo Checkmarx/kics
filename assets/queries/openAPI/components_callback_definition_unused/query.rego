@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.callbacks[callback]
-	openapi_lib.check_reference_exists(doc, callback, "callbacks")
+	openapi_lib.check_unused_reference(doc, callback, "callbacks")
 
 	result := {
 		"documentId": doc.id,
