@@ -1984,13 +1984,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2008,14 +2008,14 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -3950,7 +3950,7 @@ func NewInspector(
                         Msgf("Inspector failed to get general query, query=%s", "common")
         }</span>
         <span class="cov2" title="4">opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="3058">{
+        for _, metadata := range queries </span><span class="cov10" title="3061">{
                 platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
                 if err != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(err)
@@ -3960,10 +3960,10 @@ func NewInspector(
                         continue</span>
                 }
 
-                <span class="cov10" title="3058">select </span>{
+                <span class="cov10" title="3061">select </span>{
                 case &lt;-ctx.Done():<span class="cov0" title="0">
                         return nil, nil</span>
-                default:<span class="cov10" title="3058">
+                default:<span class="cov10" title="3061">
                         opaQuery, err := rego.New(
                                 rego.Query(regoQuery),
                                 rego.Module("Common", commonGeneralQuery),
@@ -3979,7 +3979,7 @@ func NewInspector(
                                 continue</span>
                         }
 
-                        <span class="cov10" title="3058">tracker.TrackQueryLoad(metadata.Aggregation)
+                        <span class="cov10" title="3061">tracker.TrackQueryLoad(metadata.Aggregation)
 
                         opaQueries = append(opaQueries, &amp;preparedQuery{
                                 opaQuery: opaQuery,
@@ -4017,7 +4017,7 @@ func NewInspector(
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov2" title="4">{
         sum := 0
-        for _, query := range opaQueries </span><span class="cov10" title="3058">{
+        for _, query := range opaQueries </span><span class="cov10" title="3061">{
                 sum += query.metadata.Aggregation
         }</span>
         <span class="cov2" title="4">return sum</span>
@@ -4077,7 +4077,7 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov1" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov9" title="2038">{
+        for _, query := range c.queries </span><span class="cov9" title="2040">{
                 if contains(platforms, query.metadata.Platform) </span><span class="cov7" title="368">{
                         c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
                         count++
@@ -4203,19 +4203,19 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov9" title="2044">{
+func contains(s []string, e string) bool <span class="cov9" title="2046">{
         if e == "common" </span><span class="cov2" title="3">{
                 return true
         }</span>
-        <span class="cov9" title="2041">if e == "k8s" </span><span class="cov6" title="161">{
+        <span class="cov9" title="2043">if e == "k8s" </span><span class="cov6" title="161">{
                 e = "kubernetes"
         }</span>
-        <span class="cov9" title="2041">for _, a := range s </span><span class="cov9" title="2042">{
+        <span class="cov9" title="2043">for _, a := range s </span><span class="cov9" title="2044">{
                 if strings.EqualFold(a, e) </span><span class="cov7" title="370">{
                         return true
                 }</span>
         }
-        <span class="cov9" title="1671">return false</span>
+        <span class="cov9" title="1673">return false</span>
 }
 </pre>
 		
@@ -4326,12 +4326,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
                         <span class="cov1" title="1">continue</span>
                 }
 
-                <span class="cov2" title="3">err = filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="16875">{
+                <span class="cov2" title="3">err = filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="16901">{
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
 
-                        <span class="cov9" title="16875">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="16644">{
+                        <span class="cov9" title="16901">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="16670">{
                                 return skipFolder
                         }</span>
 
@@ -4395,24 +4395,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="230">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="16878">{
-        if info.IsDir() </span><span class="cov8" title="4116">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="16904">{
+        if info.IsDir() </span><span class="cov8" title="4120">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="4115">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="4113">{
+                <span class="cov8" title="4119">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="4117">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="12762">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="12784">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="12762">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="12532">{
+        <span class="cov9" title="12784">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="12554">{
                 return true, nil
         }</span>
         <span class="cov6" title="230">return false, nil</span>
@@ -4552,7 +4552,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov6" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="33">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="31">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov5" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
