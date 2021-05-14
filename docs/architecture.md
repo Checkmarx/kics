@@ -32,3 +32,14 @@ The sequence diagram below depicts interaction of the main KICS components:
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-1.png">
 <br/>
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png">
+
+---
+
+## Concurrent Scans
+
+KICS creates multiple services, each containing a unique parser. All the services will then concurrently generate a payload and run queries on it according to its containing parser. When a vulnerability is found, it is saved inside the Storage which is shared amongst all the services.
+
+- Paths => create services based on types of IaC files.
+- Service => contains a unique parser and shares other resources with other services
+- Start Scan => Services will concurrently create payloads based on its parser, inspect for vulnerabilities and save them on the shared storage
+- Results => when all services have finished their execution all the results will be gathered from the storage

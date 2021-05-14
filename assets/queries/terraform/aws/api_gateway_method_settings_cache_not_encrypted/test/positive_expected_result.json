@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "API Gateway Method Settings Cache Not Encrypted",
+    "severity": "HIGH",
+    "line": 40,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "API Gateway Method Settings Cache Not Encrypted",
+    "severity": "HIGH",
+    "line": 48,
+    "filename": "positive1.tf"
+  }
+]

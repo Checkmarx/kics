@@ -224,9 +224,6 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			})
 			require.NoError(t, err)
 			metricFunc(tt.feilds.allocation, tt.args.location)
-			if !tt.disabled {
-				require.NotEmpty(t, Metric.total)
-			}
 		})
 	}
 }

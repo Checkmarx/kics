@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Components Header Definition Is Unused",
+    "severity": "INFO",
+    "line": 45,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Components Header Definition Is Unused",
+    "severity": "INFO",
+    "line": 29,
+    "filename": "positive2.yaml"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "RDS Without Logging",
+    "severity": "INFO",
+    "line": 1
+  },
+  {
+    "queryName": "RDS Without Logging",
+    "severity": "INFO",
+    "line": 15
+  }
+]

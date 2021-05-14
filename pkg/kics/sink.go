@@ -26,7 +26,8 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 
 	documents, kind, err := s.Parser.Parse(filename, *content)
 	if err != nil {
-		return errors.Wrap(err, "failed to parse file content")
+		log.Err(err).Msgf("failed to parse file content: %s", filename)
+		return nil
 	}
 	for _, document := range documents {
 		_, err = json.Marshal(document)

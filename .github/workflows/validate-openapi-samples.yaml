@@ -10,11 +10,11 @@ jobs:
   lint-yaml-samples:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
         with:
           persist-credentials: false
       - name: yaml-lint
-        uses: ibiqlik/action-yamllint@v3
+        uses: ibiqlik/action-yamllint@v3.0.1
         with:
           file_or_dir: assets/queries/openAPI/
           config_file: .github/scripts/samples-linters/yamllint.yml
@@ -22,10 +22,10 @@ jobs:
   lint-json-samples:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2.1.5
         with:
           node-version: '14'
       - name: Installing jsonlint

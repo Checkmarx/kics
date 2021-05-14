@@ -7,7 +7,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
 
@@ -18,7 +17,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 	}
 	resFiles, err := s.Resolver.Resolve(filename, kind)
 	if err != nil {
-		return []string{}, errors.Wrap(err, "failed to render file content")
+		log.Err(err).Msgf("failed to render file content")
+		return []string{}, nil
 	}
 
 	excluded := make([]string, len(resFiles.File))
@@ -31,7 +31,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 			if retParse == "break" {
 				return []string{}, nil
 			}
-			return []string{}, errors.Wrap(err, "failed to parse file content")
+			log.Err(err).Msgf("failed to parse file content")
+			return []string{}, nil
 		}
 		for _, document := range documents {
 			_, err = json.Marshal(document)

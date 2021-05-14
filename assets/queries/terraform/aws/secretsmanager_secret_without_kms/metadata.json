@@ -1,0 +1,9 @@
+{
+  "id": "a2f548f2-188c-4fff-b172-e9a6acb216bd",
+  "queryName": "Secretsmanager Secret Without KMS",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "AWS Secretmanager should use AWS KMS customer master key (CMK) to encrypt the secret values in the versions stored in the secret",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#kms_key_id",
+  "platform": "Terraform"
+}

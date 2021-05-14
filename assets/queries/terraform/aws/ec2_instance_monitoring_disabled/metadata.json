@@ -1,0 +1,9 @@
+{
+  "id": "23b70e32-032e-4fa6-ba5c-82f56b9980e6",
+  "queryName": "EC2 Instance Monitoring Disabled",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#monitoring",
+  "platform": "Terraform"
+}

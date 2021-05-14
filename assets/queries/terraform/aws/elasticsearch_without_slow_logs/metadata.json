@@ -4,6 +4,6 @@
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensure that AWS Elasticsearch enables support for slow logs",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options",
   "platform": "Terraform"
 }

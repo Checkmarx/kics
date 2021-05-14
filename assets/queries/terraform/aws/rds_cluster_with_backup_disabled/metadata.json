@@ -1,0 +1,9 @@
+{
+  "id": "e542bd46-58c4-4e0f-a52a-1fb4f9548e02",
+  "queryName": "RDS Cluster With Backup Disabled",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "RDS Cluster backup retention period should be specifically defined",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period",
+  "platform": "Terraform"
+}
