@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Header JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive2.yaml"
+  }
+]
