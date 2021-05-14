@@ -4172,6 +4172,22 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>JSON Object Schema Without Type<br/><sup><sub>e2ffa504-d22a-4c94-b6c5-f661849d2db7</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have 'type' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>JSON Object Schema Without Properties<br/><sup><sub>9d967a2b-9d64-41a6-abea-dfc4960299bd</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have properties defined and 'additionalProperties' set to false.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>String Schema Without Pattern<br/><sup><sub>00b78adf-b83f-419c-8ed8-c6018441dd3a</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4482,6 +4498,14 @@
 <td>Best Practices</td>
 <td>Components examples definitions should be referenced or removed from Open API definition</td>
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Property 'explode' of Encoding Object Ignored<br/><sup><sub>a4dd69b8-49fa-45d2-a060-c76655405b05</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Property 'explode' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#encoding-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Header Parameter Named as 'Content-Type'<br/><sup><sub>72d259ca-9741-48dd-9f62-eb11f2936b37</sub></sup></td>
@@ -5756,6 +5780,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dax_cluster#enabled">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Workspaces Workspace Volume Not Encrypted<br/><sup><sub>b9033580-6886-401a-8631-5f19f5bb24c7</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS Workspaces Workspace data stored in volumes should be encrypted</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/workspaces_workspace#root_volume_encryption_enabled">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>RDS Storage Not Encrypted<br/><sup><sub>3199c26c-7871-4cb3-99c2-10a59244ce7f</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -5802,6 +5834,14 @@
 <td>Encryption</td>
 <td>Check if secure ciphers aren't used in CloudFront</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECS Task Definition Volume Not Encrypted<br/><sup><sub>4d46ff3b-7160-41d1-a310-71d6d370b08f</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>AWS ECS Task Definition EFS data in transit between AWS ECS host and AWS EFS server should be encrypted</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ELB Using Weak Ciphers<br/><sup><sub>4a800e14-c94a-442d-9067-5a2e9f6c0a4c</sub></sup></td>
@@ -7028,6 +7068,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Elasticsearch Domain Not Encrypted Node To Node<br/><sup><sub>967eb3e6-26fc-497d-8895-6428beb6e8e2</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Elasticsearch Domain encryption should be enabled node to node</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#node_to_node_encryption">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Unscanned ECR Image<br/><sup><sub>9630336b-3fed-4096-8173-b9afdfe346a7</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7042,6 +7090,14 @@
 <td>Encryption</td>
 <td>Check if AWS config rules do not identify Encrypted Volumes as a source.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ElastiCache Replication Group Not Encrypted At Transit<br/><sup><sub>1afbb3fa-cf6c-4a3d-b730-95e9f4df343e</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>ElastiCache Replication Group encryption should be enabled at Transit</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#transit_encryption_enabled">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ElastiCache Replication Group Not Encrypted At Rest<br/><sup><sub>76976de7-c7b1-4f64-a94f-90c1345914c2</sub></sup></td>
@@ -7724,6 +7780,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Elasticsearch Log is disabled<br/><sup><sub>acb6b4e2-a086-4f35-aefd-4db6ea51ada2</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS Elasticsearch should have logs enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudWatch Without Retention Period Specified<br/><sup><sub>ef0b316a-211e-42f1-888e-64efe172b755</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7793,7 +7857,7 @@
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
 <td>Ensure that AWS Elasticsearch enables support for slow logs</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain">Documentation</a><br/></td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cloudfront Logging Disabled<br/><sup><sub>94690d79-b3b0-43de-b656-84ebef5753e5</sub></sup></td>
@@ -8164,12 +8228,36 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#setting">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>DocDB Logging Is Disabled<br/><sup><sub>56f6a008-1b14-4af4-b9b2-ab7cf7e27641</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>DocDB logging should be enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#enabled_cloudwatch_logs_exports">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Global Accelerator Flow Logs Disabled<br/><sup><sub>96e8183b-e985-457b-90cd-61c0503a3369</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Global Accelerator should have flow logs enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/globalaccelerator_accelerator#flow_logs_enabled">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Lambda Functions Without X-Ray Tracing<br/><sup><sub>8152e0cf-d2f0-47ad-96d5-d003a76eabd1</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Observability</td>
 <td>AWS Lambda functions should have TracingConfig enabled. For this, property 'tracing_Config.mode' should have the value 'Active'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EKS cluster logging is not enabled<br/><sup><sub>37304d3f-f852-40b8-ae3f-725e87a7cedf</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Observability</td>
+<td>Amazon EKS control plane logging is not enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster#enabled_cluster_log_types">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Missing Cluster Log Types<br/><sup><sub>66f130d9-b81d-4e8e-9b08-da74b9c891df</sub></sup></td>
@@ -8298,6 +8386,14 @@
 <td>Observability</td>
 <td>Neptune logging should be enabled</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ELB Access Logging Disabled<br/><sup><sub>20018359-6fd7-4d05-ab26-d4dffccbdf79</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Observability</td>
+<td>ELB should have logging enabled to help on error investigation</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb#enabled">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>EC2 Instance Monitoring Disabled<br/><sup><sub>23b70e32-032e-4fa6-ba5c-82f56b9980e6</sub></sup></td>

@@ -350,6 +350,20 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>JSON Object Schema Without Type<br/><sup><sub>e2ffa504-d22a-4c94-b6c5-f661849d2db7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have 'type' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>JSON Object Schema Without Properties<br/><sup><sub>9d967a2b-9d64-41a6-abea-dfc4960299bd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have properties defined and 'additionalProperties' set to false.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>String Schema Without Pattern<br/><sup><sub>00b78adf-b83f-419c-8ed8-c6018441dd3a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -621,6 +635,13 @@
 <td>Best Practices</td>
 <td>Components examples definitions should be referenced or removed from Open API definition</td>
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Property 'explode' of Encoding Object Ignored<br/><sup><sub>a4dd69b8-49fa-45d2-a060-c76655405b05</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Property 'explode' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#encoding-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Header Parameter Named as 'Content-Type'<br/><sup><sub>72d259ca-9741-48dd-9f62-eb11f2936b37</sub></sup></td>
