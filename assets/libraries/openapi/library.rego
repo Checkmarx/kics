@@ -88,6 +88,5 @@ is_operation(path) = info {
 	op := operations[z]
 	info := {"code": code, "operation": op}
 } else = info {
-	path[0] != "paths"
 	info := {}
 }
