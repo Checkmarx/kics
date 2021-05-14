@@ -8,7 +8,7 @@
   {
     "queryName": "ECS Task Definition Volume Not Encrypted",
     "severity": "HIGH",
-    "line": 28,
-    "filename": "positive1.tf"
+    "line": 8,
+    "filename": "positive2.tf"
   }
 ]
