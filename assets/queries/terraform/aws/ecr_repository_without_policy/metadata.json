@@ -1,0 +1,9 @@
+{
+  "id": "69e7c320-b65d-41bb-be02-d63ecc0bcc9d",
+  "queryName": "ECR Repository Without Policy",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "ECR Repository should have Policies attached to it",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy",
+  "platform": "Terraform"
+}
