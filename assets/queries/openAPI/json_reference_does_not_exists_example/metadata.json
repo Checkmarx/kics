@@ -1,0 +1,9 @@
+{
+  "id": "6a2c219f-da5e-4745-941e-5ea8cde23356",
+  "queryName": "Example JSON Reference Does Not Exists",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Example reference should exists on components field",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

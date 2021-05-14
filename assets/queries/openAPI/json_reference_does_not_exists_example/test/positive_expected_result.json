@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Example JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Example JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive2.yaml"
+  }
+]
