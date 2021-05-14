@@ -1,0 +1,9 @@
+{
+  "id": "9ec311bf-dfd9-421f-8498-0b063c8bc552",
+  "queryName": "IAM User With Access To Console",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "AWS IAM Users should not have access to console",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile",
+  "platform": "Terraform"
+}
