@@ -1337,6 +1337,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>IAM User With Access To Console<br/><sup><sub>9ec311bf-dfd9-421f-8498-0b063c8bc552</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>AWS IAM Users should not have access to console</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>SNS Topic Publicity Has Allow and NotAction Simultaneously<br/><sup><sub>5ea624e4-c8b1-4bb3-87a4-4235a776adcc</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
@@ -1356,6 +1363,13 @@
 <td>Access Control</td>
 <td>Limits access to AWS AMIs by checking if more than one account is using the same image</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ami_launch_permission">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Role Policy passRole Allows All<br/><sup><sub>e39bee8c-fe54-4a3f-824d-e5e2d1cca40a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Using the iam:passrole action with wildcards (*) in the resource can be overly permissive because it allows iam:passrole permissions on multiple resources</td>
+<td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-security-warning-pass-role-with-star-in-resource">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SQS Policy Allows All Actions<br/><sup><sub>816ea8cf-d589-442d-a917-2dd0ce0e45e3</sub></sup></td>
@@ -2546,6 +2560,13 @@
 <td>Best Practices</td>
 <td>Lambda permission may be misconfigured if the action field is not filled in by 'lambda:InvokeFunction'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>ECR Repository Without Policy<br/><sup><sub>69e7c320-b65d-41bb-be02-d63ecc0bcc9d</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>ECR Repository should have Policies attached to it</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Policies Attached To User<br/><sup><sub>b4378389-a9aa-44ee-91e7-ef183f11079e</sub></sup></td>

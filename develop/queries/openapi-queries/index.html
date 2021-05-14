@@ -350,6 +350,13 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Numeric Schema Without Minimum<br/><sup><sub>181bd815-767e-4e95-a24d-bb3c87328e19</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'minimum' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>JSON Object Schema Without Type<br/><sup><sub>e2ffa504-d22a-4c94-b6c5-f661849d2db7</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -385,11 +392,32 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Numeric Schema Without Format<br/><sup><sub>fbf699b5-ef74-4542-9cf1-f6eeac379373</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'format' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Parameter Object Without Schema<br/><sup><sub>8fe1846f-52cc-4413-ace9-1933d7d23672</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The Parameter Object should have the attribute 'schema' defined</td>
+<td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Numeric Schema Without Maximum<br/><sup><sub>2ea04bef-c769-409e-9179-ee3a50b5c0ac</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
 <td>Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Media Type Object Without Schema<br/><sup><sub>f79b9d26-e945-44e7-98a1-b93f0f7a68a0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The Media Type Object should have the attribute 'schema' defined</td>
+<td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Success Response Code Undefined for Trace Operation<br/><sup><sub>105e20dd-8449-4d71-95c6-d5dac96639af</sub></sup></td>
@@ -623,18 +651,18 @@
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid Global External Documentation URL<br/><sup><sub>b2d9dbf6-539c-4374-a1fd-210ddf5563a8</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Global External Documentation URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Components Example Definition Is Unused<br/><sup><sub>b05bb927-2df5-43cc-8d7b-6825c0e71625</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
 <td>Components examples definitions should be referenced or removed from Open API definition</td>
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Global External Documentation URL<br/><sup><sub>b2d9dbf6-539c-4374-a1fd-210ddf5563a8</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Global External Documentation URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Property 'explode' of Encoding Object Ignored<br/><sup><sub>a4dd69b8-49fa-45d2-a060-c76655405b05</sub></sup></td>
@@ -721,6 +749,13 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Example JSON Reference Does Not Exists<br/><sup><sub>6a2c219f-da5e-4745-941e-5ea8cde23356</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Example reference should exists on components field</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Link Object With Both 'operationId' And 'operationRef'<br/><sup><sub>60fb6621-9f02-473b-9424-ba9a825747d3</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -761,6 +796,13 @@
 <td>Structure and Semantics</td>
 <td>The Server URL should be an absolute URL</td>
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Header JSON Reference Does Not Exists<br/><sup><sub>376c9390-7e9e-4cb8-a067-fd31c05451fd</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Header reference should exists on components field</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Parameter Object With Incorrect Ref<br/><sup><sub>d40f27e6-15fb-4b56-90f8-fc0ff0291c51</sub></sup></td>
@@ -838,6 +880,13 @@
 <td>Structure and Semantics</td>
 <td>The discriminator property in the Schema Object should be a required property</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Callback JSON Reference Does Not Exists<br/><sup><sub>f29904c8-6041-4bca-b043-dfa0546b8079</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Callback reference should exists on components field</td>
+<td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Paths Object is Empty<br/><sup><sub>815021c8-a50c-46d9-b192-24f71072c400</sub></sup></td>
