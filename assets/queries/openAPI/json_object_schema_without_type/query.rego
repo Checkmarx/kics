@@ -6,110 +6,14 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	schema_ref := doc.paths[path][operation].responses[r].content[c].schema["$ref"]
-	openapi_lib.content_allowed(operation, r)
+	[path, value] := walk(doc)
+	schema_ref = value.schema["$ref"]
 	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema.$ref", [path, operation, r, c]),
-		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
-		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	schema_ref := doc.paths[path].parameters[parameter].schema["$ref"]
-	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.parameters.{{%s}}.schema.$ref", [path, parameter]),
-		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
-		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	schema_ref := doc.paths[path][operation].parameters[parameter].schema["$ref"]
-	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.parameters.{{%s}}.schema.$ref", [path, operation, parameter]),
-		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
-		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	schema_ref := doc.paths[path][operation].requestBody.content[c].schema["$ref"]
-	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.requestBody.content.{{%s}}.schema.$ref", [path, operation, c]),
-		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
-		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	schema_ref := doc.components.requestBodies[r].content[c].schema["$ref"]
-	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("components.requestBodies.{{%s}}.content.{{%s}}.schema.$ref", [r, c]),
-		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
-		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	schema_ref := doc.components.parameters[parameter].schema["$ref"]
-	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("components.parameters.{{%s}}.schema.$ref", [parameter]),
-		"issueType": "MissingAttribute/IncorrectValue",
-		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
-		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	schema_ref := doc.components.responses[r].content[c].schema["$ref"]
-	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "type")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("components.responses.{{%s}}.content.{{%s}}.schema.$ref", [r, c]),
-		"issueType": "MissingAttribute/IncorrectValue",
+		"searchKey": sprintf("%s.schema.$ref", [openapi_lib.concat_path(path)]),
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Schema of the JSON object has 'type' defined",
 		"keyActualValue": "Schema of the JSON object does not have 'type' defined",
 	}
