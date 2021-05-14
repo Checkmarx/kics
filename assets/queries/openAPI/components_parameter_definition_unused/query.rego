@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	doc.components.parameters[parameter]
-	openapi_lib.check_reference_exists(doc, parameter, "parameters")
+	openapi_lib.check_unused_reference(doc, parameter, "parameters")
 
 	result := {
 		"documentId": doc.id,

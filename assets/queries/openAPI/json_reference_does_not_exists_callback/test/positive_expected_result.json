@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Callback Json Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Callback Json Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive2.yaml"
+  }
+]

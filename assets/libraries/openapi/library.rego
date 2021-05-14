@@ -73,10 +73,17 @@ undefined_properties_in_schema(doc, schema, type, field) {
 	object.get(schema, field, "undefined") == "undefined"
 }
 
-check_reference_exists(doc, referenceName, type) {
+check_unused_reference(doc, referenceName, type) {
 	ref := sprintf("#/components/%s/%s", [type, referenceName])
 
 	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+}
+
+check_reference_unexists(doc, reference, type) = checkComponents {
+	refString := sprintf("#/components/%s/", [type])
+	startswith(reference, refString)
+	checkComponents := trim_prefix(reference, refString)
+	object.get(doc.components[type], checkComponents, "undefined") == "undefined"
 }
 
 concat_path(path) = concatenated {

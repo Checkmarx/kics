@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        '200':
+          "$ref": "#/components/schemas/Success"
+      callbacks:
+        myEvent:
+          "$ref": "#/components/callbacks/inProgress"
+components:
+  callbacks:
+    onProgress:
+      "{$request.body#/onProgressUrl}":
+        delete:
+          responses:
+            '204':
+              description: Deleted
