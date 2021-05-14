@@ -52,7 +52,7 @@ is_ref(schema) {
 	object.get(schema, "$ref", "undefined") != "undefined"
 }
 
-check_string_schema(doc, s, type, field) {
+check_schema(doc, s, type, field) {
 	component_schema := doc.components.schemas[sc]
 	sc == s
 	component_schema.properties[p].type == type
@@ -64,13 +64,13 @@ undefined_properties_in_schema(doc, schema, type, field) {
 	r := split(schema["$ref"], "/")
 	count(r) == 4
 	s := r[3]
-	check_string_schema(doc, s, type, field)
+	check_schema(doc, s, type, field)
 }
 
 undefined_properties_in_schema(doc, schema, type, field) {
 	not is_ref(schema)
-	schema.type == type
-	object.get(schema, field, "undefined") == "undefined"
+	schema.properties[p].type == type
+	object.get(schema.properties[p], field, "undefined") == "undefined"
 }
 
 check_unused_reference(doc, referenceName, type) {
@@ -109,4 +109,10 @@ is_operation(path) = info {
 	info := {"code": code, "operation": op}
 } else = info {
 	info := {}
+}
+
+get_schema(value) = schema {
+	schema := {"kind": "schemas", "content": value.schemas[s]}
+} else = schema {
+	schema := {"kind": "schema", "content": value.schema}
 }

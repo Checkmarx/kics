@@ -1,48 +1,48 @@
 [
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
     "line": 49,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
-    "line": 74,
+    "line": 80,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
     "line": 20,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
     "line": 52,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
     "line": 26,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
-    "line": 45,
+    "line": 50,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
     "line": 15,
     "filename": "positive4.yaml"
   },
   {
-    "queryName": "Numeric Schema Without Format",
+    "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
     "line": 28,
     "filename": "positive4.yaml"
