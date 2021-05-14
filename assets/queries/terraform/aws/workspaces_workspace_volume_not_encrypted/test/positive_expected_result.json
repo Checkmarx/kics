@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.tf"
+  }
+]
