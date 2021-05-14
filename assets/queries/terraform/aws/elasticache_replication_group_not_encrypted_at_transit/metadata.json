@@ -1,0 +1,9 @@
+{
+  "id": "1afbb3fa-cf6c-4a3d-b730-95e9f4df343e",
+  "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "ElastiCache Replication Group encryption should be enabled at Transit",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#transit_encryption_enabled",
+  "platform": "Terraform"
+}

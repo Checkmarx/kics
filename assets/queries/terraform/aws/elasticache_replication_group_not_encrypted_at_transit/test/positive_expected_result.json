@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.tf"
+  }
+]
