@@ -12,14 +12,14 @@ CxPolicy[result] {
 	schema = value.schema
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	openapi_lib.undefined_properties_in_schema(doc, schema, numeric[x], "maximum")
+	openapi_lib.undefined_properties_in_schema(doc, schema, numeric[x], "minimum")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Numeric schema has 'maximum' defined",
-		"keyActualValue": "Numeric schema does not have 'maximum' defined",
+		"keyExpectedValue": "Numeric schema has 'minimum' defined",
+		"keyActualValue": "Numeric schema does not have 'minimum' defined",
 	}
 }
 
@@ -30,13 +30,13 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	schema = value.schema
 	openapi_lib.is_operation(path) == {}
-	openapi_lib.undefined_properties_in_schema(doc, schema, numeric[x], "maximum")
+	openapi_lib.undefined_properties_in_schema(doc, schema, numeric[x], "minimum")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Numeric schema has 'maximum' defined",
-		"keyActualValue": "Numeric schema does not have 'maximum' defined",
+		"keyExpectedValue": "Numeric schema has 'minimum' defined",
+		"keyActualValue": "Numeric schema does not have 'minimum' defined",
 	}
 }
