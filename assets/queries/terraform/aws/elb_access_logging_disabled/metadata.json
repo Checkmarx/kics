@@ -1,0 +1,9 @@
+{
+  "id": "20018359-6fd7-4d05-ab26-d4dffccbdf79",
+  "queryName": "ELB Access Logging Disabled",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "ELB should have logging enabled to help on error investigation",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb#enabled",
+  "platform": "Terraform"
+}

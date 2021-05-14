@@ -91,6 +91,14 @@ The other commands have no further options.
 
 ---
 
+## Profiling
+
+With the `--profiling` flag KICS will print resource consumption information in the logs.
+
+You can only enable one profiler at a time, CPU or MEM.
+
+📝   Please note that execution time may be impacted by enabling performance profiler due to sampling
+
 ## Disable Telemetry
 
 You can disable KICS telemetry with `KICS_COLLECT_TELEMETRY` environment variable set to `0` or `false` e.g:

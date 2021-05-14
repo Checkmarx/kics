@@ -1,0 +1,9 @@
+{
+  "id": "1b6799eb-4a7a-4b04-9001-8cceb9999326",
+  "queryName": "Api Gateway Access Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "RDS does not have any kind of logger",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#access_log_settings",
+  "platform": "Terraform"
+}

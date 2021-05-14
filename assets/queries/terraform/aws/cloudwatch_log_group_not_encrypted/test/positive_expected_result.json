@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "CloudWatch Log Group Not Encrypted",
+    "severity": "HIGH",
+    "line": 1
+  }
+]

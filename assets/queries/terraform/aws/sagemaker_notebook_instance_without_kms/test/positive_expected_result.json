@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Sagemaker Notebook Instance Without KMS",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive1.tf"
+  }
+]

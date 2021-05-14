@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "S3 Bucket Object Not Encrypted",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive1.tf"
+  }
+]

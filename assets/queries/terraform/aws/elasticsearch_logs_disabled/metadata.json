@@ -1,0 +1,9 @@
+{
+  "id": "acb6b4e2-a086-4f35-aefd-4db6ea51ada2",
+  "queryName": "Elasticsearch Log is disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS Elasticsearch should have logs enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options",
+  "platform": "Terraform"
+}

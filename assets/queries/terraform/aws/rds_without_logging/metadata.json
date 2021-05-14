@@ -1,0 +1,9 @@
+{
+  "id": "8d7f7b8c-6c7c-40f8-baa6-62006c6c7b56",
+  "queryName": "RDS Without Logging",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "RDS does not have any kind of logger",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#enabled_cloudwatch_logs_exports",
+  "platform": "Terraform"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "b05bb927-2df5-43cc-8d7b-6825c0e71625",
+  "queryName": "Components Example Definition Is Unused",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Components examples definitions should be referenced or removed from Open API definition",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

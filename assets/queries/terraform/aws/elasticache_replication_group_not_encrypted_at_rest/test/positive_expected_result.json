@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
+    "severity": "MEDIUM",
+    "line": 10
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "String Schema Without Maximum Length",
+    "severity": "MEDIUM",
+    "line": 76,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "String Schema Without Maximum Length",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "String Schema Without Maximum Length",
+    "severity": "MEDIUM",
+    "line": 46,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "String Schema Without Maximum Length",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive4.yaml"
+  }
+]

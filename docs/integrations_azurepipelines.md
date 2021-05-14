@@ -125,3 +125,50 @@ When your pipeline executes, it will run this job. If KICS finds any issues, it 
 
 #### Pipeline Success
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_azure_pipelines_success.png" width="850">
+
+
+## View SARIF report in Azure DevOps pipelines
+
+It's also possible to view KICS results by publishing the SARIF report as a build artifact and installing the [SARIF Azure DevOps Extension](https://github.com/Microsoft/sarif-azuredevops-extension)
+
+1. Search for the *SARIF Azure DevOps Extension* in the [extensions marketplace](https://docs.microsoft.com/en-us/azure/devops/marketplace/install-extension?view=azure-devops&tabs=browser).
+2. Install and give permissions to the plugin.
+3. Create a pipeline to scan IaC with KICS, configure the results output in the SARIF format, and publish it as a build artifact with artifact named as `CodeAnalysisLogs`:
+
+```yaml
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Kics
+  displayName: Kics
+  jobs:
+  - job: runKics
+    displayName: runKics
+    steps:
+      - script: |
+          OS=$(uname -s)
+          LATEST_TAG=$(curl --silent "https://api.github.com/repos/Checkmarx/kics/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          LATEST_VERSION=${LATEST_TAG#v}
+          PACKAGE_NAME=kics_${LATEST_VERSION}_${OS}_x64.tar.gz
+          TARGET_DIR=/home/vsts/kics
+          mkdir -p ${TARGET_DIR}
+          wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
+          echo '--- START SCANNING ---'
+          ${TARGET_DIR}/kics scan --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.sarif
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathToPublish: $(System.DefaultWorkingDirectory)/kics-results.sarif
+          artifactName: CodeAnalysisLogs
+```
+
+## Build status
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/azure-devops-build-status.png" width="850">
+
+## SARIF report inside Azure Pipelines
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/azure-devops-sarif-plugin.png" width="850">

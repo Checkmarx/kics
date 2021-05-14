@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Elasticsearch Log is disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Elasticsearch Log is disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf"
+  }
+]

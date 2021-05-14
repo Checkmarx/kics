@@ -1,0 +1,9 @@
+{
+  "id": "c19779a9-5774-4d2f-a3a1-a99831730375",
+  "queryName": "Components Link Definition Is Unused",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Components links definitions should be referenced or removed from Open API definition",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}
