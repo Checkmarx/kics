@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Parameter Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 64,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 44,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Parameter Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Parameter Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Parameter Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive4.yaml"
+  }
+]

@@ -76,3 +76,17 @@ resolve_path(pathItem) = resolved {
 } else = pathItem {
 	true
 }
+
+# It verifies if the path contains an operation. If true, keeps the operation type and the response code related to it
+is_operation(path) = info {
+	path[0] == "paths"
+	operations := {"get", "post", "put", "delete", "options", "head", "patch", "trace"}
+	operations[z] == path[2]
+	path[j] == "responses"
+	idx := j + 1
+	code := path[idx]
+	op := operations[z]
+	info := {"code": code, "operation": op}
+} else = info {
+	info := {}
+}
