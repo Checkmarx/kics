@@ -36,8 +36,7 @@ content_allowed(operation, code) {
 
 # It verifies if there is some schema in 'components.schemas' equal to the input with the 'field' undefined
 check_content(doc, s, field) {
-	component_schema := doc.components.schemas[sc]
-	sc == s
+	component_schema := doc.components.schemas[s]
 	object.get(component_schema, field, "undefined") == "undefined"
 }
 
@@ -47,48 +46,6 @@ undefined_field_in_json_object(doc, schema_ref, field) {
 	count(r) == 4
 	s := r[3]
 	check_content(doc, s, field)
-}
-
-is_ref(schema) {
-	count(schema) == 1
-	object.get(schema, "$ref", "undefined") != "undefined"
-}
-
-# It verifies if there is some schema of 'type' in 'components.schemas' equal to the input with the 'field' undefined
-check_schema(doc, s, type, field) {
-	component_schema := doc.components.schemas[sc]
-	sc == s
-	component_schema.properties[p].type == type
-	object.get(component_schema.properties[p], field, "undefined") == "undefined"
-}
-
-# It verifies if a schema of 'type' has the 'field' undefined. In the case of being a reference, it is necessary to check the referenced schema
-undefined_properties_in_schema(doc, value, sc_kind, type, field) {
-	sc_kind == "schema"
-	schema := value[sc_kind]
-	is_ref(schema)
-	r := split(schema["$ref"], "/")
-	count(r) == 4
-	s := r[3]
-	check_schema(doc, s, type, field)
-}
-
-# It verifies if a schema of 'type' has the 'field' undefined
-undefined_properties_in_schema(doc, value, sc_kind, type, field) {
-	sc_kind == "schema"
-	schema := value[sc_kind]
-	not is_ref(schema)
-	schema.properties[p].type == type
-	object.get(schema.properties[p], field, "undefined") == "undefined"
-}
-
-# It verifies if schemas element of 'type' has the 'field' undefined
-undefined_properties_in_schema(doc, value, sc_kind, type, field) {
-	sc_kind == "schemas"
-	schema := value[sc_kind][s]
-	not is_ref(schema)
-	schema.properties[p].type == type
-	object.get(schema.properties[p], field, "undefined") == "undefined"
 }
 
 check_unused_reference(doc, referenceName, type) {
@@ -129,11 +86,19 @@ is_operation(path) = info {
 	info := {}
 }
 
-# It verifies what kind of schema is set in the 'value'
-get_schema(value) = schema_kind {
-	object.get(value, "schemas", "undefined") != "undefined"
-	schema_kind := "schemas"
-} else = schema_kind {
-	object.get(value, "schema", "undefined") != "undefined"
-	schema_kind := "schema"
+is_numeric_type(type) {
+	numeric := {"integer", "number"}
+	type == numeric[x]
+}
+
+# It verifies if the string schema does not have the 'field' defined
+undefined_field_in_string_schema(value, field) {
+	value.type == "string"
+	object.get(value, field, "undefined") == "undefined"
+}
+
+# It verifies if the numeric schema does not have the 'field' defined
+undefined_field_in_numeric_schema(value, field) {
+	is_numeric_type(value.type)
+	object.get(value, field, "undefined") == "undefined"
 }

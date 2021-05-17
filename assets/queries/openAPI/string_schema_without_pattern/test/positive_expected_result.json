@@ -2,49 +2,49 @@
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 49,
+    "line": 63,
     "filename": "positive1.json"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 78,
+    "line": 58,
     "filename": "positive1.json"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 20,
+    "line": 27,
     "filename": "positive2.json"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 52,
+    "line": 32,
     "filename": "positive2.json"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 26,
+    "line": 34,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 48,
+    "line": 38,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 22,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "String Schema Without Pattern",
     "severity": "MEDIUM",
-    "line": 28,
+    "line": 26,
     "filename": "positive4.yaml"
   }
 ]

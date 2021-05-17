@@ -18,7 +18,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralError"
+                  "discriminator": {
+                    "propertyName": "petType"
+                  },
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "maxLength": "15",
+                      "format": "int32",
+                      "pattern": ".*"
+                    },
+                    "message": {
+                      "type": "string",
+                      "maxLength": "15",
+                      "pattern": "^[0-9a-z]{15}$"
+                    }
+                  },
+                  "required": [
+                    "petType"
+                  ],
+                  "type": "object"
                 },
                 "examples": {
                   "foo": {
@@ -45,33 +65,6 @@
         },
         "operationId": "listVersionsv2",
         "summary": "List API versions"
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "GeneralError": {
-        "discriminator": {
-          "propertyName": "petType"
-        },
-        "additionalProperties": false,
-        "properties": {
-          "code": {
-            "type": "string",
-            "maxLength": "15",
-            "format": "int32",
-            "pattern": ".*"
-          },
-          "message": {
-            "type": "string",
-            "maxLength": "15",
-            "pattern": "^[0-9a-z]{15}$"
-          }
-        },
-        "required": [
-          "petType"
-        ],
-        "type": "object"
       }
     }
   }

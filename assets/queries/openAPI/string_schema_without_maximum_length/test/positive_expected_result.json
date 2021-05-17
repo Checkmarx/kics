@@ -2,49 +2,49 @@
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 49,
+    "line": 58,
     "filename": "positive1.json"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 76,
+    "line": 62,
     "filename": "positive1.json"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 20,
+    "line": 27,
     "filename": "positive2.json"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 52,
+    "line": 31,
     "filename": "positive2.json"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 26,
+    "line": 34,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 46,
+    "line": 37,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 22,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "String Schema Without Maximum Length",
     "severity": "MEDIUM",
-    "line": 28,
+    "line": 25,
     "filename": "positive4.yaml"
   }
 ]

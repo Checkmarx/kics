@@ -2,49 +2,25 @@
   {
     "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
-    "line": 49,
+    "line": 61,
     "filename": "positive1.json"
   },
   {
     "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
-    "line": 80,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "String Schema with Broad Pattern",
-    "severity": "MEDIUM",
-    "line": 20,
+    "line": 30,
     "filename": "positive2.json"
   },
   {
     "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
-    "line": 52,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "String Schema with Broad Pattern",
-    "severity": "MEDIUM",
-    "line": 26,
+    "line": 37,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "String Schema with Broad Pattern",
     "severity": "MEDIUM",
-    "line": 50,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "String Schema with Broad Pattern",
-    "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "String Schema with Broad Pattern",
-    "severity": "MEDIUM",
-    "line": 28,
+    "line": 25,
     "filename": "positive4.yaml"
   }
 ]
