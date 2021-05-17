@@ -6,9 +6,9 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	scheme := doc.components.securitySchemes[x]
-	lower(scheme.type) == "http"
-	lower(scheme.scheme) == "basic"
+    scheme := doc.components.securitySchemes[x]
+    lower(scheme.type) == "http"
+    lower(scheme.scheme) == "basic"
 
 	op := doc.paths[path][operation]
 	object.get(op.security[sec], x, "undefined") == []

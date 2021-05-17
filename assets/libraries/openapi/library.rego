@@ -113,3 +113,15 @@ is_operation(path) = info {
 } else = info {
 	info := {}
 }
+
+# checks if an URL uses unsecure HTTP protocol
+is_unsecure_http(url){
+    startswith(url, "http://")
+}
+
+# checks if security schemes contains basic authentication
+is_basic_authentication(securitySchemes) {
+    scheme := securitySchemes[x]
+	lower(scheme.type) == "http"
+	lower(scheme.scheme) == "basic"
+}

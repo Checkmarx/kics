@@ -1,22 +1,12 @@
 openapi: 3.0.0
 info:
-  title: Simple API overview
+  title: Simple KICS API
   version: 1.0.0
-components:
-  securitySchemes:
-    regularSecurity:
-      type: http
-      scheme: basic
 paths:
   "/":
     get:
       operationId: listVersions
       summary: List versions
-      servers:
-        - url: http://kicsapi.com/
-          description: server URL
-      security:
-        - regularSecurity: []
       responses:
         "200":
           description: 200 response
@@ -32,3 +22,21 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
+servers:
+  - url: https://kicsapi.server.com/
+    description: API server
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            write: modify objects in your account
+            read: read objects in your account
+          authorizationUrl: https://kicsauthenticator.com/oauth/authorize
+          tokenUrl: https://kicsauthenticator.com/oauth/token
+security:
+  - OAuth2:
+      - write
+      - read

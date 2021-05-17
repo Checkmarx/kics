@@ -1,0 +1,9 @@
+{
+  "id": "3c37e786-fb98-40d5-b704-ceedfe6131b9",
+  "queryName": "Cleartext Credentials With Basic Authentication",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Cleartext credentials over unencrypted channel should not be accepted",
+  "descriptionUrl": "https://swagger.io/specification/#server-object",
+  "platform": "OpenAPI"
+}
