@@ -1,0 +1,9 @@
+{
+  "id": "77276d82-4f45-4cf1-8e2b-4d345b936228",
+  "queryName": "Global Security Scheme Using Basic Authentication",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "A security scheme is allowing basic authentication credentials to be transported over network",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI"
+}
