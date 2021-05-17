@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Parameter JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive2.yaml"
+  }
+]
