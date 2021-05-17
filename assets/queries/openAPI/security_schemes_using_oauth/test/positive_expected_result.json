@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Security Scheme Using Oauth 1.0",
+    "severity": "LOW",
+    "line": 55,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Scheme Using Oauth 1.0",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive2.yaml"
+  }
+]
