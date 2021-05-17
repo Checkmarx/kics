@@ -5,15 +5,17 @@ import data.generic.openapi as openapi_lib
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
-	req := doc.paths[n][oper].requestBody
 
-	openapi_lib.incorrect_ref(req["$ref"], "requestBody")
+	[path, value] := walk(doc)
+
+	ref := value.requestBody["$ref"]
+	openapi_lib.incorrect_ref(ref, "requestBody")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.%s.%s.requestBody.$ref={{%s}}", [n, oper, req["$ref"]]),
+		"searchKey": sprintf("%s.requestBody.$ref", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Request body ref points to '#components/requestBodies'",
-		"keyActualValue": "Request body ref doesn't point to '#components/requestBodies'",
+		"keyExpectedValue": "Request body ref points to '#/components/requestBodies'",
+		"keyActualValue": "Request body ref doesn't point to '#/components/requestBodies'",
 	}
 }

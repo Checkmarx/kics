@@ -1,20 +1,12 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Simple API overview",
-    "version": "1.0.0"
-  },
-  "components": {
-    "parameters": {
-      "idParam": {
-        "name": "id",
-        "in": "path",
-        "description": "ID of the API the version",
-        "required": true,
-        "schema": {
-          "type": "int"
-        }
-      }
+    "title": "Simple API Overview",
+    "version": "1.0.0",
+    "contact": {
+      "name": "contact",
+      "url": "https://www.google.com/",
+      "email": "user@gmail.c"
     }
   },
   "paths": {
@@ -50,12 +42,42 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/idParam"
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "ResponseExample": {
+        "description": "200 response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "discriminator": {
+                "propertyName": "petType"
+              },
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "encoding": {
+              "code": {
+                "headers": {
+                  "X-Rate-Limit-Limit": {
+                    "$ref": "#components/h"
+                  }
+                }
+              }
+            }
+          }
         }
-      ]
+      }
     }
   }
 }

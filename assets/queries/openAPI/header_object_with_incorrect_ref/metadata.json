@@ -1,0 +1,9 @@
+{
+  "id": "2d6646f4-2946-420f-8c14-3232d49ae0cb",
+  "queryName": "Header Object With Incorrect Ref",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Header Object reference must always point to '#/components/headers'",
+  "descriptionUrl": "https://swagger.io/specification/#responses-object",
+  "platform": "OpenAPI"
+}

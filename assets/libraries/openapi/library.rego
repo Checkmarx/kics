@@ -24,6 +24,8 @@ incorrect_ref(ref, object) {
 		"requestBody": "#/components/requestBodies/",
 		"links": "#/components/links/",
 		"callbacks": "#/components/callbacks/",
+		"headers": "#/components/headers/",
+		"parameters": "#/components/parameters/",
 	}
 
 	regex.match(references[object], ref) == false
