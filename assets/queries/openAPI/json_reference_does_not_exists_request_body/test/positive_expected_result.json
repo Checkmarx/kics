@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Request Body JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Request Body JSON Reference Does Not Exists",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive2.yaml"
+  }
+]
