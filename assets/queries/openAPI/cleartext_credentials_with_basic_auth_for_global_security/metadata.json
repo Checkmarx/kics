@@ -1,0 +1,9 @@
+{
+  "id": "77276d82-4f45-4cf1-8e2b-4d345b936228",
+  "queryName": "Cleartext Credentials With Basic Authentication For Global Security",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Cleartext credentials over unencrypted channel should not be accepted",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI"
+}
