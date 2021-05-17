@@ -2,37 +2,37 @@
   {
     "queryName": "API Key Exposed In Global Security",
     "severity": "MEDIUM",
-    "line": 52,
+    "line": 45,
     "filename": "positive1.json"
   },
   {
     "queryName": "API Key Exposed In Global Security",
     "severity": "MEDIUM",
-    "line": 57,
+    "line": 46,
     "filename": "positive1.json"
   },
   {
     "queryName": "API Key Exposed In Global Security",
     "severity": "MEDIUM",
-    "line": 62,
+    "line": 47,
     "filename": "positive1.json"
   },
   {
     "queryName": "API Key Exposed In Global Security",
     "severity": "MEDIUM",
-    "line": 31,
+    "line": 26,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "API Key Exposed In Global Security",
     "severity": "MEDIUM",
-    "line": 35,
+    "line": 27,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "API Key Exposed In Global Security",
     "severity": "MEDIUM",
-    "line": 39,
+    "line": 28,
     "filename": "positive2.yaml"
   }
 ]
