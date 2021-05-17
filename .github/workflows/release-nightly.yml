@@ -167,9 +167,20 @@ jobs:
         uses: docker/build-push-action@v2.4.0
         with:
           context: .
-          file: ./Dockerfile.integration
+          file: ./Dockerfile.alpine
           push: true
           tags: checkmarx/kics:nightly-alpine
+          build-args: |
+            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
+      - name: Push debian to Docker Hub
+        id: build_debian
+        uses: docker/build-push-action@v2.4.0
+        with:
+          context: .
+          file: ./Dockerfile.debian
+          push: true
+          tags: checkmarx/kics:nightly-debian
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
@@ -181,9 +192,11 @@ jobs:
           DATE=$(date +'%Y-%m-%d')
           DIGEST=${{ steps.build_scratch.outputs.digest }}
           ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
+          DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
 
           echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/nightly.csv
           echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
+          echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/nightly.csv
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
