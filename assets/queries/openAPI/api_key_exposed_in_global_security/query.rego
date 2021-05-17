@@ -7,7 +7,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	security := doc.security[x][s]
-	doc.components.securitySchemes[s].type == "apiKey"
 	ins := {"cookie", "header", "query"}
 	doc.components.securitySchemes[s].in == ins[z]
 
