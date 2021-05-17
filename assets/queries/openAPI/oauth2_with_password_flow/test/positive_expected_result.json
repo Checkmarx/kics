@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "OAuth2 With Password Flow",
+    "severity": "MEDIUM",
+    "line": 58,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "OAuth2 With Password Flow",
+    "severity": "MEDIUM",
+    "line": 34,
+    "filename": "positive2.yaml"
+  }
+]
