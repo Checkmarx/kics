@@ -1,0 +1,9 @@
+{
+  "id": "39cb32f2-3a42-4af0-8037-82a7a9654b6c",
+  "queryName": "OAuth2 With Implicit Flow",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "OAuth2 implicit flow is vulnerable to access token leakage and access token replay",
+  "descriptionUrl": "https://swagger.io/specification/#oauth-flows-object",
+  "platform": "OpenAPI"
+}
