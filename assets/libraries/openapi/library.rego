@@ -59,7 +59,9 @@ check_schema(doc, s, type, field) {
 	object.get(component_schema.properties[p], field, "undefined") == "undefined"
 }
 
-undefined_properties_in_schema(doc, schema, type, field) {
+undefined_properties_in_schema(doc, value, sc_kind, type, field) {
+	sc_kind == "schema"
+	schema := value[sc_kind]
 	is_ref(schema)
 	r := split(schema["$ref"], "/")
 	count(r) == 4
@@ -67,7 +69,17 @@ undefined_properties_in_schema(doc, schema, type, field) {
 	check_schema(doc, s, type, field)
 }
 
-undefined_properties_in_schema(doc, schema, type, field) {
+undefined_properties_in_schema(doc, value, sc_kind, type, field) {
+	sc_kind == "schema"
+	schema := value[sc_kind]
+	not is_ref(schema)
+	schema.properties[p].type == type
+	object.get(schema.properties[p], field, "undefined") == "undefined"
+}
+
+undefined_properties_in_schema(doc, value, sc_kind, type, field) {
+	sc_kind == "schemas"
+	schema := value[sc_kind][s]
 	not is_ref(schema)
 	schema.properties[p].type == type
 	object.get(schema.properties[p], field, "undefined") == "undefined"
@@ -111,8 +123,10 @@ is_operation(path) = info {
 	info := {}
 }
 
-get_schema(value) = schema {
-	schema := {"kind": "schemas", "content": value.schemas[s]}
-} else = schema {
-	schema := {"kind": "schema", "content": value.schema}
+get_schema(value) = schema_kind {
+	object.get(value, "schemas", "undefined") != "undefined"
+	schema_kind := "schemas"
+} else = schema_kind {
+	object.get(value, "schema", "undefined") != "undefined"
+	schema_kind := "schema"
 }

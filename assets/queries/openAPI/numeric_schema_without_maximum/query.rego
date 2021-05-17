@@ -9,14 +9,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	[path, value] := walk(doc)
-	schema = openapi_lib.get_schema(value)
+	schema_kind = openapi_lib.get_schema(value)
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	openapi_lib.undefined_properties_in_schema(doc, schema.content, numeric[x], "maximum")
-
+	openapi_lib.undefined_properties_in_schema(doc, value, schema_kind, numeric[x], "maximum")
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), schema.kind]),
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), schema_kind]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Numeric schema has 'maximum' defined",
 		"keyActualValue": "Numeric schema does not have 'maximum' defined",
@@ -28,13 +27,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	[path, value] := walk(doc)
-	schema = openapi_lib.get_schema(value)
+	schema_kind = openapi_lib.get_schema(value)
 	openapi_lib.is_operation(path) == {}
-	openapi_lib.undefined_properties_in_schema(doc, schema.content, numeric[x], "maximum")
+	openapi_lib.undefined_properties_in_schema(doc, value, schema_kind, numeric[x], "maximum")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), schema.kind]),
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), schema_kind]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Numeric schema has 'maximum' defined",
 		"keyActualValue": "Numeric schema does not have 'maximum' defined",
