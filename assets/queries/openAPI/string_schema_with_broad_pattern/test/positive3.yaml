@@ -12,21 +12,6 @@ paths:
           description: 200 response
           content:
             application/json:
-              schema:
-                type: object
-                discriminator:
-                  propertyName: petType
-                additionalProperties: false
-                properties:
-                  code:
-                    type: string
-                    format: int32
-                    maxLength: 15
-                  message:
-                    type: string
-                    maxLength: 15
-                required:
-                  - petType
               examples:
                 foo:
                   value:
@@ -47,10 +32,23 @@ components:
       properties:
         code:
           type: string
-          format: int32
           maxLength: 15
+          format: int32
+          pattern: .*
         message:
           type: string
           maxLength: 15
+          pattern: ^[0-9a-z]{15}$
       required:
         - petType
+  requestBodies:
+    NewItem:
+      description: A JSON object containing item data
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/schemas/GeneralError"
+          examples:
+            tshirt:
+              $ref: "#/components/examples/tshirt"

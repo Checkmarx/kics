@@ -25,12 +25,14 @@
                   "properties": {
                     "code": {
                       "type": "string",
+                      "maxLength": "15",
                       "format": "int32",
-                      "maxLength": "15"
+                      "pattern": ".*"
                     },
                     "message": {
                       "type": "string",
-                      "maxLength": "15"
+                      "maxLength": "15",
+                      "pattern": "^[0-9a-z]{15}$"
                     }
                   },
                   "required": [
@@ -60,7 +62,9 @@
               }
             }
           }
-        }
+        },
+        "operationId": "listVersionsv2",
+        "summary": "List API versions"
       }
     }
   }

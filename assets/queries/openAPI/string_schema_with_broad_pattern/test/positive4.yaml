@@ -20,13 +20,13 @@ paths:
                 properties:
                   code:
                     type: string
-                    format: int32
                     maxLength: 15
+                    format: int32
+                    pattern: .*
                   message:
                     type: string
                     maxLength: 15
-                required:
-                  - petType
+                    pattern: ^[0-9a-z]{15}$
               examples:
                 foo:
                   value:
@@ -37,20 +37,3 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-components:
-  schemas:
-    GeneralError:
-      type: object
-      discriminator:
-        propertyName: petType
-      additionalProperties: false
-      properties:
-        code:
-          type: string
-          format: int32
-          maxLength: 15
-        message:
-          type: string
-          maxLength: 15
-      required:
-        - petType
