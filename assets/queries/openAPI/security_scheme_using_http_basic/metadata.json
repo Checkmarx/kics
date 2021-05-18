@@ -3,7 +3,7 @@
   "queryName": "Security Scheme Using HTTP Basic",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Security Scheme HTTP should not be using baic authentication",
+  "descriptionText": "Security Scheme HTTP should not be using basic authentication",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI"
 }
