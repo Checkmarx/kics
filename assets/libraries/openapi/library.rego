@@ -105,3 +105,7 @@ undefined_field_in_numeric_schema(value, field) {
 	is_numeric_type(value.type)
 	object.get(value, field, "undefined") == "undefined"
 }
+
+is_path_template(path) = matches {
+	matches := regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
+}
