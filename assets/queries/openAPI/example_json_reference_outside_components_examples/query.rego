@@ -9,7 +9,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	ref := value["$ref"]
 	contains(path[j], "examples")
-	not startswith(ref, "#/components/examples")
+	not contains(path[minus(j, 1)], "components")
+	openapi_lib.incorrect_ref(ref, "examples")
 
 	result := {
 		"documentId": doc.id,

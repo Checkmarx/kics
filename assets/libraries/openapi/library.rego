@@ -24,9 +24,10 @@ incorrect_ref(ref, object) {
 		"requestBody": "#/components/requestBodies/",
 		"links": "#/components/links/",
 		"callbacks": "#/components/callbacks/",
+        "examples": "#/components/examples/"
 	}
 
-	regex.match(references[object], ref) == false
+    not startswith(ref, references[object])
 }
 
 content_allowed(operation, code) {
