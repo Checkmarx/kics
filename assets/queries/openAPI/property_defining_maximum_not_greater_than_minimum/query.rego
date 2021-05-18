@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "String schema value should not have 'minLength' larger than 'maxLength'",
-		"keyActualValue": "String schame value has 'minLength' larger than 'maxLength'",
+		"keyActualValue": "String schema value has 'minLength' larger than 'maxLength'",
 	}
 }
 
