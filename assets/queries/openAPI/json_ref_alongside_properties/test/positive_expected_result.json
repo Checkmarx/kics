@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "JSON '$ref' alongside other properties",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "JSON '$ref' alongside other properties",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive2.yaml"
+  }
+]
