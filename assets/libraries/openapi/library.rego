@@ -19,9 +19,9 @@ improperly_defined(params, value) {
 
 incorrect_ref(ref, object) {
 	references := {
-		"schema": "#/components/schemas/",
+		"schemas": "#/components/schemas/",
 		"responses": "#/components/responses/",
-		"requestBody": "#/components/requestBodies/",
+		"requestBodies": "#/components/requestBodies/",
 		"links": "#/components/links/",
 		"callbacks": "#/components/callbacks/",
 		"headers": "#/components/headers/",

@@ -9,11 +9,12 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	ref := value.parameters[n]["$ref"]
+	path[minus(count(path), 1)] != "components"
 	openapi_lib.incorrect_ref(ref, "parameters")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.parameters.$ref", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.parameters.$ref=%s", [openapi_lib.concat_path(path), ref]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object ref points to '#/components/parameters'",
 		"keyActualValue": "Parameter Object ref doesn't point to '#/components/parameters'",

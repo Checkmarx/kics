@@ -9,11 +9,12 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	ref := value.callbacks[c]["$ref"]
+	path[minus(count(path), 1)] != "components"
 	openapi_lib.incorrect_ref(ref, "callbacks")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.callbacks.$ref", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.callbacks.{{%s}}.$ref", [openapi_lib.concat_path(path), c]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Callback ref points to '#/components/callbacks'",
 		"keyActualValue": "Callback ref does not point to '#/components/callbacks'",

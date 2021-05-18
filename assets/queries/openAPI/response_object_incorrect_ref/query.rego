@@ -9,11 +9,12 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	ref := value.responses[code]["$ref"]
+	path[minus(count(path), 1)] != "components"
 	openapi_lib.incorrect_ref(ref, "responses")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.responses.$ref", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.responses.{{%s}}.$ref", [openapi_lib.concat_path(path), code]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Response ref points to '#/components/responses'",
 		"keyActualValue": "Response ref does not point to '#/components/responses'",

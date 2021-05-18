@@ -9,7 +9,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	ref := value.requestBody["$ref"]
-	openapi_lib.incorrect_ref(ref, "requestBody")
+	openapi_lib.incorrect_ref(ref, "requestBodies")
 
 	result := {
 		"documentId": doc.id,

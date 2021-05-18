@@ -60,7 +60,7 @@
         }
       ]
     },
-    "/user/{id}": {
+    "/user/id": {
       "get": {
         "parameters": [
           {
