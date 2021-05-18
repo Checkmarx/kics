@@ -55,6 +55,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Array schema value should not have 'minItems' larger than 'maxItems'",
-		"keyActualValue": "Array schame value has 'minItems' larger than 'maxItems'",
+		"keyActualValue": "Array schema value has 'minItems' larger than 'maxItems'",
 	}
 }
