@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive4.yaml"
+  }
+]
