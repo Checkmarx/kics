@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "String schema value should not have 'minLength' larger than 'maxLength'",
 		"keyActualValue": "String schema value has 'minLength' larger than 'maxLength'",
