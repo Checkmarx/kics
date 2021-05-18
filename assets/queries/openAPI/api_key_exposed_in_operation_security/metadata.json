@@ -3,7 +3,7 @@
   "queryName": "API Key Exposed In Operation Security",
   "severity": "LOW",
   "category": "Access Control",
-  "descriptionText": "API Keys should not be transported over network in a header, cookie or query parameters",
+  "descriptionText": "API Keys should not be transported over network",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
   "aggregation": 3

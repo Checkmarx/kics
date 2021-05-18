@@ -7,14 +7,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	security := doc.security[x][s]
-	ins := {"cookie", "header", "query"}
-	doc.components.securitySchemes[s].in == ins[z]
+	doc.components.securitySchemes[s].type == "apiKey"
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("security.%s", [s]),
 		"issueType": "IncorretValue",
-		"keyExpectedValue": sprintf("The API Key is not transported over network in a %s", [ins[z]]),
-		"keyActualValue": sprintf("The API Key is transported over network in a %s", [ins[z]]),
+		"keyExpectedValue": "The API Key is not transported over network",
+		"keyActualValue": "The API Key is transported over network",
 	}
 }
