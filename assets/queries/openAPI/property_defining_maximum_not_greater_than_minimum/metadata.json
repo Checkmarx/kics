@@ -1,0 +1,9 @@
+{
+  "id": "ab2af219-cd08-4233-b5a1-a788aac88b51",
+  "queryName": "Property Defining Maximum Not Greater Than Minimum",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Property defining maximum has a value not greater than the minimum defined",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
