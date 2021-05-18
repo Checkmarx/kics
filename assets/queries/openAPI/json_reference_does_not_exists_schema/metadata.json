@@ -1,0 +1,9 @@
+{
+  "id": "015eac96-6313-43c0-84e5-81b1374fa637",
+  "queryName": "Schema JSON Reference Does Not Exists",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema reference should exists on components field",
+  "descriptionUrl": "https://swagger.io/specification/#components-object",
+  "platform": "OpenAPI"
+}

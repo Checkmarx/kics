@@ -1,0 +1,9 @@
+{
+  "id": "3979b0a4-532c-4ea7-86e4-34c090eaa4f2",
+  "queryName": "OAuth2 With Password Flow",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "OAuth2 password flow insecurely exposes the credentials of the resource owner to the client",
+  "descriptionUrl": "https://swagger.io/specification/#oauth-flows-object",
+  "platform": "OpenAPI"
+}

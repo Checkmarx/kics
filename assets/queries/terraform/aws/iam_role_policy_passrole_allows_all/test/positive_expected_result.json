@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "IAM Role Policy passRole Allows All",
+    "severity": "MEDIUM",
+    "line": 11
+  }
+]

@@ -7,14 +7,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	[path, value] := walk(doc)
-	schema = value.schema
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "maxLength")
+	openapi_lib.undefined_field_in_string_schema(value, "maxLength")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "String schema has 'maxLength' defined",
 		"keyActualValue": "String schema does not have 'maxLength' defined",
@@ -26,13 +25,12 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) != "undefined"
 
 	[path, value] := walk(doc)
-	schema = value.schema
 	openapi_lib.is_operation(path) == {}
-	openapi_lib.undefined_properties_in_schema(doc, schema, "string", "maxLength")
+	openapi_lib.undefined_field_in_string_schema(value, "maxLength")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "String schema has 'maxLength' defined",
 		"keyActualValue": "String schema does not have 'maxLength' defined",

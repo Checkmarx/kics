@@ -13,7 +13,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GeneralError"
+                type: object
+                discriminator:
+                  propertyName: petType
+                additionalProperties: false
+                properties:
+                  code:
+                    type: string
+                    maxLength: 15
+                    format: int32
+                  message:
+                    type: string
+                    maxLength: 15
               examples:
                 foo:
                   value:
@@ -24,20 +35,3 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-components:
-  schemas:
-    GeneralError:
-      type: object
-      discriminator:
-        propertyName: petType
-      additionalProperties: false
-      properties:
-        code:
-          type: string
-          maxLength: 15
-          format: int32
-        message:
-          type: string
-          maxLength: 15
-      required:
-        - petType

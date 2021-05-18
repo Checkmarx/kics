@@ -13,7 +13,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GeneralError"
+                type: object
+                discriminator:
+                  propertyName: petType
+                additionalProperties: false
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    minimum: 0
               examples:
                 foo:
                   value:
@@ -24,17 +32,3 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-components:
-  schemas:
-    GeneralError:
-      type: object
-      discriminator:
-        propertyName: petType
-      additionalProperties: false
-      properties:
-        code:
-          type: integer
-          format: int32
-          minimum: 0
-      required:
-        - petType

@@ -2,25 +2,25 @@
   {
     "queryName": "Numeric Schema Without Maximum",
     "severity": "MEDIUM",
-    "line": 74,
+    "line": 58,
     "filename": "positive1.json"
   },
   {
     "queryName": "Numeric Schema Without Maximum",
     "severity": "MEDIUM",
-    "line": 20,
+    "line": 27,
     "filename": "positive2.json"
   },
   {
     "queryName": "Numeric Schema Without Maximum",
     "severity": "MEDIUM",
-    "line": 45,
+    "line": 34,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Numeric Schema Without Maximum",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 22,
     "filename": "positive4.yaml"
   }
 ]
