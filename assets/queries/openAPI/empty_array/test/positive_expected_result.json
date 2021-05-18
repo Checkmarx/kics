@@ -8,19 +8,7 @@
   {
     "queryName": "Empty Array",
     "severity": "INFO",
-    "line": 43,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Empty Array",
-    "severity": "INFO",
     "line": 25,
     "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Empty Array",
-    "severity": "INFO",
-    "line": 25,
-    "filename": "positive4.yaml"
   }
 ]
