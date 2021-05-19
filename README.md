@@ -8,6 +8,7 @@
 [![Documentation](https://img.shields.io/badge/docs-viewdocs-blue.svg?style=flat-square "Viewdocs")](https://docs.kics.io/)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
+[![Queries](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/queries.svg)](https://docs.kics.io/develop/queries/all-queries/)
 
 
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-black.png" width="250">

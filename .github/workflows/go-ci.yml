@@ -1,4 +1,3 @@
-
 name: go-ci
 
 on:
@@ -12,46 +11,46 @@ jobs:
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
-    - name: Check file changes
-      id: skip_check
-      uses: fkirc/skip-duplicate-actions@master
-      with:
-        cancel_others: true
-        paths_ignore: '["docs/**", "**/**.md", "examples"]'
+      - name: Check file changes
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: true
+          paths_ignore: '["docs/**", "**/**.md", "examples"]'
   lint:
     name: lint
     needs: pre_job
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.3.4
-    - name: Set up Go 1.16.x
-      uses: actions/setup-go@v2
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      with:
-        go-version: 1.16.x
-    - name: golangci-lint
-      uses: golangci/golangci-lint-action@v2.5.2
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      with:
-        version: v1.37
-        args: -c .golangci.yml
-        skip-go-installation: true
+      - uses: actions/checkout@v2.3.4
+      - name: Set up Go 1.16.x
+        uses: actions/setup-go@v2
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        with:
+          go-version: 1.16.x
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2.5.2
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        with:
+          version: v1.37
+          args: -c .golangci.yml
+          skip-go-installation: true
   go-generate:
     name: go-generate
     needs: pre_job
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Go 1.x
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.16.x
-    - name: Check out code
-      uses: actions/checkout@v2.3.4
-      with:
-        persist-credentials: false
-        fetch-depth: 0
-    - name: Generate mocks and marshall/unmarshall code
-      run: make generate
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+      - name: Check out code
+        uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Generate mocks and marshall/unmarshall code
+        run: make generate
   unit-tests:
     name: unit-tests
     needs: pre_job
@@ -61,41 +60,41 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - name: Set up Go 1.x
-      uses: actions/setup-go@v2
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      with:
-        go-version: ${{ matrix.go-version }}
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2.3.4
-      with:
-        persist-credentials: false
-    - name: Get cache paths
-      id: go-cache-paths
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      run: |
-        echo "::set-output name=go-build::$(go env GOCACHE)"
-        echo "::set-output name=go-mod::$(go env GOMODCACHE)"
-    - name: Cache dependencies
-      uses: actions/cache@v2.1.5
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      with:
-        path: ${{ steps.go-cache-paths.outputs.go-build }}
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: Get Modules
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      run: |
-        go mod vendor
-    - name: Test and Generate Report
-      if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      run: |
-        echo "::group::Unit Tests"
-        go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out
-        echo "::endgroup::"
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
+      - name: Get cache paths
+        id: go-cache-paths
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        run: |
+          echo "::set-output name=go-build::$(go env GOCACHE)"
+          echo "::set-output name=go-mod::$(go env GOMODCACHE)"
+      - name: Cache dependencies
+        uses: actions/cache@v2.1.5
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        with:
+          path: ${{ steps.go-cache-paths.outputs.go-build }}
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: Get Modules
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        run: |
+          go mod vendor
+      - name: Test and Generate Report
+        if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+        run: |
+          echo "::group::Unit Tests"
+          go test -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out
+          echo "::endgroup::"
   security-scan:
     name: security-scan
     needs: pre_job
@@ -109,7 +108,7 @@ jobs:
         uses: securego/gosec@master
         if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
         with:
-          args: '-no-fail -fmt sarif -out results.sarif ./...'
+          args: "-no-fail -fmt sarif -out results.sarif ./..."
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
