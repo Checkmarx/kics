@@ -1,6 +1,7 @@
 name: go-ci-metrics
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
