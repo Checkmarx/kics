@@ -50,7 +50,7 @@ jobs:
           path: latest-metrics
       - name: Generate badge
         run: |
-          mv latest-metrics/coverage.svg queries.svg
+          mv latest-metrics/queries.svg queries.svg
           git add queries.svg
           git status
           git commit -m 'chore(metrics): updating queries count badge'
