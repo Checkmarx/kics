@@ -1,0 +1,10 @@
+{
+  "id": "d90d4e40-44c1-4125-87a0-e072c3e195b5",
+  "queryName": "Cleartext API Key In Operation Security",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "API Keys should not be sent as cleartext over an unencrypted channel",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI",
+  "aggregation": 3
+}

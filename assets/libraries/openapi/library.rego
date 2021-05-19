@@ -19,15 +19,17 @@ improperly_defined(params, value) {
 
 incorrect_ref(ref, object) {
 	references := {
-		"schema": "#/components/schemas/",
+		"schemas": "#/components/schemas/",
 		"responses": "#/components/responses/",
-		"requestBody": "#/components/requestBodies/",
+		"requestBodies": "#/components/requestBodies/",
 		"links": "#/components/links/",
 		"callbacks": "#/components/callbacks/",
-        "examples": "#/components/examples/"
+		"examples": "#/components/examples/",
+		"headers": "#/components/headers/",
+		"parameters": "#/components/parameters/",
 	}
 
-    not startswith(ref, references[object])
+	not startswith(ref, references[object])
 }
 
 content_allowed(operation, code) {
@@ -35,43 +37,18 @@ content_allowed(operation, code) {
 	all([code != "204", code != "304"])
 }
 
+# It verifies if there is some schema in 'components.schemas' equal to the input with the 'field' undefined
 check_content(doc, s, field) {
-	component_schema := doc.components.schemas[sc]
-	sc == s
+	component_schema := doc.components.schemas[s]
 	object.get(component_schema, field, "undefined") == "undefined"
 }
 
+# It verifies if the 'schema_ref' refers to a schema with the 'field' undefined
 undefined_field_in_json_object(doc, schema_ref, field) {
 	r := split(schema_ref, "/")
 	count(r) == 4
 	s := r[3]
 	check_content(doc, s, field)
-}
-
-is_ref(schema) {
-	count(schema) == 1
-	object.get(schema, "$ref", "undefined") != "undefined"
-}
-
-check_string_schema(doc, s, type, field) {
-	component_schema := doc.components.schemas[sc]
-	sc == s
-	component_schema.properties[p].type == type
-	object.get(component_schema.properties[p], field, "undefined") == "undefined"
-}
-
-undefined_properties_in_schema(doc, schema, type, field) {
-	is_ref(schema)
-	r := split(schema["$ref"], "/")
-	count(r) == 4
-	s := r[3]
-	check_string_schema(doc, s, type, field)
-}
-
-undefined_properties_in_schema(doc, schema, type, field) {
-	not is_ref(schema)
-	schema.type == type
-	object.get(schema, field, "undefined") == "undefined"
 }
 
 check_unused_reference(doc, referenceName, type) {
@@ -113,4 +90,21 @@ is_operation(path) = info {
 	info := {"code": code, "operation": op}
 } else = info {
 	info := {}
+}
+
+is_numeric_type(type) {
+	numeric := {"integer", "number"}
+	type == numeric[x]
+}
+
+# It verifies if the string schema does not have the 'field' defined
+undefined_field_in_string_schema(value, field) {
+	value.type == "string"
+	object.get(value, field, "undefined") == "undefined"
+}
+
+# It verifies if the numeric schema does not have the 'field' defined
+undefined_field_in_numeric_schema(value, field) {
+	is_numeric_type(value.type)
+	object.get(value, field, "undefined") == "undefined"
 }

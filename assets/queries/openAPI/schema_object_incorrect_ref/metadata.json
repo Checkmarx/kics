@@ -3,7 +3,7 @@
   "queryName": "Schema Object Incorrect Ref",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Schema Object reference must always point to '#components/schemas'",
+  "descriptionText": "Schema Object reference must always point to '#/components/schemas'",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI"
 }

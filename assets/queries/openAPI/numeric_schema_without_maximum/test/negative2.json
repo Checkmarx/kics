@@ -18,7 +18,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeneralError"
+                  "discriminator": {
+                    "propertyName": "petType"
+                  },
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 0,
+                      "maximum": 50
+                    }
+                  },
+                  "required": [
+                    "petType"
+                  ],
+                  "type": "object"
                 },
                 "examples": {
                   "foo": {
@@ -45,28 +60,6 @@
         },
         "operationId": "listVersionsv2",
         "summary": "List API versions"
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "GeneralError": {
-        "discriminator": {
-          "propertyName": "petType"
-        },
-        "additionalProperties": false,
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0,
-            "maximum": 50
-          }
-        },
-        "required": [
-          "petType"
-        ],
-        "type": "object"
       }
     }
   }

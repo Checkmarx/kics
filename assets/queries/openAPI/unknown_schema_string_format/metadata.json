@@ -1,0 +1,9 @@
+{
+  "id": "a767f960-0489-4532-a6a0-3f0b43da7dab",
+  "queryName": "Unknown Schema String Format",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "String schema should have the format field set as 'date', 'date-time', 'password', 'byte', 'binary', 'email', 'uuid', 'uri', 'hostname', 'ipv4' or 'ipv6'",
+  "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/#string",
+  "platform": "OpenAPI"
+}

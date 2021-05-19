@@ -3,7 +3,7 @@
   "queryName": "Link Object Incorrect Ref",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Link object reference must always point to '#components/links'",
+  "descriptionText": "Link object reference must always point to '#/components/links'",
   "descriptionUrl": "https://swagger.io/specification/#link-object",
   "platform": "OpenAPI"
 }

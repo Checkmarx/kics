@@ -38,4 +38,4 @@ paths:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
     parameters:
-      - $ref: "#components/parameters/idParam"
+      - $ref: "#/components/parameters/idParam"
