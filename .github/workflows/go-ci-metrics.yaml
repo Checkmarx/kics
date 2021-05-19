@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
     paths:
-      - "assets/queries/"
+      - "assets/queries/**/metadata.json"
 jobs:
   metrics:
     name: test-metrics
