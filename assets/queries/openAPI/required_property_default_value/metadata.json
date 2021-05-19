@@ -1,0 +1,9 @@
+{
+  "id": "013bdb4b-9246-4248-b0c3-7fb0fee42a29",
+  "queryName": "Required Property With Default Value",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Required properties receive value from requests, which makes unnecessary declare a default value",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
