@@ -3,7 +3,7 @@
   "queryName": "Example Not Compliant With Schema Type",
   "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "Examples value and feilds should be compliant to the schema type",
+  "descriptionText": "Examples values and fields should be compliant with the schema type",
   "descriptionUrl": "https://swagger.io/specification/#example-object",
   "platform": "OpenAPI"
 }
