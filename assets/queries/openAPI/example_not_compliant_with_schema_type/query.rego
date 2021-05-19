@@ -73,7 +73,7 @@ get_type(obj_feild) = type {
 	type := "string"
 } else = type {
 	is_boolean(obj_feild)
-	type := "bool"
+	type := "boolean"
 }
 
 # get_ref() - returns the object based on the type (schema, examples). If the object is a ref gets the object from the ref
