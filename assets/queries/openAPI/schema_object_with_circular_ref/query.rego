@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s.$ref=%s", [openapi_lib.concat_path(path), types[prop], properties["$ref"]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.%s does not referances own schema", [concat(".", path), types[prop]]),
-		"keyActualValue": sprintf("%s.%s referances own schema", [concat(".", path), types[prop]]),
+		"keyExpectedValue": sprintf("%s.%s does not reference own schema", [concat(".", path), types[prop]]),
+		"keyActualValue": sprintf("%s.%s reference own schema", [concat(".", path), types[prop]]),
 	}
 }
