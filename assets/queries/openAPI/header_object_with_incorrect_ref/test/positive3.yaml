@@ -1,22 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Simple API overview
+  title: Simple API Overview
   version: 1.0.0
-components:
-  parameters:
-    idParam:
-      name: id
-      in: path
-      description: ID of the API version
-      required: true
-      schema:
-        type: int
-    nameParam:
-      in: path
-      description: Name of the API version
-      required: true
-      schema:
-        type: string
 paths:
   "/":
     get:
@@ -37,5 +22,24 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-    parameters:
-      - $ref: "#/components/parameters/idParam"
+components:
+  responses:
+    ResponseExample:
+      description: 200 response
+      content:
+        application/json:
+          schema:
+            type: object
+            discriminator:
+              propertyName: petType
+            properties:
+              code:
+                type: string
+                format: binary
+              message:
+                type: string
+          encoding:
+            code:
+              headers:
+                X-Rate-Limit-Limit:
+                  $ref: "#components/h"
