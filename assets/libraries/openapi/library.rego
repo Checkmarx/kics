@@ -107,3 +107,22 @@ undefined_field_in_numeric_schema(value, field) {
 	is_numeric_type(value.type)
 	object.get(value, field, "undefined") == "undefined"
 }
+
+# It verifies if the 'field' is consistent with the 'type'
+invalid_field(field, type) {
+	numeric := {"integer", "number"}
+	type == numeric[_]
+	not is_number(field)
+} else {
+	type == "string"
+	not is_string(field)
+} else {
+	type == "boolean"
+	not is_boolean(field)
+} else {
+	type == "object"
+	not is_object(field)
+} else {
+	type == "array"
+	not is_array(field)
+}
