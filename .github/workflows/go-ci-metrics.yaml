@@ -1,9 +1,10 @@
 name: go-ci-metrics
 
 on:
-  pull_request:
+  push:
     branches: [master]
-
+    paths:
+      - "assets/queries/"
 jobs:
   metrics:
     name: test-metrics
@@ -11,12 +12,42 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2.3.4
-      - name: Set up Go 1.x
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.16.x
-      - name: Install zsh
-        run: sudo apt install zsh
       - name: Run test metrics script
-        run: zsh .github/scripts/get-test-metrics.sh
-
+        id: metrics
+        run: |
+          pip3 install -r .github/scripts/metrics/requirements.txt
+          python3 .github/scripts/metrics/get-metrics.py
+      - name: Generate badge
+        run: |
+          curl -L \
+            https://img.shields.io/badge/Queries-${{ steps.metrics.outputs.total_queries }}-blue.svg > queries.svg
+          cat queries.svg
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ runner.os }}-queries-badge-latest
+          path: queries.svg
+  publish:
+    name: publish-metrics
+    runs-on: ubuntu-latest
+    needs: metrics
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: gh-pages
+      - name: Configure git commit author
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Download Queries Badge SVG
+        uses: actions/download-artifact@master
+        with:
+          name: ${{ runner.os }}-queries-badge-latest
+          path: latest-metrics
+      - name: Generate badge
+        run: |
+          mv latest-metrics/coverage.svg queries.svg
+          git add queries.svg
+          git status
+          git commit -m 'chore(metrics): updating queries count badge'
+          git push origin gh-pages
