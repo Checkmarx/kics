@@ -37,6 +37,12 @@ var (
 		"../assets/queries/common":               {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 		"../assets/queries/openAPI":              {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 	}
+
+	issueTypes = map[string]string{
+		"MissingAttribute":   "",
+		"IncorrectValue":     "",
+		"RedundantAttribute": "",
+	}
 )
 
 const (

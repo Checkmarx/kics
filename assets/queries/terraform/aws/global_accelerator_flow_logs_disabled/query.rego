@@ -39,7 +39,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled", [name]),
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is true", [name]),
 		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is false", [name]),
 	}

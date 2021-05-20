@@ -10,7 +10,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
-		"issueType": "Missing Attribute",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_redshift_cluster[%s].%s is set", [name, attributes[x]]),
 		"keyActualValue": sprintf("aws_redshift_cluster[%s].%s is undefined", [name, attributes[x]]),
 	}

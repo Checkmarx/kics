@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.security.%s", [path, operation, s]),
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The API Key is not sent as cleartext over an unencrypted channel",
 		"keyActualValue": "The API Key is sent as cleartext over an unencrypted channel",
 	}

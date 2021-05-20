@@ -24,7 +24,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("kubernetes_pod[%s].metadata", [name]),
-		"issueType": "MissingValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("kubernetes_pod[%s].metadata should include annotations for AppArmor profile config", [name]),
 		"keyActualValue": sprintf("kubernetes_pod[%s].metadata doesn't contain AppArmor profile config in annotations", [name]),
 	}

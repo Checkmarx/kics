@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": "openapi",
-		"issueType": "Missing Attribute",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' is set", [objects[x]]),
 		"keyActualValue": sprintf("'%s' is undefined", [objects[x]]),
 	}
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": "info",
-		"issueType": "Missing Attribute",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'info.%s' is set", [fields[x]]),
 		"keyActualValue": sprintf("'info.%s' is undefined", [fields[x]]),
 	}

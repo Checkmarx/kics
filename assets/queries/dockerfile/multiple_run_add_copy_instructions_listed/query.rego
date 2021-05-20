@@ -16,7 +16,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, lineCounter[0].Original]),
-		"issueType": "Redundant Attribute",
+		"issueType": "RedundantAttribute",
 		"keyExpectedValue": sprintf("There isn´t any %s instruction that could be grouped", [upperName]),
 		"keyActualValue": sprintf("There are %s instructions that could be grouped", [upperName]),
 	}

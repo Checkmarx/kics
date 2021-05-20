@@ -19,7 +19,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
-		"issueType": "IncorrectAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
 		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
 	}
@@ -38,7 +38,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.Statement.Principal.AWS", [task.name, modules[m]]),
-		"issueType": "IncorrectAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
 		"keyActualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
 	}
