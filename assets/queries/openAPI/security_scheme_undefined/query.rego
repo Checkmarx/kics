@@ -42,7 +42,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": "components.securitySchemes",
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "A security scheme on components should be defined",
 		"keyActualValue": "A security scheme is an empty object",
 	}

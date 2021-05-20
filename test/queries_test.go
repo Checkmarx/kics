@@ -144,6 +144,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		currentQuery,
 	)
 	require.Nil(tb, err)
+	validateIssueTypes(tb, vulnerabilities)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
 }
 
@@ -158,6 +159,14 @@ func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bo
 		return false
 	}
 	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
+}
+
+func validateIssueTypes(tb testing.TB, vulnerabilies []model.Vulnerability) {
+	for idx := range vulnerabilies {
+		issueType := string(vulnerabilies[idx].IssueType)
+		_, ok := issueTypes[issueType]
+		require.True(tb, ok, "Results 'issueType' is not valid :: %v", issueType)
+	}
 }
 
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, entry queryEntry) {

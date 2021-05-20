@@ -49,7 +49,7 @@ getSearchKey(msk_cluster, instanceType) = "msk_cluster[%s].logging_info.broker_l
 	true
 }
 
-getIssueType(msk_cluster, instanceType) = "IncorretValue" {
+getIssueType(msk_cluster, instanceType) = "IncorrectValue" {
 	_ = msk_cluster.logging_info.broker_logs[instanceType].enabled
 } else = "MissingAttribute" {
 	true
