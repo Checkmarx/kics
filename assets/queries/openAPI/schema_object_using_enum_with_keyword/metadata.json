@@ -1,0 +1,9 @@
+{
+  "id": "2e9b6612-8f69-42e0-a5b8-ed17739c2f3a",
+  "queryName": "Schema Object Using Enum With Keyword",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Schema Object properties should not contain 'enum' and schema keywords",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}
