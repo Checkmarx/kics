@@ -1,0 +1,9 @@
+{
+  "id": "f5b2e6af-76f5-496d-8482-8f898c5fdb4a",
+  "queryName": "Parameters Name In Combination Should Be Unique",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Parameters properties 'name' and 'in' should have unique combinations",
+  "descriptionUrl": "https://swagger.io/specification/#parameters-object",
+  "platform": "OpenAPI"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Example JSON Reference Outside Components Examples",
+    "severity": "INFO",
+    "line": 77,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Example JSON Reference Outside Components Examples",
+    "severity": "INFO",
+    "line": 51,
+    "filename": "positive2.yaml"
+  }
+]

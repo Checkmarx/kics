@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Schema Enum Invalid",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Enum Invalid",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Enum Invalid",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Enum Invalid",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive4.yaml"
+  }
+]

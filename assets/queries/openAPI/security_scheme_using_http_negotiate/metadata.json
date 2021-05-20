@@ -1,0 +1,9 @@
+{
+  "id": "f525cc92-9050-4c41-a75c-890dc6f64449",
+  "queryName": "Security Scheme Using HTTP Negotiate",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Security Scheme HTTP should not be using negotiate authentication",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI"
+}

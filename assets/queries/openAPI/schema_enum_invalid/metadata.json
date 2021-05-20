@@ -1,0 +1,9 @@
+{
+  "id": "03856cb2-e46c-4daf-bfbf-214ec93c882b",
+  "queryName": "Schema Enum Invalid",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The field 'enum' of Schema Object should be consistent with the schema's type",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

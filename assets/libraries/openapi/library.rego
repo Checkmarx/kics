@@ -19,14 +19,17 @@ improperly_defined(params, value) {
 
 incorrect_ref(ref, object) {
 	references := {
-		"schema": "#/components/schemas/",
+		"schemas": "#/components/schemas/",
 		"responses": "#/components/responses/",
-		"requestBody": "#/components/requestBodies/",
+		"requestBodies": "#/components/requestBodies/",
 		"links": "#/components/links/",
 		"callbacks": "#/components/callbacks/",
+		"examples": "#/components/examples/",
+		"headers": "#/components/headers/",
+		"parameters": "#/components/parameters/",
 	}
 
-	regex.match(references[object], ref) == false
+	not startswith(ref, references[object])
 }
 
 content_allowed(operation, code) {

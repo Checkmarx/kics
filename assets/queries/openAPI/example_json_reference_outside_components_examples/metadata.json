@@ -1,0 +1,9 @@
+{
+  "id": "bac56e3c-1f71-4a74-8ae6-2fba07efcddb",
+  "queryName": "Example JSON Reference Outside Components Examples",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Reference to examples should point to #/components/examples",
+  "descriptionUrl": "https://swagger.io/specification/#reference-object",
+  "platform": "OpenAPI"
+}
