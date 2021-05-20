@@ -32,12 +32,11 @@ CxPolicy[result] {
 	path := doc.paths[name]
 	matches := openapi_lib.is_path_template(name)
 	matches != []
-	path_param := replace(replace(name, "{", ""), "}", "")
 	path[verb].parameters == {}
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.%s.%s.parameters", [path_param, verb]),
+		"searchKey": sprintf("paths.%s.%s.parameters", [name, verb]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Template path parameters should be defined for operation",
 		"keyActualValue": "Template path parameters is not defined for operation",
