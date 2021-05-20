@@ -99,7 +99,7 @@
 				
 				<option value="file21">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.1%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/detector/helper.go (96.2%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/detector/helper.go (96.3%)</option>
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.4%)</option>
 				
@@ -1309,8 +1309,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="273">{
-                if val == true </span><span class="cov9" title="272">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="284">{
+                if val == true </span><span class="cov9" title="283">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1984,13 +1984,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2008,7 +2008,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2350,7 +2350,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="29">{
+        for _, a := range s </span><span class="cov8" title="23">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3617,21 +3617,25 @@ const (
 )
 
 // GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside
-func GetBracketValues(expr string, list [][]string, restOfString string) [][]string <span class="cov7" title="15">{
+func GetBracketValues(expr string, list [][]string, restOfString string) [][]string <span class="cov7" title="17">{
         var tempList []string
         firstOpen := strings.Index(expr, "{{")
         firstClose := strings.Index(expr, "}}")
-        switchVal := firstClose - firstOpen
-        if switchVal == 0 </span><span class="cov5" title="8">{ // if there is no "{{" and no "}}"
-                if expr != "" </span><span class="cov5" title="6">{
+        // in case we have '}}}' we need to advance one position to get the close
+        for firstClose+2 &lt; len(expr) &amp;&amp; string(expr[firstClose+2]) == `}` &amp;&amp; firstClose != -1 </span><span class="cov1" title="1">{
+                firstClose++
+        }</span>
+        <span class="cov7" title="17">switchVal := firstClose - firstOpen
+        if switchVal == 0 </span><span class="cov5" title="9">{ // if there is no "{{" and no "}}"
+                if expr != "" </span><span class="cov5" title="7">{
                         tempList = append(tempList, fmt.Sprintf("{{%s}}", expr), expr)
                         list = append(list, tempList)
                 }</span>
-                <span class="cov5" title="8">if restOfString == "" </span><span class="cov5" title="7">{
+                <span class="cov5" title="9">if restOfString == "" </span><span class="cov5" title="8">{
                         return list // if there is no more string to read from return value of list
                 }</span>
                 <span class="cov1" title="1">list = GetBracketValues(restOfString, list, "")</span> // recursive call to the rest of the string
-        } else<span class="cov5" title="7"> if switchVal &gt; 0 </span><span class="cov4" title="5">{ // if the position of  the first "}}" is bigger than than the position of "{{"
+        } else<span class="cov5" title="8"> if switchVal &gt; 0 </span><span class="cov5" title="6">{ // if the position of  the first "}}" is bigger than than the position of "{{"
                 // recursive with the value inside of curly brackets
                 list = GetBracketValues(expr[firstOpen+2:firstClose], list, expr[firstClose+2:])
         }</span> else<span class="cov2" title="2"> { // if the position of  the first "{{" is bigger than than the position of "}}"
@@ -3641,7 +3645,7 @@ func GetBracketValues(expr string, list [][]string, restOfString string) [][]str
                 list = append(list, tempList)
                 list = GetBracketValues(restOfString[nextClose+2:], list, "") // recursive call to the rest of the string
         }</span>
-        <span class="cov5" title="8">return list</span>
+        <span class="cov5" title="9">return list</span>
 }
 
 // GenerateSubstrings returns the substrings used for line searching depending on search key
@@ -3751,7 +3755,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
