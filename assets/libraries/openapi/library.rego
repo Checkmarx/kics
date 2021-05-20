@@ -108,8 +108,7 @@ undefined_field_in_numeric_schema(value, field) {
 
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
-	numeric := {"integer", "number"}
-	type == numeric[_]
+	is_numeric_type(type)
 	not is_number(field)
 } else {
 	type == "string"

@@ -14,13 +14,37 @@
   {
     "queryName": "Schema Default Invalid",
     "severity": "INFO",
-    "line": 18,
-    "filename": "positive3.yaml"
+    "line": 30,
+    "filename": "positive3.json"
   },
   {
     "queryName": "Schema Default Invalid",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive4.yaml"
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive7.yaml"
+  },
+  {
+    "queryName": "Schema Default Invalid",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive8.yaml"
   }
 ]
