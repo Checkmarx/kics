@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive8.yaml"
+  }
+]

@@ -3,7 +3,7 @@
   "queryName": "Cleartext API Key In Operation Security",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "API Keys should not be sent as cleartext in a header, cookie or query parameters over an unencrypted channel",
+  "descriptionText": "API Keys should not be sent as cleartext over an unencrypted channel",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
   "aggregation": 3

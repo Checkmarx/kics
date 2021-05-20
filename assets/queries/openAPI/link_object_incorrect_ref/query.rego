@@ -6,29 +6,15 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 
-	link := doc.components.responses[r].links[l]
-	openapi_lib.incorrect_ref(link["$ref"], "links")
+	[path, value] := walk(doc)
+
+	ref := value.links[l]["$ref"]
+	path[minus(count(path), 1)] != "components"
+	openapi_lib.incorrect_ref(ref, "links")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("components.responses.{{%s}}.links.{{%s}}.$ref={{%s}}", [r, l, link["$ref"]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Link ref points to '#/components/links'",
-		"keyActualValue": "Link ref does not point to '#/components/links'",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	link := doc.paths[path][operation].responses[r].links[l]
-	openapi_lib.content_allowed(operation, r)
-	openapi_lib.incorrect_ref(link["$ref"], "links")
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.links.{{%s}}.$ref={{%s}}", [path, operation, r, l, link["$ref"]]),
+		"searchKey": sprintf("%s.links.{{%s}}.$ref", [openapi_lib.concat_path(path), l]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Link ref points to '#/components/links'",
 		"keyActualValue": "Link ref does not point to '#/components/links'",
