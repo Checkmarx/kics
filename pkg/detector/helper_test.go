@@ -113,6 +113,18 @@ func TestGetBracketValues(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "single_brackets",
+			args: args{
+				expr: "paths.{{user/{id}}}",
+			},
+			want: [][]string{
+				{
+					"{{user/{id}}}",
+					"user/{id}",
+				},
+			},
+		},
 	}
 
 	for _, tt := range tests {

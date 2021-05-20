@@ -26,6 +26,10 @@ func GetBracketValues(expr string, list [][]string, restOfString string) [][]str
 	var tempList []string
 	firstOpen := strings.Index(expr, "{{")
 	firstClose := strings.Index(expr, "}}")
+	// in case we have '}}}' we need to advance one position to get the close
+	for firstClose+2 < len(expr) && string(expr[firstClose+2]) == `}` && firstClose != -1 {
+		firstClose++
+	}
 	switchVal := firstClose - firstOpen
 	if switchVal == 0 { // if there is no "{{" and no "}}"
 		if expr != "" {

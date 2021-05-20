@@ -8,7 +8,7 @@
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
-    "line": 7,
+    "line": 55,
     "filename": "positive1.json"
   },
   {
@@ -20,7 +20,7 @@
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
-    "line": 5,
+    "line": 40,
     "filename": "positive2.yaml"
   },
   {
