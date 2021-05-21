@@ -59,7 +59,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 ## Release process
 
 KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
-The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for Windows, Linux and MacOS, as well a Docker image in <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
+The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for Windows, Linux and MacOS, as well as a Docker image in <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
 ## Contribution
 
