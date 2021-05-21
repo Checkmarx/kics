@@ -88,7 +88,7 @@ By default KICS will fail your workflow on any results found.
 
 ### Fail by severity usage example
 
-If want your pipeline just to fail on HIGH and MEDIUM severity results and KICS engine execution errors:
+If you want your pipeline just to fail on HIGH, MEDIUM severity results and KICS engine execution errors:
 
 ```yaml
     steps:
