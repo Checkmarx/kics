@@ -109,6 +109,10 @@ undefined_field_in_numeric_schema(value, field) {
 	object.get(value, field, "undefined") == "undefined"
 }
 
+is_path_template(path) = matches {
+	matches := regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
+}
+
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
 	numeric := {"integer", "number"}
