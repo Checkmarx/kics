@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/agnivade/levenshtein v1.1.0
+	github.com/agnivade/levenshtein v1.1.1
 	github.com/containerd/containerd v1.4.4 // indirect
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/getsentry/sentry-go v0.10.0
