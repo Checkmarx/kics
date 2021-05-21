@@ -26,9 +26,9 @@ paths:
       - name: id
         in: query
         style: spaceDelimited
-        explode: true
+        explode: false
         description: ID of the API version
         required: true
-        allowEmptyValue: true
+        allowEmptyValue: false
         schema:
           type: integer
