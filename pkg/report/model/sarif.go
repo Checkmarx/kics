@@ -4,12 +4,13 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 
 var categoriesNotFound = make(map[string]bool)
 
-var severityLevelEquivalence = map[Severity]string{
+var severityLevelEquivalence = map[model.Severity]string{
 	"INFO":   "none",
 	"LOW":    "note",
 	"MEDIUM": "warning",
@@ -30,7 +31,7 @@ type ruleMetadata struct {
 	queryDescription string
 	queryURI         string
 	queryCategory    string
-	severity         Severity
+	severity         model.Severity
 }
 
 type sarifMessage struct {
@@ -127,7 +128,7 @@ type sarifRun struct {
 
 // SarifReport represents a usable sarif report reference
 type SarifReport interface {
-	BuildIssue(issue *VulnerableQuery)
+	BuildIssue(issue *model.VulnerableQuery)
 }
 
 type sarifReport struct {
@@ -248,7 +249,7 @@ func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 }
 
 // BuildIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) {
+func (sr *sarifReport) BuildIssue(issue *model.VulnerableQuery) {
 	if len(issue.Files) > 0 {
 		absBasePath, err := filepath.Abs(sr.basePath)
 		if err != nil {

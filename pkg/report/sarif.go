@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintSarifReport creates a report file on sarif format
@@ -21,7 +22,7 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 		return err
 	}
 
-	sarifReport := model.NewSarifReport()
+	sarifReport := reportModel.NewSarifReport()
 	for idx := range summary.Queries {
 		sarifReport.BuildIssue(&summary.Queries[idx])
 	}

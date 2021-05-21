@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
@@ -20,21 +21,21 @@ func TestCreateSarifReport(t *testing.T) {
 
 type test struct {
 	name string
-	vq   []VulnerableQuery
+	vq   []model.VulnerableQuery
 	want sarifReport
 }
 
 var tests = []test{
 	{
 		name: "Should not create any rule",
-		vq: []VulnerableQuery{
+		vq: []model.VulnerableQuery{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
-				Severity:    SeverityHigh,
-				Files:       []VulnerableFile{},
+				Severity:    model.SeverityHigh,
+				Files:       []model.VulnerableFile{},
 			},
 		},
 		want: sarifReport{
@@ -43,14 +44,14 @@ var tests = []test{
 	},
 	{
 		name: "Should create one occurrence",
-		vq: []VulnerableQuery{
+		vq: []model.VulnerableQuery{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
-				Severity:    SeverityHigh,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityHigh,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "test.json", Line: 1},
 				},
 			},
@@ -105,15 +106,15 @@ var tests = []test{
 	},
 	{
 		name: "Should create multiple occurrence",
-		vq: []VulnerableQuery{
+		vq: []model.VulnerableQuery{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
 				Category:    "test",
-				Severity:    SeverityHigh,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityHigh,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
@@ -123,8 +124,8 @@ var tests = []test{
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
 				Category:    "test",
-				Severity:    SeverityHigh,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityHigh,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
@@ -134,8 +135,8 @@ var tests = []test{
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
 				Category:    "test",
-				Severity:    SeverityInfo,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityInfo,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
