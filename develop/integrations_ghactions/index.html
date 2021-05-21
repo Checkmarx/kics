@@ -246,12 +246,22 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#example_using_docker-runner_and_sarif_report" class="nav-link">Example using docker-runner and SARIF report</a>
+            <li class="nav-item" data-level="2"><a href="#workflow_failures" class="nav-link">Workflow failures</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#example_using_docker-runner_and_a_config_file" class="nav-link">Example using docker-runner and a config file</a>
+            <li class="nav-item" data-level="2"><a href="#profiling_kics" class="nav-link">Profiling KICS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#uploading_sarif_report" class="nav-link">Uploading SARIF report</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#using_configuration_file" class="nav-link">Using configuration file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -273,7 +283,7 @@
 </li>
 </ol>
 <pre><code class="language-yaml">- name: KICS Github Action
-  uses: Checkmarx/kics-github-action@v1.0
+  uses: Checkmarx/kics-github-action@latest
   with:
     # path to file or directory to scan
     path:
@@ -293,7 +303,7 @@
 <pre><code class="language-YAML">steps:
 - uses: actions/checkout@v2
   - name: run kics Scan
-    uses: checkmarx/kics-action@v1.0
+    uses: checkmarx/kics-action@latest
     with:
       path: 'terraform'
       output_path: 'results.sarif'
@@ -313,7 +323,7 @@
     - uses: actions/checkout@v2
     # Scan Iac with kics
     - name: run kics Scan
-      uses: checkmarx/kics-action@v1.0
+      uses: checkmarx/kics-action@latest
       with:
         path: 'terraform'
         output_path: 'results.json'
@@ -327,9 +337,55 @@
 </code></pre>
 <p>Here you can see it in action:</p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_scan_github_actions.png" width="850"></p>
-<h2 id="example_using_docker-runner_and_sarif_report">Example using docker-runner and SARIF report<a class="headerlink" href="#example_using_docker-runner_and_sarif_report" title="Permanent link">&para;</a></h2>
-<p>We also provide <a href="https://github.com/Checkmarx/kics-github-action/tree/docker-runner">checkmarx/kics-action@docker-runner</a> that runs an alpine based linux container (<code>checkmarx/kics:nightly-alpine</code>) that doesn't require downloading kics binaries and queries in the <code>entrypoint.sh</code></p>
-<pre><code class="language-yaml">name: scan with KICS docker-runner
+<h2 id="workflow_failures">Workflow failures<a class="headerlink" href="#workflow_failures" title="Permanent link">&para;</a></h2>
+<p>By default KICS will fail your workflow on any results found.</p>
+<h3 id="fail_by_severity_usage_example">Fail by severity usage example<a class="headerlink" href="#fail_by_severity_usage_example" title="Permanent link">&para;</a></h3>
+<p>If you want your pipeline just to fail on HIGH, MEDIUM severity results and KICS engine execution errors:</p>
+<pre><code class="language-yaml">    steps:
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-action@latest
+      with:
+        path: 'terraform,my-other-sub-folder/Dockerfile'
+        fail_on: high,medium
+        output_path: 'results.json'
+    - name: display kics results
+      run: |
+        cat results.json
+</code></pre>
+<h3 id="dont_fail_on_results">Don't fail on results<a class="headerlink" href="#dont_fail_on_results" title="Permanent link">&para;</a></h3>
+<p>If you want KICS to ignore the results and return exit status code 0 unless a KICS engine error happens:</p>
+<pre><code class="language-yaml">    steps:
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-action@latest
+      with:
+        path: 'terraform'
+        ignore_on_exit: results
+        output_path: 'results.json'
+    - name: display kics results
+      run: |
+        cat results.json
+</code></pre>
+<h2 id="profiling_kics">Profiling KICS<a class="headerlink" href="#profiling_kics" title="Permanent link">&para;</a></h2>
+<p>You can only enable one profiler at a time, CPU or MEM.</p>
+<blockquote>
+<p>📝 &nbsp; Please note that execution time may be impacted by enabling performance profiler due to sampling</p>
+</blockquote>
+<pre><code class="language-yaml">    steps:
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-action@latest
+      with:
+        path: 'terraform'
+        profiling: MEM
+        output_path: 'results.json'
+    - name: display kics results
+      run: |
+        cat results.json
+</code></pre>
+<h2 id="uploading_sarif_report">Uploading SARIF report<a class="headerlink" href="#uploading_sarif_report" title="Permanent link">&para;</a></h2>
+<pre><code class="language-yaml">name: scan with KICS and upload SARIF
 
 on:
   pull_request:
@@ -346,7 +402,7 @@ jobs:
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-action@docker-runner
+        uses: checkmarx/kics-action@latest
         with:
           path: 'terraform'
           # when provided with a directory on output_path
@@ -358,7 +414,7 @@ jobs:
           platform_type: terraform
           output_formats: 'json,sarif'
           exclude_paths: &quot;terraform/gcp/big_data.tf,terraform/azure&quot;
-          # look for the queries' ID in its metadata.json
+          # seek query id in it's metadata.json
           exclude_queries: 0437633b-daa6-4bbc-8526-c0d2443b946e
       - name: Show results
         run: |
@@ -369,8 +425,8 @@ jobs:
         with:
           sarif_file: results-dir/results.sarif
 </code></pre>
-<h2 id="example_using_docker-runner_and_a_config_file">Example using docker-runner and a config file<a class="headerlink" href="#example_using_docker-runner_and_a_config_file" title="Permanent link">&para;</a></h2>
-<p>Check <a href="../configuration-file/">configuration file</a> reference for more options.</p>
+<h2 id="using_configuration_file">Using configuration file<a class="headerlink" href="#using_configuration_file" title="Permanent link">&para;</a></h2>
+<p>Check <a href="https://github.com/Checkmarx/kics/blob/master/docs/configuration-file.md">configuration file</a> reference for more options.</p>
 <pre><code class="language-yaml">name: scan with KICS using config file
 
 on:
@@ -407,7 +463,7 @@ jobs:
           }
           EOF
       - name: Run KICS Scan using config
-        uses: checkmarx/kics-action@docker-runner
+        uses: checkmarx/kics-action@latest
         with:
           path: 'terraform'
           config_path: ./kics.config
