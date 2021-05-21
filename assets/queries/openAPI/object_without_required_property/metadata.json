@@ -3,7 +3,7 @@
   "queryName": "Object Without Required Property",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "OpenAPI sould contain all required feilds",
+  "descriptionText": "OpenAPI Object should contain all of its required fields",
   "descriptionUrl": "https://swagger.io/specification/",
   "platform": "OpenAPI"
 }

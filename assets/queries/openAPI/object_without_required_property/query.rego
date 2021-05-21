@@ -16,8 +16,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s", [search_key[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s has all required feilds", [obj_type]),
-		"keyActualValue": sprintf("%s is missing required feilds", [obj_type]),
+		"keyExpectedValue": sprintf("%s has all required fields", [obj_type]),
+		"keyActualValue": sprintf("%s is missing required fields", [obj_type]),
 	}
 }
 
