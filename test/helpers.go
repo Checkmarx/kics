@@ -12,8 +12,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
-const ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
+const (
+	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
+	ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
+	positive       = "positive.tf"
+)
 
 type execute func() error
 
@@ -109,7 +112,7 @@ var queryHigh = model.VulnerableQuery{
 	Severity:  model.SeverityHigh,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         "positive.tf",
+			FileName:         positive,
 			Line:             25,
 			IssueType:        "MissingAttribute",
 			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
@@ -118,7 +121,7 @@ var queryHigh = model.VulnerableQuery{
 			Value:            nil,
 		},
 		{
-			FileName:         "positive.tf",
+			FileName:         positive,
 			Line:             19,
 			IssueType:        "IncorrectValue",
 			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
@@ -135,7 +138,7 @@ var queryMedium = model.VulnerableQuery{
 	Severity:  model.SeverityMedium,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         "positive.tf",
+			FileName:         positive,
 			Line:             1,
 			IssueType:        "MissingAttribute",
 			SearchKey:        "resource.aws_mq_broker[positive1]",
