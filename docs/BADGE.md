@@ -37,4 +37,4 @@ An example SVG produced:
 
 If you have github pages configured under `gh-pages` branch configured you can commit and push the badge to it and reference on your README.md, e.g:
 
-`![Queries](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/kics-status.svg)`
+`![KICS](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/kics-status.svg)`
