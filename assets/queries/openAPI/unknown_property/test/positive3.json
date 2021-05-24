@@ -1,0 +1,36 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "callbacks": {
+          "inProgress": {
+            "{$request.body#/inProgressUrl}": {
+              "pbhbhbost": {
+                "requestBody": {
+                  "$ref": "#/components/requestBodies/callbackMessage1"
+                },
+                "responses": {
+                  "200": {
+                    "description": "OK"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
