@@ -48,7 +48,42 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
 		}
 	}
 
-	return documents, nil
+	return convertKeysToString(documents), nil
+}
+
+// convertKeysToString goes through every document to convert map[interface{}]interface{}
+// to map[string]interface{}
+func convertKeysToString(docs []model.Document) []model.Document {
+	documents := make([]model.Document, 0, len(docs))
+	for _, doc := range docs {
+		for key, value := range doc {
+			doc[key] = convert(value)
+		}
+		documents = append(documents, doc)
+	}
+	return documents
+}
+
+// convert goes recursively through the keys in the given value and converts nested maps type of map[interface{}]interface{}
+// to map[string]interface{}
+func convert(value interface{}) interface{} {
+	switch t := value.(type) {
+	case map[interface{}]interface{}:
+		mapStr := map[string]interface{}{}
+		for key, val := range t {
+			mapStr[key.(string)] = convert(val)
+		}
+		return mapStr
+	case []interface{}:
+		for key, val := range t {
+			t[key] = convert(val)
+		}
+	case model.Document:
+		for key, val := range t {
+			t[key] = convert(val)
+		}
+	}
+	return value
 }
 
 // SupportedExtensions returns extensions supported by this parser, which are yaml and yml extension
