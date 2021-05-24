@@ -87,6 +87,8 @@ const (
 	typeFlag                = "type"
 	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
+	initError               = "initialization error - "
+	msg                     = "can be provided multiple times or as a comma separated string\n"
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -95,44 +97,52 @@ func NewScanCmd() *cobra.Command {
 		Use:   scanCommandStr,
 		Short: "Executes a scan analysis",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			err := initializeConfig(cmd)
-			if err != nil {
-				return errors.New("initialization error - " + err.Error())
-			}
-			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
-			if err != nil {
-				return errors.New("initialization error - " + err.Error())
-			}
-			err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
-			if err != nil {
-				return errors.New("initialization error - " + err.Error())
-			}
-			return nil
+			return preRun(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
-			if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil {
-				return err
-			}
-			if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
-				return err
-			}
-			if outputPath != "" {
-				directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
-				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
-					return err
-				}
-			}
-			if payloadPath != "" {
-				directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
-				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
-					return err
-				}
-			}
-			gracefulShutdown()
-			return scan(changedDefaultQueryPath)
+			return run(cmd)
 		},
 	}
+}
+
+func run(cmd *cobra.Command) error {
+	changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+	if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil {
+		return err
+	}
+	if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
+		return err
+	}
+	if outputPath != "" {
+		directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
+		if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+			return err
+		}
+	}
+	if payloadPath != "" {
+		directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
+		if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+			return err
+		}
+	}
+	gracefulShutdown()
+	return scan(changedDefaultQueryPath)
+}
+
+func preRun(cmd *cobra.Command) error {
+	err := initializeConfig(cmd)
+	if err != nil {
+		return errors.New(initError + err.Error())
+	}
+	err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+	if err != nil {
+		return errors.New(initError + err.Error())
+	}
+	err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+	if err != nil {
+		return errors.New(initError + err.Error())
+	}
+	return nil
 }
 
 func initializeConfig(cmd *cobra.Command) error {
@@ -146,30 +156,12 @@ func initializeConfig(cmd *cobra.Command) error {
 		return errBind
 	}
 
-	if cfgFile == "" {
-		if len(path) == 0 {
-			return nil
-		}
-		if len(path) > 1 {
-			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
-			return nil
-		}
-		configpath := path[0]
-		info, err := os.Stat(configpath)
-		if err != nil {
-			return nil
-		}
-		if !info.IsDir() {
-			configpath = filepath.Dir(configpath)
-		}
-		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
-		if err != nil {
-			if os.IsNotExist(err) {
-				return nil
-			}
-			return err
-		}
-		cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
+	exit, err := setupCfgFile()
+	if err != nil {
+		return err
+	}
+	if exit {
+		return nil
 	}
 
 	base := filepath.Base(cfgFile)
@@ -189,6 +181,35 @@ func initializeConfig(cmd *cobra.Command) error {
 		return errBind
 	}
 	return nil
+}
+
+func setupCfgFile() (bool, error) {
+	if cfgFile == "" {
+		if len(path) == 0 {
+			return true, nil
+		}
+		if len(path) > 1 {
+			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+			return true, nil
+		}
+		configpath := path[0]
+		info, err := os.Stat(configpath)
+		if err != nil {
+			return true, nil
+		}
+		if !info.IsDir() {
+			configpath = filepath.Dir(configpath)
+		}
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+		if err != nil {
+			if os.IsNotExist(err) {
+				return true, nil
+			}
+			return true, err
+		}
+		cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
+	}
+	return false, nil
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
@@ -290,7 +311,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		excludeQueriesFlag,
 		[]string{},
 		"exclude queries by providing the query ID\n"+
-			"can be provided multiple times or as a comma separated string\n"+
+			msg+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
@@ -298,14 +319,14 @@ func initScanFlags(scanCmd *cobra.Command) {
 		excludeResutlsShorthand,
 		[]string{},
 		"exclude results by providing the similarity ID of a result\n"+
-			"can be provided multiple times or as a comma separated string\n"+
+			msg+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
 	)
 	scanCmd.Flags().StringSliceVar(&excludeCategories,
 		excludeCategoriesFlag,
 		[]string{},
 		"exclude categories by providing its name\n"+
-			"can be provided multiple times or as a comma separated string\n"+
+			msg+
 			"example: 'Access control,Best practices'",
 	)
 	scanCmd.Flags().StringSliceVar(&failOn,
