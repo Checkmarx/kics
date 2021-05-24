@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.9%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (81.2%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (81.4%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -103,7 +103,7 @@
 				
 				<option value="file23">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.4%)</option>
 				
-				<option value="file24">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (74.7%)</option>
+				<option value="file24">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (75.0%)</option>
 				
 				<option value="file25">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
 				
@@ -131,7 +131,7 @@
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/parser/parser.go (93.1%)</option>
 				
-				<option value="file38">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.7%)</option>
+				<option value="file38">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.9%)</option>
 				
 				<option value="file39">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (70.7%)</option>
 				
@@ -1183,6 +1183,8 @@ const (
         typeFlag                = "type"
         typeShorthand           = "t"
         queryExecTimeoutFlag    = "timeout"
+        initError               = "initialization error - "
+        msg                     = "can be provided multiple times or as a comma separated string\n"
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -1191,44 +1193,52 @@ func NewScanCmd() *cobra.Command <span class="cov5" title="13">{
                 Use:   scanCommandStr,
                 Short: "Executes a scan analysis",
                 PersistentPreRunE: func(cmd *cobra.Command, args []string) error </span><span class="cov4" title="9">{
-                        err := initializeConfig(cmd)
-                        if err != nil </span><span class="cov1" title="1">{
-                                return errors.New("initialization error - " + err.Error())
-                        }</span>
-                        <span class="cov4" title="8">err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
-                        if err != nil </span><span class="cov0" title="0">{
-                                return errors.New("initialization error - " + err.Error())
-                        }</span>
-                        <span class="cov4" title="8">err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
-                        if err != nil </span><span class="cov0" title="0">{
-                                return errors.New("initialization error - " + err.Error())
-                        }</span>
-                        <span class="cov4" title="8">return nil</span>
-                },
+                        return preRun(cmd)
+                }</span>,
                 RunE: func(cmd *cobra.Command, args []string) error <span class="cov4" title="8">{
-                        changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
-                        if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil </span><span class="cov0" title="0">{
-                                return err
-                        }</span>
-                        <span class="cov4" title="8">if err := consoleHelpers.InitShouldFailArg(failOn); err != nil </span><span class="cov0" title="0">{
-                                return err
-                        }</span>
-                        <span class="cov4" title="8">if outputPath != "" </span><span class="cov1" title="1">{
-                                directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
-                                if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil </span><span class="cov0" title="0">{
-                                        return err
-                                }</span>
-                        }
-                        <span class="cov4" title="8">if payloadPath != "" </span><span class="cov1" title="1">{
-                                directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
-                                if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil </span><span class="cov0" title="0">{
-                                        return err
-                                }</span>
-                        }
-                        <span class="cov4" title="8">gracefulShutdown()
-                        return scan(changedDefaultQueryPath)</span>
-                },
+                        return run(cmd)
+                }</span>,
         }
+}
+
+func run(cmd *cobra.Command) error <span class="cov4" title="8">{
+        changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+        if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov4" title="8">if err := consoleHelpers.InitShouldFailArg(failOn); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov4" title="8">if outputPath != "" </span><span class="cov1" title="1">{
+                directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
+                if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
+        }
+        <span class="cov4" title="8">if payloadPath != "" </span><span class="cov1" title="1">{
+                directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
+                if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
+        }
+        <span class="cov4" title="8">gracefulShutdown()
+        return scan(changedDefaultQueryPath)</span>
+}
+
+func preRun(cmd *cobra.Command) error <span class="cov4" title="9">{
+        err := initializeConfig(cmd)
+        if err != nil </span><span class="cov1" title="1">{
+                return errors.New(initError + err.Error())
+        }</span>
+        <span class="cov4" title="8">err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+        if err != nil </span><span class="cov0" title="0">{
+                return errors.New(initError + err.Error())
+        }</span>
+        <span class="cov4" title="8">err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+        if err != nil </span><span class="cov0" title="0">{
+                return errors.New(initError + err.Error())
+        }</span>
+        <span class="cov4" title="8">return nil</span>
 }
 
 func initializeConfig(cmd *cobra.Command) error <span class="cov4" title="9">{
@@ -1242,31 +1252,13 @@ func initializeConfig(cmd *cobra.Command) error <span class="cov4" title="9">{
                 return errBind
         }</span>
 
-        <span class="cov4" title="9">if cfgFile == "" </span><span class="cov4" title="7">{
-                if len(path) == 0 </span><span class="cov0" title="0">{
-                        return nil
-                }</span>
-                <span class="cov4" title="7">if len(path) &gt; 1 </span><span class="cov1" title="1">{
-                        warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
-                        return nil
-                }</span>
-                <span class="cov3" title="6">configpath := path[0]
-                info, err := os.Stat(configpath)
-                if err != nil </span><span class="cov0" title="0">{
-                        return nil
-                }</span>
-                <span class="cov3" title="6">if !info.IsDir() </span><span class="cov3" title="5">{
-                        configpath = filepath.Dir(configpath)
-                }</span>
-                <span class="cov3" title="6">_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
-                if err != nil </span><span class="cov3" title="6">{
-                        if os.IsNotExist(err) </span><span class="cov3" title="6">{
-                                return nil
-                        }</span>
-                        <span class="cov0" title="0">return err</span>
-                }
-                <span class="cov0" title="0">cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))</span>
-        }
+        <span class="cov4" title="9">exit, err := setupCfgFile()
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov4" title="9">if exit </span><span class="cov4" title="7">{
+                return nil
+        }</span>
 
         <span class="cov2" title="2">base := filepath.Base(cfgFile)
         v.SetConfigName(base)
@@ -1287,6 +1279,35 @@ func initializeConfig(cmd *cobra.Command) error <span class="cov4" title="9">{
         <span class="cov1" title="1">return nil</span>
 }
 
+func setupCfgFile() (bool, error) <span class="cov4" title="9">{
+        if cfgFile == "" </span><span class="cov4" title="7">{
+                if len(path) == 0 </span><span class="cov0" title="0">{
+                        return true, nil
+                }</span>
+                <span class="cov4" title="7">if len(path) &gt; 1 </span><span class="cov1" title="1">{
+                        warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+                        return true, nil
+                }</span>
+                <span class="cov3" title="6">configpath := path[0]
+                info, err := os.Stat(configpath)
+                if err != nil </span><span class="cov0" title="0">{
+                        return true, nil
+                }</span>
+                <span class="cov3" title="6">if !info.IsDir() </span><span class="cov3" title="5">{
+                        configpath = filepath.Dir(configpath)
+                }</span>
+                <span class="cov3" title="6">_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+                if err != nil </span><span class="cov3" title="6">{
+                        if os.IsNotExist(err) </span><span class="cov3" title="6">{
+                                return true, nil
+                        }</span>
+                        <span class="cov0" title="0">return true, err</span>
+                }
+                <span class="cov0" title="0">cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))</span>
+        }
+        <span class="cov2" title="2">return false, nil</span>
+}
+
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="11">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
@@ -1304,8 +1325,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="290">{
-                if val == true </span><span class="cov9" title="289">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="280">{
+                if val == true </span><span class="cov9" title="279">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1386,7 +1407,7 @@ func initScanFlags(scanCmd *cobra.Command) <span class="cov5" title="13">{
                 excludeQueriesFlag,
                 []string{},
                 "exclude queries by providing the query ID\n"+
-                        "can be provided multiple times or as a comma separated string\n"+
+                        msg+
                         "example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
         )
         scanCmd.Flags().StringSliceVarP(&amp;excludeResults,
@@ -1394,14 +1415,14 @@ func initScanFlags(scanCmd *cobra.Command) <span class="cov5" title="13">{
                 excludeResutlsShorthand,
                 []string{},
                 "exclude results by providing the similarity ID of a result\n"+
-                        "can be provided multiple times or as a comma separated string\n"+
+                        msg+
                         "example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
         )
         scanCmd.Flags().StringSliceVar(&amp;excludeCategories,
                 excludeCategoriesFlag,
                 []string{},
                 "exclude categories by providing its name\n"+
-                        "can be provided multiple times or as a comma separated string\n"+
+                        msg+
                         "example: 'Access control,Best practices'",
         )
         scanCmd.Flags().StringSliceVar(&amp;failOn,
@@ -1979,13 +2000,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2003,7 +2024,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2345,7 +2366,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="30">{
+        for _, a := range s </span><span class="cov8" title="23">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -4325,52 +4346,57 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
                         <span class="cov1" title="1">continue</span>
                 }
 
-                <span class="cov2" title="3">err = filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="17831">{
-                        if err != nil </span><span class="cov0" title="0">{
-                                return err
-                        }</span>
-
-                        <span class="cov9" title="17831">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="17600">{
-                                return skipFolder
-                        }</span>
-
-                        // ------------------ Helm resolver --------------------------------
-                        <span class="cov6" title="231">if info.IsDir() </span><span class="cov1" title="1">{
-                                excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
-                                if errRes != nil </span><span class="cov0" title="0">{
-                                        sentry.CaptureException(errRes)
-                                        log.Err(errRes).
-                                                Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
-                                        return nil
-                                }</span>
-                                <span class="cov1" title="1">if errAdd := s.AddExcluded(excluded); errAdd != nil </span><span class="cov0" title="0">{
-                                        log.Err(errAdd).Msgf("Filesystem files provider couldn't exclude rendered Chart files, Chart=%s", info.Name())
-                                }</span>
-                                <span class="cov1" title="1">resolved = true
-                                return nil</span>
-                        }
-                        // -----------------------------------------------------------------
-
-                        <span class="cov5" title="230">c, err := os.Open(filepath.Clean(path))
-                        if err != nil </span><span class="cov0" title="0">{
-                                return errors.Wrap(err, "failed to open file")
-                        }</span>
-                        <span class="cov5" title="230">defer closeFile(c, info)
-
-                        err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
-                        if err != nil </span><span class="cov5" title="115">{
-                                sentry.CaptureException(err)
-                                log.Err(err).
-                                        Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
-                        }</span>
-                        <span class="cov5" title="230">return nil</span>
-                })
-                <span class="cov2" title="3">if err != nil </span><span class="cov0" title="0">{
+                <span class="cov2" title="3">err = s.walkDir(ctx, scanPath, resolved, sink, resolverSink, extensions)
+                if err != nil </span><span class="cov0" title="0">{
                         return errors.Wrap(err, "failed to walk directory")
                 }</span>
                 <span class="cov2" title="3">continue</span>
         }
         <span class="cov2" title="4">return nil</span>
+}
+
+func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
+        sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov2" title="3">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="17831">{
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
+
+                <span class="cov9" title="17831">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="17600">{
+                        return skipFolder
+                }</span>
+
+                // ------------------ Helm resolver --------------------------------
+                <span class="cov6" title="231">if info.IsDir() </span><span class="cov1" title="1">{
+                        excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
+                        if errRes != nil </span><span class="cov0" title="0">{
+                                sentry.CaptureException(errRes)
+                                log.Err(errRes).
+                                        Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+                                return nil
+                        }</span>
+                        <span class="cov1" title="1">if errAdd := s.AddExcluded(excluded); errAdd != nil </span><span class="cov0" title="0">{
+                                log.Err(errAdd).Msgf("Filesystem files provider couldn't exclude rendered Chart files, Chart=%s", info.Name())
+                        }</span>
+                        <span class="cov1" title="1">resolved = true
+                        return nil</span>
+                }
+                // -----------------------------------------------------------------
+
+                <span class="cov5" title="230">c, err := os.Open(filepath.Clean(path))
+                if err != nil </span><span class="cov0" title="0">{
+                        return errors.Wrap(err, "failed to open file")
+                }</span>
+                <span class="cov5" title="230">defer closeFile(c, info)
+
+                err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
+                if err != nil </span><span class="cov5" title="115">{
+                        sentry.CaptureException(err)
+                        log.Err(err).
+                                Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
+                }</span>
+                <span class="cov5" title="230">return nil</span>
+        })
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) <span class="cov1" title="1">{
@@ -4551,7 +4577,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov6" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="29">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="28">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov5" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -6447,20 +6473,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 }
                 <span class="cov1" title="1">return list, nil</span>
         case *hclsyntax.ObjectConsExpr:<span class="cov2" title="2">
-                m := make(model.Document)
-                for _, item := range value.Items </span><span class="cov6" title="12">{
-                        key, err := c.convertKey(item.KeyExpr)
-                        if err != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(err)
-                                return nil, err
-                        }</span>
-                        <span class="cov6" title="12">m[key], err = c.convertExpression(item.ValueExpr)
-                        if err != nil </span><span class="cov0" title="0">{
-                                sentry.CaptureException(err)
-                                return nil, err
-                        }</span>
-                }
-                <span class="cov2" title="2">return m, nil</span>
+                return c.objectConsExpr(value)</span>
         default:<span class="cov6" title="12">
                 // try to evaluate with variables
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
@@ -6471,6 +6484,23 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 }</span>
                 <span class="cov3" title="3">return c.wrapExpr(expr)</span>
         }
+}
+
+func (c *converter) objectConsExpr(value *hclsyntax.ObjectConsExpr) (model.Document, error) <span class="cov2" title="2">{
+        m := make(model.Document)
+        for _, item := range value.Items </span><span class="cov6" title="12">{
+                key, err := c.convertKey(item.KeyExpr)
+                if err != nil </span><span class="cov0" title="0">{
+                        sentry.CaptureException(err)
+                        return nil, err
+                }</span>
+                <span class="cov6" title="12">m[key], err = c.convertExpression(item.ValueExpr)
+                if err != nil </span><span class="cov0" title="0">{
+                        sentry.CaptureException(err)
+                        return nil, err
+                }</span>
+        }
+        <span class="cov2" title="2">return m, nil</span>
 }
 
 func (c *converter) convertKey(keyExpr hclsyntax.Expression) (string, error) <span class="cov6" title="12">{
@@ -6643,7 +6673,7 @@ func processContent(elements model.Document, content, path string) <span class="
 
 func processElements(elements model.Document, path string) <span class="cov1" title="1">{
         for k, v3 := range elements </span><span class="cov10" title="3">{ // resource elements
-                if !(k == "certificate_body") </span><span class="cov10" title="3">{
+                if k != "certificate_body" </span><span class="cov10" title="3">{
                         continue</span>
                 }
                 <span class="cov0" title="0">content := utils.CheckCertificate(v3.(string))
@@ -7260,6 +7290,10 @@ var (
         vulnerabilityOutSVG string
 )
 
+const (
+        textHTML = "text/html"
+)
+
 var svgMap = map[string]string{
         "github.svg":             githubSVG,
         "info.svg":               infoSVG,
@@ -7316,14 +7350,14 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
                 return err
         }</span>
         <span class="cov1" title="1">minifier := minify.New()
-        minifier.AddFunc("text/html", minifyHtml.Minify)
-        minifier.Add("text/html", &amp;minifyHtml.Minifier{
+        minifier.AddFunc(textHTML, minifyHtml.Minify)
+        minifier.Add(textHTML, &amp;minifyHtml.Minifier{
                 KeepDocumentTags: true,
                 KeepEndTags:      true,
                 KeepQuotes:       true,
         })
 
-        minifierWriter := minifier.Writer("text/html", f)
+        minifierWriter := minifier.Writer(textHTML, f)
         defer minifierWriter.Close()
 
         _, err = minifierWriter.Write(buffer.Bytes())
@@ -7545,6 +7579,10 @@ type splitManifest struct {
         splitIDMap map[int]interface{}
 }
 
+const (
+        kicsHelmID = "# KICS_HELM_ID_"
+)
+
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span class="cov3" title="3">{
         var rfiles = model.ResolvedFiles{}
@@ -7590,7 +7628,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) <spa
         for _, splited := range splitedSource </span><span class="cov4" title="5">{
                 var lineID string
                 for _, line := range strings.Split(splited, "\n") </span><span class="cov6" title="11">{
-                        if strings.Contains(line, "# KICS_HELM_ID_") </span><span class="cov3" title="3">{
+                        if strings.Contains(line, kicsHelmID) </span><span class="cov3" title="3">{
                                 lineID = line // get auxiliary line id
                                 break</span>
                         }
@@ -7649,8 +7687,8 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
         mapLines := make(map[int]int)
         idHelm := -1
         for line, stringLine := range strings.Split(string(originalData), "\n") </span><span class="cov10" title="48">{
-                if strings.Contains(stringLine, "# KICS_HELM_ID_") </span><span class="cov3" title="3">{
-                        id, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(stringLine, "# KICS_HELM_ID_"), ":"))
+                if strings.Contains(stringLine, kicsHelmID) </span><span class="cov3" title="3">{
+                        id, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(stringLine, kicsHelmID), ":"))
                         if err != nil </span><span class="cov0" title="0">{
                                 return nil, err
                         }</span>
@@ -7838,8 +7876,11 @@ import (
         "github.com/spf13/cobra"
 )
 
-// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
-const ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
+const (
+        // ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
+        ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
+        positive       = "positive.tf"
+)
 
 type execute func() error
 
@@ -7935,7 +7976,7 @@ var queryHigh = model.VulnerableQuery{
         Severity:  model.SeverityHigh,
         Files: []model.VulnerableFile{
                 {
-                        FileName:         "positive.tf",
+                        FileName:         positive,
                         Line:             25,
                         IssueType:        "MissingAttribute",
                         SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
@@ -7944,7 +7985,7 @@ var queryHigh = model.VulnerableQuery{
                         Value:            nil,
                 },
                 {
-                        FileName:         "positive.tf",
+                        FileName:         positive,
                         Line:             19,
                         IssueType:        "IncorrectValue",
                         SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
@@ -7961,7 +8002,7 @@ var queryMedium = model.VulnerableQuery{
         Severity:  model.SeverityMedium,
         Files: []model.VulnerableFile{
                 {
-                        FileName:         "positive.tf",
+                        FileName:         positive,
                         Line:             1,
                         IssueType:        "MissingAttribute",
                         SearchKey:        "resource.aws_mq_broker[positive1]",
