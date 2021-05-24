@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/develop/integrations_jenkins/">
+        <link rel="canonical" href="http://www.kics.io/develop/BADGE/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Jenkins - KICS</title>
+        <title>Badge - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -162,11 +162,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Jenkins</a>
+    <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
 </li>
                                     
 <li>
-    <a href="../BADGE/" class="dropdown-item">Badge</a>
+    <a href="./" class="dropdown-item active">Badge</a>
 </li>
                                 </ul>
                             </li>
@@ -210,17 +210,17 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../integrations_gitlabci/" class="nav-link">
+                                <a rel="prev" href="../integrations_jenkins/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../BADGE/" class="nav-link">
+                                <a rel="next" href="../roadmap/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/integrations_jenkins.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/BADGE.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -240,12 +240,8 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#running_kics_in_jenkins" class="nav-link">Running KICS in Jenkins</a>
+            <li class="nav-item" data-level="2"><a href="#creating_a_badge" class="nav-link">Creating a badge</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#declarative_pipelines" class="nav-link">Declarative pipelines:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -253,114 +249,35 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="running_kics_in_jenkins">Running KICS in Jenkins<a class="headerlink" href="#running_kics_in_jenkins" title="Permanent link">&para;</a></h1>
-<p>You can integrate KICS into your Jenkins CI/CD pipelines.</p>
-<p>This provides you the ability to run KICS scans as a stage in your pipeline.</p>
-<h2 id="declarative_pipelines">Declarative pipelines:<a class="headerlink" href="#declarative_pipelines" title="Permanent link">&para;</a></h2>
-<p>Create a new pipeline clicking on <strong>New Item</strong> on the left menu bar, then fill in the name of your pipeline and select the option "pipeline":</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-creating-pipeline.png" width="850"></p>
-<p>Paste one of the pipeline examples bellow:</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-paste-pipeline.png" width="850"></p>
-<p>Save and run your pipeline.</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-success.png" width="850"></p>
-<p>Click on the build number to download the reports stored as artifacts.</p>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/jenkins-pipeline-artifacts.png" width="850"></p>
-<h3 id="install_and_run">Install and run<a class="headerlink" href="#install_and_run" title="Permanent link">&para;</a></h3>
-<p>The following pipeline uses downloads KICS binaries and place them under <code>/usr/bin/kics</code> before scanning a project:</p>
-<pre><code class="language-groovy">pipeline {
-  agent any
-  stages {
-    stage('Checkout Code') {
-      steps {
-        git(branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples')
-      }
-    }
-    // Other stages ...
-    stage('KICS scan') {
-      steps {
-        installKICS()
-        sh &quot;mkdir -p results&quot;
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --report-formats &quot;json,sarif,html&quot;')
-        archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
-      }
-    }
-  }
-}
+<h2 id="creating_a_badge">Creating a badge<a class="headerlink" href="#creating_a_badge" title="Permanent link">&para;</a></h2>
+<p>To create a badge and update it the user should run KICS in their CI.</p>
+<p>This can be done differently for each <a href="https://docs.kics.io/1.3.1/integrations/">integration we have</a>.</p>
+<p>Let's assume a manual CLI process using docker:</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+echo &quot;running KICS in the current dir and writing results.json&quot;
+docker run -v $PWD:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+</code></pre>
+<p>Parse the <code>results.json</code> and request a badge to img.shields.io.</p>
+<p>For this example, let's assume HIGH and MEDIUM results are bad:</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+HIGH=$(jq '.severity_counters.HIGH' results.json)
+MEDIUM=$(jq '.severity_counters.MEDIUM' results.json)
+LOW=$(jq '.severity_counters.LOW' results.json)
+INFO=$(jq '.severity_counters.INFO' results.json)
 
-def installKICS(){
-  def installScript = '''
-    LATEST_VERSION=1.2.4
-    if ! command -v /usr/bin/kics; then
-      wget -q -c https://github.com/Checkmarx/kics/releases/download/v${LATEST_VERSION}/kics_${LATEST_VERSION}_Linux_x64.tar.gz -O /tmp/kics.tar.gz
-      tar xfzv /tmp/kics.tar.gz -C /usr/bin
-      rm -f kics.tar.gz
-    fi
-    /usr/bin/kics version
-  '''
+MESSAGE=&quot;passing&quot;
+COLOR=&quot;green&quot;
+if (( $HIGH &gt; 0 )) || (( $MEDIUM &gt; 0)); then
+    MESSAGE=&quot;failing&quot;
+    COLOR=&quot;red&quot;
+fi
 
-  sh(script: installScript)
-}
+curl -sL &quot;https://img.shields.io/badge/KICS-${MESSAGE}-${COLOR}.svg&quot; &gt; kics-status.svg
 </code></pre>
-<h3 id="using_docker">Using Docker<a class="headerlink" href="#using_docker" title="Permanent link">&para;</a></h3>
-<p>The following pipeline uses KICS docker image to scan a project and publishes the HTML report in Jenkins.</p>
-<p>Plugins required:
-- <a href="https://plugins.jenkins.io/htmlpublisher/">HTML Publisher Plugin</a>
-- <a href="https://plugins.jenkins.io/docker-plugin/">Docker Plugin</a>
-- <a href="https://plugins.jenkins.io/docker-workflow/">Docker Pipeline Plugin</a></p>
-<pre><code class="language-groovy">pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest'
-        }
-    }
-    options {
-        timeout(time: 30, unit: 'MINUTES')
-        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-        disableConcurrentBuilds()
-    }
-    stages {
-        stage('Checkout Code') {
-          steps {
-              git branch: 'master', url: 'https://github.com/GoogleCloudPlatform/terraform-google-examples'
-              stash includes: '**/*', name: 'source'
-          }
-        }
-        stage('KICS scan') {
-            steps {
-                script {
-                    docker.image('checkmarx/kics:latest-alpine').inside(&quot;--entrypoint=''&quot;) {
-                      unstash 'source'
-                      sh('/app/bin/kics -p \$(pwd) -q /app/bin/assets/queries --ci -o results.html')
-                      archiveArtifacts(artifacts: 'results.html', fingerprint: true)
-                      publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '.', reportFiles: 'results.html', reportName: 'KICS Results', reportTitles: ''])
-                    }
-                }
-            }
-        }
-    }
-}
-</code></pre>
-<p>The report will be published in pure HTML by default, if you want to enable your browser to load css and javascript embedded in the report.html you'll have to configure a custom Content-Security-Policy HTTP header.</p>
-<table>
-<thead>
-<tr>
-<th align="left">📝 &nbsp; WARNING</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Only disable Jenkins security features if you know what you're doing</td>
-</tr>
-</tbody>
-</table>
-<p></br></p>
-<p>Go to <strong>Manage Jenkins</strong> &gt; <strong>Script Console</strong></p>
-<p>Paste the following script and run:</p>
-<pre><code class="language-groovy">System.setProperty(&quot;hudson.model.DirectoryBrowserSupport.CSP&quot;, &quot;sandbox allow-scripts; default-src *; style-src * http://* 'unsafe-inline' 'unsafe-eval'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'&quot;);
-</code></pre>
-<p>Jenkins will exhibit the following warning:</p>
-<pre><code>The default Content-Security-Policy is currently overridden using the hudson.model.DirectoryBrowserSupport.CSP system property, which is a potential security issue when browsing untrusted files. As an alternative, you can set up a resource root URL that Jenkins will use to serve some static files without adding Content-Security-Policy headers.
-</code></pre></div>
+<p>An example SVG produced:</p>
+<p><img alt="KICS" src="https://img.shields.io/badge/KICS-passing-green.svg" /></p>
+<p>If you have github pages configured under <code>gh-pages</code> branch configured you can commit and push the badge to it and reference on your README.md, e.g:</p>
+<p><code>![KICS](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/kics-status.svg)</code></p></div>
             </div>
         </div>
 
