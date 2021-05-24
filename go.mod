@@ -7,9 +7,8 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/containerd/containerd v1.4.4 // indirect
 	github.com/fatih/color v1.10.0 // indirect
-	github.com/getsentry/sentry-go v0.10.0
+	github.com/getsentry/sentry-go v0.11.0
 	github.com/golang/mock v1.5.0
-	github.com/google/go-cmp v0.5.4 // indirect
 	github.com/google/pprof v0.0.0-20210413054141-7c2eacd09c8d
 	github.com/google/uuid v1.2.0
 	github.com/gookit/color v1.4.2
