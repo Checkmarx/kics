@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	nameRegex       = regexp.MustCompile(`^([A-Za-z0-9-_]+)\[([A-Za-z0-9-_{}]+)]$`)
+	nameRegex       = regexp.MustCompile(`^(["A-Za-z0-9-_]+)\[(["A-Za-z0-9-_{}]+)]$`)
 	nameRegexDocker = regexp.MustCompile(`{{(.*?)}}`)
 )
 
