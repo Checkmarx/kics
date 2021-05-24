@@ -32,7 +32,7 @@ var (
 )
 
 const (
-	textHTMl = "text/html"
+	textHTML = "text/html"
 )
 
 var svgMap = map[string]string{
@@ -91,14 +91,14 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 		return err
 	}
 	minifier := minify.New()
-	minifier.AddFunc(textHTMl, minifyHtml.Minify)
-	minifier.Add(textHTMl, &minifyHtml.Minifier{
+	minifier.AddFunc(textHTML, minifyHtml.Minify)
+	minifier.Add(textHTML, &minifyHtml.Minifier{
 		KeepDocumentTags: true,
 		KeepEndTags:      true,
 		KeepQuotes:       true,
 	})
 
-	minifierWriter := minifier.Writer(textHTMl, f)
+	minifierWriter := minifier.Writer(textHTML, f)
 	defer minifierWriter.Close()
 
 	_, err = minifierWriter.Write(buffer.Bytes())
