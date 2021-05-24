@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Invalid Media Type Value",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Media Type Value",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive2.yaml"
+  }
+]
