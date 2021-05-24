@@ -23,9 +23,10 @@ import (
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
-	"json":  report.PrintJSONReport,
-	"sarif": report.PrintSarifReport,
-	"html":  report.PrintHTMLReport,
+	"json":   report.PrintJSONReport,
+	"sarif":  report.PrintSarifReport,
+	"html":   report.PrintHTMLReport,
+	"glsast": report.PrintGitlabSASTReport,
 }
 
 // ProgressBar represents a Progress

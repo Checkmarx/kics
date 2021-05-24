@@ -144,7 +144,7 @@ func initTool() sarifTool {
 			ToolName:     "KICS",
 			ToolVersion:  constants.Version,
 			ToolFullName: constants.Fullname,
-			ToolURI:      "https://www.kics.io/",
+			ToolURI:      constants.URL,
 			Rules:        make([]sarifRule, 0),
 		},
 	}

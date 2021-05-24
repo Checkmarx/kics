@@ -14,7 +14,7 @@ func TestCreateSarifReport(t *testing.T) {
 	require.Equal(t, "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json", sarif.Schema)
 	require.Equal(t, "2.1.0", sarif.SarifVersion)
 	require.Equal(t, "KICS", sarif.Runs[0].Tool.Driver.ToolName)
-	require.Equal(t, "https://www.kics.io/", sarif.Runs[0].Tool.Driver.ToolURI)
+	require.Equal(t, constants.URL, sarif.Runs[0].Tool.Driver.ToolURI)
 	require.Equal(t, constants.Fullname, sarif.Runs[0].Tool.Driver.ToolFullName)
 	require.Equal(t, constants.Version, sarif.Runs[0].Tool.Driver.ToolVersion)
 }

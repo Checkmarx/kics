@@ -7,10 +7,12 @@ import (
 	"strings"
 )
 
+const jsonExtension = ".json"
+
 // PrintJSONReport prints on JSON file the summary results
 func PrintJSONReport(path, filename string, body interface{}) error {
 	if !strings.Contains(filename, ".") {
-		filename += ".json"
+		filename += jsonExtension
 	}
 	fullPath := filepath.Join(path, filename)
 

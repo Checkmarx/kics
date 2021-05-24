@@ -18,6 +18,9 @@ const (
 	// Fullname - KICS fullname
 	Fullname = "Keeping Infrastructure as Code Secure"
 
+	// URL - KICS url
+	URL = "https://www.kics.io/"
+
 	// DefaultLogFile - logfile name
 	DefaultLogFile = "info.log"
 

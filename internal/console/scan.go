@@ -515,7 +515,7 @@ func scan(changedDefaultQueryPath bool) error {
 
 	elapsed := time.Since(scanStartTime)
 
-	summary := getSummary(t, results)
+	summary := getSummary(t, results, scanStartTime, time.Now())
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		log.Err(err)
@@ -533,7 +533,7 @@ func scan(changedDefaultQueryPath bool) error {
 	return nil
 }
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summary {
+func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -542,7 +542,12 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summa
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
-	return model.CreateSummary(counters, results, scanID)
+	summary := model.CreateSummary(counters, results, scanID)
+	summary.Times = model.Times{
+		Start: start,
+		End:   end,
+	}
+	return summary
 }
 
 func resolveOutputs(
