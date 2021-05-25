@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Schema Object Using Enum With Keyword",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Object Using Enum With Keyword",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive2.yaml"
+  }
+]
