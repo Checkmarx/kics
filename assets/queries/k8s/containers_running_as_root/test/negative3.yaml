@@ -12,3 +12,4 @@ spec:
     securityContext:
       runAsUser: 1000
       runAsNonRoot: false
+      

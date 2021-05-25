@@ -153,4 +153,5 @@ checkUserContainer(rootSecurityContext, containerType, container, path, metadata
 		"keyExpectedValue": sprintf("'%s.%s.securityContext.runAsUser' is defined", [path, containerType]),
 		"keyActualValue": sprintf("'%s.%s.securityContext.runAsUser' is undefined", [path, containerType]),
 	}
+	
 }
