@@ -24,7 +24,7 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 
 	sarifReport := reportModel.NewSarifReport()
 	for idx := range summary.Queries {
-		sarifReport.BuildIssue(&summary.Queries[idx])
+		sarifReport.BuildSarifIssue(&summary.Queries[idx])
 	}
 
 	return PrintJSONReport(path, filename, sarifReport)

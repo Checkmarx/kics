@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var sarifTests = []struct {
+var gitlabSASTTests = []struct {
 	caseTest       jsonCaseTest
 	expectedResult model.Summary
 }{
@@ -19,22 +19,22 @@ var sarifTests = []struct {
 		caseTest: jsonCaseTest{
 			summary:  test.SummaryMock,
 			path:     "./testdir",
-			filename: "testout",
+			filename: "test",
 		},
 		expectedResult: test.SummaryMock,
 	},
 }
 
-// TestPrintSarifReport tests the functions [PrintSarifReport()] and all the methods called by them
-func TestPrintSarifReport(t *testing.T) {
-	for idx, test := range sarifTests {
-		t.Run(fmt.Sprintf("Sarif File test case %d", idx), func(t *testing.T) {
+// TestPrintGitlabSASTReport tests the functions [PrintGitlabSASTReport()] and all the methods called by them
+func TestPrintGitlabSASTReport(t *testing.T) {
+	for idx, test := range gitlabSASTTests {
+		t.Run(fmt.Sprintf("Gitlab SAST Report File test case %d", idx), func(t *testing.T) {
 			if err := os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			err := PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintGitlabSASTReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
 			require.NoError(t, err)
-			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".sarif"))
+			require.FileExists(t, filepath.Join(test.caseTest.path, "gl-sast-"+test.caseTest.filename+".json"))
 			os.RemoveAll(test.caseTest.path)
 		})
 	}

@@ -9,6 +9,8 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
+const timeFormat = "2006-01-02T15:04:05" // YYYY-MM-DDTHH:MM:SS a.k.a ISO8601
+
 type gitlabSASTReport struct {
 	Schema          string                    `json:"schema"`
 	SchemaVersion   string                    `json:"version"`
@@ -73,20 +75,20 @@ type gitlabSASTVulnerabilityIdentifier struct {
 
 // GitlabSASTReport represents a usable gitlab sast report reference
 type GitlabSASTReport interface {
-	BuildVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile)
+	BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile)
 }
 
+// NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be uses
 func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport {
 	return &gitlabSASTReport{
 		Schema:          "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json",
 		SchemaVersion:   "13.1.0",
-		Scan:            initScan(start, end),
+		Scan:            initGitlabSASTScan(start, end),
 		Vulnerabilities: make([]gitlabSASTVulnerability, 0),
 	}
 }
 
-func initScan(start, end time.Time) gitlabSASTScan {
-	timeFormat := "2006-01-02T15:04:05" // YYYY-MM-DDTHH:MM:SS a.k.a ISO8601
+func initGitlabSASTScan(start, end time.Time) gitlabSASTScan {
 	return gitlabSASTScan{
 		Status:    "success",
 		Scantype:  "sast",
@@ -104,7 +106,8 @@ func initScan(start, end time.Time) gitlabSASTScan {
 	}
 }
 
-func (glsr *gitlabSASTReport) BuildVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile) {
+// BuildGitlabSASTVulnerability adds a new vulnerability struct to vulnerability slice
+func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile) {
 	if len(issue.Files) > 0 {
 		vulnerability := gitlabSASTVulnerability{
 			ID:       file.SimilarityID,

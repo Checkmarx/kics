@@ -29,7 +29,7 @@ func PrintGitlabSASTReport(path, filename string, body interface{}) error {
 
 	for idxQuery := range summary.Queries {
 		for idxFile := range summary.Queries[idxQuery].Files {
-			gitlabSASTReport.BuildVulnerability(&summary.Queries[idxQuery], &summary.Queries[idxQuery].Files[idxFile])
+			gitlabSASTReport.BuildGitlabSASTVulnerability(&summary.Queries[idxQuery], &summary.Queries[idxQuery].Files[idxFile])
 		}
 	}
 

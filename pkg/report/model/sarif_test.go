@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestCreateSarifReport tests if creates a sarif report correctly
-func TestCreateSarifReport(t *testing.T) {
+// TestNewSarifReport tests if creates a sarif report correctly
+func TestNewSarifReport(t *testing.T) {
 	sarif := NewSarifReport().(*sarifReport)
 	require.Equal(t, "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json", sarif.Schema)
 	require.Equal(t, "2.1.0", sarif.SarifVersion)
@@ -19,13 +19,13 @@ func TestCreateSarifReport(t *testing.T) {
 	require.Equal(t, constants.Version, sarif.Runs[0].Tool.Driver.ToolVersion)
 }
 
-type test struct {
+type sarifTest struct {
 	name string
 	vq   []model.VulnerableQuery
 	want sarifReport
 }
 
-var tests = []test{
+var sarifTests = []sarifTest{
 	{
 		name: "Should not create any rule",
 		vq: []model.VulnerableQuery{
@@ -39,7 +39,7 @@ var tests = []test{
 			},
 		},
 		want: sarifReport{
-			Runs: initRun(),
+			Runs: initSarifRun(),
 		},
 	},
 	{
@@ -238,12 +238,12 @@ var tests = []test{
 	},
 }
 
-func TestBuildIssue(t *testing.T) {
-	for _, tt := range tests {
+func TestBuildSarifIssue(t *testing.T) {
+	for _, tt := range sarifTests {
 		t.Run(tt.name, func(t *testing.T) {
 			result := NewSarifReport().(*sarifReport)
 			for _, vq := range tt.vq {
-				result.BuildIssue(&vq)
+				result.BuildSarifIssue(&vq)
 			}
 			require.Equal(t, len(tt.want.Runs[0].Results), len(result.Runs[0].Results))
 			require.Equal(t, len(tt.want.Runs[0].Tool.Driver.Rules), len(result.Runs[0].Tool.Driver.Rules))

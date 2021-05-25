@@ -128,7 +128,7 @@ type sarifRun struct {
 
 // SarifReport represents a usable sarif report reference
 type SarifReport interface {
-	BuildIssue(issue *model.VulnerableQuery)
+	BuildSarifIssue(issue *model.VulnerableQuery)
 }
 
 type sarifReport struct {
@@ -138,7 +138,7 @@ type sarifReport struct {
 	Runs         []sarifRun `json:"runs"`
 }
 
-func initTool() sarifTool {
+func initSarifTool() sarifTool {
 	return sarifTool{
 		Driver: sarifDriver{
 			ToolName:     "KICS",
@@ -150,7 +150,7 @@ func initTool() sarifTool {
 	}
 }
 
-func initCategories() []sarifTaxanomyDefinition {
+func initSarifCategories() []sarifTaxanomyDefinition {
 	allCategories := []sarifTaxanomyDefinition{noCategory}
 	for _, category := range categories {
 		allCategories = append(allCategories, category)
@@ -158,7 +158,7 @@ func initCategories() []sarifTaxanomyDefinition {
 	return allCategories
 }
 
-func initTaxonomies() []sarifTaxonomy {
+func initSarifTaxonomies() []sarifTaxonomy {
 	return []sarifTaxonomy{
 		{
 			TaxonomyGUID: targetTemplate.ToolComponent.ComponentReferenceGUID,
@@ -169,17 +169,17 @@ func initTaxonomies() []sarifTaxonomy {
 			TaxonomyFullDescription: sarifMessage{
 				Text: "This taxonomy contains the types an issue can assume",
 			},
-			TaxonomyDefinitions: initCategories(),
+			TaxonomyDefinitions: initSarifCategories(),
 		},
 	}
 }
 
-func initRun() []sarifRun {
+func initSarifRun() []sarifRun {
 	return []sarifRun{
 		{
-			Tool:       initTool(),
+			Tool:       initSarifTool(),
 			Results:    make([]sarifResult, 0),
-			Taxonomies: initTaxonomies(),
+			Taxonomies: initSarifTaxonomies(),
 		},
 	}
 }
@@ -189,11 +189,11 @@ func NewSarifReport() SarifReport {
 	return &sarifReport{
 		Schema:       "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
 		SarifVersion: "2.1.0",
-		Runs:         initRun(),
+		Runs:         initSarifRun(),
 	}
 }
 
-func (sr *sarifReport) findCategory(category string) int {
+func (sr *sarifReport) findSarifCategory(category string) int {
 	for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions {
 		if taxonomy.DefinitionName == category {
 			return idx
@@ -202,9 +202,9 @@ func (sr *sarifReport) findCategory(category string) int {
 	return 0
 }
 
-func (sr *sarifReport) buildCategory(category string) sarifDescriptorReference {
+func (sr *sarifReport) buildSarifCategory(category string) sarifDescriptorReference {
 	target := targetTemplate
-	categoryIndex := sr.findCategory(category)
+	categoryIndex := sr.findSarifCategory(category)
 	target.ReferenceIndex = categoryIndex
 	target.ReferenceID = sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex].DefinitionID
 	if categoryIndex == 0 {
@@ -216,7 +216,7 @@ func (sr *sarifReport) buildCategory(category string) sarifDescriptorReference {
 	return target
 }
 
-func (sr *sarifReport) findRuleIndex(ruleID string) int {
+func (sr *sarifReport) findSarifRuleIndex(ruleID string) int {
 	for idx, rule := range sr.Runs[0].Tool.Driver.Rules {
 		if rule.RuleID == ruleID {
 			return idx
@@ -225,8 +225,8 @@ func (sr *sarifReport) findRuleIndex(ruleID string) int {
 	return -1
 }
 
-func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
-	index := sr.findRuleIndex(queryMetadata.queryID)
+func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata) int {
+	index := sr.findSarifRuleIndex(queryMetadata.queryID)
 	if index < 0 {
 		helpURI := "https://docs.kics.io/"
 		if queryMetadata.queryURI != "" {
@@ -238,7 +238,7 @@ func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 			RuleShortDescription: sarifMessage{Text: queryMetadata.queryName},
 			RuleFullDescription:  sarifMessage{Text: queryMetadata.queryDescription},
 			DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
-			RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildCategory(queryMetadata.queryCategory)}},
+			RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildSarifCategory(queryMetadata.queryCategory)}},
 			HelpURI:              helpURI,
 		}
 
@@ -248,8 +248,8 @@ func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int {
 	return index
 }
 
-// BuildIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildIssue(issue *model.VulnerableQuery) {
+// BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
+func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
 	if len(issue.Files) > 0 {
 		absBasePath, err := filepath.Abs(sr.basePath)
 		if err != nil {
@@ -263,7 +263,7 @@ func (sr *sarifReport) BuildIssue(issue *model.VulnerableQuery) {
 			queryCategory:    issue.Category,
 			severity:         issue.Severity,
 		}
-		ruleIndex := sr.buildRule(&metadata)
+		ruleIndex := sr.buildSarifRule(&metadata)
 		kind := "fail"
 		if severityLevelEquivalence[issue.Severity] == "none" {
 			kind = "informational"

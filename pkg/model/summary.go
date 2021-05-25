@@ -56,8 +56,8 @@ type Counters struct {
 
 // Times represents an object that contains the start and end time of the scan
 type Times struct {
-	Start time.Time
-	End   time.Time
+	Start time.Time `json:"start"`
+	End   time.Time `json:"end"`
 }
 
 // Summary is a report of a single scan
