@@ -143,7 +143,7 @@
 				
 				<option value="file43">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file44">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (74.5%)</option>
+				<option value="file44">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (80.3%)</option>
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (75.0%)</option>
 				
@@ -1325,8 +1325,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="288">{
-                if val == true </span><span class="cov9" title="287">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="279">{
+                if val == true </span><span class="cov9" title="278">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2000,13 +2000,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2031,7 +2031,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -2366,7 +2366,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="23">{
+        for _, a := range s </span><span class="cov8" title="30">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3771,7 +3771,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4577,7 +4577,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov6" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="29">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov10" title="33">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov5" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -7097,19 +7097,19 @@ func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) <
 }</span>
 
 // Parse parses yaml/yml file and returns it as a Document
-func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, error) <span class="cov10" title="2">{
+func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, error) <span class="cov4" title="3">{
         var documents []model.Document
         dec := yaml.NewDecoder(bytes.NewReader(fileContent))
 
         doc := &amp;model.Document{}
-        for dec.Decode(doc) == nil </span><span class="cov10" title="2">{
-                if doc != nil </span><span class="cov10" title="2">{
+        for dec.Decode(doc) == nil </span><span class="cov4" title="3">{
+                if doc != nil </span><span class="cov4" title="3">{
                         documents = append(documents, *doc)
                 }</span>
-                <span class="cov10" title="2">doc = &amp;model.Document{}</span>
+                <span class="cov4" title="3">doc = &amp;model.Document{}</span>
         }
 
-        <span class="cov10" title="2">if documents == nil </span><span class="cov1" title="1">{
+        <span class="cov4" title="3">if documents == nil </span><span class="cov1" title="1">{
                 var err error
                 documents, err = playbookParser(filePath, fileContent)
                 if err != nil </span><span class="cov0" title="0">{
@@ -7120,7 +7120,42 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
                 }</span>
         }
 
-        <span class="cov10" title="2">return documents, nil</span>
+        <span class="cov4" title="3">return convertKeysToString(documents), nil</span>
+}
+
+// convertKeysToString goes through every document to convert map[interface{}]interface{}
+// to map[string]interface{}
+func convertKeysToString(docs []model.Document) []model.Document <span class="cov4" title="3">{
+        documents := make([]model.Document, 0, len(docs))
+        for _, doc := range docs </span><span class="cov5" title="4">{
+                for key, value := range doc </span><span class="cov6" title="5">{
+                        doc[key] = convert(value)
+                }</span>
+                <span class="cov5" title="4">documents = append(documents, doc)</span>
+        }
+        <span class="cov4" title="3">return documents</span>
+}
+
+// convert goes recursively through the keys in the given value and converts nested maps type of map[interface{}]interface{}
+// to map[string]interface{}
+func convert(value interface{}) interface{} <span class="cov10" title="15">{
+        switch t := value.(type) </span>{
+        case map[interface{}]interface{}:<span class="cov1" title="1">
+                mapStr := map[string]interface{}{}
+                for key, val := range t </span><span class="cov1" title="1">{
+                        mapStr[key.(string)] = convert(val)
+                }</span>
+                <span class="cov1" title="1">return mapStr</span>
+        case []interface{}:<span class="cov4" title="3">
+                for key, val := range t </span><span class="cov4" title="3">{
+                        t[key] = convert(val)
+                }</span>
+        case model.Document:<span class="cov6" title="6">
+                for key, val := range t </span><span class="cov6" title="6">{
+                        t[key] = convert(val)
+                }</span>
+        }
+        <span class="cov9" title="14">return value</span>
 }
 
 // SupportedExtensions returns extensions supported by this parser, which are yaml and yml extension
@@ -7167,7 +7202,7 @@ func processElements(elements map[string]interface{}, filePath string) <span cla
 func addExtraInfo(documents []model.Document, filePath string) []model.Document <span class="cov1" title="1">{
         for _, documentPlaybooks := range documents </span><span class="cov1" title="1">{ // iterate over documents
                 for _, resources := range documentPlaybooks["playbooks"].([]interface{}) </span><span class="cov1" title="1">{ // iterate over playbooks
-                        for _, v := range resources.(map[string]interface{}) </span><span class="cov10" title="2">{
+                        for _, v := range resources.(map[string]interface{}) </span><span class="cov3" title="2">{
                                 _, ok := v.(map[string]interface{})
                                 if ok </span><span class="cov1" title="1">{
                                         processElements(v.(map[string]interface{}), filePath)
