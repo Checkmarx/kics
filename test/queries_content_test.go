@@ -239,7 +239,10 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return model.Vulnerability{}, nil
 		},
 		trk,
-		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.QuerySelectionFilter{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		},
 		map[string]bool{},
 		60,
 	)

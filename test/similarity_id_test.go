@@ -291,7 +291,10 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.QuerySelectionFilter{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		},
 		map[string]bool{}, 60)
 
 	require.Nil(t, err)

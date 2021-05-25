@@ -38,7 +38,8 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Run(tt.name, func(b *testing.B) {
 			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
 			for n := 0; n < b.N; n++ {
-				if _, err := s.GetQueries(ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}); err != nil {
+				filter := QuerySelectionFilter{IncludeQueries{ByIDs: []string{}}, ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}}
+				if _, err := s.GetQueries(filter); err != nil {
 					b.Errorf("Error: %s", err)
 				}
 			}
@@ -214,7 +215,15 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			got, err := s.GetQueries(ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}})
+			filter := QuerySelectionFilter{
+				IncludeQueries{
+					ByIDs: []string{}},
+				ExcludeQueries{
+					ByIDs:        []string{},
+					ByCategories: []string{},
+				},
+			}
+			got, err := s.GetQueries(filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return

@@ -101,13 +101,13 @@ func NewInspector(
 	queriesSource source.QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
-	excludeQueries source.ExcludeQueries,
+	queryFilter source.QuerySelectionFilter,
 	excludeResults map[string]bool,
 	queryTimeout int) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
-	queries, err := queriesSource.GetQueries(excludeQueries)
+	queries, err := queriesSource.GetQueries(queryFilter)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
