@@ -47,6 +47,109 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 	}
 }
 
+// TestFilesystemSource_GetQueriesWithExclude test the function GetQuery with QuerySelectionFilter set for Exclude queries
+func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
+	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
+	require.NoError(t, err)
+	type fields struct {
+		Source string
+		Types  []string
+	}
+	tests := []struct {
+		name            string
+		fields          fields
+		excludeIDs      []string
+		excludeCategory []string
+		want            []model.QueryMetadata
+		wantErr         bool
+	}{
+		{
+			name: "get_queries_with_exclude_result_1",
+			fields: fields{
+				Source: "./test/fixtures/all_auth_users_get_read_access",
+				Types:  []string{""},
+			},
+			excludeCategory: []string{},
+			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e4449"},
+			want: []model.QueryMetadata{
+				{
+					Query:   "all_auth_users_get_read_access",
+					Content: string(contentByte),
+					Metadata: map[string]interface{}{
+						"category":        "Access Control",
+						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
+						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
+						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+						"queryName":       "All Auth Users Get Read Access",
+						"severity":        model.SeverityHigh,
+						"platform":        "CloudFormation",
+					},
+					Platform:    "unknown",
+					Aggregation: 1,
+				},
+			},
+			wantErr: false,
+		},
+		{
+			name: "get_queries_with_exclude_no_result_1",
+			fields: fields{
+				Source: "./test/fixtures/all_auth_users_get_read_access",
+				Types:  []string{""},
+			},
+			excludeCategory: []string{},
+			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e139"},
+			want:            []model.QueryMetadata{},
+			wantErr:         false,
+		},
+		{
+			name:            "get_queries_with_exclude_error",
+			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e139"},
+			excludeCategory: []string{},
+			fields: fields{
+				Source: "../no-path",
+			},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "get_queries_with_exclude_category_no_result",
+			fields: fields{
+				Source: "./test/fixtures/all_auth_users_get_read_access",
+				Types:  []string{""},
+			},
+			excludeCategory: []string{"Access Control"},
+			excludeIDs:      []string{},
+			want:            []model.QueryMetadata{},
+			wantErr:         false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := NewFilesystemSource(tt.fields.Source, []string{""})
+			filter := QuerySelectionFilter{
+				IncludeQueries{ByIDs: []string{}},
+				ExcludeQueries{
+					ByIDs:        tt.excludeIDs,
+					ByCategories: tt.excludeCategory,
+				},
+			}
+			got, err := s.GetQueries(filter)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			wantStr, err := test.StringifyStruct(tt.want)
+			require.Nil(t, err)
+			gotStr, err := test.StringifyStruct(got)
+			require.Nil(t, err)
+			require.Equal(t, tt.want, got, "want = %s\ngot = %s", wantStr, gotStr)
+		})
+	}
+}
+
 // TestFilesystemSource_GetQueriesWithInclude test the function GetQuery with QuerySelectionFilter set for include queries
 func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	if err := test.ChangeCurrentDir("kics"); err != nil {
