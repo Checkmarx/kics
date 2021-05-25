@@ -153,9 +153,9 @@ func preRun(cmd *cobra.Command) error {
 }
 
 func formatNewError(flag1, flag2 string) error {
-	return errors.New(fmt.Sprintf("can't provide '%s' and '%s' flags simultaneously",
+	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
 		flag1,
-		flag2))
+		flag2)
 }
 
 func validateQuerySelectionFlags() error {

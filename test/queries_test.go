@@ -100,7 +100,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctx := context.TODO()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 			q, err := source.ReadQuery(entry.dir)
 			require.NoError(tb, err)

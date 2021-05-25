@@ -255,7 +255,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	ctrl *gomock.Controller, testParams testParamsType) []model.Vulnerability {
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 
-	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 			metadata := source.ReadMetadata(testParams.queryDir)
 

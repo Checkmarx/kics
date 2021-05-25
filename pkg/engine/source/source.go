@@ -15,7 +15,7 @@ type ExcludeQueries struct {
 	ByCategories []string
 }
 
-// ExcludeQueries is a struct that represents the option to include queries by ID taking precedence over exclusion
+// IncludeQueries is a struct that represents the option to include queries by ID taking precedence over exclusion
 type IncludeQueries struct {
 	ByIDs []string
 }

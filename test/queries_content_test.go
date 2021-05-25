@@ -181,7 +181,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctx := context.Background()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 			q, err := source.ReadQuery(entry.dir)
 
