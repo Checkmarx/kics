@@ -49,7 +49,7 @@ func processContent(elements model.Document, content, path string) {
 
 func processElements(elements model.Document, path string) {
 	for k, v3 := range elements { // resource elements
-		if !(k == "certificate_body") {
+		if k != "certificate_body" {
 			continue
 		}
 		content := utils.CheckCertificate(v3.(string))

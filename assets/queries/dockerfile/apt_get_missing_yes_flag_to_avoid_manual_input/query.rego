@@ -28,7 +28,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
+	dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
 
 	not avoidManualInputInList(resource.Value)
 
@@ -46,7 +46,7 @@ isAptGet(command) {
 }
 
 avoidManualInputInList(command) {
-	flags := ["-y", "yes", "--assumeyes"]
+	flags := ["-y", "yes", "--assumeyes", "-qy"]
 
 	contains(command[j], flags[x])
 }
@@ -56,13 +56,13 @@ isAptGet(command) {
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*install", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-(q)?y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*install", command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes)", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-(q)?y|-yes|--assumeyes)", command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9-:=.$_]+ *)*(-(q)?y|-yes|--assumeyes)", command)
 }

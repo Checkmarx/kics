@@ -1,9 +1,0 @@
-{
-	"id": "c3e1b6ae-d92c-44b3-8ed5-1f5442bab6a4",
-	"queryName": "Secrets Stored In Dockerfile",
-	"severity": "MEDIUM",
-	"category": "Secret Management",
-	"descriptionText": "Scan Dockerfile to ensure that there are no secrets stored",
-	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#env",
-	"platform": "Dockerfile"
-}

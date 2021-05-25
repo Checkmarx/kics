@@ -115,8 +115,7 @@ is_path_template(path) = matches {
 
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
-	numeric := {"integer", "number"}
-	type == numeric[_]
+	is_numeric_type(type)
 	not is_number(field)
 } else {
 	type == "string"
