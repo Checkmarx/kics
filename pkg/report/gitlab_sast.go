@@ -10,6 +10,7 @@ import (
 
 // PrintGitlabSASTReport creates a report file on sarif format
 func PrintGitlabSASTReport(path, filename string, body interface{}) error {
+	filename = strings.ReplaceAll(filename, ".glsast", "")
 	if !strings.HasSuffix(filename, jsonExtension) {
 		filename += jsonExtension
 	}

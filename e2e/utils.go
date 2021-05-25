@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
@@ -143,6 +144,8 @@ func setFields(t *testing.T, expect, want []string, location string) {
 			"\nExpected:\n%v\n,Actual:\n%v\n", expectStr, wantStr)
 
 	case "result":
+		timeValue := time.Date(2021, 5, 1, 9, 0, 0, 0, time.UTC)
+
 		expectI := model.Summary{}
 		wantI := model.Summary{}
 
@@ -152,6 +155,10 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		require.NoError(t, errW, "[result] Unmarshaling JSON file should not yield an error")
 
 		wantI.TotalQueries = 0
+		wantI.Start = timeValue
+		wantI.End = timeValue
+		expectI.Start = timeValue
+		expectI.End = timeValue
 		for i := range wantI.Queries {
 			for j := range expectI.Queries[i].Files {
 				wantI.Queries[i].Files[j].FileName = filekey
