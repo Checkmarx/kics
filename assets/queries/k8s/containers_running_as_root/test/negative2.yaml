@@ -17,3 +17,4 @@ spec:
     securityContext:
       runAsUser: 2000
       runAsNonRoot: true
+      
