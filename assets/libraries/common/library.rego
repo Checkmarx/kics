@@ -214,6 +214,9 @@ isCommonValue(p) {
 		"BASIC",
 		"NUMBER",
 		"MASLEN",
+		"VERSION",
+		"MAKE",
+		"ARCH",
 	}
 
 	black := bl[_]
@@ -285,6 +288,7 @@ isCommonKey(p) {
 		"lc_all",
 		"lang",
 		"path",
+		"arch",
 	}
 
 	black := bl[_]
