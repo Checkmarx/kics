@@ -26,7 +26,6 @@ func TestNewGitlabSASTReport(t *testing.T) {
 	require.Equal(t, start.Format(timeFormat), glSAST.Scan.StartTime)
 }
 
-// AJEITAR ESSE TIPO E ADICIONAR FILE PARA OS TESTES
 type gitlabSASTTest struct {
 	name string
 	vq   model.VulnerableQuery

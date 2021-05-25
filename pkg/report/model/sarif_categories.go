@@ -9,145 +9,56 @@ var noCategory = sarifTaxanomyDefinition{
 	DefinitionFullDescription:  sarifMessage{Text: "Category is not defined"},
 }
 
+func createSarifCategory(identifier, name, description string) sarifTaxanomyDefinition {
+	return sarifTaxanomyDefinition{
+		DefinitionID:   identifier,
+		DefinitionName: name,
+		DefinitionShortDescription: sarifMessage{
+			Text: description,
+		},
+		DefinitionFullDescription: sarifMessage{
+			Text: description,
+		},
+	}
+}
+
 var categories = map[string]sarifTaxanomyDefinition{
-	"Access Control": {
-		DefinitionID:   categoryIdentifier + "001",
-		DefinitionName: "Access Control",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Service permission and identity management",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Service permission and identity management",
-		},
-	},
-	"Availability": {
-		DefinitionID:   categoryIdentifier + "002",
-		DefinitionName: "Availability",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Reliability and Scalability",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Reliability and Scalability",
-		},
-	},
-	"Backup": {
-		DefinitionID:   categoryIdentifier + "003",
-		DefinitionName: "Backup",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Survivability and Recovery",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Survivability and Recovery",
-		},
-	},
-	"Best Practices": {
-		DefinitionID:   categoryIdentifier + "004",
-		DefinitionName: "Best Practices",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Metadata management",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Metadata management",
-		},
-	},
-	"Build Process": {
-		DefinitionID:   categoryIdentifier + "005",
-		DefinitionName: "Build Process",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Insecure configurations when building/deploying",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Insecure configurations when building/deploying",
-		},
-	},
-	"Encryption": {
-		DefinitionID:   categoryIdentifier + "006",
-		DefinitionName: "Encryption",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Data Security and Encryption configuration",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Data Security and Encryption configuration",
-		},
-	},
-	"Insecure Configurations": {
-		DefinitionID:   categoryIdentifier + "007",
-		DefinitionName: "Insecure Configurations",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Configurations which expose the application unnecessarily",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Configurations which expose the application unnecessarily",
-		},
-	},
-	"Insecure Defaults": {
-		DefinitionID:   categoryIdentifier + "008",
-		DefinitionName: "Insecure Defaults",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Configurations that are insecure by default",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Configurations that are insecure by default",
-		},
-	},
-	"Networking and Firewall": {
-		DefinitionID:   categoryIdentifier + "009",
-		DefinitionName: "Networking and Firewall",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Network port exposure and firewall configuration",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Network port exposure and firewall configuration",
-		},
-	},
-	"Observability": {
-		DefinitionID:   categoryIdentifier + "010",
-		DefinitionName: "Observability",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Logging and Monitoring",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Logging and Monitoring",
-		},
-	},
-	"Resource Management": {
-		DefinitionID:   categoryIdentifier + "011",
-		DefinitionName: "Resource Management",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Resource and privilege limit configuration",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Resource and privilege limit configuration",
-		},
-	},
-	"Secret Management": {
-		DefinitionID:   categoryIdentifier + "012",
-		DefinitionName: "Secret Management",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Secret and Key management",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Secret and Key management",
-		},
-	},
-	"Supply-Chain": {
-		DefinitionID:   categoryIdentifier + "013",
-		DefinitionName: "Supply-Chain",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Dependency version management",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Dependency version management",
-		},
-	},
-	"Structure and Semantics": {
-		DefinitionID:   categoryIdentifier + "014",
-		DefinitionName: "Structure and Semantics",
-		DefinitionShortDescription: sarifMessage{
-			Text: "Malformed document structure or inadequate semantics",
-		},
-		DefinitionFullDescription: sarifMessage{
-			Text: "Malformed document structure or inadequate semantics",
-		},
-	},
+	"Access Control": createSarifCategory(categoryIdentifier+"001", "Access Control", "Service permission and identity management"),
+	"Availability":   createSarifCategory(categoryIdentifier+"002", "Availability", "Reliability and Scalability"),
+	"Backup":         createSarifCategory(categoryIdentifier+"003", "Backup", "Survivability and Recovery"),
+	"Best Practices": createSarifCategory(categoryIdentifier+"004", "Best Practices", "Metadata management"),
+	"Build Process": createSarifCategory(
+		categoryIdentifier+"005",
+		"Build Process",
+		"Insecure configurations when building/deploying",
+	),
+	"Encryption": createSarifCategory(categoryIdentifier+"006", "Encryption", "Data Security and Encryption configuration"),
+	"Insecure Configurations": createSarifCategory(
+		categoryIdentifier+"007",
+		"Insecure Configurations",
+		"Configurations which expose the application unnecessarily",
+	),
+	"Insecure Defaults": createSarifCategory(
+		categoryIdentifier+"008",
+		"Insecure Defaults",
+		"Configurations that are insecure by default",
+	),
+	"Networking and Firewall": createSarifCategory(
+		categoryIdentifier+"009",
+		"Networking and Firewall",
+		"Network port exposure and firewall configuration",
+	),
+	"Observability": createSarifCategory(categoryIdentifier+"010", "Observability", "Logging and Monitoring"),
+	"Resource Management": createSarifCategory(
+		categoryIdentifier+"011",
+		"Resource Management",
+		"Resource and privilege limit configuration",
+	),
+	"Secret Management": createSarifCategory(categoryIdentifier+"012", "Secret Management", "Secret and Key management"),
+	"Supply-Chain":      createSarifCategory(categoryIdentifier+"013", "Supply-Chain", "Dependency version management"),
+	"Structure and Semantics": createSarifCategory(
+		categoryIdentifier+"014",
+		"Structure and Semantics",
+		"Malformed document structure or inadequate semantics",
+	),
 }
