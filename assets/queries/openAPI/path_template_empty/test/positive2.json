@@ -50,6 +50,21 @@
         }
       ]
     },
-    "/users/{id}": {}
+    "/users/{}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The user ID",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ]
+      }
+    }
   }
 }

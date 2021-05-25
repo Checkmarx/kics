@@ -6,10 +6,8 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 	path := doc.paths[name]
-	matches := openapi_lib.is_path_template(name)
-	matches != []
 
-	is_empty(path)
+	contains(name, "{}")
 
 	result := {
 		"documentId": doc.id,
@@ -18,10 +16,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "The path template is not empty",
 		"keyActualValue": "The path template is empty",
 	}
-}
-
-is_empty(path) {
-	count(path) == 0
-} else {
-	path == null
 }
