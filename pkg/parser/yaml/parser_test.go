@@ -42,8 +42,13 @@ martin2:
     mode: create
     permission: authenticated-read
 `, `
--name: test
--name: test2
+test:
+  - &test_anchor
+    group:
+      name: "cx"
+test_2:
+  perm:
+    - <<: *test_anchor
 `,
 	}
 
@@ -57,6 +62,13 @@ martin2:
 	require.NoError(t, err)
 	require.Len(t, playbook, 1)
 	require.Contains(t, playbook[0]["playbooks"].([]interface{})[0].(map[string]interface{})["name"], "bucket2")
+
+	nestedMap, err := p.Parse("test.yaml", []byte(have[2]))
+	require.NoError(t, err)
+	require.Len(t, nestedMap, 1)
+	require.Contains(t, nestedMap[0], "test_2")
+	require.Contains(t,
+		nestedMap[0]["test_2"].(model.Document)["perm"].([]interface{})[0].(map[string]interface{})["group"].(model.Document)["name"], "cx")
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them

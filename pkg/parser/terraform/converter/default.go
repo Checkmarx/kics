@@ -127,20 +127,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		}
 		return list, nil
 	case *hclsyntax.ObjectConsExpr:
-		m := make(model.Document)
-		for _, item := range value.Items {
-			key, err := c.convertKey(item.KeyExpr)
-			if err != nil {
-				sentry.CaptureException(err)
-				return nil, err
-			}
-			m[key], err = c.convertExpression(item.ValueExpr)
-			if err != nil {
-				sentry.CaptureException(err)
-				return nil, err
-			}
-		}
-		return m, nil
+		return c.objectConsExpr(value)
 	default:
 		// try to evaluate with variables
 		valueConverted, _ := expr.Value(&hcl.EvalContext{
@@ -151,6 +138,23 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		}
 		return c.wrapExpr(expr)
 	}
+}
+
+func (c *converter) objectConsExpr(value *hclsyntax.ObjectConsExpr) (model.Document, error) {
+	m := make(model.Document)
+	for _, item := range value.Items {
+		key, err := c.convertKey(item.KeyExpr)
+		if err != nil {
+			sentry.CaptureException(err)
+			return nil, err
+		}
+		m[key], err = c.convertExpression(item.ValueExpr)
+		if err != nil {
+			sentry.CaptureException(err)
+			return nil, err
+		}
+	}
+	return m, nil
 }
 
 func (c *converter) convertKey(keyExpr hclsyntax.Expression) (string, error) {

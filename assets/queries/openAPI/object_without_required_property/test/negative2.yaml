@@ -1,0 +1,9 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+  contact:
+    name: contact
+    url: "/"
+    email: user@gmail.com
+paths: {}

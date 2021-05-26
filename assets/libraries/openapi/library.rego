@@ -115,8 +115,7 @@ is_path_template(path) = matches {
 
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
-	numeric := {"integer", "number"}
-	type == numeric[_]
+	is_numeric_type(type)
 	not is_number(field)
 } else {
 	type == "string"
@@ -130,4 +129,32 @@ invalid_field(field, type) {
 } else {
 	type == "array"
 	not is_array(field)
+}
+
+require_objects := {
+	"info": {"value": {"title", "version"}, "array": false, "map_object": false},
+	"license": {"value": {"name"}, "array": false, "map_object": false},
+	"servers": {"value": {"url"}, "array": true, "map_object": false},
+	"server": {"value": {"url"}, "array": false, "map_object": false},
+	"variables": {"value": {"default"}, "array": false, "map_object": true},
+	"get": {"value": {"responses"}, "array": false, "map_object": false},
+	"put": {"value": {"responses"}, "array": false, "map_object": false},
+	"post": {"value": {"responses"}, "array": false, "map_object": false},
+	"delete": {"value": {"responses"}, "array": false, "map_object": false},
+	"options": {"value": {"responses"}, "array": false, "map_object": false},
+	"head": {"value": {"responses"}, "array": false, "map_object": false},
+	"patch": {"value": {"responses"}, "array": false, "map_object": false},
+	"trace": {"value": {"responses"}, "array": false, "map_object": false},
+	"externalDocs": {"value": {"url"}, "array": false, "map_object": false},
+	"parameters": {"value": {"name", "in"}, "array": true, "map_object": true},
+	"requestBody": {"value": {"content"}, "array": false, "map_object": false},
+	"requestBodies": {"value": {"content"}, "array": false, "map_object": true},
+	"responses": {"value": {"description"}, "array": false, "map_object": true},
+	"headers": {"value": {"name"}, "array": false, "map_object": true},
+	"discriminator": {"value": {"propertyName"}, "array": false, "map_object": false},
+	"securitySchemes": {"value": {"type"}, "array": false, "map_object": true},
+	"implicit": {"value": {"scopes"}, "array": false, "map_object": false},
+	"password": {"value": {"scopes"}, "array": false, "map_object": false},
+	"clientCredentials": {"value": {"scopes"}, "array": false, "map_object": false},
+	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
 }

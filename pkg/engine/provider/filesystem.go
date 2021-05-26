@@ -105,52 +105,57 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 			continue
 		}
 
-		err = filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-
-			if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip {
-				return skipFolder
-			}
-
-			// ------------------ Helm resolver --------------------------------
-			if info.IsDir() {
-				excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
-				if errRes != nil {
-					sentry.CaptureException(errRes)
-					log.Err(errRes).
-						Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
-					return nil
-				}
-				if errAdd := s.AddExcluded(excluded); errAdd != nil {
-					log.Err(errAdd).Msgf("Filesystem files provider couldn't exclude rendered Chart files, Chart=%s", info.Name())
-				}
-				resolved = true
-				return nil
-			}
-			// -----------------------------------------------------------------
-
-			c, err := os.Open(filepath.Clean(path))
-			if err != nil {
-				return errors.Wrap(err, "failed to open file")
-			}
-			defer closeFile(c, info)
-
-			err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
-			if err != nil {
-				sentry.CaptureException(err)
-				log.Err(err).
-					Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
-			}
-			return nil
-		})
+		err = s.walkDir(ctx, scanPath, resolved, sink, resolverSink, extensions)
 		if err != nil {
 			return errors.Wrap(err, "failed to walk directory")
 		}
 		continue
 	}
 	return nil
+}
+
+func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
+	sink Sink, resolverSink ResolverSink, extensions model.Extensions) error {
+	return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip {
+			return skipFolder
+		}
+
+		// ------------------ Helm resolver --------------------------------
+		if info.IsDir() {
+			excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
+			if errRes != nil {
+				sentry.CaptureException(errRes)
+				log.Err(errRes).
+					Msgf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name())
+				return nil
+			}
+			if errAdd := s.AddExcluded(excluded); errAdd != nil {
+				log.Err(errAdd).Msgf("Filesystem files provider couldn't exclude rendered Chart files, Chart=%s", info.Name())
+			}
+			resolved = true
+			return nil
+		}
+		// -----------------------------------------------------------------
+
+		c, err := os.Open(filepath.Clean(path))
+		if err != nil {
+			return errors.Wrap(err, "failed to open file")
+		}
+		defer closeFile(c, info)
+
+		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
+		if err != nil {
+			sentry.CaptureException(err)
+			log.Err(err).
+				Msgf("Filesystem files provider couldn't parse file, file=%s", info.Name())
+		}
+		return nil
+	})
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) {

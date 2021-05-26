@@ -31,6 +31,10 @@ var (
 	vulnerabilityOutSVG string
 )
 
+const (
+	textHTML = "text/html"
+)
+
 var svgMap = map[string]string{
 	"github.svg":             githubSVG,
 	"info.svg":               infoSVG,
@@ -87,14 +91,14 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 		return err
 	}
 	minifier := minify.New()
-	minifier.AddFunc("text/html", minifyHtml.Minify)
-	minifier.Add("text/html", &minifyHtml.Minifier{
+	minifier.AddFunc(textHTML, minifyHtml.Minify)
+	minifier.Add(textHTML, &minifyHtml.Minifier{
 		KeepDocumentTags: true,
 		KeepEndTags:      true,
 		KeepQuotes:       true,
 	})
 
-	minifierWriter := minifier.Writer("text/html", f)
+	minifierWriter := minifier.Writer(textHTML, f)
 	defer minifierWriter.Close()
 
 	_, err = minifierWriter.Write(buffer.Bytes())

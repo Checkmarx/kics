@@ -306,7 +306,11 @@ func ValidateReportFormats(formats []string) error {
 	for _, format := range formats {
 		if _, ok := reportGenerators[format]; !ok {
 			return fmt.Errorf(
-				fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(ListReportFormats(), "\n")),
+				fmt.Sprintf(
+					"Report format not supported: %s\nSupportted formats:\n  %s\nalso you can use 'all' to export in all supported formats",
+					format,
+					strings.Join(ListReportFormats(), "\n"),
+				),
 			)
 		}
 	}

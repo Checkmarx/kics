@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-demo-2
+spec:
+  securityContext:
+    runAsUser: 10
+    runAsNonRoot: false
+  containers:
+    - name: sec-ctx-demo-100
+      image: gcr.io/google-samples/node-hello:1.0
+      securityContext:
+        runAsUser: 333
+        runAsNonRoot: false
+    - name: sec-ctx-demo-200
+      image: gcr.io/google-samples/node-hedwfwllo:1.0
+      securityContext:
+        runAsUser: 340
+        runAsNonRoot: false
