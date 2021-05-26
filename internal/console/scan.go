@@ -52,6 +52,7 @@ var (
 	ignoreOnExit      string
 	min               bool
 	noProgress        bool
+	outputName        string
 	outputPath        string
 	path              []string
 	payloadPath       string
@@ -76,6 +77,7 @@ const (
 	ignoreOnExitFlag        = "ignore-on-exit"
 	minimalUIFlag           = "minimal-ui"
 	noProgressFlag          = "no-progress"
+	outputNameFlag          = "output-name"
 	outputPathFlag          = "output-path"
 	outputPathShorthand     = "o"
 	pathFlag                = "path"
@@ -117,14 +119,24 @@ func run(cmd *cobra.Command) error {
 		return err
 	}
 	if outputPath != "" {
-		directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
-		if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+		if len(reportFormats) > 0 {
+			for _, format := range reportFormats {
+				if format == "all" {
+					reportFormats = consoleHelpers.ListReportFormats()
+					break
+				}
+			}
+		}
+		outputName = filepath.Base(outputName)
+		if filepath.Ext(outputPath) != "" {
+			outputPath = filepath.Dir(outputPath)
+		}
+		if err := os.MkdirAll(outputPath, os.ModePerm); err != nil {
 			return err
 		}
 	}
-	if payloadPath != "" {
-		directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
-		if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
+	if payloadPath != "" && filepath.Dir(payloadPath) != "." {
+		if err := os.MkdirAll(filepath.Dir(payloadPath), os.ModePerm); err != nil {
 			return err
 		}
 	}
@@ -293,15 +305,17 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"./assets/queries",
 		"path to directory with queries",
 	)
+	scanCmd.Flags().StringVar(&outputName,
+		outputNameFlag,
+		"results",
+		"name used on report creations")
 	scanCmd.Flags().StringVarP(&outputPath,
 		outputPathFlag,
 		outputPathShorthand,
 		"",
 		"directory path to store reports")
-	scanCmd.Flags().StringSliceVar(&reportFormats,
-		reportFormatsFlag,
-		[]string{},
-		"formats in which the results will be exported (json, sarif, html)",
+	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
+		"formats in which the results will be exported (all, json, sarif, html)",
 	)
 	scanCmd.Flags().IntVar(&previewLines,
 		previewLinesFlag,
@@ -619,33 +633,16 @@ func resolveOutputs(
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	if err := printOutput(payloadPath, "payload", documents, []string{"json"}); err != nil {
+	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
-
-	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
-		return err
-	}
-
-	return consoleHelpers.PrintResult(summary, failedQueries, printer)
-}
-
-func createReportDir(outputPath, filename string, formats []string) (outDir, outFile string, outFormats []string) {
-	if strings.Contains(outputPath, ".") {
-		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
-			err := consoleHelpers.ValidateReportFormats([]string{filepath.Ext(outputPath)[1:]})
-			if err != nil {
-				log.Trace().Msgf("Extension not supported %s, will create directory instead", filepath.Ext(outputPath)[1:])
-			} else {
-				formats = []string{filepath.Ext(outputPath)[1:]}
-			}
-		}
-		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
-			filename = filepath.Base(outputPath)
-			outputPath = filepath.Dir(outputPath)
+	if payloadPath != "" {
+		if err := printOutput(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, []string{"json"}); err != nil {
+			return err
 		}
 	}
-	return outputPath, filename, formats
+
+	return printOutput(outputPath, outputName, summary, reportFormats)
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string) error {
@@ -653,9 +650,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	if outputPath == "" {
 		return nil
 	}
-	outputPath, filename, formats = createReportDir(outputPath, filename, formats)
 	if len(formats) == 0 {
-		formats = consoleHelpers.ListReportFormats()
+		formats = []string{"json"}
 	}
 
 	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
@@ -670,7 +666,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
 func gracefulShutdown() {
 	c := make(chan os.Signal)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	// This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
 	showErrors := consoleHelpers.ShowError("errors")
 	interruptCode := constants.SignalInterruptCode
 	go func(showErrors bool, interruptCode int) {

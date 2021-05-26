@@ -512,8 +512,6 @@ var tests = []struct {
 		},
 		removeFiles: []string{
 			"results.json",
-			"results.sarif",
-			"results.html",
 		},
 		wantStatus: []int{40},
 	},
@@ -539,7 +537,7 @@ var tests = []struct {
 		name: "E2E-CLI-032",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--output-path", "output/E2E_CLI_032_RESULT.json",
+				[]string{"scan", "-o", "output", "--output-name", "E2E_CLI_032_RESULT",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
 				},
 			},
@@ -559,7 +557,8 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan",
-					"--output-path", "output/E2E_CLI_033_RESULT.json",
+					"--output-path", "output",
+					"--output-name", "E2E_CLI_033_RESULT",
 					"--payload-path", "output/E2E_CLI_033_PAYLOAD.json",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
 				},
