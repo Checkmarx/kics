@@ -25,6 +25,10 @@ type splitManifest struct {
 	splitIDMap map[int]interface{}
 }
 
+const (
+	kicsHelmID = "# KICS_HELM_ID_"
+)
+
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 	var rfiles = model.ResolvedFiles{}
@@ -70,7 +74,7 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) {
 	for _, splited := range splitedSource {
 		var lineID string
 		for _, line := range strings.Split(splited, "\n") {
-			if strings.Contains(line, "# KICS_HELM_ID_") {
+			if strings.Contains(line, kicsHelmID) {
 				lineID = line // get auxiliary line id
 				break
 			}
@@ -129,8 +133,8 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) {
 	mapLines := make(map[int]int)
 	idHelm := -1
 	for line, stringLine := range strings.Split(string(originalData), "\n") {
-		if strings.Contains(stringLine, "# KICS_HELM_ID_") {
-			id, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(stringLine, "# KICS_HELM_ID_"), ":"))
+		if strings.Contains(stringLine, kicsHelmID) {
+			id, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(stringLine, kicsHelmID), ":"))
 			if err != nil {
 				return nil, err
 			}

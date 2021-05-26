@@ -1,22 +1,22 @@
 # Technologies
 
-KICS support multiple technologies, in the next sections you will find more details about each technology.
+KICS support scanning multiple technologies, in the next sections you will find more details about each technology.
 
 ## Ansible
 
-KICS supports Ansible files with `.yaml` extension.
+KICS supports scanning Ansible files with `.yaml` extension.
 
 ## CloudFormation
 
-KICS supports CloudFormation templates with `.json` or `.yaml` extension.
+KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
 
 ## Docker
 
-KICS supports Docker files named `Dockerfile` or with `.dockerfile` extension.
+KICS supports scanning Docker files named `Dockerfile` or with `.dockerfile` extension.
 
 ## Helm
 
-KICS supports Helm by rendering charts and running Kubernetes queries against the rendered manifest.
+KICS supports scanning Helm by rendering charts and running Kubernetes queries against the rendered manifest.
 
 The charts file structure must be as explained by Helm: https://helm.sh/docs/topics/charts/#the-chart-file-structure.
 
@@ -37,11 +37,15 @@ Platform: Kubernetes
 
 ## Kubernetes
 
-KICS supports Kubernetes manifests with `.yaml` extension.
+KICS supports scanning Kubernetes manifests with `.yaml` extension.
+
+## OpenAPI
+
+KICS supports scanning OpenAPI 3.0 specs with `.json` and `.yaml` extension.
 
 ## Terraform
 
-KICS supports Terraform's HCL files with `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
+KICS supports scanning Terraform's HCL files with `.tf` extension and input variables using `terraform.tfvars` or files with `.auto.tfvars` extension that are in same directory of `.tf` files.
 
 ### Limitations
 

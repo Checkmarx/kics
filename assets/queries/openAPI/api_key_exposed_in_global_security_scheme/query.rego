@@ -11,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("components.securitySchemes.%s", [s]),
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The API Key is not transported over network",
 		"keyActualValue": "The API Key is transported over network",
 	}

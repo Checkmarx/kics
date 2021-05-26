@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Path Template is Empty",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Path Template is Empty",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive2.json"
+  }
+]

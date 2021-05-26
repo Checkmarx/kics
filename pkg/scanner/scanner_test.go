@@ -69,7 +69,7 @@ func createServices(types []string) (serviceSlice, *storage.MemoryStorage, error
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
-		t, source.ExcludeQueries{}, map[string]bool{}, 60)
+		t, source.QuerySelectionFilter{}, map[string]bool{}, 60)
 	if err != nil {
 		return nil, nil, err
 	}

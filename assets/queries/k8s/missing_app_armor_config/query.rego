@@ -42,7 +42,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s", [metadata.name]),
-		"issueType": "MissingValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name[%s] should include annotations for AppArmor profile config", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name[%s] doesn't contain AppArmor profile config in annotations", [metadata.name]),
 	}

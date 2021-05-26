@@ -42,6 +42,6 @@ getSearchKey(problems, name) = str {
 
 getIssueType(problems) = "MissingAttribute" {
 	problems == ""
-} else = "InvalidValue" {
+} else = "IncorrectValue" {
 	true
 }

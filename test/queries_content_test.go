@@ -181,7 +181,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctx := context.Background()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 			q, err := source.ReadQuery(entry.dir)
 
@@ -239,7 +239,10 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return model.Vulnerability{}, nil
 		},
 		trk,
-		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.QuerySelectionFilter{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		},
 		map[string]bool{},
 		60,
 	)

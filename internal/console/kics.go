@@ -55,14 +55,12 @@ func initialize(rootCmd *cobra.Command) error {
 		printer.LogFileShorthand,
 		false,
 		"writes log messages to log file")
-	rootCmd.PersistentFlags().StringVarP(&logPath,
+	rootCmd.PersistentFlags().StringVar(&logPath,
 		printer.LogPathFlag,
 		"",
-		"",
-		fmt.Sprintf("path to log files, (defaults to ${PWD}/%s)", constants.DefaultLogFile))
-	rootCmd.PersistentFlags().StringVarP(&logLevel,
+		fmt.Sprintf("path to generate log file (%s)", constants.DefaultLogFile))
+	rootCmd.PersistentFlags().StringVar(&logLevel,
 		printer.LogLevelFlag,
-		"",
 		"INFO",
 		"determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
 	rootCmd.PersistentFlags().StringVarP(&logFormat,
@@ -80,19 +78,16 @@ func initialize(rootCmd *cobra.Command) error {
 		printer.SilentShorthand,
 		false,
 		"silence stdout messages (mutually exclusive with verbose and ci)")
-	rootCmd.PersistentFlags().BoolVarP(&noColor,
+	rootCmd.PersistentFlags().BoolVar(&noColor,
 		printer.NoColorFlag,
-		"",
 		false,
 		"disable CLI color output")
-	rootCmd.PersistentFlags().BoolVarP(&ci,
+	rootCmd.PersistentFlags().BoolVar(&ci,
 		printer.CIFlag,
-		"",
 		false,
 		"display only log messages to CLI output (mutually exclusive with silent)")
-	rootCmd.PersistentFlags().StringVarP(&profiling,
+	rootCmd.PersistentFlags().StringVar(&profiling,
 		"profiling",
-		"",
 		"",
 		"enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)")
 

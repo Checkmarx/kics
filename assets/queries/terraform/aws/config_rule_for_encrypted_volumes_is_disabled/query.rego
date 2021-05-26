@@ -9,7 +9,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": "aws_config_config_rule", #refer to the first rule
-		"issueType": "MissingAttrbute",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "There is a 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'",
 		"keyActualValue": "No 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'",
 	}

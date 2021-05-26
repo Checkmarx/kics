@@ -1,0 +1,9 @@
+{
+  "id": "a96bbc06-8cde-4295-ad3c-ee343a7f658e",
+  "queryName": "Schema Default Invalid",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The field 'default' of Schema Object should be consistent with the schema's type",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

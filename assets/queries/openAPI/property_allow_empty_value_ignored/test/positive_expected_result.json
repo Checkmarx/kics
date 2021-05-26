@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 47,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 31,
+    "filename": "positive6.yaml"
+  }
+]

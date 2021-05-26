@@ -1,5 +1,19 @@
 package generic.common
 
+concat_path(path) = concatenated {
+	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
+}
+
+resolve_path(pathItem) = resolved {
+	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
+	resolved := sprintf("{{%s}}", [pathItem])
+} else = resolved {
+	is_number(pathItem)
+	resolved := ""
+} else = pathItem {
+	true
+}
+
 json_unmarshal(s) = result {
 	s == null
 	result := json.unmarshal("{}")
@@ -214,6 +228,9 @@ isCommonValue(p) {
 		"BASIC",
 		"NUMBER",
 		"MASLEN",
+		"VERSION",
+		"MAKE",
+		"ARCH",
 	}
 
 	black := bl[_]
@@ -285,6 +302,7 @@ isCommonKey(p) {
 		"lc_all",
 		"lang",
 		"path",
+		"arch",
 	}
 
 	black := bl[_]

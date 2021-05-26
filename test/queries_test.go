@@ -100,7 +100,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	ctx := context.TODO()
 
 	queriesSource := mock.NewMockQueriesSource(ctrl)
-	queriesSource.EXPECT().GetQueries(source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}).
+	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
 			q, err := source.ReadQuery(entry.dir)
 			require.NoError(tb, err)
@@ -126,7 +126,10 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		source.QuerySelectionFilter{
+			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		},
 		map[string]bool{}, 60)
 
 	require.Nil(tb, err)
@@ -144,6 +147,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		currentQuery,
 	)
 	require.Nil(tb, err)
+	validateIssueTypes(tb, vulnerabilities)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)
 }
 
@@ -158,6 +162,14 @@ func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bo
 		return false
 	}
 	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
+}
+
+func validateIssueTypes(tb testing.TB, vulnerabilies []model.Vulnerability) {
+	for idx := range vulnerabilies {
+		issueType := string(vulnerabilies[idx].IssueType)
+		_, ok := issueTypes[issueType]
+		require.True(tb, ok, "Results 'issueType' is not valid :: %v", issueType)
+	}
 }
 
 func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnerability, entry queryEntry) {

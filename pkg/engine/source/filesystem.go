@@ -114,6 +114,21 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 	return true
 }
 
+func checkQueryInclude(id interface{}, includedQueries []string) bool {
+	queryMetadataKey, ok := id.(string)
+	if !ok {
+		log.Warn().
+			Msgf("Can't cast query metadata key = %v", id)
+		return false
+	}
+	for _, includedQuery := range includedQueries {
+		if queryMetadataKey == includedQuery {
+			return true
+		}
+	}
+	return false
+}
+
 func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 	queryMetadataKey, ok := id.(string)
 	if !ok {
@@ -131,7 +146,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.QueryMetadata, error) {
+func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
@@ -164,14 +179,21 @@ func (s *FilesystemSource) GetQueries(excludeQueries ExcludeQueries) ([]model.Qu
 		if !s.CheckType(query.Metadata["platform"]) {
 			continue
 		}
-		if checkQueryExclude(query.Metadata["id"], excludeQueries.ByIDs) ||
-			checkQueryExclude(query.Metadata["category"], excludeQueries.ByCategories) {
-			log.Debug().
-				Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
-			continue
-		}
 
-		queries = append(queries, query)
+		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
+			if checkQueryInclude(query.Metadata["id"], queryFilter.IncludeQueries.ByIDs) {
+				queries = append(queries, query)
+			}
+		} else {
+			if checkQueryExclude(query.Metadata["id"], queryFilter.ExcludeQueries.ByIDs) ||
+				checkQueryExclude(query.Metadata["category"], queryFilter.ExcludeQueries.ByCategories) {
+				log.Debug().
+					Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
+				continue
+			}
+
+			queries = append(queries, query)
+		}
 	}
 
 	return queries, err

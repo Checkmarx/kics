@@ -22,7 +22,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_db_instance[%s].enabled_cloudwatch_logs_exports", [name]),
-		"issueType": "IncorretValue",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'enabled_cloudwatch_logs_exports' has one or more values",
 		"keyActualValue": "'enabled_cloudwatch_logs_exports' is empty",
 	}
