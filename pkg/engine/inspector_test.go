@@ -357,7 +357,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		source           source.QueriesSource
 		vb               VulnerabilityBuilder
 		tracker          Tracker
-		excludeQueries   source.ExcludeQueries
+		queryFilter      source.QuerySelectionFilter
 		excludeResults   map[string]bool
 		queryExecTimeout int
 	}
@@ -374,9 +374,14 @@ func TestNewInspector(t *testing.T) { // nolint
 				vb:      vbs,
 				tracker: track,
 				source:  sources,
-				excludeQueries: source.ExcludeQueries{
-					ByIDs:        []string{},
-					ByCategories: []string{},
+				queryFilter: source.QuerySelectionFilter{
+					IncludeQueries: source.IncludeQueries{
+						ByIDs: []string{},
+					},
+					ExcludeQueries: source.ExcludeQueries{
+						ByIDs:        []string{},
+						ByCategories: []string{},
+					},
 				},
 				excludeResults:   map[string]bool{},
 				queryExecTimeout: 60,
@@ -395,7 +400,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				tt.args.source,
 				tt.args.vb,
 				tt.args.tracker,
-				tt.args.excludeQueries,
+				tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout)
 
@@ -556,7 +561,7 @@ func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
 	}
-	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.ExcludeQueries{}, map[string]bool{}, 60)
+	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.QuerySelectionFilter{}, map[string]bool{}, 60)
 	require.NoError(t, err)
 	return ins
 }
@@ -566,10 +571,10 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(excludeQueries source.ExcludeQueries) ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(queryFilter source.QuerySelectionFilter) ([]model.QueryMetadata, error) {
 	sources := source.NewFilesystemSource(m.Source, []string{""})
 
-	return sources.GetQueries(excludeQueries)
+	return sources.GetQueries(queryFilter)
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {

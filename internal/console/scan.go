@@ -47,6 +47,7 @@ var (
 	excludeIDs        []string
 	excludePath       []string
 	excludeResults    []string
+	includeIDs        []string
 	failOn            []string
 	ignoreOnExit      string
 	min               bool
@@ -69,6 +70,8 @@ const (
 	excludeQueriesFlag      = "exclude-queries"
 	excludeResultsFlag      = "exclude-results"
 	excludeResutlsShorthand = "x"
+	includeQueriesFlag      = "include-queries"
+	inlcudeQueriesShorthand = "i"
 	failOnFlag              = "fail-on"
 	ignoreOnExitFlag        = "ignore-on-exit"
 	minimalUIFlag           = "minimal-ui"
@@ -134,6 +137,10 @@ func preRun(cmd *cobra.Command) error {
 	if err != nil {
 		return errors.New(initError + err.Error())
 	}
+	err = validateQuerySelectionFlags()
+	if err != nil {
+		return err
+	}
 	err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
 	if err != nil {
 		return errors.New(initError + err.Error())
@@ -141,6 +148,22 @@ func preRun(cmd *cobra.Command) error {
 	err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
 	if err != nil {
 		return errors.New(initError + err.Error())
+	}
+	return nil
+}
+
+func formatNewError(flag1, flag2 string) error {
+	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
+		flag1,
+		flag2)
+}
+
+func validateQuerySelectionFlags() error {
+	if len(includeIDs) > 0 && len(excludeIDs) > 0 {
+		return formatNewError(includeQueriesFlag, excludeQueriesFlag)
+	}
+	if len(includeIDs) > 0 && len(excludeCategories) > 0 {
+		return formatNewError(includeQueriesFlag, excludeCategoriesFlag)
 	}
 	return nil
 }
@@ -314,6 +337,15 @@ func initScanFlags(scanCmd *cobra.Command) {
 			msg+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
+	scanCmd.Flags().StringSliceVarP(&includeIDs,
+		includeQueriesFlag,
+		inlcudeQueriesShorthand,
+		[]string{},
+		"include queries by providing the query ID\n"+
+			"takes precedence over excluded queries\n"+
+			msg+
+			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
+	)
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
 		excludeResultsFlag,
 		excludeResutlsShorthand,
@@ -398,9 +430,22 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		ByCategories: excludeCategories,
 	}
 
+	includeQueries := source.IncludeQueries{
+		ByIDs: includeIDs,
+	}
+
+	queryFilter := source.QuerySelectionFilter{
+		IncludeQueries: includeQueries,
+		ExcludeQueries: excludeQueries,
+	}
+
 	inspector, err := engine.NewInspector(ctx,
-		querySource, engine.DefaultVulnerabilityBuilder,
-		t, excludeQueries, excludeResultsMap, queryExecTimeout)
+		querySource,
+		engine.DefaultVulnerabilityBuilder,
+		t,
+		queryFilter,
+		excludeResultsMap,
+		queryExecTimeout)
 	if err != nil {
 		return nil, err
 	}

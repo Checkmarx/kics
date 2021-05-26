@@ -232,3 +232,10 @@ func isValidURL(toTest string) bool {
 	u, err := url.Parse(toTest)
 	return err == nil && u.Scheme != "" && u.Host != ""
 }
+
+func getQueryFilter() source.QuerySelectionFilter {
+	return source.QuerySelectionFilter{
+		IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+		ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+	}
+}
