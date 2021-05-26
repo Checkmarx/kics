@@ -323,13 +323,14 @@ Flags:
                                      example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --output-name string           name used on report creations (default &quot;results&quot;)
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
                                      example: &quot;./somepath,somefile.txt&quot;
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
-      --report-formats strings       formats in which the results will be exported (json, sarif, html)
+      --report-formats strings       formats in which the results will be exported (all, json, sarif, html) (default [json])
       --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
