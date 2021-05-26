@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.9%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (80.7%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.8%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (80.3%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (75.0%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (77.8%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/report/html.go (88.6%)</option>
 				
@@ -590,7 +590,11 @@ func ValidateReportFormats(formats []string) error <span class="cov2" title="2">
         for _, format := range formats </span><span class="cov4" title="7">{
                 if _, ok := reportGenerators[format]; !ok </span><span class="cov1" title="1">{
                         return fmt.Errorf(
-                                fmt.Sprintf("Report format not supported: %s\nSupportted formats:\n  %s\n", format, strings.Join(ListReportFormats(), "\n")),
+                                fmt.Sprintf(
+                                        "Report format not supported: %s\nSupportted formats:\n  %s\nalso you can use 'all' to export in all supported formats",
+                                        format,
+                                        strings.Join(ListReportFormats(), "\n"),
+                                ),
                         )
                 }</span>
         }
@@ -1148,6 +1152,7 @@ var (
         ignoreOnExit      string
         min               bool
         noProgress        bool
+        outputName        string
         outputPath        string
         path              []string
         payloadPath       string
@@ -1172,6 +1177,7 @@ const (
         ignoreOnExitFlag        = "ignore-on-exit"
         minimalUIFlag           = "minimal-ui"
         noProgressFlag          = "no-progress"
+        outputNameFlag          = "output-name"
         outputPathFlag          = "output-path"
         outputPathShorthand     = "o"
         pathFlag                = "path"
@@ -1213,14 +1219,24 @@ func run(cmd *cobra.Command) error <span class="cov4" title="8">{
                 return err
         }</span>
         <span class="cov4" title="8">if outputPath != "" </span><span class="cov1" title="1">{
-                directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
-                if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil </span><span class="cov0" title="0">{
+                if len(reportFormats) &gt; 0 </span><span class="cov1" title="1">{
+                        for _, format := range reportFormats </span><span class="cov1" title="1">{
+                                if format == "all" </span><span class="cov0" title="0">{
+                                        reportFormats = consoleHelpers.ListReportFormats()
+                                        break</span>
+                                }
+                        }
+                }
+                <span class="cov1" title="1">outputName = filepath.Base(outputName)
+                if filepath.Ext(outputPath) != "" </span><span class="cov1" title="1">{
+                        outputPath = filepath.Dir(outputPath)
+                }</span>
+                <span class="cov1" title="1">if err := os.MkdirAll(outputPath, os.ModePerm); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
-        <span class="cov4" title="8">if payloadPath != "" </span><span class="cov1" title="1">{
-                directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
-                if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil </span><span class="cov0" title="0">{
+        <span class="cov4" title="8">if payloadPath != "" &amp;&amp; filepath.Dir(payloadPath) != "." </span><span class="cov0" title="0">{
+                if err := os.MkdirAll(filepath.Dir(payloadPath), os.ModePerm); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
@@ -1334,22 +1350,22 @@ func setupCfgFile() (bool, error) <span class="cov4" title="9">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="11">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="308">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="319">{
                 settingsMap[f.Name] = true
-                if strings.Contains(f.Name, "-") </span><span class="cov9" title="209">{
+                if strings.Contains(f.Name, "-") </span><span class="cov9" title="220">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
                         variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
                         if err := v.BindEnv(f.Name, variableName); err != nil </span><span class="cov0" title="0">{
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="308">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov10" title="319">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="289">{
-                if val == true </span><span class="cov9" title="288">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="305">{
+                if val == true </span><span class="cov9" title="304">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1389,15 +1405,17 @@ func initScanFlags(scanCmd *cobra.Command) <span class="cov5" title="13">{
                 "./assets/queries",
                 "path to directory with queries",
         )
+        scanCmd.Flags().StringVar(&amp;outputName,
+                outputNameFlag,
+                "results",
+                "name used on report creations")
         scanCmd.Flags().StringVarP(&amp;outputPath,
                 outputPathFlag,
                 outputPathShorthand,
                 "",
                 "directory path to store reports")
-        scanCmd.Flags().StringSliceVar(&amp;reportFormats,
-                reportFormatsFlag,
-                []string{},
-                "formats in which the results will be exported (json, sarif, html)",
+        scanCmd.Flags().StringSliceVar(&amp;reportFormats, reportFormatsFlag, []string{"json"},
+                "formats in which the results will be exported (all, json, sarif, html)",
         )
         scanCmd.Flags().IntVar(&amp;previewLines,
                 previewLinesFlag,
@@ -1715,43 +1733,25 @@ func resolveOutputs(
 ) error <span class="cov4" title="7">{
         log.Debug().Msg("console.resolveOutputs()")
 
-        if err := printOutput(payloadPath, "payload", documents, []string{"json"}); err != nil </span><span class="cov0" title="0">{
+        if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-
-        <span class="cov4" title="7">if err := printOutput(outputPath, "results", summary, reportFormats); err != nil </span><span class="cov0" title="0">{
-                return err
-        }</span>
-
-        <span class="cov4" title="7">return consoleHelpers.PrintResult(summary, failedQueries, printer)</span>
-}
-
-func createReportDir(outputPath, filename string, formats []string) (outDir, outFile string, outFormats []string) <span class="cov3" title="4">{
-        if strings.Contains(outputPath, ".") </span><span class="cov3" title="4">{
-                if len(formats) == 0 &amp;&amp; filepath.Ext(outputPath) != "" </span><span class="cov2" title="2">{
-                        err := consoleHelpers.ValidateReportFormats([]string{filepath.Ext(outputPath)[1:]})
-                        if err != nil </span><span class="cov0" title="0">{
-                                log.Trace().Msgf("Extension not supported %s, will create directory instead", filepath.Ext(outputPath)[1:])
-                        }</span> else<span class="cov2" title="2"> {
-                                formats = []string{filepath.Ext(outputPath)[1:]}
-                        }</span>
-                }
-                <span class="cov3" title="4">if len(formats) == 1 &amp;&amp; strings.HasSuffix(outputPath, formats[0]) </span><span class="cov3" title="4">{
-                        filename = filepath.Base(outputPath)
-                        outputPath = filepath.Dir(outputPath)
+        <span class="cov4" title="7">if payloadPath != "" </span><span class="cov1" title="1">{
+                if err := printOutput(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, []string{"json"}); err != nil </span><span class="cov0" title="0">{
+                        return err
                 }</span>
         }
-        <span class="cov3" title="4">return outputPath, filename, formats</span>
+
+        <span class="cov4" title="7">return printOutput(outputPath, outputName, summary, reportFormats)</span>
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string) error <span class="cov5" title="14">{
+func printOutput(outputPath, filename string, body interface{}, formats []string) error <span class="cov4" title="8">{
         log.Debug().Msg("console.printOutput()")
-        if outputPath == "" </span><span class="cov4" title="12">{
+        if outputPath == "" </span><span class="cov3" title="6">{
                 return nil
         }</span>
-        <span class="cov2" title="2">outputPath, filename, formats = createReportDir(outputPath, filename, formats)
-        if len(formats) == 0 </span><span class="cov0" title="0">{
-                formats = consoleHelpers.ListReportFormats()
+        <span class="cov2" title="2">if len(formats) == 0 </span><span class="cov0" title="0">{
+                formats = []string{"json"}
         }</span>
 
         <span class="cov2" title="2">log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
@@ -1766,7 +1766,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
 func gracefulShutdown() <span class="cov4" title="8">{
         c := make(chan os.Signal)
-        signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+        // This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
+        signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
         showErrors := consoleHelpers.ShowError("errors")
         interruptCode := constants.SignalInterruptCode
         go func(showErrors bool, interruptCode int) </span><span class="cov4" title="8">{
@@ -2045,13 +2046,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2069,7 +2070,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2411,7 +2412,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="30">{
+        for _, a := range s </span><span class="cov8" title="29">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3816,7 +3817,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4622,7 +4623,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="33">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="31">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -7355,7 +7356,8 @@ func closeFile(path, filename string, file *os.File) <span class="cov8" title="3
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov8" title="3">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)</span>
+        <span class="cov8" title="3">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
+        fmt.Printf("Results saved to file %s\n", path)</span>
 }
 </pre>
 		
