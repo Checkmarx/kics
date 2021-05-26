@@ -21,12 +21,14 @@ docker pull checkmarx/kics:latest
 
 Scan a directory
 ```sh
-docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
+docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
 Scan a single file
 ```sh
-docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
+docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
+
+This will generate a `results.json` file, for both examples, under `path`.
 
 ## CLI Options
 

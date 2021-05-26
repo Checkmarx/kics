@@ -1,30 +1,42 @@
 # Results
 KICS can export results in multiple formats which can be seen on the following list:
-- JSON
-- SARIF
-- HTML
+- JSON (json)
+- SARIF (sarif)
+- Gitlab SAST (glsast)
+- HTML (html)
 
-To export in one of this formats, the flag output-path can be used with the file path and extension, for example:
+To export in JSON format in current directory, you can use the following command:
 
 ```bash
-./kics scan -p <path-of-your-project-to-scan> -o ./results.json
+./kics scan -p <path-of-your-project-to-scan> -o ./
 ```
 
-This comand will generate a JSON report on the current directory
+To generate in other formats you can use the following command:
+
+```bash
+./kics scan -p <path-of-your-project-to-scan> --report-formats <formats-wanted> -o ./
+```
 
 KICS also can export multiple format in a single scan, to do this the flags output-path and report-formats should be combined,
 where the output-path will be the directory containing all report files and report-formats all extensions wanted, like following example:
 
 ```bash
-./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "json,sarif,html"
+./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "all"
 ```
 
-The last command will execute the scan and save JSON and SARIF reports on output folder.
+The last command will execute the scan and save all types reports on output folder with results name.
+
+You can also change the default name by using the following command:
+```bash
+./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "glsast,html" --output-name kics-result
+```
+
+This will generate an HTML and Gitlab SAST reports on output folder, with `kics-result` and `gl-sast-kics-result` names.
 
 # Report examples
 
 ## JSON
-
+The JSON report is the default report to be generate, if no arg is passed to `report-formats` flag, also you can explicitly use it with `--report-format "json"`.
 JSON reports are sorted by severity (from high to info) and should looks like as following:
 
 ```json
@@ -67,7 +79,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 }
 ```
 ## SARIF
-
+You can export sarif report by using `--report-format "sarif"`.
 SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.0 standard](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html) and looks like:
 
 ```json
@@ -294,8 +306,126 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
 }
 ```
 
-## HTML
+# Gitlab SAST
+You can export html report by using `--report-format "glsast"`.
+Gitlab SAST reports are sorted by severity (from high to info), following [Gitlab SAST Report scheme](https://docs.gitlab.com/ee/development/integrations/secure.html#report), also, the generated file will have a prefix `gl-sast-` as [recommendend by Gitlab docs](https://docs.gitlab.com/ee/development/integrations/secure.html#output-file) and looks like:
 
+```json
+{
+	"schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json",
+	"version": "13.1.0",
+	"scan": {
+		"start_time": "2021-05-26T17:22:13",
+		"end_time": "2021-05-26T17:22:13",
+		"status": "success",
+		"type": "sast",
+		"scanner": {
+			"id": "keeping-infrastructure-as-code-secure",
+			"name": "Keeping Infrastructure as Code Secure",
+			"url": "https://www.kics.io/",
+			"version": "development",
+			"vendor": {
+				"name": "Checkmarx"
+			}
+		}
+	},
+	"vulnerabilities": [
+		{
+			"id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
+			"category": "Insecure Configurations",
+			"severity": "high",
+			"cve": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
+			"scanner": {
+				"id": "keeping_infrastructure_as_code_secure",
+				"name": "Keeping Infrastructure as Code Secure"
+			},
+			"name": "Container Is Privileged",
+			"message": "Do not allow container to be privileged.",
+			"links": [
+				{
+					"url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
+				}
+			],
+			"location": {
+				"file": "assets/queries/terraform/kubernetes/container_is_privileged/test/positive.tf",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/terraform-queries",
+					"value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
+				}
+			]
+		},
+		{
+			"id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
+			"category": "Insecure Configurations",
+			"severity": "high",
+			"cve": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
+			"scanner": {
+				"id": "keeping_infrastructure_as_code_secure",
+				"name": "Keeping Infrastructure as Code Secure"
+			},
+			"name": "Container Is Privileged",
+			"message": "Do not allow container to be privileged.",
+			"links": [
+				{
+					"url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
+				}
+			],
+			"location": {
+				"file": "assets/queries/terraform/kubernetes/container_is_privileged/test/positive.tf",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/terraform-queries",
+					"value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
+				}
+			]
+		},
+		{
+			"id": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
+			"category": "Insecure Configurations",
+			"severity": "high",
+			"cve": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
+			"scanner": {
+				"id": "keeping_infrastructure_as_code_secure",
+				"name": "Keeping Infrastructure as Code Secure"
+			},
+			"name": "Container Is Privileged",
+			"message": "Do not allow container to be privileged.",
+			"links": [
+				{
+					"url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
+				}
+			],
+			"location": {
+				"file": "assets/queries/terraform/kubernetes/container_is_privileged/test/positive.tf",
+				"start_line": 108,
+				"end_line": 108
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/terraform-queries",
+					"value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
+				}
+			]
+		}
+	]
+}
+
+```
+## HTML
+You can export html report by using `--report-format "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
