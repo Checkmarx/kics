@@ -69,11 +69,7 @@ KICS is able to infer the format without the need of file extension.
   "payload-path": "file path to store source internal representation in JSON format",
   "preview-lines": 3,
   "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
-<<<<<<< HEAD
-  "report-formats": "formats in which the results will be exported (json, sarif, html, glsast)",
-=======
-  "report-formats": "formats in which the results will be exported (all, json, sarif, html) (default [json])",
->>>>>>> master
+  "report-formats": "formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])",
   "type": "type of queries to use in the scan",
   "timeout": "number of seconds the query has to execute before being canceled",
   "verbose": true,
@@ -101,11 +97,7 @@ payload-path: "file path to store source internal representation in JSON format"
 preview-lines: 3
 profiling: "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-<<<<<<< HEAD
-report-formats: "formats in which the results will be exported (json, sarif, html, glsast)"
-=======
-report-formats: "formats in which the results will be exported (all, json, sarif, html) (default [json])"
->>>>>>> master
+report-formats: "formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])"
 silent: false
 type: "type of queries to use in the scan"
 timeout: "number of seconds the query has to execute before being canceled"
@@ -132,11 +124,7 @@ payload-path = "file path to store source internal representation in JSON format
 preview-lines = 3
 profiling = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-<<<<<<< HEAD
-report-formats = "formats in which the results will be exported (json, sarif, html, glsast)"
-=======
-report-formats = "formats in which the results will be exported (all, json, sarif, html) (default [json])"
->>>>>>> master
+report-formats = "formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])"
 silent = false
 type = "type of queries to use in the scan"
 timeout = "number of seconds the query has to execute before being canceled"
