@@ -609,7 +609,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
 func gracefulShutdown() {
 	c := make(chan os.Signal)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	// This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
 	showErrors := consoleHelpers.ShowError("errors")
 	interruptCode := constants.SignalInterruptCode
 	go func(showErrors bool, interruptCode int) {
