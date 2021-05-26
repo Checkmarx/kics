@@ -62,6 +62,10 @@ Flags:
       --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
                                      accepts: all, results, errors, none
                                      example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default "none")
+  -i, --include-queries strings      include queries by providing the query ID
+                                     takes precedence over excluded queries
+                                     can be provided multiple times or as a comma separated string
+                                     example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
       --output-name string           name used on report creations (default "results")
