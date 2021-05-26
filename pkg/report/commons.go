@@ -46,4 +46,5 @@ func closeFile(path, filename string, file *os.File) {
 	}
 
 	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
+	fmt.Printf("Results saved to file %s\n", path)
 }

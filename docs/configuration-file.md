@@ -11,7 +11,7 @@ Here is a Configuration file example:
   "log-file": true,
   "type": "Dockerfile,Kubernetes",
   "queries-path": "assets/queries",
-  "output-path": "results.json"
+  "output-path": "results"
 }
 ```
 
@@ -25,7 +25,7 @@ type:
   - Dockerfile
   - Kubernetes
 queries-path: "assets/queries"
-output-path: "results.json"
+output-path: "results"
 ```
 
 > 📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above
@@ -63,12 +63,13 @@ KICS is able to infer the format without the need of file extension.
   "minimal-ui": false,
   "no-color": false,
   "no-progress": false,
+  "output-name": "name used on report creations (default \"results\")",
   "output-path": "directory path to store reports",
   "path": "path to file or directory to scan",
   "payload-path": "file path to store source internal representation in JSON format",
   "preview-lines": 3,
   "queries-path": "path to directory with queries (default ./assets/queries) (default './assets/queries')",
-  "report-formats": "formats in which the results will be exported (json, sarif, html)",
+  "report-formats": "formats in which the results will be exported (all, json, sarif, html) (default [json])",
   "type": "type of queries to use in the scan",
   "timeout": "number of seconds the query has to execute before being canceled",
   "verbose": true,
@@ -89,13 +90,14 @@ log-path: path to the log file
 minimal-ui: false
 no-color: false
 no-progress: false
+output-name: "name used on report creations (default \"results\")"
 output-path: "directory path to store reports"
 path: "path to file or directory to scan"
 payload-path: "file path to store source internal representation in JSON format"
 preview-lines: 3
 profiling: "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 queries-path: "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats: "formats in which the results will be exported (json, sarif, html)"
+report-formats: "formats in which the results will be exported (all, json, sarif, html) (default [json])"
 silent: false
 type: "type of queries to use in the scan"
 timeout: "number of seconds the query has to execute before being canceled"
@@ -115,13 +117,14 @@ log-path = "path to the log file"
 minimal-ui = false
 no-color = false
 no-progress = false
+output-name = "name used on report creations (default \"results\")"
 output-path = "directory path to store reports"
 path = "path to file or directory to scan"
 payload-path = "file path to store source internal representation in JSON format"
 preview-lines = 3
 profiling = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 queries-path = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-report-formats = "formats in which the results will be exported (json, sarif, html)"
+report-formats = "formats in which the results will be exported (all, json, sarif, html) (default [json])"
 silent = false
 type = "type of queries to use in the scan"
 timeout = "number of seconds the query has to execute before being canceled"
@@ -141,13 +144,14 @@ verbose = true
 "minimal-ui" = false
 "no-color" = false
 "no-progress" = false
+"output-name" = "name used on report creations (default \"results\")"
 "output-path" = "directory path to store reports"
 "path" = "path to file or directory to scan"
 "payload-path" = "file path to store source internal representation in JSON format"
 "preview-lines" = 3
 "profiling" = "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)"
 "queries-path" = "path to directory with queries (default ./assets/queries) (default './assets/queries')"
-"report-formats" = "formats in which the results will be exported (json, sarif, html)"
+"report-formats" = "formats in which the results will be exported (all, json, sarif, html) (default [json])"
 "silent" = false
 "type" = "type of queries to use in the scan"
 "timeout" = "number of seconds the query has to execute before being canceled"
