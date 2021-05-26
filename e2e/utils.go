@@ -95,6 +95,7 @@ func prepareExpected(path, folder string) ([]string, error) {
 	if err != nil {
 		return []string{}, err
 	}
+	cont = strings.Trim(cont, "")
 	if strings.Contains(cont, "\r\n") {
 		return strings.Split(cont, "\r\n"), nil
 	}

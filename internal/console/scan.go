@@ -347,7 +347,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&excludeIDs,
 		excludeQueriesFlag,
 		[]string{},
-		"exclude queries by providing the query ID\n"+
+		"exclude queries by providing the query ID\n"+"cannot be provided with query inclusion flags\n"+
 			msg+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
@@ -355,8 +355,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		includeQueriesFlag,
 		inlcudeQueriesShorthand,
 		[]string{},
-		"include queries by providing the query ID\n"+
-			"takes precedence over excluded queries\n"+
+		"include queries by providing the query ID\n"+"cannot be provided with query exclusion flags\n"+
 			msg+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
@@ -372,6 +371,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		excludeCategoriesFlag,
 		[]string{},
 		"exclude categories by providing its name\n"+
+			"cannot be provided with query inclusion flags\n"+
 			msg+
 			"example: 'Access control,Best practices'",
 	)
