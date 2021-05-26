@@ -1,0 +1,9 @@
+{
+  "id": "237402e2-c2f0-46c9-9cf5-286160cf7bfc",
+  "queryName": "Path Is Ambiguous",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "All path should be unique, if has more than one operation, all operations should be part of same Path Object",
+  "descriptionUrl": "https://swagger.io/specification/#path-item-object",
+  "platform": "OpenAPI"
+}
