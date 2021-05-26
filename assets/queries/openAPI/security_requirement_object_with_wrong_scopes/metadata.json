@@ -1,0 +1,9 @@
+{
+  "id": "37140f7f-724a-4c87-a536-e9cee1d61533",
+  "queryName": "Security Requirement Object With Wrong Scopes",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Security Requirement Object should only have scopes defined for security schemes of type 'oauth2' and 'openIdConnect'",
+  "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
+  "platform": "OpenAPI"
+}

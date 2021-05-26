@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Security Requirement Object With Wrong Scopes",
+    "severity": "INFO",
+    "line": 9,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Requirement Object With Wrong Scopes",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Requirement Object With Wrong Scopes",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Security Requirement Object With Wrong Scopes",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive4.yaml"
+  }
+]
