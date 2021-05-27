@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Path Parameter With No Corresponding Template Path",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Path Parameter With No Corresponding Template Path",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive2.json"
+  }
+]
