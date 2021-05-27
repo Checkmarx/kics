@@ -332,8 +332,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 	"vulnerabilities": [
 		{
 			"id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-			"category": "Insecure Configurations",
-			"severity": "high",
+			"category": "sast",
+			"severity": "High",
 			"cve": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
 			"scanner": {
 				"id": "keeping_infrastructure_as_code_secure",
@@ -362,8 +362,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 		},
 		{
 			"id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-			"category": "Insecure Configurations",
-			"severity": "high",
+			"category": "sast",
+			"severity": "High",
 			"cve": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
 			"scanner": {
 				"id": "keeping_infrastructure_as_code_secure",
@@ -392,8 +392,8 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 		},
 		{
 			"id": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
-			"category": "Insecure Configurations",
-			"severity": "high",
+			"category": "sast",
+			"severity": "High",
 			"cve": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
 			"scanner": {
 				"id": "keeping_infrastructure_as_code_secure",

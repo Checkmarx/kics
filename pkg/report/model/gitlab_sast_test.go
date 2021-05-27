@@ -57,7 +57,7 @@ var tests = []gitlabSASTTest{
 			Description: "test description",
 			QueryURI:    "https://www.test.com",
 			Severity:    model.SeverityHigh,
-			Category:    "test category",
+			Category:    "sast",
 			Files: []model.VulnerableFile{
 				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
 			},
@@ -72,8 +72,8 @@ var tests = []gitlabSASTTest{
 			Vulnerabilities: []gitlabSASTVulnerability{
 				{
 					ID:       "similarity",
-					Category: "test category",
-					Severity: "high",
+					Category: "sast",
+					Severity: "High",
 					CVE:      "similarity",
 					Scanner: gitlabSASTVulnerabilityScanner{
 						ID:   "keeping_infrastructure_as_code_secure",

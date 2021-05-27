@@ -123,8 +123,8 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.Vulnerab
 
 		vulnerability := gitlabSASTVulnerability{
 			ID:       file.SimilarityID,
-			Category: issue.Category,
-			Severity: strings.ToLower(string(issue.Severity)),
+			Category: "sast",
+			Severity: strings.Title(strings.ToLower(string(issue.Severity))),
 			CVE:      file.SimilarityID,
 			Scanner: gitlabSASTVulnerabilityScanner{
 				ID:   "keeping_infrastructure_as_code_secure",
