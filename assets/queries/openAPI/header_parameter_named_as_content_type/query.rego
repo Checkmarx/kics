@@ -11,10 +11,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
+		"searchKey": sprintf("paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}} is not 'Content-Type'", [name, params.name]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}} is 'Content-Type'", [name, params.name]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.parameters.name={{%s}} is not 'Content-Type'", [name, params.name]),
+		"keyActualValue": sprintf("paths.{{%s}}.parameters.name={{%s}} is 'Content-Type'", [name, params.name]),
 	}
 }
 
@@ -27,10 +27,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.%s.%s.parameters.name={{%s}}", [name, oper, params.name]),
+		"searchKey": sprintf("paths.%s.%s.parameters.name={{%s}}", [name, oper, params.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("openapi.paths.%s.%s.parameters.name={{%s}} is not 'Content-Type'", [name, oper, params.name]),
-		"keyActualValue": sprintf("openapi.paths.%s.%s.parameters.name={{%s}} is 'Content-Type'", [name, oper, params.name]),
+		"keyExpectedValue": sprintf("paths.%s.%s.parameters.name={{%s}} is not 'Content-Type'", [name, oper, params.name]),
+		"keyActualValue": sprintf("paths.%s.%s.parameters.name={{%s}} is 'Content-Type'", [name, oper, params.name]),
 	}
 }
 

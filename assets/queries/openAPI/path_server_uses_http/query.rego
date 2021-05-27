@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.servers.url={{%s}}", [path, oper, paths.url]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.servers.url={{%s}}", [path, oper, paths.url]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Path Server Object url uses 'HTTPS' protocol",
 		"keyActualValue": "Path Server Object url uses 'HTTP' protocol",

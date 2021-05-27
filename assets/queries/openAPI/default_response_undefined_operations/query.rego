@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.responses", [n, oper]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Default field should be defined on responses",
 		"keyActualValue": "Default field is not defined on responses",

@@ -11,9 +11,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.responses", [n, oper]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.{{%s}}.responses has at least one successful HTTP status code defined", [n, oper]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}}.{{%s}}.responses does not have at least one successful HTTP status code defined", [n, oper]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses has at least one successful HTTP status code defined", [n, oper]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses does not have at least one successful HTTP status code defined", [n, oper]),
 	}
 }

@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": "openapi.paths",
+		"searchKey": "paths",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The Paths Object should should not be empty",
 		"keyActualValue": "The Paths Object is empty",

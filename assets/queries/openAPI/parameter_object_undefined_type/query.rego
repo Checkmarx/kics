@@ -12,10 +12,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
+		"searchKey": sprintf("paths.{{%s}}.parameters.name={{%s}}", [name, params.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.parameters type should be defined", [name, params.name]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}}.parameters type is not defined", [name, params.name]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.parameters type should be defined", [name, params.name]),
+		"keyActualValue": sprintf("paths.{{%s}}.parameters type is not defined", [name, params.name]),
 	}
 }
 
@@ -46,10 +46,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.parameters.name={{%s}}", [name, oper, params.name]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.parameters.name={{%s}}", [name, oper, params.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.{{%s}}.parameters type should be defined", [name, oper, params.name]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}}.{{%s}}.parameters type is not defined", [name, oper, params.name]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.parameters type should be defined", [name, oper, params.name]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.parameters type is not defined", [name, oper, params.name]),
 	}
 }
 
