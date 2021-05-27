@@ -4,53 +4,54 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
-// TestCreateSarifReport tests if creates a sarif report correctly
-func TestCreateSarifReport(t *testing.T) {
+// TestNewSarifReport tests if creates a sarif report correctly
+func TestNewSarifReport(t *testing.T) {
 	sarif := NewSarifReport().(*sarifReport)
 	require.Equal(t, "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json", sarif.Schema)
 	require.Equal(t, "2.1.0", sarif.SarifVersion)
 	require.Equal(t, "KICS", sarif.Runs[0].Tool.Driver.ToolName)
-	require.Equal(t, "https://www.kics.io/", sarif.Runs[0].Tool.Driver.ToolURI)
+	require.Equal(t, constants.URL, sarif.Runs[0].Tool.Driver.ToolURI)
 	require.Equal(t, constants.Fullname, sarif.Runs[0].Tool.Driver.ToolFullName)
 	require.Equal(t, constants.Version, sarif.Runs[0].Tool.Driver.ToolVersion)
 }
 
-type test struct {
+type sarifTest struct {
 	name string
-	vq   []VulnerableQuery
+	vq   []model.VulnerableQuery
 	want sarifReport
 }
 
-var tests = []test{
+var sarifTests = []sarifTest{
 	{
 		name: "Should not create any rule",
-		vq: []VulnerableQuery{
+		vq: []model.VulnerableQuery{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
-				Severity:    SeverityHigh,
-				Files:       []VulnerableFile{},
+				Severity:    model.SeverityHigh,
+				Files:       []model.VulnerableFile{},
 			},
 		},
 		want: sarifReport{
-			Runs: initRun(),
+			Runs: initSarifRun(),
 		},
 	},
 	{
 		name: "Should create one occurrence",
-		vq: []VulnerableQuery{
+		vq: []model.VulnerableQuery{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
-				Severity:    SeverityHigh,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityHigh,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "test.json", Line: 1},
 				},
 			},
@@ -105,15 +106,15 @@ var tests = []test{
 	},
 	{
 		name: "Should create multiple occurrence",
-		vq: []VulnerableQuery{
+		vq: []model.VulnerableQuery{
 			{
 				QueryName:   "test",
 				QueryID:     "1",
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
 				Category:    "test",
-				Severity:    SeverityHigh,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityHigh,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
@@ -123,8 +124,8 @@ var tests = []test{
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
 				Category:    "test",
-				Severity:    SeverityHigh,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityHigh,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
@@ -134,8 +135,8 @@ var tests = []test{
 				Description: "test description",
 				QueryURI:    "https://www.test.com",
 				Category:    "test",
-				Severity:    SeverityInfo,
-				Files: []VulnerableFile{
+				Severity:    model.SeverityInfo,
+				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
 			},
@@ -237,12 +238,12 @@ var tests = []test{
 	},
 }
 
-func TestBuildIssue(t *testing.T) {
-	for _, tt := range tests {
+func TestBuildSarifIssue(t *testing.T) {
+	for _, tt := range sarifTests {
 		t.Run(tt.name, func(t *testing.T) {
 			result := NewSarifReport().(*sarifReport)
 			for _, vq := range tt.vq {
-				result.BuildIssue(&vq)
+				result.BuildSarifIssue(&vq)
 			}
 			require.Equal(t, len(tt.want.Runs[0].Results), len(result.Runs[0].Results))
 			require.Equal(t, len(tt.want.Runs[0].Tool.Driver.Rules), len(result.Runs[0].Tool.Driver.Rules))

@@ -2,6 +2,7 @@ package model
 
 import (
 	"sort"
+	"time"
 
 	"github.com/rs/zerolog/log"
 )
@@ -53,11 +54,18 @@ type Counters struct {
 	FailedSimilarityID     int `json:"queries_failed_to_compute_similarity_id"`
 }
 
+// Times represents an object that contains the start and end time of the scan
+type Times struct {
+	Start time.Time `json:"start"`
+	End   time.Time `json:"end"`
+}
+
 // Summary is a report of a single scan
 type Summary struct {
 	Counters
 	Queries VulnerableQuerySlice `json:"queries"`
 	SeveritySummary
+	Times
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID

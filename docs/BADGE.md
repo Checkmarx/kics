@@ -8,9 +8,10 @@ Let's assume a manual CLI process using docker:
 ```bash
 #!/usr/bin/env bash
 echo "running KICS in the current dir and writing results.json"
-docker run -v $PWD:/path checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
+docker run -v $PWD:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
 
+This will generate a results.json file under `path`.
 Parse the `results.json` and request a badge to img.shields.io.
 
 For this example, let's assume HIGH and MEDIUM results are bad:

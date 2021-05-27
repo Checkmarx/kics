@@ -10,7 +10,7 @@ To scan a directory/file on your host you have to mount it as a volume to the co
 
 ```shell
 docker pull checkmarx/kics:latest
-docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest scan -p "/path" -o "/path/results.json"
+docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkmarx/kics:latest scan -p "/path" -o "/path/"
 ```
 
 We also provide alpine based docker image with `latest-alpine`.
