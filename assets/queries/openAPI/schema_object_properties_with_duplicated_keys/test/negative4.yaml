@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+  contact:
+    name: contact
+    url: https://www.google.com/
+    email: user@gmail.c
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                discriminator:
+                  propertyName: petType
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+                    minimum: 100
+                    maximum: 600
+                allOf:
+                  - "$ref": "#/components/schemas/ErrorModel"
+                  - type: object
+                    required:
+                      - rootCause
+                    properties:
+                      rootCause:
+                        type: string
