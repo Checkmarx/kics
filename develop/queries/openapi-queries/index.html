@@ -928,6 +928,13 @@
 <td><a href="https://swagger.io/specification/#link-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Path Is Ambiguous<br/><sup><sub>237402e2-c2f0-46c9-9cf5-286160cf7bfc</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>All path should be unique, if has more than one operation, all operations should be part of same Path Object</td>
+<td><a href="https://swagger.io/specification/#path-item-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Schema Has A Required Property Undefined<br/><sup><sub>2bd608ae-8a1f-457f-b710-c237883cb313</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -1089,6 +1096,13 @@
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Object Without Required Property<br/><sup><sub>d172a060-8569-4412-8045-3560ebd477e8</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>OpenAPI Object should contain all of its required fields</td>
+<td><a href="https://swagger.io/specification/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Parameter Object With Schema And Content<br/><sup><sub>31dd6fc0-f274-493b-9614-e063086c19fc</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -1138,18 +1152,18 @@
 <td><a href="https://swagger.io/specification/#reference-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Missing Mandatory Fields for Minimum Working File<br/><sup><sub>cf5ba5d2-5ad5-4582-8200-325fa75f606d</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Mandatory fields for a minimum working file (such as 'info', 'info.version', 'info.title', and 'paths') should be defined.</td>
-<td><a href="https://swagger.io/specification/#openapi-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>OperationId Not Unique<br/><sup><sub>c254adc4-ef25-46e1-8270-b7944adb4198</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
 <td>OperationId should be unique when defined</td>
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Requirement Object With Wrong Scopes<br/><sup><sub>37140f7f-724a-4c87-a536-e9cee1d61533</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Security Requirement Object should only have scopes defined for security schemes of type 'oauth2' and 'openIdConnect'</td>
+<td><a href="https://swagger.io/specification/#security-requirement-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Callback Object With Incorrect Ref<br/><sup><sub>ba066cda-e808-450d-92b6-f29109754d45</sub></sup></td>
@@ -1241,6 +1255,13 @@
 <td>Structure and Semantics</td>
 <td>Header Object reference must always point to '#/components/headers'</td>
 <td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Properties Missing Required Property<br/><sup><sub>3fb03214-25d4-4bd4-867c-c2d8d708a483</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object should have all required properties defined</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Parameter Objects Headers With Duplicated Name<br/><sup><sub>05505192-ba2c-4a81-9b25-dcdbcc973746</sub></sup></td>
