@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.9%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.8%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.9%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -121,47 +121,53 @@
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (0.0%)</option>
 				
-				<option value="file33">github.com/Checkmarx/kics/pkg/model/sarif.go (95.7%)</option>
+				<option value="file33">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.6%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.6%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/parser/json/parser.go (72.7%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/parser/json/parser.go (72.7%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/parser/parser.go (93.1%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/parser/parser.go (93.1%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.9%)</option>
 				
-				<option value="file38">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.9%)</option>
+				<option value="file38">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (70.7%)</option>
 				
-				<option value="file39">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (70.7%)</option>
+				<option value="file39">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (92.2%)</option>
 				
-				<option value="file40">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (92.2%)</option>
+				<option value="file40">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
-				<option value="file41">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
+				<option value="file41">github.com/Checkmarx/kics/pkg/parser/utils/file_utils.go (64.0%)</option>
 				
-				<option value="file42">github.com/Checkmarx/kics/pkg/parser/utils/file_utils.go (64.0%)</option>
+				<option value="file42">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file43">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
+				<option value="file43">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (80.3%)</option>
 				
-				<option value="file44">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (80.3%)</option>
+				<option value="file44">github.com/Checkmarx/kics/pkg/report/commons.go (77.8%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (77.8%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (87.5%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/report/html.go (88.6%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/report/json.go (90.0%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/pkg/report/sarif.go (83.3%)</option>
+				<option value="file48">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (90.9%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.7%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/report/model/sarif.go (95.7%)</option>
 				
-				<option value="file50">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (89.4%)</option>
+				<option value="file50">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file51">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
+				<option value="file51">github.com/Checkmarx/kics/pkg/report/sarif.go (83.3%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/scanner/scanner.go (94.1%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.7%)</option>
 				
-				<option value="file53">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file53">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (89.4%)</option>
+				
+				<option value="file54">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
+				
+				<option value="file55">github.com/Checkmarx/kics/pkg/scanner/scanner.go (94.1%)</option>
+				
+				<option value="file56">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -308,9 +314,10 @@ import (
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
-        "json":  report.PrintJSONReport,
-        "sarif": report.PrintSarifReport,
-        "html":  report.PrintHTMLReport,
+        "json":   report.PrintJSONReport,
+        "sarif":  report.PrintSarifReport,
+        "html":   report.PrintHTMLReport,
+        "glsast": report.PrintGitlabSASTReport,
 }
 
 // ProgressBar represents a Progress
@@ -577,7 +584,7 @@ func GetDefaultQueryPath(queriesPath string) (string, error) <span class="cov2" 
 // ListReportFormats return a slice with all supported report formats
 func ListReportFormats() []string <span class="cov2" title="2">{
         supportedFormats := make([]string, 0, len(reportGenerators))
-        for reportFormats := range reportGenerators </span><span class="cov3" title="6">{
+        for reportFormats := range reportGenerators </span><span class="cov4" title="8">{
                 supportedFormats = append(supportedFormats, reportFormats)
         }</span>
         <span class="cov2" title="2">return supportedFormats</span>
@@ -1364,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="314">{
-                if val == true </span><span class="cov9" title="313">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="293">{
+                if val == true </span><span class="cov9" title="292">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1415,7 +1422,7 @@ func initScanFlags(scanCmd *cobra.Command) <span class="cov5" title="13">{
                 "",
                 "directory path to store reports")
         scanCmd.Flags().StringSliceVar(&amp;reportFormats, reportFormatsFlag, []string{"json"},
-                "formats in which the results will be exported (all, json, sarif, html)",
+                "formats in which the results will be exported (all, json, sarif, html, glsast)",
         )
         scanCmd.Flags().IntVar(&amp;previewLines,
                 previewLinesFlag,
@@ -1695,7 +1702,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="8">{
 
         <span class="cov4" title="7">elapsed := time.Since(scanStartTime)
 
-        summary := getSummary(t, results)
+        summary := getSummary(t, results, scanStartTime, time.Now())
 
         if err := resolveOutputs(&amp;summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
@@ -1713,7 +1720,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="8">{
         <span class="cov4" title="7">return nil</span>
 }
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summary <span class="cov4" title="7">{
+func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time) model.Summary <span class="cov4" title="7">{
         counters := model.Counters{
                 ScannedFiles:           t.FoundFiles,
                 ParsedFiles:            t.ParsedFiles,
@@ -1722,7 +1729,12 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summa
                 FailedSimilarityID:     t.FailedSimilarityID,
         }
 
-        return model.CreateSummary(counters, results, scanID)
+        summary := model.CreateSummary(counters, results, scanID)
+        summary.Times = model.Times{
+                Start: start,
+                End:   end,
+        }
+        return summary
 }</span>
 
 func resolveOutputs(
@@ -2046,13 +2058,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2070,7 +2082,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4623,7 +4635,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="35">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="26">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -5691,298 +5703,8 @@ func (v *Document) UnmarshalEasyJSON(l *jlexer.Lexer) <span class="cov0" title="
 		<pre class="file" id="file33" style="display: none">package model
 
 import (
-        "path/filepath"
-
-        "github.com/Checkmarx/kics/internal/constants"
-        "github.com/rs/zerolog/log"
-)
-
-var categoriesNotFound = make(map[string]bool)
-
-var severityLevelEquivalence = map[Severity]string{
-        "INFO":   "none",
-        "LOW":    "note",
-        "MEDIUM": "warning",
-        "HIGH":   "error",
-}
-
-var targetTemplate = sarifDescriptorReference{
-        ToolComponent: sarifComponentReference{
-                ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-                ComponentReferenceName:  "Categories",
-                ComponentReferenceIndex: 0,
-        },
-}
-
-type ruleMetadata struct {
-        queryID          string
-        queryName        string
-        queryDescription string
-        queryURI         string
-        queryCategory    string
-        severity         Severity
-}
-
-type sarifMessage struct {
-        Text string `json:"text"`
-}
-
-type sarifComponentReference struct {
-        ComponentReferenceName  string `json:"name"`
-        ComponentReferenceGUID  string `json:"guid"`
-        ComponentReferenceIndex int    `json:"index"`
-}
-
-type sarifDescriptorReference struct {
-        ReferenceID    string                  `json:"id"`
-        ReferenceIndex int                     `json:"index"`
-        ToolComponent  sarifComponentReference `json:"toolComponent"`
-}
-
-type sarifDescriptorRelationship struct {
-        Target sarifDescriptorReference `json:"target"`
-}
-
-type sarifConfiguration struct {
-        Level string `json:"level"`
-}
-
-type sarifRule struct {
-        RuleID               string                        `json:"id"`
-        RuleName             string                        `json:"name"`
-        RuleShortDescription sarifMessage                  `json:"shortDescription"`
-        RuleFullDescription  sarifMessage                  `json:"fullDescription"`
-        DefaultConfiguration sarifConfiguration            `json:"defaultConfiguration"`
-        HelpURI              string                        `json:"helpUri"`
-        RuleRelationships    []sarifDescriptorRelationship `json:"relationships"`
-}
-
-type sarifDriver struct {
-        ToolName     string      `json:"name"`
-        ToolVersion  string      `json:"version"`
-        ToolFullName string      `json:"fullName"`
-        ToolURI      string      `json:"informationUri"`
-        Rules        []sarifRule `json:"rules"`
-}
-
-type sarifTool struct {
-        Driver sarifDriver `json:"driver"`
-}
-
-type sarifRegion struct {
-        StartLine int `json:"startLine"`
-}
-
-type sarifArtifactLocation struct {
-        ArtifactURI string `json:"uri"`
-}
-
-type sarifPhysicalLocation struct {
-        ArtifactLocation sarifArtifactLocation `json:"artifactLocation"`
-        Region           sarifRegion           `json:"region"`
-}
-
-type sarifLocation struct {
-        PhysicalLocation sarifPhysicalLocation `json:"physicalLocation"`
-}
-
-type sarifResult struct {
-        ResultRuleID    string          `json:"ruleId"`
-        ResultRuleIndex int             `json:"ruleIndex"`
-        ResultKind      string          `json:"kind"`
-        ResultMessage   sarifMessage    `json:"message"`
-        ResultLocations []sarifLocation `json:"locations"`
-}
-
-type sarifTaxanomyDefinition struct {
-        DefinitionID               string       `json:"id"`
-        DefinitionName             string       `json:"name"`
-        DefinitionShortDescription sarifMessage `json:"shortDescription"`
-        DefinitionFullDescription  sarifMessage `json:"fullDescription"`
-}
-
-type sarifTaxonomy struct {
-        TaxonomyGUID             string                    `json:"guid"`
-        TaxonomyName             string                    `json:"name"`
-        TaxonomyFullDescription  sarifMessage              `json:"fullDescription"`
-        TaxonomyShortDescription sarifMessage              `json:"shortDescription"`
-        TaxonomyDefinitions      []sarifTaxanomyDefinition `json:"taxa"`
-}
-
-type sarifRun struct {
-        Tool       sarifTool       `json:"tool"`
-        Results    []sarifResult   `json:"results"`
-        Taxonomies []sarifTaxonomy `json:"taxonomies"`
-}
-
-// SarifReport represents a usable sarif report reference
-type SarifReport interface {
-        BuildIssue(issue *VulnerableQuery)
-}
-
-type sarifReport struct {
-        basePath     string     `json:"-"`
-        Schema       string     `json:"$schema"`
-        SarifVersion string     `json:"version"`
-        Runs         []sarifRun `json:"runs"`
-}
-
-func initTool() sarifTool <span class="cov4" title="5">{
-        return sarifTool{
-                Driver: sarifDriver{
-                        ToolName:     "KICS",
-                        ToolVersion:  constants.Version,
-                        ToolFullName: constants.Fullname,
-                        ToolURI:      "https://www.kics.io/",
-                        Rules:        make([]sarifRule, 0),
-                },
-        }
-}</span>
-
-func initCategories() []sarifTaxanomyDefinition <span class="cov4" title="5">{
-        allCategories := []sarifTaxanomyDefinition{noCategory}
-        for _, category := range categories </span><span class="cov10" title="70">{
-                allCategories = append(allCategories, category)
-        }</span>
-        <span class="cov4" title="5">return allCategories</span>
-}
-
-func initTaxonomies() []sarifTaxonomy <span class="cov4" title="5">{
-        return []sarifTaxonomy{
-                {
-                        TaxonomyGUID: targetTemplate.ToolComponent.ComponentReferenceGUID,
-                        TaxonomyName: targetTemplate.ToolComponent.ComponentReferenceName,
-                        TaxonomyShortDescription: sarifMessage{
-                                Text: "Vulnerabilities categories",
-                        },
-                        TaxonomyFullDescription: sarifMessage{
-                                Text: "This taxonomy contains the types an issue can assume",
-                        },
-                        TaxonomyDefinitions: initCategories(),
-                },
-        }
-}</span>
-
-func initRun() []sarifRun <span class="cov4" title="5">{
-        return []sarifRun{
-                {
-                        Tool:       initTool(),
-                        Results:    make([]sarifResult, 0),
-                        Taxonomies: initTaxonomies(),
-                },
-        }
-}</span>
-
-// NewSarifReport creates and start a new sarif report with default values respecting SARIF schema 2.1.0
-func NewSarifReport() SarifReport <span class="cov3" title="4">{
-        return &amp;sarifReport{
-                Schema:       "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
-                SarifVersion: "2.1.0",
-                Runs:         initRun(),
-        }
-}</span>
-
-func (sr *sarifReport) findCategory(category string) int <span class="cov3" title="3">{
-        for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions </span><span class="cov9" title="45">{
-                if taxonomy.DefinitionName == category </span><span class="cov0" title="0">{
-                        return idx
-                }</span>
-        }
-        <span class="cov3" title="3">return 0</span>
-}
-
-func (sr *sarifReport) buildCategory(category string) sarifDescriptorReference <span class="cov3" title="3">{
-        target := targetTemplate
-        categoryIndex := sr.findCategory(category)
-        target.ReferenceIndex = categoryIndex
-        target.ReferenceID = sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex].DefinitionID
-        if categoryIndex == 0 </span><span class="cov3" title="3">{
-                if _, exists := categoriesNotFound[category]; !exists </span><span class="cov2" title="2">{
-                        log.Warn().Msgf("Category %s not found.", category)
-                        categoriesNotFound[category] = true
-                }</span>
-        }
-        <span class="cov3" title="3">return target</span>
-}
-
-func (sr *sarifReport) findRuleIndex(ruleID string) int <span class="cov3" title="4">{
-        for idx, rule := range sr.Runs[0].Tool.Driver.Rules </span><span class="cov2" title="2">{
-                if rule.RuleID == ruleID </span><span class="cov1" title="1">{
-                        return idx
-                }</span>
-        }
-        <span class="cov3" title="3">return -1</span>
-}
-
-func (sr *sarifReport) buildRule(queryMetadata *ruleMetadata) int <span class="cov3" title="4">{
-        index := sr.findRuleIndex(queryMetadata.queryID)
-        if index &lt; 0 </span><span class="cov3" title="3">{
-                helpURI := "https://docs.kics.io/"
-                if queryMetadata.queryURI != "" </span><span class="cov3" title="3">{
-                        helpURI = queryMetadata.queryURI
-                }</span>
-                <span class="cov3" title="3">rule := sarifRule{
-                        RuleID:               queryMetadata.queryID,
-                        RuleName:             queryMetadata.queryName,
-                        RuleShortDescription: sarifMessage{Text: queryMetadata.queryName},
-                        RuleFullDescription:  sarifMessage{Text: queryMetadata.queryDescription},
-                        DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
-                        RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildCategory(queryMetadata.queryCategory)}},
-                        HelpURI:              helpURI,
-                }
-
-                sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
-                index = len(sr.Runs[0].Tool.Driver.Rules) - 1</span>
-        }
-        <span class="cov3" title="4">return index</span>
-}
-
-// BuildIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildIssue(issue *VulnerableQuery) <span class="cov4" title="5">{
-        if len(issue.Files) &gt; 0 </span><span class="cov3" title="4">{
-                absBasePath, err := filepath.Abs(sr.basePath)
-                if err != nil </span><span class="cov0" title="0">{
-                        log.Err(err)
-                }</span>
-                <span class="cov3" title="4">metadata := ruleMetadata{
-                        queryID:          issue.QueryID,
-                        queryName:        issue.QueryName,
-                        queryDescription: issue.Description,
-                        queryURI:         issue.QueryURI,
-                        queryCategory:    issue.Category,
-                        severity:         issue.Severity,
-                }
-                ruleIndex := sr.buildRule(&amp;metadata)
-                kind := "fail"
-                if severityLevelEquivalence[issue.Severity] == "none" </span><span class="cov1" title="1">{
-                        kind = "informational"
-                }</span>
-                <span class="cov3" title="4">for idx := range issue.Files </span><span class="cov3" title="4">{
-                        relativePath, _ := filepath.Rel(absBasePath, issue.Files[idx].FileName)
-                        result := sarifResult{
-                                ResultRuleID:    issue.QueryID,
-                                ResultRuleIndex: ruleIndex,
-                                ResultKind:      kind,
-                                ResultMessage:   sarifMessage{Text: issue.Files[idx].KeyActualValue},
-                                ResultLocations: []sarifLocation{
-                                        {
-                                                PhysicalLocation: sarifPhysicalLocation{
-                                                        ArtifactLocation: sarifArtifactLocation{ArtifactURI: relativePath},
-                                                        Region:           sarifRegion{StartLine: issue.Files[idx].Line},
-                                                },
-                                        },
-                                },
-                        }
-                        sr.Runs[0].Results = append(sr.Runs[0].Results, result)
-                }</span>
-        }
-}
-</pre>
-		
-		<pre class="file" id="file34" style="display: none">package model
-
-import (
         "sort"
+        "time"
 
         "github.com/rs/zerolog/log"
 )
@@ -6034,11 +5756,18 @@ type Counters struct {
         FailedSimilarityID     int `json:"queries_failed_to_compute_similarity_id"`
 }
 
+// Times represents an object that contains the start and end time of the scan
+type Times struct {
+        Start time.Time `json:"start"`
+        End   time.Time `json:"end"`
+}
+
 // Summary is a report of a single scan
 type Summary struct {
         Counters
         Queries VulnerableQuerySlice `json:"queries"`
         SeveritySummary
+        Times
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
@@ -6105,7 +5834,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 }
 </pre>
 		
-		<pre class="file" id="file35" style="display: none">package docker
+		<pre class="file" id="file34" style="display: none">package docker
 
 import (
         "bytes"
@@ -6216,7 +5945,7 @@ func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file36" style="display: none">package json
+		<pre class="file" id="file35" style="display: none">package json
 
 import (
         "encoding/json"
@@ -6263,7 +5992,7 @@ func (p *Parser) SupportedTypes() []string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file37" style="display: none">package parser
+		<pre class="file" id="file36" style="display: none">package parser
 
 import (
         "errors"
@@ -6412,7 +6141,7 @@ func removeDuplicateValues(stringSlice []string) []string <span class="cov6" tit
 }
 </pre>
 		
-		<pre class="file" id="file38" style="display: none">package converter
+		<pre class="file" id="file37" style="display: none">package converter
 
 import (
         "fmt"
@@ -6690,7 +6419,7 @@ func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span cl
 }
 </pre>
 		
-		<pre class="file" id="file39" style="display: none">package terraform
+		<pre class="file" id="file38" style="display: none">package terraform
 
 import (
         "path/filepath"
@@ -6815,7 +6544,7 @@ func (p *Parser) GetKind() model.FileKind <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file40" style="display: none">package terraform
+		<pre class="file" id="file39" style="display: none">package terraform
 
 import (
         "fmt"
@@ -6952,7 +6681,7 @@ func getInputVariables(currentPath string) <span class="cov3" title="2">{
 }
 </pre>
 		
-		<pre class="file" id="file41" style="display: none">package utils
+		<pre class="file" id="file40" style="display: none">package utils
 
 import (
         "crypto/rsa"
@@ -7047,7 +6776,7 @@ func AddCertificateInfo(path, content string) map[string]interface{} <span class
 }
 </pre>
 		
-		<pre class="file" id="file42" style="display: none">package utils
+		<pre class="file" id="file41" style="display: none">package utils
 
 import (
         "encoding/json"
@@ -7103,7 +6832,7 @@ func readFile(filePath string) (map[string]interface{}, error) <span class="cov3
 }
 </pre>
 		
-		<pre class="file" id="file43" style="display: none">package utils
+		<pre class="file" id="file42" style="display: none">package utils
 
 import (
         "os"
@@ -7138,7 +6867,7 @@ func AddSwaggerInfo(path, swaggerPath string) map[string]interface{} <span class
 }
 </pre>
 		
-		<pre class="file" id="file44" style="display: none">package json
+		<pre class="file" id="file43" style="display: none">package json
 
 import (
         "bytes"
@@ -7309,7 +7038,7 @@ func playbookParser(filePath string, fileContent []byte) ([]model.Document, erro
 }
 </pre>
 		
-		<pre class="file" id="file45" style="display: none">package report
+		<pre class="file" id="file44" style="display: none">package report
 
 import (
         "fmt"
@@ -7350,14 +7079,54 @@ func getCurrentTime() string <span class="cov1" title="1">{
         return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }</span>
 
-func closeFile(path, filename string, file *os.File) <span class="cov8" title="3">{
+func closeFile(path, filename string, file *os.File) <span class="cov10" title="4">{
         err := file.Close()
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov8" title="3">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
+        <span class="cov10" title="4">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
         fmt.Printf("Results saved to file %s\n", path)</span>
+}
+</pre>
+		
+		<pre class="file" id="file45" style="display: none">package report
+
+import (
+        "encoding/json"
+        "strings"
+
+        "github.com/Checkmarx/kics/pkg/model"
+        reportModel "github.com/Checkmarx/kics/pkg/report/model"
+)
+
+// PrintGitlabSASTReport creates a report file on sarif format
+func PrintGitlabSASTReport(path, filename string, body interface{}) error <span class="cov1" title="1">{
+        filename = strings.ReplaceAll(filename, ".glsast", "")
+        if !strings.HasSuffix(filename, jsonExtension) </span><span class="cov1" title="1">{
+                filename += jsonExtension
+        }</span>
+        <span class="cov1" title="1">if !strings.HasPrefix(filename, "gl-sast-") </span><span class="cov1" title="1">{
+                filename = "gl-sast-" + filename
+        }</span>
+        <span class="cov1" title="1">var summary model.Summary
+        result, err := json.Marshal(body)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov1" title="1">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Times.Start, summary.Times.End)
+
+        for idxQuery := range summary.Queries </span><span class="cov1" title="1">{
+                for idxFile := range summary.Queries[idxQuery].Files </span><span class="cov10" title="2">{
+                        gitlabSASTReport.BuildGitlabSASTVulnerability(&amp;summary.Queries[idxQuery], &amp;summary.Queries[idxQuery].Files[idxFile])
+                }</span>
+        }
+
+        <span class="cov1" title="1">return PrintJSONReport(path, filename, gitlabSASTReport)</span>
 }
 </pre>
 		
@@ -7478,19 +7247,21 @@ import (
         "strings"
 )
 
+const jsonExtension = ".json"
+
 // PrintJSONReport prints on JSON file the summary results
-func PrintJSONReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
+func PrintJSONReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
         if !strings.Contains(filename, ".") </span><span class="cov1" title="1">{
-                filename += ".json"
+                filename += jsonExtension
         }</span>
-        <span class="cov10" title="2">fullPath := filepath.Join(path, filename)
+        <span class="cov10" title="3">fullPath := filepath.Join(path, filename)
 
         f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov10" title="2">defer closeFile(fullPath, filename, f)
+        <span class="cov10" title="3">defer closeFile(fullPath, filename, f)
 
         encoder := json.NewEncoder(f)
         encoder.SetIndent("", "\t")
@@ -7499,13 +7270,530 @@ func PrintJSONReport(path, filename string, body interface{}) error <span class=
 }
 </pre>
 		
-		<pre class="file" id="file48" style="display: none">package report
+		<pre class="file" id="file48" style="display: none">package model
+
+import (
+        "fmt"
+        "path/filepath"
+        "strings"
+        "time"
+
+        "github.com/Checkmarx/kics/internal/constants"
+        "github.com/Checkmarx/kics/pkg/model"
+        "github.com/rs/zerolog/log"
+)
+
+const timeFormat = "2006-01-02T15:04:05" // YYYY-MM-DDTHH:MM:SS a.k.a ISO8601
+
+type gitlabSASTReport struct {
+        basePath        string                    `json:"-"`
+        Schema          string                    `json:"schema"`
+        SchemaVersion   string                    `json:"version"`
+        Scan            gitlabSASTScan            `json:"scan"`
+        Vulnerabilities []gitlabSASTVulnerability `json:"vulnerabilities"`
+}
+
+type gitlabSASTScan struct {
+        StartTime string            `json:"start_time"`
+        EndTime   string            `json:"end_time"`
+        Status    string            `json:"status"`
+        Scantype  string            `json:"type"`
+        Scanner   gitlabSASTScanner `json:"scanner"`
+}
+
+type gitlabSASTScanner struct {
+        ID      string                  `json:"id"`
+        Name    string                  `json:"name"`
+        URL     string                  `json:"url"`
+        Version string                  `json:"version"`
+        Vendor  gitlabSASTScannerVendor `json:"vendor"`
+}
+
+type gitlabSASTScannerVendor struct {
+        Name string `json:"name"`
+}
+
+type gitlabSASTVulnerability struct {
+        ID          string                              `json:"id"`
+        Category    string                              `json:"category"`
+        Severity    string                              `json:"severity"`
+        CVE         string                              `json:"cve"`
+        Scanner     gitlabSASTVulnerabilityScanner      `json:"scanner"`
+        Name        string                              `json:"name"`
+        Message     string                              `json:"message"`
+        Links       []gitlabSASTVulnerabilityLink       `json:"links"`
+        Location    gitlabSASTVulnerabilityLocation     `json:"location"`
+        Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
+}
+
+type gitlabSASTVulnerabilityScanner struct {
+        ID   string `json:"id"`
+        Name string `json:"name"`
+}
+
+type gitlabSASTVulnerabilityLink struct {
+        URL string `json:"url"`
+}
+
+type gitlabSASTVulnerabilityLocation struct {
+        File  string `json:"file"`
+        Start int    `json:"start_line"`
+        End   int    `json:"end_line"`
+}
+
+type gitlabSASTVulnerabilityIdentifier struct {
+        IdentifierType string `json:"type"`
+        Name           string `json:"name"`
+        URL            string `json:"url"`
+        Value          string `json:"value"`
+}
+
+// GitlabSASTReport represents a usable gitlab sast report reference
+type GitlabSASTReport interface {
+        BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile)
+}
+
+// NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be uses
+func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport <span class="cov10" title="3">{
+        return &amp;gitlabSASTReport{
+                Schema:          "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json",
+                SchemaVersion:   "13.1.0",
+                Scan:            initGitlabSASTScan(start, end),
+                Vulnerabilities: make([]gitlabSASTVulnerability, 0),
+        }
+}</span>
+
+func initGitlabSASTScan(start, end time.Time) gitlabSASTScan <span class="cov10" title="3">{
+        return gitlabSASTScan{
+                Status:    "success",
+                Scantype:  "sast",
+                StartTime: start.Format(timeFormat),
+                EndTime:   end.Format(timeFormat),
+                Scanner: gitlabSASTScanner{
+                        ID:   "keeping-infrastructure-as-code-secure",
+                        Name: constants.Fullname,
+                        URL:  constants.URL,
+                        Vendor: gitlabSASTScannerVendor{
+                                Name: "Checkmarx",
+                        },
+                        Version: constants.Version,
+                },
+        }
+}</span>
+
+// BuildGitlabSASTVulnerability adds a new vulnerability struct to vulnerability slice
+func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile) <span class="cov6" title="2">{
+        if len(issue.Files) &gt; 0 </span><span class="cov1" title="1">{
+                absBasePath, err := filepath.Abs(glsr.basePath)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err)
+                }</span>
+                <span class="cov1" title="1">relativePath, err := filepath.Rel(absBasePath, file.FileName)
+                if err != nil </span><span class="cov1" title="1">{
+                        log.Err(err)
+                }</span>
+
+                <span class="cov1" title="1">vulnerability := gitlabSASTVulnerability{
+                        ID:       file.SimilarityID,
+                        Category: issue.Category,
+                        Severity: strings.ToLower(string(issue.Severity)),
+                        CVE:      file.SimilarityID,
+                        Scanner: gitlabSASTVulnerabilityScanner{
+                                ID:   "keeping_infrastructure_as_code_secure",
+                                Name: constants.Fullname,
+                        },
+                        Name:    issue.QueryName,
+                        Message: issue.Description,
+                        Links: []gitlabSASTVulnerabilityLink{
+                                {
+                                        URL: issue.QueryURI,
+                                },
+                        },
+                        Location: gitlabSASTVulnerabilityLocation{
+                                File:  relativePath,
+                                Start: file.Line,
+                                End:   file.Line,
+                        },
+                        Identifiers: []gitlabSASTVulnerabilityIdentifier{
+                                {
+                                        IdentifierType: "kics",
+                                        Name:           constants.Fullname,
+                                        URL:            fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries", strings.ToLower(issue.Platform)),
+                                        Value:          issue.QueryID,
+                                },
+                        },
+                }
+                glsr.Vulnerabilities = append(glsr.Vulnerabilities, vulnerability)</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file49" style="display: none">package model
+
+import (
+        "path/filepath"
+
+        "github.com/Checkmarx/kics/internal/constants"
+        "github.com/Checkmarx/kics/pkg/model"
+        "github.com/rs/zerolog/log"
+)
+
+var categoriesNotFound = make(map[string]bool)
+
+var severityLevelEquivalence = map[model.Severity]string{
+        "INFO":   "none",
+        "LOW":    "note",
+        "MEDIUM": "warning",
+        "HIGH":   "error",
+}
+
+var targetTemplate = sarifDescriptorReference{
+        ToolComponent: sarifComponentReference{
+                ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+                ComponentReferenceName:  "Categories",
+                ComponentReferenceIndex: 0,
+        },
+}
+
+type ruleMetadata struct {
+        queryID          string
+        queryName        string
+        queryDescription string
+        queryURI         string
+        queryCategory    string
+        severity         model.Severity
+}
+
+type sarifMessage struct {
+        Text string `json:"text"`
+}
+
+type sarifComponentReference struct {
+        ComponentReferenceName  string `json:"name"`
+        ComponentReferenceGUID  string `json:"guid"`
+        ComponentReferenceIndex int    `json:"index"`
+}
+
+type sarifDescriptorReference struct {
+        ReferenceID    string                  `json:"id"`
+        ReferenceIndex int                     `json:"index"`
+        ToolComponent  sarifComponentReference `json:"toolComponent"`
+}
+
+type sarifDescriptorRelationship struct {
+        Target sarifDescriptorReference `json:"target"`
+}
+
+type sarifConfiguration struct {
+        Level string `json:"level"`
+}
+
+type sarifRule struct {
+        RuleID               string                        `json:"id"`
+        RuleName             string                        `json:"name"`
+        RuleShortDescription sarifMessage                  `json:"shortDescription"`
+        RuleFullDescription  sarifMessage                  `json:"fullDescription"`
+        DefaultConfiguration sarifConfiguration            `json:"defaultConfiguration"`
+        HelpURI              string                        `json:"helpUri"`
+        RuleRelationships    []sarifDescriptorRelationship `json:"relationships"`
+}
+
+type sarifDriver struct {
+        ToolName     string      `json:"name"`
+        ToolVersion  string      `json:"version"`
+        ToolFullName string      `json:"fullName"`
+        ToolURI      string      `json:"informationUri"`
+        Rules        []sarifRule `json:"rules"`
+}
+
+type sarifTool struct {
+        Driver sarifDriver `json:"driver"`
+}
+
+type sarifRegion struct {
+        StartLine int `json:"startLine"`
+}
+
+type sarifArtifactLocation struct {
+        ArtifactURI string `json:"uri"`
+}
+
+type sarifPhysicalLocation struct {
+        ArtifactLocation sarifArtifactLocation `json:"artifactLocation"`
+        Region           sarifRegion           `json:"region"`
+}
+
+type sarifLocation struct {
+        PhysicalLocation sarifPhysicalLocation `json:"physicalLocation"`
+}
+
+type sarifResult struct {
+        ResultRuleID    string          `json:"ruleId"`
+        ResultRuleIndex int             `json:"ruleIndex"`
+        ResultKind      string          `json:"kind"`
+        ResultMessage   sarifMessage    `json:"message"`
+        ResultLocations []sarifLocation `json:"locations"`
+}
+
+type sarifTaxanomyDefinition struct {
+        DefinitionID               string       `json:"id"`
+        DefinitionName             string       `json:"name"`
+        DefinitionShortDescription sarifMessage `json:"shortDescription"`
+        DefinitionFullDescription  sarifMessage `json:"fullDescription"`
+}
+
+type sarifTaxonomy struct {
+        TaxonomyGUID             string                    `json:"guid"`
+        TaxonomyName             string                    `json:"name"`
+        TaxonomyFullDescription  sarifMessage              `json:"fullDescription"`
+        TaxonomyShortDescription sarifMessage              `json:"shortDescription"`
+        TaxonomyDefinitions      []sarifTaxanomyDefinition `json:"taxa"`
+}
+
+type sarifRun struct {
+        Tool       sarifTool       `json:"tool"`
+        Results    []sarifResult   `json:"results"`
+        Taxonomies []sarifTaxonomy `json:"taxonomies"`
+}
+
+// SarifReport represents a usable sarif report reference
+type SarifReport interface {
+        BuildSarifIssue(issue *model.VulnerableQuery)
+}
+
+type sarifReport struct {
+        basePath     string     `json:"-"`
+        Schema       string     `json:"$schema"`
+        SarifVersion string     `json:"version"`
+        Runs         []sarifRun `json:"runs"`
+}
+
+func initSarifTool() sarifTool <span class="cov4" title="5">{
+        return sarifTool{
+                Driver: sarifDriver{
+                        ToolName:     "KICS",
+                        ToolVersion:  constants.Version,
+                        ToolFullName: constants.Fullname,
+                        ToolURI:      constants.URL,
+                        Rules:        make([]sarifRule, 0),
+                },
+        }
+}</span>
+
+func initSarifCategories() []sarifTaxanomyDefinition <span class="cov4" title="5">{
+        allCategories := []sarifTaxanomyDefinition{noCategory}
+        for _, category := range categories </span><span class="cov10" title="70">{
+                allCategories = append(allCategories, category)
+        }</span>
+        <span class="cov4" title="5">return allCategories</span>
+}
+
+func initSarifTaxonomies() []sarifTaxonomy <span class="cov4" title="5">{
+        return []sarifTaxonomy{
+                {
+                        TaxonomyGUID: targetTemplate.ToolComponent.ComponentReferenceGUID,
+                        TaxonomyName: targetTemplate.ToolComponent.ComponentReferenceName,
+                        TaxonomyShortDescription: sarifMessage{
+                                Text: "Vulnerabilities categories",
+                        },
+                        TaxonomyFullDescription: sarifMessage{
+                                Text: "This taxonomy contains the types an issue can assume",
+                        },
+                        TaxonomyDefinitions: initSarifCategories(),
+                },
+        }
+}</span>
+
+func initSarifRun() []sarifRun <span class="cov4" title="5">{
+        return []sarifRun{
+                {
+                        Tool:       initSarifTool(),
+                        Results:    make([]sarifResult, 0),
+                        Taxonomies: initSarifTaxonomies(),
+                },
+        }
+}</span>
+
+// NewSarifReport creates and start a new sarif report with default values respecting SARIF schema 2.1.0
+func NewSarifReport() SarifReport <span class="cov3" title="4">{
+        return &amp;sarifReport{
+                Schema:       "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+                SarifVersion: "2.1.0",
+                Runs:         initSarifRun(),
+        }
+}</span>
+
+func (sr *sarifReport) findSarifCategory(category string) int <span class="cov3" title="3">{
+        for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions </span><span class="cov9" title="45">{
+                if taxonomy.DefinitionName == category </span><span class="cov0" title="0">{
+                        return idx
+                }</span>
+        }
+        <span class="cov3" title="3">return 0</span>
+}
+
+func (sr *sarifReport) buildSarifCategory(category string) sarifDescriptorReference <span class="cov3" title="3">{
+        target := targetTemplate
+        categoryIndex := sr.findSarifCategory(category)
+        target.ReferenceIndex = categoryIndex
+        target.ReferenceID = sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex].DefinitionID
+        if categoryIndex == 0 </span><span class="cov3" title="3">{
+                if _, exists := categoriesNotFound[category]; !exists </span><span class="cov2" title="2">{
+                        log.Warn().Msgf("Category %s not found.", category)
+                        categoriesNotFound[category] = true
+                }</span>
+        }
+        <span class="cov3" title="3">return target</span>
+}
+
+func (sr *sarifReport) findSarifRuleIndex(ruleID string) int <span class="cov3" title="4">{
+        for idx, rule := range sr.Runs[0].Tool.Driver.Rules </span><span class="cov2" title="2">{
+                if rule.RuleID == ruleID </span><span class="cov1" title="1">{
+                        return idx
+                }</span>
+        }
+        <span class="cov3" title="3">return -1</span>
+}
+
+func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata) int <span class="cov3" title="4">{
+        index := sr.findSarifRuleIndex(queryMetadata.queryID)
+        if index &lt; 0 </span><span class="cov3" title="3">{
+                helpURI := "https://docs.kics.io/"
+                if queryMetadata.queryURI != "" </span><span class="cov3" title="3">{
+                        helpURI = queryMetadata.queryURI
+                }</span>
+                <span class="cov3" title="3">rule := sarifRule{
+                        RuleID:               queryMetadata.queryID,
+                        RuleName:             queryMetadata.queryName,
+                        RuleShortDescription: sarifMessage{Text: queryMetadata.queryName},
+                        RuleFullDescription:  sarifMessage{Text: queryMetadata.queryDescription},
+                        DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
+                        RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildSarifCategory(queryMetadata.queryCategory)}},
+                        HelpURI:              helpURI,
+                }
+
+                sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
+                index = len(sr.Runs[0].Tool.Driver.Rules) - 1</span>
+        }
+        <span class="cov3" title="4">return index</span>
+}
+
+// BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
+func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) <span class="cov4" title="5">{
+        if len(issue.Files) &gt; 0 </span><span class="cov3" title="4">{
+                absBasePath, err := filepath.Abs(sr.basePath)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err)
+                }</span>
+                <span class="cov3" title="4">metadata := ruleMetadata{
+                        queryID:          issue.QueryID,
+                        queryName:        issue.QueryName,
+                        queryDescription: issue.Description,
+                        queryURI:         issue.QueryURI,
+                        queryCategory:    issue.Category,
+                        severity:         issue.Severity,
+                }
+                ruleIndex := sr.buildSarifRule(&amp;metadata)
+                kind := "fail"
+                if severityLevelEquivalence[issue.Severity] == "none" </span><span class="cov1" title="1">{
+                        kind = "informational"
+                }</span>
+                <span class="cov3" title="4">for idx := range issue.Files </span><span class="cov3" title="4">{
+                        relativePath, _ := filepath.Rel(absBasePath, issue.Files[idx].FileName)
+                        result := sarifResult{
+                                ResultRuleID:    issue.QueryID,
+                                ResultRuleIndex: ruleIndex,
+                                ResultKind:      kind,
+                                ResultMessage:   sarifMessage{Text: issue.Files[idx].KeyActualValue},
+                                ResultLocations: []sarifLocation{
+                                        {
+                                                PhysicalLocation: sarifPhysicalLocation{
+                                                        ArtifactLocation: sarifArtifactLocation{ArtifactURI: relativePath},
+                                                        Region:           sarifRegion{StartLine: issue.Files[idx].Line},
+                                                },
+                                        },
+                                },
+                        }
+                        sr.Runs[0].Results = append(sr.Runs[0].Results, result)
+                }</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file50" style="display: none">package model
+
+const categoryIdentifier = "CAT"
+
+var noCategory = sarifTaxanomyDefinition{
+        DefinitionID:               categoryIdentifier + "000",
+        DefinitionName:             "Undefined Category",
+        DefinitionShortDescription: sarifMessage{Text: "Category is not defined"},
+        DefinitionFullDescription:  sarifMessage{Text: "Category is not defined"},
+}
+
+func createSarifCategory(identifier, name, description string) sarifTaxanomyDefinition <span class="cov10" title="14">{
+        return sarifTaxanomyDefinition{
+                DefinitionID:   identifier,
+                DefinitionName: name,
+                DefinitionShortDescription: sarifMessage{
+                        Text: description,
+                },
+                DefinitionFullDescription: sarifMessage{
+                        Text: description,
+                },
+        }
+}</span>
+
+var categories = map[string]sarifTaxanomyDefinition{
+        "Access Control": createSarifCategory(categoryIdentifier+"001", "Access Control", "Service permission and identity management"),
+        "Availability":   createSarifCategory(categoryIdentifier+"002", "Availability", "Reliability and Scalability"),
+        "Backup":         createSarifCategory(categoryIdentifier+"003", "Backup", "Survivability and Recovery"),
+        "Best Practices": createSarifCategory(categoryIdentifier+"004", "Best Practices", "Metadata management"),
+        "Build Process": createSarifCategory(
+                categoryIdentifier+"005",
+                "Build Process",
+                "Insecure configurations when building/deploying",
+        ),
+        "Encryption": createSarifCategory(categoryIdentifier+"006", "Encryption", "Data Security and Encryption configuration"),
+        "Insecure Configurations": createSarifCategory(
+                categoryIdentifier+"007",
+                "Insecure Configurations",
+                "Configurations which expose the application unnecessarily",
+        ),
+        "Insecure Defaults": createSarifCategory(
+                categoryIdentifier+"008",
+                "Insecure Defaults",
+                "Configurations that are insecure by default",
+        ),
+        "Networking and Firewall": createSarifCategory(
+                categoryIdentifier+"009",
+                "Networking and Firewall",
+                "Network port exposure and firewall configuration",
+        ),
+        "Observability": createSarifCategory(categoryIdentifier+"010", "Observability", "Logging and Monitoring"),
+        "Resource Management": createSarifCategory(
+                categoryIdentifier+"011",
+                "Resource Management",
+                "Resource and privilege limit configuration",
+        ),
+        "Secret Management": createSarifCategory(categoryIdentifier+"012", "Secret Management", "Secret and Key management"),
+        "Supply-Chain":      createSarifCategory(categoryIdentifier+"013", "Supply-Chain", "Dependency version management"),
+        "Structure and Semantics": createSarifCategory(
+                categoryIdentifier+"014",
+                "Structure and Semantics",
+                "Malformed document structure or inadequate semantics",
+        ),
+}
+</pre>
+		
+		<pre class="file" id="file51" style="display: none">package report
 
 import (
         "encoding/json"
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
+        reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintSarifReport creates a report file on sarif format
@@ -7522,16 +7810,16 @@ func PrintSarifReport(path, filename string, body interface{}) error <span class
                 return err
         }</span>
 
-        <span class="cov8" title="1">sarifReport := model.NewSarifReport()
+        <span class="cov8" title="1">sarifReport := reportModel.NewSarifReport()
         for idx := range summary.Queries </span><span class="cov8" title="1">{
-                sarifReport.BuildIssue(&amp;summary.Queries[idx])
+                sarifReport.BuildSarifIssue(&amp;summary.Queries[idx])
         }</span>
 
         <span class="cov8" title="1">return PrintJSONReport(path, filename, sarifReport)</span>
 }
 </pre>
 		
-		<pre class="file" id="file49" style="display: none">package helm
+		<pre class="file" id="file52" style="display: none">package helm
 
 import (
         "fmt"
@@ -7656,7 +7944,7 @@ func addID(file *chart.File) *chart.File <span class="cov4" title="9">{
 }
 </pre>
 		
-		<pre class="file" id="file50" style="display: none">package helm
+		<pre class="file" id="file53" style="display: none">package helm
 
 import (
         "path/filepath"
@@ -7815,7 +8103,7 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
 }
 </pre>
 		
-		<pre class="file" id="file51" style="display: none">package resolver
+		<pre class="file" id="file54" style="display: none">package resolver
 
 import (
         "os"
@@ -7895,7 +8183,7 @@ func (r *Resolver) GetType(filePath string) model.FileKind <span class="cov10" t
 }
 </pre>
 		
-		<pre class="file" id="file52" style="display: none">package scanner
+		<pre class="file" id="file55" style="display: none">package scanner
 
 import (
         "context"
@@ -7966,7 +8254,7 @@ func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progress
 }
 </pre>
 		
-		<pre class="file" id="file53" style="display: none">package test
+		<pre class="file" id="file56" style="display: none">package test
 
 import (
         "bytes"
