@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -66,6 +67,22 @@ func includeJS(name string) template.HTML {
 	return template.HTML("<script>" + jsMinified + "</script>") //nolint
 }
 
+func getPaths(paths []string) string {
+	return strings.Join(paths, ", ")
+}
+
+func getPlatforms(queries model.VulnerableQuerySlice) string {
+	platforms := make([]string, 0)
+	alreadyAdded := make(map[string]string)
+	for idx := range queries {
+		if _, ok := alreadyAdded[queries[idx].Platform]; !ok {
+			alreadyAdded[queries[idx].Platform] = ""
+			platforms = append(platforms, queries[idx].Platform)
+		}
+	}
+	return strings.Join(platforms, ", ")
+}
+
 // PrintHTMLReport creates a report file on HTML format
 func PrintHTMLReport(path, filename string, body interface{}) error {
 	if !strings.HasSuffix(filename, ".html") {
@@ -75,6 +92,8 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 	templateFuncs["includeSVG"] = includeSVG
 	templateFuncs["includeCSS"] = includeCSS
 	templateFuncs["includeJS"] = includeJS
+	templateFuncs["getPaths"] = getPaths
+	templateFuncs["getPlatforms"] = getPlatforms
 
 	fullPath := filepath.Join(path, filename)
 	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))

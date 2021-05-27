@@ -66,6 +66,7 @@ type Summary struct {
 	Queries VulnerableQuerySlice `json:"queries"`
 	SeveritySummary
 	Times
+	ScannedPaths []string `json:"paths"`
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
