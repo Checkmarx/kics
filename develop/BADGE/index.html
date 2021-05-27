@@ -255,9 +255,10 @@
 <p>Let's assume a manual CLI process using docker:</p>
 <pre><code class="language-bash">#!/usr/bin/env bash
 echo &quot;running KICS in the current dir and writing results.json&quot;
-docker run -v $PWD:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+docker run -v $PWD:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
-<p>Parse the <code>results.json</code> and request a badge to img.shields.io.</p>
+<p>This will generate a results.json file under <code>path</code>.
+Parse the <code>results.json</code> and request a badge to img.shields.io.</p>
 <p>For this example, let's assume HIGH and MEDIUM results are bad:</p>
 <pre><code class="language-bash">#!/usr/bin/env bash
 HIGH=$(jq '.severity_counters.HIGH' results.json)

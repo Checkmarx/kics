@@ -265,11 +265,12 @@
 <pre><code class="language-sh">docker pull checkmarx/kics:latest
 </code></pre>
 <p>Scan a directory</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
 <p>Scan a single file</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
+<p>This will generate a <code>results.json</code> file, for both examples, under <code>path</code>.</p>
 <h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
 <p>Usage:</p>
 <pre><code class="language-txt">Keeping Infrastructure as Code Secure
@@ -339,7 +340,7 @@ Flags:
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
-      --report-formats strings       formats in which the results will be exported (all, json, sarif, html) (default [json])
+      --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])
       --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
