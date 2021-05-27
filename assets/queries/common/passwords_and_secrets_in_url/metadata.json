@@ -3,7 +3,7 @@
   "queryName": "Passwords And Secrets In URL",
   "severity": "HIGH",
   "category": "Secret Management",
-  "descriptionText": "Query to find passwords and secrets in url",
+  "descriptionText": "Query to find passwords and secrets in URL",
   "descriptionUrl": "https://kics.io/",
   "platform": "Common"
 }
