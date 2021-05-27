@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.patch.responses", [n]),
+		"searchKey": sprintf("paths.{{%s}}.patch.responses", [n]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
 		"keyActualValue": "Patch does not have any successful code",

@@ -13,9 +13,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}", [path]),
+		"searchKey": sprintf("paths.{{%s}}", [path]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}} has at least one operation object defined", [path]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}} does not have at least one operation object defined", [path]),
+		"keyExpectedValue": sprintf("paths.{{%s}} has at least one operation object defined", [path]),
+		"keyActualValue": sprintf("paths.{{%s}} does not have at least one operation object defined", [path]),
 	}
 }

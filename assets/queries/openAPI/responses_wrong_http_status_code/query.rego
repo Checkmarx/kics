@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.responses.{{%s}}", [n, oper, code]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}", [n, oper, code]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "HTTP responses status codes are in range of [200-599]",
 		"keyActualValue": "HTTP responses status codes are not in range of [200-599]",

@@ -11,10 +11,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}}", [n, oper, r, h]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}}", [n, oper, r, h]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("openapi.paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}} is not 'Content-Type'", [n, oper, r, h]),
-		"keyActualValue": sprintf("openapi.paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}} is 'Content-Type'", [n, oper, r, h]),
+		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}} is not 'Content-Type'", [n, oper, r, h]),
+		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.headers.{{%s}} is 'Content-Type'", [n, oper, r, h]),
 	}
 }
 

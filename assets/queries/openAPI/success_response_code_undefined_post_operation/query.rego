@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.{{%s}}.post.responses", [n]),
+		"searchKey": sprintf("paths.{{%s}}.post.responses", [n]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
 		"keyActualValue": "Post does not have any successful code",

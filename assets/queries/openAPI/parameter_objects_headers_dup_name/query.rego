@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.%s.parameters.name=%s", [n, duplicate[_]]),
+		"searchKey": sprintf("paths.%s.parameters.name=%s", [n, duplicate[_]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
 		"keyActualValue": "Parameter Object with location 'header' has duplicate names",
@@ -29,7 +29,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.paths.%s.%s.parameters.name=%s", [n, oper, duplicate[_]]),
+		"searchKey": sprintf("paths.%s.%s.parameters.name=%s", [n, oper, duplicate[_]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
 		"keyActualValue": "Parameter Object with location 'header' has duplicate names",

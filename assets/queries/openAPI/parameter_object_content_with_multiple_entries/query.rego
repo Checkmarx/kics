@@ -29,8 +29,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.parameters", [name, oper]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("openapi.paths.%s.%s.parameters.%d.content has one entry", [name, oper, n]),
-		"keyActualValue": sprintf("openapi.paths.%s.%s.parameters.%d.content has multiple entries", [name, oper, n]),
+		"keyExpectedValue": sprintf("paths.%s.%s.parameters.%d.content has one entry", [name, oper, n]),
+		"keyActualValue": sprintf("paths.%s.%s.parameters.%d.content has multiple entries", [name, oper, n]),
 	}
 }
 
