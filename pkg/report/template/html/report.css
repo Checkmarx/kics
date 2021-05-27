@@ -27,7 +27,7 @@ body {
 
 .run-info > span {
   flex-basis: 50%;
-  text-align: center
+  text-align: center;
 }
 
 .counters {
