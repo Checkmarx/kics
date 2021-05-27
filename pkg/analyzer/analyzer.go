@@ -28,7 +28,6 @@ var (
 	k8sRegex         = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
 	k8sRegexKind     = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
 	k8sRegexMetadata = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-	k8sRegexSpec     = regexp.MustCompile("(\\s*\"spec\":)|(\\s*spec:)")
 )
 
 const (
@@ -129,7 +128,6 @@ var types = map[string]regexSlice{
 			k8sRegex,
 			k8sRegexKind,
 			k8sRegexMetadata,
-			k8sRegexSpec,
 		},
 	},
 	"cloudformation": {
