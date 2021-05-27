@@ -1,0 +1,9 @@
+{
+  "id": "3fb03214-25d4-4bd4-867c-c2d8d708a483",
+  "queryName": "Properties Missing Required Property",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema Object should have all required properties defined",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

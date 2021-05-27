@@ -24,8 +24,10 @@ jobs:
       - name: Run test metrics script
         id: testcov
         run: |
-          make test-coverage-report
-          cat coverage.html
+          make test-coverage-report | tee test-results
+          TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
+          echo "Total Tests :: ${TOTAL_TESTS}"
+          echo "::set-output name=total_tests::${TOTAL_TESTS}"
       - name: Generate badge
         run: |
           curl -L \

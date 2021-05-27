@@ -1,0 +1,10 @@
+{
+  "id": "9c238c97-1991-4c0b-9c7d-6c7912e1dc7c",
+  "queryName": "Cleartext API Key In Global Security",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "API Keys should not be sent as cleartext over an unencrypted channel",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI",
+  "aggregation": 3
+}

@@ -39,7 +39,7 @@
           "file_name": "file",
           "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
           "line": 1,
-          "issue_type": "Missing Attribute",
+          "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is set",
@@ -50,7 +50,7 @@
           "file_name": "file",
           "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
           "line": 1,
-          "issue_type": "Missing Attribute",
+          "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[default1]",
           "search_value": "",
           "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids is set",
@@ -91,5 +91,7 @@
     "LOW": 0,
     "MEDIUM": 3
   },
-  "total_counter": 4
+  "total_counter": 4,
+  "Start": "2021-05-01T09:00:00.0+01:00",
+  "End": "2021-05-01T09:00:00.0+01:00"
 }

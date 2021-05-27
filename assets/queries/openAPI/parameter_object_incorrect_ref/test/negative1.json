@@ -53,7 +53,7 @@
       },
       "parameters": [
         {
-          "$ref": "#components/parameters/idParam"
+          "$ref": "#/components/parameters/idParam"
         }
       ]
     }

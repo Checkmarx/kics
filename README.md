@@ -8,6 +8,7 @@
 [![Documentation](https://img.shields.io/badge/docs-viewdocs-blue.svg?style=flat-square "Viewdocs")](https://docs.kics.io/)
 [![Gitter](https://badges.gitter.im/kics-io/community.svg)](https://gitter.im/kics-io/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
+[![Queries](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/queries.svg)](https://docs.kics.io/develop/queries/all-queries/)
 
 
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-black.png" width="250">
@@ -58,7 +59,7 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 ## Release process
 
 KICS release process is quite simple. We have nightly builds that will pack and pre-release all changes merged into master.
-The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for both Windows and Linux, as well a Docker image in <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
+The nightly release will have a "nightly" prefix with the last commit hash code. We have binaries available for Windows, Linux and MacOS, as well as a Docker image in <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
 ## Contribution
 

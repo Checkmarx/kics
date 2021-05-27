@@ -1,0 +1,9 @@
+{
+  "id": "5915c20f-dffa-4cee-b5d4-f457ddc0151a",
+  "queryName": "Empty Array",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "All array fields should not be empty",
+  "descriptionUrl": "https://swagger.io/specification/",
+  "platform": "OpenAPI"
+}

@@ -12,7 +12,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 ```yaml
 - name: KICS Github Action
-  uses: Checkmarx/kics-github-action@v1.0
+  uses: Checkmarx/kics-github-action@latest
   with:
     # path to file or directory to scan
     path:
@@ -38,7 +38,7 @@ The following workflow shows how to integrate KICS with GitHub Actions:
 steps:
 - uses: actions/checkout@v2
   - name: run kics Scan
-    uses: checkmarx/kics-action@v1.0
+    uses: checkmarx/kics-action@latest
     with:
       path: 'terraform'
       output_path: 'results.sarif'
@@ -65,7 +65,7 @@ An entry should describe the error and in which line it occurred:
     - uses: actions/checkout@v2
     # Scan Iac with kics
     - name: run kics Scan
-      uses: checkmarx/kics-action@v1.0
+      uses: checkmarx/kics-action@latest
       with:
         path: 'terraform'
         output_path: 'results.json'
@@ -82,12 +82,72 @@ Here you can see it in action:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_scan_github_actions.png" width="850">
 
-## Example using docker-runner and SARIF report
+## Workflow failures
 
-We also provide [checkmarx/kics-action@docker-runner](https://github.com/Checkmarx/kics-github-action/tree/docker-runner) that runs an alpine based linux container (`checkmarx/kics:nightly-alpine`) that doesn't require downloading kics binaries and queries in the `entrypoint.sh`
+By default KICS will fail your workflow on any results found.
+
+### Fail by severity usage example
+
+If you want your pipeline just to fail on HIGH, MEDIUM severity results and KICS engine execution errors:
 
 ```yaml
-name: scan with KICS docker-runner
+    steps:
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-action@latest
+      with:
+        path: 'terraform,my-other-sub-folder/Dockerfile'
+        fail_on: high,medium
+        output_path: 'results.json'
+    - name: display kics results
+      run: |
+        cat results.json
+```
+
+### Don't fail on results
+
+If you want KICS to ignore the results and return exit status code 0 unless a KICS engine error happens:
+
+```yaml
+    steps:
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-action@latest
+      with:
+        path: 'terraform'
+        ignore_on_exit: results
+        output_path: 'results.json'
+    - name: display kics results
+      run: |
+        cat results.json
+```
+
+
+## Profiling KICS
+
+You can only enable one profiler at a time, CPU or MEM.
+
+> 📝 &nbsp; Please note that execution time may be impacted by enabling performance profiler due to sampling
+
+```yaml
+    steps:
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-action@latest
+      with:
+        path: 'terraform'
+        profiling: MEM
+        output_path: 'results.json'
+    - name: display kics results
+      run: |
+        cat results.json
+```
+
+## Uploading SARIF report
+
+
+```yaml
+name: scan with KICS and upload SARIF
 
 on:
   pull_request:
@@ -104,7 +164,7 @@ jobs:
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-action@docker-runner
+        uses: checkmarx/kics-action@latest
         with:
           path: 'terraform'
           # when provided with a directory on output_path
@@ -116,7 +176,7 @@ jobs:
           platform_type: terraform
           output_formats: 'json,sarif'
           exclude_paths: "terraform/gcp/big_data.tf,terraform/azure"
-          # look for the queries' ID in its metadata.json
+          # seek query id in it's metadata.json
           exclude_queries: 0437633b-daa6-4bbc-8526-c0d2443b946e
       - name: Show results
         run: |
@@ -127,9 +187,10 @@ jobs:
         with:
           sarif_file: results-dir/results.sarif
 ```
-## Example using docker-runner and a config file
 
-Check [configuration file](./configuration-file.md) reference for more options.
+## Using configuration file
+
+Check [configuration file](https://github.com/Checkmarx/kics/blob/master/docs/configuration-file.md) reference for more options.
 
 ```yaml
 name: scan with KICS using config file
@@ -168,7 +229,7 @@ jobs:
           }
           EOF
       - name: Run KICS Scan using config
-        uses: checkmarx/kics-action@docker-runner
+        uses: checkmarx/kics-action@latest
         with:
           path: 'terraform'
           config_path: ./kics.config

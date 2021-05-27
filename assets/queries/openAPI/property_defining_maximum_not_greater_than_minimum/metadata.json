@@ -1,0 +1,9 @@
+{
+  "id": "ab2af219-cd08-4233-b5a1-a788aac88b51",
+  "queryName": "Property Defining Minimum Greater Than Maximum",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Property defining minimum has greater value than maximum defined",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

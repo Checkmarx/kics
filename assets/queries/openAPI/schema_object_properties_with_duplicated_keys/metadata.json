@@ -1,0 +1,9 @@
+{
+  "id": "10c61e4b-eed5-49cf-9c7d-d4bf02e9edfa",
+  "queryName": "Schema Object Properties With Duplicated Keys",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema Object Property key should be unique through out the fields 'properties', 'allOf', 'additionalProperties'",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI"
+}

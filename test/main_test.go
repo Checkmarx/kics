@@ -37,6 +37,12 @@ var (
 		"../assets/queries/common":               {FileKind: []model.FileKind{model.KindCOMMON}, Platform: "common"},
 		"../assets/queries/openAPI":              {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 	}
+
+	issueTypes = map[string]string{
+		"MissingAttribute":   "",
+		"IncorrectValue":     "",
+		"RedundantAttribute": "",
+	}
 )
 
 const (
@@ -225,4 +231,11 @@ func isValidURL(toTest string) bool {
 
 	u, err := url.Parse(toTest)
 	return err == nil && u.Scheme != "" && u.Host != ""
+}
+
+func getQueryFilter() source.QuerySelectionFilter {
+	return source.QuerySelectionFilter{
+		IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
+		ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+	}
 }

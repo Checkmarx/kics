@@ -1,0 +1,9 @@
+{
+  "id": "68e5fcac-390c-4939-a373-6074b7be7c71",
+  "queryName": "Security Scheme Using HTTP Basic",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Security Scheme HTTP should not be using basic authentication",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI"
+}

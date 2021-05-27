@@ -1,0 +1,9 @@
+{
+  "id": "ae13a37d-943b-47a7-a970-83c8598bcca3",
+  "queryName": "Path Template is Empty",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "All path templates should not be empty",
+  "descriptionUrl": "https://swagger.io/specification/",
+  "platform": "OpenAPI"
+}

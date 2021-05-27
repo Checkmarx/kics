@@ -1,0 +1,34 @@
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/MyObject"
+              examples:
+                object:
+                  "$ref": "#/components/examples/objectExample"
+components:
+  schemas:
+    MyObject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  examples:
+    objectExample:
+      value:
+        id: 1
+        name: new object
+      summary: A sample object

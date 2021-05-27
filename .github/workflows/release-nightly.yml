@@ -53,7 +53,7 @@ jobs:
         with:
           go-version: 1.16
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2.5.0
+        uses: goreleaser/goreleaser-action@v2.6.0
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-nightly.yml"
@@ -154,7 +154,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push scratch to Docker Hub
         id: build_scratch
-        uses: docker/build-push-action@v2.4.0
+        uses: docker/build-push-action@v2.5.0
         with:
           context: .
           push: true
@@ -164,7 +164,7 @@ jobs:
             COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@v2.4.0
+        uses: docker/build-push-action@v2.5.0
         with:
           context: .
           file: ./Dockerfile.alpine
@@ -205,7 +205,7 @@ jobs:
           pip install csvtomd
           csvtomd docs/docker/nightly.csv > docs/docker/nightly.md
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.9.2
+        uses: peter-evans/create-pull-request@v3.10.0
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}

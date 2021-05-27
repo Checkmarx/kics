@@ -1,0 +1,25 @@
+---
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                    default: guest

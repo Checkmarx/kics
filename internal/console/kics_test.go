@@ -24,9 +24,9 @@ func TestConsole_Execute(t *testing.T) { //nolint
 		{
 			name: "test_kics_output_flag",
 			args: []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf"),
-				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"), "-o", "result.json"},
+				"-q", filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"), "-o", "results.json"},
 			wantErr: false,
-			remove:  "result.json",
+			remove:  "results.json",
 		},
 		{
 			name: "test_kics_payload_flag",

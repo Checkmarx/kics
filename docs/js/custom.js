@@ -24,14 +24,14 @@ var headerArray = [];
         const inputFilter = document.createElement("input")
         inputFilter.setAttribute("id", `query-filter-${i}`)
         inputFilter.setAttribute("type", "text")
-        inputFilter.addEventListener("keyup", function(){filterQueryTable(tableHeader.length)});
-        inputFilter.addEventListener("paste", function () {pasteFilter(tableHeader.length)});
-        
+        inputFilter.addEventListener("keyup", function () { filterQueryTable(tableHeader.length) });
+        inputFilter.addEventListener("paste", function () { pasteFilter(tableHeader.length) });
+
         const lineBreak = document.createElement("br")
         if (!tableHeader[i].innerText.toLowerCase().includes("description")) {
           spanSort.setAttribute("style", "cursor:pointer;")
           spanSort.innerText += " ↑↓"
-          spanSort.addEventListener("click", function () {executeSort(index)});
+          spanSort.addEventListener("click", function () { executeSort(index) });
         }
         tableHeader[i].innerHTML = ""
         tableHeader[i].appendChild(spanSort)
@@ -45,7 +45,7 @@ var headerArray = [];
     const table = document.querySelector(":not(.modal-body) > table")
     const button = document.createElement("button")
     button.innerText = "Download"
-    button.addEventListener("click", function(){exportToCSV(csvFilename)});
+    button.addEventListener("click", function () { exportToCSV(csvFilename) });
     table.parentNode.insertBefore(button, table)
   }
 })();
@@ -68,7 +68,7 @@ function filterQueryTable(numberOfColumns) {
     if (input) {
       textToFilter = input.value
     }
-    
+
     if (textToFilter) {
       allLines.forEach(line => {
         if (!line.children[i].innerText.toLowerCase().includes(textToFilter.toLowerCase())) {
@@ -107,15 +107,15 @@ function sortFunction(index) {
     const severityB = severityOrder[b.children[index].innerText.toLowerCase().trim()]
     if (severityA == severityB) {
       return 0
-    } 
-    return severityA < severityB ? -1*sortOrder : 1*sortOrder
+    }
+    return severityA < severityB ? -1 * sortOrder : 1 * sortOrder
   }
 }
 
 function executeSort(index) {
   var allLines = Array.prototype.slice.call(document.querySelectorAll(":not(.modal-body) > table > tbody > tr"))
   let sortedLines = allLines.sort(sortFunction(index))
-  
+
   const body = document.querySelector(":not(.modal-body) > table > tbody ")
   body.innerHTML = ""
   sortedLines.forEach(tr => body.appendChild(tr))
@@ -135,12 +135,12 @@ function removeElement(querySelector, parentElement) {
 function exportToCSV(filename) {
   var csv = [];
   var rows = document.querySelectorAll(":not(.modal-body) > table tr");
-  
-  for (var i = 0; i < rows.length; i++) {
+
+  for (let r of rows) {
     var row = []
-    var cols = rows[i].querySelectorAll("td, th")
+    var cols = r.querySelectorAll("td, th")
     for (var j = 0; j < cols.length; j++) {
-      var text = `"${cols[j].innerText.replace(/\\n/g, " ").replaceAll(/"/g,'')}"`
+      var text = `"${cols[j].innerText.replace(/\\n/g, " ").replaceAll(/"/g, '')}"`
       if (cols[j].tagName == "TH") {
         text = text.match(/[0-9a-zA-Z ]+/)[0]
       } else if (headerArray[j] == "help") {
@@ -148,7 +148,7 @@ function exportToCSV(filename) {
       }
       row.push(text)
     }
-    csv.push(row.join(","))   
+    csv.push(row.join(","))
   }
 
   // Download CSV file

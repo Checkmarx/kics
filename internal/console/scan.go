@@ -47,10 +47,12 @@ var (
 	excludeIDs        []string
 	excludePath       []string
 	excludeResults    []string
+	includeIDs        []string
 	failOn            []string
 	ignoreOnExit      string
 	min               bool
 	noProgress        bool
+	outputName        string
 	outputPath        string
 	path              []string
 	payloadPath       string
@@ -69,10 +71,13 @@ const (
 	excludeQueriesFlag      = "exclude-queries"
 	excludeResultsFlag      = "exclude-results"
 	excludeResutlsShorthand = "x"
+	includeQueriesFlag      = "include-queries"
+	inlcudeQueriesShorthand = "i"
 	failOnFlag              = "fail-on"
 	ignoreOnExitFlag        = "ignore-on-exit"
 	minimalUIFlag           = "minimal-ui"
 	noProgressFlag          = "no-progress"
+	outputNameFlag          = "output-name"
 	outputPathFlag          = "output-path"
 	outputPathShorthand     = "o"
 	pathFlag                = "path"
@@ -87,6 +92,8 @@ const (
 	typeFlag                = "type"
 	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
+	initError               = "initialization error - "
+	msg                     = "can be provided multiple times or as a comma separated string\n"
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -95,44 +102,82 @@ func NewScanCmd() *cobra.Command {
 		Use:   scanCommandStr,
 		Short: "Executes a scan analysis",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			err := initializeConfig(cmd)
-			if err != nil {
-				return errors.New("initialization error - " + err.Error())
-			}
-			err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
-			if err != nil {
-				return errors.New("initialization error - " + err.Error())
-			}
-			err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
-			if err != nil {
-				return errors.New("initialization error - " + err.Error())
-			}
-			return nil
+			return preRun(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
-			if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil {
-				return err
-			}
-			if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
-				return err
-			}
-			if outputPath != "" {
-				directoryToCreate, _, _ := createReportDir(outputPath, "result", reportFormats)
-				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
-					return err
-				}
-			}
-			if payloadPath != "" {
-				directoryToCreate, _, _ := createReportDir(payloadPath, "payload", []string{"json"})
-				if err := os.MkdirAll(directoryToCreate, os.ModePerm); err != nil {
-					return err
-				}
-			}
-			gracefulShutdown()
-			return scan(changedDefaultQueryPath)
+			return run(cmd)
 		},
 	}
+}
+
+func run(cmd *cobra.Command) error {
+	changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
+	if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil {
+		return err
+	}
+	if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
+		return err
+	}
+	if outputPath != "" {
+		if len(reportFormats) > 0 {
+			for _, format := range reportFormats {
+				if format == "all" {
+					reportFormats = consoleHelpers.ListReportFormats()
+					break
+				}
+			}
+		}
+		outputName = filepath.Base(outputName)
+		if filepath.Ext(outputPath) != "" {
+			outputPath = filepath.Dir(outputPath)
+		}
+		if err := os.MkdirAll(outputPath, os.ModePerm); err != nil {
+			return err
+		}
+	}
+	if payloadPath != "" && filepath.Dir(payloadPath) != "." {
+		if err := os.MkdirAll(filepath.Dir(payloadPath), os.ModePerm); err != nil {
+			return err
+		}
+	}
+	gracefulShutdown()
+	return scan(changedDefaultQueryPath)
+}
+
+func preRun(cmd *cobra.Command) error {
+	err := initializeConfig(cmd)
+	if err != nil {
+		return errors.New(initError + err.Error())
+	}
+	err = validateQuerySelectionFlags()
+	if err != nil {
+		return err
+	}
+	err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+	if err != nil {
+		return errors.New(initError + err.Error())
+	}
+	err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+	if err != nil {
+		return errors.New(initError + err.Error())
+	}
+	return nil
+}
+
+func formatNewError(flag1, flag2 string) error {
+	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
+		flag1,
+		flag2)
+}
+
+func validateQuerySelectionFlags() error {
+	if len(includeIDs) > 0 && len(excludeIDs) > 0 {
+		return formatNewError(includeQueriesFlag, excludeQueriesFlag)
+	}
+	if len(includeIDs) > 0 && len(excludeCategories) > 0 {
+		return formatNewError(includeQueriesFlag, excludeCategoriesFlag)
+	}
+	return nil
 }
 
 func initializeConfig(cmd *cobra.Command) error {
@@ -146,30 +191,12 @@ func initializeConfig(cmd *cobra.Command) error {
 		return errBind
 	}
 
-	if cfgFile == "" {
-		if len(path) == 0 {
-			return nil
-		}
-		if len(path) > 1 {
-			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
-			return nil
-		}
-		configpath := path[0]
-		info, err := os.Stat(configpath)
-		if err != nil {
-			return nil
-		}
-		if !info.IsDir() {
-			configpath = filepath.Dir(configpath)
-		}
-		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
-		if err != nil {
-			if os.IsNotExist(err) {
-				return nil
-			}
-			return err
-		}
-		cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
+	exit, err := setupCfgFile()
+	if err != nil {
+		return err
+	}
+	if exit {
+		return nil
 	}
 
 	base := filepath.Base(cfgFile)
@@ -189,6 +216,35 @@ func initializeConfig(cmd *cobra.Command) error {
 		return errBind
 	}
 	return nil
+}
+
+func setupCfgFile() (bool, error) {
+	if cfgFile == "" {
+		if len(path) == 0 {
+			return true, nil
+		}
+		if len(path) > 1 {
+			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
+			return true, nil
+		}
+		configpath := path[0]
+		info, err := os.Stat(configpath)
+		if err != nil {
+			return true, nil
+		}
+		if !info.IsDir() {
+			configpath = filepath.Dir(configpath)
+		}
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+		if err != nil {
+			if os.IsNotExist(err) {
+				return true, nil
+			}
+			return true, err
+		}
+		cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
+	}
+	return false, nil
 }
 
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error {
@@ -249,15 +305,17 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"./assets/queries",
 		"path to directory with queries",
 	)
+	scanCmd.Flags().StringVar(&outputName,
+		outputNameFlag,
+		"results",
+		"name used on report creations")
 	scanCmd.Flags().StringVarP(&outputPath,
 		outputPathFlag,
 		outputPathShorthand,
 		"",
 		"directory path to store reports")
-	scanCmd.Flags().StringSliceVar(&reportFormats,
-		reportFormatsFlag,
-		[]string{},
-		"formats in which the results will be exported (json, sarif, html)",
+	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
+		"formats in which the results will be exported (all, json, sarif, html, glsast)",
 	)
 	scanCmd.Flags().IntVar(&previewLines,
 		previewLinesFlag,
@@ -289,8 +347,16 @@ func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&excludeIDs,
 		excludeQueriesFlag,
 		[]string{},
-		"exclude queries by providing the query ID\n"+
-			"can be provided multiple times or as a comma separated string\n"+
+		"exclude queries by providing the query ID\n"+"cannot be provided with query inclusion flags\n"+
+			msg+
+			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
+	)
+	scanCmd.Flags().StringSliceVarP(&includeIDs,
+		includeQueriesFlag,
+		inlcudeQueriesShorthand,
+		[]string{},
+		"include queries by providing the query ID\n"+"cannot be provided with query exclusion flags\n"+
+			msg+
 			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
 	)
 	scanCmd.Flags().StringSliceVarP(&excludeResults,
@@ -298,14 +364,15 @@ func initScanFlags(scanCmd *cobra.Command) {
 		excludeResutlsShorthand,
 		[]string{},
 		"exclude results by providing the similarity ID of a result\n"+
-			"can be provided multiple times or as a comma separated string\n"+
+			msg+
 			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
 	)
 	scanCmd.Flags().StringSliceVar(&excludeCategories,
 		excludeCategoriesFlag,
 		[]string{},
 		"exclude categories by providing its name\n"+
-			"can be provided multiple times or as a comma separated string\n"+
+			"cannot be provided with query inclusion flags\n"+
+			msg+
 			"example: 'Access control,Best practices'",
 	)
 	scanCmd.Flags().StringSliceVar(&failOn,
@@ -377,9 +444,22 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		ByCategories: excludeCategories,
 	}
 
+	includeQueries := source.IncludeQueries{
+		ByIDs: includeIDs,
+	}
+
+	queryFilter := source.QuerySelectionFilter{
+		IncludeQueries: includeQueries,
+		ExcludeQueries: excludeQueries,
+	}
+
 	inspector, err := engine.NewInspector(ctx,
-		querySource, engine.DefaultVulnerabilityBuilder,
-		t, excludeQueries, excludeResultsMap, queryExecTimeout)
+		querySource,
+		engine.DefaultVulnerabilityBuilder,
+		t,
+		queryFilter,
+		excludeResultsMap,
+		queryExecTimeout)
 	if err != nil {
 		return nil, err
 	}
@@ -515,7 +595,7 @@ func scan(changedDefaultQueryPath bool) error {
 
 	elapsed := time.Since(scanStartTime)
 
-	summary := getSummary(t, results)
+	summary := getSummary(t, results, scanStartTime, time.Now())
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		log.Err(err)
@@ -533,7 +613,7 @@ func scan(changedDefaultQueryPath bool) error {
 	return nil
 }
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summary {
+func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -542,7 +622,12 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability) model.Summa
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
-	return model.CreateSummary(counters, results, scanID)
+	summary := model.CreateSummary(counters, results, scanID)
+	summary.Times = model.Times{
+		Start: start,
+		End:   end,
+	}
+	return summary
 }
 
 func resolveOutputs(
@@ -553,33 +638,16 @@ func resolveOutputs(
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	if err := printOutput(payloadPath, "payload", documents, []string{"json"}); err != nil {
+	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
-
-	if err := printOutput(outputPath, "results", summary, reportFormats); err != nil {
-		return err
-	}
-
-	return consoleHelpers.PrintResult(summary, failedQueries, printer)
-}
-
-func createReportDir(outputPath, filename string, formats []string) (outDir, outFile string, outFormats []string) {
-	if strings.Contains(outputPath, ".") {
-		if len(formats) == 0 && filepath.Ext(outputPath) != "" {
-			err := consoleHelpers.ValidateReportFormats([]string{filepath.Ext(outputPath)[1:]})
-			if err != nil {
-				log.Trace().Msgf("Extension not supported %s, will create directory instead", filepath.Ext(outputPath)[1:])
-			} else {
-				formats = []string{filepath.Ext(outputPath)[1:]}
-			}
-		}
-		if len(formats) == 1 && strings.HasSuffix(outputPath, formats[0]) {
-			filename = filepath.Base(outputPath)
-			outputPath = filepath.Dir(outputPath)
+	if payloadPath != "" {
+		if err := printOutput(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, []string{"json"}); err != nil {
+			return err
 		}
 	}
-	return outputPath, filename, formats
+
+	return printOutput(outputPath, outputName, summary, reportFormats)
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string) error {
@@ -587,9 +655,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	if outputPath == "" {
 		return nil
 	}
-	outputPath, filename, formats = createReportDir(outputPath, filename, formats)
 	if len(formats) == 0 {
-		formats = consoleHelpers.ListReportFormats()
+		formats = []string{"json"}
 	}
 
 	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
@@ -604,7 +671,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
 func gracefulShutdown() {
 	c := make(chan os.Signal)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	// This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
 	showErrors := consoleHelpers.ShowError("errors")
 	interruptCode := constants.SignalInterruptCode
 	go func(showErrors bool, interruptCode int) {

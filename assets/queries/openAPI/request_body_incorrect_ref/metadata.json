@@ -3,7 +3,7 @@
   "queryName": "Request Body With Incorrect Ref",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Request Body reference must always point to '#components/RequestBodies'",
+  "descriptionText": "Request Body reference must always point to '#/components/RequestBodies'",
   "descriptionUrl": "https://swagger.io/specification/#request-body-object",
   "platform": "OpenAPI"
 }

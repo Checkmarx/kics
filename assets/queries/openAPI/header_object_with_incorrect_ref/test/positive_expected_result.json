@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Header Object With Incorrect Ref",
+    "severity": "INFO",
+    "line": 73,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Object With Incorrect Ref",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Header Object With Incorrect Ref",
+    "severity": "INFO",
+    "line": 45,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Header Object With Incorrect Ref",
+    "severity": "INFO",
+    "line": 29,
+    "filename": "positive4.yaml"
+  }
+]
