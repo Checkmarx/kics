@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="292">{
-                if val == true </span><span class="cov9" title="291">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="312">{
+                if val == true </span><span class="cov9" title="311">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2058,13 +2058,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2082,14 +2082,14 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -2252,7 +2252,6 @@ var (
         k8sRegex         = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
         k8sRegexKind     = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
         k8sRegexMetadata = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
-        k8sRegexSpec     = regexp.MustCompile("(\\s*\"spec\":)|(\\s*spec:)")
 )
 
 const (
@@ -2277,7 +2276,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
                         return []string{}, []string{}, errors.Wrap(err, "failed to analyze path")
                 }</span>
                 <span class="cov5" title="6">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov8" title="29">{
-                        if !info.IsDir() </span><span class="cov7" title="22">{
+                        if !info.IsDir() </span><span class="cov8" title="22">{
                                 files = append(files, path)
                         }</span>
                         <span class="cov8" title="29">return nil</span>
@@ -2289,7 +2288,7 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
         <span class="cov4" title="5">unwanted := make(chan string, len(files))
 
-        for _, file := range files </span><span class="cov7" title="22">{
+        for _, file := range files </span><span class="cov8" title="22">{
                 wg.Add(1)
                 // analyze the files concurrently
                 go worker(file, results, unwanted, &amp;wg)
@@ -2315,13 +2314,13 @@ func Analyze(paths []string) (typesRes, excludeRes []string, errRes error) <span
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov7" title="22">{
+func worker(path string, results, unwanted chan&lt;- string, wg *sync.WaitGroup) <span class="cov8" title="22">{
         defer wg.Done()
         ext := filepath.Ext(path)
         if ext == "" </span><span class="cov2" title="2">{
                 ext = filepath.Base(path)
         }</span>
-        <span class="cov7" title="22">switch ext </span>{
+        <span class="cov8" title="22">switch ext </span>{
         // Dockerfile
         case ".dockerfile", "Dockerfile":<span class="cov2" title="2">
                 results &lt;- "dockerfile"</span>
@@ -2353,7 +2352,6 @@ var types = map[string]regexSlice{
                         k8sRegex,
                         k8sRegexKind,
                         k8sRegexMetadata,
-                        k8sRegexSpec,
                 },
         },
         "cloudformation": {
@@ -2385,7 +2383,7 @@ func checkContent(path string, results, unwanted chan&lt;- string, ext string) <
 
         for _, key := range keys </span><span class="cov9" title="36">{
                 check := true
-                for _, typeRegex := range types[key].regex </span><span class="cov10" title="55">{
+                for _, typeRegex := range types[key].regex </span><span class="cov10" title="50">{
                         if res := typeRegex.Match(content); !res </span><span class="cov8" title="27">{
                                 check = false
                                 break</span>
@@ -2424,7 +2422,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="27">{
+        for _, a := range s </span><span class="cov8" title="29">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3829,7 +3827,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4635,7 +4633,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="25">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="29">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
