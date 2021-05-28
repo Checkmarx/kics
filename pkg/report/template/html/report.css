@@ -17,6 +17,19 @@ body {
   border: 1px solid #bebebe;
 }
 
+.run-info {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #bebebe;
+  margin-top: 10px;
+  width: 50vw;
+}
+
+.run-info > span {
+  flex-basis: 50%;
+  text-align: center;
+}
+
 .counters {
   display: flex;
   flex-direction: row;

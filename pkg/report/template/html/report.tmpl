@@ -10,6 +10,14 @@
 <body>
   <div class="container">
     <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" target="_blank">KICS.IO</a></div>
+    <div class="run-info">
+      <span style="flex-basis:100%"><b>Scanned paths:</b> {{ getPaths .ScannedPaths }}</span>
+      <span style="flex-basis:100%"><b>Platforms:</b> {{ getPlatforms .Queries }}</span>
+      {{- with .Times -}}
+        <span><b>Start time:</b> {{ .Start.Format "15:04:05, Jan 02 2006" }}</span>
+        <span><b>End time:</b> {{ .End.Format "15:04:05, Jan 02 2006" }}</span>
+      {{- end}}
+    </div>
     <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
     <div class="counters">
     {{- with .SeveritySummary -}}
