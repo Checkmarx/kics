@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="291">{
-                if val == true </span><span class="cov9" title="290">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="309">{
+                if val == true </span><span class="cov9" title="308">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2083,7 +2083,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3654,7 +3654,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -3828,7 +3828,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -3846,20 +3846,20 @@ func ExtractLineFragment(line, substr string, key bool) string <span class="cov4
         <span class="cov4" title="4">start := strings.Index(line, substr)
         end := start + len(substr)
 
-        for start &gt;= 0 </span><span class="cov8" title="30">{
+        for start &gt;= 0 </span><span class="cov7" title="16">{
                 if line[start] == ' ' </span><span class="cov3" title="3">{
                         break</span>
                 }
 
-                <span class="cov8" title="27">start--</span>
+                <span class="cov6" title="13">start--</span>
         }
 
-        <span class="cov4" title="4">for end &lt; len(line) </span><span class="cov7" title="16">{
+        <span class="cov4" title="4">for end &lt; len(line) </span><span class="cov5" title="6">{
                 if line[end] == ' ' </span><span class="cov3" title="3">{
                         break</span>
                 }
 
-                <span class="cov6" title="13">end++</span>
+                <span class="cov3" title="3">end++</span>
         }
 
         <span class="cov4" title="4">return removeExtras(line, start, end)</span>
@@ -3888,9 +3888,12 @@ func DetectCurrentLine(lines []string, str1, str2 string,
         distances := make(map[int]int)
         for i := curLine; i &lt; len(lines); i++ </span><span class="cov10" title="53">{
                 if str1 != "" &amp;&amp; str2 != "" </span><span class="cov8" title="32">{
-                        if strings.Contains(lines[i], str1) &amp;&amp; strings.Contains(lines[i], str2) </span><span class="cov3" title="3">{
-                                distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str2, false), str2)
-                        }</span>
+                        if strings.Contains(lines[i], str1) </span><span class="cov4" title="4">{
+                                restLine := lines[i][strings.Index(lines[i], str1)+len(str1):]
+                                if strings.Contains(restLine, str2) </span><span class="cov3" title="3">{
+                                        distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
+                                }</span>
+                        }
                 } else<span class="cov7" title="21"> if str1 != "" </span><span class="cov7" title="21">{
                         if strings.Contains(lines[i], str1) </span><span class="cov1" title="1">{
                                 distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str1, false), str1)
@@ -4634,7 +4637,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="29">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="25">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
