@@ -77,5 +77,5 @@ createSearchKey(a, b) = search {
 
 createSearchKey(a, b) = search {
 	b.Name.Ref
-	search := sprintf("Resources.%s.Properties.ContainerDefinitions.Name=%s", [a, b.Name.Ref])
+	search := sprintf("Resources.%s.Properties.ContainerDefinitions.Name.Ref=%s", [a, b.Name.Ref])
 }

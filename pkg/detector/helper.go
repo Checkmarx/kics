@@ -220,8 +220,11 @@ func DetectCurrentLine(lines []string, str1, str2 string,
 	distances := make(map[int]int)
 	for i := curLine; i < len(lines); i++ {
 		if str1 != "" && str2 != "" {
-			if strings.Contains(lines[i], str1) && strings.Contains(lines[i], str2) {
-				distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str2, false), str2)
+			if strings.Contains(lines[i], str1) {
+				restLine := lines[i][strings.Index(lines[i], str1)+len(str1):]
+				if strings.Contains(restLine, str2) {
+					distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
+				}
 			}
 		} else if str1 != "" {
 			if strings.Contains(lines[i], str1) {
