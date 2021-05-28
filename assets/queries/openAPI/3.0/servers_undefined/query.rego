@@ -4,7 +4,7 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) != "undefined"
 	object.get(doc, "servers", "undefined") == "undefined"
 
 	result := {
@@ -18,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) != "undefined"
 	object.get(doc, "servers", "undefined") != "undefined"
 	count(doc.servers) == 0
 

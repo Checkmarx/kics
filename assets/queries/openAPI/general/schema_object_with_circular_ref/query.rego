@@ -24,6 +24,5 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s does not reference own schema", [concat(".", path), types[prop]]),
 		"keyActualValue": sprintf("%s.%s reference own schema", [concat(".", path), types[prop]]),
-		"overrideKey": version,
 	}
 }
