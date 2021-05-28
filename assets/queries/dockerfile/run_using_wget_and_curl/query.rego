@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, curl[0]]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, curl[0]]),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Exclusively using 'wget' or 'curl'",
 		"keyActualValue": "Using both 'wget' and 'curl'",

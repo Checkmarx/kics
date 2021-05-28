@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "There are no dangerous commands or utilities being executed",
 		"keyActualValue": sprintf("Run instruction is executing the %s command", [resource.Value[0]]),
