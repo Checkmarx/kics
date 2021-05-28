@@ -1,7 +1,7 @@
 {
   "id": "bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54",
   "queryName": "Policy Without Principal",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "All policies, except IAM identity-based policies, should have the 'Principal' element defined",
   "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html",
