@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.9%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.9%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (80.0%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (87.5%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/report/html.go (88.6%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/report/html.go (91.1%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/report/json.go (90.0%)</option>
 				
@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="315">{
-                if val == true </span><span class="cov9" title="314">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="298">{
+                if val == true </span><span class="cov9" title="297">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1702,7 +1702,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="8">{
 
         <span class="cov4" title="7">elapsed := time.Since(scanStartTime)
 
-        summary := getSummary(t, results, scanStartTime, time.Now())
+        summary := getSummary(t, results, scanStartTime, time.Now(), path)
 
         if err := resolveOutputs(&amp;summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
@@ -1720,7 +1720,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="8">{
         <span class="cov4" title="7">return nil</span>
 }
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time) model.Summary <span class="cov4" title="7">{
+func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time, scannedPaths []string) model.Summary <span class="cov4" title="7">{
         counters := model.Counters{
                 ScannedFiles:           t.FoundFiles,
                 ParsedFiles:            t.ParsedFiles,
@@ -1734,6 +1734,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
                 Start: start,
                 End:   end,
         }
+        summary.ScannedPaths = scannedPaths
         return summary
 }</span>
 
@@ -2058,13 +2059,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2082,7 +2083,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2422,7 +2423,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="29">{
+        for _, a := range s </span><span class="cov8" title="23">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -4633,7 +4634,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="29">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="33">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -5766,6 +5767,7 @@ type Summary struct {
         Queries VulnerableQuerySlice `json:"queries"`
         SeveritySummary
         Times
+        ScannedPaths []string `json:"paths"`
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
@@ -7138,6 +7140,7 @@ import (
         "path/filepath"
         "strings"
 
+        "github.com/Checkmarx/kics/pkg/model"
         "github.com/tdewolff/minify/v2"
         minifyCSS "github.com/tdewolff/minify/v2/css"
         minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -7196,6 +7199,22 @@ func includeJS(name string) template.HTML <span class="cov1" title="1">{
         <span class="cov1" title="1">return template.HTML("&lt;script&gt;" + jsMinified + "&lt;/script&gt;")</span> //nolint
 }
 
+func getPaths(paths []string) string <span class="cov1" title="1">{
+        return strings.Join(paths, ", ")
+}</span>
+
+func getPlatforms(queries model.VulnerableQuerySlice) string <span class="cov1" title="1">{
+        platforms := make([]string, 0)
+        alreadyAdded := make(map[string]string)
+        for idx := range queries </span><span class="cov1" title="1">{
+                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov1" title="1">{
+                        alreadyAdded[queries[idx].Platform] = ""
+                        platforms = append(platforms, queries[idx].Platform)
+                }</span>
+        }
+        <span class="cov1" title="1">return strings.Join(platforms, ", ")</span>
+}
+
 // PrintHTMLReport creates a report file on HTML format
 func PrintHTMLReport(path, filename string, body interface{}) error <span class="cov1" title="1">{
         if !strings.HasSuffix(filename, ".html") </span><span class="cov1" title="1">{
@@ -7205,6 +7224,8 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
         <span class="cov1" title="1">templateFuncs["includeSVG"] = includeSVG
         templateFuncs["includeCSS"] = includeCSS
         templateFuncs["includeJS"] = includeJS
+        templateFuncs["getPaths"] = getPaths
+        templateFuncs["getPlatforms"] = getPlatforms
 
         fullPath := filepath.Join(path, filename)
         t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))
