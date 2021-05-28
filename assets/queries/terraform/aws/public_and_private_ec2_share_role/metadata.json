@@ -1,0 +1,9 @@
+{
+  "id": "c53c7a89-f9d7-4c7b-8b66-8a555be99593",
+  "queryName": "Public and Private EC2 Share Role",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Public and private EC2 istances should not share the same role.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#iam_instance_profile",
+  "platform": "Terraform"
+}
