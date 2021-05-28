@@ -6,10 +6,14 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) != "undefined"
 	object.get(doc, "security", "undefined") == "undefined"
+	searchKey := {
+		"3.0": "openapi",
+		"2.0": "swagger",
+	}
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": "openapi",
+		"searchKey": searchKey,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "A default security schema should be defined",
 		"keyActualValue": "A default security schema is not defined",
