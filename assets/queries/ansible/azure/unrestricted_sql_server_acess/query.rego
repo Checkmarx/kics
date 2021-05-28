@@ -10,23 +10,6 @@ CxPolicy[result] {
 	rule := task[modules[m]]
 	ansLib.checkState(rule)
 
-	rule.start_ip_address == "0.0.0.0"
-	rule.end_ip_address == "0.0.0.0"
-
-	result := {
-		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "azure_rm_sqlfirewallrule.start_ip_address is different from '0.0.0.0' and azure_rm_sqlfirewallrule.end_ip_address is different from '0.0.0.0'",
-		"keyActualValue": "azure_rm_sqlfirewallrule.start_ip_address is '0.0.0.0' and azure_rm_sqlfirewallrule.end_ip_address is '0.0.0.0'",
-	}
-}
-
-CxPolicy[result] {
-	task := ansLib.tasks[id][t]
-	rule := task[modules[m]]
-	ansLib.checkState(rule)
-
 	startIP_value := commonLib.calc_IP_value(rule.start_ip_address)
 	endIP_value := commonLib.calc_IP_value(rule.end_ip_address)
 
