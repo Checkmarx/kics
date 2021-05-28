@@ -70,13 +70,13 @@ EOF
 
 resource "aws_iam_instance_profile" "test_profile2" {
   name = "test_profile"
-  role = "${aws_iam_role.test_role2.name}"
+  role = "aws_iam_role.test_role2.name"
 }
 
 
 resource "aws_iam_role_policy" "test_policy2" {
   name = "test_policy"
-  role = "${aws_iam_role.test_role2.id}"
+  role = "aws_iam_role.test_role2.id"
 
   policy = <<EOF
 {
@@ -96,7 +96,7 @@ EOF
 
 
 resource "aws_instance" "pub_ins2" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = "data.aws_ami.ubuntu.id"
   instance_type = "t2.micro"
   subnet_id = module.vpc.public_subnets[0]
   iam_instance_profile = aws_iam_instance_profile.test_profile2.name
@@ -104,7 +104,7 @@ resource "aws_instance" "pub_ins2" {
 }
 
 resource "aws_instance" "priv_ins2" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = "data.aws_ami.ubuntu.id"
   instance_type = "t2.micro"
   subnet_id = module.vpc.private_subnets[0]
   iam_instance_profile = aws_iam_instance_profile.test_profile3.name
