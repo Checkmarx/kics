@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	object.get(doc, "security", "undefined") == "undefined"
 	searchKey := {
 		"3.0": "openapi",
@@ -13,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": searchKey,
+		"searchKey": searchKey[version],
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "A default security schema should be defined",
 		"keyActualValue": "A default security schema is not defined",
