@@ -1,0 +1,5 @@
+- name: Download foo.conf
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    mode: "0440"

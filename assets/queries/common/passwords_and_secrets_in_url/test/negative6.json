@@ -1,0 +1,14 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {},
+  "servers": [
+    {
+      "url": "https://my.api.server.com/",
+      "description": "My API Server 1"
+    }
+  ]
+}
