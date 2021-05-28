@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Policy Without Principal",
+    "severity": "MEDIUM",
+    "line": 12
+  }
+]
