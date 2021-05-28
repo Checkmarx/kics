@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "Schema Object With Circular Ref",
+    "queryName": "Schema Object With Circular Ref (v3)",
     "severity": "INFO",
     "line": 70,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Schema Object With Circular Ref",
+    "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
     "line": 69,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Schema Object With Circular Ref",
+    "queryName": "Schema Object With Circular Ref (v3)",
     "severity": "INFO",
     "line": 45,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Schema Object With Circular Ref",
+    "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
     "line": 44,
     "filename": "positive4.yaml"
