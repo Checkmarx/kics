@@ -1,40 +1,24 @@
 [
   {
-<<<<<<< HEAD
     "queryName": "Schema Object With Circular Ref (v3)",
-=======
-    "queryName": "Schema Object With Circular Ref",
->>>>>>> Changed structure and moved circular reference to general
     "severity": "INFO",
     "line": 70,
     "filename": "positive1.json"
   },
   {
-<<<<<<< HEAD
     "queryName": "Schema Object With Circular Ref (v2)",
-=======
-    "queryName": "Schema Object With Circular Ref",
->>>>>>> Changed structure and moved circular reference to general
     "severity": "INFO",
     "line": 69,
     "filename": "positive2.json"
   },
   {
-<<<<<<< HEAD
     "queryName": "Schema Object With Circular Ref (v3)",
-=======
-    "queryName": "Schema Object With Circular Ref",
->>>>>>> Changed structure and moved circular reference to general
     "severity": "INFO",
     "line": 45,
     "filename": "positive3.yaml"
   },
   {
-<<<<<<< HEAD
     "queryName": "Schema Object With Circular Ref (v2)",
-=======
-    "queryName": "Schema Object With Circular Ref",
->>>>>>> Changed structure and moved circular reference to general
     "severity": "INFO",
     "line": 44,
     "filename": "positive4.yaml"
