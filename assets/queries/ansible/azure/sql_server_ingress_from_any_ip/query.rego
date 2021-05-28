@@ -20,6 +20,4 @@ CxPolicy[result] {
 	}
 }
 
-isUnsafeEndIpAddress("0.0.0.0") = true
-
 isUnsafeEndIpAddress("255.255.255.255") = true
