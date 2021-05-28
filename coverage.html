@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="309">{
-                if val == true </span><span class="cov9" title="308">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov10" title="319">{
+                if val == true </span><span class="cov9" title="318">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2059,13 +2059,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2083,7 +2083,7 @@ func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" 
         var formatter float64
         var mesure string
         for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2423,7 +2423,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="29">{
+        for _, a := range s </span><span class="cov8" title="26">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3654,7 +3654,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -3828,7 +3828,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -3846,20 +3846,20 @@ func ExtractLineFragment(line, substr string, key bool) string <span class="cov4
         <span class="cov4" title="4">start := strings.Index(line, substr)
         end := start + len(substr)
 
-        for start &gt;= 0 </span><span class="cov7" title="16">{
+        for start &gt;= 0 </span><span class="cov8" title="30">{
                 if line[start] == ' ' </span><span class="cov3" title="3">{
                         break</span>
                 }
 
-                <span class="cov6" title="13">start--</span>
+                <span class="cov8" title="27">start--</span>
         }
 
-        <span class="cov4" title="4">for end &lt; len(line) </span><span class="cov5" title="6">{
+        <span class="cov4" title="4">for end &lt; len(line) </span><span class="cov7" title="16">{
                 if line[end] == ' ' </span><span class="cov3" title="3">{
                         break</span>
                 }
 
-                <span class="cov3" title="3">end++</span>
+                <span class="cov6" title="13">end++</span>
         }
 
         <span class="cov4" title="4">return removeExtras(line, start, end)</span>
@@ -3888,12 +3888,9 @@ func DetectCurrentLine(lines []string, str1, str2 string,
         distances := make(map[int]int)
         for i := curLine; i &lt; len(lines); i++ </span><span class="cov10" title="53">{
                 if str1 != "" &amp;&amp; str2 != "" </span><span class="cov8" title="32">{
-                        if strings.Contains(lines[i], str1) </span><span class="cov4" title="4">{
-                                restLine := lines[i][strings.Index(lines[i], str1)+len(str1):]
-                                if strings.Contains(restLine, str2) </span><span class="cov3" title="3">{
-                                        distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(restLine, str2, false), str2)
-                                }</span>
-                        }
+                        if strings.Contains(lines[i], str1) &amp;&amp; strings.Contains(lines[i], str2) </span><span class="cov3" title="3">{
+                                distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str2, false), str2)
+                        }</span>
                 } else<span class="cov7" title="21"> if str1 != "" </span><span class="cov7" title="21">{
                         if strings.Contains(lines[i], str1) </span><span class="cov1" title="1">{
                                 distances[i] = levenshtein.ComputeDistance(ExtractLineFragment(lines[i], str1, false), str1)
@@ -4637,7 +4634,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="25">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="23">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
