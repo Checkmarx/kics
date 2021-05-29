@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/dockerhub/">
+        <link rel="canonical" href="http://www.kics.io/1.3.0/dockerhub/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Dockerhub - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -164,6 +165,10 @@
 <li>
     <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
 </li>
+                                    
+<li>
+    <a href="../BADGE/" class="dropdown-item">Badge</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -261,11 +266,12 @@
 <pre><code class="language-sh">docker pull checkmarx/kics:latest
 </code></pre>
 <p>Scan a directory</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
 <p>Scan a single file</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/results.json&quot;
+<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
 </code></pre>
+<p>This will generate a <code>results.json</code> file, for both examples, under <code>path</code>.</p>
 <h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
 <p>Usage:</p>
 <pre><code class="language-txt">Keeping Infrastructure as Code Secure
@@ -285,7 +291,7 @@ Flags:
   -h, --help                help for kics
   -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
       --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --log-path string     path to generate log file (info.log)
       --no-color            disable CLI color output
       --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
   -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
@@ -302,12 +308,14 @@ Usage:
 Flags:
       --config string                path to configuration file
       --exclude-categories strings   exclude categories by providing its name
+                                     cannot be provided with query inclusion flags
                                      can be provided multiple times or as a comma separated string
                                      example: 'Access control,Best practices'
   -e, --exclude-paths strings        exclude paths from scan
                                      supports glob and can be provided multiple times or as a quoted comma separated string
                                      example: './shouldNotScan/*,somefile.txt'
       --exclude-queries strings      exclude queries by providing the query ID
+                                     cannot be provided with query inclusion flags
                                      can be provided multiple times or as a comma separated string
                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
   -x, --exclude-results strings      exclude results by providing the similarity ID of a result
@@ -320,15 +328,20 @@ Flags:
       --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
                                      accepts: all, results, errors, none
                                      example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
+  -i, --include-queries strings      include queries by providing the query ID
+                                     cannot be provided with query exclusion flags
+                                     can be provided multiple times or as a comma separated string
+                                     example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --output-name string           name used on report creations (default &quot;results&quot;)
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
                                      example: &quot;./somepath,somefile.txt&quot;
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
-      --report-formats strings       formats in which the results will be exported (json, sarif, html)
+      --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])
       --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
@@ -337,11 +350,12 @@ Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
   -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
       --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-      --log-path string     path to log files, (defaults to ${PWD}/info.log)
+      --log-path string     path to generate log file (info.log)
       --no-color            disable CLI color output
       --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
   -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+
 </code></pre></div>
             </div>
         </div>
@@ -359,6 +373,7 @@ Global Flags:
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

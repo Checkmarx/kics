@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/configuration-file/">
+        <link rel="canonical" href="http://www.kics.io/1.3.0/configuration-file/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Configuration - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -164,6 +165,10 @@
 <li>
     <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
 </li>
+                                    
+<li>
+    <a href="../BADGE/" class="dropdown-item">Badge</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -274,7 +279,7 @@
   &quot;log-file&quot;: true,
   &quot;type&quot;: &quot;Dockerfile,Kubernetes&quot;,
   &quot;queries-path&quot;: &quot;assets/queries&quot;,
-  &quot;output-path&quot;: &quot;results.json&quot;
+  &quot;output-path&quot;: &quot;results&quot;
 }
 </code></pre>
 <p>The same example now in YAML format passing <code>type</code> as an array of strings:</p>
@@ -285,7 +290,7 @@ type:
   - Dockerfile
   - Kubernetes
 queries-path: &quot;assets/queries&quot;
-output-path: &quot;results.json&quot;
+output-path: &quot;results&quot;
 </code></pre>
 <blockquote>
 <p>📝 &nbsp; flags that can receive multiple values can be either provided as a comma separated string or an array as in the example above</p>
@@ -316,12 +321,13 @@ output-path: &quot;results.json&quot;
   &quot;minimal-ui&quot;: false,
   &quot;no-color&quot;: false,
   &quot;no-progress&quot;: false,
+  &quot;output-name&quot;: &quot;name used on report creations (default \&quot;results\&quot;)&quot;,
   &quot;output-path&quot;: &quot;directory path to store reports&quot;,
   &quot;path&quot;: &quot;path to file or directory to scan&quot;,
   &quot;payload-path&quot;: &quot;file path to store source internal representation in JSON format&quot;,
   &quot;preview-lines&quot;: 3,
   &quot;queries-path&quot;: &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;,
-  &quot;report-formats&quot;: &quot;formats in which the results will be exported (json, sarif, html)&quot;,
+  &quot;report-formats&quot;: &quot;formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])&quot;,
   &quot;type&quot;: &quot;type of queries to use in the scan&quot;,
   &quot;timeout&quot;: &quot;number of seconds the query has to execute before being canceled&quot;,
   &quot;verbose&quot;: true,
@@ -339,13 +345,14 @@ log-path: path to the log file
 minimal-ui: false
 no-color: false
 no-progress: false
+output-name: &quot;name used on report creations (default \&quot;results\&quot;)&quot;
 output-path: &quot;directory path to store reports&quot;
 path: &quot;path to file or directory to scan&quot;
 payload-path: &quot;file path to store source internal representation in JSON format&quot;
 preview-lines: 3
 profiling: &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
 queries-path: &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;
-report-formats: &quot;formats in which the results will be exported (json, sarif, html)&quot;
+report-formats: &quot;formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])&quot;
 silent: false
 type: &quot;type of queries to use in the scan&quot;
 timeout: &quot;number of seconds the query has to execute before being canceled&quot;
@@ -362,13 +369,14 @@ log-path = &quot;path to the log file&quot;
 minimal-ui = false
 no-color = false
 no-progress = false
+output-name = &quot;name used on report creations (default \&quot;results\&quot;)&quot;
 output-path = &quot;directory path to store reports&quot;
 path = &quot;path to file or directory to scan&quot;
 payload-path = &quot;file path to store source internal representation in JSON format&quot;
 preview-lines = 3
 profiling = &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
 queries-path = &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;
-report-formats = &quot;formats in which the results will be exported (json, sarif, html)&quot;
+report-formats = &quot;formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])&quot;
 silent = false
 type = &quot;type of queries to use in the scan&quot;
 timeout = &quot;number of seconds the query has to execute before being canceled&quot;
@@ -385,13 +393,14 @@ verbose = true
 &quot;minimal-ui&quot; = false
 &quot;no-color&quot; = false
 &quot;no-progress&quot; = false
+&quot;output-name&quot; = &quot;name used on report creations (default \&quot;results\&quot;)&quot;
 &quot;output-path&quot; = &quot;directory path to store reports&quot;
 &quot;path&quot; = &quot;path to file or directory to scan&quot;
 &quot;payload-path&quot; = &quot;file path to store source internal representation in JSON format&quot;
 &quot;preview-lines&quot; = 3
 &quot;profiling&quot; = &quot;enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)&quot;
 &quot;queries-path&quot; = &quot;path to directory with queries (default ./assets/queries) (default './assets/queries')&quot;
-&quot;report-formats&quot; = &quot;formats in which the results will be exported (json, sarif, html)&quot;
+&quot;report-formats&quot; = &quot;formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])&quot;
 &quot;silent&quot; = false
 &quot;type&quot; = &quot;type of queries to use in the scan&quot;
 &quot;timeout&quot; = &quot;number of seconds the query has to execute before being canceled&quot;
@@ -446,6 +455,7 @@ verbose = true
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

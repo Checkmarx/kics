@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/integrations_azurepipelines/">
+        <link rel="canonical" href="http://www.kics.io/1.3.0/integrations_azurepipelines/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Azure DevOps - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -164,6 +165,10 @@
 <li>
     <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
 </li>
+                                    
+<li>
+    <a href="../BADGE/" class="dropdown-item">Badge</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -237,6 +242,21 @@
         <ul class="nav flex-column">
             
             <li class="nav-item" data-level="2"><a href="#integrate_kics_with_azure_pipelines" class="nav-link">Integrate KICS with Azure Pipelines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#view_sarif_report_in_azure_devops_pipelines" class="nav-link">View SARIF report in Azure DevOps pipelines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#build_status" class="nav-link">Build status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#sarif_report_inside_azure_pipelines" class="nav-link">SARIF report inside Azure Pipelines</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -342,7 +362,46 @@ stages:
 <h4 id="pipeline_failure">Pipeline Failure<a class="headerlink" href="#pipeline_failure" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_azure_pipelines_failure.png" width="850"></p>
 <h4 id="pipeline_success">Pipeline Success<a class="headerlink" href="#pipeline_success" title="Permanent link">&para;</a></h4>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_azure_pipelines_success.png" width="850"></p></div>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_azure_pipelines_success.png" width="850"></p>
+<h2 id="view_sarif_report_in_azure_devops_pipelines">View SARIF report in Azure DevOps pipelines<a class="headerlink" href="#view_sarif_report_in_azure_devops_pipelines" title="Permanent link">&para;</a></h2>
+<p>It's also possible to view KICS results by publishing the SARIF report as a build artifact and installing the <a href="https://github.com/Microsoft/sarif-azuredevops-extension">SARIF Azure DevOps Extension</a></p>
+<ol>
+<li>Search for the <em>SARIF Azure DevOps Extension</em> in the <a href="https://docs.microsoft.com/en-us/azure/devops/marketplace/install-extension?view=azure-devops&amp;tabs=browser">extensions marketplace</a>.</li>
+<li>Install and give permissions to the plugin.</li>
+<li>Create a pipeline to scan IaC with KICS, configure the results output in the SARIF format, and publish it as a build artifact with artifact named as <code>CodeAnalysisLogs</code>:</li>
+</ol>
+<pre><code class="language-yaml">trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Kics
+  displayName: Kics
+  jobs:
+  - job: runKics
+    displayName: runKics
+    steps:
+      - script: |
+          OS=$(uname -s)
+          LATEST_TAG=$(curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; | grep '&quot;tag_name&quot;:' | sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/')
+          LATEST_VERSION=${LATEST_TAG#v}
+          PACKAGE_NAME=kics_${LATEST_VERSION}_${OS}_x64.tar.gz
+          TARGET_DIR=/home/vsts/kics
+          mkdir -p ${TARGET_DIR}
+          wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
+          echo '--- START SCANNING ---'
+          ${TARGET_DIR}/kics scan --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.sarif
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathToPublish: $(System.DefaultWorkingDirectory)/kics-results.sarif
+          artifactName: CodeAnalysisLogs
+</code></pre>
+<h2 id="build_status">Build status<a class="headerlink" href="#build_status" title="Permanent link">&para;</a></h2>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/azure-devops-build-status.png" width="850"></p>
+<h2 id="sarif_report_inside_azure_pipelines">SARIF report inside Azure Pipelines<a class="headerlink" href="#sarif_report_inside_azure_pipelines" title="Permanent link">&para;</a></h2>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/azure-devops-sarif-plugin.png" width="850"></p></div>
             </div>
         </div>
 
@@ -359,6 +418,7 @@ stages:
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/architecture/">
+        <link rel="canonical" href="http://www.kics.io/1.3.0/architecture/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Architecture - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
         <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/version-select.css" rel="stylesheet">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -164,6 +165,10 @@
 <li>
     <a href="../integrations_jenkins/" class="dropdown-item">Jenkins</a>
 </li>
+                                    
+<li>
+    <a href="../BADGE/" class="dropdown-item">Badge</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -250,6 +255,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#concurrent_scans" class="nav-link">Concurrent Scans</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -279,7 +289,16 @@
 <br/>
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-1.png">
 <br/>
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png"></p></div>
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png"></p>
+<hr />
+<h2 id="concurrent_scans">Concurrent Scans<a class="headerlink" href="#concurrent_scans" title="Permanent link">&para;</a></h2>
+<p>KICS creates multiple services, each containing a unique parser. All the services will then concurrently generate a payload and run queries on it according to its containing parser. When a vulnerability is found, it is saved inside the Storage which is shared amongst all the services.</p>
+<ul>
+<li>Paths =&gt; create services based on types of IaC files.</li>
+<li>Service =&gt; contains a unique parser and shares other resources with other services</li>
+<li>Start Scan =&gt; Services will concurrently create payloads based on its parser, inspect for vulnerabilities and save them on the shared storage</li>
+<li>Results =&gt; when all services have finished their execution all the results will be gathered from the storage</li>
+</ul></div>
             </div>
         </div>
 
@@ -296,6 +315,7 @@
         <script src="../js/custom.js" defer></script>
         <script src="../js/version-mike.js" defer></script>
         <script src="../search/main.js" defer></script>
+        <script src="../js/version-select.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/1.3.0/roadmap/">
+        <link rel="canonical" href="http://www.kics.io/1.3.0/BADGE/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Roadmap - KICS</title>
+        <title>Badge - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -134,7 +134,7 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -167,16 +167,16 @@
 </li>
                                     
 <li>
-    <a href="../BADGE/" class="dropdown-item">Badge</a>
+    <a href="./" class="dropdown-item active">Badge</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">Roadmap</a>
+    <a href="../roadmap/" class="dropdown-item">Roadmap</a>
 </li>
                                     
 <li>
@@ -211,17 +211,17 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../BADGE/" class="nav-link">
+                                <a rel="prev" href="../integrations_jenkins/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../releases/" class="nav-link">
+                                <a rel="next" href="../roadmap/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/roadmap.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/BADGE.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -241,12 +241,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#kics_roadmap" class="nav-link">KICS Roadmap</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#closed_milestones" class="nav-link">Closed Milestones</a>
+            <li class="nav-item" data-level="2"><a href="#creating_a_badge" class="nav-link">Creating a badge</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -255,248 +250,36 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="kics_roadmap">KICS Roadmap<a class="headerlink" href="#kics_roadmap" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th align="left">Status</th>
-<th align="left">Milestone</th>
-<th align="left">ETA</th>
-<th align="left">Target Release</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Not-Started</td>
-<td align="left"><strong>Milestone 8</strong></td>
-<td align="left">Jun 2021</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Google Deployment Manager support</td>
-<td align="left"></td>
-<td align="left">TBA</td>
-</tr>
-<tr>
-<td align="left">Not-Started</td>
-<td align="left"><strong>Milestone 7</strong></td>
-<td align="left">May 2021</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Schemas support OpenAPI 3.0</td>
-<td align="left"></td>
-<td align="left">TBA</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Schemas support OpenAPI 2.0 (Swagger)</td>
-<td align="left"></td>
-<td align="left">TBA</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Schemas support gRPC</td>
-<td align="left"></td>
-<td align="left">TBA</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Azure Resource Manager support</td>
-<td align="left"></td>
-<td align="left">TBA</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><br/></p>
-<h2 id="closed_milestones">Closed Milestones<a class="headerlink" href="#closed_milestones" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th align="left">Status</th>
-<th align="left">Milestone</th>
-<th align="left">ETA</th>
-<th align="left">Release</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Completed</td>
-<td align="left"><strong>Milestone 6</strong></td>
-<td align="left">Apr 2021</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Terraform - Parameters files support</td>
-<td align="left"></td>
-<td align="left">v.1.2.3</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Distribution platforms: Homebrew</td>
-<td align="left"></td>
-<td align="left">v1.3.0</td>
-</tr>
-<tr>
-<td align="left">Completed</td>
-<td align="left"><strong>Milestone 5</strong></td>
-<td align="left">Mar 2021</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Helm support</td>
-<td align="left"></td>
-<td align="left">v1.2.1</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Reporting - add HTML format</td>
-<td align="left"></td>
-<td align="left">v1.2.1</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Documentation - Queries catalog</td>
-<td align="left"></td>
-<td align="left">v1.2.0</td>
-</tr>
-<tr>
-<td align="left">Completed</td>
-<td align="left"><strong>Milestone 4</strong></td>
-<td align="left">Feb 2021</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Reporting - add SARIF format</td>
-<td align="left"></td>
-<td align="left">v1.2.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Improved CLI outputs (progess, coloring, logo)</td>
-<td align="left"></td>
-<td align="left">v1.2.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Engineering and performance improvements</td>
-<td align="left"></td>
-<td align="left">1.2.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">CI/CD improved documentation</td>
-<td align="left"></td>
-<td align="left">v1.1.4</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Mac support</td>
-<td align="left"></td>
-<td align="left">v1.1.3</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Hard-coded secret keys detection</td>
-<td align="left"></td>
-<td align="left">v1.1.3</td>
-</tr>
-<tr>
-<td align="left">Completed</td>
-<td align="left"><strong>Milestone 3</strong></td>
-<td align="left">January 2021</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Adding more queries and extending coverage</td>
-<td align="left"></td>
-<td align="left">v1.1.1</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Adding more CI/CD integrations</td>
-<td align="left"></td>
-<td align="left">v1.1.1</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Engineering and performance improvements</td>
-<td align="left"></td>
-<td align="left">v1.1.1</td>
-</tr>
-<tr>
-<td align="left">Completed</td>
-<td align="left"><strong>Milestone 2</strong></td>
-<td align="left">December 2020</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Adding support for K8S</td>
-<td align="left"></td>
-<td align="left">v1.1.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Adding support for Docker</td>
-<td align="left"></td>
-<td align="left">v1.1.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Adding support for Ansible</td>
-<td align="left"></td>
-<td align="left">v1.1.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Adding support for AWS CloudFormation</td>
-<td align="left"></td>
-<td align="left">v1.1.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Designing official logo for KICS</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">Completed</td>
-<td align="left"><strong>Milestone 1</strong></td>
-<td align="left">November 2020</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">First version of KICS engine</td>
-<td align="left"></td>
-<td align="left">v1.0.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Terraform support, 50 queries</td>
-<td align="left"></td>
-<td align="left">v1.0.0</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left">Delivery: CLI &amp; Docker</td>
-<td align="left"></td>
-<td align="left">v1.0.0</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>Have an idea?
-Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a>.
-Or contact KICS core team at <a href="mailto:kics@checkmarx.com">kics@checkmarx.com</a></p></div>
+<h2 id="creating_a_badge">Creating a badge<a class="headerlink" href="#creating_a_badge" title="Permanent link">&para;</a></h2>
+<p>To create a badge and update it the user should run KICS in their CI.</p>
+<p>This can be done differently for each <a href="https://docs.kics.io/1.3.1/integrations/">integration we have</a>.</p>
+<p>Let's assume a manual CLI process using docker:</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+echo &quot;running KICS in the current dir and writing results.json&quot;
+docker run -v $PWD:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
+</code></pre>
+<p>This will generate a results.json file under <code>path</code>.
+Parse the <code>results.json</code> and request a badge to img.shields.io.</p>
+<p>For this example, let's assume HIGH and MEDIUM results are bad:</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+HIGH=$(jq '.severity_counters.HIGH' results.json)
+MEDIUM=$(jq '.severity_counters.MEDIUM' results.json)
+LOW=$(jq '.severity_counters.LOW' results.json)
+INFO=$(jq '.severity_counters.INFO' results.json)
+
+MESSAGE=&quot;passing&quot;
+COLOR=&quot;green&quot;
+if (( $HIGH &gt; 0 )) || (( $MEDIUM &gt; 0)); then
+    MESSAGE=&quot;failing&quot;
+    COLOR=&quot;red&quot;
+fi
+
+curl -sL &quot;https://img.shields.io/badge/KICS-${MESSAGE}-${COLOR}.svg&quot; &gt; kics-status.svg
+</code></pre>
+<p>An example SVG produced:</p>
+<p><img alt="KICS" src="https://img.shields.io/badge/KICS-passing-green.svg" /></p>
+<p>If you have github pages configured under <code>gh-pages</code> branch configured you can commit and push the badge to it and reference on your README.md, e.g:</p>
+<p><code>![KICS](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/kics-status.svg)</code></p></div>
             </div>
         </div>
 
