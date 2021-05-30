@@ -12,5 +12,6 @@
       "queryName": "Paths Object is Empty (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject"
     }
-  }
+  },
+  "aggregation": 2
 }
