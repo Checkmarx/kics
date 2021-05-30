@@ -12,5 +12,6 @@
       "queryName": "Property Defining Minimum Greater Than Maximum (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
-  }
+  },
+  "aggregation": 2
 }
