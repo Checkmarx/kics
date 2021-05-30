@@ -12,5 +12,6 @@
       "queryName": "Properties Missing Required Property (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
-  }
+  },
+  "aggregation": 2
 }
