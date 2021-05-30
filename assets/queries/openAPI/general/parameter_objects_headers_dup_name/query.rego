@@ -4,52 +4,46 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-	params := doc.paths[n].parameters
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
+
+	[path, value] := walk(doc)
+	params := value.parameters
 
 	dup := check_dup(params)
 	duplicate = cast_set(dup)
 
+	sk := get_search_key(path)
+
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.%s.parameters.name=%s", [n, duplicate[_]]),
+		"searchKey": sprintf(sk, [openapi_lib.concat_path(path), duplicate[_]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
 		"keyActualValue": "Parameter Object with location 'header' has duplicate names",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-	params := doc.paths[n][oper].parameters
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
+	def := doc.definitions[paramName]
+	defComp := doc.definitions[paramCompName]
 
-	dup := check_dup(params)
-	duplicate = cast_set(dup)
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("paths.%s.%s.parameters.name=%s", [n, oper, duplicate[_]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
-		"keyActualValue": "Parameter Object with location 'header' has duplicate names",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-	params := doc.components.parameters
-
-	dup := check_dup(params)
-	duplicate = cast_set(dup)
+	paramName != paramCompName
+	def.in == "header"
+	defComp.in == "header"
+	def.name == defComp.name
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("openapi.components.parameters.%s", [duplicate[_]]),
+		"searchKey": sprintf("definitions.%s.name", [paramName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
 		"keyActualValue": "Parameter Object with location 'header' has duplicate names",
+		"overrideKey": version,
 	}
 }
 
@@ -67,4 +61,11 @@ check_dup(params) = dup {
 	arr := cast_set(nameArr)
 	count(arr) != count(params)
 	dup := [y | y := nameArr[i]]
+}
+
+get_search_key(path) = searchKey {
+	path[minus(count(path), 1)] == "components"
+	searchKey := "%s.parameters.%s"
+} else = searchKey {
+	searchKey := "%s.parameters.name=%s"
 }
