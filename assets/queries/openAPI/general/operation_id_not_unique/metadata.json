@@ -12,5 +12,6 @@
       "queryName": "OperationId Not Unique (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
     }
-  }
+  },
+  "aggregation": 2
 }
