@@ -12,5 +12,6 @@
       "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
-  }
+  },
+  "aggregation": 2
 }
