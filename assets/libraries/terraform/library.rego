@@ -419,3 +419,23 @@ empty_array(arr) {
 } else {
 	false
 }
+
+check_principal(principal) {
+	is_string(principal) == true
+	principal == "*"
+}
+
+check_principal(principal) {
+	is_object(principal) == true
+	principal.AWS == "*"
+}
+
+check_action(action, typeAction) {
+	is_string(action) == true
+	action == typeAction
+}
+
+check_action(action, typeAction) {
+	is_array(action) == true
+	action[_] == typeAction
+}
