@@ -182,6 +182,7 @@ isDefaultPassword(p) {
 		"888888",
 		"54321",
 		"password123",
+		"pa$$",
 	}
 
 	ar[p]
