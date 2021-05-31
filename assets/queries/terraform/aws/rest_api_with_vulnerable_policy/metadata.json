@@ -1,0 +1,9 @@
+{
+  "id": "b161c11b-a59b-4431-9a29-4e19f63e6b27",
+  "queryName": "Rest API With Vulnerable Policy",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Rest API policy should avoid wildcard in 'Action' or 'Principal'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api_policy#policy",
+  "platform": "Terraform"
+}

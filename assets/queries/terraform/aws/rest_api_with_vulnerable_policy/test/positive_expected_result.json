@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Rest API With Vulnerable Policy",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive.tf"
+  }
+]
