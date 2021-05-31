@@ -3,7 +3,7 @@
   "queryName": "EFS With Vulnerable Policy",
   "severity": "HIGH",
   "category": "Access Control",
-  "descriptionText": "EFS (Elastic File System) policy should avoid wildcard in 'Action' and 'Principal'",
+  "descriptionText": "EFS (Elastic File System) policy should avoid wildcard in 'Action' and 'Principal'.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system_policy#policy",
   "platform": "Terraform"
 }
