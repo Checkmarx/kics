@@ -76,3 +76,31 @@ When your pipeline executes, it will run this job. If KICS finds any issues, it 
 #### Download Artifact
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
+
+## Using GitLab SAST Reports
+
+```yaml
+image: checkmarx/kics:latest-alpine
+
+stages:
+  - kics
+
+kics-scan:
+  stage: kics
+  script:
+    - kics scan -q ./assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD}/gl-sast-kics-results.glsast
+  artifacts:
+    reports:
+      sast: gl-sast-kics-results.json
+    when: always
+```
+
+### Example results
+
+#### Pipeline SAST report integration
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_sast_report.png" width="850">
+
+<br>
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_sast_report_result.png" width="850">
