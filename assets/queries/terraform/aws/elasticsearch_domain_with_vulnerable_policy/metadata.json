@@ -3,7 +3,7 @@
   "queryName": "Elasticsearch Domain With Vulnerable Policy",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Elasticsearch Domain policy should avoid wildcard in 'Action' and 'Principal'",
+  "descriptionText": "Elasticsearch Domain policy should avoid wildcard in 'Action' and 'Principal'.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain_policy#access_policies",
   "platform": "Terraform"
 }
