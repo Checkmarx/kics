@@ -5,7 +5,6 @@ go 1.16
 require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.1
-	github.com/containerd/containerd v1.4.4 // indirect
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/getsentry/sentry-go v0.11.0
 	github.com/golang/mock v1.5.0
@@ -19,7 +18,6 @@ require (
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
-	github.com/mitchellh/reflectwalk v1.0.1 // indirect
 	github.com/moby/buildkit v0.8.3
 	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/onsi/ginkgo v1.15.0 // indirect
@@ -37,7 +35,7 @@ require (
 	go.opencensus.io v0.22.4 // indirect
 	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
-	helm.sh/helm/v3 v3.5.4
+	helm.sh/helm/v3 v3.6.0
 )
 
 replace github.com/docker/docker => github.com/docker/docker v1.4.2-0.20200227233006-38f52c9fec82
