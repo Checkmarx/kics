@@ -244,6 +244,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#using_gitlab_sast_reports" class="nav-link">Using GitLab SAST Reports</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -308,7 +313,27 @@ kics-results:
 <h4 id="pipeline_success">Pipeline Success<a class="headerlink" href="#pipeline_success" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_success.png" width="850"></p>
 <h4 id="download_artifact">Download Artifact<a class="headerlink" href="#download_artifact" title="Permanent link">&para;</a></h4>
-<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850"></p></div>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850"></p>
+<h2 id="using_gitlab_sast_reports">Using GitLab SAST Reports<a class="headerlink" href="#using_gitlab_sast_reports" title="Permanent link">&para;</a></h2>
+<pre><code class="language-yaml">image: checkmarx/kics:latest-alpine
+
+stages:
+  - kics
+
+kics-scan:
+  stage: kics
+  script:
+    - kics scan -q ./assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD}/gl-sast-kics-results.glsast
+  artifacts:
+    reports:
+      sast: gl-sast-kics-results.json
+    when: always
+</code></pre>
+<h3 id="example_results_1">Example results<a class="headerlink" href="#example_results_1" title="Permanent link">&para;</a></h3>
+<h4 id="pipeline_sast_report_integration">Pipeline SAST report integration<a class="headerlink" href="#pipeline_sast_report_integration" title="Permanent link">&para;</a></h4>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_sast_report.png" width="850"></p>
+<p><br></p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_sast_report_result.png" width="850"></p></div>
             </div>
         </div>
 
