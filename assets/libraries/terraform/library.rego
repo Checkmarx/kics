@@ -440,32 +440,6 @@ check_action(action, typeAction) {
 	any([action[_] == typeAction, action == "*"])
 }
 
-has_wildcard(statement, typeAction) {
-	check_principal(statement.Principal)
-} else {
-	check_action(statement.Action, typeAction)
-}
-
-check_principal(principal) {
-	is_string(principal) == true
-	principal == "*"
-}
-
-check_principal(principal) {
-	is_object(principal) == true
-	principal.AWS == "*"
-}
-
-check_action(action, typeAction) {
-	is_string(action) == true
-	any([action == typeAction, action == "*"])
-}
-
-check_action(action, typeAction) {
-	is_array(action) == true
-	any([action[_] == typeAction, action == "*"])
-}
-
 check_principals(statement) {
 	statement.principals.identifiers[_] == "*"
 	statement.principals.type == "AWS"
