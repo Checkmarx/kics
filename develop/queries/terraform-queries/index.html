@@ -305,6 +305,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EFS With Vulnerable Policy<br/><sup><sub>fae52418-bb8b-4ac2-b287-0b9082d6a3fd</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>EFS (Elastic File System) policy should avoid wildcard in 'Action' and 'Principal'.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>S3 Bucket ACL Allows Read Or Write to All Users<br/><sup><sub>38c5ee0d-7f22-4260-ab72-5073048df100</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Access Control</td>
@@ -1292,13 +1299,6 @@
 <td><a href="https://www.terraform.io/docs/providers/azurerm/r/sql_database.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Key Vault Logging Disabled<br/><sup><sub>bb2d6cbc-b3af-4da7-9b1c-d91652dd9ead</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Secret Management</td>
-<td>Logging for Azure Key Vault is disabled</td>
-<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Secret Expiration Not Set<br/><sup><sub>dfa20ffa-f476-428f-a490-424b41e91c7f</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Secret Management</td>
@@ -1348,6 +1348,27 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudWatch Logs Destination With Vulnerable Policy<br/><sup><sub>db0ec4c4-852c-46a2-b4f3-7ec13cdb12a8</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>CloudWatch Logs destination policy should avoid wildcard in 'principals' and 'actions'</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_destination_policy#access_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Elasticsearch Domain With Vulnerable Policy<br/><sup><sub>16c4216a-50d3-4785-bfb2-4adb5144a8ba</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Elasticsearch Domain policy should avoid wildcard in 'Action' and 'Principal'.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain_policy#access_policies">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>REST API With Vulnerable Policy<br/><sup><sub>b161c11b-a59b-4431-9a29-4e19f63e6b27</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>REST API policy should avoid wildcard in 'Action' and 'Principal'</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ECR Repository Is Publicly Accessible<br/><sup><sub>e86e26fc-489e-44f0-9bcd-97305e4ba69a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
@@ -1360,6 +1381,13 @@
 <td>Access Control</td>
 <td>SQS policy with public access</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Glue With Vulnerable Policy<br/><sup><sub>d25edb51-07fb-4a73-97d4-41cecdc53a22</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Glue policy should avoid wildcard in 'principals' and 'actions'</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_resource_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SNS Topic is Publicly Accessible For Subscription<br/><sup><sub>b26d2b7e-60f6-413d-a3a1-a57db24aa2b3</sub></sup></td>
@@ -1411,6 +1439,13 @@
 <td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-security-warning-pass-role-with-star-in-resource">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Lambda With Vulnerable Policy<br/><sup><sub>ad9dabc7-7839-4bae-a957-aa9120013f39</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>The attribute 'action' should not have wildcard</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission#action">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>IAM Policy Grants Full Permissions<br/><sup><sub>575a2155-6af1-4026-b1af-d5bc8fe2a904</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
@@ -1432,11 +1467,25 @@
 <td><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Secrets Manager With Vulnerable Policy<br/><sup><sub>fa00ce45-386d-4718-8392-fb485e1f3c5b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Secrets Manager policy should avoid wildcard in 'Principal' and 'Action'</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_policy#policy">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Policy Without Principal<br/><sup><sub>bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>All policies, except IAM identity-based policies, should have the 'Principal' element defined</td>
 <td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Public and Private EC2 Share Role<br/><sup><sub>c53c7a89-f9d7-4c7b-8b66-8a555be99593</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Public and private EC2 istances should not share the same role.</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#iam_instance_profile">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AKS RBAC Disabled<br/><sup><sub>86f92117-eed8-4614-9c6c-b26da20ff37f</sub></sup></td>
