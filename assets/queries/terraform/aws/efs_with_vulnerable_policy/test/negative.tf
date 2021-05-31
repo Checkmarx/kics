@@ -14,8 +14,8 @@ resource "aws_efs_file_system_policy" "policy" {
             "Sid": "ExampleStatement01",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "*"
-            },
+                "AWS": "arn:aws:iam::111122223333:user/Carlos"
+            }
             "Resource": "aws_efs_file_system.test.arn",
             "Action": [
                 "elasticfilesystem:ClientMount",
