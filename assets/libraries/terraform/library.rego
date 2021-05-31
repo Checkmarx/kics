@@ -440,6 +440,7 @@ check_action(action, typeAction) {
 	any([action[_] == typeAction, action == "*"])
 }
 
+# it verifies if 'Principal' or 'Actions' has wildcard
 has_wildcard(statement, typeAction) {
 	check_principal(statement.Principal)
 } else {
