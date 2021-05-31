@@ -440,9 +440,22 @@ check_action(action, typeAction) {
 	any([action[_] == typeAction, action == "*"])
 }
 
+check_principals(statement) {
+	statement.principals.identifiers[_] == "*"
+	statement.principals.type == "AWS"
+}
+
+check_actions(statement, typeAction) {
+	any([statement.actions[_] == typeAction, statement.actions[_] == "*"])
+}
+
 # it verifies if 'Principal' or 'Actions' has wildcard
 has_wildcard(statement, typeAction) {
 	check_principal(statement.Principal)
 } else {
+	check_principals(statement)
+} else {
 	check_action(statement.Action, typeAction)
+} else {
+	check_actions(statement, typeAction)
 }
