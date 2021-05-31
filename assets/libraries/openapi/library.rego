@@ -2,8 +2,11 @@ package generic.openapi
 
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
-	version = doc.openapi
 	regex.match("^3\\.0\\.\\d+$", doc.openapi)
+	version = "3.0"
+} else = version {
+	object.get(doc, "swagger", "undefined") != "undefined"
+	version = "2.0"
 } else = version {
 	version = "undefined"
 }
