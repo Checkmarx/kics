@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_api_gateway_rest_api_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy does not have wildcard in 'Action' or 'Principal'", [name]),
+		"keyExpectedValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy does not have wildcard in 'Action' and 'Principal'", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_rest_api_policy[%s].policy has wildcard in 'Action' or 'Principal'", [name]),
 	}
 }
