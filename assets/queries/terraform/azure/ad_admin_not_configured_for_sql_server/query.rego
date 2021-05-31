@@ -2,7 +2,7 @@ package Cx
 
 CxPolicy[result] {
 	sql_server := input.document[i].resource.azurerm_sql_server[name]
-	not adAdminExists(sql_server.name, sql_server.resource_group_name)
+	not adAdminExists(sql_server.name, sql_server.resource_group_name, name)
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_sql_server[%s]", [name]),
@@ -12,11 +12,12 @@ CxPolicy[result] {
 	}
 }
 
-adAdminExists(server_name, resource_group) = exists {
+adAdminExists(server_name, resource_group, n) {
 	ad_admin := input.document[i].resource.azurerm_sql_active_directory_administrator[name]
-	ad_admin.resource_group_name == resource_group
 	ad_admin.server_name == server_name
-	exists = true
+} else {
+	ad_admin := input.document[i].resource.azurerm_sql_active_directory_administrator[name]
+	ad_admin.server_name == sprintf("${azurerm_sql_server.%s.name}", [n])
 } else = false {
 	true
 }
