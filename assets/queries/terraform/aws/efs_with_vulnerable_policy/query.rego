@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_efs_file_system_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_efs_file_system_policy[%s].policy does not have wildcard in 'Action' or 'Principal'", [name]),
+		"keyExpectedValue": sprintf("aws_efs_file_system_policy[%s].policy does not have wildcard in 'Action' and 'Principal'", [name]),
 		"keyActualValue": sprintf("aws_efs_file_system_policy[%s].policy has wildcard in 'Action' or 'Principal'", [name]),
 	}
 }
