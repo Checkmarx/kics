@@ -10,19 +10,19 @@ resource "aws_elasticsearch_domain_policy" "main2" {
 {
     "Version": "2012-10-17",
     "Statement": [
-        {
-            "Action": [
-              "es:ESHttpGet",
-              "es:ESHttpPut"
-            ],
-            "Principal": "*",
-            "Effect": "Allow",
-            "Condition": {
-                "IpAddress": {"aws:SourceIp": "127.0.0.1/32"}
-            },
-            "Resource": "aws_elasticsearch_domain.example2.arn/*"
-        }
-    ]
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::123456789012:user/test-user"
+        ]
+      },
+      "Action": [
+        "es:ESHttpGet"
+      ],
+      "Resource": "arn:aws:es:us-west-1:987654321098:domain/test-domain/test-index/_search"
+    }
+  ]
 }
 POLICIES
 }

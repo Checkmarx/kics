@@ -432,10 +432,16 @@ check_principal(principal) {
 
 check_action(action, typeAction) {
 	is_string(action) == true
-	action == typeAction
+	any([action == typeAction, action == "*"])
 }
 
 check_action(action, typeAction) {
 	is_array(action) == true
-	action[_] == typeAction
+	any([action[_] == typeAction, action == "*"])
+}
+
+has_wildcard(statement, typeAction) {
+	check_principal(statement.Principal)
+} else {
+	check_action(statement.Action, typeAction)
 }
