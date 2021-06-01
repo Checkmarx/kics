@@ -671,12 +671,12 @@ func Test_E2E_CLI(t *testing.T) {
 }
 
 func prepareTemplates() TestTemplates {
-	var help, errH = prepareExpected("help", "fixtures/templates")
+	var help, errH = prepareExpected("help", "fixtures/assets")
 	if errH != nil {
 		help = []string{}
 	}
 
-	var scanHelp, errSH = prepareExpected("scan_help", "fixtures/templates")
+	var scanHelp, errSH = prepareExpected("scan_help", "fixtures/assets")
 	if errSH != nil {
 		scanHelp = []string{}
 	}
