@@ -67,15 +67,15 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.9%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (80.0%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.2%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
-				<option value="file8">github.com/Checkmarx/kics/internal/metrics/cpu_metric.go (90.9%)</option>
+				<option value="file8">github.com/Checkmarx/kics/internal/metrics/cpu_metric.go (91.7%)</option>
 				
-				<option value="file9">github.com/Checkmarx/kics/internal/metrics/mem_metric.go (92.3%)</option>
+				<option value="file9">github.com/Checkmarx/kics/internal/metrics/mem_metric.go (92.9%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/metrics/metrics.go (91.2%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/metrics/metrics.go (90.5%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/storage/memory.go (100.0%)</option>
 				
@@ -1264,7 +1264,7 @@ func preRun(cmd *cobra.Command) error <span class="cov4" title="9">{
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
-        <span class="cov4" title="8">err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+        <span class="cov4" title="8">err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"), cmd.InheritedFlags().Lookup("ci"))
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="318">{
-                if val == true </span><span class="cov9" title="317">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="317">{
+                if val == true </span><span class="cov9" title="316">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1700,24 +1700,32 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="8">{
                 return err
         }</span>
 
-        <span class="cov4" title="7">elapsed := time.Since(scanStartTime)
-
-        summary := getSummary(t, results, scanStartTime, time.Now(), path)
+        <span class="cov4" title="7">summary := getSummary(t, results, scanStartTime, time.Now(), path)
 
         if err := resolveOutputs(&amp;summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return err
         }</span>
 
-        <span class="cov4" title="7">elapsedStrFormat := "Scan duration: %v\n"
-        fmt.Printf(elapsedStrFormat, elapsed)
-        log.Info().Msgf(elapsedStrFormat, elapsed)
+        <span class="cov4" title="7">printScanDuration(time.Since(scanStartTime))
 
         exitCode := consoleHelpers.ResultsExitCode(&amp;summary)
         if consoleHelpers.ShowError("results") &amp;&amp; exitCode != 0 </span><span class="cov0" title="0">{
                 os.Exit(exitCode)
         }</span>
         <span class="cov4" title="7">return nil</span>
+}
+
+func printScanDuration(elapsed time.Duration) <span class="cov4" title="7">{
+        if ci </span><span class="cov0" title="0">{
+                elapsedStrFormat := "Scan duration: %vms\n"
+                fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
+                log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
+        }</span> else<span class="cov4" title="7"> {
+                elapsedStrFormat := "Scan duration: %v\n"
+                fmt.Printf(elapsedStrFormat, elapsed)
+                log.Info().Msgf(elapsedStrFormat, elapsed)
+        }</span>
 }
 
 func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time, scannedPaths []string) model.Summary <span class="cov4" title="7">{
@@ -1839,6 +1847,10 @@ var cpuMap = map[string]float64{
         "hrs": float64(time.Hour),
 }
 
+func (c *cpuMetric) getDefault() string <span class="cov8" title="1">{
+        return "ms"
+}</span>
+
 // Start - start gathering metrics for CPU usage
 func (c *cpuMetric) start() <span class="cov8" title="1">{
         c.idx = 1
@@ -1928,6 +1940,10 @@ func (c *memMetric) start() <span class="cov8" title="1">{
         }
 }
 
+func (c *memMetric) getDefault() string <span class="cov8" title="1">{
+        return "B"
+}</span>
+
 // Stop - stop gathering metrics for Memory usage
 func (c *memMetric) stop() <span class="cov8" title="1">{
         c.close()
@@ -1955,6 +1971,7 @@ import (
         "bytes"
         "fmt"
         "math"
+        "strconv"
         "strings"
 
         "github.com/google/pprof/profile"
@@ -1977,6 +1994,7 @@ type metricType interface {
         getWriter() *bytes.Buffer
         getIndex() int
         getMap() map[string]float64
+        getDefault() string
 }
 
 // Metrics - structure to keep information relevant to the metrics calculation
@@ -1987,10 +2005,11 @@ type Metrics struct {
         location  string
         Disable   bool
         total     int64
+        ci        bool
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric *pflag.Flag) error <span class="cov5" title="7">{
+func InitializeMetrics(metric, ci *pflag.Flag) error <span class="cov5" title="7">{
         metricStr := metric.Value.String()
         var err error
         switch strings.ToLower(metricStr) </span>{
@@ -2014,6 +2033,7 @@ func InitializeMetrics(metric *pflag.Flag) error <span class="cov5" title="7">{
         // Create temporary dir to keep pprof file
         <span class="cov5" title="7">if !Metric.Disable </span><span class="cov4" title="4">{
                 Metric.metricsID = metricStr
+                Metric.ci, _ = strconv.ParseBool(ci.Value.String())
         }</span>
 
         <span class="cov5" title="7">return err</span>
@@ -2051,7 +2071,8 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 
         <span class="cov2" title="2">total := getTotal(p, m.metric.getIndex())
         log.Info().
-                Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID), m.location, formatTotal(total, m.metric.getMap()))
+                Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID),
+                        m.location, m.formatTotal(total, m.metric.getMap(), m.metric.getDefault()))
         m.total = total</span>
 }
 
@@ -2059,13 +2080,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2078,12 +2099,19 @@ func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2"
 }
 
 // formatTotal parses total value into a human readble way
-func formatTotal(b int64, typeMap map[string]float64) string <span class="cov6" title="10">{
+func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric string) string <span class="cov6" title="11">{
         value := float64(b)
         var formatter float64
         var mesure string
-        for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+        if m.ci </span><span class="cov1" title="1">{
+                metric := value / typeMap[defaultMetric]
+                if math.IsNaN(metric) </span><span class="cov0" title="0">{
+                        metric = 0
+                }</span>
+                <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
+        }
+        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2423,7 +2451,7 @@ func createSlice(chanel chan string) []string <span class="cov6" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="16">{
-        for _, a := range s </span><span class="cov8" title="29">{
+        for _, a := range s </span><span class="cov8" title="23">{
                 if a == e </span><span class="cov4" title="4">{
                         return true
                 }</span>
@@ -3828,7 +3856,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4637,7 +4665,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="23">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="30">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
