@@ -23,6 +23,10 @@ var cpuMap = map[string]float64{
 	"hrs": float64(time.Hour),
 }
 
+func (c *cpuMetric) getDefault() string {
+	return "ms"
+}
+
 // Start - start gathering metrics for CPU usage
 func (c *cpuMetric) start() {
 	c.idx = 1
