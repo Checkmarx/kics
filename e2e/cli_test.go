@@ -8,9 +8,15 @@ import (
 	"regexp"
 	"strings"
 	"testing"
+	"text/template"
 
 	"github.com/stretchr/testify/require"
 )
+
+type TestTemplates struct {
+	Help     string
+	ScanHelp string
+}
 
 type cmdArgs []string
 
@@ -605,6 +611,8 @@ func Test_E2E_CLI(t *testing.T) {
 		t.Skip("skipping E2E tests in short mode.")
 	}
 
+	templates := prepareTemplates()
+
 	for _, tt := range tests {
 		for arg := range tt.args.args {
 			t.Run(fmt.Sprintf("%s_%d", tt.name, arg), func(t *testing.T) {
@@ -638,13 +646,15 @@ func Test_E2E_CLI(t *testing.T) {
 					want, errPrep := prepareExpected(tt.args.expectedOut[arg], "fixtures")
 					require.NoError(t, errPrep, "Reading a fixture should not yield an error")
 
+					formattedWant := loadTemplates(want, templates)
+
 					// Check number of Lines
-					require.Equal(t, len(want), len(out.output),
-						"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(want), len(out.output))
+					require.Equal(t, len(formattedWant), len(out.output),
+						"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(formattedWant), len(out.output))
 
 					// Check output lines
-					for idx := range want {
-						checkLine(t, out.output[idx], want[idx], idx+1)
+					for idx := range formattedWant {
+						checkLine(t, out.output[idx], formattedWant[idx], idx+1)
 					}
 				}
 
@@ -658,4 +668,36 @@ func Test_E2E_CLI(t *testing.T) {
 			})
 		}
 	}
+}
+
+func prepareTemplates() TestTemplates {
+	var help, errH = prepareExpected("help", "fixtures/assets")
+	if errH != nil {
+		help = []string{}
+	}
+
+	var scanHelp, errSH = prepareExpected("scan_help", "fixtures/assets")
+	if errSH != nil {
+		scanHelp = []string{}
+	}
+
+	return TestTemplates{
+		strings.Join(help, "\n"),
+		strings.Join(scanHelp, "\n")}
+}
+
+func loadTemplates(lines []string, templates TestTemplates) []string {
+	temp, err := template.New("templates").Parse(strings.Join(lines, "\n"))
+	if err != nil {
+		return []string{}
+	}
+
+	builder := &strings.Builder{}
+
+	err = temp.Execute(builder, templates)
+	if err != nil {
+		return []string{}
+	}
+
+	return strings.Split(builder.String(), "\n")
 }
