@@ -48,3 +48,6 @@ debian   |  246ced5f  |  2021-05-28  |  sha256:f884ff731d1870356f6fc52ad762eb787
 scratch  |  8b3d37fc  |  2021-05-29  |  sha256:47eb8b29e52724dd53d9c5d17712e351d100c2dc69ad63bd09e4bbe021b4d6ea
 alpine   |  8b3d37fc  |  2021-05-29  |  sha256:1e3ad1617106d1806e9f19be2fee23b7bfb9881a5681a9cb17d633d522eb3c20
 debian   |  8b3d37fc  |  2021-05-29  |  sha256:325842da53d07e404a453ea04e19b5b02511a36b3de1c35e1f1de4bbc52475a6
+scratch  |  d5cdbe8d  |  2021-06-01  |  sha256:8efc2189b234d2ed7daba7778a816d01b9ce5df42c7dd41c98050bf5e61f3985
+alpine   |  d5cdbe8d  |  2021-06-01  |  sha256:3382a59d20ec83ad5e39acaea0d182b5e99ccaa16a7a7a49e8dd08d82456ad98
+debian   |  d5cdbe8d  |  2021-06-01  |  sha256:c7ed9eae0c27169488dcade97f9bffcf8f7de6a6dfc8bdcee2bb53018d87d406
