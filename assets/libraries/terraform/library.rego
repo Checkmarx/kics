@@ -464,7 +464,6 @@ uses_aws_managed_key(key, awsManagedKey) {
 	key == awsManagedKey
 } else {
 	keyName := split(key, ".")[2]
-	kms := input.document[z].data.aws_kms_key[kmsName]
-	keyName == kmsName
+	kms := input.document[z].data.aws_kms_key[keyName]
 	kms.key_id == awsManagedKey
 }
