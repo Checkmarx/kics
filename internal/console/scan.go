@@ -157,7 +157,7 @@ func preRun(cmd *cobra.Command) error {
 	if err != nil {
 		return errors.New(initError + err.Error())
 	}
-	err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"))
+	err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"), cmd.InheritedFlags().Lookup("ci"))
 	if err != nil {
 		return errors.New(initError + err.Error())
 	}
@@ -593,8 +593,6 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	elapsed := time.Since(scanStartTime)
-
 	summary := getSummary(t, results, scanStartTime, time.Now(), path)
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
@@ -602,15 +600,25 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	elapsedStrFormat := "Scan duration: %v\n"
-	fmt.Printf(elapsedStrFormat, elapsed)
-	log.Info().Msgf(elapsedStrFormat, elapsed)
+	printScanDuration(time.Since(scanStartTime))
 
 	exitCode := consoleHelpers.ResultsExitCode(&summary)
 	if consoleHelpers.ShowError("results") && exitCode != 0 {
 		os.Exit(exitCode)
 	}
 	return nil
+}
+
+func printScanDuration(elapsed time.Duration) {
+	if ci {
+		elapsedStrFormat := "Scan duration: %vms\n"
+		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
+		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
+	} else {
+		elapsedStrFormat := "Scan duration: %v\n"
+		fmt.Printf(elapsedStrFormat, elapsed)
+		log.Info().Msgf(elapsedStrFormat, elapsed)
+	}
 }
 
 func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time, scannedPaths []string) model.Summary {

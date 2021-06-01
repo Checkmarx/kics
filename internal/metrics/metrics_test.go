@@ -12,6 +12,7 @@ import (
 func TestMetrics_InitializeMetrics(t *testing.T) {
 	type args struct {
 		metric mockFlagValue
+		ci     mockFlagValue
 	}
 	tests := []struct {
 		name    string
@@ -23,6 +24,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_cpu",
 			args: args{
 				metric: "cpu",
+				ci:     "true",
 			},
 			wantErr: false,
 			disable: false,
@@ -31,6 +33,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_mem",
 			args: args{
 				metric: "mem",
+				ci:     "true",
 			},
 			wantErr: false,
 			disable: false,
@@ -39,6 +42,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_empty",
 			args: args{
 				metric: "",
+				ci:     "true",
 			},
 			wantErr: false,
 			disable: true,
@@ -47,6 +51,7 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 			name: "test_initialize_metrics_unknown",
 			args: args{
 				metric: "unknown",
+				ci:     "true",
 			},
 			wantErr: true,
 			disable: true,
@@ -57,7 +62,10 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			err := InitializeMetrics(&pflag.Flag{
 				Value: tt.args.metric,
-			})
+			},
+				&pflag.Flag{
+					Value: tt.args.ci,
+				})
 			if (err != nil) != tt.wantErr {
 				t.Errorf("InitializeMetrics = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -79,85 +87,131 @@ func (m mockFlagValue) Type() string {
 	return string(m)
 }
 
-func TestMetrics_formatTotal(t *testing.T) {
+func TestMetrics_formatTotal(t *testing.T) { //nolint
 	type args struct {
-		b       int64
-		typeMap map[string]float64
+		b             int64
+		typeMap       map[string]float64
+		defaultMetric string
 	}
 	tests := []struct {
-		name string
-		args args
-		want string
+		name   string
+		args   args
+		want   string
+		metric metricType
+		ci     bool
 	}{
 		{
 			name: "test_format_total_cpu",
 			args: args{
-				b:       100,
-				typeMap: cpuMap,
+				b:             100,
+				typeMap:       cpuMap,
+				defaultMetric: "ms",
 			},
-			want: "100.00ns",
+			metric: &cpuMetric{},
+			want:   "100.00ns",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_cpu_ms",
 			args: args{
-				b:       10000000,
-				typeMap: cpuMap,
+				b:             10000000,
+				typeMap:       cpuMap,
+				defaultMetric: "ms",
 			},
-			want: "10.00ms",
+			metric: &cpuMetric{},
+			want:   "10.00ms",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_cpu_h",
 			args: args{
-				b:       10000000000000,
-				typeMap: cpuMap,
+				b:             10000000000000,
+				typeMap:       cpuMap,
+				defaultMetric: "ms",
 			},
-			want: "2.78hrs",
+			metric: &cpuMetric{},
+			want:   "2.78hrs",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_mem_b",
 			args: args{
-				b:       100,
-				typeMap: memoryMap,
+				b:             100,
+				typeMap:       memoryMap,
+				defaultMetric: "B",
 			},
-			want: "100.00B",
+			metric: &memMetric{},
+			want:   "100.00B",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_mem_mb",
 			args: args{
-				b:       10000000,
-				typeMap: memoryMap,
+				b:             10000000,
+				typeMap:       memoryMap,
+				defaultMetric: "B",
 			},
-			want: "9.54MB",
+			metric: &memMetric{},
+			want:   "9.54MB",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_mem_tb",
 			args: args{
-				b:       10000000000000,
-				typeMap: memoryMap,
+				b:             10000000000000,
+				typeMap:       memoryMap,
+				defaultMetric: "B",
 			},
-			want: "9.09TB",
+			metric: &memMetric{},
+			want:   "9.09TB",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_cpu_nan",
 			args: args{
-				b:       0,
-				typeMap: cpuMap,
+				b:             0,
+				typeMap:       cpuMap,
+				defaultMetric: "B",
 			},
-			want: "0.00",
+			metric: &memMetric{},
+			want:   "0.00",
+			ci:     false,
 		},
 		{
 			name: "test_format_total_mem_nan",
 			args: args{
-				b:       0,
-				typeMap: memoryMap,
+				b:             0,
+				typeMap:       memoryMap,
+				defaultMetric: "B",
 			},
-			want: "0.00",
+			metric: &memMetric{},
+			want:   "0.00",
+			ci:     false,
+		},
+		{
+			name: "test_format_total_mem_mb_ci",
+			args: args{
+				b:             10000000,
+				typeMap:       memoryMap,
+				defaultMetric: "B",
+			},
+			metric: &memMetric{},
+			want:   "10000000B",
+			ci:     true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := formatTotal(tt.args.b, tt.args.typeMap)
+			m := Metrics{
+				metric:    tt.metric,
+				metricsID: "test",
+				location:  "",
+				total:     0,
+				Disable:   false,
+				ci:        tt.ci,
+			}
+			got := m.formatTotal(tt.args.b, tt.args.typeMap, tt.args.defaultMetric)
 			require.Equal(t, tt.want, got)
 		})
 	}
@@ -170,6 +224,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 	type feilds struct {
 		value      mockFlagValue
 		allocation []string
+		ci         mockFlagValue
 	}
 	tests := []struct {
 		name     string
@@ -185,6 +240,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			feilds: feilds{
 				value:      "cpu",
 				allocation: []string{"1", "2", "3"},
+				ci:         "false",
 			},
 			disabled: false,
 		},
@@ -195,6 +251,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			},
 			feilds: feilds{
 				value: "mem",
+				ci:    "false",
 				allocation: []string{
 					"1", "2", "3", "4", "5",
 					"6", "7", "8", "9", "10",
@@ -211,6 +268,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			},
 			feilds: feilds{
 				value:      "",
+				ci:         "false",
 				allocation: []string{"1", "2", "3"},
 			},
 			disabled: true,
@@ -221,6 +279,8 @@ func TestMetrics_Start_Stop(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			err := InitializeMetrics(&pflag.Flag{
 				Value: tt.feilds.value,
+			}, &pflag.Flag{
+				Value: tt.feilds.ci,
 			})
 			require.NoError(t, err)
 			metricFunc(tt.feilds.allocation, tt.args.location)

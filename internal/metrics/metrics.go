@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"math"
+	"strconv"
 	"strings"
 
 	"github.com/google/pprof/profile"
@@ -26,6 +27,7 @@ type metricType interface {
 	getWriter() *bytes.Buffer
 	getIndex() int
 	getMap() map[string]float64
+	getDefault() string
 }
 
 // Metrics - structure to keep information relevant to the metrics calculation
@@ -36,10 +38,11 @@ type Metrics struct {
 	location  string
 	Disable   bool
 	total     int64
+	ci        bool
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric *pflag.Flag) error {
+func InitializeMetrics(metric, ci *pflag.Flag) error {
 	metricStr := metric.Value.String()
 	var err error
 	switch strings.ToLower(metricStr) {
@@ -63,6 +66,7 @@ func InitializeMetrics(metric *pflag.Flag) error {
 	// Create temporary dir to keep pprof file
 	if !Metric.Disable {
 		Metric.metricsID = metricStr
+		Metric.ci, _ = strconv.ParseBool(ci.Value.String())
 	}
 
 	return err
@@ -100,7 +104,8 @@ func (m *Metrics) Stop() {
 
 	total := getTotal(p, m.metric.getIndex())
 	log.Info().
-		Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID), m.location, formatTotal(total, m.metric.getMap()))
+		Msgf("Total %s usage for %s: %s", strings.ToUpper(m.metricsID),
+			m.location, m.formatTotal(total, m.metric.getMap(), m.metric.getDefault()))
 	m.total = total
 }
 
@@ -127,10 +132,17 @@ func getTotal(prof *profile.Profile, idx int) int64 {
 }
 
 // formatTotal parses total value into a human readble way
-func formatTotal(b int64, typeMap map[string]float64) string {
+func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric string) string {
 	value := float64(b)
 	var formatter float64
 	var mesure string
+	if m.ci {
+		metric := value / typeMap[defaultMetric]
+		if math.IsNaN(metric) {
+			metric = 0
+		}
+		return fmt.Sprintf("%.f%s", metric, defaultMetric)
+	}
 	for k, u := range typeMap {
 		if u >= formatter && (value/u) >= 1.0 {
 			formatter = u

@@ -51,6 +51,10 @@ func (c *memMetric) start() {
 	}
 }
 
+func (c *memMetric) getDefault() string {
+	return "B"
+}
+
 // Stop - stop gathering metrics for Memory usage
 func (c *memMetric) stop() {
 	c.close()
