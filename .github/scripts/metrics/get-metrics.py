@@ -8,7 +8,7 @@ from tabulate import tabulate
 queries_basepath = 'assets/queries'
 queries_path = {
     'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '*'),
-    'openapi': os.path.join(queries_basepath, 'openAPI', '*'),
+    'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
     'ansible': os.path.join(queries_basepath, 'ansible', '**', '*'),
     'k8s': os.path.join(queries_basepath, 'k8s', '*'),
     'common': os.path.join(queries_basepath, 'common', '*'),
