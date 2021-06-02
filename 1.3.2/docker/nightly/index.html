@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.kics.io/1.3.2/docker/nightly/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Nightly - KICS</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <link href="../../css/custom.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-186818347-2', 'auto');
+            ga('send', 'pageview');
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">KICS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../getting-started/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../../configuration-file/" class="dropdown-item">Configuration</a>
+</li>
+                                    
+<li>
+    <a href="../../results/" class="dropdown-item">Results</a>
+</li>
+                                    
+<li>
+    <a href="../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../../changes/" class="dropdown-item">Changes in v1.3.0</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Usage</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../usage/commands/" class="dropdown-item">KICS Commands</a>
+</li>
+            
+<li>
+    <a href="../../usage/technologies/" class="dropdown-item">Technologies</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Queries <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../queries/" class="dropdown-item">General Info</a>
+</li>
+                                    
+<li>
+    <a href="../../creating-queries/" class="dropdown-item">Creating Queries</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Queries List</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../queries/all-queries/" class="dropdown-item">All</a>
+</li>
+            
+<li>
+    <a href="../../queries/ansible-queries/" class="dropdown-item">Ansible</a>
+</li>
+            
+<li>
+    <a href="../../queries/cloudformation-queries/" class="dropdown-item">CloudFormation</a>
+</li>
+            
+<li>
+    <a href="../../queries/common-queries/" class="dropdown-item">Common</a>
+</li>
+            
+<li>
+    <a href="../../queries/dockerfile-queries/" class="dropdown-item">Dockerfile</a>
+</li>
+            
+<li>
+    <a href="../../queries/kubernetes-queries/" class="dropdown-item">Kubernetes</a>
+</li>
+            
+<li>
+    <a href="../../queries/terraform-queries/" class="dropdown-item">Terraform</a>
+</li>
+            
+<li>
+    <a href="../../queries/openapi-queries/" class="dropdown-item">OpenAPI</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../integrations/" class="dropdown-item">Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_azurepipelines/" class="dropdown-item">Azure DevOps</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_bitbucketpipelines/" class="dropdown-item">Bitbucket Pipelines</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_circleci/" class="dropdown-item">CircleCI</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_ghactions/" class="dropdown-item">Github Actions</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_gitlabci/" class="dropdown-item">Gitlab CI</a>
+</li>
+                                    
+<li>
+    <a href="../../integrations_jenkins/" class="dropdown-item">Jenkins</a>
+</li>
+                                    
+<li>
+    <a href="../../BADGE/" class="dropdown-item">Badge</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../roadmap/" class="dropdown-item">Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/projects" class="dropdown-item">Plans</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/Checkmarx/kics/issues" class="dropdown-item">Issues</a>
+</li>
+                                    
+<li>
+    <a href="../../releases/" class="dropdown-item">Releases</a>
+</li>
+                                    
+<li>
+    <a href="../../performance/" class="dropdown-item">Performance</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../CONTRIBUTING/" class="nav-link">Contribution</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/docker/nightly.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Commit</th>
+<th>Date</th>
+<th>Digest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scratch</td>
+<td>115cd1ab</td>
+<td>2020-04-23</td>
+<td>sha256:edaae69a1e8224100ff720baae27ccf833e4a8ef3bce0bbcb612e1152927f62d</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>115cd1ab</td>
+<td>2020-04-23</td>
+<td>sha256:0c0524454321bcaae6658a9f63140fc9d97d470868d9d677b15a289e7165d7bb</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>bae6ea50</td>
+<td>2021-04-28</td>
+<td>sha256:c8e2e11d53546a7d740b252c0ec7653e81b89fb26c4000c0b1f0779a34179b2e</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>bae6ea50</td>
+<td>2021-04-28</td>
+<td>sha256:66e23f9b22ad4d3538bda36df07946312e30fd38f378499089766c923d971933</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>ee87d1e1</td>
+<td>2021-04-29</td>
+<td>sha256:2dd25b8ce436336dbca9220b03ddb22d08b17a8144909cb8b97e19a2cc6e0266</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>ee87d1e1</td>
+<td>2021-04-29</td>
+<td>sha256:1d94c06ad5c9c579de76521bfcb6d019a6e93e2947d8ba541736ff1de8097d8c</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>5af7fe95</td>
+<td>2021-04-30</td>
+<td>sha256:95f77f9aa21a964bb8ec55e534afc1a9199711acd118427cc59325294de9c97c</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>5af7fe95</td>
+<td>2021-04-30</td>
+<td>sha256:55caa636b05a116c81077e34d8a0616a8e8aac1b0d326473c77cd8b0a1e9fd42</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>2ae02af3</td>
+<td>2021-05-01</td>
+<td>sha256:996f3d29f72555467806478ea72ac808ca617169e7c003fa4ca85fb5ca3de3aa</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>2ae02af3</td>
+<td>2021-05-01</td>
+<td>sha256:d92f3d904dd563b72a4f629deef1e653b205591e9baab1087fe926cde5c53411</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>fc96d124</td>
+<td>2021-05-03</td>
+<td>sha256:4dbc7ffa37a13d1de81496fbe5415162c34446c8fa7b8b604bac5866304bc057</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>fc96d124</td>
+<td>2021-05-03</td>
+<td>sha256:9bdbc6d22977ba7c74064d0e5556e480d0f2da364b240d681d65403ec3ee2575</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>da982427</td>
+<td>2021-05-04</td>
+<td>sha256:496811f04b4d15681d00817f4f4e793b94446dffde9624f082f720dc0c5efe7d</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>da982427</td>
+<td>2021-05-04</td>
+<td>sha256:16fd01212980c3dfe9a48e4b5b62337cbac7bb65b6e64a1223760e3df82b99ea</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>2ffd8707</td>
+<td>2021-05-06</td>
+<td>sha256:131aabf4bfc8722063f9d29565caab08bf259f477d2cccce8550ad5e8eeccdf9</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>2ffd8707</td>
+<td>2021-05-06</td>
+<td>sha256:37d52a65c32c031724427206f2c905ac984e41cb48caa07788f3b85ec706e85d</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>876c5568</td>
+<td>2021-05-07</td>
+<td>sha256:811fa3ee8ecd24da7e07d928a4cb097aa183038b4f1b819e11ba4556cac3b819</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>876c5568</td>
+<td>2021-05-07</td>
+<td>sha256:943b0e75bad89ca31a9b782bc566f7e8d4ce2a32635d8ccb3eb4bfdcabe3272b</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>c2889ec7</td>
+<td>2021-05-08</td>
+<td>sha256:b20ad2eeaec9fdb73b55b3e9fb9f0bf467e568789cfef9c07156ad8ab5e071b4</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>c2889ec7</td>
+<td>2021-05-08</td>
+<td>sha256:c388d10f9354c8c2626a0a83094adab3fea0d53808043c6114191630d82adfef</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>b7879c34</td>
+<td>2021-05-11</td>
+<td>sha256:e4913df9a293739d371f08a42f17abf2c9e2014268897d324f23b7085a14959f</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>b7879c34</td>
+<td>2021-05-11</td>
+<td>sha256:53c0de8052ae1092ca56f6300bef5231c3d52447f83dff35a3947ccba48b5089</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>910c9f8a</td>
+<td>2021-05-12</td>
+<td>sha256:4c0dd7f6607a81c279a88e78aae1965d46a63242769a083254b560f53e0f202c</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>910c9f8a</td>
+<td>2021-05-12</td>
+<td>sha256:a86e3059afd3135b98d71ac7492067cbe13e030443376368afd35556b37a493b</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>90ab12e9</td>
+<td>2021-05-13</td>
+<td>sha256:b45f8b8588fb257d0d876eb82c5401a508acc0877b948f034e899eaf7e315503</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>90ab12e9</td>
+<td>2021-05-13</td>
+<td>sha256:ac28efcff79127e508eebf7d92eca72ba13e884999ca4b43d6ac9b12180b7fab</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>da3924aa</td>
+<td>2021-05-15</td>
+<td>sha256:2226b286dd467ef31dafaad853a3d7dd27bd57a98ec16cb06b139c8646afd6c8</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>da3924aa</td>
+<td>2021-05-15</td>
+<td>sha256:388349925716d8a55e131a907c2cec0f6d33744260c8f4bdce809c10147c80df</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>521ec3df</td>
+<td>2021-05-18</td>
+<td>sha256:655fcf21decf9286c15b96d2d7dd5dc8137ef79554461f280a36162accd77468</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>521ec3df</td>
+<td>2021-05-18</td>
+<td>sha256:5e42f0f009e93d9ab97bef3694e5183281344e2023310379b620949314037d10</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>aab9b478</td>
+<td>2021-05-20</td>
+<td>sha256:a2d1d56f395f82cf30cf70951330d0ebf0e5cbfb71d275504ed72630ae89b63f</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>aab9b478</td>
+<td>2021-05-20</td>
+<td>sha256:b4e2fbd8e0210074643d64497ce48c777096b9be537a14b52946dc5f9e3f6fec</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>4ef60e89</td>
+<td>2021-05-21</td>
+<td>sha256:32ce5af5badc24215cab3e6b9e48a59c4702ecf3567f6e56e0ab1dc4044a966d</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>4ef60e89</td>
+<td>2021-05-21</td>
+<td>sha256:76b25e685913c46c0d4467b508502ca919cf4216bd69b658b0ab4c87d46022bb</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>4464ff82</td>
+<td>2021-05-22</td>
+<td>sha256:3bad4268a107c973c6eb8dfa3bbba135ce7b59f650ee89cb840439fc0db2319d</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>4464ff82</td>
+<td>2021-05-22</td>
+<td>sha256:e15d809f20005b89ab945b6f42b4abb40abbab675c4694a1af21a6a95ac2fcd5</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>67f0f697</td>
+<td>2021-05-25</td>
+<td>sha256:3a93a08b0c757e4f868ab2f736054ad0382e6a1f1bf528ce5e1156242f804231</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>67f0f697</td>
+<td>2021-05-25</td>
+<td>sha256:ea16451abe8006a0bebc5cfb78399513b2b9c77012c7ecdf0d59682c8fab52a0</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>c8824ab6</td>
+<td>2021-05-26</td>
+<td>sha256:dba1f6877fe07aabc73738330c4fe076b9d95e968fcd8302b3be96b17183ca71</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>c8824ab6</td>
+<td>2021-05-26</td>
+<td>sha256:a28ade62563ca215a6e93ad6640a8fe2d7cef4153fa7c2d9e8fcd0a18eba7958</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>523fd492</td>
+<td>2021-05-27</td>
+<td>sha256:65a0c06a2a5193f1356698db31568e7f04fd0d77a496cc64ef7ef6da00079c93</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>523fd492</td>
+<td>2021-05-27</td>
+<td>sha256:cd6fefcbe85f826217ffffe09d8c9c1629056d2c8d9537feca85bc978eda0dde</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>246ced5f</td>
+<td>2021-05-28</td>
+<td>sha256:c262d25cd445bf2f0f6da26c281f6267a24f10449ec637340b21e58237f2a8aa</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>246ced5f</td>
+<td>2021-05-28</td>
+<td>sha256:97f32e20506150339f7fc4da9a74f7478c6ea271b5a0617cba017179be422d70</td>
+</tr>
+<tr>
+<td>debian</td>
+<td>246ced5f</td>
+<td>2021-05-28</td>
+<td>sha256:f884ff731d1870356f6fc52ad762eb7875d0a816dac3ccbef6936114b83ac91d</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>8b3d37fc</td>
+<td>2021-05-29</td>
+<td>sha256:47eb8b29e52724dd53d9c5d17712e351d100c2dc69ad63bd09e4bbe021b4d6ea</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>8b3d37fc</td>
+<td>2021-05-29</td>
+<td>sha256:1e3ad1617106d1806e9f19be2fee23b7bfb9881a5681a9cb17d633d522eb3c20</td>
+</tr>
+<tr>
+<td>debian</td>
+<td>8b3d37fc</td>
+<td>2021-05-29</td>
+<td>sha256:325842da53d07e404a453ea04e19b5b02511a36b3de1c35e1f1de4bbc52475a6</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>d5cdbe8d</td>
+<td>2021-06-01</td>
+<td>sha256:8efc2189b234d2ed7daba7778a816d01b9ce5df42c7dd41c98050bf5e61f3985</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>d5cdbe8d</td>
+<td>2021-06-01</td>
+<td>sha256:3382a59d20ec83ad5e39acaea0d182b5e99ccaa16a7a7a49e8dd08d82456ad98</td>
+</tr>
+<tr>
+<td>debian</td>
+<td>d5cdbe8d</td>
+<td>2021-06-01</td>
+<td>sha256:c7ed9eae0c27169488dcade97f9bffcf8f7de6a6dfc8bdcee2bb53018d87d406</td>
+</tr>
+<tr>
+<td>scratch</td>
+<td>5d184fbd</td>
+<td>2021-06-02</td>
+<td>sha256:801a0ce3041ce372dd1e1e01e081bb0dd6a3e310dd6f9e0e771ef81140919b75</td>
+</tr>
+<tr>
+<td>alpine</td>
+<td>5d184fbd</td>
+<td>2021-06-02</td>
+<td>sha256:bc107d304b930e16cf88562ecf339dad4c9f71a7638a3cccd784d3aea1aad5cd</td>
+</tr>
+<tr>
+<td>debian</td>
+<td>5d184fbd</td>
+<td>2021-06-02</td>
+<td>sha256:2e3d3c199cfcb4c85292b9e85958912f336db808d06672cc111f0b75cebd6af5</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>&copy; 2021 Checkmarx Ltd. All Rights Reserved.</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../js/custom.js" defer></script>
+        <script src="../../js/version-mike.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
