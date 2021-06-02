@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "SQS VPC Endpoint Without DNS Resolution",
+    "severity": "MEDIUM",
+    "line": 95
+  }
+]
