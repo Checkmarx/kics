@@ -16,17 +16,21 @@ extra:
 
 theme:
   name: material
-  logo: img/kics.ico
+  logo: img/logo/kics-logo-text.png
   favicon: img/logo/kics-logo-text.png
   features:
     - navigation.tabs
     - navigation.tabs.sticky
   palette:
     - scheme: default
+      primary: green
+      accent: green
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
+      primary: green
+      accent: green
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
