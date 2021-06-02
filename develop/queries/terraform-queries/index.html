@@ -641,6 +641,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dax_cluster#enabled">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CodeBuild Project Encrypted With AWS Managed Key<br/><sup><sub>3deec14b-03d2-4d27-9670-7d79322e3340</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>CodeBuild Project should be encrypted with customer-managed KMS keys instead of AWS managed keys</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codebuild_project#encryption_key">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Sagemaker Notebook Instance Without KMS<br/><sup><sub>f3674e0c-f6be-43fa-b71c-bf346d1aed99</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
@@ -1719,11 +1726,25 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>DOCDB Cluster Encrypted With AWS Managed Key<br/><sup><sub>2134641d-30a4-4b16-8ffc-2cd4c4ffd15d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>DOCDB Cluster should be encrypted with customer-managed KMS keys instead of AWS managed keys</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#kms_key_id">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ElasticSearch Not Encrypted At Rest<br/><sup><sub>24e16922-4330-4e9d-be8a-caa90299466a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
 <td>Check if ElasticSearch encryption is disabled at Rest</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SNS Topic Encrypted With AWS Managed Key<br/><sup><sub>b1a72f66-2236-4f3b-87ba-0da1b366956f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>SNS (Simple Notification Service) Topic should be encrypted with customer-managed KMS keys instead of AWS managed keys</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic#kms_master_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ECR Repository Not Encrypted<br/><sup><sub>0e32d561-4b5a-4664-a6e3-a3fa85649157</sub></sup></td>
@@ -1752,6 +1773,13 @@
 <td>Encryption</td>
 <td>Check if AWS config rules do not identify Encrypted Volumes as a source.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Secretsmanager Secret Encrypted With AWS Managed Key<br/><sup><sub>b0d3ef3f-845d-4b1b-83d6-63a5a380375f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Secrets Manager secret should be encrypted with customer-managed KMS keys instead of AWS managed keys</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ElastiCache Replication Group Not Encrypted At Transit<br/><sup><sub>1afbb3fa-cf6c-4a3d-b730-95e9f4df343e</sub></sup></td>
@@ -2181,11 +2209,25 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Dynamodb VPC Endpoint Without Route Table Association<br/><sup><sub>0bc534c5-13d1-4353-a7fe-b8665d5c1d7d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Dynamodb VPC Endpoint should be associated with Route Table Association</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint#vpc_id">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Sensitive Port Is Exposed To Small Public Network<br/><sup><sub>e35c16a2-d54e-419d-8546-a804d8e024d0</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
 <td>A sensitive port, such as port 23 or port 110, is open for a small public network in either TCP or UDP protocol</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQS VPC Endpoint Without DNS Resolution<br/><sup><sub>e9b7acf9-9ba0-4837-a744-31e7df1e434d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>SQS VPC Endpoint should have DNS resolution enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc#enable_dns_support">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Sensitive Port Is Exposed To Wide Private Network<br/><sup><sub>92fe237e-074c-4262-81a4-2077acb928c1</sub></sup></td>
