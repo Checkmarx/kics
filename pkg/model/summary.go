@@ -78,8 +78,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 	}
 	for i := range vulnerabilities {
 		item := vulnerabilities[i]
-		if _, ok := q[item.QueryName]; !ok {
-			q[item.QueryName] = VulnerableQuery{
+		if _, ok := q[item.QueryID]; !ok {
+			q[item.QueryID] = VulnerableQuery{
 				QueryName:   item.QueryName,
 				QueryID:     item.QueryID,
 				Severity:    item.Severity,
@@ -90,7 +90,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 			}
 		}
 
-		qItem := q[item.QueryName]
+		qItem := q[item.QueryID]
 		qItem.Files = append(qItem.Files, VulnerableFile{
 			FileName:         item.FileName,
 			SimilarityID:     item.SimilarityID,
@@ -104,7 +104,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 			Value:            item.Value,
 		})
 
-		q[item.QueryName] = qItem
+		q[item.QueryID] = qItem
 	}
 
 	queries := make([]VulnerableQuery, 0, len(q))

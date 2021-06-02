@@ -21,7 +21,7 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex     = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)")
+	openAPIRegex     = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
 	openAPIRegexInfo = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
 	openAPIRegexPath = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
 	cloudRegex       = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")

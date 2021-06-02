@@ -1,9 +1,0 @@
-{
-  "id": "1a1aea94-745b-40a7-b860-0702ea6ee636",
-  "queryName": "Schema Object With Circular Ref",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Schema Object should not reference it self in 'allOf', 'oneOf', 'anyOf' and 'not' properties",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}

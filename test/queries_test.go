@@ -59,6 +59,18 @@ func TestUniqueQueryIDs(t *testing.T) {
 		require.False(t, ok, "\nnon unique query found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
 			uuid, entry.dir, duplicateDir)
 		queriesIdentifiers[uuid] = entry.dir
+		if override, ok := metadata["override"].(map[string]interface{}); ok {
+			for _, v := range override {
+				if convertedValue, converted := v.(map[string]interface{}); converted {
+					if id, ok := convertedValue["id"].(string); ok {
+						duplicateDir, ok = queriesIdentifiers[id]
+						require.False(t, ok, "\nnon unique query found on overriding uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+							id, entry.dir, duplicateDir)
+						queriesIdentifiers[id] = entry.dir
+					}
+				}
+			}
+		}
 	}
 }
 
