@@ -32,7 +32,7 @@
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
-    "line": 46,
+    "line": 23,
     "filename": "positive3.json"
   },
   {
@@ -44,7 +44,7 @@
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
-    "line": 25,
+    "line": 13,
     "filename": "positive4.yaml"
   }
 ]
