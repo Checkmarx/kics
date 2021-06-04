@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v3)",
+    "severity": "INFO",
+    "line": 58,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v3)",
+    "severity": "INFO",
+    "line": 36,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v2)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v2)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive6.yaml"
+  }
+]
