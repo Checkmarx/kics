@@ -26,13 +26,13 @@
   {
     "queryName": "Schema Has A Required Property Undefined (v2)",
     "severity": "INFO",
-    "line": 22,
+    "line": 20,
     "filename": "positive5.json"
   },
   {
     "queryName": "Schema Has A Required Property Undefined (v2)",
     "severity": "INFO",
-    "line": 19,
+    "line": 17,
     "filename": "positive6.yaml"
   }
 ]

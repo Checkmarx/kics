@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -17,45 +17,38 @@
         "responses": {
           "200": {
             "description": "200 response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "discriminator": {
-                    "propertyName": "petType"
-                  },
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "message"
-                  ]
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32"
                 },
-                "examples": {
-                  "foo": {
-                    "value": {
-                      "versions": [
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ]
+            },
+            "examples": {
+              "foo": {
+                "value": {
+                  "versions": [
+                    {
+                      "status": "CURRENT",
+                      "updated": "2011-01-21T11:33:21Z",
+                      "id": "v2.0",
+                      "links": [
                         {
-                          "status": "CURRENT",
-                          "updated": "2011-01-21T11:33:21Z",
-                          "id": "v2.0",
-                          "links": [
-                            {
-                              "href": "http://127.0.0.1:8774/v2/",
-                              "rel": "self"
-                            }
-                          ]
+                          "href": "http://127.0.0.1:8774/v2/",
+                          "rel": "self"
                         }
                       ]
                     }
-                  }
+                  ]
                 }
               }
             }
