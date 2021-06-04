@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Invalid Contact Email (v3)",
+    "severity": "INFO",
+    "line": 9,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Contact Email (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Invalid Contact Email (v2)",
+    "severity": "INFO",
+    "line": 9,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Invalid Contact Email (v2)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive4.yaml"
+  }
+]
