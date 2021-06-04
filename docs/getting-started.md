@@ -21,7 +21,7 @@ You can provide your own path to the queries directory with `-q` CLI option (see
 
 #### One-liner Install Script
 
-Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to `./bin` the queries will be placed alongside the binary in `./bin/assets/queries`:
+Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to `./bin` and the queries will be placed alongside the binary in `./bin/assets/queries`:
 
 ```shell
 curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
@@ -36,8 +36,8 @@ sudo curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.
 #### Binary
 
 KICS release process is pretty straightforward.
-When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
-Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries
+When we're releasing a new version, we'll pack KICS executables for Linux, Windows and macOS operating systems.
+Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries.
 
 So all you need is:
 
@@ -66,7 +66,7 @@ So all you need is:
 
 ---
 
-**Note**: KICS does not executes scan by default anymore
+**Note**: KICS does not execute scan by default anymore.
 
 ## Next Steps
 - [Understand how to configure KICS](configuration-file.md) so you can have a better KICS experience.

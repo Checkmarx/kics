@@ -1,9 +1,0 @@
-{
-  "id": "815021c8-a50c-46d9-b192-24f71072c400",
-  "queryName": "Paths Object is Empty",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Paths object may be empty due to ACL constraints, meaning they are not exposed",
-  "descriptionUrl": "https://swagger.io/specification/#paths-object",
-  "platform": "OpenAPI"
-}
