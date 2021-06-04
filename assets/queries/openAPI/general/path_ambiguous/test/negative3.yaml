@@ -1,0 +1,23 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+  contact:
+    name: contact
+    url: https://www.google.com/
+    email: user@gmail.c
+paths:
+  "/users/{id}":
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The user ID
+  "/user/{id}":
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The user ID

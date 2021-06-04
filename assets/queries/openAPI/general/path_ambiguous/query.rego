@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	doc.paths[name]
 	doc.paths[compareName]
 	name != compareName
@@ -19,6 +20,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "There is no ambiguous path",
 		"keyActualValue": "There is ambiguous path",
+		"overrideKey": version,
 	}
 }
 

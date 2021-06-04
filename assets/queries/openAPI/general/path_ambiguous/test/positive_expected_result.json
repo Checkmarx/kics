@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v2)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v2)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v2)",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v2)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive4.json"
+  }
+]
