@@ -20,7 +20,7 @@
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
-    "line": 37,
+    "line": 40,
     "filename": "positive3.yaml"
   },
   {
@@ -32,7 +32,7 @@
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
     "severity": "INFO",
-    "line": 60,
+    "line": 65,
     "filename": "positive4.json"
   },
   {
@@ -44,31 +44,31 @@
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
-    "line": 60,
+    "line": 38,
     "filename": "positive6.json"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
-    "line": 36,
+    "line": 25,
     "filename": "positive7.yaml"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
-    "line": 39,
+    "line": 31,
     "filename": "positive7.yaml"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
-    "line": 57,
+    "line": 35,
     "filename": "positive8.json"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
     "severity": "INFO",
-    "line": 62,
+    "line": 45,
     "filename": "positive8.json"
   }
 ]
