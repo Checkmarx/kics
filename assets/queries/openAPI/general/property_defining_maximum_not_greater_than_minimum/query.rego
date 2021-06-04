@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	openapi_lib.is_numeric_type(value.type)
@@ -18,12 +19,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
 		"keyActualValue": "Numeric schema value has 'minimum' larger than 'maximum'",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	value.type == "string"
@@ -37,12 +40,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "String schema value should not have 'minLength' larger than 'maxLength'",
 		"keyActualValue": "String schema value has 'minLength' larger than 'maxLength'",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	value.type == "array"
@@ -56,5 +61,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Array schema value should not have 'minItems' larger than 'maxItems'",
 		"keyActualValue": "Array schema value has 'minItems' larger than 'maxItems'",
+		"overrideKey": version,
 	}
 }
