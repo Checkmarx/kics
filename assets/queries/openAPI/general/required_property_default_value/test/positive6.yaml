@@ -20,3 +20,6 @@ paths:
               name:
                 type: string
                 default: guest
+      responses:
+        "200":
+          description: 200 response

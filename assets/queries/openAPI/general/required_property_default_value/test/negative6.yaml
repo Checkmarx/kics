@@ -6,6 +6,9 @@ paths:
   "/":
     post:
       summary: Add a new item
+      responses:
+        "200":
+          description: 200 response
       parameters:
         - in: body
           name: item
