@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	url := doc.tags[x].externalDocs.url
 	name := doc.tags[x].name
@@ -16,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("tags[%d].externalDocs.url has a valid URL", [x]),
 		"keyActualValue": sprintf("tags[%d].externalDocs.url has an invalid URL", [x]),
+		"overrideKey": version,
 	}
 }
