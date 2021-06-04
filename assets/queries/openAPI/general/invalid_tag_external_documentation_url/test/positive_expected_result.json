@@ -14,37 +14,37 @@
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
-    "line": 32,
+    "line": 26,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
-    "line": 36,
+    "line": 30,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
-    "line": 53,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Invalid Tag External Documentation URL (v2)",
-    "severity": "INFO",
-    "line": 57,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Invalid Tag External Documentation URL (v2)",
-    "severity": "INFO",
     "line": 30,
-    "filename": "positive4.yaml"
+    "filename": "positive3.json"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 34,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Invalid Tag External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Invalid Tag External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 22,
     "filename": "positive4.yaml"
   }
 ]
