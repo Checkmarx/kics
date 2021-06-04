@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	path := doc.paths[name]
 	matches := openapi_lib.is_path_template(name)
 	matches != []
@@ -23,12 +24,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
 		"keyActualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	path := doc.paths[name]
 	matches := openapi_lib.is_path_template(name)
 	matches != []
@@ -40,5 +43,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Template path parameters should be defined for operation",
 		"keyActualValue": "Template path parameters is not defined for operation",
+		"overrideKey": version,
 	}
 }
