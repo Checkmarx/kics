@@ -4,9 +4,10 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-	path := doc.paths[name]
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
+	path := doc.paths[name]
 	contains(name, "{}")
 
 	result := {
@@ -15,5 +16,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The path template is not empty",
 		"keyActualValue": "The path template is empty",
+		"overrideKey": version,
 	}
 }
