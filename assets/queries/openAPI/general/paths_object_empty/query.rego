@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	object.get(doc, "paths", "undefined") != "undefined"
 
 	check_paths_object(doc.paths)
@@ -15,6 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The Paths Object should should not be empty",
 		"keyActualValue": "The Paths Object is empty",
+		"overrideKey": version,
 	}
 }
 
