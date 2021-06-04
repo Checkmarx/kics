@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	targert_op_id := doc.paths[path][operation].operationId
 
@@ -16,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.operationId is unique", [path, operation]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.operationId is not unique", [path, operation]),
+		"overrideKey": version,
 	}
 }
