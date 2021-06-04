@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Simple API Overview
   version: 1.0.0
@@ -8,7 +8,7 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        '50':
+        "50":
           description: Server error response
           content:
             application/json:
@@ -16,12 +16,12 @@ paths:
                 foo:
                   value:
                     versions:
-                    - status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
+                      - status: CURRENT
+                        updated: "2011-01-21T11:33:21Z"
+                        id: v2.0
+                        links:
+                          - href: http://127.0.0.1:8774/v2/
+                            rel: self
         6xx:
           description: "[600-699] response"
           content:
@@ -30,9 +30,9 @@ paths:
                 foo:
                   value:
                     versions:
-                    - status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
+                      - status: CURRENT
+                        updated: "2011-01-21T11:33:21Z"
+                        id: v2.0
+                        links:
+                          - href: http://127.0.0.1:8774/v2/
+                            rel: self
