@@ -28,17 +28,15 @@ paths:
         description: ID of the API the version
         required: true
         allowReserved: true
-        content:
-          application/json:
-            schema:
+        schema:
+          type: object
+          properties:
+            code:
               type: object
+              required:
+                - name
               properties:
-                code:
-                  type: object
-                  required:
-                    - name
-                  properties:
-                    name:
-                      type: string
-                    age:
-                      type: integer
+                name:
+                  type: string
+                age:
+                  type: integer
