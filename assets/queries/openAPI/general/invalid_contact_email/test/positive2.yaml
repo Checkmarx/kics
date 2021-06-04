@@ -5,7 +5,7 @@ info:
   contact:
     name: "contact"
     url: "https://www.google.com/"
-    email: "user@gmail.c"
+    email: "user@gmail.com"
 paths:
   "/":
     get:
@@ -26,9 +26,3 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-security:
-  - exampleSecurity: []
-components:
-  exampleSecurity:
-    type: http
-    scheme: basic
