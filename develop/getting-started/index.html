@@ -266,7 +266,7 @@ docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkm
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
 <p>You can provide your own path to the queries directory with <code>-q</code> CLI option (see CLI Options section below), otherwise the default directory will be used The default <em>./assets/queries</em> is built-in in the image.</p>
 <h4 id="one-liner_install_script">One-liner Install Script<a class="headerlink" href="#one-liner_install_script" title="Permanent link">&para;</a></h4>
-<p>Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to <code>./bin</code> the queries will be placed alongside the binary in <code>./bin/assets/queries</code>:</p>
+<p>Run the following command to download and install kics. It will detect your current OS and download the appropriate binary package, defaults installation to <code>./bin</code> and the queries will be placed alongside the binary in <code>./bin/assets/queries</code>:</p>
 <pre><code class="language-shell">curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
 </code></pre>
 <p>If you want to place it somewhere else like <code>/usr/local/bin</code>:</p>
@@ -274,8 +274,8 @@ docker run -v {​​​​path_to_host_folder_to_scan}​​​​:/path checkm
 </code></pre>
 <h4 id="binary">Binary<a class="headerlink" href="#binary" title="Permanent link">&para;</a></h4>
 <p>KICS release process is pretty straightforward.
-When we're releasing a new version, we'll pack KICS executables for both Linux and Windows operating systems.
-Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries</p>
+When we're releasing a new version, we'll pack KICS executables for Linux, Windows and macOS operating systems.
+Our security queries will be included in the ZIP files and tarballs, so that you can scan your IaC code with the out-of-the-box queries.</p>
 <p>So all you need is:</p>
 <ol>
 <li>Go to <a href="https://github.com/Checkmarx/kics/releases/latest" target="_blank">KICS releases</a></li>
@@ -298,7 +298,7 @@ Our security queries will be included in the ZIP files and tarballs, so that you
    go run ./cmd/console/main.go scan -p '&lt;path-of-your-project-to-scan&gt;' --report-formats json -o ./results</code></li>
 </ol>
 <hr />
-<p><strong>Note</strong>: KICS does not executes scan by default anymore</p>
+<p><strong>Note</strong>: KICS does not execute scan by default anymore.</p>
 <h2 id="next_steps">Next Steps<a class="headerlink" href="#next_steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../configuration-file/">Understand how to configure KICS</a> so you can have a better KICS experience.</li>
