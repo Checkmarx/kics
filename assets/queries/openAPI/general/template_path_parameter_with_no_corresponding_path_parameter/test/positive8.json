@@ -46,9 +46,6 @@
       "parameters": [
         {
           "required": true,
-          "schema": {
-            "type": "integer"
-          },
           "name": "Authorization",
           "in": "header",
           "description": "ID of the API version"

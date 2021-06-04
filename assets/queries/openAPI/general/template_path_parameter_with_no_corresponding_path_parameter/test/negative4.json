@@ -48,10 +48,7 @@
           "name": "Authorization",
           "in": "header",
           "description": "ID of the API version",
-          "required": true,
-          "schema": {
-            "type": "integer"
-          }
+          "required": true
         }
       ]
     },
@@ -62,11 +59,7 @@
             "in": "path",
             "name": "id",
             "required": true,
-            "description": "The user ID",
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
+            "description": "The user ID"
           }
         ]
       }

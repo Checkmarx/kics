@@ -14,9 +14,6 @@ paths:
           name: test-id
           required: true
           description: The user ID
-          schema:
-            type: integer
-            minimum: 1
   "/":
     get:
       operationId: listVersionsv2
@@ -41,5 +38,3 @@ paths:
         in: header
         description: ID of the API version
         required: true
-        schema:
-          type: integer

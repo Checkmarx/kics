@@ -31,8 +31,6 @@ paths:
         in: header
         description: ID of the API version
         required: true
-        schema:
-          type: integer
   /users/{id}:
     get:
       parameters:
@@ -40,6 +38,3 @@ paths:
           name: id
           required: true
           description: The user ID
-          schema:
-            type: integer
-            minimum: 1

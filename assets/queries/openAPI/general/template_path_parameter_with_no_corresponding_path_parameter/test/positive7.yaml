@@ -31,8 +31,6 @@ paths:
         in: header
         description: ID of the API version
         required: true
-        schema:
-          type: integer
   /people/{id}:
     get:
       parameters: {}
