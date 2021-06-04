@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="291">{
-                if val == true </span><span class="cov9" title="290">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="312">{
+                if val == true </span><span class="cov9" title="311">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2080,13 +2080,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov9" title="38">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2118,7 +2118,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -3682,7 +3682,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4445,12 +4445,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov2" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="18387">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="18395">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="18387">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="18156">{
+                <span class="cov9" title="18395">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="18164">{
                         return skipFolder
                 }</span>
 
@@ -4508,7 +4508,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="230">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="18390">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="18398">{
         if info.IsDir() </span><span class="cov8" title="4400">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -4521,11 +4521,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="13990">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="13998">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="13990">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="13760">{
+        <span class="cov9" title="13998">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="13768">{
                 return true, nil
         }</span>
         <span class="cov5" title="230">return false, nil</span>
@@ -4665,7 +4665,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="29">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="25">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
