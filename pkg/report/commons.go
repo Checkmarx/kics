@@ -1,6 +1,7 @@
 package report
 
 import (
+	_ "embed" // used for embedding report static files
 	"fmt"
 	"html/template"
 	"os"
@@ -11,20 +12,37 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-var templateFuncs = template.FuncMap{
-	"lower":          strings.ToLower,
-	"sprintf":        fmt.Sprintf,
-	"severity":       getSeverities,
-	"getCurrentTime": getCurrentTime,
-	"trimSpaces":     trimSpaces,
-}
+var (
+	//go:embed template/html/report.tmpl
+	htmlTemplate string
+	//go:embed template/html/report.css
+	cssTemplate string
+	//go:embed template/html/report.js
+	jsTemplate string
+	//go:embed template/html/github.svg
+	githubSVG string
+	//go:embed template/html/info.svg
+	infoSVG string
+	//go:embed template/html/vulnerability_fill.svg
+	vulnerabilityFillSVG string
+	//go:embed template/html/vulnerability_out.svg
+	vulnerabilityOutSVG string
 
-var stringsSeverity = map[string]model.Severity{
-	"high":   model.AllSeverities[0],
-	"medium": model.AllSeverities[1],
-	"low":    model.AllSeverities[2],
-	"info":   model.AllSeverities[3],
-}
+	stringsSeverity = map[string]model.Severity{
+		"high":   model.AllSeverities[0],
+		"medium": model.AllSeverities[1],
+		"low":    model.AllSeverities[2],
+		"info":   model.AllSeverities[3],
+	}
+
+	templateFuncs = template.FuncMap{
+		"lower":          strings.ToLower,
+		"sprintf":        fmt.Sprintf,
+		"severity":       getSeverities,
+		"getCurrentTime": getCurrentTime,
+		"trimSpaces":     trimSpaces,
+	}
+)
 
 func trimSpaces(value string) string {
 	return strings.TrimPrefix(value, " ")

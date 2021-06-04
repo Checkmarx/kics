@@ -2,7 +2,6 @@ package report
 
 import (
 	"bytes"
-	_ "embed" // used for embedding report static files
 	"html/template"
 	"os"
 	"path/filepath"
@@ -13,23 +12,6 @@ import (
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
 	minifyJS "github.com/tdewolff/minify/v2/js"
-)
-
-var (
-	//go:embed template/html/report.tmpl
-	htmlTemplate string
-	//go:embed template/html/report.css
-	cssTemplate string
-	//go:embed template/html/report.js
-	jsTemplate string
-	//go:embed template/html/github.svg
-	githubSVG string
-	//go:embed template/html/info.svg
-	infoSVG string
-	//go:embed template/html/vulnerability_fill.svg
-	vulnerabilityFillSVG string
-	//go:embed template/html/vulnerability_out.svg
-	vulnerabilityOutSVG string
 )
 
 const (
