@@ -5,7 +5,7 @@ info:
   contact:
     name: contact
     url: https://www.google.com/
-    email: user@gmail.c
+    email: user@gmail.com
 paths:
   "/users/{id}":
     get:
@@ -14,6 +14,10 @@ paths:
           name: id
           required: true
           description: The user ID
+          type: string
+      responses:
+        "200":
+          description: 200 response
   "/user/{id}":
     get:
       parameters:
@@ -21,3 +25,7 @@ paths:
           name: id
           required: true
           description: The user ID
+          type: string
+      responses:
+        "200":
+          description: 200 response

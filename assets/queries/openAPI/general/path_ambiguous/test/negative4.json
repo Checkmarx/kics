@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -17,9 +17,15 @@
             "in": "path",
             "name": "id",
             "required": true,
-            "description": "The user ID"
+            "description": "The user ID",
+            "type": "string"
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     },
     "/user/{id}": {
@@ -29,9 +35,15 @@
             "in": "path",
             "name": "id",
             "required": true,
-            "description": "The user ID"
+            "description": "The user ID",
+            "type": "string"
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     }
   }
