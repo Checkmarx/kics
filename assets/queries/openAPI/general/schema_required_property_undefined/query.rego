@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	docs := input.document[i]
-	openapi_lib.check_openapi(docs) != "undefined"
+	version := openapi_lib.check_openapi(docs)
+	version != "undefined"
 
 	[path, value] := walk(docs)
 	schema = value.schema
@@ -18,12 +19,14 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Schema should have all required properties defined",
 		"keyActualValue": "Schema has required properties that are not defined",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	docs := input.document[i]
-	openapi_lib.check_openapi(docs) != "undefined"
+	version := openapi_lib.check_openapi(docs)
+	version != "undefined"
 
 	[path, value] := walk(docs)
 	schema = value.schemas[schemaName]
@@ -38,5 +41,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Schema should have all required properties defined",
 		"keyActualValue": "Schema has required properties that are not defined",
+		"overrideKey": version,
 	}
 }
