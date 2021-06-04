@@ -1,9 +1,0 @@
-{
-  "id": "2bd608ae-8a1f-457f-b710-c237883cb313",
-  "queryName": "Schema Has A Required Property Undefined",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Schema Object should not be have a required property that is not defined on properties",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}

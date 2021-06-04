@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Schema Has A Required Property Undefined (v3)",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v3)",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v3)",
+    "severity": "INFO",
+    "line": 31,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v2)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive6.yaml"
+  }
+]
