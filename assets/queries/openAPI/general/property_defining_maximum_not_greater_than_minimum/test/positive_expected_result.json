@@ -32,13 +32,13 @@
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
-    "line": 33,
+    "line": 32,
     "filename": "positive6.yaml"
   },
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v2)",
     "severity": "INFO",
-    "line": 24,
+    "line": 25,
     "filename": "positive7.json"
   }
 ]

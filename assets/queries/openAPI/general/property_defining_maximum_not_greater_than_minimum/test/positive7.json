@@ -11,48 +11,27 @@
         "summary": "List API versions",
         "responses": {
           "200": {
-            "description": "200 response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "discriminator": {
-                    "propertyName": "petType"
-                  },
-                  "additionalProperties": false,
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "format": "int32",
-                      "minimum": 10,
-                      "maximum": 2
-                    }
-                  }
-                },
-                "examples": {
-                  "foo": {
-                    "value": {
-                      "versions": [
-                        {
-                          "status": "CURRENT",
-                          "updated": "2011-01-21T11:33:21Z",
-                          "id": "v2.0",
-                          "links": [
-                            {
-                              "href": "http://127.0.0.1:8774/v2/",
-                              "rel": "self"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
+            "description": "200 response"
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "GeneralError": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 10,
+          "maximum": 5
+        }
+      },
+      "required": [
+        "petType"
+      ]
     }
   }
 }
