@@ -25,6 +25,7 @@ type args struct {
 	expectedOut     []string  // path to file with expected output
 	expectedPayload []string
 	expectedResult  []string
+	expectedLog     Validation
 }
 
 type Validation func(string) bool
@@ -602,6 +603,111 @@ var tests = []struct {
 
 		wantStatus: []int{40},
 	},
+	// E2E-CLI-035 - KICS scan command with --exclude-results
+	// should not run/found results (similarityID) provided by this flag
+	{
+		name: "E2E-CLI-035",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--exclude-results", "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d," +
+					"d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+
+				[]string{"scan", "--exclude-results",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		wantStatus: []int{20, 126},
+	},
+	// E2E-CLI-036 - KICS scan command with --include-queries
+	// should performe a scan running only the provided queries
+	{
+		name: "E2E-CLI-036",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--include-queries", "cfdcabb0-fc06-427c-865b-c59f13e898ce",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+
+				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10,15ffbacc-fa42-4f6f-a57d-2feac7365caa",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+
+				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+
+				[]string{"scan", "--include-queries",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		wantStatus: []int{50, 40, 20, 126},
+	},
+	// E2E-CLI-037 - KICS scan command with --exclude-results and --include-queries
+	// should run only provided queries and does not run results (similarityID) provided by this flag
+	{
+		name: "E2E-CLI-037",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+					"--exclude-results", "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+
+				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+					"--exclude-results", "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+		},
+
+		wantStatus: []int{0, 20},
+	},
+
+	// E2E-CLI-038 - KICS scan command with --log-path
+	// should generate and save a log file for the scan
+	{
+		name: "E2E-CLI-038",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--log-path", "output/log",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+
+			expectedLog: func(logText string) bool {
+				match1, _ := regexp.MatchString("Scanning with Keeping Infrastructure as Code Secure", logText)
+				match2, _ := regexp.MatchString(`Files scanned: \d+`, logText)
+				match3, _ := regexp.MatchString(`Queries loaded: \d+`, logText)
+				return match1 && match2 && match3
+			},
+		},
+		wantStatus:  []int{40},
+		removeFiles: []string{"log"},
+	},
+
+	// E2E-CLI-039 - KICS scan command with --log-path and --log-level
+	// should generate and save a log file based in the provided log-level
+	{
+		name: "E2E-CLI-039",
+		args: args{
+			args: []cmdArgs{
+
+				[]string{"scan", "--log-path", "output/log",
+					"--log-level", "TRACE",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+			},
+
+			expectedLog: func(logText string) bool {
+				match1, _ := regexp.MatchString("TRACE", logText)
+				match2, _ := regexp.MatchString(`Inspector executed with result`, logText)
+				match3, _ := regexp.MatchString(`Scan duration: \d+`, logText)
+				return match1 && match2 && match3
+			},
+		},
+		wantStatus:  []int{40},
+		removeFiles: []string{"log"},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
@@ -639,6 +745,14 @@ func Test_E2E_CLI(t *testing.T) {
 				if tt.args.expectedPayload != nil {
 					// Check payload file
 					fileCheck(t, tt.args.expectedPayload[arg], tt.args.expectedPayload[arg], "payload")
+				}
+
+				if tt.args.expectedLog != nil {
+					// Check log file
+					logData, _ := readFixture("log", "output")
+					if !tt.args.expectedLog(logData) {
+						t.Errorf("The output log file doesn't match the validation regex")
+					}
 				}
 
 				if tt.args.expectedOut != nil {

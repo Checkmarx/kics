@@ -58,6 +58,7 @@ type args struct {
 	expectedOut     []string  // path to file with expected output
 	expectedPayload []string  // path to file with expected payload
 	expectedResult  []string // path to file with expected result
+	expectedLog     Validation // custom validation function to verify the log file
 }
 ```
 
@@ -69,7 +70,9 @@ A single test can contain verification based on:
  - status code + CLI output (file check)
  - status code + payload content (file check)
  - status code + result content (file check)
+ - status code + log content (file check with validation function)
  - status code + result content (file check) + payload content (file check)
+ - status code + result content (file check) + payload content (file check) + log content (file check with validation function)
  - status code + CLI output + payload content (file check) + result content (file check) + custom regex verification
  ....
 
@@ -132,14 +135,14 @@ The custom validation function must perform a validation based on the CLI output
 <b>Example 3:</b> A test case that executes a command and checks: 
 - Status code output
 - Kics CLI output
-- Generated payload file content
+- Generated <b>payload file</b> content
 
 The Tests that check CLI output, payload or results, need a comparison file for each output you want to compare (except for the status code).
 
 The example below contains 2 files for comparing the outputs of CLI and the payload file: <i>"E2E_CLI_005"</i> and <i>"E2E_CLI_005_PAYLOAD.json"</i>.
 Files used for comparing outputs must have the same name as the test and must be added to the "fixture" folder.
 
-In addition, it is necessary to remove the files that will be generated  during the test by adding them to removeFiles (required only for test cases that generates files from results and/or payloads).
+In addition, it is necessary to remove the files that will be generated  during the test by adding them to removeFiles (required only for test cases that generates files from results/payloads/logs).
 Files created by Kics during testing should always be created in the 'outputs' folder
 
 ```go
@@ -161,6 +164,41 @@ Files created by Kics during testing should always be created in the 'outputs' f
 	},
 	wantStatus:  []int{50},
 	removeFiles: []string{"E2E_CLI_005_PAYLOAD.json"},
+}
+```
+
+<b>Example 4:</b> A test case that executes a command and checks: 
+- Status code output
+- Generated <b>log file</b> content
+
+In contrast to what is expected for results and payload, the log files don't have a file to make the comparison, instead of that, the kics has a validation function that has the same aim as the validation that verifies the output CLI.
+In this case, the validation function will receive the log file data as its input, and you can do any kind of regex or text validations in the log file content.
+
+The example below generates an output file called: <i>"log"</i> (the log file name must be "log" for all test cases) and create a validation function with 3 match patterns in the "expectedLog" param.
+
+In addition, it is necessary to remove the files that will be generated  during the test by adding them to removeFiles (required only for test cases that generates files from results/payloads/logs).
+
+```go
+// E2E-CLI-038 - KICS scan command with --log-path
+// should generate and save a log file for the scan
+{
+	name: "E2E-CLI-038",
+	args: args{
+		args: []cmdArgs{
+
+			[]string{"scan", "--log-path", "output/log",
+				"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+		},
+
+		expectedLog: func(logText string) bool {
+			match1, _ := regexp.MatchString("Scanning with Keeping Infrastructure as Code Secure", logText)
+			match2, _ := regexp.MatchString(`Files scanned: \d+`, logText)
+			match3, _ := regexp.MatchString(`Queries loaded: \d+`, logText)
+			return match1 && match2 && match3
+		},
+	},
+	wantStatus:  []int{40},
+	removeFiles: []string{"log"},
 }
 ```
 
