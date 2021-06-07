@@ -52,12 +52,22 @@
     },
     "/people/{id}": {
       "get": {
-        "parameters": {}
+        "parameters": {},
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     },
     "/users/{id}": {
       "get": {
-        "parameters": {}
+        "parameters": {},
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     }
   }
