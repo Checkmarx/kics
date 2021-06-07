@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	value.type == "array"
@@ -19,6 +20,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.items have type, anyOf.type, $ref or anyOf.$ref is defined", [openapi_lib.concat_path(path)]),
 		"keyActualValue": sprintf("%s.items have type, anyOf.type, $ref or anyOf.$ref is undefined", [openapi_lib.concat_path(path)]),
+		"overrideKey": version,
 	}
 }
 
