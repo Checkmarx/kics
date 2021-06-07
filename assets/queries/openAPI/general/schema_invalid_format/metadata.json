@@ -1,6 +1,6 @@
 {
   "id": "d929c031-078f-4241-b802-e224656ad890",
-  "queryName": "Schema Invalid Number Format (v3)",
+  "queryName": "Schema Invalid Format (v3)",
   "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Schema numeric types should be valid, for integer must be int32 or int64 and number must be float or double",
@@ -9,7 +9,7 @@
   "override": {
     "2.0": {
       "id": "caf1793e-95dd-4b18-8d90-8f3c0ab5bddf",
-      "queryName": "Schema Invalid Number Format (v2)",
+      "queryName": "Schema Invalid Format (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/"
     }
   },

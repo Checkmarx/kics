@@ -30,8 +30,8 @@
               "type": "object",
               "properties": {
                 "id": {
-                  "type": "integer",
-                  "format": "int64"
+                  "type": "string",
+                  "format": "byte"
                 },
                 "quantity": {
                   "type": "integer",

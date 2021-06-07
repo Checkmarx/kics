@@ -13,6 +13,7 @@ CxPolicy[result] {
 	correctTypes := {
 		"number": "float or double",
 		"integer": "int32 or int64",
+		"string": "binary, byte,date, date-time, or password",
 	}
 
 	result := {
@@ -32,5 +33,9 @@ is_format_valid(type, format) {
 } else {
 	type == "integer"
 	validFormats := {"int32", "int64"}
+	count({format} - validFormats) > 0
+} else {
+	type == "string"
+	validFormats := {"binary", "byte", "date", "date-time", "password"}
 	count({format} - validFormats) > 0
 }
