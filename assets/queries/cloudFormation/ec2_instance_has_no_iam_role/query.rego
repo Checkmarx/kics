@@ -66,8 +66,6 @@ getIAMProfile(profileRef, res) = profile {
 	object.get(profileRef, "Ref", "undefined") != "undefined"
 	ref := object.get(profileRef, "Ref", "undefined")
 	profile := {ref: object.get(res, ref, "undefined")}
-} else = {} {
-	true
 }
 
 emptyProfile(iamProfile) {
