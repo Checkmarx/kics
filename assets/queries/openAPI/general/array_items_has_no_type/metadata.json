@@ -11,7 +11,7 @@
       "id": "8697a1a4-82c6-4603-8ac8-57529756744e",
       "queryName": "Array Items Has No Type (v2)",
       "descriptionText": "Schema/Parameter array items type should be defined",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#format"
     }
   },
   "aggregation": 3
