@@ -1,0 +1,17 @@
+{
+  "id": "b1a7fcb0-2afe-4d5c-a6a1-4e6311fc29e7",
+  "queryName": "Invalid Contact Email (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Contact Object Email should be a valid email",
+  "descriptionUrl": "https://swagger.io/specification/#contact-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "d83bebc8-4e5e-4241-b783-cba9fb5a1c9a",
+      "queryName": "Invalid Contact Email (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+    }
+  },
+  "aggregation": 2
+}
