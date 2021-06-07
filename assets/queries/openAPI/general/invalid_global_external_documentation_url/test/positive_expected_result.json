@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Invalid Global External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 49,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Global External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Invalid Global External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Invalid Global External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive4.yaml"
+  }
+]
