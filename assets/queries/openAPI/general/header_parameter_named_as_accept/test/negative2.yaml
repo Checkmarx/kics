@@ -23,7 +23,7 @@ paths:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
     parameters:
-      - name: Accept
+      - name: id
         in: header
         description: ID of the API version
         required: true
@@ -33,9 +33,12 @@ paths:
     get:
       parameters:
         - in: header
-          name: Accept
+          name: id
           required: true
           description: The user ID
           schema:
             type: integer
             minimum: 1
+      responses:
+        "200":
+          description: 200 response

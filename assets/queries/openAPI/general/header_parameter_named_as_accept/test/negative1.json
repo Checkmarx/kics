@@ -40,8 +40,8 @@
       },
       "parameters": [
         {
-          "name": "Accept",
-          "in": "header",
+          "name": "id",
+          "in": "query",
           "description": "ID of the API the version",
           "required": true,
           "schema": {
@@ -52,10 +52,15 @@
     },
     "/users/{id}": {
       "get": {
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        },
         "parameters": [
           {
             "in": "header",
-            "name": "Accept",
+            "name": "id",
             "required": true,
             "description": "The user ID",
             "schema": {
