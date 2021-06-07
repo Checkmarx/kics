@@ -13,12 +13,12 @@ CxPolicy[result] {
 	correctTypes := {
 		"number": "float or double",
 		"integer": "int32 or int64",
-		"string": "binary, byte,date, date-time, or password",
+		"string": "binary, byte, date, date-time, or password",
 	}
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.format", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.format=%s", [openapi_lib.concat_path(path), value.format]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s is %s formats", [value.type, correctTypes[value.type]]),
 		"keyActualValue": sprintf("%s is %s format", [value.type, format]),

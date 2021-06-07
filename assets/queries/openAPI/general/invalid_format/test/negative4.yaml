@@ -24,13 +24,20 @@ paths:
             properties:
               id:
                 type: string
-                format: double
+                format: byte
               quantity:
                 type: integer
                 format: int32
               percentage:
                 type: number
-                format: int32
+                format: float
               result:
                 type: number
                 format: double
+      - name: start_date
+        in: query
+        type: string
+        format: date
+        description: >
+          The start date for the report. Must be used together with `end_date`.
+          This parameter is incompatible with `rdate`.
