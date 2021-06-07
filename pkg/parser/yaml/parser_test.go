@@ -49,6 +49,21 @@ test:
 test_2:
   perm:
     - <<: *test_anchor
+`, `
+kube_node_ready_controller_memory: "200Mi"
+{{if eq .Cluster.Environment "test"}}
+downscaler_default_uptime: "Mon-Fri 07:30-20:30 Europe/Berlin"
+downscaler_default_downtime: "never"
+downscaler_enabled: "true"
+{{else if eq .Cluster.Environment "e2e"}}
+downscaler_default_uptime: "always"
+downscaler_default_downtime: "never"
+downscaler_enabled: "true"
+{{else}}
+downscaler_default_uptime: "always"
+downscaler_default_downtime: "never"
+downscaler_enabled: "false"
+{{end}}
 `,
 	}
 
@@ -69,6 +84,9 @@ test_2:
 	require.Contains(t, nestedMap[0], "test_2")
 	require.Contains(t,
 		nestedMap[0]["test_2"].(model.Document)["perm"].([]interface{})[0].(map[string]interface{})["group"].(model.Document)["name"], "cx")
+
+	_, err = p.Parse("test.yaml", []byte(have[3]))
+	require.Error(t, err)
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
