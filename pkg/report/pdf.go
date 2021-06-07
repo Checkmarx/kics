@@ -2,6 +2,7 @@ package report
 
 import (
 	"fmt"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/johnfercher/maroto/pkg/color"
@@ -10,104 +11,189 @@ import (
 	"github.com/johnfercher/maroto/pkg/props"
 )
 
-func getHeader() []string {
-	return []string{"QueryName", "Severity", "Platform", "Category"}
+const (
+	rowHeight     = 20
+	colWidthOne   = 1
+	colWidthTwo   = 2
+	textSize      = 8
+	pgMarginLeft  = 10
+	pgMarginTop   = 15
+	pgMarginRight = 10
+)
+
+var (
+	grayColor = getGrayColor()
+)
+
+func createFullReportTable(m pdf.Maroto, queries []model.VulnerableQuery) {
+	m.Row(rowHeight, func() {
+		m.Col(colWidthOne, func() {
+			m.Text("QueryName", props.Text{
+				Size:        textSize,
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colWidthOne, func() {
+			m.Text("Severity", props.Text{
+				Size:        textSize,
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colWidthOne, func() {
+			m.Text("Platform", props.Text{
+				Size:        textSize,
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colWidthOne, func() {
+			m.Text("Category", props.Text{
+				Size:        textSize,
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
+	createQueriesTable(m, queries)
 }
 
-func extractContent(queries []model.VulnerableQuery) [][]string {
-	var contents [][]string
-	contents = make([][]string, 0)
-	for _, entry := range queries {
-		contents = append(contents, []string{entry.QueryName, string(entry.Severity), entry.Platform, entry.Category})
+func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) {
+	contents := make([][]string, 0)
+	for idx := range queries {
+		contents = createResultsTable(contents, &queries[idx])
+		m.TableList(
+			[]string{queries[idx].QueryName, string(queries[idx].Severity), queries[idx].Platform, queries[idx].Category},
+			contents,
+			props.TableList{
+				HeaderProp: props.TableListContent{
+					Size:      10,
+					GridSizes: []uint{4, 2, 2, 3},
+				},
+				ContentProp: props.TableListContent{
+					Size:      textSize,
+					GridSizes: []uint{3, 1, 5, 2},
+				},
+				Align:                consts.Center,
+				AlternatedBackground: &grayColor,
+				HeaderContentSpace:   1,
+				Line:                 false,
+			},
+		)
+		m.Line(1.0)
 	}
+}
+
+func createResultsTable(contents [][]string, query *model.VulnerableQuery) [][]string {
+	for idx := range query.Files {
+		fileLine := fmt.Sprintf("%s:%s", filepath.Base(query.Files[idx].FileName), fmt.Sprint(query.Files[idx].Line))
+		contents = append(contents, []string{fileLine, "", query.Files[idx].SimilarityID, ""})
+	}
+
 	return contents
 }
 
+// PrintPdfReport creates a report file on the PDF format
 func PrintPdfReport(path, filename string, body interface{}) error {
-	grayColor := getGrayColor()
 	whiteColor := color.NewWhite()
-	header := getHeader()
 	summary := body.(*model.Summary)
-	contents := extractContent(summary.Queries)
+
+	highSeverityCount := fmt.Sprint(summary.SeverityCounters["HIGH"])
+	mediumSeverityCount := fmt.Sprint(summary.SeverityCounters["MEDIUM"])
+	lowSeverityCount := fmt.Sprint(summary.SeverityCounters["LOW"])
+	infoSeverityCount := fmt.Sprint(summary.SeverityCounters["INFO"])
+	totalCount := fmt.Sprint(summary.TotalCounter)
 
 	m := pdf.NewMaroto(consts.Portrait, consts.A4)
-	m.SetPageMargins(10, 15, 10)
+	m.SetPageMargins(pgMarginLeft, pgMarginTop, pgMarginRight)
 
 	m.SetAliasNbPages("{nb}")
 	m.SetFirstPageNb(1)
 
 	m.RegisterHeader(func() {
-		m.Row(20, func() {
-			m.Col(2, func() {
+		m.Row(rowHeight, func() {
+			m.Col(colWidthOne, func() {
 				m.Text("HIGH", props.Text{
-					Size:        8,
+					Size:        textSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
+			m.Col(colWidthOne, func() {
+				m.Text(highSeverityCount, props.Text{
+					Size:        textSize,
+					Align:       consts.Left,
+					Extrapolate: false,
+				})
+			})
+			m.Col(colWidthOne, func() {
 				m.Text("MEDIUM", props.Text{
-					Size:        8,
+					Size:        textSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
+			m.Col(colWidthOne, func() {
+				m.Text(mediumSeverityCount, props.Text{
+					Size:        textSize,
+					Align:       consts.Left,
+					Extrapolate: false,
+				})
+			})
+			m.Col(colWidthOne, func() {
 				m.Text("LOW", props.Text{
-					Size:        8,
+					Size:        textSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
+			m.Col(colWidthOne, func() {
+				m.Text(lowSeverityCount, props.Text{
+					Size:        textSize,
+					Align:       consts.Left,
+					Extrapolate: false,
+				})
+			})
+			m.Col(colWidthOne, func() {
 				m.Text("INFO", props.Text{
-					Size:        8,
+					Size:        textSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
+			m.Col(colWidthOne, func() {
+				m.Text(infoSeverityCount, props.Text{
+					Size:        textSize,
+					Align:       consts.Left,
+					Extrapolate: false,
+				})
+			})
+			m.Col(colWidthTwo, func() {
 				m.Text("TOTAL", props.Text{
-					Size:        8,
+					Size:        textSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.ColSpace(2)
+			m.Col(colWidthTwo, func() {
+				m.Text(totalCount, props.Text{
+					Size:        textSize,
+					Align:       consts.Right,
+					Extrapolate: false,
+				})
+			})
 		})
 	})
 
+	m.Line(1.0)
+
 	m.SetBackgroundColor(whiteColor)
 
-	m.TableList(
-		header,
-		contents,
-		props.TableList{
-			HeaderProp: props.TableListContent{
-				Size:      9,
-				GridSizes: []uint{4, 2, 2, 3},
-			},
-			ContentProp: props.TableListContent{
-				Size:      8,
-				GridSizes: []uint{4, 2, 2, 3},
-			},
-			Align:                consts.Center,
-			AlternatedBackground: &grayColor,
-			HeaderContentSpace:   1,
-			Line:                 false,
-		},
-	)
+	createFullReportTable(m, summary.Queries)
 
 	err := m.OutputFileAndClose(fmt.Sprintf("%s.pdf", filename))
 	return err
-}
-
-func getDarkGrayColor() color.Color {
-	return color.Color{
-		Red:   55,
-		Green: 55,
-		Blue:  55,
-	}
 }
 
 func getGrayColor() color.Color {
