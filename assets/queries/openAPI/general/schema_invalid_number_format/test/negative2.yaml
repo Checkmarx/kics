@@ -8,20 +8,25 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        '200':
+        "200":
           "$ref": "#/components/schemas/MyObject"
-        '201':
-          schema:
-            MyObjectList:
-              type: array
-              items:
-                type: object
-                properties:
-                  myObject:
-                    "$ref": "#/components/schemas/MyObject"
-                  length:
-                    type: integer
-                    format: int32
+        "201":
+          description: 201 response
+    parameters:
+      - name: id
+        in: path
+        description: ID of pet to use
+        required: true
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              myObject:
+                "$ref": "#/components/schemas/MyObject"
+              length:
+                type: integer
+                format: int32
 components:
   schemas:
     MyObject:
