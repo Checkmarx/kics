@@ -22,7 +22,7 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-        "3xx":
+        "310":
           description: "[300-399] response"
           content:
             application/json:
