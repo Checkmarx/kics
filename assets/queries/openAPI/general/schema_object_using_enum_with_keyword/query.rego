@@ -1,13 +1,13 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	keywords := ["multipleOf", "maximum", "minimum", "exclusiveMaximum", "exclusiveMinimum", "pattern", "minLength", "maxLength", "maxItems", "minItems", "uniqueItems", "required", "maxProperties", "minProperties"]
 
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	properties := value.properties[name]
@@ -22,6 +22,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.properties.%s does not contain 'enum' and schema keyword", [concat(".", path_c), name]),
 		"keyActualValue": sprintf("%s.properties.%s contains 'enum' and schema keyword '%s'", [concat(".", path_c), name, keywords[x]]),
+		"overrideKey": version,
 	}
 }
 
