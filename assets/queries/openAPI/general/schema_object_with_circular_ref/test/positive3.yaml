@@ -5,7 +5,7 @@ info:
   contact:
     name: contact
     url: https://www.google.com/
-    email: user@gmail.c
+    email: user@gmail.com
 paths:
   "/":
     get:
