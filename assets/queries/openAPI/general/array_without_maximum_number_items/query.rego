@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	info := openapi_lib.is_operation(path)
@@ -17,12 +18,14 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "Array schema has 'maxItems' set",
 		"keyExpectedValue": "Array schema has 'maxItems' undefined",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
@@ -34,6 +37,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "Array schema has 'maxItems' set",
 		"keyExpectedValue": "Array schema has 'maxItems' undefined",
+		"overrideKey": version,
 	}
 }
 
