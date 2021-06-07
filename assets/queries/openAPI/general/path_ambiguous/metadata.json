@@ -1,9 +1,17 @@
 {
   "id": "237402e2-c2f0-46c9-9cf5-286160cf7bfc",
-  "queryName": "Path Is Ambiguous",
+  "queryName": "Path Is Ambiguous (v3)",
   "severity": "INFO",
   "category": "Structure and Semantics",
   "descriptionText": "All path should be unique, if has more than one operation, all operations should be part of same Path Object",
   "descriptionUrl": "https://swagger.io/specification/#path-item-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "b2468463-3ac4-4930-890c-f35b2bf4485d",
+      "queryName": "Path Is Ambiguous (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject"
+    }
+  },
+  "aggregation": 2
 }

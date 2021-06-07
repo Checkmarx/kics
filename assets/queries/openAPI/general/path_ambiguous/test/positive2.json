@@ -18,10 +18,15 @@
               "minimum": 1
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     },
-    "/user/{id}": {
+    "/users/{ids}": {
       "get": {
         "parameters": [
           {
@@ -34,7 +39,12 @@
               "minimum": 1
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     }
   }
