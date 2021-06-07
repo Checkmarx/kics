@@ -11,10 +11,7 @@
         "summary": "Put item",
         "responses": {
           "default": {
-            "description": "Error",
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
+            "description": "Error"
           }
         }
       },
@@ -23,10 +20,7 @@
         "summary": "Options item",
         "responses": {
           "default": {
-            "description": "Error",
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
+            "description": "Error"
           }
         }
       }

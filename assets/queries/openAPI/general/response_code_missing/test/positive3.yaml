@@ -10,16 +10,12 @@ paths:
       responses:
         default:
           description: Error
-          schema:
-            "$ref": "#/components/schemas/Error"
     options:
       operationId: optionsItem
       summary: Options item
       responses:
         default:
           description: Error
-          schema:
-            "$ref": "#/components/schemas/Error"
 components:
   schemas:
     Error:
