@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Invalid License URL (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid License URL (v3)",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Invalid License URL (v2)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Invalid License URL (v2)",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive4.yaml"
+  }
+]

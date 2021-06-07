@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	not openapi_lib.is_valid_url(doc.info.license.url)
 
@@ -14,5 +15,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "info.license.url has a valid URL",
 		"keyActualValue": "info.license.url has an invalid URL",
+		"overrideKey": version,
 	}
 }
