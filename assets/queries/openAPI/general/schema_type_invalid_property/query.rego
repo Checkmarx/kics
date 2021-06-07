@@ -12,7 +12,8 @@ specificKeywords := {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	object.get(value, "type", "undefined") != "undefined"
@@ -23,6 +24,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "There isn't any invalid keywords",
 		"keyActualValue": sprintf("Keyword %s is not valid for type %s", [invalidKey, value.type]),
+		"overrideKey": version,
 	}
 }
 
