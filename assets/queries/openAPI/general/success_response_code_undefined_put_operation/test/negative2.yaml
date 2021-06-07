@@ -10,29 +10,13 @@ paths:
       responses:
         default:
           description: Error
-          schema:
-            "$ref": "#/components/schemas/Error"
     put:
       operationId: updateItem
       summary: Update item
       responses:
-        '201':
+        "201":
           description: Item created successfully
-        '204':
+        "204":
           description: Item updated successfully
         default:
           description: Error
-          schema:
-            "$ref": "#/components/schemas/Error"
-components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-      required:
-      - code
-      - message
