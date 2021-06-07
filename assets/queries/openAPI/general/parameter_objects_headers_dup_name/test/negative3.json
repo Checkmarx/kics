@@ -7,6 +7,7 @@
   "components": {
     "parameters": {
       "token": {
+        "name": "token",
         "in": "header",
         "description": "token to be passed as a header",
         "required": true,
@@ -20,6 +21,7 @@
         "style": "simple"
       },
       "username": {
+        "name": "username",
         "in": "header",
         "description": "username to fetch",
         "required": true,

@@ -5,6 +5,7 @@ info:
 components:
   parameters:
     token:
+      name: token
       in: header
       description: token to be passed as a header
       required: true
@@ -14,12 +15,13 @@ components:
           type: integer
           format: int64
       style: simple
-  username:
-    in: header
-    description: username to fetch
-    required: true
-    schema:
-      type: string
+    username:
+      name: username
+      in: header
+      description: username to fetch
+      required: true
+      schema:
+        type: string
 paths:
   "/":
     get:

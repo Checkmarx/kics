@@ -5,6 +5,7 @@ info:
 components:
   parameters:
     token:
+      name: token
       in: header
       description: token to be passed as a header
       required: true
@@ -15,6 +16,7 @@ components:
           format: int64
       style: simple
     Token:
+      name: Token
       in: header
       description: token to fetch
       required: true
