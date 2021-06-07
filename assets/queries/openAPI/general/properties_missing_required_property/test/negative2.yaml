@@ -41,11 +41,7 @@ components:
                     type: string
                   age:
                     type: integer
-          examples:
-            tshirt:
-              "$ref": "#/components/examples/tshirt"
           encoding:
             code:
               contentType: image/png, image/jpeg
               allowReserved: true
-              style: simple

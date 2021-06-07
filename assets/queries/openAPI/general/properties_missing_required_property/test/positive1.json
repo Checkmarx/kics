@@ -63,16 +63,10 @@
                 }
               }
             },
-            "examples": {
-              "tshirt": {
-                "$ref": "#/components/examples/tshirt"
-              }
-            },
             "encoding": {
               "code": {
                 "contentType": "image/png, image/jpeg",
-                "allowReserved": true,
-                "style": "simple"
+                "allowReserved": true
               }
             }
           }

@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Simple API Overview
   version: 1.0.0
@@ -8,20 +8,8 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        '200':
+        "200":
           description: 200 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    versions:
-                    - links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
-                      status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
 definitions:
   MyObject:
     type: object
@@ -29,7 +17,7 @@ definitions:
       code:
         type: object
         required:
-        - name
+          - name
         properties:
           age:
             type: integer
