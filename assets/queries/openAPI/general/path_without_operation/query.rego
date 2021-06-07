@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	p := doc.paths[path]
 	operations := {"get", "post", "put", "delete", "options", "head", "patch", "trace"}
@@ -17,5 +18,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("paths.{{%s}} has at least one operation object defined", [path]),
 		"keyActualValue": sprintf("paths.{{%s}} does not have at least one operation object defined", [path]),
+		"overrideKey": version,
 	}
 }
