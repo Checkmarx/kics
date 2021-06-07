@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	value.type == "object"
@@ -17,5 +18,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Required properties does not have default defined",
 		"keyActualValue": "Required properties with default defined",
+		"overrideKey": version,
 	}
 }

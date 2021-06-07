@@ -1,0 +1,25 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    post:
+      summary: Add a new item
+      parameters:
+        - in: body
+          name: item
+          schema:
+            type: object
+            required:
+              - id
+            properties:
+              id:
+                type: string
+                default: 4056684e4e1347579362617ad82e5b4e
+              name:
+                type: string
+                default: guest
+      responses:
+        "200":
+          description: 200 response
