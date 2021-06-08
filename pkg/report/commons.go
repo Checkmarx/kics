@@ -1,7 +1,6 @@
 package report
 
 import (
-	_ "embed" // used for embedding report static files
 	"fmt"
 	"html/template"
 	"os"
@@ -13,21 +12,6 @@ import (
 )
 
 var (
-	//go:embed template/html/report.tmpl
-	htmlTemplate string
-	//go:embed template/html/report.css
-	cssTemplate string
-	//go:embed template/html/report.js
-	jsTemplate string
-	//go:embed template/html/github.svg
-	githubSVG string
-	//go:embed template/html/info.svg
-	infoSVG string
-	//go:embed template/html/vulnerability_fill.svg
-	vulnerabilityFillSVG string
-	//go:embed template/html/vulnerability_out.svg
-	vulnerabilityOutSVG string
-
 	stringsSeverity = map[string]model.Severity{
 		"high":   model.AllSeverities[0],
 		"medium": model.AllSeverities[1],
