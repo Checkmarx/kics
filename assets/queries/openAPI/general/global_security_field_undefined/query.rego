@@ -16,8 +16,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": searchKey[version],
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "A default security scheme should be defined",
-		"keyActualValue": "A default security scheme is not defined",
+		"keyExpectedValue": "A default security property should be defined",
+		"keyActualValue": "A default security property is not defined",
 		"overrideKey": version,
 	}
 }
