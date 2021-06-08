@@ -20,6 +20,20 @@ const (
 	pgMarginLeft    = 10
 	pgMarginTop     = 15
 	pgMarginRight   = 10
+	rowXSmall       = 3
+	rowSmall        = 4
+	rowMedium       = 5
+	rowLarge        = 8
+	rowXLarge       = 15
+	colOne          = 1
+	colTwo          = 2
+	colThree        = 3
+	colFour         = 4
+	colFive         = 5
+	colSix          = 6
+	colNine         = 9
+	colTen          = 10
+	colFullPage     = 12
 )
 
 var (
@@ -29,25 +43,32 @@ var (
 )
 
 func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath string) error {
-	for idx := range queries {
+	for i := range queries {
 		m.SetBackgroundColor(color.NewWhite())
-		m.Row(8, func() {
-			m.Col(1, func() {
-				m.Base64Image(vulnImageBase64, consts.Png, props.Rect{
+		queryName := queries[i].QueryName
+		resultsCount := fmt.Sprint(len(queries[i].Files))
+		severity := string(queries[i].Severity)
+		platform := queries[i].Platform
+		category := queries[i].Category
+
+		var err error
+		m.Row(rowLarge, func() {
+			m.Col(colOne, func() {
+				err = m.Base64Image(vulnImageBase64, consts.Png, props.Rect{
 					Center:  false,
 					Percent: 50,
 					Left:    2,
 				})
 			})
-			m.Col(9, func() {
-				m.Text(queries[idx].QueryName, props.Text{
+			m.Col(colNine, func() {
+				m.Text(queryName, props.Text{
 					Size:        11,
 					Style:       consts.Bold,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(1, func() {
+			m.Col(colOne, func() {
 				m.Text("Results", props.Text{
 					Size:        8,
 					Style:       consts.Bold,
@@ -55,8 +76,8 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 					Extrapolate: false,
 				})
 			})
-			m.Col(1, func() {
-				m.Text(fmt.Sprint(len(queries[idx].Files)), props.Text{
+			m.Col(colOne, func() {
+				m.Text(resultsCount, props.Text{
 					Size:        8,
 					Style:       consts.Bold,
 					Align:       consts.Right,
@@ -64,55 +85,58 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 				})
 			})
 		})
-		m.Row(4, func() {
-			m.Col(2, func() {
+		if err != nil {
+			return err
+		}
+		m.Row(colFour, func() {
+			m.Col(colTwo, func() {
 				m.Text("Severity", props.Text{
 					Size:        10,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
-				m.Text(string(queries[idx].Severity), props.Text{
+			m.Col(colTwo, func() {
+				m.Text(severity, props.Text{
 					Size:        10,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
 		})
-		m.Row(3, func() {
-			m.Col(2, func() {
+		m.Row(colThree, func() {
+			m.Col(colTwo, func() {
 				m.Text("Platform", props.Text{
 					Size:        defaultTextSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
-				m.Text(queries[idx].Platform, props.Text{
+			m.Col(colTwo, func() {
+				m.Text(platform, props.Text{
 					Size:        defaultTextSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
 		})
-		m.Row(5, func() {
-			m.Col(2, func() {
+		m.Row(colFive, func() {
+			m.Col(colTwo, func() {
 				m.Text("Category", props.Text{
 					Size:        defaultTextSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
-			m.Col(2, func() {
-				m.Text(queries[idx].Category, props.Text{
+			m.Col(colTwo, func() {
+				m.Text(category, props.Text{
 					Size:        defaultTextSize,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
 		})
-		err := createResultsTable(m, &queries[idx], basePath)
+		err = createResultsTable(m, &queries[i], basePath)
 		if err != nil {
 			return err
 		}
@@ -132,8 +156,8 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
 			return err
 		}
 		fileLine := fmt.Sprintf("%s:%s", relativePath, fmt.Sprint(query.Files[idx].Line))
-		m.Row(5, func() {
-			m.Col(12, func() {
+		m.Row(colFive, func() {
+			m.Col(colFullPage, func() {
 				m.Text(fileLine, props.Text{
 					Size:        defaultTextSize,
 					Align:       consts.Left,
@@ -148,8 +172,8 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
 
 func createHeaderArea(m pdf.Maroto) {
 	m.SetBackgroundColor(getPurpleColor())
-	m.Row(15, func() {
-		m.Col(6, func() {
+	m.Row(rowXLarge, func() {
+		m.Col(colSix, func() {
 			m.Text(" KICS REPORT", props.Text{
 				Size:        25,
 				Style:       consts.Bold,
@@ -158,17 +182,17 @@ func createHeaderArea(m pdf.Maroto) {
 				Color:       color.NewWhite(),
 			})
 		})
-		m.ColSpace(6)
+		m.ColSpace(colSix)
 	})
 	m.SetBackgroundColor(color.NewWhite())
-	m.Row(3, func() {
-		m.ColSpace(12)
+	m.Row(rowXSmall, func() {
+		m.ColSpace(colFullPage)
 	})
 }
 
 func createFooterArea(m pdf.Maroto) {
-	m.Row(5, func() {
-		m.Col(1, func() {
+	m.Row(rowMedium, func() {
+		m.Col(colOne, func() {
 			m.Text("http://kics.io")
 		})
 	})
@@ -200,28 +224,35 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	m.SetBackgroundColor(color.NewWhite())
 
-	createFirstPageHeader(m, *summary)
+	createFirstPageHeader(m, summary)
 
 	m.Line(1.0)
 
-	createQueriesTable(m, summary.Queries, basePath)
+	err = createQueriesTable(m, summary.Queries, basePath)
+	if err != nil {
+		return err
+	}
 
 	err = m.OutputFileAndClose(fmt.Sprintf("%s.pdf", filename))
+	if err != nil {
+		return err
+	}
+
 	log.Info().Msgf("Generate report duration: %v", time.Since(startTime))
 
 	return err
 }
 
-func createDateArea(m pdf.Maroto, summary model.Summary) {
-	m.Row(4, func() {
-		m.Col(2, func() {
+func createDateArea(m pdf.Maroto, summary *model.Summary) {
+	m.Row(colFour, func() {
+		m.Col(colTwo, func() {
 			m.Text("START TIME", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
 				Extrapolate: false,
 			})
 		})
-		m.Col(2, func() {
+		m.Col(colTwo, func() {
 			m.Text(summary.Start.Format("15:04:05, Jan 02 2006"), props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -229,15 +260,15 @@ func createDateArea(m pdf.Maroto, summary model.Summary) {
 			})
 		})
 	})
-	m.Row(6, func() {
-		m.Col(2, func() {
+	m.Row(colSix, func() {
+		m.Col(colTwo, func() {
 			m.Text("END TIME", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
 				Extrapolate: false,
 			})
 		})
-		m.Col(2, func() {
+		m.Col(colTwo, func() {
 			m.Text(summary.End.Format("15:04:05, Jan 02 2006"), props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -247,16 +278,16 @@ func createDateArea(m pdf.Maroto, summary model.Summary) {
 	})
 }
 
-func createPlatformsArea(m pdf.Maroto, summary model.Summary) {
-	m.Row(4, func() {
-		m.Col(2, func() {
+func createPlatformsArea(m pdf.Maroto, summary *model.Summary) {
+	m.Row(rowSmall, func() {
+		m.Col(colTwo, func() {
 			m.Text("PLATFORMS", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
 				Extrapolate: false,
 			})
 		})
-		m.Col(10, func() {
+		m.Col(colTen, func() {
 			m.Text(getPlatforms(summary.Queries), props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -266,15 +297,15 @@ func createPlatformsArea(m pdf.Maroto, summary model.Summary) {
 	})
 }
 
-func createSummaryArea(m pdf.Maroto, summary model.Summary) {
+func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 	highSeverityCount := fmt.Sprint(summary.SeverityCounters["HIGH"])
 	mediumSeverityCount := fmt.Sprint(summary.SeverityCounters["MEDIUM"])
 	lowSeverityCount := fmt.Sprint(summary.SeverityCounters["LOW"])
 	infoSeverityCount := fmt.Sprint(summary.SeverityCounters["INFO"])
 	totalCount := fmt.Sprint(summary.TotalCounter)
 
-	m.Row(5, func() {
-		m.Col(1, func() {
+	m.Row(rowMedium, func() {
+		m.Col(colOne, func() {
 			m.Text("HIGH", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -283,7 +314,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getRedColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text(highSeverityCount, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -292,7 +323,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getRedColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text("MEDIUM", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -301,7 +332,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getOrangeColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text(mediumSeverityCount, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -310,7 +341,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getOrangeColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text("LOW", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -319,7 +350,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getYellowColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text(lowSeverityCount, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -328,7 +359,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getYellowColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text("INFO", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -337,7 +368,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getBlueColor(),
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text(infoSeverityCount, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -346,8 +377,8 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getBlueColor(),
 			})
 		})
-		m.ColSpace(2)
-		m.Col(1, func() {
+		m.ColSpace(colTwo)
+		m.Col(colOne, func() {
 			m.Text("TOTAL", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Right,
@@ -355,7 +386,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Extrapolate: false,
 			})
 		})
-		m.Col(1, func() {
+		m.Col(colOne, func() {
 			m.Text(totalCount, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Right,
@@ -366,12 +397,12 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 	})
 }
 
-func createFirstPageHeader(m pdf.Maroto, summary model.Summary) {
+func createFirstPageHeader(m pdf.Maroto, summary *model.Summary) {
 	createSummaryArea(m, summary)
 	createPlatformsArea(m, summary)
 	createDateArea(m, summary)
-	m.Row(4, func() {
-		m.Col(2, func() {
+	m.Row(rowSmall, func() {
+		m.Col(colTwo, func() {
 			m.Text("SCANNED PATHS:", props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
@@ -379,10 +410,11 @@ func createFirstPageHeader(m pdf.Maroto, summary model.Summary) {
 			})
 		})
 	})
-	for idx := range summary.ScannedPaths {
-		m.Row(4, func() {
-			m.Col(12, func() {
-				m.Text(fmt.Sprintf("- %s", summary.ScannedPaths[idx]), props.Text{
+	for i := range summary.ScannedPaths {
+		scannedPaths := summary.ScannedPaths[i]
+		m.Row(rowSmall, func() {
+			m.Col(colFullPage, func() {
+				m.Text(fmt.Sprintf("- %s", scannedPaths), props.Text{
 					Size:        defaultTextSize,
 					Align:       consts.Left,
 					Extrapolate: true,
@@ -390,8 +422,8 @@ func createFirstPageHeader(m pdf.Maroto, summary model.Summary) {
 			})
 		})
 	}
-	m.Row(2, func() {
-		m.ColSpace(12)
+	m.Row(rowXSmall, func() {
+		m.ColSpace(colFullPage)
 	})
 }
 
