@@ -6,41 +6,22 @@ import data.generic.openapi as openapi_lib
 CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
-	version == "2.0"
+	version != "undefined"
 
 	operation := doc.paths[p][op]
 	acceptable_response(operation, op)
 
 	response := operation.responses[code]
-	object.get(response, "schema", "undefined") == "undefined"
+	key := get_key_by_version(version)
+	object.get(response, key, "undefined") == "undefined"
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.%s.%s.responses.%s", [p, op, code]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("paths.%s.%s.responses.%s.schema is defined", [p, op, code]),
-		"keyActualValue": sprintf("paths.%s.%s.responses.%s.schema is undefined", [p, op, code]),
-		"overrideKey": "2.0",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	version := openapi_lib.check_openapi(doc)
-	version == "3.0"
-
-	operation := doc.paths[path][op]
-	acceptable_response(operation, op)
-
-	object.get(operation.responses[code], "content", "undefined") == "undefined"
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}", [path, op, code]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content is defined", [path, op, code]),
-		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content is undefined", [path, op, code]),
-		"overrideKey": "3.0",
+		"keyExpectedValue": sprintf("paths.%s.%s.responses.%s.%s is defined", [p, op, code, key]),
+		"keyActualValue": sprintf("paths.%s.%s.responses.%s.%s is undefined", [p, op, code, key]),
+		"overrideKey": version,
 	}
 }
 
@@ -60,7 +41,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content should have at least one content-type defined", [path, op, code]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content has no content-type defined", [path, op, code]),
-		"overrideKey": "3.0",
 	}
 }
 
@@ -81,7 +61,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema should be defined", [path, op, code, content_type]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema is undefined", [path, op, code, content_type]),
-		"overrideKey": "3.0",
 	}
 }
 
@@ -93,4 +72,13 @@ acceptable_response(operation, op) {
 
 	response := operation.responses[code]
 	not common_lib.equalsOrInArray(response_code_should_not_have_content, lower(code))
+}
+
+get_key_by_version(version) = key {
+	keys := {
+		"2.0": "schema",
+		"3.0": "content",
+	}
+
+	key = keys[version]
 }
