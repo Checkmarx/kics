@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n][oper].responses
 	oper != "head"
 
@@ -17,12 +18,14 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response is set", [responses[x]]),
 		"keyActualValue": sprintf("%s response is undefined", [responses[x]]),
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n][oper].responses
 	operations := {"post", "put", "patch"}
 	oper == operations[x]
@@ -35,12 +38,14 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "415 response is set",
 		"keyActualValue": "415 response is undefined",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n][oper].responses
 	operations := {"get", "put", "head", "delete"}
 	oper == operations[x]
@@ -53,12 +58,14 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "404 response is set",
 		"keyActualValue": "404 response is undefined",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n][oper].responses
 	oper == "options"
 
@@ -70,12 +77,14 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "200 response is set",
 		"keyActualValue": "200 response is undefined",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n][oper].responses
 	object.get(doc, "security", "undefined") != "undefined"
 	responses := {"401", "403"}
@@ -88,5 +97,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response is set when security field is defined", [responses[x]]),
 		"keyActualValue": sprintf("%s response is undefined when security field is defined", [responses[x]]),
+		"overrideKey": version,
 	}
 }
