@@ -25,12 +25,11 @@ paths:
 components:
   schemas:
     GeneralError:
-      schema:
-        properties:
-          code:
+      properties:
+        code:
+          type: string
+          format: int32
+        message:
+          type: array
+          items:
             type: string
-            format: int32
-          message:
-            type: array
-            items:
-              type: string
