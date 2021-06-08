@@ -1,0 +1,14 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+externalDocs:
+  url: http://docs.my-api.com/store-orders.htm

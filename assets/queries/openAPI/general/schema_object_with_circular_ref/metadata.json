@@ -12,5 +12,6 @@
       "queryName": "Schema Object With Circular Ref (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject"
     }
-  }
+  },
+  "aggregation": 2
 }

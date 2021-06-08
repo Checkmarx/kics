@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v3)",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v3)",
+    "severity": "INFO",
+    "line": 39,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v3)",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v3)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v2)",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v2)",
+    "severity": "INFO",
+    "line": 39,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v2)",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Responses With Wrong HTTP Status Code (v2)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive4.yaml"
+  }
+]

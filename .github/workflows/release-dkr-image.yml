@@ -93,7 +93,7 @@ jobs:
 
           echo "${VERSION},${DIGEST}" >> docs/docker/digests.csv
           echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
-          echo "${VERSION}-alpine,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
+          echo "${VERSION}-debian,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x

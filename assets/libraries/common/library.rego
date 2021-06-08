@@ -304,6 +304,7 @@ isCommonKey(p) {
 		"lang",
 		"path",
 		"arch",
+		"location",
 	}
 
 	black := bl[_]

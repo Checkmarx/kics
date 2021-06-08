@@ -1,9 +1,0 @@
-{
-  "id": "8c84f75e-5048-4926-a4cb-33e7b3431300",
-  "queryName": "Header Parameter Named as 'Authorization'",
-  "severity": "INFO",
-  "category": "Best Practices",
-  "descriptionText": "The header Parameter should not be named as 'Authorization'. If so, it will be ignored.",
-  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI"
-}

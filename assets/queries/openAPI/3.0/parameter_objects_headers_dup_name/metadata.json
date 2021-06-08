@@ -1,9 +1,0 @@
-{
-  "id": "05505192-ba2c-4a81-9b25-dcdbcc973746",
-  "queryName": "Parameter Objects Headers With Duplicated Name",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Parameter Objects should not have duplicate names for 'header' location, since HTTP headers are not case sensitive.",
-  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI"
-}
