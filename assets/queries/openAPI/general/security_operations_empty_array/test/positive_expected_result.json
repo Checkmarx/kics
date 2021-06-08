@@ -46,5 +46,17 @@
     "severity": "HIGH",
     "line": 32,
     "filename": "positive8.yaml"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Array (v2)",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive10.json"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Array (v2)",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive9.yaml"
   }
 ]
