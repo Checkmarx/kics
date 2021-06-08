@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	path := doc.paths[name]
 
 	param := path[verb].parameters[p]
@@ -22,5 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Path parameter '%s' should have an template path parameter with the same name and 'in' set to 'path'", [param.name]),
 		"keyActualValue": sprintf("Path parameter '%s' does not have an template path parameter with the same name and 'in' set to 'path'", [param.name]),
+		"overrideKey": version,
 	}
 }
