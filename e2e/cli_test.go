@@ -25,7 +25,12 @@ type args struct {
 	expectedOut     []string  // path to file with expected output
 	expectedPayload []string
 	expectedResult  []string
-	expectedLog     Validation
+	expectedLog     LogValidation
+}
+
+type LogValidation struct {
+	logFile        string
+	validationFunc Validation
 }
 
 type Validation func(string) bool
@@ -671,19 +676,22 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 
-				[]string{"scan", "--log-path", "output/log",
+				[]string{"scan", "--log-path", "output/E2E_CLI_038_LOG",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 
-			expectedLog: func(logText string) bool {
-				match1, _ := regexp.MatchString("Scanning with Keeping Infrastructure as Code Secure", logText)
-				match2, _ := regexp.MatchString(`Files scanned: \d+`, logText)
-				match3, _ := regexp.MatchString(`Queries loaded: \d+`, logText)
-				return match1 && match2 && match3
+			expectedLog: LogValidation{
+				logFile: "E2E_CLI_038_LOG",
+				validationFunc: func(logText string) bool {
+					match1, _ := regexp.MatchString("Scanning with Keeping Infrastructure as Code Secure", logText)
+					match2, _ := regexp.MatchString(`Files scanned: \d+`, logText)
+					match3, _ := regexp.MatchString(`Queries loaded: \d+`, logText)
+					return match1 && match2 && match3
+				},
 			},
 		},
 		wantStatus:  []int{40},
-		removeFiles: []string{"log"},
+		removeFiles: []string{"E2E_CLI_038_LOG"},
 	},
 
 	// E2E-CLI-039 - KICS scan command with --log-path and --log-level
@@ -693,25 +701,33 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 
-				[]string{"scan", "--log-path", "output/log",
+				[]string{"scan", "--log-path", "output/E2E_CLI_039_LOG",
 					"--log-level", "TRACE",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 
-			expectedLog: func(logText string) bool {
-				match1, _ := regexp.MatchString("TRACE", logText)
-				match2, _ := regexp.MatchString(`Inspector executed with result`, logText)
-				match3, _ := regexp.MatchString(`Scan duration: \d+`, logText)
-				return match1 && match2 && match3
+			expectedLog: LogValidation{
+				logFile: "E2E_CLI_039_LOG",
+				validationFunc: func(logText string) bool {
+					match1, _ := regexp.MatchString("TRACE", logText)
+					match2, _ := regexp.MatchString(`Inspector executed with result`, logText)
+					match3, _ := regexp.MatchString(`Scan duration: \d+`, logText)
+					return match1 && match2 && match3
+				},
 			},
 		},
 		wantStatus:  []int{40},
-		removeFiles: []string{"log"},
+		removeFiles: []string{"E2E_CLI_039_LOG"},
 	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
 	kicsPath := getKICSBinaryPath("")
+
+	var err error
+	if err = os.Mkdir("output", os.ModePerm); err != nil {
+		t.Fatal(err)
+	}
 
 	if testing.Short() {
 		t.Skip("skipping E2E tests in short mode.")
@@ -721,7 +737,10 @@ func Test_E2E_CLI(t *testing.T) {
 
 	for _, tt := range tests {
 		for arg := range tt.args.args {
+			tt := tt
+			arg := arg
 			t.Run(fmt.Sprintf("%s_%d", tt.name, arg), func(t *testing.T) {
+				t.Parallel()
 				out, err := runCommand(append(kicsPath, tt.args.args[arg]...))
 				// Check command Error
 				require.NoError(t, err, "Capture output should not yield an error")
@@ -747,10 +766,10 @@ func Test_E2E_CLI(t *testing.T) {
 					fileCheck(t, tt.args.expectedPayload[arg], tt.args.expectedPayload[arg], "payload")
 				}
 
-				if tt.args.expectedLog != nil {
+				if tt.args.expectedLog.validationFunc != nil {
 					// Check log file
-					logData, _ := readFixture("log", "output")
-					if !tt.args.expectedLog(logData) {
+					logData, _ := readFixture(tt.args.expectedLog.logFile, "output")
+					if !tt.args.expectedLog.validationFunc(logData) {
 						t.Errorf("The output log file doesn't match the validation regex")
 					}
 				}
