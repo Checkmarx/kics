@@ -12,5 +12,6 @@
       "queryName": "Numeric Schema Without Minimum (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
-  }
+  },
+  "aggregation": 2
 }
