@@ -18,9 +18,22 @@
           "200": {
             "description": "200 response",
             "content": {
+              "application/pdf": {},
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/ApiVersion"
+                  "$ref": "#/components/schemas/ApiVersion"
                 }
               }
             }
