@@ -724,11 +724,6 @@ var tests = []struct {
 func Test_E2E_CLI(t *testing.T) {
 	kicsPath := getKICSBinaryPath("")
 
-	var err error
-	if err = os.Mkdir("output", os.ModePerm); err != nil {
-		t.Fatal(err)
-	}
-
 	if testing.Short() {
 		t.Skip("skipping E2E tests in short mode.")
 	}
