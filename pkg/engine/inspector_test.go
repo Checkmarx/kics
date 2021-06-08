@@ -341,7 +341,7 @@ func TestNewInspector(t *testing.T) { // nolint
 			Content:  string(contentByte),
 			Platform: "unknown",
 			Metadata: map[string]interface{}{
-				"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",
 				"severity":        model.SeverityHigh,
 				"category":        "Access Control",

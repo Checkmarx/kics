@@ -14,18 +14,14 @@
             "$ref": "#/components/schemas/MyObject"
           },
           "201": {
-            "schema": {
-              "MyObjectList": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/MyObject"
-                    },
-                    {
-                      "type": "integer"
-                    }
-                  ]
+            "description": "201 response",
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": []
+                  }
                 }
               }
             }
@@ -59,7 +55,9 @@
       },
       "MyIntArray": {
         "type": "array",
-        "items": {}
+        "items": {
+          "type": "integer"
+        }
       }
     }
   }
