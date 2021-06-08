@@ -161,3 +161,11 @@ require_objects := {
 	"clientCredentials": {"value": {"scopes"}, "array": false, "map_object": false},
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
 }
+
+api_key_exposed(doc, version, s) {
+	version == "3.0"
+	doc.components.securitySchemes[s].type == "apiKey"
+} else {
+	version == "2.0"
+	doc.securityDefinitions[s].type == "apiKey"
+}
