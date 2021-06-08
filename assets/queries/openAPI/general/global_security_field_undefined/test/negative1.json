@@ -42,17 +42,10 @@
   },
   "security": [
     {
-      "exampleSecurity": []
+      "petstore_auth": [
+        "write:pets",
+        "read:pets"
+      ]
     }
-  ],
-  "components": {
-    "securitySchemes": [
-      {
-        "exampleSecurity": {
-          "type": "http",
-          "scheme": "basic"
-        }
-      }
-    ]
-  }
+  ]
 }
