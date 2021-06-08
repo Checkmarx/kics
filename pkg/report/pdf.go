@@ -41,7 +41,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 			})
 			m.Col(9, func() {
 				m.Text(queries[idx].QueryName, props.Text{
-					Size:        10,
+					Size:        11,
 					Style:       consts.Bold,
 					Align:       consts.Left,
 					Extrapolate: false,
@@ -64,17 +64,17 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 				})
 			})
 		})
-		m.Row(3, func() {
+		m.Row(4, func() {
 			m.Col(2, func() {
 				m.Text("Severity", props.Text{
-					Size:        defaultTextSize,
+					Size:        10,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
 			})
 			m.Col(2, func() {
 				m.Text(string(queries[idx].Severity), props.Text{
-					Size:        defaultTextSize,
+					Size:        10,
 					Align:       consts.Left,
 					Extrapolate: false,
 				})
@@ -346,6 +346,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Color:       getBlueColor(),
 			})
 		})
+		m.ColSpace(2)
 		m.Col(1, func() {
 			m.Text("TOTAL", props.Text{
 				Size:        defaultTextSize,
@@ -354,7 +355,7 @@ func createSummaryArea(m pdf.Maroto, summary model.Summary) {
 				Extrapolate: false,
 			})
 		})
-		m.Col(3, func() {
+		m.Col(1, func() {
 			m.Text(totalCount, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Right,
