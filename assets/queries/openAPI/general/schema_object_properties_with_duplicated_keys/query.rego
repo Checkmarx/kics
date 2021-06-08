@@ -5,7 +5,8 @@ import data.generic.openapi as openapi_lib
 # components schemas map
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version == "3.0"
 
 	schemas := doc.components.schemas[name]
 
@@ -26,7 +27,8 @@ CxPolicy[result] {
 # schema object
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 
@@ -41,6 +43,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'", [val]),
 		"keyActualValue": sprintf("'%s' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'", [val]),
+		"overrideKey": version,
 	}
 }
 
