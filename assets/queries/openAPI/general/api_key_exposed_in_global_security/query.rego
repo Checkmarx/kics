@@ -8,7 +8,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	security := doc.security[x][s]
-	api_key_exposed(doc, version, s)
+	openapi_lib.api_key_exposed(doc, version, s)
 
 	result := {
 		"documentId": doc.id,
@@ -18,12 +18,4 @@ CxPolicy[result] {
 		"keyActualValue": "The API Key is transported over network",
 		"overrideKey": version,
 	}
-}
-
-api_key_exposed(doc, version, s) {
-	version == "3.0"
-	doc.components.securitySchemes[s].type == "apiKey"
-} else {
-	version == "2.0"
-	doc.securityDefinitions[s].type == "apiKey"
 }
