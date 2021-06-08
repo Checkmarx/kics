@@ -14,26 +14,33 @@
             "$ref": "#/components/schemas/MyObject"
           },
           "201": {
-            "schema": {
-              "MyObjectList": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "myObject": {
-                      "$ref": "#/components/schemas/MyObject"
-                    },
-                    "length": {
-                      "type": "integer",
-                      "format": "float"
-                    }
-                  }
+            "description": "201 response"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "ID of pet to use",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "myObject": {
+                  "$ref": "#/components/schemas/MyObject"
+                },
+                "length": {
+                  "type": "integer",
+                  "format": "float"
                 }
               }
             }
           }
         }
-      }
+      ]
     }
   },
   "components": {

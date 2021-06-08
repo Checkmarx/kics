@@ -1,0 +1,62 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "200 response"
+          },
+          "201": {
+            "description": "201 response"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "body",
+          "description": "ID of pet to use",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "double"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "percentage": {
+                  "type": "number",
+                  "format": "int32"
+                },
+                "result": {
+                  "type": "number",
+                  "format": "double"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "start_date",
+          "in": "query",
+          "type": "string",
+          "format": "int64",
+          "description": "The start date for the report. Must be used together with `end_date`. This parameter is incompatible with `rdate`.\n"
+        }
+      ]
+    }
+  }
+}
