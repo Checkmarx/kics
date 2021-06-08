@@ -42,14 +42,26 @@
   },
   "security": [
     {
-      "exampleSecurity": []
+      "OAuth2": [
+        "write",
+        "read"
+      ]
     }
   ],
   "components": {
     "securitySchemes": {
-      "exampleSecurity": {
-        "type": "http",
-        "scheme": "basic"
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "scopes": {
+              "read": "read objects in your account",
+              "write": "modify objects in your account"
+            },
+            "authorizationUrl": "https://example.com/oauth/authorize",
+            "tokenUrl": "https://example.com/oauth/token"
+          }
+        }
       }
     }
   }

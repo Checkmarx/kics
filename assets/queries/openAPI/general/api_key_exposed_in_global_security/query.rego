@@ -4,10 +4,11 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	security := doc.security[x][s]
-	doc.components.securitySchemes[s].type == "apiKey"
+	api_key_exposed(doc, version, s)
 
 	result := {
 		"documentId": doc.id,
@@ -15,5 +16,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The API Key is not transported over network",
 		"keyActualValue": "The API Key is transported over network",
+		"overrideKey": version,
 	}
+}
+
+api_key_exposed(doc, version, s) {
+	version == "3.0"
+	doc.components.securitySchemes[s].type == "apiKey"
+} else {
+	version == "2.0"
+	doc.securityDefinitions[s].type == "apiKey"
 }
