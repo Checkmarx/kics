@@ -136,26 +136,28 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 				})
 			})
 		})
-		err = createResultsTable(m, &queries[i], basePath)
-		if err != nil {
-			return err
-		}
+		createResultsTable(m, &queries[i], basePath)
 	}
 	return nil
 }
 
-func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath string) error {
+func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath string) {
 	for idx := range query.Files {
 		if idx%2 == 0 {
 			m.SetBackgroundColor(grayColor)
 		} else {
 			m.SetBackgroundColor(color.NewWhite())
 		}
+		var filePath string
 		relativePath, err := filepath.Rel(basePath, query.Files[idx].FileName)
 		if err != nil {
-			return err
+			log.Error().Msgf("Cannot make %s relative to %s", query.Files[idx].FileName, basePath)
+			filePath = query.Files[idx].FileName
+		} else {
+			filePath = relativePath
 		}
-		fileLine := fmt.Sprintf("%s:%s", relativePath, fmt.Sprint(query.Files[idx].Line))
+
+		fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
 		m.Row(colFive, func() {
 			m.Col(colFullPage, func() {
 				m.Text(fileLine, props.Text{
@@ -167,7 +169,6 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
 		})
 	}
 	m.Line(1.0)
-	return nil
 }
 
 func createHeaderArea(m pdf.Maroto) {
@@ -203,7 +204,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	startTime := time.Now()
 	log.Info().Msg("Started generating pdf report")
 
-	summary := body.(*model.Summary)
+	summary := body.(model.Summary)
 	basePath, err := os.Getwd()
 	if err != nil {
 		return err
@@ -224,7 +225,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	m.SetBackgroundColor(color.NewWhite())
 
-	createFirstPageHeader(m, summary)
+	createFirstPageHeader(m, &summary)
 
 	m.Line(1.0)
 
@@ -233,7 +234,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 		return err
 	}
 
-	err = m.OutputFileAndClose(fmt.Sprintf("%s.pdf", filename))
+	err = m.OutputFileAndClose(filepath.Join(path, fmt.Sprintf("%s.pdf", filename)))
 	if err != nil {
 		return err
 	}
