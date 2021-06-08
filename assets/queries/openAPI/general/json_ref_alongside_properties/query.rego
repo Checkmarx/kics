@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 
 	[path, value] := walk(doc)
 	object.get(value, "$ref", "undefined") != "undefined"
@@ -16,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Only '$ref' property declared or other properties declared without '$ref'",
 		"keyActualValue": "Property '$ref'alongside other properties",
+		"overrideKey": version,
 	}
 }
