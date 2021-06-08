@@ -1,0 +1,22 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    head:
+      operationId: headers
+      summary: headers
+      responses:
+        "200":
+          description: wrong example
+          schema:
+            type: object
+            discriminator:
+              propertyName: ApiVersion
+            properties:
+              code:
+                type: integer
+                format: int32
+              version:
+                type: string
