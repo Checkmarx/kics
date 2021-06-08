@@ -1,9 +1,0 @@
-{
-  "id": "3b066059-f411-4554-ac8d-96f32bff90da",
-  "queryName": "Success Response Code Undefined for Head Operation",
-  "severity": "MEDIUM",
-  "category": "Networking and Firewall",
-  "descriptionText": "Head should define at least one success response (200 or 202)",
-  "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
-}
