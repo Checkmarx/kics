@@ -1,0 +1,43 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  /:
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: Success
+    parameters:
+      - name: id
+        in: body
+        description: ID of pet to use
+        required: true
+        schema:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: integer
+              minimum: 1
+            name:
+              type: string
+              minLength: 3
+            phones:
+              type: array
+              items:
+                type: number
+                pattern: '\(\d{3}\) ?\d{3}-\d{4}'
+              minItems: 1
+      - name: start_date
+        in: query
+        type: string
+        format: date
+        description: >
+          The start date for the report. Must be used together with `end_date`.
+          This parameter is incompatible with `rdate`.
+        maximum: 8
+        minLength: 6
