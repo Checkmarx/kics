@@ -5,5 +5,13 @@
   "category": "Access Control",
   "descriptionText": "Global security definition must not have empty objects",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "292919fb-7b26-4454-bee9-ce29094768dd",
+      "queryName": "Global security field has an empty object (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object"
+    }
+  },
+  "aggregation": 2
 }
