@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n].get.responses
 
 	object.get(response, "200", "undefined") == "undefined"
@@ -16,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Get should have at least one successful code (200 or 202)",
 		"keyActualValue": "Get does not have any successful code",
+		"overrideKey": version,
 	}
 }
