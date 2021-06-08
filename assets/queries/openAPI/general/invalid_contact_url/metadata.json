@@ -1,0 +1,17 @@
+{
+  "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
+  "queryName": "Invalid Contact URL (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Contact Object URL should be a valid URL",
+  "descriptionUrl": "https://swagger.io/specification/#contact-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
+      "queryName": "Invalid Contact URL (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+    }
+  },
+  "aggregation": 2
+}

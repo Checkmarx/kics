@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Properties Missing Required Property (v3)",
+    "severity": "INFO",
+    "line": 56,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Properties Missing Required Property (v3)",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Properties Missing Required Property (v3)",
+    "severity": "INFO",
+    "line": 54,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Properties Missing Required Property (v3)",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Properties Missing Required Property (v2)",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Properties Missing Required Property (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive6.yaml"
+  }
+]

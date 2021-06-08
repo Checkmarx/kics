@@ -8,7 +8,7 @@
   {
     "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
-    "line": 69,
+    "line": 46,
     "filename": "positive2.json"
   },
   {
@@ -20,7 +20,7 @@
   {
     "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
-    "line": 44,
+    "line": 32,
     "filename": "positive4.yaml"
   }
 ]

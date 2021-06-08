@@ -1,0 +1,110 @@
+[
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 44,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 57,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v3)",
+    "severity": "INFO",
+    "line": 41,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v2)",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v2)",
+    "severity": "INFO",
+    "line": 44,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v2)",
+    "severity": "INFO",
+    "line": 57,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v2)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v2)",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Schema Object Properties With Duplicated Keys (v2)",
+    "severity": "INFO",
+    "line": 41,
+    "filename": "positive6.yaml"
+  }
+]

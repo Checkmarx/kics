@@ -1,0 +1,17 @@
+{
+  "id": "561710b1-b845-4562-95ce-2397a05ccef4",
+  "queryName": "Template Path With No Corresponding Path Parameter (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The template path must have a corresponding path parameter for a given operation",
+  "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#pathTemplating",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "e7656d8d-7288-4bbe-b07b-22b389be75ce",
+      "queryName": "Template Path With No Corresponding Path Parameter (v2)",
+      "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#path-templating"
+    }
+  },
+  "aggregation": 2
+}

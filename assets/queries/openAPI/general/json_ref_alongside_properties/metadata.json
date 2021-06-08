@@ -1,0 +1,17 @@
+{
+  "id": "96beb800-566f-49a9-a0ea-dbdf4bc80429",
+  "queryName": "JSON '$ref' alongside other properties (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Each field on Open API specification which accepts '$ref', infers that field is using a reference object, which has only '$ref' key",
+  "descriptionUrl": "https://swagger.io/specification/#reference-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "f34c1c68-4773-4df0-a103-6e2ca32e585f",
+      "queryName": "JSON '$ref' alongside other properties (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#referenceObject"
+    }
+  },
+  "aggregation": 2
+}

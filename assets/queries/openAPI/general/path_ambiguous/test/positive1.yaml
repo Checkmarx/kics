@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Simple API overview
+  version: 1.0.0
+paths:
+  "/users/{id}":
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The user ID
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: 200 response
+  "/users/{ids}":
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The user ID
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: 200 response

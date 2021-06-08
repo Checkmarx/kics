@@ -3,6 +3,7 @@ package printer
 import (
 	"io"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
@@ -31,9 +32,9 @@ func TestPrinter_LogPath(t *testing.T) {
 		{
 			name: "test_log_path_error",
 			args: args{
-				"kics/error",
+				"kics/results.json",
 			},
-			wantErr: true,
+			wantErr: false,
 		},
 	}
 
@@ -42,6 +43,9 @@ func TestPrinter_LogPath(t *testing.T) {
 			err := LogPath(tt.args.opt, true)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogPath() = %v, wantErr = %v", err, tt.wantErr)
+			} else if tt.args.opt != "" {
+				require.FileExists(t, filepath.FromSlash(tt.args.opt.(string)))
+				os.RemoveAll(filepath.Dir(filepath.FromSlash(tt.args.opt.(string))))
 			}
 		})
 	}

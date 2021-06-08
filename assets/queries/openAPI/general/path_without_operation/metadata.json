@@ -1,0 +1,17 @@
+{
+  "id": "84c826c9-1893-4b34-8cdd-db97645b4bf3",
+  "queryName": "Path Without Operation (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Path object should have at least one operation object defined",
+  "descriptionUrl": "https://swagger.io/specification/#path-item-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "609cd557-66b4-41fa-8edd-2abc6c7cfd08",
+      "queryName": "Path Without Operation (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject"
+    }
+  },
+  "aggregation": 2
+}
