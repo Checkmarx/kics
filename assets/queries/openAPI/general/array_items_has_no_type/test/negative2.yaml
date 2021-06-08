@@ -8,14 +8,18 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        '200':
+        "200":
           "$ref": "#/components/schemas/MyObject"
-        '201':
-          schema:
-            MyObjectList:
-              type: array
-              items:
-                oneOf: []
+        "201":
+          description: 201 response
+          content:
+            "application/x-www-form-urlencoded":
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - "$ref": "#/components/schemas/MyObject"
+                    - type: integer
 components:
   schemas:
     MyObject:
