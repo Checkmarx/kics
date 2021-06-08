@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	object.get(doc, "security", "undefined") == "undefined"
 
 	operationObject := doc.paths[path][operation]
@@ -16,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "A security schema should be used",
 		"keyActualValue": "No security schema is used",
+		"overrideKey": version,
 	}
 }
