@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 46,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "OperationId Not Unique (v2)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "OperationId Not Unique (v2)",
+    "severity": "INFO",
+    "line": 23,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "OperationId Not Unique (v2)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "OperationId Not Unique (v2)",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive4.yaml"
+  }
+]

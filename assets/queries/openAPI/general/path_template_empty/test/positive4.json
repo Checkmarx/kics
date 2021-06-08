@@ -1,0 +1,44 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0",
+    "contact": {
+      "name": "contact",
+      "url": "https://www.google.com/",
+      "email": "user@gmail.com"
+    }
+  },
+  "paths": {
+    "/users/{}": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ErrorModel": {
+      "type": "object",
+      "required": [
+        "message",
+        "code"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 600
+        }
+      }
+    }
+  }
+}

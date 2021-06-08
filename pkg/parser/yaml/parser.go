@@ -71,7 +71,9 @@ func convert(value interface{}) interface{} {
 	case map[interface{}]interface{}:
 		mapStr := map[string]interface{}{}
 		for key, val := range t {
-			mapStr[key.(string)] = convert(val)
+			if t, ok := key.(string); ok {
+				mapStr[t] = convert(val)
+			}
 		}
 		return mapStr
 	case []interface{}:

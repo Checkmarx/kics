@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "JSON '$ref' alongside other properties (v3)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "JSON '$ref' alongside other properties (v3)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "JSON '$ref' alongside other properties (v2)",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "JSON '$ref' alongside other properties (v2)",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive4.yaml"
+  }
+]

@@ -1,9 +1,0 @@
-{
-  "id": "9239c289-9e4c-4d92-8be1-9d506057c971",
-  "queryName": "Invalid License URL",
-  "severity": "INFO",
-  "category": "Best Practices",
-  "descriptionText": "License Object URL should be a valid URL",
-  "descriptionUrl": "https://swagger.io/specification/#license-object",
-  "platform": "OpenAPI"
-}
