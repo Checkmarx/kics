@@ -5,5 +5,13 @@
   "category": "Access Control",
   "descriptionText": "Security object for operations should not be empty object or has any empty object definition",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "74581e3b-1d55-4323-a139-5959a7b3abc5",
+      "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+    }
+  },
+  "aggregation": 2
 }
