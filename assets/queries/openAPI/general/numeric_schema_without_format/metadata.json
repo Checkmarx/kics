@@ -1,0 +1,16 @@
+{
+  "id": "fbf699b5-ef74-4542-9cf1-f6eeac379373",
+  "queryName": "Numeric Schema Without Format (v3)",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Numeric schema (type set to 'integer' or 'number') should have 'format' defined.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "3ed8fc82-c2bb-49e0-811f-c53923674c49",
+      "queryName": "Numeric Schema Without Format (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  }
+}
