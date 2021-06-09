@@ -42,7 +42,7 @@ CxPolicy[result] {
 
 	iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
 
-	iamProfile[key] != {}
+	iamProfile != {}
 
 	object.get(iamProfile[key].Properties, "Roles", "undefined") == "undefined"
 
@@ -62,6 +62,6 @@ getIAMProfile(profileRef, res) = profile {
 	is_object(profileRef)
 	ref := profileRef.Ref
 	profile := {ref: res[ref]}
-} else = profile {
-	profile := {}
+} else = {} {
+	true
 }
