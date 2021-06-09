@@ -182,7 +182,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	startTime := time.Now()
 	log.Info().Msg("Started generating pdf report")
 
-	summary := body.(*model.Summary)
+	summary := body.(model.Summary)
 	basePath, err := os.Getwd()
 	if err != nil {
 		return err
@@ -203,7 +203,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	m.SetBackgroundColor(color.NewWhite())
 
-	createFirstPageHeader(m, summary)
+	createFirstPageHeader(m, &summary)
 
 	m.Line(1.0)
 
