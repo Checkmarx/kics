@@ -50,3 +50,15 @@ func closeFile(path, filename string, file *os.File) {
 	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
 	fmt.Printf("Results saved to file %s\n", path)
 }
+
+func getPlatforms(queries model.VulnerableQuerySlice) string {
+	platforms := make([]string, 0)
+	alreadyAdded := make(map[string]string)
+	for idx := range queries {
+		if _, ok := alreadyAdded[queries[idx].Platform]; !ok {
+			alreadyAdded[queries[idx].Platform] = ""
+			platforms = append(platforms, queries[idx].Platform)
+		}
+	}
+	return strings.Join(platforms, ", ")
+}

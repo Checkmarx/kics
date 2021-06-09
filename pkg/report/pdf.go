@@ -42,6 +42,23 @@ var (
 	vulnImageBase64 string
 )
 
+func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) {
+	m.Col(colTwo, func() {
+		m.Text(label, props.Text{
+			Size:        float64(textSize),
+			Align:       consts.Left,
+			Extrapolate: false,
+		})
+	})
+	m.Col(colTwo, func() {
+		m.Text(value, props.Text{
+			Size:        float64(textSize),
+			Align:       consts.Left,
+			Extrapolate: false,
+		})
+	})
+}
+
 func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath string) error {
 	for i := range queries {
 		m.SetBackgroundColor(color.NewWhite())
@@ -89,52 +106,13 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 			return err
 		}
 		m.Row(colFour, func() {
-			m.Col(colTwo, func() {
-				m.Text("Severity", props.Text{
-					Size:        10,
-					Align:       consts.Left,
-					Extrapolate: false,
-				})
-			})
-			m.Col(colTwo, func() {
-				m.Text(severity, props.Text{
-					Size:        10,
-					Align:       consts.Left,
-					Extrapolate: false,
-				})
-			})
+			createQueryEntryMetadataField(m, "Severity", severity, 10)
 		})
 		m.Row(colThree, func() {
-			m.Col(colTwo, func() {
-				m.Text("Platform", props.Text{
-					Size:        defaultTextSize,
-					Align:       consts.Left,
-					Extrapolate: false,
-				})
-			})
-			m.Col(colTwo, func() {
-				m.Text(platform, props.Text{
-					Size:        defaultTextSize,
-					Align:       consts.Left,
-					Extrapolate: false,
-				})
-			})
+			createQueryEntryMetadataField(m, "Platform", platform, defaultTextSize)
 		})
 		m.Row(colFive, func() {
-			m.Col(colTwo, func() {
-				m.Text("Category", props.Text{
-					Size:        defaultTextSize,
-					Align:       consts.Left,
-					Extrapolate: false,
-				})
-			})
-			m.Col(colTwo, func() {
-				m.Text(category, props.Text{
-					Size:        defaultTextSize,
-					Align:       consts.Left,
-					Extrapolate: false,
-				})
-			})
+			createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
 		})
 		createResultsTable(m, &queries[i], basePath)
 	}
@@ -194,7 +172,7 @@ func createHeaderArea(m pdf.Maroto) {
 func createFooterArea(m pdf.Maroto) {
 	m.Row(rowMedium, func() {
 		m.Col(colOne, func() {
-			m.Text("http://kics.io")
+			m.Text("https://kics.io")
 		})
 	})
 }
@@ -204,7 +182,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	startTime := time.Now()
 	log.Info().Msg("Started generating pdf report")
 
-	summary := body.(model.Summary)
+	summary := body.(*model.Summary)
 	basePath, err := os.Getwd()
 	if err != nil {
 		return err
@@ -225,7 +203,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	m.SetBackgroundColor(color.NewWhite())
 
-	createFirstPageHeader(m, &summary)
+	createFirstPageHeader(m, summary)
 
 	m.Line(1.0)
 
@@ -244,10 +222,10 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	return err
 }
 
-func createDateArea(m pdf.Maroto, summary *model.Summary) {
+func createDateField(m pdf.Maroto, label string, summary *model.Summary) {
 	m.Row(colFour, func() {
 		m.Col(colTwo, func() {
-			m.Text("START TIME", props.Text{
+			m.Text(label, props.Text{
 				Size:        defaultTextSize,
 				Align:       consts.Left,
 				Extrapolate: false,
@@ -261,22 +239,11 @@ func createDateArea(m pdf.Maroto, summary *model.Summary) {
 			})
 		})
 	})
-	m.Row(colSix, func() {
-		m.Col(colTwo, func() {
-			m.Text("END TIME", props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Extrapolate: false,
-			})
-		})
-		m.Col(colTwo, func() {
-			m.Text(summary.End.Format("15:04:05, Jan 02 2006"), props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Extrapolate: false,
-			})
-		})
-	})
+}
+
+func createDateArea(m pdf.Maroto, summary *model.Summary) {
+	createDateField(m, "START TIME", summary)
+	createDateField(m, "END TIME", summary)
 }
 
 func createPlatformsArea(m pdf.Maroto, summary *model.Summary) {
@@ -298,6 +265,27 @@ func createPlatformsArea(m pdf.Maroto, summary *model.Summary) {
 	})
 }
 
+func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.Color) {
+	m.Col(colOne, func() {
+		m.Text(label, props.Text{
+			Size:        defaultTextSize,
+			Align:       consts.Left,
+			Style:       consts.Bold,
+			Extrapolate: false,
+			Color:       mColor,
+		})
+	})
+	m.Col(colOne, func() {
+		m.Text(value, props.Text{
+			Size:        defaultTextSize,
+			Align:       consts.Left,
+			Style:       consts.Bold,
+			Extrapolate: false,
+			Color:       mColor,
+		})
+	})
+}
+
 func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 	highSeverityCount := fmt.Sprint(summary.SeverityCounters["HIGH"])
 	mediumSeverityCount := fmt.Sprint(summary.SeverityCounters["MEDIUM"])
@@ -306,79 +294,13 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 	totalCount := fmt.Sprint(summary.TotalCounter)
 
 	m.Row(rowMedium, func() {
-		m.Col(colOne, func() {
-			m.Text("HIGH", props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getRedColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text(highSeverityCount, props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getRedColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text("MEDIUM", props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getOrangeColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text(mediumSeverityCount, props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getOrangeColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text("LOW", props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getYellowColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text(lowSeverityCount, props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getYellowColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text("INFO", props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getBlueColor(),
-			})
-		})
-		m.Col(colOne, func() {
-			m.Text(infoSeverityCount, props.Text{
-				Size:        defaultTextSize,
-				Align:       consts.Left,
-				Style:       consts.Bold,
-				Extrapolate: false,
-				Color:       getBlueColor(),
-			})
-		})
+		createSummaryResultsField(m, "HIGH", highSeverityCount, getRedColor())
+		createSummaryResultsField(m, "MEDIUM", mediumSeverityCount, getOrangeColor())
+		createSummaryResultsField(m, "LOW", lowSeverityCount, getYellowColor())
+		createSummaryResultsField(m, "INFO", infoSeverityCount, getBlueColor())
+
 		m.ColSpace(colTwo)
+
 		m.Col(colOne, func() {
 			m.Text("TOTAL", props.Text{
 				Size:        defaultTextSize,
