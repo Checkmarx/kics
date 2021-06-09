@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 	iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
 
-	emptyProfile(iamProfile)
+	iamProfile == {}
 
 	result := {
 		"documentId": input.document[i].id,
@@ -42,12 +42,9 @@ CxPolicy[result] {
 
 	iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
 
-	emptyProfile(iamProfile) == false
+	iamProfile[key] != {}
 
-	object.get(iamProfile[_].Properties, "Roles", "undefined") == "undefined"
-
-	some key
-	iamProfile[key]
+	object.get(iamProfile[key].Properties, "Roles", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -60,18 +57,11 @@ CxPolicy[result] {
 
 getIAMProfile(profileRef, res) = profile {
 	is_string(profileRef)
-	profile := {profileRef: object.get(res, profileRef, "undefined")}
+	profile := {profileRef: res[profileRef]}
 } else = profile {
 	is_object(profileRef)
-	object.get(profileRef, "Ref", "undefined") != "undefined"
-	ref := object.get(profileRef, "Ref", "undefined")
-	profile := {ref: object.get(res, ref, "undefined")}
-}
-
-emptyProfile(iamProfile) {
-	is_null(iamProfile)
-} else {
-	iamProfile[_] == "undefined"
-} else = false {
-	true
+	ref := profileRef.Ref
+	profile := {ref: res[ref]}
+} else = profile {
+	profile := {}
 }
