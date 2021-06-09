@@ -1,20 +1,31 @@
 package report
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
-var sarifTests = []struct {
+type reportTestCase struct {
 	caseTest       jsonCaseTest
 	expectedResult model.Summary
-}{
+}
+
+type sarifReport struct {
+	basePath     string                 `json:"-"`
+	Schema       string                 `json:"$schema"`
+	SarifVersion string                 `json:"version"`
+	Runs         []reportModel.SarifRun `json:"runs"`
+}
+
+var sarifTests = []reportTestCase{
 	{
 		caseTest: jsonCaseTest{
 			summary:  test.SummaryMock,
@@ -33,9 +44,22 @@ func TestPrintSarifReport(t *testing.T) {
 				t.Fatal(err)
 			}
 			err := PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			checkFileExists(t, err, &test, "sarif")
+			jsonResult, err := os.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".sarif"))
 			require.NoError(t, err)
-			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".sarif"))
+			var resultSarif sarifReport
+			err = json.Unmarshal(jsonResult, &resultSarif)
+			require.NoError(t, err)
+			require.Equal(t, "", resultSarif.basePath)
+			require.Equal(t, "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json", resultSarif.Schema)
+			require.Equal(t, "2.1.0", resultSarif.SarifVersion)
+			require.Len(t, resultSarif.Runs, len(test.expectedResult.Queries))
 			os.RemoveAll(test.caseTest.path)
 		})
 	}
+}
+
+func checkFileExists(t *testing.T, err error, tc *reportTestCase, extension string) {
+	require.NoError(t, err)
+	require.FileExists(t, filepath.Join(tc.caseTest.path, tc.caseTest.filename+fmt.Sprintf(".%s", extension)))
 }
