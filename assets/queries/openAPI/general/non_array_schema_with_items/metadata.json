@@ -1,0 +1,16 @@
+{
+  "id": "20cb3159-b219-496b-8dac-54ae3ab2021a",
+  "queryName": "Non-Array Schema With Items (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Non-Array Schema should not have 'items' defined",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "9d47956b-29cd-43b1-9e6e-b39a4d484353",
+      "queryName": "Non-Array Schema With Items (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+    }
+  }
+}
