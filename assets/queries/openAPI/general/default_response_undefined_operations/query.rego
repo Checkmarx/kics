@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	response := doc.paths[n][oper].responses
 
 	object.get(response, "default", "undefined") == "undefined"
@@ -15,5 +16,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Default field should be defined on responses",
 		"keyActualValue": "Default field is not defined on responses",
+		"overrideKey": version,
 	}
 }

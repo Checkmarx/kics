@@ -8,31 +8,15 @@ paths:
       operationId: deleteItem
       summary: Delete item
       responses:
-        '204':
+        "204":
           description: Item deleted successfully
         default:
           description: Error
-          schema:
-            "$ref": "#/components/schemas/Error"
     patch:
       operationId: updateItem
       summary: Update item
       responses:
-        '204':
+        "204":
           description: Item updated successfully
         default:
           description: Error
-          schema:
-            "$ref": "#/components/schemas/Error"
-components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-      required:
-      - code
-      - message
