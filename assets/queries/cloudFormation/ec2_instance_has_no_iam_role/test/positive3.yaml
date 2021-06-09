@@ -26,8 +26,7 @@ Resources:
           - Name
       KeyName:
         Ref: KeyName
-      IamInstanceProfile:
-        Ref: NonExistantProfile
+      IamInstanceProfile: NonExistantProfile
       SecurityGroupIds:
         - Ref: SSHAccessSG
       Tags:
@@ -45,8 +44,7 @@ Resources:
           - Name
       KeyName:
         Ref: KeyName
-      IamInstanceProfile:
-        Ref: NoRolesProfile
+      IamInstanceProfile: NoRolesProfile
       Tags:
         - Key: Name
           Value: Test
