@@ -1,36 +1,36 @@
 [
   {
-    "queryName": "Parameter Object With Incorrect Ref",
+    "queryName": "Parameter Object With Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 56,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Parameter Object With Incorrect Ref",
+    "queryName": "Parameter Object With Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 59,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Parameter Object With Incorrect Ref",
+    "queryName": "Parameter Object With Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 67,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Parameter Object With Incorrect Ref",
+    "queryName": "Parameter Object With Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 46,
     "filename": "positive2.yaml"
   },
   {
-    "queryName": "Parameter Object With Incorrect Ref",
+    "queryName": "Parameter Object With Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 41,
     "filename": "positive2.yaml"
   },
   {
-    "queryName": "Parameter Object With Incorrect Ref",
+    "queryName": "Parameter Object With Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 42,
     "filename": "positive2.yaml"
