@@ -7216,20 +7216,36 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Array Items Has No Type<br/><sup><sub>be0e0df7-f3d9-42a1-9b6f-d425f94872c4</sub></sup></td>
+<td>Array Without Maximum Number of Items (v2)<br/><sup><sub>99eb2c95-2040-4104-9e7c-e16f7474d218</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>Schema array items type should be defined</td>
-<td><a href="https://swagger.io/docs/specification/data-models/data-types/#string">Documentation</a><br/></td>
+<td>Array schema/parameter should have the field 'maxItems' set</td>
+<td><a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Array Schema Without Maximum Number of Items<br/><sup><sub>6998389e-66b2-473d-8d05-c8d71ac4d04d</sub></sup></td>
+<td>Array Without Maximum Number of Items (v3)<br/><sup><sub>6998389e-66b2-473d-8d05-c8d71ac4d04d</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
 <td>Array schema should have the field 'maxItems' set</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Array Items Has No Type (v2)<br/><sup><sub>8697a1a4-82c6-4603-8ac8-57529756744e</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Schema/Parameter array items type should be defined</td>
+<td><a href="https://swagger.io/specification/v2/#format">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Array Items Has No Type (v3)<br/><sup><sub>be0e0df7-f3d9-42a1-9b6f-d425f94872c4</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>Schema array items type should be defined</td>
+<td><a href="https://swagger.io/docs/specification/data-models/data-types/#string">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cleartext API Key In Global Security<br/><sup><sub>9c238c97-1991-4c0b-9c7d-6c7912e1dc7c</sub></sup></td>
@@ -7352,28 +7368,12 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Numeric Schema Without Maximum<br/><sup><sub>2ea04bef-c769-409e-9179-ee3a50b5c0ac</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Parameter Object Without Schema<br/><sup><sub>8fe1846f-52cc-4413-ace9-1933d7d23672</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
 <td>The Parameter Object should have the attribute 'schema' defined</td>
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Numeric Schema Without Format<br/><sup><sub>fbf699b5-ef74-4542-9cf1-f6eeac379373</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Numeric schema (type set to 'integer' or 'number') should have 'format' defined.</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>String Schema Without Pattern<br/><sup><sub>00b78adf-b83f-419c-8ed8-c6018441dd3a</sub></sup></td>
@@ -7416,7 +7416,47 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Numeric Schema Without Minimum<br/><sup><sub>181bd815-767e-4e95-a24d-bb3c87328e19</sub></sup></td>
+<td>Numeric Schema Without Maximum (v2)<br/><sup><sub>203eee11-15b6-4d47-b888-4c7f534967ee</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Numeric Schema Without Maximum (v3)<br/><sup><sub>2ea04bef-c769-409e-9179-ee3a50b5c0ac</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Numeric Schema Without Format (v2)<br/><sup><sub>3ed8fc82-c2bb-49e0-811f-c53923674c49</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'format' defined.</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Numeric Schema Without Format (v3)<br/><sup><sub>fbf699b5-ef74-4542-9cf1-f6eeac379373</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'format' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Numeric Schema Without Minimum (v2)<br/><sup><sub>efd1dfc8-da91-4909-a3f3-c23abc5ec799</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Numeric schema (type set to 'integer' or 'number') should have 'minimum' defined.</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Numeric Schema Without Minimum (v3)<br/><sup><sub>181bd815-767e-4e95-a24d-bb3c87328e19</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -7440,22 +7480,6 @@
 <td><a href="https://swagger.io/docs/specification/describing-responses/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Post Operation<br/><sup><sub>f368dd2d-9344-4146-a05b-7c6faa1269ad</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Post should define at least one success response (200, 201, 202 or 204)</td>
-<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Default Response Undefined On Operations<br/><sup><sub>86e3702f-c868-44b2-b61d-ea5316c18110</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Networking and Firewall</td>
-<td>Operations responses should have a default response defined</td>
-<td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Header Object Without Schema<br/><sup><sub>50de3b5b-6465-4e06-a9b0-b4c2ba34326b</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -7472,7 +7496,47 @@
 <td><a href="https://swagger.io/docs/specification/describing-responses/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Response Code Missing<br/><sup><sub>6c35d2c6-09f2-4e5c-a094-e0e91327071d</sub></sup></td>
+<td>Success Response Code Undefined for Post Operation (v2)<br/><sup><sub>9fedee41-2e6d-4091-b011-4a16b4c18c70</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Post should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Post Operation (v3)<br/><sup><sub>f368dd2d-9344-4146-a05b-7c6faa1269ad</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Post should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default Response Undefined On Operations (v2)<br/><sup><sub>5f34c7ae-4f3f-4cbb-8fe3-a11d6961062f</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Operations responses should have a default response defined</td>
+<td><a href="https://swagger.io/specification/v2/#responses-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default Response Undefined On Operations (v3)<br/><sup><sub>86e3702f-c868-44b2-b61d-ea5316c18110</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Operations responses should have a default response defined</td>
+<td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Response Code Missing (v2)<br/><sup><sub>6e96ed39-bf45-4089-99ba-f1fe7cf6966f</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>500, 429 and 400 responses should be defined for all operations, except head operation. 415 response should be defined for the post, put, and patch operations. 404 response should be defined for the get, put, head, delete operations. 200 response should be defined for options operation. 401 and 403 response should be defined for all operations when the security field is defined.</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Response Code Missing (v3)<br/><sup><sub>6c35d2c6-09f2-4e5c-a094-e0e91327071d</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -7480,7 +7544,15 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Delete Operation<br/><sup><sub>3b497874-ae59-46dd-8d72-1868a3b8f150</sub></sup></td>
+<td>Success Response Code Undefined for Delete Operation (v2)<br/><sup><sub>ad432855-b7fb-4429-92a3-93b5ce34f0b1</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Delete should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Delete Operation (v3)<br/><sup><sub>3b497874-ae59-46dd-8d72-1868a3b8f150</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -7488,7 +7560,15 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Put Operation<br/><sup><sub>60b5f56b-66ff-4e1c-9b62-5753e16825bc</sub></sup></td>
+<td>Success Response Code Undefined for Put Operation (v2)<br/><sup><sub>965a043f-5f3c-4d0a-be72-d9ce12fdb4d6</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Put should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Put Operation (v3)<br/><sup><sub>60b5f56b-66ff-4e1c-9b62-5753e16825bc</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -7496,7 +7576,15 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Head Operation<br/><sup><sub>3b066059-f411-4554-ac8d-96f32bff90da</sub></sup></td>
+<td>Success Response Code Undefined for Head Operation (v2)<br/><sup><sub>4f0b30e3-a498-4dd7-b3f2-f4b6471a8d5a</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Head should define at least one success response (200 or 202)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Head Operation (v3)<br/><sup><sub>3b066059-f411-4554-ac8d-96f32bff90da</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -7504,7 +7592,15 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Patch Operation<br/><sup><sub>1908a8ee-927d-4166-8f18-241152170cc1</sub></sup></td>
+<td>Success Response Code Undefined for Patch Operation (v2)<br/><sup><sub>f36e87cc-a209-4f37-8571-66833e4aead7</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Patch should define at least one success response (200, 201, 202 or 204)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Patch Operation (v3)<br/><sup><sub>1908a8ee-927d-4166-8f18-241152170cc1</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -7512,7 +7608,15 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Success Response Code Undefined for Get Operation<br/><sup><sub>b2f275be-7d64-4064-b418-be6b431363a7</sub></sup></td>
+<td>Success Response Code Undefined for Get Operation (v2)<br/><sup><sub>9b633f3b-c94b-4fbb-a65b-1a4e9134fb63</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Get should define at least one success response (200 or 202)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Success Response Code Undefined for Get Operation (v3)<br/><sup><sub>b2f275be-7d64-4064-b418-be6b431363a7</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -7568,20 +7672,28 @@
 <td><a href="https://swagger.io/specification/#oauth-flow-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Invalid Number Format<br/><sup><sub>d929c031-078f-4241-b802-e224656ad890</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Insecure Configurations</td>
-<td>Schema numeric types should be valid, for integer must be int32 or int64 and number must be float or double</td>
-<td><a href="https://swagger.io/docs/specification/data-models/data-types/">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Unknown Schema String Format<br/><sup><sub>a767f960-0489-4532-a6a0-3f0b43da7dab</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
 <td>String schema should have the format field set as 'date', 'date-time', 'password', 'byte', 'binary', 'email', 'uuid', 'uri', 'hostname', 'ipv4' or 'ipv6'</td>
 <td><a href="https://swagger.io/docs/specification/data-models/data-types/#string">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Format (v2)<br/><sup><sub>caf1793e-95dd-4b18-8d90-8f3c0ab5bddf</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>The format should be valid for the type defined. For integer type must be int32 or int64, number type must be float or double, and for string type must be binary, byte, date, date-time, or password</td>
+<td><a href="https://swagger.io/specification/v2/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid Format (v3)<br/><sup><sub>d929c031-078f-4241-b802-e224656ad890</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Insecure Configurations</td>
+<td>The format should be valid for the type defined. For integer type must be int32 or int64, number type must be float or double, and for string type must be binary, byte, date, date-time, or password</td>
+<td><a href="https://swagger.io/docs/specification/data-models/data-types/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Unknown Prefix<br/><sup><sub>a5375be3-521c-43bb-9eab-e2432e368ee4</sub></sup></td>
@@ -7648,22 +7760,6 @@
 <td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>JSON '$ref' alongside other properties<br/><sup><sub>96beb800-566f-49a9-a0ea-dbdf4bc80429</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Each field on Open API specification which accepts '$ref', infers that field is using a reference object, which has only '$ref' key</td>
-<td><a href="https://swagger.io/specification/#reference-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Invalid License URL<br/><sup><sub>9239c289-9e4c-4d92-8be1-9d506057c971</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>License Object URL should be a valid URL</td>
-<td><a href="https://swagger.io/specification/#license-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Property 'allowReserved' of Encoding Object Ignored<br/><sup><sub>4190dda7-af03-4cf0-a128-70ac1661ca09</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -7718,14 +7814,6 @@
 <td>Best Practices</td>
 <td>Components callbacks definitions should be referenced or removed from Open API definition</td>
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Path Without Operation<br/><sup><sub>84c826c9-1893-4b34-8cdd-db97645b4bf3</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Path object should have at least one operation object defined</td>
-<td><a href="https://swagger.io/specification/#path-item-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Components Request Body Definition Is Unused<br/><sup><sub>6b76f589-9713-44ab-97f5-59a3dba1a285</sub></sup></td>
@@ -7808,6 +7896,38 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>JSON '$ref' alongside other properties (v2)<br/><sup><sub>f34c1c68-4773-4df0-a103-6e2ca32e585f</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Each field on Open API specification which accepts '$ref', infers that field is using a reference object, which has only '$ref' key</td>
+<td><a href="https://swagger.io/specification/v2/#referenceObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>JSON '$ref' alongside other properties (v3)<br/><sup><sub>96beb800-566f-49a9-a0ea-dbdf4bc80429</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Each field on Open API specification which accepts '$ref', infers that field is using a reference object, which has only '$ref' key</td>
+<td><a href="https://swagger.io/specification/#reference-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid License URL (v2)<br/><sup><sub>de2b4910-8484-46d6-a055-dc1e793ee3ff</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>License Object URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/v2/#licenseObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid License URL (v3)<br/><sup><sub>9239c289-9e4c-4d92-8be1-9d506057c971</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>License Object URL should be a valid URL</td>
+<td><a href="https://swagger.io/specification/#license-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Invalid Contact Email (v2)<br/><sup><sub>d83bebc8-4e5e-4241-b783-cba9fb5a1c9a</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -7854,6 +7974,22 @@
 <td>Best Practices</td>
 <td>Tag External Documentation URL should be a valid URL</td>
 <td><a href="https://swagger.io/specification/#external-documentation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Path Without Operation (v2)<br/><sup><sub>609cd557-66b4-41fa-8edd-2abc6c7cfd08</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Path object should have at least one operation object defined</td>
+<td><a href="https://swagger.io/specification/v2/#pathItemObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Path Without Operation (v3)<br/><sup><sub>84c826c9-1893-4b34-8cdd-db97645b4bf3</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Path object should have at least one operation object defined</td>
+<td><a href="https://swagger.io/specification/#path-item-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Required Property With Default Value (v2)<br/><sup><sub>f7ab6c83-ef89-40e1-8a99-32e2599fb665</sub></sup></td>
@@ -8112,14 +8248,6 @@
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Object Properties With Duplicated Keys<br/><sup><sub>10c61e4b-eed5-49cf-9c7d-d4bf02e9edfa</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema Object Property key should be unique through out the fields 'properties', 'allOf', 'additionalProperties'</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Schema Enum Invalid<br/><sup><sub>03856cb2-e46c-4daf-bfbf-214ec93c882b</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -8256,14 +8384,6 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Type Has Invalid Keyword<br/><sup><sub>a9228976-10cf-4b5f-b902-9e962aad037a</sub></sup></td>
-<td>OpenAPI</td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema defined type is using a keyword of another type</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Property 'allowEmptyValue' Improperly Defined<br/><sup><sub>4bcbcd52-3028-469f-bc14-02c7dbba2df2</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -8392,6 +8512,22 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Type Has Invalid Keyword (v2)<br/><sup><sub>492c6cbb-f3f8-4807-aa4f-42b8b1c46b59</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema and Parameter Object define type should not use a keyword of another type</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Type Has Invalid Keyword (v3)<br/><sup><sub>a9228976-10cf-4b5f-b902-9e962aad037a</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object define type should not use a keyword of another type</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Paths Object is Empty (v2)<br/><sup><sub>3e6c7b1c-8a8d-43ab-98b9-65159f44db4a</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#00C">Info</span></td>
@@ -8406,6 +8542,22 @@
 <td>Structure and Semantics</td>
 <td>Paths object may be empty due to ACL constraints, meaning they are not exposed</td>
 <td><a href="https://swagger.io/specification/#paths-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Object Properties With Duplicated Keys (v2)<br/><sup><sub>ded017bf-fb13-4f8d-868b-84aebcc572ad</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object Property key should be unique through out the fields 'properties', 'allOf', 'additionalProperties'</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Object Properties With Duplicated Keys (v3)<br/><sup><sub>10c61e4b-eed5-49cf-9c7d-d4bf02e9edfa</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object Property key should be unique through out the fields 'properties', 'allOf', 'additionalProperties'</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Template Path With No Corresponding Path Parameter (v2)<br/><sup><sub>e7656d8d-7288-4bbe-b07b-22b389be75ce</sub></sup></td>
