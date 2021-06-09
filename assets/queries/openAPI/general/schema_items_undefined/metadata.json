@@ -12,5 +12,6 @@
       "queryName": "Schema Items Undefined (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
     }
-  }
+  },
+  "aggregation": 2
 }
