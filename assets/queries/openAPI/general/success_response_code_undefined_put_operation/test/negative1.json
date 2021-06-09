@@ -11,10 +11,7 @@
         "summary": "Delete item",
         "responses": {
           "default": {
-            "description": "Error",
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
+            "description": "Error"
           }
         }
       },
@@ -29,31 +26,9 @@
             "description": "Item updated successfully"
           },
           "default": {
-            "description": "Error",
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
+            "description": "Error"
           }
         }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Error": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "code",
-          "message"
-        ]
       }
     }
   }
