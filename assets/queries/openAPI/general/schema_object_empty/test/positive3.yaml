@@ -22,19 +22,6 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-security:
-  - exampleSecurity: []
 components:
   schemas:
-    GeneralError:
-      type: object
-      discriminator:
-        propertyName: petType
-      properties:
-        code:
-          type: string
-          format: int32
-        message:
-          type: string
-      required:
-        - petType
+    GeneralError: {}
