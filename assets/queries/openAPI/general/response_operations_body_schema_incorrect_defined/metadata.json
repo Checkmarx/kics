@@ -1,6 +1,6 @@
 {
   "id": "12a7210b-f4b4-47d0-acac-0a819e2a0ca3",
-  "queryName": "Response on operations that should not have a body has declared content",
+  "queryName": "Response on operations that should not have a body has declared content (v3)",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "If a response is head or its code is 204 or 304, it shouldn't have a content defined",
