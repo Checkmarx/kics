@@ -1,6 +1,5 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 options := {{}, null}
@@ -15,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.schema", [common_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The Schema Object is not empty",
 		"keyActualValue": "The Schema Object is empty",
