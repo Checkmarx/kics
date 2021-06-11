@@ -226,6 +226,10 @@ func LogPath(opt interface{}, changed bool) error {
 		if err != nil {
 			return err
 		}
+	} else if filepath.Dir(logPath) != "." {
+		if createErr := os.MkdirAll(filepath.Dir(logPath), os.ModePerm); createErr != nil {
+			return createErr
+		}
 	}
 
 	loggerFile, err = os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY, os.ModePerm)
