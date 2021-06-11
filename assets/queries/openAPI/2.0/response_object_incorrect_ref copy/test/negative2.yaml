@@ -9,9 +9,14 @@ paths:
       summary: List API versions
       responses:
         '200':
-          "$ref": "#/definitions/User"
+          "$ref": "#/responses/Success"
       parameters:
       - "$ref": "#/parameters/limitParam"
+responses:
+  Success:
+    description: An array with users
+    schema:
+      "$ref": "#/definitions/User"
 parameters:
   limitParam:
     name: limit

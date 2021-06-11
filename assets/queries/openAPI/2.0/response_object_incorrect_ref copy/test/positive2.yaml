@@ -11,7 +11,12 @@ paths:
         '200':
           "$ref": "#/definitions/User"
       parameters:
-      - "$ref": "#/definitions/User"
+      - "$ref": "#/parameters/limitParam"
+responses:
+  Success:
+    description: An array with users
+    schema:
+      "$ref": "#/definitions/User"
 parameters:
   limitParam:
     name: limit

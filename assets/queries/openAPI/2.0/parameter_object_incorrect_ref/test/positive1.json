@@ -11,12 +11,15 @@
         "summary": "List API versions",
         "responses": {
           "200": {
-            "$ref": "#/definitions/User"
+            "description": "A list of users",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
         },
         "parameters": [
           {
-            "$ref": "#/parameters/limitParam"
+            "$ref": "#/definitions/User"
           }
         ]
       }
