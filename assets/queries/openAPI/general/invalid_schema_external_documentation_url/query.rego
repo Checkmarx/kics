@@ -1,6 +1,5 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -14,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.schema.externalDocs.url", [common_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.schema.externalDocs.url", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Schema External Documentation URL is a valid URL",
 		"keyActualValue": "Schema External Documentation URL is not a valid URL",
