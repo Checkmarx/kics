@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Global Security Field Is Undefined (v3)",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Security Field Is Undefined (v3)",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Global Security Field Is Undefined (v2)",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Global Security Field Is Undefined (v2)",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive4.yaml"
+  }
+]

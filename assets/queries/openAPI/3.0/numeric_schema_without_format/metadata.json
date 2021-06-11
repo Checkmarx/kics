@@ -1,9 +1,0 @@
-{
-  "id": "fbf699b5-ef74-4542-9cf1-f6eeac379373",
-  "queryName": "Numeric Schema Without Format",
-  "severity": "MEDIUM",
-  "category": "Insecure Configurations",
-  "descriptionText": "Numeric schema (type set to 'integer' or 'number') should have 'format' defined.",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}

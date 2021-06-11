@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: Simple API
+  version: 1.0.0
+paths:
+  "/item":
+    post:
+      operationId: createItem
+      summary: Create item
+      responses:
+        default:
+          description: Error

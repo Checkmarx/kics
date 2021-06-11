@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/item": {
+      "put": {
+        "operationId": "updateItem",
+        "summary": "Updated item",
+        "responses": {
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    }
+  }
+}

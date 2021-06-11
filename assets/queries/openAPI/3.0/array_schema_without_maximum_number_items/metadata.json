@@ -1,9 +1,0 @@
-{
-  "id": "6998389e-66b2-473d-8d05-c8d71ac4d04d",
-  "queryName": "Array Schema Without Maximum Number of Items",
-  "severity": "HIGH",
-  "category": "Insecure Configurations",
-  "descriptionText": "Array schema should have the field 'maxItems' set",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}
