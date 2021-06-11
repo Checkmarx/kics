@@ -82,7 +82,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
 						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
-						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        model.SeverityHigh,
 						"platform":        "CloudFormation",
@@ -100,13 +100,13 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 				Types:  []string{""},
 			},
 			excludeCategory: []string{},
-			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e139"},
+			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want:            []model.QueryMetadata{},
 			wantErr:         false,
 		},
 		{
 			name:            "get_queries_with_exclude_error",
-			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e139"},
+			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			excludeCategory: []string{},
 			fields: fields{
 				Source: "../no-path",
@@ -176,7 +176,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
 			},
-			includeIDs: []string{"57b9893d-33b1-4419-bcea-a717ea87e139"},
+			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
 				{
 					Query:   "all_auth_users_get_read_access",
@@ -185,7 +185,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
 						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
-						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        model.SeverityHigh,
 						"platform":        "CloudFormation",
@@ -208,7 +208,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		},
 		{
 			name:       "get_queries_with_include_error",
-			includeIDs: []string{"57b9893d-33b1-4419-bcea-a717ea87e139"},
+			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			fields: fields{
 				Source: "../no-path",
 			},
@@ -388,7 +388,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
 						"descriptionUrl":  "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",
-						"id":              "57b9893d-33b1-4419-bcea-a717ea87e139",
+						"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 						"queryName":       "All Auth Users Get Read Access",
 						"severity":        model.SeverityHigh,
 						"platform":        "CloudFormation",

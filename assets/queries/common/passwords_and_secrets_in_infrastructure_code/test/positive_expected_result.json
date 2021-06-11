@@ -82,5 +82,11 @@
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Passwords And Secrets In Infrastructure Code",
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive7.yaml"
   }
 ]

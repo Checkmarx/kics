@@ -22,6 +22,25 @@ CxPolicy[result] {
 	}
 }
 
+# Check for env variables in kubernetes
+CxPolicy[result] {
+	docs := input.document[_]
+
+	[path, value] = walk(docs)
+	is_array(value.env)
+	checkObjects := [x | x := create_kubernetes_env_docs(value.env[_])]
+	checkObject := checkObjects[_]
+	check_vulnerability(checkObject)
+	allPath := [x | merge_path(path[i]) != ""; x := merge_path(path[i])]
+	result := {
+		"documentId": docs.id,
+		"searchKey": sprintf("%s.env.name=%s", [resolve_path(checkObject, allPath), checkObject.key]),
+		"issueType": "RedundantAttribute",
+		"keyExpectedValue": "Hardcoded secret key should not appear in source",
+		"keyActualValue": sprintf("'%s' is using '%s' as password", [checkObject.key, checkObject.value]),
+	}
+}
+
 merge_path(pathItem) = item {
 	not is_string(pathItem)
 	item := ""
@@ -54,6 +73,16 @@ prepare_object(key, value) = obj {
 		"value": value,
 		"id": "",
 	}]
+}
+
+create_kubernetes_env_docs(envValue) = obj {
+	object.get(envValue, "name", "undefined") != "undefined"
+	object.get(envValue, "value", "undefined") != "undefined"
+	obj := {
+		"key": envValue.name,
+		"value": envValue.value,
+		"id": "",
+	}
 }
 
 create_docker_object(value, original) = obj {

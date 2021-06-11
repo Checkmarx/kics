@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
 	minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -69,18 +68,6 @@ func includeJS(name string) template.HTML {
 
 func getPaths(paths []string) string {
 	return strings.Join(paths, ", ")
-}
-
-func getPlatforms(queries model.VulnerableQuerySlice) string {
-	platforms := make([]string, 0)
-	alreadyAdded := make(map[string]string)
-	for idx := range queries {
-		if _, ok := alreadyAdded[queries[idx].Platform]; !ok {
-			alreadyAdded[queries[idx].Platform] = ""
-			platforms = append(platforms, queries[idx].Platform)
-		}
-	}
-	return strings.Join(platforms, ", ")
 }
 
 // PrintHTMLReport creates a report file on HTML format

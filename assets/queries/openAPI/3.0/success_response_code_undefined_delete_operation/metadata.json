@@ -1,9 +1,0 @@
-{
-  "id": "3b497874-ae59-46dd-8d72-1868a3b8f150",
-  "queryName": "Success Response Code Undefined for Delete Operation",
-  "severity": "MEDIUM",
-  "category": "Networking and Firewall",
-  "descriptionText": "Delete should define at least one success response (200, 201, 202 or 204)",
-  "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
-}
