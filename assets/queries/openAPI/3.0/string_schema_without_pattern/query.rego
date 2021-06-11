@@ -9,7 +9,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	openapi_lib.undefined_field_in_string_schema(value, "pattern")
+	openapi_lib.undefined_field_in_string_type(value, "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -26,7 +26,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
-	openapi_lib.undefined_field_in_string_schema(value, "pattern")
+	openapi_lib.undefined_field_in_string_type(value, "pattern")
 
 	result := {
 		"documentId": doc.id,

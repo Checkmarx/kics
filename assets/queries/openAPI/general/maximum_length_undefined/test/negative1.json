@@ -6,38 +6,19 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
     "/": {
       "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
         "responses": {
           "200": {
             "description": "200 response",
             "content": {
               "application/json": {
-                "schema": {
-                  "discriminator": {
-                    "propertyName": "petType"
-                  },
-                  "additionalProperties": false,
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "format": "int32",
-                      "maxLength": "15"
-                    },
-                    "message": {
-                      "type": "string",
-                      "maxLength": "15"
-                    }
-                  },
-                  "required": [
-                    "petType"
-                  ],
-                  "type": "object"
-                },
                 "examples": {
                   "foo": {
                     "value": {
@@ -58,6 +39,44 @@
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GeneralError": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "petType"
+        },
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 15,
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 15
+          }
+        },
+        "required": [
+          "petType"
+        ]
+      }
+    },
+    "requestBodies": {
+      "NewItem": {
+        "description": "A JSON object containing item data",
+        "required": true,
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "$ref": "#/components/schemas/GeneralError"
             }
           }
         }

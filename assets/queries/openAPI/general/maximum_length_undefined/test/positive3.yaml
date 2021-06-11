@@ -32,11 +32,9 @@ components:
       properties:
         code:
           type: string
-          maxLength: 15
           format: int32
         message:
           type: string
-          maxLength: 15
       required:
         - petType
   requestBodies:
@@ -47,6 +45,3 @@ components:
         multipart/form-data:
           schema:
             $ref: "#/components/schemas/GeneralError"
-          examples:
-            tshirt:
-              $ref: "#/components/examples/tshirt"

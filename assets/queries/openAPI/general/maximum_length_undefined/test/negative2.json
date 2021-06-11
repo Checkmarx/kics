@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -25,10 +25,12 @@
                   "properties": {
                     "code": {
                       "type": "string",
-                      "format": "int32"
+                      "format": "int32",
+                      "maxLength": 15
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "maxLength": 15
                     }
                   },
                   "required": [
@@ -58,9 +60,7 @@
               }
             }
           }
-        },
-        "operationId": "listVersionsv2",
-        "summary": "List API versions"
+        }
       }
     }
   }
