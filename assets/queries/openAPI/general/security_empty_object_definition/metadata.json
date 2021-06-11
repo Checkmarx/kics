@@ -1,6 +1,6 @@
 {
   "id": "543e38f4-1eee-479e-8eb0-15257013aa0a",
-  "queryName": "Global security field has an empty object",
+  "queryName": "Global security field has an empty object (v3)",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Global security definition must not have empty objects",
