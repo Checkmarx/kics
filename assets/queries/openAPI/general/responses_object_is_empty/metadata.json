@@ -1,0 +1,17 @@
+{
+  "id": "990eaf09-d6f1-4c3c-b174-a517b1de8917",
+  "queryName": "Responses Object Is Empty (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Responses Object should not be empty",
+  "descriptionUrl": "https://swagger.io/specification/#responses-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "6172e7ab-d2b7-45f8-a7db-1603931d8ba3",
+      "queryName": "Responses Object Is Empty (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#responsesObject"
+    }
+  },
+  "aggregation": 2
+}
