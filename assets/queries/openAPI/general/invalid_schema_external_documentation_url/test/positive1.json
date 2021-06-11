@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -19,11 +19,6 @@
             "description": "200 response",
             "content": {
               "application/json": {
-                "schema": {
-                  "externalDocs": {
-                    "url": "/"
-                  }
-                },
                 "examples": {
                   "foo": {
                     "value": {
@@ -46,6 +41,24 @@
               }
             }
           }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "externalDocs": {
+          "url": "/"
         }
       }
     }

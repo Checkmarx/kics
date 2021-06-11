@@ -12,9 +12,6 @@ paths:
           description: 200 response
           content:
             application/json:
-              schema:
-                externalDocs:
-                  url: /
               examples:
                 foo:
                   value:
@@ -25,5 +22,14 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-security:
-  - exampleSecurity: []
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      externalDocs:
+        url: http://docs.my-api.com/store-orders.htm
