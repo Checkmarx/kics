@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "API Key Exposed In Operation Security (v3)",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v3)",
+    "severity": "LOW",
+    "line": 15,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v3)",
+    "severity": "LOW",
+    "line": 16,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v3)",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v3)",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v3)",
+    "severity": "LOW",
+    "line": 13,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v2)",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v2)",
+    "severity": "LOW",
+    "line": 15,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v2)",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "API Key Exposed In Operation Security (v2)",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive4.yaml"
+  }
+]

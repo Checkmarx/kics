@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "Default Response Undefined On Operations (v3)",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v3)",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v3)",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v3)",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v3)",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v3)",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v2)",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v2)",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v2)",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Default Response Undefined On Operations (v2)",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive6.yaml"
+  }
+]

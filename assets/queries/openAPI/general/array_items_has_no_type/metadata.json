@@ -1,0 +1,18 @@
+{
+  "id": "be0e0df7-f3d9-42a1-9b6f-d425f94872c4",
+  "queryName": "Array Items Has No Type (v3)",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Schema array items type should be defined",
+  "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/#string",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "8697a1a4-82c6-4603-8ac8-57529756744e",
+      "queryName": "Array Items Has No Type (v2)",
+      "descriptionText": "Schema/Parameter array items type should be defined",
+      "descriptionUrl": "https://swagger.io/specification/v2/#format"
+    }
+  },
+  "aggregation": 2
+}

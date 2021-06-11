@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/item": {
+      "head": {
+        "operationId": "headItem",
+        "summary": "Head item",
+        "responses": {
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    }
+  }
+}
