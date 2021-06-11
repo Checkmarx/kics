@@ -27,6 +27,7 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"sarif":  report.PrintSarifReport,
 	"html":   report.PrintHTMLReport,
 	"glsast": report.PrintGitlabSASTReport,
+	"pdf":    report.PrintPdfReport,
 }
 
 // ProgressBar represents a Progress

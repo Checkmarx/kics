@@ -1,0 +1,32 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/item": {
+      "delete": {
+        "operationId": "deleteItem",
+        "summary": "Delete item",
+        "responses": {
+          "default": {
+            "description": "Error"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateItem",
+        "summary": "Update item",
+        "responses": {
+          "204": {
+            "description": "Item updated successfully"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    }
+  }
+}

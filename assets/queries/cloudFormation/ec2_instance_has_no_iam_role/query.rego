@@ -1,7 +1,8 @@
 package Cx
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	doc := input.document[i].Resources
+	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	object.get(resource.Properties, "IamInstanceProfile", "undefined") == "undefined"
@@ -16,14 +17,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	doc := input.document[i].Resources
+	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	object.get(resource.Properties, "IamInstanceProfile", "undefined") != "undefined"
 
-	iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
-
-	emptyProfile(iamProfile)
+	iamProfile := get_iam_instance_profile(resource.Properties.IamInstanceProfile)
+	object.get(doc, iamProfile, "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -35,43 +36,29 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	doc := input.document[i].Resources
+	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	object.get(resource.Properties, "IamInstanceProfile", "undefined") != "undefined"
 
-	iamProfile := getIAMProfile(resource.Properties.IamInstanceProfile, input.document[i].Resources)
-
-	emptyProfile(iamProfile) == false
-
-	object.get(iamProfile[_].Properties, "Roles", "undefined") == "undefined"
-
-	some key
-	iamProfile[key]
+	iamProfile := get_iam_instance_profile(resource.Properties.IamInstanceProfile)
+	object.get(doc, iamProfile, "undefined") != "undefined"
+	object.get(doc[iamProfile].Properties, "Roles", "undefined") == "undefined"
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Resources.%s.Properties", [key]),
+		"searchKey": sprintf("Resources.%s.Properties", [iamProfile]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.Roles' is set", [key]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.Roles' is undefined", [key]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.Roles' is set", [iamProfile]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.Roles' is undefined", [iamProfile]),
 	}
 }
 
-getIAMProfile(profileRef, res) = profile {
-	is_string(profileRef)
-	profile := {profileRef: object.get(res, profileRef, "undefined")}
-} else = profile {
-	is_object(profileRef)
-	object.get(profileRef, "Ref", "undefined") != "undefined"
-	ref := object.get(profileRef, "Ref", "undefined")
-	profile := {ref: object.get(res, ref, "undefined")}
-}
-
-emptyProfile(iamProfile) {
-	is_null(iamProfile)
-} else {
-	iamProfile[_] == "undefined"
-} else = false {
-	true
+get_iam_instance_profile(instance_profile) = name {
+	is_object(instance_profile)
+	name := instance_profile.Ref
+} else = name {
+	is_string(instance_profile)
+	name := instance_profile
 }

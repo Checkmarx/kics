@@ -1,9 +1,0 @@
-{
-  "id": "be0e0df7-f3d9-42a1-9b6f-d425f94872c4",
-  "queryName": "Schema Array Items Has No Type",
-  "severity": "HIGH",
-  "category": "Insecure Configurations",
-  "descriptionText": "Schema array items type should be defined",
-  "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/#string",
-  "platform": "OpenAPI"
-}
