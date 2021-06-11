@@ -184,9 +184,9 @@ CxPolicy[result] {
 	}
 }
 
-is_os_dir(volumeMounts) = result {
+is_os_dir(volumeMounts) {
 	hostSensitiveDir = {"/bin", "/sbin", "/boot", "/cdrom", "/dev", "/etc", "/home", "/lib", "/media", "/proc", "/root", "/run", "/seLinux", "/srv", "/usr", "/var"}
-	result = startswith(volumeMounts.mount_path, hostSensitiveDir[_])
-} else = result {
-	result = volumeMounts.mount_path == "/"
+	startswith(volumeMounts.mount_path, hostSensitiveDir[_])
+} else {
+	volumeMounts.mount_path == "/"
 }

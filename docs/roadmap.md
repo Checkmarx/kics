@@ -12,7 +12,7 @@ Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on G
 
 ---
 
-## Completed Feautres
+## Completed Features
 
 | Release | Feature |
 | --- | --- |
