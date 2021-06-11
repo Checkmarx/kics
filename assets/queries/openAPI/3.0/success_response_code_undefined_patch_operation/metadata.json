@@ -1,9 +1,0 @@
-{
-  "id": "1908a8ee-927d-4166-8f18-241152170cc1",
-  "queryName": "Success Response Code Undefined for Patch Operation",
-  "severity": "MEDIUM",
-  "category": "Networking and Firewall",
-  "descriptionText": "Patch should define at least one success response (200, 201, 202 or 204)",
-  "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
-}
