@@ -1,0 +1,31 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+  contact:
+    name: contact
+    url: https://www.google.com/
+    email: user@gmail.com
+paths:
+  "/":
+    get:
+      operationId: op_id3
+      responses:
+        "200":
+          description: 200 response
+      parameters:
+        - in: body
+          name: offset
+          schema:
+            type: object
+            properties:
+              huntingSkill:
+                type: string
+                description: The measured skill for hunting
+                default: lazy
+                enum:
+                  - clueless
+                  - lazy
+                  - adventurous
+                  - aggressive
+                minLength: 4

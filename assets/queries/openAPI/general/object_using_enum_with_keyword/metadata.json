@@ -1,6 +1,6 @@
 {
   "id": "2e9b6612-8f69-42e0-a5b8-ed17739c2f3a",
-  "queryName": "Schema Object Using Enum With Keyword (v3)",
+  "queryName": "Object Using Enum With Keyword (v3)",
   "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "Schema Object properties should not contain 'enum' and schema keywords",
@@ -9,7 +9,8 @@
   "override": {
     "2.0": {
       "id": "7f15962a-d862-451c-ac9b-84ec13747aa6",
-      "queryName": "Schema Object Using Enum With Keyword (v2)",
+      "queryName": "Object Using Enum With Keyword (v2)",
+      "descriptionText": "Schema/Parameter/Header Object properties should not contain 'enum' and schema keywords",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
