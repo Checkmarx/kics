@@ -107,7 +107,7 @@ is_numeric_type(type) {
 }
 
 # It verifies if the string schema does not have the 'field' defined
-undefined_field_in_string_schema(value, field) {
+undefined_field_in_string_type(value, field) {
 	value.type == "string"
 	object.get(value, field, "undefined") == "undefined"
 }

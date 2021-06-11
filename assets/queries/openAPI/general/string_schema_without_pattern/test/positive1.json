@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -56,14 +56,12 @@
         "properties": {
           "code": {
             "type": "string",
-            "maxLength": "15",
-            "format": "int32",
-            "pattern": "^[0-9a-z]{15}$"
+            "maxLength": 15,
+            "format": "int32"
           },
           "message": {
             "type": "string",
-            "maxLength": "15",
-            "pattern": "^[0-9a-z]{15}$"
+            "maxLength": 15
           }
         },
         "required": [
@@ -79,11 +77,6 @@
           "multipart/form-data": {
             "schema": {
               "$ref": "#/components/schemas/GeneralError"
-            },
-            "examples": {
-              "tshirt": {
-                "$ref": "#/components/examples/tshirt"
-              }
             }
           }
         }

@@ -1,0 +1,18 @@
+{
+  "id": "00b78adf-b83f-419c-8ed8-c6018441dd3a",
+  "queryName": "Pattern Undefined (v3)",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "String schema should have 'pattern' defined.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "afde15cf-9444-4126-8c62-41cd79db1d1d",
+      "queryName": "Pattern Undefined (v2)",
+      "descriptionText": "String schema/parameter should have 'pattern' defined.",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  },
+  "aggregation": 2
+}
