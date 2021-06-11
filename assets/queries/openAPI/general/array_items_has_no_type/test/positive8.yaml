@@ -1,0 +1,20 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "201":
+          description: 201 response
+      parameters:
+        - name: id
+          in: body
+          description: ID of pet to use
+          required: true
+          schema:
+            type: array
+            items: {}

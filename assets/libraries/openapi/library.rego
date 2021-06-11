@@ -35,6 +35,12 @@ incorrect_ref(ref, object) {
 	not startswith(ref, references[object])
 }
 
+incorrect_ref_swagger(ref, object) {
+	references := {"parameters": "#/parameters/"}
+
+	not startswith(ref, references[object])
+}
+
 content_allowed(operation, code) {
 	operation != "head"
 	all([code != "204", code != "304"])
@@ -160,4 +166,12 @@ require_objects := {
 	"password": {"value": {"scopes"}, "array": false, "map_object": false},
 	"clientCredentials": {"value": {"scopes"}, "array": false, "map_object": false},
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
+}
+
+api_key_exposed(doc, version, s) {
+	version == "3.0"
+	doc.components.securitySchemes[s].type == "apiKey"
+} else {
+	version == "2.0"
+	doc.securityDefinitions[s].type == "apiKey"
 }

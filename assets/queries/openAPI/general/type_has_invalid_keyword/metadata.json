@@ -1,0 +1,18 @@
+{
+  "id": "a9228976-10cf-4b5f-b902-9e962aad037a",
+  "queryName": "Type Has Invalid Keyword (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema Object define type should not use a keyword of another type",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "492c6cbb-f3f8-4807-aa4f-42b8b1c46b59",
+      "queryName": "Type Has Invalid Keyword (v2)",
+      "descriptionText": "Schema and Parameter Object define type should not use a keyword of another type",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  },
+  "aggregation": 3
+}

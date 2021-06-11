@@ -1,0 +1,40 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/item": {
+      "put": {
+        "operationId": "putItem",
+        "summary": "Put item",
+        "responses": {
+          "500": {
+            "description": "500 response"
+          },
+          "429": {
+            "description": "429 response"
+          },
+          "400": {
+            "description": "400 response"
+          },
+          "404": {
+            "description": "404 response"
+          },
+          "415": {
+            "description": "415 response"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "petstore_auth": [
+        "write:pets",
+        "read:pets"
+      ]
+    }
+  ]
+}
