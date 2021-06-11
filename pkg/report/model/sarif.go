@@ -120,7 +120,8 @@ type sarifTaxonomy struct {
 	TaxonomyDefinitions      []sarifTaxanomyDefinition `json:"taxa"`
 }
 
-type sarifRun struct {
+// SarifRun - sarifRun is a component of the SARIF report
+type SarifRun struct {
 	Tool       sarifTool       `json:"tool"`
 	Results    []sarifResult   `json:"results"`
 	Taxonomies []sarifTaxonomy `json:"taxonomies"`
@@ -135,7 +136,7 @@ type sarifReport struct {
 	basePath     string     `json:"-"`
 	Schema       string     `json:"$schema"`
 	SarifVersion string     `json:"version"`
-	Runs         []sarifRun `json:"runs"`
+	Runs         []SarifRun `json:"runs"`
 }
 
 func initSarifTool() sarifTool {
@@ -174,8 +175,8 @@ func initSarifTaxonomies() []sarifTaxonomy {
 	}
 }
 
-func initSarifRun() []sarifRun {
-	return []sarifRun{
+func initSarifRun() []SarifRun {
+	return []SarifRun{
 		{
 			Tool:       initSarifTool(),
 			Results:    make([]sarifResult, 0),

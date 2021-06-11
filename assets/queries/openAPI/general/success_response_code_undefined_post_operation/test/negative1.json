@@ -1,0 +1,32 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/item": {
+      "delete": {
+        "operationId": "deleteItem",
+        "summary": "Delete item",
+        "responses": {
+          "default": {
+            "description": "Error"
+          }
+        }
+      },
+      "post": {
+        "operationId": "updateItem",
+        "summary": "Create item",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    }
+  }
+}

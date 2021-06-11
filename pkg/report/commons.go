@@ -11,20 +11,22 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-var templateFuncs = template.FuncMap{
-	"lower":          strings.ToLower,
-	"sprintf":        fmt.Sprintf,
-	"severity":       getSeverities,
-	"getCurrentTime": getCurrentTime,
-	"trimSpaces":     trimSpaces,
-}
+var (
+	stringsSeverity = map[string]model.Severity{
+		"high":   model.AllSeverities[0],
+		"medium": model.AllSeverities[1],
+		"low":    model.AllSeverities[2],
+		"info":   model.AllSeverities[3],
+	}
 
-var stringsSeverity = map[string]model.Severity{
-	"high":   model.AllSeverities[0],
-	"medium": model.AllSeverities[1],
-	"low":    model.AllSeverities[2],
-	"info":   model.AllSeverities[3],
-}
+	templateFuncs = template.FuncMap{
+		"lower":          strings.ToLower,
+		"sprintf":        fmt.Sprintf,
+		"severity":       getSeverities,
+		"getCurrentTime": getCurrentTime,
+		"trimSpaces":     trimSpaces,
+	}
+)
 
 func trimSpaces(value string) string {
 	return strings.TrimPrefix(value, " ")
@@ -47,4 +49,16 @@ func closeFile(path, filename string, file *os.File) {
 
 	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
 	fmt.Printf("Results saved to file %s\n", path)
+}
+
+func getPlatforms(queries model.VulnerableQuerySlice) string {
+	platforms := make([]string, 0)
+	alreadyAdded := make(map[string]string)
+	for idx := range queries {
+		if _, ok := alreadyAdded[queries[idx].Platform]; !ok {
+			alreadyAdded[queries[idx].Platform] = ""
+			platforms = append(platforms, queries[idx].Platform)
+		}
+	}
+	return strings.Join(platforms, ", ")
 }
