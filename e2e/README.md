@@ -75,10 +75,10 @@ A single test can contain verification based on:
  - status code + CLI output (file check)
  - status code + payload content (file check)
  - status code + result content (file check)
--   status code + log content (file check with validation function)
+ - status code + log content (file check with validation function)
 
  - status code + result content (file check) + payload content (file check)
--   status code + result content (file check) + payload content (file check) + log content (file check with validation function)
+ - status code + result content (file check) + payload content (file check) + log content (file check with validation function)
 
  - status code + CLI output + payload content (file check) + result content (file check) + custom regex verification
  ....
@@ -145,7 +145,7 @@ The custom validation function must perform a validation based on the CLI output
 <b>Example 3:</b> A test case that executes a command and checks: 
 - Status code output
 - Kics CLI output
--   Generated <b>payload file</b> content
+- Generated <b>payload file</b> content
 
 The Tests that check CLI output, payload or results, need a comparison file for each output you want to compare (except for the status code).
 
@@ -179,14 +179,14 @@ Files created by Kics during testing should always be created in the 'outputs' f
 
 <b>Example 4:</b> A test case that executes a command and checks: 
 - Status code output
--   Generated <b>log file</b> content
+- Generated <b>log file</b> content
 
-In contrast to what is expected for results and payload, the log files don't have a file to make the comparison, instead of that, the kics has a validation function that has the same aim as the validation that verifies the output CLI.
-In this case, the validation function will receive the log file data as its input, and you can do any kind of regex or text validations in the log file content.
+In contrast to what is expected for results and payload, log files don't have a file to compare, instead KICS validates logs like it validates CLI's output.
+In this case, the validation function will receive the log file data as its input and you can use any regex or do text validations in the log file content.
 
-The example below generates an output file called: <i>"E2E_CLI_038_LOG"</i> and create a validation function expecting 3 matches in the generated log file content.
+The example below generates an output file called: <i>"E2E_CLI_038_LOG"</i> and creates a validation function expecting 3 matches in the generated log file content.
 
-In addition, it is necessary to remove the files that will be generated  during the test by adding them to removeFiles (required only for test cases that generates files from results/payloads/logs).
+In addition, it is necessary to remove files generated during the test, adding them to `removeFiles` (required only for test cases that generates files from results/payloads/logs).
 
 ```go
 // E2E-CLI-038 - KICS scan command with --log-path
