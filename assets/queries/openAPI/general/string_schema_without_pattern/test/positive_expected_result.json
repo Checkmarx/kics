@@ -56,7 +56,7 @@
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
-    "line": 38,
+    "line": 28,
     "filename": "positive5.json"
   },
   {
