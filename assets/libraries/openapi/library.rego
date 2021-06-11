@@ -73,6 +73,13 @@ check_reference_unexisting(doc, reference, type) = checkComponents {
 	object.get(doc.components[type], checkComponents, "undefined") == "undefined"
 }
 
+check_reference_unexisting_swagger(doc, reference, type) = checkRef {
+	refString := sprintf("#/%s/", [type])
+	startswith(reference, refString)
+	checkRef := trim_prefix(reference, refString)
+	object.get(doc[type], checkRef, "undefined") == "undefined"
+}
+
 concat_path(path) = concatenated {
 	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
 }
