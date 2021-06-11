@@ -8,10 +8,10 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       security:
-      - OAuth2:
-        - write
+        - OAuth2:
+            - write
       responses:
-        '200':
+        "200":
           description: 200 response
           content:
             application/json:
@@ -19,12 +19,12 @@ paths:
                 foo:
                   value:
                     versions:
-                    - status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
+                      - status: CURRENT
+                        updated: "2011-01-21T11:33:21Z"
+                        id: v2.0
+                        links:
+                          - href: http://127.0.0.1:8774/v2/
+                            rel: self
 security:
-- OAuth2:
-  - read
+  - OAuth2:
+      - read
