@@ -1,0 +1,17 @@
+{
+  "id": "a96bbc06-8cde-4295-ad3c-ee343a7f658e",
+  "queryName": "Default Invalid (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The field 'default' of Schema Object should be consistent with the schema's type",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "78dfd8f0-a6ee-48ec-af8c-e4d9b3292a07",
+      "queryName": "Default Invalid (v2)",
+      "descriptionText": "The field 'default' of Schema/Parameter/Header Object should be consistent with the schema's/parameter's/header's type",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  }
+}
