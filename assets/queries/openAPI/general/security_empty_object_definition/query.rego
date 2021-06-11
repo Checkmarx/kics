@@ -4,7 +4,8 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	object.get(doc, "security", "undefined") != "undefined"
 
 	is_array(doc.security)
@@ -19,12 +20,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Global security field definition should not have an empty object",
 		"keyActualValue": "Global security field definition has an empty object",
+		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
 	object.get(doc, "security", "undefined") != "undefined"
 
 	not is_array(doc.security)
@@ -36,5 +39,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Global security field definition should not have an empty object",
 		"keyActualValue": "Global security field definition has an empty object",
+		"overrideKey": version,
 	}
 }
