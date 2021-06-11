@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Success Response Code Undefined for Head Operation (v3)",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Head Operation (v3)",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Head Operation (v2)",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Head Operation (v2)",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.yaml"
+  }
+]

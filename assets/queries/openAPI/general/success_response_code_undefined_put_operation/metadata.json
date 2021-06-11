@@ -1,0 +1,17 @@
+{
+  "id": "60b5f56b-66ff-4e1c-9b62-5753e16825bc",
+  "queryName": "Success Response Code Undefined for Put Operation (v3)",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Put should define at least one success response (200, 201, 202 or 204)",
+  "descriptionUrl": "https://swagger.io/specification/#operation-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "965a043f-5f3c-4d0a-be72-d9ce12fdb4d6",
+      "queryName": "Success Response Code Undefined for Put Operation (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+    }
+  },
+  "aggregation": 2
+}
