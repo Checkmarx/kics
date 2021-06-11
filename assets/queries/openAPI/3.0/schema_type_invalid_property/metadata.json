@@ -1,9 +1,0 @@
-{
-  "id": "a9228976-10cf-4b5f-b902-9e962aad037a",
-  "queryName": "Schema Type Has Invalid Keyword",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Schema defined type is using a keyword of another type",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}

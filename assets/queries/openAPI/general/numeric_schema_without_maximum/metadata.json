@@ -1,0 +1,17 @@
+{
+  "id": "2ea04bef-c769-409e-9179-ee3a50b5c0ac",
+  "queryName": "Numeric Schema Without Maximum (v3)",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "203eee11-15b6-4d47-b888-4c7f534967ee",
+      "queryName": "Numeric Schema Without Maximum (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  },
+  "aggregation": 2
+}

@@ -1,9 +1,0 @@
-{
-  "id": "d929c031-078f-4241-b802-e224656ad890",
-  "queryName": "Schema Invalid Number Format",
-  "severity": "LOW",
-  "category": "Insecure Configurations",
-  "descriptionText": "Schema numeric types should be valid, for integer must be int32 or int64 and number must be float or double",
-  "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/",
-  "platform": "OpenAPI"
-}

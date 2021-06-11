@@ -57,7 +57,7 @@ var sarifTests = []sarifTest{
 			},
 		},
 		want: sarifReport{
-			Runs: []sarifRun{
+			Runs: []SarifRun{
 				{
 					Tool: sarifTool{
 						Driver: sarifDriver{
@@ -142,7 +142,7 @@ var sarifTests = []sarifTest{
 			},
 		},
 		want: sarifReport{
-			Runs: []sarifRun{
+			Runs: []SarifRun{
 				{
 					Tool: sarifTool{
 						Driver: sarifDriver{

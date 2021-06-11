@@ -1,0 +1,17 @@
+{
+  "id": "d929c031-078f-4241-b802-e224656ad890",
+  "queryName": "Invalid Format (v3)",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "The format should be valid for the type defined. For integer type must be int32 or int64, number type must be float or double, and for string type must be binary, byte, date, date-time, or password",
+  "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "caf1793e-95dd-4b18-8d90-8f3c0ab5bddf",
+      "queryName": "Invalid Format (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/"
+    }
+  },
+  "aggregation": 4
+}

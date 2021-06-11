@@ -315,7 +315,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"",
 		"directory path to store reports")
 	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
-		"formats in which the results will be exported (all, json, sarif, html, glsast)",
+		"formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
 	)
 	scanCmd.Flags().IntVar(&previewLines,
 		previewLinesFlag,
