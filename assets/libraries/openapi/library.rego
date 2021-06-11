@@ -35,6 +35,12 @@ incorrect_ref(ref, object) {
 	not startswith(ref, references[object])
 }
 
+incorrect_ref_swagger(ref, object) {
+	references := {"parameters": "#/parameters/"}
+
+	not startswith(ref, references[object])
+}
+
 content_allowed(operation, code) {
 	operation != "head"
 	all([code != "204", code != "304"])

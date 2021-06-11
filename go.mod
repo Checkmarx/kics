@@ -12,6 +12,7 @@ require (
 	github.com/gookit/color v1.4.2
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.10.0
+	github.com/johnfercher/maroto v0.31.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/moby/buildkit v0.8.3
