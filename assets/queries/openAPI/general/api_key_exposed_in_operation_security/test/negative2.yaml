@@ -11,6 +11,9 @@ paths:
         - OAuth2:
             - write
             - read
+      responses:
+        "200":
+          description: 200 response
 components:
   securitySchemes:
     OAuth2:

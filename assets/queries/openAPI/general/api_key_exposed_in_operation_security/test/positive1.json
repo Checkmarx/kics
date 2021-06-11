@@ -15,7 +15,12 @@
             "apiKey2": [],
             "apiKey3": []
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     }
   },
