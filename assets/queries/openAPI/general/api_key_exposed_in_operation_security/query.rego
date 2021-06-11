@@ -7,7 +7,7 @@ CxPolicy[result] {
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
-	security := doc.paths[path][operation].security[x][s]
+	doc.paths[path][operation].security[x][s]
 	openapi_lib.api_key_exposed(doc, version, s)
 
 	result := {
