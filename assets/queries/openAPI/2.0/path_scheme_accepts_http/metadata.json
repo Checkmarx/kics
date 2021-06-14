@@ -1,0 +1,9 @@
+{
+  "id": "a6847dc6-f4ea-45ac-a81f-93291ae6c573",
+  "queryName": "Path Scheme Accepts HTTP",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "The Scheme list of Operation Object should only allow 'HTTPS' protocol to ensure an encrypted connection",
+  "descriptionUrl": "https://swagger.io/specification/v2/#operationObject",
+  "platform": "OpenAPI"
+}
