@@ -167,3 +167,14 @@ require_objects := {
 	"clientCredentials": {"value": {"scopes"}, "array": false, "map_object": false},
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
 }
+
+# get schema info (object and path) according to the openAPI version
+get_schema_info(doc, version) = schemaInfo {
+	version == "3.0"
+	obj := doc.components.schemas
+	schemaInfo := {"obj": obj, "path": "components.schemas"}
+} else = schemaInfo {
+	version == "2.0"
+	obj := doc.definitions
+	schemaInfo := {"obj": obj, "path": "definitions"}
+}

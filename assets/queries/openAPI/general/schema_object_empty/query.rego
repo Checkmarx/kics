@@ -25,31 +25,14 @@ CxPolicy[result] {
 CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
-	version == "3.0"
+	version != "undefined"
 
-	schema := doc.components.schemas[s]
-	schema == options[x]
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("components.schemas.{{%s}}", [s]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "The Schema Object is not empty",
-		"keyActualValue": "The Schema Object is empty",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	version := openapi_lib.check_openapi(doc)
-	version == "2.0"
-
-	schema := doc.definitions[s]
-	schema == options[x]
+	schemaInfo := openapi_lib.get_schema_info(doc, version)
+	schemaInfo.obj[s] == options[x]
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("definitions.{{%s}}", [s]),
+		"searchKey": sprintf("%s.{{%s}}", [schemaInfo.path, s]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The Schema Object is not empty",
 		"keyActualValue": "The Schema Object is empty",
