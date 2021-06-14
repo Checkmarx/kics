@@ -1,6 +1,6 @@
 {
   "id": "2d8c175a-6d90-412b-8b0e-e034ea49a1fe",
-  "queryName": "Global Server Object Uses HTTP (v3)",
+  "queryName": "Global Server Object Uses HTTP",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Global server object URL should use 'https' protocol instead of 'http'",
