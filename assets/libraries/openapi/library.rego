@@ -175,6 +175,15 @@ require_objects := {
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
 }
 
+# get schema info (object and path) according to the openAPI version
+get_schema_info(doc, version) = schemaInfo {
+	version == "3.0"
+	schemaInfo := {"obj": doc.components.schemas, "path": "components.schemas"}
+} else = schemaInfo {
+	version == "2.0"
+	schemaInfo := {"obj": doc.definitions, "path": "definitions"}
+}
+
 api_key_exposed(doc, version, s) {
 	version == "3.0"
 	doc.components.securitySchemes[s].type == "apiKey"
