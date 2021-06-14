@@ -1,9 +1,0 @@
-{
-  "id": "462d6a1d-fed9-4d75-bb9e-3de902f35e6e",
-  "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
-  "severity": "LOW",
-  "category": "Access Control",
-  "descriptionText": "Using an scope on security of operations that is undefined on 'securityScheme' can be defined by an attacker",
-  "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
-  "platform": "OpenAPI"
-}
