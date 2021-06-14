@@ -4,18 +4,18 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-
 	ref := value.schema["$ref"]
-	openapi_lib.incorrect_ref(ref, "schemas")
+	count(path) > 0
+	openapi_lib.incorrect_ref_swagger(ref, "schemas")
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema.$ref", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Schema reference points to '#components/schemas'",
-		"keyActualValue": "Schema reference does not point to '#components/schemas'",
+		"keyExpectedValue": "Schema ref points to '#/definitions'",
+		"keyActualValue": "Schema ref doesn't point to '#/definitions'",
 	}
 }

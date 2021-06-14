@@ -39,6 +39,7 @@ incorrect_ref_swagger(ref, object) {
 	references := {
 		"parameters": "#/parameters/",
 		"responses": "#/responses/",
+		"schemas": "#/definitions/",
 	}
 
 	not startswith(ref, references[object])
