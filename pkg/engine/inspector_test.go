@@ -9,16 +9,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/Checkmarx/kics/internal/tracker"
-
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
+	"github.com/stretchr/testify/require"
+
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
 )

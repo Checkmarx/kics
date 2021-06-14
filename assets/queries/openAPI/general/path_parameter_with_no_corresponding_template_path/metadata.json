@@ -1,0 +1,17 @@
+{
+  "id": "69d7aefd-149d-47b8-8d89-1c2181a8067b",
+  "queryName": "Path Parameter With No Corresponding Template Path (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The path parameter must have a corresponding template path for a given operation",
+  "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#pathTemplating",
+  "platform": "OpenAPI",
+  "aggregation": 2,
+  "override": {
+    "2.0": {
+      "id": "194ef1f8-360e-4c14-8ed2-e83e2bafa142",
+      "queryName": "Path Parameter With No Corresponding Template Path (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathTemplating"
+    }
+  }
+}
