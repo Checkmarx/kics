@@ -41,6 +41,7 @@ nav:
       - Github Actions: integrations_ghactions.md
       - Gitlab CI: integrations_gitlabci.md
       - Jenkins: integrations_jenkins.md
+      - AWS CDK: cdk.md
       - Badge: BADGE.md
   - Project:
       - Roadmap: roadmap.md
