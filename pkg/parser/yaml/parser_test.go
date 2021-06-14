@@ -1,6 +1,7 @@
 package json
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -103,4 +104,42 @@ func Test_Resolve(t *testing.T) {
 	resolved, err := parser.Resolve([]byte(have), "test.yaml")
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), *resolved)
+}
+
+func TestYaml_processElements(t *testing.T) {
+	type args struct {
+		elements map[string]interface{}
+		filePath string
+	}
+	tests := []struct {
+		name     string
+		args     args
+		wantCert map[string]interface{}
+		wantSwag string
+	}{
+		{
+			name: "test_process_elements",
+			args: args{
+				elements: map[string]interface{}{
+					"swagger_file": "test",
+					"certificate":  filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+				},
+				filePath: filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+			},
+			wantCert: map[string]interface{}{
+				"expiration_date": [3]int{2022, 3, 27},
+				"file":            filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+				"rsa_key_bytes":   512,
+			},
+			wantSwag: "test",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			processElements(tt.args.elements, tt.args.filePath)
+			require.Equal(t, tt.wantCert, tt.args.elements["certificate"])
+			require.Equal(t, tt.wantSwag, tt.args.elements["swagger_file"])
+		})
+	}
 }

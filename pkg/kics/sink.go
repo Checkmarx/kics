@@ -20,10 +20,6 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
 
-	if err != nil {
-		return errors.Wrapf(err, "failed to resolve file content: %s", filename)
-	}
-
 	documents, kind, err := s.Parser.Parse(filename, *content)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
