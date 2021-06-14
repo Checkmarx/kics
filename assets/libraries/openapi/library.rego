@@ -49,18 +49,22 @@ content_allowed(operation, code) {
 	all([code != "204", code != "304"])
 }
 
-# It verifies if there is some schema in 'components.schemas' equal to the input with the 'field' undefined
-check_content(doc, s, field) {
-	component_schema := doc.components.schemas[s]
-	object.get(component_schema, field, "undefined") == "undefined"
+# It verifies if there is some schema in 'key' equal to the input with the 'field' undefined
+check_content(s, field, key) {
+	object.get(key[s], field, "undefined") == "undefined"
 }
 
 # It verifies if the 'schema_ref' refers to a schema with the 'field' undefined
-undefined_field_in_json_object(doc, schema_ref, field) {
+undefined_field_in_json_object(doc, schema_ref, field, version) {
+	version == "3.0"
 	r := split(schema_ref, "/")
 	count(r) == 4
-	s := r[3]
-	check_content(doc, s, field)
+	check_content(r[3], field, doc.components.schemas)
+} else {
+	version == "2.0"
+	r := split(schema_ref, "/")
+	count(r) == 3
+	check_content(r[2], field, doc.definitions)
 }
 
 check_unused_reference(doc, referenceName, type) {
