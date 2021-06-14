@@ -26,13 +26,13 @@
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
-    "line": 9,
+    "line": 10,
     "filename": "positive3.json"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
-    "line": 7,
+    "line": 8,
     "filename": "positive4.yaml"
   },
   {

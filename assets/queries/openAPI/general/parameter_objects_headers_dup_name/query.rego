@@ -13,11 +13,13 @@ CxPolicy[result] {
 	dup := check_dup(params)
 	duplicate = cast_set(dup)
 
-	sk := get_search_key(path)
+	p := openapi_lib.concat_path(path)
+	searchKey := openapi_lib.concat_default_value(p, "parameters")
+	name := openapi_lib.get_name(p, duplicate[_])
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf(sk, [openapi_lib.concat_path(path), duplicate[_]]),
+		"searchKey": sprintf("%s.%s", [searchKey, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
 		"keyActualValue": "Parameter Object with location 'header' has duplicate names",
@@ -61,11 +63,4 @@ check_dup(params) = dup {
 	arr := cast_set(nameArr)
 	count(arr) != count(params)
 	dup := [y | y := nameArr[i]]
-}
-
-get_search_key(path) = searchKey {
-	path[minus(count(path), 1)] == "components"
-	searchKey := "%s.parameters.%s"
-} else = searchKey {
-	searchKey := "%s.parameters.name=%s"
 }
