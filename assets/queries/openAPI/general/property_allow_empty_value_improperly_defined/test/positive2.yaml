@@ -41,3 +41,6 @@ paths:
           schema:
             type: integer
             minimum: 1
+      responses:
+        "200":
+          description: 200 response
