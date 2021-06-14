@@ -20,7 +20,7 @@ responses:
 parameters:
   limitParam:
     name: limit
-    in: query
+    in: body
     description: max records to return
     required: true
     schema:
