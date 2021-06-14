@@ -176,3 +176,11 @@ get_schema_info(doc, version) = schemaInfo {
 	version == "2.0"
 	schemaInfo := {"obj": doc.definitions, "path": "definitions"}
 }
+
+api_key_exposed(doc, version, s) {
+	version == "3.0"
+	doc.components.securitySchemes[s].type == "apiKey"
+} else {
+	version == "2.0"
+	doc.securityDefinitions[s].type == "apiKey"
+}

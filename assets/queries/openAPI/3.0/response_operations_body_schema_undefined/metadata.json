@@ -1,9 +1,0 @@
-{
-  "id": "a92be1d5-d762-484a-86d6-8cd0907ba100",
-  "queryName": "Response on operations that should have a body has undefined schema",
-  "severity": "MEDIUM",
-  "category": "Networking and Firewall",
-  "descriptionText": "If a response is not head or its code is not 204 or 304, it should have a schema defined",
-  "descriptionUrl": "https://swagger.io/docs/specification/describing-responses/",
-  "platform": "OpenAPI"
-}

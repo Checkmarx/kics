@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 51,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 44,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 53,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 28,
+    "filename": "positive7.yaml"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive8.yaml"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive9.yaml"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive10.json"
+  }
+]

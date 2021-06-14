@@ -1,0 +1,29 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "delete": {
+        "operationId": "deleteVersion",
+        "summary": "Deletes API versions",
+        "responses": {
+          "204": {
+            "description": "no content"
+          }
+        }
+      },
+      "head": {
+        "operationId": "headers",
+        "summary": "headers",
+        "responses": {
+          "200": {
+            "description": "no content"
+          }
+        }
+      }
+    }
+  }
+}

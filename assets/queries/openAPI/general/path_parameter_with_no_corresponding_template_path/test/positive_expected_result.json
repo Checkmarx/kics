@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Path Parameter With No Corresponding Template Path (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Path Parameter With No Corresponding Template Path (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Path Parameter With No Corresponding Template Path (v2)",
+    "severity": "INFO",
+    "line": 29,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Path Parameter With No Corresponding Template Path (v2)",
+    "severity": "INFO",
+    "line": 47,
+    "filename": "positive4.json"
+  }
+]
