@@ -8,20 +8,22 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        '200':
-          "$ref": "#/components/schemas/Success"
+        "200":
+          description: 200 response
+      parameters:
+        - "$ref": "#/components/parameters/negativeLimitParam"
 components:
   parameters:
-    limitParam:
+    negativeLimitParam:
       name: limit
       in: query
       description: max records to return
       required: true
       schema:
         type: integer
-    otherParam:
-      name: limit
-      in: query
+    negativeOtherParam:
+      name: other
+      in: header
       description: max records to return
       required: true
       schema:
