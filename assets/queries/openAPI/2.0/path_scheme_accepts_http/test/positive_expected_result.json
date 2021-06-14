@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Path Scheme Accepts HTTP",
+    "queryName": "Path Scheme Accepts HTTP (v2)",
     "severity": "MEDIUM",
     "line": 13,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Path Scheme Accepts HTTP",
+    "queryName": "Path Scheme Accepts HTTP (v2)",
     "severity": "MEDIUM",
     "line": 11,
     "filename": "positive2.yaml"
