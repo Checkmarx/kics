@@ -1,9 +1,0 @@
-{
-  "id": "8c8261c2-19a9-4ef7-ad37-b8bc7bdd4d85",
-  "queryName": "String Schema Without Maximum Length",
-  "severity": "MEDIUM",
-  "category": "Insecure Configurations",
-  "descriptionText": "String schema should have 'maxLength' defined.",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}
