@@ -34,11 +34,9 @@ components:
           type: string
           maxLength: 15
           format: int32
-          pattern: ^[0-9a-z]{15}$
         message:
           type: string
           maxLength: 15
-          pattern: ^[0-9a-z]{15}$
       required:
         - petType
   requestBodies:
@@ -49,6 +47,3 @@ components:
         multipart/form-data:
           schema:
             $ref: "#/components/schemas/GeneralError"
-          examples:
-            tshirt:
-              $ref: "#/components/examples/tshirt"
