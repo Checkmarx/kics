@@ -199,3 +199,11 @@ api_key_exposed(doc, version, s) {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
 }
+
+# It verifies if the path is empty. If so, it refers to a global object. If not, joins it with the defaultValue.
+concat_default_value(path, defaultValue) = searchKey {
+	count(path) == 0
+	searchKey := defaultValue
+} else = path {
+	searchKey := concat(".", {path, defaultValue})
+}
