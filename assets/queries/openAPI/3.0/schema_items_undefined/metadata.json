@@ -1,9 +1,0 @@
-{
-  "id": "a8e859da-4a43-4e7f-94b8-25d6e3bf8e90",
-  "queryName": "Schema Items Undefined",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Schema items should be defined when the schema is set to an array.",
-  "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
-}
