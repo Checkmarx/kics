@@ -11,12 +11,12 @@
         "summary": "List API versions",
         "responses": {
           "200": {
-            "$ref": "#/components/schemas/Success"
+            "description": "200 response"
           }
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/limitParam"
+            "$ref": "#/components/parameters/negativeLimitParam"
           }
         ]
       }
