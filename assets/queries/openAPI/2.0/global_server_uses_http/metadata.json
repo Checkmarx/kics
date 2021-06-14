@@ -1,0 +1,9 @@
+{
+  "id": "3ddd74cc-6582-486c-8b0c-2b48cb38e0a3",
+  "queryName": "Global Schemes Uses HTTP",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Global Schemes should use 'https' protocol instead of 'http'",
+  "descriptionUrl": "https://swagger.io/specification/v2/#swaggerObject",
+  "platform": "OpenAPI"
+}
