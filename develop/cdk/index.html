@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.kics.io/develop/dockerhub/">
+        <link rel="canonical" href="http://www.kics.io/develop/cdk/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Dockerhub - KICS</title>
+        <title>AWS CDK - KICS</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -133,7 +133,7 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -166,7 +166,7 @@
 </li>
                                     
 <li>
-    <a href="../cdk/" class="dropdown-item">AWS CDK</a>
+    <a href="./" class="dropdown-item active">AWS CDK</a>
 </li>
                                     
 <li>
@@ -214,7 +214,17 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/dockerhub.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a rel="prev" href="../integrations_jenkins/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../BADGE/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Checkmarx/kics/edit/master/docs/cdk.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -234,23 +244,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#documentation" class="nav-link">Documentation</a>
+            <li class="nav-item" data-level="1"><a href="#scanning_aws_cdk_output_with_kics" class="nav-link">Scanning AWS CDK output with KICS</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#create_a_project" class="nav-link">Create a project</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="2"><a href="#git_repo" class="nav-link">Git Repo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#command" class="nav-link">Command</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#cli_options" class="nav-link">CLI Options</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -258,107 +257,33 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
-<p>Visit us</p>
-<p><a href="https://docs.kics.io">https://docs.kics.io</a></p>
-<h2 id="git_repo">Git Repo<a class="headerlink" href="#git_repo" title="Permanent link">&para;</a></h2>
-<p>https://github.com/Checkmarx/kics</p>
-<h2 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h2>
-<p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see the full list of CLI options below)</p>
-<p>NOTE: from v1.3.0 KICS does not execute <code>scan</code> command by default anymore.</p>
-<pre><code class="language-sh">docker pull checkmarx/kics:latest
+<h1 id="scanning_aws_cdk_output_with_kics">Scanning AWS CDK output with KICS<a class="headerlink" href="#scanning_aws_cdk_output_with_kics" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html">AWS Cloud Development Kit</a> is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.</p>
+<p>It has all the advantages of using <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation</a>.</p>
+<p>KICS currently support scanning AWS Cloudformation templates. In this guide, we will describe how to scan a simple CDK defined infrastructure following the <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html">Working With the AWS CDK in Go</a> documentation.</p>
+<p>Make sure all <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-go.html#go-prerequisites">prerequisites</a> are met.</p>
+<h2 id="create_a_project">Create a project<a class="headerlink" href="#create_a_project" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create a new CDK project using the CLI. e.g:</li>
+</ol>
+<pre><code class="language-bash">mkdir test-cdk
+cd test-cdk
+cdk init app --language go
 </code></pre>
-<p>Scan a directory</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
+<ol>
+<li>Download dependencies</li>
+</ol>
+<pre><code class="language-bash">go mod download
 </code></pre>
-<p>Scan a single file</p>
-<pre><code class="language-sh">docker run -v {path_to_host_folder}/{filename}.{extention}:/path/{filename}.{extention} checkmarx/kics:latest scan -p &quot;/path&quot; -o &quot;/path/&quot;
+<ol>
+<li>Synthetize CloudFormation template</li>
+</ol>
+<pre><code class="language-bash">cdk synth &gt; cfn-stack.yaml
 </code></pre>
-<p>This will generate a <code>results.json</code> file, for both examples, under <code>path</code>.</p>
-<h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
-<p>Usage:</p>
-<pre><code class="language-txt">Keeping Infrastructure as Code Secure
-
-Usage:
-  kics [command]
-
-Available Commands:
-  generate-id    Generates uuid for query
-  help           Help about any command
-  list-platforms List supported platforms
-  scan           Executes a scan analysis
-  version        Displays the current version
-
-Flags:
-      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-  -h, --help                help for kics
-  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
-      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-      --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
-      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-
-Use &quot;kics [command] --help&quot; for more information about a command.
-</code></pre>
-<p>Scan command:</p>
-<pre><code class="language-txt">Executes a scan analysis
-
-Usage:
-  kics scan [flags]
-
-Flags:
-      --config string                path to configuration file
-      --exclude-categories strings   exclude categories by providing its name
-                                     cannot be provided with query inclusion flags
-                                     can be provided multiple times or as a comma separated string
-                                     example: 'Access control,Best practices'
-  -e, --exclude-paths strings        exclude paths from scan
-                                     supports glob and can be provided multiple times or as a quoted comma separated string
-                                     example: './shouldNotScan/*,somefile.txt'
-      --exclude-queries strings      exclude queries by providing the query ID
-                                     cannot be provided with query inclusion flags
-                                     can be provided multiple times or as a comma separated string
-                                     example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
-  -x, --exclude-results strings      exclude results by providing the similarity ID of a result
-                                     can be provided multiple times or as a comma separated string
-                                     example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
-      --fail-on strings              which kind of results should return an exit code different from 0
-                                     accetps: high, medium, low and info
-                                     example: &quot;high,low&quot; (default [high,medium,low,info])
-  -h, --help                         help for scan
-      --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
-                                     accepts: all, results, errors, none
-                                     example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
-  -i, --include-queries strings      include queries by providing the query ID
-                                     cannot be provided with query exclusion flags
-                                     can be provided multiple times or as a comma separated string
-                                     example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
-      --minimal-ui                   simplified version of CLI output
-      --no-progress                  hides the progress bar
-      --output-name string           name used on report creations (default &quot;results&quot;)
-  -o, --output-path string           directory path to store reports
-  -p, --path strings                 paths or directories to scan
-                                     example: &quot;./somepath,somefile.txt&quot;
-  -d, --payload-path string          path to store internal representation JSON file
-      --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
-  -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
-      --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])
-      --timeout int                  number of seconds the query has to execute before being canceled (default 60)
-  -t, --type strings                 case insensitive list of platform types to scan
-                                     (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
-
-Global Flags:
-      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
-      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-      --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
-      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-
+<ol>
+<li>Execute KICS against the template and check the results</li>
+</ol>
+<pre><code class="language-bash">docker run -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
 </code></pre></div>
             </div>
         </div>

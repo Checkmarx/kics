@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://www.kics.io/develop/cdk/</loc>
+         <lastmod>2021-06-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://www.kics.io/develop/changes/</loc>
          <lastmod>2021-06-14</lastmod>
          <changefreq>daily</changefreq>
