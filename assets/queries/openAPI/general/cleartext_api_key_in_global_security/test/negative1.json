@@ -40,17 +40,29 @@
       }
     }
   },
-  "security": [
-    {
-      "exampleSecurity": []
-    }
-  ],
   "components": {
     "securitySchemes": {
-      "exampleSecurity": {
-        "type": "http",
-        "scheme": "basic"
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://example.com/oauth/authorize",
+            "tokenUrl": "https://example.com/oauth/token",
+            "scopes": {
+              "write": "modify objects in your account",
+              "read": "read objects in your account"
+            }
+          }
+        }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "write",
+        "read"
+      ]
+    }
+  ]
 }
