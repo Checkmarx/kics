@@ -1,9 +1,0 @@
-{
-  "id": "52c0d841-60d6-4a81-88dd-c35fef36d315",
-  "queryName": "Invalid OAuth2 Authorization URL",
-  "severity": "MEDIUM",
-  "category": "Access Control",
-  "descriptionText": "The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL",
-  "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
-  "platform": "OpenAPI"
-}

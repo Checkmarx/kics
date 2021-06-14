@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v3)",
+    "severity": "MEDIUM",
+    "line": 50,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v3)",
+    "severity": "MEDIUM",
+    "line": 50,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v3)",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v3)",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive6.json"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive6.json"
+  }
+]
