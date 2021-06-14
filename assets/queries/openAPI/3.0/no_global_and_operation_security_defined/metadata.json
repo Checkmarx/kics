@@ -1,9 +1,0 @@
-{
-  "id": "96729c6b-7400-4d9e-9807-17f00cdde4d2",
-  "queryName": "No Global And Operation Security Defined",
-  "severity": "HIGH",
-  "category": "Access Control",
-  "descriptionText": "All paths should have security scheme, if it is omitted, global security field should be defined",
-  "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
-  "platform": "OpenAPI"
-}

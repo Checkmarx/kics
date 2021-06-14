@@ -13,6 +13,7 @@ import (
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	"github.com/Checkmarx/kics/test"
 	"github.com/pkg/errors"
+	"github.com/stretchr/testify/require"
 )
 
 // TestNewFileSystemSourceProvider tests the functions [NewFileSystemSourceProvider()] and all the methods called by them
@@ -446,4 +447,35 @@ func getFSExcludes(fsystem *FileSystemSourceProvider) []string {
 		excluded = append(excluded, key)
 	}
 	return excluded
+}
+
+func TestProvider_getExcludePaths(t *testing.T) {
+	type args struct {
+		pathExpressions string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    []string
+		wantErr bool
+	}{
+		{
+			name: "test_getExludedPaths",
+			args: args{
+				pathExpressions: "*.sh",
+			},
+			want:    []string{"install.sh"},
+			wantErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := getExcludePaths(tt.args.pathExpressions)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("getExcludePaths Error: %v, wantErr: %v", got, tt.wantErr)
+			}
+			require.Equal(t, tt.want, got)
+		})
+	}
 }

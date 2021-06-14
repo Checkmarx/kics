@@ -1,0 +1,17 @@
+{
+  "id": "281b8071-6226-4a43-911d-fec246d422c2",
+  "queryName": "API Key Exposed In Operation Security (v3)",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "API Keys should not be transported over network",
+  "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "392599e4-a4e2-403d-bc56-3fe05755782d",
+      "queryName": "API Key Exposed In Operation Security (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
+    }
+  },
+  "aggregation": 2
+}

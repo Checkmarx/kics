@@ -1,6 +1,7 @@
 package terraform
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -57,4 +58,39 @@ func Test_Resolve(t *testing.T) {
 	resolved, err := parser.Resolve([]byte(have), "test.tf")
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), *resolved)
+}
+
+func TestTerraform_ProcessContent(t *testing.T) {
+	type args struct {
+		elements model.Document
+		content  string
+		path     string
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want map[string]interface{}
+	}{
+		{
+			name: "test_process_content",
+			args: args{
+				elements: model.Document{},
+				content:  filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+				path:     filepath.Join("..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+			},
+			want: map[string]interface{}{
+				"expiration_date": [3]int{2022, 3, 27},
+				"file":            filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+				"rsa_key_bytes":   512,
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			processContent(tt.args.elements, tt.args.content, tt.args.path)
+			require.Equal(t, tt.want, tt.args.elements["certificate_body"])
+		})
+	}
 }
