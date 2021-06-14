@@ -1,9 +1,0 @@
-{
-  "id": "2596545e-1757-4ff7-a15a-8a9a180a42f3",
-  "queryName": "Parameter Object With Incorrect Ref (v2)",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Parameter Object reference must always point to '#/parameters'",
-  "descriptionUrl": "https://swagger.io/specification/v2/#parameter-object",
-  "platform": "OpenAPI"
-}
