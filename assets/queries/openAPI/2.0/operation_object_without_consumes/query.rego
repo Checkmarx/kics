@@ -11,6 +11,7 @@ CxPolicy[result] {
 	op := doc.paths[path][operation]
 	operation == types[n]
 
+	object.get(doc, "consumes", "undefined") == "undefined"
 	object.get(op, "consumes", "undefined") == "undefined"
 
 	result := {
