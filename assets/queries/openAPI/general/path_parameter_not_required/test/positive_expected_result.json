@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v3)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Path Parameter Not Required (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive8.yaml"
+  }
+]
