@@ -77,6 +77,13 @@ check_reference_unexisting(doc, reference, type) = checkComponents {
 	object.get(doc.components[type], checkComponents, "undefined") == "undefined"
 }
 
+check_reference_unexisting_swagger(doc, reference, type) = checkRef {
+	refString := sprintf("#/%s/", [type])
+	startswith(reference, refString)
+	checkRef := trim_prefix(reference, refString)
+	object.get(doc[type], checkRef, "undefined") == "undefined"
+}
+
 concat_path(path) = concatenated {
 	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
 }
@@ -111,7 +118,7 @@ is_numeric_type(type) {
 }
 
 # It verifies if the string schema does not have the 'field' defined
-undefined_field_in_string_schema(value, field) {
+undefined_field_in_string_type(value, field) {
 	value.type == "string"
 	object.get(value, field, "undefined") == "undefined"
 }
@@ -170,6 +177,15 @@ require_objects := {
 	"password": {"value": {"scopes"}, "array": false, "map_object": false},
 	"clientCredentials": {"value": {"scopes"}, "array": false, "map_object": false},
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
+}
+
+# get schema info (object and path) according to the openAPI version
+get_schema_info(doc, version) = schemaInfo {
+	version == "3.0"
+	schemaInfo := {"obj": doc.components.schemas, "path": "components.schemas"}
+} else = schemaInfo {
+	version == "2.0"
+	schemaInfo := {"obj": doc.definitions, "path": "definitions"}
 }
 
 api_key_exposed(doc, version, s) {
