@@ -34,5 +34,3 @@ paths:
                         links:
                           - href: http://127.0.0.1:8774/v2/
                             rel: self
-security:
-  - exampleSecurity: []
