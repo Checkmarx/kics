@@ -3,7 +3,7 @@
   "queryName": "Responses JSON Reference Does Not Exists (v2)",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Responses reference should exists on responses definition field",
+  "descriptionText": "Responses reference should exist on responses definition field",
   "descriptionUrl": "https://swagger.io/specification/v2/#responsesDefinitionsObject",
   "platform": "OpenAPI"
 }

@@ -3,7 +3,7 @@
   "queryName": "Parameter JSON Reference Does Not Exists (v2)",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Parameter reference should exists on parameters definition field",
+  "descriptionText": "Parameter reference should exist on parameters definition field",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
   "platform": "OpenAPI"
 }
