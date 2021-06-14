@@ -22,10 +22,18 @@
       }
     }
   },
+  "responses": {
+    "Success": {
+      "description": "An array with users",
+      "schema": {
+        "$ref": "#/definitions/User"
+      }
+    }
+  },
   "parameters": {
     "limitParam": {
       "name": "limit",
-      "in": "query",
+      "in": "body",
       "description": "max records to return",
       "required": true,
       "schema": {

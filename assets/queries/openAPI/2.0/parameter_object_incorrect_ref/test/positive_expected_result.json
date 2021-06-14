@@ -2,13 +2,13 @@
   {
     "queryName": "Parameter Object With Incorrect Ref (v2)",
     "severity": "INFO",
-    "line": 19,
+    "line": 22,
     "filename": "positive1.json"
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v2)",
     "severity": "INFO",
-    "line": 14,
+    "line": 16,
     "filename": "positive2.yaml"
   }
 ]

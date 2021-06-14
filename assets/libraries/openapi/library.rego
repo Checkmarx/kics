@@ -36,7 +36,10 @@ incorrect_ref(ref, object) {
 }
 
 incorrect_ref_swagger(ref, object) {
-	references := {"parameters": "#/parameters/"}
+	references := {
+		"parameters": "#/parameters/",
+		"responses": "#/responses/",
+	}
 
 	not startswith(ref, references[object])
 }
