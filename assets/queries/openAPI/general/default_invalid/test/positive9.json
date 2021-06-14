@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "title": "Simple API Overview",
     "version": "1.0.0"
@@ -10,19 +10,17 @@
         "operationId": "listVersionsv2",
         "summary": "List API versions",
         "responses": {
-          "201": {
+          "200": {
+            "description": "200 response",
             "schema": {
+              "default": {
+                "a": "b"
+              },
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "default": [
-                "a"
-              ]
+              }
             }
-          },
-          "200": {
-            "$ref": "#/components/schemas/MyObject"
           }
         }
       }
