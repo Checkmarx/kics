@@ -24,31 +24,15 @@ CxPolicy[result] {
 CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
-	version == "3.0"
+	version != "undefined"
 
-	url := doc.components.schemas[s].externalDocs.url
+	schemaInfo := openapi_lib.get_schema_info(doc, version)
+	url := schemaInfo.obj[s].externalDocs.url
 	not openapi_lib.is_valid_url(url)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("components.schemas.{{%s}}.externalDocs.url", [s]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Schema External Documentation URL is a valid URL",
-		"keyActualValue": "Schema External Documentation URL is not a valid URL",
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	version := openapi_lib.check_openapi(doc)
-	version == "2.0"
-
-	url := doc.definitions[s].externalDocs.url
-	not openapi_lib.is_valid_url(url)
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("definitions.{{%s}}.externalDocs.url", [s]),
+		"searchKey": sprintf("%s.{{%s}}.externalDocs.url", [schemaInfo.path, s]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Schema External Documentation URL is a valid URL",
 		"keyActualValue": "Schema External Documentation URL is not a valid URL",
