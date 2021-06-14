@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Response Object With Incorrect Ref (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Response Object With Incorrect Ref (v2)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive2.yaml"
+  }
+]

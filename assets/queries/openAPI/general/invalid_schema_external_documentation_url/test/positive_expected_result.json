@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 61,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 35,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive8.yaml"
+  }
+]

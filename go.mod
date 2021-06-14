@@ -6,7 +6,7 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/getsentry/sentry-go v0.11.0
-	github.com/golang/mock v1.5.0
+	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210413054141-7c2eacd09c8d
 	github.com/google/uuid v1.2.0
 	github.com/gookit/color v1.4.2
@@ -19,7 +19,7 @@ require (
 	github.com/open-policy-agent/opa v0.29.4
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.22.0
+	github.com/rs/zerolog v1.23.0
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.7.1
