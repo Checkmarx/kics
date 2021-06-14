@@ -188,5 +188,5 @@ concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
 	searchKey := defaultValue
 } else = path {
-	searchKey := concat("", {path, defaultValue})
+	searchKey := concat(".", {path, defaultValue})
 }
