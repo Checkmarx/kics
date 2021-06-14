@@ -11,7 +11,7 @@ paths:
         "200":
           description: 200 response
           schema:
-            $ref: "#/parameters/GeneralError"
+            $ref: "#/definitions/GeneralError"
 definitions:
   GeneralError:
     type: object
