@@ -6,6 +6,9 @@ paths:
   /pets:
     post:
       description: Creates a new pet in the store
+      responses:
+        "200":
+          description: 200 response
       operationId: addPet
       security:
         - OAuth2:
