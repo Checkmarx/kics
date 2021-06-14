@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Parameter JSON Reference Does Not Exists (v2)",
+    "queryName": "Responses JSON Reference Does Not Exists (v2)",
     "severity": "INFO",
     "line": 14,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Parameter JSON Reference Does Not Exists (v2)",
+    "queryName": "Responses JSON Reference Does Not Exists (v2)",
     "severity": "INFO",
     "line": 12,
     "filename": "positive2.yaml"

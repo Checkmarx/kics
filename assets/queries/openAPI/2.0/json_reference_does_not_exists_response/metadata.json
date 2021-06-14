@@ -1,9 +1,9 @@
 {
-  "id": "96e93db1-2f86-43b5-87d0-ef438acbe8f8",
-  "queryName": "Parameter JSON Reference Does Not Exists (v2)",
+  "id": "e9db5fb4-6a84-4abb-b4af-3b94fbdace6d",
+  "queryName": "Responses JSON Reference Does Not Exists (v2)",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Parameter reference should exists on parameters definition field",
+  "descriptionText": "Responses reference should exists on responses definition field",
   "descriptionUrl": "https://swagger.io/specification/v2/#responsesDefinitionsObject",
   "platform": "OpenAPI"
 }
