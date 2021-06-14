@@ -10,20 +10,22 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	param := value.parameters[n]
 	param.in == "path"
-	not_required(param)
+	issueType := not_required(param)
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.parameters.name={{%s}}", [openapi_lib.concat_path(path), param.name]),
-		"issueType": "MissingAttribute",
+		"issueType": issueType,
 		"keyExpectedValue": "Path parameter has the field 'required' set to 'true' for location 'path'",
 		"keyActualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
 		"overrideKey": version,
 	}
 }
 
-not_required(param) {
+not_required(param) = issueType {
 	object.get(param, "required", "undefined") == "undefined"
-} else {
+	issueType = "MissingAttribute"
+} else = issueType {
 	param.required == false
+	issueType = "IncorrectValue"
 }
