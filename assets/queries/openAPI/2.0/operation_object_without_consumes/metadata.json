@@ -1,6 +1,6 @@
 {
   "id": "0c79e50e-b3cf-490c-b8f6-587c644d4d0c",
-  "queryName": "Operation Object Without 'consumes' (v2)",
+  "queryName": "Operation Object Without 'consumes'",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Operation Object should have 'consumes' feild defined for 'POST', 'PUT' and 'PATCH' operations",
