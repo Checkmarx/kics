@@ -1,0 +1,9 @@
+{
+  "id": "fb889ae9-2d16-40b5-b41f-9da716c5abc1",
+  "queryName": "Parameter JSON Reference Does Not Exists (v2)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Parameter reference should exists on parameters definition field",
+  "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+  "platform": "OpenAPI"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Security Definitions Undefined or Empty",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Definitions Undefined or Empty",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Definitions Undefined or Empty",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Security Definitions Undefined or Empty",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive4.yaml"
+  }
+]

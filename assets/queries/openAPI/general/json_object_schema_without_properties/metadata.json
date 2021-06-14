@@ -1,0 +1,17 @@
+{
+  "id": "9d967a2b-9d64-41a6-abea-dfc4960299bd",
+  "queryName": "JSON Object Schema Without Properties (v3)",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Schema of the JSON object should have properties defined and 'additionalProperties' set to false.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "3d28f751-bc18-4f83-ace0-216b6086410b",
+      "queryName": "JSON Object Schema Without Properties (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  },
+  "aggregation": 2
+}

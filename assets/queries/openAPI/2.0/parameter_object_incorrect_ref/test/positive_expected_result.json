@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Parameter Object With Incorrect Ref (v2)",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter Object With Incorrect Ref (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive2.yaml"
+  }
+]

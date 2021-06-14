@@ -1,0 +1,17 @@
+{
+  "id": "0de50145-e845-47f4-9a15-23bcf2125710",
+  "queryName": "Path Parameter Not Required (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The property 'required' determines whether the parameter is mandatory. If the parameter location is 'path', this property is required and its value must be true.",
+  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "ccd0613f-cb77-4684-a892-183bd2674d12",
+      "queryName": "Path Parameter Not Required (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
+    }
+  },
+  "aggregation": 2
+}
