@@ -1,6 +1,6 @@
 {
   "id": "be3e170e-1572-461e-a8b6-d963def581ec",
-  "queryName": "Operation Object Without 'produces' (v2)",
+  "queryName": "Operation Object Without 'produces'",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Operation Object should have 'produces' feild defined for 'GET'operation",
