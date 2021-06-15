@@ -12,15 +12,17 @@ CxPolicy[result] {
 	openapi_lib.improperly_defined(params, "Accept")
 
 	p := openapi_lib.concat_path(path)
-	searchKey := openapi_lib.concat_default_value(p, "parameters")
+	parcialSk := openapi_lib.concat_default_value(p, "parameters")
 	name := openapi_lib.get_name(p, params.name)
+
+	sk := openapi_lib.get_complete_search_key(n, parcialSk, name)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [searchKey, name]),
+		"searchKey": sk,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.name={{%s}} is not 'Accept'", [searchKey, params.name]),
-		"keyActualValue": sprintf("%s.name={{%s}} is 'Accept'", [searchKey, params.name]),
+		"keyExpectedValue": sprintf("%s is not 'Accept'", [sk]),
+		"keyActualValue": sprintf("%s is 'Accept'", [sk]),
 		"overrideKey": version,
 	}
 }

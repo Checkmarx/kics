@@ -23,13 +23,13 @@ paths:
         type: string
 parameters:
   oneParam:
-    name: Token
+    name: Token2
     in: header
     description: Token
     required: true
     type: string
   anotherParam:
-    name: token
+    name: token2
     in: header
     description: token
     required: true

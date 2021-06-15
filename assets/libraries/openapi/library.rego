@@ -209,3 +209,10 @@ get_name(p, name) = sk {
 } else = sk {
 	sk := concat("", {"name=", name})
 }
+
+get_complete_search_key(n, parcialSk, name) = sk {
+	is_string(n)
+	sk := sprintf("%s.%s.%s", [parcialSk, n, name])
+} else = sk {
+	sk := sprintf("%s.%s", [parcialSk, name])
+}

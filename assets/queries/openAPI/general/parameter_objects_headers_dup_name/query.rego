@@ -8,36 +8,31 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	params := value.parameters
+	param := value.parameters[n]
+	param.in == "header"
 
-	dup := check_dup(params)
+	dup := check_dup(value.parameters)
 	duplicate = cast_set(dup)
+	duplicate[_] == lower(param.name)
 
 	p := openapi_lib.concat_path(path)
-	searchKey := openapi_lib.concat_default_value(p, "parameters")
-	name := openapi_lib.get_name(p, duplicate[_])
+	parcialSk := openapi_lib.concat_default_value(p, "parameters")
+	name := openapi_lib.get_name(p, param.name)
+
+	sk := openapi_lib.get_complete_search_key(n, parcialSk, name)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [searchKey, name]),
+		"searchKey": sk,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
-		"keyActualValue": "Parameter Object with location 'header' has duplicate names",
+		"keyActualValue": sprintf("Parameter Object with location 'header' has duplicate names (name=%s)", [duplicate[_]]),
 		"overrideKey": version,
 	}
 }
 
 check_dup(params) = dup {
-	is_object(params)
-	nameArr := [x | p := params[name]; p.in == "header"; x := lower(name)]
-	arr := cast_set(nameArr)
-	count(arr) != count(params)
-	dup := [y | y := nameArr[i]]
-}
-
-check_dup(params) = dup {
-	is_array(params)
-	nameArr := [x | p := params[n]; p.in == "header"; x := lower(p.name)]
+	nameArr := [x | p := params[_]; p.in == "header"; x := lower(p.name)]
 	arr := cast_set(nameArr)
 	count(arr) != count(params)
 	dup := [y | y := nameArr[i]]

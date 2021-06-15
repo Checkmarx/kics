@@ -50,13 +50,13 @@
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
     "severity": "INFO",
-    "line": 11,
+    "line": 38,
     "filename": "positive5.json"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
     "severity": "INFO",
-    "line": 14,
+    "line": 23,
     "filename": "positive6.yaml"
   }
 ]

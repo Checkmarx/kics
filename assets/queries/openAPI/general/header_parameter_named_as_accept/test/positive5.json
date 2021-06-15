@@ -6,6 +6,18 @@
   },
   "paths": {
     "/": {
+      "parameters": [
+        {
+          "name": "Accept",
+          "in": "header",
+          "description": "ID of the API version",
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
       "get": {
         "operationId": "listVersionsv2",
         "summary": "List API versions",
@@ -14,25 +26,19 @@
             "description": "200 response"
           }
         }
-      },
-      "parameters": [
-        {
-          "name": "Accept",
-          "in": "header",
-          "description": "ID of the API the version",
-          "required": true,
-          "type": "string"
-        }
-      ]
+      }
     }
   },
   "parameters": {
     "limitParam": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "name": "Accept",
       "in": "header",
       "description": "ID of the API version",
-      "required": true,
-      "type": "string",
-      "name": "Accept"
+      "required": true
     }
   }
 }
