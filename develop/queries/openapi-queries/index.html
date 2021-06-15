@@ -379,6 +379,13 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Security Definitions Undefined or Empty<br/><sup><sub>e3f026e8-fdb4-4d5a-bcfd-bd94452073fe</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Access Control</td>
+<td>Security Definitions Object should be set and not empty</td>
+<td><a href="https://swagger.io/specification/v2/#securityDefinitionsObject">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Array Without Maximum Number of Items (v2)<br/><sup><sub>99eb2c95-2040-4104-9e7c-e16f7474d218</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -414,7 +421,7 @@
 <td><a href="https://swagger.io/specification/#security-scheme-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Implicit Flow in OAuth2<br/><sup><sub>4a1f3d75-ab73-41b2-83e7-06a93dc3a75a</sub></sup></td>
+<td>Implicit Flow in OAuth2 (v3)<br/><sup><sub>4a1f3d75-ab73-41b2-83e7-06a93dc3a75a</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>There is a 'securityScheme' using implicit flow on OAuth2, which is deprecated</td>
@@ -442,7 +449,7 @@
 <td><a href="https://swagger.io/specification/#security-scheme-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid OAuth2 Authorization URL<br/><sup><sub>52c0d841-60d6-4a81-88dd-c35fef36d315</sub></sup></td>
+<td>Invalid OAuth2 Authorization URL (v3)<br/><sup><sub>52c0d841-60d6-4a81-88dd-c35fef36d315</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL</td>
@@ -456,7 +463,7 @@
 <td><a href="https://swagger.io/specification/#oauth-flows-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Invalid OAuth2 Token URL<br/><sup><sub>3ba0cca1-b815-47bf-ac62-1e584eb64a05</sub></sup></td>
+<td>Invalid OAuth2 Token URL (v3)<br/><sup><sub>3ba0cca1-b815-47bf-ac62-1e584eb64a05</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
 <td>OAuth2 security scheme flow requires a valid URL in the tokenUrl field</td>
@@ -498,6 +505,27 @@
 <td><a href="https://swagger.io/specification/#security-scheme-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Implicit Flow in OAuth2 (v2)<br/><sup><sub>e9817ad8-a8c9-4038-8a2f-db0e6e7b284b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>There is a 'securityDefinition' using implicit flow on OAuth2, which is deprecated</td>
+<td><a href="https://swagger.io/specification/v2/#securitySchemeObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid OAuth2 Authorization URL (v2)<br/><sup><sub>33d96c65-977d-4c33-943f-440baca49185</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL</td>
+<td><a href="https://swagger.io/specification/v2/#securitySchemeObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Invalid OAuth2 Token URL (v2)<br/><sup><sub>274f910a-0665-4f08-b66d-7058fe927dba</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>OAuth2 security definition flow requires a valid URL in the tokenUrl field</td>
+<td><a href="https://swagger.io/specification/v2/#security-scheme-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Global Server Object Uses HTTP<br/><sup><sub>2d8c175a-6d90-412b-8b0e-e034ea49a1fe</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
@@ -512,25 +540,18 @@
 <td><a href="https://swagger.io/specification/#server-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Global Schemes Uses HTTP<br/><sup><sub>f30ee711-0082-4480-85ab-31d922d9a2b2</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Global Schemes should use 'https' protocol instead of 'http'</td>
+<td><a href="https://swagger.io/specification/v2/#swaggerObject">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Path Scheme Accepts HTTP (v2)<br/><sup><sub>a6847dc6-f4ea-45ac-a81f-93291ae6c573</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
 <td>The Scheme list of Operation Object should only allow 'HTTPS' protocol to ensure an encrypted connection</td>
 <td><a href="https://swagger.io/specification/v2/#operationObject">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>JSON Object Schema Without Properties<br/><sup><sub>9d967a2b-9d64-41a6-abea-dfc4960299bd</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Schema of the JSON object should have properties defined and 'additionalProperties' set to false.</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema Object is Empty<br/><sup><sub>500ce696-d501-41dd-86eb-eceb011a386f</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>The Schema Object should not be empty to avoid accepting any JSON values</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Parameter Object Without Schema<br/><sup><sub>8fe1846f-52cc-4413-ace9-1933d7d23672</sub></sup></td>
@@ -540,13 +561,6 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>JSON Object Schema Without Type<br/><sup><sub>e2ffa504-d22a-4c94-b6c5-f661849d2db7</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Insecure Configurations</td>
-<td>Schema of the JSON object should have 'type' defined.</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Media Type Object Without Schema<br/><sup><sub>f79b9d26-e945-44e7-98a1-b93f0f7a68a0</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -554,10 +568,31 @@
 <td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>String Schema with Broad Pattern<br/><sup><sub>8c81d6c0-716b-49ec-afa5-2d62da4e3f3c</sub></sup></td>
+<td>JSON Object Schema Without Properties (v2)<br/><sup><sub>3d28f751-bc18-4f83-ace0-216b6086410b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>String schema should restrict the pattern</td>
+<td>Schema of the JSON object should have properties defined and 'additionalProperties' set to false.</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>JSON Object Schema Without Properties (v3)<br/><sup><sub>9d967a2b-9d64-41a6-abea-dfc4960299bd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have properties defined and 'additionalProperties' set to false.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Object is Empty (v2)<br/><sup><sub>967575e5-eb44-4c24-aadb-7e33608ed30a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The Schema Object should not be empty to avoid accepting any JSON values</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Object is Empty (v3)<br/><sup><sub>500ce696-d501-41dd-86eb-eceb011a386f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The Schema Object should not be empty to avoid accepting any JSON values</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -603,6 +638,20 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>JSON Object Schema Without Type (v2)<br/><sup><sub>62d52544-82ef-4b75-8308-cad49d50212b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have 'type' defined.</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>JSON Object Schema Without Type (v3)<br/><sup><sub>e2ffa504-d22a-4c94-b6c5-f661849d2db7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Schema of the JSON object should have 'type' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Maximum Length Undefined (v2)<br/><sup><sub>2ec86e48-ab90-4cb6-a131-0502afd1f442</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
@@ -614,6 +663,20 @@
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
 <td>String schema should have 'maxLength' defined.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>String Schema with Broad Pattern (v2)<br/><sup><sub>e4a019f0-9af3-49c8-bf68-1939a6ff240d</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>String schema should restrict the pattern</td>
+<td><a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>String Schema with Broad Pattern (v3)<br/><sup><sub>8c81d6c0-716b-49ec-afa5-2d62da4e3f3c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>String schema should restrict the pattern</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -629,6 +692,27 @@
 <td>Insecure Configurations</td>
 <td>Numeric schema (type set to 'integer' or 'number') should have 'minimum' defined.</td>
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Operation Object Without 'consumes'<br/><sup><sub>0c79e50e-b3cf-490c-b8f6-587c644d4d0c</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Operation Object should have 'consumes' feild defined for 'POST', 'PUT' and 'PATCH' operations</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Operation Object Without 'produces'<br/><sup><sub>be3e170e-1572-461e-a8b6-d963def581ec</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Operation Object should have 'produces' feild defined for 'GET'operation</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Body Parameter Without Schema<br/><sup><sub>ed48229d-d43e-4da7-b453-5f98d964a57a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>The Body Parameter Object should have the attribute 'schema' defined</td>
+<td><a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Success Response Code Undefined for Trace Operation<br/><sup><sub>105e20dd-8449-4d71-95c6-d5dac96639af</sub></sup></td>
@@ -834,6 +918,27 @@
 <td><a href="https://swagger.io/specification/#security-scheme-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Undefined Scope 'securityDefinition' On Global 'security' Field<br/><sup><sub>9aa6e95c-d964-4239-a3a8-9f37a3c5a31f</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Using an scope on global security field that is undefined on 'securityDefinitions' can be defined by an attacker</td>
+<td><a href="https://swagger.io/specification/v2/#security-scheme-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Security Definitions Using Basic Auth<br/><sup><sub>221015a8-aa2a-43f5-b00b-ad7d2b1d47a8</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Security Defenition Object should not use basic authentication</td>
+<td><a href="https://swagger.io/specification/v2/#securitySchemeObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Undefined Scope 'securityDefinition' On 'security' Field On Operations<br/><sup><sub>3847280c-9193-40bc-8009-76168e822ce2</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>Using an scope on security of operations that is undefined on 'securityDefinitions' can be defined by an attacker</td>
+<td><a href="https://swagger.io/specification/v2/#security-scheme-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Invalid Format (v2)<br/><sup><sub>caf1793e-95dd-4b18-8d90-8f3c0ab5bddf</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
@@ -958,13 +1063,6 @@
 <td>Best Practices</td>
 <td>Components request bodies definitions should be referenced or removed from Open API definition</td>
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema Object Using Enum With Keyword<br/><sup><sub>2e9b6612-8f69-42e0-a5b8-ed17739c2f3a</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Schema Object properties should not contain 'enum' and schema keywords</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Components Header Definition Is Unused<br/><sup><sub>a68da022-e95a-4bc2-97d3-481e0bd6d446</sub></sup></td>
@@ -1114,6 +1212,20 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Object Using Enum With Keyword (v2)<br/><sup><sub>7f15962a-d862-451c-ac9b-84ec13747aa6</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Schema/Parameter/Header Object properties should not contain 'enum' and schema keywords</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Object Using Enum With Keyword (v3)<br/><sup><sub>2e9b6612-8f69-42e0-a5b8-ed17739c2f3a</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Schema Object properties should not contain 'enum' and schema keywords</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Invalid Schema External Documentation URL (v2)<br/><sup><sub>f7fa95b7-d819-484c-9a2b-665dd1bba25e</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
@@ -1184,7 +1296,7 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema JSON Reference Does Not Exists<br/><sup><sub>015eac96-6313-43c0-84e5-81b1374fa637</sub></sup></td>
+<td>Schema JSON Reference Does Not Exists (v3)<br/><sup><sub>015eac96-6313-43c0-84e5-81b1374fa637</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
 <td>Schema reference should exists on components field</td>
@@ -1226,7 +1338,7 @@
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Response JSON Reference Does Not Exists<br/><sup><sub>7a01dfbd-da62-4165-aed7-71349ad42ab4</sub></sup></td>
+<td>Response JSON Reference Does Not Exists (v3)<br/><sup><sub>7a01dfbd-da62-4165-aed7-71349ad42ab4</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
 <td>Response reference should exists on components field</td>
@@ -1294,13 +1406,6 @@
 <td>Structure and Semantics</td>
 <td>Content Type should be set to 'multipart/form-data' in case of uploading an arbitrary number of files (array)</td>
 <td><a href="https://swagger.io/docs/specification/describing-request-body/file-upload/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Parameters Name In Combination Should Be Unique<br/><sup><sub>f5b2e6af-76f5-496d-8482-8f898c5fdb4a</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Parameters properties 'name' and 'in' should have unique combinations</td>
-<td><a href="https://swagger.io/specification/#parameters-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Schema With Both ReadOnly And WriteOnly<br/><sup><sub>d2361d58-361c-49f0-9e50-b957fd608b29</sub></sup></td>
@@ -1373,13 +1478,6 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Items Undefined<br/><sup><sub>a8e859da-4a43-4e7f-94b8-25d6e3bf8e90</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Schema items should be defined when the schema is set to an array.</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Property 'allowReserved' Improperly Defined<br/><sup><sub>7f203940-39c4-4ea7-91ee-7aba16bca9e2</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -1436,13 +1534,6 @@
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Non-Array Schema With Items<br/><sup><sub>20cb3159-b219-496b-8dac-54ae3ab2021a</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>Non-Array Schema should not have 'items' defined</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Server URL Not Absolute<br/><sup><sub>a0bf7382-5d5a-4224-924c-3db8466026c9</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -1457,7 +1548,7 @@
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Schema Object Incorrect Ref<br/><sup><sub>4cac7ace-b0fb-477d-830d-65395d9109d9</sub></sup></td>
+<td>Schema Object Incorrect Ref (v3)<br/><sup><sub>4cac7ace-b0fb-477d-830d-65395d9109d9</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
 <td>Schema Object reference must always point to '#/components/schemas'</td>
@@ -1604,6 +1695,20 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Schema Items Undefined (v2)<br/><sup><sub>3e4d34d2-36cf-4449-976d-6c256db8fc49</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema items should be defined when the schema is set to an array.</td>
+<td><a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Items Undefined (v3)<br/><sup><sub>a8e859da-4a43-4e7f-94b8-25d6e3bf8e90</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema items should be defined when the schema is set to an array.</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Template Path With No Corresponding Path Parameter (v2)<br/><sup><sub>e7656d8d-7288-4bbe-b07b-22b389be75ce</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -1616,6 +1721,20 @@
 <td>Structure and Semantics</td>
 <td>The template path must have a corresponding path parameter for a given operation</td>
 <td><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#pathTemplating">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Parameters Name In Combination Not Unique (v2)<br/><sup><sub>ab871897-ec02-4835-9818-702536ee1dda</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Parameters properties 'name' and 'in' should have unique combinations</td>
+<td><a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Parameters Name In Combination Not Unique (v3)<br/><sup><sub>f5b2e6af-76f5-496d-8482-8f898c5fdb4a</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Parameters properties 'name' and 'in' should have unique combinations</td>
+<td><a href="https://swagger.io/specification/#parameters-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>OperationId Not Unique (v2)<br/><sup><sub>21245007-91c4-40e5-964e-40c85d1e5aa6</sub></sup></td>
@@ -1644,6 +1763,20 @@
 <td>Structure and Semantics</td>
 <td>HTTP Responses status code should be in range of [200-599]</td>
 <td><a href="https://swagger.io/specification/#responses-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Non-Array Schema With Items (v2)<br/><sup><sub>9d47956b-29cd-43b1-9e6e-b39a4d484353</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Non-Array Schema should not have 'items' defined</td>
+<td><a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Non-Array Schema With Items (v3)<br/><sup><sub>20cb3159-b219-496b-8dac-54ae3ab2021a</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Non-Array Schema should not have 'items' defined</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Property 'allowEmptyValue' Improperly Defined (v2)<br/><sup><sub>0bc1477d-0922-478b-ae16-674a7634a1a8</sub></sup></td>
@@ -1730,6 +1863,20 @@
 <td><a href="https://swagger.io/specification/#parameter-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Schema JSON Reference Does Not Exists (v2)<br/><sup><sub>98295b32-ec09-4b5b-89a9-39853197f914</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema reference should exists on definitions field</td>
+<td><a href="https://swagger.io/specification/v2/#definitionsObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Responses JSON Reference Does Not Exists (v2)<br/><sup><sub>e9db5fb4-6a84-4abb-b4af-3b94fbdace6d</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Responses reference should exist on responses definition field</td>
+<td><a href="https://swagger.io/specification/v2/#responsesDefinitionsObject">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Response Object With Incorrect Ref (v2)<br/><sup><sub>bccfa089-89e4-47e0-a0e5-185fe6902220</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -1747,8 +1894,15 @@
 <td>Parameter JSON Reference Does Not Exists (v2)<br/><sup><sub>fb889ae9-2d16-40b5-b41f-9da716c5abc1</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
-<td>Parameter reference should exists on parameters definition field</td>
+<td>Parameter reference should exist on parameters definition field</td>
 <td><a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Object Incorrect Ref (v2)<br/><sup><sub>0220e1c5-65d1-49dd-b7c2-cef6d6cb5283</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Schema Object reference must always point to '#/definitions'</td>
+<td><a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table></div>
