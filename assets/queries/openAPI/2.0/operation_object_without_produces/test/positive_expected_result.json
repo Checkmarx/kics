@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Operation Object Without 'produces'",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Operation Object Without 'produces'",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Schema Object is Empty (v3)",
+    "severity": "MEDIUM",
+    "line": 50,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Object is Empty (v3)",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Object is Empty (v3)",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Object is Empty (v3)",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Schema Object is Empty (v2)",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Object is Empty (v2)",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Schema Object is Empty (v2)",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Schema Object is Empty (v2)",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive8.yaml"
+  }
+]

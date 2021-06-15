@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Global Schemes Uses HTTP",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Schemes Uses HTTP",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.yaml"
+  }
+]

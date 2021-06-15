@@ -36,7 +36,11 @@ incorrect_ref(ref, object) {
 }
 
 incorrect_ref_swagger(ref, object) {
-	references := {"parameters": "#/parameters/"}
+	references := {
+		"parameters": "#/parameters/",
+		"responses": "#/responses/",
+		"schemas": "#/definitions/",
+	}
 
 	not startswith(ref, references[object])
 }
@@ -46,18 +50,22 @@ content_allowed(operation, code) {
 	all([code != "204", code != "304"])
 }
 
-# It verifies if there is some schema in 'components.schemas' equal to the input with the 'field' undefined
-check_content(doc, s, field) {
-	component_schema := doc.components.schemas[s]
-	object.get(component_schema, field, "undefined") == "undefined"
+# It verifies if there is some schema in 'key' equal to the input with the 'field' undefined
+check_content(s, field, key) {
+	object.get(key[s], field, "undefined") == "undefined"
 }
 
 # It verifies if the 'schema_ref' refers to a schema with the 'field' undefined
-undefined_field_in_json_object(doc, schema_ref, field) {
+undefined_field_in_json_object(doc, schema_ref, field, version) {
+	version == "3.0"
 	r := split(schema_ref, "/")
 	count(r) == 4
-	s := r[3]
-	check_content(doc, s, field)
+	check_content(r[3], field, doc.components.schemas)
+} else {
+	version == "2.0"
+	r := split(schema_ref, "/")
+	count(r) == 3
+	check_content(r[2], field, doc.definitions)
 }
 
 check_unused_reference(doc, referenceName, type) {
@@ -175,6 +183,15 @@ require_objects := {
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
 }
 
+# get schema info (object and path) according to the openAPI version
+get_schema_info(doc, version) = schemaInfo {
+	version == "3.0"
+	schemaInfo := {"obj": doc.components.schemas, "path": "components.schemas"}
+} else = schemaInfo {
+	version == "2.0"
+	schemaInfo := {"obj": doc.definitions, "path": "definitions"}
+}
+
 api_key_exposed(doc, version, s) {
 	version == "3.0"
 	doc.components.securitySchemes[s].type == "apiKey"
@@ -183,26 +200,32 @@ api_key_exposed(doc, version, s) {
 	doc.securityDefinitions[s].type == "apiKey"
 }
 
-check_schemes(doc, secFieldSchemes, version) = secFieldScheme {
+check_schemes(doc, opSchemes, version) = opScheme {
 	version == "3.0"
-	secFieldSecurityScheme := secFieldSchemes[secFieldScheme]
+	operationSecurityScheme := opSchemes[opScheme]
 	secScheme := doc.components.securitySchemes[scheme]
 	secScheme.type == "oauth2"
 
-	secScope := secFieldSecurityScheme[_]
-
-	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == secScope; x := secScope]
+	opScope := operationSecurityScheme[_]
+	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == opScope; x := opScope]
 
 	count(arr) == 0
-} else = secFieldScheme {
+} else = opScheme {
 	version == "2.0"
-	secFieldSecurityScheme := secFieldSchemes[secFieldScheme]
+	operationSecurityScheme := opSchemes[opScheme]
 	secScheme := doc.securityDefinitions[scheme]
 	secScheme.type == "oauth2"
 
-	secScope := secFieldSecurityScheme[_]
-
-	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == secScope; x := secScope]
+	opScope := operationSecurityScheme[_]
+	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == opScope; x := opScope]
 
 	count(arr) == 0
+}
+
+# It verifies if the path is empty. If so, it refers to a global object. If not, joins it with the defaultValue.
+concat_default_value(path, defaultValue) = searchKey {
+	count(path) == 0
+	searchKey := defaultValue
+} else = path {
+	searchKey := concat(".", {path, defaultValue})
 }

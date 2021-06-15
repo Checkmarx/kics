@@ -1,6 +1,6 @@
 {
   "id": "7a01dfbd-da62-4165-aed7-71349ad42ab4",
-  "queryName": "Response JSON Reference Does Not Exists",
+  "queryName": "Response JSON Reference Does Not Exists (v3)",
   "severity": "INFO",
   "category": "Structure and Semantics",
   "descriptionText": "Response reference should exists on components field",

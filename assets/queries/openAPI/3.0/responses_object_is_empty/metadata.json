@@ -1,9 +1,0 @@
-{
-  "id": "990eaf09-d6f1-4c3c-b174-a517b1de8917",
-  "queryName": "Responses Object Is Empty",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Responses Object should not be empty",
-  "descriptionUrl": "https://swagger.io/specification/#responses-object",
-  "platform": "OpenAPI"
-}

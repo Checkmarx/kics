@@ -4,11 +4,11 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	operationObject := doc.paths[path][operation]
 	not is_array(operationObject.security)
-	opScheme := check_schemes(doc, operationObject.security)
+	opScheme := openapi_lib.check_schemes(doc, operationObject.security, "3.0")
 
 	result := {
 		"documentId": doc.id,
@@ -21,13 +21,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	operationObject := doc.paths[path][operation]
 	is_array(operationObject.security)
 
 	operationSecuritiesScheme := operationObject.security[_]
-	opScheme := check_schemes(doc, operationSecuritiesScheme)
+	opScheme := openapi_lib.check_schemes(doc, operationSecuritiesScheme, "3.0")
 
 	result := {
 		"documentId": doc.id,
@@ -36,16 +36,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "Scope should be defined on 'securityShemes'",
 		"keyActualValue": "Using an undefined scope",
 	}
-}
-
-check_schemes(doc, opSchemes) = opScheme {
-	operationSecurityScheme := opSchemes[opScheme]
-	secScheme := doc.components.securitySchemes[scheme]
-	secScheme.type == "oauth2"
-
-	opScope := operationSecurityScheme[_]
-
-	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == opScope; x := opScope]
-
-	count(arr) == 0
 }

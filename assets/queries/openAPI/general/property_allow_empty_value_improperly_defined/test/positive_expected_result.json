@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
+    "severity": "INFO",
+    "line": 59,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive6.yaml"
+  }
+]
