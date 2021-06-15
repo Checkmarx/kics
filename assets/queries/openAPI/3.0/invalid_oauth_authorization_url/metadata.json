@@ -5,13 +5,5 @@
   "category": "Access Control",
   "descriptionText": "The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL",
   "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
-  "platform": "OpenAPI",
-  "override": {
-    "2.0": {
-      "id": "33d96c65-977d-4c33-943f-440baca49185",
-      "queryName": "Invalid OAuth2 Authorization URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject"
-    }
-  },
-  "aggregation": 2
+  "platform": "OpenAPI"
 }
