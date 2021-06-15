@@ -182,3 +182,27 @@ api_key_exposed(doc, version, s) {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
 }
+
+check_schemes(doc, secFieldSchemes, version) = secFieldScheme {
+	version == "3.0"
+	secFieldSecurityScheme := secFieldSchemes[secFieldScheme]
+	secScheme := doc.components.securitySchemes[scheme]
+	secScheme.type == "oauth2"
+
+	secScope := secFieldSecurityScheme[_]
+
+	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == secScope; x := secScope]
+
+	count(arr) == 0
+} else = secFieldScheme {
+	version == "2.0"
+	secFieldSecurityScheme := secFieldSchemes[secFieldScheme]
+	secScheme := doc.securityDefinitions[scheme]
+	secScheme.type == "oauth2"
+
+	secScope := secFieldSecurityScheme[_]
+
+	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == secScope; x := secScope]
+
+	count(arr) == 0
+}
