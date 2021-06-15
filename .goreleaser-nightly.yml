@@ -9,10 +9,18 @@ builds:
       - windows
     goarch:
       - amd64
+      - arm64
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: linux
+        goarm: 7
+      - goos: windows
+        goarm: 7
     ldflags:
       - -s
       - -w
-      - -X github.com/Checkmarx/kics/internal/constants.Version={{ .Version }}-{{ .ShortCommit }}
+      - -X github.com/Checkmarx/kics/internal/constants.Version={{ .Version }}-{{ .ShortCommit }}-{{ .Date }}
       - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{ .Commit }}
       - -X github.com/Checkmarx/kics/internal/constants.SentryDSN={{ .Env.SENTRY_DSN }}
 archives:
@@ -25,7 +33,8 @@ archives:
       386: x32
     files:
       - LICENSE
-      - assets/queries
+      - assets/queries/**/metadata.json
+      - assets/queries/**/*.rego
       - assets/libraries
 release:
   prerelease: true

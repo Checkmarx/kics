@@ -1,0 +1,9 @@
+{
+  "id": "e3f026e8-fdb4-4d5a-bcfd-bd94452073fe",
+  "queryName": "Security Definitions Undefined or Empty",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Security Definitions Object should be set and not empty",
+  "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject",
+  "platform": "OpenAPI"
+}

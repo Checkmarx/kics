@@ -1,6 +1,6 @@
 {
   "id": "52c0d841-60d6-4a81-88dd-c35fef36d315",
-  "queryName": "Invalid OAuth2 Authorization URL",
+  "queryName": "Invalid OAuth2 Authorization URL (v3)",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL",

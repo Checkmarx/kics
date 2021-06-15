@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "JSON Object Schema Without Type (v3)",
+    "severity": "MEDIUM",
+    "line": 75,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type (v3)",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type (v3)",
+    "severity": "MEDIUM",
+    "line": 45,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type (v3)",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type (v2)",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "JSON Object Schema Without Type (v2)",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive6.yaml"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "put": {
+        "operationId": "updateVersionsv2",
+        "summary": "Update API versions",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": []
+      }
+    }
+  }
+}

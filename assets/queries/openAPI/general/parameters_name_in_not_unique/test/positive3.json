@@ -1,0 +1,44 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        },
+        "parameters": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "name": "limit",
+            "in": "path",
+            "description": "ID of pet to use",
+            "required": true,
+            "type": "array"
+          },
+          {
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "name": "limit",
+            "in": "path",
+            "description": "ID of pet to use"
+          }
+        ],
+        "operationId": "listVersionsv2",
+        "summary": "List API versions"
+      }
+    }
+  }
+}

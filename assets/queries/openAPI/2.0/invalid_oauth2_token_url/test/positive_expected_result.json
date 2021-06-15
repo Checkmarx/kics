@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Invalid OAuth2 Token URL (v2)",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Token URL (v2)",
+    "severity": "MEDIUM",
+    "line": 30,
+    "filename": "positive2.json"
+  }
+]

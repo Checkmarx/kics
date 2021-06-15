@@ -1,0 +1,9 @@
+{
+  "id": "ed48229d-d43e-4da7-b453-5f98d964a57a",
+  "queryName": "Body Parameter Without Schema",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The Body Parameter Object should have the attribute 'schema' defined",
+  "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+  "platform": "OpenAPI"
+}

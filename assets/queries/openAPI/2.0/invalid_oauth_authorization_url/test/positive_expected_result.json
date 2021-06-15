@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 19,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v2)",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive2.json"
+  }
+]
