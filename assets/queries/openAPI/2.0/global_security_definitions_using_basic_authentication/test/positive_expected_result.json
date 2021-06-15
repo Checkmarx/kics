@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Global Security Definitions Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Security Definitions Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive2.yaml"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "4b3cb508-2225-463b-a515-aff26556499a",
+  "queryName": "Global Security Definitions Using Basic Authentication",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Global Security Definitions Object should not use basic authentication",
+  "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject",
+  "platform": "OpenAPI"
+}
