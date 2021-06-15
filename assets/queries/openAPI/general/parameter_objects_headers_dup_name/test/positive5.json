@@ -32,5 +32,21 @@
         }
       ]
     }
+  },
+  "parameters": {
+    "oneParam": {
+      "type": "string",
+      "name": "Token",
+      "in": "header",
+      "description": "Token",
+      "required": true
+    },
+    "anotherParam": {
+      "required": true,
+      "type": "string",
+      "name": "token",
+      "in": "header",
+      "description": "token"
+    }
   }
 }

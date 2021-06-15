@@ -46,5 +46,17 @@
     "severity": "INFO",
     "line": 14,
     "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type' (v2)",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type' (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive6.yaml"
   }
 ]

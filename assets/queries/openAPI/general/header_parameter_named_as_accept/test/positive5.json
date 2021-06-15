@@ -25,5 +25,14 @@
         }
       ]
     }
+  },
+  "parameters": {
+    "limitParam": {
+      "in": "header",
+      "description": "ID of the API version",
+      "required": true,
+      "type": "string",
+      "name": "Accept"
+    }
   }
 }

@@ -21,3 +21,16 @@ paths:
         description: token
         required: true
         type: string
+parameters:
+  oneParam:
+    name: Token
+    in: header
+    description: Token
+    required: true
+    type: string
+  anotherParam:
+    name: token
+    in: header
+    description: token
+    required: true
+    type: string

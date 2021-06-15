@@ -199,7 +199,7 @@ api_key_exposed(doc, version, s) {
 concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
 	searchKey := defaultValue
-} else = path {
+} else = searchKey {
 	searchKey := concat(".", {path, defaultValue})
 }
 
