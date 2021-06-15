@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Responses JSON Reference Does Not Exists (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Responses JSON Reference Does Not Exists (v2)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive2.yaml"
+  }
+]

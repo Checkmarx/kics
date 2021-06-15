@@ -1,9 +1,0 @@
-{
-  "id": "4bcbcd52-3028-469f-bc14-02c7dbba2df2",
-  "queryName": "Property 'allowEmptyValue' Improperly Defined",
-  "severity": "INFO",
-  "category": "Structure and Semantics",
-  "descriptionText": "Property 'allowEmptyValue' should be only defined for query parameters",
-  "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI"
-}

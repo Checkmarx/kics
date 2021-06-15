@@ -1,0 +1,16 @@
+{
+  "id": "500ce696-d501-41dd-86eb-eceb011a386f",
+  "queryName": "Schema Object is Empty (v3)",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "The Schema Object should not be empty to avoid accepting any JSON values",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "967575e5-eb44-4c24-aadb-7e33608ed30a",
+      "queryName": "Schema Object is Empty (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+    }
+  }
+}
