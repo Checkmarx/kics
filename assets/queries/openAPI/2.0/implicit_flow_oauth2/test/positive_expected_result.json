@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Implicit Flow in OAuth2 (v2)",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Implicit Flow in OAuth2 (v2)",
+    "severity": "MEDIUM",
+    "line": 19,
+    "filename": "positive2.yaml"
+  }
+]

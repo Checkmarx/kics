@@ -1,0 +1,35 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API overview",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oAuth2AuthCodeNeg2": {
+      "type": "oauth2",
+      "description": "For more information, see https://api.my.company.com/docs/oauth",
+      "flow": "implicit",
+      "authorizationUrl": "https://api.my.company.com/oauth/authorize",
+      "scopes": {
+        "write:api": "modify apis in your account",
+        "read:api": "read your apis"
+      }
+    }
+  }
+}
