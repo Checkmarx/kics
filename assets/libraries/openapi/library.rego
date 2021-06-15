@@ -200,6 +200,28 @@ api_key_exposed(doc, version, s) {
 	doc.securityDefinitions[s].type == "apiKey"
 }
 
+check_schemes(doc, opSchemes, version) = opScheme {
+	version == "3.0"
+	operationSecurityScheme := opSchemes[opScheme]
+	secScheme := doc.components.securitySchemes[scheme]
+	secScheme.type == "oauth2"
+
+	opScope := operationSecurityScheme[_]
+	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == opScope; x := opScope]
+
+	count(arr) == 0
+} else = opScheme {
+	version == "2.0"
+	operationSecurityScheme := opSchemes[opScheme]
+	secScheme := doc.securityDefinitions[scheme]
+	secScheme.type == "oauth2"
+
+	opScope := operationSecurityScheme[_]
+	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == opScope; x := opScope]
+
+	count(arr) == 0
+}
+
 # It verifies if the path is empty. If so, it refers to a global object. If not, joins it with the defaultValue.
 concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
