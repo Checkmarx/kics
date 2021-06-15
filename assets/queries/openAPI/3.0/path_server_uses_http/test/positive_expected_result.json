@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Path Server Object Uses HTTP",
+    "queryName": "Path Server Object Uses HTTP (v3)",
     "severity": "MEDIUM",
     "line": 18,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Path Server Object Uses HTTP",
+    "queryName": "Path Server Object Uses HTTP (v3)",
     "severity": "MEDIUM",
     "line": 15,
     "filename": "positive2.yaml"

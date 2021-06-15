@@ -1,0 +1,17 @@
+{
+  "id": "8c81d6c0-716b-49ec-afa5-2d62da4e3f3c",
+  "queryName": "String Schema with Broad Pattern (v3)",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "String schema should restrict the pattern",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "e4a019f0-9af3-49c8-bf68-1939a6ff240d",
+      "queryName": "String Schema with Broad Pattern (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+    }
+  },
+  "aggregation": 2
+}

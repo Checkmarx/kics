@@ -1,0 +1,17 @@
+{
+  "id": "6952a7e0-6e48-4285-bbc1-27c64e60f888",
+  "queryName": "Invalid Schema External Documentation URL (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Schema External Documentation URL should be a valid URL",
+  "descriptionUrl": "https://swagger.io/specification/#external-documentation-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "f7fa95b7-d819-484c-9a2b-665dd1bba25e",
+      "queryName": "Invalid Schema External Documentation URL (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject"
+    }
+  },
+  "aggregation": 2
+}
