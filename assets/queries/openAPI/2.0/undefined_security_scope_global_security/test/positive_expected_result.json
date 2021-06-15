@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Undefined Scope 'securityDefinition' On Global 'security' Field",
+    "severity": "LOW",
+    "line": 23,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Undefined Scope 'securityDefinition' On Global 'security' Field",
+    "severity": "LOW",
+    "line": 33,
+    "filename": "positive2.json"
+  }
+]
