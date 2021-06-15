@@ -2,12 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Simple API Overview",
-    "version": "1.0.0",
-    "contact": {
-      "name": "contact",
-      "url": "https://www.google.com/",
-      "email": "user@gmail.c"
-    }
+    "version": "1.0.0"
   },
   "paths": {
     "/": {
@@ -51,23 +46,13 @@
   "components": {
     "schemas": {
       "GeneralError": {
+        "type": "object",
         "discriminator": {
           "propertyName": "petType"
         },
-        "additionalProperties": false,
-        "properties": {
-          "code": {
-            "type": "string",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
         "required": [
           "petType"
-        ],
-        "type": "object"
+        ]
       }
     }
   }
