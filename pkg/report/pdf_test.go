@@ -32,7 +32,7 @@ func TestPrintPdfReport(t *testing.T) {
 			if err := os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			err := PrintPdfReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintPdfReport(test.caseTest.path, test.caseTest.filename, &test.caseTest.summary)
 			checkFileExists(t, err, &test, "pdf")
 			os.RemoveAll(test.caseTest.path)
 		})
