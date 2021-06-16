@@ -226,8 +226,22 @@ check_schemes(doc, opSchemes, version) = opScheme {
 concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
 	searchKey := defaultValue
-} else = path {
+} else = searchKey {
 	searchKey := concat(".", {path, defaultValue})
+}
+
+get_name(p, name) = sk {
+	p[minus(count(p), 1)] == "components"
+	sk := name
+} else = sk {
+	sk := concat("", {"name=", name})
+}
+
+get_complete_search_key(n, parcialSk, property) = sk {
+	is_string(n)
+	sk := sprintf("%s.%s.%s", [parcialSk, n, property])
+} else = sk {
+	sk := sprintf("%s.%s", [parcialSk, property])
 }
 
 is_mimetype_valid(content) {
