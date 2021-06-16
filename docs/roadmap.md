@@ -1,6 +1,7 @@
 ## KICS Roadmap
 
 These are our upcoming features:
+
 - Schemas support OpenAPI 3.0
 - Schemas support OpenAPI 2.0 (Swagger)
 - Schemas support gRPC
