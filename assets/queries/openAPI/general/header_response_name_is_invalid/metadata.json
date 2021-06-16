@@ -12,5 +12,6 @@
       "queryName": "Header Response Name Is Invalid (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#response-object"
     }
-  }
+  },
+  "aggregation": 2
 }
