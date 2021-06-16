@@ -5,6 +5,9 @@ var headerArray = [];
   removeElement(".nav-item a[rel='prev']", true)
   removeElement(".nav-item a[rel='next']", true)
 
+  var kics = document.querySelectorAll(".md-ellipsis")
+  kics[0].setAttribute("style", "display:none;")
+
   // For queries pages
   if (window.location.href.includes('/queries/') && window.location.href.includes('-queries')) {
     removeElement("div.md-sidebar.md-sidebar--secondary", false)

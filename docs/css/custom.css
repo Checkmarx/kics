@@ -35,22 +35,22 @@
 
 /* ########## Bootstrap Button CSS ########## */
 
+/* ########## Bootstrap Button CSS ########## */
 .btn-success {
   color: #fff !important;
-  background-color: #4cae4f !important;
-  border-color: #4cae4f !important;
-}
-
-.btn-success:hover, .btn-outline-success:hover  {
+  background-color: #009485 !important;
+  border-color: #009485 !important;
+ }
+ .btn-success:hover, .btn-outline-success:hover {
   color: #fff !important;
-  background-color: #398e3d !important;
-  border-color: #68bb6c !important;
-}
+  background-color: #26a699 !important;
+  border-color: #26a699 !important;
+ }
+ .btn-outline-success {
+  color: #26a699 !important;
+  border-color: #26a699 !important;
+ }
 
-.btn-outline-success {
-  color: #398e3d !important;
-  border-color: #68bb6c !important;
-}
 
 .btn {
   display: inline-block;
@@ -71,3 +71,4 @@
 }
 
 /* ########## End Bootstrap Button CSS ########## */
+

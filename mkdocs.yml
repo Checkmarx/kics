@@ -23,14 +23,14 @@ theme:
     - navigation.tabs.sticky
   palette:
     - scheme: default
-      primary: green
-      accent: green
+      primary: teal
+      accent: teal
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: green
-      accent: green
+      primary: teal
+      accent: teal
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
