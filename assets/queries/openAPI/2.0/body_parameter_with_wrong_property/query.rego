@@ -13,8 +13,8 @@ CxPolicy[result] {
 	property := param[x]
 	not allowed(x)
 
-	parcialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
-	sk := openapi_lib.get_complete_search_key(n, parcialSk, x)
+	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
+	sk := openapi_lib.get_complete_search_key(n, partialSk, x)
 
 	result := {
 		"documentId": doc.id,
