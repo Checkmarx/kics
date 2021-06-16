@@ -1228,6 +1228,13 @@
 <td><a href="https://swagger.io/specification/v2/#securitySchemeObject">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Security Definitions Using Password Flow<br/><sup><sub>773116aa-2e6d-416f-bd85-f0301cc05d76</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Security Defenition Object should not use 'password' Flow</td>
+<td><a href="https://swagger.io/specification/v2/#securitySchemeObject">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Invalid OAuth2 Authorization URL (v2)<br/><sup><sub>33d96c65-977d-4c33-943f-440baca49185</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Access Control</td>
@@ -1655,6 +1662,13 @@
 <td><a href="https://swagger.io/specification/v2/#security-scheme-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Operation Summary Too Long<br/><sup><sub>d47940ca-5970-45cc-bdd1-4d81398cee1f</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Operation summary should be short (less than 120 characters)</td>
+<td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Invalid Format (v2)<br/><sup><sub>caf1793e-95dd-4b18-8d90-8f3c0ab5bddf</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Insecure Configurations</td>
@@ -1669,7 +1683,7 @@
 <td><a href="https://swagger.io/docs/specification/data-models/data-types/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unknown Prefix<br/><sup><sub>a5375be3-521c-43bb-9eab-e2432e368ee4</sub></sup></td>
+<td>Unknown Prefix (v3)<br/><sup><sub>a5375be3-521c-43bb-9eab-e2432e368ee4</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
 <td>The media type prefix should be set as 'application', 'audio', 'font', 'example', 'image', 'message', 'model', 'multipart', 'text' or 'video'</td>
@@ -1702,13 +1716,6 @@
 <td>Best Practices</td>
 <td>Property 'explode' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.</td>
 <td><a href="https://swagger.io/specification/#encoding-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Header Response Named as 'Content-Type'<br/><sup><sub>d4e43db5-54d8-4dda-b3c2-0dc6f31a46bd</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>The Header Response should not be named as 'Content-Type'. If so, it will be ignored.</td>
-<td><a href="https://swagger.io/specification/#response-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Components Link Definition Is Unused<br/><sup><sub>c19779a9-5774-4d2f-a3a1-a99831730375</sub></sup></td>
@@ -1998,6 +2005,27 @@
 <td><a href="https://swagger.io/specification/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Header Response Name Is Invalid (v2)<br/><sup><sub>86733e01-a435-4bd5-a8b0-5108be9dc1e4</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>The Header Response should not be named as 'Content-Type', 'Authorization' or 'Accept'. If so, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/v2/#response-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Header Response Name Is Invalid (v3)<br/><sup><sub>d4e43db5-54d8-4dda-b3c2-0dc6f31a46bd</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>The Header Response should not be named as 'Content-Type', 'Authorization' or 'Accept'. If so, it will be ignored.</td>
+<td><a href="https://swagger.io/specification/#response-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unknown Prefix (v2)<br/><sup><sub>3b615f00-c443-4ba9-acc4-7c308716917d</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>The media type prefix should be set as 'application', 'audio', 'font', 'example', 'image', 'message', 'model', 'multipart', 'text' or 'video'</td>
+<td><a href="https://swagger.io/specification/v2/#swagger-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Security Operation Field Undefined<br/><sup><sub>20a482d5-c5d9-4a7a-b7a4-60d0805047b4</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -2150,13 +2178,6 @@
 <td>Structure and Semantics</td>
 <td>Callback reference should exists on components field</td>
 <td><a href="https://swagger.io/specification/#components-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Schema Enum Invalid<br/><sup><sub>03856cb2-e46c-4daf-bfbf-214ec93c882b</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Structure and Semantics</td>
-<td>The field 'enum' of Schema Object should be consistent with the schema's type</td>
-<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Link Object OperationId Does Not Target Operation Object<br/><sup><sub>c5bb7461-aa57-470b-a714-3bc3d74f4669</sub></sup></td>
@@ -2411,6 +2432,20 @@
 <td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Schema Enum Invalid (v2)<br/><sup><sub>8fe6d18a-ad4c-4397-8884-e3a9da57f4c9</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The field 'enum' of Schema Object should be consistent with the schema's type</td>
+<td><a href="https://swagger.io/specification/v2/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Schema Enum Invalid (v3)<br/><sup><sub>03856cb2-e46c-4daf-bfbf-214ec93c882b</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The field 'enum' of Schema Object should be consistent with the schema's type</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Schema Items Undefined (v2)<br/><sup><sub>3e4d34d2-36cf-4449-976d-6c256db8fc49</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Structure and Semantics</td>
@@ -2605,6 +2640,13 @@
 <td>Structure and Semantics</td>
 <td>Parameter Object reference must always point to '#/parameters'</td>
 <td><a href="https://swagger.io/specification/v2/#parameter-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Body Parameter With Wrong Property<br/><sup><sub>c38d630d-a415-4e3e-bac2-65475979ba88</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>The Body Parameter Object should only have the following properties defined - 'name', 'in', 'description', 'required', and 'schema'</td>
+<td><a href="https://swagger.io/specification/v2/#parameterObject">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Parameter JSON Reference Does Not Exists (v2)<br/><sup><sub>fb889ae9-2d16-40b5-b41f-9da716c5abc1</sub></sup></td>
