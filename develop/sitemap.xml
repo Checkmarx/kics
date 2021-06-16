@@ -41,6 +41,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://www.kics.io/develop/commands/</loc>
+         <lastmod>2021-06-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://www.kics.io/develop/configuration-file/</loc>
          <lastmod>2021-06-16</lastmod>
          <changefreq>daily</changefreq>
@@ -97,6 +102,11 @@
     </url>
     <url>
          <loc>http://www.kics.io/develop/performance/</loc>
+         <lastmod>2021-06-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://www.kics.io/develop/platforms/</loc>
          <lastmod>2021-06-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -172,16 +182,6 @@
     </url>
     <url>
          <loc>http://www.kics.io/develop/queries/terraform-queries/</loc>
-         <lastmod>2021-06-16</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>http://www.kics.io/develop/usage/commands/</loc>
-         <lastmod>2021-06-16</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>http://www.kics.io/develop/usage/technologies/</loc>
          <lastmod>2021-06-16</lastmod>
          <changefreq>daily</changefreq>
     </url>

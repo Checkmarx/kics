@@ -4,12 +4,19 @@ var headerArray = [];
 (function () {
   removeElement(".nav-item a[rel='prev']", true)
   removeElement(".nav-item a[rel='next']", true)
+
+  var kics = document.querySelectorAll(".md-ellipsis")
+  kics[0].setAttribute("style", "display:none;")
+
   // For queries pages
   if (window.location.href.includes('/queries/') && window.location.href.includes('-queries')) {
-    removeElement(".container .navbar-light", true)
-    var updateElement = document.querySelector("[role='main']");
-    updateElement.classList.remove("col-md-9");
-    updateElement.classList.add("col-md-12");
+    removeElement("div.md-sidebar.md-sidebar--secondary", false)
+
+    var updateTableHeader = document.getElementsByTagName("th")
+
+    for (var t of updateTableHeader) {
+      t.classList.add("queries-th")
+    }
 
     //add filter and sort
     var tableHeader = document.querySelectorAll(":not(.modal-body) > table > thead > tr > th")
@@ -24,6 +31,7 @@ var headerArray = [];
         const inputFilter = document.createElement("input")
         inputFilter.setAttribute("id", `query-filter-${i}`)
         inputFilter.setAttribute("type", "text")
+        inputFilter.classList.add("border-input-queries")
         inputFilter.addEventListener("keyup", function () { filterQueryTable(tableHeader.length) });
         inputFilter.addEventListener("paste", function () { pasteFilter(tableHeader.length) });
 
