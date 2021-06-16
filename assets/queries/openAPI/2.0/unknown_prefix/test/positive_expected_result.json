@@ -1,26 +1,26 @@
 [
   {
-    "queryName": "Unknown Prefix (v3)",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 53,
+    "line": 12,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Unknown Prefix (v3)",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 19,
+    "line": 38,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Unknown Prefix (v3)",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 30,
+    "line": 10,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Unknown Prefix (v3)",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 14,
+    "line": 24,
     "filename": "positive4.yaml"
   }
 ]
