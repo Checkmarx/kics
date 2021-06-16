@@ -15,15 +15,16 @@ CxPolicy[result] {
 	packages = dockerLib.getPackages(commands, aptGet)
 	length := count(packages)
 
-	some j
-	analyzePackages(j, packages[j], packages, length)
+	packageName := packages[j]
+	analyzePackages(j, packageName, packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, commands]),
+		"searchValue": packageName,
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Package '%s' has version defined", [packages[j]]),
-		"keyActualValue": sprintf("Package '%s' does not have version defined", [packages[j]]),
+		"keyExpectedValue": sprintf("Package '%s' has version defined", [packageName]),
+		"keyActualValue": sprintf("Package '%s' does not have version defined", [packageName]),
 	}
 }
 
@@ -37,15 +38,19 @@ CxPolicy[result] {
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "apt-get"
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
-	not dockerLib.withVersion(resource.Value[j])
+
+	packageName := resource.Value[j]
+
+	regex.match("^[a-zA-Z]", packageName) == true
+	not dockerLib.withVersion(packageName)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchValue": packageName,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Package '%s' has version defined", [resource.Value[j]]),
-		"keyActualValue": sprintf("Package '%s' does not have version defined", [resource.Value[j]]),
+		"keyExpectedValue": sprintf("Package '%s' has version defined", [packageName]),
+		"keyActualValue": sprintf("Package '%s' does not have version defined", [packageName]),
 	}
 }
 
