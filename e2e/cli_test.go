@@ -195,7 +195,7 @@ var tests = []struct {
 		wantStatus: []int{126},
 	},
 	// E2E-CLI-011 - KICS  scan with a valid case insensitive --type flag
-	// must perform the scan successfully and return exit code 0
+	// must perform the scan successfully and return exit code 50
 	{
 		name: "E2E-CLI-011",
 		args: args{

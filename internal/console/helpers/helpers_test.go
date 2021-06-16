@@ -391,6 +391,28 @@ func TestHelpers_GenerateReport(t *testing.T) {
 			wantErr: true,
 			remove:  []string{"result.html"},
 		},
+		{
+			name: "test_generate_report_error",
+			args: args{
+				path:     ".",
+				filename: "result",
+				body:     "",
+				formats:  []string{"sarif"},
+			},
+			wantErr: false,
+			remove:  []string{"result.sarif"},
+		},
+		{
+			name: "test_generate_report_error",
+			args: args{
+				path:     ".",
+				filename: "result",
+				body:     "",
+				formats:  []string{"glsast"},
+			},
+			wantErr: false,
+			remove:  []string{"gl-sast-result.json"},
+		},
 	}
 
 	for _, tt := range tests {

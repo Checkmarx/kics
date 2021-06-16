@@ -1,9 +1,11 @@
 package report
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -61,4 +63,49 @@ func getPlatforms(queries model.VulnerableQuerySlice) string {
 		}
 	}
 	return strings.Join(platforms, ", ")
+}
+
+func getRelativePath(basePath, filePath string) string {
+	var rtn string
+	relativePath, err := filepath.Rel(basePath, filePath)
+	if err != nil {
+		log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
+		rtn = filePath
+	} else {
+		rtn = relativePath
+	}
+	return rtn
+}
+
+// ExportJSONReport - encodes a given body to a JSON file in a given filepath
+func ExportJSONReport(path, filename string, body interface{}) error {
+	if !strings.Contains(filename, ".") {
+		filename += jsonExtension
+	}
+	fullPath := filepath.Join(path, filename)
+
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
+	defer closeFile(fullPath, filename, f)
+
+	encoder := json.NewEncoder(f)
+	encoder.SetIndent("", "\t")
+
+	return encoder.Encode(body)
+}
+
+func getSummary(body interface{}) (sum model.Summary, err error) {
+	var summary model.Summary
+	result, err := json.Marshal(body)
+	if err != nil {
+		return model.Summary{}, err
+	}
+	if err := json.Unmarshal(result, &summary); err != nil {
+		return model.Summary{}, err
+	}
+
+	return summary, nil
 }

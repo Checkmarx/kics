@@ -1,30 +1,32 @@
 package report
 
 import (
-	"encoding/json"
 	"os"
-	"path/filepath"
-	"strings"
 )
 
 const jsonExtension = ".json"
 
 // PrintJSONReport prints on JSON file the summary results
 func PrintJSONReport(path, filename string, body interface{}) error {
-	if !strings.Contains(filename, ".") {
-		filename += jsonExtension
+	if body != "" {
+		summary, err := getSummary(body)
+		if err != nil {
+			return err
+		}
+
+		basePath, err := os.Getwd()
+		if err != nil {
+			return err
+		}
+
+		for i := range summary.Queries {
+			query := summary.Queries[i]
+			for j := range query.Files {
+				query.Files[j].FileName = getRelativePath(basePath, query.Files[j].FileName)
+			}
+		}
+		body = summary
 	}
-	fullPath := filepath.Join(path, filename)
 
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
-	if err != nil {
-		return err
-	}
-
-	defer closeFile(fullPath, filename, f)
-
-	encoder := json.NewEncoder(f)
-	encoder.SetIndent("", "\t")
-
-	return encoder.Encode(body)
+	return ExportJSONReport(path, filename, body)
 }
