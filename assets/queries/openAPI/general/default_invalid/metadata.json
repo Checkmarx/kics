@@ -13,5 +13,6 @@
       "descriptionText": "The field 'default' of Schema/Parameter/Header Object should be consistent with the schema's/parameter's/header's type",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
-  }
+  },
+  "aggregation": 2
 }
