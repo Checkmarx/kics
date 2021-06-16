@@ -34,7 +34,7 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 #runtime image
-FROM alpine:3.13
+FROM alpine:3.14.0
 
 
 COPY --from=build_env /app/bin/kics /app/bin/kics

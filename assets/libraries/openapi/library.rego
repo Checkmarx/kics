@@ -243,3 +243,8 @@ get_complete_search_key(n, parcialSk, property) = sk {
 } else = sk {
 	sk := sprintf("%s.%s", [parcialSk, property])
 }
+
+is_mimetype_valid(content) {
+	known_prefixs := {"application", "audio", "font", "example", "image", "message", "model", "multipart", "text", "video"}
+	count({x | prefix := known_prefixs[x]; startswith(content, prefix)}) > 0
+}

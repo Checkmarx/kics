@@ -27,6 +27,7 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
@@ -651,7 +652,7 @@ func resolveOutputs(
 		return err
 	}
 	if payloadPath != "" {
-		if err := printOutput(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, []string{"json"}); err != nil {
+		if err := report.ExportJSONReport(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents); err != nil {
 			return err
 		}
 	}

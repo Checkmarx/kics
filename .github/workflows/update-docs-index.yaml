@@ -53,7 +53,7 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: pip install mkdocs-bootswatch mike
+        run: pip install mkdocs-bootswatch mike mkdocs-material
       - name: Config KICSBot git user
         run: |
           git config --global user.name "KICSBot"

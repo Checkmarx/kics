@@ -171,6 +171,9 @@ var SummaryMock = model.Summary{
 		},
 		TotalCounter: 2,
 	},
+	ScannedPaths: []string{
+		"./",
+	},
 }
 
 // ComplexSummaryMock a summary with more results to be used without running kics scan

@@ -33,7 +33,7 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: |
-          pip install mkdocs-bootswatch mike
+          pip install mkdocs-bootswatch mike mkdocs-material
       - run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -49,4 +49,3 @@ jobs:
           find . -type f -name "version-select.js" -exec rm -f {} +
           git commit -a --amend --no-edit
           git push origin gh-pages
-

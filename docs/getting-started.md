@@ -42,9 +42,9 @@ Our security queries will be included in the ZIP files and tarballs, so that you
 So all you need is:
 
 1. Go to <a href="https://github.com/Checkmarx/kics/releases/latest" target="_blank">KICS releases</a>
-1. Download KICS binaries based on your OS
-1. Extract files
-1. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)
+2. Download KICS binaries based on your OS
+3. Extract files
+4. Run kics executable with the cli options as described below (note that kics binary should be located in the same directory as queries directory)
    ```shell
    ./kics scan -p '<path-of-your-project-to-scan>' -o '<output-results.json>'
    ```
@@ -52,16 +52,18 @@ So all you need is:
 #### Build from Sources
 
 1. Download and install Go from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>
-1. Clone the repository:
+2. Clone the repository:
    ```shell
    git clone https://github.com/Checkmarx/kics.git
    ```
+3. Build the binaries:
    ```shell
    cd kics
+   make build
    ```
-1. Kick a scan!
+4. Kick a scan!
    ```shell
-   go run ./cmd/console/main.go scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
+   ./bin/kics scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
    ```
 
 ---
@@ -70,7 +72,8 @@ So all you need is:
 
 ## Next Steps
 - [Understand how to configure KICS](configuration-file.md) so you can have a better KICS experience.
-- [Explore KICS commands](usage/commands.md) to see what you can do with KICS.
+- [Explore KICS commands](commands.md) to see what you can do with KICS.
+- [Explore supported platforms](platforms.md) to see which files you can scan with KICS.
 - [Explore the queries internals](queries.md) for better understanding how KICS works.
 - [Explore the output results format](results.md) and quickly fix the issues detected.
 - [Contribute](CONTRIBUTING.md) if you want to go the extra mile.
