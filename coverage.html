@@ -145,13 +145,13 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.4%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (87.5%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (85.0%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (87.5%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/report/html.go (89.5%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/pkg/report/json.go (90.0%)</option>
+				<option value="file48">github.com/Checkmarx/kics/pkg/report/json.go (84.6%)</option>
 				
 				<option value="file49">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (90.9%)</option>
 				
@@ -159,9 +159,9 @@
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/report/pdf.go (93.2%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/report/pdf.go (96.9%)</option>
 				
-				<option value="file53">github.com/Checkmarx/kics/pkg/report/sarif.go (83.3%)</option>
+				<option value="file53">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.7%)</option>
 				
@@ -542,17 +542,17 @@ func FileAnalyzer(path string) (string, error) <span class="cov4" title="11">{
 }
 
 // GenerateReport execute each report function to generate report
-func GenerateReport(path, filename string, body interface{}, formats []string) error <span class="cov2" title="2">{
+func GenerateReport(path, filename string, body interface{}, formats []string) error <span class="cov3" title="4">{
         log.Debug().Msgf("helpers.GenerateReport()")
         metrics.Metric.Start("generate_report")
         var err error = nil
-        for _, format := range formats </span><span class="cov2" title="2">{
+        for _, format := range formats </span><span class="cov3" title="4">{
                 if err = reportGenerators[format](path, filename, body); err != nil </span><span class="cov1" title="1">{
                         log.Error().Msgf("Failed to generate %s report", format)
                         break</span>
                 }
         }
-        <span class="cov2" title="2">metrics.Metric.Stop()
+        <span class="cov3" title="4">metrics.Metric.Stop()
         return err</span>
 }
 
@@ -1143,6 +1143,7 @@ import (
         jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
         terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
         yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+        "github.com/Checkmarx/kics/pkg/report"
         "github.com/Checkmarx/kics/pkg/resolver"
         "github.com/Checkmarx/kics/pkg/resolver/helm"
         "github.com/Checkmarx/kics/pkg/scanner"
@@ -1380,8 +1381,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="310">{
-                if val == true </span><span class="cov9" title="309">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="306">{
+                if val == true </span><span class="cov9" title="305">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1767,7 +1768,7 @@ func resolveOutputs(
                 return err
         }</span>
         <span class="cov4" title="7">if payloadPath != "" </span><span class="cov1" title="1">{
-                if err := printOutput(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, []string{"json"}); err != nil </span><span class="cov0" title="0">{
+                if err := report.ExportJSONReport(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
@@ -1775,22 +1776,22 @@ func resolveOutputs(
         <span class="cov4" title="7">return printOutput(outputPath, outputName, summary, reportFormats)</span>
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string) error <span class="cov4" title="8">{
+func printOutput(outputPath, filename string, body interface{}, formats []string) error <span class="cov4" title="7">{
         log.Debug().Msg("console.printOutput()")
         if outputPath == "" </span><span class="cov3" title="6">{
                 return nil
         }</span>
-        <span class="cov2" title="2">if len(formats) == 0 </span><span class="cov0" title="0">{
+        <span class="cov1" title="1">if len(formats) == 0 </span><span class="cov0" title="0">{
                 formats = []string{"json"}
         }</span>
 
-        <span class="cov2" title="2">log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
+        <span class="cov1" title="1">log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
 
         err := consoleHelpers.ValidateReportFormats(formats)
-        if err == nil </span><span class="cov2" title="2">{
+        if err == nil </span><span class="cov1" title="1">{
                 err = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
         }</span>
-        <span class="cov2" title="2">return err</span>
+        <span class="cov1" title="1">return err</span>
 }
 
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
@@ -2186,7 +2187,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -7174,9 +7175,11 @@ func playbookParser(filePath string, fileContent []byte) ([]model.Document, erro
 		<pre class="file" id="file45" style="display: none">package report
 
 import (
+        "encoding/json"
         "fmt"
         "html/template"
         "os"
+        "path/filepath"
         "strings"
         "time"
 
@@ -7205,7 +7208,7 @@ func trimSpaces(value string) string <span class="cov0" title="0">{
         return strings.TrimPrefix(value, " ")
 }</span>
 
-func getSeverities(severity string) model.Severity <span class="cov10" title="4">{
+func getSeverities(severity string) model.Severity <span class="cov7" title="4">{
         return stringsSeverity[severity]
 }</span>
 
@@ -7214,36 +7217,79 @@ func getCurrentTime() string <span class="cov1" title="1">{
         return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }</span>
 
-func closeFile(path, filename string, file *os.File) <span class="cov10" title="4">{
+func closeFile(path, filename string, file *os.File) <span class="cov7" title="4">{
         err := file.Close()
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov10" title="4">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
+        <span class="cov7" title="4">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
         fmt.Printf("Results saved to file %s\n", path)</span>
 }
 
-func getPlatforms(queries model.VulnerableQuerySlice) string <span class="cov8" title="3">{
+func getPlatforms(queries model.VulnerableQuerySlice) string <span class="cov6" title="3">{
         platforms := make([]string, 0)
         alreadyAdded := make(map[string]string)
-        for idx := range queries </span><span class="cov8" title="3">{
-                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov8" title="3">{
+        for idx := range queries </span><span class="cov6" title="3">{
+                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov6" title="3">{
                         alreadyAdded[queries[idx].Platform] = ""
                         platforms = append(platforms, queries[idx].Platform)
                 }</span>
         }
-        <span class="cov8" title="3">return strings.Join(platforms, ", ")</span>
+        <span class="cov6" title="3">return strings.Join(platforms, ", ")</span>
+}
+
+func getRelativePath(basePath, filePath string) string <span class="cov10" title="6">{
+        var rtn string
+        relativePath, err := filepath.Rel(basePath, filePath)
+        if err != nil </span><span class="cov10" title="6">{
+                log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
+                rtn = filePath
+        }</span> else<span class="cov0" title="0"> {
+                rtn = relativePath
+        }</span>
+        <span class="cov10" title="6">return rtn</span>
+}
+
+// ExportJSONReport - encodes a given body to a JSON file in a given filepath
+func ExportJSONReport(path, filename string, body interface{}) error <span class="cov6" title="3">{
+        if !strings.Contains(filename, ".") </span><span class="cov1" title="1">{
+                filename += jsonExtension
+        }</span>
+        <span class="cov6" title="3">fullPath := filepath.Join(path, filename)
+
+        f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov6" title="3">defer closeFile(fullPath, filename, f)
+
+        encoder := json.NewEncoder(f)
+        encoder.SetIndent("", "\t")
+
+        return encoder.Encode(body)</span>
+}
+
+func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov6" title="3">{
+        var summary model.Summary
+        result, err := json.Marshal(body)
+        if err != nil </span><span class="cov0" title="0">{
+                return model.Summary{}, err
+        }</span>
+        <span class="cov6" title="3">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
+                return model.Summary{}, err
+        }</span>
+
+        <span class="cov6" title="3">return summary, nil</span>
 }
 </pre>
 		
 		<pre class="file" id="file46" style="display: none">package report
 
 import (
-        "encoding/json"
         "strings"
 
-        "github.com/Checkmarx/kics/pkg/model"
         reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
@@ -7256,24 +7302,23 @@ func PrintGitlabSASTReport(path, filename string, body interface{}) error <span 
         <span class="cov1" title="1">if !strings.HasPrefix(filename, "gl-sast-") </span><span class="cov1" title="1">{
                 filename = "gl-sast-" + filename
         }</span>
-        <span class="cov1" title="1">var summary model.Summary
-        result, err := json.Marshal(body)
-        if err != nil </span><span class="cov0" title="0">{
-                return err
-        }</span>
-        <span class="cov1" title="1">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
-                return err
-        }</span>
-
-        <span class="cov1" title="1">gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Times.Start, summary.Times.End)
-
-        for idxQuery := range summary.Queries </span><span class="cov1" title="1">{
-                for idxFile := range summary.Queries[idxQuery].Files </span><span class="cov10" title="2">{
-                        gitlabSASTReport.BuildGitlabSASTVulnerability(&amp;summary.Queries[idxQuery], &amp;summary.Queries[idxQuery].Files[idxFile])
+        <span class="cov1" title="1">if body != "" </span><span class="cov1" title="1">{
+                summary, err := getSummary(body)
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
                 }</span>
+
+                <span class="cov1" title="1">gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Times.Start, summary.Times.End)
+
+                for idxQuery := range summary.Queries </span><span class="cov1" title="1">{
+                        for idxFile := range summary.Queries[idxQuery].Files </span><span class="cov10" title="2">{
+                                gitlabSASTReport.BuildGitlabSASTVulnerability(&amp;summary.Queries[idxQuery], &amp;summary.Queries[idxQuery].Files[idxFile])
+                        }</span>
+                }
+                <span class="cov1" title="1">body = gitlabSASTReport</span>
         }
 
-        <span class="cov1" title="1">return PrintJSONReport(path, filename, gitlabSASTReport)</span>
+        <span class="cov1" title="1">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -7394,32 +7439,34 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
 		<pre class="file" id="file48" style="display: none">package report
 
 import (
-        "encoding/json"
         "os"
-        "path/filepath"
-        "strings"
 )
 
 const jsonExtension = ".json"
 
 // PrintJSONReport prints on JSON file the summary results
-func PrintJSONReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
-        if !strings.Contains(filename, ".") </span><span class="cov1" title="1">{
-                filename += jsonExtension
-        }</span>
-        <span class="cov10" title="3">fullPath := filepath.Join(path, filename)
+func PrintJSONReport(path, filename string, body interface{}) error <span class="cov1" title="1">{
+        if body != "" </span><span class="cov1" title="1">{
+                summary, err := getSummary(body)
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
 
-        f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
-        if err != nil </span><span class="cov0" title="0">{
-                return err
-        }</span>
+                <span class="cov1" title="1">basePath, err := os.Getwd()
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
 
-        <span class="cov10" title="3">defer closeFile(fullPath, filename, f)
+                <span class="cov1" title="1">for i := range summary.Queries </span><span class="cov1" title="1">{
+                        query := summary.Queries[i]
+                        for j := range query.Files </span><span class="cov10" title="2">{
+                                query.Files[j].FileName = getRelativePath(basePath, query.Files[j].FileName)
+                        }</span>
+                }
+                <span class="cov1" title="1">body = summary</span>
+        }
 
-        encoder := json.NewEncoder(f)
-        encoder.SetIndent("", "\t")
-
-        return encoder.Encode(body)</span>
+        <span class="cov1" title="1">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -8068,16 +8115,9 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
                 }</span> else<span class="cov4" title="2"> {
                         m.SetBackgroundColor(color.NewWhite())
                 }</span>
-                <span class="cov7" title="4">var filePath string
-                relativePath, err := filepath.Rel(basePath, query.Files[idx].FileName)
-                if err != nil </span><span class="cov7" title="4">{
-                        log.Error().Msgf("Cannot make %s relative to %s", query.Files[idx].FileName, basePath)
-                        filePath = query.Files[idx].FileName
-                }</span> else<span class="cov0" title="0"> {
-                        filePath = relativePath
-                }</span>
 
-                <span class="cov7" title="4">fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
+                <span class="cov7" title="4">filePath := getRelativePath(basePath, query.Files[idx].FileName)
+                fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
                 m.Row(colFive, func() </span><span class="cov7" title="4">{
                         m.Col(colFullPage, func() </span><span class="cov7" title="4">{
                                 m.Text(fileLine, props.Text{
@@ -8275,10 +8315,10 @@ func createFirstPageHeader(m pdf.Maroto, summary *model.Summary) <span class="co
                         })
                 }</span>)
         })
-        <span class="cov4" title="2">for i := range summary.ScannedPaths </span><span class="cov0" title="0">{
+        <span class="cov4" title="2">for i := range summary.ScannedPaths </span><span class="cov4" title="2">{
                 scannedPaths := summary.ScannedPaths[i]
-                m.Row(rowSmall, func() </span><span class="cov0" title="0">{
-                        m.Col(colFullPage, func() </span><span class="cov0" title="0">{
+                m.Row(rowSmall, func() </span><span class="cov4" title="2">{
+                        m.Col(colFullPage, func() </span><span class="cov4" title="2">{
                                 m.Text(fmt.Sprintf("- %s", scannedPaths), props.Text{
                                         Size:        defaultTextSize,
                                         Align:       consts.Left,
@@ -8344,10 +8384,8 @@ func getPurpleColor() color.Color <span class="cov4" title="2">{
 		<pre class="file" id="file53" style="display: none">package report
 
 import (
-        "encoding/json"
         "strings"
 
-        "github.com/Checkmarx/kics/pkg/model"
         reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
@@ -8356,21 +8394,20 @@ func PrintSarifReport(path, filename string, body interface{}) error <span class
         if !strings.HasSuffix(filename, ".sarif") </span><span class="cov8" title="1">{
                 filename += ".sarif"
         }</span>
-        <span class="cov8" title="1">var summary model.Summary
-        result, err := json.Marshal(body)
-        if err != nil </span><span class="cov0" title="0">{
-                return err
-        }</span>
-        <span class="cov8" title="1">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
-                return err
-        }</span>
+        <span class="cov8" title="1">if body != "" </span><span class="cov8" title="1">{
+                summary, err := getSummary(body)
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
 
-        <span class="cov8" title="1">sarifReport := reportModel.NewSarifReport()
-        for idx := range summary.Queries </span><span class="cov8" title="1">{
-                sarifReport.BuildSarifIssue(&amp;summary.Queries[idx])
-        }</span>
+                <span class="cov8" title="1">sarifReport := reportModel.NewSarifReport()
+                for idx := range summary.Queries </span><span class="cov8" title="1">{
+                        sarifReport.BuildSarifIssue(&amp;summary.Queries[idx])
+                }</span>
+                <span class="cov8" title="1">body = sarifReport</span>
+        }
 
-        <span class="cov8" title="1">return PrintJSONReport(path, filename, sarifReport)</span>
+        <span class="cov8" title="1">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -8981,6 +9018,9 @@ var SummaryMock = model.Summary{
                         model.SeverityHigh:   2,
                 },
                 TotalCounter: 2,
+        },
+        ScannedPaths: []string{
+                "./",
         },
 }
 
