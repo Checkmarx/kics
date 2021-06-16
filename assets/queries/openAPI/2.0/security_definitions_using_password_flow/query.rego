@@ -6,8 +6,8 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "2.0"
 
-	sec_def := doc.securityDefinitions[key]
-	sec_def.flow == "password"
+	secDef := doc.securityDefinitions[key]
+	secDef.flow == "password"
 
 	result := {
 		"documentId": doc.id,
