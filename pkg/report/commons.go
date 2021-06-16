@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -61,4 +62,16 @@ func getPlatforms(queries model.VulnerableQuerySlice) string {
 		}
 	}
 	return strings.Join(platforms, ", ")
+}
+
+func getRelativePath(basePath, filePath string) string {
+	var rtn string
+	relativePath, err := filepath.Rel(basePath, filePath)
+	if err != nil {
+		log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
+		rtn = filePath
+	} else {
+		rtn = relativePath
+	}
+	return rtn
 }
