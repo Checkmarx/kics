@@ -10,17 +10,41 @@ copyright: >-
 repo_name: GitHub
 repo_url: https://github.com/Checkmarx/kics/
 
+extra:
+  version:
+    provider: mike
+
+theme:
+  name: material
+  logo: img/logo/kics-logo-text.png
+  favicon: img/logo/kics-logo-text.png
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
 # Navigation
 nav:
   - Getting Started:
       - Installation: getting-started.md
       - Configuration: configuration-file.md
+      - Command Line Interface: commands.md
       - Results: results.md
       - Architecture: architecture.md
+      - Platforms: platforms.md
       - Changes in v1.3.0: changes.md
-      - Usage:
-          - KICS Commands: usage/commands.md
-          - Technologies: usage/technologies.md
   - Queries:
       - General Info: queries.md
       - Creating Queries: creating-queries.md
@@ -52,24 +76,17 @@ nav:
   - Contribution: CONTRIBUTING.md
   - About: about.md
 
-# Theme
-theme:
-  name: flatly
-  logo: img/kics.ico
-  favicon: img/logo/kics-logo-text.png
-  include_sidebar: true
-  sticky_navigation: true
-
 extra_css:
   - css/custom.css
 
 extra_javascript:
-  - js/custom.js
   - js/version-mike.js
+  - js/custom.js
 
 # Plugins
 plugins:
-  - search
+  - search:
+      prebuild_index: true
 google_analytics:
   - UA-186818347-2
   - auto

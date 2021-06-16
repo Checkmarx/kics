@@ -17,6 +17,7 @@ clean: ## remove files created during build
 	rm -rf bin
 	rm -rf vendor
 	rm -f coverage.*
+	rm -f cover.out
 	rm -rf **/*.log
 
 .PHONY: mod-tidy
