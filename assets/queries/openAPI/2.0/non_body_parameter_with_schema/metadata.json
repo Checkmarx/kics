@@ -1,6 +1,6 @@
 {
-  "id": "ed48229d-d43e-4da7-b453-5f98d964a57a",
-  "queryName": "Body Parameter Without Schema",
+  "id": "73c3bc54-3cc6-4c0a-b30a-e19f2abfc951",
+  "queryName": "Non Body Parameter Without Schema",
   "severity": "INFO",
   "category": "Structure and Semantics",
   "descriptionText": "The Body Parameter Object should have the attribute 'schema' defined",
