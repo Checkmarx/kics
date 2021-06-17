@@ -2,10 +2,12 @@ package e2e
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -13,6 +15,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
+	"github.com/xeipuuv/gojsonschema"
 )
 
 type logMsg struct {
@@ -169,4 +172,30 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		require.Equal(t, expectI, wantI,
 			"\nExpected:\n%v\n,Actual:\n%v\n", expectI, wantI)
 	}
+}
+
+func jsonSchemaValidation(t *testing.T, file, schema string) {
+	cwd, _ := os.Getwd()
+	schemaPath := "file://" + filepath.Join(cwd, "fixtures", "schemas", schema)
+	resultPath := "file://" + filepath.Join(cwd, "output", file)
+
+	if runtime.GOOS == "windows" {
+		schemaPath = strings.Replace(schemaPath, `\`, "/", -1)
+		resultPath = strings.Replace(resultPath, `\`, "/", -1)
+	}
+
+	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
+	resultLoader := gojsonschema.NewReferenceLoader(resultPath)
+
+	result, err := gojsonschema.Validate(schemaLoader, resultLoader)
+	require.NoError(t, err, "Schema Validation should not yield an error")
+
+	if !result.Valid() {
+		fmt.Printf("The Result Schema is not valid:\n")
+		for _, desc := range result.Errors() {
+			fmt.Printf("- %s\n", desc)
+		}
+	}
+
+	require.True(t, result.Valid(), "Result Schema - Validation Failed")
 }
