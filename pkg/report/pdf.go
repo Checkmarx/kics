@@ -126,15 +126,8 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
 		} else {
 			m.SetBackgroundColor(color.NewWhite())
 		}
-		var filePath string
-		relativePath, err := filepath.Rel(basePath, query.Files[idx].FileName)
-		if err != nil {
-			log.Error().Msgf("Cannot make %s relative to %s", query.Files[idx].FileName, basePath)
-			filePath = query.Files[idx].FileName
-		} else {
-			filePath = relativePath
-		}
 
+		filePath := getRelativePath(basePath, query.Files[idx].FileName)
 		fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
 		m.Row(colFive, func() {
 			m.Col(colFullPage, func() {
@@ -182,7 +175,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	startTime := time.Now()
 	log.Info().Msg("Started generating pdf report")
 
-	summary := body.(model.Summary)
+	summary := body.(*model.Summary)
 	basePath, err := os.Getwd()
 	if err != nil {
 		return err
@@ -203,7 +196,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	m.SetBackgroundColor(color.NewWhite())
 
-	createFirstPageHeader(m, &summary)
+	createFirstPageHeader(m, summary)
 
 	m.Line(1.0)
 

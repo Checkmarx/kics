@@ -237,9 +237,14 @@ get_name(p, name) = sk {
 	sk := concat("", {"name=", name})
 }
 
-get_complete_search_key(n, parcialSk, name) = sk {
+get_complete_search_key(n, parcialSk, property) = sk {
 	is_string(n)
-	sk := sprintf("%s.%s.%s", [parcialSk, n, name])
+	sk := sprintf("%s.%s.%s", [parcialSk, n, property])
 } else = sk {
-	sk := sprintf("%s.%s", [parcialSk, name])
+	sk := sprintf("%s.%s", [parcialSk, property])
+}
+
+is_mimetype_valid(content) {
+	known_prefixs := {"application", "audio", "font", "example", "image", "message", "model", "multipart", "text", "video"}
+	count({x | prefix := known_prefixs[x]; startswith(content, prefix)}) > 0
 }

@@ -1,26 +1,26 @@
 [
   {
-    "queryName": "Schema Enum Invalid",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 20,
+    "line": 12,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Schema Enum Invalid",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 20,
+    "line": 38,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Schema Enum Invalid",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 17,
+    "line": 10,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Schema Enum Invalid",
+    "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 17,
+    "line": 24,
     "filename": "positive4.yaml"
   }
 ]

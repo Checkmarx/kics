@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Body Parameter With Wrong Property",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Body Parameter With Wrong Property",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Body Parameter With Wrong Property",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Body Parameter With Wrong Property",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive2.yaml"
+  }
+]
