@@ -3,23 +3,19 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_share_file[name]
 
-	storage_share := resource.storage_share_id
-	attributeSplit := split(storage_share, ".")
-	allows_all_permissions(attributeSplit[1], input.document[i].resource)
+	storageShare := resource.storage_share_id
+	storageShareName := split(storageShare, ".")[1]
 
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("azurerm_storage_share_file[%s].storage_share_id", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("azurerm_storage_share_file[%s].storage_share_id does not allow all ACL permissions", [name]),
-		"keyActualValue": sprintf("azurerm_storage_share_file[%s].storage_share_id allows all ACL permissions", [name]),
-	}
-}
-
-allows_all_permissions(storage_share_name, resource) {
-	r := resource.azurerm_storage_share[name]
-	name == storage_share_name
+	r := input.document[_].resource.azurerm_storage_share[storageShareName]
 	permissions := r.acl.access_policy.permissions
 	p := {"r", "w", "d", "l"}
 	count({x | permission := p[x]; contains(permissions, permission)}) == 4
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions", [storageShareName]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions does not allow all ACL permissions", [storageShareName]),
+		"keyActualValue": sprintf("azurerm_storage_share[%s].acl.access_policy.permissions allows all ACL permissions", [storageShareName]),
+	}
 }
