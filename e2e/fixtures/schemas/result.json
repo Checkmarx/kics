@@ -1,5 +1,20 @@
 {
     "type": "object",
+    "required": [
+        "files_scanned",
+        "files_parsed",
+        "files_failed_to_scan",
+        "queries_total",
+        "queries_failed_to_execute",
+        "queries_failed_to_compute_similarity_id",
+        "queries",
+        "scan_id",
+        "severity_counters",
+        "total_counter",
+        "start",
+        "end",
+        "paths"
+    ],
     "properties": {
         "files_scanned": {
             "type": "integer",
@@ -29,6 +44,16 @@
             "type": "array",
             "items": {
                 "type": "object",
+                "required": [
+                    "query_name",
+                    "query_id",
+                    "query_url",
+                    "severity",
+                    "platform",
+                    "files",
+                    "category",
+                    "description"
+                ],
                 "properties": {
                     "query_name": {
                         "type": "string"
@@ -53,6 +78,17 @@
                         "type": "array",
                         "items": {
                             "type": "object",
+                            "required": [
+                                "file_name",
+                                "similarity_id",
+                                "line",
+                                "issue_type",
+                                "search_key",
+                                "search_value",
+                                "expected_value",
+                                "actual_value",
+                                "value"
+                            ],
                             "properties": {
                                 "file_name": {
                                     "type": "string",
@@ -111,6 +147,12 @@
         },
         "severity_counters": {
             "type": "object",
+            "required": [
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ],
             "properties": {
                 "HIGH": {
                     "type": "integer",
@@ -148,20 +190,5 @@
                 "type": "string"
             }
         }
-    },
-    "required": [
-        "files_scanned",
-        "files_parsed",
-        "files_failed_to_scan",
-        "queries_total",
-        "queries_failed_to_execute",
-        "queries_failed_to_compute_similarity_id",
-        "queries",
-        "scan_id",
-        "severity_counters",
-        "total_counter",
-        "start",
-        "end",
-        "paths"
-    ]
+    }
 }
