@@ -1,26 +1,26 @@
 [
   {
-    "queryName": "Body Parameter Without Schema",
+    "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
     "line": 12,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Body Parameter Without Schema",
+    "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
-    "line": 14,
+    "line": 10,
     "filename": "positive2.yaml"
   },
   {
-    "queryName": "Body Parameter Without Schema",
+    "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
-    "line": 30,
+    "line": 31,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Body Parameter Without Schema",
+    "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
-    "line": 20,
+    "line": 22,
     "filename": "positive2.yaml"
   }
 ]
