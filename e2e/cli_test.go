@@ -754,7 +754,7 @@ func Test_E2E_CLI(t *testing.T) {
 				if tt.args.expectedResult != nil {
 					// Check result file
 					fileCheck(t, tt.args.expectedResult[arg], tt.args.expectedResult[arg], "result")
-					jsonSchemaValidation(t, tt.args.expectedResult[arg], "results.json")
+					jsonSchemaValidation(t, tt.args.expectedResult[arg], "result.json")
 				}
 
 				if tt.args.expectedPayload != nil {

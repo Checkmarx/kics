@@ -2,7 +2,6 @@ package e2e
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"os"
 	"os/exec"
@@ -190,12 +189,12 @@ func jsonSchemaValidation(t *testing.T, file, schema string) {
 	result, err := gojsonschema.Validate(schemaLoader, resultLoader)
 	require.NoError(t, err, "Schema Validation should not yield an error")
 
+	schemaErrors := ""
 	if !result.Valid() {
-		fmt.Printf("The Result Schema is not valid:\n")
 		for _, desc := range result.Errors() {
-			fmt.Printf("- %s\n", desc)
+			schemaErrors += "- " + desc.String() + "\n"
 		}
 	}
 
-	require.True(t, result.Valid(), "Result Schema - Validation Failed")
+	require.True(t, result.Valid(), "Result Schema - Validation Failed\n%v\n", schemaErrors)
 }
