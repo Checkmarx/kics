@@ -3,7 +3,7 @@
   "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
   "severity": "HIGH",
   "category": "Structure and Semantics",
-  "descriptionText": " If the security scheme is not of type 'oauth2', the array value must be empty.",
+  "descriptionText": "If the security scheme is not of type 'oauth2', the array value must be empty",
   "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject",
   "platform": "OpenAPI"
 }
