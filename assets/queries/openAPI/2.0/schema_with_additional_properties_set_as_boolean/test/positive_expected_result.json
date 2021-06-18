@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Schema with 'additionalProperties' set as Boolean",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema with 'additionalProperties' set as Boolean",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.yaml"
+  }
+]
