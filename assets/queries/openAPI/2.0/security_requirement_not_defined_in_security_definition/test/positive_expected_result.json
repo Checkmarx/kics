@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Security Requirement Not Defined In Security Definition",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Security Requirement Not Defined In Security Definition",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Requirement Not Defined In Security Definition",
+    "severity": "HIGH",
+    "line": 29,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Security Requirement Not Defined In Security Definition",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive4.yaml"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "a599b0d1-ff89-4cb8-9ece-9951854c06f6",
+  "queryName": "Security Requirement Not Defined In Security Definition",
+  "severity": "HIGH",
+  "category": "Structure and Semantics",
+  "descriptionText": "All security requirement objects must be defined in 'securityDefinitions'",
+  "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject",
+  "platform": "OpenAPI",
+  "aggregation": 2
+}
