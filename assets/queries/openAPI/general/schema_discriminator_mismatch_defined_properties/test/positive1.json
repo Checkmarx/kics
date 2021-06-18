@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -58,9 +58,6 @@
             "format": "int32"
           },
           "message": {
-            "type": "string"
-          },
-          "petType": {
             "type": "string"
           }
         },
