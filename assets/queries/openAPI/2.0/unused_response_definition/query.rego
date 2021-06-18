@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	params := doc.responses[name]
-	openapi_lib.check_defenitions(doc, "responses", name)
+	openapi_lib.check_definitions(doc, "responses", name)
 
 	result := {
 		"documentId": doc.id,

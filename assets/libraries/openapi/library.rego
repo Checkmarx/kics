@@ -249,7 +249,7 @@ is_mimetype_valid(content) {
 	count({x | prefix := known_prefixs[x]; startswith(content, prefix)}) > 0
 }
 
-check_defenitions(doc, object, name) {
+check_definitions(doc, object, name) {
 	[path, value] := walk(doc)
 	ref := value["$ref"]
 	count({x | ref == sprintf("#/%s/%s", [object, name]); x := ref}) == 0
