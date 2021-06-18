@@ -1,0 +1,9 @@
+{
+  "id": "c3cab8c4-6c52-47a9-942b-c27f26fbd7d2",
+  "queryName": "Parameter File Type Not In 'formData'",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "The In field of Parameter Object must be 'formData' when type is 'file'",
+  "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+  "platform": "OpenAPI"
+}
