@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Schema Discriminator Not Required (v3)",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v3)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v3)",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v2)",
+    "severity": "INFO",
+    "line": 35,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "Schema Discriminator Not Required (v2)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive8.yaml"
+  }
+]

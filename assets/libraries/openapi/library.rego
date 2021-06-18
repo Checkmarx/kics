@@ -254,3 +254,11 @@ check_definitions(doc, object, name) {
 	ref := value["$ref"]
 	count({x | ref == sprintf("#/%s/%s", [object, name]); x := ref}) == 0
 }
+
+get_descriminator(schema, version) = descriminator {
+	version == "3.0"
+	descriminator := {"obj": schema.discriminator.propertyName, "path": "discriminator.propertyName"}
+} else = descriminator {
+	version == "2.0"
+	descriminator := {"obj": schema.discriminator, "path": "discriminator"}
+}
