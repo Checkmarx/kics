@@ -419,6 +419,10 @@ func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 		if err != nil {
 			return nil, err
 		}
+		absPath, err = consoleHelpers.CheckAndExtractZip(absPath)
+		if err != nil {
+			return nil, err
+		}
 		absPaths[idx] = absPath
 	}
 
