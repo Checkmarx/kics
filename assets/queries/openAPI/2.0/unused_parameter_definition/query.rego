@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	params := doc.parameters[name]
 
-	openapi_lib.check_defenitions(doc, "parameters", name)
+	openapi_lib.check_definitions(doc, "parameters", name)
 
 	result := {
 		"documentId": doc.id,
