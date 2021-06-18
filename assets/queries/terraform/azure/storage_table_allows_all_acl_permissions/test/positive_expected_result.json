@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Storage Table Allows All ACL Permissions",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]

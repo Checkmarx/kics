@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Non Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Non Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Non Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Non Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  }
+]
