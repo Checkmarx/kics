@@ -20,7 +20,7 @@ paths:
                   code:
                     type: string
                     format: int32
-                  message:
+                  petType:
                     type: string
               examples:
                 foo:
