@@ -1,0 +1,9 @@
+{
+  "id": "b90033cf-ad9f-4fb9-acd1-1b9d6d278c87",
+  "queryName": "Multiple Body Parameters In The Same Operation",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Only one body parameter is allowed on operation's parameters type field",
+  "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+  "platform": "OpenAPI"
+}
