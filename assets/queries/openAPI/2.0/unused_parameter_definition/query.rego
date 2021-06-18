@@ -7,9 +7,8 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	params := doc.parameters[name]
-	[path, value] := walk(doc)
-	ref := value["$ref"]
-	count({x | ref == sprintf("#/parameters/%s", [name]); x := ref}) == 0
+
+	openapi_lib.check_defenitions(doc, "parameters", name)
 
 	result := {
 		"documentId": doc.id,
