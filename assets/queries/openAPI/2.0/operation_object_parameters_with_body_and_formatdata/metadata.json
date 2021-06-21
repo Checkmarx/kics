@@ -1,0 +1,9 @@
+{
+  "id": "eb3f9744-d24e-4614-b1ff-2a9514eca21c",
+  "queryName": "Operation Object Parameters With 'body' And 'formatData' loactions",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Operation object parameters should not have both 'body' and 'formatData' locations",
+  "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+  "platform": "OpenAPI"
+}
