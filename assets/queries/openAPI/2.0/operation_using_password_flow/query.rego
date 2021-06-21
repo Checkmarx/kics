@@ -8,12 +8,13 @@ CxPolicy[result] {
 
 	doc.paths[p][oper].security[n][key]
 	doc.securityDefinitions[key].flow == "password"
+	doc.securityDefinitions[key].type == "oauth2"
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security.{{%s}}", [p, oper, key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Operation Object is not using 'password' flow",
-		"keyActualValue": "Operation Object is using 'password' flow",
+		"keyExpectedValue": "Operation Object is not using 'password' flow in OAuth2 authentication",
+		"keyActualValue": "Operation Object is using 'password' flow in OAuth2 authentication",
 	}
 }
