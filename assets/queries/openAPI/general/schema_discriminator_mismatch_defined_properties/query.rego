@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	[path, value] = walk(doc)
 	schema := value.schema
-	discriminator := openapi_lib.get_descriminator(schema, version)
+	discriminator := openapi_lib.get_discriminator(schema, version)
 	not match(schema, discriminator.obj)
 
 	result := {
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	schemaInfo := openapi_lib.get_schema_info(doc, version)
 
 	schema := schemaInfo.obj[s]
-	discriminator := openapi_lib.get_descriminator(schema, version)
+	discriminator := openapi_lib.get_discriminator(schema, version)
 	not match(schema, discriminator.obj)
 
 	result := {
