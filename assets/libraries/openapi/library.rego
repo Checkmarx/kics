@@ -249,16 +249,16 @@ is_mimetype_valid(content) {
 	count({x | prefix := known_prefixs[x]; startswith(content, prefix)}) > 0
 }
 
+get_discriminator(schema, version) = discriminator {
+	version == "3.0"
+	discriminator := {"obj": schema.discriminator.propertyName, "path": "discriminator.propertyName"}
+} else = discriminator {
+	version == "2.0"
+	discriminator := {"obj": schema.discriminator, "path": "discriminator"}
+}
+
 check_definitions(doc, object, name) {
 	[path, value] := walk(doc)
 	ref := value["$ref"]
 	count({x | ref == sprintf("#/%s/%s", [object, name]); x := ref}) == 0
-}
-
-get_descriminator(schema, version) = descriminator {
-	version == "3.0"
-	descriminator := {"obj": schema.discriminator.propertyName, "path": "discriminator.propertyName"}
-} else = descriminator {
-	version == "2.0"
-	descriminator := {"obj": schema.discriminator, "path": "discriminator"}
 }
