@@ -41,12 +41,18 @@ check_required(obj, req) = req_obj {
 }
 
 create_search_key(req_obj, path, obj_type) = searchKey {
+	count(path) > 0
 	is_set(req_obj)
 	is_string(req_obj[m])
 	searchKey := {x | key := req_obj[n]; x := sprintf("%s.%s.%s", [openapi_lib.concat_path(path), obj_type, key])}
 } else = searchKey {
 	count(path) == 0
-	searchKey := {x | x := sprintf("%s", [obj_type])}
+	is_set(req_obj)
+	searchKey := {x | x := sprintf("%s.%s", [obj_type, req_obj[o]])}
+} else = searchKey {
+	count(path) == 0
+	is_string(req_obj)
+	searchKey := {x | x := sprintf("%s.%s", [obj_type, req_obj])}
 } else = searchKey {
 	not is_number(req_obj)
 	req_obj != ""
