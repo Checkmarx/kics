@@ -6,9 +6,15 @@ paths:
   "/":
     get:
       parameters:
-      - name: limit2
+      - name: limit
         in: body
         description: max records to return
+        required: true
+        schema:
+          type: integer
+      - name: pageCount
+        in: query
+        description: records per page
         required: true
         schema:
           type: integer
