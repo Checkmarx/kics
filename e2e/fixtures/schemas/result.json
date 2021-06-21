@@ -92,7 +92,7 @@
                             "properties": {
                                 "file_name": {
                                     "type": "string",
-                                    "pattern": "^([\\w\\-. ]+\\\\)*([\\w\\-. ]+\\.(.)*)$"
+                                    "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
                                 },
                                 "similarity_id": {
                                     "type": "string",
