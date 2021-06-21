@@ -3,7 +3,7 @@
   "queryName": "Schema with 'additionalProperties' set as Boolean",
   "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "The value of 'additionalProperties' should be set as object instead of boolean since openAPI 2.0 does not support boolean value for it",
+  "descriptionText": "The value of 'additionalProperties' should be set as object instead of boolean, since swagger 2.0 does not support boolean value for it",
   "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
   "platform": "OpenAPI"
 }

@@ -7,13 +7,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	is_boolean(value.schema.additionalProperties)
+	is_boolean(value.additionalProperties)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.schema.additionalProperties", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.additionalProperties", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'additionalProperties' is not set as a boolean value",
-		"keyActualValue": "'additionalProperties' is set as a boolean value",
+		"keyActualValue": "'additionalProperties' is set as an object value",
 	}
 }
