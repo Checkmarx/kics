@@ -115,11 +115,11 @@
                                 },
                                 "expected_value": {
                                     "type": "string",
-                                    "minLength": 0
+                                    "minLength": 1
                                 },
                                 "actual_value": {
                                     "type": "string",
-                                    "minLength": 0
+                                    "minLength": 1
                                 },
                                 "value": {
                                     "type": ["string", "null"]
