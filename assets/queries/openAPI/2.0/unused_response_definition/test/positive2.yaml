@@ -1,0 +1,28 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          $ref: "#/responses/Success"
+      parameters:
+        - name: limit2
+          in: body
+          description: max records to return
+          required: true
+          schema:
+            type: string
+          desc:
+            type: string
+responses:
+  Success:
+    description: "200 response"
+  IllegalInput:
+    description: Illegal input for operation.
+  GeneralError:
+    description: General Error

@@ -248,3 +248,17 @@ is_mimetype_valid(content) {
 	known_prefixs := {"application", "audio", "font", "example", "image", "message", "model", "multipart", "text", "video"}
 	count({x | prefix := known_prefixs[x]; startswith(content, prefix)}) > 0
 }
+
+check_definitions(doc, object, name) {
+	[path, value] := walk(doc)
+	ref := value["$ref"]
+	count({x | ref == sprintf("#/%s/%s", [object, name]); x := ref}) == 0
+}
+
+get_descriminator(schema, version) = descriminator {
+	version == "3.0"
+	descriminator := {"obj": schema.discriminator.propertyName, "path": "discriminator.propertyName"}
+} else = descriminator {
+	version == "2.0"
+	descriminator := {"obj": schema.discriminator, "path": "discriminator"}
+}
