@@ -7,7 +7,7 @@
   "components": {
     "parameters": {
       "token": {
-        "name": "Token",
+        "name": "token",
         "in": "header",
         "description": "token to be passed as a header",
         "required": true,

@@ -38,13 +38,25 @@
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
     "severity": "INFO",
-    "line": 20,
+    "line": 11,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v2)",
+    "severity": "INFO",
+    "line": 38,
     "filename": "positive5.json"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
     "severity": "INFO",
     "line": 14,
+    "filename": "positive6.yaml"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Accept' (v2)",
+    "severity": "INFO",
+    "line": 21,
     "filename": "positive6.yaml"
   }
 ]
