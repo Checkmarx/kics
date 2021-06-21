@@ -13,6 +13,9 @@ paths:
         in: formData
       consumes:
       - application/json
+      responses:
+        '200':
+          description: 200 response
 definitions:
   User:
     type: object

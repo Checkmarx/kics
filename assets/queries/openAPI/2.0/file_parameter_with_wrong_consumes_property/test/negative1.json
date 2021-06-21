@@ -18,7 +18,12 @@
         ],
         "consumes": [
           "multipart/form-data"
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
       }
     }
   },
