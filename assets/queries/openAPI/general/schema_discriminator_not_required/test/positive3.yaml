@@ -34,7 +34,7 @@ components:
         code:
           type: string
           format: int32
-        message:
+        petType:
           type: string
       required:
-        - petType
+        - name
