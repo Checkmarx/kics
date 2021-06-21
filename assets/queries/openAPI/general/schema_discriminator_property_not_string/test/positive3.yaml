@@ -12,18 +12,6 @@ paths:
           description: 200 response
           content:
             application/json:
-              schema:
-                type: object
-                discriminator:
-                  propertyName: petType
-                properties:
-                  code:
-                    type: string
-                    format: int32
-                  message:
-                    type: string
-                  petType:
-                    type: integer
               examples:
                 foo:
                   value:
@@ -36,3 +24,19 @@ paths:
                             rel: self
 security:
   - exampleSecurity: []
+components:
+  schemas:
+    GeneralError:
+      type: object
+      discriminator:
+        propertyName: petType
+      properties:
+        code:
+          type: string
+          format: int32
+        message:
+          type: string
+        petType:
+          type: integer
+      required:
+        - petType
