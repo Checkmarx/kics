@@ -12,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("securityDefinitions.{{%s}}.flow", [key]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": "security definition is not using 'password' flow",
 		"keyActualValue": "security definition is using 'password' flow",
 	}
