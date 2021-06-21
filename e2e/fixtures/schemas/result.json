@@ -137,7 +137,8 @@
                         ]
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "minLength": 1
                     }
                 }
             }
