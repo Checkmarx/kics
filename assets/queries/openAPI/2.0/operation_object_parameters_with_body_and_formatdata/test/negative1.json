@@ -42,10 +42,7 @@
       "name": "limit",
       "in": "formatData",
       "description": "max records to return",
-      "required": true,
-      "schema": {
-        "type": "object"
-      }
+      "required": true
     }
   }
 }
