@@ -27,62 +27,34 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	object := simple_objects[o]
-	path[minus(count(path), 1)] == o
+	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
+	objValues := objectValues[objType][object]
 
-	v := value[x]
-	not known_field(object, x)
+	index := {"array": 1, "simple": 1, "map": 2}
+	path[minus(count(path), index[objType])] == object
+
+	field := unknown_property(objType, value, objValues)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), x]),
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [x, o]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [x, o]),
+		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
+		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
 	}
 }
 
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "2.0"
-
-	[path, value] := walk(doc)
-
-	object := array_objects[o]
-	path[minus(count(path), 1)] == o
+unknown_property(objType, value, objValues) = idx {
+	objType == "array"
 	is_array(value)
-
-	field := value[x][v]
-	not known_field(object, v)
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), v]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [v, o]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [v, o]),
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "2.0"
-
-	[path, value] := walk(doc)
-
-	object := map_objects[o]
-	path[minus(count(path), 2)] == o
-
-	v := value[x]
-	not known_field(object, x)
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), x]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [x, o]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [x, o]),
-	}
+	value[x][v]
+	not known_field(objValues, v)
+	idx := v
+} else = idx {
+	any([objType == "simple", objType == "map"])
+	value[x]
+	not known_field(objValues, x)
+	idx := x
 }
 
 swagger := {
