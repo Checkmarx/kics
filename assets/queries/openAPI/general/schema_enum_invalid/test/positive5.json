@@ -16,9 +16,6 @@
         },
         "parameters": [
           {
-            "$ref": "#/parameters/maxParam"
-          },
-          {
             "$ref": "#/parameters/limitParam"
           }
         ]
@@ -28,7 +25,7 @@
   "parameters": {
     "limitParam": {
       "name": "limit",
-      "in": "query",
+      "in": "body",
       "description": "max records to return",
       "required": true,
       "schema": {
