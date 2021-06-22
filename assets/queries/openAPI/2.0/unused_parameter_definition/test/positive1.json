@@ -30,9 +30,6 @@
       "required": true,
       "schema": {
         "type": "string"
-      },
-      "desc": {
-        "type": "string"
       }
     }
   }
