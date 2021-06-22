@@ -9,15 +9,20 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	params := value.parameters[n]
-
 	openapi_lib.improperly_defined(params, "Authorization")
+
+	p := openapi_lib.concat_path(path)
+	parcialSk := openapi_lib.concat_default_value(p, "parameters")
+	name := openapi_lib.get_name(p, params.name)
+
+	sk := openapi_lib.get_complete_search_key(n, parcialSk, name)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.parameters.name={{%s}}", [openapi_lib.concat_path(path), params.name]),
+		"searchKey": sk,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.parameters.name={{%s}} is not 'Authorization'", [openapi_lib.concat_path(path), params.name]),
-		"keyActualValue": sprintf("%s.parameters.name={{%s}} is 'Authorization'", [openapi_lib.concat_path(path), params.name]),
+		"keyExpectedValue": sprintf("%s is not 'Authorization", [sk]),
+		"keyActualValue": sprintf("%s is 'Authorization'", [sk]),
 		"overrideKey": version,
 	}
 }
