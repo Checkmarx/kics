@@ -1,0 +1,13 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "A sample template",
+  "Resources": {
+    "NeptuneDBCluster3": {
+      "Type": "AWS::Neptune::DBCluster",
+      "Properties": {
+        "IamAuthEnabled": true,
+        "StorageEncrypted": true
+      }
+    }
+  }
+}

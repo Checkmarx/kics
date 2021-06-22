@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Parameter File Type Not In 'formData'",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter File Type Not In 'formData'",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Parameter File Type Not In 'formData'",
+    "severity": "INFO",
+    "line": 31,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Parameter File Type Not In 'formData'",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.yaml"
+  }
+]

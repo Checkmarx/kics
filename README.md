@@ -67,6 +67,14 @@ The nightly release will have a "nightly" prefix with the last commit hash code.
 KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
 [Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
+## Meet us at conferences
+
+- [Yalla DevOps 2021](https://yalla-devops.com/)
+- [DevSecCon24 2021](https://www.devseccon.com/devseccon24-2021/)
+- [Geektime Code 2021](https://code.geektime.co.il/)
+- [GISEC Global 2021](https://www.gisec.ae/gisec-2021-conference/insecure-infrastructure-as-code-leaves-the-door-open-for-hackers-1wez)
+- [Blackhat ASIA 2021](https://www.blackhat.com/asia-21/arsenal/schedule/#kics-22475) ([video](https://www.youtube.com/watch?v=56AM1wiIOss))
+
 ## More
 
 [KICS public documentation](https://docs.kics.io/) has all the project aspects covered.
