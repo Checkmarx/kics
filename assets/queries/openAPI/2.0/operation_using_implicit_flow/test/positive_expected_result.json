@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Operation Using Implicit Flow",
+    "severity": "LOW",
+    "line": 22,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Operation Using Implicit Flow",
+    "severity": "LOW",
+    "line": 16,
+    "filename": "positive2.yaml"
+  }
+]
