@@ -174,10 +174,23 @@ func printSeverityCounter(severity string, counter int, printColor color.RGBColo
 	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }
 
+func fixTemporaryPath(filePath string) string {
+	var prettyPath string
+	for key, val := range PathExtractionMap {
+		if strings.Contains(filePath, key) {
+			splittedPath := strings.Split(filePath, key)
+			prettyPath = filepath.Join(filepath.Base(val), splittedPath[1])
+		} else {
+			prettyPath = filePath
+		}
+	}
+	return prettyPath
+}
+
 func printFiles(query *model.VulnerableQuery, printer *Printer) {
 	for fileIdx := range query.Files {
 		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
-			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
+			fixTemporaryPath(query.Files[fileIdx].FileName), printer.Success.Sprint(query.Files[fileIdx].Line))
 		if !printer.minimal {
 			fmt.Println()
 			for _, line := range query.Files[fileIdx].VulnLines {

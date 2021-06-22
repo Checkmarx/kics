@@ -11,10 +11,13 @@ import (
 )
 
 const (
+	// MimeTypeZip - application/zip MIME type
 	MimeTypeZip = "application/zip"
-	MaxZipSize  = 5120
+	// MaxZipChunkSize - size of the chunks for io.CopyN operation
+	MaxZipChunkSize = 1024
 )
 
+// PathExtractionMap - relates temporary dir with original path
 var PathExtractionMap map[string]string
 
 // CheckAndExtractZip - verifies if a given absolute path is a zip file
@@ -43,7 +46,7 @@ func CheckAndExtractZip(absPath string) (string, error) {
 
 		if contentType == MimeTypeZip {
 			destination, err := os.MkdirTemp("", "kics-extract-*")
-			PathExtractionMap[filepath.Base(destination)] = absPath
+			PathExtractionMap[destination] = absPath
 
 			if err != nil {
 				return "", err
@@ -117,13 +120,21 @@ func unzip(src, destination string) ([]string, error) {
 			return filenames, err
 		}
 
-		_, err = io.CopyN(outFile, rc, MaxZipSize)
+		for {
+			_, err = io.CopyN(outFile, rc, MaxZipChunkSize)
+			if err != nil {
+				if err == io.EOF {
+					break
+				}
+
+				outFile.Close()
+				rc.Close()
+				return filenames, err
+			}
+		}
 
 		outFile.Close()
 		rc.Close()
-		if err != nil {
-			return filenames, err
-		}
 	}
 
 	return filenames, nil
