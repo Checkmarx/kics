@@ -1,0 +1,41 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit2",
+            "in": "body",
+            "description": "max records to return",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "petstore_auth": []
+    }
+  ],
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "basic"
+    }
+  }
+}
