@@ -1,7 +1,9 @@
 package model
 
 import (
+	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -69,8 +71,26 @@ type Summary struct {
 	ScannedPaths []string `json:"paths"`
 }
 
+type PathParameters struct {
+	ScannedPaths      []string
+	PathExtractionMap map[string]string
+}
+
+func fixTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
+	var prettyPath string
+	for key, val := range pathExtractionMap {
+		if strings.Contains(filePath, key) {
+			splittedPath := strings.Split(filePath, key)
+			prettyPath = filepath.Join(filepath.Base(val), splittedPath[1])
+		} else {
+			prettyPath = filePath
+		}
+	}
+	return prettyPath
+}
+
 // CreateSummary creates a report for a single scan, based on its scanID
-func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string) Summary {
+func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string, pathExtractionMap map[string]string) Summary {
 	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
 	severitySummary := SeveritySummary{
@@ -92,7 +112,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 
 		qItem := q[item.QueryID]
 		qItem.Files = append(qItem.Files, VulnerableFile{
-			FileName:         item.FileName,
+			FileName:         fixTemporaryPath(item.FileName, pathExtractionMap),
 			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			VulnLines:        item.VulnLines,

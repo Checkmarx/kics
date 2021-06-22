@@ -23,7 +23,6 @@ var PathExtractionMap map[string]string
 // CheckAndExtractZip - verifies if a given absolute path is a zip file
 // and if so extracts its contents to a temporary file
 func CheckAndExtractZip(absPath string) (string, error) {
-
 	f, err := os.Open(absPath)
 	if err != nil {
 		return "", err
@@ -88,7 +87,7 @@ func unzip(src, destination string) ([]string, error) {
 	defer r.Close()
 
 	for _, f := range r.File {
-		fpath := filepath.Join(destination, f.Name)
+		fpath := filepath.Join(destination, filepath.Clean(f.Name))
 
 		if !strings.HasPrefix(fpath, filepath.Clean(destination)+string(os.PathSeparator)) {
 			return filenames, fmt.Errorf("%s is an invalid filepath", fpath)

@@ -413,14 +413,6 @@ func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProv
 	if len(excludePath) > 0 {
 		excludePaths = append(excludePaths, excludePath...)
 	}
-	// absPaths := make([]string, len(path))
-	// for idx, scanPath := range path {
-	// 	absPath, err := filepath.Abs(scanPath)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// 	absPaths[idx] = absPath
-	// }
 
 	filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
 	if err != nil {
@@ -528,20 +520,20 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
-func extractPaths(paths []string) ([]string, error) {
+func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map[string]string, err error) {
 	absPaths := make([]string, len(path))
 	for idx, scanPath := range paths {
 		absPath, err := filepath.Abs(scanPath)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 		absPath, err = consoleHelpers.CheckAndExtractZip(absPath)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 		absPaths[idx] = absPath
 	}
-	return absPaths, nil
+	return absPaths, consoleHelpers.PathExtractionMap, nil
 }
 
 func scan(changedDefaultQueryPath bool) error {
@@ -575,7 +567,7 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	extractedPaths, err := extractPaths(path)
+	extractedPaths, pathExtractionMap, err := extractPaths(path)
 	if err != nil {
 		return err
 	}
@@ -616,7 +608,10 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	summary := getSummary(t, results, scanStartTime, time.Now(), path)
+	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
+		ScannedPaths:      path,
+		PathExtractionMap: pathExtractionMap,
+	})
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		log.Err(err)
@@ -644,7 +639,8 @@ func printScanDuration(elapsed time.Duration) {
 	}
 }
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time, scannedPaths []string) model.Summary {
+func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time,
+	pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -653,12 +649,12 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, results, scanID)
+	summary := model.CreateSummary(counters, results, scanID, pathParameters.PathExtractionMap)
 	summary.Times = model.Times{
 		Start: start,
 		End:   end,
 	}
-	summary.ScannedPaths = scannedPaths
+	summary.ScannedPaths = pathParameters.ScannedPaths
 	return summary
 }
 
