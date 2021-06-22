@@ -8,10 +8,11 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        "200":
-          "$ref": "#/components/schemas/MyObject"
         "201":
-          schema:
-            type: number
-            enum:
-              - black
+          description: 201 response
+          content:
+            "text/html":
+              schema:
+                type: number
+                enum:
+                  - black
