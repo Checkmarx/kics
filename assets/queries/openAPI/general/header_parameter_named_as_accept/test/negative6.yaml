@@ -16,3 +16,10 @@ paths:
         description: ID of the API version
         required: true
         type: string
+parameters:
+  limitParam:
+    name: id2
+    in: header
+    description: ID of the API version
+    required: true
+    type: string
