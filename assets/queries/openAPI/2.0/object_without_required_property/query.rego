@@ -4,11 +4,12 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	req := openapi_lib.require_objects_v3[obj_type]
+	req := openapi_lib.require_objects_v2[obj_type]
 	obj := value[obj_type]
+
 	req_obj := check_required(obj, req)
 	search_key := create_search_key(req_obj, path, obj_type)
 
@@ -18,6 +19,27 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s has all required fields", [obj_type]),
 		"keyActualValue": sprintf("%s is missing required fields", [obj_type]),
+	}
+}
+
+CxPolicy[result] {
+	doc := input.document[i]
+	openapi_lib.check_openapi(doc) == "2.0"
+
+	[path, value] := walk(doc)
+	param := value.parameters[n]
+	param.in != "body"
+
+	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
+
+	object.get(param, "type", "undefined") == "undefined"
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.{{%s}}", [partialSk, n]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Parameter object has 'type' defined",
+		"keyActualValue": "Parameter object does not have 'type' defined",
 	}
 }
 
