@@ -28,9 +28,11 @@
       }
     }
   },
-  "security": {
-    "petstore_auth": []
-  },
+  "security": [
+    {
+      "petstore_auth": []
+    }
+  ],
   "securityDefinitions": {
     "petstore_auth": {
       "type": "basic"

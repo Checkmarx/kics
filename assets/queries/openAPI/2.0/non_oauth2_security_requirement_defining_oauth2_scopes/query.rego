@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	sec := value.security[name]
+	sec := value.security[idx][name]
 	count(sec) != 0
 
 	type := doc.securityDefinitions[name].type

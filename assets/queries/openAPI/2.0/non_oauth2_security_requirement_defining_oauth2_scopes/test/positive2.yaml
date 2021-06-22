@@ -18,9 +18,9 @@ paths:
           schema:
             type: object
 security:
-  petstore_auth:
-    - write:pets
-    - read:pets
+  - petstore_auth:
+      - write:pets
+      - read:pets
 securityDefinitions:
   petstore_auth:
     type: basic
