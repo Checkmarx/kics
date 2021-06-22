@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  }
+]

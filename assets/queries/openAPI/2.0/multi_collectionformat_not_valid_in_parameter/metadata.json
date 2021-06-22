@@ -1,0 +1,9 @@
+{
+  "id": "750f6448-27c0-49f8-a153-b81735c1e19c",
+  "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "When 'collectionformat' is defined as 'multi', 'in' field must be 'query' or 'formData'",
+  "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+  "platform": "OpenAPI"
+}
