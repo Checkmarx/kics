@@ -1,0 +1,9 @@
+{
+  "id": "3d7d7b6c-fb0a-475e-8a28-c125e30d15f0",
+  "queryName": "Host With Invalid Pattern",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Host field should be an IP or a valid host name",
+  "descriptionUrl": "https://swagger.io/specification/v2/#swagger-object",
+  "platform": "OpenAPI"
+}

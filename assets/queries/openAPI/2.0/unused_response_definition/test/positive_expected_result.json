@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 41,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.yaml"
+  }
+]

@@ -28,5 +28,17 @@
         }
       }
     }
+  },
+  "parameters": {
+    "limitParam": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "name": "id2",
+      "in": "header",
+      "description": "ID of the API version",
+      "required": true
+    }
   }
 }
