@@ -17,8 +17,6 @@ paths:
           required: true
           schema:
             $ref: "#/definitions/Category"
-          desc:
-            type: string
 definitions:
   Category:
     type: object
