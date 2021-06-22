@@ -44,6 +44,3 @@ components:
         multipart/form-data:
           schema:
             $ref: "#/components/schemas/GeneralError"
-          examples:
-            tshirt:
-              $ref: "#/components/examples/tshirt"
