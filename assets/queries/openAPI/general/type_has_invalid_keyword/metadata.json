@@ -10,9 +10,9 @@
     "2.0": {
       "id": "492c6cbb-f3f8-4807-aa4f-42b8b1c46b59",
       "queryName": "Type Has Invalid Keyword (v2)",
-      "descriptionText": "Schema and Parameter Object define type should not use a keyword of another type",
+      "descriptionText": "Schema/Parameter/Header Object define type should not use a keyword of another type",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
-  "aggregation": 3
+  "aggregation": 4
 }
