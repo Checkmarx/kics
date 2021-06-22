@@ -1,0 +1,53 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Simple API Overview",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "limit2",
+            "in": "body",
+            "description": "max records to return",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "operationId": "listVersionsv2",
+        "summary": "List API versions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "examples": {
+              "application/json": {
+                "id": 38,
+                "title": "Versions"
+              },
+              "text/csv": "id,title 38,Versions"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json",
+    "text/csv"
+  ],
+  "parameters": {
+    "limitParam": {
+      "name": "limit",
+      "in": "body",
+      "description": "max records to return",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      }
+    }
+  }
+}
