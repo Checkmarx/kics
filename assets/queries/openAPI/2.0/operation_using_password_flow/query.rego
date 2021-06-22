@@ -8,7 +8,6 @@ CxPolicy[result] {
 
 	doc.paths[p][oper].security[n][key]
 	doc.securityDefinitions[key].flow == "password"
-	doc.securityDefinitions[key].type == "oauth2"
 
 	result := {
 		"documentId": doc.id,

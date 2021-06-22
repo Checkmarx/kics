@@ -7,7 +7,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	doc.securityDefinitions[key].flow == "password"
-	doc.securityDefinitions[key].type == "oauth2"
 
 	result := {
 		"documentId": doc.id,
