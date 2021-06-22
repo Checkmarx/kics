@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("basePath={{%s}}", [doc.basePath]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'basePath' value format matches the pattern '^/'",
-		"keyActualValue": "'basePath' value format doesn't match the pattern '^/'",
+		"keyExpectedValue": "'basePath' value matches the pattern '^/'",
+		"keyActualValue": "'basePath' value doesn't match the pattern '^/'",
 	}
 }
