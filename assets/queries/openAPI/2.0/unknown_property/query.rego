@@ -136,7 +136,7 @@ schema_properties := {
 	"allOf",
 	"properties",
 	"additionalProperties",
-	"descriminator",
+	"discriminator",
 	"readOnly",
 	"xml",
 	"externalDocs",
