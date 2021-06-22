@@ -8,12 +8,6 @@
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
-    "line": 26,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Object Without Required Property (v2)",
-    "severity": "INFO",
     "line": 3,
     "filename": "positive1.json"
   },
@@ -27,12 +21,6 @@
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Object Without Required Property (v2)",
-    "severity": "INFO",
-    "line": 18,
     "filename": "positive2.yaml"
   }
 ]

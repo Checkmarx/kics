@@ -43,28 +43,6 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "2.0"
-
-	[path, value] := walk(doc)
-	param := value.parameters[n]
-	param.in != "body"
-	param.type == "array"
-
-	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
-
-	object.get(param, "items", "undefined") == "undefined"
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.{{%s}}", [partialSk, n]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Parameter object has 'items' defined",
-		"keyActualValue": "Parameter object does not have 'items' defined",
-	}
-}
-
 check_required(obj, req) = req_obj {
 	req.array = true
 	req.map_object = false

@@ -24,14 +24,6 @@
       "description": "max records to return",
       "required": true,
       "type": "string"
-    },
-    "limitParam2": {
-      "name": "limit",
-      "in": "query",
-      "description": "max records to return",
-      "required": true,
-      "type": "array",
-      "items": {}
     }
   }
 }
