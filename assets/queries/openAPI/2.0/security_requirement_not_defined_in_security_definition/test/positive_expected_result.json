@@ -2,7 +2,7 @@
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
     "severity": "HIGH",
-    "line": 32,
+    "line": 33,
     "filename": "positive1.json"
   },
   {
@@ -14,7 +14,7 @@
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
     "severity": "HIGH",
-    "line": 29,
+    "line": 30,
     "filename": "positive3.json"
   },
   {
