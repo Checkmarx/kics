@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Operation Using Password Flow",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Operation Using Password Flow",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive2.yaml"
+  }
+]

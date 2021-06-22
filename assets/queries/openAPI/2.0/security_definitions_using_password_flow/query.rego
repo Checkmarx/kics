@@ -6,14 +6,13 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "2.0"
 
-	secDef := doc.securityDefinitions[key]
-	secDef.flow == "password"
+	doc.securityDefinitions[key].flow == "password"
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("securityDefinitions.{{%s}}.flow", [key]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "security definition is not using 'password' flow",
-		"keyActualValue": "security definition is using 'password' flow",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "security definition is not using 'password' flow in OAuth2 authentication",
+		"keyActualValue": "security definition is using 'password' flow in OAuth2 authentication",
 	}
 }
