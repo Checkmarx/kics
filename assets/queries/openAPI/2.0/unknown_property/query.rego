@@ -33,7 +33,10 @@ CxPolicy[result] {
 	index := {"array": 1, "simple": 1, "map": 2}
 	path[minus(count(path), index[objType])] == object
 
-	field := unknown_property(objType, value, objValues)
+	objType == "array"
+	is_array(value)
+	value[x][field]
+	not known_field(objValues, field)
 
 	result := {
 		"documentId": doc.id,
@@ -44,17 +47,29 @@ CxPolicy[result] {
 	}
 }
 
-unknown_property(objType, value, objValues) = idx {
-	objType == "array"
-	is_array(value)
-	value[x][v]
-	not known_field(objValues, v)
-	idx := v
-} else = idx {
+CxPolicy[result] {
+	doc := input.document[i]
+	openapi_lib.check_openapi(doc) == "2.0"
+
+	[path, value] := walk(doc)
+
+	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
+	objValues := objectValues[objType][object]
+
+	index := {"array": 1, "simple": 1, "map": 2}
+	path[minus(count(path), index[objType])] == object
+
 	any([objType == "simple", objType == "map"])
-	value[x]
-	not known_field(objValues, x)
-	idx := x
+	value[field]
+	not known_field(objValues, field)
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), field]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
+		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
+	}
 }
 
 swagger := {
