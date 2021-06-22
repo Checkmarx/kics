@@ -1,3 +1,4 @@
+---
 swagger: '2.0'
 info:
   title: Simple API Overview
@@ -23,8 +24,8 @@ paths:
               title: Versions
             text/csv: id,title 38,Versions
 produces:
-  - application/json
-  - text/csv
+- application/json
+- text/csv
 parameters:
   limitParam:
     name: limit
