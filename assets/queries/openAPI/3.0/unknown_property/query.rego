@@ -52,7 +52,7 @@ CxPolicy[result] {
 
 	path[minus(count(path), 3)] == "callbacks"
 
-	v := value[x]
+	value[x]
 	not known_field(map_objects.paths, x)
 
 	result := {
