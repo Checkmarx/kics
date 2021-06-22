@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Operation Object Parameters With 'body' And 'formatData' locations",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Operation Object Parameters With 'body' And 'formatData' locations",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive2.yaml"
+  }
+]
