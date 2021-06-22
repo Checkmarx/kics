@@ -73,7 +73,7 @@ KICS is a true community project. It's built as an open source from day one, and
 - [DevSecCon24 2021](https://www.devseccon.com/devseccon24-2021/)
 - [Geektime Code 2021](https://code.geektime.co.il/)
 - [GISEC Global 2021](https://www.gisec.ae/gisec-2021-conference/insecure-infrastructure-as-code-leaves-the-door-open-for-hackers-1wez)
-- [Blackhat ASIA 2021](https://www.blackhat.com/asia-21/arsenal/schedule/#kics-22475)
+- [Blackhat ASIA 2021](https://www.blackhat.com/asia-21/arsenal/schedule/#kics-22475) ([video](https://www.youtube.com/watch?v=56AM1wiIOss))
 
 ## More
 
