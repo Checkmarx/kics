@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Simple API Overview
   version: 1.0.0
@@ -8,15 +8,14 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        '200':
+        "200":
           "$ref": "#/definitions/User"
       parameters:
-      - "$ref": "#/parameters/maxParam"
-      - "$ref": "#/parameters/limitParam"
+        - "$ref": "#/parameters/limitParam"
 parameters:
   limitParam:
     name: limit
-    in: query
+    in: body
     description: max records to return
     required: true
     schema:
@@ -25,8 +24,8 @@ definitions:
   User:
     type: object
     required:
-    - id
-    - name
+      - id
+      - name
     properties:
       id:
         type: integer
@@ -34,5 +33,5 @@ definitions:
       name:
         type: string
         enum:
-        - kics
-        - 1
+          - kics
+          - 1

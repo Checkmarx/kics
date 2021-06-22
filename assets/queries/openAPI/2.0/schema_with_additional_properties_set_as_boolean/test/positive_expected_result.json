@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Schema with 'additionalProperties' set as Boolean",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Schema with 'additionalProperties' set as Boolean",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Schema with 'additionalProperties' set as Boolean",
+    "severity": "INFO",
+    "line": 51,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Schema with 'additionalProperties' set as Boolean",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive4.yaml"
+  }
+]
