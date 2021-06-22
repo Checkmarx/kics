@@ -404,7 +404,7 @@ func initScanCmd(scanCmd *cobra.Command) {
 	}
 }
 
-func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
+func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) {
 	var excludePaths []string
 	if payloadPath != "" {
 		excludePaths = append(excludePaths, payloadPath)
@@ -413,16 +413,16 @@ func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 	if len(excludePath) > 0 {
 		excludePaths = append(excludePaths, excludePath...)
 	}
-	absPaths := make([]string, len(path))
-	for idx, scanPath := range path {
-		absPath, err := filepath.Abs(scanPath)
-		if err != nil {
-			return nil, err
-		}
-		absPaths[idx] = absPath
-	}
+	// absPaths := make([]string, len(path))
+	// for idx, scanPath := range path {
+	// 	absPath, err := filepath.Abs(scanPath)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
+	// 	absPaths[idx] = absPath
+	// }
 
-	filesSource, err := provider.NewFileSystemSourceProvider(absPaths, excludePaths)
+	filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
 	if err != nil {
 		return nil, err
 	}
@@ -486,10 +486,11 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
 }
 
 func createService(inspector *engine.Inspector,
+	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
 	querySource source.FilesystemSource) ([]*kics.Service, error) {
-	filesSource, err := getFileSystemSourceProvider()
+	filesSource, err := getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
 	}
@@ -527,6 +528,22 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
+func extractPaths(paths []string) ([]string, error) {
+	absPaths := make([]string, len(path))
+	for idx, scanPath := range paths {
+		absPath, err := filepath.Abs(scanPath)
+		if err != nil {
+			return nil, err
+		}
+		absPath, err = consoleHelpers.CheckAndExtractZip(absPath)
+		if err != nil {
+			return nil, err
+		}
+		absPaths[idx] = absPath
+	}
+	return absPaths, nil
+}
+
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
@@ -558,7 +575,12 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	if types, excludePath, err = analyzePaths(path, types, excludePath); err != nil {
+	extractedPaths, err := extractPaths(path)
+	if err != nil {
+		return err
+	}
+
+	if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
 		return err
 	}
 
@@ -571,7 +593,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	services, err := createService(inspector, t, store, *querySource)
+	services, err := createService(inspector, extractedPaths, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
 		return err
