@@ -798,8 +798,8 @@ github.com/jmoiron/sqlx v1.2.1-0.20190826204134-d7d95172beb5/go.mod h1:1FEQNm3xl
 github.com/jmoiron/sqlx v1.3.1 h1:aLN7YINNZ7cYOPK3QC83dbM6KT0NMqVMw961TqrejlE=
 github.com/jmoiron/sqlx v1.3.1/go.mod h1:2BljVx/86SuTyjE+aPYlHCTNvZrnJXghYGpNiXLBMCQ=
 github.com/joefitzgerald/rainbow-reporter v0.1.0/go.mod h1:481CNgqmVHQZzdIbN52CupLJyoVwB10FQ/IQlF1pdL8=
-github.com/johnfercher/maroto v0.31.0 h1:Ba3woJTMVlX257Bj/t0fyOuEddr77evNMpaA2YZUpAM=
-github.com/johnfercher/maroto v0.31.0/go.mod h1:z/5eo/hH1g+01K4Mm0IVVbixHibtaNbZ9vHf+2H6fpM=
+github.com/johnfercher/maroto v0.33.0 h1:pLnbgX/ZCEnwPNfCbQGE1igy+CJXLcsIeZt/xc0vVoM=
+github.com/johnfercher/maroto v0.33.0/go.mod h1:z/5eo/hH1g+01K4Mm0IVVbixHibtaNbZ9vHf+2H6fpM=
 github.com/joho/godotenv v1.3.0 h1:Zjp+RcGpHhGlrMbJzXTrZZPrWj+1vfm90La1wgB6Bhc=
 github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
 github.com/jonboulle/clockwork v0.1.0/go.mod h1:Ii8DK3G1RaLaWxj9trq07+26W01tbo22gdxWY5EU2bo=
