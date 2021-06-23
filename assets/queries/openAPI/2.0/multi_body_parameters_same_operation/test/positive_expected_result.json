@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Multiple Body Parameters In The Same Operation",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Multiple Body Parameters In The Same Operation",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.yaml"
+  }
+]

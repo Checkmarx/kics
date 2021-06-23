@@ -1,0 +1,9 @@
+{
+  "id": "5e5ecb9d-04b5-4e4f-b5a5-6ee04279b275",
+  "queryName": "Object Without Required Property (v2)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "OpenAPI Object should contain all of its required fields",
+  "descriptionUrl": "https://swagger.io/specification/v2/",
+  "platform": "OpenAPI"
+}

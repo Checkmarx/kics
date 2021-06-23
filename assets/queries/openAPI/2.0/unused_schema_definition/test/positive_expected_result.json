@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Global Schema Definition Not Being Used",
+    "severity": "INFO",
+    "line": 44,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Schema Definition Not Being Used",
+    "severity": "INFO",
+    "line": 29,
+    "filename": "positive2.yaml"
+  }
+]

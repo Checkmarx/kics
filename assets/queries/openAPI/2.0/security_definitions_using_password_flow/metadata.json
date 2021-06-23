@@ -3,7 +3,7 @@
   "queryName": "Security Definitions Using Password Flow",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Security Defenition Object should not use 'password' Flow",
+  "descriptionText": "Security Defenition Object should not use 'password' Flow in OAuth2 authentication",
   "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
   "platform": "OpenAPI"
 }

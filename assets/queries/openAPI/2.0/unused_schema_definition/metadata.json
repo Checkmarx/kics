@@ -1,0 +1,9 @@
+{
+  "id": "6d2e0790-cc3d-4c74-b973-d4e8b09f4455",
+  "queryName": "Global Schema Definition Not Being Used",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "All global schemas definitions should be in use",
+  "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject",
+  "platform": "OpenAPI"
+}

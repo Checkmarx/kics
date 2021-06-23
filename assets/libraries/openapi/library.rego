@@ -155,25 +155,35 @@ invalid_field(field, type) {
 	not is_array(field)
 }
 
-require_objects := {
+shared := {
 	"info": {"value": {"title", "version"}, "array": false, "map_object": false},
 	"license": {"value": {"name"}, "array": false, "map_object": false},
+	"op": {"value": {"responses"}, "array": false, "map_object": false},
+	"externalDocs": {"value": {"url"}, "array": false, "map_object": false},
+	"parameters": {"value": {"name", "in"}, "array": true, "map_object": true},
+	"responses": {"value": {"description"}, "array": false, "map_object": true},
+	"tags": {"value": {"name"}, "array": true, "map_object": false},
+}
+
+require_objects_v3 := {
+	"info": shared.info,
+	"license": shared.license,
 	"servers": {"value": {"url"}, "array": true, "map_object": false},
 	"server": {"value": {"url"}, "array": false, "map_object": false},
 	"variables": {"value": {"default"}, "array": false, "map_object": true},
-	"get": {"value": {"responses"}, "array": false, "map_object": false},
-	"put": {"value": {"responses"}, "array": false, "map_object": false},
-	"post": {"value": {"responses"}, "array": false, "map_object": false},
-	"delete": {"value": {"responses"}, "array": false, "map_object": false},
-	"options": {"value": {"responses"}, "array": false, "map_object": false},
-	"head": {"value": {"responses"}, "array": false, "map_object": false},
-	"patch": {"value": {"responses"}, "array": false, "map_object": false},
-	"trace": {"value": {"responses"}, "array": false, "map_object": false},
-	"externalDocs": {"value": {"url"}, "array": false, "map_object": false},
-	"parameters": {"value": {"name", "in"}, "array": true, "map_object": true},
+	"get": shared.op,
+	"put": shared.op,
+	"post": shared.op,
+	"delete": shared.op,
+	"options": shared.op,
+	"head": shared.op,
+	"patch": shared.op,
+	"trace": shared.op,
+	"externalDocs": shared.externalDocs,
+	"parameters": shared.parameters,
 	"requestBody": {"value": {"content"}, "array": false, "map_object": false},
 	"requestBodies": {"value": {"content"}, "array": false, "map_object": true},
-	"responses": {"value": {"description"}, "array": false, "map_object": true},
+	"responses": shared.responses,
 	"headers": {"value": {"name"}, "array": false, "map_object": true},
 	"discriminator": {"value": {"propertyName"}, "array": false, "map_object": false},
 	"securitySchemes": {"value": {"type"}, "array": false, "map_object": true},
@@ -181,6 +191,27 @@ require_objects := {
 	"password": {"value": {"scopes"}, "array": false, "map_object": false},
 	"clientCredentials": {"value": {"scopes"}, "array": false, "map_object": false},
 	"authorizationCode": {"value": {"scopes"}, "array": false, "map_object": false},
+	"tags": shared.tags,
+}
+
+require_objects_v2 := {
+	"info": shared.info,
+	"license": shared.license,
+	"get": shared.op,
+	"put": shared.op,
+	"post": shared.op,
+	"delete": shared.op,
+	"options": shared.op,
+	"head": shared.op,
+	"patch": shared.op,
+	"trace": shared.op,
+	"externalDocs": shared.externalDocs,
+	"parameters": shared.parameters,
+	"items": {"value": {"type"}, "array": false, "map_object": true},
+	"responses": shared.responses,
+	"headers": {"value": {"type"}, "array": false, "map_object": true},
+	"tags": shared.tags,
+	"securityDefinitions": {"value": {"type", "name", "in", "flow", "authorizationUrl", "tokenUrl", "scopes"}, "array": false, "map_object": true},
 }
 
 # get schema info (object and path) according to the openAPI version

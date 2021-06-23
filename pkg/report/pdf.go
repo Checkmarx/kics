@@ -207,6 +207,8 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	log.Info().Msgf("Generate report duration: %v", time.Since(startTime))
 
+	fileCreationReport(filepath.Join(path, filename+".pdf"), filename)
+
 	return err
 }
 
