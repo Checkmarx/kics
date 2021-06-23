@@ -79,7 +79,7 @@ func getFileContentType(out *os.File) (string, error) {
 func unzip(src, destination string) ([]string, error) {
 	var filenames []string
 
-	r, err := zip.OpenReader(src)
+	r, err := zip.OpenReader(filepath.Clean(src))
 	if err != nil {
 		return filenames, err
 	}

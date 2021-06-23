@@ -94,7 +94,7 @@ func getRelativePath(basePath, filePath string) string {
 }
 
 func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
-	var prettyPath string
+	prettyPath := filePath
 	for key, val := range pathExtractionMap {
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)

@@ -93,7 +93,7 @@ var sarifTests = []sarifTest{
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
+										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "test.json"},
 										Region:           sarifRegion{StartLine: 1},
 									},
 								},
