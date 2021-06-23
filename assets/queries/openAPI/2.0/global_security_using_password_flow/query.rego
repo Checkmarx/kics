@@ -7,12 +7,13 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	doc.securityDefinitions[key].flow == "password"
+	doc.security[x][key]
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("securityDefinitions.{{%s}}.flow", [key]),
+		"searchKey": sprintf("security.{{%s}}", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "security definition is not using 'password' flow in OAuth2 authentication",
-		"keyActualValue": "security definition is using 'password' flow in OAuth2 authentication",
+		"keyExpectedValue": "'security' is not using 'password' flow in OAuth2 authentication",
+		"keyActualValue": "'security' is using 'password' flow in OAuth2 authentication",
 	}
 }
