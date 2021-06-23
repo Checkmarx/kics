@@ -1,0 +1,9 @@
+{
+  "id": "7f91992f-b4c8-43bf-9bf9-fae9ecdb6e3a",
+  "queryName": "File Parameter With Wrong Consumes Property",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Operations file parameters consumes must be 'multipart/form-data', 'application/x-www-form-urlencoded' or both",
+  "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+  "platform": "OpenAPI"
+}
