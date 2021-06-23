@@ -166,15 +166,17 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		expectI.Start = timeValue
 		expectI.End = timeValue
 		for i := range wantI.Queries {
+			wantQuery := wantI.Queries[i]
+			expectQuery := expectI.Queries[i]
 			for j := range wantI.Queries[i].Files {
-				wantI.Queries[i].Files[j].FileName = ""
-				expectI.Queries[i].Files[j].FileName = ""
+				wantQuery.Files[j].FileName = ""
+				expectQuery.Files[j].FileName = ""
 			}
-			sort.Slice(wantI.Queries[i].Files, func(a, b int) bool {
-				return wantI.Queries[i].Files[a].SimilarityID < wantI.Queries[i].Files[b].SimilarityID
+			sort.Slice(wantQuery.Files, func(a, b int) bool {
+				return wantQuery.Files[a].SimilarityID < wantQuery.Files[b].SimilarityID
 			})
-			sort.Slice(expectI.Queries[i].Files, func(a, b int) bool {
-				return expectI.Queries[i].Files[a].SimilarityID < expectI.Queries[i].Files[b].SimilarityID
+			sort.Slice(expectQuery.Files, func(a, b int) bool {
+				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
 			})
 		}
 

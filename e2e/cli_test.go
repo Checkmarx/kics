@@ -9,6 +9,7 @@ import (
 	"strings"
 	"testing"
 	"text/template"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
@@ -40,12 +41,14 @@ type LogValidation struct {
 
 type Validation func(string) bool
 
-var tests = []struct {
+type testCase struct {
 	name       string
 	args       args
 	wantStatus []int
 	validation Validation
-}{
+}
+
+var tests = []testCase{
 	// E2E-CLI-001 - KICS command should display a help text in the CLI when provided with the
 	// 	 --help flag and it should describe the available commands plus the global flags
 	{
@@ -723,6 +726,7 @@ var tests = []struct {
 
 func Test_E2E_CLI(t *testing.T) {
 	kicsPath := getKICSBinaryPath("")
+	scanStartTime := time.Now()
 
 	if testing.Short() {
 		t.Skip("skipping E2E tests in short mode.")
@@ -752,24 +756,7 @@ func Test_E2E_CLI(t *testing.T) {
 				}
 
 				if tt.args.expectedResult != nil {
-					jsonFileName := tt.args.expectedResult[arg].resultsFile + ".json"
-					resultsFormats := tt.args.expectedResult[arg].resultsFormats
-					// Check result file (compare with sample)
-					if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
-						fileCheck(t, jsonFileName, jsonFileName, "result")
-					}
-					// Check result file (JSON)
-					if contains(resultsFormats, "json") {
-						jsonSchemaValidation(t, jsonFileName, "result.json")
-					}
-					// Check result file (GLSAST)
-					if contains(resultsFormats, "glsast") {
-						jsonSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
-					}
-					// Check result file (SARIF)
-					if contains(resultsFormats, "sarif") {
-						jsonSchemaValidation(t, tt.args.expectedResult[arg].resultsFile+".sarif", "result-sarif.json")
-					}
+					checkExpectedOutput(t, &tt, arg)
 				}
 
 				if tt.args.expectedPayload != nil {
@@ -808,7 +795,29 @@ func Test_E2E_CLI(t *testing.T) {
 	t.Cleanup(func() {
 		err := os.RemoveAll("output")
 		require.NoError(t, err)
+		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
+}
+
+func checkExpectedOutput(t *testing.T, tt *testCase, argIndex int) {
+	jsonFileName := tt.args.expectedResult[argIndex].resultsFile + ".json"
+	resultsFormats := tt.args.expectedResult[argIndex].resultsFormats
+	// Check result file (compare with sample)
+	if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
+		fileCheck(t, jsonFileName, jsonFileName, "result")
+	}
+	// Check result file (JSON)
+	if contains(resultsFormats, "json") {
+		jsonSchemaValidation(t, jsonFileName, "result.json")
+	}
+	// Check result file (GLSAST)
+	if contains(resultsFormats, "glsast") {
+		jsonSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
+	}
+	// Check result file (SARIF)
+	if contains(resultsFormats, "sarif") {
+		jsonSchemaValidation(t, tt.args.expectedResult[argIndex].resultsFile+".sarif", "result-sarif.json")
+	}
 }
 
 func prepareTemplates() TestTemplates {
