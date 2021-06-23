@@ -4,13 +4,13 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
 
 	field := path[0]
 	all([field != "id", field != "file"])
-	not known_openapi_object_field(field)
+	not known_swagger_object_field(field)
 
 	result := {
 		"documentId": doc.id,
@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
 
@@ -49,7 +49,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
+	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
 
@@ -72,50 +72,30 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) == "3.0"
-
-	[path, value] := walk(doc)
-
-	path[minus(count(path), 3)] == "callbacks"
-
-	value[x]
-	not known_field(map_objects.paths, x)
-
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), x]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the callbacks object", [x]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the callbacks object", [x]),
-	}
-}
-
-openapi := {
-	"openapi",
+swagger := {
+	"swagger",
 	"info",
+	"host",
+	"basePath",
+	"schemes",
+	"consumes",
+	"produces",
 	"paths",
-	"servers",
-	"components",
+	"definitions",
+	"parameters",
+	"responses",
+	"securityDefinitions",
 	"security",
 	"tags",
 	"externalDocs",
 }
 
-known_openapi_object_field(field) {
-	field == openapi[_]
+known_swagger_object_field(field) {
+	field == swagger[_]
 }
 
 known_field(object, value) {
 	object[_] == value
-}
-
-flow := {
-	"authorizationUrl",
-	"tokenUrl",
-	"refreshUrl",
-	"scopes",
 }
 
 parameters_properties := {
@@ -124,27 +104,33 @@ parameters_properties := {
 	"in",
 	"description",
 	"required",
-	"deprecated",
-	"allowEmptyValue",
-	"style",
-	"explode",
-	"allowReserved",
 	"schema",
-	"example",
-	"examples",
-	"content",
-}
-
-request_body_properties := {
-	"$ref",
-	"description",
-	"content",
-	"required",
+	"type",
+	"format",
+	"allowEmptyValue",
+	"items",
+	"collectionFormat",
+	"default",
+	"maximum",
+	"exclusiveMaximum",
+	"minimum",
+	"exclusiveMinimum",
+	"maxLength",
+	"minLength",
+	"pattern",
+	"maxItems",
+	"minItems",
+	"uniqueItems",
+	"enum",
+	"multipleOf",
 }
 
 schema_properties := {
 	"$ref",
+	"format",
 	"title",
+	"description",
+	"default",
 	"multipleOf",
 	"maximum",
 	"exclusiveMaximum",
@@ -161,22 +147,15 @@ schema_properties := {
 	"required",
 	"enum",
 	"type",
-	"allOf",
-	"oneOf",
-	"not",
 	"items",
+	"allOf",
 	"properties",
-	"description",
-	"format",
-	"default",
-	"nullable",
+	"additionalProperties",
 	"discriminator",
 	"readOnly",
-	"writeOnly",
 	"xml",
 	"externalDocs",
 	"example",
-	"deprecated",
 }
 
 array_objects := {
@@ -185,89 +164,60 @@ array_objects := {
 		"description",
 		"externalDocs",
 	},
-	"servers": {
-		"url",
-		"description",
-		"variables",
-	},
 	"parameters": parameters_properties,
 }
 
 map_objects := {
-	"encoding": {
-		"contentType",
-		"headers",
-		"style",
-		"explode",
-		"allowReserved",
-	},
-	"variables": {
-		"enum",
-		"default",
-		"description",
-	},
-	"schemas": schema_properties,
+	"definitions": schema_properties,
 	"headers": {
 		"$ref",
 		"description",
-		"required",
-		"deprecated",
-		"allowEmptyValue",
-		"style",
-		"explode",
-		"allowReserved",
-		"schema",
-		"example",
-		"examples",
-		"content",
-	},
-	"securitySchemes": {
-		"$ref",
 		"type",
-		"description",
-		"name",
-		"in",
-		"scheme",
-		"bearerFormat",
-		"flows",
-		"openIdConnectUrl",
+		"format",
+		"items",
+		"collectionFormat",
+		"default",
+		"maximum",
+		"exclusiveMaximum",
+		"minimum",
+		"exclusiveMinimum",
+		"maxLength",
+		"minLength",
+		"pattern",
+		"maxItems",
+		"minItems",
+		"uniqueItems",
+		"enum",
+		"multipleOf",
 	},
-	"requestBodies": request_body_properties,
 	"parameters": parameters_properties,
-	"examples": {
-		"$ref",
-		"summary",
-		"description",
-		"value",
-		"externalValue",
-	},
 	"responses": {
 		"$ref",
 		"description",
-		"headers",
-		"content",
-		"links",
-	},
-	"content": {
 		"schema",
-		"example",
+		"headers",
 		"examples",
-		"encoding",
 	},
 	"paths": {
 		"$ref",
-		"sumarry",
-		"description",
 		"get",
-		"post",
 		"put",
+		"post",
 		"delete",
 		"options",
 		"head",
 		"patch",
-		"trace",
-		"servers",
 		"parameters",
+	},
+	"securityDefinitions": {
+		"type",
+		"description",
+		"name",
+		"in",
+		"flow",
+		"authorizationUrl",
+		"tokenUrl",
+		"scopes",
 	},
 }
 
@@ -289,39 +239,43 @@ simple_objects := {
 		"name",
 		"url",
 	},
-	"components": {
-		"schemas",
-		"responses",
-		"parameters",
-		"examples",
-		"requestBodies",
-		"headers",
-		"securitySchemes",
-		"links",
-		"callbacks",
-	},
 	"operation": {
 		"tags",
 		"summary",
 		"description",
 		"externalDocs",
 		"operationId",
+		"consumes",
+		"produces",
 		"parameters",
-		"requestBody",
 		"responses",
-		"callbacks",
+		"schemes",
 		"deprecated",
 		"security",
-		"servers",
 	},
 	"externalDocs": {
 		"description",
 		"url",
 	},
-	"requestBody": request_body_properties,
-	"discriminator": {
-		"propertyName",
-		"mapping",
+	"items": {
+		"$ref",
+		"type",
+		"format",
+		"items",
+		"collectionFormat",
+		"default",
+		"maximum",
+		"exclusiveMaximum",
+		"minimum",
+		"exclusiveMinimum",
+		"maxLength",
+		"minLength",
+		"pattern",
+		"maxItems",
+		"minItems",
+		"uniqueItems",
+		"enum",
+		"multipleOf",
 	},
 	"xml": {
 		"name",
@@ -330,15 +284,5 @@ simple_objects := {
 		"attribute",
 		"wrapped",
 	},
-	"flows": {
-		"implicit",
-		"password",
-		"clientCredentials",
-		"authorizationCode",
-	},
-	"implicit": flow,
-	"password": flow,
-	"clientCredentials": flow,
-	"authorizationCode": flow,
 	"schema": schema_properties,
 }

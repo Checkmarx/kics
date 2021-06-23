@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 40,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive4.yaml"
+  }
+]
