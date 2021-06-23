@@ -131,7 +131,8 @@ type SarifReport interface {
 }
 
 type sarifReport struct {
-	basePath     string     `json:"-"`
+	// TODO check if basePath can be removed
+	basePath     string     `json:"-"` //nolint
 	Schema       string     `json:"$schema"`
 	SarifVersion string     `json:"version"`
 	Runs         []SarifRun `json:"runs"`
