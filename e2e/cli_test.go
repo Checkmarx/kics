@@ -24,8 +24,13 @@ type args struct {
 	args            []cmdArgs // args to pass to kics binary
 	expectedOut     []string  // path to file with expected output
 	expectedPayload []string
-	expectedResult  []string
+	expectedResult  []ResultsValidation
 	expectedLog     LogValidation
+}
+
+type ResultsValidation struct {
+	resultsFile    string
+	resultsFormats []string
 }
 
 type LogValidation struct {
@@ -36,11 +41,10 @@ type LogValidation struct {
 type Validation func(string) bool
 
 var tests = []struct {
-	name        string
-	args        args
-	wantStatus  []int
-	removeFiles []string
-	validation  Validation
+	name       string
+	args       args
+	wantStatus []int
+	validation Validation
 }{
 	// E2E-CLI-001 - KICS command should display a help text in the CLI when provided with the
 	// 	 --help flag and it should describe the available commands plus the global flags
@@ -110,8 +114,7 @@ var tests = []struct {
 				"E2E_CLI_005_PAYLOAD.json",
 			},
 		},
-		wantStatus:  []int{50},
-		removeFiles: []string{"E2E_CLI_005_PAYLOAD.json"},
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-006 - KICS generate-id should exhibit
 	// a valid UUID in the CLI and return exit code 0
@@ -207,8 +210,7 @@ var tests = []struct {
 				"E2E_CLI_011_PAYLOAD.json",
 			},
 		},
-		wantStatus:  []int{50},
-		removeFiles: []string{"E2E_CLI_011_PAYLOAD.json"},
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-012 - kics scan with minimal-ui flag should perform a scan
 	// without showing detailed results on each line of code
@@ -522,9 +524,6 @@ var tests = []struct {
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
-		removeFiles: []string{
-			"results.json",
-		},
 		wantStatus: []int{40},
 	},
 	// E2E-CLI-031 - Kics  scan command with --report-formats and --output-path flags
@@ -533,15 +532,18 @@ var tests = []struct {
 		name: "E2E-CLI-031",
 		args: args{
 			args: []cmdArgs{
-				[]string{"scan", "--output-path", "output", "--report-formats", "json,sarif",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
+					"--report-formats", "json,sarif,glsast",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
+			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_031_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast"},
+				},
 			},
 		},
-		removeFiles: []string{
-			"results.json",
-			"results.sarif",
-		},
-		wantStatus: []int{40},
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-032 - KICS scan command with --output-path flag
 	// and check the results.json report format
@@ -550,17 +552,17 @@ var tests = []struct {
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "-o", "output", "--output-name", "E2E_CLI_032_RESULT",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf",
 				},
 			},
-			expectedResult: []string{
-				"E2E_CLI_032_RESULT.json",
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_032_RESULT",
+					resultsFormats: []string{"json"},
+				},
 			},
 		},
-		removeFiles: []string{
-			"E2E_CLI_032_RESULT.json",
-		},
-		wantStatus: []int{40},
+		wantStatus: []int{50},
 	},
 	// E2E-CLI-033 - KICS scan command with --output-path and --payload-path flags
 	// should performe a scan and create result file(s) and payload file
@@ -571,20 +573,20 @@ var tests = []struct {
 				[]string{"scan",
 					"--output-path", "output",
 					"--output-name", "E2E_CLI_033_RESULT",
+					"--report-formats", "json,sarif,glsast",
 					"--payload-path", "output/E2E_CLI_033_PAYLOAD.json",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf",
 				},
 			},
-			expectedResult: []string{
-				"E2E_CLI_033_RESULT.json",
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_033_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast"},
+				},
 			},
 			expectedPayload: []string{
 				"E2E_CLI_033_PAYLOAD.json",
 			},
-		},
-		removeFiles: []string{
-			"E2E_CLI_033_RESULT.json",
-			"E2E_CLI_033_PAYLOAD.json",
 		},
 		wantStatus: []int{40},
 	},
@@ -690,8 +692,7 @@ var tests = []struct {
 				},
 			},
 		},
-		wantStatus:  []int{40},
-		removeFiles: []string{"E2E_CLI_038_LOG"},
+		wantStatus: []int{40},
 	},
 
 	// E2E-CLI-039 - KICS scan command with --log-path and --log-level
@@ -716,8 +717,7 @@ var tests = []struct {
 				},
 			},
 		},
-		wantStatus:  []int{40},
-		removeFiles: []string{"E2E_CLI_039_LOG"},
+		wantStatus: []int{40},
 	},
 }
 
@@ -752,9 +752,24 @@ func Test_E2E_CLI(t *testing.T) {
 				}
 
 				if tt.args.expectedResult != nil {
-					// Check result file
-					fileCheck(t, tt.args.expectedResult[arg], tt.args.expectedResult[arg], "result")
-					jsonSchemaValidation(t, tt.args.expectedResult[arg], "result.json")
+					jsonFileName := tt.args.expectedResult[arg].resultsFile + ".json"
+					resultsFormats := tt.args.expectedResult[arg].resultsFormats
+					// Check result file (compare with sample)
+					if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
+						fileCheck(t, jsonFileName, jsonFileName, "result")
+					}
+					// Check result file (JSON)
+					if contains(resultsFormats, "json") {
+						jsonSchemaValidation(t, jsonFileName, "result.json")
+					}
+					// Check result file (GLSAST)
+					if contains(resultsFormats, "glsast") {
+						jsonSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
+					}
+					// Check result file (SARIF)
+					if contains(resultsFormats, "sarif") {
+						jsonSchemaValidation(t, tt.args.expectedResult[arg].resultsFile+".sarif", "result-sarif.json")
+					}
 				}
 
 				if tt.args.expectedPayload != nil {
@@ -786,17 +801,14 @@ func Test_E2E_CLI(t *testing.T) {
 						checkLine(t, out.output[idx], formattedWant[idx], idx+1)
 					}
 				}
-
-				if tt.removeFiles != nil {
-					// Remove created files
-					for _, file := range tt.removeFiles {
-						err = os.Remove(filepath.Join("output", file))
-						require.NoError(t, err)
-					}
-				}
 			})
 		}
 	}
+
+	t.Cleanup(func() {
+		err := os.RemoveAll("output")
+		require.NoError(t, err)
+	})
 }
 
 func prepareTemplates() TestTemplates {

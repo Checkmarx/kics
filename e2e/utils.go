@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"sort"
 	"strings"
 	"testing"
 	"time"
@@ -157,15 +158,24 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
 		require.NoError(t, errW, "[result] Unmarshaling JSON file should not yield an error")
 
+		// Disable dynamic values (to avoid errors during file comparison)
 		wantI.TotalQueries = 0
 		wantI.Start = timeValue
 		wantI.End = timeValue
+		expectI.TotalQueries = 0
 		expectI.Start = timeValue
 		expectI.End = timeValue
 		for i := range wantI.Queries {
-			for j := range expectI.Queries[i].Files {
-				wantI.Queries[i].Files[j].FileName = filekey
+			for j := range wantI.Queries[i].Files {
+				wantI.Queries[i].Files[j].FileName = ""
+				expectI.Queries[i].Files[j].FileName = ""
 			}
+			sort.Slice(wantI.Queries[i].Files, func(a, b int) bool {
+				return wantI.Queries[i].Files[a].SimilarityID < wantI.Queries[i].Files[b].SimilarityID
+			})
+			sort.Slice(expectI.Queries[i].Files, func(a, b int) bool {
+				return expectI.Queries[i].Files[a].SimilarityID < expectI.Queries[i].Files[b].SimilarityID
+			})
 		}
 
 		require.Equal(t, expectI, wantI,
@@ -197,4 +207,13 @@ func jsonSchemaValidation(t *testing.T, file, schema string) {
 	}
 
 	require.True(t, result.Valid(), "Result Schema - Validation Failed\n%v\n", schemaErrors)
+}
+
+func contains(list []string, searchTerm string) bool {
+	for _, a := range list {
+		if a == searchTerm {
+			return true
+		}
+	}
+	return false
 }
