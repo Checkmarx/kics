@@ -1,0 +1,9 @@
+{
+  "id": "2cf35b40-ded3-43d6-9633-c8dcc8bcc822",
+  "queryName": "Operation Example Mismatch Produces MimeType",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Example should match one of MimeTypes on 'produces'. It is important to know that, if a 'produces' is declared on operation it will override global 'produces'",
+  "descriptionUrl": "https://swagger.io/specification/v2/#exampleObject",
+  "platform": "OpenAPI"
+}

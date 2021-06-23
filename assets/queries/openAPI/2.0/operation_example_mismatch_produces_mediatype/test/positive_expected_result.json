@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Operation Example Mismatch Produces MimeType",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Operation Example Mismatch Produces MimeType",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.yaml"
+  }
+]
