@@ -1,0 +1,30 @@
+package Cx
+
+import data.generic.openapi as openapi_lib
+
+CxPolicy[result] {
+	doc := input.document[i]
+	openapi_lib.check_openapi(doc) == "2.0"
+
+	arr := check_property(doc)
+	count(arr[name]) > 1
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": sprintf("%s.properties.%s", [openapi_lib.concat_path(arr[name][0].path), arr[name][0].name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s' property is unique throughout the whole API", [arr[name][0].name]),
+		"keyActualValue": sprintf("'%s' property is not unique throughout the whole API", [arr[name][0].name]),
+	}
+}
+
+check_property(doc) = arr {
+	propName := [x | [path, value] := walk(doc); value.properties[name]; x := {"name": name, "path": path}]
+	arr := {id: count |
+		id := propName[i].name
+		count := [obj |
+			propName[j].name == id
+			obj := propName[j]
+		]
+	}
+}
