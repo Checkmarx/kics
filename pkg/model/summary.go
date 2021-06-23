@@ -1,6 +1,7 @@
 package model
 
 import (
+	"os"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -76,7 +77,23 @@ type PathParameters struct {
 	PathExtractionMap map[string]string
 }
 
-func fixTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
+func getRelativePath(basePath, filePath string) string {
+	var rtn string
+	if strings.Contains(filePath, ".zip") {
+		rtn = filePath
+	} else {
+		relativePath, err := filepath.Rel(basePath, filePath)
+		if err != nil {
+			log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
+			rtn = filePath
+		} else {
+			rtn = relativePath
+		}
+	}
+	return rtn
+}
+
+func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
 	var prettyPath string
 	for key, val := range pathExtractionMap {
 		if strings.Contains(filePath, key) {
@@ -87,6 +104,18 @@ func fixTemporaryPath(filePath string, pathExtractionMap map[string]string) stri
 		}
 	}
 	return prettyPath
+}
+
+func resolvePath(filePath string, pathExtractionMap map[string]string) string {
+	var returnPath string
+	returnPath = replaceIfTemporaryPath(filePath, pathExtractionMap)
+	pwd, err := os.Getwd()
+	if err != nil {
+		log.Error().Msgf("Unable to get current working dir %s", err)
+		return returnPath
+	}
+	returnPath = getRelativePath(pwd, returnPath)
+	return returnPath
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
@@ -112,7 +141,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 
 		qItem := q[item.QueryID]
 		qItem.Files = append(qItem.Files, VulnerableFile{
-			FileName:         fixTemporaryPath(item.FileName, pathExtractionMap),
+			FileName:         resolvePath(item.FileName, pathExtractionMap),
 			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			VulnLines:        item.VulnLines,

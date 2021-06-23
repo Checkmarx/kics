@@ -127,7 +127,7 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
 			m.SetBackgroundColor(color.NewWhite())
 		}
 
-		filePath := getRelativePath(basePath, query.Files[idx].FileName)
+		filePath := query.Files[idx].FileName
 		fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
 		m.Row(colFive, func() {
 			m.Col(colFullPage, func() {
