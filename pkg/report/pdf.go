@@ -206,7 +206,10 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	}
 
 	log.Info().Msgf("Generate report duration: %v", time.Since(startTime))
-	return nil
+
+	fileCreationReport(filepath.Join(path, filename+".pdf"), filename)
+
+	return err
 }
 
 func createDateField(m pdf.Maroto, label string, summary *model.Summary) {

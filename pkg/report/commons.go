@@ -43,14 +43,18 @@ func getCurrentTime() string {
 	return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }
 
+func fileCreationReport(path, filename string) {
+	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
+	fmt.Printf("Results saved to file %s\n", path)
+}
+
 func closeFile(path, filename string, file *os.File) {
 	err := file.Close()
 	if err != nil {
 		log.Err(err).Msgf("Failed to close file %s", path)
 	}
 
-	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
-	fmt.Printf("Results saved to file %s\n", path)
+	fileCreationReport(path, filename)
 }
 
 func getPlatforms(queries model.VulnerableQuerySlice) string {

@@ -2,49 +2,37 @@
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
-    "line": 27,
+    "line": 28,
     "filename": "positive1.json"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
-    "line": 17,
+    "line": 18,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
-    "line": 36,
+    "line": 37,
     "filename": "positive1.json"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
-    "line": 24,
+    "line": 25,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
     "severity": "INFO",
-    "line": 15,
+    "line": 21,
     "filename": "positive3.json"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
     "severity": "INFO",
-    "line": 15,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Parameters Name In Combination Not Unique (v2)",
-    "severity": "INFO",
-    "line": 13,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Parameters Name In Combination Not Unique (v2)",
-    "severity": "INFO",
-    "line": 13,
+    "line": 14,
     "filename": "positive4.yaml"
   }
 ]

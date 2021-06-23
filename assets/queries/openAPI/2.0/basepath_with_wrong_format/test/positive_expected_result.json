@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "BasePath With Wrong Format",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "BasePath With Wrong Format",
+    "severity": "INFO",
+    "line": 5,
+    "filename": "positive2.yaml"
+  }
+]

@@ -1,36 +1,36 @@
 [
   {
-    "queryName": "Schema Items Undefined (v3)",
+    "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 50,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Schema Items Undefined (v3)",
+    "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 22,
     "filename": "positive2.json"
   },
   {
-    "queryName": "Schema Items Undefined (v3)",
+    "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 27,
     "filename": "positive3.yaml"
   },
   {
-    "queryName": "Schema Items Undefined (v3)",
+    "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 15,
     "filename": "positive4.yaml"
   },
   {
-    "queryName": "Schema Items Undefined (v2)",
+    "queryName": "Items Undefined (v2)",
     "severity": "INFO",
     "line": 19,
     "filename": "positive5.json"
   },
   {
-    "queryName": "Schema Items Undefined (v2)",
+    "queryName": "Items Undefined (v2)",
     "severity": "INFO",
     "line": 16,
     "filename": "positive6.yaml"

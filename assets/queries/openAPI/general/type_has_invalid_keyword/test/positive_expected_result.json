@@ -58,5 +58,17 @@
     "severity": "INFO",
     "line": 42,
     "filename": "positive8.yaml"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive9.json"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive10.yaml"
   }
 ]

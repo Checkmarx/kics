@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Global Parameter Definition Not Being Used",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Global Parameter Definition Not Being Used",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive2.yaml"
+  }
+]

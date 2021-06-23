@@ -1,6 +1,6 @@
 {
   "id": "d172a060-8569-4412-8045-3560ebd477e8",
-  "queryName": "Object Without Required Property",
+  "queryName": "Object Without Required Property (v3)",
   "severity": "INFO",
   "category": "Structure and Semantics",
   "descriptionText": "OpenAPI Object should contain all of its required fields",

@@ -16,9 +16,12 @@ CxPolicy[result] {
 	paramOne.name == paramTwo.name
 	paramOne.in == paramTwo.in
 
+	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
+	sk := openapi_lib.get_complete_search_key(keyOne, partialSk, "name")
+
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.parameters.{{%s}}", [openapi_lib.concat_path(path), keyOne]),
+		"searchKey": sk,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter has unique 'name' and 'in' combinations",
 		"keyActualValue": "Parameter does not have unique 'name' and 'in' combinations",
