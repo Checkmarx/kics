@@ -145,7 +145,7 @@
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.4%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (85.0%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/report/commons.go (85.4%)</option>
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
@@ -1381,8 +1381,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="291">{
-                if val == true </span><span class="cov9" title="290">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov10" title="319">{
+                if val == true </span><span class="cov9" title="318">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2149,13 +2149,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2180,7 +2180,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3751,7 +3751,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4734,7 +4734,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="31">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="33">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -7217,14 +7217,18 @@ func getCurrentTime() string <span class="cov1" title="1">{
         return fmt.Sprint(dt.Format("01/02/2006 15:04"))
 }</span>
 
+func fileCreationReport(path, filename string) <span class="cov10" title="6">{
+        log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
+        fmt.Printf("Results saved to file %s\n", path)
+}</span>
+
 func closeFile(path, filename string, file *os.File) <span class="cov7" title="4">{
         err := file.Close()
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov7" title="4">log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
-        fmt.Printf("Results saved to file %s\n", path)</span>
+        <span class="cov7" title="4">fileCreationReport(path, filename)</span>
 }
 
 func getPlatforms(queries model.VulnerableQuerySlice) string <span class="cov6" title="3">{
@@ -8200,6 +8204,8 @@ func PrintPdfReport(path, filename string, body interface{}) error <span class="
         }</span>
 
         <span class="cov4" title="2">log.Info().Msgf("Generate report duration: %v", time.Since(startTime))
+
+        fileCreationReport(filepath.Join(path, filename+".pdf"), filename)
 
         return err</span>
 }
