@@ -1083,19 +1083,35 @@ Use succinct but descriptive name (prefix with <em>feature/issue#-descriptive-na
 <li>Ensure all necessary details are provided and adhered to.</li>
 <li>Add unit or integration tests for fixed or changed functionality (if a test suite already exists) or specify steps taken to ensure changes were tested and functionality works as expected.</li>
 <li>Address a single concern in the least number of changed lines as possible.</li>
-<li>Include documentation in the repo or Provide additional comments in Markdown comments that should be pulled/reflected in GitHub Wiki for the given project. </li>
+<li>Include documentation in the repo or Provide additional comments in Markdown comments that should be pulled/reflected in GitHub Wiki for the given project.</li>
 <li>Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).</li>
 </ul>
-<p>For changes that address core functionality or would require breaking changes (e.g. a major release), please open an Issue to discuss your proposal first. </p>
+<p>For changes that address core functionality or would require breaking changes (e.g. a major release), please open an Issue to discuss your proposal first.</p>
 <h4 id="pull_request_guidelines">Pull Request Guidelines<a class="headerlink" href="#pull_request_guidelines" title="Permanent link">&para;</a></h4>
 <p>Before you submit a pull request, please reassure that it meets these guidelines:</p>
 <ol>
 <li>All validations and tests passed locally.</li>
 <li>The pull request includes tests.</li>
 <li>The relevant docs are updated, whether you're pushing new functionality or updating a query.</li>
+<li>The pull request title should follow conventional commit messages:</li>
 </ol>
+<p><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code>
+where <code>(&lt;scope&gt;)</code> is optional</p>
+<pre><code>feat - A new feature (example scopes: engine, parser, flags, query)
+fix - A bug fix
+docs - Documentation only changes, (example scopes: catalog, guides, platforms, architecture)
+test - Adding missing tests or correcting existing tests (example scopes: unit, e2e)
+ci - Changes to our CI configuration files and scripts (example scopes: ghactions, linters)
+chore - Other changes that don't modify src or test files
+build - Changes that affect the build system or external dependencies (example scope: makefile)
+style - Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+refactor - A code change that neither fixes a bug nor adds a feature
+perf - A code change that improves performance
+revert - Reverts a previous commit
+</code></pre>
+<p>e.g: <code>build(makefile): enhance make clean task</code></p>
 <h4 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h4>
-<p>The following templates will be used when <a href="https://github.com/Checkmarx/kics/issues/new/choose">creating a new issue</a>:  </p>
+<p>The following templates will be used when <a href="https://github.com/Checkmarx/kics/issues/new/choose">creating a new issue</a>:</p>
 <ul>
 <li>Enhancement/Feature Request Template</li>
 <li>New (Approved) Feature Template</li>
@@ -1109,15 +1125,15 @@ Use succinct but descriptive name (prefix with <em>feature/issue#-descriptive-na
 <li><a href="https://help.github.com/articles/about-pull-requests/">Using Pull Requests</a></li>
 <li><a href="https://help.github.com">GitHub Help</a></li>
 </ul>
-<p>Join the chat <a href="https://gitter.im/kics-io/community">on Gitter</a>.<br />
+<p>Join the chat <a href="https://gitter.im/kics-io/community">on Gitter</a>.
 Or contact KICS core team at <a href="mailto:kics@checkmarx.com">kics@checkmarx.com</a></p>
 <p>And become one of our top contributors!</p>
 <hr />
 <h2 id="top_contributors">Top Contributors<a class="headerlink" href="#top_contributors" title="Permanent link">&para;</a></h2>
 <p>Special thanks to  <strong><a href="https://github.com/kaplanlior">Lior Kaplan</a></strong> from <strong><em>Kaplan Open Source Consulting</em></strong> for his assistance in creating KICS. </p>
-<p>The people listed below had made a huge contribution to KICS. </p>
+<p>The people listed below had made a huge contribution to KICS.</p>
 <ul>
-<li><a href="https://github.com/Ruben-Silva">Ruben Silva</a> </li>
+<li><a href="https://github.com/Ruben-Silva">Ruben Silva</a></li>
 <li><a href="https://github.com/rafaela-soares">Rafaela Soares</a></li>
 <li><a href="https://github.com/joaomartinscx">João Martins</a></li>
 <li><a href="https://github.com/joelcarvalhocheckmarx">Joel Carvalho</a></li>
