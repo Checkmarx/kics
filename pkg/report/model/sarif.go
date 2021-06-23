@@ -131,7 +131,6 @@ type SarifReport interface {
 }
 
 type sarifReport struct {
-	basePath     string     `json:"-"`
 	Schema       string     `json:"$schema"`
 	SarifVersion string     `json:"version"`
 	Runs         []SarifRun `json:"runs"`
