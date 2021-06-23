@@ -14,7 +14,6 @@ CxPolicy[result] {
 	}
 }
 
-checkMinProtocolVersion(startswith("TLSv1.1")) = true
 
 checkMinProtocolVersion(protocolVersion) {
 	startswith(protocolVersion, "TLSv1.1")
