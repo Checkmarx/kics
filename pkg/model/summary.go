@@ -72,6 +72,7 @@ type Summary struct {
 	ScannedPaths []string `json:"paths"`
 }
 
+// PathParameters - structure wraps the required fields for temporary path translation
 type PathParameters struct {
 	ScannedPaths      []string
 	PathExtractionMap map[string]string
