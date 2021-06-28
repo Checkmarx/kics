@@ -79,12 +79,22 @@ func getFileContentType(out *os.File) (string, error) {
 func unzip(src, destination string) ([]string, error) {
 	var filenames []string
 
-	r, err := zip.OpenReader(src)
+	f, err := os.Open(filepath.Clean(src))
 	if err != nil {
 		return filenames, err
 	}
 
-	defer r.Close()
+	fi, err := f.Stat()
+	if err != nil {
+		return filenames, err
+	}
+
+	r, err := zip.NewReader(f, fi.Size())
+	if err != nil {
+		return filenames, err
+	}
+
+	defer f.Close()
 
 	for _, f := range r.File {
 		fpath := filepath.Join(destination, filepath.Clean(f.Name))
