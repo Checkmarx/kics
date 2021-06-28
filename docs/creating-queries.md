@@ -232,6 +232,7 @@ go run ./cmd/console/main.go generate-id
 - `descriptionUrl` points to the official documentation about the resource being targeted
 - `platform` query target platform (e.g. Terraform, Kubernetes, etc.)
 - `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
+- `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
 
 
 If the **query.rego** file implements more than one query, the **metadata.json** should indicate how many are implemented (through `aggregation`). That can be necessary due to two cases:
@@ -249,7 +250,7 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 }
 
 ```
-2. It implements the same query for different platforms in the same **query.rego**
+2. It implements the same query for different platforms in the same **query.rego**, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
 ```
 {
   "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
