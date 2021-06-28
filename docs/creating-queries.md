@@ -140,7 +140,7 @@ Observe the following metadata.json example and check the Guidelines below for m
 
 👨‍💻 **Test Folder**
 
-Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the [extensions available](https://docs.kics.io/1.3.3/platforms/) by the platform.
+Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the [extensions available](https://docs.kics.io/latest/platforms/) by the platform.
 
 
 Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the `is_multi_region_trail` defined (positive1.tf) and another with the `is_multi_region_trail` set to false (positive2.tf). 
