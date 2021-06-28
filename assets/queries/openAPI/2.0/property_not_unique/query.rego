@@ -18,7 +18,7 @@ CxPolicy[result] {
 	}
 }
 
-# check_property will create an array wiht all the name feilds of the properties
+# check_property will create an array with all the name fields of the properties
 # in the API specification and for each name create an array with the objects that contain that name
 # so we can later look for dups using the count function
 check_property(doc) = arr {
