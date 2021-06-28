@@ -26,13 +26,13 @@
   {
     "queryName": "Numeric Schema Without Minimum (v2)",
     "severity": "MEDIUM",
-    "line": 27,
+    "line": 23,
     "filename": "positive5.json"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v2)",
     "severity": "MEDIUM",
-    "line": 23,
+    "line": 20,
     "filename": "positive6.yaml"
   }
 ]
