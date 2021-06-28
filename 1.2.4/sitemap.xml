@@ -1,106 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>http://www.kics.io/getting-started/</loc>
+     <loc>http://docs.kics.io/getting-started/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/configuration-file/</loc>
+     <loc>http://docs.kics.io/configuration-file/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/results/</loc>
+     <loc>http://docs.kics.io/results/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/architecture/</loc>
+     <loc>http://docs.kics.io/architecture/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/usage/commands/</loc>
+     <loc>http://docs.kics.io/usage/commands/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/usage/technologies/</loc>
+     <loc>http://docs.kics.io/usage/technologies/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/</loc>
+     <loc>http://docs.kics.io/queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/creating-queries/</loc>
+     <loc>http://docs.kics.io/creating-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/all-queries/</loc>
+     <loc>http://docs.kics.io/queries/all-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/ansible-queries/</loc>
+     <loc>http://docs.kics.io/queries/ansible-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/cloudformation-queries/</loc>
+     <loc>http://docs.kics.io/queries/cloudformation-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/common-queries/</loc>
+     <loc>http://docs.kics.io/queries/common-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/dockerfile-queries/</loc>
+     <loc>http://docs.kics.io/queries/dockerfile-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/kubernetes-queries/</loc>
+     <loc>http://docs.kics.io/queries/kubernetes-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/terraform-queries/</loc>
+     <loc>http://docs.kics.io/queries/terraform-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/queries/openapi-queries/</loc>
+     <loc>http://docs.kics.io/queries/openapi-queries/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/integrations/</loc>
+     <loc>http://docs.kics.io/integrations/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/integrations_ghactions/</loc>
+     <loc>http://docs.kics.io/integrations_ghactions/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/integrations_gitlabci/</loc>
+     <loc>http://docs.kics.io/integrations_gitlabci/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/integrations_azurepipelines/</loc>
+     <loc>http://docs.kics.io/integrations_azurepipelines/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/integrations_bitbucketpipelines/</loc>
+     <loc>http://docs.kics.io/integrations_bitbucketpipelines/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/roadmap/</loc>
+     <loc>http://docs.kics.io/roadmap/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/releases/</loc>
+     <loc>http://docs.kics.io/releases/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/benchmark/</loc>
+     <loc>http://docs.kics.io/benchmark/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/CONTRIBUTING/</loc>
+     <loc>http://docs.kics.io/CONTRIBUTING/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.kics.io/about/</loc>
+     <loc>http://docs.kics.io/about/</loc>
      <lastmod>2021-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
