@@ -6,7 +6,7 @@ options := {"file", "filename"}
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	property := doc.paths[path][operation].requestBody.content[c].schema.properties[p]
 	p == options[x]
@@ -26,7 +26,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	property := doc.components.requestBodies[r].content[c].schema.properties[p]
 	p == options[x]

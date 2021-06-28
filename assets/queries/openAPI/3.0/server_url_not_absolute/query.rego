@@ -4,7 +4,7 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	url := doc.servers[s].url
 	not openapi_lib.is_valid_url(url)
@@ -20,7 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	url := doc.paths[path][operation].servers[s].url
 	not openapi_lib.is_valid_url(url)
@@ -36,7 +36,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	url := doc.paths[path].servers[s].url
 	not openapi_lib.is_valid_url(url)
@@ -52,7 +52,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	url := doc.components.links[l].server.url
 	not openapi_lib.is_valid_url(url)
@@ -68,7 +68,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	url := doc.components.responses[r].links[l].server.url
 	not openapi_lib.is_valid_url(url)
@@ -84,7 +84,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	url := doc.paths[path][operation].responses[r].links[l].server.url
 	openapi_lib.content_allowed(operation, r)

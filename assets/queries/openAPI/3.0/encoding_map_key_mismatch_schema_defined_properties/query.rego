@@ -4,7 +4,7 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.paths[path][operation].responses[r].content[c].schema.properties
 	openapi_lib.content_allowed(operation, r)
@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.paths[path][operation].requestBody.content[c].schema.properties
 	encoding_key := doc.paths[path][operation].requestBody.content[c].encoding[e]
@@ -41,7 +41,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.components.requestBodies[r].content[c].schema.properties
 	encoding_key := doc.components.requestBodies[r].content[c].encoding[e]
@@ -59,7 +59,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.components.responses[r].content[c].schema.properties
 	encoding_key := doc.components.responses[r].content[c].encoding[e]
