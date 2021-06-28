@@ -974,12 +974,155 @@
 <p>So for example, if we wanted to transform a .tf file in ./code/test we could type:</p>
 <pre><code class="language-bash">go run ./cmd/console/main.go scan -p  &quot;./src/test&quot; -d &quot;src/test/input.json&quot;
 </code></pre>
+<p>Example of input.json</p>
+<pre><code>{
+    &quot;document&quot;: [
+        {
+            &quot;resource&quot;: {
+                &quot;aws_cloudtrail&quot;: {
+                    &quot;positive1&quot;: {
+                        &quot;name&quot;: &quot;npositive_1&quot;,
+                        &quot;s3_bucket_name&quot;: &quot;bucketlog_1&quot;
+                    }
+                }
+            },
+            &quot;id&quot;: &quot;02926636-f2c1-46c3-93cc-c7dc2a79791f&quot;,
+            &quot;file&quot;: &quot;/assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive1.tf&quot;
+        },
+        {
+            &quot;resource&quot;: {
+                &quot;aws_cloudtrail&quot;: {
+                    &quot;positive2&quot;: {
+                        &quot;name&quot;: &quot;npositive_2&quot;,
+                        &quot;s3_bucket_name&quot;: &quot;bucketlog_2&quot;,
+                        &quot;is_multi_region_trail&quot;: false
+                    }
+                }
+            },
+            &quot;id&quot;: &quot;4b27da84-4d38-4422-b2b5-fa85029dad2a&quot;,
+            &quot;file&quot;: &quot;assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive2.tf&quot;
+        }
+    ]
+}
+
+</code></pre>
 <p>After having the .json that will be our Rego input, we can begin to write queries.
 To test and debug there are two ways:</p>
 <ul>
 <li><a href="https://play.openpolicyagent.org/">Using Rego playground</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=tsandall.opa">Install Open Policy Agent extension</a> in VS Code and create a simple folder with a .rego file for the query and a input.json for the sample to test against</li>
 </ul>
+<h4 id="query_development_tutorial">Query Development Tutorial<a class="headerlink" href="#query_development_tutorial" title="Permanent link">&para;</a></h4>
+<p>In the first instance, take a look at the query composition:
+- <strong>query.rego</strong>: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
+- <strong>metadata.json</strong>: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
+- <strong>test</strong>: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.</p>
+<pre><code>- &lt;technology&gt;
+    |- &lt;provider&gt;
+    |   |- &lt;queryfolder&gt;
+    |   |   |- test
+    |   |   |   |- positive1&lt;.ext&gt;
+    |   |   |   |- positive2&lt;.ext&gt;
+    |   |   |   |- negative1&lt;.ext&gt;
+    |   |   |   |- negative2&lt;.ext&gt;
+    |   |   |   |- positive_expected_result.json
+    |   |   |- metadata.json
+    |   |   |- query.rego
+</code></pre>
+<p>Now, focus on the content of each file:</p>
+<p>👨‍💻 <strong>REGO File</strong></p>
+<p>As a first step, it is important to be familiar with the libraries available (check them in <code>assets/libraries</code>) and the JSON structure (Rego input). Also, we need to study all the possible cases related to the vulnerability we want to verify before starting the implementation.</p>
+<p>For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute <code>is_multi_region_trail</code> of the resource <code>aws_cloudtrail</code>. Since this attribute is optional and false by default, we have two cases: (1) <code>is_multi_region_trail</code> is undefined and (2) <code>is_multi_region_trail</code> is set to false. Observe the following implementation as an example and check the Guidelines below.</p>
+<pre><code>package Cx
+
+CxPolicy[result] {
+    cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+    object.get(cloudtrail, &quot;is_multi_region_trail&quot;, &quot;undefined&quot;) == &quot;undefined&quot;
+
+    result := {
+        &quot;documentId&quot;: input.document[i].id,
+        &quot;searchKey&quot;: sprintf(&quot;aws_cloudtrail[%s]&quot;, [name]),
+        &quot;issueType&quot;: &quot;MissingAttribute&quot;,
+        &quot;keyExpectedValue&quot;: &quot;CloudTrail Multi Region is defined&quot;,
+        &quot;keyActualValue&quot;: &quot;CloudTrail Multi Region is undefined&quot;,
+    }
+}
+
+CxPolicy[result] {
+    cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+    cloudtrail.is_multi_region_trail == false
+
+    result := {
+        &quot;documentId&quot;: input.document[i].id,
+        &quot;searchKey&quot;: sprintf(&quot;aws_cloudtrail[%s].is_multi_region_trail&quot;, [name]),
+        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+        &quot;keyExpectedValue&quot;: &quot;CloudTrail Multi Region is set to true&quot;,
+        &quot;keyActualValue&quot;: &quot;CloudTrail Multi Region is set to false&quot;,
+    }
+}
+</code></pre>
+<p>To test the query in the <a href="https://play.openpolicyagent.org/">Rego playground</a>, perform the following steps:
+1. Enable Coverage (highlights which statements were evaluated);
+2. In the input, paste the payload (explained above);
+3. In the playground, paste and/or write the policies. Check if the statements are painted green;
+4. Click on Evaluate;
+5. In the output, check if the results are as expected.</p>
+<p><img alt="RegoPlayground" src="img/rego_playground_example_tf.PNG"></p>
+<p>👨‍💻 <strong>Metadata File</strong></p>
+<p>Observe the following metadata.json example and check the Guidelines below for more detailed information.</p>
+<pre><code>{
+  &quot;id&quot;: &quot;8173d5eb-96b5-4aa6-a71b-ecfa153c123d&quot;,
+  &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
+  &quot;severity&quot;: &quot;MEDIUM&quot;,
+  &quot;category&quot;: &quot;Observability&quot;,
+  &quot;descriptionText&quot;: &quot;Check if MultiRegion is Enabled&quot;,
+  &quot;descriptionUrl&quot;: &quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail&quot;,
+  &quot;platform&quot;: &quot;Terraform&quot;
+}
+
+</code></pre>
+<p>👨‍💻 <strong>Test Folder</strong></p>
+<p>Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the <a href="https://docs.kics.io/latest/platforms/">extensions available</a> by the platform.</p>
+<p>Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the <code>is_multi_region_trail</code> defined (positive1.tf) and another with the <code>is_multi_region_trail</code> set to false (positive2.tf). </p>
+<p>positive1.tf</p>
+<pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive1&quot; {
+  name                          = &quot;npositive_1&quot;
+  s3_bucket_name                = &quot;bucketlog_1&quot;
+}
+</code></pre>
+<p>positive2.tf</p>
+<pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive2&quot; {
+  name                          = &quot;npositive_2&quot;
+  s3_bucket_name                = &quot;bucketlog_2&quot;
+  is_multi_region_trail         = false
+}
+
+</code></pre>
+<p>Each negative case should present the remediation/best practice (a sample with the <code>is_multi_region_trail</code> set to true).</p>
+<p>negative1.tf</p>
+<pre><code>resource &quot;aws_cloudtrail&quot; &quot;negative1&quot; {
+  name                          = &quot;negative&quot;
+  s3_bucket_name                = &quot;bucketlog&quot;
+  is_multi_region_trail         = true
+}
+</code></pre>
+<p>The positive expected result should present where the positive(s) file(s) break(s) the vulnerability (in line 2 (positive1.tf) and line 4 (positive2.tf)).</p>
+<pre><code>[
+  {
+    &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
+    &quot;severity&quot;: &quot;MEDIUM&quot;,
+    &quot;line&quot;: 2,
+    &quot;fileName&quot;: &quot;positive1.tf&quot;
+  },
+  {
+    &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
+    &quot;severity&quot;: &quot;MEDIUM&quot;,
+    &quot;line&quot;: 4,
+    &quot;fileName&quot;: &quot;positive2.tf&quot;
+  }
+]
+
+</code></pre>
 <h4 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h4>
 <p>For a query to be considered complete, it must be compliant with at least one positive and one negative test case. To run the unit tests you can run this command:</p>
 <pre><code class="language-bash">make test
@@ -1014,7 +1157,108 @@ To test and debug there are two ways:</p>
 <li><code>descriptionText</code> should explain with detail the vulnerability and if possible provide a way to remediate</li>
 <li><code>descriptionUrl</code> points to the official documentation about the resource being targeted</li>
 <li><code>platform</code> query target platform (e.g. Terraform, Kubernetes, etc.)</li>
+<li><code>aggregation</code> [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented</li>
+<li><code>override</code> [optional] should only be used when a <code>metadata.json</code> is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given <code>overrideKey</code> that should be provided from the query execution result (covered in the next section), if an <code>overrideKey</code> is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.</li>
 </ul>
+<p>If the <strong>query.rego</strong> file implements more than one query, the <strong>metadata.json</strong> should indicate how many are implemented (through <code>aggregation</code>). That can be necessary due to two cases:
+1. It implements more than one query in the same <strong>query.rego</strong> for the same platform
+ ```
+{
+  "id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
+  "queryName": "Sensitive Port Is Exposed To Entire Network",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
+  "platform": "Ansible",
+  "aggregation": 35
+}</p>
+<pre><code>2. It implements the same query for different platforms in the same **query.rego**, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
+</code></pre>
+<p>{
+  "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
+  "queryName": "Invalid Contact URL (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Contact Object URL should be a valid URL",
+  "descriptionUrl": "https://swagger.io/specification/#contact-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
+      "queryName": "Invalid Contact URL (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+    }
+  },
+  "aggregation": 2
+}</p>
+<pre><code>
+
+
+Filling query.rego:
+
+- `documentId` id of the sample where the vulnerability occurs
+- `searchKey` should indicate where the breaking point occurs in the sample
+- `issueType` pick one of the following:
+    - IncorrectValue
+    - MissingAttribute
+    - RedundantAttribute
+- `keyExpectedValue` should explain the expected value
+- `keyActualValue`   should explain the actual value detected
+- `overrideKey` [optional] should be used when the query can be applied to more than one platform (for now, it is used for both OpenAPI 3.0 and Swagger)
+
+For example, the query `Invalid Contact URL` can be implemented in both OpenAPI 3.0 and Swagger since both versions share the same properties:
+</code></pre>
+<p>package Cx</p>
+<p>import data.generic.openapi as openapi_lib</p>
+<p>CxPolicy[result] {
+    doc := input.document[i]
+    version := openapi_lib.check_openapi(doc)
+    version != "undefined"</p>
+<pre><code>not openapi_lib.is_valid_url(doc.info.contact.url)
+
+result := {
+    "documentId": doc.id,
+    "searchKey": "info.contact.url",
+    "issueType": "IncorrectValue",
+    "keyExpectedValue": "info.contact.url has a valid URL",
+    "keyActualValue": "info.contact.url has an invalid URL",
+    "overrideKey": version,
+}
+</code></pre>
+<p>}</p>
+<pre><code>
+- `searchValue` [optional] should be used when the query returns more than one result for the same line
+
+For example, the query `Sensitive Port Is Exposed To Entire Network` can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the `searchValue` should be used.
+</code></pre>
+<p>package Cx</p>
+<p>import data.generic.terraform as terraLib
+import data.generic.common as commonLib</p>
+<p>CxPolicy[result] {
+    resource := input.document[i].resource.aws_security_group[name]</p>
+<pre><code>portContent := commonLib.tcpPortsMap[port]
+portNumber = port
+portName = portContent
+protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
+
+endswith(resource.ingress.cidr_blocks[_], "/0")
+terraLib.containsPort(resource.ingress, portNumber)
+isTCPorUDP(protocol)
+
+result := {
+    "documentId": input.document[i].id,
+    "searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+    "searchValue": sprintf("%s,%d", [protocol, portNumber]),
+    "issueType": "IncorrectValue",
+    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+    "keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+}
+</code></pre>
+<p>}</p>
+<p>isTCPorUDP("TCP") = true</p>
+<p>isTCPorUDP("UDP") = true</p>
+<p>```</p>
                 
               
               
