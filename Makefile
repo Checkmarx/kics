@@ -18,7 +18,10 @@ clean: ## remove files created during build
 	rm -rf vendor
 	rm -f coverage.*
 	rm -f cover.out
+	rm -rf *.log
 	rm -rf **/*.log
+	rm -f results.*
+	rm -f e2e/output
 
 .PHONY: mod-tidy
 mod-tidy: ## go mod tidy - download and cleanup modules
