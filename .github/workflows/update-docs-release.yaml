@@ -1,0 +1,59 @@
+name: update-docs-release
+
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+
+jobs:
+  update-docs-release:
+    name: Create new docs version
+    runs-on: ubuntu-latest
+    if: "!github.event.release.prerelease"
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Checkout project
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - name: Get release version
+        id: cversion
+        run: |
+          echo "::set-output name=current_version::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
+          echo "::set-output name=previous_version::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1)"
+      - uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: pip install mkdocs-bootswatch mike mkdocs-material
+      - name: Config KICSBot git user
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Checkout project
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ steps.cversion.outputs.previous_version }}
+      - name: Mike deploy previous version
+        run: |
+          mike deploy ${{ steps.cversion.outputs.previous_version }}
+      - name: Checkout project
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ steps.cversion.outputs.current_version }}
+      - name: Mike deploy previous version
+        run: |
+          mike delete latest
+          mike deploy latest ${{ steps.cversion.outputs.current_version }}
+      - name: Fix version selector
+        run: |
+          git checkout gh-pages
+          find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
+          find . -type f -name "*.html" -exec sed -i -E '/<link href="(.)*css\/version-select.css" rel="stylesheet"/d' {} +
+          find . -type f -name "version-select.css" -exec rm -f {} +
+          find . -type f -name "version-select.js" -exec rm -f {} +
+          git commit -a --amend --no-edit
+          git push origin gh-pages
