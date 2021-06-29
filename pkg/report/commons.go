@@ -69,18 +69,6 @@ func getPlatforms(queries model.VulnerableQuerySlice) string {
 	return strings.Join(platforms, ", ")
 }
 
-func getRelativePath(basePath, filePath string) string {
-	var rtn string
-	relativePath, err := filepath.Rel(basePath, filePath)
-	if err != nil {
-		log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
-		rtn = filePath
-	} else {
-		rtn = relativePath
-	}
-	return rtn
-}
-
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
 func ExportJSONReport(path, filename string, body interface{}) error {
 	if !strings.Contains(filename, ".") {

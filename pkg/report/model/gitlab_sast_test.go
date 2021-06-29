@@ -87,7 +87,7 @@ var tests = []gitlabSASTTest{
 						},
 					},
 					Location: gitlabSASTVulnerabilityLocation{
-						File:  "",
+						File:  "test.json",
 						Start: 1,
 						End:   1,
 					},

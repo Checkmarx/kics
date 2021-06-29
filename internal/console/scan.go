@@ -404,7 +404,7 @@ func initScanCmd(scanCmd *cobra.Command) {
 	}
 }
 
-func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
+func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) {
 	var excludePaths []string
 	if payloadPath != "" {
 		excludePaths = append(excludePaths, payloadPath)
@@ -413,16 +413,8 @@ func getFileSystemSourceProvider() (*provider.FileSystemSourceProvider, error) {
 	if len(excludePath) > 0 {
 		excludePaths = append(excludePaths, excludePath...)
 	}
-	absPaths := make([]string, len(path))
-	for idx, scanPath := range path {
-		absPath, err := filepath.Abs(scanPath)
-		if err != nil {
-			return nil, err
-		}
-		absPaths[idx] = absPath
-	}
 
-	filesSource, err := provider.NewFileSystemSourceProvider(absPaths, excludePaths)
+	filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
 	if err != nil {
 		return nil, err
 	}
@@ -486,10 +478,11 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
 }
 
 func createService(inspector *engine.Inspector,
+	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
 	querySource source.FilesystemSource) ([]*kics.Service, error) {
-	filesSource, err := getFileSystemSourceProvider()
+	filesSource, err := getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
 	}
@@ -527,6 +520,23 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
+func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map[string]string, err error) {
+	absPaths := make([]string, len(path))
+	zProvider := &provider.ZipSystemSourceProvider{}
+	for idx, scanPath := range paths {
+		absPath, err := filepath.Abs(scanPath)
+		if err != nil {
+			return nil, nil, err
+		}
+		absPath, err = zProvider.CheckAndExtractZip(absPath)
+		if err != nil {
+			return nil, nil, err
+		}
+		absPaths[idx] = absPath
+	}
+	return absPaths, zProvider.PathExtractionMap, nil
+}
+
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
@@ -558,7 +568,12 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	if types, excludePath, err = analyzePaths(path, types, excludePath); err != nil {
+	extractedPaths, pathExtractionMap, err := extractPaths(path)
+	if err != nil {
+		return err
+	}
+
+	if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
 		return err
 	}
 
@@ -571,7 +586,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	services, err := createService(inspector, t, store, *querySource)
+	services, err := createService(inspector, extractedPaths, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
 		return err
@@ -594,7 +609,10 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	summary := getSummary(t, results, scanStartTime, time.Now(), path)
+	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
+		ScannedPaths:      path,
+		PathExtractionMap: pathExtractionMap,
+	})
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		log.Err(err)
@@ -622,7 +640,8 @@ func printScanDuration(elapsed time.Duration) {
 	}
 }
 
-func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time, scannedPaths []string) model.Summary {
+func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time,
+	pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -631,12 +650,12 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		FailedSimilarityID:     t.FailedSimilarityID,
 	}
 
-	summary := model.CreateSummary(counters, results, scanID)
+	summary := model.CreateSummary(counters, results, scanID, pathParameters.PathExtractionMap)
 	summary.Times = model.Times{
 		Start: start,
 		End:   end,
 	}
-	summary.ScannedPaths = scannedPaths
+	summary.ScannedPaths = pathParameters.ScannedPaths
 	return summary
 }
 

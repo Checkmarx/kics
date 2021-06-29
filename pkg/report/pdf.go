@@ -3,7 +3,6 @@ package report
 import (
 	_ "embed" // used for embedding report static files
 	"fmt"
-	"os"
 	"path/filepath"
 	"time"
 
@@ -59,7 +58,7 @@ func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize i
 	})
 }
 
-func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath string) error {
+func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 	for i := range queries {
 		m.SetBackgroundColor(color.NewWhite())
 		queryName := queries[i].QueryName
@@ -114,12 +113,12 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery, basePath 
 		m.Row(colFive, func() {
 			createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
 		})
-		createResultsTable(m, &queries[i], basePath)
+		createResultsTable(m, &queries[i])
 	}
 	return nil
 }
 
-func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath string) {
+func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) {
 	for idx := range query.Files {
 		if idx%2 == 0 {
 			m.SetBackgroundColor(grayColor)
@@ -127,7 +126,7 @@ func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery, basePath str
 			m.SetBackgroundColor(color.NewWhite())
 		}
 
-		filePath := getRelativePath(basePath, query.Files[idx].FileName)
+		filePath := query.Files[idx].FileName
 		fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
 		m.Row(colFive, func() {
 			m.Col(colFullPage, func() {
@@ -176,10 +175,6 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 	log.Info().Msg("Started generating pdf report")
 
 	summary := body.(*model.Summary)
-	basePath, err := os.Getwd()
-	if err != nil {
-		return err
-	}
 
 	m := pdf.NewMaroto(consts.Portrait, consts.A4)
 	m.SetPageMargins(pgMarginLeft, pgMarginTop, pgMarginRight)
@@ -200,7 +195,7 @@ func PrintPdfReport(path, filename string, body interface{}) error {
 
 	m.Line(1.0)
 
-	err = createQueriesTable(m, summary.Queries, basePath)
+	err := createQueriesTable(m, summary.Queries)
 	if err != nil {
 		return err
 	}

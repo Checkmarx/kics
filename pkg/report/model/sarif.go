@@ -1,8 +1,6 @@
 package model
 
 import (
-	"path/filepath"
-
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
@@ -133,7 +131,6 @@ type SarifReport interface {
 }
 
 type sarifReport struct {
-	basePath     string     `json:"-"`
 	Schema       string     `json:"$schema"`
 	SarifVersion string     `json:"version"`
 	Runs         []SarifRun `json:"runs"`
@@ -252,10 +249,6 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata) int {
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
 func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
 	if len(issue.Files) > 0 {
-		absBasePath, err := filepath.Abs(sr.basePath)
-		if err != nil {
-			log.Err(err)
-		}
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,
 			queryName:        issue.QueryName,
@@ -270,7 +263,6 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
 			kind = "informational"
 		}
 		for idx := range issue.Files {
-			relativePath, _ := filepath.Rel(absBasePath, issue.Files[idx].FileName)
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
@@ -279,7 +271,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
 				ResultLocations: []sarifLocation{
 					{
 						PhysicalLocation: sarifPhysicalLocation{
-							ArtifactLocation: sarifArtifactLocation{ArtifactURI: relativePath},
+							ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
 							Region:           sarifRegion{StartLine: issue.Files[idx].Line},
 						},
 					},
