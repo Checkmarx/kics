@@ -17,12 +17,8 @@
         break
       }
     }
-    const item = Array.from(document.querySelectorAll('.md-version__item')).find(i => {
-      const text = i.innerText
-      return text.includes('latest')
-    })
+    const item = Array.from(document.querySelectorAll('.md-version__item')).find(i => i.textContent.includes('latest'))
     const parentNode = document.getElementsByClassName('md-version__list')[0]
-
     if (parentNode && item) {
       item.remove()
       parentNode.insertBefore(item, parentNode.firstChild)
