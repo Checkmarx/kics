@@ -11,10 +11,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.properties.%s", [openapi_lib.concat_path(arr[name][0].path), arr[name][0].name]),
+		"searchKey": sprintf("%s.properties.%s", [openapi_lib.concat_path(arr[name][_].path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' property is unique throughout the whole API", [arr[name][0].name]),
-		"keyActualValue": sprintf("'%s' property is not unique throughout the whole API", [arr[name][0].name]),
+		"keyExpectedValue": sprintf("'%s' property is unique throughout the whole API", [name]),
+		"keyActualValue": sprintf("'%s' property is not unique throughout the whole API", [name]),
 	}
 }
 
@@ -23,9 +23,9 @@ CxPolicy[result] {
 # so we can later look for dups using the count function
 check_property(doc) = arr {
 	propName := [x | [path, value] := walk(doc); value.properties[name]; x := {"name": name, "path": path}]
-	arr := {id: count |
+	arr := {id: objCount |
 		id := propName[i].name
-		count := [obj |
+		objCount := [obj |
 			propName[j].name == id
 			obj := propName[j]
 		]
