@@ -2,37 +2,37 @@
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 27,
+    "line": 54,
     "filename": "positive1.json"
   },
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 30,
+    "line": 57,
     "filename": "positive1.json"
   },
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 33,
+    "line": 60,
     "filename": "positive1.json"
   },
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 22,
+    "line": 38,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 24,
+    "line": 40,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 26,
+    "line": 42,
     "filename": "positive2.yaml"
   }
 ]
