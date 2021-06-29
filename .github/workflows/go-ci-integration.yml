@@ -50,7 +50,7 @@ jobs:
       - name: Run docker image and generate results.json
         run: |
           docker run -v ${PWD}/assets/queries:/path \
-            kics:${{ github.sha }} scan --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/results.json"
+            kics:${{ github.sha }} scan --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/results"
       - name: Archive test logs
         uses: actions/upload-artifact@v2
         if: always()
@@ -59,32 +59,32 @@ jobs:
           path: assets/queries/info.log
       - name: Display results
         run: |
-          cat  ${PWD}/assets/queries/results.json
+          cat  ${PWD}/assets/queries/results/results.json
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
           name: integration-results-${{ github.event.pull_request.head.sha }}
-          path: assets/queries/results.json
+          path: assets/queries/results/results.json
       - name: Assert results.json
         run: |
           set -eo pipefail
 
-          COUNT=$(jq '.queries_total' ${PWD}/assets/queries/results.json)
+          COUNT=$(jq '.queries_total' ${PWD}/assets/queries/results/results.json)
           echo "Assert queries_total > 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -gt 0
 
-          COUNT=$(jq '.total_counter' ${PWD}/assets/queries/results.json)
+          COUNT=$(jq '.total_counter' ${PWD}/assets/queries/results/results.json)
           echo "Assert total_counter > 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -gt 0
 
-          COUNT=$(jq '.files_scanned' ${PWD}/assets/queries/results.json)
+          COUNT=$(jq '.files_scanned' ${PWD}/assets/queries/results/results.json)
           echo "Assert files_scanned > 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -gt 0
 
-          COUNT=$(jq '.queries_failed_to_execute' ${PWD}/assets/queries/results.json)
+          COUNT=$(jq '.queries_failed_to_execute' ${PWD}/assets/queries/results/results.json)
           echo "Assert queries_failed_to_execute == 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -eq 0
 
-          COUNT=$(jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json)
+          COUNT=$(jq '.files_failed_to_scan' ${PWD}/assets/queries/results/results.json)
           echo "Assert files_failed_to_scan == 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -eq 0
