@@ -22,6 +22,7 @@
       return text.includes('latest')
     })
     const parentNode = document.getElementsByClassName('md-version__list')[0]
+
     if (parentNode && item) {
       item.remove()
       parentNode.insertBefore(item, parentNode.firstChild)
