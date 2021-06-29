@@ -10,11 +10,190 @@ So for example, if we wanted to transform a .tf file in ./code/test we could typ
 ```bash
 go run ./cmd/console/main.go scan -p  "./src/test" -d "src/test/input.json"
 ```
+
+Example of input.json
+```
+{
+	"document": [
+		{
+			"resource": {
+				"aws_cloudtrail": {
+					"positive1": {
+						"name": "npositive_1",
+						"s3_bucket_name": "bucketlog_1"
+					}
+				}
+			},
+			"id": "02926636-f2c1-46c3-93cc-c7dc2a79791f",
+			"file": "/assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive1.tf"
+		},
+		{
+			"resource": {
+				"aws_cloudtrail": {
+					"positive2": {
+						"name": "npositive_2",
+						"s3_bucket_name": "bucketlog_2",
+						"is_multi_region_trail": false
+					}
+				}
+			},
+			"id": "4b27da84-4d38-4422-b2b5-fa85029dad2a",
+			"file": "assets/queries/terraform/aws/cloudtrail_multi_region_disabled/test/positive2.tf"
+		}
+	]
+}
+
+```
+
 After having the .json that will be our Rego input, we can begin to write queries.
 To test and debug there are two ways:
 
 - [Using Rego playground](https://play.openpolicyagent.org/)
 - [Install Open Policy Agent extension](https://marketplace.visualstudio.com/items?itemName=tsandall.opa) in VS Code and create a simple folder with a .rego file for the query and a input.json for the sample to test against
+
+#### Query Development Tutorial
+
+In the first instance, take a look at the query composition:
+- **query.rego**: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
+- **metadata.json**: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
+- **test**: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.
+
+```
+- <technology>
+    |- <provider>
+    |   |- <queryfolder>
+    |   |   |- test
+    |   |   |   |- positive1<.ext>
+    |   |   |   |- positive2<.ext>
+    |   |   |   |- negative1<.ext>
+    |   |   |   |- negative2<.ext>
+    |   |   |   |- positive_expected_result.json
+    |   |   |- metadata.json
+    |   |   |- query.rego
+```
+
+Now, focus on the content of each file:
+
+👨‍💻 **REGO File**
+
+As a first step, it is important to be familiar with the libraries available (check them in `assets/libraries`) and the JSON structure (Rego input). Also, we need to study all the possible cases related to the vulnerability we want to verify before starting the implementation.
+
+For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute `is_multi_region_trail` of the resource `aws_cloudtrail`. Since this attribute is optional and false by default, we have two cases: (1) `is_multi_region_trail` is undefined and (2) `is_multi_region_trail` is set to false. Observe the following implementation as an example and check the Guidelines below.
+
+```
+package Cx
+
+CxPolicy[result] {
+	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+	object.get(cloudtrail, "is_multi_region_trail", "undefined") == "undefined"
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "CloudTrail Multi Region is defined",
+		"keyActualValue": "CloudTrail Multi Region is undefined",
+	}
+}
+
+CxPolicy[result] {
+	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+	cloudtrail.is_multi_region_trail == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_cloudtrail[%s].is_multi_region_trail", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "CloudTrail Multi Region is set to true",
+		"keyActualValue": "CloudTrail Multi Region is set to false",
+	}
+}
+```
+
+To test the query in the [Rego playground](https://play.openpolicyagent.org/), perform the following steps:
+1. Enable Coverage (highlights which statements were evaluated);
+2. In the input, paste the payload (explained above);
+3. In the playground, paste and/or write the policies. Check if the statements are painted green;
+4. Click on Evaluate;
+5. In the output, check if the results are as expected.
+
+
+<img alt="RegoPlayground" src="img/rego_playground_example_tf.PNG">
+
+
+👨‍💻 **Metadata File**
+
+Observe the following metadata.json example and check the Guidelines below for more detailed information.
+
+```
+{
+  "id": "8173d5eb-96b5-4aa6-a71b-ecfa153c123d",
+  "queryName": "CloudTrail Multi Region Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Check if MultiRegion is Enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
+  "platform": "Terraform"
+}
+
+```
+
+👨‍💻 **Test Folder**
+
+Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the [extensions available](https://docs.kics.io/latest/platforms/) by the platform.
+
+
+Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the `is_multi_region_trail` defined (positive1.tf) and another with the `is_multi_region_trail` set to false (positive2.tf). 
+
+positive1.tf
+```
+resource "aws_cloudtrail" "positive1" {
+  name                          = "npositive_1"
+  s3_bucket_name                = "bucketlog_1"
+}
+```
+
+positive2.tf
+```
+resource "aws_cloudtrail" "positive2" {
+  name                          = "npositive_2"
+  s3_bucket_name                = "bucketlog_2"
+  is_multi_region_trail         = false
+}
+
+```
+
+Each negative case should present the remediation/best practice (a sample with the `is_multi_region_trail` set to true).
+
+negative1.tf
+```
+resource "aws_cloudtrail" "negative1" {
+  name                          = "negative"
+  s3_bucket_name                = "bucketlog"
+  is_multi_region_trail         = true
+}
+```
+
+The positive expected result should present where the positive(s) file(s) break(s) the vulnerability (in line 2 (positive1.tf) and line 4 (positive2.tf)).
+
+```
+[
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.tf"
+  }
+]
+
+```
+
 
 #### Testing
 
@@ -52,3 +231,119 @@ go run ./cmd/console/main.go generate-id
 - `descriptionText` should explain with detail the vulnerability and if possible provide a way to remediate
 - `descriptionUrl` points to the official documentation about the resource being targeted
 - `platform` query target platform (e.g. Terraform, Kubernetes, etc.)
+- `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
+- `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
+
+
+If the **query.rego** file implements more than one query, the **metadata.json** should indicate how many are implemented (through `aggregation`). That can be necessary due to two cases:
+1. It implements more than one query in the same **query.rego** for the same platform
+ ```
+{
+  "id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
+  "queryName": "Sensitive Port Is Exposed To Entire Network",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
+  "platform": "Ansible",
+  "aggregation": 35
+}
+
+```
+2. It implements the same query for different platforms in the same **query.rego**, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
+```
+{
+  "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
+  "queryName": "Invalid Contact URL (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Contact Object URL should be a valid URL",
+  "descriptionUrl": "https://swagger.io/specification/#contact-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
+      "queryName": "Invalid Contact URL (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+    }
+  },
+  "aggregation": 2
+}
+
+```
+
+
+
+Filling query.rego:
+
+- `documentId` id of the sample where the vulnerability occurs
+- `searchKey` should indicate where the breaking point occurs in the sample
+- `issueType` pick one of the following:
+    - IncorrectValue
+    - MissingAttribute
+    - RedundantAttribute
+- `keyExpectedValue` should explain the expected value
+- `keyActualValue`   should explain the actual value detected
+- `overrideKey` [optional] should be used when the query can be applied to more than one platform (for now, it is used for both OpenAPI 3.0 and Swagger)
+
+For example, the query `Invalid Contact URL` can be implemented in both OpenAPI 3.0 and Swagger since both versions share the same properties:
+```
+package Cx
+
+import data.generic.openapi as openapi_lib
+
+CxPolicy[result] {
+	doc := input.document[i]
+	version := openapi_lib.check_openapi(doc)
+	version != "undefined"
+
+	not openapi_lib.is_valid_url(doc.info.contact.url)
+
+	result := {
+		"documentId": doc.id,
+		"searchKey": "info.contact.url",
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "info.contact.url has a valid URL",
+		"keyActualValue": "info.contact.url has an invalid URL",
+		"overrideKey": version,
+	}
+}
+
+```
+
+- `searchValue` [optional] should be used when the query returns more than one result for the same line
+
+For example, the query `Sensitive Port Is Exposed To Entire Network` can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the `searchValue` should be used.
+```
+package Cx
+
+import data.generic.terraform as terraLib
+import data.generic.common as commonLib
+
+CxPolicy[result] {
+	resource := input.document[i].resource.aws_security_group[name]
+
+	portContent := commonLib.tcpPortsMap[port]
+	portNumber = port
+	portName = portContent
+	protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
+
+	endswith(resource.ingress.cidr_blocks[_], "/0")
+	terraLib.containsPort(resource.ingress, portNumber)
+	isTCPorUDP(protocol)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+	}
+}
+
+isTCPorUDP("TCP") = true
+
+isTCPorUDP("UDP") = true
+
+```

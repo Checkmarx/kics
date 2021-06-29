@@ -1,0 +1,9 @@
+{
+  "id": "429b2106-ba37-43ba-9727-7f699cc611e1",
+  "queryName": "Unknown Property (v2)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "All properties defined in OpenAPI objects should be known",
+  "descriptionUrl": "https://swagger.io/specification/v2/",
+  "platform": "OpenAPI"
+}

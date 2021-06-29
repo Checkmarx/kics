@@ -1,0 +1,9 @@
+{
+  "id": "be1d8733-3731-40c7-a845-734741c6871d",
+  "queryName": "Constraining Enum Property",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "There is a constraining keyword in a property which is already restricted by enum values",
+  "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+  "platform": "OpenAPI"
+}

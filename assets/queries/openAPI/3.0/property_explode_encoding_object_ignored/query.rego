@@ -4,7 +4,7 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	content := doc.paths[path][operation].requestBody.content[x]
 	improperly_defined(content, x)
@@ -20,7 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	content := doc.components.requestBodies[r].content[x]
 	improperly_defined(content, x)

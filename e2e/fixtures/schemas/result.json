@@ -72,7 +72,7 @@
                     },
                     "platform": {
                         "type": "string",
-                        "enum": ["Ansible", "CloudFormation", "Dockerfile", "Kubernetes", "OpenAPI", "Terraform"]
+                        "enum": ["Common", "Ansible", "CloudFormation", "Dockerfile", "Kubernetes", "OpenAPI", "Terraform"]
                     },
                     "files": {
                         "type": "array",

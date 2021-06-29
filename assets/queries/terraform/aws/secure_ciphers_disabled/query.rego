@@ -9,11 +9,14 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version is TLSv1.1 or TLSv1.2", [name]),
-		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version isn't TLSv1.1 or TLSv1.2", [name]),
+		"keyExpectedValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version starts with TLSv1.1 or TLSv1.2", [name]),
+		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version isn't start with TLSv1.1 or TLSv1.2", [name]),
 	}
 }
 
-checkMinProtocolVersion("TLSv1.1") = true
 
-checkMinProtocolVersion("TLSv1.2") = true
+checkMinProtocolVersion(protocolVersion) {
+	startswith(protocolVersion, "TLSv1.1")
+} else {
+	startswith(protocolVersion, "TLSv1.2")
+}

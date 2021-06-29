@@ -1,0 +1,9 @@
+{
+  "id": "750b40be-4bac-4f59-bdc4-1ca0e6c3450e",
+  "queryName": "Property Not Unique",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Every defined property must be unique throughout the whole API",
+  "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+  "platform": "OpenAPI"
+}

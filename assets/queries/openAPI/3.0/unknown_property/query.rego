@@ -4,7 +4,7 @@ import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 
@@ -23,77 +23,64 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 
-	object := simple_objects[o]
-	path[minus(count(path), 1)] == o
+	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
+	objValues := objectValues[objType][object]
 
-	v := value[x]
-	not known_field(object, x)
+	index := {"array": 1, "simple": 1, "map": 2}
+	path[minus(count(path), index[objType])] == object
 
-	result := {
-		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), x]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [x, o]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [x, o]),
-	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
-
-	[path, value] := walk(doc)
-
-	object := array_objects[o]
-	path[minus(count(path), 1)] == o
+	objType == "array"
 	is_array(value)
-
-	field := value[x][v]
-	not known_field(object, v)
+	value[x][field]
+	not known_field(objValues, field)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), v]),
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [v, o]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [v, o]),
+		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
+		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 
-	object := map_objects[o]
-	path[minus(count(path), 2)] == o
+	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
+	objValues := objectValues[objType][object]
 
-	v := value[x]
-	not known_field(object, x)
+	index := {"array": 1, "simple": 1, "map": 2}
+	path[minus(count(path), index[objType])] == object
+
+	any([objType == "simple", objType == "map"])
+	value[field]
+	not known_field(objValues, field)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), x]),
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [x, o]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [x, o]),
+		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
+		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
 	}
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
-	openapi_lib.check_openapi(doc) != "undefined"
+	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 
 	path[minus(count(path), 3)] == "callbacks"
 
-	v := value[x]
+	value[x]
 	not known_field(map_objects.paths, x)
 
 	result := {
@@ -220,15 +207,6 @@ map_objects := {
 		"description",
 	},
 	"schemas": schema_properties,
-	"links": {
-		"$ref",
-		"operationRef",
-		"operationId",
-		"parameters",
-		"requestBody",
-		"description",
-		"server",
-	},
 	"headers": {
 		"$ref",
 		"description",
