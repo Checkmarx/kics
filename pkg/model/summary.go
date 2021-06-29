@@ -79,19 +79,19 @@ type PathParameters struct {
 }
 
 func getRelativePath(basePath, filePath string) string {
-	var rtn string
+	var returnPath string
 	if strings.Contains(filePath, ".zip") {
-		rtn = filePath
+		returnPath = filePath
 	} else {
 		relativePath, err := filepath.Rel(basePath, filePath)
 		if err != nil {
 			log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
-			rtn = filePath
+			returnPath = filePath
 		} else {
-			rtn = relativePath
+			returnPath = relativePath
 		}
 	}
-	return rtn
+	return returnPath
 }
 
 func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string) string {

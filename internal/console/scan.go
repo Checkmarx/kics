@@ -522,18 +522,19 @@ func createService(inspector *engine.Inspector,
 
 func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map[string]string, err error) {
 	absPaths := make([]string, len(path))
+	zProvider := &provider.ZipSystemSourceProvider{}
 	for idx, scanPath := range paths {
 		absPath, err := filepath.Abs(scanPath)
 		if err != nil {
 			return nil, nil, err
 		}
-		absPath, err = consoleHelpers.CheckAndExtractZip(absPath)
+		absPath, err = zProvider.CheckAndExtractZip(absPath)
 		if err != nil {
 			return nil, nil, err
 		}
 		absPaths[idx] = absPath
 	}
-	return absPaths, consoleHelpers.PathExtractionMap, nil
+	return absPaths, zProvider.PathExtractionMap, nil
 }
 
 func scan(changedDefaultQueryPath bool) error {

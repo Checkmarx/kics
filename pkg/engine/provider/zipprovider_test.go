@@ -1,4 +1,4 @@
-package helpers
+package provider
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestHelpers_CheckAndExtractZip(t *testing.T) {
+func TestProvider_CheckAndExtractZip(t *testing.T) {
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Fatal(err)
 	}
@@ -41,7 +41,8 @@ func TestHelpers_CheckAndExtractZip(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := CheckAndExtractZip(tt.args.absPath)
+			prov := &ZipSystemSourceProvider{}
+			got, err := prov.CheckAndExtractZip(tt.args.absPath)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("CheckAndExtractZip() = %v, wantErr = %v", err, tt.wantErr)
 			}

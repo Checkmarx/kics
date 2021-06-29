@@ -1,9 +1,10 @@
-package helpers
+package provider
 
 import (
 	"archive/zip"
 	"fmt"
 	"io"
+	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -17,41 +18,48 @@ const (
 	MaxZipChunkSize = 1024
 )
 
-// PathExtractionMap - relates temporary dir with original path
-var PathExtractionMap map[string]string
+// ZipSystemSourceProvider provides a path extraction map
+// that relates temporary dir with original path
+type ZipSystemSourceProvider struct {
+	// PathExtractionMap - relates temporary dir with original path
+	PathExtractionMap map[string]string
+}
 
 // CheckAndExtractZip - verifies if a given absolute path is a zip file
 // and if so extracts its contents to a temporary file
-func CheckAndExtractZip(absPath string) (string, error) {
-	f, err := os.Open(absPath)
+func (z *ZipSystemSourceProvider) CheckAndExtractZip(absPath string) (string, error) {
+	file, err := os.Open(absPath)
 	if err != nil {
 		return "", err
 	}
-	fi, err := f.Stat()
+
+	defer file.Close()
+
+	fInfo, err := file.Stat()
 	if err != nil {
 		return "", err
 	}
 
 	// skip if the path is a dir
-	if !fi.IsDir() {
-		if PathExtractionMap == nil {
-			PathExtractionMap = make(map[string]string)
+	if !fInfo.IsDir() {
+		if z.PathExtractionMap == nil {
+			z.PathExtractionMap = make(map[string]string)
 		}
 
-		contentType, err := getFileContentType(f)
+		contentType, err := getFileContentType(file)
 		if err != nil {
 			return "", err
 		}
 
 		if contentType == MimeTypeZip {
 			destination, err := os.MkdirTemp("", "kics-extract-*")
-			PathExtractionMap[destination] = absPath
+			z.PathExtractionMap[destination] = absPath
 
 			if err != nil {
 				return "", err
 			}
 
-			_, err = unzip(absPath, destination)
+			_, err = unzip(file, fInfo, destination)
 			if err != nil {
 				return "", err
 			}
@@ -76,28 +84,16 @@ func getFileContentType(out *os.File) (string, error) {
 	return contentType, nil
 }
 
-func unzip(src, destination string) ([]string, error) {
+func unzip(fileReader io.ReaderAt, fInfo fs.FileInfo, destination string) ([]string, error) {
 	var filenames []string
 
-	f, err := os.Open(filepath.Clean(src))
+	zipReader, err := zip.NewReader(fileReader, fInfo.Size())
 	if err != nil {
 		return filenames, err
 	}
 
-	fi, err := f.Stat()
-	if err != nil {
-		return filenames, err
-	}
-
-	r, err := zip.NewReader(f, fi.Size())
-	if err != nil {
-		return filenames, err
-	}
-
-	defer f.Close()
-
-	for _, f := range r.File {
-		fpath := filepath.Join(destination, filepath.Clean(f.Name))
+	for _, file := range zipReader.File {
+		fpath := filepath.Join(destination, filepath.Clean(file.Name))
 
 		if !strings.HasPrefix(fpath, filepath.Clean(destination)+string(os.PathSeparator)) {
 			return filenames, fmt.Errorf("%s is an invalid filepath", fpath)
@@ -105,7 +101,7 @@ func unzip(src, destination string) ([]string, error) {
 
 		filenames = append(filenames, fpath)
 
-		if f.FileInfo().IsDir() {
+		if file.FileInfo().IsDir() {
 			err := os.MkdirAll(fpath, os.ModePerm)
 			if err != nil {
 				return nil, err
@@ -119,31 +115,29 @@ func unzip(src, destination string) ([]string, error) {
 
 		outFile, err := os.OpenFile(fpath,
 			os.O_WRONLY|os.O_CREATE|os.O_TRUNC,
-			f.Mode())
+			file.Mode())
 		if err != nil {
 			return filenames, err
 		}
 
-		rc, err := f.Open()
+		defer outFile.Close()
+
+		fileReadCloser, err := file.Open()
 		if err != nil {
 			return filenames, err
 		}
+
+		defer fileReadCloser.Close()
 
 		for {
-			_, err = io.CopyN(outFile, rc, MaxZipChunkSize)
+			_, err = io.CopyN(outFile, fileReadCloser, MaxZipChunkSize)
 			if err != nil {
 				if err == io.EOF {
 					break
 				}
-
-				outFile.Close()
-				rc.Close()
 				return filenames, err
 			}
 		}
-
-		outFile.Close()
-		rc.Close()
 	}
 
 	return filenames, nil
