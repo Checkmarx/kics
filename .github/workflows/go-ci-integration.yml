@@ -69,7 +69,7 @@ jobs:
         run: |
           set -eo pipefail
 
-          COUNT=$(jq '.queries_total' ${PWD}/assets/results.json)
+          COUNT=$(jq '.queries_total' ${PWD}/assets/queries/results.json)
           echo "Assert queries_total > 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -gt 0
 
