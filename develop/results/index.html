@@ -931,7 +931,8 @@
 - JSON (json)
 - SARIF (sarif)
 - Gitlab SAST (glsast)
-- HTML (html)</p>
+- HTML (html)
+- PDF (pdf)</p>
 <p>To export in JSON format in current directory, you can use the following command:</p>
 <pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./
 </code></pre>
@@ -944,12 +945,12 @@ where the output-path will be the directory containing all report files and repo
 </code></pre>
 <p>The last command will execute the scan and save all types reports on output folder with results name.</p>
 <p>You can also change the default name by using the following command:</p>
-<pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./output --report-formats &quot;glsast,html&quot; --output-name kics-result
+<pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./output --report-formats &quot;glsast,html,pdf&quot; --output-name kics-result
 </code></pre>
 <p>This will generate an HTML and Gitlab SAST reports on output folder, with <code>kics-result</code> and <code>gl-sast-kics-result</code> names.</p>
 <h1 id="report_examples">Report examples<a class="headerlink" href="#report_examples" title="Permanent link">&para;</a></h1>
 <h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
-<p>The JSON report is the default report to be generate, if no arg is passed to <code>report-formats</code> flag, also you can explicitly use it with <code>--report-format "json"</code>.
+<p>The JSON report is the default report to be generate, if no arg is passed to <code>report-formats</code> flag, also you can explicitly use it with <code>--report-formats "json"</code>.
 JSON reports are sorted by severity (from high to info) and should looks like as following:</p>
 <pre><code class="language-json">{
     &quot;files_scanned&quot;: 2,
@@ -990,7 +991,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 }
 </code></pre>
 <h2 id="sarif">SARIF<a class="headerlink" href="#sarif" title="Permanent link">&para;</a></h2>
-<p>You can export sarif report by using <code>--report-format "sarif"</code>.
+<p>You can export sarif report by using <code>--report-formats "sarif"</code>.
 SARIF reports are sorted by severity (from high to info), following <a href="https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html">SARIF v2.1.0 standard</a> and looks like:</p>
 <pre><code class="language-json">{
     &quot;$schema&quot;: &quot;https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json&quot;,
@@ -1215,7 +1216,7 @@ SARIF reports are sorted by severity (from high to info), following <a href="htt
 }
 </code></pre>
 <h1 id="gitlab_sast">Gitlab SAST<a class="headerlink" href="#gitlab_sast" title="Permanent link">&para;</a></h1>
-<p>You can export html report by using <code>--report-format "glsast"</code>.
+<p>You can export html report by using <code>--report-formats "glsast"</code>.
 Gitlab SAST reports are sorted by severity (from high to info), following <a href="https://docs.gitlab.com/ee/development/integrations/secure.html#report">Gitlab SAST Report scheme</a>, also, the generated file will have a prefix <code>gl-sast-</code> as <a href="https://docs.gitlab.com/ee/development/integrations/secure.html#output-file">recommendend by Gitlab docs</a> and looks like:</p>
 <pre><code class="language-json">{
     &quot;schema&quot;: &quot;https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v13.1.0/dist/sast-report-format.json&quot;,
@@ -1331,9 +1332,13 @@ Gitlab SAST reports are sorted by severity (from high to info), following <a hre
 
 </code></pre>
 <h2 id="html">HTML<a class="headerlink" href="#html" title="Permanent link">&para;</a></h2>
-<p>You can export html report by using <code>--report-format "html"</code>.
+<p>You can export html report by using <code>--report-formats "html"</code>.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:</p>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850"></p>
+<h2 id="pdf">PDF<a class="headerlink" href="#pdf" title="Permanent link">&para;</a></h2>
+<p>You can export a pdf report by using <code>--report-formats "pdf"</code>.
+PDF reports are sorted by severity (from high to info), the results will have query information and a list of files alongside the line where the result was found.</p>
+<p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850"></p>
 <h1 id="exit_status_code">Exit Status Code<a class="headerlink" href="#exit_status_code" title="Permanent link">&para;</a></h1>
 <h2 id="results_status_code">Results Status Code<a class="headerlink" href="#results_status_code" title="Permanent link">&para;</a></h2>
 <table>

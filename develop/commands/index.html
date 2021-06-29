@@ -1084,7 +1084,7 @@ Flags:
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default &quot;./assets/queries&quot;)
-      --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast) (default [json])
+      --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast, pdf) (default [json])
       --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
                                      (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
@@ -1098,7 +1098,6 @@ Global Flags:
       --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
   -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
   -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-
 </code></pre>
 <p>The other commands have no further options.</p>
 <hr />
