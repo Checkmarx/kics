@@ -4752,6 +4752,14 @@
 <td><a href="https://swagger.io/specification/v2/#operation-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Additional Properties Too Permissive<br/><sup><sub>9f88c88d-824d-4d9a-b985-e22977046042</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Objects should not accept 'additionalProperties' if it is possible</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Parameter Object Without Schema<br/><sup><sub>8fe1846f-52cc-4413-ace9-1933d7d23672</sub></sup></td>
 <td>OpenAPI</td>
 <td><span style="color:#C60">Medium</span></td>
@@ -4766,6 +4774,14 @@
 <td>Insecure Configurations</td>
 <td>The Media Type Object should have the attribute 'schema' defined</td>
 <td><a href="https://swagger.io/specification/#media-type-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Additional Properties Too Restrictive<br/><sup><sub>a19c3bbd-c056-40d7-9e1c-eeb0634e320d</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Objects should accept 'additionalProperties' if it is allOf or an object with anyOf or oneOf</td>
+<td><a href="https://swagger.io/specification/#schema-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Numeric Schema Without Minimum (v2)<br/><sup><sub>efd1dfc8-da91-4909-a3f3-c23abc5ec799</sub></sup></td>
@@ -5214,6 +5230,14 @@
 <td>Best Practices</td>
 <td>The media type prefix should be set as 'application', 'audio', 'font', 'example', 'image', 'message', 'model', 'multipart', 'text' or 'video'</td>
 <td><a href="https://swagger.io/specification/v2/#swagger-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Constraining Enum Property<br/><sup><sub>be1d8733-3731-40c7-a845-734741c6871d</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>There is a constraining keyword in a property which is already restricted by enum values</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Global Schema Definition Not Being Used<br/><sup><sub>6d2e0790-cc3d-4c74-b973-d4e8b09f4455</sub></sup></td>
@@ -5798,6 +5822,14 @@
 <td>Structure and Semantics</td>
 <td>Example should match one of MimeTypes on 'produces'. It is important to know that, if a 'produces' is declared on operation it will override global 'produces'</td>
 <td><a href="https://swagger.io/specification/v2/#exampleObject">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Property Not Unique<br/><sup><sub>750b40be-4bac-4f59-bdc4-1ca0e6c3450e</sub></sup></td>
+<td>OpenAPI</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Structure and Semantics</td>
+<td>Every defined property must be unique throughout the whole API</td>
+<td><a href="https://swagger.io/specification/v2/#schemaObject">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Schema JSON Reference Does Not Exists (v3)<br/><sup><sub>015eac96-6313-43c0-84e5-81b1374fa637</sub></sup></td>
