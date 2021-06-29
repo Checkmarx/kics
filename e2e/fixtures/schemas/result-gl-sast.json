@@ -1,0 +1,220 @@
+{
+    "type": "object",
+    "required": [
+        "schema",
+        "version",
+        "scan",
+        "vulnerabilities"
+    ],
+    "properties": {
+        "schema": {
+            "type": "string",
+            "format": "uri"
+        },
+        "version": {
+            "type": "string",
+            "minLength": 1
+        },
+        "scan": {
+            "type": "object",
+            "required": [
+                "start_time",
+                "end_time",
+                "status",
+                "type",
+                "scanner"
+            ],
+            "properties": {
+                "start_time": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "end_time": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "status": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "type": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "scanner": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "name",
+                        "url",
+                        "version",
+                        "vendor"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "url": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "version": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "vendor": {
+                            "type": "object",
+                            "required": [
+                                "name"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "const": "Checkmarx"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "vulnerabilities": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "category",
+                    "severity",
+                    "cve",
+                    "scanner",
+                    "name",
+                    "message",
+                    "links",
+                    "location",
+                    "identifiers"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^[A-Fa-f0-9]{64}$"
+                    },
+                    "category": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "severity": {
+                        "type": "string",
+                        "enum": [
+                            "High",
+                            "Medium",
+                            "Low",
+                            "Info"
+                        ]
+                    },
+                    "cve": {
+                        "type": "string",
+                        "pattern": "^[A-Fa-f0-9]{64}$"
+                    },
+                    "scanner": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "name"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "message": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "links": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "url"
+                            ],
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "format": "uri"
+                                }
+                            }
+                        }
+                    },
+                    "location": {
+                        "type": "object",
+                        "required": [
+                            "file",
+                            "start_line",
+                            "end_line"
+                        ],
+                        "properties": {
+                            "file": {
+                                "type": "string",
+                                "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
+                            },
+                            "start_line": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "end_line": {
+                                "type": "integer",
+                                "minimum": 1
+                            }
+                        }
+                    },
+                    "identifiers": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "type",
+                                "name",
+                                "url",
+                                "value"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}$"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@
     "contact": {
       "name": "contact",
       "url": "https://www.google.com/",
-      "email": "user@gmail.c"
+      "email": "user@gmail.com"
     }
   },
   "paths": {
@@ -72,11 +72,6 @@
           "multipart/form-data": {
             "schema": {
               "$ref": "#/components/schemas/GeneralError"
-            },
-            "examples": {
-              "tshirt": {
-                "$ref": "#/components/examples/tshirt"
-              }
             }
           }
         }

@@ -1,0 +1,9 @@
+{
+  "id": "a46928f1-43d7-4671-94e0-2dd99746f389",
+  "queryName": "Schemes Uses HTTP",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Schemes should use 'https' protocol instead of 'http'. Scheme using 'http' allows for clear text credentials",
+  "descriptionUrl": "https://swagger.io/specification/v2/#swaggerObject",
+  "platform": "OpenAPI"
+}

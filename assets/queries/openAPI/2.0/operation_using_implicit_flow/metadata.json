@@ -1,0 +1,9 @@
+{
+  "id": "f42dfe7e-787d-4478-a75e-a5f3d8a2269e",
+  "queryName": "Operation Using Implicit Flow",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "Operation Object should not use implicit flow",
+  "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+  "platform": "OpenAPI"
+}

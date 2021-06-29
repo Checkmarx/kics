@@ -1,0 +1,17 @@
+{
+  "id": "881a6e71-c2a7-4fe2-b9c3-dfcf08895331",
+  "queryName": "Example Not Compliant With Schema Type (v3)",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Examples values and fields should be compliant with the schema type",
+  "descriptionUrl": "https://swagger.io/specification/#example-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "448db771-06ea-4dee-b48c-1689cbfb4b43",
+      "queryName": "Example Not Compliant With Schema Type (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#example-object"
+    }
+  },
+  "aggregation": 2
+}
