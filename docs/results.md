@@ -4,6 +4,7 @@ KICS can export results in multiple formats which can be seen on the following l
 - SARIF (sarif)
 - Gitlab SAST (glsast)
 - HTML (html)
+- PDF (pdf)
 
 To export in JSON format in current directory, you can use the following command:
 
@@ -28,7 +29,7 @@ The last command will execute the scan and save all types reports on output fold
 
 You can also change the default name by using the following command:
 ```bash
-./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "glsast,html" --output-name kics-result
+./kics scan -p <path-of-your-project-to-scan> -o ./output --report-formats "glsast,html,pdf" --output-name kics-result
 ```
 
 This will generate an HTML and Gitlab SAST reports on output folder, with `kics-result` and `gl-sast-kics-result` names.
@@ -36,7 +37,7 @@ This will generate an HTML and Gitlab SAST reports on output folder, with `kics-
 # Report examples
 
 ## JSON
-The JSON report is the default report to be generate, if no arg is passed to `report-formats` flag, also you can explicitly use it with `--report-format "json"`.
+The JSON report is the default report to be generate, if no arg is passed to `report-formats` flag, also you can explicitly use it with `--report-formats "json"`.
 JSON reports are sorted by severity (from high to info) and should looks like as following:
 
 ```json
@@ -79,7 +80,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 }
 ```
 ## SARIF
-You can export sarif report by using `--report-format "sarif"`.
+You can export sarif report by using `--report-formats "sarif"`.
 SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.0 standard](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html) and looks like:
 
 ```json
@@ -307,7 +308,7 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
 ```
 
 # Gitlab SAST
-You can export html report by using `--report-format "glsast"`.
+You can export html report by using `--report-formats "glsast"`.
 Gitlab SAST reports are sorted by severity (from high to info), following [Gitlab SAST Report scheme](https://docs.gitlab.com/ee/development/integrations/secure.html#report), also, the generated file will have a prefix `gl-sast-` as [recommendend by Gitlab docs](https://docs.gitlab.com/ee/development/integrations/secure.html#output-file) and looks like:
 
 ```json
@@ -425,10 +426,16 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 
 ```
 ## HTML
-You can export html report by using `--report-format "html"`.
+You can export html report by using `--report-formats "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
+
+## PDF
+You can export a pdf report by using `--report-formats "pdf"`.
+PDF reports are sorted by severity (from high to info), the results will have query information and a list of files alongside the line where the result was found.
+
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850">
 
 # Exit Status Code
 
