@@ -975,7 +975,7 @@
 <pre><code class="language-bash">go run ./cmd/console/main.go scan -p  &quot;./src/test&quot; -d &quot;src/test/input.json&quot;
 </code></pre>
 <p>Example of input.json</p>
-<pre><code>{
+<pre><code class="language-json">{
     &quot;document&quot;: [
         {
             &quot;resource&quot;: {
@@ -1004,7 +1004,6 @@
         }
     ]
 }
-
 </code></pre>
 <p>After having the .json that will be our Rego input, we can begin to write queries.
 To test and debug there are two ways:</p>
@@ -1070,7 +1069,7 @@ CxPolicy[result] {
 <p><img alt="RegoPlayground" src="img/rego_playground_example_tf.PNG"></p>
 <p>👨‍💻 <strong>Metadata File</strong></p>
 <p>Observe the following metadata.json example and check the Guidelines below for more detailed information.</p>
-<pre><code>{
+<pre><code class="language-json">{
   &quot;id&quot;: &quot;8173d5eb-96b5-4aa6-a71b-ecfa153c123d&quot;,
   &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
   &quot;severity&quot;: &quot;MEDIUM&quot;,
@@ -1079,27 +1078,25 @@ CxPolicy[result] {
   &quot;descriptionUrl&quot;: &quot;https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail&quot;,
   &quot;platform&quot;: &quot;Terraform&quot;
 }
-
 </code></pre>
 <p>👨‍💻 <strong>Test Folder</strong></p>
 <p>Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the <a href="https://docs.kics.io/latest/platforms/">extensions available</a> by the platform.</p>
 <p>Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the <code>is_multi_region_trail</code> defined (positive1.tf) and another with the <code>is_multi_region_trail</code> set to false (positive2.tf). </p>
-<p>positive1.tf</p>
+<p><em>positive1.tf</em></p>
 <pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive1&quot; {
   name                          = &quot;npositive_1&quot;
   s3_bucket_name                = &quot;bucketlog_1&quot;
 }
 </code></pre>
-<p>positive2.tf</p>
+<p><em>positive2.tf</em></p>
 <pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive2&quot; {
   name                          = &quot;npositive_2&quot;
   s3_bucket_name                = &quot;bucketlog_2&quot;
   is_multi_region_trail         = false
 }
-
 </code></pre>
 <p>Each negative case should present the remediation/best practice (a sample with the <code>is_multi_region_trail</code> set to true).</p>
-<p>negative1.tf</p>
+<p><em>negative1.tf</em></p>
 <pre><code>resource &quot;aws_cloudtrail&quot; &quot;negative1&quot; {
   name                          = &quot;negative&quot;
   s3_bucket_name                = &quot;bucketlog&quot;
@@ -1107,7 +1104,7 @@ CxPolicy[result] {
 }
 </code></pre>
 <p>The positive expected result should present where the positive(s) file(s) break(s) the vulnerability (in line 2 (positive1.tf) and line 4 (positive2.tf)).</p>
-<pre><code>[
+<pre><code class="language-json">[
   {
     &quot;queryName&quot;: &quot;CloudTrail Multi Region Disabled&quot;,
     &quot;severity&quot;: &quot;MEDIUM&quot;,
@@ -1121,7 +1118,6 @@ CxPolicy[result] {
     &quot;fileName&quot;: &quot;positive2.tf&quot;
   }
 ]
-
 </code></pre>
 <h4 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h4>
 <p>For a query to be considered complete, it must be compliant with at least one positive and one negative test case. To run the unit tests you can run this command:</p>
@@ -1161,104 +1157,109 @@ CxPolicy[result] {
 <li><code>override</code> [optional] should only be used when a <code>metadata.json</code> is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given <code>overrideKey</code> that should be provided from the query execution result (covered in the next section), if an <code>overrideKey</code> is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.</li>
 </ul>
 <p>If the <strong>query.rego</strong> file implements more than one query, the <strong>metadata.json</strong> should indicate how many are implemented (through <code>aggregation</code>). That can be necessary due to two cases:
-1. It implements more than one query in the same <strong>query.rego</strong> for the same platform
- ```
-{
-  "id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
-  "queryName": "Sensitive Port Is Exposed To Entire Network",
-  "severity": "HIGH",
-  "category": "Networking and Firewall",
-  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
-  "platform": "Ansible",
-  "aggregation": 35
-}</p>
-<pre><code>2. It implements the same query for different platforms in the same **query.rego**, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
+1. It implements more than one query in the same <strong>query.rego</strong> for the same platform</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc&quot;,
+  &quot;queryName&quot;: &quot;Sensitive Port Is Exposed To Entire Network&quot;,
+  &quot;severity&quot;: &quot;HIGH&quot;,
+  &quot;category&quot;: &quot;Networking and Firewall&quot;,
+  &quot;descriptionText&quot;: &quot;A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol&quot;,
+  &quot;descriptionUrl&quot;: &quot;https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules&quot;,
+  &quot;platform&quot;: &quot;Ansible&quot;,
+  &quot;aggregation&quot;: 35
+}
 </code></pre>
-<p>{
-  "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
-  "queryName": "Invalid Contact URL (v3)",
-  "severity": "INFO",
-  "category": "Best Practices",
-  "descriptionText": "Contact Object URL should be a valid URL",
-  "descriptionUrl": "https://swagger.io/specification/#contact-object",
-  "platform": "OpenAPI",
-  "override": {
-    "2.0": {
-      "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
-      "queryName": "Invalid Contact URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+<ol>
+<li>It implements the same query for different platforms in the same <strong>query.rego</strong>, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;332cf2ad-380d-4b90-b436-46f8e635cf38&quot;,
+  &quot;queryName&quot;: &quot;Invalid Contact URL (v3)&quot;,
+  &quot;severity&quot;: &quot;INFO&quot;,
+  &quot;category&quot;: &quot;Best Practices&quot;,
+  &quot;descriptionText&quot;: &quot;Contact Object URL should be a valid URL&quot;,
+  &quot;descriptionUrl&quot;: &quot;https://swagger.io/specification/#contact-object&quot;,
+  &quot;platform&quot;: &quot;OpenAPI&quot;,
+  &quot;override&quot;: {
+    &quot;2.0&quot;: {
+      &quot;id&quot;: &quot;c7000383-16d0-4509-8cd3-585e5ea2e2f2&quot;,
+      &quot;queryName&quot;: &quot;Invalid Contact URL (v2)&quot;,
+      &quot;descriptionUrl&quot;: &quot;https://swagger.io/specification/v2/#contactObject&quot;
     }
   },
-  "aggregation": 2
-}</p>
-<pre><code>
-
-
-Filling query.rego:
-
-- `documentId` id of the sample where the vulnerability occurs
-- `searchKey` should indicate where the breaking point occurs in the sample
-- `issueType` pick one of the following:
-    - IncorrectValue
-    - MissingAttribute
-    - RedundantAttribute
-- `keyExpectedValue` should explain the expected value
-- `keyActualValue`   should explain the actual value detected
-- `overrideKey` [optional] should be used when the query can be applied to more than one platform (for now, it is used for both OpenAPI 3.0 and Swagger)
-
-For example, the query `Invalid Contact URL` can be implemented in both OpenAPI 3.0 and Swagger since both versions share the same properties:
+  &quot;aggregation&quot;: 2
+}
 </code></pre>
-<p>package Cx</p>
-<p>import data.generic.openapi as openapi_lib</p>
-<p>CxPolicy[result] {
+<p>Filling query.rego:</p>
+<ul>
+<li><code>documentId</code> id of the sample where the vulnerability occurs</li>
+<li><code>searchKey</code> should indicate where the breaking point occurs in the sample</li>
+<li><code>issueType</code> pick one of the following:<ul>
+<li>IncorrectValue</li>
+<li>MissingAttribute</li>
+<li>RedundantAttribute</li>
+</ul>
+</li>
+<li><code>keyExpectedValue</code> should explain the expected value</li>
+<li><code>keyActualValue</code>   should explain the actual value detected</li>
+<li><code>overrideKey</code> [optional] should be used when the query can be applied to more than one platform (for now, it is used for both OpenAPI 3.0 and Swagger)</li>
+</ul>
+<p>For example, the query <code>Invalid Contact URL</code> can be implemented in both OpenAPI 3.0 and Swagger since both versions share the same properties:</p>
+<pre><code>package Cx
+
+import data.generic.openapi as openapi_lib
+
+CxPolicy[result] {
     doc := input.document[i]
     version := openapi_lib.check_openapi(doc)
-    version != "undefined"</p>
-<pre><code>not openapi_lib.is_valid_url(doc.info.contact.url)
+    version != &quot;undefined&quot;
 
-result := {
-    "documentId": doc.id,
-    "searchKey": "info.contact.url",
-    "issueType": "IncorrectValue",
-    "keyExpectedValue": "info.contact.url has a valid URL",
-    "keyActualValue": "info.contact.url has an invalid URL",
-    "overrideKey": version,
+    not openapi_lib.is_valid_url(doc.info.contact.url)
+
+    result := {
+        &quot;documentId&quot;: doc.id,
+        &quot;searchKey&quot;: &quot;info.contact.url&quot;,
+        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+        &quot;keyExpectedValue&quot;: &quot;info.contact.url has a valid URL&quot;,
+        &quot;keyActualValue&quot;: &quot;info.contact.url has an invalid URL&quot;,
+        &quot;overrideKey&quot;: version,
+    }
 }
 </code></pre>
-<p>}</p>
-<pre><code>
-- `searchValue` [optional] should be used when the query returns more than one result for the same line
+<ul>
+<li><code>searchValue</code> [optional] should be used when the query returns more than one result for the same line</li>
+</ul>
+<p>For example, the query <strong>Sensitive Port Is Exposed To Entire Network</strong> can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the <em>searchValue</em> should be used.</p>
+<pre><code>package Cx
 
-For example, the query `Sensitive Port Is Exposed To Entire Network` can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the `searchValue` should be used.
-</code></pre>
-<p>package Cx</p>
-<p>import data.generic.terraform as terraLib
-import data.generic.common as commonLib</p>
-<p>CxPolicy[result] {
-    resource := input.document[i].resource.aws_security_group[name]</p>
-<pre><code>portContent := commonLib.tcpPortsMap[port]
-portNumber = port
-portName = portContent
-protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
+import data.generic.terraform as terraLib
+import data.generic.common as commonLib
 
-endswith(resource.ingress.cidr_blocks[_], "/0")
-terraLib.containsPort(resource.ingress, portNumber)
-isTCPorUDP(protocol)
+CxPolicy[result] {
+    resource := input.document[i].resource.aws_security_group[name]
 
-result := {
-    "documentId": input.document[i].id,
-    "searchKey": sprintf("aws_security_group[%s].ingress", [name]),
-    "searchValue": sprintf("%s,%d", [protocol, portNumber]),
-    "issueType": "IncorrectValue",
-    "keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
-    "keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+    portContent := commonLib.tcpPortsMap[port]
+    portNumber = port
+    portName = portContent
+    protocol := terraLib.getProtocolList(resource.ingress.protocol)[_]
+
+    endswith(resource.ingress.cidr_blocks[_], &quot;/0&quot;)
+    terraLib.containsPort(resource.ingress, portNumber)
+    isTCPorUDP(protocol)
+
+    result := {
+        &quot;documentId&quot;: input.document[i].id,
+        &quot;searchKey&quot;: sprintf(&quot;aws_security_group[%s].ingress&quot;, [name]),
+        &quot;searchValue&quot;: sprintf(&quot;%s,%d&quot;, [protocol, portNumber]),
+        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+        &quot;keyExpectedValue&quot;: sprintf(&quot;%s (%s:%d) should not be allowed&quot;, [portName, protocol, portNumber]),
+        &quot;keyActualValue&quot;: sprintf(&quot;%s (%s:%d) is allowed&quot;, [portName, protocol, portNumber]),
+    }
 }
+
+isTCPorUDP(&quot;TCP&quot;) = true
+isTCPorUDP(&quot;UDP&quot;) = true
 </code></pre>
-<p>}</p>
-<p>isTCPorUDP("TCP") = true</p>
-<p>isTCPorUDP("UDP") = true</p>
-<p>```</p>
                 
               
               
