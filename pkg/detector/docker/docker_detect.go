@@ -29,7 +29,6 @@ var (
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
 	text := strings.ReplaceAll(file.OriginalData, "\r", "")
-	log.Error().Msgf("file: %s", file.FileName)
 	lines := prepareDockerFileLines(text)
 	var isBreak bool
 	foundAtLeastOne := false
