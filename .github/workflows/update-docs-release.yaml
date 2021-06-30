@@ -20,10 +20,14 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get release version
-        id: cversion
+        id: version
         run: |
           echo "::set-output name=cversion::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
           echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+      - name: Print tags
+        run: |
+          echo "Previous tag ${{ steps.version.outputs.pversion }}"
+          echo "Current tag ${{ steps.version.outputs.cversion }}"
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
@@ -33,21 +37,19 @@ jobs:
         run: |
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Checkout project
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ steps.cversion.outputs.pversion }}
+      - name: Checkout previous tag
+        run: |
+          git checkout ${{ steps.version.outputs.pversion }}
       - name: Mike deploy previous version
         run: |
-          mike deploy ${{ steps.cversion.outputs.pversion }}
-      - name: Checkout project
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ steps.cversion.outputs.cversion }}
+          mike deploy ${{ steps.version.outputs.pversion }}
+      - name: Checkout previous tag
+        run: |
+          git checkout ${{ steps.version.outputs.cversion }}
       - name: Mike deploy previous version
         run: |
           mike delete latest
-          mike deploy latest ${{ steps.cversion.outputs.cversion }}
+          mike deploy latest ${{ steps.version.outputs.cversion }}
       - name: Fix version selector
         run: |
           git checkout gh-pages
