@@ -8,7 +8,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
 )
 
 // DetectKindLine defines a kindDetectLine type
