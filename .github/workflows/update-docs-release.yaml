@@ -22,8 +22,8 @@ jobs:
       - name: Get release version
         id: cversion
         run: |
-          echo "::set-output name=current_version::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
-          echo "::set-output name=previous_version::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1)"
+          echo "::set-output name=cversion::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
+          echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
@@ -36,18 +36,18 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v2.3.4
         with:
-          ref: ${{ steps.cversion.outputs.previous_version }}
+          ref: ${{ steps.cversion.outputs.pversion }}
       - name: Mike deploy previous version
         run: |
-          mike deploy ${{ steps.cversion.outputs.previous_version }}
+          mike deploy ${{ steps.cversion.outputs.pversion }}
       - name: Checkout project
         uses: actions/checkout@v2.3.4
         with:
-          ref: ${{ steps.cversion.outputs.current_version }}
+          ref: ${{ steps.cversion.outputs.cversion }}
       - name: Mike deploy previous version
         run: |
           mike delete latest
-          mike deploy latest ${{ steps.cversion.outputs.current_version }}
+          mike deploy latest ${{ steps.cversion.outputs.cversion }}
       - name: Fix version selector
         run: |
           git checkout gh-pages
