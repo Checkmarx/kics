@@ -1,10 +1,9 @@
-package e2e
+package utils
 
 import (
 	"encoding/json"
 	"io"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"runtime"
 	"sort"
@@ -24,30 +23,45 @@ type logMsg struct {
 	Message  string `json:"message"`
 }
 
-type cmdOutput struct {
-	output []string
-	status int
-}
+func JSONSchemaValidation(t *testing.T, file, schema string) {
+	cwd, _ := os.Getwd()
+	schemaPath := "file://" + filepath.Join(cwd, "fixtures", "schemas", schema)
+	resultPath := "file://" + filepath.Join(cwd, "output", file)
 
-func runCommand(args []string) (*cmdOutput, error) {
-	cmd := exec.Command(args[0], args[1:]...) //nolint
-	stdOutput, err := cmd.CombinedOutput()
-	if err != nil {
-		if exitError, ok := err.(*exec.ExitError); ok {
-			return &cmdOutput{
-				output: strings.Split(string(stdOutput), "\n"),
-				status: exitError.ExitCode(),
-			}, nil
-		}
-		return &cmdOutput{}, err
+	if runtime.GOOS == "windows" {
+		schemaPath = strings.Replace(schemaPath, `\`, "/", -1)
+		resultPath = strings.Replace(resultPath, `\`, "/", -1)
 	}
-	return &cmdOutput{
-		output: strings.Split(string(stdOutput), "\n"),
-		status: 0,
-	}, nil
+
+	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
+	resultLoader := gojsonschema.NewReferenceLoader(resultPath)
+
+	result, err := gojsonschema.Validate(schemaLoader, resultLoader)
+	require.NoError(t, err, "Schema Validation should not yield an error")
+
+	schemaErrors := ""
+	if !result.Valid() {
+		for _, desc := range result.Errors() {
+			schemaErrors += "- " + desc.String() + "\n"
+		}
+	}
+
+	require.True(t, result.Valid(), "[%s] - Schema Validation Failed\n%v\n", file, schemaErrors)
 }
 
-func readFixture(testName, folder string) (string, error) {
+func PrepareExpected(path, folder string) ([]string, error) {
+	cont, err := ReadFixture(path, folder)
+	if err != nil {
+		return []string{}, err
+	}
+	cont = strings.Trim(cont, "")
+	if strings.Contains(cont, "\r\n") {
+		return strings.Split(cont, "\r\n"), nil
+	}
+	return strings.Split(cont, "\n"), nil
+}
+
+func ReadFixture(testName, folder string) (string, error) {
 	return readFile(filepath.Join(folder, testName))
 }
 
@@ -65,16 +79,6 @@ func readFile(path string) (string, error) {
 	return string(bytes), nil
 }
 
-func getKICSBinaryPath(path string) []string {
-	var rtnPath string
-	if path == "" {
-		rtnPath = os.Getenv("E2E_KICS_BINARY")
-	} else {
-		rtnPath = path
-	}
-	return []string{rtnPath}
-}
-
 func checkJSONLog(t *testing.T, expec, want logMsg) {
 	require.Equal(t, expec.Level, want.Level,
 		"\nExpected Output line log level\n%s\nKICS Output line log level:\n%s\n", want.Level, expec.Level)
@@ -84,29 +88,17 @@ func checkJSONLog(t *testing.T, expec, want logMsg) {
 		"\nExpected Output line msg\n%s\nKICS Output line msg:\n%s\n", expec.Message, want.Message)
 }
 
-func fileCheck(t *testing.T, expectedPayloadID, wantedPayloadID, location string) {
-	wantPayload, err := prepareExpected(wantedPayloadID, "fixtures")
+func FileCheck(t *testing.T, expectedPayloadID, wantedPayloadID, location string) {
+	wantPayload, err := PrepareExpected(wantedPayloadID, "fixtures")
 	require.NoError(t, err, "Reading a fixture should not yield an error")
-	expectPayload, err := prepareExpected(expectedPayloadID, "output")
+	expectPayload, err := PrepareExpected(expectedPayloadID, "output")
 	require.NoError(t, err, "Reading a fixture should not yield an error")
 	require.Equal(t, len(wantPayload), len(expectPayload),
 		"\n[%s] Expected file number of lines:%d\nKics file number of lines:%d\n", location, len(wantPayload), len(expectPayload))
 	setFields(t, wantPayload, expectPayload, location)
 }
 
-func prepareExpected(path, folder string) ([]string, error) {
-	cont, err := readFixture(path, folder)
-	if err != nil {
-		return []string{}, err
-	}
-	cont = strings.Trim(cont, "")
-	if strings.Contains(cont, "\r\n") {
-		return strings.Split(cont, "\r\n"), nil
-	}
-	return strings.Split(cont, "\n"), nil
-}
-
-func checkLine(t *testing.T, expec, want string, line int) {
+func CheckLine(t *testing.T, expec, want string, line int) {
 	logExp := logMsg{}
 	logWant := logMsg{}
 	errE := json.Unmarshal([]byte(expec), &logExp)
@@ -183,39 +175,4 @@ func setFields(t *testing.T, expect, want []string, location string) {
 		require.Equal(t, expectI, wantI,
 			"\nExpected:\n%v\n,Actual:\n%v\n", expectI, wantI)
 	}
-}
-
-func jsonSchemaValidation(t *testing.T, file, schema string) {
-	cwd, _ := os.Getwd()
-	schemaPath := "file://" + filepath.Join(cwd, "fixtures", "schemas", schema)
-	resultPath := "file://" + filepath.Join(cwd, "output", file)
-
-	if runtime.GOOS == "windows" {
-		schemaPath = strings.Replace(schemaPath, `\`, "/", -1)
-		resultPath = strings.Replace(resultPath, `\`, "/", -1)
-	}
-
-	schemaLoader := gojsonschema.NewReferenceLoader(schemaPath)
-	resultLoader := gojsonschema.NewReferenceLoader(resultPath)
-
-	result, err := gojsonschema.Validate(schemaLoader, resultLoader)
-	require.NoError(t, err, "Schema Validation should not yield an error")
-
-	schemaErrors := ""
-	if !result.Valid() {
-		for _, desc := range result.Errors() {
-			schemaErrors += "- " + desc.String() + "\n"
-		}
-	}
-
-	require.True(t, result.Valid(), "Result Schema - Validation Failed\n%v\n", schemaErrors)
-}
-
-func contains(list []string, searchTerm string) bool {
-	for _, a := range list {
-		if a == searchTerm {
-			return true
-		}
-	}
-	return false
 }
