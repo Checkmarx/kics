@@ -130,7 +130,7 @@ func run(cmd *cobra.Command) error {
 		}
 		outputName = filepath.Base(outputName)
 		if filepath.Ext(outputPath) != "" {
-			outputPath = filepath.Dir(outputPath)
+			outputPath = filepath.Join(outputPath, string(os.PathSeparator))
 		}
 		if err := os.MkdirAll(outputPath, os.ModePerm); err != nil {
 			return err
