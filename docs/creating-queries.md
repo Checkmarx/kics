@@ -7,12 +7,14 @@ go run ./cmd/console/main.go scan -p "pathToTestData" -d "pathToGenerateJson"
 ```
 
 So for example, if we wanted to transform a .tf file in ./code/test we could type:
+
 ```bash
 go run ./cmd/console/main.go scan -p  "./src/test" -d "src/test/input.json"
 ```
 
 Example of input.json
-```
+
+```json
 {
 	"document": [
 		{
@@ -42,7 +44,6 @@ Example of input.json
 		}
 	]
 }
-
 ```
 
 After having the .json that will be our Rego input, we can begin to write queries.
@@ -125,7 +126,7 @@ To test the query in the [Rego playground](https://play.openpolicyagent.org/), p
 
 Observe the following metadata.json example and check the Guidelines below for more detailed information.
 
-```
+```json
 {
   "id": "8173d5eb-96b5-4aa6-a71b-ecfa153c123d",
   "queryName": "CloudTrail Multi Region Disabled",
@@ -135,7 +136,6 @@ Observe the following metadata.json example and check the Guidelines below for m
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform"
 }
-
 ```
 
 👨‍💻 **Test Folder**
@@ -145,7 +145,8 @@ Keep in mind that all the positive and negative files should contain only one br
 
 Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the `is_multi_region_trail` defined (positive1.tf) and another with the `is_multi_region_trail` set to false (positive2.tf). 
 
-positive1.tf
+*positive1.tf*
+
 ```
 resource "aws_cloudtrail" "positive1" {
   name                          = "npositive_1"
@@ -153,19 +154,20 @@ resource "aws_cloudtrail" "positive1" {
 }
 ```
 
-positive2.tf
+*positive2.tf*
+
 ```
 resource "aws_cloudtrail" "positive2" {
   name                          = "npositive_2"
   s3_bucket_name                = "bucketlog_2"
   is_multi_region_trail         = false
 }
-
 ```
 
 Each negative case should present the remediation/best practice (a sample with the `is_multi_region_trail` set to true).
 
-negative1.tf
+*negative1.tf*
+
 ```
 resource "aws_cloudtrail" "negative1" {
   name                          = "negative"
@@ -176,7 +178,7 @@ resource "aws_cloudtrail" "negative1" {
 
 The positive expected result should present where the positive(s) file(s) break(s) the vulnerability (in line 2 (positive1.tf) and line 4 (positive2.tf)).
 
-```
+```json
 [
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -191,7 +193,6 @@ The positive expected result should present where the positive(s) file(s) break(
     "fileName": "positive2.tf"
   }
 ]
-
 ```
 
 
@@ -202,6 +203,7 @@ For a query to be considered complete, it must be compliant with at least one po
 ```bash
 make test
 ```
+
 Check if the new test was added correctly and if all tests are passing locally. If succeeds, a Pull Request can now be created.
 
 #### Guidelines
@@ -209,9 +211,11 @@ Check if the new test was added correctly and if all tests are passing locally. 
 Filling metadata.json:
 
 - `id` should be filled with a UUID. You can use the built-in command to generate this:
+
 ```bash
 go run ./cmd/console/main.go generate-id
 ```
+
 - `queryName` describes the name of the vulnerability
 - `severity` can be filled with `HIGH`, `MEDIUM`, `LOW` or `INFO`
 - `category` pick one of the following:
@@ -237,7 +241,8 @@ go run ./cmd/console/main.go generate-id
 
 If the **query.rego** file implements more than one query, the **metadata.json** should indicate how many are implemented (through `aggregation`). That can be necessary due to two cases:
 1. It implements more than one query in the same **query.rego** for the same platform
- ```
+
+```json
 {
   "id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
   "queryName": "Sensitive Port Is Exposed To Entire Network",
@@ -248,10 +253,11 @@ If the **query.rego** file implements more than one query, the **metadata.json**
   "platform": "Ansible",
   "aggregation": 35
 }
+```
 
-```
 2. It implements the same query for different platforms in the same **query.rego**, the metadata bellow defines the query metadata for both OpenAPI 2.0 and 3.0 in the same file:
-```
+
+```json
 {
   "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
   "queryName": "Invalid Contact URL (v3)",
@@ -269,10 +275,7 @@ If the **query.rego** file implements more than one query, the **metadata.json**
   },
   "aggregation": 2
 }
-
 ```
-
-
 
 Filling query.rego:
 
@@ -287,6 +290,7 @@ Filling query.rego:
 - `overrideKey` [optional] should be used when the query can be applied to more than one platform (for now, it is used for both OpenAPI 3.0 and Swagger)
 
 For example, the query `Invalid Contact URL` can be implemented in both OpenAPI 3.0 and Swagger since both versions share the same properties:
+
 ```
 package Cx
 
@@ -308,12 +312,12 @@ CxPolicy[result] {
 		"overrideKey": version,
 	}
 }
-
 ```
 
 - `searchValue` [optional] should be used when the query returns more than one result for the same line
 
-For example, the query `Sensitive Port Is Exposed To Entire Network` can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the `searchValue` should be used.
+For example, the query **Sensitive Port Is Exposed To Entire Network** can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the *searchValue* should be used.
+
 ```
 package Cx
 
@@ -343,7 +347,5 @@ CxPolicy[result] {
 }
 
 isTCPorUDP("TCP") = true
-
 isTCPorUDP("UDP") = true
-
 ```
