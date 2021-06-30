@@ -47,10 +47,10 @@ jobs:
       - name: Mike deploy previous version
         run: |
           mike deploy ${{ steps.version.outputs.pversion }}
-      - name: Checkout previous tag
+      - name: Checkout current tag
         run: |
           git checkout ${{ steps.version.outputs.ctag }}
-      - name: Mike deploy previous version
+      - name: Mike deploy current version
         run: |
           mike delete latest
           mike deploy latest ${{ steps.version.outputs.cversion }}
