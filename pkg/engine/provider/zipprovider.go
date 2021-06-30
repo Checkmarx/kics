@@ -53,7 +53,7 @@ func (z *ZipSystemSourceProvider) CheckAndExtractZip(absPath string) (string, er
 
 		if contentType == MimeTypeZip {
 			destination, err := os.MkdirTemp("", "kics-extract-*")
-			z.PathExtractionMap[destination] = absPath
+			z.PathExtractionMap[filepath.ToSlash(destination)] = filepath.ToSlash(absPath)
 
 			if err != nil {
 				return "", err
