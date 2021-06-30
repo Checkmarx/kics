@@ -23,11 +23,15 @@ jobs:
         id: version
         run: |
           echo "::set-output name=cversion::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
-          echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+          echo "::set-output name=ctag::$(git describe --tags --match='v*' --abbrev=0)"
+          echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
+          echo "::set-output name=ptag::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
       - name: Print tags
         run: |
-          echo "Previous tag ${{ steps.version.outputs.pversion }}"
-          echo "Current tag ${{ steps.version.outputs.cversion }}"
+          echo "prev tag ${{ steps.version.outputs.ptag }}"
+          echo "curr tag ${{ steps.version.outputs.ctag }}"
+          echo "prev ver ${{ steps.version.outputs.pversion }}"
+          echo "curr ver ${{ steps.version.outputs.cversion }}"
       - uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.x
@@ -39,13 +43,13 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Checkout previous tag
         run: |
-          git checkout ${{ steps.version.outputs.pversion }}
+          git checkout ${{ steps.version.outputs.ptag }}
       - name: Mike deploy previous version
         run: |
           mike deploy ${{ steps.version.outputs.pversion }}
       - name: Checkout previous tag
         run: |
-          git checkout ${{ steps.version.outputs.cversion }}
+          git checkout ${{ steps.version.outputs.ctag }}
       - name: Mike deploy previous version
         run: |
           mike delete latest
