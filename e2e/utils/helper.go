@@ -6,11 +6,13 @@ import (
 	"strings"
 )
 
+// CmdOutput stores the structure of kics output
 type CmdOutput struct {
 	Output []string
 	Status int
 }
 
+// RunCommand executes the kics in a terminal
 func RunCommand(args []string) (*CmdOutput, error) {
 	cmd := exec.Command(args[0], args[1:]...) //nolint
 	stdOutput, err := cmd.CombinedOutput()
@@ -29,6 +31,7 @@ func RunCommand(args []string) (*CmdOutput, error) {
 	}, nil
 }
 
+// GetKICSBinaryPath gets the kics binary complete path
 func GetKICSBinaryPath(path string) []string {
 	var rtnPath string
 	if path == "" {
@@ -39,6 +42,7 @@ func GetKICSBinaryPath(path string) []string {
 	return []string{rtnPath}
 }
 
+// Contains returns if a string list contains an especific term
 func Contains(list []string, searchTerm string) bool {
 	for _, a := range list {
 		if a == searchTerm {

@@ -38,6 +38,7 @@ var availablePlatforms = map[string]string{
 	"Terraform":      "terraform",
 }
 
+// HTMLValidation executes many asserts to validate the HTML Report
 func HTMLValidation(t *testing.T, file string) {
 	// Read & Parse Expected HTML Report
 	expectHTMLString, errExpStr := os.ReadFile(filepath.Join("fixtures", file))

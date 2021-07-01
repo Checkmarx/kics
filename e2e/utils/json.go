@@ -23,6 +23,7 @@ type logMsg struct {
 	Message  string `json:"message"`
 }
 
+// JSONSchemaValidation execute a schema validation of JSON reports
 func JSONSchemaValidation(t *testing.T, file, schema string) {
 	cwd, _ := os.Getwd()
 	schemaPath := "file://" + filepath.Join(cwd, "fixtures", "schemas", schema)
@@ -49,6 +50,7 @@ func JSONSchemaValidation(t *testing.T, file, schema string) {
 	require.True(t, result.Valid(), "[%s] - Schema Validation Failed\n%v\n", file, schemaErrors)
 }
 
+// PrepareExpect prepares the files for validation tests
 func PrepareExpected(path, folder string) ([]string, error) {
 	cont, err := ReadFixture(path, folder)
 	if err != nil {
@@ -61,6 +63,7 @@ func PrepareExpected(path, folder string) ([]string, error) {
 	return strings.Split(cont, "\n"), nil
 }
 
+// ReadFixture reads a file based on a provided path and filename
 func ReadFixture(testName, folder string) (string, error) {
 	return readFile(filepath.Join(folder, testName))
 }
@@ -88,6 +91,7 @@ func checkJSONLog(t *testing.T, expec, want logMsg) {
 		"\nExpected Output line msg\n%s\nKICS Output line msg:\n%s\n", expec.Message, want.Message)
 }
 
+// FileCheck executes assertions to validate file content length
 func FileCheck(t *testing.T, expectedPayloadID, wantedPayloadID, location string) {
 	wantPayload, err := PrepareExpected(wantedPayloadID, "fixtures")
 	require.NoError(t, err, "Reading a fixture should not yield an error")
@@ -98,6 +102,7 @@ func FileCheck(t *testing.T, expectedPayloadID, wantedPayloadID, location string
 	setFields(t, wantPayload, expectPayload, location)
 }
 
+// CheckLine executes assertions to validate the content of two JSON files
 func CheckLine(t *testing.T, expec, want string, line int) {
 	logExp := logMsg{}
 	logWant := logMsg{}
