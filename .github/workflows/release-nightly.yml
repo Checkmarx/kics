@@ -154,7 +154,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push scratch to Docker Hub
         id: build_scratch
-        uses: docker/build-push-action@v2.5.0
+        uses: docker/build-push-action@v2.6.1
         with:
           context: .
           push: true
@@ -164,7 +164,7 @@ jobs:
             COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@v2.5.0
+        uses: docker/build-push-action@v2.6.1
         with:
           context: .
           file: ./Dockerfile.alpine
@@ -175,7 +175,7 @@ jobs:
             COMMIT=${{ github.sha }}
       - name: Push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@v2.4.0
+        uses: docker/build-push-action@v2.6.1
         with:
           context: .
           file: ./Dockerfile.debian
