@@ -50,7 +50,7 @@ func JSONSchemaValidation(t *testing.T, file, schema string) {
 	require.True(t, result.Valid(), "[%s] - Schema Validation Failed\n%v\n", file, schemaErrors)
 }
 
-// PrepareExpect prepares the files for validation tests
+// PrepareExpected prepares the files for validation tests
 func PrepareExpected(path, folder string) ([]string, error) {
 	cont, err := ReadFixture(path, folder)
 	if err != nil {
