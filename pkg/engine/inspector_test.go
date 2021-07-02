@@ -147,7 +147,8 @@ func TestInspect(t *testing.T) { //nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: opaQuery,
 		metadata: model.QueryMetadata{
-			Query: "add_instead_of_copy",
+			Query:     "add_instead_of_copy",
+			InputData: "{}",
 			Content: `package Cx
 
 			CxPolicy [ result ] {
@@ -336,9 +337,10 @@ func TestNewInspector(t *testing.T) { // nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: rego.PreparedEvalQuery{},
 		metadata: model.QueryMetadata{
-			Query:    "all_auth_users_get_read_access",
-			Content:  string(contentByte),
-			Platform: "unknown",
+			Query:     "all_auth_users_get_read_access",
+			Content:   string(contentByte),
+			InputData: "{}",
+			Platform:  "unknown",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",

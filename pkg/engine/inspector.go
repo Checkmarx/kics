@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"strings"
@@ -16,6 +17,7 @@ import (
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
+	"github.com/open-policy-agent/opa/storage/inmem"
 	"github.com/open-policy-agent/opa/topdown"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -133,11 +135,14 @@ func NewInspector(
 		case <-ctx.Done():
 			return nil, nil
 		default:
-			opaQuery, err := rego.New(
+			var opaQuery rego.PreparedEvalQuery
+			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
+			opaQuery, err = rego.New(
 				rego.Query(regoQuery),
 				rego.Module("Common", commonGeneralQuery),
 				rego.Module("Generic", platformGeneralQuery),
 				rego.Module(metadata.Query, metadata.Content),
+				rego.Store(store),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 			).PrepareForEval(ctx)
 			if err != nil {

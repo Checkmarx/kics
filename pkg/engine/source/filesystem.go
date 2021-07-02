@@ -172,7 +172,6 @@ func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model
 			sentry.CaptureException(errRQ)
 			log.Err(errRQ).
 				Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
-
 			continue
 		}
 
@@ -209,6 +208,11 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 
 	metadata := ReadMetadata(queryDir)
 	platform := getPlatform(queryDir)
+	inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
+	if errInputData != nil {
+		log.Err(errInputData).
+			Msgf("Query provider failed to read input data, query=%s", path.Base(queryDir))
+	}
 
 	aggregation := 1
 	if agg, ok := metadata["aggregation"]; ok {
@@ -220,6 +224,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 		Content:     string(queryContent),
 		Metadata:    metadata,
 		Platform:    platform,
+		InputData:   inputData,
 		Aggregation: aggregation,
 	}, nil
 }
@@ -278,4 +283,16 @@ func getPlatform(queryPath string) string {
 	}
 
 	return "unknown"
+}
+
+func readInputData(inputDataPath string) (string, error) {
+	emptyResult := "{}"
+	inputData, err := os.ReadFile(filepath.Clean(inputDataPath))
+	if err != nil {
+		if os.IsNotExist(err) {
+			return emptyResult, nil
+		}
+		return emptyResult, errors.Wrapf(err, "failed to read query %s", path.Base(inputDataPath))
+	}
+	return string(inputData), nil
 }
