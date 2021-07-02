@@ -31,6 +31,8 @@ const (
 	LibraryFileName = "library.rego"
 	// LibrariesDefaultBasePath the path to rego libraries
 	LibrariesDefaultBasePath = "./assets/libraries/"
+
+	emptyInputData = "{}"
 )
 
 var (
@@ -146,7 +148,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model.QueryMetadata, error) {
+func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
@@ -179,13 +181,24 @@ func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model
 			continue
 		}
 
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
-			if checkQueryInclude(query.Metadata["id"], queryFilter.IncludeQueries.ByIDs) {
+		customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
+		if readInputErr != nil {
+			log.Err(errRQ).
+				Msgf("failed to read input data, query=%s", path.Base(queryDir))
+			continue
+		}
+
+		if customInputData != emptyInputData && customInputData != "" {
+			query.InputData = customInputData
+		}
+
+		if len(queryParameters.IncludeQueries.ByIDs) > 0 {
+			if checkQueryInclude(query.Metadata["id"], queryParameters.IncludeQueries.ByIDs) {
 				queries = append(queries, query)
 			}
 		} else {
-			if checkQueryExclude(query.Metadata["id"], queryFilter.ExcludeQueries.ByIDs) ||
-				checkQueryExclude(query.Metadata["category"], queryFilter.ExcludeQueries.ByCategories) {
+			if checkQueryExclude(query.Metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
+				checkQueryExclude(query.Metadata["category"], queryParameters.ExcludeQueries.ByCategories) {
 				log.Debug().
 					Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
 				continue
@@ -286,13 +299,12 @@ func getPlatform(queryPath string) string {
 }
 
 func readInputData(inputDataPath string) (string, error) {
-	emptyResult := "{}"
 	inputData, err := os.ReadFile(filepath.Clean(inputDataPath))
 	if err != nil {
 		if os.IsNotExist(err) {
-			return emptyResult, nil
+			return emptyInputData, nil
 		}
-		return emptyResult, errors.Wrapf(err, "failed to read query %s", path.Base(inputDataPath))
+		return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))
 	}
 	return string(inputData), nil
 }

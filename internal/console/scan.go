@@ -62,6 +62,7 @@ var (
 	reportFormats     []string
 	types             []string
 	queryExecTimeout  int
+	inputData         string
 )
 
 const (
@@ -74,6 +75,7 @@ const (
 	excludeResutlsShorthand = "x"
 	includeQueriesFlag      = "include-queries"
 	inlcudeQueriesShorthand = "i"
+	inputDataFlag           = "input-data"
 	failOnFlag              = "fail-on"
 	ignoreOnExitFlag        = "ignore-on-exit"
 	minimalUIFlag           = "minimal-ui"
@@ -293,6 +295,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 	}
 }
 
+//nolint
 func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVarP(&path,
 		pathFlag, pathFlagShorthand,
@@ -393,6 +396,11 @@ func initScanFlags(scanCmd *cobra.Command) {
 		queryExecTimeoutFlag,
 		60,
 		"number of seconds the query has to execute before being canceled")
+	scanCmd.Flags().StringVar(&inputData,
+		inputDataFlag,
+		"",
+		"path to input data files",
+	)
 }
 
 func initScanCmd(scanCmd *cobra.Command) {
@@ -441,9 +449,10 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		ByIDs: includeIDs,
 	}
 
-	queryFilter := source.QuerySelectionFilter{
+	queryFilter := source.QueryInspectorParameters{
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
+		InputDataPath:  inputData,
 	}
 
 	inspector, err := engine.NewInspector(ctx,

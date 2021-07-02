@@ -358,7 +358,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		source           source.QueriesSource
 		vb               VulnerabilityBuilder
 		tracker          Tracker
-		queryFilter      source.QuerySelectionFilter
+		queryFilter      source.QueryInspectorParameters
 		excludeResults   map[string]bool
 		queryExecTimeout int
 	}
@@ -375,7 +375,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				vb:      vbs,
 				tracker: track,
 				source:  sources,
-				queryFilter: source.QuerySelectionFilter{
+				queryFilter: source.QueryInspectorParameters{
 					IncludeQueries: source.IncludeQueries{
 						ByIDs: []string{},
 					},
@@ -562,7 +562,7 @@ func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
 	}
-	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.QuerySelectionFilter{}, map[string]bool{}, 60)
+	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.QueryInspectorParameters{}, map[string]bool{}, 60)
 	require.NoError(t, err)
 	return ins
 }
@@ -572,7 +572,7 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(queryFilter source.QuerySelectionFilter) ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	sources := source.NewFilesystemSource(m.Source, []string{""})
 
 	return sources.GetQueries(queryFilter)

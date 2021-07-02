@@ -38,8 +38,12 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Run(tt.name, func(b *testing.B) {
 			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
 			for n := 0; n < b.N; n++ {
-				filter := QuerySelectionFilter{IncludeQueries{ByIDs: []string{}}, ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}}
-				if _, err := s.GetQueries(filter); err != nil {
+				filter := QueryInspectorParameters{
+					IncludeQueries: IncludeQueries{ByIDs: []string{}},
+					ExcludeQueries: ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+					InputDataPath:  "",
+				}
+				if _, err := s.GetQueries(&filter); err != nil {
 					b.Errorf("Error: %s", err)
 				}
 			}
@@ -130,14 +134,12 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			filter := QuerySelectionFilter{
-				IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries{
-					ByIDs:        tt.excludeIDs,
-					ByCategories: tt.excludeCategory,
-				},
+			filter := QueryInspectorParameters{
+				IncludeQueries: IncludeQueries{ByIDs: []string{}},
+				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory},
+				InputDataPath:  "",
 			}
-			got, err := s.GetQueries(filter)
+			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -221,16 +223,17 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			filter := QuerySelectionFilter{
-				IncludeQueries{
+			filter := QueryInspectorParameters{
+				IncludeQueries: IncludeQueries{
 					ByIDs: tt.includeIDs,
 				},
-				ExcludeQueries{
+				ExcludeQueries: ExcludeQueries{
 					ByIDs:        []string{},
 					ByCategories: []string{},
 				},
+				InputDataPath: "",
 			}
-			got, err := s.GetQueries(filter)
+			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -414,15 +417,16 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			filter := QuerySelectionFilter{
-				IncludeQueries{
+			filter := QueryInspectorParameters{
+				IncludeQueries: IncludeQueries{
 					ByIDs: []string{}},
-				ExcludeQueries{
+				ExcludeQueries: ExcludeQueries{
 					ByIDs:        []string{},
 					ByCategories: []string{},
 				},
+				InputDataPath: "",
 			}
-			got, err := s.GetQueries(filter)
+			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -568,4 +572,26 @@ func TestListSupportedPlatforms(t *testing.T) {
 	}
 	actual := ListSupportedPlatforms()
 	require.Equal(t, expected, actual, "expected=%s\ngot=%s", expected, actual)
+}
+
+// TestReadInputData tests readInputData function
+func TestReadInputData(t *testing.T) {
+	tests := []struct {
+		name string
+		path string
+		want string
+	}{
+		{
+			name: "Should generate input data string",
+			path: filepath.FromSlash("./test/fixtures/input_data/test.json"),
+			want: `{"test": "success"}`,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := readInputData(tt.path)
+			require.NoError(t, err)
+			require.Equal(t, tt.want, got)
+		})
+	}
 }
