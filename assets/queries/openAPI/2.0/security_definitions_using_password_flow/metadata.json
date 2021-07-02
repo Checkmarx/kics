@@ -1,9 +1,0 @@
-{
-  "id": "773116aa-2e6d-416f-bd85-f0301cc05d76",
-  "queryName": "Security Definitions Using Password Flow",
-  "severity": "MEDIUM",
-  "category": "Access Control",
-  "descriptionText": "Security Defenition Object should not use 'password' Flow",
-  "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
-  "platform": "OpenAPI"
-}

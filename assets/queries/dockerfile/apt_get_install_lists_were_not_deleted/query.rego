@@ -23,13 +23,14 @@ hasClean(resourceValue, aptGet) {
 	listCommands := split(resourceValue, "&& ")
 
 	startswith(listCommands[install], aptGet)
-
-	some clean
 	startswith(listCommands[clean], "apt-get clean")
 
-	some remove
+	install < clean
+} else {
+	listCommands := split(resourceValue, "&& ")
+
+	startswith(listCommands[install], aptGet)
 	startswith(listCommands[remove], "rm -rf")
 
-	install < clean
-	clean < remove
+	install < remove
 }

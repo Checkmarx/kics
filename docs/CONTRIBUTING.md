@@ -26,17 +26,17 @@ By participating and contributing to the project, you agree to uphold our [Code 
 Follow the instructions below to setup local KICS development environment and push your changes.
 
 1. Fork the `kics` repo on GitHub.
-1. Clone your fork locally:
+2. Clone your fork locally:
    ```shell
    git clone https://github.com/Checkmarx/kics.git
    ```
-1. Create a branch for local development.
+3. Create a branch for local development.
 Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>* or *hotfix/issue#-descriptive-name*):
    ```shell
    git checkout -b <name-of-your-issue>
    ```
-1. Make your changes locally.
-1. Validate your changes to reassure they meet project quality and contribution standards:
+4. Make your changes locally.
+5. Validate your changes to reassure they meet project quality and contribution standards:
    ```shell
    golint .
    ```
@@ -46,7 +46,7 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
    ```shell
    go test -mod=vendor -v ./...
    ```
-1. Commit your changes and push your branch to GitHub:
+6. Commit your changes and push your branch to GitHub:
    ```shell
    git add .
    ```
@@ -57,7 +57,7 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
    ```shell
    git push --set-upstream origin <name-of-your-issue>
    ```
-1. Submit a pull request on GitHub website.
+7. Submit a pull request on GitHub website.
 
 ---
 
@@ -84,22 +84,42 @@ Pull Requests (PRs) are always welcome and can be a quick way to get your fix or
 - Ensure all necessary details are provided and adhered to.
 - Add unit or integration tests for fixed or changed functionality (if a test suite already exists) or specify steps taken to ensure changes were tested and functionality works as expected.
 - Address a single concern in the least number of changed lines as possible.
-- Include documentation in the repo or Provide additional comments in Markdown comments that should be pulled/reflected in GitHub Wiki for the given project. 
+- Include documentation in the repo or Provide additional comments in Markdown comments that should be pulled/reflected in GitHub Wiki for the given project.
 - Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
 
-For changes that address core functionality or would require breaking changes (e.g. a major release), please open an Issue to discuss your proposal first. 
+For changes that address core functionality or would require breaking changes (e.g. a major release), please open an Issue to discuss your proposal first.
 
 #### Pull Request Guidelines
 
 Before you submit a pull request, please reassure that it meets these guidelines:
 
 1. All validations and tests passed locally.
-1. The pull request includes tests.
-1. The relevant docs are updated, whether you're pushing new functionality or updating a query.
+2. The pull request includes tests.
+3. The relevant docs are updated, whether you're pushing new functionality or updating a query.
+4. The pull request title should follow conventional commit messages:
+
+`<type>(<scope>): <subject>`
+where `(<scope>)` is optional
+
+```
+feat - A new feature (example scopes: engine, parser, flags, query)
+fix - A bug fix
+docs - Documentation only changes, (example scopes: catalog, guides, platforms, architecture)
+test - Adding missing tests or correcting existing tests (example scopes: unit, e2e)
+ci - Changes to our CI configuration files and scripts (example scopes: ghactions, linters)
+chore - Other changes that don't modify src or test files
+build - Changes that affect the build system or external dependencies (example scope: makefile)
+style - Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+refactor - A code change that neither fixes a bug nor adds a feature
+perf - A code change that improves performance
+revert - Reverts a previous commit
+```
+
+e.g: `build(makefile): enhance make clean task`
 
 #### Templates
 
-The following templates will be used when [creating a new issue](https://github.com/Checkmarx/kics/issues/new/choose):  
+The following templates will be used when [creating a new issue](https://github.com/Checkmarx/kics/issues/new/choose):
 
 - Enhancement/Feature Request Template
 - New (Approved) Feature Template
@@ -114,7 +134,7 @@ The following templates will be used when [creating a new issue](https://github.
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
 
-Join the chat [on Gitter](https://gitter.im/kics-io/community).  
+Join the chat [on Gitter](https://gitter.im/kics-io/community).
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 And become one of our top contributors!
@@ -125,9 +145,9 @@ And become one of our top contributors!
 
 Special thanks to  **[Lior Kaplan](https://github.com/kaplanlior)** from **_Kaplan Open Source Consulting_** for his assistance in creating KICS. 
 
-The people listed below had made a huge contribution to KICS. 
+The people listed below had made a huge contribution to KICS.
 
-- [Ruben Silva](https://github.com/Ruben-Silva) 
+- [Ruben Silva](https://github.com/Ruben-Silva)
 - [Rafaela Soares](https://github.com/rafaela-soares)
 - [João Martins](https://github.com/joaomartinscx)
 - [Joel Carvalho](https://github.com/joelcarvalhocheckmarx)

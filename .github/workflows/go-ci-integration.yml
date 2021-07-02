@@ -32,7 +32,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v2.5.0
+        uses: docker/build-push-action@v2.6.1
         with:
           load: true
           context: ./
@@ -50,7 +50,7 @@ jobs:
       - name: Run docker image and generate results.json
         run: |
           docker run -v ${PWD}/assets/queries:/path \
-            kics:${{ github.sha }} scan --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/results.json"
+            kics:${{ github.sha }} scan --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/"
       - name: Archive test logs
         uses: actions/upload-artifact@v2
         if: always()

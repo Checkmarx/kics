@@ -1,108 +1,108 @@
 [
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 3,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 2,
     "filename": "positive2.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 9,
     "filename": "positive3.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 12,
     "filename": "positive3.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 7,
     "filename": "positive4.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 10,
     "filename": "positive4.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 54,
     "filename": "positive5.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 62,
     "filename": "positive5.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 65,
     "filename": "positive5.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 32,
     "filename": "positive6.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 36,
     "filename": "positive6.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 38,
     "filename": "positive6.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 27,
     "filename": "positive7.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 53,
     "filename": "positive7.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 72,
     "filename": "positive7.json"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 18,
     "filename": "positive8.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 31,
     "filename": "positive8.yaml"
   },
   {
-    "queryName": "Object Without Required Property",
+    "queryName": "Object Without Required Property (v3)",
     "severity": "INFO",
     "line": 42,
     "filename": "positive8.yaml"

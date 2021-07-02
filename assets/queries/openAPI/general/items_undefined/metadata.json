@@ -1,0 +1,17 @@
+{
+  "id": "a8e859da-4a43-4e7f-94b8-25d6e3bf8e90",
+  "queryName": "Items Undefined (v3)",
+  "severity": "INFO",
+  "category": "Structure and Semantics",
+  "descriptionText": "Schema/Parameter items should be defined when the schema/parameter is set to an array.",
+  "descriptionUrl": "https://swagger.io/specification/#schema-object",
+  "platform": "OpenAPI",
+  "override": {
+    "2.0": {
+      "id": "3e4d34d2-36cf-4449-976d-6c256db8fc49",
+      "queryName": "Items Undefined (v2)",
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+    }
+  },
+  "aggregation": 2
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 54,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 57,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 60,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 40,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml"
+  }
+]

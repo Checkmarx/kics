@@ -1,0 +1,65 @@
+name: update-docs-release
+
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+
+jobs:
+  update-docs-release:
+    name: Create new docs version
+    runs-on: ubuntu-latest
+    if: "!github.event.release.prerelease"
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Checkout project
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - name: Get release version
+        id: version
+        run: |
+          echo "::set-output name=cversion::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
+          echo "::set-output name=ctag::$(git describe --tags --match='v*' --abbrev=0)"
+          echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
+          echo "::set-output name=ptag::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+      - name: Print tags
+        run: |
+          echo "prev tag ${{ steps.version.outputs.ptag }}"
+          echo "curr tag ${{ steps.version.outputs.ctag }}"
+          echo "prev ver ${{ steps.version.outputs.pversion }}"
+          echo "curr ver ${{ steps.version.outputs.cversion }}"
+      - uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: pip install mkdocs-bootswatch mike mkdocs-material
+      - name: Config KICSBot git user
+        run: |
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Checkout previous tag
+        run: |
+          git checkout ${{ steps.version.outputs.ptag }}
+      - name: Mike deploy previous version
+        run: |
+          mike deploy ${{ steps.version.outputs.pversion }}
+      - name: Checkout current tag
+        run: |
+          git checkout ${{ steps.version.outputs.ctag }}
+      - name: Mike deploy current version
+        run: |
+          mike delete latest
+          mike deploy latest ${{ steps.version.outputs.cversion }}
+      - name: Fix version selector
+        run: |
+          git checkout gh-pages
+          find . -type f -name "*.html" -exec sed -i -E '/<script src="(.)*js\/version-select.js" defer><\/script>/d' {} +
+          find . -type f -name "*.html" -exec sed -i -E '/<link href="(.)*css\/version-select.css" rel="stylesheet"/d' {} +
+          find . -type f -name "version-select.css" -exec rm -f {} +
+          find . -type f -name "version-select.js" -exec rm -f {} +
+          git commit -a --amend --no-edit
+          git push origin gh-pages

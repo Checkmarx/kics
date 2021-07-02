@@ -126,7 +126,7 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				t.Errorf("failed to get current dir, %v", err)
 			}
 			if tt.remove != "" {
-				err = os.Remove(filepath.Join(currentWorkDir, tt.remove))
+				err = os.RemoveAll(filepath.Join(currentWorkDir, tt.remove))
 				if err != nil {
 					t.Errorf("failed to remove file: %v, %v", tt.remove, err)
 				}

@@ -2,19 +2,16 @@ package model
 
 import (
 	"fmt"
-	"path/filepath"
 	"strings"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/rs/zerolog/log"
 )
 
 const timeFormat = "2006-01-02T15:04:05" // YYYY-MM-DDTHH:MM:SS a.k.a ISO8601
 
 type gitlabSASTReport struct {
-	basePath        string                    `json:"-"`
 	Schema          string                    `json:"schema"`
 	SchemaVersion   string                    `json:"version"`
 	Scan            gitlabSASTScan            `json:"scan"`
@@ -112,15 +109,6 @@ func initGitlabSASTScan(start, end time.Time) gitlabSASTScan {
 // BuildGitlabSASTVulnerability adds a new vulnerability struct to vulnerability slice
 func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.VulnerableQuery, file *model.VulnerableFile) {
 	if len(issue.Files) > 0 {
-		absBasePath, err := filepath.Abs(glsr.basePath)
-		if err != nil {
-			log.Err(err)
-		}
-		relativePath, err := filepath.Rel(absBasePath, file.FileName)
-		if err != nil {
-			log.Err(err)
-		}
-
 		vulnerability := gitlabSASTVulnerability{
 			ID:       file.SimilarityID,
 			Category: "sast",
@@ -138,7 +126,7 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.Vulnerab
 				},
 			},
 			Location: gitlabSASTVulnerabilityLocation{
-				File:  relativePath,
+				File:  file.FileName,
 				Start: file.Line,
 				End:   file.Line,
 			},

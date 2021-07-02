@@ -1,7 +1,10 @@
 package model
 
 import (
+	"os"
+	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -69,8 +72,55 @@ type Summary struct {
 	ScannedPaths []string `json:"paths"`
 }
 
+// PathParameters - structure wraps the required fields for temporary path translation
+type PathParameters struct {
+	ScannedPaths      []string
+	PathExtractionMap map[string]string
+}
+
+func getRelativePath(basePath, filePath string) string {
+	var returnPath string
+	if strings.Contains(filePath, ".zip") {
+		returnPath = filePath
+	} else {
+		relativePath, err := filepath.Rel(basePath, filePath)
+		if err != nil {
+			log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
+			returnPath = filePath
+		} else {
+			returnPath = relativePath
+		}
+	}
+	return returnPath
+}
+
+func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
+	prettyPath := filePath
+	for key, val := range pathExtractionMap {
+		if strings.Contains(filePath, key) {
+			splittedPath := strings.Split(filePath, key)
+			prettyPath = filepath.Join(filepath.Base(val), splittedPath[1])
+		} else {
+			prettyPath = filePath
+		}
+	}
+	return prettyPath
+}
+
+func resolvePath(filePath string, pathExtractionMap map[string]string) string {
+	var returnPath string
+	returnPath = replaceIfTemporaryPath(filePath, pathExtractionMap)
+	pwd, err := os.Getwd()
+	if err != nil {
+		log.Error().Msgf("Unable to get current working dir %s", err)
+		return returnPath
+	}
+	returnPath = getRelativePath(pwd, returnPath)
+	return returnPath
+}
+
 // CreateSummary creates a report for a single scan, based on its scanID
-func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string) Summary {
+func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string, pathExtractionMap map[string]string) Summary {
 	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
 	severitySummary := SeveritySummary{
@@ -92,7 +142,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 
 		qItem := q[item.QueryID]
 		qItem.Files = append(qItem.Files, VulnerableFile{
-			FileName:         item.FileName,
+			FileName:         resolvePath(item.FileName, pathExtractionMap),
 			SimilarityID:     item.SimilarityID,
 			Line:             item.Line,
 			VulnLines:        item.VulnLines,

@@ -9,6 +9,7 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    if: github.repository == 'Checkmarx/kics'
     steps:
       - uses: actions/checkout@v2.3.4
         with:

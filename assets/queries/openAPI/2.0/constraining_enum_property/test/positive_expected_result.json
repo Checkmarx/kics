@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 49,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 36,
+    "filename": "positive2.yaml"
+  }
+]

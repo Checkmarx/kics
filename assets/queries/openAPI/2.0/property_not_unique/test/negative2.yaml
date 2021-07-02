@@ -1,0 +1,44 @@
+swagger: "2.0"
+info:
+  title: Simple API Overview
+  version: 1.0.0
+basePath: "/api"
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+      parameters:
+        - name: limit2
+          in: body
+          description: max records to return
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              address:
+                $ref: "#/definitions/Address"
+              age:
+                type: integer
+                format: int32
+parameters:
+  limitParam:
+    name: limit
+    in: body
+    description: max records to return
+    required: true
+    schema:
+      type: object
+    properties:
+      name_2:
+        type: string
+      address_2:
+        $ref: "#/definitions/Address"
+      age_2:
+        type: integer
+        format: int32
