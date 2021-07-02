@@ -1,7 +1,6 @@
 package integer
 
 import (
-	"io"
 	"sync"
 
 	"github.com/cheggaaa/pb"
@@ -88,10 +87,6 @@ func (p *ProgressBar) Start(wg *sync.WaitGroup) {
 			break
 		}
 	}
-}
-
-func (p *ProgressBar) Silent() {
-	p.pBar.Output = io.Discard
 }
 
 func (p *ProgressBar) Close() error { return p.close() }

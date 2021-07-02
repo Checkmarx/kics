@@ -62,8 +62,8 @@ func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progress
 	wg.Add(1)
 	progressBar := integer.NewProgressBar("Executing queries: ", int64(total),
 		progressChannel, &integer.Pool{})
-	if hideProgress {
-		progressBar.Silent()
-	}
+	// if hideProgress {
+	// 	progressBar.Silent()
+	// }
 	go progressBar.Start(wg)
 }

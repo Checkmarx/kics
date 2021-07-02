@@ -19,6 +19,7 @@ const (
 type extractedPath struct {
 	Path          []string
 	ExtrectionMap map[string]string
+	RemoveTmp     []string
 }
 
 type getterStruct struct {
@@ -32,9 +33,18 @@ type getterStruct struct {
 }
 
 func GetSources(source []string, progress, insecure bool) (extractedPath, error) {
-	var returnStr extractedPath
+	returnStr := extractedPath{
+		Path:          []string{},
+		ExtrectionMap: make(map[string]string),
+		RemoveTmp:     []string{},
+	}
 	for _, path := range source {
 		destination, err := os.MkdirTemp("", "kics-extract-*")
+		if err != nil {
+			return extractedPath{}, err
+		}
+
+		err = os.RemoveAll(destination)
 		if err != nil {
 			return extractedPath{}, err
 		}
@@ -66,8 +76,11 @@ func GetSources(source []string, progress, insecure bool) (extractedPath, error)
 			source:      path,
 		}
 
-		returnStr.ExtrectionMap[getPaths(st)] = path
-		returnStr.Path = append(returnStr.Path, path)
+		dst := getPaths(st)
+		returnStr.RemoveTmp = append(returnStr.RemoveTmp, dst)
+		dst = checkSymLink(dst)
+		returnStr.ExtrectionMap[dst] = path
+		returnStr.Path = append(returnStr.Path, dst)
 	}
 
 	return returnStr, nil
@@ -114,4 +127,19 @@ func getPaths(g getterStruct) string {
 	}
 
 	return g.destination
+}
+
+func checkSymLink(dst string) string {
+	info, err := os.Lstat(dst)
+	if err != nil {
+		log.Error().Msgf("failed lstat for %s: %v", dst, err)
+	}
+	if info.Mode()&os.ModeSymlink != 0 {
+		path, err := os.Readlink(dst)
+		if err != nil {
+			log.Error().Msgf("failed Readlink for %s: %v", dst, err)
+		}
+		dst = path
+	}
+	return dst
 }

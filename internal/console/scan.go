@@ -520,23 +520,6 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
-func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map[string]string, err error) {
-	absPaths := make([]string, len(path))
-	zProvider := &provider.ZipSystemSourceProvider{}
-	for idx, scanPath := range paths {
-		absPath, err := filepath.Abs(scanPath)
-		if err != nil {
-			return nil, nil, err
-		}
-		absPath, err = zProvider.CheckAndExtractZip(absPath)
-		if err != nil {
-			return nil, nil, err
-		}
-		absPaths[idx] = absPath
-	}
-	return absPaths, zProvider.PathExtractionMap, nil
-}
-
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
@@ -568,15 +551,21 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	// extractedPaths, pathExtractionMap, err :=
-	// str, err := consoleHelpers.GetSources(path, true, false)
-	extractedPaths, pathExtractionMap, err := extractPaths(path)
+	extractedPaths, err := consoleHelpers.GetSources(path, true, false)
 	if err != nil {
 		return err
 	}
 
-	// if types, excludePath, err = analyzePaths(str.Path, types, excludePath); err != nil {
-	if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
+	defer func() {
+		for _, tmpPath := range extractedPaths.RemoveTmp {
+			if err := os.RemoveAll(tmpPath); err != nil {
+				log.Error().Msgf("failed to remove temporary path %s: %v", tmpPath, err)
+			}
+		}
+	}()
+
+	// if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
+	if types, excludePath, err = analyzePaths(extractedPaths.Path, types, excludePath); err != nil {
 		return err
 	}
 
@@ -589,7 +578,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	services, err := createService(inspector, extractedPaths, t, store, *querySource)
+	services, err := createService(inspector, extractedPaths.Path, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
 		return err
@@ -614,7 +603,7 @@ func scan(changedDefaultQueryPath bool) error {
 
 	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
 		ScannedPaths:      path,
-		PathExtractionMap: pathExtractionMap,
+		PathExtractionMap: extractedPaths.ExtrectionMap,
 	})
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
