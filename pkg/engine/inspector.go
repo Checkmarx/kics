@@ -200,7 +200,7 @@ func (c *Inspector) Inspect(
 	hideProgress bool,
 	baseScanPaths []string,
 	platforms []string,
-	currentQuery chan<- float64) ([]model.Vulnerability, error) {
+	currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -213,7 +213,7 @@ func (c *Inspector) Inspect(
 	vulnerabilities = make([]model.Vulnerability, 0)
 	for _, query := range c.getQueriesByPlat(platforms) {
 		if !hideProgress {
-			currentQuery <- float64(1)
+			currentQuery <- 1
 		}
 
 		vuls, err := c.doRun(&QueryContext{

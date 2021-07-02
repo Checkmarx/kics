@@ -558,7 +558,13 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	if types, excludePath, err = analyzePaths(path, types, excludePath); err != nil {
+	// extractedPaths, pathExtractionMap, err :=
+	str, err := consoleHelpers.GetSources(path, true, false)
+	if err != nil {
+		return err
+	}
+
+	if types, excludePath, err = analyzePaths(str.Path, types, excludePath); err != nil {
 		return err
 	}
 

@@ -6,75 +6,106 @@ import (
 	"os/signal"
 	"sync"
 
+	progressBar "github.com/Checkmarx/kics/pkg/progress/reader"
 	"github.com/rs/zerolog/log"
 
 	"github.com/hashicorp/go-getter"
 )
 
-func GetSources(source, modeStr string, progress, insecure bool) (string, error) {
-	destination, err := os.MkdirTemp("", "kics-extract-*")
-	if err != nil {
-		return "", err
+const (
+	channelLength = 2
+)
+
+type extractedPath struct {
+	Path          []string
+	ExtrectionMap map[string]string
+}
+
+type getterStruct struct {
+	ctx         context.Context
+	cancel      context.CancelFunc
+	mode        getter.ClientMode
+	pwd         string
+	opts        []getter.ClientOption
+	destination string
+	source      string
+}
+
+func GetSources(source []string, progress, insecure bool) (extractedPath, error) {
+	var returnStr extractedPath
+	for _, path := range source {
+		destination, err := os.MkdirTemp("", "kics-extract-*")
+		if err != nil {
+			return extractedPath{}, err
+		}
+
+		// Get the mode
+		mode := getter.ClientModeAny
+
+		pwd, err := os.Getwd()
+		if err != nil {
+			log.Fatal().Msgf("Error getting wd: %s", err)
+		}
+
+		opts := []getter.ClientOption{getter.WithProgress(&progressBar.PBar{})}
+
+		if insecure {
+			log.Warn().Msg("WARNING: Using Insecure TLS transport!")
+			opts = append(opts, getter.WithInsecure())
+		}
+
+		ctx, cancel := context.WithCancel(context.Background())
+
+		st := getterStruct{
+			ctx:         ctx,
+			cancel:      cancel,
+			mode:        mode,
+			pwd:         pwd,
+			opts:        opts,
+			destination: destination,
+			source:      path,
+		}
+
+		returnStr.ExtrectionMap[getPaths(st)] = path
+		returnStr.Path = append(returnStr.Path, path)
 	}
 
-	// Get the mode
-	var mode getter.ClientMode
-	switch modeStr {
-	case "any":
-		mode = getter.ClientModeAny
-	case "file":
-		mode = getter.ClientModeFile
-	case "dir":
-		mode = getter.ClientModeDir
-	default:
-		log.Fatal().Msgf("Invalid client mode, must be 'any', 'file', or 'dir': %s", modeStr)
-		os.Exit(1)
-	}
+	return returnStr, nil
+}
 
-	pwd, err := os.Getwd()
-	if err != nil {
-		log.Fatal().Msgf("Error getting wd: %s", err)
-	}
+func getPaths(g getterStruct) string {
 
-	opts := []getter.ClientOption{}
-
-	if insecure {
-		log.Warn().Msg("WARNING: Using Insecure TLS transport!")
-		opts = append(opts, getter.WithInsecure())
-	}
-
-	ctx, cancel := context.WithCancel(context.Background())
 	// Build the client
 	client := &getter.Client{
-		Ctx:     ctx,
-		Src:     source,
-		Dst:     destination,
-		Pwd:     pwd,
-		Mode:    mode,
-		Options: opts,
+		Ctx:     g.ctx,
+		Src:     g.source,
+		Dst:     g.destination,
+		Pwd:     g.pwd,
+		Mode:    g.mode,
+		Options: g.opts,
 	}
 
 	wg := sync.WaitGroup{}
 	wg.Add(1)
-	errChan := make(chan error, 2)
+	errChan := make(chan error, channelLength)
 	go func() {
 		defer wg.Done()
-		defer cancel()
+		defer g.cancel()
 		if err := client.Get(); err != nil {
 			errChan <- err
 		}
 	}()
 
-	c := make(chan os.Signal)
+	c := make(chan os.Signal, channelLength)
 	signal.Notify(c, os.Interrupt)
 
 	select {
 	case sig := <-c:
 		signal.Reset(os.Interrupt)
-		cancel()
+		g.cancel()
 		wg.Wait()
 		log.Printf("signal %v", sig)
-	case <-ctx.Done():
+	case <-g.ctx.Done():
 		wg.Wait()
 		log.Printf("success!")
 	case err := <-errChan:
@@ -82,5 +113,5 @@ func GetSources(source, modeStr string, progress, insecure bool) (string, error)
 		log.Fatal().Msgf("Error downloading: %s", err)
 	}
 
-	return destination, nil
+	return g.destination
 }

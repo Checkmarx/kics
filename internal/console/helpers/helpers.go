@@ -5,11 +5,9 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"math"
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/internal/metrics"
@@ -30,17 +28,6 @@ var reportGenerators = map[string]func(path, filename string, body interface{}) 
 	"pdf":    report.PrintPdfReport,
 }
 
-// ProgressBar represents a Progress
-// Writer is the writer output for progress bar
-type ProgressBar struct {
-	Writer          io.Writer
-	label           string
-	space           int
-	total           float64
-	currentProgress float64
-	progress        chan float64
-}
-
 // Printer wil print console output with colors
 // Medium is for medium sevevity results
 // High is for high sevevity results
@@ -57,54 +44,6 @@ type Printer struct {
 	Success color.RGBColor
 	Line    color.RGBColor
 	minimal bool
-}
-
-// NewProgressBar initializes a new ProgressBar
-// label is a string print before the progress bar
-// total is the progress bar target (a.k.a 100%)
-// space is the number of '=' characters on each side of the bar
-// progress is a channel updating the current executed elements
-func NewProgressBar(label string, space int, total float64, progress chan float64) ProgressBar {
-	return ProgressBar{
-		Writer:   os.Stdout,
-		label:    label,
-		space:    space,
-		total:    total,
-		progress: progress,
-	}
-}
-
-// Start starts to print a progress bar on console
-// wg is a wait group to report when progress is done
-func (p *ProgressBar) Start(wg *sync.WaitGroup) {
-	defer wg.Done()
-	if p.Writer != io.Discard {
-		var firstHalfPercentage, secondHalfPercentage string
-		const hundredPercent = 100
-		formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
-		for {
-			newProgress, ok := <-p.progress
-			p.currentProgress += newProgress
-			if !ok || p.currentProgress >= p.total {
-				fmt.Fprintf(p.Writer, formmatingString, strings.Repeat("=", p.space), 100.0, strings.Repeat("=", p.space))
-				break
-			}
-
-			percentage := p.currentProgress / p.total * hundredPercent
-			convertedPercentage := int(math.Round(float64(p.space+p.space) / hundredPercent * math.Round(percentage)))
-			if percentage >= hundredPercent/2 {
-				firstHalfPercentage = strings.Repeat("=", p.space)
-				secondHalfPercentage = strings.Repeat("=", convertedPercentage-p.space) +
-					strings.Repeat(" ", 2*p.space-convertedPercentage)
-			} else {
-				secondHalfPercentage = strings.Repeat(" ", p.space)
-				firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
-					strings.Repeat(" ", p.space-convertedPercentage)
-			}
-			fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
-		}
-	}
-	fmt.Println()
 }
 
 // WordWrap Wraps text at the specified number of words

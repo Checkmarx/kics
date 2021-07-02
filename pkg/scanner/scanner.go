@@ -3,12 +3,11 @@ package scanner
 import (
 	"context"
 	"fmt"
-	"io"
 	"sync"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/kics"
+	integer "github.com/Checkmarx/kics/pkg/progress/integer"
 )
 
 type serviceSlice []*kics.Service
@@ -20,7 +19,7 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
 	errCh := make(chan error)
-	currentQuery := make(chan float64, 1)
+	currentQuery := make(chan int64, 1)
 	var wgProg sync.WaitGroup
 	total := services.GetQueriesLength()
 	if total != 0 {
@@ -59,11 +58,12 @@ func (s serviceSlice) GetQueriesLength() int {
 	return count
 }
 
-func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
+func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan int64) {
 	wg.Add(1)
-	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
+	progressBar := integer.NewProgressBar("Executing queries: ", int64(total),
+		progressChannel, &integer.Pool{})
 	if hideProgress {
-		progressBar.Writer = io.Discard
+		progressBar.Silent()
 	}
 	go progressBar.Start(wg)
 }

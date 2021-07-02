@@ -54,7 +54,7 @@ func (s *Service) StartScan(
 	hideProgress bool,
 	errCh chan<- error,
 	wg *sync.WaitGroup,
-	currentQuery chan<- float64) {
+	currentQuery chan<- int64) {
 	log.Debug().Msg("service.StartScan()")
 	defer wg.Done()
 	if err := s.SourceProvider.GetSources(

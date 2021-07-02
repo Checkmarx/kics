@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.1
-	github.com/cheggaaa/pb v1.0.27
+	github.com/cheggaaa/pb v1.0.29
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/getsentry/sentry-go v0.11.0
 	github.com/golang/mock v1.6.0
