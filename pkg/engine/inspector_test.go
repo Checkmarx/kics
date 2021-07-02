@@ -401,7 +401,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				tt.args.source,
 				tt.args.vb,
 				tt.args.tracker,
-				tt.args.queryFilter,
+				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout)
 
@@ -562,7 +562,14 @@ func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
 	}
-	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.QueryInspectorParameters{}, map[string]bool{}, 60)
+	ins, err := NewInspector(
+		context.Background(),
+		querySource,
+		vb,
+		&tracker.CITracker{},
+		&source.QueryInspectorParameters{},
+		map[string]bool{}, 60,
+	)
 	require.NoError(t, err)
 	return ins
 }

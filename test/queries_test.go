@@ -138,9 +138,10 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.QueryInspectorParameters{
+		&source.QueryInspectorParameters{
 			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+			InputDataPath:  "",
 		},
 		map[string]bool{}, 60)
 

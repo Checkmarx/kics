@@ -459,7 +459,7 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		t,
-		queryFilter,
+		&queryFilter,
 		excludeResultsMap,
 		queryExecTimeout)
 	if err != nil {

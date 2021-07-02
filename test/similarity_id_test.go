@@ -292,9 +292,10 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.QueryInspectorParameters{
+		&source.QueryInspectorParameters{
 			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+			InputDataPath:  "",
 		},
 		map[string]bool{}, 60)
 
