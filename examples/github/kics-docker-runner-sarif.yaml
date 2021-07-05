@@ -15,7 +15,7 @@ jobs:
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-action@latest
+        uses: checkmarx/kics-action@v1.2
         with:
           # comma separated list of paths
           path: 'terraform,my-subdir,my-other-subdir/my-file.tf'
