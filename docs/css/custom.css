@@ -9,7 +9,7 @@
   --md-primary-fg-color:        #ffbc42;
   --md-primary-fg-color--light: #ffbc42;
   --md-primary-fg-color--dark:  #ffbc42;
-  --md-accent-fg-color:         #ffbc42;
+  --md-accent-fg-color:         #ffac22;
 }
 
 .md-header {
@@ -45,6 +45,8 @@
 
 .queries-th {
   max-width: 5rem;
+  background-color: #ffbc42 !important;
+  color: #212529 !important;
 }
 
 .border-input-queries{
@@ -55,7 +57,7 @@
 .md-header__button.md-logo img{
   display: block;
   width: 110px;
-  height: 85px;
+  height: 100px;
   fill: currentColor;
 }
 
@@ -69,11 +71,11 @@
  }
  .btn-success:hover, .btn-outline-success:hover {
   color: #212529 !important;
-  background-color: #ffbc42 !important;
-  border-color: #ffbc42 !important;
+  background-color: #ffcd53 !important;
+  border-color: #ffcd53 !important;
  }
  .btn-outline-success {
-  color: #212529 !important;
+  color: #ffbc42 !important;
   border-color: #ffbc42 !important;
  }
 
@@ -97,4 +99,3 @@
 }
 
 /* ########## End Bootstrap Button CSS ########## */
-
