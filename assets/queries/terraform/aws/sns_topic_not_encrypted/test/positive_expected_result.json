@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SNS Topic Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SNS Topic Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.tf"
+  }
+]
