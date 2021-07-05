@@ -9,13 +9,13 @@
 </head>
 <body>
   <div class="container">
-    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" target="_blank">KICS.IO</a></div>
+    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noreferrer" target="_blank">KICS.IO</a></div>
     <div class="run-info">
-      <span style="flex-basis:100%"><b>Scanned paths:</b> {{ getPaths .ScannedPaths }}</span>
-      <span style="flex-basis:100%"><b>Platforms:</b> {{ getPlatforms .Queries }}</span>
+      <span style="flex-basis:100%" id="scan-paths"><b>Scanned paths:</b> {{ getPaths .ScannedPaths }}</span>
+      <span style="flex-basis:100%" id="scan-platforms"><b>Platforms:</b> {{ getPlatforms .Queries }}</span>
       {{- with .Times -}}
-        <span><b>Start time:</b> {{ .Start.Format "15:04:05, Jan 02 2006" }}</span>
-        <span><b>End time:</b> {{ .End.Format "15:04:05, Jan 02 2006" }}</span>
+        <span id="scan-start-time"><b>Start time:</b> {{ .Start.Format "15:04:05, Jan 02 2006" }}</span>
+        <span id="scan-end-time"><b>End time:</b> {{ .End.Format "15:04:05, Jan 02 2006" }}</span>
       {{- end}}
     </div>
     <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
@@ -23,28 +23,28 @@
     {{- with .SeveritySummary -}}
       <div class="severity" onclick="filter('HIGH')">
         <div class="kics-orange icon">{{ includeSVG "vulnerability_fill.svg" }}</div>
-        <span class="badge">{{ index .SeverityCounters (severity "high") }}</span>
+        <span class="badge" id="severity-count-high">{{ index .SeverityCounters (severity "high") }}</span>
         <span class="caption">HIGH</span>
       </div>
       <div class="severity" onclick="filter('MEDIUM')">
         <div class="kics-orange icon">{{ includeSVG "vulnerability_out.svg" }}</div>
-        <span class="badge">{{ index .SeverityCounters (severity "medium") }}</span>
+        <span class="badge" id="severity-count-medium">{{ index .SeverityCounters (severity "medium") }}</span>
         <span class="caption">MEDIUM</span>
       </div>
       <div class="severity" onclick="filter('LOW')">
         <div class="kics-purple icon">{{ includeSVG "vulnerability_out.svg" }}</div>
-        <span class="badge">{{ index .SeverityCounters (severity "low") }}</span>
+        <span class="badge" id="severity-count-low">{{ index .SeverityCounters (severity "low") }}</span>
         <span class="caption">LOW</span>
       </div>
       <div class="severity" onclick="filter('INFO')">
         <div class="kics-purple icon">{{ includeSVG "info.svg" }}</div>
-        <span class="badge">{{ index .SeverityCounters (severity "info") }}</span>
+        <span class="badge" id="severity-count-info">{{ index .SeverityCounters (severity "info") }}</span>
         <span class="caption">INFO</span>
       </div>
     {{- end}}
       <div class="severity" onclick="filter('TOTAL')">
         <div class="kics-orange icon">{{ includeSVG "info.svg" }}</div>
-        <span class="badge">{{ .TotalCounter }}</span>
+        <span class="badge" id="severity-count-total">{{ .TotalCounter }}</span>
         <span class="caption selected">TOTAL</span>
       </div>
     </div>
@@ -67,18 +67,18 @@
               {{- if eq .Severity "INFO" -}}
               <div class="kics-purple">{{ includeSVG "info.svg" }}</div>
               {{- end -}}
-              {{- .QueryName -}}
+              <span class="query-name">{{- .QueryName -}}</span>
             </h2>
-            <span><strong>Platform:</strong> {{ .Platform }}</span>
-            <span><strong>Category:</strong> {{ .Category }}</span>
+            <span><strong>Platform:</strong> <span class="query-info-platform">{{ .Platform }}</span></span>
+            <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
           <div class="query-details">
             <span>{{ .Description }}</span>
-            <span><a href="{{ .QueryURI }}" target="_blank">{{ .QueryURI }}</a></span>
+            <span><a href="{{ .QueryURI }}" rel="noreferrer" target="_blank">{{ .QueryURI }}</a></span>
           </div>
         </div>
         <details>
-          <summary>Results ({{ len .Files }})</summary>
+          <summary>Results (<span class="severity-partial-count-{{ toString .Severity | lower }}">{{ len .Files }}</span>)</summary>
           {{- range .Files}}
           {{- $vulLine := .Line -}}
           <div class="vulnerable-info">
@@ -111,12 +111,12 @@
       Spread the love:
     </div>
     <div class="social-networks">
-      <a href="https://github.com/Checkmarx/kics/" target="_blank">
+      <a href="https://github.com/Checkmarx/kics/" rel="noreferrer" target="_blank">
         <div>{{ includeSVG "github.svg" }}</div>
       </a>
     </div>
     <div class="report-header-footer">
-      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
+      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" rel="noreferrer" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
     </div>
   </div>
 </body>
