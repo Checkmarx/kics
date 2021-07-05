@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" target="_blank">KICS.IO</a></div>
+    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noreferrer" target="_blank">KICS.IO</a></div>
     <div class="run-info">
       <span style="flex-basis:100%" id="scan-paths"><b>Scanned paths:</b> {{ getPaths .ScannedPaths }}</span>
       <span style="flex-basis:100%" id="scan-platforms"><b>Platforms:</b> {{ getPlatforms .Queries }}</span>
@@ -74,7 +74,7 @@
           </div>
           <div class="query-details">
             <span>{{ .Description }}</span>
-            <span><a href="{{ .QueryURI }}" target="_blank">{{ .QueryURI }}</a></span>
+            <span><a href="{{ .QueryURI }}" rel="noreferrer" target="_blank">{{ .QueryURI }}</a></span>
           </div>
         </div>
         <details>
@@ -111,12 +111,12 @@
       Spread the love:
     </div>
     <div class="social-networks">
-      <a href="https://github.com/Checkmarx/kics/" target="_blank">
+      <a href="https://github.com/Checkmarx/kics/" rel="noreferrer" target="_blank">
         <div>{{ includeSVG "github.svg" }}</div>
       </a>
     </div>
     <div class="report-header-footer">
-      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
+      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" rel="noreferrer" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
     </div>
   </div>
 </body>
