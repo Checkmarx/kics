@@ -190,7 +190,7 @@ check_vulnerability(correctStrings) {
 
 check_common(correctStrings) {
 	#remove common values
-	not commonLib.isCommonValue(correctStrings.value)
+	not isCommonValue(correctStrings.value)
 
 	#remove common keys
 	not commonLib.isCommonKey(correctStrings.key)
@@ -204,4 +204,8 @@ replace_unicode(allValues) = treatedValue {
 
 isDefaultPassword(p) {
 	data.ar[_] == p
+}
+
+isCommonValue(p) {
+	contains(upper(p), data.bl[_])
 }

@@ -81,56 +81,6 @@ containsOrInArrayContains(field, value) {
 	contains(lower(field[i]), value)
 }
 
-isCommonValue(p) {
-	bl = {
-		"RESOURCE",
-		"GROUP",
-		"SUBNET",
-		"S3",
-		"SERVICE",
-		"AZURE",
-		"BUCKET",
-		"VIRTUAL",
-		"NETWORK",
-		"POLICY",
-		"AWS",
-		"PROTOCOL",
-		"CLOUD",
-		"MINUTE",
-		"TLS",
-		"EC2",
-		"VPC",
-		"INTERNET",
-		"ROUTE",
-		"EFS",
-		"INSTANCE",
-		"VPN",
-		"MOUNT",
-		"MYSQL",
-		"APACHE",
-		"ETHERNET",
-		"TERRAFORM",
-		"TARGET",
-		"ENVIRONMENT",
-		"MEMORY",
-		"PACKAGE",
-		"STATEMENT",
-		"REGION",
-		"INGRESS",
-		"CHECKPOINT",
-		"MODULE",
-		"BASIC",
-		"NUMBER",
-		"MASLEN",
-		"VERSION",
-		"MAKE",
-		"ARCH",
-	}
-
-	black := bl[_]
-	contains(upper(p), black)
-}
-
 isCommonKey(p) {
 	bl = {
 		"namespace",

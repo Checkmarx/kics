@@ -188,9 +188,13 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			continue
 		}
 
-		if customInputData != emptyInputData && customInputData != "" {
-			query.InputData = customInputData
+		inputData, mergeError := mergeInputData(query.InputData, customInputData)
+		if mergeError != nil {
+			log.Err(mergeError).
+				Msgf("failed to merge input data, query=%s", path.Base(queryDir))
+			continue
 		}
+		query.InputData = inputData
 
 		if len(queryParameters.IncludeQueries.ByIDs) > 0 {
 			if checkQueryInclude(query.Metadata["id"], queryParameters.IncludeQueries.ByIDs) {
@@ -307,4 +311,27 @@ func readInputData(inputDataPath string) (string, error) {
 		return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))
 	}
 	return string(inputData), nil
+}
+
+func mergeInputData(queryInputData, customInputData string) (string, error) {
+	if customInputData == emptyInputData || customInputData == "" {
+		return queryInputData, nil
+	}
+	dataJSON := map[string]interface{}{}
+	customDataJSON := map[string]interface{}{}
+	if unmarshalError := json.Unmarshal([]byte(queryInputData), &dataJSON); unmarshalError != nil {
+		return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
+	}
+	if unmarshalError := json.Unmarshal([]byte(customInputData), &customDataJSON); unmarshalError != nil {
+		return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
+	}
+
+	for key, value := range customDataJSON {
+		dataJSON[key] = value
+	}
+	mergedJSON, mergeErr := json.Marshal(dataJSON)
+	if mergeErr != nil {
+		return "", errors.Wrapf(mergeErr, "failed to merge query input data")
+	}
+	return string(mergedJSON), nil
 }

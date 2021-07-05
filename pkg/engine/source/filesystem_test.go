@@ -1,6 +1,7 @@
 package source
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -592,6 +593,40 @@ func TestReadInputData(t *testing.T) {
 			got, err := readInputData(tt.path)
 			require.NoError(t, err)
 			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+// TestMergeInputData tests mergeInputData function
+func TestMergeInputData(t *testing.T) {
+	tests := []struct {
+		name      string
+		pathData  string
+		pathMerge string
+		want      string
+	}{
+		{
+			name:      "Should merge input data strings",
+			pathData:  filepath.FromSlash("./test/fixtures/input_data/test.json"),
+			pathMerge: filepath.FromSlash("./test/fixtures/input_data/merge.json"),
+			want:      `{"test": "merge","merge": "success"}`,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			data, err := readInputData(tt.pathData)
+			require.NoError(t, err)
+			customData, err := readInputData(tt.pathMerge)
+			require.NoError(t, err)
+			got, err := mergeInputData(data, customData)
+			require.NoError(t, err)
+			wantJSON := map[string]interface{}{}
+			gotJSON := map[string]interface{}{}
+			err = json.Unmarshal([]byte(tt.want), &wantJSON)
+			require.NoError(t, err)
+			err = json.Unmarshal([]byte(got), &gotJSON)
+			require.NoError(t, err)
+			require.Equal(t, wantJSON, gotJSON)
 		})
 	}
 }
