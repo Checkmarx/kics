@@ -1,0 +1,4 @@
+- name: Group1
+  iam_group:
+    name: testgroup1
+    state: present
