@@ -54,10 +54,10 @@
 
 .md-header__button.md-logo img{
   display: block;
-  width:90px;
+  width: 110px;
+  height: 85px;
   fill: currentColor;
 }
-
 
 /* ########## Bootstrap Button CSS ########## */
 

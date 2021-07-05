@@ -1,4 +1,4 @@
-<img alt="KICS - Keeping Infrastructure as Code Secure" src="../img/logo/kics-black.png" width="250">
+<img alt="KICS - Keeping Infrastructure as Code Secure" src="../img/logo/kics-logo-docs.png" width="250">
 
 ---
 

@@ -16,8 +16,8 @@ extra:
 
 theme:
   name: material
-  logo: img/logo/kics-logo-text.png
-  favicon: img/logo/kics-logo-text.png
+  logo: img/logo/kics-hat-white.png
+  favicon: img/logo/kics-hat.ico
   features:
     - navigation.tabs
     - navigation.tabs.sticky
