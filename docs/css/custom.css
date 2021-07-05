@@ -1,3 +1,29 @@
+:root {
+  --md-primary-fg-color:        #ffbc42;
+  --md-primary-fg-color--light: #ffbc42;
+  --md-primary-fg-color--dark:  #ffbc42;
+  --md-accent-fg-color:         #ffbc42;
+}
+
+[data-md-color-scheme="kics"] {
+  --md-primary-fg-color:        #ffbc42;
+  --md-primary-fg-color--light: #ffbc42;
+  --md-primary-fg-color--dark:  #ffbc42;
+  --md-accent-fg-color:         #ffbc42;
+}
+
+.md-header {
+  color: black;
+}
+
+.md-tabs {
+  color: black;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 210; /* [0, 360] */
+}
+
 .table {
   table-layout: fixed;
   word-wrap: break-word;
@@ -37,18 +63,18 @@
 
 /* ########## Bootstrap Button CSS ########## */
 .btn-success {
-  color: #fff !important;
-  background-color: #009485 !important;
-  border-color: #009485 !important;
+  color: #212529 !important;
+  background-color: #ffbc42 !important;
+  border-color: #ffbc42 !important;
  }
  .btn-success:hover, .btn-outline-success:hover {
-  color: #fff !important;
-  background-color: #26a699 !important;
-  border-color: #26a699 !important;
+  color: #212529 !important;
+  background-color: #ffbc42 !important;
+  border-color: #ffbc42 !important;
  }
  .btn-outline-success {
-  color: #26a699 !important;
-  border-color: #26a699 !important;
+  color: #212529 !important;
+  border-color: #ffbc42 !important;
  }
 
 

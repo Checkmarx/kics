@@ -22,15 +22,11 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
   palette:
-    - scheme: default
-      primary: teal
-      accent: teal
+    - scheme: kics
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: teal
-      accent: teal
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
