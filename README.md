@@ -12,7 +12,7 @@
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
 
 
-<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-black.png" width="250">
+<img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics-hat-dark.png" width="250">
 
 ---
 

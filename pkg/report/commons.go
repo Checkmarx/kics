@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
@@ -27,8 +28,20 @@ var (
 		"severity":       getSeverities,
 		"getCurrentTime": getCurrentTime,
 		"trimSpaces":     trimSpaces,
+		"toString":       toString,
 	}
 )
+
+func toString(value interface{}) string {
+	switch v := value.(type) {
+	case string:
+		return v
+	case int:
+		return strconv.Itoa(v)
+	default:
+		return fmt.Sprintf("%v", v)
+	}
+}
 
 func trimSpaces(value string) string {
 	return strings.TrimPrefix(value, " ")

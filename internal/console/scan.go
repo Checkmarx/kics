@@ -124,14 +124,7 @@ func run(cmd *cobra.Command) error {
 		return err
 	}
 	if outputPath != "" {
-		if len(reportFormats) > 0 {
-			for _, format := range reportFormats {
-				if format == "all" {
-					reportFormats = consoleHelpers.ListReportFormats()
-					break
-				}
-			}
-		}
+		updateReportFormats()
 		outputName = filepath.Base(outputName)
 		if filepath.Ext(outputPath) != "" {
 			outputPath = filepath.Join(outputPath, string(os.PathSeparator))
@@ -173,6 +166,15 @@ func formatNewError(flag1, flag2 string) error {
 	return errors.Errorf("can't provide '%s' and '%s' flags simultaneously",
 		flag1,
 		flag2)
+}
+
+func updateReportFormats() {
+	for _, format := range reportFormats {
+		if format == "all" {
+			reportFormats = consoleHelpers.ListReportFormats()
+			break
+		}
+	}
 }
 
 func validateQuerySelectionFlags() error {

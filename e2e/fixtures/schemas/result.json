@@ -130,7 +130,7 @@
                     "category": {
                         "type": "string",
                         "enum": [
-                            "Availability", "Backup", "Best Practices", "Build Process",
+                            "Access Control", "Availability", "Backup", "Best Practices", "Build Process",
                             "Encryption", "Insecure Configurations", "Insecure Defaults",
                             "Networking and Firewall", "Observability", "Resource Management",
                             "Secret Management", "Supply-Chain", "Structure and Semantics"

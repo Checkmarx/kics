@@ -1,0 +1,9 @@
+- name: Group3
+  iam_group:
+    name: testgroup2
+    managed_policy:
+      - arn:aws:iam::aws:policy/AmazonSNSFullAccess
+    users:
+      - test_user1
+      - test_user2
+    state: present

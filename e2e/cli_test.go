@@ -11,6 +11,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/Checkmarx/kics/e2e/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -536,13 +537,13 @@ var tests = []testCase{
 		args: args{
 			args: []cmdArgs{
 				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_031_RESULT",
-					"--report-formats", "json,sarif,glsast",
+					"--report-formats", "json,sarif,glsast,html",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 			},
 			expectedResult: []ResultsValidation{
 				{
 					resultsFile:    "E2E_CLI_031_RESULT",
-					resultsFormats: []string{"json", "sarif", "glsast"},
+					resultsFormats: []string{"json", "sarif", "glsast", "html"},
 				},
 			},
 		},
@@ -722,10 +723,30 @@ var tests = []testCase{
 		},
 		wantStatus: []int{40},
 	},
+
+	// E2E-CLI-040 - Kics  scan command with --report-formats and --output-path flags
+	// should export the results based on the formats provided by this flag.
+	{
+		name: "E2E-CLI-040",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_040_RESULT",
+					"--report-formats", "json,sarif,glsast,html",
+					"-q", "../assets/queries", "-p", "fixtures/samples/positive.yaml"},
+			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_040_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast", "html"},
+				},
+			},
+		},
+		wantStatus: []int{50},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := getKICSBinaryPath("/home/reigota/kics/bin/kics")
+	kicsPath := utils.GetKICSBinaryPath("/home/reigota/kics/bin/kics")
 	scanStartTime := time.Now()
 
 	if testing.Short() {
@@ -740,16 +761,16 @@ func Test_E2E_CLI(t *testing.T) {
 			arg := arg
 			t.Run(fmt.Sprintf("%s_%d", tt.name, arg), func(t *testing.T) {
 				t.Parallel()
-				out, err := runCommand(append(kicsPath, tt.args.args[arg]...))
+				out, err := utils.RunCommand(append(kicsPath, tt.args.args[arg]...))
 				// Check command Error
 				require.NoError(t, err, "Capture output should not yield an error")
 				// Check exit status code
-				if !reflect.DeepEqual(out.status, tt.wantStatus[arg]) {
-					t.Errorf("actual status = %v, expected status = %v", out.status, tt.wantStatus[arg])
+				if !reflect.DeepEqual(out.Status, tt.wantStatus[arg]) {
+					t.Errorf("actual status = %v, expected status = %v", out.Status, tt.wantStatus[arg])
 				}
 
 				if tt.validation != nil {
-					fullString := strings.Join(out.output, ";")
+					fullString := strings.Join(out.Output, ";")
 					if !tt.validation(fullString) {
 						t.Errorf("kics output doesn't match the validation regex")
 					}
@@ -761,12 +782,12 @@ func Test_E2E_CLI(t *testing.T) {
 
 				if tt.args.expectedPayload != nil {
 					// Check payload file
-					fileCheck(t, tt.args.expectedPayload[arg], tt.args.expectedPayload[arg], "payload")
+					utils.FileCheck(t, tt.args.expectedPayload[arg], tt.args.expectedPayload[arg], "payload")
 				}
 
 				if tt.args.expectedLog.validationFunc != nil {
 					// Check log file
-					logData, _ := readFixture(tt.args.expectedLog.logFile, "output")
+					logData, _ := utils.ReadFixture(tt.args.expectedLog.logFile, "output")
 					if !tt.args.expectedLog.validationFunc(logData) {
 						t.Errorf("The output log file doesn't match the validation regex")
 					}
@@ -774,18 +795,18 @@ func Test_E2E_CLI(t *testing.T) {
 
 				if tt.args.expectedOut != nil {
 					// Get and preapare expected output
-					want, errPrep := prepareExpected(tt.args.expectedOut[arg], "fixtures")
+					want, errPrep := utils.PrepareExpected(tt.args.expectedOut[arg], "fixtures")
 					require.NoError(t, errPrep, "Reading a fixture should not yield an error")
 
 					formattedWant := loadTemplates(want, templates)
 
 					// Check number of Lines
-					require.Equal(t, len(formattedWant), len(out.output),
-						"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(formattedWant), len(out.output))
+					require.Equal(t, len(formattedWant), len(out.Output),
+						"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(formattedWant), len(out.Output))
 
 					// Check output lines
 					for idx := range formattedWant {
-						checkLine(t, out.output[idx], formattedWant[idx], idx+1)
+						utils.CheckLine(t, out.Output[idx], formattedWant[idx], idx+1)
 					}
 				}
 			})
@@ -804,29 +825,33 @@ func checkExpectedOutput(t *testing.T, tt *testCase, argIndex int) {
 	resultsFormats := tt.args.expectedResult[argIndex].resultsFormats
 	// Check result file (compare with sample)
 	if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
-		fileCheck(t, jsonFileName, jsonFileName, "result")
+		utils.FileCheck(t, jsonFileName, jsonFileName, "result")
 	}
 	// Check result file (JSON)
-	if contains(resultsFormats, "json") {
-		jsonSchemaValidation(t, jsonFileName, "result.json")
+	if utils.Contains(resultsFormats, "json") {
+		utils.JSONSchemaValidation(t, jsonFileName, "result.json")
 	}
 	// Check result file (GLSAST)
-	if contains(resultsFormats, "glsast") {
-		jsonSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
+	if utils.Contains(resultsFormats, "glsast") {
+		utils.JSONSchemaValidation(t, "gl-sast-"+jsonFileName, "result-gl-sast.json")
 	}
 	// Check result file (SARIF)
-	if contains(resultsFormats, "sarif") {
-		jsonSchemaValidation(t, tt.args.expectedResult[argIndex].resultsFile+".sarif", "result-sarif.json")
+	if utils.Contains(resultsFormats, "sarif") {
+		utils.JSONSchemaValidation(t, tt.args.expectedResult[argIndex].resultsFile+".sarif", "result-sarif.json")
+	}
+	// Check result file (HTML)
+	if utils.Contains(resultsFormats, "html") {
+		utils.HTMLValidation(t, tt.args.expectedResult[argIndex].resultsFile+".html")
 	}
 }
 
 func prepareTemplates() TestTemplates {
-	var help, errH = prepareExpected("help", "fixtures/assets")
+	var help, errH = utils.PrepareExpected("help", "fixtures/assets")
 	if errH != nil {
 		help = []string{}
 	}
 
-	var scanHelp, errSH = prepareExpected("scan_help", "fixtures/assets")
+	var scanHelp, errSH = utils.PrepareExpected("scan_help", "fixtures/assets")
 	if errSH != nil {
 		scanHelp = []string{}
 	}

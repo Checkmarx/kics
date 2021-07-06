@@ -51,8 +51,10 @@ var headerArray = [];
     }
     const csvFilename = `${window.location.href.match(/[a-zA-Z]*-queries/)[0]}.csv`
     const table = document.querySelector(":not(.modal-body) > table")
-    const button = document.createElement("button")
+    const button = document.createElement("a")
     button.innerText = "Download"
+    button.classList.add("btn")
+    button.classList.add("btn-success")
     button.addEventListener("click", function () { exportToCSV(csvFilename) });
     table.parentNode.insertBefore(button, table)
   }

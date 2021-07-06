@@ -16,21 +16,17 @@ extra:
 
 theme:
   name: material
-  logo: img/logo/kics-logo-text.png
-  favicon: img/logo/kics-logo-text.png
+  logo: img/logo/kics-hat-white.png
+  favicon: img/logo/kics-hat.ico
   features:
     - navigation.tabs
     - navigation.tabs.sticky
   palette:
-    - scheme: default
-      primary: teal
-      accent: teal
+    - scheme: kics
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: teal
-      accent: teal
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
