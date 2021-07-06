@@ -197,7 +197,6 @@ func (c *Inspector) Inspect(
 	ctx context.Context,
 	scanID string,
 	files model.FileMetadatas,
-	hideProgress bool,
 	baseScanPaths []string,
 	platforms []string,
 	currentQuery chan<- int64) ([]model.Vulnerability, error) {
@@ -212,9 +211,7 @@ func (c *Inspector) Inspect(
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
 	for _, query := range c.getQueriesByPlat(platforms) {
-		if !hideProgress {
-			currentQuery <- 1
-		}
+		currentQuery <- 1
 
 		vuls, err := c.doRun(&QueryContext{
 			ctx:           ctx,

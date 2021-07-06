@@ -12,12 +12,17 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/gookit/color"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
+)
+
+const (
+	wordWrapCount = 5
 )
 
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
@@ -76,7 +81,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
 	for queryName, err := range failedQueries {
 		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
+		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
 	}
 	fmt.Printf("------------------------------------\n\n")
 	for index := range summary.Queries {
@@ -186,10 +191,16 @@ func FileAnalyzer(path string) (string, error) {
 }
 
 // GenerateReport execute each report function to generate report
-func GenerateReport(path, filename string, body interface{}, formats []string) error {
+func GenerateReport(path, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
 	log.Debug().Msgf("helpers.GenerateReport()")
 	metrics.Metric.Start("generate_report")
+
+	progressBar := proBarBuilder.BuildCircle("Generating Reports: ")
+
 	var err error = nil
+	progressBar.Start()
+	defer progressBar.Close()
+
 	for _, format := range formats {
 		if err = reportGenerators[format](path, filename, body); err != nil {
 			log.Error().Msgf("Failed to generate %s report", format)

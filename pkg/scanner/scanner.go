@@ -7,13 +7,13 @@ import (
 
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/kics"
-	integer "github.com/Checkmarx/kics/pkg/progress/integer"
+	"github.com/Checkmarx/kics/pkg/progress"
 )
 
 type serviceSlice []*kics.Service
 
 // StartScan will run concurrent scans by parser
-func StartScan(ctx context.Context, scanID string, noProgress bool, services serviceSlice) error {
+func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
 	defer metrics.Metric.Stop()
 	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup
@@ -23,11 +23,11 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 	var wgProg sync.WaitGroup
 	total := services.GetQueriesLength()
 	if total != 0 {
-		startProgressBar(noProgress, total, &wgProg, currentQuery)
+		startProgressBar(total, &wgProg, currentQuery, proBarBuilder)
 	}
 	for _, service := range services {
 		wg.Add(1)
-		go service.StartScan(ctx, scanID, noProgress, errCh, &wg, currentQuery)
+		go service.StartScan(ctx, scanID, errCh, &wg, currentQuery)
 	}
 
 	go func() {
@@ -50,6 +50,7 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 	return nil
 }
 
+// GetQueriesLength returns the Total of queries for all Services
 func (s serviceSlice) GetQueriesLength() int {
 	count := 0
 	for _, service := range s {
@@ -58,12 +59,8 @@ func (s serviceSlice) GetQueriesLength() int {
 	return count
 }
 
-func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan int64) {
+func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64, proBarBuilder progress.PbBuilder) {
 	wg.Add(1)
-	progressBar := integer.NewProgressBar("Executing queries: ", int64(total),
-		progressChannel, &integer.Pool{})
-	// if hideProgress {
-	// 	progressBar.Silent()
-	// }
-	go progressBar.Start(wg)
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", total, wg, progressChannel)
+	go progressBar.Start()
 }

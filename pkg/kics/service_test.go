@@ -110,10 +110,10 @@ func TestService(t *testing.T) { //nolint
 			var wg sync.WaitGroup
 			errCh := make(chan error)
 			wgDone := make(chan bool)
-			currentQuery := make(chan float64)
+			currentQuery := make(chan int64)
 			for _, serv := range s {
 				wg.Add(1)
-				serv.StartScan(tt.args.ctx, tt.args.scanID, true, errCh, &wg, currentQuery)
+				serv.StartScan(tt.args.ctx, tt.args.scanID, errCh, &wg, currentQuery)
 			}
 			go func() {
 				defer func() {

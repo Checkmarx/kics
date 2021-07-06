@@ -253,11 +253,11 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	inspector.EnableCoverageReport()
 
 	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
-	currentQuery := make(chan float64)
+	currentQuery := make(chan int64)
 	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(
 		t,
 		entry.PositiveFiles(t)),
-		true, []string{BaseTestsScanPath},
+		[]string{BaseTestsScanPath},
 		platforms,
 		currentQuery,
 	)

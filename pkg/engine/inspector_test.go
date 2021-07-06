@@ -289,7 +289,7 @@ func TestInspect(t *testing.T) { //nolint
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			currentQuery := make(chan float64)
+			currentQuery := make(chan int64)
 			c := &Inspector{
 				queries:              tt.fields.queries,
 				vb:                   tt.fields.vb,
@@ -301,7 +301,7 @@ func TestInspect(t *testing.T) { //nolint
 				queryExecTimeout:     time.Duration(60) * time.Second,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
-				true, []string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
+				[]string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)

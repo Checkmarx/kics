@@ -300,7 +300,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
-	currentQuery := make(chan float64)
+	currentQuery := make(chan int64)
 
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
@@ -310,7 +310,6 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.samplePath(t),
 			testParams.sampleContent(t),
 		),
-		true,
 		[]string{BaseTestsScanPath},
 		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"},
 		currentQuery,

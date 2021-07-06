@@ -41,6 +41,10 @@ var (
 	vulnImageBase64 string
 )
 
+const (
+	textSize = 10
+)
+
 func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) {
 	m.Col(colTwo, func() {
 		m.Text(label, props.Text{
@@ -105,7 +109,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 			return err
 		}
 		m.Row(colFour, func() {
-			createQueryEntryMetadataField(m, "Severity", severity, 10)
+			createQueryEntryMetadataField(m, "Severity", severity, textSize)
 		})
 		m.Row(colThree, func() {
 			createQueryEntryMetadataField(m, "Platform", platform, defaultTextSize)

@@ -9,6 +9,11 @@ import (
 	"text/scanner"
 )
 
+const (
+	base      = 10
+	bitSize64 = 64
+)
+
 // Tag contains the tag name reference and its atributtes
 type Tag struct {
 	Name       string
@@ -152,9 +157,9 @@ func parseValue(sc *scanner.Scanner) (interface{}, error) {
 				str := sc.TokenText()
 				return str[1 : len(str)-1], nil
 			} else if tok == scanner.Int {
-				return strconv.ParseInt(sc.TokenText(), 10, 64)
+				return strconv.ParseInt(sc.TokenText(), base, bitSize64)
 			} else if tok == scanner.Float {
-				return strconv.ParseFloat(sc.TokenText(), 64)
+				return strconv.ParseFloat(sc.TokenText(), bitSize64)
 			}
 		default:
 			return nil, fmt.Errorf("invalid value: %s", sc.TokenText())
@@ -246,10 +251,10 @@ func checkType(s string) interface{} {
 	case "false", "FALSE":
 		return false
 	default:
-		if i, err := strconv.ParseInt(s, 10, 64); err == nil {
+		if i, err := strconv.ParseInt(s, base, bitSize64); err == nil {
 			return i
 		}
-		if f, err := strconv.ParseFloat(s, 64); err == nil {
+		if f, err := strconv.ParseFloat(s, bitSize64); err == nil {
 			return f
 		}
 

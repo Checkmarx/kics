@@ -148,13 +148,13 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	require.NotNil(tb, inspector)
 
 	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
-	currentQuery := make(chan float64)
+	currentQuery := make(chan int64)
 
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
 		scanID,
 		getFileMetadatas(tb, filesPath),
-		true, []string{BaseTestsScanPath},
+		[]string{BaseTestsScanPath},
 		platforms,
 		currentQuery,
 	)

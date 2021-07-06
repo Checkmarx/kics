@@ -80,16 +80,11 @@ type PathParameters struct {
 
 func getRelativePath(basePath, filePath string) string {
 	var returnPath string
-	if strings.Contains(filePath, ".zip") {
+	relativePath, err := filepath.Rel(basePath, filePath)
+	if err != nil {
 		returnPath = filePath
 	} else {
-		relativePath, err := filepath.Rel(basePath, filePath)
-		if err != nil {
-			log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
-			returnPath = filePath
-		} else {
-			returnPath = relativePath
-		}
+		returnPath = relativePath
 	}
 	return returnPath
 }

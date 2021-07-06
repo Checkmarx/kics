@@ -1,4 +1,4 @@
-package helpers
+package provider
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	"os/signal"
 	"sync"
 
-	progressBar "github.com/Checkmarx/kics/pkg/progress/reader"
 	"github.com/rs/zerolog/log"
 
 	"github.com/hashicorp/go-getter"
@@ -16,7 +15,12 @@ const (
 	channelLength = 2
 )
 
-type extractedPath struct {
+// ExtractedPath is a struct that contains the paths, temporary paths to remove
+// and extraction map path of the sources
+// Path is the slice of paths to scan
+// ExtrectionMap is a map that correlates the temporary path to the givven path
+// RemoveTmp is the slice containing temporary paths to be removed
+type ExtractedPath struct {
 	Path          []string
 	ExtrectionMap map[string]string
 	RemoveTmp     []string
@@ -32,8 +36,11 @@ type getterStruct struct {
 	source      string
 }
 
-func GetSources(source []string, progress, insecure bool) (extractedPath, error) {
-	returnStr := extractedPath{
+// GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
+// It than extracts the files to be scanned. If the source given is not local, a temp dir
+// will be created where the files will be stored.
+func GetSources(source []string, progress, insecure bool) (ExtractedPath, error) {
+	returnStr := ExtractedPath{
 		Path:          []string{},
 		ExtrectionMap: make(map[string]string),
 		RemoveTmp:     []string{},
@@ -41,15 +48,14 @@ func GetSources(source []string, progress, insecure bool) (extractedPath, error)
 	for _, path := range source {
 		destination, err := os.MkdirTemp("", "kics-extract-*")
 		if err != nil {
-			return extractedPath{}, err
+			return ExtractedPath{}, err
 		}
 
 		err = os.RemoveAll(destination)
 		if err != nil {
-			return extractedPath{}, err
+			return ExtractedPath{}, err
 		}
 
-		// Get the mode
 		mode := getter.ClientModeAny
 
 		pwd, err := os.Getwd()
@@ -57,10 +63,10 @@ func GetSources(source []string, progress, insecure bool) (extractedPath, error)
 			log.Fatal().Msgf("Error getting wd: %s", err)
 		}
 
-		opts := []getter.ClientOption{getter.WithProgress(&progressBar.PBar{})}
+		opts := []getter.ClientOption{}
 
 		if insecure {
-			log.Warn().Msg("WARNING: Using Insecure TLS transport!")
+			log.Warn().Msg("Using Insecure TLS transport!")
 			opts = append(opts, getter.WithInsecure())
 		}
 
@@ -76,18 +82,21 @@ func GetSources(source []string, progress, insecure bool) (extractedPath, error)
 			source:      path,
 		}
 
-		dst := getPaths(st)
+		dst, err := getPaths(&st)
+		if err != nil {
+			log.Error().Msgf("failed to find path %s: %s", path, err)
+			return ExtractedPath{}, err
+		}
 		returnStr.RemoveTmp = append(returnStr.RemoveTmp, dst)
-		dst = checkSymLink(dst)
+		tempDst := checkSymLink(dst)
 		returnStr.ExtrectionMap[dst] = path
-		returnStr.Path = append(returnStr.Path, dst)
+		returnStr.Path = append(returnStr.Path, tempDst)
 	}
 
 	return returnStr, nil
 }
 
-func getPaths(g getterStruct) string {
-
+func getPaths(g *getterStruct) (string, error) {
 	// Build the client
 	client := &getter.Client{
 		Ctx:     g.ctx,
@@ -113,22 +122,21 @@ func getPaths(g getterStruct) string {
 	signal.Notify(c, os.Interrupt)
 
 	select {
-	case sig := <-c:
+	case <-c:
 		signal.Reset(os.Interrupt)
 		g.cancel()
 		wg.Wait()
-		log.Printf("signal %v", sig)
 	case <-g.ctx.Done():
 		wg.Wait()
-		log.Printf("success!")
 	case err := <-errChan:
 		wg.Wait()
-		log.Fatal().Msgf("Error downloading: %s", err)
+		return "", err
 	}
 
-	return g.destination
+	return g.destination, nil
 }
 
+// check if the dst is a symbolic link
 func checkSymLink(dst string) string {
 	info, err := os.Lstat(dst)
 	if err != nil {
