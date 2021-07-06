@@ -116,6 +116,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/release_checklist/</loc>
+         <lastmod>2021-07-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/releases/</loc>
          <lastmod>2021-07-06</lastmod>
          <changefreq>daily</changefreq>
