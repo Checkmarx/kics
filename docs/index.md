@@ -1,7 +1,7 @@
 
 <div class="row" >
     <div class="col-6 text-center" >
-        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-black.png" width="250">
+        <img alt="KICS - Keeping Infrastructure as Code Secure" src="img/logo/kics-logo-docs.png" width="250">
         <br/>
          <br/>
         <p>Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with <b>KICS</b> by Checkmarx.</p>
