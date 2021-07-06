@@ -1238,15 +1238,8 @@ func run(cmd *cobra.Command) error <span class="cov4" title="8">{
                 return err
         }</span>
         <span class="cov4" title="8">if outputPath != "" </span><span class="cov1" title="1">{
-                if len(reportFormats) &gt; 0 </span><span class="cov1" title="1">{
-                        for _, format := range reportFormats </span><span class="cov1" title="1">{
-                                if format == "all" </span><span class="cov0" title="0">{
-                                        reportFormats = consoleHelpers.ListReportFormats()
-                                        break</span>
-                                }
-                        }
-                }
-                <span class="cov1" title="1">outputName = filepath.Base(outputName)
+                updateReportFormats()
+                outputName = filepath.Base(outputName)
                 if filepath.Ext(outputPath) != "" </span><span class="cov1" title="1">{
                         outputPath = filepath.Join(outputPath, string(os.PathSeparator))
                 }</span>
@@ -1288,6 +1281,15 @@ func formatNewError(flag1, flag2 string) error <span class="cov0" title="0">{
                 flag1,
                 flag2)
 }</span>
+
+func updateReportFormats() <span class="cov1" title="1">{
+        for _, format := range reportFormats </span><span class="cov1" title="1">{
+                if format == "all" </span><span class="cov0" title="0">{
+                        reportFormats = consoleHelpers.ListReportFormats()
+                        break</span>
+                }
+        }
+}
 
 func validateQuerySelectionFlags() error <span class="cov4" title="8">{
         if len(includeIDs) &gt; 0 &amp;&amp; len(excludeIDs) &gt; 0 </span><span class="cov0" title="0">{
@@ -1383,8 +1385,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="317">{
-                if val == true </span><span class="cov9" title="316">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="316">{
+                if val == true </span><span class="cov9" title="315">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2170,13 +2172,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -4914,7 +4916,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="24">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="29">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
