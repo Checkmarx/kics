@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "IAM Group Without Users",
+    "severity": "LOW",
+    "line": 12
+  },
+  {
+    "queryName": "IAM Group Without Users",
+    "severity": "LOW",
+    "line": 33
+  }
+]

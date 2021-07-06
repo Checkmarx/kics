@@ -1,0 +1,53 @@
+{
+  "Description": "A sample template",
+  "Resources": {
+    "myuserr": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "Policies": [
+          {
+            "PolicyName": "giveaccesstoqueueonly",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:*"
+                  ],
+                  "Resource": [
+                    "myqueue.Arn"
+                  ]
+                },
+                {
+                  "NotResource": [
+                    "myqueue.Arn"
+                  ],
+                  "Effect": "Deny",
+                  "Action": [
+                    "sqs:*"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "LoginProfile": {
+          "Password": "myP@ssW0rd"
+        }
+      }
+    },
+    "IamUserAdminSample": {
+      "Type": "AWS::IAM::User",
+      "Condition": "IsSampleIamUser",
+      "Properties": {
+        "UserName": "sample-iam-user-admin",
+        "Groups": [
+          "myuserr"
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09"
+}
