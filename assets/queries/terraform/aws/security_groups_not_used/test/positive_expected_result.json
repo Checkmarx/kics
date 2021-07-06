@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Security Group Not Used",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive1.tf"
+  }
+]
