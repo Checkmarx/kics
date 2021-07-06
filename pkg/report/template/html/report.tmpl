@@ -9,13 +9,13 @@
 </head>
 <body>
   <div class="container">
-    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noreferrer" target="_blank">KICS.IO</a></div>
+    <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noopener" target="_blank">KICS.IO</a></div>
     <div class="run-info">
-      <span style="flex-basis:100%" id="scan-paths"><b>Scanned paths:</b> {{ getPaths .ScannedPaths }}</span>
-      <span style="flex-basis:100%" id="scan-platforms"><b>Platforms:</b> {{ getPlatforms .Queries }}</span>
+      <span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> {{ getPaths .ScannedPaths }}</span>
+      <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> {{ getPlatforms .Queries }}</span>
       {{- with .Times -}}
-        <span id="scan-start-time"><b>Start time:</b> {{ .Start.Format "15:04:05, Jan 02 2006" }}</span>
-        <span id="scan-end-time"><b>End time:</b> {{ .End.Format "15:04:05, Jan 02 2006" }}</span>
+        <span id="scan-start-time"><strong>Start time:</strong> {{ .Start.Format "15:04:05, Jan 02 2006" }}</span>
+        <span id="scan-end-time"><strong>End time:</strong> {{ .End.Format "15:04:05, Jan 02 2006" }}</span>
       {{- end}}
     </div>
     <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
@@ -74,7 +74,7 @@
           </div>
           <div class="query-details">
             <span>{{ .Description }}</span>
-            <span><a href="{{ .QueryURI }}" rel="noreferrer" target="_blank">{{ .QueryURI }}</a></span>
+            <span><a href="{{ .QueryURI }}" rel="noopener" target="_blank">{{ .QueryURI }}</a></span>
           </div>
         </div>
         <details>
@@ -111,12 +111,12 @@
       Spread the love:
     </div>
     <div class="social-networks">
-      <a href="https://github.com/Checkmarx/kics/" rel="noreferrer" target="_blank">
+      <a href="https://github.com/Checkmarx/kics/" rel="noopener" target="_blank">
         <div>{{ includeSVG "github.svg" }}</div>
       </a>
     </div>
     <div class="report-header-footer">
-      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" rel="noreferrer" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
+      <span class="footer-text">The KICS project is powered by&nbsp;<a href="https://www.checkmarx.com/" class="checkmarx" rel="noopener" target="_blank">Checkmarx</a>, global leader of Application Security Testing</span>
     </div>
   </div>
 </body>
