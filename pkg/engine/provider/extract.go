@@ -41,7 +41,7 @@ type getterStruct struct {
 // GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
 // It than extracts the files to be scanned. If the source given is not local, a temp dir
 // will be created where the files will be stored.
-func GetSources(source []string, progress, insecure bool) (ExtractedPath, error) {
+func GetSources(source []string) (ExtractedPath, error) {
 	returnStr := ExtractedPath{
 		Path:          []string{},
 		ExtrectionMap: make(map[string]string),
@@ -67,10 +67,7 @@ func GetSources(source []string, progress, insecure bool) (ExtractedPath, error)
 
 		opts := []getter.ClientOption{}
 
-		if insecure {
-			log.Warn().Msg("Using Insecure TLS transport!")
-			opts = append(opts, getter.WithInsecure())
-		}
+		opts = append(opts, getter.WithInsecure())
 
 		ctx, cancel := context.WithCancel(context.Background())
 
@@ -162,8 +159,13 @@ func checkSymLink(dst, pathFile string) string {
 
 func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
 	var extension = filepath.Ext(pathFile)
-	tt := filepath.Join(dst, filepath.Base(pathFile[0:len(pathFile)-len(extension)]))
-	fileInfo, err := os.Lstat(tt)
+	var path string
+	if extension == "" {
+		path = filepath.Join(dst, filepath.Base(pathFile[0:len(pathFile)-len(extension)]))
+	} else {
+		path = filepath.Join(dst, filepath.Base(pathFile))
+	}
+	fileInfo, err := os.Lstat(path)
 	if err != nil {
 		fileInfo = info
 	}

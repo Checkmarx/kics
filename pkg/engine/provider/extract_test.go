@@ -13,9 +13,7 @@ func TestProvider_GetSources(t *testing.T) {
 	}
 
 	type args struct {
-		source   []string
-		progress bool
-		insecure bool
+		source []string
 	}
 
 	tests := []struct {
@@ -30,8 +28,6 @@ func TestProvider_GetSources(t *testing.T) {
 				source: []string{
 					"test/fixtures/test_zip.zip",
 				},
-				progress: false,
-				insecure: false,
 			},
 			wantErr: false,
 			want:    "test/fixtures/test_zip.zip",
@@ -42,8 +38,6 @@ func TestProvider_GetSources(t *testing.T) {
 				source: []string{
 					"test/fixtures/all_auth_users_get_read_access",
 				},
-				progress: false,
-				insecure: false,
 			},
 			wantErr: false,
 			want:    "test/fixtures/all_auth_users_get_read_access",
@@ -54,8 +48,6 @@ func TestProvider_GetSources(t *testing.T) {
 				source: []string{
 					"test/fixtures/tesstest",
 				},
-				progress: false,
-				insecure: false,
 			},
 			wantErr: true,
 			want:    "",
@@ -66,8 +58,6 @@ func TestProvider_GetSources(t *testing.T) {
 				source: []string{
 					"test/fixtures/all_auth_users_get_read_access",
 				},
-				progress: false,
-				insecure: true,
 			},
 			wantErr: false,
 			want:    "test/fixtures/all_auth_users_get_read_access",
@@ -76,7 +66,7 @@ func TestProvider_GetSources(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetSources(tt.args.source, tt.args.progress, tt.args.insecure)
+			got, err := GetSources(tt.args.source)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetSources() = %v, wantErr = %v", err, tt.wantErr)
 			}

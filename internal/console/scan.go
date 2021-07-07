@@ -561,7 +561,7 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 		}
 	}
 
-	extractedPaths, err := provider.GetSources(path, true, false)
+	extractedPaths, err := provider.GetSources(path)
 	if err != nil {
 		return err
 	}
