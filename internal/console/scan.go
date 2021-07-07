@@ -526,7 +526,7 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
-func scan(changedDefaultQueryPath bool) error {
+func scan(changedDefaultQueryPath bool) error { //nolint
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)

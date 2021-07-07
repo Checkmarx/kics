@@ -180,9 +180,7 @@ func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-
 	ctx := context.Background()
-
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
@@ -190,23 +188,19 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 			return []model.QueryMetadata{q}, err
 		})
-
 	queriesSource.EXPECT().GetQueryLibrary("common").
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
-
 	queriesSource.EXPECT().GetQueryLibrary(entry.platform).
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary(entry.platform)
 			require.NoError(t, err)
 			return q, nil
 		})
-
 	trk := &tracker.CITracker{}
-
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
