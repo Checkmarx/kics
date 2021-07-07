@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/cheggaaa/pb/v3"
+	"github.com/rs/zerolog/log"
 )
 
 // ProgressBar is a struct that holds the required feilds for
@@ -49,7 +50,10 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() {
 	defer func() {
-		p.Close()
+		err := p.Close()
+		if err != nil {
+			log.Error().Msgf("failed to stop progress bar %v", err)
+		}
 		p.wg.Done()
 	}()
 

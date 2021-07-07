@@ -3,6 +3,7 @@ package circle
 import (
 	"fmt"
 	"io"
+	"sync"
 
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/cheggaaa/pb/v3"
@@ -18,6 +19,7 @@ type ProgressBar struct {
 	label string
 	pBar  *pb.ProgressBar
 	close func() error
+	lock  *sync.Mutex
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
@@ -34,6 +36,7 @@ func NewProgressBar(label string, silent bool) ProgressBar {
 	return ProgressBar{
 		label: label,
 		pBar:  newPb,
+		lock:  &sync.Mutex{},
 		close: func() error {
 			newPb.Finish()
 			return nil
@@ -43,6 +46,8 @@ func NewProgressBar(label string, silent bool) ProgressBar {
 
 // Start initializes the Circle Progress Bar
 func (p ProgressBar) Start() {
+	p.lock.Lock()
+	defer p.lock.Unlock()
 	go func() {
 		for { // increment until the Close func is called
 			p.pBar.Increment()
