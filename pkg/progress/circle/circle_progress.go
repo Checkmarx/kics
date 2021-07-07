@@ -13,8 +13,6 @@ const (
 	barWidth = 0
 )
 
-var lock sync.Mutex
-
 // ProgressBar is a struct that holds the required feilds for
 // a Circle Progress Bar
 type ProgressBar struct {
@@ -46,13 +44,22 @@ func NewProgressBar(label string, silent bool) ProgressBar {
 
 // Start initializes the Circle Progress Bar
 func (p ProgressBar) Start() {
-	lock.Lock()
-	defer lock.Unlock()
+	wg := &sync.WaitGroup{}
+	go p.incrementProgress(wg)
+
 	go func() {
-		for { // increment until the Close func is called
-			p.pBar.Increment()
-		}
+		defer func() {
+			wg.Wait()
+		}()
 	}()
+}
+
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) {
+	for { // increment until the Close func is called
+		wg.Add(1)
+		p.pBar.Increment()
+		wg.Done()
+	}
 }
 
 // Close stops the Circle Progress Bar and
