@@ -46,9 +46,9 @@ func NewProgressBar(label string, silent bool) ProgressBar {
 
 // Start initializes the Circle Progress Bar
 func (p ProgressBar) Start() {
-	p.lock.Lock()
-	defer p.lock.Unlock()
 	go func() {
+		p.lock.Lock()
+		defer p.lock.Unlock()
 		for { // increment until the Close func is called
 			p.pBar.Increment()
 		}
