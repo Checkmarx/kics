@@ -55,10 +55,10 @@ func (p ProgressBar) Start() {
 }
 
 func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) {
+	wg.Add(1)
+	defer wg.Done()
 	for { // increment until the Close func is called
-		wg.Add(1)
 		p.pBar.Increment()
-		wg.Done()
 	}
 }
 
