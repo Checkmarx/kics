@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -15,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/mock"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -147,8 +149,13 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	wg := &sync.WaitGroup{}
 	currentQuery := make(chan int64)
+	proBarBuilder := progress.InitializePbBuilder(true, true, true)
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
+	go progressBar.Start()
+	wg.Add(1)
 
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
@@ -158,6 +165,14 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		platforms,
 		currentQuery,
 	)
+
+	go func() {
+		defer func() {
+			close(currentQuery)
+		}()
+		wg.Wait()
+	}()
+
 	require.Nil(tb, err)
 	validateIssueTypes(tb, vulnerabilities)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)

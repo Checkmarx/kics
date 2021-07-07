@@ -2,8 +2,10 @@ package provider
 
 import (
 	"context"
+	"io/fs"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"sync"
 
 	"github.com/rs/zerolog/log"
@@ -88,7 +90,7 @@ func GetSources(source []string, progress, insecure bool) (ExtractedPath, error)
 			return ExtractedPath{}, err
 		}
 		returnStr.RemoveTmp = append(returnStr.RemoveTmp, dst)
-		tempDst := checkSymLink(dst)
+		tempDst := checkSymLink(dst, path)
 		returnStr.ExtrectionMap[dst] = path
 		returnStr.Path = append(returnStr.Path, tempDst)
 	}
@@ -137,17 +139,33 @@ func getPaths(g *getterStruct) (string, error) {
 }
 
 // check if the dst is a symbolic link
-func checkSymLink(dst string) string {
+func checkSymLink(dst, pathFile string) string {
 	info, err := os.Lstat(dst)
 	if err != nil {
 		log.Error().Msgf("failed lstat for %s: %v", dst, err)
 	}
+	fileInfo := getFileInfo(info, dst, pathFile)
 	if info.Mode()&os.ModeSymlink != 0 {
 		path, err := os.Readlink(dst)
 		if err != nil {
 			log.Error().Msgf("failed Readlink for %s: %v", dst, err)
 		}
 		dst = path
+	} else if !fileInfo.IsDir() {
+		_, err := os.Stat(pathFile)
+		if err == nil {
+			dst = pathFile
+		}
 	}
 	return dst
+}
+
+func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
+	var extension = filepath.Ext(pathFile)
+	tt := filepath.Join(dst, filepath.Base(pathFile[0:len(pathFile)-len(extension)]))
+	fileInfo, err := os.Lstat(tt)
+	if err != nil {
+		fileInfo = info
+	}
+	return fileInfo
 }
