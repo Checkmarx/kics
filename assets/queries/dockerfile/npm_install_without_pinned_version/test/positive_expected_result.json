@@ -28,5 +28,10 @@
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 7
+  },
+  {
+    "queryName": "NPM Install Command Without Pinned Version",
+    "severity": "MEDIUM",
+    "line": 8
   }
 ]
