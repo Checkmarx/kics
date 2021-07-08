@@ -1,6 +1,7 @@
 package model
 
 import (
+	"net/url"
 	"os"
 	"path/filepath"
 	"sort"
@@ -75,7 +76,7 @@ type Summary struct {
 // PathParameters - structure wraps the required fields for temporary path translation
 type PathParameters struct {
 	ScannedPaths      []string
-	PathExtractionMap map[string]string
+	PathExtractionMap map[string]ExtractedPathObject
 }
 
 func getRelativePath(basePath, filePath string) string {
@@ -89,12 +90,15 @@ func getRelativePath(basePath, filePath string) string {
 	return returnPath
 }
 
-func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
+func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
 	prettyPath := filePath
 	for key, val := range pathExtractionMap {
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
-			prettyPath = filepath.Join(filepath.Base(val), splittedPath[1])
+			if !val.LocalPath {
+				return cleanQueryPath(val.Path, splittedPath[1])
+			}
+			prettyPath = filepath.Join(filepath.Base(val.Path), splittedPath[1])
 		} else {
 			prettyPath = filePath
 		}
@@ -102,7 +106,30 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string
 	return prettyPath
 }
 
-func resolvePath(filePath string, pathExtractionMap map[string]string) string {
+// cleanQueryPath removes queries ('?key=value') from url
+func cleanQueryPath(path, splitted string) string {
+	urlParsed, err := url.Parse(filepath.Base(path))
+	if err != nil {
+		log.Error().Msgf("failed to parse path %v", err)
+		return filepath.Join(path, splitted)
+	}
+
+	query, err := url.ParseQuery(urlParsed.RawQuery)
+	if err != nil {
+		log.Error().Msgf("failed to parse query path %v", err)
+		return filepath.Join(path, splitted)
+	}
+
+	for key := range query {
+		query.Del(key)
+	}
+
+	urlParsed.RawQuery = query.Encode()
+
+	return filepath.Join(filepath.Dir(path), urlParsed.String(), splitted)
+}
+
+func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
 	var returnPath string
 	returnPath = replaceIfTemporaryPath(filePath, pathExtractionMap)
 	pwd, err := os.Getwd()
@@ -115,7 +142,8 @@ func resolvePath(filePath string, pathExtractionMap map[string]string) string {
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
-func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string, pathExtractionMap map[string]string) Summary {
+func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
+	scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary {
 	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
 	severitySummary := SeveritySummary{

@@ -1,6 +1,7 @@
 package model
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -34,7 +35,7 @@ func TestCreateSummary(t *testing.T) {
 		FailedToScanFiles:      0,
 	}
 
-	pathExtractionMap := map[string]string{}
+	pathExtractionMap := map[string]ExtractedPathObject{}
 
 	t.Run("create_summary_empty", func(t *testing.T) {
 		summary := CreateSummary(counter, []Vulnerability{}, "scanID", pathExtractionMap)
@@ -87,4 +88,40 @@ func TestCreateSummary(t *testing.T) {
 			},
 		})
 	})
+}
+
+func TestModel_cleanQueryPath(t *testing.T) {
+	type args struct {
+		path     string
+		splitted string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "cleanQueryPath No Queries",
+			args: args{
+				path:     "testing_path",
+				splitted: "splitted_one",
+			},
+			want: filepath.Join("testing_path", "splitted_one"),
+		},
+		{
+			name: "cleanQueryPath With Queries",
+			args: args{
+				path:     "testing_path?key=value",
+				splitted: "splitted_one",
+			},
+			want: filepath.Join("testing_path", "splitted_one"),
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := cleanQueryPath(tt.args.path, tt.args.splitted)
+			require.Equal(t, tt.want, got)
+		})
+	}
 }
