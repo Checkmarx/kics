@@ -17,7 +17,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"issueType": "MissingAttribute",
-		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
+		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
 		"keyExpectedValue": "metadata.namespace is set",
 		"keyActualValue": "metadata.namespace is undefined",
 	}
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"issueType": "IncorrectValue",
-		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
+		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
 		"keyExpectedValue": "metadata.namespace is not default",
 		"keyActualValue": "metadata.namespace is default",
 	}
