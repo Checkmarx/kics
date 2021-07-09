@@ -1,5 +1,5 @@
 {
-  "ar": [
+  "defaultPasswords": [
     "!@",
     "root",
     "wubao",
@@ -101,7 +101,7 @@
     "password123",
     "pa$$"
   ],
-  "bl": [
+  "blackList": [
     "RESOURCE",
     "GROUP",
     "SUBNET",

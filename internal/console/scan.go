@@ -306,7 +306,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringVar(&inputData,
 		inputDataFlag,
 		"",
-		"path to input data files")
+		"path to query input data files")
 	initPathsFlags(scanCmd)
 	initStdoutFlags(scanCmd)
 	initOutputFlags(scanCmd)

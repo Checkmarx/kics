@@ -203,9 +203,9 @@ replace_unicode(allValues) = treatedValue {
 }
 
 isDefaultPassword(p) {
-	data.ar[_] == p
+	data.defaultPasswords[_] == p
 }
 
 isCommonValue(p) {
-	contains(upper(p), data.bl[_])
+	contains(upper(p), data.blackList[_])
 }
