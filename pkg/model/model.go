@@ -108,6 +108,7 @@ type Vulnerability struct {
 	QueryURI         string     `json:"-"`
 	Category         string     `json:"category"`
 	Description      string     `json:"description"`
+	DescriptionID    string     `json:"descriptionID"`
 	Platform         string     `db:"platform" json:"platform"`
 	Severity         Severity   `json:"severity"`
 	Line             int        `json:"line"`

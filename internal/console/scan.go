@@ -539,6 +539,33 @@ func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map
 	return absPaths, zProvider.PathExtractionMap, nil
 }
 
+type startServiceParameters struct {
+	t              *tracker.CITracker
+	store          kics.Storage
+	querySource    *source.FilesystemSource
+	extractedPaths []string
+}
+
+func createServiceAndStartScan(params startServiceParameters) (*engine.Inspector, error) {
+	inspector, err := createInspector(params.t, params.querySource)
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+
+	services, err := createService(inspector, params.extractedPaths, params.t, params.store, *params.querySource)
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+
+	if err = scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+	return inspector, nil
+}
+
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
@@ -582,20 +609,13 @@ func scan(changedDefaultQueryPath bool) error {
 	querySource := source.NewFilesystemSource(queryPath, types)
 	store := storage.NewMemoryStorage()
 
-	inspector, err := createInspector(t, querySource)
+	inspector, err := createServiceAndStartScan(startServiceParameters{
+		t:              t,
+		store:          store,
+		querySource:    querySource,
+		extractedPaths: extractedPaths,
+	})
 	if err != nil {
-		log.Err(err)
-		return err
-	}
-
-	services, err := createService(inspector, extractedPaths, t, store, *querySource)
-	if err != nil {
-		log.Err(err)
-		return err
-	}
-
-	if err = scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
-		log.Err(err)
 		return err
 	}
 
@@ -611,10 +631,14 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
+	summary, err := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
 		ScannedPaths:      path,
 		PathExtractionMap: pathExtractionMap,
 	})
+	if err != nil {
+		log.Err(err)
+		return err
+	}
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		log.Err(err)
@@ -643,7 +667,7 @@ func printScanDuration(elapsed time.Duration) {
 }
 
 func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time,
-	pathParameters model.PathParameters) model.Summary {
+	pathParameters model.PathParameters) (model.Summary, error) {
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -658,7 +682,12 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		End:   end,
 	}
 	summary.ScannedPaths = pathParameters.ScannedPaths
-	return summary
+	err := consoleHelpers.RequestAndOverrideDescriptions(&summary)
+	if err != nil {
+		return model.Summary{}, err
+	}
+
+	return summary, nil
 }
 
 func resolveOutputs(

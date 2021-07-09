@@ -33,14 +33,15 @@ type VulnerableFile struct {
 
 // VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
 type VulnerableQuery struct {
-	QueryName   string           `json:"query_name"`
-	QueryID     string           `json:"query_id"`
-	QueryURI    string           `json:"query_url"`
-	Severity    Severity         `json:"severity"`
-	Platform    string           `json:"platform"`
-	Files       []VulnerableFile `json:"files"`
-	Category    string           `json:"category"`
-	Description string           `json:"description"`
+	QueryName     string           `json:"query_name"`
+	QueryID       string           `json:"query_id"`
+	QueryURI      string           `json:"query_url"`
+	Severity      Severity         `json:"severity"`
+	Platform      string           `json:"platform"`
+	Files         []VulnerableFile `json:"files"`
+	Category      string           `json:"category"`
+	Description   string           `json:"description"`
+	DescriptionID string           `json:"description_id"`
 }
 
 // VulnerableQuerySlice is a slice of VulnerableQuery
@@ -130,13 +131,14 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryID]; !ok {
 			q[item.QueryID] = VulnerableQuery{
-				QueryName:   item.QueryName,
-				QueryID:     item.QueryID,
-				Severity:    item.Severity,
-				QueryURI:    item.QueryURI,
-				Platform:    item.Platform,
-				Category:    item.Category,
-				Description: item.Description,
+				QueryName:     item.QueryName,
+				QueryID:       item.QueryID,
+				Severity:      item.Severity,
+				QueryURI:      item.QueryURI,
+				Platform:      item.Platform,
+				Category:      item.Category,
+				Description:   item.Description,
+				DescriptionID: item.DescriptionID,
 			}
 		}
 
