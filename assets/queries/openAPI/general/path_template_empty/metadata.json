@@ -11,7 +11,9 @@
       "id": "c201b7ad-6173-4598-a407-5edb04a1bcd7",
       "queryName": "Path Template is Empty (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject"
-    }
+    },
+    "descriptionID": "8815936c"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "ad0be3fd"
 }

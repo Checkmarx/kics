@@ -11,7 +11,9 @@
       "id": "caf1793e-95dd-4b18-8d90-8f3c0ab5bddf",
       "queryName": "Invalid Format (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/"
-    }
+    },
+    "descriptionID": "91411901"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "0a9ce3b6"
 }

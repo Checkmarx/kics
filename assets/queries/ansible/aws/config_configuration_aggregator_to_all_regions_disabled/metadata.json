@@ -5,5 +5,6 @@
   "category": "Observability",
   "descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_config_aggregator_module.html#parameter-organization_source",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "3b1828e1"
 }

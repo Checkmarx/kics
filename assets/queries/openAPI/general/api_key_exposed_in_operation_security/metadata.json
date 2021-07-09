@@ -11,7 +11,9 @@
       "id": "392599e4-a4e2-403d-bc56-3fe05755782d",
       "queryName": "API Key Exposed In Operation Security (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
-    }
+    },
+    "descriptionID": "370b8ee3"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "c09895bd"
 }

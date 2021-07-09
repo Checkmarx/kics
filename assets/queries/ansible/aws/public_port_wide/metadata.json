@@ -5,5 +5,6 @@
   "category": "Networking and Firewall",
   "descriptionText": "AWS Security Group should not have public port wide",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "0c6231b7"
 }

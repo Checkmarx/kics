@@ -11,7 +11,9 @@
       "id": "ded017bf-fb13-4f8d-868b-84aebcc572ad",
       "queryName": "Schema Object Properties With Duplicated Keys (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    }
+    },
+    "descriptionID": "e0ba8a4e"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "bfd3113e"
 }

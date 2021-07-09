@@ -5,5 +5,6 @@
   "category": "Observability",
   "descriptionText": "Make sure Logging is enabled for Redshift Cluster",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "ea4fde74"
 }

@@ -11,7 +11,9 @@
       "id": "51978067-3b22-4c29-aaf3-96bf0bc28897",
       "queryName": "Header Parameter Named as 'Content-Type' (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    }
+    },
+    "descriptionID": "cfca975f"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "ea1235e4"
 }

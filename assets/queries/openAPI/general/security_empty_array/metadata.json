@@ -11,7 +11,9 @@
       "id": "da31d54b-ad54-41dc-95eb-8b3828629213",
       "queryName": "Global Security Field Has An Empty Array (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object"
-    }
+    },
+    "descriptionID": "dfb91898"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "c5fbf26f"
 }

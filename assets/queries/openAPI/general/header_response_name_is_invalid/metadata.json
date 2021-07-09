@@ -11,7 +11,9 @@
       "id": "86733e01-a435-4bd5-a8b0-5108be9dc1e4",
       "queryName": "Header Response Name Is Invalid (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#response-object"
-    }
+    },
+    "descriptionID": "870921c5"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "ff758c27"
 }

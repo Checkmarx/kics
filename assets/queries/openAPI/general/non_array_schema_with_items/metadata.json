@@ -11,7 +11,9 @@
       "id": "9d47956b-29cd-43b1-9e6e-b39a4d484353",
       "queryName": "Non-Array Schema With Items (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
-    }
+    },
+    "descriptionID": "4d7a126f"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "0d682b38"
 }

@@ -11,7 +11,9 @@
       "id": "25635c31-ee32-4708-88e5-fced87516f51",
       "queryName": "Invalid Operation External Documentation URL (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject"
-    }
+    },
+    "descriptionID": "467a8d7b"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "331fc0f5"
 }

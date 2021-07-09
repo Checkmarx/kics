@@ -11,7 +11,9 @@
       "id": "addc0eab-27f6-4c26-8526-d2ccd3732662",
       "queryName": "Schema Discriminator Mismatch Defined Properties (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
-    }
+    },
+    "descriptionID": "08489f3e"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "dd33e9c1"
 }

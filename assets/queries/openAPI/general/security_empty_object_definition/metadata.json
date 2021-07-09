@@ -11,7 +11,9 @@
       "id": "292919fb-7b26-4454-bee9-ce29094768dd",
       "queryName": "Global security field has an empty object (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object"
-    }
+    },
+    "descriptionID": "3b50b482"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "b93bc239"
 }

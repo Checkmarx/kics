@@ -11,7 +11,9 @@
       "id": "8fe6d18a-ad4c-4397-8884-e3a9da57f4c9",
       "queryName": "Schema Enum Invalid (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
-    }
+    },
+    "descriptionID": "15b17340"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "fe9b14a9"
 }

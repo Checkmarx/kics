@@ -11,7 +11,9 @@
       "id": "99733b39-6413-4ed8-8acf-dc7cdc9b4e51",
       "queryName": "Cleartext API Key In Operation Security (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
-    }
+    },
+    "descriptionID": "c3c7f908"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "95d0657a"
 }

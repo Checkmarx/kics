@@ -11,7 +11,9 @@
       "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
       "queryName": "Invalid Contact URL (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
-    }
+    },
+    "descriptionID": "377a73e9"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "4df7c20b"
 }

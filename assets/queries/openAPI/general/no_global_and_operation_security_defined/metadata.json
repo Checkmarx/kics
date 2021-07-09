@@ -11,7 +11,9 @@
       "id": "586abcee-9653-462d-ad7b-2638a32bd6e6",
       "queryName": "No Global And Operation Security Defined (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object"
-    }
+    },
+    "descriptionID": "b3b58c83"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "637e1b00"
 }

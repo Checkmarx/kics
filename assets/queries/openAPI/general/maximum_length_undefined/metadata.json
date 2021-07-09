@@ -12,7 +12,9 @@
       "queryName": "Maximum Length Undefined (v2)",
       "descriptionText": "String schema/parameter/header should have 'maxLength' defined.",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    }
+    },
+    "descriptionID": "c359a1c6"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "3c7e1848"
 }

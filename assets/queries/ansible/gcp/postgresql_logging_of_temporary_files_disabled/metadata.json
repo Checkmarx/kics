@@ -5,5 +5,6 @@
   "category": "Observability",
   "descriptionText": "PostgreSQL database 'log_temp_files' flag isn't set to '0'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "7d142b54"
 }

@@ -11,7 +11,9 @@
       "id": "f34c1c68-4773-4df0-a103-6e2ca32e585f",
       "queryName": "JSON '$ref' alongside other properties (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#referenceObject"
-    }
+    },
+    "descriptionID": "ee4e8cf0"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "555f02dc"
 }

@@ -11,7 +11,9 @@
       "id": "0bc1477d-0922-478b-ae16-674a7634a1a8",
       "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    }
+    },
+    "descriptionID": "317041ed"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "e9271677"
 }

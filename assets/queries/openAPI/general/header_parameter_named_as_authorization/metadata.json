@@ -11,7 +11,9 @@
       "id": "e2e00c97-7171-4fb4-b461-d631df9a711c",
       "queryName": "Header Parameter Named as 'Authorization' (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    }
+    },
+    "descriptionID": "f684ca8b"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "c6415468"
 }

@@ -11,7 +11,9 @@
       "id": "ab871897-ec02-4835-9818-702536ee1dda",
       "queryName": "Parameters Name In Combination Not Unique (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    }
+    },
+    "descriptionID": "6ec7081e"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "a9ec5c76"
 }

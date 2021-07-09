@@ -11,7 +11,9 @@
       "id": "3e6c7b1c-8a8d-43ab-98b9-65159f44db4a",
       "queryName": "Paths Object is Empty (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject"
-    }
+    },
+    "descriptionID": "95828631"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "886f6e89"
 }

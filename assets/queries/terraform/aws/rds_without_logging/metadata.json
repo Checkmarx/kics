@@ -5,5 +5,6 @@
   "category": "Observability",
   "descriptionText": "RDS does not have any kind of logger",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#enabled_cloudwatch_logs_exports",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "28b0b1be"
 }

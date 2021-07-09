@@ -5,5 +5,6 @@
   "category": "Observability",
   "descriptionText": "S3 bucket versioning should be enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "b0bbfc4c"
 }

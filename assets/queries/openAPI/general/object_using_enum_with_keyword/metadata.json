@@ -12,7 +12,9 @@
       "queryName": "Object Using Enum With Keyword (v2)",
       "descriptionText": "Schema/Parameter/Header Object properties should not contain 'enum' and schema keywords",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    }
+    },
+    "descriptionID": "2ce1a7ed"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "bde429e7"
 }

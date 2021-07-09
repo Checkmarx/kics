@@ -5,5 +5,6 @@
   "category": "Access Control",
   "descriptionText": "IAM Group should have at least one user associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_membership#users",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "1210474b"
 }

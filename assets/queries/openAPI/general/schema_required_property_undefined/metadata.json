@@ -11,7 +11,9 @@
       "id": "811762c8-2e99-4f70-88f9-a63875a953b1",
       "queryName": "Schema Has A Required Property Undefined (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    }
+    },
+    "descriptionID": "a0c28242"
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "3777b8c2"
 }

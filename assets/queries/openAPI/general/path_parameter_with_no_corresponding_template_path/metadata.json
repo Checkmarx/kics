@@ -12,6 +12,8 @@
       "id": "194ef1f8-360e-4c14-8ed2-e83e2bafa142",
       "queryName": "Path Parameter With No Corresponding Template Path (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#pathTemplating"
-    }
-  }
+    },
+    "descriptionID": "33c85535"
+  },
+  "descriptionID": "35676e04"
 }
