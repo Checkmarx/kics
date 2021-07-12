@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"sync"
 	"testing"
 	"time"
 
@@ -15,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 
@@ -288,9 +290,14 @@ func TestInspect(t *testing.T) { //nolint
 		},
 	}
 
+	wg := &sync.WaitGroup{}
 	for _, tt := range tests {
+		currentQuery := make(chan int64)
+		wg.Add(1)
+		proBarBuilder := progress.InitializePbBuilder(true, true, true)
+		progressBar := proBarBuilder.BuildCounter("Executing queries: ", len(tt.fields.queries), wg, currentQuery)
+		go progressBar.Start()
 		t.Run(tt.name, func(t *testing.T) {
-			currentQuery := make(chan float64)
 			c := &Inspector{
 				queries:              tt.fields.queries,
 				vb:                   tt.fields.vb,
@@ -302,7 +309,7 @@ func TestInspect(t *testing.T) { //nolint
 				queryExecTimeout:     time.Duration(60) * time.Second,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
-				true, []string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
+				[]string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)
@@ -316,6 +323,13 @@ func TestInspect(t *testing.T) { //nolint
 				t.Errorf("Inspector.Inspect() = %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
+
+		go func() {
+			defer func() {
+				close(currentQuery)
+			}()
+			wg.Wait()
+		}()
 	}
 }
 

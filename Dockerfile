@@ -36,6 +36,8 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 #runtime image
 FROM scratch
 
+ENV TMPDIR=/app
+
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/ /app/bin/assets/
 

@@ -27,6 +27,7 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
@@ -97,6 +98,9 @@ const (
 	queryExecTimeoutFlag    = "timeout"
 	initError               = "initialization error - "
 	msg                     = "can be provided multiple times or as a comma separated string\n"
+
+	defaultPreviewLines     = 3
+	defaultQueryExecTimeout = 60
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -303,7 +307,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"path to configuration file")
 	scanCmd.Flags().IntVar(&queryExecTimeout,
 		queryExecTimeoutFlag,
-		60,
+		defaultQueryExecTimeout,
 		"number of seconds the query has to execute before being canceled")
 	scanCmd.Flags().StringVar(&inputData,
 		inputDataFlag,
@@ -340,7 +344,7 @@ func initOutputFlags(scanCmd *cobra.Command) {
 func initStdoutFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().IntVar(&previewLines,
 		previewLinesFlag,
-		3,
+		defaultPreviewLines,
 		"number of lines to be display in CLI results (min: 1, max: 30)")
 	scanCmd.Flags().StringVarP(&payloadPath,
 		payloadPathFlag, payloadPathShorthand,
@@ -550,24 +554,7 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
-func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map[string]string, err error) {
-	absPaths := make([]string, len(path))
-	zProvider := &provider.ZipSystemSourceProvider{}
-	for idx, scanPath := range paths {
-		absPath, err := filepath.Abs(scanPath)
-		if err != nil {
-			return nil, nil, err
-		}
-		absPath, err = zProvider.CheckAndExtractZip(absPath)
-		if err != nil {
-			return nil, nil, err
-		}
-		absPaths[idx] = absPath
-	}
-	return absPaths, zProvider.PathExtractionMap, nil
-}
-
-func scan(changedDefaultQueryPath bool) error {
+func scan(changedDefaultQueryPath bool) error { //nolint
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -580,7 +567,11 @@ func scan(changedDefaultQueryPath bool) error {
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
+	proBarBuilder := progress.InitializePbBuilder(noProgress, ci, silent)
+
 	scanStartTime := time.Now()
+	progressBar := proBarBuilder.BuildCircle("Preparing Scan Assets: ")
+	progressBar.Start()
 
 	t, err := tracker.NewTracker(previewLines)
 	if err != nil {
@@ -598,12 +589,12 @@ func scan(changedDefaultQueryPath bool) error {
 		}
 	}
 
-	extractedPaths, pathExtractionMap, err := extractPaths(path)
+	extractedPaths, err := provider.GetSources(path)
 	if err != nil {
 		return err
 	}
 
-	if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
+	if types, excludePath, err = analyzePaths(extractedPaths.Path, types, excludePath); err != nil {
 		return err
 	}
 
@@ -616,13 +607,13 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	services, err := createService(inspector, extractedPaths, t, store, *querySource)
+	services, err := createService(inspector, extractedPaths.Path, t, store, *querySource)
 	if err != nil {
 		log.Err(err)
 		return err
 	}
-
-	if err = scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
+	progressBar.Close()
+	if err = scanner.StartScan(ctx, scanID, *proBarBuilder, services); err != nil {
 		log.Err(err)
 		return err
 	}
@@ -641,10 +632,10 @@ func scan(changedDefaultQueryPath bool) error {
 
 	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
 		ScannedPaths:      path,
-		PathExtractionMap: pathExtractionMap,
+		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
+	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
@@ -694,6 +685,7 @@ func resolveOutputs(
 	documents model.Documents,
 	failedQueries map[string]error,
 	printer *consoleHelpers.Printer,
+	proBarBuilder progress.PbBuilder,
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
@@ -706,10 +698,10 @@ func resolveOutputs(
 		}
 	}
 
-	return printOutput(outputPath, outputName, summary, reportFormats)
+	return printOutput(outputPath, outputName, summary, reportFormats, proBarBuilder)
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
 	log.Debug().Msg("console.printOutput()")
 	if outputPath == "" {
 		return nil
@@ -722,7 +714,7 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 
 	err := consoleHelpers.ValidateReportFormats(formats)
 	if err == nil {
-		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
+		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
 	}
 	return err
 }
