@@ -2,22 +2,22 @@ package Cx
 
 CxPolicy[result] {
 	runCmd := input.document[i].command[name][_]
-	isRunCmd(runCmd)
+	is_run_cmd(runCmd)
 
-	value := runCmd.Value
-	count(value) == 1 #command is in a single string
-
-	cmd := value[0]
+	cmd := concat(" ", runCmd.Value)
 
 	splittedCmd := regex.split(`(\&\& | \|\| | \| | \& | \;)`, cmd)
 
 	currentCmd := splittedCmd[_]
 	installCmd := ["npm install ", "npm i ", "npm add "][_]
-	searchIndex := indexof(currentCmd, installCmd)
+	indexof(currentCmd, installCmd) > -1
 
-	searchIndex != -1
+	tokens := split(currentCmd, " ")
+	token := tokens[_]
 
-	not isValidInstall(currentCmd)
+	token != "npm"
+	token != "install"
+	not valid_match(token)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,42 +28,14 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	runCmd := input.document[i].command[name][_]
-	isRunCmd(runCmd)
-
-	value := runCmd.Value
-	count(value) > 1 #command is in several tokens
-
-	npmInstallIndex := getNPMInstallCmdIdx(value)
-	npmInstallIndex != -1
-	npmInstallCmd := value[npmInstallIndex]
-
-	not isValidInstallArray(value, npmInstallIndex)
-
-	cmdFormatted := replace(runCmd.Original, "\"", "'")
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' uses npm install with a pinned version", [cmdFormatted]),
-		"keyActualValue": sprintf("'%s' does not uses npm install with a pinned version", [cmdFormatted]),
-	}
-}
-
-isRunCmd(com) {
+is_run_cmd(com) {
 	com.Cmd == "run"
 }
 
-isValidInstall(install) {
-	install == ""
-} else {
-	tokens := split(install, " ")
-	validMatch(tokens[_])
-}
-
-validMatch(token) {
+valid_match(token) {
 	startswith(token, "git") # npm install from git repository
+} else {
+	startswith(token, "-")
 } else {
 	hasScope := re_match("@.+/.*", token)
 	hasScope
@@ -77,19 +49,4 @@ validMatch(token) {
 	not hasScope
 	atIndex := indexof(token, "@")
 	atIndex != -1 #package must refer the version or tag
-}
-
-isValidInstallArray(value, npmIdx) {
-	j >= npmIdx
-	j < count(value)
-	validMatch(value[j])
-}
-
-getNPMInstallCmdIdx(value) = idx {
-	install := ["install", "i", "add"]
-	value[i] == "npm"
-	value[plus(i, 1)] == install[_]
-	idx := i + 2
-} else = -1 {
-	true
 }
