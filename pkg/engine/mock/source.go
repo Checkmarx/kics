@@ -36,7 +36,7 @@ func (m *MockQueriesSource) EXPECT() *MockQueriesSourceMockRecorder {
 }
 
 // GetQueries mocks base method.
-func (m *MockQueriesSource) GetQueries(querySelection source.QuerySelectionFilter) ([]model.QueryMetadata, error) {
+func (m *MockQueriesSource) GetQueries(querySelection *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetQueries", querySelection)
 	ret0, _ := ret[0].([]model.QueryMetadata)

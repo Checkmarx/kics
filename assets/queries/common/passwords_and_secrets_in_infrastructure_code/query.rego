@@ -111,7 +111,7 @@ is_under_secret_key(p) = res {
 
 #search for default passwords
 check_vulnerability(correctStrings) {
-	commonLib.isDefaultPassword(correctStrings.value)
+	isDefaultPassword(correctStrings.value)
 	is_under_password_key(correctStrings.key)
 
 	#remove common key and values
@@ -190,7 +190,7 @@ check_vulnerability(correctStrings) {
 
 check_common(correctStrings) {
 	#remove common values
-	not commonLib.isCommonValue(correctStrings.value)
+	not isCommonValue(correctStrings.value)
 
 	#remove common keys
 	not commonLib.isCommonKey(correctStrings.key)
@@ -200,4 +200,12 @@ check_common(correctStrings) {
 replace_unicode(allValues) = treatedValue {
 	treatedValue_first := replace(allValues, "\\u003c", "<")
 	treatedValue = replace(treatedValue_first, "\\u003e", ">")
+}
+
+isDefaultPassword(p) {
+	data.defaultPasswords[_] == p
+}
+
+isCommonValue(p) {
+	contains(upper(p), data.blackList[_])
 }

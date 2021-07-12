@@ -62,6 +62,7 @@ var (
 	reportFormats     []string
 	types             []string
 	queryExecTimeout  int
+	inputData         string
 )
 
 const (
@@ -74,6 +75,7 @@ const (
 	excludeResutlsShorthand = "x"
 	includeQueriesFlag      = "include-queries"
 	inlcudeQueriesShorthand = "i"
+	inputDataFlag           = "input-data"
 	failOnFlag              = "fail-on"
 	ignoreOnExitFlag        = "ignore-on-exit"
 	minimalUIFlag           = "minimal-ui"
@@ -296,18 +298,25 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanFlags(scanCmd *cobra.Command) {
-	scanCmd.Flags().StringSliceVarP(&path,
-		pathFlag, pathFlagShorthand,
-		[]string{},
-		"paths or directories to scan\nexample: \"./somepath,somefile.txt\"")
 	scanCmd.Flags().StringVar(&cfgFile,
 		configFlag, "",
 		"path to configuration file")
-	scanCmd.Flags().StringVarP(&queryPath,
-		queriesPathCmdName, queriesPathShorthand,
-		"./assets/queries",
-		"path to directory with queries",
-	)
+	scanCmd.Flags().IntVar(&queryExecTimeout,
+		queryExecTimeoutFlag,
+		60,
+		"number of seconds the query has to execute before being canceled")
+	scanCmd.Flags().StringVar(&inputData,
+		inputDataFlag,
+		"",
+		"path to query input data files")
+	initPathsFlags(scanCmd)
+	initStdoutFlags(scanCmd)
+	initOutputFlags(scanCmd)
+	initInclusionFlags(scanCmd)
+	initExitStatusFlags(scanCmd)
+}
+
+func initOutputFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringVar(&outputName,
 		outputNameFlag,
 		"results",
@@ -320,6 +329,15 @@ func initScanFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
 		"formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
 	)
+
+	scanCmd.Flags().StringSliceVarP(&types,
+		typeFlag, typeShorthand,
+		[]string{""},
+		"case insensitive list of platform types to scan\n"+
+			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
+}
+
+func initStdoutFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().IntVar(&previewLines,
 		previewLinesFlag,
 		3,
@@ -328,25 +346,35 @@ func initScanFlags(scanCmd *cobra.Command) {
 		payloadPathFlag, payloadPathShorthand,
 		"",
 		"path to store internal representation JSON file")
+	scanCmd.Flags().BoolVar(&min,
+		minimalUIFlag,
+		false,
+		"simplified version of CLI output")
+	scanCmd.Flags().BoolVar(&noProgress,
+		noProgressFlag,
+		false,
+		"hides the progress bar")
+}
+
+func initPathsFlags(scanCmd *cobra.Command) {
+	scanCmd.Flags().StringSliceVarP(&path,
+		pathFlag, pathFlagShorthand,
+		[]string{},
+		"paths or directories to scan\nexample: \"./somepath,somefile.txt\"")
 	scanCmd.Flags().StringSliceVarP(&excludePath,
 		excludePathsFlag, excludePathsShorthand,
 		[]string{},
 		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
 			"\nexample: './shouldNotScan/*,somefile.txt'",
 	)
-	scanCmd.Flags().BoolVar(&min,
-		minimalUIFlag,
-		false,
-		"simplified version of CLI output")
-	scanCmd.Flags().StringSliceVarP(&types,
-		typeFlag, typeShorthand,
-		[]string{""},
-		"case insensitive list of platform types to scan\n"+
-			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
-	scanCmd.Flags().BoolVar(&noProgress,
-		noProgressFlag,
-		false,
-		"hides the progress bar")
+	scanCmd.Flags().StringVarP(&queryPath,
+		queriesPathCmdName, queriesPathShorthand,
+		"./assets/queries",
+		"path to directory with queries",
+	)
+}
+
+func initInclusionFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&excludeIDs,
 		excludeQueriesFlag,
 		[]string{},
@@ -378,6 +406,9 @@ func initScanFlags(scanCmd *cobra.Command) {
 			msg+
 			"example: 'Access control,Best practices'",
 	)
+}
+
+func initExitStatusFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&failOn,
 		failOnFlag,
 		[]string{"high", "medium", "low", "info"},
@@ -391,10 +422,6 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"defines which kind of non-zero exits code should be ignored\n"+"accepts: all, results, errors, none\n"+
 			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
 	)
-	scanCmd.Flags().IntVar(&queryExecTimeout,
-		queryExecTimeoutFlag,
-		60,
-		"number of seconds the query has to execute before being canceled")
 }
 
 func initScanCmd(scanCmd *cobra.Command) {
@@ -443,16 +470,17 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		ByIDs: includeIDs,
 	}
 
-	queryFilter := source.QuerySelectionFilter{
+	queryFilter := source.QueryInspectorParameters{
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
+		InputDataPath:  inputData,
 	}
 
 	inspector, err := engine.NewInspector(ctx,
 		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		t,
-		queryFilter,
+		&queryFilter,
 		excludeResultsMap,
 		queryExecTimeout)
 	if err != nil {

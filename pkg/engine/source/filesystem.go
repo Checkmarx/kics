@@ -31,6 +31,8 @@ const (
 	LibraryFileName = "library.rego"
 	// LibrariesDefaultBasePath the path to rego libraries
 	LibrariesDefaultBasePath = "./assets/libraries/"
+
+	emptyInputData = "{}"
 )
 
 var (
@@ -146,7 +148,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model.QueryMetadata, error) {
+func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
 	err := filepath.Walk(s.Source,
 		func(p string, f os.FileInfo, err error) error {
@@ -172,7 +174,6 @@ func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model
 			sentry.CaptureException(errRQ)
 			log.Err(errRQ).
 				Msgf("Query provider failed to read query, query=%s", path.Base(queryDir))
-
 			continue
 		}
 
@@ -180,13 +181,28 @@ func (s *FilesystemSource) GetQueries(queryFilter QuerySelectionFilter) ([]model
 			continue
 		}
 
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 {
-			if checkQueryInclude(query.Metadata["id"], queryFilter.IncludeQueries.ByIDs) {
+		customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
+		if readInputErr != nil {
+			log.Err(errRQ).
+				Msgf("failed to read input data, query=%s", path.Base(queryDir))
+			continue
+		}
+
+		inputData, mergeError := mergeInputData(query.InputData, customInputData)
+		if mergeError != nil {
+			log.Err(mergeError).
+				Msgf("failed to merge input data, query=%s", path.Base(queryDir))
+			continue
+		}
+		query.InputData = inputData
+
+		if len(queryParameters.IncludeQueries.ByIDs) > 0 {
+			if checkQueryInclude(query.Metadata["id"], queryParameters.IncludeQueries.ByIDs) {
 				queries = append(queries, query)
 			}
 		} else {
-			if checkQueryExclude(query.Metadata["id"], queryFilter.ExcludeQueries.ByIDs) ||
-				checkQueryExclude(query.Metadata["category"], queryFilter.ExcludeQueries.ByCategories) {
+			if checkQueryExclude(query.Metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
+				checkQueryExclude(query.Metadata["category"], queryParameters.ExcludeQueries.ByCategories) {
 				log.Debug().
 					Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
 				continue
@@ -209,6 +225,11 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 
 	metadata := ReadMetadata(queryDir)
 	platform := getPlatform(queryDir)
+	inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
+	if errInputData != nil {
+		log.Err(errInputData).
+			Msgf("Query provider failed to read input data, query=%s", path.Base(queryDir))
+	}
 
 	aggregation := 1
 	if agg, ok := metadata["aggregation"]; ok {
@@ -220,6 +241,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 		Content:     string(queryContent),
 		Metadata:    metadata,
 		Platform:    platform,
+		InputData:   inputData,
 		Aggregation: aggregation,
 	}, nil
 }
@@ -278,4 +300,38 @@ func getPlatform(queryPath string) string {
 	}
 
 	return "unknown"
+}
+
+func readInputData(inputDataPath string) (string, error) {
+	inputData, err := os.ReadFile(filepath.Clean(inputDataPath))
+	if err != nil {
+		if os.IsNotExist(err) {
+			return emptyInputData, nil
+		}
+		return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))
+	}
+	return string(inputData), nil
+}
+
+func mergeInputData(queryInputData, customInputData string) (string, error) {
+	if customInputData == emptyInputData || customInputData == "" {
+		return queryInputData, nil
+	}
+	dataJSON := map[string]interface{}{}
+	customDataJSON := map[string]interface{}{}
+	if unmarshalError := json.Unmarshal([]byte(queryInputData), &dataJSON); unmarshalError != nil {
+		return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
+	}
+	if unmarshalError := json.Unmarshal([]byte(customInputData), &customDataJSON); unmarshalError != nil {
+		return "", errors.Wrapf(unmarshalError, "failed to merge query input data")
+	}
+
+	for key, value := range customDataJSON {
+		dataJSON[key] = value
+	}
+	mergedJSON, mergeErr := json.Marshal(dataJSON)
+	if mergeErr != nil {
+		return "", errors.Wrapf(mergeErr, "failed to merge query input data")
+	}
+	return string(mergedJSON), nil
 }
