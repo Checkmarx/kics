@@ -35,35 +35,6 @@ This will generate a `results.json` file, for both examples, under `path`.
 Usage:
 
 ```txt
-Keeping Infrastructure as Code Secure
-
-Usage:
-  kics [command]
-
-Available Commands:
-  generate-id    Generates uuid for query
-  help           Help about any command
-  list-platforms List supported platforms
-  scan           Executes a scan analysis
-  version        Displays the current version
-
-Flags:
-      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-  -h, --help                help for kics
-  -f, --log-format string   determines log format (pretty,json) (default "pretty")
-      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
-      --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
-      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-
-Use "kics [command] --help" for more information about a command.
-```
-
-Scan command:
-
-```txt
 Executes a scan analysis
 
 Usage:
@@ -99,6 +70,7 @@ Flags:
       --input-data string            path to query input data files
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --offline                      disable HTTP request for CIS descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan

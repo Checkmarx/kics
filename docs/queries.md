@@ -47,10 +47,10 @@ For example, the JSON code above is the metadata corresponding to the query in t
 
 
 #### Organization
-Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped 
+Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped
 under provider (e.g., aws, gcp, azure, etc.) when applicable.
 
-Per each query created, it is mandatory the creation of **test cases** with, at least, one negative and positive case and a JSON file 
+Per each query created, it is mandatory the creation of **test cases** with, at least, one negative and positive case and a JSON file
 with data about the expected results, as shown below:
 ```json
 [
