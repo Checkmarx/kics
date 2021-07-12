@@ -26,7 +26,8 @@
         }
       ],
       "category": "Observability",
-      "description": "Make sure Logging is enabled for Redshift Cluster"
+      "description": "Make sure Logging is enabled for Redshift Cluster",
+      "description_id": "ea4fde74"
     },
     {
       "query_name": "Redshift Cluster Without VPC",
@@ -59,7 +60,8 @@
         }
       ],
       "category": "Insecure Configurations",
-      "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)"
+      "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
+      "description_id": "972eda74"
     },
     {
       "query_name": "Resource Not Using Tags",
@@ -81,7 +83,8 @@
         }
       ],
       "category": "Best Practices",
-      "description": "AWS services resource tags are an essential part of managing components"
+      "description": "AWS services resource tags are an essential part of managing components",
+      "description_id": "0e2e696e"
     }
   ],
   "scan_id": "console",

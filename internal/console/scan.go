@@ -570,7 +570,7 @@ type startServiceParameters struct {
 	pbBuilder      *progress.PbBuilder
 }
 
-func createServiceAndStartScan(params startServiceParameters) (*engine.Inspector, error) {
+func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) {
 	inspector, err := createInspector(params.t, params.querySource)
 	if err != nil {
 		log.Err(err)
@@ -638,7 +638,7 @@ func scan(changedDefaultQueryPath bool) error {
 	querySource := source.NewFilesystemSource(queryPath, types)
 	store := storage.NewMemoryStorage()
 
-	inspector, err := createServiceAndStartScan(startServiceParameters{
+	inspector, err := createServiceAndStartScan(&startServiceParameters{
 		t:              t,
 		store:          store,
 		querySource:    querySource,

@@ -1,5 +1,3 @@
-Executes a scan analysis
-
 Usage:
   kics scan [flags]
 

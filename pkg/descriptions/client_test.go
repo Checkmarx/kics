@@ -60,7 +60,7 @@ func TestClient_post(t *testing.T) {
 	}
 
 	jsonBytes, err := json.Marshal(requestBody)
-	require.NoError(t, err, "Marshalling request body should not return an error")
+	require.NoError(t, err, "Marshaling request body should not return an error")
 
 	request, err := http.NewRequest(http.MethodPost, "http://example.com", bytes.NewReader(jsonBytes))
 	require.NoError(t, err, "Creating request should not return an error")
