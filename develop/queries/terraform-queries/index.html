@@ -2586,10 +2586,10 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_ssl_policy">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>VM CSEK Encryption Disabled<br/><sup><sub>b1d51728-7270-4991-ac2f-fc26e2695b38</sub></sup></td>
+<td>Disk Encryption Disabled<br/><sup><sub>b1d51728-7270-4991-ac2f-fc26e2695b38</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Encryption</td>
-<td>VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK), which means the attribute 'disk_encryption_key' must be defined and its sub attribute 'sha256' must also be defined and not empty</td>
+<td>VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'disk_encryption_key' must be defined and its sub attributes 'raw_key' or 'kms_key_self_link' must also be defined</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_disk">Documentation</a><br/></td>
 </tr>
 <tr>
