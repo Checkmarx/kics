@@ -124,13 +124,15 @@ func removeQueryParameters(path, splitted string) string {
 		return filepath.Join(path, splitted)
 	}
 
-	if len(query) <= MAX_QUERIES && len(query) > 0 {
+	querySize := len(query)
+
+	if querySize <= MAX_QUERIES && querySize > 0 {
 		for key := range query {
 			query.Del(key)
 		}
-	}
 
-	urlParsed.RawQuery = query.Encode()
+		urlParsed.RawQuery = query.Encode()
+	}
 
 	return filepath.Join(filepath.Dir(path), urlParsed.String(), splitted)
 }

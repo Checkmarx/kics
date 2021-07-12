@@ -90,7 +90,7 @@ func TestCreateSummary(t *testing.T) {
 	})
 }
 
-func TestModel_cleanQueryPath(t *testing.T) {
+func TestModel_removeQueryParameters(t *testing.T) {
 	type args struct {
 		path     string
 		splitted string
