@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strconv"
 	"sync"
 	"time"
 
@@ -48,7 +49,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 	for _, path := range source {
-		destination := filepath.Join(os.TempDir(), "kics-extract-"+time.Now().String())
+		destination := filepath.Join(os.TempDir(), "kics-extract-"+nextRandom())
 
 		mode := getter.ClientModeAny
 
@@ -174,3 +175,25 @@ func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
 	}
 	return fileInfo
 }
+
+// ======== Golang way to create random number for tmp dir naming =============
+var rand uint32
+var randmu sync.Mutex
+
+func reseed() uint32 {
+	return uint32(time.Now().UnixNano() + int64(os.Getpid()))
+}
+
+func nextRandom() string {
+	randmu.Lock()
+	r := rand
+	if r == 0 {
+		r = reseed()
+	}
+	r = r*1664525 + 1013904223 // constants from Numerical Recipes
+	rand = r
+	randmu.Unlock()
+	return strconv.Itoa(int(1e9 + r%1e9))[1:]
+}
+
+// ==============================================================================
