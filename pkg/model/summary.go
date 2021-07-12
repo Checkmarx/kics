@@ -11,6 +11,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const (
+	MAX_QUERIES = 50
+)
+
 // SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
 type SeveritySummary struct {
 	ScanID           string           `json:"scan_id"`
@@ -120,8 +124,10 @@ func removeQueryParameters(path, splitted string) string {
 		return filepath.Join(path, splitted)
 	}
 
-	for key := range query {
-		query.Del(key)
+	if len(query) <= MAX_QUERIES && len(query) > 0 {
+		for key := range query {
+			query.Del(key)
+		}
 	}
 
 	urlParsed.RawQuery = query.Encode()
