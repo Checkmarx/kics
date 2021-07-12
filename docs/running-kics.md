@@ -2,7 +2,7 @@
 
 KICS makes use of the <a href="https://github.com/hashicorp/go-getter#go-getter">go-getter</a> package in order to scan files or directories from various sources.
 
-KICS is able to preform scans on these types of paths:
+KICS is able to perform scans on these types of paths:
 
  - Local Files
  - Archived Files
@@ -35,7 +35,7 @@ Available archive formats:
 kics scan -p path/local.zip
 ```
 
-More informatition can be seen <a href="https://github.com/hashicorp/go-getter#unarchiving">here</a>
+More informatition can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
 
 
 ## S3
@@ -58,7 +58,7 @@ s3::{S3 Bucket URL}?{query parameters}
 kics scan -p s3::https://s3.amazonaws.com/bucket/foo?aws_profile=~/.aws/profile
 ```
 
-More informatition can be seen <a href="https://github.com/hashicorp/go-getter#s3-s3">here</a>
+More informatition can be seen [here](https://github.com/hashicorp/go-getter#s3-s3)
 
 ## Git
 
@@ -74,7 +74,7 @@ kics scan -p git::git@github.com:Checkmarx/kics.git
 
 Please make sure you have SSH private key configured with your github account
 
-More informatition can be seen <a href="https://github.com/hashicorp/go-getter#git-git">here</a>
+More informatition can be seen [here](https://github.com/hashicorp/go-getter#git-git)
 
 ## GSC
 
@@ -84,5 +84,5 @@ kics scan -p gcs::https://www.googleapis.com/storage/v1/bucket
 
 Please make sure you have set GSC authentication credentials to your application code by environment variables
 
-More informatition can be seen <a href="https://github.com/hashicorp/go-getter#gcs-gcs">here</a>
+More informatition can be seen [here](https://github.com/hashicorp/go-getter#gcs-gcs)
 

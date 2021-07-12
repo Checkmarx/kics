@@ -566,7 +566,6 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 		return err
 	}
 
-	// if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
 	if types, excludePath, err = analyzePaths(extractedPaths.Path, types, excludePath); err != nil {
 		return err
 	}
@@ -589,12 +588,6 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 	if err = scanner.StartScan(ctx, scanID, *proBarBuilder, services); err != nil {
 		log.Err(err)
 		return err
-	}
-
-	for _, tmpPath := range extractedPaths.RemoveTmp {
-		if err = os.RemoveAll(tmpPath); err != nil {
-			log.Error().Msgf("failed to remove temporary path %s: %v", tmpPath, err)
-		}
 	}
 
 	results, err := store.GetVulnerabilities(ctx, scanID)

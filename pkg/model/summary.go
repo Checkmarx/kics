@@ -96,7 +96,7 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
 			if !val.LocalPath {
-				return cleanQueryPath(val.Path, splittedPath[1])
+				return removeQueryParameters(val.Path, splittedPath[1])
 			}
 			prettyPath = filepath.Join(filepath.Base(val.Path), splittedPath[1])
 		} else {
@@ -107,7 +107,7 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 }
 
 // cleanQueryPath removes queries ('?key=value') from url
-func cleanQueryPath(path, splitted string) string {
+func removeQueryParameters(path, splitted string) string {
 	urlParsed, err := url.Parse(filepath.Base(path))
 	if err != nil {
 		log.Error().Msgf("failed to parse path %v", err)

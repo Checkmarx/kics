@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"path/filepath"
 	"sync"
+	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
@@ -26,7 +27,6 @@ const (
 type ExtractedPath struct {
 	Path          []string
 	ExtrectionMap map[string]model.ExtractedPathObject
-	RemoveTmp     []string
 }
 
 type getterStruct struct {
@@ -43,21 +43,12 @@ type getterStruct struct {
 // It than extracts the files to be scanned. If the source given is not local, a temp dir
 // will be created where the files will be stored.
 func GetSources(source []string) (ExtractedPath, error) {
-	returnStr := ExtractedPath{
+	extrStruct := ExtractedPath{
 		Path:          []string{},
 		ExtrectionMap: make(map[string]model.ExtractedPathObject),
-		RemoveTmp:     []string{},
 	}
 	for _, path := range source {
-		destination, err := os.MkdirTemp("", "kics-extract-*")
-		if err != nil {
-			return ExtractedPath{}, err
-		}
-
-		err = os.RemoveAll(destination)
-		if err != nil {
-			return ExtractedPath{}, err
-		}
+		destination := filepath.Join(os.TempDir(), "kics-extract-"+time.Now().String())
 
 		mode := getter.ClientModeAny
 
@@ -72,7 +63,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 
 		ctx, cancel := context.WithCancel(context.Background())
 
-		st := getterStruct{
+		goGetter := getterStruct{
 			ctx:         ctx,
 			cancel:      cancel,
 			mode:        mode,
@@ -82,23 +73,22 @@ func GetSources(source []string) (ExtractedPath, error) {
 			source:      path,
 		}
 
-		dst, err := getPaths(&st)
+		getterDst, err := getPaths(&goGetter)
 		if err != nil {
 			log.Error().Msgf("failed to find path %s: %s", path, err)
 			return ExtractedPath{}, err
 		}
-		returnStr.RemoveTmp = append(returnStr.RemoveTmp, dst)
-		tempDst, local := checkSymLink(dst, path)
+		tempDst, local := checkSymLink(getterDst, path)
 
-		returnStr.ExtrectionMap[dst] = model.ExtractedPathObject{
+		extrStruct.ExtrectionMap[getterDst] = model.ExtractedPathObject{
 			Path:      path,
 			LocalPath: local,
 		}
 
-		returnStr.Path = append(returnStr.Path, tempDst)
+		extrStruct.Path = append(extrStruct.Path, tempDst)
 	}
 
-	return returnStr, nil
+	return extrStruct, nil
 }
 
 func getPaths(g *getterStruct) (string, error) {
@@ -142,31 +132,31 @@ func getPaths(g *getterStruct) (string, error) {
 }
 
 // check if the dst is a symbolic link
-func checkSymLink(dst, pathFile string) (string, bool) {
+func checkSymLink(getterDst, pathFile string) (string, bool) {
 	var local bool
 	if _, err := os.Stat(pathFile); err == nil { // check if file exist locally
 		local = true
 	}
 
-	info, err := os.Lstat(dst)
+	info, err := os.Lstat(getterDst)
 	if err != nil {
-		log.Error().Msgf("failed lstat for %s: %v", dst, err)
+		log.Error().Msgf("failed lstat for %s: %v", getterDst, err)
 	}
 
-	fileInfo := getFileInfo(info, dst, pathFile)
+	fileInfo := getFileInfo(info, getterDst, pathFile)
 
 	if info.Mode()&os.ModeSymlink != 0 { // if it's a symbolic Link
-		path, err := os.Readlink(dst) // get location of symbolic Link
+		path, err := os.Readlink(getterDst) // get location of symbolic Link
 		if err != nil {
-			log.Error().Msgf("failed Readlink for %s: %v", dst, err)
+			log.Error().Msgf("failed Readlink for %s: %v", getterDst, err)
 		}
-		dst = path // change path to local path
+		getterDst = path // change path to local path
 	} else if !fileInfo.IsDir() { // symbolic links are not created for single files
 		if local { // check if file exist locally
-			dst = pathFile
+			getterDst = pathFile
 		}
 	}
-	return dst, local
+	return getterDst, local
 }
 
 func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
