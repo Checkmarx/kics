@@ -111,7 +111,7 @@ func TestModel_removeQueryParameters(t *testing.T) {
 		{
 			name: "cleanQueryPath With Queries",
 			args: args{
-				path:     "testing_path?key=value",
+				path:     "testing_path?key=value&key2=val2",
 				splitted: "splitted_one",
 			},
 			want: filepath.Join("testing_path", "splitted_one"),

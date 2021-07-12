@@ -4,6 +4,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"strings"
 	"time"
@@ -127,8 +128,9 @@ func removeQueryParameters(path, splitted string) string {
 	querySize := len(query)
 
 	if querySize <= MAX_QUERIES && querySize > 0 {
-		for key := range query {
-			query.Del(key)
+		keys := reflect.ValueOf(query).MapKeys()
+		for i := 0; i <= len(query); i++ {
+			query.Del(keys[i].String())
 		}
 
 		urlParsed.RawQuery = query.Encode()
