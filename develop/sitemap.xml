@@ -136,6 +136,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/running-kics/</loc>
+         <lastmod>2021-07-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/docker/digests/</loc>
          <lastmod>2021-07-12</lastmod>
          <changefreq>daily</changefreq>
