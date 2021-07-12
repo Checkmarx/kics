@@ -109,41 +109,41 @@ func TestModel_resolvePath(t *testing.T) {
 		{
 			name: "test_with_query_params_local",
 			args: args{
-				filePath: filepath.ToSlash("/tmp/file/vuln"),
+				filePath: filepath.FromSlash("/tmp/file/vuln"),
 				pathExtractionMap: map[string]ExtractedPathObject{
-					filepath.ToSlash("/tmp"): {
-						Path:      filepath.ToSlash("https//test/relativepath/testing?paramKey=paramVal"),
+					filepath.FromSlash("/tmp"): {
+						Path:      filepath.FromSlash("https//test/relativepath/testing?paramKey=paramVal"),
 						LocalPath: false,
 					},
 				},
 			},
-			want: filepath.ToSlash("https/test/relativepath/testing/file/vuln"),
+			want: filepath.FromSlash("https/test/relativepath/testing/file/vuln"),
 		},
 		{
 			name: "test_with_query_mult_params_local",
 			args: args{
-				filePath: filepath.ToSlash("/tmp/file/vuln"),
+				filePath: filepath.FromSlash("/tmp/file/vuln"),
 				pathExtractionMap: map[string]ExtractedPathObject{
-					filepath.ToSlash("/tmp"): {
-						Path:      filepath.ToSlash("https//test/relativepath/testing?paramKey=paramVal&paramKey2=paramVal2"),
+					filepath.FromSlash("/tmp"): {
+						Path:      filepath.FromSlash("https//test/relativepath/testing?paramKey=paramVal&paramKey2=paramVal2"),
 						LocalPath: false,
 					},
 				},
 			},
-			want: filepath.ToSlash("https/test/relativepath/testing/file/vuln"),
+			want: filepath.FromSlash("https/test/relativepath/testing/file/vuln"),
 		},
 		{
 			name: "test_with_query_local",
 			args: args{
-				filePath: filepath.Join(pwd, filepath.ToSlash("assets/queries/dockerfile/image_version_not_explicit/test/negative.dockerfile")),
+				filePath: filepath.Join(pwd, filepath.FromSlash("assets/queries/dockerfile/image_version_not_explicit/test/negative.dockerfile")),
 				pathExtractionMap: map[string]ExtractedPathObject{
-					filepath.ToSlash("/tmp"): {
-						Path:      filepath.Join(pwd, filepath.ToSlash("/assets/queries/dockerfile")),
+					filepath.FromSlash("/tmp"): {
+						Path:      filepath.Join(pwd, filepath.FromSlash("/assets/queries/dockerfile")),
 						LocalPath: true,
 					},
 				},
 			},
-			want: filepath.ToSlash("assets/queries/dockerfile/image_version_not_explicit/test/negative.dockerfile"),
+			want: filepath.FromSlash("assets/queries/dockerfile/image_version_not_explicit/test/negative.dockerfile"),
 		},
 	}
 
