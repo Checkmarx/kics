@@ -8,17 +8,6 @@
     auth_kind: serviceaccount
     service_account_file: "/tmp/auth.pem"
     state: present
-- name: create a disk2
-  google.cloud.gcp_compute_disk:
-    name: test_object2
-    size_gb: 50
-    disk_encryption_key:
-      kms_key_name: string
-    zone: us-central1-a
-    project: test_project
-    auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
-    state: present
 - name: create a disk3
   google.cloud.gcp_compute_disk:
     name: test_object3
