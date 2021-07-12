@@ -307,7 +307,7 @@ func initScanFlags(scanCmd *cobra.Command) {
 		"path to configuration file")
 	scanCmd.Flags().IntVar(&queryExecTimeout,
 		queryExecTimeoutFlag,
-		60,
+		defaultQueryExecTimeout,
 		"number of seconds the query has to execute before being canceled")
 	scanCmd.Flags().StringVar(&inputData,
 		inputDataFlag,
@@ -426,10 +426,6 @@ func initExitStatusFlags(scanCmd *cobra.Command) {
 		"defines which kind of non-zero exits code should be ignored\n"+"accepts: all, results, errors, none\n"+
 			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
 	)
-	scanCmd.Flags().IntVar(&queryExecTimeout,
-		queryExecTimeoutFlag,
-		defaultQueryExecTimeout,
-		"number of seconds the query has to execute before being canceled")
 }
 
 func initScanCmd(scanCmd *cobra.Command) {
