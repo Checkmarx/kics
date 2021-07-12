@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Name Is Not Snake Case",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive1.tf"
+  }
+]
