@@ -11,6 +11,7 @@ ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
+ARG DESCRIPTIONS_URL=""
 
 #Copy go mod and sum files
 COPY --chown=Checkmarx:Checkmarx go.mod .
@@ -25,7 +26,7 @@ COPY . .
 USER root
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-    -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN}" \
+    -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 USER Checkmarx

@@ -2,3 +2,4 @@
 test/*.go
 pkg/engine/mock/*.go
 */**/*_test.go
+**/*_mock.go

@@ -17,6 +17,7 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -63,6 +64,7 @@ var (
 	types             []string
 	queryExecTimeout  int
 	inputData         string
+	offline           bool
 )
 
 const (
@@ -95,6 +97,7 @@ const (
 	typeFlag                = "type"
 	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
+	offlineFlag             = "offline"
 	initError               = "initialization error - "
 	msg                     = "can be provided multiple times or as a comma separated string\n"
 )
@@ -309,6 +312,10 @@ func initScanFlags(scanCmd *cobra.Command) {
 		inputDataFlag,
 		"",
 		"path to query input data files")
+	scanCmd.Flags().BoolVar(&offline,
+		offlineFlag,
+		false,
+		"disable HTTP request for CIS descriptions and use default vulnerability descriptions")
 	initPathsFlags(scanCmd)
 	initStdoutFlags(scanCmd)
 	initOutputFlags(scanCmd)
@@ -659,14 +666,10 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	summary, err := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
+	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
 		ScannedPaths:      path,
 		PathExtractionMap: pathExtractionMap,
 	})
-	if err != nil {
-		log.Err(err)
-		return err
-	}
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
 		log.Err(err)
@@ -695,7 +698,7 @@ func printScanDuration(elapsed time.Duration) {
 }
 
 func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time,
-	pathParameters model.PathParameters) (model.Summary, error) {
+	pathParameters model.PathParameters) model.Summary {
 	counters := model.Counters{
 		ScannedFiles:           t.FoundFiles,
 		ParsedFiles:            t.ParsedFiles,
@@ -710,12 +713,18 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		End:   end,
 	}
 	summary.ScannedPaths = pathParameters.ScannedPaths
-	err := consoleHelpers.RequestAndOverrideDescriptions(&summary)
-	if err != nil {
-		return model.Summary{}, err
+
+	if offline {
+		log.Warn().Msg("Skipping CIS descriptions because of offline mode")
+	} else {
+		err := descriptions.RequestAndOverrideDescriptions(&summary)
+		if err != nil {
+			log.Warn().Msgf("Unable to get descriptions: %s", err)
+			log.Warn().Msgf("Using default descriptions")
+		}
 	}
 
-	return summary, nil
+	return summary
 }
 
 func resolveOutputs(
