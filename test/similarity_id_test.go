@@ -267,10 +267,11 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			}
 
 			q := model.QueryMetadata{
-				Query:    testParams.queryID(),
-				Content:  testParams.queryContent(t),
-				Metadata: metadata,
-				Platform: testParams.platform,
+				Query:     testParams.queryID(),
+				Content:   testParams.queryContent(t),
+				InputData: "{}",
+				Metadata:  metadata,
+				Platform:  testParams.platform,
 			}
 			return []model.QueryMetadata{q}, nil
 		})
@@ -293,9 +294,10 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.QuerySelectionFilter{
+		&source.QueryInspectorParameters{
 			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+			InputDataPath:  "",
 		},
 		map[string]bool{}, 60)
 

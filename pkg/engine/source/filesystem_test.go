@@ -1,6 +1,7 @@
 package source
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -38,8 +39,12 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Run(tt.name, func(b *testing.B) {
 			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
 			for n := 0; n < b.N; n++ {
-				filter := QuerySelectionFilter{IncludeQueries{ByIDs: []string{}}, ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}}}
-				if _, err := s.GetQueries(filter); err != nil {
+				filter := QueryInspectorParameters{
+					IncludeQueries: IncludeQueries{ByIDs: []string{}},
+					ExcludeQueries: ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+					InputDataPath:  "",
+				}
+				if _, err := s.GetQueries(&filter); err != nil {
 					b.Errorf("Error: %s", err)
 				}
 			}
@@ -76,8 +81,9 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e4449"},
 			want: []model.QueryMetadata{
 				{
-					Query:   "all_auth_users_get_read_access",
-					Content: string(contentByte),
+					Query:     "all_auth_users_get_read_access",
+					Content:   string(contentByte),
+					InputData: "{}",
 					Metadata: map[string]interface{}{
 						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
@@ -129,14 +135,12 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			filter := QuerySelectionFilter{
-				IncludeQueries{ByIDs: []string{}},
-				ExcludeQueries{
-					ByIDs:        tt.excludeIDs,
-					ByCategories: tt.excludeCategory,
-				},
+			filter := QueryInspectorParameters{
+				IncludeQueries: IncludeQueries{ByIDs: []string{}},
+				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory},
+				InputDataPath:  "",
 			}
-			got, err := s.GetQueries(filter)
+			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -179,8 +183,9 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
 				{
-					Query:   "all_auth_users_get_read_access",
-					Content: string(contentByte),
+					Query:     "all_auth_users_get_read_access",
+					Content:   string(contentByte),
+					InputData: "{}",
 					Metadata: map[string]interface{}{
 						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
@@ -219,16 +224,17 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			filter := QuerySelectionFilter{
-				IncludeQueries{
+			filter := QueryInspectorParameters{
+				IncludeQueries: IncludeQueries{
 					ByIDs: tt.includeIDs,
 				},
-				ExcludeQueries{
+				ExcludeQueries: ExcludeQueries{
 					ByIDs:        []string{},
 					ByCategories: []string{},
 				},
+				InputDataPath: "",
 			}
-			got, err := s.GetQueries(filter)
+			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -382,8 +388,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 			},
 			want: []model.QueryMetadata{
 				{
-					Query:   "all_auth_users_get_read_access",
-					Content: string(contentByte),
+					Query:     "all_auth_users_get_read_access",
+					Content:   string(contentByte),
+					InputData: "{}",
 					Metadata: map[string]interface{}{
 						"category":        "Access Control",
 						"descriptionText": "Misconfigured S3 buckets can leak private information to the entire internet or allow unauthorized data tampering / deletion", //nolint
@@ -411,15 +418,16 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewFilesystemSource(tt.fields.Source, []string{""})
-			filter := QuerySelectionFilter{
-				IncludeQueries{
+			filter := QueryInspectorParameters{
+				IncludeQueries: IncludeQueries{
 					ByIDs: []string{}},
-				ExcludeQueries{
+				ExcludeQueries: ExcludeQueries{
 					ByIDs:        []string{},
 					ByCategories: []string{},
 				},
+				InputDataPath: "",
 			}
-			got, err := s.GetQueries(filter)
+			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -565,4 +573,60 @@ func TestListSupportedPlatforms(t *testing.T) {
 	}
 	actual := ListSupportedPlatforms()
 	require.Equal(t, expected, actual, "expected=%s\ngot=%s", expected, actual)
+}
+
+// TestReadInputData tests readInputData function
+func TestReadInputData(t *testing.T) {
+	tests := []struct {
+		name string
+		path string
+		want string
+	}{
+		{
+			name: "Should generate input data string",
+			path: filepath.FromSlash("./test/fixtures/input_data/test.json"),
+			want: `{"test": "success"}`,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := readInputData(tt.path)
+			require.NoError(t, err)
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
+
+// TestMergeInputData tests mergeInputData function
+func TestMergeInputData(t *testing.T) {
+	tests := []struct {
+		name      string
+		pathData  string
+		pathMerge string
+		want      string
+	}{
+		{
+			name:      "Should merge input data strings",
+			pathData:  filepath.FromSlash("./test/fixtures/input_data/test.json"),
+			pathMerge: filepath.FromSlash("./test/fixtures/input_data/merge.json"),
+			want:      `{"test": "merge","merge": "success"}`,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			data, err := readInputData(tt.pathData)
+			require.NoError(t, err)
+			customData, err := readInputData(tt.pathMerge)
+			require.NoError(t, err)
+			got, err := mergeInputData(data, customData)
+			require.NoError(t, err)
+			wantJSON := map[string]interface{}{}
+			gotJSON := map[string]interface{}{}
+			err = json.Unmarshal([]byte(tt.want), &wantJSON)
+			require.NoError(t, err)
+			err = json.Unmarshal([]byte(got), &gotJSON)
+			require.NoError(t, err)
+			require.Equal(t, wantJSON, gotJSON)
+		})
+	}
 }

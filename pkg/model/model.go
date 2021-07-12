@@ -93,10 +93,11 @@ type FileMetadata struct {
 
 // QueryMetadata is a representation of general information about a query
 type QueryMetadata struct {
-	Query    string
-	Content  string
-	Metadata map[string]interface{}
-	Platform string
+	InputData string
+	Query     string
+	Content   string
+	Metadata  map[string]interface{}
+	Platform  string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
 	Aggregation int

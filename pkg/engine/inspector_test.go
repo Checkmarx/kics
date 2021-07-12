@@ -149,7 +149,8 @@ func TestInspect(t *testing.T) { //nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: opaQuery,
 		metadata: model.QueryMetadata{
-			Query: "add_instead_of_copy",
+			Query:     "add_instead_of_copy",
+			InputData: "{}",
 			Content: `package Cx
 
 			CxPolicy [ result ] {
@@ -350,9 +351,10 @@ func TestNewInspector(t *testing.T) { // nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: rego.PreparedEvalQuery{},
 		metadata: model.QueryMetadata{
-			Query:    "all_auth_users_get_read_access",
-			Content:  string(contentByte),
-			Platform: "unknown",
+			Query:     "all_auth_users_get_read_access",
+			Content:   string(contentByte),
+			InputData: "{}",
+			Platform:  "unknown",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",
@@ -370,7 +372,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		source           source.QueriesSource
 		vb               VulnerabilityBuilder
 		tracker          Tracker
-		queryFilter      source.QuerySelectionFilter
+		queryFilter      source.QueryInspectorParameters
 		excludeResults   map[string]bool
 		queryExecTimeout int
 	}
@@ -387,7 +389,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				vb:      vbs,
 				tracker: track,
 				source:  sources,
-				queryFilter: source.QuerySelectionFilter{
+				queryFilter: source.QueryInspectorParameters{
 					IncludeQueries: source.IncludeQueries{
 						ByIDs: []string{},
 					},
@@ -413,7 +415,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				tt.args.source,
 				tt.args.vb,
 				tt.args.tracker,
-				tt.args.queryFilter,
+				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout)
 
@@ -574,7 +576,14 @@ func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
 	}
-	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.QuerySelectionFilter{}, map[string]bool{}, 60)
+	ins, err := NewInspector(
+		context.Background(),
+		querySource,
+		vb,
+		&tracker.CITracker{},
+		&source.QueryInspectorParameters{},
+		map[string]bool{}, 60,
+	)
 	require.NoError(t, err)
 	return ins
 }
@@ -584,7 +593,7 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(queryFilter source.QuerySelectionFilter) ([]model.QueryMetadata, error) {
+func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	sources := source.NewFilesystemSource(m.Source, []string{""})
 
 	return sources.GetQueries(queryFilter)

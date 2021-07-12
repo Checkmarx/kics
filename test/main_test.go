@@ -235,9 +235,10 @@ func isValidURL(toTest string) bool {
 	return err == nil && u.Scheme != "" && u.Host != ""
 }
 
-func getQueryFilter() source.QuerySelectionFilter {
-	return source.QuerySelectionFilter{
+func getQueryFilter() *source.QueryInspectorParameters {
+	return &source.QueryInspectorParameters{
 		IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 		ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		InputDataPath:  "",
 	}
 }
