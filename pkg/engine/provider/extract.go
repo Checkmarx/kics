@@ -22,11 +22,11 @@ const (
 // ExtractedPath is a struct that contains the paths, temporary paths to remove
 // and extraction map path of the sources
 // Path is the slice of paths to scan
-// ExtrectionMap is a map that correlates the temporary path to the givven path
+// ExtractionMap is a map that correlates the temporary path to the given path
 // RemoveTmp is the slice containing temporary paths to be removed
 type ExtractedPath struct {
 	Path          []string
-	ExtrectionMap map[string]model.ExtractedPathObject
+	ExtractionMap map[string]model.ExtractedPathObject
 }
 
 type getterStruct struct {
@@ -45,7 +45,7 @@ type getterStruct struct {
 func GetSources(source []string) (ExtractedPath, error) {
 	extrStruct := ExtractedPath{
 		Path:          []string{},
-		ExtrectionMap: make(map[string]model.ExtractedPathObject),
+		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 	for _, path := range source {
 		destination := filepath.Join(os.TempDir(), "kics-extract-"+time.Now().String())
@@ -80,7 +80,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 		}
 		tempDst, local := checkSymLink(getterDst, path)
 
-		extrStruct.ExtrectionMap[getterDst] = model.ExtractedPathObject{
+		extrStruct.ExtractionMap[getterDst] = model.ExtractedPathObject{
 			Path:      path,
 			LocalPath: local,
 		}

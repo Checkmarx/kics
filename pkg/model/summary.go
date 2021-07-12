@@ -11,10 +11,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const (
-	MAX_QUERIES = 50
-)
-
 // SeveritySummary contains scans' result numbers, how many vulnerabilities of each severity was detected
 type SeveritySummary struct {
 	ScanID           string           `json:"scan_id"`
@@ -84,7 +80,7 @@ type PathParameters struct {
 }
 
 var (
-	queryRegex = regexp.MustCompile("\\?([\\w-]+(=[\\w-]*)?(&[\\w-]+(=[\\w-]*)?)*)?")
+	queryRegex = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
 )
 
 func getRelativePath(basePath, filePath string) string {
@@ -104,7 +100,7 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
 			if !val.LocalPath {
-				return filepath.Join(queryRegex.ReplaceAllString(val.Path, ""), splittedPath[1]) //remove query parameters '?key=value&key2=value'
+				return filepath.Join(queryRegex.ReplaceAllString(val.Path, ""), splittedPath[1]) // remove query parameters '?key=value&key2=value'
 			}
 			prettyPath = filepath.Join(filepath.Base(val.Path), splittedPath[1])
 		} else {

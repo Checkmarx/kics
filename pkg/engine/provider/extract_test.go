@@ -72,7 +72,7 @@ func TestProvider_GetSources(t *testing.T) {
 			}
 			if !tt.wantErr {
 				require.NotNil(t, got.Path)
-				require.NotNil(t, got.ExtrectionMap)
+				require.NotNil(t, got.ExtractionMap)
 			}
 		})
 	}

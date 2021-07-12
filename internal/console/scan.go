@@ -604,7 +604,7 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 
 	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
 		ScannedPaths:      path,
-		PathExtractionMap: extractedPaths.ExtrectionMap,
+		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
 	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
