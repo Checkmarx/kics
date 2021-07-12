@@ -1,10 +1,9 @@
 package model
 
 import (
-	"net/url"
 	"os"
 	"path/filepath"
-	"reflect"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -84,6 +83,10 @@ type PathParameters struct {
 	PathExtractionMap map[string]ExtractedPathObject
 }
 
+var (
+	queryRegex = regexp.MustCompile("\\?([\\w-]+(=[\\w-]*)?(&[\\w-]+(=[\\w-]*)?)*)?")
+)
+
 func getRelativePath(basePath, filePath string) string {
 	var returnPath string
 	relativePath, err := filepath.Rel(basePath, filePath)
@@ -101,7 +104,7 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
 			if !val.LocalPath {
-				return removeQueryParameters(val.Path, splittedPath[1])
+				return filepath.Join(queryRegex.ReplaceAllString(val.Path, ""), splittedPath[1]) //remove query parameters '?key=value&key2=value'
 			}
 			prettyPath = filepath.Join(filepath.Base(val.Path), splittedPath[1])
 		} else {
@@ -109,34 +112,6 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		}
 	}
 	return prettyPath
-}
-
-// cleanQueryPath removes queries ('?key=value') from url
-func removeQueryParameters(path, splitted string) string {
-	urlParsed, err := url.Parse(filepath.Base(path))
-	if err != nil {
-		log.Error().Msgf("failed to parse path %v", err)
-		return filepath.Join(path, splitted)
-	}
-
-	query, err := url.ParseQuery(urlParsed.RawQuery)
-	if err != nil {
-		log.Error().Msgf("failed to parse query path %v", err)
-		return filepath.Join(path, splitted)
-	}
-
-	querySize := len(query)
-
-	if querySize <= MAX_QUERIES && querySize > 0 {
-		keys := reflect.ValueOf(query).MapKeys()
-		for i := 0; i <= len(query); i++ {
-			query.Del(keys[i].String())
-		}
-
-		urlParsed.RawQuery = query.Encode()
-	}
-
-	return filepath.Join(filepath.Dir(path), urlParsed.String(), splitted)
 }
 
 func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {

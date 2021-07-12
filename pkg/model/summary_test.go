@@ -1,7 +1,6 @@
 package model
 
 import (
-	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -88,40 +87,4 @@ func TestCreateSummary(t *testing.T) {
 			},
 		})
 	})
-}
-
-func TestModel_removeQueryParameters(t *testing.T) {
-	type args struct {
-		path     string
-		splitted string
-	}
-	tests := []struct {
-		name string
-		args args
-		want string
-	}{
-		{
-			name: "cleanQueryPath No Queries",
-			args: args{
-				path:     "testing_path",
-				splitted: "splitted_one",
-			},
-			want: filepath.Join("testing_path", "splitted_one"),
-		},
-		{
-			name: "cleanQueryPath With Queries",
-			args: args{
-				path:     "testing_path?key=value&key2=val2",
-				splitted: "splitted_one",
-			},
-			want: filepath.Join("testing_path", "splitted_one"),
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := removeQueryParameters(tt.args.path, tt.args.splitted)
-			require.Equal(t, tt.want, got)
-		})
-	}
 }
