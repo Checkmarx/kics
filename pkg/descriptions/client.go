@@ -33,8 +33,14 @@ var (
 	authKey = []rune{67, 101, 110, 116, 101, 114, 95, 102, 111, 114, 95, 73, 110, 116, 101, 114, 110, 101,
 		116, 95, 83, 101, 99, 117, 114, 105, 116, 121, 95, 80, 114, 111, 112, 114, 105, 101, 116, 97, 114, 121,
 		95, 67, 111, 110, 116, 101, 110, 116, 95, 99, 105, 115, 101, 99, 117, 114, 105, 116, 121, 46, 111, 114, 103}
+
+	tr = &http.Transport{
+		MaxIdleConns:       10,
+		IdleConnTimeout:    30 * time.Second,
+		DisableCompression: true,
+	}
 	// HTTPRequestClient - http client to use for requests
-	HTTPRequestClient HTTPClient
+	HTTPRequestClient HTTPClient = &http.Client{Transport: tr}
 )
 
 // HTTPClient - http client to use for requests
@@ -71,20 +77,22 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]string
 		log.Err(err).Msg("Unable to marshal request body")
 		return nil, err
 	}
-	headers := http.Header{
-		"Content-Type":  {"application/json"},
-		"Authorization": {fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(string(authKey))))},
+
+	req, err := http.NewRequest(http.MethodPost, endpointURL, bytes.NewReader(requestBody))
+	if err != nil {
+		return nil, err
 	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(string(authKey)))))
 
 	log.Debug().Msgf("HTTP POST to descriptions endpoint")
 	startTime := time.Now()
-	resp, err := post(endpointURL, requestBody, headers)
+	resp, err := doPost(req)
 	if err != nil {
 		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
 		return nil, err
 	}
 	defer resp.Body.Close()
-
 	endTime := time.Since(startTime)
 	log.Debug().Msgf("HTTP Status: %d %s %v", resp.StatusCode, http.StatusText(resp.StatusCode), endTime)
 
@@ -105,16 +113,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]string
 }
 
 // Post - make HTTP post request
-func post(url string, body interface{}, headers http.Header) (*http.Response, error) {
-	jsonBytes, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	request, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(jsonBytes))
-	if err != nil {
-		return nil, err
-	}
-	request.Header = headers
+func doPost(request *http.Request) (*http.Response, error) {
 	return HTTPRequestClient.Do(request)
 }
 

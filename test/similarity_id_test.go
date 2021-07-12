@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -11,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/mock"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -302,8 +304,15 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
-	currentQuery := make(chan float64)
+	currentQuery := make(chan int64)
 
+	wg := &sync.WaitGroup{}
+	proBarBuilder := progress.InitializePbBuilder(true, true, true)
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
+	go progressBar.Start()
+
+	wg.Add(1)
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
 		scanID,
@@ -312,11 +321,18 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.samplePath(t),
 			testParams.sampleContent(t),
 		),
-		true,
 		[]string{BaseTestsScanPath},
 		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"},
 		currentQuery,
 	)
+
+	go func() {
+		defer func() {
+			close(currentQuery)
+		}()
+		wg.Wait()
+	}()
+
 	require.Nil(t, err)
 	return vulnerabilities
 }

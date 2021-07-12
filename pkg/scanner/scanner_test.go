@@ -12,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/parser"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/stretchr/testify/require"
@@ -51,7 +52,7 @@ func TestScanner_StartScan(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			services, store, err := createServices(tt.feilds.types)
 			require.NoError(t, err)
-			err = StartScan(context.Background(), tt.args.scanID, tt.args.noProgress, services)
+			err = StartScan(context.Background(), tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
 			require.NotEmpty(t, &store)
 		})

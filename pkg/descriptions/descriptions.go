@@ -20,7 +20,7 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 
 	for idx := range summary.Queries {
 		descriptionText, ok := descriptionMap[summary.Queries[idx].DescriptionID]
-		if ok {
+		if ok && len(descriptionText) > 0 {
 			summary.Queries[idx].Description = descriptionText
 		}
 	}

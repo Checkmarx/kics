@@ -3,15 +3,15 @@ package descriptions
 import (
 	"testing"
 
-	mock_client "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
 func TestRequestAndOverrideDescriptions_NoBaseURL(t *testing.T) {
 	mock := test.SummaryMock
-	descClient = &mock_client.MockDecriptionsClient{}
-	mock_client.GetDescriptions = func(descriptionIDs []string) (map[string]string, error) {
+	descClient = &mockclient.MockDecriptionsClient{}
+	mockclient.GetDescriptions = func(descriptionIDs []string) (map[string]string, error) {
 		return map[string]string{
 			"504b1d43": "my mocked description",
 		}, nil

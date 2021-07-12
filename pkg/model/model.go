@@ -71,6 +71,13 @@ type CodeLine struct {
 	Line     string
 }
 
+// ExtractedPathObject is the struct that contains the path location of extracted source
+// and a boolean to check if it is a local source
+type ExtractedPathObject struct {
+	Path      string
+	LocalPath bool
+}
+
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
 	ID           string `db:"id"`

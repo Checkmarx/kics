@@ -2,6 +2,7 @@ package descriptions
 
 import (
 	"bytes"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -47,8 +48,8 @@ func TestClient_post(t *testing.T) {
 			Body:       r,
 		}, nil
 	}
-	headers := http.Header{
-		"Content-Type": []string{"application/json"},
+	headers := map[string]string{
+		"Content-Type": "application/json",
 	}
 	requestBody := mockclient.MockRequestBody{
 		Descriptions: []string{
@@ -57,7 +58,17 @@ func TestClient_post(t *testing.T) {
 			"foo3",
 		},
 	}
-	response, err := post("http://example.com", requestBody, headers)
+
+	jsonBytes, err := json.Marshal(requestBody)
+	require.NoError(t, err, "Marshalling request body should not return an error")
+
+	request, err := http.NewRequest(http.MethodPost, "http://example.com", bytes.NewReader(jsonBytes))
+	require.NoError(t, err, "Creating request should not return an error")
+
+	for key, value := range headers {
+		request.Header.Add(key, value)
+	}
+	response, err := doPost(request)
 	require.NoError(t, err, "post() should not return an error")
 	defer response.Body.Close()
 	require.NotNil(t, response, "post() should return a response")
