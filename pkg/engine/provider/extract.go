@@ -18,6 +18,7 @@ import (
 
 const (
 	channelLength = 2
+	tempDirFormat = 1e9
 )
 
 // ExtractedPath is a struct that contains the paths, temporary paths to remove
@@ -193,7 +194,7 @@ func nextRandom() string {
 	r = r*1664525 + 1013904223 // constants from Numerical Recipes
 	rand = r
 	randmu.Unlock()
-	return strconv.Itoa(int(1e9 + r%1e9))[1:]
+	return strconv.Itoa(int(tempDirFormat + r%tempDirFormat))[1:]
 }
 
 // ==============================================================================
