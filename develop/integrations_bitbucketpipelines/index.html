@@ -988,22 +988,14 @@
 pipelines:
   default:
     - step:
-        name: 'Cx KICS'
+        name: &quot;Cx KICS&quot;
         script:
           - LATEST_KICS_TAG=$(curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; | grep '&quot;tag_name&quot;:' | sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/')
           - LATEST_KICS_VERSION=${LATEST_KICS_TAG#v}
           - wget -q -c &quot;https://github.com/Checkmarx/kics/releases/download/${LATEST_KICS_TAG}/kics_${LATEST_KICS_VERSION}_linux_x64.tar.gz&quot; -O - | tar -xz --directory /usr/bin &amp;&gt;/dev/null
-          - kics -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
-          - TOTAL_SEVERITY_COUNTER=`grep '&quot;totalCounter&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'}`
-          - export SEVERITY_COUNTER_HIGH=`grep '&quot;HIGH&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          - SEVERITY_COUNTER_MEDIUM=`grep '&quot;INFO&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          - SEVERITY_COUNTER_LOW=`grep '&quot;LOW&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          - SEVERITY_COUNTER_INFO=`grep '&quot;MEDIUM&quot;':' ' ${PWD}/kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          - echo &quot;TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER&quot;
-          - if [ &quot;$SEVERITY_COUNTER_HIGH&quot; -ge &quot;1&quot; ];then echo &quot;Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS&quot; &amp;&amp; exit 1;fi
+          - kics -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}
         artifacts:
-          - kics-results.json
-
+          - results.json
 </code></pre>
                 
               

@@ -1023,94 +1023,21 @@
                 
                 <h2 id="integrate_kics_with_azure_pipelines">Integrate KICS with Azure Pipelines<a class="headerlink" href="#integrate_kics_with_azure_pipelines" title="Permanent link">&para;</a></h2>
 <p>You can integrate KICS into your Azure Pipelines CI/CD.</p>
-<p>This provides you the ability to run KICS scans in your GitLab repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
-<h3 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">&para;</a></h3>
-<p>The following tutorial is a possible way of using KICS in Azure Pipelines CI. You can be creative and come up with different solutions that fit your pipelines.</p>
-<p>In this case we instruct the job to download and use the latest Linux version of KICS.</p>
-<p>1- Edit or add a new azure-pipelines.yml file in the root of your repository</p>
-<p>2- Declare a new stage</p>
-<pre><code class="language-yaml">stages:
-- stage: kics
-  displayName: kics
-</code></pre>
-<p>3- Declare the steps - in this case it is a script where we follow the steps:</p>
-<p>3.1- Get the OS name: <code>OS=$(uname -s)</code></p>
-<p>3.2- Declare version and KICS binaries to download</p>
-<pre><code class="language-shell">get_latest_kics_release() {
-    curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; |
-        grep '&quot;tag_name&quot;:' |
-        sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/'
-}
-LATEST_TAG=$(get_latest_kics_release)
-LATEST_VERSION=${LATEST_TAG#v}
-PACKAGE_NAME=kics_${LATEST_VERSION}_${OS}_x64.tar.gz
-TARGET_DIR=/home/vsts/kics
-</code></pre>
-<p>3.3- Download the binary</p>
-<pre><code class="language-shell">mkdir -p ${TARGET_DIR}
-wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
-</code></pre>
-<p>3.4- Start the scan</p>
-<pre><code class="language-shell"> ${TARGET_DIR}/kics --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
-</code></pre>
-<p>3.5- Consume the results</p>
-<pre><code class="language-shell">TOTAL_SEVERITY_COUNTER=`grep '&quot;total_counter&quot;':' ' kics-results.json | awk {'print $2'}`
-export SEVERITY_COUNTER_HIGH=`grep '&quot;HIGH&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-SEVERITY_COUNTER_MEDIUM=`grep '&quot;INFO&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-SEVERITY_COUNTER_LOW=`grep '&quot;LOW&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-SEVERITY_COUNTER_INFO=`grep '&quot;MEDIUM&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-echo &quot;TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER&quot;
-</code></pre>
-<p>3.6- Optionally, define a breaking point for the CI</p>
-<pre><code class="language-shell">if [ &quot;$SEVERITY_COUNTER_HIGH&quot; -ge &quot;1&quot; ]; then
-    echo &quot;Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS&quot; &amp;&amp; exit 1;
-fi
-</code></pre>
-<hr />
-<p>Here is the full content of the job</p>
-<pre><code class="language-yaml">trigger:
-- master
-
+<p>This provides you the ability to run KICS scans in your Azure DevOps repositories and streamline vulnerabilities and misconfiguration checks to your infrastructure as code (IaC).</p>
+<pre><code class="language-yaml">#
+# Example using JSON format
+#
+trigger:
+  - master
 pool:
-  vmImage: 'ubuntu-latest'
-
-stages:
-- stage: kics
-  displayName: kics
-
-  jobs:
-  - job: runKics
-    displayName: runKics
-    steps:
-      - script: |
-          get_latest_kics_release() {
-            curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; |
-              grep '&quot;tag_name&quot;:' |
-              sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/'
-          }
-
-          OS=$(uname -s)
-          LATEST_TAG=$(get_latest_kics_release)
-          LATEST_VERSION=${LATEST_TAG#v}
-          PACKAGE_NAME=kics_${LATEST_VERSION}_${OS}_x64.tar.gz
-          TARGET_DIR=/home/vsts/kics
-
-          mkdir -p ${TARGET_DIR}
-          wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
-
-          echo '--- START SCANNING ---'
-          ${TARGET_DIR}/kics --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
-
-          TOTAL_SEVERITY_COUNTER=`grep '&quot;total_counter&quot;':' ' kics-results.json | awk {'print $2'}`
-          export SEVERITY_COUNTER_HIGH=`grep '&quot;HIGH&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          SEVERITY_COUNTER_MEDIUM=`grep '&quot;INFO&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          SEVERITY_COUNTER_LOW=`grep '&quot;LOW&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          SEVERITY_COUNTER_INFO=`grep '&quot;MEDIUM&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-          echo &quot;TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER&quot;
-
-          if [ &quot;$SEVERITY_COUNTER_HIGH&quot; -ge &quot;1&quot; ]; then
-            echo &quot;Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS&quot; &amp;&amp; exit 1;
-          fi
+  vmImage: &quot;ubuntu-latest&quot;
+container: checkmarx/kics:latest-debian
+steps:
+  # running in CI mode, exporting results to a JSON file and printing the results in stdout
+  # KICS should fail the pipeline if results are found
+  - script: |
+      /app/bin/kics scan --ci -p ${PWD} -o ${PWD}
+      cat results.json
 </code></pre>
 <hr />
 <h3 id="example_results">Example Results<a class="headerlink" href="#example_results" title="Permanent link">&para;</a></h3>
@@ -1126,33 +1053,25 @@ stages:
 <li>Install and give permissions to the plugin.</li>
 <li>Create a pipeline to scan IaC with KICS, configure the results output in the SARIF format, and publish it as a build artifact with artifact named as <code>CodeAnalysisLogs</code>:</li>
 </ol>
-<pre><code class="language-yaml">trigger:
-- master
-
+<pre><code class="language-yaml">#
+# Example using SARIF viewer:
+# https://marketplace.visualstudio.com/items?itemName=sariftools.sarif-viewer-build-tab
+#
+trigger:
+  - master
 pool:
-  vmImage: 'ubuntu-latest'
-
-stages:
-- stage: Kics
-  displayName: Kics
-  jobs:
-  - job: runKics
-    displayName: runKics
-    steps:
-      - script: |
-          OS=$(uname -s)
-          LATEST_TAG=$(curl --silent &quot;https://api.github.com/repos/Checkmarx/kics/releases/latest&quot; | grep '&quot;tag_name&quot;:' | sed -E 's/.*&quot;([^&quot;]+)&quot;.*/\1/')
-          LATEST_VERSION=${LATEST_TAG#v}
-          PACKAGE_NAME=kics_${LATEST_VERSION}_${OS}_x64.tar.gz
-          TARGET_DIR=/home/vsts/kics
-          mkdir -p ${TARGET_DIR}
-          wget -q -c https://github.com/Checkmarx/kics/releases/download/${LATEST_TAG}/${PACKAGE_NAME} -O - | tar -xz -C ${TARGET_DIR}
-          echo '--- START SCANNING ---'
-          ${TARGET_DIR}/kics scan --no-progress -q ${TARGET_DIR}/assets/queries -p ${PWD} -o ${PWD}/kics-results.sarif
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathToPublish: $(System.DefaultWorkingDirectory)/kics-results.sarif
-          artifactName: CodeAnalysisLogs
+  vmImage: &quot;ubuntu-latest&quot;
+container: checkmarx/kics:latest-debian
+steps:
+  # run in CI mode, do not fail the pipeline on results found and export the report in both json and SARIF format.
+  - script: |
+      /app/bin/kics scan --ci -p ${PWD} -o ${PWD} --report-formats json,sarif --ignore-on-exit results
+      cat results.json
+  # scan results should be visible in the SARIF viewer tab of the build.
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: $(System.DefaultWorkingDirectory)/results.sarif
+      artifactName: CodeAnalysisLogs
 </code></pre>
 <h2 id="build_status">Build status<a class="headerlink" href="#build_status" title="Permanent link">&para;</a></h2>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/azure-devops-build-status.png" width="850"></p>

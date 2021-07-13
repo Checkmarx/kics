@@ -1016,33 +1016,15 @@ before_script:
 
 stages:
   - kics
-  - kics-result
 
 kics-scan:
   stage: kics
   script:
-    - kics scan -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
+    - kics scan --ci -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
   artifacts:
     name: kics-results.json
     paths:
       - kics-results.json
-
-kics-results:
-  stage: kics-result
-  before_script:
-    - export TOTAL_SEVERITY_COUNTER=`grep '&quot;total_counter&quot;':' ' kics-results.json | awk {'print $2'}`
-    - export SEVERITY_COUNTER_HIGH=`grep '&quot;HIGH&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-    - export SEVERITY_COUNTER_MEDIUM=`grep '&quot;INFO&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-    - export SEVERITY_COUNTER_LOW=`grep '&quot;LOW&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-    - export SEVERITY_COUNTER_INFO=`grep '&quot;MEDIUM&quot;':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-  script:
-    - |
-      echo &quot;TOTAL SEVERITY COUNTER: $TOTAL_SEVERITY_COUNTER
-      SEVERITY COUNTER HIGH: $SEVERITY_COUNTER_HIGH
-      SEVERITY COUNTER MEDIUM: $SEVERITY_COUNTER_MEDIUM
-      SEVERITY COUNTER LOW: $SEVERITY_COUNTER_LOW
-      SEVERITY COUNTER INFO: $SEVERITY_COUNTER_INFO&quot;
-    - if [ &quot;$SEVERITY_COUNTER_HIGH&quot; -ge &quot;1&quot; ];then echo &quot;Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY ISSUES&quot; &amp;&amp; exit 1;fi
 </code></pre>
 <hr />
 <h3 id="example_results">Example Results<a class="headerlink" href="#example_results" title="Permanent link">&para;</a></h3>
@@ -1062,7 +1044,7 @@ stages:
 kics-scan:
   stage: kics
   script:
-    - kics scan -q ./assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD}/gl-sast-kics-results.glsast
+    - kics scan -q ./assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
   artifacts:
     reports:
       sast: gl-sast-kics-results.json
