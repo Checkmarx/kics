@@ -38,7 +38,7 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 #
-# This image can be used as a container agent for Azure devops pipeline
+# This image can be used as a container agent for the Azure DevOps pipeline
 # be sure to use /app/bin/kics as a path to the binary
 #
 #runtime image
