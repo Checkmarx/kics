@@ -1,5 +1,5 @@
 #
-# This image is here mainly to be used as a container agent for Azure devops pipeline
+# This image is here mainly to be used as a container agent for the Azure DevOps pipeline
 # it does not define an ENTRYPOINT as this is a requirement described here:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#linux-based-containers
 #
@@ -54,4 +54,3 @@ ENV PATH $PATH:/app/bin
 
 #Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
-
