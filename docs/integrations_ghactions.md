@@ -155,7 +155,7 @@ You can only enable one profiler at a time, CPU or MEM.
         output_path: results-dir
     - name: display kics results
       run: |
-        cat results.json
+        cat results-dir/results.json
 ```
 
 ## Uploading SARIF report
