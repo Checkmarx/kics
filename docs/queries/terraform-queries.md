@@ -75,7 +75,11 @@ Bellow are listed queries related with Terraform SHARED (V2/V3):
 
 |            Query            |Severity|Category|Description|Help|
 |-----------------------------|--------|--------|-----------|----|
+|Generic Git Module Without Revision<br/><sup><sub>3a81fc06-566f-492a-91dd-7448e409e2cd</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All generic git repositories should reference a revision.|<a href="https://www.terraform.io/docs/language/modules/sources.html#selecting-a-revision">Documentation</a><br/>|
+|Variable Without Type<br/><sup><sub>fc5109bf-01fd-49fb-8bde-4492b543c34a</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All variables should contain a valid type.|<a href="https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation">Documentation</a><br/>|
 |Variable Without Description<br/><sup><sub>2a153952-2544-4687-bcc9-cc8fea814a9b</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All variables should contain a valid description.|<a href="https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation">Documentation</a><br/>|
+|Name Is Not Snake Case<br/><sup><sub>1e434b25-8763-4b00-a5ca-ca03b7abbb66</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All names should follow snake case pattern.|<a href="https://www.terraform.io/docs/extend/best-practices/naming.html#naming">Documentation</a><br/>|
+|Output Without Description<br/><sup><sub>59312e8a-a64e-41e7-a252-618533dd1ea8</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|All outputs should contain a valid description.|<a href="https://www.terraform.io/docs/language/values/outputs.html#description-output-value-documentation">Documentation</a><br/>|
 ### GCP
 Bellow are listed queries related with Terraform GCP:
 

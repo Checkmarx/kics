@@ -376,7 +376,7 @@ var tests = []testCase{
 					"--exclude-queries", "568a4d22-3517-44a6-a7ad-6a7eed88722c",
 					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 
-				[]string{"scan", "--exclude-categories", "Access Control,Encryption,Observability",
+				[]string{"scan", "--exclude-categories", "Access Control,Encryption,Observability,Best Practices",
 					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 			},
 		},
