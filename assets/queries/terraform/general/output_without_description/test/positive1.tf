@@ -1,6 +1,5 @@
 output "cluster_name" {
   value = "example"
-  type    = string
 }
 
 resource "aws_eks_cluster" "positive1" {
