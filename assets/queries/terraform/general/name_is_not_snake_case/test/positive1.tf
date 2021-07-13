@@ -5,7 +5,7 @@ variable "cluster_name" {
 }
 
 module "acm" {
-  source      = "git::https://example.com/vpc.git"
+  source      = "git::https://example.com/vpc.git?ref=v1.2.0"
   version     = "~> v2.0"
   domain_name = var.site_domain
   zone_id     = data.aws_route53_zone.this.zone_id
