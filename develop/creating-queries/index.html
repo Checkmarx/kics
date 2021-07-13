@@ -1091,6 +1091,8 @@ CxPolicy[result] {
   &quot;platform&quot;: &quot;Terraform&quot;
 }
 </code></pre>
+<p>👨‍💻 <strong>Data File</strong></p>
+<p>This file contains a map, with string keys, which will have default values for keys that can be overwritten as described on <a href="#allowing-users-to-overwrite-query-data">allowing users to overwrite query data section</a> and <a href="../running-kics/#using-custom-input-data">using custom input data section of Running KICS</a></p>
 <p>👨‍💻 <strong>Test Folder</strong></p>
 <p>Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the <a href="https://docs.kics.io/latest/platforms/">extensions available</a> by the platform.</p>
 <p>Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the <code>is_multi_region_trail</code> defined (positive1.tf) and another with the <code>is_multi_region_trail</code> set to false (positive2.tf). </p>
@@ -1272,6 +1274,14 @@ CxPolicy[result] {
 isTCPorUDP(&quot;TCP&quot;) = true
 isTCPorUDP(&quot;UDP&quot;) = true
 </code></pre>
+<h4 id="allowing_users_to_overwrite_query_data">Allowing users to overwrite query data<a class="headerlink" href="#allowing_users_to_overwrite_query_data" title="Permanent link">&para;</a></h4>
+<p>Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users has different datasets for multiple enviroments. This can be supported easy following some steps:</p>
+<ol>
+<li>Create a <code>data.json</code> file on the same level as <code>query.rego</code>;</li>
+<li>Define <strong>ALL</strong> keys that can be overwritten with their default value;</li>
+<li>On <code>query.rego</code> file, use <code>data.&lt;key_on_data_json_file&gt;</code> to access the value of this key;</li>
+</ol>
+<p>With these simple steps, users will be able to overwrite the keys they want, elsewhere will use the default value.</p>
                 
               
               
