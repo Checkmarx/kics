@@ -8,13 +8,13 @@
   {
     "queryName": "Output Without Description",
     "severity": "INFO",
-    "line": 4,
+    "line": 3,
     "filename": "positive2.tf"
   },
   {
     "queryName": "Output Without Description",
     "severity": "INFO",
-    "line": 4,
+    "line": 3,
     "filename": "positive3.tf"
   }
 ]
