@@ -30,33 +30,15 @@ before_script:
 
 stages:
   - kics
-  - kics-result
 
 kics-scan:
   stage: kics
   script:
-    - kics scan -q /usr/bin/assets/queries -p ${PWD} -o ${PWD}/kics-results.json
+    - kics scan --ci -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
   artifacts:
     name: kics-results.json
     paths:
       - kics-results.json
-
-kics-results:
-  stage: kics-result
-  before_script:
-    - export TOTAL_SEVERITY_COUNTER=`grep '"total_counter"':' ' kics-results.json | awk {'print $2'}`
-    - export SEVERITY_COUNTER_HIGH=`grep '"HIGH"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-    - export SEVERITY_COUNTER_MEDIUM=`grep '"INFO"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-    - export SEVERITY_COUNTER_LOW=`grep '"LOW"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-    - export SEVERITY_COUNTER_INFO=`grep '"MEDIUM"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
-  script:
-    - |
-      echo "TOTAL SEVERITY COUNTER: $TOTAL_SEVERITY_COUNTER
-      SEVERITY COUNTER HIGH: $SEVERITY_COUNTER_HIGH
-      SEVERITY COUNTER MEDIUM: $SEVERITY_COUNTER_MEDIUM
-      SEVERITY COUNTER LOW: $SEVERITY_COUNTER_LOW
-      SEVERITY COUNTER INFO: $SEVERITY_COUNTER_INFO"
-    - if [ "$SEVERITY_COUNTER_HIGH" -ge "1" ];then echo "Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY ISSUES" && exit 1;fi
 ```
 
 ---
