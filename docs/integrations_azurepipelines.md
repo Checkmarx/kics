@@ -17,7 +17,7 @@ steps:
   # running in CI mode, exporting results to a JSON file and printing the results in stdout
   # KICS should fail the pipeline if results are found
   - script: |
-      /app/bin/kics scan --ci -p ${PWD} -o ${PWD} --report-formats json
+      /app/bin/kics scan --ci -p ${PWD} -o ${PWD}
       cat results.json
 ```
 
