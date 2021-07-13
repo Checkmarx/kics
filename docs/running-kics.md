@@ -1,6 +1,6 @@
 # Running KICS
 
-## Supported resources
+## Supported Resources
 
 KICS makes use of the <a href="https://github.com/hashicorp/go-getter#go-getter">go-getter</a> package in order to scan files or directories from various sources.
 
@@ -89,8 +89,8 @@ Please make sure you have set GSC authentication credentials to your application
 More informatition can be seen [here](https://github.com/hashicorp/go-getter#gcs-gcs)
 
 ## Using custom input data
-Since from v1.3.5, KICS supports using custom input data to replace data on queries that has this feature supported. To check if a query supports overwriting, just check if query's folder contains `data.json` file, this file will contain all keys that can be overwritten.
-To overwrite the key, you need to create files following the pattern `<query_id>.json`, each file representing **one** query and passing folder path containing this files to the flag `input-data`, this will get all files from this folder and replace all keys on queries found.
+Since from v1.3.5, KICS supports using custom input data to replace data on queries that have this feature supported. To see if a query supports overwriting, check if the query's folder contains a `data.json` file, this file will contain all keys that can be overwritten.
+To overwrite the key, you need to create files following the pattern `<query_id>.json`, each file representing **one** query and passing folder path containing these files to the flag `input-data`, this will get all files from this folder and replace all keys on queries found.
 
 **NOTE**: Keys that are not overwritten will use the default value proposed by `data.json` file of targeted query.
 

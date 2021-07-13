@@ -361,4 +361,4 @@ Starting on v1.3.5, KICS started to support custom data overwriting on queries. 
 2. Define **ALL** keys that can be overwritten with their default value;
 3. On `query.rego` file, use `data.<key_on_data_json_file>` to access the value of this key;
 
-With this simple steps, users will be able to overwrite the keys they want and others keys will use default value.
+With these simple steps, users will be able to overwrite the keys they want, elsewhere will use the default value.
