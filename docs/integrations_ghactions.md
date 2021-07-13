@@ -152,7 +152,7 @@ You can only enable one profiler at a time, CPU or MEM.
       with:
         path: 'terraform'
         profiling: MEM
-        output_path: 'results.json'
+        output_path: results-dir
     - name: display kics results
       run: |
         cat results.json
