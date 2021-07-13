@@ -5,11 +5,13 @@ go 1.16
 require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/agnivade/levenshtein v1.1.1
+	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/getsentry/sentry-go v0.11.0
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210413054141-7c2eacd09c8d
-	github.com/google/uuid v1.2.0
+	github.com/google/uuid v1.3.0
 	github.com/gookit/color v1.4.2
+	github.com/hashicorp/go-getter v1.5.4
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.10.0
 	github.com/johnfercher/maroto v0.33.0
