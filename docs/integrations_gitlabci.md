@@ -34,11 +34,12 @@ stages:
 kics-scan:
   stage: kics
   script:
-    - kics scan --ci -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
+    - kics scan --no-progress -q /usr/bin/assets/queries -p ${PWD} -o ${PWD} --report-formats json --output-name kics-results
   artifacts:
     name: kics-results.json
     paths:
       - kics-results.json
+    when: always
 ```
 
 ---
