@@ -112,7 +112,7 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 
 func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
 	var returnPath string
-	returnPath = replaceIfTemporaryPath(filePath, pathExtractionMap)
+	returnPath = replaceIfTemporaryPath(filepath.FromSlash(filePath), pathExtractionMap)
 	pwd, err := os.Getwd()
 	if err != nil {
 		log.Error().Msgf("Unable to get current working dir %s", err)
