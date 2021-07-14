@@ -11,6 +11,47 @@ colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C'}
 template_dict = {}
 platforms = []
 
+
+def init_tree_path(dictionary, keys_per_level):
+    if keys_per_level[0] not in dictionary:
+        template_dict[keys_per_level[0]] = {}
+    if keys_per_level[1] not in dictionary[keys_per_level[0]]:
+        template_dict[keys_per_level[0]][keys_per_level[1]] = {}
+    if keys_per_level[2] not in dictionary[keys_per_level[0]][keys_per_level[1]]:
+        template_dict[keys_per_level[0]
+                      ][keys_per_level[1]][keys_per_level[2]] = {}
+    if keys_per_level[3] not in dictionary[keys_per_level[0]][keys_per_level[1]][keys_per_level[2]]:
+        template_dict[keys_per_level[0]
+                      ][keys_per_level[1]][keys_per_level[2]][keys_per_level[3]] = {}
+
+
+def check_and_create_override_entry(meta_dict, template_dict):
+    if 'override' in meta_dict:
+        override = meta_dict['override']
+        for _, over_meta in override.items():
+            override_id = over_meta['id']
+            if 'platform' in over_meta:
+                over_platform = over_meta['platform']
+            else:
+                over_platform = platform
+            if 'severity' in over_meta:
+                over_severity = over_meta['severity']
+            else:
+                over_severity = severity
+            if 'category' in over_meta:
+                over_category = over_meta['category']
+            else:
+                over_category = category
+
+            init_tree_path(template_dict, [
+                over_platform, sub_platform, over_severity, over_category])
+
+            template_dict[platform][sub_platform][severity][category][override_id] = copy.deepcopy(
+                meta_dict)
+            for key, value in over_meta.items():
+                template_dict[platform][sub_platform][severity][category][override_id][key] = value
+
+
 arg_parser = argparse.ArgumentParser(description='Create query docs')
 arg_parser.add_argument('-p', nargs=1, type=Path,
                         dest='input_path', help='Path to read metadata.json')
@@ -45,47 +86,10 @@ for path in all_metadata:
         severity = meta_dict['severity']
         category = meta_dict['category']
 
-        if platform not in template_dict:
-            template_dict[platform] = {}
-        if sub_platform not in template_dict[platform]:
-            template_dict[platform][sub_platform] = {}
-        if severity not in template_dict[platform][sub_platform]:
-            template_dict[platform][sub_platform][severity] = {}
-        if category not in template_dict[platform][sub_platform][severity]:
-            template_dict[platform][sub_platform][severity][category] = {}
+        init_tree_path(template_dict, [
+                       platform, sub_platform, severity, category])
 
-        if 'override' in meta_dict:
-            override = meta_dict['override']
-            for version, over_meta in override.items():
-                override_id = over_meta['id']
-                if 'platform' in over_meta:
-                    over_platform = over_meta['platform']
-                else:
-                    over_platform = platform
-                if 'severity' in over_meta:
-                    over_severity = over_meta['severity']
-                else:
-                    over_severity = severity
-                if 'category' in over_meta:
-                    over_category = over_meta['category']
-                else:
-                    over_category = category
-
-                if over_platform not in template_dict:
-                    template_dict[over_platform] = {}
-                if sub_platform not in template_dict[over_platform]:
-                    template_dict[over_platform][sub_platform] = {}
-                if over_severity not in template_dict[over_platform][sub_platform]:
-                    template_dict[over_platform][sub_platform][over_severity] = {}
-                if over_category not in template_dict[over_platform][sub_platform][over_severity]:
-                    template_dict[over_platform][sub_platform][over_severity][over_category] = {
-                    }
-
-                template_dict[platform][sub_platform][severity][category][override_id] = copy.deepcopy(
-                    meta_dict)
-                for key, value in over_meta.items():
-                    template_dict[platform][sub_platform][severity][category][override_id][key] = value
-
+        check_and_create_override_entry(meta_dict, template_dict)
         q_id = meta_dict['id']
         template_dict[platform][sub_platform][severity][category][q_id] = meta_dict
 #
@@ -130,13 +134,17 @@ for file_format in parsed_args['formats']:
         with open(template_path) as template:
             template_string = template.read()
             template_jinja = Template(template_string)
+
             result = template_jinja.render({
                 'platform': platform,
                 'data': data,
                 'colors': colors
             })
-        with open(os.path.join(parsed_args['output_path'][0], platform.lower() + '-queries' + file_format), 'w') as output:
+        output_filepath = os.path.join(
+            parsed_args['output_path'][0], platform.lower() + '-queries' + file_format)
+        with open(output_filepath, 'w') as output:
             print(result, file=output)
+            print(f'wrote {output_filepath}')
         # create general table
     with open(os.path.join(parsed_args['templates_path'][0], 'general_template' + file_format)) as template:
         template_string = template.read()
@@ -145,5 +153,8 @@ for file_format in parsed_args['formats']:
             'data': general_data,
             'colors': colors
         })
-    with open(os.path.join(parsed_args['output_path'][0], 'all-queries' + file_format), 'w') as output:
+    output_filepath = os.path.join(
+        parsed_args['output_path'][0], 'all-queries' + file_format)
+    with open(output_filepath, 'w') as output:
         print(result, file=output)
+        print(f'wrote {output_filepath}')
