@@ -8,8 +8,8 @@ Bellow are listed queries related with {{platform}} {{sub_platform | upper}}:
 
 {% endif %}
 
-|            Query            |Severity|Category|Description|Help|
-|-----------------------------|--------|--------|-----------|----|
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
 {%- for severity in data[sub_platform] -%}
   {%- for id in data[sub_platform][severity] %}
 |{{data[sub_platform][severity][id]['queryName']}}<br/><sup><sub>{{id}}</sub></sup>|<span style="color:{{colors[severity]}}">{{severity}}</span>|{{data[sub_platform][severity][id]['category'] -}}
