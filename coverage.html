@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.4%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (61.9%)</option>
 				
@@ -1347,8 +1347,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="324">{
-                if val == true </span><span class="cov9" title="323">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="321">{
+                if val == true </span><span class="cov9" title="320">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -4961,7 +4961,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="33">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="30">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -7545,7 +7545,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -7553,7 +7553,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -7577,10 +7577,10 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+        for </span><span class="cov10" title="6136">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
