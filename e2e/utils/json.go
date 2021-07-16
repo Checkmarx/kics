@@ -12,7 +12,6 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
 )
@@ -38,7 +37,8 @@ func JSONSchemaValidation(t *testing.T, file, schema string) {
 	resultLoader := gojsonschema.NewReferenceLoader(resultPath)
 
 	result, err := gojsonschema.Validate(schemaLoader, resultLoader)
-	require.NoError(t, err, "Schema Validation should not yield an error")
+	require.NoError(t, err, "Schema Validation: Reading Json/Schema files should not yield an error"+
+		"\nSchema: 'fixtures/schemas/%s'\nActual File: 'output/%s'", schema, file)
 
 	schemaErrors := ""
 	if !result.Valid() {
@@ -47,7 +47,8 @@ func JSONSchemaValidation(t *testing.T, file, schema string) {
 		}
 	}
 
-	require.True(t, result.Valid(), "[%s] - Schema Validation Failed\n%v\n", file, schemaErrors)
+	require.True(t, result.Valid(), "Schema Validation Failed\nSchema: 'fixtures/schemas/%s'"+
+		"\nActual File: 'output/%s'\nFailed validations:\n%v\n", schema, file, schemaErrors)
 }
 
 // PrepareExpected prepares the files for validation tests
@@ -92,14 +93,17 @@ func checkJSONLog(t *testing.T, expec, want logMsg) {
 }
 
 // FileCheck executes assertions to validate file content length
-func FileCheck(t *testing.T, expectedPayloadID, wantedPayloadID, location string) {
-	wantPayload, err := PrepareExpected(wantedPayloadID, "fixtures")
-	require.NoError(t, err, "Reading a fixture should not yield an error")
-	expectPayload, err := PrepareExpected(expectedPayloadID, "output")
-	require.NoError(t, err, "Reading a fixture should not yield an error")
-	require.Equal(t, len(wantPayload), len(expectPayload),
-		"\n[%s] Expected file number of lines:%d\nKics file number of lines:%d\n", location, len(wantPayload), len(expectPayload))
-	setFields(t, wantPayload, expectPayload, location)
+func FileCheck(t *testing.T, actualPayloadName, expectPayloadName, location string) {
+	expectPayload, err := PrepareExpected(expectPayloadName, "fixtures")
+	require.NoError(t, err, "[fixtures/%s]: Reading a fixture should not yield an error", expectPayloadName)
+
+	actualPayload, err := PrepareExpected(actualPayloadName, "output")
+	require.NoError(t, err, "[output/%s] Reading a fixture should not yield an error", actualPayloadName)
+
+	require.Equal(t, len(expectPayload), len(actualPayload),
+		"[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\n",
+		expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload))
+	setFields(t, expectPayload, actualPayload, expectPayloadName, actualPayloadName, location)
 }
 
 // CheckLine executes assertions to validate the content of two JSON files
@@ -112,23 +116,25 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 		checkJSONLog(t, logExp, logWant)
 	} else {
 		require.Equal(t, expec, want,
-			"\nExpected Output line\n%s\nKICS Output line:\n%s\n line: %d", want, expec, line)
+			"Expected Output line:\n%s\n\nKICS Output line:\n%s\n\nLine Number: %d", want, expec, line)
 	}
 }
 
-func setFields(t *testing.T, expect, want []string, location string) {
+func setFields(t *testing.T, expect, actual []string, expectFileName, actualFileName, location string) {
 	filekey := "file"
 	switch location {
 	case "payload":
-		var wantI model.Documents
+		var actualI model.Documents
 		var expectI model.Documents
 		errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectI)
-		require.NoError(t, errE, "[payload] Unmarshaling JSON file should not yield an error")
-		errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
-		require.NoError(t, errW, "[payload] Unmarshaling JSON file should not yield an error")
+		require.NoError(t, errE,
+			"[fixtures/%s] Expected Payload - Unmarshaling JSON file should not yield an error", expectFileName)
+		errW := json.Unmarshal([]byte(strings.Join(actual, "\n")), &actualI)
+		require.NoError(t, errW,
+			"[output/%s] Actual Payload - Unmarshaling JSON file should not yield an error", actualFileName)
 
 		idKey := "id"
-		for _, docs := range wantI.Documents {
+		for _, docs := range actualI.Documents {
 			// Here additional checks may be added as length of id, or contains in file
 			require.NotNil(t, docs[idKey])
 			require.NotNil(t, docs[filekey])
@@ -136,48 +142,47 @@ func setFields(t *testing.T, expect, want []string, location string) {
 			docs[filekey] = filekey
 		}
 
-		expectStr, err := test.StringifyStruct(expectI)
-		require.NoError(t, err)
-		wantStr, err := test.StringifyStruct(wantI)
-		require.NoError(t, err)
-
-		require.Equal(t, expectI, wantI,
-			"\nExpected:\n%v\n,Actual:\n%v\n", expectStr, wantStr)
+		require.Equal(t, expectI, actualI,
+			"Expected Payload content: 'fixtures/%s' doesn't match the Actual Payload content: 'output/%s'.",
+			expectFileName, actualFileName)
 
 	case "result":
 		timeValue := time.Date(2021, 5, 1, 9, 0, 0, 0, time.UTC)
 
 		expectI := model.Summary{}
-		wantI := model.Summary{}
+		actualI := model.Summary{}
 
 		errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectI)
-		require.NoError(t, errE, "[result] Unmarshaling JSON file should not yield an error")
-		errW := json.Unmarshal([]byte(strings.Join(want, "\n")), &wantI)
-		require.NoError(t, errW, "[result] Unmarshaling JSON file should not yield an error")
+		require.NoError(t, errE,
+			"[fixtures/%s] Expected Result - Unmarshaling JSON file should not yield an error", expectFileName)
+		errW := json.Unmarshal([]byte(strings.Join(actual, "\n")), &actualI)
+		require.NoError(t, errW,
+			"[output/%s] Actual Result - Unmarshaling JSON file should not yield an error", actualFileName)
 
 		// Disable dynamic values (to avoid errors during file comparison)
-		wantI.TotalQueries = 0
-		wantI.Start = timeValue
-		wantI.End = timeValue
+		actualI.TotalQueries = 0
+		actualI.Start = timeValue
+		actualI.End = timeValue
 		expectI.TotalQueries = 0
 		expectI.Start = timeValue
 		expectI.End = timeValue
-		for i := range wantI.Queries {
-			wantQuery := wantI.Queries[i]
+		for i := range actualI.Queries {
+			actualQuery := actualI.Queries[i]
 			expectQuery := expectI.Queries[i]
-			for j := range wantI.Queries[i].Files {
-				wantQuery.Files[j].FileName = ""
+			for j := range actualI.Queries[i].Files {
+				actualQuery.Files[j].FileName = ""
 				expectQuery.Files[j].FileName = ""
 			}
-			sort.Slice(wantQuery.Files, func(a, b int) bool {
-				return wantQuery.Files[a].SimilarityID < wantQuery.Files[b].SimilarityID
+			sort.Slice(actualQuery.Files, func(a, b int) bool {
+				return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
 			})
 			sort.Slice(expectQuery.Files, func(a, b int) bool {
 				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
 			})
 		}
 
-		require.Equal(t, expectI, wantI,
-			"\nExpected:\n%v\n,Actual:\n%v\n", expectI, wantI)
+		require.Equal(t, expectI, actualI,
+			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
+			expectFileName, actualFileName)
 	}
 }
