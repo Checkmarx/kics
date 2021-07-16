@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "AWS Security Group should not have an unknown port exposed to the entire Internet",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible",
-  "descriptionID": "13008ce8"
+  "platform": "Ansible"
 }

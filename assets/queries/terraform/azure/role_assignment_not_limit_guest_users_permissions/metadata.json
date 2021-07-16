@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Role Assignment should limit guest user permissions",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
-  "platform": "Terraform",
-  "descriptionID": "06d6aad3"
+  "platform": "Terraform"
 }

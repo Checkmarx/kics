@@ -5,6 +5,5 @@
   "category": "Backup",
   "descriptionText": "RDS configured without backup",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
-  "platform": "Terraform",
-  "descriptionID": "86e8a3e4"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "AWS Security Group Rule should have description defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-  "platform": "CloudFormation",
-  "descriptionID": "fa43bb89"
+  "platform": "CloudFormation"
 }

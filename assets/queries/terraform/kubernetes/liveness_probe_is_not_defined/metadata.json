@@ -5,6 +5,5 @@
   "category": "Availability",
   "descriptionText": "Liveness Probe must be defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#liveness_probe",
-  "platform": "Terraform",
-  "descriptionID": "48be0971"
+  "platform": "Terraform"
 }

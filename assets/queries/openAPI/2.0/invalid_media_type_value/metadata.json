@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "The Media Type value should match the following format: <type>/<subtype>[+suffix][;parameters]",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
-  "platform": "OpenAPI",
-  "descriptionID": "0d6f7174"
+  "platform": "OpenAPI"
 }

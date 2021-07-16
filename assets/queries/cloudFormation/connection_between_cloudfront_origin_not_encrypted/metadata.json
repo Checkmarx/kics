@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html",
-  "platform": "CloudFormation",
-  "descriptionID": "1d21db16"
+  "platform": "CloudFormation"
 }

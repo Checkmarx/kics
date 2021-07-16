@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "ElastiCache Replication Group encryption should be enabled at Transit",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#transit_encryption_enabled",
-  "platform": "Terraform",
-  "descriptionID": "9133befc"
+  "platform": "Terraform"
 }

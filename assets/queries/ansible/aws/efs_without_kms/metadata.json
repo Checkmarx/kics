@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Elastic File System (EFS) must have KMS Key ID",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html#parameter-kms_key_id",
-  "platform": "Ansible",
-  "descriptionID": "456bd59d"
+  "platform": "Ansible"
 }

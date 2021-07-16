@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS ECS Task Definition EFS data in transit between AWS ECS host and AWS EFS server should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption",
-  "platform": "Terraform",
-  "descriptionID": "3b984456"
+  "platform": "Terraform"
 }

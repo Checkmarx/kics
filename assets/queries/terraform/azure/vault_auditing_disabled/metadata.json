@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Ensure that logging for Azure KeyVault is 'Enabled'",
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/key_vault.html",
-  "platform": "Terraform",
-  "descriptionID": "ad9bb860"
+  "platform": "Terraform"
 }

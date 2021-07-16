@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-encryption_key_id",
-  "platform": "Ansible",
-  "descriptionID": "7ad06d15"
+  "platform": "Ansible"
 }

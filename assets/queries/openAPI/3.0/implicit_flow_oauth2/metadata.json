@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "There is a 'securityScheme' using implicit flow on OAuth2, which is deprecated",
   "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
-  "platform": "OpenAPI",
-  "descriptionID": "afeb178c"
+  "platform": "OpenAPI"
 }

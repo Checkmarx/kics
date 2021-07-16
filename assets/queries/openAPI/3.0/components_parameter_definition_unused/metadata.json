@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Components parameters definitions should be referenced or removed from Open API definition",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
-  "platform": "OpenAPI",
-  "descriptionID": "d5304a6b"
+  "platform": "OpenAPI"
 }

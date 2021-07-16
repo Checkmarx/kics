@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "This query checks if logs are enabled for a Google Compute Subnetwork resource.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork",
-  "platform": "Terraform",
-  "descriptionID": "8c263ada"
+  "platform": "Terraform"
 }

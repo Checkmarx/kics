@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "All properties defined in OpenAPI objects should be known",
   "descriptionUrl": "https://swagger.io/specification/",
-  "platform": "OpenAPI",
-  "descriptionID": "862d3bc3"
+  "platform": "OpenAPI"
 }

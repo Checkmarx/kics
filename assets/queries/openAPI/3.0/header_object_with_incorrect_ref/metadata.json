@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Header Object reference must always point to '#/components/headers'",
   "descriptionUrl": "https://swagger.io/specification/#responses-object",
-  "platform": "OpenAPI",
-  "descriptionID": "438962cf"
+  "platform": "OpenAPI"
 }

@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Containers should not have CAP_SYS_ADMIN Linux capability",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-  "platform": "Kubernetes",
-  "descriptionID": "600cbdc9"
+  "platform": "Kubernetes"
 }

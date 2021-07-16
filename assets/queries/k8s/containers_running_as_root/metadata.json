@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Check if containers are running as root unduly.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-  "platform": "Kubernetes",
-  "descriptionID": "77dd95a8"
+  "platform": "Kubernetes"
 }

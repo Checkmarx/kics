@@ -11,9 +11,7 @@
       "id": "f36e87cc-a209-4f37-8571-66833e4aead7",
       "queryName": "Success Response Code Undefined for Patch Operation (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
-    },
-    "descriptionID": "9a167d4c"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "19445e89"
+  "aggregation": 2
 }

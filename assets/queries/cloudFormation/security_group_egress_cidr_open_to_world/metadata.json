@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "AWS Security Group Egress CIDR should not be open to the world",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html",
-  "platform": "CloudFormation",
-  "descriptionID": "4cdb0141"
+  "platform": "CloudFormation"
 }

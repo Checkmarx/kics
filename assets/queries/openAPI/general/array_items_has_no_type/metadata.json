@@ -12,9 +12,7 @@
       "queryName": "Array Items Has No Type (v2)",
       "descriptionText": "Schema/Parameter array items type should be defined",
       "descriptionUrl": "https://swagger.io/specification/v2/#format"
-    },
-    "descriptionID": "003f85a6"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "d76facb8"
+  "aggregation": 2
 }

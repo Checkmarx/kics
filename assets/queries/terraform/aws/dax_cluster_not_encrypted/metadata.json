@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS DAX Cluster should have server-side encryption at rest",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dax_cluster#enabled",
-  "platform": "Terraform",
-  "descriptionID": "c88dc526"
+  "platform": "Terraform"
 }

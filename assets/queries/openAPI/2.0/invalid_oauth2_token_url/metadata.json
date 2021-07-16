@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "OAuth2 security definition flow requires a valid URL in the tokenUrl field",
   "descriptionUrl": "https://swagger.io/specification/v2/#security-scheme-object",
-  "platform": "OpenAPI",
-  "descriptionID": "a341622e"
+  "platform": "OpenAPI"
 }

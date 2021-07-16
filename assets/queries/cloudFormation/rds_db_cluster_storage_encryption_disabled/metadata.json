@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "RDS DBCluster should have storage encrypted set to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-storageencrypted",
-  "platform": "CloudFormation",
-  "descriptionID": "79384b96"
+  "platform": "CloudFormation"
 }

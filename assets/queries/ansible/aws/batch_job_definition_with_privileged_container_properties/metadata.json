@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Batch Job Definition should not have Privileged Container Properties",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_batch_job_definition_module.html",
-  "platform": "Ansible",
-  "descriptionID": "80d2bb94"
+  "platform": "Ansible"
 }

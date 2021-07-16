@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Checks if the policy is vulnerable and needs updating.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_kms_module.html",
-  "platform": "Ansible",
-  "descriptionID": "44299e5a"
+  "platform": "Ansible"
 }

@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Parameter reference should exist on parameters definition field",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-  "platform": "OpenAPI",
-  "descriptionID": "5b7475aa"
+  "platform": "OpenAPI"
 }

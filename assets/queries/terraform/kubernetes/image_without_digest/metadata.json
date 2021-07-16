@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Sees if Kubernetes image has digest on",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
-  "platform": "Terraform",
-  "descriptionID": "00bbad2f"
+  "platform": "Terraform"
 }

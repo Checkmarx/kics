@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Sees if Docker Daemon Socket is not exposed to Containers",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_path",
-  "platform": "Terraform",
-  "descriptionID": "17be00c3"
+  "platform": "Terraform"
 }

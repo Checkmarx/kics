@@ -11,9 +11,7 @@
       "id": "31afbcb7-70e0-48bb-a31a-3374f95cf859",
       "queryName": "Response on operations that should have a body has undefined schema (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#responses-object"
-    },
-    "descriptionID": "43ab03ba"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "ebef24ed"
+  "aggregation": 2
 }

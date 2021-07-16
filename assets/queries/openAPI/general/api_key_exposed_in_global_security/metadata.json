@@ -11,9 +11,7 @@
       "id": "533a0d13-6e89-4551-ae33-bce14e5849c1",
       "queryName": "API Key Exposed In Global Security (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
-    },
-    "descriptionID": "876d2323"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "556878df"
+  "aggregation": 2
 }

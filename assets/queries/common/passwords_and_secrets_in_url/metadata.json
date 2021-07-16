@@ -5,6 +5,5 @@
   "category": "Secret Management",
   "descriptionText": "Query to find passwords and secrets in URL",
   "descriptionUrl": "https://kics.io/",
-  "platform": "Common",
-  "descriptionID": "787783c2"
+  "platform": "Common"
 }

@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if secure ciphers aren't used in CloudFront",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
-  "platform": "Terraform",
-  "descriptionID": "6973d701"
+  "platform": "Terraform"
 }

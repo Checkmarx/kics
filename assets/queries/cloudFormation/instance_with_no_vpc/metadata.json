@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "EC2 Instances should be configured under a VPC network. AWS VPCs provide the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html",
-  "platform": "CloudFormation",
-  "descriptionID": "f8d79c18"
+  "platform": "CloudFormation"
 }

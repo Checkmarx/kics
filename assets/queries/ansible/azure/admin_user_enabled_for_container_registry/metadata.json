@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Admin user is enabled for Container Registry",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html",
-  "platform": "Ansible",
-  "descriptionID": "d1aaa6d4"
+  "platform": "Ansible"
 }

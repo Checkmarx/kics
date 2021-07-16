@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Check if IAM Access Key is active for some user besides 'root'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key",
-  "platform": "Terraform",
-  "descriptionID": "aa89ee84"
+  "platform": "Terraform"
 }

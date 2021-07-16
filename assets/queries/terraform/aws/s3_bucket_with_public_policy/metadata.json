@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "S3 bucket allows public policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
-  "platform": "Terraform",
-  "descriptionID": "46010adb"
+  "platform": "Terraform"
 }

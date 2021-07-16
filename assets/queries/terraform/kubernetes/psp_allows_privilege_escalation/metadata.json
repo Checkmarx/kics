@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "PodSecurityPolicy should not allow privilege escalation",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allow_privilege_escalation",
-  "platform": "Terraform",
-  "descriptionID": "44e17a56"
+  "platform": "Terraform"
 }

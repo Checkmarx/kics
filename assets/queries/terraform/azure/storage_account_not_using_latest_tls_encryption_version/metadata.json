@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Ensure Storage Account is using the latest version of TLS encryption",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
-  "platform": "Terraform",
-  "descriptionID": "e44f9a4c"
+  "platform": "Terraform"
 }

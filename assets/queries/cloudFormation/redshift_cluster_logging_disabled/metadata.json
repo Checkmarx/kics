@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Make sure Logging is enabled for Redshift Cluster",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-loggingproperties",
-  "platform": "CloudFormation",
-  "descriptionID": "838f97c1"
+  "platform": "CloudFormation"
 }

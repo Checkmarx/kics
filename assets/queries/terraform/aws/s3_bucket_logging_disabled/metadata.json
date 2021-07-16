@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "S3 bucket without logging",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
-  "platform": "Terraform",
-  "descriptionID": "27cea10d"
+  "platform": "Terraform"
 }

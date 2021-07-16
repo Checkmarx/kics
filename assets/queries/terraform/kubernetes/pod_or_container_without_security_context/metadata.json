@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "A security context defines privilege and access control settings for a Pod or Container",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#security_context",
-  "platform": "Terraform",
-  "descriptionID": "47967b96"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Audit Logging Configuration is defective",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_audit_config",
-  "platform": "Terraform",
-  "descriptionID": "0bf71ece"
+  "platform": "Terraform"
 }

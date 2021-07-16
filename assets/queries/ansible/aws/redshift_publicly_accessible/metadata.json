@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if 'publicly_accessible' field is true (default is false)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/redshift_module.html",
-  "platform": "Ansible",
-  "descriptionID": "7d01f373"
+  "platform": "Ansible"
 }

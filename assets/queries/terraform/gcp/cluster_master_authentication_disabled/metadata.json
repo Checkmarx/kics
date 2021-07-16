@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Kubernetes Engine Clusters must have Master Authentication set to enabled, which means the attribute 'master_auth' must have the subattributes 'username' and 'password' defined and not empty",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
-  "platform": "Terraform",
-  "descriptionID": "05fe884b"
+  "platform": "Terraform"
 }

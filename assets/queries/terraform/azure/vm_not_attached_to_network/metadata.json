@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "No Network Security Group is attached to the Virtual Machine",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids",
-  "platform": "Terraform",
-  "descriptionID": "0c0c3ea3"
+  "platform": "Terraform"
 }

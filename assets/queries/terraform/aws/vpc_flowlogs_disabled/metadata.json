@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "VPC hasn't got any FlowLog associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc",
-  "platform": "Terraform",
-  "descriptionID": "0ded1cf8"
+  "platform": "Terraform"
 }

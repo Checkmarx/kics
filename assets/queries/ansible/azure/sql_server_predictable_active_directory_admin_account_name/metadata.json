@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Azure SQL Server must avoid using predictable Active Directory Administrator Account names, like 'Admin', which means the attribute 'ad_user' must be set to a name that is not easy to predict",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_adserviceprincipal_module.html",
-  "platform": "Ansible",
-  "descriptionID": "b9f2fdb7"
+  "platform": "Ansible"
 }

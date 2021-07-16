@@ -11,9 +11,7 @@
       "id": "71beb6ab-8b70-4816-a9ac-a0ff1fb22a62",
       "queryName": "Properties Missing Required Property (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "dcf54378"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "8882d7b5"
+  "aggregation": 2
 }

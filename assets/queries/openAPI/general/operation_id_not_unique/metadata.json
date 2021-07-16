@@ -11,9 +11,7 @@
       "id": "21245007-91c4-40e5-964e-40c85d1e5aa6",
       "queryName": "OperationId Not Unique (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
-    },
-    "descriptionID": "f69ed5ef"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "095aba44"
+  "aggregation": 2
 }

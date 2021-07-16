@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Global Schemes should use 'https' protocol instead of 'http'",
   "descriptionUrl": "https://swagger.io/specification/v2/#swaggerObject",
-  "platform": "OpenAPI",
-  "descriptionID": "28bde459"
+  "platform": "OpenAPI"
 }

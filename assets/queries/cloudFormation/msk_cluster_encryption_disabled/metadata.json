@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Ensure MSK Cluster encryption in rest and transit is enabled.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html",
-  "platform": "CloudFormation",
-  "descriptionID": "63c6a7e1"
+  "platform": "CloudFormation"
 }

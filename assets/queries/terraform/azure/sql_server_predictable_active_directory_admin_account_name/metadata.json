@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Azure SQL Server must avoid using predictable Active Directory Administrator Account names, like 'Admin', which means the attribute 'login' must be set to a name that is not easy to predict",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_active_directory_administrator",
-  "platform": "Terraform",
-  "descriptionID": "97d3d482"
+  "platform": "Terraform"
 }

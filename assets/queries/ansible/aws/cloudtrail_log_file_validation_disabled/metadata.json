@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "CloudTrail Log Files should have validation enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
-  "platform": "Ansible",
-  "descriptionID": "780c6685"
+  "platform": "Ansible"
 }

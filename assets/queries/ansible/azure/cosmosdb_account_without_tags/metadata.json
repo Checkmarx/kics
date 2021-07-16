@@ -5,6 +5,5 @@
   "category": "Build Process",
   "descriptionText": "Cosmos DB Account must have a mapping of tags.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html",
-  "platform": "Ansible",
-  "descriptionID": "7b2ebd69"
+  "platform": "Ansible"
 }

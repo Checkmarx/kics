@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "EBS volumes should be encrypted",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html",
-  "platform": "CloudFormation",
-  "descriptionID": "840c349e"
+  "platform": "CloudFormation"
 }

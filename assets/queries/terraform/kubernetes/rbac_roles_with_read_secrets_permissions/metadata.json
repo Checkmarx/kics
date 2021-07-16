@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Minimize access to secrets (RBAC)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role#rule",
-  "platform": "Terraform",
-  "descriptionID": "dd0b793b"
+  "platform": "Terraform"
 }

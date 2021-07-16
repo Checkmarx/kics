@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "CodeBuild Should have EncryptionKey defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html",
-  "platform": "CloudFormation",
-  "descriptionID": "6b8143da"
+  "platform": "CloudFormation"
 }

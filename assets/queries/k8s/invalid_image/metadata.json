@@ -5,6 +5,5 @@
   "category": "Supply-Chain",
   "descriptionText": "Image must be defined and not be empty or equal to latest.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
-  "platform": "Kubernetes",
-  "descriptionID": "f7212cf1"
+  "platform": "Kubernetes"
 }

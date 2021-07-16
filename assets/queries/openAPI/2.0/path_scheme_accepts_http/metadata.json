@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "The Scheme list of Operation Object should only allow 'HTTPS' protocol to ensure an encrypted connection",
   "descriptionUrl": "https://swagger.io/specification/v2/#operationObject",
-  "platform": "OpenAPI",
-  "descriptionID": "a322fe39"
+  "platform": "OpenAPI"
 }

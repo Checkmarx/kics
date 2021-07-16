@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoring_service' must be defined and different than 'none'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
-  "platform": "Terraform",
-  "descriptionID": "642a8467"
+  "platform": "Terraform"
 }

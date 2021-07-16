@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "SSH' (TCP:22) should not be public in AWS Security Group",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible",
-  "descriptionID": "16693123"
+  "platform": "Ansible"
 }

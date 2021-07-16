@@ -5,6 +5,5 @@
   "category": "Availability",
   "descriptionText": "AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'load_balancers' must be defined and not empty.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_asg_module.html#parameter-load_balancers",
-  "platform": "Ansible",
-  "descriptionID": "4c51c617"
+  "platform": "Ansible"
 }

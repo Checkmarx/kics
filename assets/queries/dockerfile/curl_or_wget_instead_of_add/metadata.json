@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Use Curl or Wget instead of Add to fetch packages from remote URLs, because using Add is strongly discouraged",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
-  "platform": "Dockerfile",
-  "descriptionID": "12dc1bbd"
+  "platform": "Dockerfile"
 }

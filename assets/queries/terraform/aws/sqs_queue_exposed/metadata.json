@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Checks if the SQS Queue is exposed",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#policy",
-  "platform": "Terraform",
-  "descriptionID": "81602f93"
+  "platform": "Terraform"
 }

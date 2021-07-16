@@ -12,9 +12,7 @@
       "queryName": "Type Has Invalid Keyword (v2)",
       "descriptionText": "Schema/Parameter/Header Object define type should not use a keyword of another type",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "3a7c0f12"
+    }
   },
-  "aggregation": 4,
-  "descriptionID": "76174fa8"
+  "aggregation": 4
 }

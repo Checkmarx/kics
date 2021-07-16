@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Gmail accounts are being used instead of corporate credentials",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding",
-  "platform": "Terraform",
-  "descriptionID": "cdf786a0"
+  "platform": "Terraform"
 }

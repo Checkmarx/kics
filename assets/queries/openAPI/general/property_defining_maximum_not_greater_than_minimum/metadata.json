@@ -11,9 +11,7 @@
       "id": "b5102ea9-6527-4bb7-94fc-9b4076150e55",
       "queryName": "Property Defining Minimum Greater Than Maximum (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "43d5b81e"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "0ae231d6"
+  "aggregation": 2
 }

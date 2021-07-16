@@ -5,6 +5,5 @@
   "category": "Resource Management",
   "descriptionText": "API Gateway Stage should have API Gateway UsagePlan defined and associated.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage",
-  "platform": "Terraform",
-  "descriptionID": "0fd35980"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "User Data Shell Script must be encoded",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
-  "platform": "Ansible",
-  "descriptionID": "a4b302d8"
+  "platform": "Ansible"
 }

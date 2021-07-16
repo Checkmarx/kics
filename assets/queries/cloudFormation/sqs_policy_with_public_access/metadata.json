@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Checks for dangerous permissions in Action statements in an SQS Queue Policy. This is deemed a potential security risk as it would allow various attacks to the queue",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html",
-  "platform": "CloudFormation",
-  "descriptionID": "76e312fb"
+  "platform": "CloudFormation"
 }

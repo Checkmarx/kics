@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Components schemas definitions should be referenced or removed from Open API definition",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
-  "platform": "OpenAPI",
-  "descriptionID": "653f1443"
+  "platform": "OpenAPI"
 }

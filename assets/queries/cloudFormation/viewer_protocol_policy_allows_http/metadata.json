@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Ensure that the Viewer Protocol is only HTTPS Compliant",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html",
-  "platform": "CloudFormation",
-  "descriptionID": "c3cae108"
+  "platform": "CloudFormation"
 }

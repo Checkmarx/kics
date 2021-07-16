@@ -11,9 +11,7 @@
       "id": "70d3873e-d537-46e5-ac3b-4e48fbdd29b4",
       "queryName": "Cleartext API Key In Global Security (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
-    },
-    "descriptionID": "d49406b6"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "d669e13d"
+  "aggregation": 2
 }

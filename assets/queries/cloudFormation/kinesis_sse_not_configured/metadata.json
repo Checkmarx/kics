@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS Kinesis Stream should have SSE (Server Side Encryption) defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html",
-  "platform": "CloudFormation",
-  "descriptionID": "26a6d0dd"
+  "platform": "CloudFormation"
 }

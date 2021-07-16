@@ -5,6 +5,5 @@
   "category": "Build Process",
   "descriptionText": "Cosmos DB Account must have a mapping of tags.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account",
-  "platform": "Terraform",
-  "descriptionID": "31d4cfad"
+  "platform": "Terraform"
 }

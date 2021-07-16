@@ -5,6 +5,5 @@
   "category": "Secret Management",
   "descriptionText": "KmsMasterKeyId attribute should not be undefined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html",
-  "platform": "CloudFormation",
-  "descriptionID": "26434bac"
+  "platform": "CloudFormation"
 }

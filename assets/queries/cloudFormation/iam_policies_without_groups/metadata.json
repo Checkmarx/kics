@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "IAM policy should not apply directly to users, should be with a group",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
-  "platform": "CloudFormation",
-  "descriptionID": "bddacd12"
+  "platform": "CloudFormation"
 }

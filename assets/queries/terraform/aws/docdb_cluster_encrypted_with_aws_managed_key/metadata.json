@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "DOCDB Cluster should be encrypted with customer-managed KMS keys instead of AWS managed keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#kms_key_id",
-  "platform": "Terraform",
-  "descriptionID": "ac8ec164"
+  "platform": "Terraform"
 }

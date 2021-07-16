@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Web app should only accept HTTPS traffic in Azure Web App Service.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#https_only",
-  "platform": "Terraform",
-  "descriptionID": "90fc342d"
+  "platform": "Terraform"
 }

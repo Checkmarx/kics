@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Make sure that Amazon GuardDuty is Enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector#example-usage",
-  "platform": "Terraform",
-  "descriptionID": "9d013f90"
+  "platform": "Terraform"
 }

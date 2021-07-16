@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "Route53 HostedZone must have the Record Set defined.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html",
-  "platform": "CloudFormation",
-  "descriptionID": "db217aa8"
+  "platform": "CloudFormation"
 }

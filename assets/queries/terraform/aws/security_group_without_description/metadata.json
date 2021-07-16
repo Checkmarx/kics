@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice for AWS Security Group to have a description",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description",
-  "platform": "Terraform",
-  "descriptionID": "c856d6d8"
+  "platform": "Terraform"
 }

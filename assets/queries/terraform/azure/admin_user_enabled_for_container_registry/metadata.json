@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Admin user is enabled for Container Registry",
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/container_registry.html",
-  "platform": "Terraform",
-  "descriptionID": "6bc8adb0"
+  "platform": "Terraform"
 }

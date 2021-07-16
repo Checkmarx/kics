@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Make sure that for SQL Servers, 'Auditing' is set to 'On'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
-  "platform": "Terraform",
-  "descriptionID": "27a206ad"
+  "platform": "Terraform"
 }

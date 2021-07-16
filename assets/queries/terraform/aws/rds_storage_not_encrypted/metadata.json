@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if RDS Cluster Storage isn't encrypted. Happens when 'storage_encrypted' is not set to 'true'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#storage_encrypted",
-  "platform": "Terraform",
-  "descriptionID": "b49afcbd"
+  "platform": "Terraform"
 }

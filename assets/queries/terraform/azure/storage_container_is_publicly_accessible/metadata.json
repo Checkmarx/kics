@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Anonymous, public read access to a container and its blobs are enabled in Azure Blob Storage",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#container_access_type",
-  "platform": "Terraform",
-  "descriptionID": "e8f532d1"
+  "platform": "Terraform"
 }

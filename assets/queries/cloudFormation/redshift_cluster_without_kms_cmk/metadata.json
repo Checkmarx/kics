@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS Redshift Cluster should have KMS CMK defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
-  "platform": "CloudFormation",
-  "descriptionID": "34d06eab"
+  "platform": "CloudFormation"
 }

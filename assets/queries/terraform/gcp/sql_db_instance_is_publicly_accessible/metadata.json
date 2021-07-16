@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Check if any Cloud SQL instances are publicly accessible.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
-  "platform": "Terraform",
-  "descriptionID": "d7abe73c"
+  "platform": "Terraform"
 }

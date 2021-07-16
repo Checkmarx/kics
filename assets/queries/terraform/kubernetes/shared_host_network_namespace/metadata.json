@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Container should not share the host network namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",
-  "platform": "Terraform",
-  "descriptionID": "c8fbd627"
+  "platform": "Terraform"
 }

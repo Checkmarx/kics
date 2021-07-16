@@ -11,9 +11,7 @@
       "id": "cbff2508-85c9-4448-a8b3-770070edf5ca",
       "queryName": "Schema Object With Circular Ref (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject"
-    },
-    "descriptionID": "8b1ad515"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "d3beed5d"
+  "aggregation": 2
 }

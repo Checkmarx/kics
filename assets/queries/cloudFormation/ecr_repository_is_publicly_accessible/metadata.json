@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Amazon ECR image repositories shouldn't have public access",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html",
-  "platform": "CloudFormation",
-  "descriptionID": "24453237"
+  "platform": "CloudFormation"
 }

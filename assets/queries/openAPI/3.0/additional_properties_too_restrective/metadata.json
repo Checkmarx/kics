@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Objects should accept 'additionalProperties' if it is allOf or an object with anyOf or oneOf",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI",
-  "descriptionID": "3e9511e5"
+  "platform": "OpenAPI"
 }

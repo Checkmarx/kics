@@ -11,9 +11,7 @@
       "id": "3ed8fc82-c2bb-49e0-811f-c53923674c49",
       "queryName": "Numeric Schema Without Format (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "bac8d200"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "a831dd46"
+  "aggregation": 2
 }

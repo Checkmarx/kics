@@ -11,9 +11,7 @@
       "id": "f7ab6c83-ef89-40e1-8a99-32e2599fb665",
       "queryName": "Required Property With Default Value (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "45773e6e"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "485c07d8"
+  "aggregation": 2
 }

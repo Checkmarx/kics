@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Amazon EKS control plane logging is not enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster#enabled_cluster_log_types",
-  "platform": "Terraform",
-  "descriptionID": "654a6a72"
+  "platform": "Terraform"
 }

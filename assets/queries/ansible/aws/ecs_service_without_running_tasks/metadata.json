@@ -5,6 +5,5 @@
   "category": "Availability",
   "descriptionText": "ECS Service should have at least 1 task running",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_service_module.html#ansible-collections-community-aws-ecs-service-module",
-  "platform": "Ansible",
-  "descriptionID": "f608ca55"
+  "platform": "Ansible"
 }

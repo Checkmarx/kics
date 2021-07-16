@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Ensure that the cluster-admin role is only used where required (RBAC)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding#name",
-  "platform": "Terraform",
-  "descriptionID": "dcb1b7f0"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "All global responses definitions should be in use",
   "descriptionUrl": "https://swagger.io/specification/v2/#responsesDefinitionsObject",
-  "platform": "OpenAPI",
-  "descriptionID": "0dbdff7f"
+  "platform": "OpenAPI"
 }

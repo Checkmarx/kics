@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Enable AWS CloudFormation Stack Notifications",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
-  "platform": "Terraform",
-  "descriptionID": "2f4e6494"
+  "platform": "Terraform"
 }

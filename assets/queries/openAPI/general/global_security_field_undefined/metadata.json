@@ -12,9 +12,7 @@
       "queryName": "Global Security Field Is Undefined (v2)",
       "descriptionText": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securityDefinitions",
       "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject"
-    },
-    "descriptionID": "8945e806"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "b451ab3e"
+  "aggregation": 2
 }

@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "The Remote Desktop port is open in a Security Group",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
-  "platform": "Terraform",
-  "descriptionID": "7e46f900"
+  "platform": "Terraform"
 }

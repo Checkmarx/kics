@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if any VM instance disables OSLogin",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
-  "platform": "Terraform",
-  "descriptionID": "b571d62e"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Secret Management",
   "descriptionText": "EBS Volume should specify a KmsKeyId value",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html",
-  "platform": "CloudFormation",
-  "descriptionID": "bb22d9ce"
+  "platform": "CloudFormation"
 }

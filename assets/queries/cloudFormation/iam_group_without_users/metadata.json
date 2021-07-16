@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "IAM Group should have at least one user associated",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html",
-  "platform": "CloudFormation",
-  "descriptionID": "f9f97877"
+  "platform": "CloudFormation"
 }

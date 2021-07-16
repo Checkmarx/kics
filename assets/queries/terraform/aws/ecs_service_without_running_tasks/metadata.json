@@ -5,6 +5,5 @@
   "category": "Availability",
   "descriptionText": "ECS Service should have at least 1 task running",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service",
-  "platform": "Terraform",
-  "descriptionID": "ddbe820b"
+  "platform": "Terraform"
 }

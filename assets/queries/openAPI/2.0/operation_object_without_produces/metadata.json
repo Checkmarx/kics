@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Operation Object should have 'produces' feild defined for 'GET'operation",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-  "platform": "OpenAPI",
-  "descriptionID": "7f5efcea"
+  "platform": "OpenAPI"
 }

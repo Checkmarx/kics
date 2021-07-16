@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "API Keys should not be transported over network",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
-  "platform": "OpenAPI",
-  "descriptionID": "60c33925"
+  "platform": "OpenAPI"
 }

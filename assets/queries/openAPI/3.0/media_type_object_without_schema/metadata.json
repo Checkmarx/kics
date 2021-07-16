@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "The Media Type Object should have the attribute 'schema' defined",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
-  "platform": "OpenAPI",
-  "descriptionID": "103dc9fb"
+  "platform": "OpenAPI"
 }

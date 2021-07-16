@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Enable AWS CloudFormation Stack Notifications",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html",
-  "platform": "CloudFormation",
-  "descriptionID": "480f87f9"
+  "platform": "CloudFormation"
 }

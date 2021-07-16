@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "The Parameter Object should have the attribute 'schema' defined",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI",
-  "descriptionID": "6f75c38b"
+  "platform": "OpenAPI"
 }

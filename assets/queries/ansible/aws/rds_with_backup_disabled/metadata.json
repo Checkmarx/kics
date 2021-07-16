@@ -5,6 +5,5 @@
   "category": "Backup",
   "descriptionText": "RDS configured without backup",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-backup_retention_period",
-  "platform": "Ansible",
-  "descriptionID": "32b4fb65"
+  "platform": "Ansible"
 }

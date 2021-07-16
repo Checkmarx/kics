@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "The API Endpoint type in API Gateway should be set to PRIVATE so it's not exposed to the public internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
-  "platform": "Terraform",
-  "descriptionID": "1a4a22a2"
+  "platform": "Terraform"
 }

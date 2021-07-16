@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html",
-  "platform": "Ansible",
-  "descriptionID": "2a28073a"
+  "platform": "Ansible"
 }

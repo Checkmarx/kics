@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule",
-  "platform": "Terraform",
-  "descriptionID": "92a177f0"
+  "platform": "Terraform"
 }

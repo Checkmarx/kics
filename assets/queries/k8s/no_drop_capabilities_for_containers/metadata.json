@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Sees if Kubernetes Drop Capabilities exists to ensure containers security context",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
-  "platform": "Kubernetes",
-  "descriptionID": "c49854c7"
+  "platform": "Kubernetes"
 }

@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Responses reference should exist on responses definition field",
   "descriptionUrl": "https://swagger.io/specification/v2/#responsesDefinitionsObject",
-  "platform": "OpenAPI",
-  "descriptionID": "07fd0052"
+  "platform": "OpenAPI"
 }

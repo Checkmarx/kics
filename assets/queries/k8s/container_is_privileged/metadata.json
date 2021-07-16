@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Do not allow container to be privileged.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers",
-  "platform": "Kubernetes",
-  "descriptionID": "d69df651"
+  "platform": "Kubernetes"
 }

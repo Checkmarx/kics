@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "The Remote Desktop port is open in a Security Group",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-  "platform": "CloudFormation",
-  "descriptionID": "1467abd8"
+  "platform": "CloudFormation"
 }

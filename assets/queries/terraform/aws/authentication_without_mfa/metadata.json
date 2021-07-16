@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Users should authenticate with MFA (Multi-factor Authentication)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy",
-  "platform": "Terraform",
-  "descriptionID": "69a83663"
+  "platform": "Terraform"
 }

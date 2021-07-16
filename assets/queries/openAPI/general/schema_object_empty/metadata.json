@@ -11,9 +11,7 @@
       "id": "967575e5-eb44-4c24-aadb-7e33608ed30a",
       "queryName": "Schema Object is Empty (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "f0386ac7"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "41785d9c"
+  "aggregation": 2
 }

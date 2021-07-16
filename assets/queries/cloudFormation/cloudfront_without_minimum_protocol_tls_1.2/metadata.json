@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "CloudFront Minimum Protocol version should be at least TLS 1.2",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html",
-  "platform": "CloudFormation",
-  "descriptionID": "656dd4a9"
+  "platform": "CloudFormation"
 }

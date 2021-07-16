@@ -12,9 +12,7 @@
       "queryName": "Default Invalid (v2)",
       "descriptionText": "The field 'default' of Schema/Parameter/Header Object should be consistent with the schema's/parameter's/header's type",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "d542f8fd"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "a5d7d3b3"
+  "aggregation": 2
 }

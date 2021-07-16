@@ -11,9 +11,7 @@
       "id": "965a043f-5f3c-4d0a-be72-d9ce12fdb4d6",
       "queryName": "Success Response Code Undefined for Put Operation (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
-    },
-    "descriptionID": "06e8c907"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "f7b888db"
+  "aggregation": 2
 }

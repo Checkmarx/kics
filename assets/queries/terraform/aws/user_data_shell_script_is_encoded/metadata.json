@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Base64 Shell Script must be encoded",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64",
-  "platform": "Terraform",
-  "descriptionID": "dd20992e"
+  "platform": "Terraform"
 }

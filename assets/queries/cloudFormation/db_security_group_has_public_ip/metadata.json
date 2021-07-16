@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "RDS must not be defined with public interface, which means the attribute 'PubliclyAccessible' must be set to false.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
-  "platform": "CloudFormation",
-  "descriptionID": "0c7723e6"
+  "platform": "CloudFormation"
 }

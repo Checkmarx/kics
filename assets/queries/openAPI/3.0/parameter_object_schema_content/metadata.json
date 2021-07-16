@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "A Parameter Object must contain either a 'schema' property, or a 'content' property, but not both since they are mutually exclusive",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI",
-  "descriptionID": "1b90b69e"
+  "platform": "OpenAPI"
 }

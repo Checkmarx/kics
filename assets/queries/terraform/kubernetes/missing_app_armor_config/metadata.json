@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Containers should be configured with AppArmor for any application to reduce its potential attack",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
-  "platform": "Terraform",
-  "descriptionID": "c2d937fe"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Resource Management",
   "descriptionText": "Ensure that 'Threat Detection' is enabled for Azure SQL Database",
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/sql_database.html",
-  "platform": "Terraform",
-  "descriptionID": "6eb04bc8"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if insecure SSL is being used in the GitHub organization webhooks",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/organization_webhook",
-  "platform": "Terraform",
-  "descriptionID": "d99c8ae7"
+  "platform": "Terraform"
 }

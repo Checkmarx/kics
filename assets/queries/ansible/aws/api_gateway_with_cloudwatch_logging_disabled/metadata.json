@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "AWS CloudWatch Logs for APIs is not enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudwatchlogs_log_group_module.html#ansible-collections-community-aws-cloudwatchlogs-log-group-module",
-  "platform": "Ansible",
-  "descriptionID": "8812ea01"
+  "platform": "Ansible"
 }

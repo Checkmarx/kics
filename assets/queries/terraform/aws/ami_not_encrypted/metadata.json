@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS AMI Encryption is not enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami",
-  "platform": "Terraform",
-  "descriptionID": "54b42d64"
+  "platform": "Terraform"
 }

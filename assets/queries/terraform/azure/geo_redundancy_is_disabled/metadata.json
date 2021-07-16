@@ -5,6 +5,5 @@
   "category": "Backup",
   "descriptionText": "Make sure that on PostgreSQL Geo Redundant Backups is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server",
-  "platform": "Terraform",
-  "descriptionID": "3b121ebe"
+  "platform": "Terraform"
 }

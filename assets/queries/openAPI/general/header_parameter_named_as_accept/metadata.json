@@ -11,9 +11,7 @@
       "id": "3ddd74cc-6582-486c-8b0c-2b48cb38e0a3",
       "queryName": "Header Parameter Named as 'Accept' (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    },
-    "descriptionID": "9162bbe9"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "6f84b796"
+  "aggregation": 2
 }

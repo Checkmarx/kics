@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Using an scope on security of operations that is undefined on 'securityScheme' can be defined by an attacker",
   "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
-  "platform": "OpenAPI",
-  "descriptionID": "0414e695"
+  "platform": "OpenAPI"
 }

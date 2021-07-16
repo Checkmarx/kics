@@ -12,9 +12,7 @@
       "queryName": "Array Without Maximum Number of Items (v2)",
       "descriptionText": "Array schema/parameter should have the field 'maxItems' set",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    },
-    "descriptionID": "ffc169e8"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "d663a048"
+  "aggregation": 2
 }

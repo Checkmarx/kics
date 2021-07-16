@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Security field should be defined in '#/components/securitySchemes'",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
-  "platform": "OpenAPI",
-  "descriptionID": "1bed8b93"
+  "platform": "OpenAPI"
 }

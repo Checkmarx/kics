@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Verifies that the OSLogin is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_project_metadata#metadata",
-  "platform": "Terraform",
-  "descriptionID": "7d0a116f"
+  "platform": "Terraform"
 }

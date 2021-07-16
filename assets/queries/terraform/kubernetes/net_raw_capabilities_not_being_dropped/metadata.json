@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Containers should drop 'NET_RAW' or 'ALL' capabilities",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#drop",
-  "platform": "Terraform",
-  "descriptionID": "db3ea917"
+  "platform": "Terraform"
 }

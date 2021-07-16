@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Elastic File System (EFS) must be encrypted",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html#parameter-encrypt",
-  "platform": "Ansible",
-  "descriptionID": "67c2a261"
+  "platform": "Ansible"
 }

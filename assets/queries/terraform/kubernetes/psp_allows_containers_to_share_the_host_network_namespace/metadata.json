@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if Pod Security Policies allow containers to share the host network namespace.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#host_network",
-  "platform": "Terraform",
-  "descriptionID": "cfe222d6"
+  "platform": "Terraform"
 }

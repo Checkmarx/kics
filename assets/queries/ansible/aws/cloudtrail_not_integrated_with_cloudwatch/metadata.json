@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "CloudTrail should be integrated with CloudWatch",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
-  "platform": "Ansible",
-  "descriptionID": "421aa550"
+  "platform": "Ansible"
 }

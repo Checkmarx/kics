@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "IAM role allows All services or principals to assume it",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
-  "platform": "Ansible",
-  "descriptionID": "7b5b99f8"
+  "platform": "Ansible"
 }

@@ -11,9 +11,7 @@
       "id": "069a5378-2091-43f0-aa3b-ee8f20996e99",
       "queryName": "Responses With Wrong HTTP Status Code (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    },
-    "descriptionID": "7a9ae477"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "acd7e383"
+  "aggregation": 2
 }

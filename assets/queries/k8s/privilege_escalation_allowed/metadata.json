@@ -1,10 +1,9 @@
 {
-  "id": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d",
-  "queryName": "Privilege Escalation Allowed",
-  "severity": "HIGH",
-  "category": "Insecure Configurations",
-  "descriptionText": "Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process",
-  "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-  "platform": "Kubernetes",
-  "descriptionID": "52c28ad8"
+	"id": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d",
+	"queryName": "Privilege Escalation Allowed",
+	"severity": "HIGH",
+	"category": "Insecure Configurations",
+	"descriptionText": "Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process",
+	"descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+	"platform": "Kubernetes"
 }

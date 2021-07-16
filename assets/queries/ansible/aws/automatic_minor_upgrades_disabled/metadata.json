@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "RDS instance auto minor version upgrade feature must be true",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-auto_minor_version_upgrade",
-  "platform": "Ansible",
-  "descriptionID": "a8e72bef"
+  "platform": "Ansible"
 }

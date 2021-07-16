@@ -5,6 +5,5 @@
   "category": "Resource Management",
   "descriptionText": "Memory requests should be specified",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/",
-  "platform": "Kubernetes",
-  "descriptionID": "a6c8a277"
+  "platform": "Kubernetes"
 }

@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "AWS Redshift Clusters must not be publicly accessible, which means the attribute 'PubliclyAccessible' must be set to false",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
-  "platform": "CloudFormation",
-  "descriptionID": "c0bfb0ff"
+  "platform": "CloudFormation"
 }

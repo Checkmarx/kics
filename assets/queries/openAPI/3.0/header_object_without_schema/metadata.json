@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "The header object should have schema defined",
   "descriptionUrl": "https://swagger.io/specification/#header-object",
-  "platform": "OpenAPI",
-  "descriptionID": "24f0eb2c"
+  "platform": "OpenAPI"
 }

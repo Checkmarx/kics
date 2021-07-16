@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Checks if logging is enabled for CloudTrail.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html#parameter-enable_logging",
-  "platform": "Ansible",
-  "descriptionID": "ded0d45d"
+  "platform": "Ansible"
 }

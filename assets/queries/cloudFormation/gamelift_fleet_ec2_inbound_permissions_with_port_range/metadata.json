@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "AWS GameLift Fleet EC2InboundPermissions should have a single port",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html",
-  "platform": "CloudFormation",
-  "descriptionID": "53e798d8"
+  "platform": "CloudFormation"
 }

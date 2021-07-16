@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Do not allow pod to request execution as privileged",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
-  "platform": "Terraform",
-  "descriptionID": "1983bacd"
+  "platform": "Terraform"
 }

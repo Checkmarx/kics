@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Link object reference must always point to '#/components/links'",
   "descriptionUrl": "https://swagger.io/specification/#link-object",
-  "platform": "OpenAPI",
-  "descriptionID": "409c37dc"
+  "platform": "OpenAPI"
 }

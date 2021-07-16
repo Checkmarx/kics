@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Enable Content Encoding through the attribute 'MinimumCompressionSize'. This value should be greater than -1 and smaller than 10485760.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html",
-  "platform": "CloudFormation",
-  "descriptionID": "b47795e4"
+  "platform": "CloudFormation"
 }

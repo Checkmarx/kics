@@ -5,6 +5,5 @@
   "category": "Build Process",
   "descriptionText": "Amazon Elastic Filesystem should have filesystem tags associated",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/efs_module.html",
-  "platform": "Ansible",
-  "descriptionID": "2839327e"
+  "platform": "Ansible"
 }

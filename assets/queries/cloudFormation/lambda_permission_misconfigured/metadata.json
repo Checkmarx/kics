@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Lambda permission may be misconfigured if the action field is not filled in by 'lambda: InvokeFunction'",
   "descriptionUrl": "https://docs.aws.amazon.com/pt_br/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html",
-  "platform": "CloudFormation",
-  "descriptionID": "19e769d0"
+  "platform": "CloudFormation"
 }

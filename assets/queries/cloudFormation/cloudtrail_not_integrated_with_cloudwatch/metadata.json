@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "CloudTrail should be integrated with CloudWatch",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html",
-  "platform": "CloudFormation",
-  "descriptionID": "41f1f269"
+  "platform": "CloudFormation"
 }

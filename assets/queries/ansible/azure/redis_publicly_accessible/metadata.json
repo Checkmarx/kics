@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "Firewall rule allowing unrestricted access to Redis from other Azure sources",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html#parameter-start_ip_address",
-  "platform": "Ansible",
-  "descriptionID": "82ba3747"
+  "platform": "Ansible"
 }

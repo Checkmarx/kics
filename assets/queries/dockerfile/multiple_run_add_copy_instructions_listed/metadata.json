@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Multiple commands (RUN, Copy, And) should be grouped in order to reduce the number of layers.",
   "descriptionUrl": "https://sysdig.com/blog/dockerfile-best-practices/",
-  "platform": "Dockerfile",
-  "descriptionID": "ff2daef8"
+  "platform": "Dockerfile"
 }

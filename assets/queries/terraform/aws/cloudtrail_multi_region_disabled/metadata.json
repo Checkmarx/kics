@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Check if MultiRegion is Enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
-  "platform": "Terraform",
-  "descriptionID": "20d94fad"
+  "platform": "Terraform"
 }

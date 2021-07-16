@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "All global parameters definitions  should be in use",
   "descriptionUrl": "https://swagger.io/specification/v2/#parametersDefinitionsObject",
-  "platform": "OpenAPI",
-  "descriptionID": "10b97d6e"
+  "platform": "OpenAPI"
 }

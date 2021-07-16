@@ -11,9 +11,7 @@
       "id": "6172e7ab-d2b7-45f8-a7db-1603931d8ba3",
       "queryName": "Responses Object Is Empty (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#responsesObject"
-    },
-    "descriptionID": "f6e1126e"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "95bc25bc"
+  "aggregation": 2
 }

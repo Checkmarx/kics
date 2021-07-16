@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "AWS Security Group Egress should not specify all protocols to prevent allow traffic on all ports",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html",
-  "platform": "CloudFormation",
-  "descriptionID": "8ea96126"
+  "platform": "CloudFormation"
 }

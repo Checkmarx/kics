@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "AWS Lambda Functions must have associated tags.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html",
-  "platform": "CloudFormation",
-  "descriptionID": "9ee1fcd5"
+  "platform": "CloudFormation"
 }

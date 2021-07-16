@@ -11,9 +11,7 @@
       "id": "e7656d8d-7288-4bbe-b07b-22b389be75ce",
       "queryName": "Template Path With No Corresponding Path Parameter (v2)",
       "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#path-templating"
-    },
-    "descriptionID": "a59c98a6"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "4a6c8b77"
+  "aggregation": 2
 }

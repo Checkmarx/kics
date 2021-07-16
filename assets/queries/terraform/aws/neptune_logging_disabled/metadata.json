@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Neptune logging should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports",
-  "platform": "Terraform",
-  "descriptionID": "7e9c8c5b"
+  "platform": "Terraform"
 }

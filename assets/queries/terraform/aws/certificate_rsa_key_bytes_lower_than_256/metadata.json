@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "The certificate should use a RSA key with a length equal to or higher than 256 bytes",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
-  "platform": "Terraform",
-  "descriptionID": "e38d7b0b"
+  "platform": "Terraform"
 }

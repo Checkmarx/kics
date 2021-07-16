@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Limit capabilities for a Pod Security Policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#required_drop_capabilities",
-  "platform": "Terraform",
-  "descriptionID": "858bce7f"
+  "platform": "Terraform"
 }

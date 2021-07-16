@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "SQS policy with public access",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html",
-  "platform": "Ansible",
-  "descriptionID": "783f3212"
+  "platform": "Ansible"
 }

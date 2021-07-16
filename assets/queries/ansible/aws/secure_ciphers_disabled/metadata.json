@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if secure ciphers aren't used in CloudFront",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
-  "platform": "Ansible",
-  "descriptionID": "be7ea248"
+  "platform": "Ansible"
 }

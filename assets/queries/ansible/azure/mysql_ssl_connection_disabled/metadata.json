@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Make sure that for MySQL Database Server, 'Enforce SSL connection' is enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_mysqlserver_module.html",
-  "platform": "Ansible",
-  "descriptionID": "059ecd50"
+  "platform": "Ansible"
 }

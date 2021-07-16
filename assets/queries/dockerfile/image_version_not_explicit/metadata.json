@@ -1,10 +1,9 @@
 {
-  "id": "9efb0b2d-89c9-41a3-91ca-dcc0aec911fd",
-  "queryName": "Image Version Not Explicit",
-  "severity": "MEDIUM",
-  "category": "Supply-Chain",
-  "descriptionText": "Always tag the version of an image explicitly",
-  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
-  "platform": "Dockerfile",
-  "descriptionID": "0e2e54be"
+	"id": "9efb0b2d-89c9-41a3-91ca-dcc0aec911fd",
+	"queryName": "Image Version Not Explicit",
+	"severity": "MEDIUM",
+	"category": "Supply-Chain",
+	"descriptionText": "Always tag the version of an image explicitly",
+	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
+	"platform": "Dockerfile"
 }

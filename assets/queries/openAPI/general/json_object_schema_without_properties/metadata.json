@@ -11,9 +11,7 @@
       "id": "3d28f751-bc18-4f83-ace0-216b6086410b",
       "queryName": "JSON Object Schema Without Properties (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "4c71141d"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "1b04269a"
+  "aggregation": 2
 }

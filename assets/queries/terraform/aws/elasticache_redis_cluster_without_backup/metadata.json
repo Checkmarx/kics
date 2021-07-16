@@ -5,6 +5,5 @@
   "category": "Backup",
   "descriptionText": "ElastiCache Redis cluster should have 'snapshot_retention_limit' higher than 0",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#snapshot_retention_limit",
-  "platform": "Terraform",
-  "descriptionID": "06572152"
+  "platform": "Terraform"
 }

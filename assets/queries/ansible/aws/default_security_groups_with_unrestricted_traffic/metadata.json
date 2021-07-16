@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if default security group does not restrict all inbound and outbound traffic.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible",
-  "descriptionID": "e41cf16f"
+  "platform": "Ansible"
 }

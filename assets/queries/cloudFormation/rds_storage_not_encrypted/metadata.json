@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS RDS DB Instance should be encrypted",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
-  "platform": "CloudFormation",
-  "descriptionID": "b0469d22"
+  "platform": "CloudFormation"
 }

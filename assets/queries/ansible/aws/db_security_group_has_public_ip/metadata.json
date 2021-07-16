@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "The CIDR IP must not be Public",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible",
-  "descriptionID": "a78fb78a"
+  "platform": "Ansible"
 }

@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if the ELB is setup with SSL for secure communication",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
-  "platform": "CloudFormation",
-  "descriptionID": "2d2fc941"
+  "platform": "CloudFormation"
 }

@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": " SQS Queue should be protected with CMK encryption",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#ansible-collections-community-aws-sqs-queue-module",
-  "platform": "Ansible",
-  "descriptionID": "55e7c27f"
+  "platform": "Ansible"
 }

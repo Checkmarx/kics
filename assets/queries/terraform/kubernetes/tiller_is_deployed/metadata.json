@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if Tiller is deployed.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
-  "platform": "Terraform",
-  "descriptionID": "267f8f47"
+  "platform": "Terraform"
 }

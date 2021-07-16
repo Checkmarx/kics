@@ -5,6 +5,5 @@
   "category": "Access Control",
   "descriptionText": "Security Scheme HTTP scheme should be registered in the IANA Authentication Scheme registry",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
-  "platform": "OpenAPI",
-  "descriptionID": "585f8889"
+  "platform": "OpenAPI"
 }

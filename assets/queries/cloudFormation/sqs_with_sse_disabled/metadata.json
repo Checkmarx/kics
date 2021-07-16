@@ -5,6 +5,5 @@
   "category": "Secret Management",
   "descriptionText": "AWS SQS Queue should have a KMS Master Key defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid",
-  "platform": "CloudFormation",
-  "descriptionID": "b6909184"
+  "platform": "CloudFormation"
 }

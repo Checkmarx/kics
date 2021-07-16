@@ -5,6 +5,5 @@
   "category": "Secret Management",
   "descriptionText": "Lambda hardcoded AWS access/secret keys",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment",
-  "platform": "CloudFormation",
-  "descriptionID": "88e20ad4"
+  "platform": "CloudFormation"
 }

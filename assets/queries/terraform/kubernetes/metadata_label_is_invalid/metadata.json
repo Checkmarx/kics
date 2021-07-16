@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Check if any label in the metadata is invalid.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#labels",
-  "platform": "Terraform",
-  "descriptionID": "5fbfd948"
+  "platform": "Terraform"
 }

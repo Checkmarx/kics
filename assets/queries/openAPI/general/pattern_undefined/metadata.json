@@ -12,9 +12,7 @@
       "queryName": "Pattern Undefined (v2)",
       "descriptionText": "String schema/parameter/header should have 'pattern' defined.",
       "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
-    },
-    "descriptionID": "d9d2c3da"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "c7ba2a2d"
+  "aggregation": 2
 }

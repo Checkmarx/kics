@@ -11,9 +11,7 @@
       "id": "ccd0613f-cb77-4684-a892-183bd2674d12",
       "queryName": "Path Parameter Not Required (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
-    },
-    "descriptionID": "9dcbf5c4"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "f857d3d4"
+  "aggregation": 2
 }

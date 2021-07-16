@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "The Server URL should be an absolute URL",
   "descriptionUrl": "https://swagger.io/specification/#server-object",
-  "platform": "OpenAPI",
-  "descriptionID": "e38fb1f6"
+  "platform": "OpenAPI"
 }

@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Check if IAM account password has at least one number",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html",
-  "platform": "Ansible",
-  "descriptionID": "5478159a"
+  "platform": "Ansible"
 }

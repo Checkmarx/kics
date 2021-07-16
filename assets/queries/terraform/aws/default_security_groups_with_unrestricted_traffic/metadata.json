@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if default security group does not restrict all inbound and outbound traffic.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group",
-  "platform": "Terraform",
-  "descriptionID": "90bddf20"
+  "platform": "Terraform"
 }

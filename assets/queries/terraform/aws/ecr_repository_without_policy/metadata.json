@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "ECR Repository should have Policies attached to it",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy",
-  "platform": "Terraform",
-  "descriptionID": "19ea9450"
+  "platform": "Terraform"
 }

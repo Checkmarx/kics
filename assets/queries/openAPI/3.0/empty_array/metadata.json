@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "All array fields should not be empty",
   "descriptionUrl": "https://swagger.io/specification/",
-  "platform": "OpenAPI",
-  "descriptionID": "b9f55549"
+  "platform": "OpenAPI"
 }

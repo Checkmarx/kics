@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "AWS Config Configuration Aggregator All Regions must be set to True",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator#all_regions",
-  "platform": "Terraform",
-  "descriptionID": "7d4d9c5b"
+  "platform": "Terraform"
 }

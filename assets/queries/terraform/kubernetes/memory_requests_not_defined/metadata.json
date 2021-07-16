@@ -5,6 +5,5 @@
   "category": "Resource Management",
   "descriptionText": "Memory requests should be specified",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#requests",
-  "platform": "Terraform",
-  "descriptionID": "4643272e"
+  "platform": "Terraform"
 }

@@ -11,9 +11,7 @@
       "id": "448db771-06ea-4dee-b48c-1689cbfb4b43",
       "queryName": "Example Not Compliant With Schema Type (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#example-object"
-    },
-    "descriptionID": "fff384b0"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "75501fc3"
+  "aggregation": 2
 }

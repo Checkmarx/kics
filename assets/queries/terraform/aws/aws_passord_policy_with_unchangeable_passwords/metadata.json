@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Unchangeable passwords in AWS password policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
-  "platform": "Terraform",
-  "descriptionID": "1d55945b"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "The API Endpoint type in API Gateway should be set to PRIVATE so it's not exposed to the public internet",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html",
-  "platform": "Ansible",
-  "descriptionID": "77fac7c8"
+  "platform": "Ansible"
 }

@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Response Object reference must always point to '#/components/responses'",
   "descriptionUrl": "https://swagger.io/specification/#responses-object",
-  "platform": "OpenAPI",
-  "descriptionID": "d5370b7d"
+  "platform": "OpenAPI"
 }

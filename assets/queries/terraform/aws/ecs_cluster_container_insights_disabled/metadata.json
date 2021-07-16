@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "ECS Cluster should enable container insights",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster#setting",
-  "platform": "Terraform",
-  "descriptionID": "08c47ca5"
+  "platform": "Terraform"
 }

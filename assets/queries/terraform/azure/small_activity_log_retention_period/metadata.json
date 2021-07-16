@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Ensure that Activity Log Retention is set 365 days or greater",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_log_profile",
-  "platform": "Terraform",
-  "descriptionID": "ba3aff29"
+  "platform": "Terraform"
 }

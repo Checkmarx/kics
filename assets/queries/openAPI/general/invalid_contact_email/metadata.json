@@ -11,9 +11,7 @@
       "id": "d83bebc8-4e5e-4241-b783-cba9fb5a1c9a",
       "queryName": "Invalid Contact Email (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
-    },
-    "descriptionID": "96c2f4e3"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "83792743"
+  "aggregation": 2
 }

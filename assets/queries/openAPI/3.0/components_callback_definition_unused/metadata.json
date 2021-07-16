@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "Components callbacks definitions should be referenced or removed from Open API definition",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
-  "platform": "OpenAPI",
-  "descriptionID": "e1e587e6"
+  "platform": "OpenAPI"
 }

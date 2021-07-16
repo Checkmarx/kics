@@ -11,9 +11,7 @@
       "id": "e4a019f0-9af3-49c8-bf68-1939a6ff240d",
       "queryName": "String Schema with Broad Pattern (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
-    },
-    "descriptionID": "6fb73358"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "ace414a8"
+  "aggregation": 2
 }

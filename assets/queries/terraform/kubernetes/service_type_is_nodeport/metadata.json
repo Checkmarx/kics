@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "Service type should not be NodePort",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service#type",
-  "platform": "Terraform",
-  "descriptionID": "092e3036"
+  "platform": "Terraform"
 }

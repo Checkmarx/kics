@@ -11,9 +11,7 @@
       "id": "949376f1-f560-4c6d-a016-63424ca931bb",
       "queryName": "Schema Discriminator Property Not String (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
-    },
-    "descriptionID": "c07c9d58"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "6a80bab5"
+  "aggregation": 2
 }

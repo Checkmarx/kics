@@ -11,9 +11,7 @@
       "id": "de2b4910-8484-46d6-a055-dc1e793ee3ff",
       "queryName": "Invalid License URL (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#licenseObject"
-    },
-    "descriptionID": "5bc06e9e"
+    }
   },
-  "aggregation": 2,
-  "descriptionID": "52349a48"
+  "aggregation": 2
 }

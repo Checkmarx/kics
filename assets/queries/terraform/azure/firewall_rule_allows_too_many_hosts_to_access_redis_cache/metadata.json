@@ -5,6 +5,5 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if any firewall rule allows too many hosts to access Redis Cache",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
-  "platform": "Terraform",
-  "descriptionID": "8fef41a8"
+  "platform": "Terraform"
 }

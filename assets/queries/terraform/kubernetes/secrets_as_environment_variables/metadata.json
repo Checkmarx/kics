@@ -5,6 +5,5 @@
   "category": "Secret Management",
   "descriptionText": "Container should not use secrets as environment variables",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#secret_key_ref",
-  "platform": "Terraform",
-  "descriptionID": "777923f5"
+  "platform": "Terraform"
 }

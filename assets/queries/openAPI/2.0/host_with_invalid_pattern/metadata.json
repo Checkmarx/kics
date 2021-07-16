@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Host field should be an IP or a valid host name",
   "descriptionUrl": "https://swagger.io/specification/v2/#swagger-object",
-  "platform": "OpenAPI",
-  "descriptionID": "1e795492"
+  "platform": "OpenAPI"
 }

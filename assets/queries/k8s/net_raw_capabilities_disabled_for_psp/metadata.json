@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Containers need to have NET_RAW or All as drop capabilities",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
-  "platform": "Kubernetes",
-  "descriptionID": "653cdb4f"
+  "platform": "Kubernetes"
 }

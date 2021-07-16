@@ -5,6 +5,5 @@
   "category": "Observability",
   "descriptionText": "Make sure that alerts notifications are set to 'On' in the Azure Security Center Contact",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact",
-  "platform": "Terraform",
-  "descriptionID": "dae62ed1"
+  "platform": "Terraform"
 }

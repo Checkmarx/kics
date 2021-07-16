@@ -5,6 +5,5 @@
   "category": "Best Practices",
   "descriptionText": "The media type prefix should be set as 'application', 'audio', 'font', 'example', 'image', 'message', 'model', 'multipart', 'text' or 'video'",
   "descriptionUrl": "https://swagger.io/specification/v2/#swagger-object",
-  "platform": "OpenAPI",
-  "descriptionID": "c44bc990"
+  "platform": "OpenAPI"
 }

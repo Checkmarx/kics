@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Batch Job Definition should not have Privileged Container Properties",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/batch_job_definition",
-  "platform": "Terraform",
-  "descriptionID": "0d556ed7"
+  "platform": "Terraform"
 }

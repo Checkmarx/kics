@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "Check if the Memcached is disabled on the ElastiCache",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-engine",
-  "platform": "CloudFormation",
-  "descriptionID": "c5670cfd"
+  "platform": "CloudFormation"
 }

@@ -5,6 +5,5 @@
   "category": "Encryption",
   "descriptionText": "AWS Kinesis Streams and metadata should be protected with KMS",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/kinesis_stream_module.html",
-  "platform": "Ansible",
-  "descriptionID": "b880d9f5"
+  "platform": "Ansible"
 }

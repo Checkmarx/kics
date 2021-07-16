@@ -5,6 +5,5 @@
   "category": "Insecure Configurations",
   "descriptionText": "Do not allow container to be privileged.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
-  "platform": "Terraform",
-  "descriptionID": "a9f04fcc"
+  "platform": "Terraform"
 }

@@ -5,6 +5,5 @@
   "category": "Structure and Semantics",
   "descriptionText": "Parameter Object reference must always point to '#/components/parameters'",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI",
-  "descriptionID": "1023364d"
+  "platform": "OpenAPI"
 }
