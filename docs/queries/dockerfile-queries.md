@@ -1,8 +1,8 @@
 ## Dockerfile Queries List
 This page contains all queries from Dockerfile.
 
-|            Query            |Severity|Category|Description|Help|
-|-----------------------------|--------|--------|-----------|----|
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
 |UNIX Ports Out Of Range<br/><sup><sub>71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e</sub></sup>|<span style="color:#C00">High</span>|Availability|Exposing UNIX ports out of range from 0 to 65535|<a href="https://docs.docker.com/engine/reference/builder/#expose">Documentation</a><br/>|
 |Missing User Instruction<br/><sup><sub>fd54f200-402c-4333-a5a4-36ef6709af2f</sub></sup>|<span style="color:#C00">High</span>|Build Process|A user should be specified in the dockerfile, otherwise the image will run as root|<a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/>|
 |COPY '--from' References Current FROM Alias<br/><sup><sub>cdddb86f-95f6-4fc4-b5a1-483d9afceb2b</sub></sup>|<span style="color:#C00">High</span>|Build Process|COPY '--from' should not mention the current FROM alias, since it is impossible to copy from itself|<a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/>|

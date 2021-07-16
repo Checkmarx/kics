@@ -138,6 +138,10 @@ Observe the following metadata.json example and check the Guidelines below for m
 }
 ```
 
+👨‍💻 **Data File**
+
+This file contains a map, with string keys, which will have default values for keys that can be overwritten as described on [allowing users to overwrite query data section](#allowing-users-to-overwrite-query-data) and [using custom input data section of Running KICS](./running-kics.md#using-custom-input-data)
+
 👨‍💻 **Test Folder**
 
 Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the [extensions available](https://docs.kics.io/latest/platforms/) by the platform.
@@ -349,3 +353,12 @@ CxPolicy[result] {
 isTCPorUDP("TCP") = true
 isTCPorUDP("UDP") = true
 ```
+
+#### Allowing users to overwrite query data
+Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users has different datasets for multiple enviroments. This can be supported easy following some steps:
+
+1. Create a `data.json` file on the same level as `query.rego`;
+2. Define **ALL** keys that can be overwritten with their default value;
+3. On `query.rego` file, use `data.<key_on_data_json_file>` to access the value of this key;
+
+With these simple steps, users will be able to overwrite the keys they want, elsewhere will use the default value.

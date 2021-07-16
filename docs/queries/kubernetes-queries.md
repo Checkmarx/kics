@@ -1,8 +1,8 @@
 ## Kubernetes Queries List
 This page contains all queries from Kubernetes.
 
-|            Query            |Severity|Category|Description|Help|
-|-----------------------------|--------|--------|-----------|----|
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
 |Shared Host PID Namespace<br/><sup><sub>302736f4-b16c-41b8-befe-c0baffa0bd9d</sub></sup>|<span style="color:#C00">High</span>|Insecure Configurations|Container should not share the host process ID namespace|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|
 |NET_RAW Capabilities Not Being Dropped<br/><sup><sub>dbbc6705-d541-43b0-b166-dd4be8208b54</sub></sup>|<span style="color:#C00">High</span>|Insecure Configurations|Containers should drop 'NET_RAW' or 'ALL' capabilities|<a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Documentation</a><br/>|
 |Not Limited Capabilities For Pod Security Policy<br/><sup><sub>caa93370-791f-4fc6-814b-ba6ce0cb4032</sub></sup>|<span style="color:#C00">High</span>|Insecure Configurations|Limit capabilities for a Pod Security Policy|<a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">Documentation</a><br/>|

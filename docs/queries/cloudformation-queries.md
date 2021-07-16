@@ -1,8 +1,8 @@
 ## CloudFormation Queries List
 This page contains all queries from CloudFormation.
 
-|            Query            |Severity|Category|Description|Help|
-|-----------------------------|--------|--------|-----------|----|
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
 |Lambda Functions With Full Privileges<br/><sup><sub>a0ae0a4e-712b-4115-8112-51b9eeed9d69</sub></sup>|<span style="color:#C00">High</span>|Access Control|AWS Lambda Functions should not have roles with policies granting full administrative privileges.|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">Documentation</a><br/>|
 |IAM Policies With Full Privileges<br/><sup><sub>953b3cdb-ce13-428a-aa12-318726506661</sub></sup>|<span style="color:#C00">High</span>|Access Control|IAM policies shouldn't allow full administrative privileges|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">Documentation</a><br/>|
 |S3 Bucket ACL Allows Read Or Write to All Users<br/><sup><sub>07dda8de-d90d-469e-9b37-1aca53526ced</sub></sup>|<span style="color:#C00">High</span>|Access Control|S3 Buckets sould not be readable and writable to all users|<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/>|

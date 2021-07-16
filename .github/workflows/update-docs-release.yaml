@@ -46,6 +46,7 @@ jobs:
           git checkout ${{ steps.version.outputs.ptag }}
       - name: Mike deploy previous version
         run: |
+          mike delete ${{ steps.version.outputs.pversion }} || echo 'version does not exists yet'
           mike deploy ${{ steps.version.outputs.pversion }}
       - name: Checkout current tag
         run: |

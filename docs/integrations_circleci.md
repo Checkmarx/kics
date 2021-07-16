@@ -21,9 +21,9 @@ jobs:
       - run:
           name: Run KICS
           command: |
-            /app/bin/kics scan -p ${PWD} -o ~/ --ci
+            /app/bin/kics scan -p ${PWD} -o ${PWD} --ci
       - store_artifacts:
-          path: ~/results.json
+          path: ${PWD}/results.json
 
 workflows:
   version: 2
