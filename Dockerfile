@@ -23,6 +23,11 @@ RUN go mod download
 COPY . .
 
 USER root
+
+# Install git
+RUN apk add --no-cache \
+    git=2.32.0-r0
+
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN}" \
@@ -36,10 +41,27 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 #runtime image
 FROM scratch
 
-ENV TMPDIR=/app
 
+# Copy git execution folders
 COPY --from=build_env /app/bin/kics /app/bin/kics
-COPY --from=build_env /app/assets/ /app/bin/assets/
+COPY --from=build_env /app/assets /app/bin/assets
+COPY --from=build_env /lib/ /lib/
+COPY --from=build_env /usr/lib/ /usr/lib/
+COPY --from=build_env /usr/libexec/git-core /usr/libexec/git-core
+COPY --from=build_env /usr/sbin/update-ca-certificates /usr/sbin/update-ca-certificates
+COPY --from=build_env /usr/share/git-core /usr/share/git-core
+COPY --from=build_env /usr/share/ca-certificates /usr/share/ca-certificates
+COPY --from=build_env /usr/bin/c_rehash /usr/bin/c_rehash
+COPY --from=build_env /usr/bin/git /usr/bin/git
+COPY --from=build_env /usr/bin/git-receive-pack  /usr/bin/git-receive-pack
+COPY --from=build_env /usr/bin/git-shell /usr/bin/git-shell
+COPY --from=build_env /usr/bin/git-upload-archive /usr/bin/git-upload-archive
+COPY --from=build_env /usr/bin/git-upload-pack /usr/bin/git-upload-pack
+COPY --from=build_env /etc/ca-certificates.conf /etc/ca-certificates.conf
+COPY --from=build_env /etc/ca-certificates/update.d/certhash /etc/ca-certificates/update.d/certhash
+COPY --from=build_env /etc/apk/protected_paths.d/ca-certificates.list /etc/apk/protected_paths.d/ca-certificates.list
+COPY --from=build_env /etc/ssl/certs /etc/ssl/certs
+COPY --from=build_env /bin /bin
 
 WORKDIR /app/bin
 
