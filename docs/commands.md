@@ -106,11 +106,11 @@ You can only enable one profiler at a time, CPU or MEM.
 
 📝   Please note that execution time may be impacted by enabling performance profiler due to sampling
 
-## Disable Telemetry
+## Disable Crash Report
 
-You can disable KICS telemetry with `KICS_COLLECT_TELEMETRY` environment variable set to `0` or `false` e.g:
+You can disable KICS crash report to [sentry.io](https://sentry.io) with `DISABLE_CRASH_REPORT` environment variable set to `0` or `false` e.g:
 
 ```sh
-KICS_COLLECT_TELEMETRY=0 ./bin/kics version
-# 'KICS telemetry disabled' message should appear in the logs
+DISABLE_CRASH_REPORT=0 ./bin/kics version
+# 'KICS crash report disabled' message should appear in the logs
 ```
