@@ -39,3 +39,6 @@ results.*
 
 # coverage report
 coverage.html
+
+# Local files for tests
+/local-files
