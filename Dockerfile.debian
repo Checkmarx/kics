@@ -39,7 +39,6 @@ FROM debian:buster-slim
 
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 
-USER root
 ENV PATH /app/bin:/usr/bin/git:$PATH
 
 # Install Git
@@ -56,8 +55,6 @@ WORKDIR /app/bin
 
 ENV PATH $PATH:/app/bin
 # Healthcheck the container
-
-USER checkmarx
 
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
