@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "Property 'explode' of the encoding object should be defined when the media type of the request body is 'application/x-www-form-urlencoded'. If not, it will be ignored.",
   "descriptionUrl": "https://swagger.io/specification/#encoding-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "927e421b"
 }

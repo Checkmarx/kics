@@ -1,9 +1,10 @@
 {
-	"id": "91dacd0e-d189-4a9c-8272-5999a3cc32d9",
-	"queryName": "PSP Allows Sharing Host PID",
-	"severity": "MEDIUM",
-	"category": "Insecure Configurations",
-	"descriptionText": "Pod Security Policy allows containers to share the host process ID namespace",
-	"descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
-	"platform": "Kubernetes"
+  "id": "91dacd0e-d189-4a9c-8272-5999a3cc32d9",
+  "queryName": "PSP Allows Sharing Host PID",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Pod Security Policy allows containers to share the host process ID namespace",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
+  "platform": "Kubernetes",
+  "descriptionID": "980c2b40"
 }

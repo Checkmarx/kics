@@ -13,5 +13,6 @@
       "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
     }
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "f7f6e7fb"
 }

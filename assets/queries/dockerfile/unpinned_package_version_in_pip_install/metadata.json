@@ -1,9 +1,10 @@
 {
-	"id": "02d9c71f-3ee8-4986-9c27-1a20d0d19bfc",
-	"queryName": "Unpinned Package Version in Pip Install",
-	"severity": "MEDIUM",
-	"category": "Supply-Chain",
-	"descriptionText": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
-	"descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
-	"platform": "Dockerfile"
+  "id": "02d9c71f-3ee8-4986-9c27-1a20d0d19bfc",
+  "queryName": "Unpinned Package Version in Pip Install",
+  "severity": "MEDIUM",
+  "category": "Supply-Chain",
+  "descriptionText": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+  "platform": "Dockerfile",
+  "descriptionID": "37db3a53"
 }

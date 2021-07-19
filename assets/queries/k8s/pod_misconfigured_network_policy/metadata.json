@@ -5,5 +5,6 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if any pod is not being targeted by a proper network policy.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
-  "platform": "Kubernetes"
+  "platform": "Kubernetes",
+  "descriptionID": "20500552"
 }
