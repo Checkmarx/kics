@@ -38,7 +38,7 @@
       ],
       "category": "Secret Management",
       "description": "Query to find passwords and secrets in infrastructure code.",
-      "description_id": "e51f6184"
+      "description_id": "d69d8a89"
     },
     {
       "query_name": "Redshift Not Encrypted",
@@ -72,7 +72,7 @@
       ],
       "category": "Encryption",
       "description": "Check if 'encrypted' field is false or undefined (default is false)",
-      "description_id": "b8f78227"
+      "description_id": "2bee4895"
     },
     {
       "query_name": "Redshift Publicly Accessible",
@@ -106,7 +106,7 @@
       ],
       "category": "Insecure Configurations",
       "description": "Check if 'publicly_accessible' field is true or undefined (default is true)",
-      "description_id": "9eb0b7ee"
+      "description_id": "9a581503"
     },
     {
       "query_name": "Redshift Cluster Logging Disabled",
@@ -140,7 +140,7 @@
       ],
       "category": "Observability",
       "description": "Make sure Logging is enabled for Redshift Cluster",
-      "description_id": "ea4fde74"
+      "description_id": "458fe7a3"
     },
     {
       "query_name": "Redshift Cluster Without VPC",
@@ -196,7 +196,7 @@
       ],
       "category": "Insecure Configurations",
       "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
-      "description_id": "972eda74"
+      "description_id": "6fd531fa"
     },
     {
       "query_name": "Resource Not Using Tags",
@@ -230,7 +230,7 @@
       ],
       "category": "Best Practices",
       "description": "AWS services resource tags are an essential part of managing components",
-      "description_id": "0e2e696e"
+      "description_id": "09db2d52"
     }
   ],
   "scan_id": "console",
