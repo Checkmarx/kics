@@ -709,7 +709,7 @@ func initialize(rootCmd *cobra.Command) error <span class="cov10" title="13">{
 func Execute() error <span class="cov10" title="13">{
         zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
-        enableTelemetry()
+        enableCrashReport()
 
         rootCmd := NewKICSCmd()
 
@@ -730,9 +730,9 @@ func Execute() error <span class="cov10" title="13">{
         <span class="cov9" title="10">return nil</span>
 }
 
-func enableTelemetry() <span class="cov10" title="13">{
-        enableTelemetry, found := os.LookupEnv("KICS_COLLECT_TELEMETRY")
-        if found &amp;&amp; (enableTelemetry == "0" || enableTelemetry == "false") </span><span class="cov0" title="0">{
+func enableCrashReport() <span class="cov10" title="13">{
+        enableCrashReport, found := os.LookupEnv("DISABLE_CRASH_REPORT")
+        if found &amp;&amp; (enableCrashReport == "0" || enableCrashReport == "false") </span><span class="cov0" title="0">{
                 initSentry("")
         }</span> else<span class="cov10" title="13"> {
                 initSentry(constants.SentryDSN)
@@ -742,7 +742,7 @@ func enableTelemetry() <span class="cov10" title="13">{
 func initSentry(dsn string) <span class="cov10" title="13">{
         var err error
         if dsn == "" </span><span class="cov10" title="13">{
-                warnings = append(warnings, "KICS telemetry disabled")
+                warnings = append(warnings, "KICS crash report disabled")
                 err = sentry.Init(sentry.ClientOptions{
                         Release: constants.GetRelease(),
                 })
@@ -1347,8 +1347,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="320">{
-                if val == true </span><span class="cov9" title="319">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="321">{
+                if val == true </span><span class="cov9" title="320">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1875,7 +1875,7 @@ const (
         // MaxInteger - max possible integer in golang
         MaxInteger = math.MaxInt64
 
-        // SentryRefreshRate - sentry telemetry refresh rate
+        // SentryRefreshRate - sentry crash report refresh rate
         SentryRefreshRate = 2
 )
 
@@ -2179,14 +2179,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -3945,7 +3945,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4961,7 +4961,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="32">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="34">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
