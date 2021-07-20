@@ -19,8 +19,8 @@ COPY . .
 USER root
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-  -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN}" -a -installsuffix cgo \
-  -o bin/kics cmd/console/main.go
+    -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN}" -a -installsuffix cgo \
+    -o bin/kics cmd/console/main.go
 USER Checkmarx
 #Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
@@ -29,10 +29,9 @@ FROM alpine:3.14.0
 
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 
-USER root
 # Install Git
 RUN apk add --no-cache \
-  git=2.32.0-r0
+    git=2.32.0-r0
 
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/ /app/bin/assets/
@@ -43,6 +42,5 @@ WORKDIR /app/bin
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 ENV PATH $PATH:/app/bin
 # Command to run the executable
-USER Checkmarx
 
 ENTRYPOINT ["/app/bin/kics"]
