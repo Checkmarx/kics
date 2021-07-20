@@ -50,7 +50,8 @@ jobs:
       - name: Run docker image and generate results.json
         run: |
           docker run -v ${PWD}/assets/queries:/path \
-            kics:${{ github.sha }} scan --silent \
+            kics:${{ github.sha }} scan \
+            --silent \
             --ignore-on-exit "results" \
             --log-level DEBUG \
             --log-path "/path/info.log" \
