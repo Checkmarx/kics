@@ -169,9 +169,6 @@ check_vulnerability(correctStrings) {
 	#look for a known names
 	is_under_secret_key(correctStrings.key)
 
-	#remove string with non-keys characters
-	count(regex.find_n("^[^\\s/:@,.-_|]+$", correctStrings.value, -1)) > 0
-
 	#remove common key and values
 	check_common(correctStrings)
 }

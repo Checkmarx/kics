@@ -55,7 +55,6 @@ jobs:
             --offline \
             --ignore-on-exit "results" \
             --log-level DEBUG \
-            --log-file \
             --log-path "/path/info.log" \
             -p "/path" \
             -o "/path/"
