@@ -69,7 +69,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 ## Meet us at conferences
 
-- [Yalla DevOps 2021](https://yalla-devops.com/)
+- [Yalla DevOps 2021](https://yalla-devops.com/) ([video](https://youtu.be/Hs_YbAH9giI))
 - [Geektime Code 2021](https://code.geektime.co.il/)
 - [DevSecCon24 2021](https://www.devseccon.com/devseccon24-2021/) ([video](https://www.youtube.com/watch?v=eaD-tGMOKe8))
 - [GISEC Global 2021](https://www.gisec.ae/gisec-2021-conference/insecure-infrastructure-as-code-leaves-the-door-open-for-hackers-1wez)
