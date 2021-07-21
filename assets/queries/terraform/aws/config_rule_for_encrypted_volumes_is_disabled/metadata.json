@@ -1,9 +1,10 @@
 {
-  "id": "abdb29d4-5ca1-4e91-800b-b3569bbd788c",
-  "queryName": "Config Rule For Encrypted Volumes Disabled",
-  "severity": "MEDIUM",
-  "category": "Encryption",
-  "descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule",
-  "platform": "Terraform"
+	"id": "abdb29d4-5ca1-4e91-800b-b3569bbd788c",
+	"queryName": "Config Rule For Encrypted Volumes Disabled",
+	"severity": "MEDIUM",
+	"category": "Encryption",
+	"descriptionText": "Check if AWS config rules do not identify Encrypted Volumes as a source.",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule",
+	"platform": "Terraform",
+	"cloudProvider": "aws"
 }

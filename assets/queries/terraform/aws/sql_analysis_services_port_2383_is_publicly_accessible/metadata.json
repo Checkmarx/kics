@@ -5,5 +5,6 @@
 	"category": "Networking and Firewall",
 	"descriptionText": "Check if port 2383 on TCP is publicly accessible by checking the CIDR block range that can access it.",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
-	"platform": "Terraform"
+	"platform": "Terraform",
+	"cloudProvider": "aws"
 }

@@ -5,5 +5,6 @@
 	"category": "Encryption",
 	"descriptionText": "User Data contains an encoded RSA Private Key",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
-	"platform": "Ansible"
+	"platform": "Ansible",
+	"cloudProvider": "aws"
 }

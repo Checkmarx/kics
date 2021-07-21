@@ -5,5 +5,6 @@
 	"category": "Observability",
 	"descriptionText": "It isn't recommended to use resources in default VPC",
 	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc",
-	"platform": "Terraform"
+	"platform": "Terraform",
+	"cloudProvider": "aws"
 }
