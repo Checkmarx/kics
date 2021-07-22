@@ -21,7 +21,10 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 	for idx := range summary.Queries {
 		summary.Queries[idx].CISDescriptionID = descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID
 		summary.Queries[idx].CISDescriptionTitle = descriptionMap[summary.Queries[idx].DescriptionID].DescriptionTitle
-		summary.Queries[idx].CISDescriptionText = descriptionMap[summary.Queries[idx].DescriptionID].RationaleText
+		summary.Queries[idx].CISDescriptionText = descriptionMap[summary.Queries[idx].DescriptionID].DescriptionText
+		summary.Queries[idx].CISRationaleText = descriptionMap[summary.Queries[idx].DescriptionID].RationaleText
+		summary.Queries[idx].CISBenchmarkName = descriptionMap[summary.Queries[idx].DescriptionID].BenchmarkName
+		summary.Queries[idx].CISBenchmarkVersion = descriptionMap[summary.Queries[idx].DescriptionID].BenchmarkVersion
 	}
 	return nil
 }

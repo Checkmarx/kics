@@ -83,7 +83,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(string(authKey)))))
+	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(getBasicAuth()))))
 
 	log.Debug().Msgf("HTTP POST to descriptions endpoint")
 	startTime := time.Now()
@@ -130,4 +130,12 @@ func getBaseURL() (string, error) {
 		rtnBaseURL = constants.BaseURL
 	}
 	return rtnBaseURL, nil
+}
+
+func getBasicAuth() string {
+	auth := os.Getenv("KICS_BASIC_AUTH_PASS")
+	if auth == "" {
+		auth = string(authKey)
+	}
+	return auth
 }

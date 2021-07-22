@@ -9,8 +9,8 @@ type DescriptionRequest struct {
 type CISDescriptions struct {
 	DescriptionID    string `json:"cisDescriptionID"`
 	DescriptionTitle string `json:"cisDescriptionTitle"`
+	DescriptionText  string `json:"cisDescriptionText"`
 	RationaleText    string `json:"cisRationaleText"`
-	FixText          string `json:"cisFixText"`
 	BenchmarkName    string `json:"cisBenchmarkName"`
 	BenchmarkVersion string `json:"cisBenchmarkVersion"`
 }

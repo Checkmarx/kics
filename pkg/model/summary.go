@@ -44,8 +44,11 @@ type VulnerableQuery struct {
 	Description         string           `json:"description"`
 	DescriptionID       string           `json:"description_id"`
 	CISDescriptionText  string           `json:"cis_description_text"`
+	CISRationaleText    string           `json:"cis_description_rationale"`
 	CISDescriptionID    string           `json:"cis_description_id"`
 	CISDescriptionTitle string           `json:"cis_description_title"`
+	CISBenchmarkName    string           `json:"cis_benchmark_name"`
+	CISBenchmarkVersion string           `json:"cis_benchmark_version"`
 }
 
 // VulnerableQuerySlice is a slice of VulnerableQuery
