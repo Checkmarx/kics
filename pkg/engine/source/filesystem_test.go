@@ -106,9 +106,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 		{
 			name: "get_queries_with_exclude_no_result_1",
 			fields: fields{
-				Source:         "./test/fixtures/all_auth_users_get_read_access",
-				Types:          []string{""},
-				CloudProviders: []string{""},
+				Source: "./test/fixtures/all_auth_users_get_read_access", Types: []string{""}, CloudProviders: []string{""},
 			},
 			excludeCategory: []string{},
 			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
@@ -128,9 +126,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 		{
 			name: "get_queries_with_exclude_category_no_result",
 			fields: fields{
-				Source:         "./test/fixtures/all_auth_users_get_read_access",
-				Types:          []string{""},
-				CloudProviders: []string{""},
+				Source: "./test/fixtures/all_auth_users_get_read_access", Types: []string{""}, CloudProviders: []string{""},
 			},
 			excludeCategory: []string{"Access Control"},
 			excludeIDs:      []string{},
@@ -243,6 +239,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 				},
 				InputDataPath: "",
 			}
+
 			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("FilesystemSource.GetQueries() error = %v, wantErr %v", err, tt.wantErr)

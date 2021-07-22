@@ -103,15 +103,15 @@ func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
 }
 
-func validateArguments(types, validArgsTypes, cloudProviders, validArgsProviders []string) error {
+func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error {
 	validArgsTypes = removeDuplicateValues(validArgsTypes)
 
 	if invalidType, ok, _ := contains(types, validArgsTypes); !ok {
 		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
 	}
 
-	if invalidCloudProvider, isOk, _ := contains(cloudProviders, validArgsProviders); !isOk {
-		return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCloudProvider, strings.Join(validArgsProviders, "\n  "))
+	if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk {
+		return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
 	}
 
 	return nil

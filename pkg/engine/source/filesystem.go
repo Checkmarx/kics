@@ -34,6 +34,8 @@ const (
 	LibrariesDefaultBasePath = "./assets/libraries/"
 
 	emptyInputData = "{}"
+
+	common = "Common"
 )
 
 var (
@@ -119,7 +121,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
-	if queryPlatform.(string) == "Common" {
+	if queryPlatform.(string) == common {
 		return true
 	}
 	if s.Types[0] != "" {
@@ -129,13 +131,13 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 }
 
 // CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
-func (s *FilesystemSource) CheckCloudProvider(query model.QueryMetadata) bool {
-	if queryCloudProvider, ok := query.Metadata["cloudProvider"]; ok {
-		if queryCloudProvider == "common" {
+func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool {
+	if cloudProvider != nil {
+		if strings.EqualFold(cloudProvider.(string), common) {
 			return true
 		}
 		if s.CloudProviders[0] != "" {
-			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(queryCloudProvider.(string)))
+			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(cloudProvider.(string)))
 		}
 	}
 
@@ -211,7 +213,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			continue
 		}
 
-		if !s.CheckCloudProvider(query) {
+		if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) {
 			continue
 		}
 
@@ -243,7 +245,6 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			}
 
 			queries = append(queries, query)
-
 		}
 	}
 
