@@ -72,10 +72,18 @@
             <span><strong>Platform:</strong> <span class="query-info-platform">{{ .Platform }}</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
+          {{- if not .CISDescriptionID -}}
           <div class="query-details">
             <span>{{ .Description }}</span>
             <span><a href="{{ .QueryURI }}" rel="noopener" target="_blank">{{ .QueryURI }}</a></span>
           </div>
+          {{- end -}}
+          {{- if .CISDescriptionID -}}
+          <div class="query-details">
+            <span><b>CIS Security - {{ .CISBenchmarkName }} v{{ .CISBenchmarkVersion }} - Rule {{ .CISDescriptionID }}</b></span>
+            <span>{{ .CISDescriptionText }} {{ .CISRationaleText }}</span>
+          </div>
+          {{- end -}}
         </div>
         <details>
           <summary>Results (<span class="severity-partial-count-{{ toString .Severity | lower }}">{{ len .Files }}</span>)</summary>
