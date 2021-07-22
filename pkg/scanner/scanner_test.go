@@ -29,7 +29,7 @@ func TestScanner_StartScan(t *testing.T) {
 		noProgress bool
 	}
 	type feilds struct {
-		types []string
+		types          []string
 		cloudProviders []string
 	}
 	tests := []struct {
@@ -44,7 +44,7 @@ func TestScanner_StartScan(t *testing.T) {
 				noProgress: true,
 			},
 			feilds: feilds{
-				types: []string{""},
+				types:          []string{""},
 				cloudProviders: []string{""},
 			},
 		},

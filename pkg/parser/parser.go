@@ -57,13 +57,11 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 		}
 	}
 
-	
-	supportedCloudProviders := []string { "aws", "azure", "gcp" }
+	supportedCloudProviders := []string{"aws", "azure", "gcp"}
 
 	if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil {
 		return []*Parser{}, err
 	}
-
 
 	return parserSlice, nil
 }

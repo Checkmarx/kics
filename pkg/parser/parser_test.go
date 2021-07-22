@@ -111,9 +111,9 @@ func initilizeBuilder() []*Parser {
 // TestParser_SupportedExtensions tests the functions [validateArguments()] and all the methods called by them
 func TestValidateArguments(t *testing.T) {
 	type args struct {
-		types     []string
-		validArgsTypes []string
-		cloudProviders []string
+		types               []string
+		validArgsTypes      []string
+		cloudProviders      []string
 		validCloudProviders []string
 	}
 	tests := []struct {
@@ -124,20 +124,19 @@ func TestValidateArguments(t *testing.T) {
 		{
 			name: "validate_args_error",
 			args: args{
-				types:     []string{"dockerfiles"},
-				validArgsTypes: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
-				cloudProviders: []string{"awss"},
+				types:               []string{"dockerfiles"},
+				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders:      []string{"awss"},
 				validCloudProviders: []string{"aws", "azure", "gcp"},
-
 			},
 			wantErr: true,
 		},
 		{
 			name: "validate_args",
 			args: args{
-				types:     []string{"Dockerfile"},
-				validArgsTypes: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
-				cloudProviders: []string{"aws"},
+				types:               []string{"Dockerfile"},
+				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders:      []string{"aws"},
 				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: false,
@@ -145,9 +144,9 @@ func TestValidateArguments(t *testing.T) {
 		{
 			name: "validate_args_case_sensetive",
 			args: args{
-				types:     []string{"kubernetes"},
-				validArgsTypes: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
-				cloudProviders: []string{"Aws"},
+				types:               []string{"kubernetes"},
+				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders:      []string{"Aws"},
 				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: false,

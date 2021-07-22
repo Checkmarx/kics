@@ -2,8 +2,8 @@ package console
 
 import (
 	_ "embed" // Embed kics CLI img
-	"os"
 	"fmt"
+	"os"
 	"os/signal"
 	"path/filepath"
 	"strings"
@@ -44,7 +44,7 @@ var (
 	//go:embed img/kics-console
 	banner string
 
-	cloudProviders   []string
+	cloudProviders    []string
 	cfgFile           string
 	excludeCategories []string
 	excludeIDs        []string
@@ -346,7 +346,7 @@ func initOutputFlags(scanCmd *cobra.Command) {
 		cloudProviderFlag,
 		[]string{""},
 		"list of cloud providers to scan "+
-		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedCloudProviders(), ", ")))
+			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedCloudProviders(), ", ")))
 }
 
 func initStdoutFlags(scanCmd *cobra.Command) {

@@ -18,8 +18,8 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source string
-	Types  []string
+	Source         string
+	Types          []string
 	CloudProviders []string
 }
 
@@ -48,7 +48,7 @@ var (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types , cloudProviders []string) *FilesystemSource {
+func NewFilesystemSource(source string, types, cloudProviders []string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -59,10 +59,9 @@ func NewFilesystemSource(source string, types , cloudProviders []string) *Filesy
 		cloudProviders = []string{""}
 	}
 
-	
 	return &FilesystemSource{
-		Source: filepath.FromSlash(source),
-		Types:  types,
+		Source:         filepath.FromSlash(source),
+		Types:          types,
 		CloudProviders: cloudProviders,
 	}
 }
@@ -81,10 +80,8 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string { "aws", "azure", "gcp" }
+	return []string{"aws", "azure", "gcp"}
 }
-
-
 
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string {
@@ -134,10 +131,10 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 // CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
 func (s *FilesystemSource) CheckCloudProvider(query model.QueryMetadata) bool {
 	if queryCloudProvider, ok := query.Metadata["cloudProvider"]; ok {
-		if (queryCloudProvider == "common") {
+		if queryCloudProvider == "common" {
 			return true
 		}
-		if (s.CloudProviders[0] != "") {
+		if s.CloudProviders[0] != "" {
 			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(queryCloudProvider.(string)))
 		}
 	}
@@ -246,7 +243,6 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			}
 
 			queries = append(queries, query)
-
 
 		}
 	}
