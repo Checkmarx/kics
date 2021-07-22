@@ -34,15 +34,18 @@ type VulnerableFile struct {
 
 // VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
 type VulnerableQuery struct {
-	QueryName     string           `json:"query_name"`
-	QueryID       string           `json:"query_id"`
-	QueryURI      string           `json:"query_url"`
-	Severity      Severity         `json:"severity"`
-	Platform      string           `json:"platform"`
-	Files         []VulnerableFile `json:"files"`
-	Category      string           `json:"category"`
-	Description   string           `json:"description"`
-	DescriptionID string           `json:"description_id"`
+	QueryName           string           `json:"query_name"`
+	QueryID             string           `json:"query_id"`
+	QueryURI            string           `json:"query_url"`
+	Severity            Severity         `json:"severity"`
+	Platform            string           `json:"platform"`
+	Files               []VulnerableFile `json:"files"`
+	Category            string           `json:"category"`
+	Description         string           `json:"description"`
+	DescriptionID       string           `json:"description_id"`
+	CISDescriptionText  string           `json:"cis_description_text"`
+	CISDescriptionID    string           `json:"cis_description_id"`
+	CISDescriptionTitle string           `json:"cis_description_title"`
 }
 
 // VulnerableQuerySlice is a slice of VulnerableQuery

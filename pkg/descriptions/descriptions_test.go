@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	"github.com/Checkmarx/kics/pkg/descriptions/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
@@ -11,16 +12,20 @@ import (
 func TestRequestAndOverrideDescriptions_NoBaseURL(t *testing.T) {
 	mock := test.SummaryMock
 	descClient = &mockclient.MockDecriptionsClient{}
-	mockclient.GetDescriptions = func(descriptionIDs []string) (map[string]string, error) {
-		return map[string]string{
-			"504b1d43": "my mocked description",
+	mockclient.GetDescriptions = func(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
+		return map[string]model.CISDescriptions{
+			"504b1d43": {
+				DescriptionID:    "1",
+				DescriptionTitle: "my title",
+				RationaleText:    "my description",
+			},
 		}, nil
 	}
 	err := RequestAndOverrideDescriptions(&mock)
 	require.NoError(t, err, "Expected error")
 	for _, query := range mock.Queries {
 		if query.DescriptionID == "504b1d43" {
-			require.Equal(t, "my mocked description", query.Description, "Expected description to be overridden")
+			require.Equal(t, "my description", query.CISDescriptionText, "Expected cis description to be equal")
 		}
 	}
 }

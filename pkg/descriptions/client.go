@@ -50,7 +50,7 @@ type HTTPClient interface {
 
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPDescription interface {
-	RequestDescriptions(descriptionIDs []string) (map[string]string, error)
+	RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error)
 }
 
 // Client - client for making CIS descriptions requests
@@ -58,7 +58,7 @@ type Client struct {
 }
 
 // RequestDescriptions - gets CIS descriptions from endpoint
-func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]string, error) {
+func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error) {
 	baseURL, err := getBaseURL()
 	if err != nil {
 		log.Debug().Msg("Unable to get baseURL")
