@@ -6,6 +6,7 @@ type DescriptionRequest struct {
 	Version        string   `json:"version"`
 }
 
+// CISDescriptions - is the model for the description response
 type CISDescriptions struct {
 	DescriptionID    string `json:"cisDescriptionID"`
 	DescriptionTitle string `json:"cisDescriptionTitle"`
