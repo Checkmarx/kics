@@ -66,7 +66,7 @@ RUN echo hello
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
 func TestParser_Empty(t *testing.T) {
 	p, err := NewBuilder().
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	if err != nil {
 		t.Errorf("Error building parser: %s", err)
 	}
@@ -104,7 +104,7 @@ func initilizeBuilder() []*Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	return bd
 }
 
@@ -112,7 +112,9 @@ func initilizeBuilder() []*Parser {
 func TestValidateArguments(t *testing.T) {
 	type args struct {
 		types     []string
-		validArgs []string
+		validArgsTypes []string
+		cloudProviders []string
+		validCloudProviders []string
 	}
 	tests := []struct {
 		name    string
@@ -123,7 +125,10 @@ func TestValidateArguments(t *testing.T) {
 			name: "validate_args_error",
 			args: args{
 				types:     []string{"dockerfiles"},
-				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				validArgsTypes: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders: []string{"awss"},
+				validCloudProviders: []string{"aws", "azure", "gcp"},
+
 			},
 			wantErr: true,
 		},
@@ -131,7 +136,9 @@ func TestValidateArguments(t *testing.T) {
 			name: "validate_args",
 			args: args{
 				types:     []string{"Dockerfile"},
-				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				validArgsTypes: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders: []string{"aws"},
+				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: false,
 		},
@@ -139,7 +146,9 @@ func TestValidateArguments(t *testing.T) {
 			name: "validate_args_case_sensetive",
 			args: args{
 				types:     []string{"kubernetes"},
-				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				validArgsTypes: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders: []string{"Aws"},
+				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: false,
 		},
@@ -147,7 +156,7 @@ func TestValidateArguments(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := validateArguments(tt.args.types, tt.args.validArgs)
+			err := validateArguments(tt.args.types, tt.args.validArgsTypes, tt.args.cloudProviders, tt.args.validCloudProviders)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
 				return

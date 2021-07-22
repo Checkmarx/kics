@@ -141,7 +141,11 @@ func (s *FilesystemSource) CheckCloudProvider(query model.QueryMetadata) bool {
 			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(queryCloudProvider.(string)))
 		}
 	}
-	
+
+	if s.CloudProviders[0] == "" {
+		return true
+	}
+
 	return false
 }
 
