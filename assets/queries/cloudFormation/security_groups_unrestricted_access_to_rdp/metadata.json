@@ -5,5 +5,6 @@
 	"category": "Networking and Firewall",
 	"descriptionText": "Security Groups does not allow 0.0.0.0/0 for rdp (port:3389)",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

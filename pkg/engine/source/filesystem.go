@@ -20,6 +20,7 @@ import (
 type FilesystemSource struct {
 	Source string
 	Types  []string
+	CloudProviders []string
 }
 
 const (
@@ -47,15 +48,22 @@ var (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types []string) *FilesystemSource {
+func NewFilesystemSource(source string, types , cloudProviders []string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
 		types = []string{""}
 	}
+
+	if len(cloudProviders) == 0 {
+		cloudProviders = []string{""}
+	}
+
+	
 	return &FilesystemSource{
 		Source: filepath.FromSlash(source),
 		Types:  types,
+		CloudProviders: cloudProviders,
 	}
 }
 
@@ -70,6 +78,13 @@ func ListSupportedPlatforms() []string {
 	sort.Strings(keys)
 	return keys
 }
+
+// ListSupportedCloudProviders returns a list of supported cloud providers
+func ListSupportedCloudProviders() []string {
+	return []string { "aws", "azure", "gcp" }
+}
+
+
 
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string {
@@ -114,6 +129,20 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 		return strings.Contains(strings.ToUpper(strings.Join(s.Types, ",")), strings.ToUpper(queryPlatform.(string)))
 	}
 	return true
+}
+
+// CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
+func (s *FilesystemSource) CheckCloudProvider(query model.QueryMetadata) bool {
+	if queryCloudProvider, ok := query.Metadata["cloudProvider"]; ok {
+		if (queryCloudProvider == "common") {
+			return true
+		}
+		if (s.CloudProviders[0] != "") {
+			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(queryCloudProvider.(string)))
+		}
+	}
+	
+	return false
 }
 
 func checkQueryInclude(id interface{}, includedQueries []string) bool {
@@ -181,6 +210,10 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			continue
 		}
 
+		if !s.CheckCloudProvider(query) {
+			continue
+		}
+
 		customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
 		if readInputErr != nil {
 			log.Err(errRQ).
@@ -209,6 +242,8 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			}
 
 			queries = append(queries, query)
+
+
 		}
 	}
 
@@ -224,6 +259,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}
 
 	metadata := ReadMetadata(queryDir)
+
 	platform := getPlatform(queryDir)
 	inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
 	if errInputData != nil {

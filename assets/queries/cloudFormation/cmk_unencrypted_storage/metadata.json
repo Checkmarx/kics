@@ -5,5 +5,6 @@
 	"category": "Encryption",
 	"descriptionText": "Ensure that storage is encrypted by KMS on instances that, based on their name, might host a database. ",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

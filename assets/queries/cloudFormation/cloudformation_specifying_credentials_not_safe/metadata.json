@@ -5,5 +5,6 @@
 	"category": "Encryption",
 	"descriptionText": "Specifying credentials in the template itself is probably not safe to do.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-authentication.html",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

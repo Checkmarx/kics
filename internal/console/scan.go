@@ -2,8 +2,8 @@ package console
 
 import (
 	_ "embed" // Embed kics CLI img
-	"fmt"
 	"os"
+	"fmt"
 	"os/signal"
 	"path/filepath"
 	"strings"
@@ -44,6 +44,7 @@ var (
 	//go:embed img/kics-console
 	banner string
 
+	cloudProviders   []string
 	cfgFile           string
 	excludeCategories []string
 	excludeIDs        []string
@@ -67,6 +68,7 @@ var (
 )
 
 const (
+	cloudProviderFlag       = "cloud-provider"
 	configFlag              = "config"
 	excludeCategoriesFlag   = "exclude-categories"
 	excludePathsFlag        = "exclude-paths"
@@ -339,6 +341,12 @@ func initOutputFlags(scanCmd *cobra.Command) {
 		[]string{""},
 		"case insensitive list of platform types to scan\n"+
 			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
+
+	scanCmd.Flags().StringSliceVar(&cloudProviders,
+		cloudProviderFlag,
+		[]string{""},
+		"list of cloud providers to scan "+
+		fmt.Sprintf("(%s)", strings.Join(source.ListSupportedCloudProviders(), ", ")))
 }
 
 func initStdoutFlags(scanCmd *cobra.Command) {
@@ -526,7 +534,7 @@ func createService(inspector *engine.Inspector,
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(querySource.Types)
+		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err
 	}
@@ -598,7 +606,7 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 		return err
 	}
 
-	querySource := source.NewFilesystemSource(queryPath, types)
+	querySource := source.NewFilesystemSource(queryPath, types, cloudProviders)
 	store := storage.NewMemoryStorage()
 
 	inspector, err := createInspector(t, querySource)

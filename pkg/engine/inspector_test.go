@@ -296,6 +296,7 @@ func TestInspect(t *testing.T) { //nolint
 		wg.Add(1)
 		proBarBuilder := progress.InitializePbBuilder(true, true, true)
 		progressBar := proBarBuilder.BuildCounter("Executing queries: ", len(tt.fields.queries), wg, currentQuery)
+
 		go progressBar.Start()
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Inspector{
@@ -571,7 +572,7 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 }
 
 func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
-	querySource := source.NewFilesystemSource(queryPath, []string{""})
+	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""})
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
@@ -594,7 +595,7 @@ type mockSource struct {
 }
 
 func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	sources := source.NewFilesystemSource(m.Source, []string{""})
+	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""})
 
 	return sources.GetQueries(queryFilter)
 }

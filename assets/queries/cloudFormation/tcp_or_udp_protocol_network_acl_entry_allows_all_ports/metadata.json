@@ -5,5 +5,6 @@
 	"category": "Networking and Firewall",
 	"descriptionText": "TCP/UDP protocol AWS Network ACL Entry should not allow all ports",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-portrange",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

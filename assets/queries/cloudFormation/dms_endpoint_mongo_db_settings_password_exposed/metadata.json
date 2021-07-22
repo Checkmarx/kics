@@ -5,5 +5,6 @@
 	"category": "Secret Management",
 	"descriptionText": "DMS Endpoint MongoDbSettings Password must not be a plaintext string or a Ref to a Parameter with a Default value.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

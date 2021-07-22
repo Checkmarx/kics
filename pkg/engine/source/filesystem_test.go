@@ -22,6 +22,7 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 	type fields struct {
 		Source string
 		Types  []string
+		CloudProviders []string
 	}
 	tests := []struct {
 		name   string
@@ -32,12 +33,13 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 			fields: fields{
 				Source: "./assets/queries/",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 		},
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
-			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types)
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders)
 			for n := 0; n < b.N; n++ {
 				filter := QueryInspectorParameters{
 					IncludeQueries: IncludeQueries{ByIDs: []string{}},
@@ -62,6 +64,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 	type fields struct {
 		Source string
 		Types  []string
+		CloudProviders []string
 	}
 	tests := []struct {
 		name            string
@@ -76,6 +79,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 			fields: fields{
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 			excludeCategory: []string{},
 			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-a717ea87e4449"},
@@ -104,6 +108,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 			fields: fields{
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 			excludeCategory: []string{},
 			excludeIDs:      []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
@@ -125,6 +130,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 			fields: fields{
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 			excludeCategory: []string{"Access Control"},
 			excludeIDs:      []string{},
@@ -134,7 +140,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""})
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""})
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{ByIDs: []string{}},
 				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory},
@@ -166,6 +172,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	type fields struct {
 		Source string
 		Types  []string
+		CloudProviders []string
 	}
 	tests := []struct {
 		name       string
@@ -179,6 +186,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 			fields: fields{
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
@@ -206,6 +214,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 			fields: fields{
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-xxxxxxx"},
 			want:       []model.QueryMetadata{},
@@ -223,7 +232,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""})
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""})
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: tt.includeIDs,
@@ -347,7 +356,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""})
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""})
 
 			got, err := s.GetQueryLibrary(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -373,6 +382,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	type fields struct {
 		Source string
 		Types  []string
+		CloudProviders []string
 	}
 	tests := []struct {
 		name    string
@@ -385,6 +395,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 			fields: fields{
 				Source: "./test/fixtures/all_auth_users_get_read_access",
 				Types:  []string{""},
+				CloudProviders: []string{""},
 			},
 			want: []model.QueryMetadata{
 				{
@@ -417,7 +428,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""})
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""})
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: []string{}},
