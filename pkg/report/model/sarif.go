@@ -37,6 +37,7 @@ type ruleMetadata struct {
 type ruleCISMetadata struct {
 	descriptionText string
 	id              string
+	title           string
 }
 
 type sarifMessage struct {
@@ -251,7 +252,8 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 		if cisMetadata.id != "" {
 			rule.RuleFullDescription.Text = cisMetadata.descriptionText
 			rule.RuleProperties = sarifProperties{
-				"cisId": cisMetadata.id,
+				"cisId":    cisMetadata.id,
+				"cisTilte": cisMetadata.title,
 			}
 		}
 
@@ -273,8 +275,9 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
 			severity:         issue.Severity,
 		}
 		cisDescriptions := ruleCISMetadata{
-			descriptionText: issue.CISDescriptionTextFormatted,
 			id:              issue.CISDescriptionIDFormatted,
+			title:           issue.CISDescriptionTitle,
+			descriptionText: issue.CISDescriptionTextFormatted,
 		}
 		ruleIndex := sr.buildSarifRule(&metadata, cisDescriptions)
 

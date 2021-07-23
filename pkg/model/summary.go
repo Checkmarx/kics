@@ -39,18 +39,18 @@ type VulnerableQuery struct {
 	QueryURI                    string           `json:"query_url"`
 	Severity                    Severity         `json:"severity"`
 	Platform                    string           `json:"platform"`
-	Files                       []VulnerableFile `json:"files"`
 	Category                    string           `json:"category"`
 	Description                 string           `json:"description"`
 	DescriptionID               string           `json:"description_id"`
-	CISDescriptionText          string           `json:"cis_description_text"`
-	CISRationaleText            string           `json:"cis_description_rationale"`
-	CISDescriptionID            string           `json:"cis_description_id"`
+	CISDescriptionIDFormatted   string           `json:"cis_description_id"`
 	CISDescriptionTitle         string           `json:"cis_description_title"`
-	CISBenchmarkName            string           `json:"cis_benchmark_name"`
-	CISBenchmarkVersion         string           `json:"cis_benchmark_version"`
-	CISDescriptionIDFormatted   string           `json:"cis_description_id_formatted"`
-	CISDescriptionTextFormatted string           `json:"cis_description_text_formatted"`
+	CISDescriptionTextFormatted string           `json:"cis_description_text"`
+	CISDescriptionID            string           `json:"cis_description_id_raw,omitempty"`
+	CISDescriptionText          string           `json:"cis_description_text_raw,omitempty"`
+	CISRationaleText            string           `json:"cis_description_rationale,omitempty"`
+	CISBenchmarkName            string           `json:"cis_benchmark_name,omitempty"`
+	CISBenchmarkVersion         string           `json:"cis_benchmark_version,omitempty"`
+	Files                       []VulnerableFile `json:"files"`
 }
 
 // VulnerableQuerySlice is a slice of VulnerableQuery
