@@ -13,7 +13,7 @@ require (
 	github.com/gookit/color v1.4.2
 	github.com/hashicorp/go-getter v1.5.5
 	github.com/hashicorp/hcl v1.0.0
-	github.com/hashicorp/hcl/v2 v2.10.0
+	github.com/hashicorp/hcl/v2 v2.10.1
 	github.com/johnfercher/maroto v0.33.0
 	github.com/mailru/easyjson v0.7.7
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect

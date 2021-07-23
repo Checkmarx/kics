@@ -150,11 +150,17 @@ function exportToCSV(filename) {
     var row = []
     var cols = r.querySelectorAll("td, th")
     for (var j = 0; j < cols.length; j++) {
-      var text = `"${cols[j].innerText.replace(/\\n/g, " ").replaceAll(/"/g, '')}"`
+      var text = `"${cols[j].innerText.replace(/\n/g, " ").replaceAll(/"/g, '').trim()}"`
       if (cols[j].tagName == "TH") {
         text = text.match(/[0-9a-zA-Z ]+/)[0]
+        if (headerArray[j] == "query") {
+          text = "Query ID,Query Name"
+        }
       } else if (headerArray[j] == "help") {
         text = cols[j].children[0].href
+      } else if (headerArray[j] == "query") {
+        var lastIndex = text.lastIndexOf(" ")
+        text = `"${text.substring(lastIndex + 1)},${text.substring(0, lastIndex)}"`
       }
       row.push(text)
     }
