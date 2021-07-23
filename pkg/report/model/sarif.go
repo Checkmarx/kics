@@ -253,7 +253,7 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 			rule.RuleFullDescription.Text = cisMetadata.descriptionText
 			rule.RuleProperties = sarifProperties{
 				"cisId":    cisMetadata.id,
-				"cisTilte": cisMetadata.title,
+				"cisTitle": cisMetadata.title,
 			}
 		}
 
