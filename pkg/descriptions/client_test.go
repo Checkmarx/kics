@@ -13,7 +13,28 @@ import (
 )
 
 var (
-	responseJSON = `{"descriptions": {"foo1": "bar1", "foo2": "bar2"}}`
+	responseJSON = `{
+		"descriptions": {
+			"foo1": {
+				"cisDescriptionText": "",
+				"cisDescriptionID": "",
+				"cisDescriptionRuleID": "",
+				"cisDescriptionTitle": "",
+				"cisRationaleText": "",
+				"cisBenchmarkName": "",
+				"cisBenchmarkVersion": ""
+			},
+			"foo2": {
+				"cisDescriptionText": "",
+				"cisDescriptionID": "",
+				"cisDescriptionRuleID": "",
+				"cisDescriptionTitle": "",
+				"cisRationaleText": "",
+				"cisBenchmarkName": "",
+				"cisBenchmarkVersion": ""
+			}
+		}
+	}`
 )
 
 func TestClient_RequestDescriptions(t *testing.T) {

@@ -17,7 +17,7 @@ func TestRequestAndOverrideDescriptions_NoBaseURL(t *testing.T) {
 			"504b1d43": {
 				DescriptionID:    "1",
 				DescriptionTitle: "my title",
-				RationaleText:    "my description",
+				RationaleText:    "my rattionale",
 			},
 		}, nil
 	}
@@ -25,7 +25,7 @@ func TestRequestAndOverrideDescriptions_NoBaseURL(t *testing.T) {
 	require.NoError(t, err, "Expected error")
 	for _, query := range mock.Queries {
 		if query.DescriptionID == "504b1d43" {
-			require.Equal(t, "my description", query.CISDescriptionText, "Expected cis description to be equal")
+			require.Equal(t, "my title", query.CISDescriptionTitle, "Expected cis description to be equal")
 		}
 	}
 }

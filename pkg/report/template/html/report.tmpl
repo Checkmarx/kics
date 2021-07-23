@@ -72,19 +72,17 @@
             <span><strong>Platform:</strong> <span class="query-info-platform">{{ .Platform }}</span></span>
             <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
-          {{- if not .CISDescriptionID -}}
           <div class="query-details">
-            <span>{{ .Description }}</span>
+            {{- if not .CISDescriptionID -}}
+            <span class="query-description-title">{{ .Description }}</span>
+            {{- end -}}
+            {{- if .CISDescriptionID -}}
+            <span><sub>{{ .CISDescriptionIDFormatted }}</sub></span>
+            <span class="query-description-title">{{ .CISDescriptionTitle }}</span>
+            <span>{{ .CISDescriptionTextFormatted }}</span>
+            {{- end -}}
             <span><a href="{{ .QueryURI }}" rel="noopener" target="_blank">{{ .QueryURI }}</a></span>
           </div>
-          {{- end -}}
-          {{- if .CISDescriptionID -}}
-          <div class="query-details">
-            <span>{{ .CISDescriptionTitle }}</span>
-            <span><sup>{{ .CISDescriptionIDFormatted }}</sup></span>
-            <span>{{ .CISDescriptionTextFormatted }}</span>
-          </div>
-          {{- end -}}
         </div>
         <details>
           <summary>Results (<span class="severity-partial-count-{{ toString .Severity | lower }}">{{ len .Files }}</span>)</summary>

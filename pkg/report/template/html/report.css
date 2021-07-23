@@ -183,7 +183,7 @@ body {
   text-align: justify;
 }
 
-.query-details > span:first-child {
+.query-details > span.query-description-title {
   font-size: 18px;
 }
 
