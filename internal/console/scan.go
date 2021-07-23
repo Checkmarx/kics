@@ -45,27 +45,27 @@ var (
 	//go:embed img/kics-console
 	banner string
 
-	cfgFile           string
-	excludeCategories []string
-	excludeIDs        []string
-	excludePath       []string
-	excludeResults    []string
-	includeIDs        []string
-	failOn            []string
-	ignoreOnExit      string
-	min               bool
-	noProgress        bool
-	outputName        string
-	outputPath        string
-	path              []string
-	payloadPath       string
-	previewLines      int
-	queryPath         string
-	reportFormats     []string
-	types             []string
-	queryExecTimeout  int
-	inputData         string
-	offline           bool
+	cfgFile                string
+	excludeCategories      []string
+	excludeIDs             []string
+	excludePath            []string
+	excludeResults         []string
+	includeIDs             []string
+	failOn                 []string
+	ignoreOnExit           string
+	min                    bool
+	noProgress             bool
+	outputName             string
+	outputPath             string
+	path                   []string
+	payloadPath            string
+	previewLines           int
+	queryPath              string
+	reportFormats          []string
+	types                  []string
+	queryExecTimeout       int
+	inputData              string
+	disableCISDescriptions bool
 )
 
 const (
@@ -98,7 +98,7 @@ const (
 	typeFlag                = "type"
 	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
-	offlineFlag             = "offline"
+	disableCISDescFlag      = "disable-cis-descriptions"
 	initError               = "initialization error - "
 	msg                     = "can be provided multiple times or as a comma separated string\n"
 
@@ -316,10 +316,10 @@ func initScanFlags(scanCmd *cobra.Command) {
 		inputDataFlag,
 		"",
 		"path to query input data files")
-	scanCmd.Flags().BoolVar(&offline,
-		offlineFlag,
+	scanCmd.Flags().BoolVar(&disableCISDescriptions,
+		disableCISDescFlag,
 		false,
-		"disable HTTP request for CIS descriptions and use default vulnerability descriptions")
+		"disable request for CIS descriptions and use default vulnerability descriptions")
 	initPathsFlags(scanCmd)
 	initStdoutFlags(scanCmd)
 	initOutputFlags(scanCmd)
@@ -710,8 +710,8 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 	}
 	summary.ScannedPaths = pathParameters.ScannedPaths
 
-	if offline {
-		log.Warn().Msg("Skipping CIS descriptions because of offline mode")
+	if disableCISDescriptions {
+		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
 	} else {
 		err := descriptions.RequestAndOverrideDescriptions(&summary)
 		if err != nil {
