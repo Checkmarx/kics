@@ -65,7 +65,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 		return nil, err
 	}
 
-	endpointURL := fmt.Sprintf("%s/%s", baseURL, "descriptions")
+	endpointURL := fmt.Sprintf("%s/api/%s", baseURL, "descriptions")
 
 	descriptionRequest := descModel.DescriptionRequest{
 		Version:        constants.Version,
