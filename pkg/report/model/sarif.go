@@ -23,6 +23,8 @@ var targetTemplate = sarifDescriptorReference{
 	},
 }
 
+type sarifProperties map[string]interface{}
+
 type ruleMetadata struct {
 	queryID          string
 	queryName        string
@@ -30,6 +32,11 @@ type ruleMetadata struct {
 	queryURI         string
 	queryCategory    string
 	severity         model.Severity
+}
+
+type ruleCISMetadata struct {
+	descriptionText string
+	id              string
 }
 
 type sarifMessage struct {
@@ -64,6 +71,7 @@ type sarifRule struct {
 	DefaultConfiguration sarifConfiguration            `json:"defaultConfiguration"`
 	HelpURI              string                        `json:"helpUri"`
 	RuleRelationships    []sarifDescriptorRelationship `json:"relationships"`
+	RuleProperties       sarifProperties               `json:"properties,omitempty"`
 }
 
 type sarifDriver struct {
@@ -223,7 +231,7 @@ func (sr *sarifReport) findSarifRuleIndex(ruleID string) int {
 	return -1
 }
 
-func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata) int {
+func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata ruleCISMetadata) int {
 	index := sr.findSarifRuleIndex(queryMetadata.queryID)
 	if index < 0 {
 		helpURI := "https://docs.kics.io/"
@@ -238,6 +246,13 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata) int {
 			DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
 			RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildSarifCategory(queryMetadata.queryCategory)}},
 			HelpURI:              helpURI,
+			RuleProperties:       nil,
+		}
+		if cisMetadata.id != "" {
+			rule.RuleFullDescription.Text = cisMetadata.descriptionText
+			rule.RuleProperties = sarifProperties{
+				"cisId": cisMetadata.id,
+			}
 		}
 
 		sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
@@ -257,7 +272,12 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) {
 			queryCategory:    issue.Category,
 			severity:         issue.Severity,
 		}
-		ruleIndex := sr.buildSarifRule(&metadata)
+		cisDescriptions := ruleCISMetadata{
+			descriptionText: issue.CISDescriptionTextFormatted,
+			id:              issue.CISDescriptionIDFormatted,
+		}
+		ruleIndex := sr.buildSarifRule(&metadata, cisDescriptions)
+
 		kind := "fail"
 		if severityLevelEquivalence[issue.Severity] == "none" {
 			kind = "informational"

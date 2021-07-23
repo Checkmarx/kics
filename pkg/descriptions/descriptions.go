@@ -1,6 +1,10 @@
 package descriptions
 
-import "github.com/Checkmarx/kics/pkg/model"
+import (
+	"fmt"
+
+	"github.com/Checkmarx/kics/pkg/model"
+)
 
 var (
 	descClient HTTPDescription = &Client{}
@@ -19,12 +23,29 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 	}
 
 	for idx := range summary.Queries {
-		summary.Queries[idx].CISDescriptionID = descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID
-		summary.Queries[idx].CISDescriptionTitle = descriptionMap[summary.Queries[idx].DescriptionID].DescriptionTitle
-		summary.Queries[idx].CISDescriptionText = descriptionMap[summary.Queries[idx].DescriptionID].DescriptionText
-		summary.Queries[idx].CISRationaleText = descriptionMap[summary.Queries[idx].DescriptionID].RationaleText
-		summary.Queries[idx].CISBenchmarkName = descriptionMap[summary.Queries[idx].DescriptionID].BenchmarkName
-		summary.Queries[idx].CISBenchmarkVersion = descriptionMap[summary.Queries[idx].DescriptionID].BenchmarkVersion
+		if descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID == "" {
+			continue
+		}
+		descriptionID := summary.Queries[idx].DescriptionID
+
+		summary.Queries[idx].CISDescriptionID = descriptionMap[descriptionID].DescriptionID
+		summary.Queries[idx].CISDescriptionTitle = descriptionMap[descriptionID].DescriptionTitle
+		summary.Queries[idx].CISDescriptionText = descriptionMap[descriptionID].DescriptionText
+		summary.Queries[idx].CISRationaleText = descriptionMap[descriptionID].RationaleText
+		summary.Queries[idx].CISBenchmarkName = descriptionMap[descriptionID].BenchmarkName
+		summary.Queries[idx].CISBenchmarkVersion = descriptionMap[descriptionID].BenchmarkVersion
+
+		summary.Queries[idx].CISDescriptionIDFormatted = fmt.Sprintf(
+			"CIS Security - %s v%s - Rule %s",
+			descriptionMap[descriptionID].BenchmarkName,
+			descriptionMap[descriptionID].BenchmarkVersion,
+			descriptionMap[descriptionID].DescriptionID,
+		)
+		summary.Queries[idx].CISDescriptionTextFormatted = fmt.Sprintf(
+			"%s %s",
+			descriptionMap[descriptionID].DescriptionText,
+			descriptionMap[descriptionID].RationaleText,
+		)
 	}
 	return nil
 }
