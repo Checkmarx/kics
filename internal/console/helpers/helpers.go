@@ -94,13 +94,13 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		)
 		if !printer.minimal {
 			if summary.Queries[idx].CISDescriptionID != "" {
-				fmt.Printf("%s: %s\n", printer.Bold("CIS ID"), summary.Queries[idx].CISDescriptionIDFormatted)
-				fmt.Printf("%s: %s\n", printer.Bold("Title"), summary.Queries[idx].CISDescriptionTitle)
-				fmt.Printf("%s: %s\n", printer.Bold("Description"), summary.Queries[idx].CISDescriptionTextFormatted)
+				fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
+				fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
+				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
 			} else {
-				fmt.Printf("Description: %s\n", summary.Queries[idx].Description)
+				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
-			fmt.Printf("Platform: %s\n\n", summary.Queries[idx].Platform)
+			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
