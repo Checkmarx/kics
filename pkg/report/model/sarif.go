@@ -223,8 +223,8 @@ func (sr *sarifReport) buildSarifCategory(category string) sarifDescriptorRefere
 }
 
 func (sr *sarifReport) findSarifRuleIndex(ruleID string) int {
-	for idx, rule := range sr.Runs[0].Tool.Driver.Rules {
-		if rule.RuleID == ruleID {
+	for idx := range sr.Runs[0].Tool.Driver.Rules {
+		if sr.Runs[0].Tool.Driver.Rules[idx].RuleID == ruleID {
 			return idx
 		}
 	}
