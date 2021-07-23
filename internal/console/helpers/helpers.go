@@ -302,6 +302,7 @@ func (p *Printer) PrintBySev(content, sev string) string {
 	return content
 }
 
+// Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string {
 	return color.Bold.Sprintf(content)
 }
