@@ -571,7 +571,7 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 }
 
 func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
-	querySource := source.NewFilesystemSource(queryPath, []string{""})
+	querySource := source.NewFilesystemSource(queryPath, []string{""}, "./assets/libraries")
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
@@ -594,7 +594,7 @@ type mockSource struct {
 }
 
 func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	sources := source.NewFilesystemSource(m.Source, []string{""})
+	sources := source.NewFilesystemSource(m.Source, []string{""}, "./assets/libraries")
 
 	return sources.GetQueries(queryFilter)
 }
@@ -602,7 +602,7 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
 	currentWorkdir, _ := os.Getwd()
 
-	pathToLib := source.GetPathToLibrary(platform, currentWorkdir)
+	pathToLib := source.GetPathToLibrary(platform, currentWorkdir, "./assets/libraries")
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err

@@ -60,6 +60,7 @@ var (
 	payloadPath       string
 	previewLines      int
 	queryPath         string
+	libraryPath       string
 	reportFormats     []string
 	types             []string
 	queryExecTimeout  int
@@ -91,6 +92,8 @@ const (
 	previewLinesFlag        = "preview-lines"
 	queriesPathCmdName      = "queries-path"
 	queriesPathShorthand    = "q"
+	libraryFlag             = "library"
+	libraryShorthand        = "b"
 	reportFormatsFlag       = "report-formats"
 	scanCommandStr          = "scan"
 	typeFlag                = "type"
@@ -376,6 +379,11 @@ func initPathsFlags(scanCmd *cobra.Command) {
 		"./assets/queries",
 		"path to directory with queries",
 	)
+	scanCmd.Flags().StringVarP(&libraryPath,
+		libraryFlag, libraryShorthand,
+		"./assets/libraries",
+		"path to directory with libraries",
+	)
 }
 
 func initInclusionFlags(scanCmd *cobra.Command) {
@@ -598,7 +606,7 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 		return err
 	}
 
-	querySource := source.NewFilesystemSource(queryPath, types)
+	querySource := source.NewFilesystemSource(queryPath, types, libraryPath)
 	store := storage.NewMemoryStorage()
 
 	inspector, err := createInspector(t, querySource)

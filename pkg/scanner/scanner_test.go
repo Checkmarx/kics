@@ -66,7 +66,7 @@ func createServices(types []string) (serviceSlice, *storage.MemoryStorage, error
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(filepath.FromSlash("../../assets/queries"), types)
+	querySource := source.NewFilesystemSource(filepath.FromSlash("../../assets/queries"), types, filepath.FromSlash("../../assets/libraries"))
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,

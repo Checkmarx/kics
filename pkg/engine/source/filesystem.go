@@ -2,6 +2,7 @@ package source
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 	"path/filepath"
@@ -18,8 +19,9 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source string
-	Types  []string
+	Source  string
+	Types   []string
+	Library string
 }
 
 const (
@@ -30,9 +32,10 @@ const (
 	// LibraryFileName The default library file name
 	LibraryFileName = "library.rego"
 	// LibrariesDefaultBasePath the path to rego libraries
-	LibrariesDefaultBasePath = "./assets/libraries/"
+	LibrariesDefaultBasePath = "./assets/libraries"
 
 	emptyInputData = "{}"
+	common         = "Common"
 )
 
 var (
@@ -47,15 +50,16 @@ var (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types []string) *FilesystemSource {
+func NewFilesystemSource(source string, types []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
 		types = []string{""}
 	}
 	return &FilesystemSource{
-		Source: filepath.FromSlash(source),
-		Types:  types,
+		Source:  filepath.FromSlash(source),
+		Types:   types,
+		Library: filepath.FromSlash(libraryPath),
 	}
 }
 
@@ -71,30 +75,53 @@ func ListSupportedPlatforms() []string {
 	return keys
 }
 
-// GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, relativeBasePath string) string {
-	var libraryPath string
-	if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) > -1 {
-		libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries"))] + filepath.FromSlash("/libraries")
-	} else {
-		libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
+func getLibraryInDir(platform, libraryDirPath string) string {
+	var libraryFilePath string
+	err := filepath.Walk(libraryDirPath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		if strings.EqualFold(filepath.Base(path), platform+".rego") { // try to find the library file <platform>.rego
+			libraryFilePath = path
+		}
+		return nil
+	})
+	if err != nil {
+		fmt.Println(err)
 	}
+	return libraryFilePath
+}
 
-	libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+func isDefaultLibrary(libraryPath string) bool {
+	return filepath.FromSlash(libraryPath) == filepath.FromSlash(LibrariesDefaultBasePath)
+}
 
-	for _, supPlatform := range supportedPlatforms {
-		if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
-			libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
-			break
+// GetPathToLibrary returns the libraries path for a given platform
+func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string {
+	var libraryFilePath string
+	if isDefaultLibrary(libraryPathFlag) { // user did not use the library path flag
+		libraryFilePath = filepath.Join(LibrariesDefaultBasePath, strings.ToLower(common), LibraryFileName)
+		for _, supPlatform := range supportedPlatforms {
+			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
+				libraryFilePath = filepath.FromSlash(libraryPathFlag + "/" + supPlatform + "/" + LibraryFileName)
+				break
+			}
+		}
+	} else { // user uses the library path flag
+		library := getLibraryInDir(platform, libraryPathFlag)
+		if library != "" { // found a library named according to the platform
+			libraryFilePath = library
+		} else if library == "" && strings.EqualFold(common, platform) {
+			libraryFilePath = ""
 		}
 	}
-
 	return libraryFilePath
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib := GetPathToLibrary(platform, s.Source)
+	pathToLib := GetPathToLibrary(platform, s.Source, s.Library)
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
@@ -107,7 +134,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
-	if queryPlatform.(string) == "Common" {
+	if queryPlatform.(string) == common {
 		return true
 	}
 	if s.Types[0] != "" {
@@ -224,7 +251,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}
 
 	metadata := ReadMetadata(queryDir)
-	platform := getPlatform(queryDir)
+	platform := getPlatform(metadata["platform"].(string))
 	inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
 	if errInputData != nil {
 		log.Err(errInputData).
@@ -282,24 +309,25 @@ func ReadMetadata(queryDir string) map[string]interface{} {
 	return metadata
 }
 
-func getPlatform(queryPath string) string {
-	if strings.Contains(queryPath, "common") {
-		return "common"
-	} else if strings.Contains(queryPath, "ansible") {
+func getPlatform(metadataPlatform string) string {
+	switch metadataPlatform {
+	case "Ansible":
 		return "ansible"
-	} else if strings.Contains(queryPath, "cloudFormation") {
+	case "CloudFormation":
 		return "cloudFormation"
-	} else if strings.Contains(queryPath, "dockerfile") {
+	case "Common":
+		return "common"
+	case "Dockerfile":
 		return "dockerfile"
-	} else if strings.Contains(queryPath, "k8s") {
+	case "Kubernetes":
 		return "k8s"
-	} else if strings.Contains(queryPath, "terraform") {
-		return "terraform"
-	} else if strings.Contains(queryPath, "openAPI") {
+	case "OpenAPI":
 		return "openAPI"
+	case "Terraform":
+		return "terraform"
+	default:
+		return "unknown"
 	}
-
-	return "unknown"
 }
 
 func readInputData(inputDataPath string) (string, error) {
