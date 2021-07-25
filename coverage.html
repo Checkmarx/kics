@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.3%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.7%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.8%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -111,7 +111,7 @@
 				
 				<option value="file27">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
 				
-				<option value="file28">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (79.6%)</option>
+				<option value="file28">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (76.2%)</option>
 				
 				<option value="file29">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (82.9%)</option>
 				
@@ -131,7 +131,7 @@
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/parser/json/parser.go (72.7%)</option>
 				
-				<option value="file38">github.com/Checkmarx/kics/pkg/parser/parser.go (93.1%)</option>
+				<option value="file38">github.com/Checkmarx/kics/pkg/parser/parser.go (91.8%)</option>
 				
 				<option value="file39">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.9%)</option>
 				
@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.4%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (61.9%)</option>
 				
@@ -1118,6 +1118,7 @@ var (
         //go:embed img/kics-console
         banner string
 
+        cloudProviders    []string
         cfgFile           string
         excludeCategories []string
         excludeIDs        []string
@@ -1141,6 +1142,7 @@ var (
 )
 
 const (
+        cloudProviderFlag       = "cloud-provider"
         configFlag              = "config"
         excludeCategoriesFlag   = "exclude-categories"
         excludePathsFlag        = "exclude-paths"
@@ -1333,22 +1335,22 @@ func setupCfgFile() (bool, error) <span class="cov4" title="9">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="11">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="330">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="341">{
                 settingsMap[f.Name] = true
-                if strings.Contains(f.Name, "-") </span><span class="cov9" title="231">{
+                if strings.Contains(f.Name, "-") </span><span class="cov9" title="242">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
                         variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
                         if err := v.BindEnv(f.Name, variableName); err != nil </span><span class="cov0" title="0">{
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="330">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov10" title="341">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="319">{
-                if val == true </span><span class="cov9" title="318">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="327">{
+                if val == true </span><span class="cov9" title="326">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1413,6 +1415,12 @@ func initOutputFlags(scanCmd *cobra.Command) <span class="cov4" title="13">{
                 []string{""},
                 "case insensitive list of platform types to scan\n"+
                         fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
+
+        scanCmd.Flags().StringSliceVar(&amp;cloudProviders,
+                cloudProviderFlag,
+                []string{""},
+                "list of cloud providers to scan "+
+                        fmt.Sprintf("(%s)", strings.Join(source.ListSupportedCloudProviders(), ", ")))
 }</span>
 
 func initStdoutFlags(scanCmd *cobra.Command) <span class="cov4" title="13">{
@@ -1600,7 +1608,7 @@ func createService(inspector *engine.Inspector,
                 Add(&amp;yamlParser.Parser{}).
                 Add(terraformParser.NewDefault()).
                 Add(&amp;dockerParser.Parser{}).
-                Build(querySource.Types)
+                Build(querySource.Types, querySource.CloudProviders)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
@@ -1672,7 +1680,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="8">{ //n
                 return err
         }</span>
 
-        <span class="cov4" title="7">querySource := source.NewFilesystemSource(queryPath, types)
+        <span class="cov4" title="7">querySource := source.NewFilesystemSource(queryPath, types, cloudProviders)
         store := storage.NewMemoryStorage()
 
         inspector, err := createInspector(t, querySource)
@@ -2148,13 +2156,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2179,7 +2187,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4897,8 +4905,9 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-        Source string
-        Types  []string
+        Source         string
+        Types          []string
+        CloudProviders []string
 }
 
 const (
@@ -4912,6 +4921,8 @@ const (
         LibrariesDefaultBasePath = "./assets/libraries/"
 
         emptyInputData = "{}"
+
+        common = "Common"
 )
 
 var (
@@ -4926,15 +4937,21 @@ var (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types []string) *FilesystemSource <span class="cov7" title="16">{
+func NewFilesystemSource(source string, types, cloudProviders []string) *FilesystemSource <span class="cov7" title="16">{
         log.Debug().Msg("source.NewFilesystemSource()")
 
         if len(types) == 0 </span><span class="cov0" title="0">{
                 types = []string{""}
         }</span>
+
+        <span class="cov7" title="16">if len(cloudProviders) == 0 </span><span class="cov0" title="0">{
+                cloudProviders = []string{""}
+        }</span>
+
         <span class="cov7" title="16">return &amp;FilesystemSource{
-                Source: filepath.FromSlash(source),
-                Types:  types,
+                Source:         filepath.FromSlash(source),
+                Types:          types,
+                CloudProviders: cloudProviders,
         }</span>
 }
 
@@ -4950,6 +4967,11 @@ func ListSupportedPlatforms() []string <span class="cov1" title="1">{
         return keys</span>
 }
 
+// ListSupportedCloudProviders returns a list of supported cloud providers
+func ListSupportedCloudProviders() []string <span class="cov0" title="0">{
+        return []string{"aws", "azure", "gcp"}
+}</span>
+
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov5" title="7">{
         var libraryPath string
@@ -4961,7 +4983,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="28">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="23">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -4986,13 +5008,31 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <spa
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool <span class="cov5" title="6">{
-        if queryPlatform.(string) == "Common" </span><span class="cov0" title="0">{
+        if queryPlatform.(string) == common </span><span class="cov0" title="0">{
                 return true
         }</span>
         <span class="cov5" title="6">if s.Types[0] != "" </span><span class="cov0" title="0">{
                 return strings.Contains(strings.ToUpper(strings.Join(s.Types, ",")), strings.ToUpper(queryPlatform.(string)))
         }</span>
         <span class="cov5" title="6">return true</span>
+}
+
+// CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
+func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <span class="cov5" title="6">{
+        if cloudProvider != nil </span><span class="cov0" title="0">{
+                if strings.EqualFold(cloudProvider.(string), common) </span><span class="cov0" title="0">{
+                        return true
+                }</span>
+                <span class="cov0" title="0">if s.CloudProviders[0] != "" </span><span class="cov0" title="0">{
+                        return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(cloudProvider.(string)))
+                }</span>
+        }
+
+        <span class="cov5" title="6">if s.CloudProviders[0] == "" </span><span class="cov5" title="6">{
+                return true
+        }</span>
+
+        <span class="cov0" title="0">return false</span>
 }
 
 func checkQueryInclude(id interface{}, includedQueries []string) bool <span class="cov2" title="2">{
@@ -5060,6 +5100,10 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
                         continue</span>
                 }
 
+                <span class="cov5" title="6">if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+
                 <span class="cov5" title="6">customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
                 if readInputErr != nil </span><span class="cov0" title="0">{
                         log.Err(errRQ).
@@ -5103,6 +5147,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
         }</span>
 
         <span class="cov5" title="6">metadata := ReadMetadata(queryDir)
+
         platform := getPlatform(queryDir)
         inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
         if errInputData != nil </span><span class="cov0" title="0">{
@@ -6511,7 +6556,7 @@ func (b *Builder) Add(p kindParser) *Builder <span class="cov6" title="8">{
 }</span>
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types []string) ([]*Parser, error) <span class="cov3" title="3">{
+func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov3" title="3">{
         parserSlice := make([]*Parser, 0, len(b.parsers))
         var suportedTypes []string
         for _, parser := range b.parsers </span><span class="cov6" title="8">{
@@ -6532,7 +6577,9 @@ func (b *Builder) Build(types []string) ([]*Parser, error) <span class="cov3" ti
                 }
         }
 
-        <span class="cov3" title="3">if err := validateArguments(types, suportedTypes); err != nil </span><span class="cov0" title="0">{
+        <span class="cov3" title="3">supportedCloudProviders := []string{"aws", "azure", "gcp"}
+
+        if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil </span><span class="cov0" title="0">{
                 return []*Parser{}, err
         }</span>
 
@@ -6576,35 +6623,41 @@ func (c *Parser) SupportedExtensions() model.Extensions <span class="cov4" title
         return c.extensions
 }</span>
 
-func validateArguments(types, validArgs []string) error <span class="cov5" title="6">{
-        validArgs = removeDuplicateValues(validArgs)
-        if invalidType, ok, _ := contains(types, validArgs); !ok </span><span class="cov1" title="1">{
-                return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgs, "\n  "))
+func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error <span class="cov5" title="6">{
+        validArgsTypes = removeDuplicateValues(validArgsTypes)
+
+        if invalidType, ok, _ := contains(types, validArgsTypes); !ok </span><span class="cov1" title="1">{
+                return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
         }</span>
+
+        <span class="cov4" title="5">if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk </span><span class="cov0" title="0">{
+                return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
+        }</span>
+
         <span class="cov4" title="5">return nil</span>
 }
 
-func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov7" title="14">{
-        if types[0] == "" </span><span class="cov6" title="11">{
+func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="19">{
+        if types[0] == "" </span><span class="cov7" title="14">{
                 return []string{}, true, true
         }</span>
-        <span class="cov3" title="3">set := make(map[string]struct{}, len(supportedTypes))
-        for _, s := range supportedTypes </span><span class="cov7" title="15">{
+        <span class="cov4" title="5">set := make(map[string]struct{}, len(supportedTypes))
+        for _, s := range supportedTypes </span><span class="cov8" title="21">{
                 set[strings.ToUpper(s)] = struct{}{}
         }</span>
-        <span class="cov3" title="3">cont := true
+        <span class="cov4" title="5">cont := true
         supported := false
         var invalidArgs []string
-        for _, item := range types </span><span class="cov3" title="3">{
+        for _, item := range types </span><span class="cov4" title="5">{
                 _, ok := set[strings.ToUpper(item)]
                 if !ok </span><span class="cov1" title="1">{
                         cont = false
                         invalidArgs = append(invalidArgs, item)
-                }</span> else<span class="cov2" title="2"> {
+                }</span> else<span class="cov4" title="4"> {
                         supported = true
                 }</span>
         }
-        <span class="cov3" title="3">return invalidArgs, cont, supported</span>
+        <span class="cov4" title="5">return invalidArgs, cont, supported</span>
 }
 
 // function to remove duplicate values in array
@@ -7545,7 +7598,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -7553,7 +7606,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -7577,10 +7630,10 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+        for </span><span class="cov10" title="5785">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
