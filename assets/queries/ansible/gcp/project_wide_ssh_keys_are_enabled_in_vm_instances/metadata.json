@@ -5,5 +5,6 @@
 	"category": "Secret Management",
 	"descriptionText": "Check if the VM Instance doesn't block project-wide SSH keys.",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
-	"platform": "Ansible"
+	"platform": "Ansible",
+	"cloudProvider": "gcp"
 }

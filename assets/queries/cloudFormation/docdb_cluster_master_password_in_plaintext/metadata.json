@@ -5,5 +5,6 @@
 	"category": "Secret Management",
 	"descriptionText": "DocDB DB Cluster master user password must not be in a plain text string or referenced in a parameter as a default value.",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

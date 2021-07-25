@@ -1,9 +1,10 @@
 {
-  "id": "bc1f9009-84a0-490f-ae09-3e0ea6d74ad6",
-  "queryName": "DOCDB Cluster Not Encrypted",
-  "severity": "HIGH",
-  "category": "Encryption",
-  "descriptionText": "AWS DOCDB Cluster storage should be encrypted",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#storage_encrypted",
-  "platform": "Terraform"
+	"id": "bc1f9009-84a0-490f-ae09-3e0ea6d74ad6",
+	"queryName": "DOCDB Cluster Not Encrypted",
+	"severity": "HIGH",
+	"category": "Encryption",
+	"descriptionText": "AWS DOCDB Cluster storage should be encrypted",
+	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#storage_encrypted",
+	"platform": "Terraform",
+	"cloudProvider": "aws"
 }

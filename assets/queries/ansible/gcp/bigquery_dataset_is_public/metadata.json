@@ -5,5 +5,6 @@
 	"category": "Insecure Configurations",
 	"descriptionText": "BigQuery dataset is anonymously or publicly accessible",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_bigquery_dataset_module.html#parameter-access/special_group",
-	"platform": "Ansible"
+	"platform": "Ansible",
+	"cloudProvider": "gcp"
 }

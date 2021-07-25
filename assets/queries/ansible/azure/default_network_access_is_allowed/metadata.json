@@ -5,5 +5,6 @@
 	"category": "Insecure Defaults",
 	"descriptionText": "Default Network Access rule for Storage Accounts must be set to deny, which means the attribute 'default_action' must be 'Deny'",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html",
-	"platform": "Ansible"
+	"platform": "Ansible",
+	"cloudProvider": "azure"
 }
