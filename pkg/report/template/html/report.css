@@ -185,6 +185,11 @@ body {
 
 .query-details > span.query-description-title {
   font-size: 18px;
+  margin-top: 5px;
+}
+
+.query-details > span.cis-description-text {
+  margin-top: 5px;
 }
 
 .query-details > span:last-child {
