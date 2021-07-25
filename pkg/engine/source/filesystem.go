@@ -2,7 +2,6 @@ package source
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path"
 	"path/filepath"
@@ -79,7 +78,6 @@ func getLibraryInDir(platform, libraryDirPath string) string {
 	var libraryFilePath string
 	err := filepath.Walk(libraryDirPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			fmt.Println(err)
 			return err
 		}
 		if strings.EqualFold(filepath.Base(path), platform+".rego") { // try to find the library file <platform>.rego
@@ -88,7 +86,7 @@ func getLibraryInDir(platform, libraryDirPath string) string {
 		return nil
 	})
 	if err != nil {
-		fmt.Println(err)
+		log.Error().Msgf("Failed to analize path %s: %s", libraryDirPath, err)
 	}
 	return libraryFilePath
 }
@@ -104,7 +102,7 @@ func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string
 		libraryFilePath = filepath.Join(LibrariesDefaultBasePath, strings.ToLower(common), LibraryFileName)
 		for _, supPlatform := range supportedPlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
-				libraryFilePath = filepath.FromSlash(libraryPathFlag + "/" + supPlatform + "/" + LibraryFileName)
+				libraryFilePath = filepath.Join(libraryPathFlag, supPlatform, LibraryFileName)
 				break
 			}
 		}
