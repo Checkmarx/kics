@@ -6,5 +6,6 @@
   "descriptionText": "AWS Redshift Cluster should be encrypted",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
   "platform": "CloudFormation",
-  "descriptionID": "5605695c"
+  "descriptionID": "5605695c",
+  "cloudProvider": "aws"
 }

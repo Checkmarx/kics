@@ -6,5 +6,6 @@
   "descriptionText": "IAM Group should have at least one user associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_membership#users",
   "platform": "Terraform",
-  "descriptionID": "c5730db9"
+  "descriptionID": "c5730db9",
+  "cloudProvider": "aws"
 }

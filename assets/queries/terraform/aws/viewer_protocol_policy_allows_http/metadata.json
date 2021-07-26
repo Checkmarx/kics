@@ -6,5 +6,6 @@
   "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
   "platform": "Terraform",
-  "descriptionID": "3547cd5a"
+  "descriptionID": "3547cd5a",
+  "cloudProvider": "aws"
 }

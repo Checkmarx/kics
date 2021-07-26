@@ -6,5 +6,6 @@
   "descriptionText": "Elastic File System (EFS) must be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#encrypted",
   "platform": "Terraform",
-  "descriptionID": "e4ced70d"
+  "descriptionID": "e4ced70d",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "AWS Lambda functions should have TracingConfig enabled. For this, property 'tracingConfig.mode' should have the value 'Active'",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html",
   "platform": "CloudFormation",
-  "descriptionID": "26afaa67"
+  "descriptionID": "26afaa67",
+  "cloudProvider": "aws"
 }

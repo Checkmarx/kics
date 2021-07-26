@@ -6,5 +6,6 @@
   "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server",
   "platform": "Terraform",
-  "descriptionID": "9549423a"
+  "descriptionID": "9549423a",
+  "cloudProvider": "azure"
 }

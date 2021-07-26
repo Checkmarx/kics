@@ -6,5 +6,6 @@
   "descriptionText": "Check if any ECS cluster has not defined proper roles for services' task definitions.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
   "platform": "CloudFormation",
-  "descriptionID": "b47b42b2"
+  "descriptionID": "b47b42b2",
+  "cloudProvider": "aws"
 }

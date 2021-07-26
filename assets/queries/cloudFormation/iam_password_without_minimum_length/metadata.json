@@ -6,5 +6,6 @@
   "descriptionText": "IAM user resource Login Profile Password should have at least 14 characters",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
   "platform": "CloudFormation",
-  "descriptionID": "46859482"
+  "descriptionID": "46859482",
+  "cloudProvider": "aws"
 }

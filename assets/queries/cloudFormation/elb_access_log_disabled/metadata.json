@@ -6,5 +6,6 @@
   "descriptionText": "ELB should have access log enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html",
   "platform": "CloudFormation",
-  "descriptionID": "8f49cae7"
+  "descriptionID": "8f49cae7",
+  "cloudProvider": "aws"
 }

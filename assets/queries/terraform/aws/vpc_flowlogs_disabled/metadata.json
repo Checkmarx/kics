@@ -6,5 +6,6 @@
   "descriptionText": "VPC hasn't got any FlowLog associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc",
   "platform": "Terraform",
-  "descriptionID": "cdbdeb30"
+  "descriptionID": "cdbdeb30",
+  "cloudProvider": "aws"
 }

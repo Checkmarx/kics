@@ -6,5 +6,6 @@
   "descriptionText": "IAM policies should be attached only to groups or roles",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment",
   "platform": "Terraform",
-  "descriptionID": "32ec58ec"
+  "descriptionID": "32ec58ec",
+  "cloudProvider": "aws"
 }

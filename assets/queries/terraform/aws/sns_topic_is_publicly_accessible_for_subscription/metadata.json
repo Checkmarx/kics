@@ -6,5 +6,6 @@
   "descriptionText": "This query checks if SNS Topic is Accessible For Subscription",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic",
   "platform": "Terraform",
-  "descriptionID": "52e85de5"
+  "descriptionID": "52e85de5",
+  "cloudProvider": "aws"
 }

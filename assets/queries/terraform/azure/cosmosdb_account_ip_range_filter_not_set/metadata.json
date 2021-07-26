@@ -6,5 +6,6 @@
   "descriptionText": "The Ip Range Must Contain Ips",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter",
   "platform": "Terraform",
-  "descriptionID": "fd34a2d6"
+  "descriptionID": "fd34a2d6",
+  "cloudProvider": "azure"
 }

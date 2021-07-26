@@ -6,5 +6,6 @@
   "descriptionText": "Ensure that Connection Throttling is set for the PostgreSQL server",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
   "platform": "Terraform",
-  "descriptionID": "6f6649db"
+  "descriptionID": "6f6649db",
+  "cloudProvider": "azure"
 }

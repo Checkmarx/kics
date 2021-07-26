@@ -6,5 +6,6 @@
   "descriptionText": "The AWS Root Account must not have active access keys associated, which means if there are access keys associated to the Root Account, they must be inactive.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_module.html",
   "platform": "Ansible",
-  "descriptionID": "6cd5514d"
+  "descriptionID": "6cd5514d",
+  "cloudProvider": "aws"
 }

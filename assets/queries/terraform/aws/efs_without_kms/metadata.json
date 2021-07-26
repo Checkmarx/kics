@@ -6,5 +6,6 @@
   "descriptionText": "Elastic File System (EFS) must have KMS Key ID",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#kms_key_id",
   "platform": "Terraform",
-  "descriptionID": "c5dfddad"
+  "descriptionID": "c5dfddad",
+  "cloudProvider": "aws"
 }

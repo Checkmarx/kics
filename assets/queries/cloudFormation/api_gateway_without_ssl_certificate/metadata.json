@@ -6,5 +6,6 @@
   "descriptionText": "SSL Client Certificate should be enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html",
   "platform": "CloudFormation",
-  "descriptionID": "95c8b13a"
+  "descriptionID": "95c8b13a",
+  "cloudProvider": "aws"
 }

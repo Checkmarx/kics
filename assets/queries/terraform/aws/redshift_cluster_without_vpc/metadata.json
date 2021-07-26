@@ -6,5 +6,6 @@
   "descriptionText": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
   "platform": "Terraform",
-  "descriptionID": "6fd531fa"
+  "descriptionID": "6fd531fa",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Check if the root user is authenticated with MFA",
   "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html",
   "platform": "Terraform",
-  "descriptionID": "3e905f71"
+  "descriptionID": "3e905f71",
+  "cloudProvider": "aws"
 }

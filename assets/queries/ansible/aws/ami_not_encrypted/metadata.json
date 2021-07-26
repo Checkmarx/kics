@@ -6,5 +6,6 @@
   "descriptionText": "AWS AMI Encryption is not enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_ami_module.html",
   "platform": "Ansible",
-  "descriptionID": "a4342f08"
+  "descriptionID": "a4342f08",
+  "cloudProvider": "aws"
 }

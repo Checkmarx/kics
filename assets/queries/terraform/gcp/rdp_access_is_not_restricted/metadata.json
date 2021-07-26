@@ -6,5 +6,6 @@
   "descriptionText": "Check if Google Firewall ingress allows RDP access (port 3389)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall",
   "platform": "Terraform",
-  "descriptionID": "f8156d3b"
+  "descriptionID": "f8156d3b",
+  "cloudProvider": "gcp"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "EC2 Instance should not have a public IP address.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address",
   "platform": "Terraform",
-  "descriptionID": "c6f1d1f4"
+  "descriptionID": "c6f1d1f4",
+  "cloudProvider": "aws"
 }

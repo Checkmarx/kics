@@ -6,5 +6,6 @@
   "descriptionText": "IAM Groups should not use inline policies and instead use managed policies. If a group is deleted, the inline policy is also deleted",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html",
   "platform": "CloudFormation",
-  "descriptionID": "e89236a1"
+  "descriptionID": "e89236a1",
+  "cloudProvider": "aws"
 }

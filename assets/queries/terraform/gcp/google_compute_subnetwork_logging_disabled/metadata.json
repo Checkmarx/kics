@@ -6,5 +6,6 @@
   "descriptionText": "This query checks if logs are enabled for a Google Compute Subnetwork resource.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork",
   "platform": "Terraform",
-  "descriptionID": "689ef05b"
+  "descriptionID": "689ef05b",
+  "cloudProvider": "gcp"
 }

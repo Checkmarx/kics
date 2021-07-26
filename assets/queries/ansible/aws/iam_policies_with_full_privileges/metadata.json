@@ -6,5 +6,6 @@
   "descriptionText": "IAM policies that allow full administrative privileges (for all resources)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
   "platform": "Ansible",
-  "descriptionID": "3827a620"
+  "descriptionID": "3827a620",
+  "cloudProvider": "aws"
 }

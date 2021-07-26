@@ -6,5 +6,6 @@
   "descriptionText": "Ineffective deny rules. A deny rule should be applied to all IP addresses.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html",
   "platform": "CloudFormation",
-  "descriptionID": "e8c34905"
+  "descriptionID": "e8c34905",
+  "cloudProvider": "aws"
 }

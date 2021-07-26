@@ -6,5 +6,6 @@
   "descriptionText": "Make sure that for MySQL Database Server, 'Enforce SSL connection' is enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_server",
   "platform": "Terraform",
-  "descriptionID": "81500787"
+  "descriptionID": "81500787",
+  "cloudProvider": "azure"
 }

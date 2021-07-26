@@ -6,5 +6,6 @@
   "descriptionText": "IAM role allows all services or principals to assume it",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-assumerolepolicydocument",
   "platform": "CloudFormation",
-  "descriptionID": "13e52bb7"
+  "descriptionID": "13e52bb7",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at transit enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html",
   "platform": "CloudFormation",
-  "descriptionID": "b1ce0b9f"
+  "descriptionID": "b1ce0b9f",
+  "cloudProvider": "aws"
 }

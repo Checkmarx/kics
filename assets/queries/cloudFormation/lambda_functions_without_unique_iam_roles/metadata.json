@@ -6,5 +6,6 @@
   "descriptionText": "AWS Lambda Functions should not share IAM roles to ensure they will have the minimum privileges needed to perform the required tasks",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html",
   "platform": "CloudFormation",
-  "descriptionID": "f919ad7e"
+  "descriptionID": "f919ad7e",
+  "cloudProvider": "aws"
 }

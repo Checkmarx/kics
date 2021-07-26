@@ -6,5 +6,6 @@
   "descriptionText": "DMS Endpoint password must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html",
   "platform": "CloudFormation",
-  "descriptionID": "a48ba75f"
+  "descriptionID": "a48ba75f",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Check if IAM account password has at least one uppercase letter",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
   "platform": "Terraform",
-  "descriptionID": "4e96ea27"
+  "descriptionID": "4e96ea27",
+  "cloudProvider": "aws"
 }

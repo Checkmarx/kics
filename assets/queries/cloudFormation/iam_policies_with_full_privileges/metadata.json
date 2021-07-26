@@ -6,5 +6,6 @@
   "descriptionText": "IAM policies shouldn't allow full administrative privileges",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html",
   "platform": "CloudFormation",
-  "descriptionID": "faa72156"
+  "descriptionID": "faa72156",
+  "cloudProvider": "aws"
 }

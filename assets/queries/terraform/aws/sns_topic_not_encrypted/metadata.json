@@ -6,5 +6,6 @@
   "descriptionText": "SNS (Simple Notification Service) Topic should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic#kms_master_key_id",
   "platform": "Terraform",
-  "descriptionID": "2f15b2d0"
+  "descriptionID": "2f15b2d0",
+  "cloudProvider": "aws"
 }

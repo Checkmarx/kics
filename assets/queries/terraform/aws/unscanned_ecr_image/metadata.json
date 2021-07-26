@@ -6,5 +6,6 @@
   "descriptionText": "Checks if the ECR Image has been scanned",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push",
   "platform": "Terraform",
-  "descriptionID": "791b37b8"
+  "descriptionID": "791b37b8",
+  "cloudProvider": "aws"
 }

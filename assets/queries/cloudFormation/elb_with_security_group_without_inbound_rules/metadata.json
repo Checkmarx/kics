@@ -6,5 +6,6 @@
   "descriptionText": "An AWS Elastic Load Balancer (ELB) shouldn\u00b4t have security groups without outbound rules",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress",
   "platform": "CloudFormation",
-  "descriptionID": "3ccdd7d2"
+  "descriptionID": "3ccdd7d2",
+  "cloudProvider": "aws"
 }

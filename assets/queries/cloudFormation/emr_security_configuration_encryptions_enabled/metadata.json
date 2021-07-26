@@ -6,5 +6,6 @@
   "descriptionText": "EMR SecurityConfiguration should enable and properly configure encryption at rest and in transit.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html",
   "platform": "CloudFormation",
-  "descriptionID": "672bc6a7"
+  "descriptionID": "672bc6a7",
+  "cloudProvider": "aws"
 }

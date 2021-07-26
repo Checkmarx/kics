@@ -6,5 +6,6 @@
   "descriptionText": "A IAM user should belong to a group",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
   "platform": "CloudFormation",
-  "descriptionID": "d7e9b179"
+  "descriptionID": "d7e9b179",
+  "cloudProvider": "aws"
 }

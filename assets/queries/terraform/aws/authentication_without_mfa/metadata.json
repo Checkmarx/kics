@@ -6,5 +6,6 @@
   "descriptionText": "Users should authenticate with MFA (Multi-factor Authentication)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy",
   "platform": "Terraform",
-  "descriptionID": "0db1a4b2"
+  "descriptionID": "0db1a4b2",
+  "cloudProvider": "aws"
 }

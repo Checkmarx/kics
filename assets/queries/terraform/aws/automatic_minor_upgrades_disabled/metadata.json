@@ -6,5 +6,6 @@
   "descriptionText": "RDS Instance Auto Minor Version Upgrade feature in Aws Db Instance must be true",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#auto_minor_version_upgrade",
   "platform": "Terraform",
-  "descriptionID": "240cddcc"
+  "descriptionID": "240cddcc",
+  "cloudProvider": "aws"
 }

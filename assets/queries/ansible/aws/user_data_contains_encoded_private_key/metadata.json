@@ -6,5 +6,6 @@
   "descriptionText": "User Data contains an encoded RSA Private Key",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",
   "platform": "Ansible",
-  "descriptionID": "45cb51c3"
+  "descriptionID": "45cb51c3",
+  "cloudProvider": "aws"
 }

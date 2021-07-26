@@ -6,5 +6,6 @@
   "descriptionText": "The attribute 'action' should not have wildcard",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission#action",
   "platform": "Terraform",
-  "descriptionID": "5db376a3"
+  "descriptionID": "5db376a3",
+  "cloudProvider": "aws"
 }

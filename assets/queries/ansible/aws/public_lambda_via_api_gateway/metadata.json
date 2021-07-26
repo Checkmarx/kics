@@ -6,5 +6,6 @@
   "descriptionText": "Allowing to run lambda function using public API Gateway",
   "descriptionUrl": "https://docs.ansible.com/ansible/2.4/lambda_policy_module.html",
   "platform": "Ansible",
-  "descriptionID": "50e0d3f5"
+  "descriptionID": "50e0d3f5",
+  "cloudProvider": "aws"
 }

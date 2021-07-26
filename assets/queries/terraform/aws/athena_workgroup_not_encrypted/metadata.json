@@ -6,5 +6,6 @@
   "descriptionText": "Athena Workgroup query results should be encrypted, for all queries that run in the workgroup",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_workgroup#encryption_configuration",
   "platform": "Terraform",
-  "descriptionID": "8eb1d650"
+  "descriptionID": "8eb1d650",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Check if there is a rule that enforces access keys to be rotated within 90 days.",
   "descriptionUrl": "https://docs.amazonaws.cn/en_us/config/latest/developerguide/access-keys-rotated.html",
   "platform": "CloudFormation",
-  "descriptionID": "148d40cb"
+  "descriptionID": "148d40cb",
+  "cloudProvider": "aws"
 }

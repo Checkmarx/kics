@@ -6,5 +6,6 @@
   "descriptionText": "Workspaces should have encryption enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html",
   "platform": "CloudFormation",
-  "descriptionID": "ed0be490"
+  "descriptionID": "ed0be490",
+  "cloudProvider": "aws"
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
   "platform": "CloudFormation",
   "aggregation": 183,
-  "descriptionID": "f26797b1"
+  "descriptionID": "f26797b1",
+  "cloudProvider": "aws"
 }

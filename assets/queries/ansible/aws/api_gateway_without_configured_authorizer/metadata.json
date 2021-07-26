@@ -6,5 +6,6 @@
   "descriptionText": "API Gateway REST API should have an API Gateway Authorizer",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_api_gateway_module.html",
   "platform": "Ansible",
-  "descriptionID": "e7b28671"
+  "descriptionID": "e7b28671",
+  "cloudProvider": "aws"
 }

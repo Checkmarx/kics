@@ -6,5 +6,6 @@
   "descriptionText": "The Remote Desktop port is open in a Security Group",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
   "platform": "Ansible",
-  "descriptionID": "d644276b"
+  "descriptionID": "d644276b",
+  "cloudProvider": "aws"
 }

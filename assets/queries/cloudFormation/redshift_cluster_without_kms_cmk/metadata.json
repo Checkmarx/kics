@@ -6,5 +6,6 @@
   "descriptionText": "AWS Redshift Cluster should have KMS CMK defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
   "platform": "CloudFormation",
-  "descriptionID": "e460a7a7"
+  "descriptionID": "e460a7a7",
+  "cloudProvider": "aws"
 }

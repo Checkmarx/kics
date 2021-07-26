@@ -6,5 +6,6 @@
   "descriptionText": "Check if Neptune Cluster Storage is securely encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#storage_encrypted",
   "platform": "Terraform",
-  "descriptionID": "06036045"
+  "descriptionID": "06036045",
+  "cloudProvider": "aws"
 }

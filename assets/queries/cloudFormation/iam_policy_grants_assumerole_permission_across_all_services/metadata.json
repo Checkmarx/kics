@@ -6,5 +6,6 @@
   "descriptionText": "Check if any IAM Policy grants 'AssumeRole' permission across all services.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html",
   "platform": "CloudFormation",
-  "descriptionID": "eba1aa1b"
+  "descriptionID": "eba1aa1b",
+  "cloudProvider": "aws"
 }

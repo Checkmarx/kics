@@ -6,5 +6,6 @@
   "descriptionText": "AWS SageMaker should encrypt model artifacts at rest using Amazon S3 server-side encryption with an AWS KMS",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_notebook_instance#kms_key_id",
   "platform": "Terraform",
-  "descriptionID": "4ad34dae"
+  "descriptionID": "4ad34dae",
+  "cloudProvider": "aws"
 }

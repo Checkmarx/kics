@@ -6,5 +6,6 @@
   "descriptionText": "Checks if the policy is vulnerable and needs updating.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key",
   "platform": "Terraform",
-  "descriptionID": "32b2985e"
+  "descriptionID": "32b2985e",
+  "cloudProvider": "aws"
 }

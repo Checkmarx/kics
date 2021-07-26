@@ -6,5 +6,6 @@
   "descriptionText": "Check if secure ciphers aren't used in CloudFront",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html",
   "platform": "CloudFormation",
-  "descriptionID": "9ce51226"
+  "descriptionID": "9ce51226",
+  "cloudProvider": "aws"
 }

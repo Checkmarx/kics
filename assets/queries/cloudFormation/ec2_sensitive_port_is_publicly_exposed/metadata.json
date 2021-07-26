@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "aggregation": 61,
-  "descriptionID": "680b7e89"
+  "descriptionID": "680b7e89",
+  "cloudProvider": "aws"
 }

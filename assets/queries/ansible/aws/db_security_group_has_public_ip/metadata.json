@@ -6,5 +6,6 @@
   "descriptionText": "The CIDR IP must not be Public",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
   "platform": "Ansible",
-  "descriptionID": "506f9dd8"
+  "descriptionID": "506f9dd8",
+  "cloudProvider": "aws"
 }

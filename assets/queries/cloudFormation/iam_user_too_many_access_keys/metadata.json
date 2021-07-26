@@ -6,5 +6,6 @@
   "descriptionText": "Check if any user has more than one access key, which increases the risk of unauthorized access and compromise of credentials.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html",
   "platform": "CloudFormation",
-  "descriptionID": "90135931"
+  "descriptionID": "90135931",
+  "cloudProvider": "aws"
 }

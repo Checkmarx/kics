@@ -6,5 +6,6 @@
   "descriptionText": "Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html",
   "platform": "CloudFormation",
-  "descriptionID": "d78bb871"
+  "descriptionID": "d78bb871",
+  "cloudProvider": "aws"
 }

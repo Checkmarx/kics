@@ -6,5 +6,6 @@
   "descriptionText": "Amplify App OAuth Token must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-basicauthconfig.html",
   "platform": "CloudFormation",
-  "descriptionID": "c9abb2c8"
+  "descriptionID": "c9abb2c8",
+  "cloudProvider": "aws"
 }

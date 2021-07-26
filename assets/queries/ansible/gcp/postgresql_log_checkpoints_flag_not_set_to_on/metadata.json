@@ -6,5 +6,6 @@
   "descriptionText": "PostgreSQL database instance should have a 'log_checkpoints' flag with its value set to 'on'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
   "platform": "Ansible",
-  "descriptionID": "4cdc64c3"
+  "descriptionID": "4cdc64c3",
+  "cloudProvider": "gcp"
 }

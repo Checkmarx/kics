@@ -6,5 +6,6 @@
   "descriptionText": "ElastiCache Replication Group encryption should be enabled at Rest",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#at_rest_encryption_enabled",
   "platform": "Terraform",
-  "descriptionID": "b4d49d59"
+  "descriptionID": "b4d49d59",
+  "cloudProvider": "aws"
 }

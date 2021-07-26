@@ -6,5 +6,6 @@
   "descriptionText": "Checks if the SQS Queue is exposed",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/sqs_queue_module.html#parameter-policy",
   "platform": "Ansible",
-  "descriptionID": "a835b707"
+  "descriptionID": "a835b707",
+  "cloudProvider": "aws"
 }

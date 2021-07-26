@@ -6,5 +6,6 @@
   "descriptionText": "The Active Directory Administrator is not configured for a SQL server",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlserver_module.html#parameter-ad_user",
   "platform": "Ansible",
-  "descriptionID": "afa96f09"
+  "descriptionID": "afa96f09",
+  "cloudProvider": "azure"
 }

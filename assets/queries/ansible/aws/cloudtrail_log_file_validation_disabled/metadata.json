@@ -6,5 +6,6 @@
   "descriptionText": "CloudTrail Log Files should have validation enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
   "platform": "Ansible",
-  "descriptionID": "04302074"
+  "descriptionID": "04302074",
+  "cloudProvider": "aws"
 }

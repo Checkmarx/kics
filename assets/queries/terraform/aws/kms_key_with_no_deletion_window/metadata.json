@@ -6,5 +6,6 @@
   "descriptionText": "AWS KMS Key should have a valid deletion window",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key",
   "platform": "Terraform",
-  "descriptionID": "5652d05c"
+  "descriptionID": "5652d05c",
+  "cloudProvider": "aws"
 }

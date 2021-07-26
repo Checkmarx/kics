@@ -6,5 +6,6 @@
   "descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_appgateway_module.html",
   "platform": "Ansible",
-  "descriptionID": "eda7b816"
+  "descriptionID": "eda7b816",
+  "cloudProvider": "azure"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Amplify Branch BasicAuthConfig Password must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-basicauthconfig",
   "platform": "CloudFormation",
-  "descriptionID": "f68a0ad6"
+  "descriptionID": "f68a0ad6",
+  "cloudProvider": "aws"
 }

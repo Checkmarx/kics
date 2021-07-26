@@ -6,5 +6,6 @@
   "descriptionText": "Glue policy should avoid wildcard in 'principals' and 'actions'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_resource_policy#policy",
   "platform": "Terraform",
-  "descriptionID": "61db62a1"
+  "descriptionID": "61db62a1",
+  "cloudProvider": "aws"
 }

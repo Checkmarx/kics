@@ -6,5 +6,6 @@
   "descriptionText": "Verifies if Google Poject IAM Member Service Account doesn't have a Account User or Token Creator associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member",
   "platform": "Terraform",
-  "descriptionID": "beb4558c"
+  "descriptionID": "beb4558c",
+  "cloudProvider": "gcp"
 }

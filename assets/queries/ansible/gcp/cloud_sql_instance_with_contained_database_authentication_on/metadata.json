@@ -6,5 +6,6 @@
   "descriptionText": "SQL Instance should not have Contained Database Authentication On",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
   "platform": "Ansible",
-  "descriptionID": "b1a5b8f0"
+  "descriptionID": "b1a5b8f0",
+  "cloudProvider": "gcp"
 }

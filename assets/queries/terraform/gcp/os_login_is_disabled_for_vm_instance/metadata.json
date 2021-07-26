@@ -6,5 +6,6 @@
   "descriptionText": "Check if any VM instance disables OSLogin",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
   "platform": "Terraform",
-  "descriptionID": "a0cc649c"
+  "descriptionID": "a0cc649c",
+  "cloudProvider": "gcp"
 }

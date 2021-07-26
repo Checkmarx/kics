@@ -6,5 +6,6 @@
   "descriptionText": "IAM policies that allow full administrative privileges (for all resources)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy",
   "platform": "Terraform",
-  "descriptionID": "7f603399"
+  "descriptionID": "7f603399",
+  "cloudProvider": "aws"
 }

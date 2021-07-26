@@ -6,5 +6,6 @@
   "descriptionText": "Amazon ECS must have the HealthCheck property defined to give more control over monitoring the health of tasks",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html",
   "platform": "CloudFormation",
-  "descriptionID": "e2e3a50a"
+  "descriptionID": "e2e3a50a",
+  "cloudProvider": "aws"
 }

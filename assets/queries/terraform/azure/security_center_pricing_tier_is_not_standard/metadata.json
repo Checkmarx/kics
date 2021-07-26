@@ -6,5 +6,6 @@
   "descriptionText": "Make sure that the 'Standard' pricing tiers were selected.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_subscription_pricing",
   "platform": "Terraform",
-  "descriptionID": "6a9ab071"
+  "descriptionID": "6a9ab071",
+  "cloudProvider": "azure"
 }

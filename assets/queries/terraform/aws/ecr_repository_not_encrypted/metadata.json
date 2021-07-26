@@ -6,5 +6,6 @@
   "descriptionText": "ECR (Elastic Container Registry) Repository encryption should be set",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#encryption_configuration",
   "platform": "Terraform",
-  "descriptionID": "e96d149c"
+  "descriptionID": "e96d149c",
+  "cloudProvider": "aws"
 }

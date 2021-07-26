@@ -6,5 +6,6 @@
   "descriptionText": "S3 bucket without debug_botocore_endpoint_logs",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs",
   "platform": "Ansible",
-  "descriptionID": "2b508aee"
+  "descriptionID": "2b508aee",
+  "cloudProvider": "aws"
 }

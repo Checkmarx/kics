@@ -6,5 +6,6 @@
   "descriptionText": "Ensure that AWS Elasticsearch enables support for slow logs",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_publishing_options",
   "platform": "Terraform",
-  "descriptionID": "7430bf37"
+  "descriptionID": "7430bf37",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Check if any instance disables OSLogin.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
   "platform": "Ansible",
-  "descriptionID": "2cc130e4"
+  "descriptionID": "2cc130e4",
+  "cloudProvider": "gcp"
 }

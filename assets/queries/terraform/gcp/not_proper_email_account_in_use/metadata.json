@@ -6,5 +6,6 @@
   "descriptionText": "Gmail accounts are being used instead of corporate credentials",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_binding",
   "platform": "Terraform",
-  "descriptionID": "55ff1131"
+  "descriptionID": "55ff1131",
+  "cloudProvider": "gcp"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Check if any ElasticSearch domain isn't encrypted with KMS",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
   "platform": "Terraform",
-  "descriptionID": "65a94cf1"
+  "descriptionID": "65a94cf1",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Port 22 (SSH) is exposed to the internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
   "platform": "Terraform",
-  "descriptionID": "f98cf1dc"
+  "descriptionID": "f98cf1dc",
+  "cloudProvider": "azure"
 }

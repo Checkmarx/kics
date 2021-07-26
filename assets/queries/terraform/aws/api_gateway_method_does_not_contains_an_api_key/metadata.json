@@ -6,5 +6,6 @@
   "descriptionText": "An API Key should be required on a method request.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method",
   "platform": "Terraform",
-  "descriptionID": "f133fed2"
+  "descriptionID": "f133fed2",
+  "cloudProvider": "aws"
 }

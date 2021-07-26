@@ -6,5 +6,6 @@
   "descriptionText": "The value on AWS EBS Volume Cluster Encryption must be true",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#encrypted",
   "platform": "Terraform",
-  "descriptionID": "977695a1"
+  "descriptionID": "977695a1",
+  "cloudProvider": "aws"
 }

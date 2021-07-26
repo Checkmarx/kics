@@ -6,5 +6,6 @@
   "descriptionText": "Cosmos DB Account must have a mapping of tags.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account",
   "platform": "Terraform",
-  "descriptionID": "f0bce814"
+  "descriptionID": "f0bce814",
+  "cloudProvider": "azure"
 }

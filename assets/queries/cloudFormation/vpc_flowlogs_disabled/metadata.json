@@ -6,5 +6,6 @@
   "descriptionText": "VPC hasn't got any FlowLog associated",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html",
   "platform": "CloudFormation",
-  "descriptionID": "0fb02ca5"
+  "descriptionID": "0fb02ca5",
+  "cloudProvider": "aws"
 }

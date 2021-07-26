@@ -6,5 +6,6 @@
   "descriptionText": "The IP address in a DB Security Group must not have more than 256 hosts.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
   "platform": "Terraform",
-  "descriptionID": "cd091033"
+  "descriptionID": "cd091033",
+  "cloudProvider": "aws"
 }

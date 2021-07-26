@@ -6,5 +6,6 @@
   "descriptionText": "IAM user resource Login Profile Password should have at least one uppercase letter",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
   "platform": "CloudFormation",
-  "descriptionID": "9d55d1e4"
+  "descriptionID": "9d55d1e4",
+  "cloudProvider": "aws"
 }

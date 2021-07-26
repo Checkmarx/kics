@@ -6,5 +6,6 @@
   "descriptionText": "RDS DBInstance should have deletion protection set to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-deletionprotection",
   "platform": "CloudFormation",
-  "descriptionID": "606a0602"
+  "descriptionID": "606a0602",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Allowing to run lambda function using public API Gateway",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission",
   "platform": "Terraform",
-  "descriptionID": "1f20399a"
+  "descriptionID": "1f20399a",
+  "cloudProvider": "aws"
 }

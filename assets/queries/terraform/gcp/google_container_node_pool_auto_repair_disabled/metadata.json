@@ -6,5 +6,6 @@
   "descriptionText": "Verifies if Google Container Node Pool Auto Repair is Enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool",
   "platform": "Terraform",
-  "descriptionID": "39487293"
+  "descriptionID": "39487293",
+  "cloudProvider": "gcp"
 }

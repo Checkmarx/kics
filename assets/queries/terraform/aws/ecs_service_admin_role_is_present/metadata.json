@@ -6,5 +6,6 @@
   "descriptionText": "ECS Services must not have Admin roles, which means the attribute 'iam_role' must not be an admin role",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service",
   "platform": "Terraform",
-  "descriptionID": "0503dc3c"
+  "descriptionID": "0503dc3c",
+  "cloudProvider": "aws"
 }

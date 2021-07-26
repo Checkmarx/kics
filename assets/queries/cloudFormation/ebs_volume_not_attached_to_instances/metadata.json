@@ -6,5 +6,6 @@
   "descriptionText": "EBS Volumes that are unattached to instances may contain sensitive data",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html",
   "platform": "CloudFormation",
-  "descriptionID": "33e2f7f6"
+  "descriptionID": "33e2f7f6",
+  "cloudProvider": "aws"
 }

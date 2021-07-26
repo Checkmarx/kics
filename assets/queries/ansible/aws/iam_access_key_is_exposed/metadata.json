@@ -6,5 +6,6 @@
   "descriptionText": "Check if IAM Access Key is active for some user besides 'root'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_module.html",
   "platform": "Ansible",
-  "descriptionID": "d8bc01a5"
+  "descriptionID": "d8bc01a5",
+  "cloudProvider": "aws"
 }

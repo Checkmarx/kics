@@ -29,7 +29,8 @@ func TestScanner_StartScan(t *testing.T) {
 		noProgress bool
 	}
 	type feilds struct {
-		types []string
+		types          []string
+		cloudProviders []string
 	}
 	tests := []struct {
 		name   string
@@ -43,14 +44,15 @@ func TestScanner_StartScan(t *testing.T) {
 				noProgress: true,
 			},
 			feilds: feilds{
-				types: []string{""},
+				types:          []string{""},
+				cloudProviders: []string{""},
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			services, store, err := createServices(tt.feilds.types)
+			services, store, err := createServices(tt.feilds.types, tt.feilds.cloudProviders)
 			require.NoError(t, err)
 			err = StartScan(context.Background(), tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
@@ -59,14 +61,14 @@ func TestScanner_StartScan(t *testing.T) {
 	}
 }
 
-func createServices(types []string) (serviceSlice, *storage.MemoryStorage, error) {
+func createServices(types, cloudProviders []string) (serviceSlice, *storage.MemoryStorage, error) {
 	filesSource, err := provider.NewFileSystemSourceProvider([]string{filepath.FromSlash("../../test")}, []string{})
 	if err != nil {
 		return nil, nil, err
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(filepath.FromSlash("../../assets/queries"), types)
+	querySource := source.NewFilesystemSource(filepath.FromSlash("../../assets/queries"), types, cloudProviders)
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
@@ -80,7 +82,7 @@ func createServices(types []string) (serviceSlice, *storage.MemoryStorage, error
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types)
+		Build(types, cloudProviders)
 	if err != nil {
 		return nil, nil, err
 	}

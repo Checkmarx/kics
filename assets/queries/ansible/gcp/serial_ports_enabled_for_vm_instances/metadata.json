@@ -6,5 +6,6 @@
   "descriptionText": "Check if serial ports are enabled in Google Compute Engine VM instances",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
   "platform": "Ansible",
-  "descriptionID": "7f8ab7a4"
+  "descriptionID": "7f8ab7a4",
+  "cloudProvider": "gcp"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "S3 Buckets should have server-side encryption at rest enabled to protect sensitive data",
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/user-guide/default-bucket-encryption.html",
   "platform": "CloudFormation",
-  "descriptionID": "314a460b"
+  "descriptionID": "314a460b",
+  "cloudProvider": "aws"
 }

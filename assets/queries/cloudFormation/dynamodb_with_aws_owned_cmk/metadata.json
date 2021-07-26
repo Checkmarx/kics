@@ -6,5 +6,6 @@
   "descriptionText": "AWS DynamoDb should be encrypted using AWS Managed CMK, instead of AWS-owned CMK. To verify this, SSEEnabled must be verified if false for AWS-owned CMK or true for AWS-Managed CMK. Default value is false.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html",
   "platform": "CloudFormation",
-  "descriptionID": "a71d0c61"
+  "descriptionID": "a71d0c61",
+  "cloudProvider": "aws"
 }

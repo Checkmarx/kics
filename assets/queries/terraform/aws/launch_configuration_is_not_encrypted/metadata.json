@@ -6,5 +6,6 @@
   "descriptionText": "Data stored in the Launch configuration EBS is not securely encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted",
   "platform": "Terraform",
-  "descriptionID": "d11b3649"
+  "descriptionID": "d11b3649",
+  "cloudProvider": "aws"
 }

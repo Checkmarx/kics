@@ -6,5 +6,6 @@
   "descriptionText": "IAM Database Auth Enabled must be configured to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication",
   "platform": "CloudFormation",
-  "descriptionID": "e4c2c085"
+  "descriptionID": "e4c2c085",
+  "cloudProvider": "aws"
 }

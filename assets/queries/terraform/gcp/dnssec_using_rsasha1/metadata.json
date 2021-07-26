@@ -6,5 +6,6 @@
   "descriptionText": "Checks if, within the 'dnssec_config' block, the 'default_key_specs' block exists with the 'algorithm' field is 'rsasha1' which is bad.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_managed_zone#algorithm",
   "platform": "Terraform",
-  "descriptionID": "07664c32"
+  "descriptionID": "07664c32",
+  "cloudProvider": "gcp"
 }

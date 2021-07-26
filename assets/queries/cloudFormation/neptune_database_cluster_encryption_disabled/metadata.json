@@ -6,5 +6,6 @@
   "descriptionText": "Neptune database cluster storage should have encryption enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html",
   "platform": "CloudFormation",
-  "descriptionID": "b2c5f5dd"
+  "descriptionID": "b2c5f5dd",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "The HTTP port is open in a Security Group",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
   "platform": "Ansible",
-  "descriptionID": "8c6031b8"
+  "descriptionID": "8c6031b8",
+  "cloudProvider": "aws"
 }

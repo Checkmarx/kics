@@ -6,5 +6,6 @@
   "descriptionText": "No password expiration policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
   "platform": "Terraform",
-  "descriptionID": "23788841"
+  "descriptionID": "23788841",
+  "cloudProvider": "aws"
 }

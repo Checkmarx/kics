@@ -6,5 +6,6 @@
   "descriptionText": "Admin user is enabled for Container Registry",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html",
   "platform": "Ansible",
-  "descriptionID": "d8ca5381"
+  "descriptionID": "d8ca5381",
+  "cloudProvider": "azure"
 }

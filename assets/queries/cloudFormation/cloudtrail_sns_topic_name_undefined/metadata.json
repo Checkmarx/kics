@@ -6,5 +6,6 @@
   "descriptionText": "Check if SNS topic name is set for CloudTrail",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-snstopicname",
   "platform": "CloudFormation",
-  "descriptionID": "69327f38"
+  "descriptionID": "69327f38",
+  "cloudProvider": "aws"
 }

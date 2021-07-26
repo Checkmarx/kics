@@ -6,5 +6,6 @@
   "descriptionText": "Monitoring log profile captures all the activities (Action, Write, Delete)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_monitorlogprofile_module.html",
   "platform": "Ansible",
-  "descriptionID": "cb93f630"
+  "descriptionID": "cb93f630",
+  "cloudProvider": "azure"
 }

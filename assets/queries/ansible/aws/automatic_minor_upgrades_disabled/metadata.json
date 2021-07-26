@@ -6,5 +6,6 @@
   "descriptionText": "RDS instance auto minor version upgrade feature must be true",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-auto_minor_version_upgrade",
   "platform": "Ansible",
-  "descriptionID": "7734a8b1"
+  "descriptionID": "7734a8b1",
+  "cloudProvider": "aws"
 }

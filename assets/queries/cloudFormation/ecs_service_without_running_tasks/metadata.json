@@ -6,5 +6,6 @@
   "descriptionText": "ECS Service should have at least 1 task running",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-deploymentconfiguration",
   "platform": "CloudFormation",
-  "descriptionID": "cd242bdd"
+  "descriptionID": "cd242bdd",
+  "cloudProvider": "aws"
 }

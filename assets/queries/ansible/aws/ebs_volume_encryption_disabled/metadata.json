@@ -6,5 +6,6 @@
   "descriptionText": "EBS Encryption should be enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_vol_module.html#parameter-encrypted",
   "platform": "Ansible",
-  "descriptionID": "06f72385"
+  "descriptionID": "06f72385",
+  "cloudProvider": "aws"
 }

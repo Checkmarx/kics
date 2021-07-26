@@ -6,5 +6,6 @@
   "descriptionText": "Lambda Permission Principal should not contain a wildcard.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
   "platform": "Ansible",
-  "descriptionID": "1740275a"
+  "descriptionID": "1740275a",
+  "cloudProvider": "aws"
 }

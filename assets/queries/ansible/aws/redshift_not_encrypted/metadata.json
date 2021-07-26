@@ -6,5 +6,6 @@
   "descriptionText": "Check if 'encrypted' field is false or undefined (default is false)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
   "platform": "Ansible",
-  "descriptionID": "85cddbf3"
+  "descriptionID": "85cddbf3",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Firewall rule allowing unrestricted access to Redis from the Internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
   "platform": "Terraform",
-  "descriptionID": "d18de348"
+  "descriptionID": "d18de348",
+  "cloudProvider": "azure"
 }

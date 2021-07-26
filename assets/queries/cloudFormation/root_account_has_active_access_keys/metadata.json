@@ -6,5 +6,6 @@
   "descriptionText": "Check if the root user has any access keys associated to it.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html",
   "platform": "CloudFormation",
-  "descriptionID": "195ebcdb"
+  "descriptionID": "195ebcdb",
+  "cloudProvider": "aws"
 }

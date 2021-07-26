@@ -6,5 +6,6 @@
   "descriptionText": "Make sure that Amazon GuardDuty is Enabled.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html",
   "platform": "CloudFormation",
-  "descriptionID": "cae19394"
+  "descriptionID": "cae19394",
+  "cloudProvider": "aws"
 }

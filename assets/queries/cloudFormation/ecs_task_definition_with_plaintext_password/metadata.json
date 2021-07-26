@@ -6,5 +6,6 @@
   "descriptionText": "It's not recommended to use plaintext environment variables for sensitive information, such as credential data.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-environment",
   "platform": "CloudFormation",
-  "descriptionID": "a763eedb"
+  "descriptionID": "a763eedb",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "GCP SQL Instance should not have Cross DB Ownership Chaining On",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
   "platform": "Ansible",
-  "descriptionID": "2a2f1164"
+  "descriptionID": "2a2f1164",
+  "cloudProvider": "gcp"
 }

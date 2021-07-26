@@ -6,5 +6,6 @@
   "descriptionText": "SNS topic Publicity should not have 'Effect: Allow' and argument 'NotAction' at the same time. If it has 'Effect: Allow', the argument stated should be 'Action'.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy",
   "platform": "Terraform",
-  "descriptionID": "ddd0f677"
+  "descriptionID": "ddd0f677",
+  "cloudProvider": "aws"
 }

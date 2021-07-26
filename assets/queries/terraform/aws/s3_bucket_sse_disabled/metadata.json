@@ -6,5 +6,6 @@
   "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#sse_algorithm",
   "platform": "Terraform",
-  "descriptionID": "b0bbf591"
+  "descriptionID": "b0bbf591",
+  "cloudProvider": "aws"
 }

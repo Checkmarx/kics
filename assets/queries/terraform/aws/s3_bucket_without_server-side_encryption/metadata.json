@@ -6,5 +6,6 @@
   "descriptionText": "S3 bucket should have encryption defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
   "platform": "Terraform",
-  "descriptionID": "b386c506"
+  "descriptionID": "b386c506",
+  "cloudProvider": "aws"
 }

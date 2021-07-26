@@ -6,5 +6,6 @@
   "descriptionText": "X-ray Tracing is not enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#xray_tracing_enabled",
   "platform": "Terraform",
-  "descriptionID": "21e236a0"
+  "descriptionID": "21e236a0",
+  "cloudProvider": "aws"
 }

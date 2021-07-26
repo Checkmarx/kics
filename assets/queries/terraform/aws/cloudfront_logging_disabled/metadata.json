@@ -6,5 +6,6 @@
   "descriptionText": "AWS Cloudfront distributions must be have logging enabled, which means the attribute 'logging_config' must be defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
   "platform": "Terraform",
-  "descriptionID": "9cf96455"
+  "descriptionID": "9cf96455",
+  "cloudProvider": "aws"
 }

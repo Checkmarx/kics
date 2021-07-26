@@ -6,5 +6,6 @@
   "descriptionText": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html",
   "platform": "CloudFormation",
-  "descriptionID": "2cad71a7"
+  "descriptionID": "2cad71a7",
+  "cloudProvider": "aws"
 }

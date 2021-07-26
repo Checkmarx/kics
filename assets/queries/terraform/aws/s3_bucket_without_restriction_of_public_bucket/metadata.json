@@ -6,5 +6,6 @@
   "descriptionText": "S3 bucket without restriction of public bucket",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
   "platform": "Terraform",
-  "descriptionID": "a6e86c32"
+  "descriptionID": "a6e86c32",
+  "cloudProvider": "aws"
 }

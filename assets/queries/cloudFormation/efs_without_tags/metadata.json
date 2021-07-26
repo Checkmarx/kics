@@ -6,5 +6,6 @@
   "descriptionText": "Amazon Elastic Filesystem should have filesystem tags associated",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
   "platform": "CloudFormation",
-  "descriptionID": "a7eb7aff"
+  "descriptionID": "a7eb7aff",
+  "cloudProvider": "aws"
 }

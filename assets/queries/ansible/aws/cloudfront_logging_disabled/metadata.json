@@ -6,5 +6,6 @@
   "descriptionText": "AWS Cloudfront distributions must have logging enabled, which means the attribute 'logging' must be defined with 'enabled' set to true",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
   "platform": "Ansible",
-  "descriptionID": "1bfc2dfd"
+  "descriptionID": "1bfc2dfd",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Batch Job Definition should not have Privileged Container Properties",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html",
   "platform": "CloudFormation",
-  "descriptionID": "c8983ada"
+  "descriptionID": "c8983ada",
+  "cloudProvider": "aws"
 }

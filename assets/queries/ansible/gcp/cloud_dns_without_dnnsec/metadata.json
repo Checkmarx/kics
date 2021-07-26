@@ -6,5 +6,6 @@
   "descriptionText": "DNSSEC must be enabled for Cloud DNS",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_dns_managed_zone_module.html#return-dnssecConfig/state",
   "platform": "Ansible",
-  "descriptionID": "1797efc5"
+  "descriptionID": "1797efc5",
+  "cloudProvider": "gcp"
 }

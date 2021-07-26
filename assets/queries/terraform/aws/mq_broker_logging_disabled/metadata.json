@@ -6,5 +6,6 @@
   "descriptionText": "Check if MQ Brokers don't have logging enabled in any of the two options possible (audit and general).",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker",
   "platform": "Terraform",
-  "descriptionID": "cdf2b416"
+  "descriptionID": "cdf2b416",
+  "cloudProvider": "aws"
 }

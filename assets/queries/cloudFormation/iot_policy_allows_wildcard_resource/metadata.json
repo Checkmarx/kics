@@ -6,5 +6,6 @@
   "descriptionText": "IoT Policy should not allow Resource to be set as *",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html",
   "platform": "CloudFormation",
-  "descriptionID": "d5e52bc7"
+  "descriptionID": "d5e52bc7",
+  "cloudProvider": "aws"
 }

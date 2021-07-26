@@ -6,5 +6,6 @@
   "descriptionText": "Check if port 2383 on TCP is publicly accessible by checking the CIDR block range that can access it.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
   "platform": "Ansible",
-  "descriptionID": "69176b78"
+  "descriptionID": "69176b78",
+  "cloudProvider": "aws"
 }

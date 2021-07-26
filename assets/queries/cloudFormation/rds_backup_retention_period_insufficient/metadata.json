@@ -6,5 +6,6 @@
   "descriptionText": "AWS RDS backup retention policy should be at least 7 days",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
   "platform": "CloudFormation",
-  "descriptionID": "55094eb2"
+  "descriptionID": "55094eb2",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "IAM User Login Profile should exist and have PasswordResetRequired property set to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html",
   "platform": "CloudFormation",
-  "descriptionID": "a44edc48"
+  "descriptionID": "a44edc48",
+  "cloudProvider": "aws"
 }

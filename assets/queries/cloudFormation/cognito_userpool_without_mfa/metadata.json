@@ -6,5 +6,6 @@
   "descriptionText": "AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html",
   "platform": "CloudFormation",
-  "descriptionID": "32d91e4e"
+  "descriptionID": "32d91e4e",
+  "cloudProvider": "aws"
 }

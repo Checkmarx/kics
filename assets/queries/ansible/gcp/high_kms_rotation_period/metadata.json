@@ -6,5 +6,6 @@
   "descriptionText": "Check if any KMS rotation period surpasses 365 days.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html",
   "platform": "Ansible",
-  "descriptionID": "46702906"
+  "descriptionID": "46702906",
+  "cloudProvider": "gcp"
 }

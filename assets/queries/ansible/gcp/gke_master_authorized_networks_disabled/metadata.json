@@ -6,5 +6,6 @@
   "descriptionText": "Master authorized networks must be enabled in GKE clusters",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-master_authorized_networks_config/enabled",
   "platform": "Ansible",
-  "descriptionID": "67294baa"
+  "descriptionID": "67294baa",
+  "cloudProvider": "gcp"
 }

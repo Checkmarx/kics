@@ -6,5 +6,6 @@
   "descriptionText": "SageMaker Notebook must be placed in a VPC",
   "descriptionUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown",
   "platform": "CloudFormation",
-  "descriptionID": "d062ca53"
+  "descriptionID": "d062ca53",
+  "cloudProvider": "aws"
 }

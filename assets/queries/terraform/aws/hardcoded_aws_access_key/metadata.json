@@ -6,5 +6,6 @@
   "descriptionText": "Hard-coded AWS access key / secret key exists in EC2 user data",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance",
   "platform": "Terraform",
-  "descriptionID": "9e8cbdfb"
+  "descriptionID": "9e8cbdfb",
+  "cloudProvider": "aws"
 }

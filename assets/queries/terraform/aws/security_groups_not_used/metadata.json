@@ -6,5 +6,6 @@
   "descriptionText": "Security group must be used or not declared",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
   "platform": "Terraform",
-  "descriptionID": "eff2383a"
+  "descriptionID": "eff2383a",
+  "cloudProvider": "aws"
 }

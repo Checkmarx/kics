@@ -6,5 +6,6 @@
   "descriptionText": "ECR Repository should have Policies attached to it",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy",
   "platform": "Terraform",
-  "descriptionID": "cb9636f6"
+  "descriptionID": "cb9636f6",
+  "cloudProvider": "aws"
 }

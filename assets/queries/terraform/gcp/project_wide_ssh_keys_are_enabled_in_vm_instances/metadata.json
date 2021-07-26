@@ -6,5 +6,6 @@
   "descriptionText": "Check if SSH keys are enabled project-wide in VM instances",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance",
   "platform": "Terraform",
-  "descriptionID": "4b9307cd"
+  "descriptionID": "4b9307cd",
+  "cloudProvider": "gcp"
 }

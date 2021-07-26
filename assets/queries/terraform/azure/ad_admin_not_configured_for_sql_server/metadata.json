@@ -6,5 +6,6 @@
   "descriptionText": "The Active Directory Administrator is not configured for a SQL server",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_active_directory_administrator",
   "platform": "Terraform",
-  "descriptionID": "bccbda19"
+  "descriptionID": "bccbda19",
+  "cloudProvider": "azure"
 }

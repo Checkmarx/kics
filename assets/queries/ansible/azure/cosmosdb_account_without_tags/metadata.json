@@ -6,5 +6,6 @@
   "descriptionText": "Cosmos DB Account must have a mapping of tags.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html",
   "platform": "Ansible",
-  "descriptionID": "8469d3ac"
+  "descriptionID": "8469d3ac",
+  "cloudProvider": "azure"
 }

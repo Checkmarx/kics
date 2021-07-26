@@ -6,5 +6,6 @@
   "descriptionText": "Ensure that Connection Throttling is set for the PostgreSQL server",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
   "platform": "Ansible",
-  "descriptionID": "47504c54"
+  "descriptionID": "47504c54",
+  "cloudProvider": "azure"
 }

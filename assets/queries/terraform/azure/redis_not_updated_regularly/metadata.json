@@ -6,5 +6,6 @@
   "descriptionText": "Redis Cache is not configured to be updated regularly with security and operational updates",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache#patch_schedule",
   "platform": "Terraform",
-  "descriptionID": "a9726898"
+  "descriptionID": "a9726898",
+  "cloudProvider": "azure"
 }

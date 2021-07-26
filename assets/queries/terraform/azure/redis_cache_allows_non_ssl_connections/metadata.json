@@ -6,5 +6,6 @@
   "descriptionText": "Check if any Redis Cache resource allows non-SSL connections.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache",
   "platform": "Terraform",
-  "descriptionID": "b7160c8c"
+  "descriptionID": "b7160c8c",
+  "cloudProvider": "azure"
 }

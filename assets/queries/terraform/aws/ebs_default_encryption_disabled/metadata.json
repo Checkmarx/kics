@@ -6,5 +6,6 @@
   "descriptionText": "EBS Encryption should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_encryption_by_default",
   "platform": "Terraform",
-  "descriptionID": "2990583f"
+  "descriptionID": "2990583f",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "AWS Security Group should not have public port wide",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
   "platform": "Ansible",
-  "descriptionID": "be17d13e"
+  "descriptionID": "be17d13e",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Alexa ASK Skill AuthenticationConfiguration RefreshToken should not be a plaintext string",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration",
   "platform": "CloudFormation",
-  "descriptionID": "c752c5a6"
+  "descriptionID": "c752c5a6",
+  "cloudProvider": "aws"
 }

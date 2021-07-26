@@ -6,5 +6,6 @@
   "descriptionText": "AWS Lambda Functions must have associated tags.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html",
   "platform": "Ansible",
-  "descriptionID": "45d5ac61"
+  "descriptionID": "45d5ac61",
+  "cloudProvider": "aws"
 }

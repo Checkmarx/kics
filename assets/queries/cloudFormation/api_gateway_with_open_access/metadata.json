@@ -6,5 +6,6 @@
   "descriptionText": "API Gateway Method should restrict an authorization type, except for the HTTP OPTIONS method.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html",
   "platform": "CloudFormation",
-  "descriptionID": "d8d6ab46"
+  "descriptionID": "d8d6ab46",
+  "cloudProvider": "aws"
 }

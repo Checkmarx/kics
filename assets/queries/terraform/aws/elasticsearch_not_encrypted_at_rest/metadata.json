@@ -6,5 +6,6 @@
   "descriptionText": "Check if ElasticSearch encryption is disabled at Rest",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain",
   "platform": "Terraform",
-  "descriptionID": "c402717e"
+  "descriptionID": "c402717e",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "ELBv2 ALBs should have access log enabled to capture detailed information about requests sent to your load balancer.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattributes-key",
   "platform": "CloudFormation",
-  "descriptionID": "1b941e35"
+  "descriptionID": "1b941e35",
+  "cloudProvider": "aws"
 }

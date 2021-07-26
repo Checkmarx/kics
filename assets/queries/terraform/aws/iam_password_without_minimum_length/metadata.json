@@ -6,5 +6,6 @@
   "descriptionText": "Check if IAM account password has the required minimum length",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
   "platform": "Terraform",
-  "descriptionID": "594a6a8e"
+  "descriptionID": "594a6a8e",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
   "platform": "Terraform",
-  "descriptionID": "06d14345"
+  "descriptionID": "06d14345",
+  "cloudProvider": "azure"
 }

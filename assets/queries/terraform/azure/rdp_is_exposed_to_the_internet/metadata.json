@@ -6,5 +6,6 @@
   "descriptionText": "Port 3389 (Remote Desktop) is exposed to the internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
   "platform": "Terraform",
-  "descriptionID": "21b8be3f"
+  "descriptionID": "21b8be3f",
+  "cloudProvider": "azure"
 }

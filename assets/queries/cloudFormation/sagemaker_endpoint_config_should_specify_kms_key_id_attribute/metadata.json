@@ -6,5 +6,6 @@
   "descriptionText": "KmsKeyId attribute should be defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html",
   "platform": "CloudFormation",
-  "descriptionID": "7c9fa4bf"
+  "descriptionID": "7c9fa4bf",
+  "cloudProvider": "aws"
 }

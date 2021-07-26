@@ -6,5 +6,6 @@
   "descriptionText": "API Gateway Method Settings Cache should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method_settings#cache_data_encrypted",
   "platform": "Terraform",
-  "descriptionID": "ceabd70f"
+  "descriptionID": "ceabd70f",
+  "cloudProvider": "aws"
 }

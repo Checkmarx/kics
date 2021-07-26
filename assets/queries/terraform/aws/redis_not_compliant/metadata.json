@@ -6,5 +6,6 @@
   "descriptionText": "Check if the redis version is compliant with the necessary AWS PCI DSS requirements",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine_version",
   "platform": "Terraform",
-  "descriptionID": "f9e5dc62"
+  "descriptionID": "f9e5dc62",
+  "cloudProvider": "aws"
 }

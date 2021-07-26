@@ -6,5 +6,6 @@
   "descriptionText": "The IP range filter should be defined",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_cosmosdbaccount_module.html#parameter-ip_range_filter",
   "platform": "Ansible",
-  "descriptionID": "7cb8bdbe"
+  "descriptionID": "7cb8bdbe",
+  "cloudProvider": "azure"
 }

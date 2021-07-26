@@ -6,5 +6,6 @@
   "descriptionText": "ACM Certificate should not use wildcards (*) in the domain name",
   "descriptionUrl": "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html",
   "platform": "CloudFormation",
-  "descriptionID": "0affe61c"
+  "descriptionID": "0affe61c",
+  "cloudProvider": "aws"
 }

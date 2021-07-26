@@ -6,5 +6,6 @@
   "descriptionText": "Role Definition should not allow custom role creation",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition#actions",
   "platform": "Terraform",
-  "descriptionID": "a96dc1b9"
+  "descriptionID": "a96dc1b9",
+  "cloudProvider": "azure"
 }

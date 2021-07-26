@@ -6,5 +6,6 @@
   "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
   "platform": "Ansible",
-  "descriptionID": "ddcfea46"
+  "descriptionID": "ddcfea46",
+  "cloudProvider": "azure"
 }

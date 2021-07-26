@@ -6,5 +6,6 @@
   "descriptionText": "The HTTP port is open in a Security Group",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
   "platform": "Terraform",
-  "descriptionID": "a829609b"
+  "descriptionID": "a829609b",
+  "cloudProvider": "aws"
 }

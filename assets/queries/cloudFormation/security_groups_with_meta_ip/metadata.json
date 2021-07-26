@@ -6,5 +6,6 @@
   "descriptionText": "Security Groups allows 0.0.0.0/0 for all ports and protocols.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
-  "descriptionID": "868a9ec5"
+  "descriptionID": "868a9ec5",
+  "cloudProvider": "aws"
 }

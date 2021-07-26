@@ -6,5 +6,6 @@
   "descriptionText": "Make sure AWS CloudFront distribution has access log enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html",
   "platform": "CloudFormation",
-  "descriptionID": "3254d6d0"
+  "descriptionID": "3254d6d0",
+  "cloudProvider": "aws"
 }

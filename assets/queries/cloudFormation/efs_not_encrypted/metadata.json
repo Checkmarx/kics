@@ -6,5 +6,6 @@
   "descriptionText": "Amazon Elastic Filesystem should have filesystem encryption enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
   "platform": "CloudFormation",
-  "descriptionID": "e168cb44"
+  "descriptionID": "e168cb44",
+  "cloudProvider": "aws"
 }

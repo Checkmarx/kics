@@ -6,5 +6,6 @@
   "descriptionText": "EC2 instances with public IP addresses shouldn't allow for unrestricted traffic to their subnets",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html",
   "platform": "CloudFormation",
-  "descriptionID": "163e9a52"
+  "descriptionID": "163e9a52",
+  "cloudProvider": "aws"
 }

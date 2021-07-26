@@ -6,5 +6,6 @@
   "descriptionText": "AWS CloudWatch Logs for APIs is not enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group",
   "platform": "Terraform",
-  "descriptionID": "48b9d186"
+  "descriptionID": "48b9d186",
+  "cloudProvider": "aws"
 }

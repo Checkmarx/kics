@@ -6,5 +6,6 @@
   "descriptionText": "Lambda hardcoded AWS access/secret keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function",
   "platform": "Terraform",
-  "descriptionID": "63935af4"
+  "descriptionID": "63935af4",
+  "cloudProvider": "aws"
 }

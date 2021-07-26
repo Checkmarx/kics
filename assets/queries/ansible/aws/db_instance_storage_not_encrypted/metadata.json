@@ -6,5 +6,6 @@
   "descriptionText": "The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html",
   "platform": "Ansible",
-  "descriptionID": "575cc1f4"
+  "descriptionID": "575cc1f4",
+  "cloudProvider": "aws"
 }

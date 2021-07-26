@@ -6,5 +6,6 @@
   "descriptionText": "IAM user resource Login Profile Password should have at least one number",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
   "platform": "CloudFormation",
-  "descriptionID": "cb1d65ca"
+  "descriptionID": "cb1d65ca",
+  "cloudProvider": "aws"
 }

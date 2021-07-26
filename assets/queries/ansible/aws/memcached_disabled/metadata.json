@@ -6,5 +6,6 @@
   "descriptionText": "Check if the Memcached is disabled on the ElastiCache",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-engine",
   "platform": "Ansible",
-  "descriptionID": "1ff6d082"
+  "descriptionID": "1ff6d082",
+  "cloudProvider": "aws"
 }

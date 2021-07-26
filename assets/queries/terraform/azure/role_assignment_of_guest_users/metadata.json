@@ -6,5 +6,6 @@
   "descriptionText": "There is a role assignment for guest user",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
   "platform": "Terraform",
-  "descriptionID": "fa055646"
+  "descriptionID": "fa055646",
+  "cloudProvider": "azure"
 }

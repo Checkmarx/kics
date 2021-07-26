@@ -6,5 +6,6 @@
   "descriptionText": "Cloud storage bucket with logging not enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging",
   "platform": "Ansible",
-  "descriptionID": "ba5af65f"
+  "descriptionID": "ba5af65f",
+  "cloudProvider": "gcp"
 }

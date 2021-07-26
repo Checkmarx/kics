@@ -6,5 +6,6 @@
   "descriptionText": "Enable AWS CloudFormation Stack Notifications",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html",
   "platform": "CloudFormation",
-  "descriptionID": "1e12925e"
+  "descriptionID": "1e12925e",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Logs delivered by CloudTrail should be encrypted using KMS",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#kms_key_id",
   "platform": "Terraform",
-  "descriptionID": "ee8a4d47"
+  "descriptionID": "ee8a4d47",
+  "cloudProvider": "aws"
 }

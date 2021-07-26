@@ -6,5 +6,6 @@
   "descriptionText": "Check if the Kubernetes Dashboard is enabled.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster",
   "platform": "Terraform",
-  "descriptionID": "3f384e51"
+  "descriptionID": "3f384e51",
+  "cloudProvider": "azure"
 }

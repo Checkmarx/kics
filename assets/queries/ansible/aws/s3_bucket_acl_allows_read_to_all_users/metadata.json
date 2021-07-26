@@ -6,5 +6,6 @@
   "descriptionText": "It's not recommended to allow read access for all user groups.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",
   "platform": "Ansible",
-  "descriptionID": "446af0d8"
+  "descriptionID": "446af0d8",
+  "cloudProvider": "aws"
 }

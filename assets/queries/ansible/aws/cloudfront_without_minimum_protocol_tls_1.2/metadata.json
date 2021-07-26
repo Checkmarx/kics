@@ -6,5 +6,6 @@
   "descriptionText": "CloudFront Minimum Protocol version should be at least TLS 1.2",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html#parameter-viewer_certificate/minimum_protocol_version",
   "platform": "Ansible",
-  "descriptionID": "b0a58f2f"
+  "descriptionID": "b0a58f2f",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Cloud storage bucket with logging not enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#log_bucket",
   "platform": "Terraform",
-  "descriptionID": "9e9984aa"
+  "descriptionID": "9e9984aa",
+  "cloudProvider": "gcp"
 }

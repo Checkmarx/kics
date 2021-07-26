@@ -6,5 +6,6 @@
   "descriptionText": "S3 bucket with ignore public ACL",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
   "platform": "Terraform",
-  "descriptionID": "28aa7150"
+  "descriptionID": "28aa7150",
+  "cloudProvider": "aws"
 }
