@@ -42,7 +42,7 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 			descriptionMap[descriptionID].DescriptionID,
 		)
 		summary.Queries[idx].CISDescriptionTextFormatted = fmt.Sprintf(
-			"%s %s",
+			"%s\n%s",
 			descriptionMap[descriptionID].DescriptionText,
 			descriptionMap[descriptionID].RationaleText,
 		)
