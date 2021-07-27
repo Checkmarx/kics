@@ -1,0 +1,10 @@
+{
+  "id": "79c2c2c0-eb00-47c0-ac16-f8b0e2c81c92",
+  "queryName": "Email Notifications Set Off",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Email notifications about new security alerts, should be set to 'On'",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts?tabs=json#SecurityContactPropertiesAlertNotifications",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "common"
+}

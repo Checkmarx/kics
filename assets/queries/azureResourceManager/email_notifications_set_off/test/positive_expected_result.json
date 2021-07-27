@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Email Notifications Set Off",
+    "severity": "LOW",
+    "line": 17,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Email Notifications Set Off",
+    "severity": "LOW",
+    "line": 13,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Email Notifications Set Off",
+    "severity": "LOW",
+    "line": 16,
+    "filename": "positive3.json"
+  }
+]
