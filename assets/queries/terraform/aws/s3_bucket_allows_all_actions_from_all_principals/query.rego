@@ -12,13 +12,13 @@ CxPolicy[result] {
 
 	statement.Effect == "Allow"
 	terraLib.anyPrincipal(statement)
-	commonLib.containsOrInArrayContains(statement.Action, "delete")
+	commonLib.containsOrInArrayContains(statement.Action, "*")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].policy.Action", [pl[r], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Delete' action", [pl[r], name]),
-		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Delete' action", [pl[r], name]),
+		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a '*' action", [pl[r], name]),
+		"keyActualValue": sprintf("%s[%s].policy.Action is a '*' action", [pl[r], name]),
 	}
 }
