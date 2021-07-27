@@ -133,7 +133,7 @@
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/parser/parser.go (91.8%)</option>
 				
-				<option value="file39">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.9%)</option>
+				<option value="file39">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.1%)</option>
 				
 				<option value="file40">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (82.9%)</option>
 				
@@ -1349,8 +1349,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="334">{
-                if val == true </span><span class="cov9" title="333">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="335">{
+                if val == true </span><span class="cov9" title="334">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2156,13 +2156,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2187,14 +2187,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -4158,7 +4158,7 @@ func NewInspector(
                         Msgf("Inspector failed to get general query, query=%s", "common")
         }</span>
         <span class="cov2" title="4">opaQueries := make([]*preparedQuery, 0, len(queries))
-        for _, metadata := range queries </span><span class="cov10" title="3460">{
+        for _, metadata := range queries </span><span class="cov10" title="3463">{
                 platformGeneralQuery, err := queriesSource.GetQueryLibrary(metadata.Platform)
                 if err != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(err)
@@ -4168,10 +4168,10 @@ func NewInspector(
                         continue</span>
                 }
 
-                <span class="cov10" title="3460">select </span>{
+                <span class="cov10" title="3463">select </span>{
                 case &lt;-ctx.Done():<span class="cov0" title="0">
                         return nil, nil</span>
-                default:<span class="cov10" title="3460">
+                default:<span class="cov10" title="3463">
                         var opaQuery rego.PreparedEvalQuery
                         store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
                         opaQuery, err = rego.New(
@@ -4190,7 +4190,7 @@ func NewInspector(
                                 continue</span>
                         }
 
-                        <span class="cov10" title="3460">tracker.TrackQueryLoad(metadata.Aggregation)
+                        <span class="cov10" title="3463">tracker.TrackQueryLoad(metadata.Aggregation)
 
                         opaQueries = append(opaQueries, &amp;preparedQuery{
                                 opaQuery: opaQuery,
@@ -4228,7 +4228,7 @@ func NewInspector(
 
 func sumAllAggregatedQueries(opaQueries []*preparedQuery) int <span class="cov2" title="4">{
         sum := 0
-        for _, query := range opaQueries </span><span class="cov10" title="3460">{
+        for _, query := range opaQueries </span><span class="cov10" title="3463">{
                 sum += query.metadata.Aggregation
         }</span>
         <span class="cov2" title="4">return sum</span>
@@ -4285,8 +4285,8 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov1" title="2">{
         count := 0
-        for _, query := range c.queries </span><span class="cov9" title="2306">{
-                if contains(platforms, query.metadata.Platform) </span><span class="cov7" title="401">{
+        for _, query := range c.queries </span><span class="cov9" title="2308">{
+                if contains(platforms, query.metadata.Platform) </span><span class="cov7" title="402">{
                         c.tracker.TrackQueryExecuting(query.metadata.Aggregation)
                         count++
                 }</span>
@@ -4411,19 +4411,19 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov9" title="2312">{
+func contains(s []string, e string) bool <span class="cov9" title="2314">{
         if e == "common" </span><span class="cov2" title="5">{
                 return true
         }</span>
-        <span class="cov9" title="2307">if e == "k8s" </span><span class="cov6" title="161">{
+        <span class="cov9" title="2309">if e == "k8s" </span><span class="cov6" title="161">{
                 e = "kubernetes"
         }</span>
-        <span class="cov9" title="2307">for _, a := range s </span><span class="cov9" title="2308">{
-                if strings.EqualFold(a, e) </span><span class="cov7" title="401">{
+        <span class="cov9" title="2309">for _, a := range s </span><span class="cov9" title="2310">{
+                if strings.EqualFold(a, e) </span><span class="cov7" title="402">{
                         return true
                 }</span>
         }
-        <span class="cov9" title="1906">return false</span>
+        <span class="cov9" title="1907">return false</span>
 }
 </pre>
 		
@@ -4747,12 +4747,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="20193">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="20207">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="20193">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="19962">{
+                <span class="cov9" title="20207">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="19976">{
                         return skipFolder
                 }</span>
 
@@ -4810,24 +4810,24 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="230">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="20196">{
-        if info.IsDir() </span><span class="cov8" title="4660">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="20210">{
+        if info.IsDir() </span><span class="cov8" title="4664">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="4659">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="4657">{
+                <span class="cov8" title="4663">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="4661">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="15536">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="15546">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="15536">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="15306">{
+        <span class="cov9" title="15546">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="15316">{
                 return true, nil
         }</span>
         <span class="cov5" title="230">return false, nil</span>
@@ -4983,7 +4983,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="32">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="29">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -6682,6 +6682,7 @@ import (
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/parser/terraform/functions"
         "github.com/getsentry/sentry-go"
         "github.com/hashicorp/hcl/v2"
         "github.com/hashicorp/hcl/v2/hclsyntax"
@@ -6722,14 +6723,14 @@ type converter struct {
         bytes []byte
 }
 
-func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="22">{
+func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="23">{
         return string(c.bytes[r.Start.Byte:r.End.Byte])
 }</span>
 
-func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) <span class="cov7" title="17">{
+func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) <span class="cov8" title="21">{
         var err error
         out := make(model.Document)
-        for key, value := range body.Attributes </span><span class="cov8" title="26">{
+        for key, value := range body.Attributes </span><span class="cov8" title="32">{
                 out[key], err = c.convertExpression(value.Expr)
                 if err != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(err)
@@ -6737,7 +6738,7 @@ func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) <s
                 }</span>
         }
 
-        <span class="cov7" title="17">for _, block := range body.Blocks </span><span class="cov6" title="12">{
+        <span class="cov8" title="21">for _, block := range body.Blocks </span><span class="cov7" title="14">{
                 err = c.convertBlock(block, out)
                 if err != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(err)
@@ -6745,45 +6746,45 @@ func (c *converter) convertBody(body *hclsyntax.Body) (model.Document, error) <s
                 }</span>
         }
 
-        <span class="cov7" title="17">return out, nil</span>
+        <span class="cov8" title="21">return out, nil</span>
 }
 
-func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document) error <span class="cov6" title="12">{
+func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document) error <span class="cov7" title="14">{
         var key = block.Type
         value, err := c.convertBody(block.Body)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov6" title="12">for _, label := range block.Labels </span><span class="cov6" title="10">{
+        <span class="cov7" title="14">for _, label := range block.Labels </span><span class="cov6" title="12">{
                 if inner, exists := out[key]; exists </span><span class="cov2" title="2">{
                         var ok bool
                         out, ok = inner.(model.Document)
                         if !ok </span><span class="cov0" title="0">{
                                 return fmt.Errorf("unable to convert Block to JSON: %v.%v", block.Type, strings.Join(block.Labels, "."))
                         }</span>
-                } else<span class="cov5" title="8"> {
+                } else<span class="cov6" title="10"> {
                         obj := make(model.Document)
                         out[key] = obj
                         out = obj
                 }</span>
-                <span class="cov6" title="10">key = label</span>
+                <span class="cov6" title="12">key = label</span>
         }
 
-        <span class="cov6" title="12">if current, exists := out[key]; exists </span><span class="cov3" title="3">{
+        <span class="cov7" title="14">if current, exists := out[key]; exists </span><span class="cov3" title="3">{
                 if list, ok := current.([]interface{}); ok </span><span class="cov1" title="1">{
                         out[key] = append(list, value)
                 }</span> else<span class="cov2" title="2"> {
                         out[key] = []interface{}{current, value}
                 }</span>
-        } else<span class="cov6" title="9"> {
+        } else<span class="cov6" title="11"> {
                 out[key] = value
         }</span>
 
-        <span class="cov6" title="12">return nil</span>
+        <span class="cov7" title="14">return nil</span>
 }
 
-func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) <span class="cov10" title="44">{
+func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) <span class="cov10" title="50">{
         // assume it is hcl syntax (because, um, it is)
         switch value := expr.(type) </span>{
         case *hclsyntax.LiteralValueExpr:<span class="cov6" title="10">
@@ -6805,6 +6806,8 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 <span class="cov1" title="1">return list, nil</span>
         case *hclsyntax.ObjectConsExpr:<span class="cov2" title="2">
                 return c.objectConsExpr(value)</span>
+        case *hclsyntax.FunctionCallExpr:<span class="cov5" title="6">
+                return c.evalFunction(expr)</span>
         default:<span class="cov6" title="12">
                 // try to evaluate with variables
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
@@ -6950,6 +6953,58 @@ func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span cl
                 log.Trace().Msgf("Variable ${%s} value not found", expression)
         }</span>
         <span class="cov6" title="11">return "${" + expression + "}", nil</span>
+}
+
+func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, error) <span class="cov5" title="6">{
+        expressionEvaluated, err := expression.Value(&amp;hcl.EvalContext{
+                Variables: inputVarMap,
+                Functions: functions.TerraformFuncs,
+        })
+        if err != nil </span><span class="cov1" title="1">{
+                for _, expressionError := range err </span><span class="cov1" title="1">{
+                        if expressionError.Summary == "Unknown variable" </span><span class="cov1" title="1">{
+                                jsonPath := c.rangeSource(expressionError.Expression.Range())
+                                rootKey := strings.Split(jsonPath, ".")[0]
+                                if strings.Contains(jsonPath, ".") </span><span class="cov1" title="1">{
+                                        jsonCtyValue, convertErr := createEntryInputVar(strings.Split(jsonPath, ".")[1:], jsonPath)
+                                        if convertErr != nil </span><span class="cov0" title="0">{
+                                                return c.wrapExpr(expression)
+                                        }</span>
+                                        <span class="cov1" title="1">inputVarMap[rootKey] = jsonCtyValue</span>
+                                } else<span class="cov0" title="0"> {
+                                        inputVarMap[rootKey] = cty.StringVal(jsonPath)
+                                }</span>
+                        }
+                }
+                <span class="cov1" title="1">expressionEvaluated, err = expression.Value(&amp;hcl.EvalContext{
+                        Variables: inputVarMap,
+                        Functions: functions.TerraformFuncs,
+                })
+                if err != nil </span><span class="cov0" title="0">{
+                        return c.wrapExpr(expression)
+                }</span>
+        }
+        <span class="cov5" title="6">return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil</span>
+}
+
+func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) <span class="cov1" title="1">{
+        mapJSON := "{"
+        closeMap := "}"
+        for idx, key := range path </span><span class="cov1" title="1">{
+                if idx+1 &lt; len(path) </span><span class="cov0" title="0">{
+                        mapJSON += fmt.Sprintf("\"%s\":{", key)
+                        closeMap += "}"
+                }</span> else<span class="cov1" title="1"> {
+                        mapJSON += fmt.Sprintf("\"%s\": \"%s\"", key, defaultValue)
+                }</span>
+        }
+        <span class="cov1" title="1">mapJSON += closeMap
+        jsonType, _ := ctyjson.ImpliedType([]byte(mapJSON))
+        value, err := ctyjson.Unmarshal([]byte(mapJSON), jsonType)
+        if err != nil </span><span class="cov0" title="0">{
+                return cty.NilVal, err
+        }</span>
+        <span class="cov1" title="1">return value, nil</span>
 }
 </pre>
 		
