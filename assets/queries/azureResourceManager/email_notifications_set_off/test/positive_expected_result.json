@@ -16,5 +16,23 @@
     "severity": "LOW",
     "line": 16,
     "filename": "positive3.json"
+  },
+  {
+    "queryName": "Email Notifications Set Off",
+    "severity": "LOW",
+    "line": 13,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "Email Notifications Set Off",
+    "severity": "LOW",
+    "line": 17,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Email Notifications Set Off",
+    "severity": "LOW",
+    "line": 16,
+    "filename": "positive6.json"
   }
 ]

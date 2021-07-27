@@ -3,8 +3,9 @@
   "queryName": "Email Notifications Set Off",
   "severity": "LOW",
   "category": "Best Practices",
-  "descriptionText": "Email notifications about new security alerts, should be set to 'On'",
-  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts?tabs=json#SecurityContactPropertiesAlertNotifications",
+  "descriptionText": "Email notifications about new security alerts, should be set to 'On', and be sent to persons with specific RBAC roles on the subscription",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts",
   "platform": "AzureResourceManager",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "aggregation": 2
 }
