@@ -150,6 +150,57 @@ block "label_one" {
 	}
 }
 
+func TestEvalFunction(t *testing.T) {
+	type funcTest struct {
+		name    string
+		input   string
+		want    string
+		wantErr bool
+	}
+	tests := []funcTest{
+		{
+			name: "should evaluate without problems",
+			input: `
+block "label_one" {
+	policy = jsonencode({
+    	Id      = "id"
+	})
+	some_number = max(max(1,3),2)
+}
+`,
+			want:    `{"block":{"label_one":{"policy":"{\"Id\":\"id\"}","some_number":3}}}`,
+			wantErr: false,
+		},
+		{
+			name: "should evaluate after mocking variable",
+			input: `
+block "label_one" {
+	policy = jsonencode({
+    	Id      = aws.meuId
+	})
+	some_number = max(max(1,3),2)
+}
+`,
+			want:    `{"block":{"label_one":{"policy":"{\"Id\":\"aws.meuId\"}","some_number":3}}}`,
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			file, _ := hclsyntax.ParseConfig([]byte(tt.input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
+			c := converter{bytes: file.Bytes}
+			got, err := c.convertBody(file.Body.(*hclsyntax.Body))
+			fmt.Println(err)
+			require.True(t, (err != nil) == tt.wantErr)
+			gotJSON, _ := json.Marshal(got)
+			var wantJSON model.Document
+			_ = json.Unmarshal([]byte(tt.want), &wantJSON)
+			_ = json.Unmarshal(gotJSON, &got)
+			require.Equal(t, wantJSON, got)
+		})
+	}
+}
+
 // TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them
 func TestConversion(t *testing.T) { // nolint
 	const input = `
@@ -201,6 +252,10 @@ data "terraform_remote_state" "remote" {
 		bucket  = "${var.bucket}-mybucket"
 		key     = "mykey"
 	}
+	policy = jsonencode({
+    	Id      = "MYBUCKETPOLICY"
+	})
+	some_number = max(max(1,3),2)
 }
 variable "profile" {}
 variable "region" {
@@ -257,7 +312,9 @@ variable "region" {
 						"key": "mykey",
 						"profile": "${var.profile}",
 						"region": "us-east-1"
-					}
+					},
+					"policy": "{\"Id\":\"MYBUCKETPOLICY\"}",
+					"some_number": 3
 				}
 			}
 		},
