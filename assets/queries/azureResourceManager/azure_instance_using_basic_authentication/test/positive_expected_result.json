@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "INFO",
+    "severity": "HIGH",
     "line": 53,
     "filename": "positive1.json"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "INFO",
+    "severity": "HIGH",
     "line": 40,
     "filename": "positive2.json"
   }
