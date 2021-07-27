@@ -133,7 +133,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		valueConverted, _ := expr.Value(&hcl.EvalContext{
 			Variables: inputVarMap,
 		})
-		if !valueConverted.Type().HasDynamicTypes() {
+		if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
 			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
 		}
 		return c.wrapExpr(expr)
