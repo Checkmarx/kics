@@ -1,7 +1,7 @@
 {
   "id": "350f3955-b5be-436f-afaa-3d2be2fa6cdd",
   "queryName": "Azure Managed Disk Without Encryption",
-  "severity": "INFO",
+  "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Azure Disk Encryption should be enabled",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/disks?tabs=json#encryptionsettingscollection-object",
