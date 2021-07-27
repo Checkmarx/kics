@@ -92,7 +92,14 @@
                             "properties": {
                                 "file_name": {
                                     "type": "string",
-                                    "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
+                                    "oneOf": [
+                                        {
+                                            "pattern": "^(.)*(:)*(http:|https:|www\\.)(.)+$"
+                                        },
+                                        {
+                                            "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
+                                        }
+                                      ]                                    
                                 },
                                 "similarity_id": {
                                     "type": "string",
