@@ -741,7 +741,7 @@ var tests = []testCase{
 }
 
 func Test_E2E_CLI(t *testing.T) {
-	kicsPath := utils.GetKICSBinaryPath("/home/reigota/kics/bin/kics")
+	kicsPath := utils.GetKICSBinaryPath("")
 	scanStartTime := time.Now()
 
 	if testing.Short() {
