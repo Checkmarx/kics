@@ -1349,8 +1349,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="338">{
-                if val == true </span><span class="cov9" title="337">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="334">{
+                if val == true </span><span class="cov9" title="333">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2156,13 +2156,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2187,14 +2187,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -3953,7 +3953,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4983,7 +4983,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="36">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="32">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -6722,7 +6722,7 @@ type converter struct {
         bytes []byte
 }
 
-func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="19">{
+func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="22">{
         return string(c.bytes[r.Start.Byte:r.End.Byte])
 }</span>
 
@@ -6810,10 +6810,10 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
                         Variables: inputVarMap,
                 })
-                if !valueConverted.Type().HasDynamicTypes() </span><span class="cov6" title="9">{
+                if !valueConverted.Type().HasDynamicTypes() &amp;&amp; valueConverted.IsKnown() </span><span class="cov5" title="6">{
                         return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
                 }</span>
-                <span class="cov3" title="3">return c.wrapExpr(expr)</span>
+                <span class="cov5" title="6">return c.wrapExpr(expr)</span>
         }
 }
 
@@ -6944,12 +6944,12 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
         return builder.String(), nil</span>
 }
 
-func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov5" title="8">{
+func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov6" title="11">{
         expression := c.rangeSource(expr.Range())
         if strings.HasPrefix(expression, "var.") </span><span class="cov3" title="3">{
                 log.Trace().Msgf("Variable ${%s} value not found", expression)
         }</span>
-        <span class="cov5" title="8">return "${" + expression + "}", nil</span>
+        <span class="cov6" title="11">return "${" + expression + "}", nil</span>
 }
 </pre>
 		
