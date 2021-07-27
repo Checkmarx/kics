@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Web App Not Using Tls Last Version",
+    "queryName": "Web App Not Using TLS Last Version",
     "severity": "HIGH",
     "line": 12,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Web App Not Using Tls Last Version",
+    "queryName": "Web App Not Using TLS Last Version",
     "severity": "HIGH",
     "line": 8,
     "filename": "positive2.json"
