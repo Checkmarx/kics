@@ -1,0 +1,10 @@
+{
+  "id": "3e9fcc67-1f64-405f-b2f9-0a6be17598f0",
+  "queryName": "This is A sample Query",
+  "severity": "HIGH",
+  "category": "Best Practices",
+  "descriptionText": "This is a sample query",
+  "descriptionUrl": "https://kics.io/",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "common"
+}

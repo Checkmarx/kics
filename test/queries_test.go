@@ -153,7 +153,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	wg := &sync.WaitGroup{}
 	currentQuery := make(chan int64)
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 	wg.Add(1)
