@@ -573,6 +573,7 @@ func Test_getPlatform(t *testing.T) {
 func TestListSupportedPlatforms(t *testing.T) {
 	expected := []string{
 		"Ansible",
+		"AzureResourceManager",
 		"CloudFormation",
 		"Dockerfile",
 		"Kubernetes",

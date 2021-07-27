@@ -40,12 +40,13 @@ const (
 
 var (
 	supportedPlatforms = map[string]string{
-		"Ansible":        "ansible",
-		"CloudFormation": "cloudformation",
-		"Dockerfile":     "dockerfile",
-		"Kubernetes":     "k8s",
-		"Terraform":      "terraform",
-		"OpenAPI":        "openapi",
+		"Ansible":              "ansible",
+		"CloudFormation":       "cloudformation",
+		"Dockerfile":           "dockerfile",
+		"Kubernetes":           "k8s",
+		"Terraform":            "terraform",
+		"OpenAPI":              "openapi",
+		"AzureResourceManager": "azureresourcemanager",
 	}
 )
 
@@ -334,6 +335,8 @@ func getPlatform(queryPath string) string {
 		return "terraform"
 	} else if strings.Contains(queryPath, "openAPI") {
 		return "openAPI"
+	} else if strings.Contains(queryPath, "azureResourceManager") {
+		return "azureResourceManager"
 	}
 
 	return "unknown"
