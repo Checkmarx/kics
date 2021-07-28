@@ -19,6 +19,9 @@
               "Microsoft.Authorization/roleDefinitions/write"
             ]
           }
+        ],
+        "assignableScopes": [
+          "[subscription().id]"
         ]
       }
     }

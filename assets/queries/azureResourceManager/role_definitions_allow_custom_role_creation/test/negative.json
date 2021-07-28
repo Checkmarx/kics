@@ -19,6 +19,9 @@
               "Microsoft.Authorization/roleDefinitions/read"
             ]
           }
+        ],
+        "assignableScopes": [
+          "[subscription().id]"
         ]
       }
     }

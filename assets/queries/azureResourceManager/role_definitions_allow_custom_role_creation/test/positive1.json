@@ -19,6 +19,9 @@
               "*"
             ]
           }
+        ],
+        "assignableScopes": [
+          "[subscription().id]"
         ]
       }
     }
