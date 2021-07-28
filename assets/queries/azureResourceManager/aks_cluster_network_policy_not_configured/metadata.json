@@ -1,11 +1,11 @@
 {
-  "id": "a1dccaac-44c4-4334-af8d-2fd36c3a13f0",
+  "id": "25c0228e-4444-459b-a2df-93c7df40b7ed",
   "queryName": "AKS Cluster Network Policy Not Configured",
   "severity": "MEDIUM",
-  "category": "Insecure Configuration",
+  "category": "Insecure Configurations",
   "descriptionText": "Azure Kubernetes Service must have a network policy defined.",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#containerservicenetworkprofile-object",
   "platform": "AzureResourceManager",
-  "descriptionID": "a1dccfac",
+  "descriptionID": "25c0df8e",
   "cloudProvider": "azure"
 }
