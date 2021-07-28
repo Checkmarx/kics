@@ -3,7 +3,7 @@
   "queryName": "Account Admins Not Notified By Email",
   "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "Account admins should be notified by email on the event of security alerts",
+  "descriptionText": "Account admins should be notified by email in the event of security alerts",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2017-03-01-preview/servers/securityalertpolicies?tabs=json",
   "platform": "AzureResourceManager",
   "cloudProvider": "azure",
