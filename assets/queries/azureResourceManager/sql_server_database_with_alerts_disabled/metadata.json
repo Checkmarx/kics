@@ -3,7 +3,7 @@
   "queryName": "SQL Server Database With Alerts Disabled",
   "severity": "MEDIUM",
   "category": "Best Practices",
-  "descriptionText": "All Alerts sould be enabled in SQL Database Server SecurityAlerts Policy Properties",
+  "descriptionText": "All Alerts should be enabled in SQL Database Server SecurityAlerts Policy Properties",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
   "platform": "AzureResourceManager",
   "cloudProvider": "common",
