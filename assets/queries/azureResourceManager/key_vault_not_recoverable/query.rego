@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +9,7 @@ CxPolicy[result] {
 	value.type == "Microsoft.KeyVault/vaults"
 
 	fields := {"enableSoftDelete", "enablePurgeProtection"}
-	not commonLib.valid_key(value.properties, fields[x])
+	not common_lib.valid_key(value.properties, fields[x])
 
 	result := {
 		"documentId": input.document[i].id,

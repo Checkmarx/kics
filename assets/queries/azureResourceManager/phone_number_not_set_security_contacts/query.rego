@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].resources[_]
 	resource.type == "Microsoft.Security/securityContacts"
-	not commonLib.valid_key(resource.properties, "phone")
+	not common_lib.valid_key(resource.properties, "phone")
 
 	result := {
 		"documentId": input.document[i].id,
