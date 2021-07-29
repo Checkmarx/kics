@@ -30,7 +30,6 @@ CxPolicy[result] {
 	value.properties.supportsHttpsTrafficOnly == false
 
 	result := {
-		"file": input.document[i].file,
 		"documentId": input.document[i].id,
 		"searchKey": "resources.type={{Microsoft.Storage/storageAccounts}}.properties.supportsHttpsTrafficOnly",
 		"issueType": "IncorrectValue",
