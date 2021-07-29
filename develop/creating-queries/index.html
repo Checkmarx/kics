@@ -984,7 +984,7 @@
                   <h1>Creating Queries</h1>
                 
                 <h2 id="create_a_new_query">Create a new Query<a class="headerlink" href="#create_a_new_query" title="Permanent link">&para;</a></h2>
-<p>The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, that can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:</p>
+<p>The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, which can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:</p>
 <pre><code class="language-bash">go run ./cmd/console/main.go scan -p &quot;pathToTestData&quot; -d &quot;pathToGenerateJson&quot;
 </code></pre>
 <p>So for example, if we wanted to transform a .tf file in ./code/test we could type:</p>
@@ -1048,6 +1048,7 @@ To test and debug there are two ways:</p>
 <p>👨‍💻 <strong>REGO File</strong></p>
 <p>As a first step, it is important to be familiar with the libraries available (check them in <code>assets/libraries</code>) and the JSON structure (Rego input). Also, we need to study all the possible cases related to the vulnerability we want to verify before starting the implementation.</p>
 <p>For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute <code>is_multi_region_trail</code> of the resource <code>aws_cloudtrail</code>. Since this attribute is optional and false by default, we have two cases: (1) <code>is_multi_region_trail</code> is undefined and (2) <code>is_multi_region_trail</code> is set to false. Observe the following implementation as an example and check the Guidelines below.</p>
+<p>:rotating_light: <strong>Make sure you use <code>package Cx</code>. If you give another name, the query will not load.</strong> :rotating_light:</p>
 <pre><code>package Cx
 
 CxPolicy[result] {
@@ -1279,7 +1280,7 @@ isTCPorUDP(&quot;TCP&quot;) = true
 isTCPorUDP(&quot;UDP&quot;) = true
 </code></pre>
 <h4 id="allowing_users_to_overwrite_query_data">Allowing users to overwrite query data<a class="headerlink" href="#allowing_users_to_overwrite_query_data" title="Permanent link">&para;</a></h4>
-<p>Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users has different datasets for multiple enviroments. This can be supported easy following some steps:</p>
+<p>Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:</p>
 <ol>
 <li>Create a <code>data.json</code> file on the same level as <code>query.rego</code>;</li>
 <li>Define <strong>ALL</strong> keys that can be overwritten with their default value;</li>
