@@ -26,9 +26,9 @@ is_last_tls(resource) {
 }
 
 prepare_issue(resource) = issue {
-	_ = resource.properties.siteConfig.minTlsVersion
-	not is_null(resource.properties.siteConfig.minTlsVersion)
-	resource.properties.siteConfig.minTlsVersion != "1.2"
+	common_lib.valid_key(resource, "properties")
+	common_lib.valid_key(resource.properties, "siteConfig")
+	common_lib.valid_key(resource.properties.siteConfig, "minTlsVersion")
 	issue := {
 		"issueType": "IncorrectValue",
 		"keyActualValue": "'minTlsVersion' is not 1.2",
