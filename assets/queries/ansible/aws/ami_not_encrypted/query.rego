@@ -9,7 +9,7 @@ CxPolicy[result] {
 	ec2Ami := task[modules[m]]
 	ansLib.checkState(ec2Ami)
 
-	object.get(ec2Ami.device_mapping, "encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(ec2Ami.device_mapping, "encrypted")
 
 	result := {
 		"documentId": id,
