@@ -2,7 +2,7 @@
   "id": "c62d3b92-9a11-4ffd-b7b7-6faaae83faed",
   "queryName": "AKS Dashboard Is Enabled",
   "severity": "LOW",
-  "category": "Insecure Configurations",
+  "category": "Best Practices",
   "descriptionText": "Azure Kubernetes Service should have disable kubernetes dashboard.",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile",
   "platform": "AzureResourceManager",
