@@ -19,7 +19,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s", [typeInfo.path]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type '%s' restricts access to RDP", [typeInfo.type]),
 		"keyActualValue": sprintf("resource with type '%s' does not restrict access to RDP", [typeInfo.type]),
 	}
