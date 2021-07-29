@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive2.json"
+  }
+]
