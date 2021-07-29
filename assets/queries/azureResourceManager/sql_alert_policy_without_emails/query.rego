@@ -10,6 +10,7 @@ CxPolicy[result] {
 
 	value.type == types[_]
 	properties := value.properties
+	lower(properties.state) == "enabled"
 
 	not commonLib.valid_key(properties, "emailAddresses")
 
@@ -30,6 +31,7 @@ CxPolicy[result] {
 
 	value.type == types[_]
 	properties := value.properties
+	lower(properties.state) == "enabled"
 
 	check_emails(properties.emailAddresses)
 
