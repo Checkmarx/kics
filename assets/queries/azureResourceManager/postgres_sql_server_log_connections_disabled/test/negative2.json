@@ -1,12 +1,16 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
   "resources": [
     {
+      "type": "Microsoft.DBforPostgreSQL/servers",
       "apiVersion": "2017-12-01",
       "kind": "",
       "location": "[resourceGroup().location]",
-      "name": "MyDBServerNeg1",
+      "name": "MyDBServer3",
       "properties": {
         "sslEnforcement": "Disabled",
         "version": "11",
@@ -23,21 +27,27 @@
         "isStateful": "false",
         "isExternal": "false"
       },
-      "type": "Microsoft.DBforPostgreSQL/servers",
+      "sku": {
+        "name": "S0",
+        "tier": "Basic",
+        "capacity": 1,
+        "family": "GeneralPurpose"
+      },
       "resources": [
-        {
-          "type": "configurations",
-          "apiVersion": "2017-12-01",
-          "dependsOn": [
-            "Microsoft.DBforPostgreSQL/servers/MyDBServer"
-          ],
-          "name": "log_connections",
-          "properties": {
-            "value": "on"
-          },
-          "location": "[resourceGroup().location]"
-        }
       ]
+    },
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
+      "apiVersion": "2017-12-01",
+      "name": "MyDBServer/log_connections",
+      "properties": {
+        "value": "on"
+      },
+      "dependsOn": [
+        "MyDBServer"
+      ],
+      "location": "[resourceGroup().location]"
     }
-  ]
+  ],
+  "outputs": {}
 }

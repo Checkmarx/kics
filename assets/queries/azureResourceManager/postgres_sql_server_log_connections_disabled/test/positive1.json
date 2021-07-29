@@ -1,9 +1,6 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {},
   "resources": [
     {
       "apiVersion": "2017-12-01",
@@ -38,49 +35,15 @@
           "type": "configurations",
           "apiVersion": "2017-12-01",
           "dependsOn": [
-            "Microsoft.DBforPostgreSQL/servers/MyDBServer"
+            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'MyDBServer1')]"
           ],
-          "name": "MyDBServerConfiguration",
+          "name": "log_connections",
           "properties": {
             "configurationSets": [
               {
                 "configurationSetType": "Microsoft.DBforPostgreSQL/servers/configurations/dbconfig",
                 "configurationSet": {
-                  "name": "dbconfig",
-                  "configurationParameters": [
-                    {
-                      "name": "data_directory",
-                      "value": "[parameters('dataDirectory')]"
-                    },
-                    {
-                      "name": "max_size",
-                      "value": "[parameters('maxSizeMB')]"
-                    },
-                    {
-                      "name": "min_size",
-                      "value": "[parameters('minSizeMB')]"
-                    },
-                    {
-                      "name": "page_size",
-                      "value": "[parameters('pageSizeMB')]"
-                    },
-                    {
-                      "name": "work_mem",
-                      "value": "[parameters('workMemMB')]"
-                    },
-                    {
-                      "name": "maintenance_work_mem",
-                      "value": "[parameters('maintenanceMemMB')]"
-                    },
-                    {
-                      "name": "checkpoint_segments",
-                      "value": "[parameters('checkpointSegments')]"
-                    },
-                    {
-                      "name": "checkpoint_completion_target",
-                      "value": "[parameters('checkpointCompletionTarget')]"
-                    }
-                  ]
+                  "name": "dbconfig"
                 }
               }
             ]
@@ -89,6 +52,5 @@
         }
       ]
     }
-  ],
-  "outputs": {}
+  ]
 }

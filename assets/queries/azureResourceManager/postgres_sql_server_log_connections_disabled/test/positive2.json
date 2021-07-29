@@ -38,7 +38,7 @@
           "type": "configurations",
           "apiVersion": "2017-12-01",
           "dependsOn": [
-            "Microsoft.DBforPostgreSQL/servers/MyDBServer"
+            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'MyDBServer2')]"
           ],
           "name": "log_connections",
           "properties": {
