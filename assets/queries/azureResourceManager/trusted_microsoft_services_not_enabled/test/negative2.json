@@ -30,7 +30,7 @@
               "action": "Allow"
             }
           ],
-          "defaultAction": "Allow"
+          "defaultAction": "Deny"
         }
       },
       "resources": [
