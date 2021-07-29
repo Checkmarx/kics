@@ -1,0 +1,30 @@
+name: validate-arm-samples
+
+on:
+  pull_request:
+    paths:
+      - "assets/queries/azureResourceManager/**/test/*.json"
+
+jobs:
+  lint-json-samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.x
+      - name: Installing json-spec
+        run: |
+          pip install json-spec
+          pip info json-spec
+          which json
+      - name: Running JSON lint
+        run: |
+          wget https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json
+          python3 -u ".github/scripts/samples-linters/validate-syntax.py" \
+            "assets/queries/azureResourceManager/**/test/*.json" \
+            --linter json \
+            --extra "validate --schema-file deploymentTemplate.json --document-file" \
+            --skip ".github/scripts/samples-linters/ignore-list/arm" -vv
