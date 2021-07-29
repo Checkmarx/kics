@@ -2,7 +2,7 @@
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
     "severity": "HIGH",
-    "line": 14,
+    "line": 31,
     "filename": "positive1.json"
   },
   {

@@ -7,13 +7,32 @@
   "functions": [],
   "resources": [
     {
-      "type": "Microsoft.Sql/servers/firewallRules",
+      "name": "sqlServer1",
+      "type": "Microsoft.Sql/servers",
       "apiVersion": "2021-02-01-preview",
-      "name": "sample/firewall",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "sqlServer1"
+      },
       "properties": {
-        "endIpAddress": "255.255.255.255",
-        "startIpAddress": "0.0.0.0"
-      }
+        "administratorLogin": "adminUsername",
+        "administratorLoginPassword": "adminPassword"
+      },
+      "resources": [
+        {
+          "type": "firewallRules",
+          "apiVersion": "2021-02-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "endIpAddress": "255.255.255.255",
+            "startIpAddress": "0.0.0.0"
+          }
+        }
+      ]
     }
   ],
   "outputs": {}
