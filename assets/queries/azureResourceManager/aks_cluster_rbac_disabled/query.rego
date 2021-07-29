@@ -1,11 +1,11 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resources[_]
 	resource.type == "Microsoft.ContainerService/managedClusters"
-	not commonLib.valid_key(resource.properties, "enableRBAC")
+	not common_lib.valid_key(resource.properties, "enableRBAC")
 
 	result := {
 		"documentId": input.document[i].id,
