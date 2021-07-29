@@ -6,7 +6,7 @@
     "resourceGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Name of resource group"
+        "description": "Name sof resource group"
       }
     }
   },
