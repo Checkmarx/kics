@@ -1,6 +1,6 @@
 ## Create a new Query
 
-The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, that can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
+The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, which can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
 
 ```bash
 go run ./cmd/console/main.go scan -p "pathToTestData" -d "pathToGenerateJson"
@@ -80,6 +80,8 @@ Now, focus on the content of each file:
 As a first step, it is important to be familiar with the libraries available (check them in `assets/libraries`) and the JSON structure (Rego input). Also, we need to study all the possible cases related to the vulnerability we want to verify before starting the implementation.
 
 For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute `is_multi_region_trail` of the resource `aws_cloudtrail`. Since this attribute is optional and false by default, we have two cases: (1) `is_multi_region_trail` is undefined and (2) `is_multi_region_trail` is set to false. Observe the following implementation as an example and check the Guidelines below.
+
+:rotating_light: **Make sure you use ```package Cx```. If you give another name, the query will not load.** :rotating_light:
 
 ```
 package Cx
@@ -355,7 +357,7 @@ isTCPorUDP("UDP") = true
 ```
 
 #### Allowing users to overwrite query data
-Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users has different datasets for multiple enviroments. This can be supported easy following some steps:
+Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:
 
 1. Create a `data.json` file on the same level as `query.rego`;
 2. Define **ALL** keys that can be overwritten with their default value;
