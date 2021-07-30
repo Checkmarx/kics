@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive2.json"
+  }
+]
