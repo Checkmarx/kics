@@ -1,12 +1,13 @@
 package Cx
 
+publicOptions := {"Container", "Blob"}
+
 CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts/blobServices/containers"
 
-	publicOptions := {"Container", "Blob"}
 	value.properties.publicAccess == publicOptions[o]
 
 	result := {
@@ -27,7 +28,6 @@ CxPolicy[result] {
 	[childPath, childValue] := walk(value.resources)
 
 	childValue.type == "containers"
-	publicOptions := {"Container", "Blob"}
 	childValue.properties.publicAccess == publicOptions[o]
 
 	result := {
@@ -48,7 +48,6 @@ CxPolicy[result] {
 	[childPath, childValue] := walk(value.resources)
 
 	childValue.type == "blobServices/containers"
-	publicOptions := {"Container", "Blob"}
 	childValue.properties.publicAccess == publicOptions[o]
 
 	result := {
