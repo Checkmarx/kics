@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "MEDIUM",
+    "line": 48,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "MEDIUM",
+    "line": 43,
+    "filename": "positive2.json"
+  }
+]
