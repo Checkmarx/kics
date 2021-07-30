@@ -992,6 +992,27 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Storage Blob Service Container With Public Access<br/><sup><sub>a0ab985d-660b-41f7-ac81-70957ee8e627</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Storage Blob Service Container should not publicly accessible</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Website with Client Certificate Auth Disabled<br/><sup><sub>92302b47-b0cc-46cb-a28f-5610ecda140b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>'Microsoft.Web/sites' should have client certificate authentication enabled</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Trusted Microsoft Services Not Enabled<br/><sup><sub>e25b56cd-a4d6-498f-ab92-e6296a082097</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Trusted Microsoft Services should be enabled for Storage Account access</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>MySQL Server SSL Enforcement Disabled<br/><sup><sub>90120147-f2e7-4fda-bb21-6fa9109afd63</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -1004,6 +1025,13 @@
 <td>Access Control</td>
 <td>Microsoft.ContainerService/managedClusters should have enableRBAC set to true</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Role Definitions Allow Custom Subscription Role Creation<br/><sup><sub>8fa9ceea-881f-4ef0-b0b8-728f589699a7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role Definitions should not allow custom subscription role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions?tabs=json#permission-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AKS Cluster Network Policy Not Configured<br/><sup><sub>25c0228e-4444-459b-a2df-93c7df40b7ed</sub></sup></td>
@@ -1020,6 +1048,13 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>PostgresSQL Database Server Connection Throttling Disabled<br/><sup><sub>a6d774b6-d9ea-4bf4-8433-217bf15d2fb8</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Networking and Firewall</td>
+<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'connection_throttling' property set to 'on'</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Standard Price Is Not Selected<br/><sup><sub>2081c7d6-2851-4cce-bda5-cb49d462da42</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
@@ -1027,11 +1062,39 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>AKS Logging To Azure Monitoring Is Disabled<br/><sup><sub>9b09dee1-f09b-4013-91d2-158fa4695f4b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Azure Kubernetes Service should have logging to Azure Monitoring enabled.</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>AKS Dashboard Is Enabled<br/><sup><sub>c62d3b92-9a11-4ffd-b7b7-6faaae83faed</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>Azure Kubernetes Service should have the Kubernetes dashboard disabled.</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusteraddonprofile">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Phone Number Not Set For Security Contacts<br/><sup><sub>3e9fcc67-1f64-405f-b2f9-0a6be17598f0</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Best Practices</td>
 <td>Microsoft.Security securityContacts should have a phone number defined</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>App Service Authentication Is Not Set<br/><sup><sub>83130a07-235b-4a80-918b-a370e53f0bd9</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Access Control</td>
+<td>Azure App Service should have App Service Authentication set</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites/config-web?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQL Alert Policy Without Emails<br/><sup><sub>89b79fe5-49bd-4d39-84ce-55f5fc6f7764</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>SQL Database Server should contain emails to be notified in the event of a Security Alert</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
