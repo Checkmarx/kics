@@ -15,7 +15,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.name={{%s}}.disabledAlerts", [common_lib.concat_path(path), value.name]),
-		"issueType": "RedundantAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.name=%s.disabledAlerts' should not have values defined", [common_lib.concat_path(path), value.name]),
 		"keyActualValue": sprintf("'%s.name=%s.disabledAlerts' has values defined", [common_lib.concat_path(path), value.name]),
 	}
