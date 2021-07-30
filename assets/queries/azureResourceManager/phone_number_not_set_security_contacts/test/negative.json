@@ -2,7 +2,14 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "2.0.0.0",
   "apiProfile": "2019-03-01-hybrid",
-  "parameters": {},
+  "parameters": {
+    "resourceGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name sof resource group"
+      }
+    }
+  },
   "variables": {},
   "functions": [],
   "resources": [
