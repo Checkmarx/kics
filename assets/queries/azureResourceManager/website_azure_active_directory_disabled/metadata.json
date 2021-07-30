@@ -1,0 +1,11 @@
+{
+  "id": "e9c133e5-c2dd-4b7b-8fff-40f2de367b56",
+  "queryName": "Website Azure Active Directory Disabled",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "WebApp should have Azure Active Directory  enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true'",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/2019-08-01/sites?tabs=json#ManagedServiceIdentity",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "f50ec4cb"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "9073f073-5d60-4b46-b569-0d6baa80ed95",
+  "queryName": "Storage Account Allows Default Network Access",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "'Microsoft.Storage/storageAccounts' should force the use of HTTPS",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#storageaccountpropertiescreateparameters-object",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "6ae0507e"
+}
