@@ -1,13 +1,20 @@
 package Cx
 
+import data.generic.common as common_lib
+
+resourceTypes := ["Microsoft.KeyVault/vaults/secrets", "secrets"]
+
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.KeyVault/vaults/secrets"
-	object.get(resource.properties, "attributes", "undefined") == "undefined"
+	doc := input.document[i]
+
+	[path, value] := walk(doc)
+
+	value.type == resourceTypes[_]
+	not common_lib.valid_key(value.properties, "attributes")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.type={{Microsoft.KeyVault/vaults/secrets}}.properties", [resource.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Security/securityContacts' has 'attributes.exp' property id defined",
 		"keyActualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'attributes' property defined",
@@ -15,13 +22,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[_]
-	resource.type == "Microsoft.KeyVault/vaults/secrets"
-	object.get(resource.properties.attributes, "exp", "undefined") == "undefined"
+	doc := input.document[i]
+
+	[path, value] := walk(doc)
+
+	value.type == resourceTypes[_]
+	not common_lib.valid_key(value.properties.attributes, "exp")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.name={{%s}}.type={{Microsoft.KeyVault/vaults/secrets}}.attributes", [resource.name]),
+		"searchKey": sprintf("%s.name={{%s}}.properties.attributes", [common_lib.concat_path(path), value.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Security/securityContacts' has 'attributes.exp' property id defined",
 		"keyActualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'attributes.exp' property defined",

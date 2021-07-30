@@ -7,7 +7,42 @@
   "functions": [],
   "resources": [
     {
-      "name": "sample/secretid",
+      "name": "keyVault1",
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2016-10-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "keyVault1"
+      },
+      "properties": {
+        "enabledForDeployment": true,
+        "enabledForTemplateDeployment": true,
+        "enabledForDiskEncryption": true,
+        "tenantId": "xx0xxx10-00x0-00x0-0x01-x0x0x01xx100",
+        "accessPolicies": [
+          {
+            "tenantId": "xx0xxx10-00x0-00x0-0x01-x0x0x01xx100",
+            "objectId": "objectId",
+            "permissions": {
+              "keys": [
+                "Get"
+              ],
+              "secrets": [
+                "List",
+                "Get",
+                "Set"
+              ]
+            }
+          }
+        ],
+        "sku": {
+          "name": "standard",
+          "family": "A"
+        }
+      }
+    },
+    {
+      "name": "keyVault1/secretid1",
       "type": "Microsoft.KeyVault/vaults/secrets",
       "apiVersion": "2019-09-01",
       "tags": {},
