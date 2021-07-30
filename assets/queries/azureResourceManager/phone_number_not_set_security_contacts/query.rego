@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	resource := input.document[i].resources[_]
 	resource.type == "Microsoft.Security/securityContacts"
-	object.get(resource.properties, "phone", "undefined") == "undefined"
+	not commonLib.valid_key(resource.properties, "phone")
 
 	result := {
 		"documentId": input.document[i].id,
