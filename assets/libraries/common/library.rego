@@ -240,3 +240,8 @@ compareArrays(arrayOne, arrayTwo) {
 } else = false {
 	true
 }
+
+valid_key(obj, key) {
+	_ = obj[key]
+	not is_null(obj[key])
+}

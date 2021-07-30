@@ -95,7 +95,7 @@ pipeline {
                 script {
                     docker.image('checkmarx/kics:latest-alpine').inside("--entrypoint=''") {
                       unstash 'source'
-                      sh('/app/bin/kics -p \$(pwd) -q /app/bin/assets/queries --ci --report-formats html -o \$(pwd)')
+                      sh('/app/bin/kics scan -p \$(pwd) -q /app/bin/assets/queries --ci --report-formats html -o \$(pwd)')
                       archiveArtifacts(artifacts: 'results.html', fingerprint: true)
                       publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '.', reportFiles: 'results.html', reportName: 'KICS Results', reportTitles: ''])
                     }
