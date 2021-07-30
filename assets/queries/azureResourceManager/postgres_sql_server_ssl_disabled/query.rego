@@ -21,7 +21,7 @@ CxPolicy[result] {
 	resource := input.document[i].resources[_]
 	resource.type == "Microsoft.DBforPostgreSQL/servers"
 	name := resource.name
-	resource.properties.sslEnforcement == "Disabled"
+	lower(resource.properties.sslEnforcement) == "disabled"
 
 	result := {
 		"documentId": input.document[i].id,
