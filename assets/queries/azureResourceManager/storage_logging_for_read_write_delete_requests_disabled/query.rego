@@ -28,13 +28,8 @@ CxPolicy[result] {
 	}
 }
 
-valid_key(obj, key) {
-	_ = obj[key]
-	not is_null(obj[key])
-}
-
 actual_issue(obj, key) = issue {
-	not valid_key(obj, key)
+	not common_lib.valid_key(obj, key)
 	issue := {"msg": "missing", "type": "MissingAttribute"}
 } else = issue {
 	obj[key] == false
