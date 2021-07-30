@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
 	"github.com/getsentry/sentry-go"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
@@ -128,12 +129,14 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		return list, nil
 	case *hclsyntax.ObjectConsExpr:
 		return c.objectConsExpr(value)
+	case *hclsyntax.FunctionCallExpr:
+		return c.evalFunction(expr)
 	default:
 		// try to evaluate with variables
 		valueConverted, _ := expr.Value(&hcl.EvalContext{
 			Variables: inputVarMap,
 		})
-		if !valueConverted.Type().HasDynamicTypes() {
+		if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
 			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
 		}
 		return c.wrapExpr(expr)
@@ -273,4 +276,56 @@ func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) {
 		log.Trace().Msgf("Variable ${%s} value not found", expression)
 	}
 	return "${" + expression + "}", nil
+}
+
+func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, error) {
+	expressionEvaluated, err := expression.Value(&hcl.EvalContext{
+		Variables: inputVarMap,
+		Functions: functions.TerraformFuncs,
+	})
+	if err != nil {
+		for _, expressionError := range err {
+			if expressionError.Summary == "Unknown variable" {
+				jsonPath := c.rangeSource(expressionError.Expression.Range())
+				rootKey := strings.Split(jsonPath, ".")[0]
+				if strings.Contains(jsonPath, ".") {
+					jsonCtyValue, convertErr := createEntryInputVar(strings.Split(jsonPath, ".")[1:], jsonPath)
+					if convertErr != nil {
+						return c.wrapExpr(expression)
+					}
+					inputVarMap[rootKey] = jsonCtyValue
+				} else {
+					inputVarMap[rootKey] = cty.StringVal(jsonPath)
+				}
+			}
+		}
+		expressionEvaluated, err = expression.Value(&hcl.EvalContext{
+			Variables: inputVarMap,
+			Functions: functions.TerraformFuncs,
+		})
+		if err != nil {
+			return c.wrapExpr(expression)
+		}
+	}
+	return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil
+}
+
+func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) {
+	mapJSON := "{"
+	closeMap := "}"
+	for idx, key := range path {
+		if idx+1 < len(path) {
+			mapJSON += fmt.Sprintf("\"%s\":{", key)
+			closeMap += "}"
+		} else {
+			mapJSON += fmt.Sprintf("\"%s\": \"%s\"", key, defaultValue)
+		}
+	}
+	mapJSON += closeMap
+	jsonType, _ := ctyjson.ImpliedType([]byte(mapJSON))
+	value, err := ctyjson.Unmarshal([]byte(mapJSON), jsonType)
+	if err != nil {
+		return cty.NilVal, err
+	}
+	return value, nil
 }
