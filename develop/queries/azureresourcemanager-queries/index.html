@@ -1034,13 +1034,6 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Network Security Group With Unrestricted Access To SSH<br/><sup><sub>2ade1579-4b2c-4590-bebb-f99bf597f612</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Port 22 (SSH) is exposed to the Internet</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>PostgreSQL Database Server SSL Disabled<br/><sup><sub>bf500309-da53-4dd3-bcf7-95f7974545a5</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
@@ -1053,6 +1046,13 @@
 <td>Networking and Firewall</td>
 <td>'Microsoft.DBforMySQL/servers' should enforce SSL</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network Security Group With Unrestricted Access To SSH<br/><sup><sub>2ade1579-4b2c-4590-bebb-f99bf597f612</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Port 22 (SSH) is exposed to the Internet</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AKS Cluster RBAC Disabled<br/><sup><sub>9307a2ed-35c2-413d-94de-a1a0682c2158</sub></sup></td>
@@ -1172,6 +1172,13 @@
 <td>Secret Management</td>
 <td>Secure parameters should not have hardcoded default value</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases#secure-parameters-cant-have-hardcoded-default">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Website Azure Active Directory Disabled<br/><sup><sub>e9c133e5-c2dd-4b7b-8fff-40f2de367b56</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>WebApp should have Azure Active Directory  enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true'</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/2019-08-01/sites?tabs=json#ManagedServiceIdentity">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AKS Dashboard Is Enabled<br/><sup><sub>c62d3b92-9a11-4ffd-b7b7-6faaae83faed</sub></sup></td>
