@@ -16,5 +16,11 @@
     "severity": "HIGH",
     "line": 18,
     "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Storage Account Allows Unsecure Transfer",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive3.json"
   }
 ]
