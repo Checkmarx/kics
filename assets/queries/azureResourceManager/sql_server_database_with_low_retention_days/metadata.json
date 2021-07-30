@@ -1,6 +1,6 @@
 {
   "id": "c09cdac2-7670-458a-bf6c-efad6880973a",
-  "queryName": "SQL Server Database With Low Retention Days",
+  "queryName": "SQL Server Database With Unrecommended Retention Days",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days",
