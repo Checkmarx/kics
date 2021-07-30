@@ -16,5 +16,11 @@
     "severity": "MEDIUM",
     "line": 44,
     "fileName": "positive3.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive4.json"
   }
 ]

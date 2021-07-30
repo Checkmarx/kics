@@ -40,7 +40,7 @@
           "dependsOn": [
             "Microsoft.DBforPostgreSQL/servers/MyDBServer"
           ],
-          "name": "MyDBServerConfiguration",
+          "name": "log_checkpoints",
           "properties": {
             "configurationSets": [
               {
