@@ -10,6 +10,24 @@ CxPolicy[result] {
 
 	value.type == types[t]
 
+	fields := {"enabled", "retentionPolicy"}
+	not common_lib.valid_key(value.properties, fields[x])
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("resources.type={{%s}}.properties", [types[t]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' has '%s' property defined", [fields[x]]),
+		"keyActualValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have '%s' property defined", [fields[x]]),
+	}
+}
+
+CxPolicy[result] {
+	doc := input.document[i]
+	[path, value] = walk(doc)
+
+	value.type == types[t]
+
 	value.properties.enabled == true
 
 	fields := {"enabled", "days"}
@@ -17,7 +35,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("resources.type={{%s}}.properties", [types[t]]),
+		"searchKey": sprintf("resources.type={{%s}}.properties.retentionPolicy", [types[t]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' has '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have '%s' property defined", [fields[x]]),
