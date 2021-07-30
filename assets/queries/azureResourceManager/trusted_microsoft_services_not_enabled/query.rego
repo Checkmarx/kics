@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
 
-	value.properties.networkAcls.defaultAction == "Deny"
+	value.properties.networkAcls.defaultAction != "Allow"
 	not contains_azure_service(value.properties.networkAcls.bypass)
 
 	result := {
@@ -20,6 +22,5 @@ CxPolicy[result] {
 
 contains_azure_service(bypass) {
 	values := split(bypass, ",")
-	some j
-	values[j] == "AzureServices"
+	common_lib.inArray(values, "AzureServices")
 }
