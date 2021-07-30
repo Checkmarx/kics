@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 30,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive2.json"
+  }
+]
