@@ -11,10 +11,10 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == dbTypes[_]
-	childrenArr := arm_lib.get_children(doc, value)
+	childrenArr := arm_lib.get_children(doc, value, path)
 
 	count([x |
-		child := childrenArr[_]
+		child := childrenArr[_].value
 		child.type == types[_]
 		lower(child.properties.state) == "enabled"
 		x := child
@@ -23,8 +23,8 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.name=%s", [common_lib.concat_path(path), value.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource '%s' has an 'auditingsettings' resource enabled", [value.name]),
-		"keyActualValue": sprintf("resource '%s' doesn't have an 'auditingsettings' resource enabled", [value.name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("resource '%s' has an enabled 'auditingsettings' resource", [value.name]),
+		"keyActualValue": sprintf("resource '%s' is missing an enabled 'auditingsettings' resource", [value.name]),
 	}
 }
