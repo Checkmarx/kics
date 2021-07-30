@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.json"
+  }
+]
