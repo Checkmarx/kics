@@ -11,6 +11,10 @@ import (
 type Parser struct {
 }
 
+// var (
+// 	jsonKey = regexp.MustCompile(`"(.*?)"`)
+// )
+
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil
@@ -26,7 +30,10 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		return r, err
 	}
 
-	return []model.Document{r}, errors.Wrap(err, "failed to unmarshall json content")
+	jLine := initiateJSONLine(fileContent)
+	dd := jLine.setLineInfo(r)
+
+	return []model.Document{dd}, errors.Wrap(err, "failed to unmarshall json content")
 }
 
 // SupportedExtensions returns extensions supported by this parser, which is json extension

@@ -1,0 +1,207 @@
+{
+	"document": [
+		{
+			"resource": {
+				"aws_api_gateway_deployment": {
+					"positive1": {
+						"rest_api_id": "some rest api id",
+						"stage_name": "some name",
+						"default": [
+							{
+								"id": "name1",
+								"attribute": "a"
+							},
+							{
+								"id": "name2",
+								"attribute": "a,b"
+							},
+							{
+								"id": "name3",
+								"attribute": "d"
+							}
+						],
+						"tags": {
+							"project": "ProjectName",
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 18
+								},
+								"_kics_project": {
+									"_kics_line": 19
+								}
+							}
+						},
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 1
+							},
+							"_kics_default": {
+								"_kics_line": 4,
+								"_kics_arr": [
+									{
+										"_kics__default": {
+											"_kics_line": 5
+										},
+										"_kics_attribute": {
+											"_kics_line": 7
+										},
+										"_kics_id": {
+											"_kics_line": 6
+										}
+									},
+									{
+										"_kics__default": {
+											"_kics_line": 9
+										},
+										"_kics_attribute": {
+											"_kics_line": 11
+										},
+										"_kics_id": {
+											"_kics_line": 10
+										}
+									},
+									{
+										"_kics__default": {
+											"_kics_line": 13
+										},
+										"_kics_attribute": {
+											"_kics_line": 15
+										},
+										"_kics_id": {
+											"_kics_line": 14
+										}
+									}
+								]
+							},
+							"_kics_rest_api_id": {
+								"_kics_line": 2
+							},
+							"_kics_stage_name": {
+								"_kics_line": 3
+							},
+							"_kics_tags": {
+								"_kics_line": 18
+							}
+						}
+					},
+					"positive2": {
+						"rest_api_id": "some rest api id",
+						"stage_name": "development",
+						"default": [
+							{
+								"id": "name1",
+								"attribute": "a"
+							},
+							{
+								"id": "name2",
+								"attribute": "a,b"
+							},
+							{
+								"id": "name3",
+								"attribute": "d"
+							}
+						],
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 23
+							},
+							"_kics_default": {
+								"_kics_line": 26,
+								"_kics_arr": [
+									{
+										"_kics__default": {
+											"_kics_line": 27
+										},
+										"_kics_attribute": {
+											"_kics_line": 29
+										},
+										"_kics_id": {
+											"_kics_line": 28
+										}
+									},
+									{
+										"_kics__default": {
+											"_kics_line": 31
+										},
+										"_kics_attribute": {
+											"_kics_line": 33
+										},
+										"_kics_id": {
+											"_kics_line": 32
+										}
+									},
+									{
+										"_kics__default": {
+											"_kics_line": 35
+										},
+										"_kics_attribute": {
+											"_kics_line": 37
+										},
+										"_kics_id": {
+											"_kics_line": 36
+										}
+									}
+								]
+							},
+							"_kics_rest_api_id": {
+								"_kics_line": 24
+							},
+							"_kics_stage_name": {
+								"_kics_line": 25
+							}
+						}
+					}
+				},
+				"aws_api_gateway_usage_plan": {
+					"positive3": {
+						"product_code": "MYCODE",
+						"api_stages": {
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 47
+								},
+								"_kics_api_id": {
+									"_kics_line": 48
+								},
+								"_kics_stage": {
+									"_kics_line": 49
+								}
+							},
+							"api_id": "another id",
+							"stage": "development"
+						},
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 42
+							},
+							"_kics_api_stages": {
+								"_kics_line": 47
+							},
+							"_kics_description": {
+								"_kics_line": 44
+							},
+							"_kics_name": {
+								"_kics_line": 43
+							},
+							"_kics_product_code": {
+								"_kics_line": 45
+							}
+						},
+						"name": "my-usage-plan",
+						"description": "my description"
+					}
+				}
+			},
+			"_kics_lines": {
+				"_kics__default": {
+					"_kics_line": 0
+				},
+				"_kics_resource": {
+					"_kics_line": 42
+				}
+			},
+			"id": "28bc957d-2c71-4be2-a15e-3e01c3b6aad6",
+			"file": "/home/reigota/kics/assets/queries/terraform/aws/api_gateway_deployment_without_api_gateway_usage_plan_associated/test/positive.tf"
+		}
+	]
+}

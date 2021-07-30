@@ -1,0 +1,127 @@
+{
+	"document": [
+		{
+			"id": "75088dc8-df8a-4c88-9f39-543ef7efdc40",
+			"file": "/home/reigota/kics/assets/queries/k8s/cluster_admin_role_binding_with_super_user_permissions/test/positive.yaml",
+			"_kics_lines": {
+				"_kics__default": {
+					"_kics_line": 0
+				},
+				"_kics_apiVersion": {
+					"_kics_line": 2
+				},
+				"_kics_kind": {
+					"_kics_line": 1
+				},
+				"_kics_metadata": {
+					"_kics_line": 3
+				},
+				"_kics_roleRef": {
+					"_kics_line": 12
+				},
+				"_kics_subjects": {
+					"_kics_arr": [
+						{
+							"_kics__default": {
+								"_kics_line": 5
+							},
+							"_kics_kind": {
+								"_kics_line": 6
+							},
+							"_kics_name": {
+								"_kics_line": 7
+							},
+							"_kics_namespace": {
+								"_kics_line": 8
+							}
+						},
+						{
+							"_kics__default": {
+								"_kics_line": 5
+							},
+							"_kics_kind": {
+								"_kics_line": 9
+							},
+							"_kics_name": {
+								"_kics_line": 10
+							},
+							"_kics_namespace": {
+								"_kics_line": 11
+							}
+						}
+					],
+					"_kics_line": 5
+				}
+			},
+			"apiVersion": "rbac.authorization.k8s.io/v1beta1",
+			"kind": "ClusterRoleBinding",
+			"metadata": {
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 3
+					},
+					"_kics_name": {
+						"_kics_line": 4
+					}
+				},
+				"name": "tiller-clusterrolebinding"
+			},
+			"roleRef": {
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 12
+					},
+					"_kics_apiGroup": {
+						"_kics_line": 15
+					},
+					"_kics_kind": {
+						"_kics_line": 13
+					},
+					"_kics_name": {
+						"_kics_line": 14
+					},
+					"_kics_test": {
+						"_kics_arr": [
+							{
+								"_kics__default": {
+									"_kics_line": 16
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 16
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 16
+								}
+							}
+						],
+						"_kics_line": 16
+					}
+				},
+				"apiGroup": "",
+				"kind": "ClusterRole",
+				"name": "cluster-admin",
+				"test": [
+					{},
+					{},
+					{}
+				]
+			},
+			"subjects": [
+				{
+					"kind": "ServiceAccount",
+					"name": "tiller",
+					"namespace": "kube-system"
+				},
+				{
+					"kind": "ServiceAccount2",
+					"name": "tiller2",
+					"namespace": "kube-system2"
+				}
+			]
+		}
+	]
+}

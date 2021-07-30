@@ -26,7 +26,7 @@ type Command struct {
 	Flags     []string
 	Value     []string
 	Original  string
-	StartLine int
+	StartLine int `json:"_kics_line"`
 	EndLine   int
 	JSON      bool
 }

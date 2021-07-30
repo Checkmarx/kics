@@ -114,6 +114,7 @@ type Vulnerability struct {
 	VulnLines        []CodeLine `json:"vulnLines"`
 	IssueType        IssueType  `db:"issue_type" json:"issueType"`
 	SearchKey        string     `db:"search_key" json:"searchKey"`
+	SearchLine       int        `db:"search_line" json:"searchLine"`
 	SearchValue      string     `db:"search_value" json:"searchValue"`
 	KeyExpectedValue string     `db:"key_expected_value" json:"expectedValue"`
 	KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
@@ -150,6 +151,18 @@ func (e Extensions) Include(ext string) bool {
 	_, b := e[ext]
 
 	return b
+}
+
+type interfVis interface{}
+
+type LineObject struct {
+	Line int                     `json:"_kics_line"`
+	Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`
+}
+
+type LineObjectNoShow struct {
+	Line int                     `json:"-"`
+	Arr  []map[string]LineObject `json:"-"`
 }
 
 // MatchedFilesRegex returns the regex rule to identify if an extension is supported or not

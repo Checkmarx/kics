@@ -1,5 +1,40 @@
 package generic.common
 
+###### Get Line By json structure ###################
+## For Helm searchLine is unused
+get_search_line(obj, key, idx) = line {
+	idx < 0
+	line = get_line(obj, key, idx)
+} else = line {
+	idx >= 0
+	line = get_arr_line(obj, parse_key(key), idx)
+} else = -1 {
+	true
+}
+
+get_line(obj, key, idx) = line {
+	key == ""
+	line = obj._kics_lines._kics__default._kics_line
+} else = line {
+	line = obj._kics_lines[sprintf("_kics_%s", [key[0]])]._kics_line
+}
+
+get_arr_line(obj, key, idx) = line {
+	key[1] == ""
+	line = obj._kics_lines[sprintf("_kics_%s", [key[0]])]._kics_arr[idx]._kics__default._kics_line
+} else = line {
+	line = obj._kics_lines[sprintf("_kics_%s", [key[0]])]._kics_arr[idx][sprintf("_kics_%s", [key[1]])]._kics_line
+}
+
+parse_key(key) = key_name {
+	count(key) == 1
+	key_name := [key[0], ""]
+} else = key {
+	true
+}
+
+################################################################
+
 concat_path(path) = concatenated {
 	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
 }

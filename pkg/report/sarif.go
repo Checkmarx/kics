@@ -24,5 +24,5 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 		body = sarifReport
 	}
 
-	return ExportJSONReport(path, filename, body)
+	return ExportJSONReport(path, filename, body, false)
 }

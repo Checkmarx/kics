@@ -18,8 +18,7 @@ type defaultDetectLine struct {
 // DetectLine searches vulnerability line if kindDetectLine is not in detectors
 func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
-	text := strings.ReplaceAll(file.OriginalData, "\r", "")
-	lines := strings.Split(text, "\n")
+	lines := d.SplitLines(file.OriginalData)
 	var isBreak bool
 	foundAtLeastOne := false
 	currentLine := 0
@@ -53,4 +52,9 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		Line:      undetectedVulnerabilityLine,
 		VulnLines: []model.CodeLine{},
 	}
+}
+
+func (d defaultDetectLine) SplitLines(content string) []string {
+	text := strings.ReplaceAll(content, "\r", "")
+	return strings.Split(text, "\n")
 }

@@ -62,6 +62,7 @@ var (
 	reportFormats     []string
 	types             []string
 	queryExecTimeout  int
+	lineInfoPayload   bool
 )
 
 const (
@@ -85,6 +86,7 @@ const (
 	pathFlagShorthand       = "p"
 	payloadPathFlag         = "payload-path"
 	payloadPathShorthand    = "d"
+	lineInfoPayloadFlag     = "line-payload"
 	previewLinesFlag        = "preview-lines"
 	queriesPathCmdName      = "queries-path"
 	queriesPathShorthand    = "q"
@@ -338,6 +340,10 @@ func initScanFlags(scanCmd *cobra.Command) {
 		minimalUIFlag,
 		false,
 		"simplified version of CLI output")
+	scanCmd.Flags().BoolVar(&lineInfoPayload,
+		lineInfoPayloadFlag,
+		false,
+		"prints line information on payload file (only when payload flag is given)")
 	scanCmd.Flags().StringSliceVarP(&types,
 		typeFlag, typeShorthand,
 		[]string{""},
@@ -673,7 +679,7 @@ func resolveOutputs(
 		return err
 	}
 	if payloadPath != "" {
-		if err := report.ExportJSONReport(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents); err != nil {
+		if err := report.ExportJSONReport(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, lineInfoPayload); err != nil {
 			return err
 		}
 	}

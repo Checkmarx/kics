@@ -1,0 +1,210 @@
+{
+	"document": [
+		{
+			"test": [
+				"this is a test",
+				"this is a test 2"
+			],
+			"paths": {
+				"/": {
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 12
+						},
+						"_kics_get": {
+							"_kics_line": 13
+						}
+					},
+					"get": {
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 13
+							},
+							"_kics_operationId": {
+								"_kics_line": 25
+							},
+							"_kics_parameters": {
+								"_kics_line": 14,
+								"_kics_arr": [
+									{
+										"_kics__default": {
+											"_kics_line": 14
+										},
+										"_kics_description": {
+											"_kics_line": 18
+										},
+										"_kics_in": {
+											"_kics_line": 17
+										},
+										"_kics_name": {
+											"_kics_line": 16
+										},
+										"_kics_required": {
+											"_kics_line": 19
+										},
+										"_kics_schema": {
+											"_kics_line": 20
+										}
+									}
+								]
+							},
+							"_kics_responses": {
+								"_kics_line": 27
+							},
+							"_kics_summary": {
+								"_kics_line": 26
+							}
+						},
+						"operationId": "listVersionsv2",
+						"parameters": [
+							{
+								"description": "max records to return",
+								"in": "body",
+								"name": "limit2",
+								"required": true,
+								"schema": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 20
+										},
+										"_kics_type": {
+											"_kics_line": 21
+										}
+									},
+									"type": "integer"
+								}
+							}
+						],
+						"responses": {
+							"200": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 28
+									},
+									"_kics_description": {
+										"_kics_line": 29
+									}
+								},
+								"description": "200 response"
+							},
+							"_kics_lines": {
+								"_kics_200": {
+									"_kics_line": 28
+								},
+								"_kics__default": {
+									"_kics_line": 27
+								}
+							}
+						},
+						"summary": "List API versions"
+					}
+				},
+				"_kics_lines": {
+					"_kics_/": {
+						"_kics_line": 12
+					},
+					"_kics__default": {
+						"_kics_line": 11
+					}
+				}
+			},
+			"parameters": {
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 35
+					},
+					"_kics_limitParam": {
+						"_kics_line": 36
+					}
+				},
+				"limitParam": {
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 36
+						},
+						"_kics_description": {
+							"_kics_line": 39
+						},
+						"_kics_in": {
+							"_kics_line": 38
+						},
+						"_kics_name": {
+							"_kics_line": 37
+						},
+						"_kics_required": {
+							"_kics_line": 40
+						},
+						"_kics_schema": {
+							"_kics_line": 41
+						}
+					},
+					"description": "max records to return",
+					"in": "body",
+					"name": "limit",
+					"required": true,
+					"schema": {
+						"_kics_lines": {
+							"_kics__default": {
+								"_kics_line": 41
+							},
+							"_kics_type": {
+								"_kics_line": 42
+							}
+						},
+						"type": "integer"
+					}
+				}
+			},
+			"_kics_lines": {
+				"_kics__default": {
+					"_kics_line": 0
+				},
+				"_kics_info": {
+					"_kics_line": 3
+				},
+				"_kics_parameters": {
+					"_kics_line": 35
+				},
+				"_kics_paths": {
+					"_kics_line": 11
+				},
+				"_kics_swagger": {
+					"_kics_line": 2
+				},
+				"_kics_test": {
+					"_kics_line": 7,
+					"_kics_arr": [
+						{
+							"_kics__default": {
+								"_kics_line": 8
+							}
+						},
+						{
+							"_kics__default": {
+								"_kics_line": 10
+							}
+						}
+					]
+				}
+			},
+			"id": "1bc99976-dcf2-401e-8be3-3c6fbcdb7423",
+			"file": "/home/reigota/kics/assets/queries/openAPI/2.0/body_parameter_with_wrong_property/test/negative1.json",
+			"swagger": "2.0",
+			"info": {
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 3
+					},
+					"_kics_title": {
+						"_kics_line": 4
+					},
+					"_kics_version": {
+						"_kics_line": 5
+					}
+				},
+				"title": "Simple API Overview",
+				"version": "1.0.0"
+			}
+		}
+	]
+}
