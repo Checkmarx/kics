@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Wrong Log Profile Category",
+    "queryName": "Log Profile Incorrect Category",
     "severity": "MEDIUM",
     "line": 21
   }
