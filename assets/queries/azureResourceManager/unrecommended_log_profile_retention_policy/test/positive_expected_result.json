@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "Not Recommended Log Profile Retention Policy",
+    "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "MEDIUM",
     "line": 26,
     "fileName": "positive1.json"
   },
   {
-    "queryName": "Not Recommended Log Profile Retention Policy",
+    "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "MEDIUM",
     "line": 25,
     "fileName": "positive2.json"
   },
   {
-    "queryName": "Not Recommended Log Profile Retention Policy",
+    "queryName": "Unrecommended Log Profile Retention Policy",
     "severity": "MEDIUM",
     "line": 26,
     "fileName": "positive2.json"
