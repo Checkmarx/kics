@@ -8,6 +8,9 @@ get_sg_info(value) = typeInfo {
 } else = typeInfo {
 	value.type == "Microsoft.Network/networkSecurityGroups/securityRules"
 	typeInfo := {"type": value.type, "properties": value.properties, "path": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties"}
+} else = typeInfo {
+	value.type == "securityRules"
+	typeInfo := {"type": value.type, "properties": value.properties, "path": "resources.type={{securityRules}}.properties"}
 }
 
 # checks if source address prefix is open to the Internet
