@@ -22,8 +22,7 @@ CxPolicy[result] {
 
 	value.type == "microsoft.insights/logprofiles"
 
-	days := value.properties.retentionPolicy.days
-	any([days <= 365, days == 0])
+	value.properties.retentionPolicy.days <= 365
 
 	result := {
 		"documentId": input.document[i].id,
