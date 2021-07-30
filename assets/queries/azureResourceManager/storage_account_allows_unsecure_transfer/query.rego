@@ -27,8 +27,9 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
-	not value.properties.supportsHttpsTrafficOnly
-	skValue := is_undefined(value)
+	to_number(split(value.apiVersion, "-")[0]) >= 2019
+
+	value.properties.supportsHttpsTrafficOnly == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,9 +41,9 @@ CxPolicy[result] {
 }
 
 is_undefined(value) = sk {
-	not common_lib.valid_key(value.properties, "supportsHttpsTrafficOnly")
-	sk := ".properties"
-} else = sk {
 	not common_lib.valid_key(value, "properties")
 	sk := ""
+} else = sk {
+	not common_lib.valid_key(value.properties, "supportsHttpsTrafficOnly")
+	sk := ".properties"
 }
