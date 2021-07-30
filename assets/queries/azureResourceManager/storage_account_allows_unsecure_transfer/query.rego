@@ -27,7 +27,8 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
-	value.properties.supportsHttpsTrafficOnly == false
+	not value.properties.supportsHttpsTrafficOnly
+	skValue := is_undefined(value)
 
 	result := {
 		"documentId": input.document[i].id,
