@@ -1,13 +1,13 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Web/sites"
-	not commonLib.valid_key(value.properties, "siteConfig")
+	not common_lib.valid_key(value.properties, "siteConfig")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,7 +23,7 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Web/sites"
-	not commonLib.valid_key(value.properties.siteConfig, "http20Enabled")
+	not common_lib.valid_key(value.properties.siteConfig, "http20Enabled")
 
 	result := {
 		"documentId": input.document[i].id,
