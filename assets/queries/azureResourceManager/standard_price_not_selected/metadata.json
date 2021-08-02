@@ -1,0 +1,11 @@
+{
+  "id": "2081c7d6-2851-4cce-bda5-cb49d462da42",
+  "queryName": "Standard Price Is Not Selected",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure Security Center provides more features for standard pricing mode, so it must be activated.",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object",
+  "platform": "AzureResourceManager",
+  "descriptionID": "2081c7dc",
+  "cloudProvider": "azure"
+}
