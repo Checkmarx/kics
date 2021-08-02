@@ -15,4 +15,4 @@ services:
         VERSION: ${VERSION:-local}
         COMMIT: ${COMMIT}
         DESCRIPTIONS_URL: ${DESCRIPTIONS_URL}
-    command: -p /path/ -v
+    command: scan -p /path/ -v
