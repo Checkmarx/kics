@@ -124,7 +124,7 @@ func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string
 			libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
 		}
 
-		libraryFilePath = filepath.FromSlash(libraryPath + "/common" + ".rego")
+		libraryFilePath = filepath.FromSlash(libraryPath + "/common.rego")
 
 		for _, supPlatform := range supportedPlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
