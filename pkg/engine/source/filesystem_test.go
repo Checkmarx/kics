@@ -271,6 +271,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_terraform",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "terraform",
@@ -282,6 +283,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_common",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "common",
@@ -293,6 +295,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_cloudformation",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "cloudFormation",
@@ -304,6 +307,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_ansible",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "ansible",
@@ -315,6 +319,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_dockerfile",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "dockerfile",
@@ -326,6 +331,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_k8s",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "k8s",
@@ -337,6 +343,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { // nolint
 			name: "get_generic_query_unknown",
 			fields: fields{
 				Source: "./assets/queries/template",
+				Library: "./assets/libraries",
 			},
 			args: args{
 				platform: "unknown",
@@ -495,7 +502,7 @@ func Test_ReadMetadata(t *testing.T) {
 // Test_getPlatform tests the functions [getPlatform()] and all the methods called by them
 func Test_getPlatform(t *testing.T) {
 	type args struct {
-		queryPath string
+		PlatformInMetadata string
 	}
 	tests := []struct {
 		name string
@@ -505,56 +512,56 @@ func Test_getPlatform(t *testing.T) {
 		{
 			name: "get_platform_common",
 			args: args{
-				queryPath: "../test/common/test",
+				PlatformInMetadata: "Common",
 			},
 			want: "common",
 		},
 		{
 			name: "get_platform_ansible",
 			args: args{
-				queryPath: "../test/ansible/test",
+				PlatformInMetadata: "Ansible",
 			},
 			want: "ansible",
 		},
 		{
 			name: "get_platform_cloudFormation",
 			args: args{
-				queryPath: "../test/cloudFormation/test",
+				PlatformInMetadata: "CloudFormation",
 			},
 			want: "cloudFormation",
 		},
 		{
 			name: "get_platform_dockerfile",
 			args: args{
-				queryPath: "../test/dockerfile/test",
+				PlatformInMetadata: "Dockerfile",
 			},
 			want: "dockerfile",
 		},
 		{
 			name: "get_platform_k8s",
 			args: args{
-				queryPath: "../test/k8s/test",
+				PlatformInMetadata: "Kubernetes",
 			},
 			want: "k8s",
 		},
 		{
 			name: "get_platform_open_api",
 			args: args{
-				queryPath: "../test/openAPI/test",
+				PlatformInMetadata: "OpenAPI",
 			},
 			want: "openAPI",
 		},
 		{
 			name: "get_platform_terraform",
 			args: args{
-				queryPath: "../test/terraform/test",
+				PlatformInMetadata: "Terraform",
 			},
 			want: "terraform",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := getPlatform(tt.args.queryPath); got != tt.want {
+			if got := getPlatform(tt.args.PlatformInMetadata); got != tt.want {
 				t.Errorf("getPlatform() = %v, want %v", got, tt.want)
 			}
 		})

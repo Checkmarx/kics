@@ -354,7 +354,7 @@ func TestNewInspector(t *testing.T) { // nolint
 			Query:     "all_auth_users_get_read_access",
 			Content:   string(contentByte),
 			InputData: "{}",
-			Platform:  "unknown",
+			Platform:  "cloudFormation",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",

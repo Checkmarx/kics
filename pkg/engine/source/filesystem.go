@@ -98,20 +98,20 @@ func isDefaultLibrary(libraryPath string) bool {
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string {
 	var libraryFilePath string
-	if isDefaultLibrary(libraryPathFlag) { // user did not use the library path flag
+	if !isDefaultLibrary(libraryPathFlag)  { // user uses the library path flag
+		library := getLibraryInDir(platform, libraryPathFlag)
+		if library != "" { // found a library named according to the platform
+			libraryFilePath = library
+		} else if library == "" && strings.EqualFold(common, platform) {
+			libraryFilePath = ""
+		}
+	} else { // user did not use the library path flag
 		libraryFilePath = filepath.Join(LibrariesDefaultBasePath, strings.ToLower(common), LibraryFileName)
 		for _, supPlatform := range supportedPlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
 				libraryFilePath = filepath.Join(libraryPathFlag, supPlatform, LibraryFileName)
 				break
 			}
-		}
-	} else { // user uses the library path flag
-		library := getLibraryInDir(platform, libraryPathFlag)
-		if library != "" { // found a library named according to the platform
-			libraryFilePath = library
-		} else if library == "" && strings.EqualFold(common, platform) {
-			libraryFilePath = ""
 		}
 	}
 	return libraryFilePath

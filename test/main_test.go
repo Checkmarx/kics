@@ -223,8 +223,6 @@ func readLibrary(platform string) (string, error) {
 		log.Err(err)
 	}
 
-	fmt.Println(string(content))
-
 	return string(content), err
 }
 
