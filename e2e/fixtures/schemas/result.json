@@ -106,7 +106,14 @@
               "properties": {
                 "file_name": {
                   "type": "string",
-                  "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
+                  "oneOf": [
+                    {
+                      "pattern": "^(.)*(:)*(http:|https:|www\\.)(.)+$"
+                    },
+                    {
+                      "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
+                    }
+                  ]
                 },
                 "similarity_id": {
                   "type": "string",
@@ -122,28 +129,28 @@
                     "IncorrectValue",
                     "MissingAttribute",
                     "RedundantAttribute"
-                  ]
-                },
-                "search_key": {
-                  "type": "string",
-                  "minLength": 0
-                },
-                "search_value": {
-                  "type": "string"
-                },
-                "expected_value": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "actual_value": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "value": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
+                  ],
+                  "search_key": {
+                    "type": "string",
+                    "minLength": 0
+                  },
+                  "search_value": {
+                    "type": "string"
+                  },
+                  "expected_value": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "actual_value": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
                 }
               }
             }
@@ -190,17 +197,26 @@
           "type": "integer",
           "minimum": 0
         },
-        "INFO": {
-          "type": "integer",
-          "minimum": 0
+        "search_key": {
+          "type": "string",
+          "minLength": 0
         },
-        "LOW": {
-          "type": "integer",
-          "minimum": 0
+        "search_value": {
+          "type": "string"
         },
-        "MEDIUM": {
-          "type": "integer",
-          "minimum": 0
+        "expected_value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actual_value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },

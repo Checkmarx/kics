@@ -738,6 +738,45 @@ var tests = []testCase{
 		},
 		wantStatus: []int{50},
 	},
+
+	// E2E-CLI-041 - Kics scan command with -p targeting remote path (git)
+	// should download and scan the provided path.
+	{
+		name: "E2E-CLI-041",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_041_RESULT",
+					"--report-formats", "json,sarif,glsast", "-q", "../assets/queries",
+					"-p", "git::https://github.com/dockersamples/example-voting-app"},
+			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_041_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast"},
+				},
+			},
+		},
+		wantStatus: []int{50},
+	},
+	// E2E-CLI-042 - Kics scan command with -p targeting remote path (http/https)
+	// should download and scan the provided path/file.
+	{
+		name: "E2E-CLI-042",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_042_RESULT",
+					"--report-formats", "json,sarif,glsast", "-q", "../assets/queries",
+					"-p", "https://raw.githubusercontent.com/dockersamples/example-voting-app/master/docker-compose-simple.yml"},
+			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_042_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast"},
+				},
+			},
+		},
+		wantStatus: []int{50},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
