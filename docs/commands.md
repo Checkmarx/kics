@@ -98,6 +98,11 @@ Global Flags:
 
 The other commands have no further options.
 
+## Library Flag Usage
+
+As mention above, the library flag (`-b`) refers to the directory with libraries. The functions need to be grouped according to the platform and the library name should follow the following format: `<platform>.rego` to be loaded. It does not matter your directory struct. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
+
+
 ---
 
 ## Profiling
