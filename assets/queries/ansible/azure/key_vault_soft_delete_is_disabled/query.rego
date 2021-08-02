@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_keyvault", "azure_rm_keyvault"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	keyvault := task[modules[m]]
 	ansLib.checkState(keyvault)
 
-	object.get(keyvault, "enable_soft_delete", "undefined") == "undefined"
+	not common_lib.valid_key(keyvault, "enable_soft_delete")
 
 	result := {
 		"documentId": id,

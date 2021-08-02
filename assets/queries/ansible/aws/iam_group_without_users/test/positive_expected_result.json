@@ -8,7 +8,7 @@
   {
     "queryName": "IAM Group Without Users",
     "severity": "LOW",
-    "line": 6,
+    "line": 2,
     "fileName": "positive2.yaml"
   }
 ]

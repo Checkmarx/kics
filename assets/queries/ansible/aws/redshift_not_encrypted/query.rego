@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := ["redshift", "community.aws.redshift"]
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	redshiftCluster := task[modules[m]]
 
 	redshiftCluster.command == "create"
-	object.get(redshiftCluster, "encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(redshiftCluster, "encrypted")
 
 	result := {
 		"documentId": id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
@@ -9,8 +10,9 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 	fields := ["network_policy", "addons_config"]
+	field := fields[f]
 
-	object.get(cluster, fields[f], "undefined") == "undefined"
+	not common_lib.valid_key(cluster, field)
 
 	result := {
 		"documentId": id,
@@ -26,7 +28,7 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 
-	object.get(cluster.addons_config, "network_policy_config", "undefined") == "undefined"
+	not common_lib.valid_key(cluster.addons_config, "network_policy_config")
 
 	result := {
 		"documentId": id,

@@ -8,7 +8,7 @@
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 16,
+    "line": 15,
     "filename": "positive1.yaml"
   },
   {
@@ -20,7 +20,7 @@
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 5,
     "filename": "positive2.yaml"
   },
   {

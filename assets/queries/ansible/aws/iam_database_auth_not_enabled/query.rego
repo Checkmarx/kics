@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.rds_instance", "rds_instance"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	rds_instance := task[modules[m]]
 	ansLib.checkState(rds_instance)
 
-	object.get(rds_instance, "enable_iam_database_authentication", "undefined") == "undefined"
+	not common_lib.valid_key(rds_instance, "enable_iam_database_authentication")
 
 	result := {
 		"documentId": id,
