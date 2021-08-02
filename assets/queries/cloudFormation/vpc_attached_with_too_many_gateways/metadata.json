@@ -5,5 +5,6 @@
 	"category": "Availability",
 	"descriptionText": "The number of gateways approaches or goes beyond the limit in a particular VPC",
 	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html",
-	"platform": "CloudFormation"
+	"platform": "CloudFormation",
+	"cloudProvider": "aws"
 }

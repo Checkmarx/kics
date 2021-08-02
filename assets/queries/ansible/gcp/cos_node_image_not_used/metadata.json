@@ -5,5 +5,6 @@
 	"category": "Resource Management",
 	"descriptionText": "A node image, that is not Container-Optimized OS (COS), is used for Kubernetes Engine Clusters Node image",
 	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type",
-	"platform": "Ansible"
+	"platform": "Ansible",
+	"cloudProvider": "gcp"
 }

@@ -39,6 +39,7 @@ var (
 		"../assets/queries/openAPI/general":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
+		"../assets/queries/azureResourceManager": {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
 	}
 
 	issueTypes = map[string]string{
@@ -158,7 +159,7 @@ func getCombinedParser() []*parser.Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	return bd
 }
 

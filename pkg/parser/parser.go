@@ -36,7 +36,7 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types []string) ([]*Parser, error) {
+func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 	parserSlice := make([]*Parser, 0, len(b.parsers))
 	var suportedTypes []string
 	for _, parser := range b.parsers {
@@ -57,7 +57,9 @@ func (b *Builder) Build(types []string) ([]*Parser, error) {
 		}
 	}
 
-	if err := validateArguments(types, suportedTypes); err != nil {
+	supportedCloudProviders := []string{"aws", "azure", "gcp"}
+
+	if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil {
 		return []*Parser{}, err
 	}
 
@@ -101,11 +103,17 @@ func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
 }
 
-func validateArguments(types, validArgs []string) error {
-	validArgs = removeDuplicateValues(validArgs)
-	if invalidType, ok, _ := contains(types, validArgs); !ok {
-		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgs, "\n  "))
+func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error {
+	validArgsTypes = removeDuplicateValues(validArgsTypes)
+
+	if invalidType, ok, _ := contains(types, validArgsTypes); !ok {
+		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
 	}
+
+	if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk {
+		return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
+	}
+
 	return nil
 }
 

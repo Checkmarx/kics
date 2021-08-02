@@ -20,6 +20,7 @@ import (
 type FilesystemSource struct {
 	Source  string
 	Types   []string
+	CloudProviders []string
 	Library string
 }
 
@@ -34,30 +35,38 @@ const (
 	LibrariesDefaultBasePath = "./assets/libraries"
 
 	emptyInputData = "{}"
-	common         = "Common"
+
+	common = "Common"
 )
 
 var (
 	supportedPlatforms = map[string]string{
-		"Ansible":        "ansible",
-		"CloudFormation": "cloudformation",
-		"Dockerfile":     "dockerfile",
-		"Kubernetes":     "k8s",
-		"Terraform":      "terraform",
-		"OpenAPI":        "openapi",
+		"Ansible":              "ansible",
+		"CloudFormation":       "cloudformation",
+		"Dockerfile":           "dockerfile",
+		"Kubernetes":           "k8s",
+		"Terraform":            "terraform",
+		"OpenAPI":              "openapi",
+		"AzureResourceManager": "azureresourcemanager",
 	}
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types []string, libraryPath string) *FilesystemSource {
+func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
 		types = []string{""}
 	}
+
+	if len(cloudProviders) == 0 {
+		cloudProviders = []string{""}
+	}
+
 	return &FilesystemSource{
 		Source:  filepath.FromSlash(source),
 		Types:   types,
+		CloudProviders: cloudProviders,
 		Library: filepath.FromSlash(libraryPath),
 	}
 }
@@ -72,6 +81,11 @@ func ListSupportedPlatforms() []string {
 	}
 	sort.Strings(keys)
 	return keys
+}
+
+// ListSupportedCloudProviders returns a list of supported cloud providers
+func ListSupportedCloudProviders() []string {
+	return []string{"aws", "azure", "gcp"}
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {
@@ -148,6 +162,24 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 	return true
 }
 
+// CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
+func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool {
+	if cloudProvider != nil {
+		if strings.EqualFold(cloudProvider.(string), common) {
+			return true
+		}
+		if s.CloudProviders[0] != "" {
+			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(cloudProvider.(string)))
+		}
+	}
+
+	if s.CloudProviders[0] == "" {
+		return true
+	}
+
+	return false
+}
+
 func checkQueryInclude(id interface{}, includedQueries []string) bool {
 	queryMetadataKey, ok := id.(string)
 	if !ok {
@@ -210,6 +242,10 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 		}
 
 		if !s.CheckType(query.Metadata["platform"]) {
+			continue
+		}
+
+		if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) {
 			continue
 		}
 
@@ -330,6 +366,8 @@ func getPlatform(metadataPlatform string) string {
 		return "openAPI"
 	case "Terraform":
 		return "terraform"
+	case "AzureResourceManager":
+		return "azureResourceManager"
 	default:
 		return "unknown"
 	}

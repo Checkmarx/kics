@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 36,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "MEDIUM",
+    "line": 37,
+    "filename": "positive5.json"
+  }
+]

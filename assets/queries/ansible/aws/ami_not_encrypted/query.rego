@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"amazon.aws.ec2_ami", "ec2_ami"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	ec2Ami := task[modules[m]]
 	ansLib.checkState(ec2Ami)
 
-	object.get(ec2Ami.device_mapping, "encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(ec2Ami.device_mapping, "encrypted")
 
 	result := {
 		"documentId": id,

@@ -1,0 +1,11 @@
+{
+  "id": "3e9fcc67-1f64-405f-b2f9-0a6be17598f0",
+  "queryName": "Phone Number Not Set For Security Contacts",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Microsoft.Security securityContacts should have a phone number defined",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts?tabs=json",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "8b9ef792"
+}

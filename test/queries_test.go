@@ -53,22 +53,41 @@ func TestUniqueQueryIDs(t *testing.T) {
 	queries := loadQueries(t)
 
 	queriesIdentifiers := make(map[string]string)
+	descriptionIdentifiers := make(map[string]string)
 
 	for _, entry := range queries {
 		metadata := source.ReadMetadata(entry.dir)
 		uuid := metadata["id"].(string)
 		duplicateDir, ok := queriesIdentifiers[uuid]
-		require.False(t, ok, "\nnon unique query found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+		require.False(t, ok, "\nnon unique queryID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
 			uuid, entry.dir, duplicateDir)
 		queriesIdentifiers[uuid] = entry.dir
+
+		descID := ""
+		if _, exists := metadata["descriptionID"]; exists {
+			descID = metadata["descriptionID"].(string)
+			duplicateDir, ok = descriptionIdentifiers[descID]
+			require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+				uuid, entry.dir, duplicateDir)
+			descriptionIdentifiers[descID] = entry.dir
+		}
+
 		if override, ok := metadata["override"].(map[string]interface{}); ok {
 			for _, v := range override {
 				if convertedValue, converted := v.(map[string]interface{}); converted {
 					if id, ok := convertedValue["id"].(string); ok {
 						duplicateDir, ok = queriesIdentifiers[id]
-						require.False(t, ok, "\nnon unique query found on overriding uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+						require.False(t, ok, "\nnon unique queryID found on overriding uuid: %s\nqueryDir: %s\nduplicateDir: %s",
 							id, entry.dir, duplicateDir)
 						queriesIdentifiers[id] = entry.dir
+
+						if _, exists := metadata["descriptionID"]; exists {
+							descID = metadata["descriptionID"].(string)
+							duplicateDir, ok = descriptionIdentifiers[descID]
+							require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+								uuid, entry.dir, duplicateDir)
+							descriptionIdentifiers[descID] = entry.dir
+						}
 					}
 				}
 			}
@@ -153,7 +172,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	wg := &sync.WaitGroup{}
 	currentQuery := make(chan int64)
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 	wg.Add(1)

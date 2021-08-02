@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "server",
+      "type": "Microsoft.DBforMySQL/servers",
+      "apiVersion": "2017-12-01",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "version": "5.6",
+        "sslEnforcement": "Enabled",
+        "createMode": "GeoRestore",
+        "sourceServerId": "id"
+      },
+      "location": "location",
+      "tags": {},
+      "resources": []
+    }
+  ],
+  "outputs": {}
+}
