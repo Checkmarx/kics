@@ -107,9 +107,11 @@ func MapToStringSlice(stringKeyMap map[string]string) []string {
 }
 
 var queryHigh = model.VulnerableQuery{
-	QueryName: "ALB protocol is HTTP",
-	QueryID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-	Severity:  model.SeverityHigh,
+	QueryName:     "ALB protocol is HTTP",
+	QueryID:       "de7f5e83-da88-4046-871f-ea18504b1d43",
+	Description:   "ALB protocol is HTTP Description",
+	DescriptionID: "504b1d43",
+	Severity:      model.SeverityHigh,
 	Files: []model.VulnerableFile{
 		{
 			FileName:         positive,

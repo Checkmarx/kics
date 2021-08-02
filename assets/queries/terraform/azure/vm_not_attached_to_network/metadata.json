@@ -1,10 +1,11 @@
 {
-	"id": "bbf6b3df-4b65-4f87-82cc-da9f30f8c033",
-	"queryName": "VM Not Attached To Network",
-	"severity": "HIGH",
-	"category": "Insecure Configurations",
-	"descriptionText": "No Network Security Group is attached to the Virtual Machine",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids",
-	"platform": "Terraform",
-	"cloudProvider": "azure"
+  "id": "bbf6b3df-4b65-4f87-82cc-da9f30f8c033",
+  "queryName": "VM Not Attached To Network",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "No Network Security Group is attached to the Virtual Machine",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids",
+  "platform": "Terraform",
+  "descriptionID": "9f51f6b1",
+  "cloudProvider": "azure"
 }

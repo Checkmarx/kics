@@ -40,3 +40,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}

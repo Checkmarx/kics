@@ -1,10 +1,11 @@
 {
-	"id": "17f75827-0684-48f4-8747-61129c7e4198",
-	"queryName": "Public Storage Account",
-	"severity": "HIGH",
-	"category": "Access Control",
-	"descriptionText": "Check if 'network_rules' is open to public.",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
-	"platform": "Terraform",
-	"cloudProvider": "azure"
+  "id": "17f75827-0684-48f4-8747-61129c7e4198",
+  "queryName": "Public Storage Account",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Check if 'network_rules' is open to public.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
+  "platform": "Terraform",
+  "descriptionID": "88948514",
+  "cloudProvider": "azure"
 }

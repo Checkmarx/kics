@@ -1,10 +1,11 @@
 {
-	"id": "9f40c07e-699e-4410-8856-3ba0f2e3a2dd",
-	"queryName": "CA certificate Identifier is outdated",
-	"severity": "HIGH",
-	"category": "Encryption",
-	"descriptionText": "The CA certificate Identifier must be 'rds-ca-2019'.",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "9f40c07e-699e-4410-8856-3ba0f2e3a2dd",
+  "queryName": "CA certificate Identifier is outdated",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "The CA certificate Identifier must be 'rds-ca-2019'.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
+  "platform": "Terraform",
+  "descriptionID": "09935963",
+  "cloudProvider": "aws"
 }

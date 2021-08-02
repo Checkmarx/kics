@@ -1,10 +1,11 @@
 {
-	"id": "c5b31ab9-0f26-4a49-b8aa-4cc064392f4d",
-	"queryName": "S3 Bucket Without Enabled MFA Delete",
-	"severity": "HIGH",
-	"category": "Insecure Configurations",
-	"descriptionText": "S3 bucket without enabled MFA Delete",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "c5b31ab9-0f26-4a49-b8aa-4cc064392f4d",
+  "queryName": "S3 Bucket Without Enabled MFA Delete",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "S3 bucket without enabled MFA Delete",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete",
+  "platform": "Terraform",
+  "descriptionID": "e1699d08",
+  "cloudProvider": "aws"
 }

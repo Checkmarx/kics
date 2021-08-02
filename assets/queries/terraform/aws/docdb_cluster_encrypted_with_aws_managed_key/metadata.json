@@ -1,10 +1,11 @@
 {
-	"id": "2134641d-30a4-4b16-8ffc-2cd4c4ffd15d",
-	"queryName": "DOCDB Cluster Encrypted With AWS Managed Key",
-	"severity": "MEDIUM",
-	"category": "Encryption",
-	"descriptionText": "DOCDB Cluster should be encrypted with customer-managed KMS keys instead of AWS managed keys",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#kms_key_id",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "2134641d-30a4-4b16-8ffc-2cd4c4ffd15d",
+  "queryName": "DOCDB Cluster Encrypted With AWS Managed Key",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "DOCDB Cluster should be encrypted with customer-managed KMS keys instead of AWS managed keys",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#kms_key_id",
+  "platform": "Terraform",
+  "descriptionID": "984ebbd4",
+  "cloudProvider": "aws"
 }

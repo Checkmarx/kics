@@ -93,8 +93,14 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			len(summary.Queries[idx].Files),
 		)
 		if !printer.minimal {
-			fmt.Printf("Description: %s\n", summary.Queries[idx].Description)
-			fmt.Printf("Platform: %s\n\n", summary.Queries[idx].Platform)
+			if summary.Queries[idx].CISDescriptionID != "" {
+				fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
+				fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
+				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
+			} else {
+				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
+			}
+			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
@@ -294,4 +300,9 @@ func (p *Printer) PrintBySev(content, sev string) string {
 		return p.Info.Sprintf(content)
 	}
 	return content
+}
+
+// Bold returns the output in a bold format
+func (p *Printer) Bold(content string) string {
+	return color.Bold.Sprintf(content)
 }

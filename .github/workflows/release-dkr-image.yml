@@ -51,7 +51,8 @@ jobs:
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-      - name: Push debian to Docker Hub
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build and push debian to Docker Hub
         id: build_debian
         uses: docker/build-push-action@v2.6.1
         with:
@@ -63,6 +64,7 @@ jobs:
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       # TODO: investigate why this is not working
       #- name: Update repo description
       #  uses: peter-evans/dockerhub-description@v2

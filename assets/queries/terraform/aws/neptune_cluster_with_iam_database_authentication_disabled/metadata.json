@@ -1,10 +1,11 @@
 {
-	"id": "c91d7ea0-d4d1-403b-8fe1-c9961ac082c5",
-	"queryName": "Neptune Cluster With IAM Database Authentication Disabled",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Neptune Cluster should have IAM Database Authentication enabled",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#storage_encrypted",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "c91d7ea0-d4d1-403b-8fe1-c9961ac082c5",
+  "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Neptune Cluster should have IAM Database Authentication enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#storage_encrypted",
+  "platform": "Terraform",
+  "descriptionID": "88b26e61",
+  "cloudProvider": "aws"
 }

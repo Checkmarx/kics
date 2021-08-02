@@ -8,5 +8,5 @@
   "platform": "AzureResourceManager",
   "cloudProvider": "azure",
   "aggregation": 2,
-  "descriptionId": "7f5b9ef4"
+  "descriptionID": "7f5b9ef4"
 }

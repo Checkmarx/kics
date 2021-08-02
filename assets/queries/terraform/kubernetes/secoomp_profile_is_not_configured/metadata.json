@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if any resource does not configure Seccomp default profile properly",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "ad5436a1"
 }

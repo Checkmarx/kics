@@ -1,10 +1,11 @@
 {
-	"id": "dd0971a6-09c3-4168-8474-a7ef8fbfd99d",
-	"queryName": "Memcached Disabled",
-	"severity": "HIGH",
-	"category": "Encryption",
-	"descriptionText": "Check if the Memcached is disabled on the ElastiCache",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-engine",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "dd0971a6-09c3-4168-8474-a7ef8fbfd99d",
+  "queryName": "Memcached Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Check if the Memcached is disabled on the ElastiCache",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-engine",
+  "platform": "CloudFormation",
+  "descriptionID": "470e2a53",
+  "cloudProvider": "aws"
 }

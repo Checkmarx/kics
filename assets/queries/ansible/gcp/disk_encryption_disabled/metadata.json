@@ -1,10 +1,11 @@
 {
-	"id": "092bae86-6105-4802-99d2-99cd7e7431f3",
-	"queryName": "Disk Encryption Disabled",
-	"severity": "MEDIUM",
-	"category": "Encryption",
-	"descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'disk_encryption_key' must be defined and its sub attributes 'raw_key' or 'kms_key_self_link' must also be defined",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_disk_module.html",
-	"platform": "Ansible",
-	"cloudProvider": "gcp"
+  "id": "092bae86-6105-4802-99d2-99cd7e7431f3",
+  "queryName": "Disk Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'disk_encryption_key' must be defined and its sub attributes 'raw_key' or 'kms_key_self_link' must also be defined",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_disk_module.html",
+  "platform": "Ansible",
+  "descriptionID": "1272593c",
+  "cloudProvider": "gcp"
 }

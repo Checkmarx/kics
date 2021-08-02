@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Objects should not accept 'additionalProperties' if it is possible",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "3623f181"
 }

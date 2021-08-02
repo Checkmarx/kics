@@ -2,7 +2,7 @@
   "files_scanned": 1,
   "files_parsed": 1,
   "files_failed_to_scan": 0,
-  "queries_total": 0,
+  "queries_total": 588,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "queries": [
@@ -12,9 +12,15 @@
       "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#enable",
       "severity": "MEDIUM",
       "platform": "Terraform",
+      "category": "Observability",
+      "description": "Make sure Logging is enabled for Redshift Cluster",
+      "description_id": "458fe7a3",
+      "cis_description_id": "",
+      "cis_description_title": "",
+      "cis_description_text": "",
       "files": [
         {
-          "file_name": "file",
+          "file_name": "fixtures/samples/terraform-single.tf",
           "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -24,9 +30,7 @@
           "actual_value": "'aws_redshift_cluster.logging' is undefined",
           "value": null
         }
-      ],
-      "category": "Observability",
-      "description": "Make sure Logging is enabled for Redshift Cluster"
+      ]
     },
     {
       "query_name": "Redshift Cluster Without VPC",
@@ -34,9 +38,15 @@
       "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
       "severity": "MEDIUM",
       "platform": "Terraform",
+      "category": "Insecure Configurations",
+      "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
+      "description_id": "6fd531fa",
+      "cis_description_id": "",
+      "cis_description_title": "",
+      "cis_description_text": "",
       "files": [
         {
-          "file_name": "file",
+          "file_name": "fixtures/samples/terraform-single.tf",
           "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -47,7 +57,7 @@
           "value": null
         },
         {
-          "file_name": "file",
+          "file_name": "fixtures/samples/terraform-single.tf",
           "similarity_id": "d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -57,9 +67,7 @@
           "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined",
           "value": null
         }
-      ],
-      "category": "Insecure Configurations",
-      "description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)"
+      ]
     },
     {
       "query_name": "Resource Not Using Tags",
@@ -67,9 +75,15 @@
       "query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
       "severity": "INFO",
       "platform": "Terraform",
+      "category": "Best Practices",
+      "description": "AWS services resource tags are an essential part of managing components",
+      "description_id": "09db2d52",
+      "cis_description_id": "",
+      "cis_description_title": "",
+      "cis_description_text": "",
       "files": [
         {
-          "file_name": "file",
+          "file_name": "fixtures/samples/terraform-single.tf",
           "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
           "line": 1,
           "issue_type": "MissingAttribute",
@@ -79,9 +93,7 @@
           "actual_value": "aws_redshift_cluster[{{default1}}].tags is missing",
           "value": null
         }
-      ],
-      "category": "Best Practices",
-      "description": "AWS services resource tags are an essential part of managing components"
+      ]
     }
   ],
   "scan_id": "console",
@@ -92,8 +104,8 @@
     "MEDIUM": 3
   },
   "total_counter": 4,
-  "start": "2021-05-01T09:00:00.0+01:00",
-  "end": "2021-05-01T09:00:00.0+01:00",
+  "start": "2021-07-23T17:40:14.888483+01:00",
+  "end": "2021-07-23T17:41:02.3078595+01:00",
   "paths": [
     "fixtures/samples/terraform-single.tf"
   ]

@@ -1,10 +1,11 @@
 {
-	"id": "5330b503-3319-44ff-9b1c-00ee873f728a",
-	"queryName": "DB Security Group Has Public IP",
-	"severity": "HIGH",
-	"category": "Insecure Configurations",
-	"descriptionText": "The CIDR IP must not be Public",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-	"platform": "Ansible",
-	"cloudProvider": "aws"
+  "id": "5330b503-3319-44ff-9b1c-00ee873f728a",
+  "queryName": "DB Security Group Has Public IP",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "The CIDR IP must not be Public",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+  "platform": "Ansible",
+  "descriptionID": "506f9dd8",
+  "cloudProvider": "aws"
 }

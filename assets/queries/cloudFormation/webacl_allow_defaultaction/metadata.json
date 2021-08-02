@@ -1,10 +1,11 @@
 {
-	"id": "6d64f311-3da6-45f3-80f1-14db9771ea40",
-	"queryName": "Permissive Web ACL Default Action",
-	"severity": "HIGH",
-	"category": "Insecure Defaults",
-	"descriptionText": "WebAcl DefaultAction should not be ALLOW",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "6d64f311-3da6-45f3-80f1-14db9771ea40",
+  "queryName": "Permissive Web ACL Default Action",
+  "severity": "HIGH",
+  "category": "Insecure Defaults",
+  "descriptionText": "WebAcl DefaultAction should not be ALLOW",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html",
+  "platform": "CloudFormation",
+  "descriptionID": "e4327168",
+  "cloudProvider": "aws"
 }

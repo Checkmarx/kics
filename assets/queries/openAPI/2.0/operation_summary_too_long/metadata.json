@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "Operation summary should be short (less than 120 characters)",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "60a0b99e"
 }

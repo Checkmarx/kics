@@ -6,5 +6,6 @@
   "descriptionText": "All security requirement objects must be defined in 'securityDefinitions'",
   "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject",
   "platform": "OpenAPI",
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "44fec7d0"
 }

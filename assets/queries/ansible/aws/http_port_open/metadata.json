@@ -1,10 +1,11 @@
 {
-	"id": "a14ad534-acbe-4a8e-9404-2f7e1045646e",
-	"queryName": "HTTP Port Open",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "The HTTP port is open in a Security Group",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
-	"platform": "Ansible",
-	"cloudProvider": "aws"
+  "id": "a14ad534-acbe-4a8e-9404-2f7e1045646e",
+  "queryName": "HTTP Port Open",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The HTTP port is open in a Security Group",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html#ansible-collections-amazon-aws-ec2-group-module",
+  "platform": "Ansible",
+  "descriptionID": "8c6031b8",
+  "cloudProvider": "aws"
 }

@@ -1,10 +1,11 @@
 {
-	"id": "db0ec4c4-852c-46a2-b4f3-7ec13cdb12a8",
-	"queryName": "CloudWatch Logs Destination With Vulnerable Policy",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "CloudWatch Logs destination policy should avoid wildcard in 'principals' and 'actions'",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_destination_policy#access_policy",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "db0ec4c4-852c-46a2-b4f3-7ec13cdb12a8",
+  "queryName": "CloudWatch Logs Destination With Vulnerable Policy",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "CloudWatch Logs destination policy should avoid wildcard in 'principals' and 'actions'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_destination_policy#access_policy",
+  "platform": "Terraform",
+  "descriptionID": "0f0cc4cf",
+  "cloudProvider": "aws"
 }

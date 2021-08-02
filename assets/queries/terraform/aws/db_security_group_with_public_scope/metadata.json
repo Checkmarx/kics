@@ -1,10 +1,11 @@
 {
-	"id": "1e0ef61b-ad85-4518-a3d3-85eaad164885",
-	"queryName": "DB Security Group With Public Scope",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "1e0ef61b-ad85-4518-a3d3-85eaad164885",
+  "queryName": "DB Security Group With Public Scope",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_security_group",
+  "platform": "Terraform",
+  "descriptionID": "97108586",
+  "cloudProvider": "aws"
 }

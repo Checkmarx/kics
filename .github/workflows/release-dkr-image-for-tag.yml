@@ -68,6 +68,7 @@ jobs:
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Push debian to Docker Hub
         if: ${{ hashFiles('Dockerfile.debian') }} != ""
         id: build_debian
@@ -81,3 +82,4 @@ jobs:
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}

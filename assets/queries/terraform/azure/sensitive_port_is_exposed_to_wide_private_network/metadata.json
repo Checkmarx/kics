@@ -6,6 +6,7 @@
   "descriptionText": "A sensitive port, such as port 23 or port 110, is open for wide private network in either TCP or UDP protocol",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
   "platform": "Terraform",
-  "cloudProvider": "azure",
-  "aggregation": 62
+  "aggregation": 62,
+  "descriptionID": "6b1bfbd5",
+  "cloudProvider": "azure"
 }

@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "The value of 'additionalProperties' should be set as object instead of boolean, since swagger 2.0 does not support boolean value for it",
   "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "2509db0d"
 }

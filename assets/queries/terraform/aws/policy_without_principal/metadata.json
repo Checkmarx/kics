@@ -1,10 +1,11 @@
 {
-	"id": "bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54",
-	"queryName": "Policy Without Principal",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "All policies, except IAM identity-based policies, should have the 'Principal' element defined",
-	"descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54",
+  "queryName": "Policy Without Principal",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "All policies, except IAM identity-based policies, should have the 'Principal' element defined",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html",
+  "platform": "Terraform",
+  "descriptionID": "954ac1bf",
+  "cloudProvider": "aws"
 }

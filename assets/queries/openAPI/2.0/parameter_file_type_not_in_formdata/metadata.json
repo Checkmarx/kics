@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "The In field of Parameter Object must be 'formData' when type is 'file'",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "e8a62738"
 }

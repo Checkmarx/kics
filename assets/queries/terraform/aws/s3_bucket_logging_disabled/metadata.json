@@ -1,10 +1,11 @@
 {
-	"id": "f861041c-8c9f-4156-acfc-5e6e524f5884",
-	"queryName": "S3 Bucket Logging Disabled",
-	"severity": "LOW",
-	"category": "Observability",
-	"descriptionText": "S3 bucket without logging",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "f861041c-8c9f-4156-acfc-5e6e524f5884",
+  "queryName": "S3 Bucket Logging Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "S3 bucket without logging",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
+  "platform": "Terraform",
+  "descriptionID": "fa5c7c72",
+  "cloudProvider": "aws"
 }

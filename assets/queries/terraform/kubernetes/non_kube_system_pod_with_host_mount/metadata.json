@@ -5,5 +5,6 @@
   "category": "Access Control",
   "descriptionText": "A non kube-system workload should not have hostPath mounted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "5b17fdb1"
 }

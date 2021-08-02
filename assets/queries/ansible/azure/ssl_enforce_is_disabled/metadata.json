@@ -1,10 +1,11 @@
 {
-	"id": "961ce567-a16d-4d7d-9027-f0ec2628a555",
-	"queryName": "SSL Enforce Disabled",
-	"severity": "HIGH",
-	"category": "Encryption",
-	"descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlserver_module.html#parameter-enforce_ssl",
-	"platform": "Ansible",
-	"cloudProvider": "azure"
+  "id": "961ce567-a16d-4d7d-9027-f0ec2628a555",
+  "queryName": "SSL Enforce Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlserver_module.html#parameter-enforce_ssl",
+  "platform": "Ansible",
+  "descriptionID": "b4bcb2d1",
+  "cloudProvider": "azure"
 }
