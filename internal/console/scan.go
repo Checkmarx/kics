@@ -531,7 +531,7 @@ func createService(inspector *engine.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
-	querySource source.FilesystemSource) ([]*kics.Service, error) {
+	querySource *source.FilesystemSource) ([]*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
@@ -623,7 +623,7 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 		return err
 	}
 
-	services, err := createService(inspector, extractedPaths.Path, t, store, *querySource)
+	services, err := createService(inspector, extractedPaths.Path, t, store, querySource)
 	if err != nil {
 		log.Err(err)
 		return err
