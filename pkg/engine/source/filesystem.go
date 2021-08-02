@@ -29,8 +29,6 @@ const (
 	QueryFileName = "query.rego"
 	// MetadataFileName The default metadata file name
 	MetadataFileName = "metadata.json"
-	// LibraryFileName The default library file name
-	LibraryFileName = "library.rego"
 	// LibrariesDefaultBasePath the path to rego libraries
 	LibrariesDefaultBasePath = "./assets/libraries"
 
@@ -126,11 +124,11 @@ func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string
 			libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
 		}
 
-		libraryFilePath = filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
+		libraryFilePath = filepath.FromSlash(libraryPath + "/common" + ".rego")
 
 		for _, supPlatform := range supportedPlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
-				libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
+				libraryFilePath = filepath.FromSlash(libraryPath + "/" + strings.ToLower(supPlatform) + ".rego")
 				break
 			}
 		}

@@ -138,7 +138,7 @@ func NewInspector(
 			var opaQuery rego.PreparedEvalQuery
 			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
 
-			if commonGeneralQuery != "" {
+			if commonGeneralQuery != "" && platformGeneralQuery != "" {
 				opaQuery, err = rego.New(
 					rego.Query(regoQuery),
 					rego.Module("Common", commonGeneralQuery),
@@ -147,15 +147,15 @@ func NewInspector(
 					rego.Store(store),
 					rego.UnsafeBuiltins(unsafeRegoFunctions),
 				).PrepareForEval(ctx)
-			} else {
-				opaQuery, err = rego.New(
-					rego.Query(regoQuery),
-					rego.Module("Generic", platformGeneralQuery),
-					rego.Module(metadata.Query, metadata.Content),
-					rego.Store(store),
-					rego.UnsafeBuiltins(unsafeRegoFunctions),
-				).PrepareForEval(ctx)
-			}
+			} else if platformGeneralQuery != "" {
+					opaQuery, err = rego.New(
+						rego.Query(regoQuery),
+						rego.Module("Generic", platformGeneralQuery),
+						rego.Module(metadata.Query, metadata.Content),
+						rego.Store(store),
+						rego.UnsafeBuiltins(unsafeRegoFunctions),
+					).PrepareForEval(ctx)
+				}
 			if err != nil {
 				sentry.CaptureException(err)
 				log.Err(err).
