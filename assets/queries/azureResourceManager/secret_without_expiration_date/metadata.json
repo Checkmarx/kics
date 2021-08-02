@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults/secrets?tabs=json#SecretAttributes",
   "platform": "AzureResourceManager",
   "cloudProvider": "azure",
-  "descriptionId": "bb5f96a2"
+  "descriptionID": "bb5f96a2"
 }
