@@ -389,7 +389,7 @@ func initPathsFlags(scanCmd *cobra.Command) {
 	)
 	scanCmd.Flags().StringVarP(&libraryPath,
 		libraryFlag, libraryShorthand,
-		"./assets/libraries",
+		filepath.FromSlash("./assets/libraries"),
 		"path to directory with libraries",
 	)
 }
