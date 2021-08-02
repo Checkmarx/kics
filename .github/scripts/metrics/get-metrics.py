@@ -7,15 +7,17 @@ from tabulate import tabulate
 
 queries_basepath = 'assets/queries'
 queries_path = {
+    'ansible': os.path.join(queries_basepath, 'ansible', '**', '*'),
+    'azureresourcemanager': os.path.join(queries_basepath, 'azureResourceManager', '*'),
     'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '*'),
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
-    'ansible': os.path.join(queries_basepath, 'ansible', '**', '*'),
     'k8s': os.path.join(queries_basepath, 'k8s', '*'),
     'common': os.path.join(queries_basepath, 'common', '*'),
     'dockerfile': os.path.join(queries_basepath, 'dockerfile', '*'),
     'terraform': os.path.join(queries_basepath, 'terraform', '**', '*'),
 }
 samples_ext = {
+    'azureresourcemanager': ['json'],
     'cloudformation': ['yaml', 'json'],
     'openapi': ['yaml', 'json'],
     'ansible': ['yaml'],

@@ -38,7 +38,7 @@ func TestScanner_StartScan(t *testing.T) {
 		feilds feilds
 	}{
 		{
-			name: "testing_start_scann",
+			name: "testing_start_scan",
 			args: args{
 				scanID:     "console",
 				noProgress: true,

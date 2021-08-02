@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "MySQL Server SSL Enforcement Disabled",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "MySQL Server SSL Enforcement Disabled",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.json"
+  }
+]

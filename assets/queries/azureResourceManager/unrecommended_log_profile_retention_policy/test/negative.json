@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "string",
+      "type": "microsoft.insights/logprofiles",
+      "apiVersion": "2016-03-01",
+      "location": "location",
+      "tags": {},
+      "properties": {
+        "storageAccountId": "storageAccountId",
+        "serviceBusRuleId": "serviceBusRuleId",
+        "locations": [
+          "location1"
+        ],
+        "categories": [
+          "Write"
+        ],
+        "retentionPolicy": {
+          "enabled": true,
+          "days": 400
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}

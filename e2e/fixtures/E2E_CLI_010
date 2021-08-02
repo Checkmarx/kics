@@ -6,4 +6,5 @@ valid arguments:
   Kubernetes
   Terraform
   Dockerfile
+  AzureResourceManager
 {{.ScanHelp}}

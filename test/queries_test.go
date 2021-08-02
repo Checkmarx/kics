@@ -63,10 +63,14 @@ func TestUniqueQueryIDs(t *testing.T) {
 			uuid, entry.dir, duplicateDir)
 		queriesIdentifiers[uuid] = entry.dir
 
-		descID := metadata["descriptionID"].(string)
-		require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
-			uuid, entry.dir, duplicateDir)
-		descriptionIdentifiers[descID] = entry.dir
+		descID := ""
+		if _, exists := metadata["descriptionID"]; exists {
+			descID = metadata["descriptionID"].(string)
+			duplicateDir, ok = descriptionIdentifiers[descID]
+			require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+				uuid, entry.dir, duplicateDir)
+			descriptionIdentifiers[descID] = entry.dir
+		}
 
 		if override, ok := metadata["override"].(map[string]interface{}); ok {
 			for _, v := range override {
@@ -77,10 +81,13 @@ func TestUniqueQueryIDs(t *testing.T) {
 							id, entry.dir, duplicateDir)
 						queriesIdentifiers[id] = entry.dir
 
-						descID := metadata["descriptionID"].(string)
-						require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
-							uuid, entry.dir, duplicateDir)
-						descriptionIdentifiers[descID] = entry.dir
+						if _, exists := metadata["descriptionID"]; exists {
+							descID = metadata["descriptionID"].(string)
+							duplicateDir, ok = descriptionIdentifiers[descID]
+							require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+								uuid, entry.dir, duplicateDir)
+							descriptionIdentifiers[descID] = entry.dir
+						}
 					}
 				}
 			}
@@ -165,7 +172,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 	wg := &sync.WaitGroup{}
 	currentQuery := make(chan int64)
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 	wg.Add(1)
