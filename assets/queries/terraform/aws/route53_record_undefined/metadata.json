@@ -1,10 +1,11 @@
 {
-	"id": "25db74bf-fa3b-44da-934e-8c3e005c0453",
-	"queryName": "Route53 Record Undefined",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "Check if Record is set",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "25db74bf-fa3b-44da-934e-8c3e005c0453",
+  "queryName": "Route53 Record Undefined",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Check if Record is set",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record",
+  "platform": "Terraform",
+  "descriptionID": "91562f39",
+  "cloudProvider": "aws"
 }

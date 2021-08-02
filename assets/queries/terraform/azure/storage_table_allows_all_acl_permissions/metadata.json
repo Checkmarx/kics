@@ -1,10 +1,11 @@
 {
-	"id": "3ac3e75c-6374-4a32-8ba0-6ed69bda404e",
-	"queryName": "Storage Table Allows All ACL Permissions",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Azure Storage Table should not allow all ACL (Access Control List) permissions - r (read), w (write), d (delete), and l (list).",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#permissions",
-	"platform": "Terraform",
-	"cloudProvider": "azure"
+  "id": "3ac3e75c-6374-4a32-8ba0-6ed69bda404e",
+  "queryName": "Storage Table Allows All ACL Permissions",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Azure Storage Table should not allow all ACL (Access Control List) permissions - r (read), w (write), d (delete), and l (list).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table#permissions",
+  "platform": "Terraform",
+  "descriptionID": "01751e5a",
+  "cloudProvider": "azure"
 }

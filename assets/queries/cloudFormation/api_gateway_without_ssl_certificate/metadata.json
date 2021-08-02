@@ -1,10 +1,11 @@
 {
-	"id": "ed4c48b8-eccc-4881-95c1-09fdae23db25",
-	"queryName": "API Gateway Without SSL Certificate",
-	"severity": "MEDIUM",
-	"category": "Insecure Configurations",
-	"descriptionText": "SSL Client Certificate should be enabled",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "ed4c48b8-eccc-4881-95c1-09fdae23db25",
+  "queryName": "API Gateway Without SSL Certificate",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "SSL Client Certificate should be enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html",
+  "platform": "CloudFormation",
+  "descriptionID": "95c8b13a",
+  "cloudProvider": "aws"
 }

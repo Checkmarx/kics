@@ -1,10 +1,11 @@
 {
-	"id": "e401d614-8026-4f4b-9af9-75d1197461ba",
-	"queryName": "IAM Policies With Full Privileges",
-	"severity": "HIGH",
-	"category": "Access Control",
-	"descriptionText": "IAM policies that allow full administrative privileges (for all resources)",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
-	"platform": "Ansible",
-	"cloudProvider": "aws"
+  "id": "e401d614-8026-4f4b-9af9-75d1197461ba",
+  "queryName": "IAM Policies With Full Privileges",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "IAM policies that allow full administrative privileges (for all resources)",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_managed_policy_module.html",
+  "platform": "Ansible",
+  "descriptionID": "3827a620",
+  "cloudProvider": "aws"
 }

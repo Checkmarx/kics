@@ -1,10 +1,11 @@
 {
-	"id": "66dae697-507b-4aef-be18-eec5bd707f33",
-	"queryName": "OSLogin Is Disabled In VM Instance",
-	"severity": "MEDIUM",
-	"category": "Insecure Configurations",
-	"descriptionText": "Check if any instance disables OSLogin.",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
-	"platform": "Ansible",
-	"cloudProvider": "gcp"
+  "id": "66dae697-507b-4aef-be18-eec5bd707f33",
+  "queryName": "OSLogin Is Disabled In VM Instance",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Check if any instance disables OSLogin.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",
+  "platform": "Ansible",
+  "descriptionID": "2cc130e4",
+  "cloudProvider": "gcp"
 }

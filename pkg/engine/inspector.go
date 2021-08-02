@@ -29,6 +29,7 @@ const (
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
 	DefaultQueryDescription     = "Undefined"
+	DefaultQueryDescriptionID   = "Undefined"
 	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 

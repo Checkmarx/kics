@@ -1,10 +1,11 @@
 {
-	"id": "8a893e46-e267-485a-8690-51f39951de58",
-	"queryName": "COS Node Image Not Used",
-	"severity": "HIGH",
-	"category": "Insecure Configurations",
-	"descriptionText": "A node image, that is not Container-Optimized OS (COS), is used for Kubernetes Engine Clusters Node image",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#node_config",
-	"platform": "Terraform",
-	"cloudProvider": "gcp"
+  "id": "8a893e46-e267-485a-8690-51f39951de58",
+  "queryName": "COS Node Image Not Used",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "A node image, that is not Container-Optimized OS (COS), is used for Kubernetes Engine Clusters Node image",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#node_config",
+  "platform": "Terraform",
+  "descriptionID": "4bdfef01",
+  "cloudProvider": "gcp"
 }

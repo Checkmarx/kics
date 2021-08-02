@@ -5,5 +5,6 @@
   "category": "Availability",
   "descriptionText": "Check if the StatefulSet have a headless 'serviceName'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "a0d17b18"
 }

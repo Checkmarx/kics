@@ -1,10 +1,11 @@
 {
-	"id": "38c64e76-c71e-4d92-a337-60174d1de1c9",
-	"queryName": "S3 Bucket Without SSL In Write Actions",
-	"severity": "HIGH",
-	"category": "Encryption",
-	"descriptionText": "S3 Buckets should enforce encryption of data transfers using Secure Sockets Layer (SSL)",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "38c64e76-c71e-4d92-a337-60174d1de1c9",
+  "queryName": "S3 Bucket Without SSL In Write Actions",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "S3 Buckets should enforce encryption of data transfers using Secure Sockets Layer (SSL)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
+  "platform": "CloudFormation",
+  "descriptionID": "907676d7",
+  "cloudProvider": "aws"
 }

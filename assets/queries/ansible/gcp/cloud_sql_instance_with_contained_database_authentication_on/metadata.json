@@ -1,10 +1,11 @@
 {
-	"id": "6d34aff3-fdd2-460c-8190-756a3b4969e8",
-	"queryName": "Cloud SQL Instance With Contained Database Authentication On",
-	"severity": "HIGH",
-	"category": "Insecure Configurations",
-	"descriptionText": "SQL Instance should not have Contained Database Authentication On",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
-	"platform": "Ansible",
-	"cloudProvider": "gcp"
+  "id": "6d34aff3-fdd2-460c-8190-756a3b4969e8",
+  "queryName": "Cloud SQL Instance With Contained Database Authentication On",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "SQL Instance should not have Contained Database Authentication On",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
+  "platform": "Ansible",
+  "descriptionID": "b1a5b8f0",
+  "cloudProvider": "gcp"
 }

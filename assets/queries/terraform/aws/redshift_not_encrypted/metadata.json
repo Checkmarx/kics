@@ -1,10 +1,11 @@
 {
-	"id": "cfdcabb0-fc06-427c-865b-c59f13e898ce",
-	"queryName": "Redshift Not Encrypted",
-	"severity": "HIGH",
-	"category": "Encryption",
-	"descriptionText": "Check if 'encrypted' field is false or undefined (default is false)",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "cfdcabb0-fc06-427c-865b-c59f13e898ce",
+  "queryName": "Redshift Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Check if 'encrypted' field is false or undefined (default is false)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
+  "platform": "Terraform",
+  "descriptionID": "2bee4895",
+  "cloudProvider": "aws"
 }

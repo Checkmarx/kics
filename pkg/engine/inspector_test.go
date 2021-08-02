@@ -248,6 +248,8 @@ func TestInspect(t *testing.T) { //nolint
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
 					QueryURI:         "https://github.com/Checkmarx/kics/",
+					Description:      "",
+					DescriptionID:    "Undefined",
 					Severity:         model.SeverityInfo,
 					Line:             -1,
 					VulnLines:        []model.CodeLine{},
@@ -321,7 +323,7 @@ func TestInspect(t *testing.T) { //nolint
 				require.Nil(t, err)
 				wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
 				require.Nil(t, err)
-				t.Errorf("Inspector.Inspect() = %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
+				t.Errorf("Inspector.Inspect() got %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
 

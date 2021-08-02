@@ -1,10 +1,11 @@
 {
-	"id": "d8c57c4e-bf6f-4e32-a2bf-8643532de77b",
-	"queryName": "High Google KMS Crypto Key Rotation Period",
-	"severity": "MEDIUM",
-	"category": "Encryption",
-	"descriptionText": "Make sure Encryption keys change after 90 days",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key",
-	"platform": "Terraform",
-	"cloudProvider": "gcp"
+  "id": "d8c57c4e-bf6f-4e32-a2bf-8643532de77b",
+  "queryName": "High Google KMS Crypto Key Rotation Period",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Make sure Encryption keys change after 90 days",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key",
+  "platform": "Terraform",
+  "descriptionID": "d43302d0",
+  "cloudProvider": "gcp"
 }

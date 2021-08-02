@@ -1,10 +1,11 @@
 {
-	"id": "e08ed7eb-f3ef-494d-9d22-2e3db756a347",
-	"queryName": "Lambda Permission Principal Is Wildcard",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Lambda Permission Principal should not contain a wildcard.",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "e08ed7eb-f3ef-494d-9d22-2e3db756a347",
+  "queryName": "Lambda Permission Principal Is Wildcard",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Lambda Permission Principal should not contain a wildcard.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
+  "platform": "Terraform",
+  "descriptionID": "b443babe",
+  "cloudProvider": "aws"
 }

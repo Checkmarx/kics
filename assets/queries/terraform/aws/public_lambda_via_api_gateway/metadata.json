@@ -1,10 +1,11 @@
 {
-	"id": "3ef8696c-e4ae-4872-92c7-520bb44dfe77",
-	"queryName": "Public Lambda via API Gateway",
-	"severity": "MEDIUM",
-	"category": "Insecure Configurations",
-	"descriptionText": "Allowing to run lambda function using public API Gateway",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "3ef8696c-e4ae-4872-92c7-520bb44dfe77",
+  "queryName": "Public Lambda via API Gateway",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Allowing to run lambda function using public API Gateway",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission",
+  "platform": "Terraform",
+  "descriptionID": "1f20399a",
+  "cloudProvider": "aws"
 }

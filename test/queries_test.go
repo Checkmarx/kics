@@ -67,8 +67,8 @@ func TestUniqueQueryIDs(t *testing.T) {
 		if _, exists := metadata["descriptionID"]; exists {
 			descID = metadata["descriptionID"].(string)
 			duplicateDir, ok = descriptionIdentifiers[descID]
-			require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
-				uuid, entry.dir, duplicateDir)
+			require.False(t, ok, "\nnon unique descriptionID found descID: %s\nqueryDir: %s\nduplicateDir: %s",
+				descID, entry.dir, duplicateDir)
 			descriptionIdentifiers[descID] = entry.dir
 		}
 
@@ -81,11 +81,11 @@ func TestUniqueQueryIDs(t *testing.T) {
 							id, entry.dir, duplicateDir)
 						queriesIdentifiers[id] = entry.dir
 
-						if _, exists := metadata["descriptionID"]; exists {
-							descID = metadata["descriptionID"].(string)
+						if _, exists := override["descriptionID"]; exists {
+							descID = override["descriptionID"].(string)
 							duplicateDir, ok = descriptionIdentifiers[descID]
-							require.False(t, ok, "\nnon unique descriptionID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
-								uuid, entry.dir, duplicateDir)
+							require.False(t, ok, "\nnon unique descriptionID found in override\ndescID: %s\nqueryDir: %s\nduplicateDir: %s",
+								descID, entry.dir, duplicateDir)
 							descriptionIdentifiers[descID] = entry.dir
 						}
 					}

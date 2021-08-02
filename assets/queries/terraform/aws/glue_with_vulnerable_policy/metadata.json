@@ -1,10 +1,11 @@
 {
-	"id": "d25edb51-07fb-4a73-97d4-41cecdc53a22",
-	"queryName": "Glue With Vulnerable Policy",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Glue policy should avoid wildcard in 'principals' and 'actions'",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_resource_policy#policy",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "d25edb51-07fb-4a73-97d4-41cecdc53a22",
+  "queryName": "Glue With Vulnerable Policy",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Glue policy should avoid wildcard in 'principals' and 'actions'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_resource_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "61db62a1",
+  "cloudProvider": "aws"
 }

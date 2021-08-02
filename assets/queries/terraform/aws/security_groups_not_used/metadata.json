@@ -1,10 +1,11 @@
 {
-	"id": "4849211b-ac39-479e-ae78-5694d506cb24",
-	"queryName": "Security Group Not Used",
-	"severity": "INFO",
-	"category": "Access Control",
-	"descriptionText": "Security group must be used or not declared",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "4849211b-ac39-479e-ae78-5694d506cb24",
+  "queryName": "Security Group Not Used",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "Security group must be used or not declared",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+  "platform": "Terraform",
+  "descriptionID": "eff2383a",
+  "cloudProvider": "aws"
 }

@@ -1,10 +1,11 @@
 {
-	"id": "bc280331-27b9-4acb-a010-018e8098aa5d",
-	"queryName": "VM With Full Cloud Access",
-	"severity": "HIGH",
-	"category": "Access Control",
-	"descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#scopes",
-	"platform": "Terraform",
-	"cloudProvider": "gcp"
+  "id": "bc280331-27b9-4acb-a010-018e8098aa5d",
+  "queryName": "VM With Full Cloud Access",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "A VM instance is configured to use the default service account with full access to all Cloud APIs",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#scopes",
+  "platform": "Terraform",
+  "descriptionID": "a0c651be",
+  "cloudProvider": "gcp"
 }

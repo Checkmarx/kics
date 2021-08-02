@@ -1,10 +1,11 @@
 {
-	"id": "fc101ca7-c9dd-4198-a1eb-0fbe92e80044",
-	"queryName": "IAM Group Without Users",
-	"severity": "LOW",
-	"category": "Access Control",
-	"descriptionText": "IAM Group should have at least one user associated",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_membership#users",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "fc101ca7-c9dd-4198-a1eb-0fbe92e80044",
+  "queryName": "IAM Group Without Users",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "IAM Group should have at least one user associated",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_membership#users",
+  "platform": "Terraform",
+  "descriptionID": "c5730db9",
+  "cloudProvider": "aws"
 }

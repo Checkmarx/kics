@@ -1,10 +1,11 @@
 {
-	"id": "83c5fa4c-e098-48fc-84ee-0a537287ddd2",
-	"queryName": "Unrestricted Security Group Ingress",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "Security groups allow ingress from 0.0.0.0/0",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-	"platform": "Ansible",
-	"cloudProvider": "aws"
+  "id": "83c5fa4c-e098-48fc-84ee-0a537287ddd2",
+  "queryName": "Unrestricted Security Group Ingress",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Security groups allow ingress from 0.0.0.0/0",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+  "platform": "Ansible",
+  "descriptionID": "015995bb",
+  "cloudProvider": "aws"
 }

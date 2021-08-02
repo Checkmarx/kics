@@ -6,6 +6,7 @@
   "descriptionText": "The EC2 instance has a sensitive port connection exposed to the entire network",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
-  "cloudProvider": "aws",
-  "aggregation": 61
+  "aggregation": 61,
+  "descriptionID": "680b7e89",
+  "cloudProvider": "aws"
 }

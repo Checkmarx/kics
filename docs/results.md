@@ -34,6 +34,12 @@ You can also change the default name by using the following command:
 
 This will generate an HTML and Gitlab SAST reports on output folder, with `kics-result` and `gl-sast-kics-result` names.
 
+## Descriptions
+
+After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with `--disable-cis-descriptions`. If used in offline mode or no internet connection is available, KICS should use the default descriptions.
+
+In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
+
 # Report examples
 
 ## JSON

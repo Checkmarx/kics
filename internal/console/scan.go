@@ -17,6 +17,7 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -44,28 +45,29 @@ var (
 	//go:embed img/kics-console
 	banner string
 
-	cloudProviders    []string
-	cfgFile           string
-	excludeCategories []string
-	excludeIDs        []string
-	excludePath       []string
-	excludeResults    []string
-	includeIDs        []string
-	failOn            []string
-	ignoreOnExit      string
-	min               bool
-	noProgress        bool
-	outputName        string
-	outputPath        string
-	path              []string
-	payloadPath       string
-	previewLines      int
-	queryPath         string
-	libraryPath       string
-	reportFormats     []string
-	types             []string
-	queryExecTimeout  int
-	inputData         string
+	cloudProviders         []string
+	cfgFile                string
+	excludeCategories      []string
+	excludeIDs             []string
+	excludePath            []string
+	excludeResults         []string
+	includeIDs             []string
+	failOn                 []string
+	ignoreOnExit           string
+	min                    bool
+	noProgress             bool
+	outputName             string
+	outputPath             string
+	path                   []string
+	payloadPath            string
+	previewLines           int
+	queryPath              string
+	libraryPath            string
+	reportFormats          []string
+	types                  []string
+	queryExecTimeout       int
+	inputData              string
+	disableCISDescriptions bool
 )
 
 const (
@@ -101,6 +103,7 @@ const (
 	typeFlag                = "type"
 	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
+	disableCISDescFlag      = "disable-cis-descriptions"
 	initError               = "initialization error - "
 	msg                     = "can be provided multiple times or as a comma separated string\n"
 
@@ -318,6 +321,10 @@ func initScanFlags(scanCmd *cobra.Command) {
 		inputDataFlag,
 		"",
 		"path to query input data files")
+	scanCmd.Flags().BoolVar(&disableCISDescriptions,
+		disableCISDescFlag,
+		false,
+		"disable request for CIS descriptions and use default vulnerability descriptions")
 	initPathsFlags(scanCmd)
 	initStdoutFlags(scanCmd)
 	initOutputFlags(scanCmd)
@@ -570,7 +577,37 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
-func scan(changedDefaultQueryPath bool) error { //nolint
+type startServiceParameters struct {
+	t              *tracker.CITracker
+	store          kics.Storage
+	querySource    *source.FilesystemSource
+	extractedPaths []string
+	progressBar    progress.PBar
+	pbBuilder      *progress.PbBuilder
+}
+
+func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) {
+	inspector, err := createInspector(params.t, params.querySource)
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+
+	services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+	params.progressBar.Close()
+
+	if err = scanner.StartScan(ctx, scanID, *params.pbBuilder, services); err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+	return inspector, nil
+}
+
+func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
 		log.Warn().Msgf(warn)
@@ -617,20 +654,15 @@ func scan(changedDefaultQueryPath bool) error { //nolint
 	querySource := source.NewFilesystemSource(queryPath, types, cloudProviders, libraryPath)
 	store := storage.NewMemoryStorage()
 
-	inspector, err := createInspector(t, querySource)
+	inspector, err := createServiceAndStartScan(&startServiceParameters{
+		t:              t,
+		store:          store,
+		querySource:    querySource,
+		progressBar:    progressBar,
+		extractedPaths: extractedPaths.Path,
+		pbBuilder:      proBarBuilder,
+	})
 	if err != nil {
-		log.Err(err)
-		return err
-	}
-
-	services, err := createService(inspector, extractedPaths.Path, t, store, querySource)
-	if err != nil {
-		log.Err(err)
-		return err
-	}
-	progressBar.Close()
-	if err = scanner.StartScan(ctx, scanID, *proBarBuilder, services); err != nil {
-		log.Err(err)
 		return err
 	}
 
@@ -693,6 +725,17 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		End:   end,
 	}
 	summary.ScannedPaths = pathParameters.ScannedPaths
+
+	if disableCISDescriptions {
+		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
+	} else {
+		err := descriptions.RequestAndOverrideDescriptions(&summary)
+		if err != nil {
+			log.Warn().Msgf("Unable to get descriptions: %s", err)
+			log.Warn().Msgf("Using default descriptions")
+		}
+	}
+
 	return summary
 }
 

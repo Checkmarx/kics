@@ -1,10 +1,11 @@
 {
-	"id": "0956aedf-6a7a-478b-ab56-63e2b19923ad",
-	"queryName": "DB Security Group With Public Scope",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).",
-	"descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-	"platform": "Ansible",
-	"cloudProvider": "aws"
+  "id": "0956aedf-6a7a-478b-ab56-63e2b19923ad",
+  "queryName": "DB Security Group With Public Scope",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
+  "platform": "Ansible",
+  "descriptionID": "47a14ee4",
+  "cloudProvider": "aws"
 }

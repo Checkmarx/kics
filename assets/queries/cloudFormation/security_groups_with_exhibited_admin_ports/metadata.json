@@ -1,10 +1,11 @@
 {
-	"id": "cdbb0467-2957-4a77-9992-7b55b29df7b7",
-	"queryName": "Security Groups With Exposed Admin Ports",
-	"severity": "HIGH",
-	"category": "Networking and Firewall",
-	"descriptionText": "Security Groups should not have ports open in (20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "cdbb0467-2957-4a77-9992-7b55b29df7b7",
+  "queryName": "Security Groups With Exposed Admin Ports",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Security Groups should not have ports open in (20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
+  "platform": "CloudFormation",
+  "descriptionID": "e14121d4",
+  "cloudProvider": "aws"
 }

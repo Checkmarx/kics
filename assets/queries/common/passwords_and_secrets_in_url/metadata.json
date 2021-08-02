@@ -6,5 +6,6 @@
   "descriptionText": "Query to find passwords and secrets in URL",
   "descriptionUrl": "https://kics.io/",
   "platform": "Common",
+  "descriptionID": "6c7382ee",
   "cloudProvider": "common"
 }

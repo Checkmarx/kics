@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "Link object 'OperationId' should not have both 'operationId' and 'operationRef' defined since they are mutually exclusive.",
   "descriptionUrl": "https://swagger.io/specification/#link-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "bddcb8cd"
 }

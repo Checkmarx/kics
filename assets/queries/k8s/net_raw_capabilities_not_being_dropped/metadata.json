@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Containers should drop 'NET_RAW' or 'ALL' capabilities",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-  "platform": "Kubernetes"
+  "platform": "Kubernetes",
+  "descriptionID": "e9790956"
 }
