@@ -18,10 +18,10 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source  string
-	Types   []string
+	Source         string
+	Types          []string
 	CloudProviders []string
-	Library string
+	Library        string
 }
 
 const (
@@ -64,10 +64,10 @@ func NewFilesystemSource(source string, types, cloudProviders []string, libraryP
 	}
 
 	return &FilesystemSource{
-		Source:  filepath.FromSlash(source),
-		Types:   types,
+		Source:         filepath.FromSlash(source),
+		Types:          types,
 		CloudProviders: cloudProviders,
-		Library: filepath.FromSlash(libraryPath),
+		Library:        filepath.FromSlash(libraryPath),
 	}
 }
 
@@ -112,7 +112,7 @@ func isDefaultLibrary(libraryPath string) bool {
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string {
 	var libraryPath, libraryFilePath string
-	if !isDefaultLibrary(libraryPathFlag)  { // user uses the library path flag
+	if !isDefaultLibrary(libraryPathFlag) { // user uses the library path flag
 		library := getLibraryInDir(platform, libraryPathFlag)
 		if library != "" { // found a library named according to the platform
 			libraryFilePath = library
@@ -125,9 +125,9 @@ func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string
 		} else {
 			libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
 		}
-	
+
 		libraryFilePath = filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
-	
+
 		for _, supPlatform := range supportedPlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
 				libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
