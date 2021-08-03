@@ -93,9 +93,9 @@
 				
 				<option value="file18">github.com/Checkmarx/kics/pkg/builder/writer/rego.go (89.8%)</option>
 				
-				<option value="file19">github.com/Checkmarx/kics/pkg/descriptions/client.go (72.3%)</option>
+				<option value="file19">github.com/Checkmarx/kics/pkg/descriptions/client.go (54.0%)</option>
 				
-				<option value="file20">github.com/Checkmarx/kics/pkg/descriptions/descriptions.go (89.5%)</option>
+				<option value="file20">github.com/Checkmarx/kics/pkg/descriptions/descriptions.go (85.7%)</option>
 				
 				<option value="file21">github.com/Checkmarx/kics/pkg/detector/default_detect.go (100.0%)</option>
 				
@@ -151,9 +151,9 @@
 				
 				<option value="file47">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.4%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file48">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (61.9%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.5%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -1367,8 +1367,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov10" title="352">{
-                if val == true </span><span class="cov9" title="351">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="333">{
+                if val == true </span><span class="cov9" title="332">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2216,13 +2216,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2247,7 +2247,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3503,7 +3503,10 @@ var (
                 DisableCompression: true,
         }
         // HTTPRequestClient - http client to use for requests
-        HTTPRequestClient HTTPClient = &amp;http.Client{Transport: tr}
+        HTTPRequestClient HTTPClient = &amp;http.Client{
+                Transport: tr,
+                Timeout:   15 * time.Second,
+        }
 )
 
 // HTTPClient - http client to use for requests
@@ -3513,11 +3516,37 @@ type HTTPClient interface {
 
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPDescription interface {
+        CheckConnection() error
         RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error)
 }
 
 // Client - client for making CIS descriptions requests
 type Client struct {
+}
+
+// CheckConnection - checks if the endpoint is reachable
+func (c *Client) CheckConnection() error <span class="cov0" title="0">{
+        baseURL, err := getBaseURL()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Debug().Msg("Unable to get baseURL")
+                return err
+        }</span>
+
+        <span class="cov0" title="0">endpointURL := fmt.Sprintf("%s/api/", baseURL)
+        req, err := http.NewRequest(http.MethodGet, endpointURL, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Debug().Msg("Unable to create request")
+                return err
+        }</span>
+
+        <span class="cov0" title="0">resp, err := doRequest(req)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Err(err).Msgf("Unable to GET descriptions API")
+                return err
+        }</span>
+        <span class="cov0" title="0">log.Debug().Msg("HTTP GET success")
+        defer resp.Body.Close()
+        return err</span>
 }
 
 // RequestDescriptions - gets CIS descriptions from endpoint
@@ -3550,7 +3579,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 
         log.Debug().Msgf("HTTP POST to descriptions endpoint")
         startTime := time.Now()
-        resp, err := doPost(req)
+        resp, err := doRequest(req)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Unable to POST to descriptions endpoint")
                 return nil, err
@@ -3575,8 +3604,8 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
         <span class="cov1" title="1">return getDescriptionsResponse.Descriptions, nil</span>
 }
 
-// Post - make HTTP post request
-func doPost(request *http.Request) (*http.Response, error) <span class="cov10" title="2">{
+// doRequest - make HTTP request
+func doRequest(request *http.Request) (*http.Response, error) <span class="cov10" title="2">{
         return HTTPRequestClient.Do(request)
 }</span>
 
@@ -3621,6 +3650,10 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error <span class="c
         descriptionIDs := make([]string, 0)
         for idx := range summary.Queries </span><span class="cov8" title="1">{
                 descriptionIDs = append(descriptionIDs, summary.Queries[idx].DescriptionID)
+        }</span>
+
+        <span class="cov8" title="1">if err := descClient.CheckConnection(); err != nil </span><span class="cov0" title="0">{
+                return err
         }</span>
 
         <span class="cov8" title="1">descriptionMap, err := descClient.RequestDescriptions(descriptionIDs)
@@ -5249,7 +5282,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="34">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="36">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -7933,7 +7966,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -7941,7 +7974,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -7958,17 +7991,17 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         wg := &amp;sync.WaitGroup{}
         go p.incrementProgress(wg)
 
-        go func() </span><span class="cov1" title="1">{
-                defer func() </span><span class="cov1" title="1">{
+        go func() </span><span class="cov0" title="0">{
+                defer func() </span><span class="cov0" title="0">{
                         wg.Wait()
                 }</span>()
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="4851">{ // increment until the Close func is called
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
@@ -8023,7 +8056,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov1" title="1">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -8032,7 +8065,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov1" title="1">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
@@ -8044,14 +8077,14 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file50" style="display: none">package progress
