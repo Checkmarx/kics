@@ -2,6 +2,7 @@ Usage:
   kics [command]
 
 Available Commands:
+  completion     generate the autocompletion script for the specified shell
   generate-id    Generates uuid for query
   help           Help about any command
   list-platforms List supported platforms
