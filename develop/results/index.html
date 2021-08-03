@@ -423,9 +423,39 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Results
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Results
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descriptions" class="md-nav__link">
+    Descriptions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -927,6 +957,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descriptions" class="md-nav__link">
+    Descriptions
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -964,6 +1009,9 @@ where the output-path will be the directory containing all report files and repo
 <pre><code class="language-bash">./kics scan -p &lt;path-of-your-project-to-scan&gt; -o ./output --report-formats &quot;glsast,html,pdf&quot; --output-name kics-result
 </code></pre>
 <p>This will generate an HTML and Gitlab SAST reports on output folder, with <code>kics-result</code> and <code>gl-sast-kics-result</code> names.</p>
+<h2 id="descriptions">Descriptions<a class="headerlink" href="#descriptions" title="Permanent link">&para;</a></h2>
+<p>After the scanning process is done, If an internet connection is available, KICS will try to fetch CIS Proprietary vulnerability descriptions from a HTTP endpoint, this can be disabled with <code>--disable-cis-descriptions</code>. If used in offline mode or no internet connection is available, KICS should use the default descriptions.</p>
+<p>In case of using KICS behind a corporate proxy, proxy configurations can be set with environment variables such as <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>NO_PROXY</code></p>
 <h1 id="report_examples">Report examples<a class="headerlink" href="#report_examples" title="Permanent link">&para;</a></h1>
 <h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <p>The JSON report is the default report to be generate, if no arg is passed to <code>report-formats</code> flag, also you can explicitly use it with <code>--report-formats "json"</code>.

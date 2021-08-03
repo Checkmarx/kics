@@ -983,32 +983,6 @@
 <p>This will generate a <code>results.json</code> file, for both examples, under <code>path</code>.</p>
 <h2 id="cli_options">CLI Options<a class="headerlink" href="#cli_options" title="Permanent link">&para;</a></h2>
 <p>Usage:</p>
-<pre><code class="language-txt">Keeping Infrastructure as Code Secure
-
-Usage:
-  kics [command]
-
-Available Commands:
-  generate-id    Generates uuid for query
-  help           Help about any command
-  list-platforms List supported platforms
-  scan           Executes a scan analysis
-  version        Displays the current version
-
-Flags:
-      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-  -h, --help                help for kics
-  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
-      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-      --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
-      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-
-Use &quot;kics [command] --help&quot; for more information about a command.
-</code></pre>
-<p>Scan command:</p>
 <pre><code class="language-txt">Executes a scan analysis
 
 Usage:
@@ -1045,6 +1019,7 @@ Flags:
       --input-data string            path to query input data files
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --disable-cis-descriptions     disable request for CIS descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default &quot;results&quot;)
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
