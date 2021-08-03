@@ -603,9 +603,7 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	currentWorkdir, _ := os.Getwd()
-
-	pathToLib := source.GetPathToLibrary(platform, currentWorkdir, filepath.FromSlash("./assets/libraries"))
+	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err

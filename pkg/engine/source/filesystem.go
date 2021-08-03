@@ -107,9 +107,50 @@ func isDefaultLibrary(libraryPath string) bool {
 	return filepath.FromSlash(libraryPath) == filepath.FromSlash(LibrariesDefaultBasePath)
 }
 
+func checkSymLink(pathFile string) (string, bool) {
+	info, err := os.Lstat(pathFile)
+	if err != nil {
+		log.Error().Msgf("failed lstat for %s: %v", pathFile, err)
+	}
+
+	if info.Mode()&os.ModeSymlink != 0 {
+		link, err := os.Readlink(pathFile)
+		if err != nil {
+			log.Error().Msgf("failed Readlink for %s: %v", pathFile, err)
+			return "", false
+		}
+		pathFile = link
+	}
+	return pathFile, true
+}
+
+func getKicsDirPath() string {
+	kicsDirPath, err := os.Executable()
+	if err != nil {
+		log.Err(err)
+		return ""
+	}
+
+	symLink, isSymLink := checkSymLink(kicsDirPath)
+
+	if isSymLink {
+		idx := strings.Index(symLink, "kics")
+		if idx != -1 {
+			return symLink[:strings.Index(symLink, "kics")] + "kics"
+		}
+	} else {
+		idx := strings.Index(kicsDirPath, "kics")
+		if idx != -1 {
+			return kicsDirPath[:strings.Index(kicsDirPath, "kics")] + "kics"
+		}
+	}
+
+	return ""
+}
+
 // GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string {
-	var libraryPath, libraryFilePath string
+func GetPathToLibrary(platform, libraryPathFlag string) string {
+	var libraryFilePath, relativeBasePath string
 	if !isDefaultLibrary(libraryPathFlag) { // user uses the library path flag
 		library := getLibraryInDir(platform, libraryPathFlag)
 		if library != "" { // found a library named according to the platform
@@ -118,17 +159,25 @@ func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string
 			libraryFilePath = ""
 		}
 	} else { // user did not use the library path flag
-		if strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries")) > -1 {
-			libraryPath = relativeBasePath[:strings.LastIndex(relativeBasePath, filepath.FromSlash("/queries"))] + filepath.FromSlash("/libraries")
-		} else {
-			libraryPath = filepath.Join(relativeBasePath, LibrariesDefaultBasePath)
+		kicsDirPath := getKicsDirPath()
+		libraryFilePath = filepath.FromSlash(kicsDirPath + "/assets/libraries/common.rego")
+		if _, err := os.Stat(libraryFilePath); os.IsNotExist(err) { // the system does not have kics binary accessible
+			currentDir, err := os.Getwd()
+			if err != nil {
+				log.Fatal().Msgf("Error getting wd: %s", err)
+			}
+			currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
+			libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
+			if _, err := os.Stat(libraryFilePath); os.IsNotExist(err) {
+				log.Fatal().Msgf("Error getting wd: %s", err)
+			}
+			relativeBasePath = currentDir
+		} else { // the system has kics binary accessible
+			relativeBasePath = kicsDirPath
 		}
-
-		libraryFilePath = filepath.FromSlash(libraryPath + "/common.rego")
-
 		for _, supPlatform := range supportedPlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
-				libraryFilePath = filepath.FromSlash(libraryPath + "/" + strings.ToLower(supPlatform) + ".rego")
+				libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
 				break
 			}
 		}
@@ -138,7 +187,7 @@ func GetPathToLibrary(platform, relativeBasePath, libraryPathFlag string) string
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib := GetPathToLibrary(platform, s.Source, s.Library)
+	pathToLib := GetPathToLibrary(platform, s.Library)
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
@@ -290,7 +339,9 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 	}
 
 	metadata := ReadMetadata(queryDir)
+
 	platform := getPlatform(metadata["platform"].(string))
+
 	inputData, errInputData := readInputData(filepath.Join(queryDir, "data.json"))
 	if errInputData != nil {
 		log.Err(errInputData).
