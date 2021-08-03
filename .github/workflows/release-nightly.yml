@@ -60,6 +60,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
       - name: delete release
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
