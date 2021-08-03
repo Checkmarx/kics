@@ -17,6 +17,10 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 		descriptionIDs = append(descriptionIDs, summary.Queries[idx].DescriptionID)
 	}
 
+	if err := descClient.CheckConnection(); err != nil {
+		return err
+	}
+
 	descriptionMap, err := descClient.RequestDescriptions(descriptionIDs)
 	if err != nil {
 		return err

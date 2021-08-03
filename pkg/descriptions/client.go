@@ -40,7 +40,10 @@ var (
 		DisableCompression: true,
 	}
 	// HTTPRequestClient - http client to use for requests
-	HTTPRequestClient HTTPClient = &http.Client{Transport: tr}
+	HTTPRequestClient HTTPClient = &http.Client{
+		Transport: tr,
+		Timeout:   15 * time.Second,
+	}
 )
 
 // HTTPClient - http client to use for requests
@@ -50,11 +53,37 @@ type HTTPClient interface {
 
 // HTTPDescription - HTTP client interface to use for requesting descriptions
 type HTTPDescription interface {
+	CheckConnection() error
 	RequestDescriptions(descriptionIDs []string) (map[string]descModel.CISDescriptions, error)
 }
 
 // Client - client for making CIS descriptions requests
 type Client struct {
+}
+
+// CheckConnection - checks if the endpoint is reachable
+func (c *Client) CheckConnection() error {
+	baseURL, err := getBaseURL()
+	if err != nil {
+		log.Debug().Msg("Unable to get baseURL")
+		return err
+	}
+
+	endpointURL := fmt.Sprintf("%s/api/", baseURL)
+	req, err := http.NewRequest(http.MethodGet, endpointURL, nil)
+	if err != nil {
+		log.Debug().Msg("Unable to create request")
+		return err
+	}
+
+	resp, err := doRequest(req)
+	if err != nil {
+		log.Err(err).Msgf("Unable to GET descriptions API")
+		return err
+	}
+	log.Debug().Msg("HTTP GET success")
+	defer resp.Body.Close()
+	return err
 }
 
 // RequestDescriptions - gets CIS descriptions from endpoint
@@ -87,7 +116,7 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 
 	log.Debug().Msgf("HTTP POST to descriptions endpoint")
 	startTime := time.Now()
-	resp, err := doPost(req)
+	resp, err := doRequest(req)
 	if err != nil {
 		log.Err(err).Msgf("Unable to POST to descriptions endpoint")
 		return nil, err
@@ -112,8 +141,8 @@ func (c *Client) RequestDescriptions(descriptionIDs []string) (map[string]descMo
 	return getDescriptionsResponse.Descriptions, nil
 }
 
-// Post - make HTTP post request
-func doPost(request *http.Request) (*http.Response, error) {
+// doRequest - make HTTP request
+func doRequest(request *http.Request) (*http.Response, error) {
 	return HTTPRequestClient.Do(request)
 }
 
