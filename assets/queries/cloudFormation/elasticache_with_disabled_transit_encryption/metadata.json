@@ -1,10 +1,11 @@
 {
-	"id": "3b02569b-fc6f-4153-b3a3-ba91022fed68",
-	"queryName": "ElastiCache With Disabled Transit Encryption",
-	"severity": "HIGH",
-	"category": "Encryption",
-	"descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at transit enabled",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "3b02569b-fc6f-4153-b3a3-ba91022fed68",
+  "queryName": "ElastiCache With Disabled Transit Encryption",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Ensure AWS ElastiCache Redis clusters have encryption for data at transit enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html",
+  "platform": "CloudFormation",
+  "descriptionID": "b1ce0b9f",
+  "cloudProvider": "aws"
 }

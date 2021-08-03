@@ -1,10 +1,11 @@
 {
-	"id": "b161c11b-a59b-4431-9a29-4e19f63e6b27",
-	"queryName": "REST API With Vulnerable Policy",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "REST API policy should avoid wildcard in 'Action' and 'Principal'",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api_policy#policy",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "b161c11b-a59b-4431-9a29-4e19f63e6b27",
+  "queryName": "REST API With Vulnerable Policy",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "REST API policy should avoid wildcard in 'Action' and 'Principal'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "fb6080ac",
+  "cloudProvider": "aws"
 }

@@ -1,10 +1,11 @@
 {
-	"id": "48af92a5-c89b-4936-bc62-1086fe2bab23",
-	"queryName": "EMR Cluster Without Security Configuration",
-	"severity": "MEDIUM",
-	"category": "Insecure Configurations",
-	"descriptionText": "EMR Cluster should have security configuration defined.",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-securityconfiguration",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "48af92a5-c89b-4936-bc62-1086fe2bab23",
+  "queryName": "EMR Cluster Without Security Configuration",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "EMR Cluster should have security configuration defined.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-securityconfiguration",
+  "platform": "CloudFormation",
+  "descriptionID": "17e140e2",
+  "cloudProvider": "aws"
 }

@@ -6,5 +6,6 @@
   "descriptionText": "All variables should contain a valid type.",
   "descriptionUrl": "https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation",
   "platform": "Terraform",
+  "descriptionID": "bba696eb",
   "cloudProvider": "common"
 }

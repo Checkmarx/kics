@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "name": "servers1",
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "apiVersion": "2017-12-01",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "sku": {
+        "name": "B_Gen4_1",
+        "tier": "Basic",
+        "capacity": 500,
+        "size": "500MB",
+        "family": "family"
+      },
+      "properties": {
+        "version": "11",
+        "sslEnforcement": "Enabled",
+        "minimalTlsVersion": "TLS1_2",
+        "infrastructureEncryption": "Enabled",
+        "publicNetworkAccess": "Disabled",
+        "storageProfile": {
+          "backupRetentionDays": 90,
+          "geoRedundantBackup": "Enabled",
+          "storageMB": 50,
+          "storageAutogrow": "Enabled"
+        },
+        "createMode": "Replica",
+        "sourceServerId": "sample_id"
+      },
+      "location": "string",
+      "tags": {},
+      "resources": [
+        {
+          "name": "connection_throttling",
+          "type": "configurations",
+          "apiVersion": "2017-12-01",
+          "properties": {
+            "value": "Off"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}

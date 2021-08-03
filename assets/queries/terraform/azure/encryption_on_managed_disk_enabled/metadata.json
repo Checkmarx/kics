@@ -1,10 +1,11 @@
 {
-	"id": "a99130ab-4c0e-43aa-97f8-78d4fcb30024",
-	"queryName": "Encryption On Managed Disk Disabled",
-	"severity": "MEDIUM",
-	"category": "Encryption",
-	"descriptionText": "Ensure that the encryption is active on the disk",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk#encryption_settings",
-	"platform": "Terraform",
-	"cloudProvider": "azure"
+  "id": "a99130ab-4c0e-43aa-97f8-78d4fcb30024",
+  "queryName": "Encryption On Managed Disk Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure that the encryption is active on the disk",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk#encryption_settings",
+  "platform": "Terraform",
+  "descriptionID": "8f6e1fa8",
+  "cloudProvider": "azure"
 }

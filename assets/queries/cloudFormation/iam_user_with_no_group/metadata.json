@@ -1,10 +1,11 @@
 {
-	"id": "06933df4-0ea7-461c-b9b5-104d27390e0e",
-	"queryName": "IAM User With No Group",
-	"severity": "LOW",
-	"category": "Access Control",
-	"descriptionText": "A IAM user should belong to a group",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "06933df4-0ea7-461c-b9b5-104d27390e0e",
+  "queryName": "IAM User With No Group",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "A IAM user should belong to a group",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-policy",
+  "platform": "CloudFormation",
+  "descriptionID": "d7e9b179",
+  "cloudProvider": "aws"
 }

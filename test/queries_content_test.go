@@ -110,6 +110,10 @@ var (
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
 			require.NotEmpty(tb, descriptionValue, "empty description text in query metadata file %s", metadataPath)
 		},
+		"descriptionID": func(tb testing.TB, value interface{}, metadataPath string) {
+			descriptionIDValue := testMetadataFieldStringType(tb, value, "descriptionID", metadataPath)
+			require.NotEmpty(tb, descriptionIDValue, "empty description ID in query metadata file %s", metadataPath)
+		},
 		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
 			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
 			require.NotEmpty(tb, platformValue, "empty platform text in query metadata file %s", metadataPath)

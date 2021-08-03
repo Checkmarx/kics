@@ -45,7 +45,7 @@ var printTests = []struct {
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
 			"Description: \nPlatform: \n\n\t[1]: positive.tf:1\n\n\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
-			"Description: \n" +
+			"Description: ALB protocol is HTTP Description\n" +
 			"Platform: \n\n" +
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +

@@ -1,10 +1,11 @@
 {
-	"id": "8275fab0-68ec-4705-bbf4-86975edb170e",
-	"queryName": "API Gateway Without Security Policy",
-	"severity": "HIGH",
-	"category": "Insecure Configurations",
-	"descriptionText": "API Gateway should have a Security Policy defined and use TLS 1.2.",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-securitypolicy",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "8275fab0-68ec-4705-bbf4-86975edb170e",
+  "queryName": "API Gateway Without Security Policy",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "API Gateway should have a Security Policy defined and use TLS 1.2.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-securitypolicy",
+  "platform": "CloudFormation",
+  "descriptionID": "92418e29",
+  "cloudProvider": "aws"
 }

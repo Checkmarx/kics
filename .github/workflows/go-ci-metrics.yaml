@@ -52,6 +52,7 @@ jobs:
         run: |
           mv latest-metrics/queries.svg queries.svg
           git add queries.svg
-          git status
-          git commit -m 'chore(metrics): updating queries count badge'
-          git push origin gh-pages
+          if ! git status | grep "nothing to commit"; then
+            git commit -m 'chore(metrics): updating queries count badge'
+            git push origin gh-pages
+          fi

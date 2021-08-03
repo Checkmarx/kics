@@ -1,9 +1,10 @@
 {
-	"id": "7384dfb2-fcd1-4fbf-91cd-6c44c318c33c",
-	"queryName": "APT-GET Not Avoiding Additional Packages",
-	"severity": "INFO",
-	"category": "Supply-Chain",
-	"descriptionText": "Check if any apt-get installs don't use '--no-install-recommends' flag to avoid installing additional packages.",
-	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
-	"platform": "Dockerfile"
+  "id": "7384dfb2-fcd1-4fbf-91cd-6c44c318c33c",
+  "queryName": "APT-GET Not Avoiding Additional Packages",
+  "severity": "INFO",
+  "category": "Supply-Chain",
+  "descriptionText": "Check if any apt-get installs don't use '--no-install-recommends' flag to avoid installing additional packages.",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
+  "platform": "Dockerfile",
+  "descriptionID": "2e92d18c"
 }

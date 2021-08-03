@@ -1,10 +1,11 @@
 {
-	"id": "fa00ce45-386d-4718-8392-fb485e1f3c5b",
-	"queryName": "Secrets Manager With Vulnerable Policy",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Secrets Manager policy should avoid wildcard in 'Principal' and 'Action'",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_policy#policy",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "fa00ce45-386d-4718-8392-fb485e1f3c5b",
+  "queryName": "Secrets Manager With Vulnerable Policy",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Secrets Manager policy should avoid wildcard in 'Principal' and 'Action'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "d348a5e7",
+  "cloudProvider": "aws"
 }

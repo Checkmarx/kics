@@ -1,0 +1,11 @@
+{
+  "id": "564b70f8-41cd-4690-aff8-bb53add86bc9",
+  "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Network Watcher Flow Log Retention Policy should be enabled and the recommended number of days for the retention should be higher than 90",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "71ce9f8c"
+}

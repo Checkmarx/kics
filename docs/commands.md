@@ -72,6 +72,7 @@ Flags:
       --input-data string            path to query input data files
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --disable-cis-descriptions     disable request for CIS descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan

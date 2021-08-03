@@ -1,10 +1,11 @@
 {
-	"id": "8e75e431-449f-49e9-b56a-c8f1378025cf",
-	"queryName": "Role Assignment Not Limit Guest User Permissions",
-	"severity": "HIGH",
-	"category": "Access Control",
-	"descriptionText": "Role Assignment should limit guest user permissions",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
-	"platform": "Terraform",
-	"cloudProvider": "azure"
+  "id": "8e75e431-449f-49e9-b56a-c8f1378025cf",
+  "queryName": "Role Assignment Not Limit Guest User Permissions",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Role Assignment should limit guest user permissions",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
+  "platform": "Terraform",
+  "descriptionID": "a827491d",
+  "cloudProvider": "azure"
 }

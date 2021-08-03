@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "When 'collectionformat' is defined as 'multi', 'in' field must be 'query' or 'formData'",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "e0b264a9"
 }

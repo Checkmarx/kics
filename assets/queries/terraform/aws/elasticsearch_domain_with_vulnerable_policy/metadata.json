@@ -1,10 +1,11 @@
 {
-	"id": "16c4216a-50d3-4785-bfb2-4adb5144a8ba",
-	"queryName": "Elasticsearch Domain With Vulnerable Policy",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Elasticsearch Domain policy should avoid wildcard in 'Action' and 'Principal'.",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain_policy#access_policies",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "16c4216a-50d3-4785-bfb2-4adb5144a8ba",
+  "queryName": "Elasticsearch Domain With Vulnerable Policy",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Elasticsearch Domain policy should avoid wildcard in 'Action' and 'Principal'.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain_policy#access_policies",
+  "platform": "Terraform",
+  "descriptionID": "265f06df",
+  "cloudProvider": "aws"
 }

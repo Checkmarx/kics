@@ -1,9 +1,10 @@
 {
-	"id": "8f6456be-0018-46db-9ce6-b3b6dc8d34d2",
-	"queryName": "Yum Update Enabled",
-	"severity": "HIGH",
-	"category": "Supply-Chain",
-	"descriptionText": "Yum update is being used",
-	"descriptionUrl": "https://docs.docker.com/engine/install/centos/#upgrade-docker-engine-1",
-	"platform": "Dockerfile"
+  "id": "8f6456be-0018-46db-9ce6-b3b6dc8d34d2",
+  "queryName": "Yum Update Enabled",
+  "severity": "HIGH",
+  "category": "Supply-Chain",
+  "descriptionText": "Yum update is being used",
+  "descriptionUrl": "https://docs.docker.com/engine/install/centos/#upgrade-docker-engine-1",
+  "platform": "Dockerfile",
+  "descriptionID": "68f90a28"
 }

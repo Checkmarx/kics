@@ -1,10 +1,11 @@
 {
-	"id": "45cff7b6-3b80-40c1-ba7b-2cf480678bb8",
-	"queryName": "Neptune Logging Is Disabled",
-	"severity": "INFO",
-	"category": "Observability",
-	"descriptionText": "Neptune logging should be enabled",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports",
-	"platform": "Terraform",
-	"cloudProvider": "aws"
+  "id": "45cff7b6-3b80-40c1-ba7b-2cf480678bb8",
+  "queryName": "Neptune Logging Is Disabled",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "Neptune logging should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster#enable_cloudwatch_logs_exports",
+  "platform": "Terraform",
+  "descriptionID": "eb6f1a3b",
+  "cloudProvider": "aws"
 }

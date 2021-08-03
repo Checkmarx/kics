@@ -1,10 +1,11 @@
 {
-	"id": "5c0b06d5-b7a4-484c-aeb0-75a836269ff0",
-	"queryName": "CloudTrail Logging Disabled",
-	"severity": "HIGH",
-	"category": "Observability",
-	"descriptionText": "Checks if logging is enabled for CloudTrail.",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-islogging",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "5c0b06d5-b7a4-484c-aeb0-75a836269ff0",
+  "queryName": "CloudTrail Logging Disabled",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "Checks if logging is enabled for CloudTrail.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-islogging",
+  "platform": "CloudFormation",
+  "descriptionID": "8cabc568",
+  "cloudProvider": "aws"
 }

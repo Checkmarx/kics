@@ -1,10 +1,11 @@
 {
-	"id": "837e033c-4717-40bd-807e-6abaa30161b7",
-	"queryName": "Stack Notifications Disabled",
-	"severity": "MEDIUM",
-	"category": "Observability",
-	"descriptionText": "Enable AWS CloudFormation Stack Notifications",
-	"descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html",
-	"platform": "CloudFormation",
-	"cloudProvider": "aws"
+  "id": "837e033c-4717-40bd-807e-6abaa30161b7",
+  "queryName": "Stack Notifications Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Enable AWS CloudFormation Stack Notifications",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html",
+  "platform": "CloudFormation",
+  "descriptionID": "1e12925e",
+  "cloudProvider": "aws"
 }

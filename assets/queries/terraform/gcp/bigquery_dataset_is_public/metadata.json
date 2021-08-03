@@ -1,10 +1,11 @@
 {
-	"id": "e576ce44-dd03-4022-a8c0-3906acca2ab4",
-	"queryName": "BigQuery Dataset Is Public",
-	"severity": "HIGH",
-	"category": "Access Control",
-	"descriptionText": "BigQuery dataset is anonymously or publicly accessible",
-	"descriptionUrl": "https://www.terraform.io/docs/providers/google/r/bigquery_dataset.html",
-	"platform": "Terraform",
-	"cloudProvider": "gcp"
+  "id": "e576ce44-dd03-4022-a8c0-3906acca2ab4",
+  "queryName": "BigQuery Dataset Is Public",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "BigQuery dataset is anonymously or publicly accessible",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/google/r/bigquery_dataset.html",
+  "platform": "Terraform",
+  "descriptionID": "cb5081a0",
+  "cloudProvider": "gcp"
 }

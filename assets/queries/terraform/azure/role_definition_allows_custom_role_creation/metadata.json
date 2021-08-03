@@ -1,10 +1,11 @@
 {
-	"id": "3fa5900f-9aac-4982-96b2-a6143d9c99fb",
-	"queryName": "Role Definition Allows Custom Role Creation",
-	"severity": "MEDIUM",
-	"category": "Access Control",
-	"descriptionText": "Role Definition should not allow custom role creation",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition#actions",
-	"platform": "Terraform",
-	"cloudProvider": "azure"
+  "id": "3fa5900f-9aac-4982-96b2-a6143d9c99fb",
+  "queryName": "Role Definition Allows Custom Role Creation",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Role Definition should not allow custom role creation",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition#actions",
+  "platform": "Terraform",
+  "descriptionID": "a96dc1b9",
+  "cloudProvider": "azure"
 }

@@ -5,5 +5,6 @@
   "category": "Access Control",
   "descriptionText": "Security Defenition Object should not allow 'password' Flow in OAuth2 authentication",
   "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "7b681b12"
 }
