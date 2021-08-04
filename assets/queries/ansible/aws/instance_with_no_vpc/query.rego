@@ -1,14 +1,15 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.ec2_instance", "ec2_instance", "amazon.aws.ec2", "ec2"}
 	ec2 := task[modules[m]]
-	checkState(object.get(ec2, "state", "undefined"))
+	checkState(ec2)
 
-	object.get(ec2, "vpc_subnet_id", "undefined") == "undefined"
+	not common_lib.valid_key(ec2, "vpc_subnet_id")
 
 	result := {
 		"documentId": id,
@@ -19,6 +20,8 @@ CxPolicy[result] {
 	}
 }
 
-checkState("undefined") = true
-
-checkState("present") = true
+checkState(task) {
+	state := object.get(task, "state", "undefined")
+	state != "absent"
+	state != "list"
+}

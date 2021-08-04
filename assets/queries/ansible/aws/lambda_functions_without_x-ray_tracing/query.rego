@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.lambda", "lambda"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	lambda := task[modules[m]]
 	ansLib.checkState(lambda)
 
-	object.get(lambda, "tracing_mode", "undefined") == "undefined"
+	not common_lib.valid_key(lambda, "tracing_mode")
 
 	result := {
 		"documentId": id,

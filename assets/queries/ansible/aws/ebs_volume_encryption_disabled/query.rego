@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"amazon.aws.ec2_vol", "ec2_vol"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	ec2_vol := task[modules[m]]
 	checkState(ec2_vol)
 
-	object.get(ec2_vol, "encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(ec2_vol, "encrypted")
 
 	result := {
 		"documentId": id,

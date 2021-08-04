@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
 
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	metadata := instance.metadata
 	ansLib.checkState(instance)
 
-	object.get(metadata, "block-project-ssh-keys", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "block-project-ssh-keys")
 	not ansLib.isAnsibleTrue(metadata["block-project-ssh-keys"])
 
 	result := {
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	object.get(instance.metadata, "block-project-ssh-keys", "undefined") == "undefined"
+	not common_lib.valid_key(instance.metadata, "block-project-ssh-keys")
 
 	result := {
 		"documentId": id,
@@ -43,7 +44,7 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	object.get(instance, "metadata", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "metadata")
 
 	result := {
 		"documentId": id,
