@@ -31,10 +31,10 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Ansible" src="docs/img/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
 <img alt="Helm" src="docs/img/logo-helm.png" width="150">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
