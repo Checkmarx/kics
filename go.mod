@@ -25,7 +25,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.8.1
 	github.com/stretchr/testify v1.7.0
-	github.com/tdewolff/minify/v2 v2.9.20
+	github.com/tdewolff/minify/v2 v2.9.21
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/zclconf/go-cty v1.9.0
 	golang.org/x/net v0.0.0-20210525063256-abc453219eb5
