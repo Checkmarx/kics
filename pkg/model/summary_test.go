@@ -117,7 +117,7 @@ func TestModel_resolvePath(t *testing.T) {
 					},
 				},
 			},
-			want: filepath.FromSlash("https/test/relativepath/testing/file/vuln"),
+			want: filepath.FromSlash("https//test/relativepath/testing/file/vuln"),
 		},
 		{
 			name: "test_with_query_mult_params_local",
@@ -130,7 +130,7 @@ func TestModel_resolvePath(t *testing.T) {
 					},
 				},
 			},
-			want: filepath.FromSlash("https/test/relativepath/testing/file/vuln"),
+			want: filepath.FromSlash("https//test/relativepath/testing/file/vuln"),
 		},
 		{
 			name: "test_with_query_local",

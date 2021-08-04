@@ -109,9 +109,10 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]Extrac
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
 			if !val.LocalPath {
-				return filepath.Join(queryRegex.ReplaceAllString(val.Path, ""), splittedPath[1]) // remove query parameters '?key=value&key2=value'
+				// remove query parameters '?key=value&key2=value'
+				return filepath.FromSlash(queryRegex.ReplaceAllString(val.Path, "") + splittedPath[1])
 			}
-			prettyPath = filepath.Join(filepath.Base(val.Path), splittedPath[1])
+			prettyPath = filepath.FromSlash(filepath.Base(val.Path) + splittedPath[1])
 		} else {
 			prettyPath = filePath
 		}
