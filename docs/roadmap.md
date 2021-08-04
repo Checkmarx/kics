@@ -28,6 +28,7 @@ Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on G
 | v1.3.2 | Gitlab SAST report |
 | v1.3.2 | Improved HTML report (path, platform, start/end times)|
 | **May 2021** |
+| v1.3.0 | Improved performance (sample filtering and parallel scans) |
 | v1.3.0 | Improved Logs (CPU, RAM outputs) |
 | v1.3.0 | Jenkinsfile documentation and examples |
 | v1.3.0 | CircleCI integration example |
