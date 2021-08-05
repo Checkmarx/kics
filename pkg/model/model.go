@@ -79,6 +79,7 @@ type ExtractedPathObject struct {
 	LocalPath bool
 }
 
+// CommentsCommands list of commands on a file that will be parsed
 type CommentsCommands map[string]string
 
 // FileMetadata is a representation of basic information and content of a file
