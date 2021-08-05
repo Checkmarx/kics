@@ -65,7 +65,7 @@ Setting up and using KICS is super-easy.
 
 Interested in more advanced stuff?
 - Deep dive into KICS [queries](queries.md).
-- Understand how you to [integrate](integrations.md) KICS in your favourit CI/CD pipelines.
+- Understand how you to [integrate](integrations.md) KICS in your favorite CI/CD pipelines.
 
 ## How it Works
 
