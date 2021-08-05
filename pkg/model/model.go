@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	_ "github.com/mailru/easyjson/gen" //nolint
+	"github.com/rs/zerolog/log"
 )
 
 // Constants to describe what kind of file refers
@@ -78,6 +79,8 @@ type ExtractedPathObject struct {
 	LocalPath bool
 }
 
+type CommentsCommands map[string]string
+
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
 	ID           string `db:"id"`
@@ -89,6 +92,7 @@ type FileMetadata struct {
 	Content      string
 	HelmID       string
 	IDInfo       map[int]interface{}
+	Commands     CommentsCommands
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -201,7 +205,12 @@ type Document map[string]interface{}
 func (m FileMetadatas) Combine() Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for i := 0; i < len(m); i++ {
+		_, ignore := m[i].Commands["ignore"]
 		if len(m[i].Document) == 0 {
+			continue
+		}
+		if ignore {
+			log.Debug().Msgf("Ignoring file %s", m[i].FileName)
 			continue
 		}
 		m[i].Document["id"] = m[i].ID

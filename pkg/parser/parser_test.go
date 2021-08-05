@@ -215,3 +215,29 @@ func TestRemoveDuplicateValues(t *testing.T) {
 		})
 	}
 }
+
+func TestIsValidExtension(t *testing.T) {
+	parser, _ := NewBuilder().
+		Add(&jsonParser.Parser{}).
+		Add(&dockerParser.Parser{}).
+		Build([]string{""}, []string{""})
+	require.True(t, parser[0].isValidExtension("test.json"), "test.json should be a valid extension")
+	require.True(t, parser[1].isValidExtension("Dockerfile"), "dockerfile should be a valid extension")
+	require.False(t, parser[0].isValidExtension("test.xml"), "test.xml should not be a valid extension")
+}
+
+func TestCommentsCommands(t *testing.T) {
+	parser, _ := NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
+	commands := parser[0].CommentsCommands("Dockerfile", []byte(`
+	# kics-scan ignore
+	# kics-scan disable=ffdf4b37-7703-4dfe-a682-9d2e99bc6c09
+	FROM foo
+	COPY . /
+	RUN echo hello
+	`))
+	expectedCommands := model.CommentsCommands{
+		"ignore":  "",
+		"disable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+	}
+	require.Equal(t, expectedCommands, commands)
+}
