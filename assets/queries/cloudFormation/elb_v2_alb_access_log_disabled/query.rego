@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
 
-    object.get(prop, "LoadBalancerAttributes", "undefined") == "undefined"
+    not common_lib.valid_key(prop, "LoadBalancerAttributes")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
 
-    not object.get(prop, "LoadBalancerAttributes", "undefined") == "undefined"
+    common_lib.valid_key(prop, "LoadBalancerAttributes")
 	contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
 
 	result := {

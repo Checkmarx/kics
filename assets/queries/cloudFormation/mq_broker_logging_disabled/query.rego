@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-	object.get(properties, "Logs", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "Logs")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,19 +23,18 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-	object.get(properties, "Logs", "undefined") != "undefined"
+	common_lib.valid_key(properties, "Logs")
 
     logTypes := ["Audit","General"]
-
-    some j
-    object.get(properties.Logs,logTypes[j],"undefined") == "undefined"
+	lTypes := logTypes[j]
+    not common_lib.valid_key(properties.Logs,lTypes)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.Logs", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.Logs.%s is set", [name,logTypes[j]]),
-		"keyActualValue": sprintf("Resources.%s.Properties.Logs.%s is undefined", [name,logTypes[j]]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.Logs.%s is set", [name,lTypes]),
+		"keyActualValue": sprintf("Resources.%s.Properties.Logs.%s is undefined", [name,lTypes]),
 	}
 }
 
@@ -42,13 +43,12 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-	object.get(properties, "Logs", "undefined") != "undefined"
+	common_lib.valid_key(properties, "Logs")
 
     logTypes := ["Audit","General"]
 
-    some j
-    object.get(properties.Logs,logTypes[j],"undefined") != "undefined"
-    not object.get(properties.Logs,logTypes[j],"undefined")
+    common_lib.valid_key(properties.Logs,logTypes[j])
+	properties.Logs[logTypes[j]] == false
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,12 +1,12 @@
 package Cx
 
 import data.generic.cloudformation as cldLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 	document := input.document[i]
 	resource := document.Resources[key]
-    commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
+    common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
     properties := resource.Properties
 	cldLib.isCloudFormationFalse(properties.StorageEncrypted)
@@ -23,10 +23,10 @@ CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 	document := input.document[i]
 	resource := document.Resources[key]
-    commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
+    common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
 	properties := resource.Properties
-	object.get(properties, "StorageEncrypted", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "StorageEncrypted")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,10 +40,10 @@ CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
-	commonLib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::Redshift::Cluster"}, resource.Type)
+	common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::Redshift::Cluster"}, resource.Type)
 
 	properties := resource.Properties
-	object.get(properties, "KmsKeyId", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "KmsKeyId")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -60,7 +60,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Redshift::Cluster"
 
 	properties := resource.Properties
-	object.get(properties, "Encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "Encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

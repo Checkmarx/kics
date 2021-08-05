@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::RestApi"
 
-	object.get(resource.Properties, "EndpointConfiguration", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "EndpointConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::RestApi"
 	endpointConfig := resource.Properties.EndpointConfiguration
 
-	object.get(endpointConfig, "Types", "undefined") == "undefined"
+	not common_lib.valid_key(endpointConfig, "Types")
 
 	result := {
 		"documentId": input.document[i].id,

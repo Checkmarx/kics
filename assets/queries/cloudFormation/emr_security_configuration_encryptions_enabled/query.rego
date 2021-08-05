@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -58,7 +60,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	encryptionConfiguration := properties.SecurityConfiguration
-	object.get(encryptionConfiguration, "EncryptionConfiguration", "undefined") == "undefined"
+	not common_lib.valid_key(encryptionConfiguration, "EncryptionConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -76,8 +78,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	localDiskEncryptionConfiguration := properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration
-	object.get(localDiskEncryptionConfiguration, "EncryptionKeyProviderType", "undefined") == "undefined"
-
+	not common_lib.valid_key(localDiskEncryptionConfiguration, "EncryptionKeyProviderType")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration", [key]),

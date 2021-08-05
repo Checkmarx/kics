@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::TaskDefinition"
 	properties := resource.Properties
-	object.get(properties, "NetworkMode", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "NetworkMode")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::TaskDefinition"
 	properties := resource.Properties
-	object.get(properties, "NetworkMode", "undefined") != "undefined"
+	common_lib.valid_key(properties, "NetworkMode")
 
     properties.NetworkMode != "awsvpc"
 	result := {

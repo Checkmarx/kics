@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -7,7 +9,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 
-	object.get(properties, "Metrics", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "Metrics")
 
 	result := {
 		"documentId": input.document[i].id,

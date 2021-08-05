@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	object.get(resource.Properties, "IsLogging", "undefined") == false
+	common_lib.valid_key(resource.Properties, "IsLogging")
+	resource.Properties.IsLogging == false
 
 	result := {
 		"documentId": input.document[i].id,

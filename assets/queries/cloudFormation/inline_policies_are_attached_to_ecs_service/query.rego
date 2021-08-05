@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
@@ -19,16 +21,13 @@ CxPolicy[result] {
 
 getInlinePolicy(role) = policy {
 	is_string(role)
-	object.get(input.document[_].Resources, role, "undefined") != "undefined"
-	object.get(input.document[_].Resources[role], "Type", "undefined") == "AWS::IAM::Policy"
+	common_lib.valid_key(input.document[_].Resources, role)
+	input.document[_].Resources[role].Type == "AWS::IAM::Policy"
 	policy := role
 } else = policy {
 	is_object(role)
-	object.get(role, "Ref", "undefined") != "undefined"
-	ref := object.get(role, "Ref", "undefined")
-	object.get(input.document[_].Resources, ref, "undefined") != "undefined"
-	object.get(input.document[_].Resources[ref], "Type", "undefined") == "AWS::IAM::Policy"
-	policy := ref
+	input.document[_].Resources[role.Ref].Type == "AWS::IAM::Policy"
+	policy := role.Ref
 } else = "undefined" {
 	true
 }

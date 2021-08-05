@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
@@ -31,7 +33,7 @@ CxPolicy[result] {
 }
 
 checkALP(prop) {
-	object.get(prop, "AccessLoggingPolicy", "not found") == "not found"
+	not common_lib.valid_key(prop, "AccessLoggingPolicy")
 }
 
 checkALPAttr(prop) {

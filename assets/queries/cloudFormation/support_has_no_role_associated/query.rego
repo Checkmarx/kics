@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Properties.PolicyName == "AWSSupportAccess"
@@ -49,7 +51,7 @@ CxPolicy[result] {
 }
 
 hasAttributeList(resource, attribute) {
-	object.get(resource, attribute, "undefined") != "undefined"
+	common_lib.valid_key(resource, attribute)
 	count(resource[attribute]) > 0
 } else = false {
 	true

@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 
 	distributionConfig := resource.Properties.DistributionConfig
-	object.get(distributionConfig, "Logging", "notfound") == "notfound"
+	not common_lib.valid_key(distributionConfig, "Logging")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 
 	distributionConfig := resource.Properties.DistributionConfig
-	object.get(distributionConfig, "Logging", "notfound") != "notfound"
+	common_lib.valid_key(distributionConfig, "Logging")
 
 	bucketCorrect := resource.Properties.DistributionConfig.Logging.Bucket
 	endswith(bucketCorrect, ".s3.amazonaws.com") == false

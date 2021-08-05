@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	some workspaceName
@@ -7,7 +9,7 @@ CxPolicy[result] {
 	workspace := document.Resources[workspaceName]
 
 	# The UserVolumeEncryptionEnabled property is defined, but is set to false
-	object.get(workspace.Properties, "UserVolumeEncryptionEnabled", "undefined") != "undefined"
+	common_lib.valid_key(workspace.Properties, "UserVolumeEncryptionEnabled")
 	not isTrue(workspace.Properties.UserVolumeEncryptionEnabled)
 
 	result := {
@@ -26,7 +28,7 @@ CxPolicy[result] {
 	workspace := document.Resources[workspaceName]
 
 	# The UserVolumeEncryptionEnabled property is not defined
-	object.get(workspace.Properties, "UserVolumeEncryptionEnabled", "undefined") == "undefined"
+	not common_lib.valid_key(workspace.Properties, "UserVolumeEncryptionEnabled")
 
 	result := {
 		"documentId": document.id,

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
@@ -21,13 +23,13 @@ CxPolicy[result] {
     aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
 
 
-	object.get(resource.Properties, aggregators[type], "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, aggregators[type])
 
     aggregators[type] == "AccountAggregationSources"
 
     accSources := resource.Properties.AccountAggregationSources
-
-    object.get(accSources[j],"AllAwsRegions","undefined") == "undefined"
+	accs := accSources[j]
+    not common_lib.valid_key(accs,"AllAwsRegions")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -44,13 +46,13 @@ CxPolicy[result] {
     aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
 
 
-	object.get(resource.Properties, aggregators[type], "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, aggregators[type])
 
     aggregators[type] == "AccountAggregationSources"
 
     accSources := resource.Properties.AccountAggregationSources
 
-    object.get(accSources[j],"AllAwsRegions","undefined") != "undefined"
+    common_lib.valid_key(accSources[j],"AllAwsRegions")
 
     not accSources[j].AllAwsRegions
 
@@ -69,13 +71,13 @@ CxPolicy[result] {
     aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
 
 
-	object.get(resource.Properties, aggregators[type], "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, aggregators[type])
 
     aggregators[type] == "OrganizationAggregationSource"
 
     orgSource := resource.Properties.OrganizationAggregationSource
 
-    object.get(orgSource,"AllAwsRegions","undefined") == "undefined"
+    not common_lib.valid_key(orgSource,"AllAwsRegions")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -92,13 +94,13 @@ CxPolicy[result] {
     aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
 
 
-	object.get(resource.Properties, aggregators[type], "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, aggregators[type])
 
     aggregators[type] == "OrganizationAggregationSource"
 
     orgSource := resource.Properties.OrganizationAggregationSource
 
-    object.get(orgSource,"AllAwsRegions","undefined") != "undefined"
+    common_lib.valid_key(orgSource,"AllAwsRegions")
 
     not orgSource.AllAwsRegions
 
@@ -113,5 +115,5 @@ CxPolicy[result] {
 
 hasAggregationSources(resource) {
     aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
-	object.get(resource, aggregators[_], "undefined") != "undefined"
+	common_lib.valid_key(resource, aggregators[_])
 }
