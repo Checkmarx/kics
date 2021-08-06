@@ -103,7 +103,9 @@ func initialize(rootCmd *cobra.Command) error {
 		return err
 	}
 
-	initScanCmd(scanCmd)
+	if err := initScanCmd(scanCmd); err != nil {
+		return err
+	}
 	return nil
 }
 
