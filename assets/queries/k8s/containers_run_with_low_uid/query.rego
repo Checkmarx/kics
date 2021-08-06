@@ -25,7 +25,7 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	securityContext := value.securityContext
 
-	object.get(securityContext, "runAsUser", "undefined") == "undefined"
+	not common_lib.valid_key(securityContext, "runAsUser")
 
 	result := {
 		"documentId": doc.id,

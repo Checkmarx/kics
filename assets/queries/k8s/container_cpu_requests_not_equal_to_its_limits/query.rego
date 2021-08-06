@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	container := document.spec[types[x]][c]
 	rec := {"requests", "limits"}
 
-	object.get(container.resources[rec[t]], "cpu", "undefined") == "undefined"
+	not common_lib.valid_key(container.resources[rec[t]], "cpu")
 
 	result := {
 		"documentId": document.id,
