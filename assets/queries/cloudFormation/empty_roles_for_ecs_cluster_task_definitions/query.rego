@@ -25,7 +25,6 @@ CxPolicy[result] {
 
 	isInCluster(resource, i)
 
-	common_lib.valid_key(resource.Properties, "TaskDefinition")
 	taskDefinition := resource.Properties.TaskDefinition
 
 	existsTaskDefinition(taskDefinition, i) == null
@@ -45,7 +44,6 @@ CxPolicy[result] {
 
 	isInCluster(resource, i)
 
-	common_lib.valid_key(resource.Properties, "TaskDefinition")
 	taskDefinition := resource.Properties.TaskDefinition
 
 	taskDef := existsTaskDefinition(taskDefinition, i)
@@ -80,7 +78,7 @@ existsTaskDefinition(taskDefName, i) = taskDef {
 	taskDef := input.document[i].Resources[taskDefName]
 } else = taskDef {
 	is_object(taskDefName)
-	common_lib.valid_key(taskDefName, "Ref")
+	ref := taskDefName.Ref
 	input.document[i].Resources[ref].Type == "AWS::ECS::TaskDefinition"
 	taskDef := input.document[i].Resources[ref]
 } else = null {
