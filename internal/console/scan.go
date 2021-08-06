@@ -573,12 +573,7 @@ func resolveOutputs(
 		}
 	}
 
-	return printOutput(
-		getStrFlag(outputPathFlag),
-		getStrFlag(outputNameFlag),
-		summary, getMultiStrFlag(reportFormatsFlag),
-		proBarBuilder,
-	)
+	return printOutput(getStrFlag(outputPathFlag), getStrFlag(outputNameFlag), summary, getMultiStrFlag(reportFormatsFlag), proBarBuilder)
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
