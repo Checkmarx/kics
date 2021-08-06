@@ -58,6 +58,7 @@ func getStrFlag(flagName string) string {
 	if value, ok := flagsStrReferences[flagName]; ok {
 		return *value
 	}
+	log.Debug().Msgf("Could not find string flag %s", flagName)
 	return ""
 }
 
@@ -65,6 +66,7 @@ func getMultiStrFlag(flagName string) []string {
 	if value, ok := flagsMultiStrReferences[flagName]; ok {
 		return *value
 	}
+	log.Debug().Msgf("Could not find string slice flag %s", flagName)
 	return []string{}
 }
 
@@ -72,6 +74,7 @@ func getBoolFlag(flagName string) bool {
 	if value, ok := flagsBoolReferences[flagName]; ok {
 		return *value
 	}
+	log.Debug().Msgf("Could not find boolean flag %s", flagName)
 	return false
 }
 
@@ -79,22 +82,27 @@ func getIntFlag(flagName string) int {
 	if value, ok := flagsIntReferences[flagName]; ok {
 		return *value
 	}
+	log.Debug().Msgf("Could not find integer flag %s", flagName)
 	return -1
 }
 
 func setStrFlag(flagName, value string) {
 	if _, ok := flagsStrReferences[flagName]; ok {
 		*flagsStrReferences[flagName] = value
+	} else {
+		log.Debug().Msgf("Could not set string flag %s", flagName)
 	}
 }
 
 func setMultiStrFlag(flagName string, value []string) {
 	if _, ok := flagsMultiStrReferences[flagName]; ok {
 		*flagsMultiStrReferences[flagName] = value
+	} else {
+		log.Debug().Msgf("Could not set string slice flag %s", flagName)
 	}
 }
 
-func getUsage(usage string) string {
+func evalUsage(usage string) string {
 	variables := map[string]string{
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
 		"supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
@@ -122,7 +130,7 @@ func initJSONFlags(scanCmd *cobra.Command) error {
 	}
 
 	for flagName, flagProps := range flagsList {
-		flagProps.Usage = getUsage(flagProps.Usage)
+		flagProps.Usage = evalUsage(flagProps.Usage)
 
 		switch flagProps.FlagType {
 		case "multiStr":
