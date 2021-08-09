@@ -70,7 +70,6 @@ var (
 )
 
 const (
-	cloudProviderFlag       = "cloud-provider"
 	configFlag              = "config"
 	excludeCategoriesFlag   = "exclude-categories"
 	excludePathsFlag        = "exclude-paths"
@@ -79,7 +78,7 @@ const (
 	excludeResultsFlag      = "exclude-results"
 	excludeResutlsShorthand = "x"
 	includeQueriesFlag      = "include-queries"
-	inlcudeQueriesShorthand = "i"
+	includeQueriesShorthand = "i"
 	inputDataFlag           = "input-data"
 	failOnFlag              = "fail-on"
 	ignoreOnExitFlag        = "ignore-on-exit"
@@ -97,7 +96,6 @@ const (
 	queriesPathShorthand    = "q"
 	reportFormatsFlag       = "report-formats"
 	scanCommandStr          = "scan"
-	typeFlag                = "type"
 	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
 	disableCISDescFlag      = "disable-cis-descriptions"
@@ -307,6 +305,8 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanFlags(scanCmd *cobra.Command) {
+	types = []string{"openapi"}
+
 	scanCmd.Flags().StringVar(&cfgFile,
 		configFlag, "",
 		"path to configuration file")
@@ -342,18 +342,6 @@ func initOutputFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
 		"formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
 	)
-
-	scanCmd.Flags().StringSliceVarP(&types,
-		typeFlag, typeShorthand,
-		[]string{""},
-		"case insensitive list of platform types to scan\n"+
-			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
-
-	scanCmd.Flags().StringSliceVar(&cloudProviders,
-		cloudProviderFlag,
-		[]string{""},
-		"list of cloud providers to scan "+
-			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedCloudProviders(), ", ")))
 }
 
 func initStdoutFlags(scanCmd *cobra.Command) {
@@ -403,7 +391,7 @@ func initInclusionFlags(scanCmd *cobra.Command) {
 	)
 	scanCmd.Flags().StringSliceVarP(&includeIDs,
 		includeQueriesFlag,
-		inlcudeQueriesShorthand,
+		includeQueriesShorthand,
 		[]string{},
 		"include queries by providing the query ID\n"+"cannot be provided with query exclusion flags\n"+
 			msg+
@@ -643,6 +631,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
+	cloudProviders = make([]string, 0)
 	querySource := source.NewFilesystemSource(queryPath, types, cloudProviders)
 	store := storage.NewMemoryStorage()
 
