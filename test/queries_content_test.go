@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -18,6 +19,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/mock"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -68,13 +70,14 @@ var (
 
 	// TODO uncomment this test once all metadata are fixed
 	availablePlatforms = map[string]string{
-		"Ansible":        "ansible",
-		"CloudFormation": "cloudFormation",
-		"Common":         "common",
-		"Dockerfile":     "dockerfile",
-		"Kubernetes":     "k8s",
-		"OpenAPI":        "openAPI",
-		"Terraform":      "terraform",
+		"Ansible":              "ansible",
+		"CloudFormation":       "cloudFormation",
+		"Common":               "common",
+		"Dockerfile":           "dockerfile",
+		"Kubernetes":           "k8s",
+		"OpenAPI":              "openAPI",
+		"Terraform":            "terraform",
+		"AzureResourceManager": "azureResourceManager",
 	}
 	platformKeys = MapToStringSlice(availablePlatforms)
 
@@ -106,6 +109,10 @@ var (
 		"descriptionText": func(tb testing.TB, value interface{}, metadataPath string) {
 			descriptionValue := testMetadataFieldStringType(tb, value, "descriptionText", metadataPath)
 			require.NotEmpty(tb, descriptionValue, "empty description text in query metadata file %s", metadataPath)
+		},
+		"descriptionID": func(tb testing.TB, value interface{}, metadataPath string) {
+			descriptionIDValue := testMetadataFieldStringType(tb, value, "descriptionID", metadataPath)
+			require.NotEmpty(tb, descriptionIDValue, "empty description ID in query metadata file %s", metadataPath)
 		},
 		"platform": func(tb testing.TB, value interface{}, metadataPath string) {
 			platformValue := testMetadataFieldStringType(tb, value, "platform", metadataPath)
@@ -178,9 +185,7 @@ func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-
 	ctx := context.Background()
-
 	queriesSource := mock.NewMockQueriesSource(ctrl)
 	queriesSource.EXPECT().GetQueries(getQueryFilter()).
 		DoAndReturn(func(interface{}) ([]model.QueryMetadata, error) {
@@ -188,23 +193,19 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 			return []model.QueryMetadata{q}, err
 		})
-
 	queriesSource.EXPECT().GetQueryLibrary("common").
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary("common")
 			require.NoError(t, err)
 			return q, nil
 		})
-
 	queriesSource.EXPECT().GetQueryLibrary(entry.platform).
 		DoAndReturn(func(string) (string, error) {
 			q, err := readLibrary(entry.platform)
 			require.NoError(t, err)
 			return q, nil
 		})
-
 	trk := &tracker.CITracker{}
-
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
@@ -240,9 +241,10 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 			return model.Vulnerability{}, nil
 		},
 		trk,
-		source.QuerySelectionFilter{
+		&source.QueryInspectorParameters{
 			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+			InputDataPath:  "",
 		},
 		map[string]bool{},
 		60,
@@ -252,15 +254,29 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) {
 
 	inspector.EnableCoverageReport()
 
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
-	currentQuery := make(chan float64)
+	wg := &sync.WaitGroup{}
+	currentQuery := make(chan int64)
+	proBarBuilder := progress.InitializePbBuilder(true, true, true)
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
+	go progressBar.Start()
+
+	wg.Add(1)
 	_, err = inspector.Inspect(ctx, scanID, getFileMetadatas(
 		t,
 		entry.PositiveFiles(t)),
-		true, []string{BaseTestsScanPath},
+		[]string{BaseTestsScanPath},
 		platforms,
 		currentQuery,
 	)
+
+	go func() {
+		defer func() {
+			close(currentQuery)
+		}()
+		wg.Wait()
+	}()
+
 	require.Nil(t, err)
 
 	report := inspector.GetCoverageReport()

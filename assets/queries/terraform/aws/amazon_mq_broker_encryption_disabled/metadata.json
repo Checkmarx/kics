@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AmazonMQ Broker should have Encryption Options defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "81fb6220",
+  "cloudProvider": "aws"
 }

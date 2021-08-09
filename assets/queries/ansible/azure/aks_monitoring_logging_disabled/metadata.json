@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Azure Container Service (AKS) instance should have logging enabled to Azure Monitoring",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "6d8d362e",
+  "cloudProvider": "azure"
 }

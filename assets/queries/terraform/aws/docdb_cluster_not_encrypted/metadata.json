@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AWS DOCDB Cluster storage should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster#storage_encrypted",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "aaec5c7c",
+  "cloudProvider": "aws"
 }

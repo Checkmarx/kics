@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if enable field in the resource azurerm_network_watcher_flow_log is false.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "fd29818c",
+  "cloudProvider": "azure"
 }

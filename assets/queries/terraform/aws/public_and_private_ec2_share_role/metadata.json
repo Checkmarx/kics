@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Public and private EC2 istances should not share the same role.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#iam_instance_profile",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "4639db5f",
+  "cloudProvider": "aws"
 }

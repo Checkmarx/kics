@@ -5,5 +5,7 @@
   "category": "Backup",
   "descriptionText": "AWS RDS Instance should have a multi-az deployment",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "4bdb6677",
+  "cloudProvider": "aws"
 }

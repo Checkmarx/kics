@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "S3 bucket without versioning",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-versioning",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "622e4c8e",
+  "cloudProvider": "aws"
 }

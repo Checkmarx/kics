@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "GCP - Google Kubernetes Engine (GKE) Basic Authentication must be disabled, which means the username and password provided in the master_auth block must be empty",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "d49df828",
+  "cloudProvider": "gcp"
 }

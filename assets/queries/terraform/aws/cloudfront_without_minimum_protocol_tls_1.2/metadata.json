@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "CloudFront Minimum Protocol version should be at least TLS 1.2",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "0b620722",
+  "cloudProvider": "aws"
 }

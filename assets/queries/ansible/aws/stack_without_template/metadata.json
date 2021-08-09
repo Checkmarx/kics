@@ -5,5 +5,7 @@
   "category": "Build Process",
   "descriptionText": "AWS CloudFormation should have a template defined through the attribute template, template_url or attribute template_body",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "de8347bd",
+  "cloudProvider": "aws"
 }

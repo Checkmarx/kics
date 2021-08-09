@@ -36,16 +36,19 @@ The following workflow shows how to integrate KICS with GitHub Actions:
 
 ```YAML
 steps:
-- uses: actions/checkout@v2
+  - uses: actions/checkout@v2
+  - name: Mkdir results-dir
+    # make sure results dir is created
+    run: mkdir -p results-dir
   - name: run kics Scan
     uses: checkmarx/kics-action@latest
     with:
       path: 'terraform'
-      output_path: 'results.sarif'
+      output_path: results-dir
   - name: Upload SARIF file
     uses: github/codeql-action/upload-sarif@v1
     with:
-      sarif_file: results.sarif
+      sarif_file: results-dir/results.sarif
 ```
 
 The results list can be found on security tab of your GitHub project and should look like the following image:
@@ -63,19 +66,22 @@ An entry should describe the error and in which line it occurred:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - name: Mkdir results-dir
+      # make sure results dir is created
+      run: mkdir -p results-dir
     # Scan Iac with kics
     - name: run kics Scan
       uses: checkmarx/kics-action@latest
       with:
         path: 'terraform'
-        output_path: 'results.json'
+        output_path: results-dir
     # Display the results in json format
     - name: display kics results
       run: |
-        cat results.json
+        cat results-dir/results.json
       # optionally parse the results with jq
-      # jq '.total_counter' results.json
-      # jq '.queries_total' results.json
+      # jq '.total_counter' results-dir/results.json
+      # jq '.queries_total' results-dir/results.json
 ```
 
 Here you can see it in action:
@@ -93,15 +99,18 @@ If you want your pipeline just to fail on HIGH, MEDIUM severity results and KICS
 ```yaml
     steps:
     - uses: actions/checkout@v2
+    - name: Mkdir results-dir
+      # make sure results dir is created
+      run: mkdir -p results-dir
     - name: run kics Scan
       uses: checkmarx/kics-action@latest
       with:
         path: 'terraform,my-other-sub-folder/Dockerfile'
         fail_on: high,medium
-        output_path: 'results.json'
+        output_path: results-dir
     - name: display kics results
       run: |
-        cat results.json
+        cat results-dir/results.json
 ```
 
 ### Don't fail on results
@@ -111,15 +120,18 @@ If you want KICS to ignore the results and return exit status code 0 unless a KI
 ```yaml
     steps:
     - uses: actions/checkout@v2
+    - name: Mkdir results-dir
+      # make sure results dir is created
+      run: mkdir -p results-dir
     - name: run kics Scan
       uses: checkmarx/kics-action@latest
       with:
         path: 'terraform'
         ignore_on_exit: results
-        output_path: 'results.json'
+        output_path: results-dir
     - name: display kics results
       run: |
-        cat results.json
+        cat results-dir/results.json
 ```
 
 
@@ -132,15 +144,18 @@ You can only enable one profiler at a time, CPU or MEM.
 ```yaml
     steps:
     - uses: actions/checkout@v2
+    - name: Mkdir results-dir
+      # make sure results dir is created
+      run: mkdir -p results-dir
     - name: run kics Scan
       uses: checkmarx/kics-action@latest
       with:
         path: 'terraform'
         profiling: MEM
-        output_path: 'results.json'
+        output_path: results-dir
     - name: display kics results
       run: |
-        cat results.json
+        cat results-dir/results.json
 ```
 
 ## Uploading SARIF report

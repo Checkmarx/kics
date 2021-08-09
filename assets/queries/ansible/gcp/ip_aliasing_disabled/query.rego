@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 
-	object.get(cluster, "ip_allocation_policy", "undefined") == "undefined"
+	not common_lib.valid_key(cluster, "ip_allocation_policy")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 
-	object.get(cluster.ip_allocation_policy, "use_ip_aliases", "undefined") == "undefined"
+	not common_lib.valid_key(cluster.ip_allocation_policy, "use_ip_aliases")
 
 	result := {
 		"documentId": id,

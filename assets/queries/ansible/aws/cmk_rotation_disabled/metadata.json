@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Customer Master Keys (CMK) must have rotation enabled, which means the attribute 'enable_key_rotation' must be set to 'true' when the key is enabled.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_kms_module.html#parameter-enable_key_rotation",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "177ee908",
+  "cloudProvider": "aws"
 }

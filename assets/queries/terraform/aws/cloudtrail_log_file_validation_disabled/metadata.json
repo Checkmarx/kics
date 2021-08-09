@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "CloudTrail log file validation should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_log_file_validation",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "1d528dfd",
+  "cloudProvider": "aws"
 }

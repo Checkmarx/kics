@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "Lambda permission may be misconfigured if the action field is not filled in by 'lambda:InvokeFunction'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "8fb6f06e",
+  "cloudProvider": "aws"
 }

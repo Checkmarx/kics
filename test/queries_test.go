@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -15,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/mock"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -51,22 +53,41 @@ func TestUniqueQueryIDs(t *testing.T) {
 	queries := loadQueries(t)
 
 	queriesIdentifiers := make(map[string]string)
+	descriptionIdentifiers := make(map[string]string)
 
 	for _, entry := range queries {
 		metadata := source.ReadMetadata(entry.dir)
 		uuid := metadata["id"].(string)
 		duplicateDir, ok := queriesIdentifiers[uuid]
-		require.False(t, ok, "\nnon unique query found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+		require.False(t, ok, "\nnon unique queryID found uuid: %s\nqueryDir: %s\nduplicateDir: %s",
 			uuid, entry.dir, duplicateDir)
 		queriesIdentifiers[uuid] = entry.dir
+
+		descID := ""
+		if _, exists := metadata["descriptionID"]; exists {
+			descID = metadata["descriptionID"].(string)
+			duplicateDir, ok = descriptionIdentifiers[descID]
+			require.False(t, ok, "\nnon unique descriptionID found descID: %s\nqueryDir: %s\nduplicateDir: %s",
+				descID, entry.dir, duplicateDir)
+			descriptionIdentifiers[descID] = entry.dir
+		}
+
 		if override, ok := metadata["override"].(map[string]interface{}); ok {
 			for _, v := range override {
 				if convertedValue, converted := v.(map[string]interface{}); converted {
 					if id, ok := convertedValue["id"].(string); ok {
 						duplicateDir, ok = queriesIdentifiers[id]
-						require.False(t, ok, "\nnon unique query found on overriding uuid: %s\nqueryDir: %s\nduplicateDir: %s",
+						require.False(t, ok, "\nnon unique queryID found on overriding uuid: %s\nqueryDir: %s\nduplicateDir: %s",
 							id, entry.dir, duplicateDir)
 						queriesIdentifiers[id] = entry.dir
+
+						if _, exists := override["descriptionID"]; exists {
+							descID = override["descriptionID"].(string)
+							duplicateDir, ok = descriptionIdentifiers[descID]
+							require.False(t, ok, "\nnon unique descriptionID found in override\ndescID: %s\nqueryDir: %s\nduplicateDir: %s",
+								descID, entry.dir, duplicateDir)
+							descriptionIdentifiers[descID] = entry.dir
+						}
 					}
 				}
 			}
@@ -138,26 +159,40 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.QuerySelectionFilter{
+		&source.QueryInspectorParameters{
 			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+			InputDataPath:  "",
 		},
 		map[string]bool{}, 60)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)
 
-	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"}
-	currentQuery := make(chan float64)
+	wg := &sync.WaitGroup{}
+	currentQuery := make(chan int64)
+	proBarBuilder := progress.InitializePbBuilder(true, true, true)
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
+	go progressBar.Start()
+	wg.Add(1)
 
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
 		scanID,
 		getFileMetadatas(tb, filesPath),
-		true, []string{BaseTestsScanPath},
+		[]string{BaseTestsScanPath},
 		platforms,
 		currentQuery,
 	)
+
+	go func() {
+		defer func() {
+			close(currentQuery)
+		}()
+		wg.Wait()
+	}()
+
 	require.Nil(tb, err)
 	validateIssueTypes(tb, vulnerabilities)
 	requireEqualVulnerabilities(tb, expectedVulnerabilities, vulnerabilities, entry)

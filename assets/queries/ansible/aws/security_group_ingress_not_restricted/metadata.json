@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "AWS Security Group should restrict ingress access",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "7e47368a",
+  "cloudProvider": "aws"
 }

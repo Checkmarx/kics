@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "ECR should have an image tag be immutable",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "1cc5d4e2",
+  "cloudProvider": "aws"
 }

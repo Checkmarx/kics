@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Check if an EC2 instance refers to an IAM profile, which represents an IAM Role.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "bf34b145",
+  "cloudProvider": "aws"
 }

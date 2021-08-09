@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "The Servers array should have at least one server defined. If not, the default value would be a Server Object with a URL value of '/'.",
   "descriptionUrl": "https://swagger.io/specification/#server-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "890ee1bd"
 }

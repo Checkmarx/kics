@@ -10,7 +10,7 @@ CxPolicy[result] {
 	cloudwatchlogs_log_group := task[modules[m]]
 	ansLib.checkState(cloudwatchlogs_log_group)
 
-	object.get(cloudwatchlogs_log_group, "retention", "undefined") == "undefined"
+	not commonLib.valid_key(cloudwatchlogs_log_group, "retention")
 
 	result := {
 		"documentId": id,

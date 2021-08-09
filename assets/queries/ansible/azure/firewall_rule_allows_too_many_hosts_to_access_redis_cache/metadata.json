@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if any firewall rule allows too many hosts to access Redis Cache.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscachefirewallrule_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "99f14985",
+  "cloudProvider": "azure"
 }

@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AWS CloudWatch Log groups should be encrypted using KMS",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "4258abe6",
+  "cloudProvider": "aws"
 }

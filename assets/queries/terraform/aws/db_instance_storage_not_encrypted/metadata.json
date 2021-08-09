@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "The parameter storage_encrypted in aws_db_instance must be set to 'true' (the default is 'false').",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#storage_encrypted",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "88ca11bc",
+  "cloudProvider": "aws"
 }

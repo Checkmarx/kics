@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.iam_password_policy", "iam_password_policy"}
 
@@ -38,9 +39,9 @@ CxPolicy[result] {
 }
 
 getName(policyBody) = "min_pw_length" {
-	object.get(policyBody, "min_pw_length", "undefined") != "undefined"
+	common_lib.valid_key(policyBody, "min_pw_length")
 } else = "minimum_password_length" {
-	object.get(policyBody, "minimum_password_length", "undefined") != "undefined"
+	common_lib.valid_key(policyBody, "minimum_password_length")
 } else = false {
 	true
 }

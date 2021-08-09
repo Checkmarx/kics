@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_storageaccount", "azure_rm_storageaccount"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	storage := task[modules[m]]
 	ansLib.checkState(storage)
 
-	object.get(storage, "minimum_tls_version", "undefined") == "undefined"
+	not common_lib.valid_key(storage, "minimum_tls_version")
 
 	result := {
 		"documentId": id,

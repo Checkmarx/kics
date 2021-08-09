@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Checks if logging is enabled for CloudTrail.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_logging",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "d0aecc8d",
+  "cloudProvider": "aws"
 }

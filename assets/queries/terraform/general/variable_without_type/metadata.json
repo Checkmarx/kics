@@ -1,0 +1,11 @@
+{
+  "id": "fc5109bf-01fd-49fb-8bde-4492b543c34a",
+  "queryName": "Variable Without Type",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "All variables should contain a valid type.",
+  "descriptionUrl": "https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation",
+  "platform": "Terraform",
+  "descriptionID": "bba696eb",
+  "cloudProvider": "common"
+}

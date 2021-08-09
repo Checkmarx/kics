@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Secrets Manager secret should be encrypted with customer-managed KMS keys instead of AWS managed keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#kms_key_id",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "f2d67513",
+  "cloudProvider": "aws"
 }

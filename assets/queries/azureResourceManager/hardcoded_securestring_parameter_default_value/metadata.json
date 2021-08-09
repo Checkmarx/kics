@@ -1,0 +1,11 @@
+{
+  "id": "4d2cf896-c053-4be5-9c95-8b4771112f29",
+  "queryName": "Hardcoded SecureString Parameter Default Value",
+  "severity": "MEDIUM",
+  "category": "Secret Management",
+  "descriptionText": "Secure parameters should not have hardcoded default value",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases#secure-parameters-cant-have-hardcoded-default",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "a7bb7cb1"
+}

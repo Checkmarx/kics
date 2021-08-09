@@ -5,5 +5,6 @@
   "category": "Insecure Defaults",
   "descriptionText": "Service Account Tokens are automatically mounted even if not necessary",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#automount_service_account_token",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "9674e7f6"
 }

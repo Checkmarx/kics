@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Operation Object should have 'consumes' feild defined for 'POST', 'PUT' and 'PATCH' operations",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "de859594"
 }

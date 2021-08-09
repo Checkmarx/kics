@@ -1,9 +1,10 @@
 {
-	"id": "71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e",
-	"queryName": "UNIX Ports Out Of Range",
-	"severity": "HIGH",
-	"category": "Availability",
-	"descriptionText": "Exposing UNIX ports out of range from 0 to 65535",
-	"descriptionUrl": "https://docs.docker.com/engine/reference/builder/#expose",
-	"platform": "Dockerfile"
+  "id": "71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e",
+  "queryName": "UNIX Ports Out Of Range",
+  "severity": "HIGH",
+  "category": "Availability",
+  "descriptionText": "Exposing UNIX ports out of range from 0 to 65535",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#expose",
+  "platform": "Dockerfile",
+  "descriptionID": "fed3d812"
 }

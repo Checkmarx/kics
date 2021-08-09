@@ -23,6 +23,7 @@ builds:
       - -X github.com/Checkmarx/kics/internal/constants.Version={{ .Version }}-{{ .ShortCommit }}-{{ .Date }}
       - -X github.com/Checkmarx/kics/internal/constants.SCMCommit={{ .Commit }}
       - -X github.com/Checkmarx/kics/internal/constants.SentryDSN={{ .Env.SENTRY_DSN }}
+      - -X github.com/Checkmarx/kics/internal/constants.BaseURL={{ .Env.DESCRIPTIONS_URL }}
 archives:
   - builds: [kics]
     format_overrides:

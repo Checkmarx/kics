@@ -1,0 +1,11 @@
+{
+  "id": "51cf6f14-6a52-4642-97fb-10db078382d3",
+  "queryName": "S3 Bucket Allows All Actions From All Principals",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "S3 Buckets must not allow All Actions (wildcard) From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is *, for all Principals.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy",
+  "platform": "Terraform",
+  "cloudProvider": "aws",
+  "descriptionID": "aa0f06b5"
+}

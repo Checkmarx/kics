@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AWS DynamoDB Tables should have server-side encryption",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table#server_side_encryption",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "a4233398",
+  "cloudProvider": "aws"
 }

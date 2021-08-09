@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "PostgreSQL database 'log_min_messages' flag isn't set to a valid value",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/database_flags",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "339b0278",
+  "cloudProvider": "gcp"
 }

@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Ensure that the encryption is active on the disk",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk#encryption_settings",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "8f6e1fa8",
+  "cloudProvider": "azure"
 }

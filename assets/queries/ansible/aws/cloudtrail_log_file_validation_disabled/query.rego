@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.cloudtrail", "cloudtrail"}
 
@@ -9,8 +10,8 @@ CxPolicy[result] {
 	cloudtrail := task[modules[m]]
 	ansLib.checkState(cloudtrail)
 
-	object.get(cloudtrail, "enable_log_file_validation", "undefined") == "undefined"
-	object.get(cloudtrail, "log_file_validation_enabled", "undefined") == "undefined"
+	not common_lib.valid_key(cloudtrail, "enable_log_file_validation")
+	not common_lib.valid_key(cloudtrail, "log_file_validation_enabled")
 
 	result := {
 		"documentId": id,
@@ -27,15 +28,15 @@ CxPolicy[result] {
 	ansLib.checkState(cloudtrail)
 	attributes := {"enable_log_file_validation", "log_file_validation_enabled"}
 
-	attr := object.get(cloudtrail, attributes[j], "undefined")
-	attr != "undefined"
-	not ansLib.isAnsibleTrue(attr)
+	attr := attributes[j]
+	common_lib.valid_key(cloudtrail, attr)
+	not ansLib.isAnsibleTrue(cloudtrail[attr])
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], attributes[j]]),
+		"searchKey": sprintf("name={{%s}}.{{%s}}.%s", [task.name, modules[m], attr]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("cloudtrail.%s is set to true or yes", [attributes[j]]),
-		"keyActualValue": sprintf("cloudtrail.%s is not set to true nor yes", [attributes[j]]),
+		"keyExpectedValue": sprintf("cloudtrail.%s is set to true or yes", [attr]),
+		"keyActualValue": sprintf("cloudtrail.%s is not set to true nor yes", [attr]),
 	}
 }

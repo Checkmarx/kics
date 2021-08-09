@@ -6,5 +6,7 @@
   "descriptionText": "AWS Workspaces Workspace data stored in volumes should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/workspaces_workspace#root_volume_encryption_enabled",
   "platform": "Terraform",
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "e3f9c7a9",
+  "cloudProvider": "aws"
 }

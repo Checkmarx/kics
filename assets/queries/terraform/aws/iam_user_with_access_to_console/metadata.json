@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "AWS IAM Users should not have access to console",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "28422817",
+  "cloudProvider": "aws"
 }

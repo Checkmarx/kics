@@ -5,5 +5,7 @@
   "category": "Resource Management",
   "descriptionText": "AWS CloudFormation Stack should have a stack policy in order to protect stack resources from update actions",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "7ad97901",
+  "cloudProvider": "aws"
 }

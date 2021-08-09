@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#drop_invalid_header_fields",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "7560e4d2",
+  "cloudProvider": "aws"
 }

@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "Security groups allow ingress from 0.0.0.0:0",
   "descriptionUrl": "https://www.terraform.io/docs/providers/aws/r/security_group.html",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "ce3ee5e0",
+  "cloudProvider": "aws"
 }

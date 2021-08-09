@@ -37,6 +37,7 @@ nav:
       - Installation: getting-started.md
       - Configuration: configuration-file.md
       - Command Line Interface: commands.md
+      - Running KICS: running-kics.md
       - Results: results.md
       - Architecture: architecture.md
       - Platforms: platforms.md

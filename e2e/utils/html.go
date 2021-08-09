@@ -29,13 +29,14 @@ var availableCategories = map[string]string{
 }
 
 var availablePlatforms = map[string]string{
-	"Ansible":        "ansible",
-	"CloudFormation": "cloudFormation",
-	"Common":         "common",
-	"Dockerfile":     "dockerfile",
-	"Kubernetes":     "k8s",
-	"OpenAPI":        "openAPI",
-	"Terraform":      "terraform",
+	"Ansible":              "ansible",
+	"CloudFormation":       "cloudFormation",
+	"Common":               "common",
+	"Dockerfile":           "dockerfile",
+	"Kubernetes":           "k8s",
+	"OpenAPI":              "openAPI",
+	"Terraform":            "terraform",
+	"AzureResourceManager": "azureResourceManager",
 }
 
 // HTMLValidation executes many asserts to validate the HTML Report

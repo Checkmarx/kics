@@ -1,6 +1,8 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
+
 
 modules := {"azure.azcollection.azure_rm_aks", "azure_rm_aks"}
 
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	aks := task[modules[m]]
 	ansLib.checkState(aks)
 
-	object.get(aks, "network_profile", "undefined") == "undefined"
+	not common_lib.valid_key(aks, "network_profile")
 
 	result := {
 		"documentId": id,
@@ -41,7 +43,7 @@ CxPolicy[result] {
 	aks := task[modules[m]]
 	ansLib.checkState(aks)
 
-	object.get(aks.network_profile, "network_policy", "undefined") == "undefined"
+	not common_lib.valid_key(aks.network_profile, "network_policy")
 
 	result := {
 		"documentId": id,

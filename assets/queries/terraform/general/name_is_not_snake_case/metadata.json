@@ -1,0 +1,11 @@
+{
+  "id": "1e434b25-8763-4b00-a5ca-ca03b7abbb66",
+  "queryName": "Name Is Not Snake Case",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "All names should follow snake case pattern.",
+  "descriptionUrl": "https://www.terraform.io/docs/extend/best-practices/naming.html#naming",
+  "platform": "Terraform",
+  "descriptionID": "ac707cad",
+  "cloudProvider": "common"
+}

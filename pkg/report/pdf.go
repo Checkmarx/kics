@@ -30,15 +30,21 @@ const (
 	colFour         = 4
 	colFive         = 5
 	colSix          = 6
+	colEight        = 8
 	colNine         = 9
 	colTen          = 10
 	colFullPage     = 12
+	colRuneSlitter  = 38
 )
 
 var (
 	grayColor = getGrayColor()
 	//go:embed assets/vuln
 	vulnImageBase64 string
+)
+
+const (
+	textSize = 10
 )
 
 func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) {
@@ -66,7 +72,6 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 		severity := string(queries[i].Severity)
 		platform := queries[i].Platform
 		category := queries[i].Category
-
 		var err error
 		m.Row(rowLarge, func() {
 			m.Col(colOne, func() {
@@ -105,7 +110,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 			return err
 		}
 		m.Row(colFour, func() {
-			createQueryEntryMetadataField(m, "Severity", severity, 10)
+			createQueryEntryMetadataField(m, "Severity", severity, textSize)
 		})
 		m.Row(colThree, func() {
 			createQueryEntryMetadataField(m, "Platform", platform, defaultTextSize)
@@ -113,9 +118,77 @@ func createQueriesTable(m pdf.Maroto, queries []model.VulnerableQuery) error {
 		m.Row(colFive, func() {
 			createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
 		})
+		if queries[i].CISDescriptionID != "" {
+			createCISRows(m, &queries[i])
+		}
 		createResultsTable(m, &queries[i])
 	}
 	return nil
+}
+
+func createCISRows(m pdf.Maroto, query *model.VulnerableQuery) {
+	cisID := query.CISDescriptionIDFormatted
+	description := query.CISDescriptionTextFormatted
+	title := query.CISDescriptionTitle
+
+	m.Row(colFive, func() {
+		m.Col(colTwo, func() {
+			m.Text("CIS ID", props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Style:       consts.Bold,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colEight, func() {
+			m.Text(cisID, props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
+	m.Row(colFive, func() {
+		m.Col(colTwo, func() {
+			m.Text("Title", props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Style:       consts.Bold,
+				Extrapolate: false,
+			})
+		})
+		m.Col(colEight, func() {
+			m.Text(title, props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
+	m.Row(colFive, func() {
+		m.Col(colTwo, func() {
+			m.Text("Description", props.Text{
+				Size:        float64(textSize),
+				Align:       consts.Left,
+				Style:       consts.Bold,
+				Extrapolate: false,
+			})
+		})
+	})
+	m.Row(getRowLength(description), func() {
+		m.Col(colFullPage, func() {
+			m.Text(description, props.Text{
+				Size:        float64(defaultTextSize),
+				Align:       consts.Left,
+				Extrapolate: false,
+			})
+		})
+	})
+}
+
+func getRowLength(value string) float64 {
+	length := len(value)
+	return float64(length / colRuneSlitter)
 }
 
 func createResultsTable(m pdf.Maroto, query *model.VulnerableQuery) {

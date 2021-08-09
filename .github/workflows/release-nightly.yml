@@ -53,13 +53,14 @@ jobs:
         with:
           go-version: 1.16
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2.6.1
+        uses: goreleaser/goreleaser-action@v2.7.0
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-nightly.yml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
       - name: delete release
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
@@ -152,28 +153,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Push scratch to Docker Hub
-        id: build_scratch
-        uses: docker/build-push-action@v2.6.1
-        with:
-          context: .
-          push: true
-          tags: checkmarx/kics:nightly
-          build-args: |
-            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
-            COMMIT=${{ github.sha }}
       - name: Push alpine to Docker Hub
         id: build_alpine
         uses: docker/build-push-action@v2.6.1
         with:
           context: .
-          file: ./Dockerfile.alpine
           push: true
-          tags: checkmarx/kics:nightly-alpine
+          tags: checkmarx/kics:nightly,checkmarx/kics:nightly-alpine
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
-      - name: Push debian to Docker Hub
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build and push debian to Docker Hub
         id: build_debian
         uses: docker/build-push-action@v2.6.1
         with:
@@ -184,13 +175,14 @@ jobs:
           build-args: |
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Export Image Digests
         run: |
           VERSION=nightly
 
           COMMIT_SHA8=${{ needs.pre_release_job.outputs.sha8 }}
           DATE=$(date +'%Y-%m-%d')
-          DIGEST=${{ steps.build_scratch.outputs.digest }}
+          DIGEST=${{ steps.build_alpine.outputs.digest }}
           ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
           DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
 

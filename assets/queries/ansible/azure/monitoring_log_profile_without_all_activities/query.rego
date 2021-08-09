@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_monitorlogprofile", "azure_rm_monitorlogprofile"}
 
@@ -12,7 +12,7 @@ CxPolicy[result] {
 	categories := azureMonitor.categories
 	elem := ["write", "action", "delete"][_]
 
-	not commonLib.inArray([c | c := lower(categories[_])], elem)
+	not common_lib.inArray([c | c := lower(categories[_])], elem)
 
 	result := {
 		"documentId": id,
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	azureMonitor := task[modules[m]]
 	ansLib.checkState(azureMonitor)
 
-	object.get(azureMonitor, "categories", "undefined") == "undefined"
+	not common_lib.valid_key(azureMonitor, "categories")
 
 	result := {
 		"documentId": id,

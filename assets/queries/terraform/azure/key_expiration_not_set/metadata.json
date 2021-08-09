@@ -5,5 +5,7 @@
   "category": "Secret Management",
   "descriptionText": "Make sure that for all keys the expiration date is set",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "bb99ceb7",
+  "cloudProvider": "azure"
 }

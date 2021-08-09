@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Logs delivered by CloudTrail should be encrypted using KMS",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-kmskeyid",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "cdc07a23",
+  "cloudProvider": "aws"
 }

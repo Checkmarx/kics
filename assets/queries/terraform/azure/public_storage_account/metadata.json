@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Check if 'network_rules' is open to public.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "88948514",
+  "cloudProvider": "azure"
 }

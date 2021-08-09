@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "S3 bucket with public READ/WRITE access",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "d535387f",
+  "cloudProvider": "aws"
 }

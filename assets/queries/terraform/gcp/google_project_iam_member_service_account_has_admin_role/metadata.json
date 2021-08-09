@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Verifies that Google Project IAM Member Service Account doesn't have an Admin Role associated",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam#google_project_iam_member",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "965c0d1c",
+  "cloudProvider": "gcp"
 }

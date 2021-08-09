@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Check that keys aren't the same for a period greater than 365 days.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "2ce06fd2",
+  "cloudProvider": "gcp"
 }

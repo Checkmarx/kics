@@ -5,5 +5,7 @@
   "category": "Availability",
   "descriptionText": "Check if ElastiCache nodes are not being created across multi AZ",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "35f94973",
+  "cloudProvider": "aws"
 }

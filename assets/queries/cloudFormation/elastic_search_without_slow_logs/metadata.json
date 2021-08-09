@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Ensure that AWS Elasticsearch enables support for slow logs",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "72d32380",
+  "cloudProvider": "aws"
 }

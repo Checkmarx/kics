@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Enable Content Encoding through the attribute 'minimum_compression_size'. This value should be greater than -1 and smaller than 10485760",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "fc02b8db",
+  "cloudProvider": "aws"
 }

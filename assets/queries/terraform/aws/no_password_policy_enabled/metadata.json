@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "IAM password policies should be set through the password minimum length and reset password attributes",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "fc3e0d4f",
+  "cloudProvider": "aws"
 }

@@ -5,5 +5,7 @@
   "category": "Backup",
   "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudformation_stack_set_module.html#parameter-purge_stacks",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "78d78b74",
+  "cloudProvider": "aws"
 }

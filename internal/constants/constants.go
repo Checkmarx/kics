@@ -12,6 +12,8 @@ var (
 	SCMCommit = "NOCOMMIT"
 	// SentryDSN - sentry DSN, unset for disabling
 	SentryDSN = ""
+	// BaseURL - CIS descriptions endpoint URL
+	BaseURL = ""
 )
 
 const (
@@ -42,7 +44,7 @@ const (
 	// MaxInteger - max possible integer in golang
 	MaxInteger = math.MaxInt64
 
-	// SentryRefreshRate - sentry telemetry refresh rate
+	// SentryRefreshRate - sentry crash report refresh rate
 	SentryRefreshRate = 2
 )
 

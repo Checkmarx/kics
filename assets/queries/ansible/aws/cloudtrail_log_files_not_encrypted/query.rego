@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	cloudtrail := task[modules[m]]
 	ansLib.checkState(cloudtrail)
 
-	object.get(cloudtrail, "kms_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(cloudtrail, "kms_key_id")
 
 	result := {
 		"documentId": id,

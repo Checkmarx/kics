@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Workload is mounting a volume with sensitive OS Directory",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
-  "platform": "Kubernetes"
+  "platform": "Kubernetes",
+  "descriptionID": "73339cde"
 }

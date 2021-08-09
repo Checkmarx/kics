@@ -5,5 +5,7 @@
   "category": "Backup",
   "descriptionText": "Make sure that retain_stack is enabled to keep the Stack and it's associated resources during resource destruction",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html#cfn-cloudformation-stackset-autodeployment-retainstacksonaccountremoval",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "2f8bf223",
+  "cloudProvider": "aws"
 }

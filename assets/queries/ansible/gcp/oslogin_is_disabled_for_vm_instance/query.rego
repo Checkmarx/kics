@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	metadata := instance.metadata
 	ansLib.checkState(instance)
 
-	object.get(metadata, "enable-oslogin", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "enable-oslogin")
 
 	not ansLib.isAnsibleTrue(metadata["enable-oslogin"])
 

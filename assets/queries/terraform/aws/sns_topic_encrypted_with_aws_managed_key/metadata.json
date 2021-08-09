@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "SNS (Simple Notification Service) Topic should be encrypted with customer-managed KMS keys instead of AWS managed keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic#kms_master_key_id",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "ecb127ec",
+  "cloudProvider": "aws"
 }

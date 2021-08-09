@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "API Gateway Deployment should have access log setting defined when connected to an API Gateway Stage.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "e28c5797",
+  "cloudProvider": "aws"
 }

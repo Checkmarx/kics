@@ -1,6 +1,8 @@
 package model
 
 import (
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -34,7 +36,7 @@ func TestCreateSummary(t *testing.T) {
 		FailedToScanFiles:      0,
 	}
 
-	pathExtractionMap := map[string]string{}
+	pathExtractionMap := map[string]ExtractedPathObject{}
 
 	t.Run("create_summary_empty", func(t *testing.T) {
 		summary := CreateSummary(counter, []Vulnerability{}, "scanID", pathExtractionMap)
@@ -87,4 +89,68 @@ func TestCreateSummary(t *testing.T) {
 			},
 		})
 	})
+}
+
+func TestModel_resolvePath(t *testing.T) {
+	pwd, err := os.Getwd()
+	if err != nil {
+		t.Errorf("failed to get working dir: %v", err)
+	}
+
+	type args struct {
+		filePath          string
+		pathExtractionMap map[string]ExtractedPathObject
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "test_with_query_params_local",
+			args: args{
+				filePath: filepath.FromSlash("/tmp/file/vuln"),
+				pathExtractionMap: map[string]ExtractedPathObject{
+					filepath.FromSlash("/tmp"): {
+						Path:      filepath.FromSlash("https//test/relativepath/testing?paramKey=paramVal"),
+						LocalPath: false,
+					},
+				},
+			},
+			want: filepath.FromSlash("https//test/relativepath/testing/file/vuln"),
+		},
+		{
+			name: "test_with_query_mult_params_local",
+			args: args{
+				filePath: filepath.FromSlash("/tmp/file/vuln"),
+				pathExtractionMap: map[string]ExtractedPathObject{
+					filepath.FromSlash("/tmp"): {
+						Path:      filepath.FromSlash("https//test/relativepath/testing?paramKey=paramVal&paramKey2=paramVal2"),
+						LocalPath: false,
+					},
+				},
+			},
+			want: filepath.FromSlash("https//test/relativepath/testing/file/vuln"),
+		},
+		{
+			name: "test_with_query_local",
+			args: args{
+				filePath: filepath.Join(pwd, filepath.FromSlash("assets/queries/dockerfile/image_version_not_explicit/test/negative.dockerfile")),
+				pathExtractionMap: map[string]ExtractedPathObject{
+					filepath.FromSlash("/tmp"): {
+						Path:      filepath.Join(pwd, filepath.FromSlash("/assets/queries/dockerfile")),
+						LocalPath: true,
+					},
+				},
+			},
+			want: filepath.FromSlash("assets/queries/dockerfile/image_version_not_explicit/test/negative.dockerfile"),
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := resolvePath(tt.args.filePath, tt.args.pathExtractionMap)
+			require.Equal(t, tt.want, got)
+		})
+	}
 }

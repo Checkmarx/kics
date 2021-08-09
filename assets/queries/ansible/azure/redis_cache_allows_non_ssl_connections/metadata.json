@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if any Redis Cache resource allows non-SSL connections.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_rediscache_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "31e56819",
+  "cloudProvider": "azure"
 }

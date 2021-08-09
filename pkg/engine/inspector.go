@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"strings"
@@ -16,6 +17,7 @@ import (
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
+	"github.com/open-policy-agent/opa/storage/inmem"
 	"github.com/open-policy-agent/opa/topdown"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -27,6 +29,7 @@ const (
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
 	DefaultQueryDescription     = "Undefined"
+	DefaultQueryDescriptionID   = "Undefined"
 	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
@@ -101,13 +104,13 @@ func NewInspector(
 	queriesSource source.QueriesSource,
 	vb VulnerabilityBuilder,
 	tracker Tracker,
-	queryFilter source.QuerySelectionFilter,
+	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
 	queryTimeout int) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
-	queries, err := queriesSource.GetQueries(queryFilter)
+	queries, err := queriesSource.GetQueries(queryParameters)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
@@ -133,11 +136,14 @@ func NewInspector(
 		case <-ctx.Done():
 			return nil, nil
 		default:
-			opaQuery, err := rego.New(
+			var opaQuery rego.PreparedEvalQuery
+			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
+			opaQuery, err = rego.New(
 				rego.Query(regoQuery),
 				rego.Module("Common", commonGeneralQuery),
 				rego.Module("Generic", platformGeneralQuery),
 				rego.Module(metadata.Query, metadata.Content),
+				rego.Store(store),
 				rego.UnsafeBuiltins(unsafeRegoFunctions),
 			).PrepareForEval(ctx)
 			if err != nil {
@@ -197,10 +203,9 @@ func (c *Inspector) Inspect(
 	ctx context.Context,
 	scanID string,
 	files model.FileMetadatas,
-	hideProgress bool,
 	baseScanPaths []string,
 	platforms []string,
-	currentQuery chan<- float64) ([]model.Vulnerability, error) {
+	currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
 	combinedFiles := files.Combine()
 
@@ -212,9 +217,7 @@ func (c *Inspector) Inspect(
 	var vulnerabilities []model.Vulnerability
 	vulnerabilities = make([]model.Vulnerability, 0)
 	for _, query := range c.getQueriesByPlat(platforms) {
-		if !hideProgress {
-			currentQuery <- float64(1)
-		}
+		currentQuery <- 1
 
 		vuls, err := c.doRun(&QueryContext{
 			ctx:           ctx,

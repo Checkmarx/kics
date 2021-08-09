@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Check if any Cloud SQL instances are publicly accessible.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "c1bb13ce",
+  "cloudProvider": "gcp"
 }

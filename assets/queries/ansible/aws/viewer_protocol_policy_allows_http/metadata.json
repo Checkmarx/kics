@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Checks if the connection between the CloudFront and the origin server is encrypted",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "5dd1ca8b",
+  "cloudProvider": "aws"
 }

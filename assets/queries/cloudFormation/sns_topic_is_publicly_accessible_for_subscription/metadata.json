@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Ensure appropriate subscribers to each SNS topic",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "93100b84",
+  "cloudProvider": "aws"
 }

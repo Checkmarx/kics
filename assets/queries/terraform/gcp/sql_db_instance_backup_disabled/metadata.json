@@ -5,5 +5,7 @@
   "category": "Backup",
   "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "ab1d4131",
+  "cloudProvider": "gcp"
 }

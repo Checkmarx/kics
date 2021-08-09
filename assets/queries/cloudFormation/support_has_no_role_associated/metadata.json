@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Check if any AWS Support policy does not have any role and users and group associated, which means that is not being managed.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "42d28f69",
+  "cloudProvider": "aws"
 }

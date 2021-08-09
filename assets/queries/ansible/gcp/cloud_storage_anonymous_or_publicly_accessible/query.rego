@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_storage_bucket", "gcp_storage_bucket"}
 
@@ -9,8 +10,8 @@ CxPolicy[result] {
 	bucket := task[modules[m]]
 	ansLib.checkState(bucket)
 
-	object.get(bucket, "acl", "undefined") == "undefined"
-	object.get(bucket, "default_object_acl", "undefined") == "undefined"
+	not common_lib.valid_key(bucket, "acl")
+	not common_lib.valid_key(bucket, "default_object_acl")
 
 	result := {
 		"documentId": id,
@@ -42,7 +43,7 @@ CxPolicy[result] {
 	bucket := task[modules[m]]
 	ansLib.checkState(bucket)
 
-	object.get(bucket, "acl", "undefined") == "undefined"
+	not common_lib.valid_key(bucket, "acl")
 	check(bucket.default_object_acl.entity)
 
 	result := {

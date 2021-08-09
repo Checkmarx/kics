@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "AWS Cognito UserPool should have MFA (Multi-Factor Authentication) defined to users",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "17f77319",
+  "cloudProvider": "aws"
 }

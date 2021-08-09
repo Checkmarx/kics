@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Amazon Simple Queue Service (SQS) queue is not protecting the contents of their messages using Server-Side Encryption (SSE)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "e478b54b",
+  "cloudProvider": "aws"
 }

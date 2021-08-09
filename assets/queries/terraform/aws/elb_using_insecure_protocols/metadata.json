@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "ELB Predefined or Custom Security Policies must not use insecure protocols, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'name' of 'policy_attributes' must not coincide with any of a predefined list of insecure protocols.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/load_balancer_policy",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "88f4d79a",
+  "cloudProvider": "aws"
 }

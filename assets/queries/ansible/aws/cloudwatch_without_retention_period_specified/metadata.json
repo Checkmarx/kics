@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudwatchlogs_log_group_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "c48a227e",
+  "cloudProvider": "aws"
 }

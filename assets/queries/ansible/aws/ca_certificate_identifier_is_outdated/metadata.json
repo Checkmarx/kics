@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "The CA certificate Identifier must be 'rds-ca-2019'.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-ca_certificate_identifier",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "d92aa922",
+  "cloudProvider": "aws"
 }

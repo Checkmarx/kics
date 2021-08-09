@@ -58,28 +58,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Push scratch to Docker Hub
-        uses: docker/build-push-action@v2.6.1
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.prep.outputs.tags }}
-          build-args: |
-            VERSION=${{ github.event.inputs.tag }}
-            COMMIT=${{ github.sha }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
       - name: Push alpine to Docker Hub
-        if: ${{ hashFiles('Dockerfile.alpine') }} != ""
         uses: docker/build-push-action@v2.6.1
         with:
           context: .
-          file: ./Dockerfile.alpine
           push: true
-          tags: ${{ steps.prep.outputs.alpine_tags }}
+          tags: ${{ steps.prep.outputs.tags }},${{ steps.prep.outputs.alpine_tags }}
           build-args: |
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Push debian to Docker Hub
         if: ${{ hashFiles('Dockerfile.debian') }} != ""
         id: build_debian
@@ -93,3 +82,4 @@ jobs:
             VERSION=${{ github.event.inputs.tag }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}

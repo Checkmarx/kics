@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "IAM policies allow all ('*') in a statement action",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "f20cf2cf",
+  "cloudProvider": "aws"
 }

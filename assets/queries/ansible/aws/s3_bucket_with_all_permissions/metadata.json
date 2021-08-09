@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "S3 Buckets must not have all permissions, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-policy",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "21fc95f2",
+  "cloudProvider": "aws"
 }

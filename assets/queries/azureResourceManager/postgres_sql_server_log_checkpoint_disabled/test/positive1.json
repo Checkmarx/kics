@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "apiVersion": "2017-12-01",
+      "kind": "",
+      "location": "[resourceGroup().location]",
+      "name": "MyDBServer1",
+      "properties": {
+        "sslEnforcement": "Disabled",
+        "version": "11",
+        "administratorLogin": "root",
+        "administratorLoginPassword": "12345",
+        "storageMB": "2048",
+        "createMode": "Default",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "creationDate": "2019-04-01T00:00:00Z",
+        "lastModifiedDate": "2019-04-01T00:00:00Z",
+        "maxSizeUnits": "SizeUnit.megabytes",
+        "isReadOnly": "false",
+        "isAutoUpgradeEnabled": "true",
+        "isStateful": "false",
+        "isExternal": "false"
+      },
+      "sku": {
+        "name": "S0",
+        "tier": "Basic",
+        "capacity": 1,
+        "family": "GeneralPurpose"
+      },
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "resources": [
+        {
+          "type": "configurations",
+          "apiVersion": "2017-12-01",
+          "dependsOn": [
+            "Microsoft.DBforPostgreSQL/servers/MyDBServer"
+          ],
+          "name": "log_checkpoints",
+          "properties": {
+            "configurationSets": [
+              {
+                "configurationSetType": "Microsoft.DBforPostgreSQL/servers/configurations/dbconfig",
+                "configurationSet": {
+                  "name": "dbconfig",
+                  "configurationParameters": [
+                    {
+                      "name": "data_directory",
+                      "value": "[parameters('dataDirectory')]"
+                    },
+                    {
+                      "name": "max_size",
+                      "value": "[parameters('maxSizeMB')]"
+                    },
+                    {
+                      "name": "min_size",
+                      "value": "[parameters('minSizeMB')]"
+                    },
+                    {
+                      "name": "page_size",
+                      "value": "[parameters('pageSizeMB')]"
+                    },
+                    {
+                      "name": "work_mem",
+                      "value": "[parameters('workMemMB')]"
+                    },
+                    {
+                      "name": "maintenance_work_mem",
+                      "value": "[parameters('maintenanceMemMB')]"
+                    },
+                    {
+                      "name": "checkpoint_segments",
+                      "value": "[parameters('checkpointSegments')]"
+                    },
+                    {
+                      "name": "checkpoint_completion_target",
+                      "value": "[parameters('checkpointCompletionTarget')]"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "location": "[resourceGroup().location]"
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}

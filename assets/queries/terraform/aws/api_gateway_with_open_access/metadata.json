@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "API Gateway Method should restrict the authorization type, except for the HTTP OPTIONS method.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "1a1dc17c",
+  "cloudProvider": "aws"
 }

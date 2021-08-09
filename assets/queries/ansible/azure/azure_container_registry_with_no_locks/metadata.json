@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Azurerm Container Registry Must Contain Associated Locks ",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_containerregistry_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "7489a85f",
+  "cloudProvider": "azure"
 }

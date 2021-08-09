@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "API Gateway Deployment should have API Gateway UsagePlan defined and associated.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "a5480b6e",
+  "cloudProvider": "aws"
 }

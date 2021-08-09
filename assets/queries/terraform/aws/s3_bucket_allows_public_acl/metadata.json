@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "S3 bucket allows public ACL",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "7b8886c1",
+  "cloudProvider": "aws"
 }

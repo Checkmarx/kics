@@ -13,5 +13,6 @@
       "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#path-templating"
     }
   },
-  "aggregation": 2
+  "aggregation": 2,
+  "descriptionID": "e6368373"
 }

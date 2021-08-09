@@ -5,5 +5,7 @@
   "category": "Backup",
   "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/backup_configuration/enabled",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "006274d4",
+  "cloudProvider": "gcp"
 }

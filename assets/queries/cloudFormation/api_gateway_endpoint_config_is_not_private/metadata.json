@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "The API Endpoint type in API Gateway should be set to PRIVATE so it's not exposed to the public internet",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html#cfn-apigateway-restapi-endpointconfiguration-types",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "f370d030",
+  "cloudProvider": "aws"
 }

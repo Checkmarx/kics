@@ -5,5 +5,7 @@
   "category": "Insecure Defaults",
   "descriptionText": "WebAcl DefaultAction should not be ALLOW",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "e4327168",
+  "cloudProvider": "aws"
 }

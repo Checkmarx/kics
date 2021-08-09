@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_duration' is set to 'ON'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "2961eac3",
+  "cloudProvider": "azure"
 }

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -11,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/mock"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -265,10 +267,11 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			}
 
 			q := model.QueryMetadata{
-				Query:    testParams.queryID(),
-				Content:  testParams.queryContent(t),
-				Metadata: metadata,
-				Platform: testParams.platform,
+				Query:     testParams.queryID(),
+				Content:   testParams.queryContent(t),
+				InputData: "{}",
+				Metadata:  metadata,
+				Platform:  testParams.platform,
 			}
 			return []model.QueryMetadata{q}, nil
 		})
@@ -291,17 +294,25 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 		queriesSource,
 		engine.DefaultVulnerabilityBuilder,
 		&tracker.CITracker{},
-		source.QuerySelectionFilter{
+		&source.QueryInspectorParameters{
 			IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+			InputDataPath:  "",
 		},
 		map[string]bool{}, 60)
 
 	require.Nil(t, err)
 	require.NotNil(t, inspector)
 
-	currentQuery := make(chan float64)
+	currentQuery := make(chan int64)
 
+	wg := &sync.WaitGroup{}
+	proBarBuilder := progress.InitializePbBuilder(true, true, true)
+	platforms := []string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"}
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
+	go progressBar.Start()
+
+	wg.Add(1)
 	vulnerabilities, err := inspector.Inspect(
 		ctx,
 		scanID,
@@ -310,11 +321,18 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.samplePath(t),
 			testParams.sampleContent(t),
 		),
-		true,
 		[]string{BaseTestsScanPath},
-		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile"},
+		[]string{"Ansible", "CloudFormation", "Kubernetes", "OpenAPI", "Terraform", "Dockerfile", "AzureResourceManager"},
 		currentQuery,
 	)
+
+	go func() {
+		defer func() {
+			close(currentQuery)
+		}()
+		wg.Wait()
+	}()
+
 	require.Nil(t, err)
 	return vulnerabilities
 }

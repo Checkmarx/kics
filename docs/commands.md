@@ -42,6 +42,7 @@ Usage:
   kics scan [flags]
 
 Flags:
+      --cloud-provider strings       list of cloud providers to scan (aws, azure, gcp)
       --config string                path to configuration file
       --exclude-categories strings   exclude categories by providing its name
                                      cannot be provided with query inclusion flags
@@ -68,8 +69,10 @@ Flags:
                                      cannot be provided with query exclusion flags
                                      can be provided multiple times or as a comma separated string
                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
+      --input-data string            path to query input data files
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --disable-cis-descriptions     disable request for CIS descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
@@ -80,7 +83,7 @@ Flags:
       --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast, pdf) (default [json])
       --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
-                                     (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
+                                     (Ansible, AzureResourceManager, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
@@ -105,11 +108,11 @@ You can only enable one profiler at a time, CPU or MEM.
 
 📝   Please note that execution time may be impacted by enabling performance profiler due to sampling
 
-## Disable Telemetry
+## Disable Crash Report
 
-You can disable KICS telemetry with `KICS_COLLECT_TELEMETRY` environment variable set to `0` or `false` e.g:
+You can disable KICS crash report to [sentry.io](https://sentry.io) with `DISABLE_CRASH_REPORT` environment variable set to `0` or `false` e.g:
 
 ```sh
-KICS_COLLECT_TELEMETRY=0 ./bin/kics version
-# 'KICS telemetry disabled' message should appear in the logs
+DISABLE_CRASH_REPORT=0 ./bin/kics version
+# 'KICS crash report disabled' message should appear in the logs
 ```

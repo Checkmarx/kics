@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if Google Firewall allows SSH access (port 22) from the Internet (public CIDR block)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "c0e4fb6f",
+  "cloudProvider": "gcp"
 }

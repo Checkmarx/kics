@@ -1,0 +1,32 @@
+#this is a problematic code where the query should report a result(s)
+- name: create a disk1
+  google.cloud.gcp_compute_disk:
+    name: test_object1
+    size_gb: 50
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+- name: create a disk3
+  google.cloud.gcp_compute_disk:
+    name: test_object3
+    size_gb: 50
+    disk_encryption_key:
+      raw_key:
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+- name: create a disk4
+  google.cloud.gcp_compute_disk:
+    name: test_object4
+    size_gb: 50
+    disk_encryption_key:
+      raw_key: ""
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_storage_bucket", "gcp_storage_bucket"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	storage_bucket := task[modules[m]]
 	ansLib.checkState(storage_bucket)
 
-	object.get(storage_bucket, "versioning", "undefined") == "undefined"
+	not common_lib.valid_key(storage_bucket, "versioning")
 
 	result := {
 		"documentId": id,

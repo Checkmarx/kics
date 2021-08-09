@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "Check if Web Application Firewall is disabled or not configured for Azure's Application Gateway.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "97c222ec",
+  "cloudProvider": "azure"
 }

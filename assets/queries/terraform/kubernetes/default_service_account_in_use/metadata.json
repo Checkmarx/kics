@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Default service accounts should not be actively used",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account#automount_service_account_token",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "b0822187"
 }

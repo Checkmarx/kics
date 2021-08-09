@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "CloudTrail should be integrated with CloudWatch",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "11653439",
+  "cloudProvider": "aws"
 }
