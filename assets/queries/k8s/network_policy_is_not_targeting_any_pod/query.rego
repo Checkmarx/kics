@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 
 	object.get(document, "kind", "undefined") == "NetworkPolicy"
 
-	object.get(document.spec.podSelector, "matchLabels", "undefined") != "undefined"
+	common_lib.valid_key(document.spec.podSelector, "matchLabels")
 
 	targetLabels := document.spec.podSelector.matchLabels
 	findTargettedPod(targetLabels[key], key) == false

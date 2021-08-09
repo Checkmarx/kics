@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -7,7 +9,7 @@ CxPolicy[result] {
 
 	some j
 	container := document.spec[types[x]][j]
-	object.get(container, "securityContext", "undefined") == "undefined"
+	not common_lib.valid_key(container, "securityContext")
 
 	metadata := document.metadata
 	result := {
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	some j
 	container := document.spec[types[x]][j]
 	securityContext := container.securityContext
-	object.get(securityContext, "readOnlyRootFilesystem", "undefined") == "undefined"
+	not common_lib.valid_key(securityContext, "readOnlyRootFilesystem")
 
 	metadata := document.metadata
 	result := {

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -12,7 +14,7 @@ CxPolicy[result] {
 
 	contains(container.image, "tiller")
 
-	object.get(container, "args", "undefined") == "undefined"
+	not common_lib.valid_key(container, "args")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -33,7 +35,7 @@ CxPolicy[result] {
 
 	contains(container.image, "tiller")
 
-	object.get(container, "args", "undefined") != "undefined"
+	not common_lib.valid_key(container, "args")
 
 	not listenLocal(container.args)
 
@@ -55,7 +57,7 @@ CxPolicy[result] {
 	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
-	object.get(container, "args", "undefined") == "undefined"
+	not common_lib.valid_key(container, "args")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -74,7 +76,7 @@ CxPolicy[result] {
 	container := document.spec.template.spec[types[x]][j]
 	metadata := document.metadata
 
-	object.get(container, "args", "undefined") != "undefined"
+	common_lib.valid_key(container, "args")
 	not listenLocal(container.args)
 
 	result := {
