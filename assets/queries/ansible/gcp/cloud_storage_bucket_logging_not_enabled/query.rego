@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	storage_bucket := task[modules[m]]
 	ansLib.checkState(storage_bucket)
 
-	object.get(storage_bucket, "logging", "undefined") == "undefined"
+	not common_lib.valid_key(storage_bucket, "logging")
 
 	result := {
 		"documentId": id,

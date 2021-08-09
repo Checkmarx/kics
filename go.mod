@@ -3,7 +3,7 @@ module github.com/Checkmarx/kics
 go 1.16
 
 require (
-	github.com/BurntSushi/toml v0.3.1
+	github.com/BurntSushi/toml v0.4.1
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/getsentry/sentry-go v0.11.0

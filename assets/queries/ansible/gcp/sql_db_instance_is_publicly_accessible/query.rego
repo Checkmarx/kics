@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_sql_instance", "gcp_sql_instance"}
 
@@ -30,7 +31,7 @@ CxPolicy[result] {
 	ansLib.checkState(instance)
 
 	ip_configuration := instance.settings.ip_configuration
-	object.get(ip_configuration, "authorized_networks", "undefined") == "undefined"
+	not common_lib.valid_key(ip_configuration, "authorized_networks")
 	ansLib.isAnsibleTrue(ip_configuration.ipv4_enabled)
 
 	result := {
@@ -47,7 +48,7 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	object.get(instance.settings, "ip_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(instance.settings, "ip_configuration")
 
 	result := {
 		"documentId": id,

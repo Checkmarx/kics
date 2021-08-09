@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	object.get(instance, "shielded_instance_config", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "shielded_instance_config")
 
 	result := {
 		"documentId": id,
@@ -25,8 +26,9 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 	attributes := ["enable_integrity_monitoring", "enable_secure_boot", "enable_vtpm"]
+	attr := attributes[j]
 
-	object.get(instance.shielded_instance_config, attributes[j], "undefined") == "undefined"
+	not common_lib.valid_key(instance.shielded_instance_config, attr)
 
 	result := {
 		"documentId": id,

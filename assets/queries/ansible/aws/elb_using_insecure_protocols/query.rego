@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.elb_network_lb", "elb_network_lb", "community.aws.elb_application_lb", "elb_application_lb"}
 
@@ -12,7 +12,7 @@ CxPolicy[result] {
 	elb := task[modules[m]]
 	ansLib.checkState(elb)
 
-	object.get(elb, "listeners", "undefined") == "undefined"
+	not common_lib.valid_key(elb, "listeners")
 
 	result := {
 		"documentId": id,
@@ -28,7 +28,8 @@ CxPolicy[result] {
 	elb := task[modules[m]]
 	ansLib.checkState(elb)
 
-	object.get(elb.listeners[j], "SslPolicy", "undefined") == "undefined"
+	listener := elb.listeners[j]
+	not common_lib.valid_key(listener, "SslPolicy")
 
 	result := {
 		"documentId": id,
@@ -44,7 +45,7 @@ CxPolicy[result] {
 	elb := task[modules[m]]
 	ansLib.checkState(elb)
 
-	commonLib.inArray(insecure_protocols, elb.listeners[j].SslPolicy)
+	common_lib.inArray(insecure_protocols, elb.listeners[j].SslPolicy)
 
 	result := {
 		"documentId": id,

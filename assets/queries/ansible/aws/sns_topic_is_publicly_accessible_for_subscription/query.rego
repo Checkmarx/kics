@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	snsTopicCommunity := task[modules[m]]
 	ansLib.checkState(snsTopicCommunity)
 
-	object.get(snsTopicCommunity, "subscriptions", "undefined") != "undefined"
+	common_lib.valid_key(snsTopicCommunity, "subscriptions")
 
 	result := {
 		"documentId": id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.rds_instance", "rds_instance"}
 
@@ -9,8 +10,8 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	object.get(instance, "storage_encrypted", "undefined") == "undefined"
-	object.get(instance, "kms_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "storage_encrypted")
+	not common_lib.valid_key(instance, "kms_key_id")
 
 	result := {
 		"documentId": id,
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	ansLib.checkState(instance)
 
 	not ansLib.isAnsibleTrue(instance.storage_encrypted)
-	object.get(instance, "kms_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "kms_key_id")
 
 	result := {
 		"documentId": id,
