@@ -29,11 +29,11 @@ Example of a valid `flags.json` file:
         "usage": "directory path to store reports"
     },
     "type": {
-    "flagType": "multiStr",
-    "shorthandFlag": "t",
-    "defaultValue": "",
-    "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})"
-  }
+        "flagType": "multiStr",
+        "shorthandFlag": "t",
+        "defaultValue": "",
+        "usage": "case insensitive list of platform types to scan\n(${supportedPlatforms})"
+    }
 }
 ```
 
