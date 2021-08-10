@@ -11,7 +11,6 @@ CxPolicy[result] {
 	types = {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
-	add := common_lib.valid_key(containers[index].securityContext.capabilities, "add")
 	containers[index].securityContext.capabilities.add[_] == "SYS_ADMIN"
 
 	result := {
