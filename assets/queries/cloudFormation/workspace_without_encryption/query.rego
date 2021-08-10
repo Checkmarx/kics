@@ -9,7 +9,6 @@ CxPolicy[result] {
 	workspace := document.Resources[workspaceName]
 
 	# The UserVolumeEncryptionEnabled property is defined, but is set to false
-	common_lib.valid_key(workspace.Properties, "UserVolumeEncryptionEnabled")
 	not isTrue(workspace.Properties.UserVolumeEncryptionEnabled)
 
 	result := {

@@ -23,8 +23,6 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 
-	common_lib.valid_key(properties, "StorageEncrypted")
-
 	properties.StorageEncrypted == false
 
 	result := {

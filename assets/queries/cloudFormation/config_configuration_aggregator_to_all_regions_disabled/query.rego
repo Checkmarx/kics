@@ -22,9 +22,6 @@ CxPolicy[result] {
 	resource.Type == "AWS::Config::ConfigurationAggregator"
     aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
 
-
-	common_lib.valid_key(resource.Properties, aggregators[type])
-
     aggregators[type] == "AccountAggregationSources"
 
     accSources := resource.Properties.AccountAggregationSources

@@ -7,7 +7,6 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-	common_lib.valid_key(properties, "PubliclyAccessible")
 
     properties.PubliclyAccessible
 

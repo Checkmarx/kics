@@ -23,7 +23,6 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 
 	distributionConfig := resource.Properties.DistributionConfig
-	common_lib.valid_key(distributionConfig, "Logging")
 
 	bucketCorrect := resource.Properties.DistributionConfig.Logging.Bucket
 	endswith(bucketCorrect, ".s3.amazonaws.com") == false

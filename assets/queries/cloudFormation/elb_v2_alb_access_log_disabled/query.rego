@@ -23,7 +23,6 @@ CxPolicy[result] {
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
 
-    common_lib.valid_key(prop, "LoadBalancerAttributes")
 	contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
 
 	result := {

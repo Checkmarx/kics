@@ -22,6 +22,5 @@ isMissing(properties,attribute) {
 }
 
 isMissing(properties,attribute) {
-    common_lib.valid_key(properties, attribute)
     properties[attribute] == ""
 }

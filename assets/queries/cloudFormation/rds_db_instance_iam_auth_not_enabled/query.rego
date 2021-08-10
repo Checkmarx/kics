@@ -7,7 +7,6 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-    common_lib.valid_key(properties, "EnableIAMDatabaseAuthentication")
 	not properties.EnableIAMDatabaseAuthentication
 
 	result := {

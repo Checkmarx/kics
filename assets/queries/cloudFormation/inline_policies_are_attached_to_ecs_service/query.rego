@@ -21,7 +21,6 @@ CxPolicy[result] {
 
 getInlinePolicy(role) = policy {
 	is_string(role)
-	common_lib.valid_key(input.document[_].Resources, role)
 	input.document[_].Resources[role].Type == "AWS::IAM::Policy"
 	policy := role
 } else = policy {

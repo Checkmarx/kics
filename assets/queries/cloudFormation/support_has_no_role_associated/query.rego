@@ -51,7 +51,6 @@ CxPolicy[result] {
 }
 
 hasAttributeList(resource, attribute) {
-	common_lib.valid_key(resource, attribute)
 	count(resource[attribute]) > 0
 } else = false {
 	true

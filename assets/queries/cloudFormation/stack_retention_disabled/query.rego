@@ -39,8 +39,6 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
-	common_lib.valid_key(resource.Properties, "AutoDeployment")
-
     autoDeployment := resource.Properties.AutoDeployment
 	common_lib.valid_key(autoDeployment, "Enabled")
 

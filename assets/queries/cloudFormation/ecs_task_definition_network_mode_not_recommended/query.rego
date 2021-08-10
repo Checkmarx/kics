@@ -21,7 +21,6 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::TaskDefinition"
 	properties := resource.Properties
-	common_lib.valid_key(properties, "NetworkMode")
 
     properties.NetworkMode != "awsvpc"
 	result := {
