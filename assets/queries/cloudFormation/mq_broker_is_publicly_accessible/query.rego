@@ -1,7 +1,5 @@
 package Cx
 
-import data.generic.common as common_lib
-
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]

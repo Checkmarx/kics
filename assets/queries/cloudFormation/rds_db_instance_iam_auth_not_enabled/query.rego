@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	not properties.EnableIAMDatabaseAuthentication
+	properties.EnableIAMDatabaseAuthentication == false
 
 	result := {
 		"documentId": input.document[i].id,

@@ -20,9 +20,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
-    aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
-
-    aggregators[type] == "AccountAggregationSources"
 
     accSources := resource.Properties.AccountAggregationSources
 	accs := accSources[j]
@@ -40,18 +37,10 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
-    aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
-
-
-	common_lib.valid_key(resource.Properties, aggregators[type])
-
-    aggregators[type] == "AccountAggregationSources"
 
     accSources := resource.Properties.AccountAggregationSources
 
-    common_lib.valid_key(accSources[j],"AllAwsRegions")
-
-    not accSources[j].AllAwsRegions
+    accSources[j].AllAwsRegions == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -65,12 +54,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
-    aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
-
-
-	common_lib.valid_key(resource.Properties, aggregators[type])
-
-    aggregators[type] == "OrganizationAggregationSource"
 
     orgSource := resource.Properties.OrganizationAggregationSource
 
@@ -88,18 +71,10 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
-    aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
-
-
-	common_lib.valid_key(resource.Properties, aggregators[type])
-
-    aggregators[type] == "OrganizationAggregationSource"
 
     orgSource := resource.Properties.OrganizationAggregationSource
 
-    common_lib.valid_key(orgSource,"AllAwsRegions")
-
-    not orgSource.AllAwsRegions
+    orgSource.AllAwsRegions == false
 
 	result := {
 		"documentId": input.document[i].id,
