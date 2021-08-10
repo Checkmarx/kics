@@ -12,7 +12,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	add := common_lib.valid_key(containers[index].securityContext.capabilities, "add")
-	add == true
+	containers[index].securityContext.capabilities.add[_] == "SYS_ADMIN"
 
 	result := {
 		"documentId": input.document[i].id,

@@ -8,8 +8,6 @@ CxPolicy[result] {
 
 	object.get(document, "kind", "undefined") == "NetworkPolicy"
 
-	common_lib.valid_key(document.spec.podSelector, "matchLabels")
-
 	targetLabels := document.spec.podSelector.matchLabels
 	findTargettedPod(targetLabels[key], key) == false
 

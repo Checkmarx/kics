@@ -23,7 +23,6 @@ CxPolicy[result] {
 		},
 	}
 
-	common_lib.valid_key(recommendedVersions, document.apiVersion)
 	common_lib.valid_key(recommendedVersions[document.apiVersion], document.kind)
 	result := {
 		"documentId": input.document[i].id,
