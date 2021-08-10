@@ -40,9 +40,8 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFormation::StackSet"
 
     autoDeployment := resource.Properties.AutoDeployment
-	common_lib.valid_key(autoDeployment, "Enabled")
 
-    not autoDeployment.Enabled
+    autoDeployment.Enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -76,9 +75,8 @@ CxPolicy[result] {
     autoDeployment := resource.Properties.AutoDeployment
 
     autoDeployment.Enabled
-	common_lib.valid_key(autoDeployment, "RetainStacksOnAccountRemoval")
 
-    not autoDeployment.RetainStacksOnAccountRemoval
+    autoDeployment.RetainStacksOnAccountRemoval == false
 
 	result := {
 		"documentId": input.document[i].id,
