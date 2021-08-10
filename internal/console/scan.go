@@ -432,7 +432,7 @@ func initExitStatusFlags(scanCmd *cobra.Command) {
 		failOnFlag,
 		[]string{"high", "medium", "low", "info"},
 		"which kind of results should return an exit code different from 0\n"+
-			"accetps: high, medium, low and info\n"+
+			"accepts: high, medium, low and info\n"+
 			"example: \"high,low\"",
 	)
 	scanCmd.Flags().StringVar(&ignoreOnExit,
