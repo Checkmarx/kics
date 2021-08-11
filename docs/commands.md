@@ -59,7 +59,7 @@ Flags:
                                      can be provided multiple times or as a comma separated string
                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
       --fail-on strings              which kind of results should return an exit code different from 0
-                                     accetps: high, medium, low and info
+                                     accepts: high, medium, low and info
                                      example: "high,low" (default [high,medium,low,info])
   -h, --help                         help for scan
       --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
