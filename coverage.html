@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.3%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.9%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/scan.go (79.7%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -1172,7 +1172,7 @@ const (
         excludeResultsFlag      = "exclude-results"
         excludeResutlsShorthand = "x"
         includeQueriesFlag      = "include-queries"
-        inlcudeQueriesShorthand = "i"
+        includeQueriesShorthand = "i"
         inputDataFlag           = "input-data"
         failOnFlag              = "fail-on"
         ignoreOnExitFlag        = "ignore-on-exit"
@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="324">{
-                if val == true </span><span class="cov9" title="323">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="325">{
+                if val == true </span><span class="cov9" title="324">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1435,7 +1435,6 @@ func initOutputFlags(scanCmd *cobra.Command) <span class="cov4" title="13">{
         scanCmd.Flags().StringSliceVar(&amp;reportFormats, reportFormatsFlag, []string{"json"},
                 "formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
         )
-
         scanCmd.Flags().StringSliceVarP(&amp;types,
                 typeFlag, typeShorthand,
                 []string{""},
@@ -1496,7 +1495,7 @@ func initInclusionFlags(scanCmd *cobra.Command) <span class="cov4" title="13">{
         )
         scanCmd.Flags().StringSliceVarP(&amp;includeIDs,
                 includeQueriesFlag,
-                inlcudeQueriesShorthand,
+                includeQueriesShorthand,
                 []string{},
                 "include queries by providing the query ID\n"+"cannot be provided with query exclusion flags\n"+
                         msg+
@@ -1538,8 +1537,11 @@ func initExitStatusFlags(scanCmd *cobra.Command) <span class="cov4" title="13">{
 
 func initScanCmd(scanCmd *cobra.Command) <span class="cov4" title="13">{
         initScanFlags(scanCmd)
+        if constants.APIScanner == "true" </span><span class="cov0" title="0">{
+                types = []string{"openapi"}
+        }</span>
 
-        if err := scanCmd.MarkFlagRequired("path"); err != nil </span><span class="cov0" title="0">{
+        <span class="cov4" title="13">if err := scanCmd.MarkFlagRequired("path"); err != nil </span><span class="cov0" title="0">{
                 sentry.CaptureException(err)
                 log.Err(err).Msg("Failed to add command required flags")
         }</span>
@@ -1917,6 +1919,8 @@ var (
         SentryDSN = ""
         // BaseURL - CIS descriptions endpoint URL
         BaseURL = ""
+        // APIScanner - API scanner feature switch
+        APIScanner = ""
 )
 
 const (
@@ -2220,13 +2224,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2251,14 +2255,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="14">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -5049,12 +5053,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="20911">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="20909">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="20911">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="20680">{
+                <span class="cov9" title="20909">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="20678">{
                         return skipFolder
                 }</span>
 
@@ -5112,7 +5116,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="230">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="20914">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="20912">{
         if info.IsDir() </span><span class="cov8" title="4826">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5125,11 +5129,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="16088">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="16086">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="16088">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="15858">{
+        <span class="cov9" title="16086">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="15856">{
                 return true, nil
         }</span>
         <span class="cov5" title="230">return false, nil</span>
@@ -5286,7 +5290,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="35">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="39">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
