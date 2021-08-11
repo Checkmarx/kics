@@ -645,7 +645,6 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	cloudProviders = make([]string, 0)
 	querySource := source.NewFilesystemSource(queryPath, types, cloudProviders)
 	store := storage.NewMemoryStorage()
 
