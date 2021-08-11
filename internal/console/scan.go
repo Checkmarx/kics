@@ -444,7 +444,9 @@ func initExitStatusFlags(scanCmd *cobra.Command) {
 
 func initScanCmd(scanCmd *cobra.Command) {
 	initScanFlags(scanCmd)
-	types = []string{"openapi"}
+	if constants.APIScanner == "true" {
+		types = []string{"openapi"}
+	}
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)

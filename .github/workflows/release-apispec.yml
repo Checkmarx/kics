@@ -41,6 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
+          APISCANNER: "true"
       - name: delete release
         uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
@@ -143,6 +144,7 @@ jobs:
             VERSION=apipsec-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            APISCANNER="true"
       - name: Build and push debian to Docker Hub
         id: build_debian
         uses: docker/build-push-action@v2.6.1
@@ -155,6 +157,7 @@ jobs:
             VERSION=apipsec-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            APISCANNER="true"
       - name: Export Image Digests
         run: |
           VERSION=apispec
