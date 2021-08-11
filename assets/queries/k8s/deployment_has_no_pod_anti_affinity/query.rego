@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	deployment := input.document[i]
 	object.get(deployment, "kind", "undefined") == "Deployment"
@@ -8,7 +10,7 @@ CxPolicy[result] {
 
 	to_number(deployment.spec.replicas) > 2
 
-	object.get(deployment.spec.template.spec, "affinity", "undefined") == "undefined"
+	not common_lib.valid_key(deployment.spec.template.spec, "affinity")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,7 +28,7 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") == "undefined"
+	not common_lib.valid_key(affinity, "podAntiAffinity")
 
 	metadata := deployment.metadata
 	result := {
@@ -45,12 +47,12 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
+	common_lib.valid_key(affinity, "podAntiAffinity")
 
 	podAntiAffinity := affinity.podAntiAffinity
 
-	object.get(podAntiAffinity, "preferredDuringSchedulingIgnoredDuringExecution", "undefined") == "undefined"
-	object.get(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution", "undefined") == "undefined"
+	not common_lib.valid_key(podAntiAffinity, "preferredDuringSchedulingIgnoredDuringExecution")
+	not common_lib.valid_key(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution")
 
 	metadata := deployment.metadata
 	result := {
@@ -69,11 +71,11 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
+	common_lib.valid_key(affinity, "podAntiAffinity")
 
 	podAntiAffinity := affinity.podAntiAffinity
 
-	object.get(podAntiAffinity, "preferredDuringSchedulingIgnoredDuringExecution", "undefined") != "undefined"
+	common_lib.valid_key(podAntiAffinity, "preferredDuringSchedulingIgnoredDuringExecution")
 
 	pref := podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[j]
 
@@ -96,11 +98,11 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
+	common_lib.valid_key(affinity, "podAntiAffinity")
 
 	podAntiAffinity := affinity.podAntiAffinity
 
-	object.get(podAntiAffinity, "preferredDuringSchedulingIgnoredDuringExecution", "undefined") != "undefined"
+	common_lib.valid_key(podAntiAffinity, "preferredDuringSchedulingIgnoredDuringExecution")
 
 	pref := podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[j]
 
@@ -128,11 +130,11 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
+	common_lib.valid_key(affinity, "podAntiAffinity")
 
 	podAntiAffinity := affinity.podAntiAffinity
 
-	object.get(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution", "undefined") != "undefined"
+	common_lib.valid_key(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution")
 
 	pref := podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[j]
 
@@ -155,11 +157,11 @@ CxPolicy[result] {
 	to_number(deployment.spec.replicas) > 2
 
 	affinity := deployment.spec.template.spec.affinity
-	object.get(affinity, "podAntiAffinity", "undefined") != "undefined"
+	common_lib.valid_key(affinity, "podAntiAffinity")
 
 	podAntiAffinity := affinity.podAntiAffinity
 
-	object.get(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution", "undefined") != "undefined"
+	common_lib.valid_key(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution")
 
 	pref := podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[j]
 

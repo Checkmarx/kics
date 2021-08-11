@@ -12,11 +12,11 @@
 	{
 		"queryName": "Host Aliases Undefined Or Empty",
 		"severity": "HIGH",
-		"line": 41
+		"line": 39
   },
   {
 		"queryName": "Host Aliases Undefined Or Empty",
 		"severity": "HIGH",
-		"line": 57
+		"line": 55
 	}
 ]

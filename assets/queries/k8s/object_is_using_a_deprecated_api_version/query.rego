@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
@@ -21,8 +23,7 @@ CxPolicy[result] {
 		},
 	}
 
-	object.get(recommendedVersions, document.apiVersion, "undefined") != "undefined"
-	object.get(recommendedVersions[document.apiVersion], document.kind, "undefined") != "undefined"
+	common_lib.valid_key(recommendedVersions[document.apiVersion], document.kind)
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("apiVersion=%s", [document.apiVersion]),

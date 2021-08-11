@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 
 	document.kind == "PodSecurityPolicy"
 
-	object.get(specInfo.spec, "allowPrivilegeEscalation", "undefined") == "undefined"
+	not common_lib.valid_key(specInfo.spec, "allowPrivilegeEscalation")
 
 	result := {
 		"documentId": input.document[i].id,

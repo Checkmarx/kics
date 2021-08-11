@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -7,14 +9,14 @@ CxPolicy[result] {
 	metadata := document[i].metadata
 	spec := document[i].spec
 	containers := spec[types[x]]
-	object.get(containers[c], "image", "undefined") == "undefined"
+	not common_lib.valid_key(containers[c], "image")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s", [metadata.name, types[x], containers[c].name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is defined", [metadata.name, types[x], containers[c].name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is undefined", [metadata.name, types[x], containers[c].name]),
+		"keyExpectedValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is defined and not null", [metadata.name, types[x], containers[c].name]),
+		"keyActualValue": sprintf("metadata.name=%s.spec.%s.name=%s.image is undefined or null", [metadata.name, types[x], containers[c].name]),
 	}
 }
 
@@ -36,7 +38,7 @@ CxPolicy[result] {
 }
 
 check_content(images) {
-	options := {"", "latest", null}
+	options := {"", "latest"}
 
 	images == options[j]
 }

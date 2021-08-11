@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	object.get(document, "kind", "undefined") == "Service"
@@ -7,7 +9,7 @@ CxPolicy[result] {
     metadata = document.metadata
 	document.spec.type == "LoadBalancer"
 
-	object.get(metadata, "annotations", "undefined") == "undefined"
+	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +27,7 @@ CxPolicy[result] {
     metadata = document.metadata
 	document.spec.type == "LoadBalancer"
 
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
     annotations = metadata.annotations
     not checkLoadBalancer(annotations)
