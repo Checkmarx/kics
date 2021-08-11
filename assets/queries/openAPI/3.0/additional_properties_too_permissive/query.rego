@@ -30,7 +30,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("docs.components.schemas.{{%s}}%s", [schema, issue.path]),
+		"searchKey": sprintf("components.schemas.{{%s}}%s", [schema, issue.path]),
 		"issueType": issue.type,
 		"keyExpectedValue": "'additionalProperties' is set to true",
 		"keyActualValue": issue.message,

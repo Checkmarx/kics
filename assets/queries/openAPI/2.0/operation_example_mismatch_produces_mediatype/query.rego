@@ -25,8 +25,10 @@ CxPolicy[result] {
 }
 
 get_produces(op, doc) = result {
+	common_lib.valid_key(op, "produces")
 	result := op.produces
 } else = result {
+	common_lib.valid_key(doc, "produces")
 	result := doc.produces
 } else = result {
 	result := []
