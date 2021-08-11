@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/pkg/detector/helper.go (96.4%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.4%)</option>
+				<option value="file26">github.com/Checkmarx/kics/pkg/engine/inspector.go (79.1%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
@@ -123,7 +123,7 @@
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/kics/service.go (84.4%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/kics/sink.go (66.7%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/kics/sink.go (68.4%)</option>
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/model/model.go (100.0%)</option>
 				
@@ -131,15 +131,15 @@
 				
 				<option value="file37">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
 				
-				<option value="file38">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.6%)</option>
+				<option value="file38">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.9%)</option>
 				
-				<option value="file39">github.com/Checkmarx/kics/pkg/parser/json/parser.go (72.7%)</option>
+				<option value="file39">github.com/Checkmarx/kics/pkg/parser/json/parser.go (75.0%)</option>
 				
-				<option value="file40">github.com/Checkmarx/kics/pkg/parser/parser.go (91.8%)</option>
+				<option value="file40">github.com/Checkmarx/kics/pkg/parser/parser.go (92.7%)</option>
 				
 				<option value="file41">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.1%)</option>
 				
-				<option value="file42">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (82.9%)</option>
+				<option value="file42">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (83.3%)</option>
 				
 				<option value="file43">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (92.2%)</option>
 				
@@ -149,7 +149,7 @@
 				
 				<option value="file46">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file47">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.4%)</option>
+				<option value="file47">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
@@ -1371,8 +1371,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="332">{
-                if val == true </span><span class="cov9" title="331">{
+        <span class="cov4" title="11">for key, val := range settingsMap </span><span class="cov9" title="324">{
+                if val == true </span><span class="cov9" title="323">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2224,13 +2224,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="38">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2255,7 +2255,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4084,7 +4084,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -4695,6 +4695,11 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
                         <span class="cov0" title="0">continue</span>
                 }
+                <span class="cov1" title="2">file := ctx.files[vulnerability.FileID]
+                if shouldSkipFile(file.Commands, vulnerability.QueryID) </span><span class="cov0" title="0">{
+                        log.Debug().Msgf("Skipping file %s for query %s", file.FileName, ctx.query.metadata.Query)
+                        continue</span>
+                }
 
                 <span class="cov1" title="2">if vulnerability.Line == UndetectedVulnerabilityLine </span><span class="cov1" title="2">{
                         failedDetectLine = true
@@ -4730,6 +4735,25 @@ func contains(s []string, e string) bool <span class="cov9" title="2394">{
                 }</span>
         }
         <span class="cov9" title="1987">return false</span>
+}
+
+func shouldSkipFile(command model.CommentsCommands, queryID string) bool <span class="cov3" title="7">{
+        if queries, ok := command["enable"]; ok </span><span class="cov1" title="2">{
+                for _, query := range strings.Split(queries, ",") </span><span class="cov1" title="2">{
+                        if strings.EqualFold(query, queryID) </span><span class="cov1" title="1">{
+                                return false
+                        }</span>
+                }
+                <span class="cov1" title="1">return true</span>
+        }
+        <span class="cov2" title="5">if queries, ok := command["disable"]; ok </span><span class="cov1" title="2">{
+                for _, query := range strings.Split(queries, ",") </span><span class="cov1" title="2">{
+                        if strings.EqualFold(query, queryID) </span><span class="cov1" title="1">{
+                                return true
+                        }</span>
+                }
+        }
+        <span class="cov2" title="4">return false</span>
 }
 </pre>
 		
@@ -5290,7 +5314,7 @@ func GetPathToLibrary(platform, relativeBasePath string) string <span class="cov
 
         <span class="cov5" title="7">libraryFilePath := filepath.FromSlash(libraryPath + "/common/" + LibraryFileName)
 
-        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="38">{
+        for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="30">{
                 if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                         libraryFilePath = filepath.FromSlash(libraryPath + "/" + supPlatform + "/" + LibraryFileName)
                         break</span>
@@ -6049,7 +6073,10 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                 log.Err(err).Msgf("failed to parse file content: %s", filename)
                 return nil
         }</span>
-        <span class="cov10" title="2">for _, document := range documents </span><span class="cov10" title="2">{
+
+        <span class="cov10" title="2">fileCommands := s.Parser.CommentsCommands(filename, *content)
+
+        for _, document := range documents </span><span class="cov10" title="2">{
                 _, err = json.Marshal(document)
                 if err != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(err)
@@ -6064,6 +6091,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
                         OriginalData: string(*content),
                         Kind:         kind,
                         FileName:     filename,
+                        Commands:     fileCommands,
                 }
                 s.saveToFile(ctx, &amp;file)</span>
         }
@@ -6081,6 +6109,7 @@ import (
         "strings"
 
         _ "github.com/mailru/easyjson/gen" //nolint
+        "github.com/rs/zerolog/log"
 )
 
 // Constants to describe what kind of file refers
@@ -6153,6 +6182,9 @@ type ExtractedPathObject struct {
         LocalPath bool
 }
 
+// CommentsCommands list of commands on a file that will be parsed
+type CommentsCommands map[string]string
+
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
         ID           string `db:"id"`
@@ -6164,6 +6196,7 @@ type FileMetadata struct {
         Content      string
         HelmID       string
         IDInfo       map[int]interface{}
+        Commands     CommentsCommands
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -6273,17 +6306,22 @@ type Documents struct {
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file
-func (m FileMetadatas) Combine() Documents <span class="cov5" title="2">{
+func (m FileMetadatas) Combine() Documents <span class="cov8" title="3">{
         documents := Documents{Documents: make([]Document, 0, len(m))}
-        for i := 0; i &lt; len(m); i++ </span><span class="cov5" title="2">{
+        for i := 0; i &lt; len(m); i++ </span><span class="cov8" title="3">{
+                _, ignore := m[i].Commands["ignore"]
                 if len(m[i].Document) == 0 </span><span class="cov1" title="1">{
+                        continue</span>
+                }
+                <span class="cov5" title="2">if ignore </span><span class="cov1" title="1">{
+                        log.Debug().Msgf("Ignoring file %s", m[i].FileName)
                         continue</span>
                 }
                 <span class="cov1" title="1">m[i].Document["id"] = m[i].ID
                 m[i].Document["file"] = m[i].FileName
                 documents.Documents = append(documents.Documents, m[i].Document)</span>
         }
-        <span class="cov5" title="2">return documents</span>
+        <span class="cov8" title="3">return documents</span>
 }
 </pre>
 		
@@ -6791,6 +6829,11 @@ func (p *Parser) SupportedExtensions() []string <span class="cov1" title="1">{
 func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
         return []string{"Dockerfile"}
 }</span>
+
+// GetCommentToken return the comment token of Docker - #
+func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
+        return "#"
+}</span>
 </pre>
 		
 		<pre class="file" id="file39" style="display: none">package json
@@ -6838,6 +6881,11 @@ func (p *Parser) GetKind() model.FileKind <span class="cov8" title="1">{
 func (p *Parser) SupportedTypes() []string <span class="cov8" title="1">{
         return []string{"CloudFormation", "OpenAPI", "AzureResourceManager"}
 }</span>
+
+// GetCommentToken return an empty string, since JSON does not have comment token
+func (p *Parser) GetCommentToken() string <span class="cov8" title="1">{
+        return ""
+}</span>
 </pre>
 		
 		<pre class="file" id="file40" style="display: none">package parser
@@ -6854,6 +6902,7 @@ import (
 
 type kindParser interface {
         GetKind() model.FileKind
+        GetCommentToken() string
         SupportedExtensions() []string
         SupportedTypes() []string
         Parse(filePath string, fileContent []byte) ([]model.Document, error)
@@ -6866,32 +6915,32 @@ type Builder struct {
 }
 
 // NewBuilder creates a new Builder's reference
-func NewBuilder() *Builder <span class="cov3" title="3">{
+func NewBuilder() *Builder <span class="cov4" title="5">{
         log.Debug().Msg("parser.NewBuilder()")
         return &amp;Builder{}
 }</span>
 
 // Add is a function that adds a new parser to the caller and returns it
-func (b *Builder) Add(p kindParser) *Builder <span class="cov6" title="8">{
+func (b *Builder) Add(p kindParser) *Builder <span class="cov6" title="11">{
         b.parsers = append(b.parsers, p)
         return b
 }</span>
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov3" title="3">{
+func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov4" title="5">{
         parserSlice := make([]*Parser, 0, len(b.parsers))
         var suportedTypes []string
-        for _, parser := range b.parsers </span><span class="cov6" title="8">{
+        for _, parser := range b.parsers </span><span class="cov6" title="11">{
                 var parsers kindParser
                 extensions := make(model.Extensions, len(b.parsers))
                 platforms := parser.SupportedTypes()
                 suportedTypes = append(suportedTypes, platforms...)
-                if _, _, ok := contains(types, parser.SupportedTypes()); ok </span><span class="cov6" title="8">{
+                if _, _, ok := contains(types, parser.SupportedTypes()); ok </span><span class="cov6" title="11">{
                         parsers = parser
-                        for _, ext := range parser.SupportedExtensions() </span><span class="cov7" title="12">{
+                        for _, ext := range parser.SupportedExtensions() </span><span class="cov7" title="17">{
                                 extensions[ext] = struct{}{}
                         }</span>
-                        <span class="cov6" title="8">parserSlice = append(parserSlice, &amp;Parser{
+                        <span class="cov6" title="11">parserSlice = append(parserSlice, &amp;Parser{
                                 parsers:    parsers,
                                 extensions: extensions,
                                 Platform:   platforms,
@@ -6899,13 +6948,13 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span
                 }
         }
 
-        <span class="cov3" title="3">supportedCloudProviders := []string{"aws", "azure", "gcp"}
+        <span class="cov4" title="5">supportedCloudProviders := []string{"aws", "azure", "gcp"}
 
         if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil </span><span class="cov0" title="0">{
                 return []*Parser{}, err
         }</span>
 
-        <span class="cov3" title="3">return parserSlice, nil</span>
+        <span class="cov4" title="5">return parserSlice, nil</span>
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS
@@ -6918,14 +6967,41 @@ type Parser struct {
         Platform   []string
 }
 
+// CommentsCommands gets commands on comments in the file beginning, before the code starts
+func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.CommentsCommands <span class="cov1" title="1">{
+        if c.isValidExtension(filePath) </span><span class="cov1" title="1">{
+                commentsCommands := make(model.CommentsCommands)
+                commentToken := c.parsers.GetCommentToken()
+                if commentToken != "" </span><span class="cov1" title="1">{
+                        lines := strings.Split(string(fileContent), "\n")
+                        for _, line := range lines </span><span class="cov4" title="4">{
+                                line = strings.TrimSpace(line)
+                                if line == "" </span><span class="cov1" title="1">{
+                                        continue</span>
+                                }
+                                <span class="cov3" title="3">if !strings.HasPrefix(line, commentToken) </span><span class="cov1" title="1">{
+                                        break</span>
+                                }
+                                <span class="cov2" title="2">fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
+                                if len(fields) &gt; 1 &amp;&amp; fields[0] == "kics-scan" &amp;&amp; fields[1] != "" </span><span class="cov2" title="2">{
+                                        commandParameters := strings.SplitN(fields[1], "=", 2)
+                                        if len(commandParameters) &gt; 1 </span><span class="cov1" title="1">{
+                                                commentsCommands[commandParameters[0]] = commandParameters[1]
+                                        }</span> else<span class="cov1" title="1"> {
+                                                commentsCommands[commandParameters[0]] = ""
+                                        }</span>
+                                }
+                        }
+                }
+                <span class="cov1" title="1">return commentsCommands</span>
+        }
+        <span class="cov0" title="0">return nil</span>
+}
+
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) <span class="cov3" title="3">{
-        ext := filepath.Ext(filePath)
-        if ext == "" </span><span class="cov1" title="1">{
-                ext = filepath.Base(filePath)
-        }</span>
-        <span class="cov3" title="3">if _, ok := c.extensions[ext]; ok </span><span class="cov3" title="3">{
+        if c.isValidExtension(filePath) </span><span class="cov3" title="3">{
                 resolved, err := c.parsers.Resolve(fileContent, filePath)
                 if err != nil </span><span class="cov0" title="0">{
                         return nil, "", err
@@ -6945,22 +7021,22 @@ func (c *Parser) SupportedExtensions() model.Extensions <span class="cov4" title
         return c.extensions
 }</span>
 
-func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error <span class="cov5" title="6">{
+func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error <span class="cov5" title="8">{
         validArgsTypes = removeDuplicateValues(validArgsTypes)
 
         if invalidType, ok, _ := contains(types, validArgsTypes); !ok </span><span class="cov1" title="1">{
                 return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
         }</span>
 
-        <span class="cov4" title="5">if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk </span><span class="cov0" title="0">{
+        <span class="cov5" title="7">if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk </span><span class="cov0" title="0">{
                 return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
         }</span>
 
-        <span class="cov4" title="5">return nil</span>
+        <span class="cov5" title="7">return nil</span>
 }
 
-func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="19">{
-        if types[0] == "" </span><span class="cov7" title="14">{
+func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="26">{
+        if types[0] == "" </span><span class="cov8" title="21">{
                 return []string{}, true, true
         }</span>
         <span class="cov4" title="5">set := make(map[string]struct{}, len(supportedTypes))
@@ -6983,17 +7059,26 @@ func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes,
 }
 
 // function to remove duplicate values in array
-func removeDuplicateValues(stringSlice []string) []string <span class="cov6" title="8">{
+func removeDuplicateValues(stringSlice []string) []string <span class="cov6" title="10">{
         keys := make(map[string]bool)
         list := []string{}
 
-        for _, entry := range stringSlice </span><span class="cov10" title="40">{
-                if _, value := keys[entry]; !value </span><span class="cov9" title="35">{
+        for _, entry := range stringSlice </span><span class="cov10" title="45">{
+                if _, value := keys[entry]; !value </span><span class="cov9" title="40">{
                         keys[entry] = true
                         list = append(list, entry)
                 }</span>
         }
-        <span class="cov6" title="8">return list</span>
+        <span class="cov6" title="10">return list</span>
+}
+
+func (c *Parser) isValidExtension(filePath string) bool <span class="cov5" title="7">{
+        ext := filepath.Ext(filePath)
+        if ext == "" </span><span class="cov3" title="3">{
+                ext = filepath.Base(filePath)
+        }</span>
+        <span class="cov5" title="7">_, ok := c.extensions[ext]
+        return ok</span>
 }
 </pre>
 		
@@ -7452,6 +7537,11 @@ func (p *Parser) SupportedTypes() []string <span class="cov1" title="1">{
 // GetKind returns Terraform kind parser
 func (p *Parser) GetKind() model.FileKind <span class="cov1" title="1">{
         return model.KindTerraform
+}</span>
+
+// GetCommentToken return the comment token of Terraform - #
+func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
+        return "#"
 }</span>
 </pre>
 		
@@ -7949,6 +8039,11 @@ func playbookParser(filePath string, fileContent []byte) ([]model.Document, erro
 
         <span class="cov3" title="2">return addExtraInfo(documents, filePath), nil</span>
 }
+
+// GetCommentToken return the comment token of YAML - #
+func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
+        return "#"
+}</span>
 </pre>
 		
 		<pre class="file" id="file48" style="display: none">package circle
@@ -10002,11 +10097,14 @@ func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov3
 }
 
 var queryHigh = model.VulnerableQuery{
-        QueryName:     "ALB protocol is HTTP",
-        QueryID:       "de7f5e83-da88-4046-871f-ea18504b1d43",
-        Description:   "ALB protocol is HTTP Description",
-        DescriptionID: "504b1d43",
-        Severity:      model.SeverityHigh,
+        QueryName:                   "ALB protocol is HTTP",
+        QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
+        Description:                 "ALB protocol is HTTP Description",
+        DescriptionID:               "504b1d43",
+        CISDescriptionIDFormatted:   "testCISID",
+        CISDescriptionTitle:         "testCISTitle",
+        CISDescriptionTextFormatted: "testCISDescription",
+        Severity:                    model.SeverityHigh,
         Files: []model.VulnerableFile{
                 {
                         FileName:         positive,
