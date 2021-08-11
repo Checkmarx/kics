@@ -307,8 +307,6 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanFlags(scanCmd *cobra.Command) {
-	types = []string{"openapi"}
-
 	scanCmd.Flags().StringVar(&cfgFile,
 		configFlag, "",
 		"path to configuration file")
@@ -446,6 +444,7 @@ func initExitStatusFlags(scanCmd *cobra.Command) {
 
 func initScanCmd(scanCmd *cobra.Command) {
 	initScanFlags(scanCmd)
+	types = []string{"openapi"}
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)
