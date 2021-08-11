@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::EC2::Instance"
@@ -7,7 +9,7 @@ CxPolicy[result] {
 	mdata == "AWS::CloudFormation::Authentication"
 	creds := metadata[accessCreds]
 	creds.type == "S3"
-	object.get(creds, "accessKeyId", "undefined") != "undefined"
+	common_lib.valid_key(creds, "accessKeyId")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	mdata == "AWS::CloudFormation::Authentication"
 	creds := metadata[accessCreds]
 	creds.type == "S3"
-	object.get(creds, "secretKey", "undefined") != "undefined"
+	common_lib.valid_key(creds, "secretKey")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -43,7 +45,7 @@ CxPolicy[result] {
 	mdata == "AWS::CloudFormation::Authentication"
 	creds := metadata[accessCreds]
 	creds.type == "basic"
-	object.get(creds, "password", "undefined") != "undefined"
+	common_lib.valid_key(creds, "password")
 
 	result := {
 		"documentId": input.document[i].id,

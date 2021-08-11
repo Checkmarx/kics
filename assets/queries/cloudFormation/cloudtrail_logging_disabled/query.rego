@@ -1,10 +1,9 @@
 package Cx
 
-
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	object.get(resource.Properties, "IsLogging", "undefined") == false
+	resource.Properties.IsLogging == false
 
 	result := {
 		"documentId": input.document[i].id,

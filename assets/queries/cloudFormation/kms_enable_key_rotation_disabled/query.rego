@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resources := input.document[i].Resources[name]
 	resources.Type == "AWS::KMS::Key"
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	resources := input.document[i].Resources[name]
 	resources.Type == "AWS::KMS::Key"
 	properties := resources.Properties
-	object.get(properties, "EnableKeyRotation", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "EnableKeyRotation")
 
 	result := {
 		"documentId": input.document[i].id,

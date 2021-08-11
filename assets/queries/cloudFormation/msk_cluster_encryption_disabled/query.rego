@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
 	resource.Type == "AWS::MSK::Cluster"
 
 	properties := resource.Properties
-	object.get(properties, "EncryptionInfo", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "EncryptionInfo")
 
 	result := {
 		"documentId": input.document[i].id,

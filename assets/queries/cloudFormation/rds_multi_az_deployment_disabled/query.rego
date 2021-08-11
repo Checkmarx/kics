@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	object.get(properties, "MultiAZ", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "MultiAZ")
 
 	result := {
 		"documentId": input.document[i].id,

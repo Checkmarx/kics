@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Redshift::Cluster"
 
-	object.get(resource.Properties, "LoggingProperties", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "LoggingProperties")
 
 	result := {
 		"documentId": input.document[i].id,
