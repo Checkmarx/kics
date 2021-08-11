@@ -137,6 +137,7 @@ jobs:
         with:
           context: .
           push: true
+          file: ./Dockerfile.apispec
           tags: checkmarx/kics:apispec,checkmarx/kics:apispec-alpine
           build-args: |
             VERSION=apipsec-${{ needs.pre_release_job.outputs.sha8 }}
@@ -147,9 +148,9 @@ jobs:
         uses: docker/build-push-action@v2.6.1
         with:
           context: .
-          file: ./Dockerfile.debian
+          file: ./Dockerfile.apispec.debian
           push: true
-          tags: checkmarx/kics:apispec-debian
+          tags: checkmarx/kics:apispec-debian,checkmarx/kics:apispec-debian-latest
           build-args: |
             VERSION=apipsec-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
