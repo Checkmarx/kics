@@ -96,7 +96,6 @@ const (
 	queriesPathShorthand    = "q"
 	reportFormatsFlag       = "report-formats"
 	scanCommandStr          = "scan"
-	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
 	disableCISDescFlag      = "disable-cis-descriptions"
 	initError               = "initialization error - "
