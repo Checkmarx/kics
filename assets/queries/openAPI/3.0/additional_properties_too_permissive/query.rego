@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 # This two rules verifies schema and schemas without allOf, anyOf and oneOf
 CxPolicy[result] {
@@ -24,9 +24,8 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 
-	targetSchema := doc.components.schemas[schema]
-	should_test_schema(targetSchema)
-	issue := test_schema(schema)
+	targetObject := doc.components.schemas[schema]
+	issue := test_schema(targetObject)
 
 	result := {
 		"documentId": doc.id,
@@ -59,7 +58,9 @@ CxPolicy[result] {
 
 test_schema(schema) = issue {
 	should_test_schema(schema)
+
 	not common_lib.valid_key(schema, "additionalProperties")
+
 	issue := {
 		"type": "MissingAttribute",
 		"path": "",
