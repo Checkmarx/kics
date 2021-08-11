@@ -19,7 +19,7 @@ paths:
             additionalProperties: 'false'
 components:
   schemas:
-    MyObject: 
+    MyObject:
       oneOf:
       - type: object
         properties:
