@@ -10,7 +10,7 @@ ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
-ARG APISCANNER = "true"
+ARG APISCANNER="true"
 
 #Copy go mod and sum files
 COPY --chown=Checkmarx:Checkmarx go.mod .
