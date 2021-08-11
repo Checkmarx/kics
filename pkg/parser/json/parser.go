@@ -43,3 +43,8 @@ func (p *Parser) GetKind() model.FileKind {
 func (p *Parser) SupportedTypes() []string {
 	return []string{"CloudFormation", "OpenAPI", "AzureResourceManager"}
 }
+
+// GetCommentToken return an empty string, since JSON does not have comment token
+func (p *Parser) GetCommentToken() string {
+	return ""
+}
