@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -51,6 +52,6 @@ CxPolicy[result] {
 }
 
 improperly_defined(params) {
-	object.get(params, "allowReserved", "undefined") != "undefined"
+	common_lib.valid_key(params, "allowReserved")
 	params.in != "query"
 }

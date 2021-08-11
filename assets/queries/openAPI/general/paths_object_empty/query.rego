@@ -6,7 +6,6 @@ CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
-	object.get(doc, "paths", "undefined") != "undefined"
 
 	check_paths_object(doc.paths)
 

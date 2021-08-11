@@ -25,10 +25,8 @@ CxPolicy[result] {
 }
 
 get_produces(op, doc) = result {
-	object.get(op, "produces", "undefined") != "undefined"
 	result := op.produces
 } else = result {
-	object.get(doc, "produces", "undefined") != "undefined"
 	result := doc.produces
 } else = result {
 	result := []

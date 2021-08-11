@@ -11,7 +11,7 @@ CxPolicy[result] {
 	lower(scheme.scheme) == "basic"
 
 	op := doc.paths[path][operation]
-	object.get(op.security[sec], x, "undefined") == []
+	op.security[sec][x] == []
 
 	result := {
 		"documentId": doc.id,

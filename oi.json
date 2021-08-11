@@ -1,0 +1,649 @@
+{
+	"document": [
+		{
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															],
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z"
+														}
+													]
+												}
+											}
+										}
+									}
+								},
+								"description": "200 response"
+							}
+						},
+						"summary": "List API versions"
+					},
+					"parameters": [
+						{
+							"description": "ID of the API the version",
+							"in": "path",
+							"name": "id",
+							"required": true,
+							"schema": {
+								"type": "integer"
+							}
+						}
+					]
+				},
+				"/users/{id}": {
+					"get": {
+						"parameters": [
+							{
+								"description": "The user ID",
+								"in": "path",
+								"name": "id",
+								"required": true,
+								"schema": {
+									"minimum": 1,
+									"type": "integer"
+								}
+							}
+						]
+					}
+				}
+			},
+			"id": "88374fde-4343-4659-adeb-fbadda789e69",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/negative1.json"
+		},
+		{
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"summary": "List API versions",
+						"responses": {
+							"200": {
+								"description": "200 response",
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z",
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															]
+														}
+													]
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"parameters": [
+						{
+							"name": "id",
+							"in": "path",
+							"description": "ID of the API version",
+							"required": true,
+							"schema": {
+								"type": "integer"
+							}
+						}
+					]
+				},
+				"/users/{id}": {
+					"get": {
+						"parameters": [
+							{
+								"name": "id",
+								"required": true,
+								"description": "The user ID",
+								"schema": {
+									"type": "integer",
+									"minimum": 1
+								},
+								"in": "path"
+							}
+						]
+					}
+				}
+			},
+			"id": "9f5837f7-468d-4c8b-8d6a-db824c4a1ddf",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/negative2.yaml"
+		},
+		{
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															],
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z"
+														}
+													]
+												}
+											}
+										}
+									}
+								},
+								"description": "200 response"
+							}
+						},
+						"summary": "List API versions"
+					},
+					"parameters": [
+						{
+							"content": {
+								"application/json": {
+									"schema": {
+										"properties": {
+											"name": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"name"
+										],
+										"type": "object"
+									}
+								}
+							},
+							"description": "ID of the API the version",
+							"in": "path",
+							"name": "id",
+							"required": true
+						}
+					]
+				}
+			},
+			"id": "0c2f1556-0dd9-4af5-9013-0b94a9265209",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/negative3.json"
+		},
+		{
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															],
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z"
+														}
+													]
+												}
+											}
+										}
+									}
+								},
+								"description": "200 response"
+							}
+						},
+						"summary": "List API versions"
+					},
+					"parameters": [
+						{
+							"content": {
+								"application/json": {
+									"schema": {
+										"properties": {
+											"name": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"name"
+										],
+										"type": "object"
+									}
+								}
+							},
+							"description": "ID of the API the version",
+							"in": "path",
+							"name": "id",
+							"required": true,
+							"schema": {
+								"type": "integer"
+							}
+						}
+					]
+				},
+				"/users/{id}": {
+					"get": {
+						"parameters": [
+							{
+								"content": {
+									"application/json": {
+										"schema": {
+											"type": "integer"
+										}
+									}
+								},
+								"description": "The user ID",
+								"in": "path",
+								"name": "id",
+								"required": true,
+								"schema": {
+									"minimum": 1,
+									"type": "integer"
+								}
+							}
+						]
+					}
+				}
+			},
+			"id": "27adbf38-4142-403c-ac61-7dfad71f4f83",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/positive1.json"
+		},
+		{
+			"components": {
+				"parameters": {
+					"limitParam": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"name": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"name"
+									],
+									"type": "object"
+								}
+							}
+						},
+						"description": "max records to return",
+						"in": "query",
+						"name": "limit",
+						"required": true,
+						"schema": {
+							"format": "int32",
+							"type": "integer"
+						}
+					},
+					"skipParam": {
+						"description": "number of items to skip",
+						"in": "query",
+						"name": "skip",
+						"required": true,
+						"schema": {
+							"format": "int32",
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															],
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z"
+														}
+													]
+												}
+											}
+										}
+									}
+								},
+								"description": "200 response"
+							}
+						},
+						"summary": "List API versions"
+					},
+					"parameters": [
+						{
+							"$ref": "#/components/parameters/limitParam"
+						}
+					]
+				}
+			},
+			"id": "32f301ea-3c26-4f26-ab13-acef55d47ba1",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/positive3.json",
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			}
+		},
+		{
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"summary": "List API versions",
+						"responses": {
+							"200": {
+								"description": "200 response",
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z",
+															"id": "v2.0",
+															"links": [
+																{
+																	"rel": "self",
+																	"href": "http://127.0.0.1:8774/v2/"
+																}
+															]
+														}
+													]
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"parameters": [
+						{
+							"required": true,
+							"content": {
+								"application/json": {
+									"schema": {
+										"properties": {
+											"name": {
+												"type": "string"
+											}
+										},
+										"type": "object",
+										"required": [
+											"name"
+										]
+									}
+								}
+							},
+							"name": "id",
+							"in": "path",
+							"description": "ID of the API version"
+						}
+					]
+				}
+			},
+			"id": "a79bd484-7950-44c0-8560-b52fc2178db7",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/negative4.yaml",
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			}
+		},
+		{
+			"id": "19dadfc4-3c13-4182-b3dd-ff76c79a8698",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/positive2.yaml",
+			"openapi": "3.0.0",
+			"info": {
+				"title": "Simple API overview",
+				"version": "1.0.0"
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"summary": "List API versions",
+						"responses": {
+							"200": {
+								"description": "200 response",
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z",
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															]
+														}
+													]
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"parameters": [
+						{
+							"name": "id",
+							"in": "path",
+							"description": "ID of the API version",
+							"required": true,
+							"schema": {
+								"type": "integer"
+							},
+							"content": {
+								"application/json": {
+									"schema": {
+										"properties": {
+											"name": {
+												"type": "string"
+											}
+										},
+										"type": "object",
+										"required": [
+											"name"
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				"/users/{id}": {
+					"get": {
+						"parameters": [
+							{
+								"description": "The user ID",
+								"schema": {
+									"type": "integer",
+									"minimum": 1
+								},
+								"content": null,
+								"application/json": {
+									"schema": {
+										"type": "integer"
+									}
+								},
+								"in": "path",
+								"name": "id",
+								"required": true
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"id": "c000164c-7543-45d8-9a22-ad78d798a6ca",
+			"file": "C:/Users/TiagoCr/kics/assets/queries/openAPI/3.0/parameter_object_schema_content/test/positive4.yaml",
+			"openapi": "3.0.0",
+			"info": {
+				"version": "1.0.0",
+				"title": "Simple API overview"
+			},
+			"components": {
+				"parameters": {
+					"skipParam": {
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						},
+						"name": "skip",
+						"in": "query",
+						"description": "number of items to skip",
+						"required": true
+					},
+					"limitParam": {
+						"name": "limit",
+						"in": "query",
+						"description": "max records to return",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						},
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"required": [
+										"name"
+									],
+									"properties": {
+										"name": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"paths": {
+				"/": {
+					"get": {
+						"operationId": "listVersionsv2",
+						"summary": "List API versions",
+						"responses": {
+							"200": {
+								"description": "200 response",
+								"content": {
+									"application/json": {
+										"examples": {
+											"foo": {
+												"value": {
+													"versions": [
+														{
+															"status": "CURRENT",
+															"updated": "2011-01-21T11:33:21Z",
+															"id": "v2.0",
+															"links": [
+																{
+																	"href": "http://127.0.0.1:8774/v2/",
+																	"rel": "self"
+																}
+															]
+														}
+													]
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"parameters": [
+						{
+							"$ref": "#components/parameters/limitParam"
+						}
+					]
+				}
+			}
+		}
+	]
+}

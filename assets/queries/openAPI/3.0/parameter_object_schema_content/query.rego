@@ -1,14 +1,15 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name].parameters[n]
-	object.get(params, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(params, "$ref")
 
-	not check_params(params)
+	check_params(params)
 
 	result := {
 		"documentId": doc.id,
@@ -23,9 +24,9 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name][oper].parameters[n]
-	object.get(params, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(params, "$ref")
 
-	not check_params(params)
+	check_params(params)
 
 	result := {
 		"documentId": doc.id,
@@ -40,9 +41,9 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.components.parameters[n]
-	object.get(params, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(params, "$ref")
 
-	not check_params(params)
+	check_params(params)
 
 	result := {
 		"documentId": doc.id,
@@ -54,9 +55,6 @@ CxPolicy[result] {
 }
 
 check_params(params) {
-	object.get(params, "schema", "undefined") == "undefined"
-}
-
-check_params(params) {
-	object.get(params, "content", "undefined") == "undefined"
+    _ = params.schema
+    _ = params.content
 }

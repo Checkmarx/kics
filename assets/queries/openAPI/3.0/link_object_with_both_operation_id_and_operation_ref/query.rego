@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -52,6 +53,6 @@ CxPolicy[result] {
 }
 
 check_link(link) {
-	object.get(link, "operationId", "undefined") != "undefined"
-	object.get(link, "operationRef", "undefined") != "undefined"
+	common_lib.valid_key(link, "operationId")
+	common_lib.valid_key(link, "operationRef")
 }
