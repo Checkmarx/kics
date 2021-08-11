@@ -70,6 +70,7 @@ var (
 )
 
 const (
+	cloudProviderFlag       = "cloud-provider"
 	configFlag              = "config"
 	excludeCategoriesFlag   = "exclude-categories"
 	excludePathsFlag        = "exclude-paths"
@@ -96,6 +97,8 @@ const (
 	queriesPathShorthand    = "q"
 	reportFormatsFlag       = "report-formats"
 	scanCommandStr          = "scan"
+	typeFlag                = "type"
+	typeShorthand           = "t"
 	queryExecTimeoutFlag    = "timeout"
 	disableCISDescFlag      = "disable-cis-descriptions"
 	initError               = "initialization error - "
@@ -341,6 +344,17 @@ func initOutputFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
 		"formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
 	)
+	scanCmd.Flags().StringSliceVarP(&types,
+		typeFlag, typeShorthand,
+		[]string{""},
+		"case insensitive list of platform types to scan\n"+
+			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
+
+	scanCmd.Flags().StringSliceVar(&cloudProviders,
+		cloudProviderFlag,
+		[]string{""},
+		"list of cloud providers to scan "+
+			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedCloudProviders(), ", ")))
 }
 
 func initStdoutFlags(scanCmd *cobra.Command) {
