@@ -6,5 +6,6 @@
   "descriptionText": "<TEXT>",
   "descriptionUrl": "<DESCRIPTION_URL>",
   "descriptionID": "<DESCRIPTION_ID>",
-  "platform": "<PLATFORM>"
+  "platform": "<PLATFORM>",
+  "cloudProvider": "<CLOUDPROVIDER>"
 }
