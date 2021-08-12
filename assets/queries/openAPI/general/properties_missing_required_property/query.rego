@@ -11,16 +11,16 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	prop := value.properties
 	req := prop[name].required
-	r := req[p]
+	requiredProperty := req[_]
 	properties := prop[name].properties
-	not common_lib.valid_key(properties, r)
+	not common_lib.valid_key(properties, requiredProperty)
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.properties.%s.required.%s", [openapi_lib.concat_path(path), name, r]),
+		"searchKey": sprintf("%s.properties.%s.required.%s", [openapi_lib.concat_path(path), name, requiredProperty]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s.properties.%s.required.%s is defined", [openapi_lib.concat_path(path), name, r]),
-		"keyActualValue": sprintf("%s.properties.%s.required.%s is missing", [openapi_lib.concat_path(path), name, r]),
+		"keyExpectedValue": sprintf("%s.properties.%s.required.%s is defined", [openapi_lib.concat_path(path), name, requiredProperty]),
+		"keyActualValue": sprintf("%s.properties.%s.required.%s is missing", [openapi_lib.concat_path(path), name, requiredProperty]),
 		"overrideKey": version,
 	}
 }

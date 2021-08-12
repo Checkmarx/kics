@@ -11,8 +11,8 @@ CxPolicy[result] {
 	parameters = value.parameters
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	p := parameters[x]
-	not common_lib.valid_key(p, "schema")
+	param := parameters[_]
+	not common_lib.valid_key(param, "schema")
 
 	result := {
 		"documentId": doc.id,
@@ -30,8 +30,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	parameters = value.parameters
 	openapi_lib.is_operation(path) == {}
-	p := parameters[x]
-	not common_lib.valid_key(p, "schema")
+	param := parameters[_]
+	not common_lib.valid_key(param, "schema")
 
 	result := {
 		"documentId": doc.id,

@@ -9,7 +9,7 @@ CxPolicy[result] {
 	params := doc.paths[name].parameters[n]
 	not common_lib.valid_key(params, "$ref")
 
-	check_params(params)
+	not check_params(params)
 
 	result := {
 		"documentId": doc.id,
@@ -26,7 +26,7 @@ CxPolicy[result] {
 	params := doc.paths[name][oper].parameters[n]
 	not common_lib.valid_key(params, "$ref")
 
-	check_params(params)
+	not check_params(params)
 
 	result := {
 		"documentId": doc.id,
@@ -43,7 +43,7 @@ CxPolicy[result] {
 	params := doc.components.parameters[n]
 	not common_lib.valid_key(params, "$ref")
 
-	check_params(params)
+	not check_params(params)
 
 	result := {
 		"documentId": doc.id,
@@ -55,6 +55,9 @@ CxPolicy[result] {
 }
 
 check_params(params) {
-    _ = params.schema
-    _ = params.content
+    not common_lib.valid_key(params, "schema")
+}
+
+check_params(params) {
+    not common_lib.valid_key(params, "content")
 }

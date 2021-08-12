@@ -11,15 +11,15 @@ CxPolicy[result] {
 	oper != "head"
 
 	responses := {"500", "429", "400"}
-	r := responses[x]
-	not common_lib.valid_key(response, r)
+	wantedResponses := responses[_]
+	not common_lib.valid_key(response, wantedResponses)
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set", [r]),
-		"keyActualValue": sprintf("%s response is undefined", [r]),
+		"keyExpectedValue": sprintf("%s response is set", [wantedResponses]),
+		"keyActualValue": sprintf("%s response is undefined", [wantedResponses]),
 		"overrideKey": version,
 	}
 }
@@ -90,16 +90,16 @@ CxPolicy[result] {
 	response := doc.paths[n][oper].responses
 	common_lib.valid_key(doc, "security")
 	responses := {"401", "403"}
-	r := responses[x]
+	wantedResponses := responses[_]
 
-	not common_lib.valid_key(response, r)
+	not common_lib.valid_key(response, wantedResponses)
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set when security field is defined", [r]),
-		"keyActualValue": sprintf("%s response is undefined when security field is defined", [r]),
+		"keyExpectedValue": sprintf("%s response is set when security field is defined", [wantedResponses]),
+		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
 		"overrideKey": version,
 	}
 }

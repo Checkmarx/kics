@@ -37,5 +37,5 @@ CxPolicy[result] {
 
 improperly_defined(content, x) {
 	x != "application/x-www-form-urlencoded"
-	common_lib.valid_key(content.encoding[e], "explode")
+	common_lib.valid_key(content.encoding[_], "explode")
 }
