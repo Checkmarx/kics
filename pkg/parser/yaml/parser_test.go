@@ -143,3 +143,36 @@ func TestYaml_processElements(t *testing.T) {
 		})
 	}
 }
+
+func TestModel_TestYamlParser(t *testing.T) {
+	tests := []struct {
+		name   string
+		sample string
+		want   string
+	}{
+		{
+			name: "test_ansible_yaml",
+			sample: `
+- name: Setup AWS API Gateway setup on AWS and deploy API definition
+  community.aws.aws_api_gateway:
+	swagger_file: my_api.yml
+	stage: production
+	cache_enabled: true
+	cache_size: '1.6'
+	tracing_enabled: true
+	endpoint_type: PRIVATE
+	state: present
+`,
+			want: "",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			parser := Parser{}
+			got, err := parser.Parse("", []byte(tt.sample))
+			require.NoError(t, err)
+			require.Equal(t, tt.want, got)
+		})
+	}
+}
