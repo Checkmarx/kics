@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_method_settings[name].settings
 	resource.caching_enabled == true
@@ -17,7 +19,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_method_settings[name].settings
 	resource.caching_enabled == true
-	object.get(resource, "cache_data_encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "cache_data_encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

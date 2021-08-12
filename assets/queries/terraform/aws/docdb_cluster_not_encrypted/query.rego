@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_docdb_cluster[name]
-	object.get(resource, "storage_encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "storage_encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

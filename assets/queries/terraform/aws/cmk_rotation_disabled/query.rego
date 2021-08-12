@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
-	object.get(resource, "enable_key_rotation", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "enable_key_rotation")
 
 	result := {
 		"documentId": input.document[i].id,

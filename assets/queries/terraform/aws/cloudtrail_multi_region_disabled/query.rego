@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
-	object.get(cloudtrail, "is_multi_region_trail", "undefined") == "undefined"
+	not common_lib.valid_key(cloudtrail, "is_multi_region_trail")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Cloud Trail Multi Region is defined",
-		"keyActualValue": "Cloud Trail Multi Region is undefined",
+		"keyExpectedValue": "Cloud Trail Multi Region is defined and not null",
+		"keyActualValue": "Cloud Trail Multi Region is undefined or null",
 	}
 }
 

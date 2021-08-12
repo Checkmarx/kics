@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_athena_database[name]
-	object.get(resource, "encryption_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "encryption_configuration")
 
 	result := {
 		"documentId": input.document[i].id,

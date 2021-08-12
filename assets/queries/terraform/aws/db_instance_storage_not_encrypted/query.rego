@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 
-	object.get(resource, "storage_encrypted", "undefined") != "undefined"
+	common_lib.valid_key(resource, "storage_encrypted")
 	not resource.storage_encrypted
 
-	object.get(resource, "kms_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "kms_key_id")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,8 +22,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 
-	object.get(resource, "storage_encrypted", "undefined") == "undefined"
-	object.get(resource, "kms_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "storage_encrypted")
+	not common_lib.valid_key(resource, "kms_key_id")
 
 	result := {
 		"documentId": input.document[i].id,

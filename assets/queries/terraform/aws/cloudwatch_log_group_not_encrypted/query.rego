@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_group[name]
-	object.get(resource, "kms_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "kms_key_id")
 
 	result := {
 		"documentId": input.document[i].id,

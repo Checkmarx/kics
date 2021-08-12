@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 lb := {"aws_alb_listener", "aws_lb_listener"}
 
 CxPolicy[result] {
@@ -39,7 +41,7 @@ is_http(resource) {
 }
 
 is_http(resource) {
-	object.get(resource, "protocol", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "protocol")
 }
 
 is_application(resource) {
@@ -47,7 +49,7 @@ is_application(resource) {
 }
 
 is_application(resource) {
-	object.get(resource, "load_balancer_type", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "load_balancer_type")
 }
 
 check_application(resource) {

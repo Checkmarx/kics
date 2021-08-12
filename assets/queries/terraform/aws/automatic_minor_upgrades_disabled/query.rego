@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-	object.get(resource,"auto_minor_version_upgrade","undefined") != "undefined"
+	common_lib.valid_key(resource,"auto_minor_version_upgrade")
     not resource.auto_minor_version_upgrade
 
 	result := {

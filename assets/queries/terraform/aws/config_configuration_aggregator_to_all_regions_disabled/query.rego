@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_config_configuration_aggregator[name]
 
@@ -16,8 +18,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_config_configuration_aggregator[name]
+	resourceElement := resource[type]
 
-	object.get(resource[type], "all_regions", "undefined") == "undefined"
+	not common_lib.valid_key(resourceElement, "all_regions")
 
 	result := {
 		"documentId": input.document[i].id,
