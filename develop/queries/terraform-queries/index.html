@@ -2814,6 +2814,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>S3 Bucket with Unsecured CORS Rule<br/><sup><sub>98a8f708-121b-455b-ae2f-da3fb59d17e1</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#cors_rule">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Batch Job Definition With Privileged Container Properties<br/><sup><sub>66cd88ac-9ddf-424a-b77e-e55e17630bee</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -2929,7 +2936,7 @@
 <td>Security Group With Unrestricted Access To SSH<br/><sup><sub>65905cec-d691-4320-b320-2000436cb696</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>SSH' (TCP:22) should not be public in AWS Security Group</td>
+<td>'SSH' (TCP:22) should not be public in AWS Security Group</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2961,11 +2968,25 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Network ACL With Unrestricted Access To SSH<br/><sup><sub>3af7f2fd-06e6-4dab-b996-2912bea19ba4</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>'SSH' (TCP:22) should not be public in AWS Network ACL</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Remote Desktop Port Open<br/><sup><sub>151187cb-0efc-481c-babd-ad24e3c9bc22</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
 <td>The Remote Desktop port is open in a Security Group</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network ACL With Unrestricted Access To RDP<br/><sup><sub>a20be318-cac7-457b-911d-04cc6e812c25</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>'RDP' (TCP:3389) should not be public in AWS Network ACL</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>ALB Listening on HTTP<br/><sup><sub>de7f5e83-da88-4046-871f-ea18504b1d43</sub></sup></td>
@@ -3463,6 +3484,13 @@
 <td>Insecure Configurations</td>
 <td>Check if any MQ Broker is not publicly accessible</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM User Has Too Many Access Keys<br/><sup><sub>3561130e-9c5f-485b-9e16-2764c82763e5</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>Any IAM User should not have more than one access key since it increases the risk of unauthorized access and compromise credentials</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key#user">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Instance With No VPC<br/><sup><sub>a31a5a29-718a-4ff4-8001-a69e5e4d029e</sub></sup></td>

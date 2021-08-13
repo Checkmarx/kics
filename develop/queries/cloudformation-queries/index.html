@@ -1326,6 +1326,13 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>S3 Bucket with Unsecured CORS Rule<br/><sup><sub>3609d27c-3698-483a-9402-13af6ae80583</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Batch Job Definition With Privileged Container Properties<br/><sup><sub>76ddf32c-85b1-4808-8935-7eef8030ab36</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -1980,7 +1987,7 @@
 <td>IAM User Has Too Many Access Keys<br/><sup><sub>48677914-6fdf-40ec-80c4-2b0e94079f54</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>Check if any user has more than one access key, which increases the risk of unauthorized access and compromise of credentials.</td>
+<td>Any IAM User should not have more than one access key since it increases the risk of unauthorized access and compromise credentials</td>
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html">Documentation</a><br/></td>
 </tr>
 <tr>
