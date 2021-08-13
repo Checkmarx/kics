@@ -217,7 +217,7 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	pathToLib := source.GetPathToLibrary(platform, "../")
+	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
 	content, err := os.ReadFile(pathToLib)
 
 	if err != nil {

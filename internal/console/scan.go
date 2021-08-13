@@ -62,6 +62,7 @@ var (
 	payloadPath            string
 	previewLines           int
 	queryPath              string
+	libraryPath            string
 	reportFormats          []string
 	types                  []string
 	queryExecTimeout       int
@@ -95,6 +96,8 @@ const (
 	previewLinesFlag        = "preview-lines"
 	queriesPathCmdName      = "queries-path"
 	queriesPathShorthand    = "q"
+	libraryFlag             = "library"
+	libraryShorthand        = "b"
 	reportFormatsFlag       = "report-formats"
 	scanCommandStr          = "scan"
 	typeFlag                = "type"
@@ -390,6 +393,11 @@ func initPathsFlags(scanCmd *cobra.Command) {
 		"./assets/queries",
 		"path to directory with queries",
 	)
+	scanCmd.Flags().StringVarP(&libraryPath,
+		libraryFlag, libraryShorthand,
+		filepath.FromSlash("./assets/libraries"),
+		"path to directory with libraries",
+	)
 }
 
 func initInclusionFlags(scanCmd *cobra.Command) {
@@ -532,7 +540,7 @@ func createService(inspector *engine.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
-	querySource source.FilesystemSource) ([]*kics.Service, error) {
+	querySource *source.FilesystemSource) ([]*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
@@ -587,7 +595,7 @@ func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspecto
 		return &engine.Inspector{}, err
 	}
 
-	services, err := createService(inspector, params.extractedPaths, params.t, params.store, *params.querySource)
+	services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
 	if err != nil {
 		log.Err(err)
 		return &engine.Inspector{}, err
@@ -645,7 +653,7 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	querySource := source.NewFilesystemSource(queryPath, types, cloudProviders)
+	querySource := source.NewFilesystemSource(queryPath, types, cloudProviders, libraryPath)
 	store := storage.NewMemoryStorage()
 
 	inspector, err := createServiceAndStartScan(&startServiceParameters{
