@@ -131,3 +131,52 @@ To overwrite `defaultPasswords`, you can create a file `f996f3cb-00fc-480c-8973-
 Then you can execute KICS normally adding `--input-data ./custom-input/`, if `custom-input` folder is in current path, and it will replace the key `defaultPasswords` on `passwords_and_secrets_in_infrastructure_code` query with the custom value you defined.
 
 **NOTE**: The value which will replace the default value, **MUST** be the same type as the default key (e.g. `defaultPasswords` must be an array of strings)
+
+## Using commands on scanned files as comments
+KICS scan supports some special commands in the comments that are on the file beginning (i.e.: all comments before any valid line on IaC file). To use this feature you need to create a comment that starts with `kics-scan` and wanted command with values (if necessary).
+
+For example, if you want to ignore a tf file when running a scan, you can start your file as following:
+
+```hcl
+# kics-scan ignore
+# rest of the file...
+```
+
+If you need to start with a header comment, you can add another line below with the `kics-scan` command you want, but `kics-scan` will not works if there is any valid line above it, as you can see on the following example:
+
+```hcl
+# Some comment
+# This works
+# kics-scan ignore
+resource "google_storage_bucket" "example" {
+  # This does not works
+  # kics-scan ignore
+  name          = "image-store.com"
+  location      = "EU"
+  force_destroy = true
+}
+# This also not works, since there is valid script before this comment
+# kics-scan ignore
+```
+
+KICS currently supports three commands:
+- `ignore`: Will ignore file when running a scan;
+- `enable=<query_id>,<query_id>`: Will get results on this file **only** for listed queries;
+- `disable=<query_id>,<query_id>`: Will ignore results on this file for listed queries;
+
+The order of prescendence in above commands are:
+1. ignore
+2. enable
+3. disable
+
+For example:
+```hcl
+# kics-scan disable=0afa6ab8-a047-48cf-be07-93a2f8c34cf7
+# kics-scan
+```
+In this case, this file will be ignored by KICS, instead of ignoring results for query with id 0afa6ab8-a047-48cf-be07-93a2f8c34cf7.
+
+This feature is supported by all extensions that supports comments. Currently, KICS supports this features for:
+- Dockerfile;
+- HCL (Terraform);
+- YAML;

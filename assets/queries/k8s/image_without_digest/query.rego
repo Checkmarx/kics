@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -24,7 +26,8 @@ CxPolicy[result] {
 	metadata := document.metadata
 	spec := document.spec
 	containers := spec[types[x]]
-	object.get(containers[k], "image", "undefined") == "undefined"
+	cont := containers[k]
+	not common_lib.valid_key(cont, "image")
 
 	result := {
 		"documentId": input.document[i].id,

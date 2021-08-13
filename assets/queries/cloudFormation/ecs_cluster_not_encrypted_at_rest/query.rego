@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources
 	elem := resource[key]
@@ -26,7 +28,7 @@ CxPolicy[result] {
 	elem.Type == "AWS::ECS::Service"
 	clustername := elem.Properties.Cluster
 	taskdefinitionkey := elem.Properties.TaskDefinition
-	object.get(resource, taskdefinitionkey, "undefined") == "undefined"
+	not common_lib.valid_key(resource, taskdefinitionkey)
 
 	result := {
 		"documentId": input.document[i].id,

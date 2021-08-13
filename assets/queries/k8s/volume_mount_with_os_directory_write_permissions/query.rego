@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	volumeMounts := containers[_].volumeMounts
 
 	is_os_dir(volumeMounts[v].mountPath)
-	object.get(volumeMounts[v], "readOnly", "undefined") == "undefined"
+	not common_lib.valid_key(volumeMounts[v], "readOnly")
 
 	result := {
 		"documentId": input.document[i].id,

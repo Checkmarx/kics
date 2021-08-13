@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 types := {"initContainers", "containers"}
 
@@ -94,8 +95,8 @@ checkRootParent(rootSecurityContext, containerType, container, path, metadata,id
 
 
 checkRootParent(rootSecurityContext, containerType, container, path, metadata,id) = result {
-	object.get(rootSecurityContext, "runAsNonRoot", "undefined") == "undefined"
-	object.get(rootSecurityContext, "runAsUser", "undefined") == "undefined"
+	not common_lib.valid_key(rootSecurityContext, "runAsNonRoot")
+	not common_lib.valid_key(rootSecurityContext, "runAsUser")
 
 	result := checkRootContainer(rootSecurityContext, containerType, container, path, metadata,id)
 }
@@ -118,7 +119,7 @@ checkRootContainer(rootSecurityContext, containerType, container, path, metadata
 checkRootContainer(rootSecurityContext, containerType, container, path, metadata,id) = result {
 
 	not container.securityContext.runAsNonRoot
-	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
+	not common_lib.valid_key(container.securityContext, "runAsUser")
 
 	result := {
 		"documentId": id,
@@ -144,7 +145,7 @@ checkUserContainer(rootSecurityContext, containerType, container, path, metadata
 
 checkUserContainer(rootSecurityContext, containerType, container, path, metadata,id) = result {
 	not container.securityContext.runAsNonRoot
-	object.get(container.securityContext, "runAsUser", "undefined") == "undefined"
+	not common_lib.valid_key(container.securityContext, "runAsUser")
 
 	result := {
 		"documentId": id,

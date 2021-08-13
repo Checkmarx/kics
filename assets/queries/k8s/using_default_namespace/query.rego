@@ -3,6 +3,7 @@ package Cx
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 
 	metadata = document.metadata
 
-	object.get(metadata, "namespace", "undefined") == "undefined"
+	not common_lib.valid_key(metadata, "namespace")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.cloudformation as cloudFormationLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -23,7 +24,7 @@ CxPolicy[result] {
 
 withoutOutboundRules(securityGroupName) = result {
 	securityGroup := input.document[i].Resources[securityGroupName]
-	object.get(securityGroup.Properties, "SecurityGroupIngress", "undefined") == "undefined"
+	not common_lib.valid_key(securityGroup.Properties, "SecurityGroupIngress")
 	result := {"expected": "defined", "actual": "undefined", "path": "", "issue": "MissingAttribute"}
 }
 

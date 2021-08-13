@@ -48,6 +48,7 @@ nav:
       - Queries List:
           - All: queries/all-queries.md
           - Ansible: queries/ansible-queries.md
+          - Azure Resource Manager: queries/azureresourcemanager-queries.md
           - CloudFormation: queries/cloudformation-queries.md
           - Common: queries/common-queries.md
           - Dockerfile: queries/dockerfile-queries.md

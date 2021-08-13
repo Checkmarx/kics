@@ -353,6 +353,11 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 
 			continue
 		}
+		file := ctx.files[vulnerability.FileID]
+		if shouldSkipFile(file.Commands, vulnerability.QueryID) {
+			log.Debug().Msgf("Skipping file %s for query %s", file.FileName, ctx.query.metadata.Query)
+			continue
+		}
 
 		if vulnerability.Line == UndetectedVulnerabilityLine {
 			failedDetectLine = true
@@ -385,6 +390,25 @@ func contains(s []string, e string) bool {
 	for _, a := range s {
 		if strings.EqualFold(a, e) {
 			return true
+		}
+	}
+	return false
+}
+
+func shouldSkipFile(command model.CommentsCommands, queryID string) bool {
+	if queries, ok := command["enable"]; ok {
+		for _, query := range strings.Split(queries, ",") {
+			if strings.EqualFold(query, queryID) {
+				return false
+			}
+		}
+		return true
+	}
+	if queries, ok := command["disable"]; ok {
+		for _, query := range strings.Split(queries, ",") {
+			if strings.EqualFold(query, queryID) {
+				return true
+			}
 		}
 	}
 	return false

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElastiCache::CacheCluster"
@@ -24,7 +26,7 @@ CxPolicy[result] {
 	properties := resource.Properties
 	properties.Engine == "memcached"
 	to_number(properties.NumCacheNodes) > 1
-	object.get(properties, "AZMode", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "AZMode")
 
 	result := {
 		"documentId": input.document[i].id,

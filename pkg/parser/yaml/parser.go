@@ -169,3 +169,8 @@ func playbookParser(filePath string, fileContent []byte) ([]model.Document, erro
 
 	return addExtraInfo(documents, filePath), nil
 }
+
+// GetCommentToken return the comment token of YAML - #
+func (p *Parser) GetCommentToken() string {
+	return "#"
+}
