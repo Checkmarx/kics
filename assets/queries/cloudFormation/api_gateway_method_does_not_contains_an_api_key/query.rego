@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Method"
 
-	object.get(resource.Properties, "ApiKeyRequired", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "ApiKeyRequired")
 
 	result := {
 		"documentId": document.id,

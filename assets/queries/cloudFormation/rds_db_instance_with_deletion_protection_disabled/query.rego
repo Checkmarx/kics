@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	object.get(properties, "DeletionProtection", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "DeletionProtection")
 
 	result := {
 		"documentId": input.document[i].id,

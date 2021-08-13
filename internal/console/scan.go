@@ -79,7 +79,7 @@ const (
 	excludeResultsFlag      = "exclude-results"
 	excludeResutlsShorthand = "x"
 	includeQueriesFlag      = "include-queries"
-	inlcudeQueriesShorthand = "i"
+	includeQueriesShorthand = "i"
 	inputDataFlag           = "input-data"
 	failOnFlag              = "fail-on"
 	ignoreOnExitFlag        = "ignore-on-exit"
@@ -342,7 +342,6 @@ func initOutputFlags(scanCmd *cobra.Command) {
 	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
 		"formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
 	)
-
 	scanCmd.Flags().StringSliceVarP(&types,
 		typeFlag, typeShorthand,
 		[]string{""},
@@ -403,7 +402,7 @@ func initInclusionFlags(scanCmd *cobra.Command) {
 	)
 	scanCmd.Flags().StringSliceVarP(&includeIDs,
 		includeQueriesFlag,
-		inlcudeQueriesShorthand,
+		includeQueriesShorthand,
 		[]string{},
 		"include queries by providing the query ID\n"+"cannot be provided with query exclusion flags\n"+
 			msg+
@@ -445,6 +444,9 @@ func initExitStatusFlags(scanCmd *cobra.Command) {
 
 func initScanCmd(scanCmd *cobra.Command) {
 	initScanFlags(scanCmd)
+	if constants.APIScanner == "true" {
+		types = []string{"openapi"}
+	}
 
 	if err := scanCmd.MarkFlagRequired("path"); err != nil {
 		sentry.CaptureException(err)

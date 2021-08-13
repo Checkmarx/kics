@@ -8,7 +8,7 @@
   {
     "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 9,
     "filename": "positive2.tf"
   }
 ]

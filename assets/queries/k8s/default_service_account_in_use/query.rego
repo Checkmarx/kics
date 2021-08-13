@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 	metadata.name == "default"
 
-	object.get(document, "automountServiceAccountToken", "undefined") == "undefined"
+	not common_lib.valid_key(document, "automountServiceAccountToken")
 
 	result := {
 		"documentId": input.document[i].id,

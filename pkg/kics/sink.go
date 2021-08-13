@@ -25,6 +25,9 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil
 	}
+
+	fileCommands := s.Parser.CommentsCommands(filename, *content)
+
 	for _, document := range documents {
 		_, err = json.Marshal(document)
 		if err != nil {
@@ -40,6 +43,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			OriginalData: string(*content),
 			Kind:         kind,
 			FileName:     filename,
+			Commands:     fileCommands,
 		}
 		s.saveToFile(ctx, &file)
 	}
