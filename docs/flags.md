@@ -42,7 +42,7 @@ As described above you should describe which type is the flag, currently there i
 - str: Represents a string type;
 - int: Represents an integer type;
 - bool: Represents a boolean type;
-- multiStr: Represents a string slice type;
+- multiStr: Represents a string slice type, this receives multiple strings comma-separated;
 
 This type is used to cast `defaultValue` field and to determine which map it will be saved.
 
