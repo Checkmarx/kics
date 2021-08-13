@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 15
+  }
+]

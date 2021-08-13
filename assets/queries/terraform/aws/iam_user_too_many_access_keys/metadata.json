@@ -1,0 +1,11 @@
+{
+  "id": "3561130e-9c5f-485b-9e16-2764c82763e5",
+  "queryName": "IAM User Has Too Many Access Keys",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Any IAM User should not have more than one access key since it increases the risk of unauthorized access and compromise credentials",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key#user",
+  "platform": "Terraform",
+  "descriptionID": "387e9522",
+  "cloudProvider": "aws"
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Network ACL With Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 15
+  }
+]
