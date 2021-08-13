@@ -120,28 +120,35 @@ func getKicsDirPath() string {
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToLibrary(platform, libraryPathFlag string) string {
 	var libraryFilePath, relativeBasePath string
-	if !isDefaultLibrary(libraryPathFlag) { // user uses the library path flag
+	// user uses the library path flag
+	if !isDefaultLibrary(libraryPathFlag) {
 		library := getLibraryInDir(platform, libraryPathFlag)
-		if library != "" { // found a library named according to the platform
+		// found a library named according to the platform
+		if library != "" {
 			libraryFilePath = library
 		} else if library == "" && strings.EqualFold(common, platform) {
 			libraryFilePath = ""
 		}
-	} else { // user did not use the library path flag
+		// user did not use the library path flag
+	} else {
 		kicsDirPath := getKicsDirPath()
 		libraryFilePath = filepath.FromSlash(kicsDirPath + "/assets/libraries/common.rego")
-		if _, err := os.Stat(libraryFilePath); os.IsNotExist(err) { // the system does not have kics binary accessible
+		// the system does not have kics binary accessible
+		_, err := os.Stat(libraryFilePath)
+		if os.IsNotExist(err) {
 			currentDir, err := os.Getwd()
 			if err != nil {
 				log.Fatal().Msgf("Error getting wd: %s", err)
 			}
 			currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
 			libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
-			if _, err := os.Stat(libraryFilePath); os.IsNotExist(err) {
+			_, err = os.Stat(libraryFilePath)
+			if os.IsNotExist(err) {
 				log.Fatal().Msgf("Error getting wd: %s", err)
 			}
 			relativeBasePath = currentDir
-		} else { // the system has kics binary accessible
+			// the system has kics binary accessible
+		} else {
 			relativeBasePath = kicsDirPath
 		}
 		for _, supPlatform := range supportedPlatforms {
