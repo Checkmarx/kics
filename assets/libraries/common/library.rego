@@ -245,3 +245,27 @@ valid_key(obj, key) {
 	_ = obj[key]
 	not is_null(obj[key])
 }
+
+getDays(date, daysInMonth) = days {
+	index := date[1] - 2
+	index >= 0
+
+	days = ((date[0] * 365) + daysInMonth[index]) + date[2]
+}
+
+getDays(date, daysInMonth) = days {
+	index := date[1] - 2
+	index < 0
+
+	days = (date[0] * 365) + date[2]
+}
+
+expired(expirationDate) {
+	currentDate := time.date(time.now_ns())
+	daysInMonth := [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]
+
+	daysInCurrentDate := getDays(currentDate, daysInMonth)
+	daysInExpirationDate := getDays(expirationDate, daysInMonth)
+
+	daysInExpirationDate < daysInCurrentDate
+}
