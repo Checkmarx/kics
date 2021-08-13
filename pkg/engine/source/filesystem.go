@@ -107,45 +107,14 @@ func isDefaultLibrary(libraryPath string) bool {
 	return filepath.FromSlash(libraryPath) == filepath.FromSlash(LibrariesDefaultBasePath)
 }
 
-func checkSymLink(pathFile string) (string, bool) {
-	info, err := os.Lstat(pathFile)
-	if err != nil {
-		log.Error().Msgf("failed lstat for %s: %v", pathFile, err)
-	}
-
-	if info.Mode()&os.ModeSymlink != 0 {
-		link, err := os.Readlink(pathFile)
-		if err != nil {
-			log.Error().Msgf("failed Readlink for %s: %v", pathFile, err)
-			return "", false
-		}
-		pathFile = link
-	}
-	return pathFile, true
-}
-
 func getKicsDirPath() string {
-	kicsDirPath, err := os.Executable()
+	kicsPath, err := os.Executable()
 	if err != nil {
 		log.Err(err)
 		return ""
 	}
 
-	symLink, isSymLink := checkSymLink(kicsDirPath)
-
-	if isSymLink {
-		idx := strings.Index(symLink, "kics")
-		if idx != -1 {
-			return symLink[:strings.Index(symLink, "kics")] + "kics"
-		}
-	} else {
-		idx := strings.Index(kicsDirPath, "kics")
-		if idx != -1 {
-			return kicsDirPath[:strings.Index(kicsDirPath, "kics")] + "kics"
-		}
-	}
-
-	return ""
+	return path.Dir(kicsPath)
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
