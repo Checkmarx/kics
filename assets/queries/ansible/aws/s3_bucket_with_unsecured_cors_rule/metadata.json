@@ -1,0 +1,11 @@
+{
+  "id": "3505094c-f77c-4ba0-95da-f83db712f86c",
+  "queryName": "S3 Bucket with Unsecured CORS Rule",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_s3_cors_module.html#parameter-rules",
+  "platform": "Ansible",
+  "descriptionID": "c700f52b",
+  "cloudProvider": "aws"
+}

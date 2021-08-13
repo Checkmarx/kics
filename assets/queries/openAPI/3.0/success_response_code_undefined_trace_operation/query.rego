@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	response := doc.paths[n].trace.responses
 
-	object.get(response, "200", "undefined") == "undefined"
+	not common_lib.valid_key(response, "200")
 
 	result := {
 		"documentId": doc.id,
