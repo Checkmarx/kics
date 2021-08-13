@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
@@ -10,14 +10,14 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 
-	object.get(cluster, "resource_labels", "undefined") == "undefined"
+	not common_lib.valid_key(cluster, "resource_labels")
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "gcp_container_cluster.resource_labels is defined",
-		"keyActualValue": "gcp_container_cluster.resource_labels is undefined",
+		"keyExpectedValue": sprintf("%s is defined and not null", [modules[m]]),
+		"keyActualValue": sprintf("%s is undefined and null", [modules[m]]),
 	}
 }
 
@@ -26,13 +26,14 @@ CxPolicy[result] {
 	cluster := task[modules[m]]
 	ansLib.checkState(cluster)
 
-	commonLib.emptyOrNull(cluster.resource_labels)
+	common_lib.valid_key(cluster, "resource_labels")
+	cluster.resource_labels == ""
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.resource_labels", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "gcp_container_cluster.resource_labels is not null nor empty",
-		"keyActualValue": "gcp_container_cluster.resource_labels is null or empty",
+		"keyExpectedValue": sprintf("%s is not empty", [modules[m]]),
+		"keyActualValue": sprintf("%s is empty", [modules[m]]),
 	}
 }

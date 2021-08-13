@@ -9,12 +9,12 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.3.5</h4>
-        <p style="font-size:8pt">2021.07.14<p>
+        <h4>Version 1.4.0</h4>
+        <p style="font-size:8pt">2021.08.04<p>
         <h4>Downloads:</h4>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.3.5/kics_1.3.5_windows_x64.zip">Windows</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.3.5/kics_1.3.5_linux_x64.tar.gz">Linux</a>
-        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.3.5/kics_1.3.5_darwin_x64.tar.gz">MacOS</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.4.0/kics_1.4.0_windows_x64.zip">Windows</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.4.0/kics_1.4.0_linux_x64.tar.gz">Linux</a>
+        <a class="btn btn-success" href="https://github.com/Checkmarx/kics/releases/download/v1.4.0/kics_1.4.0_darwin_x64.tar.gz">MacOS</a>
         <hr/>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
@@ -65,7 +65,7 @@ Setting up and using KICS is super-easy.
 
 Interested in more advanced stuff?
 - Deep dive into KICS [queries](queries.md).
-- Understand how you to [integrate](integrations.md) KICS in your favourit CI/CD pipelines.
+- Understand how you to [integrate](integrations.md) KICS in your favorite CI/CD pipelines.
 
 ## How it Works
 

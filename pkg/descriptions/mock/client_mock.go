@@ -21,14 +21,21 @@ type MockDecriptionsClient struct {
 	RequestDescriptionsFunc func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
 }
 
-// RequestDescriptions - mock descriptiosn client request descriptions function
+// RequestDescriptions - mock descriptions client request descriptions function
 func (m *MockDecriptionsClient) RequestDescriptions(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
 	return GetDescriptions(descriptionIDs)
+}
+
+// CheckConnection - mock CIS descriptions client check connection function
+func (m *MockDecriptionsClient) CheckConnection() error {
+	return CheckConnection()
 }
 
 var (
 	// GetDoFunc - mock client's `Do` func
 	GetDoFunc func(req *http.Request) (*http.Response, error)
+	// CheckConnection - mock client's `CheckConnection` func
+	CheckConnection func() error
 	// GetDescriptions - mock client's `RequestDescriptions` func
 	GetDescriptions func(descriptionIDs []string) (map[string]model.CISDescriptions, error)
 )

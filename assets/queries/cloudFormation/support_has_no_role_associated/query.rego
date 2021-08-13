@@ -49,7 +49,6 @@ CxPolicy[result] {
 }
 
 hasAttributeList(resource, attribute) {
-	object.get(resource, attribute, "undefined") != "undefined"
 	count(resource[attribute]) > 0
 } else = false {
 	true

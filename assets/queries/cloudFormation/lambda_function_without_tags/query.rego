@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource = document.Resources[name]
 	resource.Type == "AWS::Lambda::Function"
 	properties := resource.Properties
-	object.get(properties, "Tags", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "Tags")
 
 	result := {
 		"documentId": document.id,

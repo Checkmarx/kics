@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.cloudformation as cloudFormationLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -30,8 +31,8 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	paramName := properties.MasterUserPassword
-	object.get(document, "Parameters", "undefined") != "undefined"
-	object.get(document.Parameters, paramName, "undefined") == "undefined"
+	common_lib.valid_key(document, "Parameters")
+	not common_lib.valid_key(document.Parameters, paramName)
 
 	defaultToken := paramName
 
@@ -54,7 +55,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	paramName := properties.MasterUserPassword
-	object.get(document, "Parameters", "undefined") == "undefined"
+	not common_lib.valid_key(document, "Parameters")
 
 	defaultToken := paramName
 

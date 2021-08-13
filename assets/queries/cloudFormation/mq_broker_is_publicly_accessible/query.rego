@@ -5,7 +5,6 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-	object.get(properties, "PubliclyAccessible", "undefined") != "undefined"
 
     properties.PubliclyAccessible
 

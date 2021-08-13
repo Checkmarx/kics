@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-	object.get(properties, "EncryptionOptions", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "EncryptionOptions")
 
 	result := {
 		"documentId": input.document[i].id,

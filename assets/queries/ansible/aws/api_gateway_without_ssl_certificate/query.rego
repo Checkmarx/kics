@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	api_gateway := task[modules[m]]
 	ansLib.checkState(api_gateway)
 
-	object.get(api_gateway, "validate_certs", "undefined") == "undefined"
+	not common_lib.valid_key(api_gateway, "validate_certs")
 
 	result := {
 		"documentId": id,

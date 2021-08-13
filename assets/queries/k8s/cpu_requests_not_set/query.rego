@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 types := {"initContainers", "containers"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 
 	containers := specInfo.spec[types[x]]
 
-	object.get(containers[index].resources.requests, "cpu", "undefined") == "undefined"
+	not common_lib.valid_key(containers[index].resources.requests, "cpu")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +30,7 @@ CxPolicy[result] {
 
 	containers := specInfo.spec[types[x]]
 
-	object.get(containers[index].resources, "requests", "undefined") == "undefined"
+	not common_lib.valid_key(containers[index].resources, "requests")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -47,7 +48,7 @@ CxPolicy[result] {
 
 	containers := specInfo.spec[types[x]]
 
-	object.get(containers[index], "resources", "undefined") == "undefined"
+	not common_lib.valid_key(containers[index], "resources")
 
 	result := {
 		"documentId": input.document[i].id,

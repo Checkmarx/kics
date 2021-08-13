@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_container_node_pool", "gcp_container_node_pool"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	gcpContainer := task[modules[m]]
 	ansLib.checkState(gcpContainer)
 
-	object.get(gcpContainer, "management", "undefined") == "undefined"
+	not common_lib.valid_key(gcpContainer, "management")
 
 	result := {
 		"documentId": id,

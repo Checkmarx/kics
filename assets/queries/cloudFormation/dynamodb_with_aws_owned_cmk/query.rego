@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -22,7 +24,7 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	object.get(properties, "SSESpecification", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "SSESpecification")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,7 +40,7 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	object.get(properties.SSESpecification, "SSEType", "undefined") == "undefined"
+	not common_lib.valid_key(properties.SSESpecification, "SSEType")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.properties;", [key]),
@@ -54,7 +56,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
 
-	object.get(properties.SSESpecification, "SSEEnabled", "undefined") == "undefined"
+	not common_lib.valid_key(properties.SSESpecification, "SSEEnabled")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.properties;", [key]),

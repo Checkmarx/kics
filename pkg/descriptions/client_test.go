@@ -40,7 +40,15 @@ var (
 func TestClient_RequestDescriptions(t *testing.T) {
 	os.Setenv("KICS_DESCRIPTIONS_ENDPOINT", "http://example.com")
 	HTTPRequestClient = &mockclient.MockHTTPClient{}
-	mockclient.GetDoFunc = func(*http.Request) (*http.Response, error) {
+	mockclient.GetDoFunc = func(request *http.Request) (*http.Response, error) {
+		if request.Method == http.MethodGet {
+			r := ioutil.NopCloser(bytes.NewReader([]byte("KICS DESCRIPTIONS API")))
+			return &http.Response{
+				StatusCode: 200,
+				Body:       r,
+			}, nil
+		}
+
 		r := ioutil.NopCloser(bytes.NewReader([]byte(responseJSON)))
 		return &http.Response{
 			StatusCode: 200,
@@ -89,7 +97,7 @@ func TestClient_post(t *testing.T) {
 	for key, value := range headers {
 		request.Header.Add(key, value)
 	}
-	response, err := doPost(request)
+	response, err := doRequest(request)
 	require.NoError(t, err, "post() should not return an error")
 	defer response.Body.Close()
 	require.NotNil(t, response, "post() should return a response")

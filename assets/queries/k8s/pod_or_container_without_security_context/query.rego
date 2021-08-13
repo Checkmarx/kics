@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 
 	document.kind == "Pod"
 
-	object.get(spec, "securityContext", "undefined") == "undefined"
+	not common_lib.valid_key(spec, "securityContext")
 
 	result := {
 		"documentId": document.id,
@@ -32,7 +33,7 @@ CxPolicy[result] {
     types := {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
-	object.get(containers[index], "securityContext", "undefined") == "undefined"
+	not common_lib.valid_key(containers[index], "securityContext")
 
 	result := {
 		"documentId": document.id,

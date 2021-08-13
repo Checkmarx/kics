@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[name]
@@ -23,7 +25,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties.DistributionConfig
 
-	object.get(properties, "Origins", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "Origins")
 
 	result := {
 		"documentId": document.id,

@@ -12,6 +12,9 @@ import (
 func TestRequestAndOverrideDescriptions_NoBaseURL(t *testing.T) {
 	mock := test.SummaryMock
 	descClient = &mockclient.MockDecriptionsClient{}
+	mockclient.CheckConnection = func() error {
+		return nil
+	}
 	mockclient.GetDescriptions = func(descriptionIDs []string) (map[string]model.CISDescriptions, error) {
 		return map[string]model.CISDescriptions{
 			"504b1d43": {

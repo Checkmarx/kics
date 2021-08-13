@@ -573,6 +573,73 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 	}
 }
 
+func TestShouldSkipFile(t *testing.T) {
+	type args struct {
+		commands model.CommentsCommands
+		queryID  string
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected bool
+	}{
+		{
+			name: "test_enabled_queries_valid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"enable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09,0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: false,
+		},
+		{
+			name: "test_enabled_queries_invalid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"enable": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: true,
+		},
+		{
+			name: "test_disabled_queries_invalid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"disable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09,0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: true,
+		},
+		{
+			name: "test_disabled_queries_invalid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"disable": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: false,
+		},
+		{
+			name: "test_withoutCommands",
+			args: args{
+				commands: model.CommentsCommands{},
+				queryID:  "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := shouldSkipFile(tt.args.commands, tt.args.queryID)
+			require.Equal(t, tt.expected, got)
+		})
+	}
+}
+
 func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},

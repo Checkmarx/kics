@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
-	object.get(resource.Properties.SecurityGroupIngress, "CidrIpv6", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties.SecurityGroupIngress, "CidrIpv6")
 	ipv4 := resource.Properties.SecurityGroupIngress.CidrIp
 	not check_mask_ipv4(ipv4)
 
@@ -19,7 +21,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
-	object.get(resource.Properties.SecurityGroupIngress, "CidrIp", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties.SecurityGroupIngress, "CidrIp")
 	ipv6 := resource.Properties.SecurityGroupIngress.CidrIpv6
 	not check_ipv6(ipv6)
 

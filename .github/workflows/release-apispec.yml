@@ -1,0 +1,196 @@
+name: goreleaser-apispec
+
+on:
+  workflow_dispatch:
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - name: Set short hash
+        id: shorthash
+        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+      - uses: toko-bifrost/ms-teams-deploy-card@master
+        if: always()
+        with:
+          github-token: ${{ secrets.KICS_BOT_PAT }}
+          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
+          card-layout-start: cozy
+          card-layout-exit: complete
+          show-on-start: true
+          show-on-exit: true
+          custom-facts: |
+            - name: APISpec Release Commit
+              value: ${{ steps.shorthash.outputs.sha8 }}
+          custom-actions: |
+            - name: View CI Logs
+              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
+            - name: View HEAD Commit
+              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2.7.0
+        with:
+          version: v0.160.0
+          args: release --rm-dist --snapshot --skip-validate --config="./.goreleaser-apispec.yml"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
+          APISCANNER: "true"
+      - name: delete release
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          delete_release: true # default: false
+          tag_name: apispec # tag name to delete
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: apispec
+          release_name: apispec-${{ steps.shorthash.outputs.sha8 }}
+          draft: false
+          prerelease: true
+      - name: Display assets
+        run: |
+          ls -l /home/runner/work/kics/kics/dist
+      - name: Upload Release Asset Linux
+        id: upload-release-asset-linux
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_apispec_linux_x64.tar.gz
+          asset_name: kics_apispec-release_linux_amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Release Asset Darwin
+        id: upload-release-asset-darwin
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_apispec_darwin_x64.tar.gz
+          asset_name: kics_apispec-release_darwin_amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Release Asset Windows
+        id: upload-release-asset-windows
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_apispec_windows_x64.zip
+          asset_name: kics_apispec-release_windows_amd64.zip
+          asset_content_type: application/zip
+      - name: Upload Release Asset Checksum
+        id: upload-release-asset-checksums
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: /home/runner/work/kics/kics/dist/kics_apispec_checksums.txt
+          asset_name: kics_apispec-release_checksums.txt
+          asset_content_type: text/plain
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2.3.4
+      - uses: toko-bifrost/ms-teams-deploy-card@master
+        if: always()
+        with:
+          github-token: ${{ secrets.KICS_BOT_PAT }}
+          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
+          card-layout-start: cozy
+          card-layout-exit: complete
+          show-on-start: true
+          show-on-exit: true
+          custom-facts: |
+            - name: APISpec Release Commit
+              value: ${{ steps.shorthash.outputs.sha8 }}
+          custom-actions: |
+            - name: View CI Logs
+              value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}"
+            - name: View HEAD Commit
+              value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1.10.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push alpine to Docker Hub
+        id: build_alpine
+        uses: docker/build-push-action@v2.6.1
+        with:
+          context: .
+          push: true
+          file: ./Dockerfile.apispec
+          tags: checkmarx/kics:apispec,checkmarx/kics:apispec-alpine
+          build-args: |
+            VERSION=apipsec-${{ steps.shorthash.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            APISCANNER="true"
+      - name: Build and push debian to Docker Hub
+        id: build_debian
+        uses: docker/build-push-action@v2.6.1
+        with:
+          context: .
+          file: ./Dockerfile.apispec.debian
+          push: true
+          tags: checkmarx/kics:apispec-debian,checkmarx/kics:apispec-debian-latest
+          build-args: |
+            VERSION=apipsec-${{ steps.shorthash.outputs.sha8 }}
+            COMMIT=${{ github.sha }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+            APISCANNER="true"
+      - name: Export Image Digests
+        run: |
+          VERSION=apispec
+
+          COMMIT_SHA8=${{ steps.shorthash.outputs.sha8 }}
+          DATE=$(date +'%Y-%m-%d')
+          DIGEST=${{ steps.build_alpine.outputs.digest }}
+          ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
+          DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
+
+          echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/apispec.csv
+          echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/apispec.csv
+          echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/apispec.csv
+      - uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.x
+      - name: Generate .md table
+        run: |
+          pip install csvtomd
+          csvtomd docs/docker/apispec.csv > docs/docker/apispec.md
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          title: "docs(kicsbot): update images digest"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "docs(kicsbot): update images digest"
+          delete-branch: true
+          branch: feature/kicsbot-update-queries-docs
+          body: |
+            **Automated Changes**
+            Updating docker images digests
+            Triggered by SHA: _${{ github.sha }}_
+          labels: documentation

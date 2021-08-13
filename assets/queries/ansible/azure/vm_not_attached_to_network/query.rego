@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	modules := {"azure.azcollection.azure_rm_virtualmachine", "azure_rm_virtualmachine"}
@@ -8,8 +9,8 @@ CxPolicy[result] {
 	virtualmachine := task[modules[m]]
 	ansLib.checkState(virtualmachine)
 
-	object.get(virtualmachine, "network_interface_names", "undefined") == "undefined"
-	object.get(virtualmachine, "network_interfaces", "undefined") == "undefined"
+	not common_lib.valid_key(virtualmachine, "network_interface_names")
+	not common_lib.valid_key(virtualmachine, "network_interfaces")
 
 	result := {
 		"documentId": id,

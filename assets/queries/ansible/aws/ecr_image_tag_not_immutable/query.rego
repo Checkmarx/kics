@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.ecs_ecr", "ecs_ecr"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	ecs_ecr := task[modules[m]]
 	ansLib.checkState(ecs_ecr)
 
-	object.get(ecs_ecr, "image_tag_mutability", "undefined") == "undefined"
+	not common_lib.valid_key(ecs_ecr, "image_tag_mutability")
 
 	result := {
 		"documentId": id,

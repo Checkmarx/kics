@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 types := {"initContainers", "containers"}
 
@@ -11,7 +11,7 @@ CxPolicy[result] {
 	spec := document.spec
 	containers := spec[types[x]]
 	capabilities := spec.containers[k].securityContext.capabilities
-	not commonLib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
+	not common_lib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	spec := document.spec
 	containers := spec[types[x]]
 
-	object.get(spec.containers[k].securityContext.capabilities, "drop", "undefined") == "undefined"
+	not common_lib.valid_key(spec.containers[k].securityContext.capabilities, "drop")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -47,7 +47,7 @@ CxPolicy[result] {
 	spec := document.spec
 	containers := spec[types[x]]
 
-	object.get(spec.containers[k].securityContext, "capabilities", "undefined") == "undefined"
+	not common_lib.valid_key(spec.containers[k].securityContext, "capabilities")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -65,7 +65,7 @@ CxPolicy[result] {
 	spec := document.spec
 	containers := spec[types[x]]
 
-	object.get(spec.containers[k], "securityContext", "undefined") == "undefined"
+	not common_lib.valid_key(spec.containers[k], "securityContext")
 
 	result := {
 		"documentId": input.document[i].id,

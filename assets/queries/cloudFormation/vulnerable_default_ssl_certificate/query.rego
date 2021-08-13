@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[name]
@@ -22,11 +24,11 @@ CxPolicy[result] {
 	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 	attr := {"MinimumProtocolVersion", "SslSupportMethod"}
-
+	attributes := attr[a]
 	viewerCertificate := resource.Properties.DistributionConfig.ViewerCertificate
 
 	hasCustomConfig(viewerCertificate)
-	object.get(viewerCertificate, attr[a], "undefined") == "undefined"
+	not common_lib.valid_key(viewerCertificate, attributes)
 
 	result := {
 		"documentId": document.id,
@@ -44,9 +46,9 @@ isAttrTrue(value) {
 }
 
 hasCustomConfig(viewerCertificate) {
-	object.get(viewerCertificate, "IamCertificateId", "undefined") != "undefined"
+	common_lib.valid_key(viewerCertificate, "IamCertificateId")
 }
 
 hasCustomConfig(viewerCertificate) {
-	object.get(viewerCertificate, "AcmCertificateArn", "undefined") != "undefined"
+	common_lib.valid_key(viewerCertificate, "AcmCertificateArn")
 }
