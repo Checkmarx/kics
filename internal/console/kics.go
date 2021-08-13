@@ -45,10 +45,6 @@ func NewKICSCmd() *cobra.Command {
 }
 
 func initialize(rootCmd *cobra.Command) error {
-	rootCmd.CompletionOptions.DisableDefaultCmd = true
-	rootCmd.CompletionOptions.DisableDescriptions = true
-	rootCmd.CompletionOptions.DisableNoDescFlag = true
-
 	scanCmd := NewScanCmd()
 	rootCmd.AddCommand(NewVersionCmd())
 	rootCmd.AddCommand(NewGenerateIDCmd())
