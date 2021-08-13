@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -10,14 +11,15 @@ CxPolicy[result] {
 	oper != "head"
 
 	responses := {"500", "429", "400"}
-	object.get(response, responses[x], "undefined") == "undefined"
+	wantedResponses := responses[_]
+	not common_lib.valid_key(response, wantedResponses)
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set", [responses[x]]),
-		"keyActualValue": sprintf("%s response is undefined", [responses[x]]),
+		"keyExpectedValue": sprintf("%s response is set", [wantedResponses]),
+		"keyActualValue": sprintf("%s response is undefined", [wantedResponses]),
 		"overrideKey": version,
 	}
 }
@@ -30,7 +32,7 @@ CxPolicy[result] {
 	operations := {"post", "put", "patch"}
 	oper == operations[x]
 
-	object.get(response, "415", "undefined") == "undefined"
+	not common_lib.valid_key(response, "415")
 
 	result := {
 		"documentId": doc.id,
@@ -50,7 +52,7 @@ CxPolicy[result] {
 	operations := {"get", "put", "head", "delete"}
 	oper == operations[x]
 
-	object.get(response, "404", "undefined") == "undefined"
+	not common_lib.valid_key(response, "404")
 
 	result := {
 		"documentId": doc.id,
@@ -69,7 +71,7 @@ CxPolicy[result] {
 	response := doc.paths[n][oper].responses
 	oper == "options"
 
-	object.get(response, "200", "undefined") == "undefined"
+	not common_lib.valid_key(response, "200")
 
 	result := {
 		"documentId": doc.id,
@@ -86,17 +88,18 @@ CxPolicy[result] {
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	response := doc.paths[n][oper].responses
-	object.get(doc, "security", "undefined") != "undefined"
+	common_lib.valid_key(doc, "security")
 	responses := {"401", "403"}
+	wantedResponses := responses[_]
 
-	object.get(response, responses[x], "undefined") == "undefined"
+	not common_lib.valid_key(response, wantedResponses)
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("paths.{{%s}}.{{%s}}.responses", [n, oper]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s response is set when security field is defined", [responses[x]]),
-		"keyActualValue": sprintf("%s response is undefined when security field is defined", [responses[x]]),
+		"keyExpectedValue": sprintf("%s response is set when security field is defined", [wantedResponses]),
+		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
 		"overrideKey": version,
 	}
 }
