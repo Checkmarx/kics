@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -10,7 +11,8 @@ CxPolicy[result] {
 	parameters = value.parameters
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	object.get(parameters[x], "schema", "undefined") == "undefined"
+	param := parameters[_]
+	not common_lib.valid_key(param, "schema")
 
 	result := {
 		"documentId": doc.id,
@@ -28,7 +30,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	parameters = value.parameters
 	openapi_lib.is_operation(path) == {}
-	object.get(parameters[x], "schema", "undefined") == "undefined"
+	param := parameters[_]
+	not common_lib.valid_key(param, "schema")
 
 	result := {
 		"documentId": doc.id,

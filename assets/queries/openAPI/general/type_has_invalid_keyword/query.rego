@@ -16,7 +16,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	object.get(value, "type", "undefined") != "undefined"
+	common_lib.valid_key(value, "type")
 	invalidKey := check_keywords(value)
 	result := {
 		"documentId": doc.id,

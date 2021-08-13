@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -25,13 +26,13 @@ check_simple(value) {
 } else {
 	ins := {"path", "header"}
 	value.in == ins[_]
-	object.get(value, "style", "undefined") == "undefined"
+	not common_lib.valid_key(value, "style")
 }
 
 set_to_false(value) {
 	value.explode == false
 } else {
-	object.get(value, "explode", "undefined") == "undefined"
+	not common_lib.valid_key(value, "explode")
 }
 
 check_delimited(value) {
