@@ -1299,6 +1299,8 @@ isTCPorUDP(&quot;UDP&quot;) = true
 <li>On <code>query.rego</code> file, use <code>data.&lt;key_on_data_json_file&gt;</code> to access the value of this key;</li>
 </ol>
 <p>With these simple steps, users will be able to overwrite the keys they want, elsewhere will use the default value.</p>
+<h4 id="query_dependencies">Query Dependencies<a class="headerlink" href="#query_dependencies" title="Permanent link">&para;</a></h4>
+<p>If you want to use the functions defined in your own library, you should use the flag <code>-b</code> to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: <code>&lt;platform&gt;.rego</code>. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named <code>terraform.rego</code> wherever you want.</p>
                 
               
               
