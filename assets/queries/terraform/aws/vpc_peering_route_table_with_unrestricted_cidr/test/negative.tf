@@ -1,17 +1,26 @@
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+data "aws_vpc_peering_connection" "negative1" {
+  vpc_id          = aws_vpc.foo2.id
+  peer_cidr_block = "10.0.1.0/24"
 }
 
-resource "aws_flow_log" "example" {
-  iam_role_arn    = aws_iam_role.example.arn
-  log_destination = aws_cloudwatch_log_group.example.arn
-  traffic_type    = "ALL"
-  vpc_id          = aws_vpc.example.id
+resource "aws_route_table" "example3" {
+  vpc_id = aws_vpc.foo2.id
+
+  route = [
+    {
+      cidr_block = "10.0.1.0/24"
+      gateway_id = aws_internet_gateway.example2.id
+    }
+  ]
+
+  tags = {
+    Name = "example"
+  }
 }
 
-resource "aws_flow_log" "example2" {
-  iam_role_arn    = aws_iam_role.example.arn
-  log_destination = aws_cloudwatch_log_group.example.arn
-  traffic_type    = "ALL"
-  vpc_id          = aws_vpc.main.id
+# Create a route
+resource "aws_route" "rr" {
+  route_table_id            = aws_route_table.example3.id
+  destination_cidr_block    = data.aws_vpc_peering_connection.negative1.peer_cidr_block
+  vpc_peering_connection_id = data.aws_vpc_peering_connection.negative1.id
 }
