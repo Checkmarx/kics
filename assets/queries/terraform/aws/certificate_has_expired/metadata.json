@@ -1,0 +1,11 @@
+{
+  "id": "c3831315-5ae6-4fa8-b458-3d4d5ab7a3f6",
+  "queryName": "Certificate Has Expired",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Expired SSL/TLS certificates should be removed",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api",
+  "platform": "Terraform",
+  "descriptionID": "998f52fe",
+  "cloudProvider": "aws"
+}
