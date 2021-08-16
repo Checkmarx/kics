@@ -237,6 +237,10 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 		if err != nil {
 			return "", err
 		}
+		idx := strings.Index(currentWorkDir, "kics")
+		if idx != -1 {
+			currentWorkDir = currentWorkDir[:strings.LastIndex(currentWorkDir, "kics")] + "kics"
+		}
 		queriesDirectory = filepath.Join(currentWorkDir, queriesPath)
 		if _, err := os.Stat(queriesDirectory); os.IsNotExist(err) {
 			return "", err
