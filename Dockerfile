@@ -1,3 +1,4 @@
+
 FROM golang:1.16-alpine as build_env
 # Create a group and user
 ARG UID=1000
@@ -15,8 +16,8 @@ ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 
 #Copy go mod and sum files
-COPY --chown=Checkmarx:Checkmarx go.mod .
-COPY --chown=Checkmarx:Checkmarx go.sum .
+COPY --chown=Checkmarx:0 go.mod .
+COPY --chown=Checkmarx:0 go.sum .
 # Get dependancies - will also be cached if we won't change mod/sum
 RUN go mod download -x
 # COPY the source code as the last step
@@ -42,11 +43,8 @@ RUN addgroup -S -g ${GID} Checkmarx && adduser -S -D -u ${UID} Checkmarx -G Chec
 RUN apk add --no-cache \
     git=2.32.0-r0
 
-COPY --from=build_env /app/bin/kics /app/bin/kics
-COPY --from=build_env /app/assets/ /app/bin/assets/
-
-RUN chown -R Checkmarx:0  /app/bin/  && \
-chown -R Checkmarx:0  /app/bin/                                                       
+COPY --from=build_env --chown=Checkmarx:0 /app/bin/kics /app/bin/kics
+COPY --from=build_env --chown=Checkmarx:0 /app/assets/ /app/bin/assets/                                               
 
 USER ${UID}
 
