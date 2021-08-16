@@ -3,7 +3,8 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource = input.document[i].resource.aws_autoscaling_group[name]
+	document = input.document[i]
+	resource = document.resource.aws_autoscaling_group[name]
 
 	not common_lib.valid_key(resource, "load_balancers")
 
@@ -13,19 +14,5 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is set and not empty", [name]),
 		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is undefined", [name]),
-	}
-}
-
-CxPolicy[result] {
-	resource = input.document[i].resource.aws_autoscaling_group[name]
-
-	resource.load_balancers == null
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_autoscaling_group[%s].load_balancers", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_autoscaling_group[%s].load_balancers is not empty", [name]),
-		"keyActualValue": sprintf("aws_autoscaling_group[%s].load_balancers is empty", [name]),
 	}
 }

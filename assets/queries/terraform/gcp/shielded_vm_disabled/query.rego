@@ -3,9 +3,11 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	data := input.document[i].data.google_compute_instance[appserver]
+	document := input.document[i]
 
-	not common_lib.valid_key(data, "shielded_instance_config")
+	compute_instance := document.data.google_compute_instance[appserver]
+
+	not common_lib.valid_key(compute_instance, "shielded_instance_config")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,12 +19,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	data := input.document[i].data.google_compute_instance[appserver]
+	document := input.document[i]
+	compute_instance := document.data.google_compute_instance[appserver]
 	fields := ["enable_secure_boot", "enable_vtpm", "enable_integrity_monitoring"]
 	fieldTypes := fields[_]
-
-	not common_lib.valid_key(data.shielded_instance_config, fieldTypes)
-
+	not common_lib.valid_key(compute_instance.shielded_instance_config, fieldTypes)
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_compute_instance[%s].shielded_instance_config", [appserver]),
@@ -33,11 +34,10 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	data := input.document[i].data.google_compute_instance[appserver]
+	document := input.document[i]
+	compute_instance := document.data.google_compute_instance[appserver]
 	fields := ["enable_secure_boot", "enable_vtpm", "enable_integrity_monitoring"]
-
-	data.shielded_instance_config[fields[j]] == false
-
+	compute_instance.shielded_instance_config[fields[j]] == false
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_compute_instance[%s].shielded_instance_config.%s", [appserver, fields[j]]),
