@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticache_replication_group[name]
 
-	object.get(resource, "at_rest_encryption_enabled", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "at_rest_encryption_enabled")
 
 	result := {
 		"documentId": input.document[i].id,

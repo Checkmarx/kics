@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	project := input.document[i].resource.google_project[name]
 	project.auto_create_network == true
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	project := input.document[i].resource.google_project[name]
-	object.get(project, "auto_create_network", "undefined") == "undefined"
+	not common_lib.valid_key(project, "auto_create_network")
 
 	result := {
 		"documentId": input.document[i].id,

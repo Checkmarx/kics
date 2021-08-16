@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource
@@ -8,7 +8,7 @@ CxPolicy[result] {
 	awsVpcId := sprintf("${aws_vpc.%s.id}", [name_vpc])
 
 	awsFlowLogsId := [vpc_id | vpc_id := resource.aws_flow_log[_].vpc_id]
-	not commonLib.inArray(awsFlowLogsId, awsVpcId)
+	not common_lib.inArray(awsFlowLogsId, awsVpcId)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,13 +21,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	awsFlowLogsId := input.document[i].resource.aws_flow_log[name_logs]
-	object.get(awsFlowLogsId, "vpc_id", "undefined") == "undefined"
+	not common_lib.valid_key(awsFlowLogsId, "vpc_id")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_flow_log[%s]", [name_logs]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id is defined", [name_logs]),
-		"keyActualValue": sprintf("aws_flow_log[%s].vpc_id is undefined", [name_logs]),
+		"keyExpectedValue": sprintf("aws_flow_log[%s].vpc_id is defined and not null", [name_logs]),
+		"keyActualValue": sprintf("aws_flow_log[%s].vpc_id is undefined or null", [name_logs]),
 	}
 }

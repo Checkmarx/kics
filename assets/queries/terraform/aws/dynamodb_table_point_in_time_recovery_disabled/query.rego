@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource[name]
 	name == "aws_dynamodb_table"
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[name]
 	name == "aws_dynamodb_table"
 	res := resource[m]
-	object.get(res, "point_in_time_recovery", "undefined") == "undefined"
+	not common_lib.valid_key(res, "point_in_time_recovery")
 
 	result := {
 		"documentId": input.document[i].id,

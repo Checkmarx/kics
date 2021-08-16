@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ebs_snapshot[name]
-	object.get(resource,"encrypted","undefined") != "undefined"
+	common_lib.valid_key(resource,"encrypted")
 	not resource.encrypted
 
 	result := {
@@ -16,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ebs_snapshot[name]
-	object.get(resource,"encrypted","undefined") == "undefined"
+	not common_lib.valid_key(resource,"encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

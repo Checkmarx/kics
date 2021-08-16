@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_login_profile[name]
 
-	object.get(resource,"password_reset_required","undefined") != "undefined"
+	common_lib.valid_key(resource,"password_reset_required")
 
     not resource.password_reset_required
 

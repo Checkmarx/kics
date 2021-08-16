@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -11,14 +12,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	object.get(containers[y].security_context.capabilities, "drop", "undefined") == "undefined"
+	containerCapabilities := containers[_].security_context.capabilities
+
+	not common_lib.valid_key(containerCapabilities, "drop")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("k%s[%s].%s.%s[%d].security_context.capabilities.drop is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop is set", [resourceType, name, specInfo.path, types[x], containerCapabilities]),
+		"keyActualValue": sprintf("k%s[%s].%s.%s[%d].security_context.capabilities.drop is undefined", [resourceType, name, specInfo.path, types[x], containerCapabilities]),
 	}
 }
 
@@ -50,14 +53,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	object.get(containers[y].security_context, "capabilities", "undefined") == "undefined"
+	containerSecurity := containers[_].security_context
+
+	not common_lib.valid_key(containerSecurity, "capabilities")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is set", [resourceType, name, specInfo.path, types[x], containerSecurity]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is undefined", [resourceType, name, specInfo.path, types[x], containerSecurity]),
 	}
 }
 
@@ -68,14 +73,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	object.get(containers[y], "security_context", "undefined") == "undefined"
+	containersType := containers[_]
+
+	not common_lib.valid_key(containersType, "security_context")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context is set", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 	}
 }
 
@@ -86,7 +93,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	object.get(containers.security_context.capabilities, "drop", "undefined") == "undefined"
+	not common_lib.valid_key(containers.security_context.capabilities, "drop")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -124,7 +131,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	object.get(containers.security_context, "capabilities", "undefined") == "undefined"
+	not common_lib.valid_key(containers.security_context, "capabilities")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -142,7 +149,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	object.get(containers, "security_context", "undefined") == "undefined"
+	not common_lib.valid_key(containers, "security_context")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	variable := input.document[i].variable[variableName]
-	object.get(variable, "type", "undefined") == "undefined"
+	not common_lib.valid_key(variable, "type")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("variable.{{%s}}", [variableName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'type' is defined",
-		"keyActualValue": "'type' is not defined",
+		"keyExpectedValue": "'type' is defined and not null",
+		"keyActualValue": "'type' is undefined or null",
 	}
 }
 

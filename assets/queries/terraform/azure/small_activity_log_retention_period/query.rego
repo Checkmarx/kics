@@ -1,19 +1,19 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
 
 	monitor.retention_policy.enabled == true
-	object.get(monitor.retention_policy, "days", "undefined") == "undefined"
+	not common_lib.valid_key(monitor.retention_policy, "days")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.days' is defined", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.days' is undefined", [name]),
+		"keyExpectedValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.days' is defined and not null", [name]),
+		"keyActualValue": sprintf("'azurerm_monitor_log_profile[%s].retention_policy.days' is undefined or null", [name]),
 	}
 }
 
@@ -36,7 +36,7 @@ CxPolicy[result] {
 
 	retentionPolicy := monitor.retention_policy
 	retentionPolicy.enabled == true
-	commonLib.between(retentionPolicy.days, 1, 364)
+	common_lib.between(retentionPolicy.days, 1, 364)
 
 	result := {
 		"documentId": input.document[i].id,

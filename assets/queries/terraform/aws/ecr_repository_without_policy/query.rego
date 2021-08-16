@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource
 	ecr_repo := resource.aws_ecr_repository[name]
@@ -15,7 +17,7 @@ CxPolicy[result] {
 }
 
 check_policy(resource, name) {
-	object.get(resource, "aws_ecr_repository_policy", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "aws_ecr_repository_policy")
 } else {
 	res_pol := {x | resource.aws_ecr_repository_policy[name_poly].repository == sprintf("${aws_ecr_repository.%s.name}", [name]); x := name_poly}
 	count(res_pol) == 0

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
@@ -17,14 +19,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource
-
 	listKinds := {"kubernetes_deployment", "kubernetes_daemonset", "kubernetes_job", "kubernetes_stateful_set", "kubernetes_replication_controller"}
+	
+	resource := input.document[i].resource.listKinds[x][name]
 
-	k8s := object.get(resource, listKinds[x], "undefined")
-	k8s != "undefined"
-
-	spec := k8s[name].spec.template.spec
+	spec := resource.spec.template.spec
 	volumes := spec.volume
 	volumes[c].host_path.path == "/var/run/docker.sock"
 

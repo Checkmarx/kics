@@ -1,17 +1,19 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_globalaccelerator_accelerator[name]
 
-	object.get(resource, "attributes", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "attributes")
 
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined", [name]),
-		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is not defined", [name]),
+		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is undefined or null", [name]),
 	}
 }
 
@@ -19,14 +21,14 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_globalaccelerator_accelerator[name].attributes
 
-	object.get(resource, "flow_logs_enabled", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "flow_logs_enabled")
 
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_globalaccelerator_accelerator[{{%s}}].attributes", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined", [name]),
-		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is not defined", [name]),
+		"keyExpectedValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is undefined or null", [name]),
 	}
 }
 

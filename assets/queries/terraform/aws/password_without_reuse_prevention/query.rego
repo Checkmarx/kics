@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	password_policy := input.document[i].resource.aws_iam_account_password_policy[name]
-	object.get(password_policy, "password_reuse_prevention", "undefined") == "undefined"
+	not common_lib.valid_key(password_policy, "password_reuse_prevention")
 
 	result := {
 		"documentId": input.document[i].id,

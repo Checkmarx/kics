@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource[name]
 	name == "aws_instance"
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[name]
 	name == "aws_instance"
 	res := resource[m]
-	object.get(res, "ebs_optimized", "undefined") == "undefined"
+	not common_lib.valid_key(res, "ebs_optimized")
 
 	result := {
 		"documentId": input.document[i].id,

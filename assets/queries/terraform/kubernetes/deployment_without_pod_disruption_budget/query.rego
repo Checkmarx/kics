@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 1
 
-	object.get(resource.spec.selector, "match_labels", "undefined") != "undefined"
+	common_lib.valid_key(resource.spec.selector, "match_labels")
 
 	targetLabels := resource.spec.selector.match_labels
 	labelValue := targetLabels[key]

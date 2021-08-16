@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_cron_job[name]
 
-	object.get(resource.spec, "starting_deadline_seconds", "undefined") == "undefined"
+	not common_lib.valid_key(resource.spec, "starting_deadline_seconds")
 
 	result := {
 		"documentId": input.document[i].id,

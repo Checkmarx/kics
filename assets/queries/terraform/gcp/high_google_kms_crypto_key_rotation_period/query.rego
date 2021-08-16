@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cryptoKey := input.document[i].resource.google_kms_crypto_key[name]
 	rotationP := substring(cryptoKey.rotation_period, 0, count(cryptoKey.rotation_period) - 1)
@@ -17,7 +19,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	cryptoKey := input.document[i].resource.google_kms_crypto_key[name]
 
-	object.get(cryptoKey,"rotation_period","undefined") == "undefined"
+	not common_lib.valid_key(cryptoKey,"rotation_period")
 
 	result := {
 		"documentId": input.document[i].id,

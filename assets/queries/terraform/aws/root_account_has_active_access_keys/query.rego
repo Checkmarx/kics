@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_access_key[name]
 	contains(lower(resource.user), "root")
-	object.get(resource, "status", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "status")
 
 	result := {
 		"documentId": input.document[i].id,

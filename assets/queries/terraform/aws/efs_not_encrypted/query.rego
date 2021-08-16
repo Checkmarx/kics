@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	efs := input.document[i].resource.aws_efs_file_system[name]
-    object.get(efs,"encrypted","undefined") != "undefined"
+    common_lib.valid_key(efs,"encrypted")
 
     not efs.encrypted
 
@@ -17,13 +19,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	efs := input.document[i].resource.aws_efs_file_system[name]
-    object.get(efs,"encrypted","undefined") == "undefined"
+    not common_lib.valid_key(efs,"encrypted")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_efs_file_system[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_efs_file_system[%s].encrypted' is set", [name]),
-		"keyActualValue": sprintf("aws_efs_file_system[%s].encrypted' is undefined", [name]),
+		"keyExpectedValue": sprintf("aws_efs_file_system[%s].encrypted' is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_efs_file_system[%s].encrypted' is undefined or null", [name]),
 	}
 }

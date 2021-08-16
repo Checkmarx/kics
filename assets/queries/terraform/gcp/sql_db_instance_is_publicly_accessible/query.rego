@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
@@ -23,7 +25,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
-	object.get(ip_configuration,"authorized_networks","undefined") == "undefined"
+	not common_lib.valid_key(ip_configuration,"authorized_networks")
 
 	ip_configuration.ipv4_enabled
 
@@ -40,10 +42,10 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
-    object.get(ip_configuration,"authorized_networks","undefined") == "undefined"
+    not common_lib.valid_key(ip_configuration,"authorized_networks")
 
 	not ip_configuration.ipv4_enabled
-	object.get(ip_configuration,"private_network","undefined") == "undefined"
+	not common_lib.valid_key(ip_configuration,"private_network")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -58,7 +60,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	settings := resource.settings
 
-	object.get(settings,"ip_configuration","undefined") == "undefined"
+	not common_lib.valid_key(settings,"ip_configuration")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticsearch_domain[name]
 
-	object.get(resource, "node_to_node_encryption", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "node_to_node_encryption")
 
 	result := {
 		"documentId": input.document[i].id,

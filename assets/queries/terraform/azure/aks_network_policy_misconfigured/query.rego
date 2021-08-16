@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
 	profile := cluster.network_profile
@@ -19,7 +21,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
 	profile := cluster.network_profile
-	object.get(profile, "network_policy", "undefined") == "undefined"
+	not common_lib.valid_key(profile, "network_policy")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -32,7 +34,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
-	object.get(cluster, "network_profile", "undefined") == "undefined"
+	not common_lib.valid_key(cluster, "network_profile")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,10 +1,10 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
-	object.get(awsElasticsearchDomain, "log_publishing_options", "undefined") == "undefined"
+	not common_lib.valid_key(awsElasticsearchDomain, "log_publishing_options")
 
 	result := {
 		"documentId": input.document[i].id,

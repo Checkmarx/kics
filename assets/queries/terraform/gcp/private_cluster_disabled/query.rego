@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
-	object.get(resource, "private_cluster_config", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "private_cluster_config")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'private_cluster_config' is defined",
-		"keyActualValue": "Attribute 'private_cluster_config' is undefined",
+		"keyExpectedValue": "Attribute 'private_cluster_config' is defined and not null",
+		"keyActualValue": "Attribute 'private_cluster_config' is undefined or null",
 	}
 }
 
@@ -44,8 +46,8 @@ CxPolicy[result] {
 }
 
 bothDefined(private_cluster_config) {
-	object.get(private_cluster_config, "enable_private_endpoint", "undefined") != "undefined"
-	object.get(private_cluster_config, "enable_private_nodes", "undefined") != "undefined"
+	common_lib.valid_key(private_cluster_config, "enable_private_endpoint")
+	common_lib.valid_key(private_cluster_config, "enable_private_nodes")
 }
 
 bothTrue(private_cluster_config) {

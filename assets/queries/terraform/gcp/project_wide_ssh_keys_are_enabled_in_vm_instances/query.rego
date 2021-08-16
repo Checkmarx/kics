@@ -1,10 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
 	metadata := compute.metadata
-	ssh_keys_enabled := object.get(metadata, "block-project-ssh-keys", "undefined")
-    ssh_keys_enabled != "undefined"
+	ssh_keys_enabled := metadata["block-project-ssh-keys"]
 	not isTrue(ssh_keys_enabled)
 
 	result := {
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
-	object.get(compute,"metadata","undefined") == "undefined"
+	not common_lib.valid_key(compute,"metadata")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -31,7 +32,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
-	object.get(compute.metadata,"block-project-ssh-keys","undefined") == "undefined"
+	not common_lib.valid_key(compute.metadata,"block-project-ssh-keys")
 
 	result := {
 		"documentId": input.document[i].id,

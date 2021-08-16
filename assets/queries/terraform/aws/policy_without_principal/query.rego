@@ -1,14 +1,15 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i].resource
 	[path, value] := walk(doc)
 
-	policy := commonLib.json_unmarshal(value.policy)
+	policy := common_lib.json_unmarshal(value.policy)
+	policyStatements := policy.Statement[idx]
 
-	object.get(policy.Statement[idx], "Principal", "undefined") == "undefined"
+	not common_lib.valid_key(policyStatements, "Principal")
 
 	not is_iam_identity_based_policy(path[0])
 

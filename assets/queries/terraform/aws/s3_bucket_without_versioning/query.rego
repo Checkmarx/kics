@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 #default of mfa_delete is false
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
-	object.get(bucket, "versioning", "undefined") == "undefined"
+	not common_lib.valid_key(bucket, "versioning")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +19,7 @@ CxPolicy[result] {
 #default of enabled is false
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]
-	object.get(bucket.versioning, "enabled", "not found") == "not found"
+	not common_lib.valid_key(bucket.versioning, "enabled")
 
 	result := {
 		"documentId": input.document[i].id,

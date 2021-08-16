@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_service_account[name]
 
 	resource.metadata.name == "default"
 
-	object.get(resource, "automount_service_account_token", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "automount_service_account_token")
 
 	result := {
 		"documentId": input.document[i].id,

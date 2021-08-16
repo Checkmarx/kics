@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_project_metadata[name].metadata
 	resource["enable-oslogin"] == false
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_project_metadata[name].metadata
-	object.get(resource, "enable-oslogin", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "enable-oslogin")
 
 	result := {
 		"documentId": input.document[i].id,

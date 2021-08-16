@@ -1,26 +1,28 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_node_pool[name]
-	object.get(resource, "management", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "management")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_container_node_pool[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "google_container_node_pool.management is defined",
-		"keyActualValue": "google_container_node_pool.management is undefined",
+		"keyExpectedValue": "google_container_node_pool.management is defined and not null",
+		"keyActualValue": "google_container_node_pool.management is undefined or null",
 	}
 }
 
 CxPolicy[result] {
 	management := input.document[i].resource.google_container_node_pool[name].management
-	object.get(management, "auto_upgrade", "undefined") == "undefined"
+	not common_lib.valid_key(management, "auto_upgrade")
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_container_node_pool[%s].management", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "management.auto_upgrade is defined",
-		"keyActualValue": "management.auto_upgrade is undefined",
+		"keyExpectedValue": "management.auto_upgrade is defined and not null",
+		"keyActualValue": "management.auto_upgrade is undefined or null",
 	}
 }
 

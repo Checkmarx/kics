@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	password_policy := input.document[i].resource.aws_neptune_cluster[name]
-	object.get(password_policy, "storage_encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(password_policy, "storage_encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

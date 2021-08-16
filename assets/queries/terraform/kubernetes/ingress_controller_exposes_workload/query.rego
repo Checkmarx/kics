@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_ingress[name]
     metadata := resource.metadata
     annotations := metadata.annotations
 
-	object.get(annotations, "kubernetes.io/ingress.class", "undefined") != "undefined"
+	common_lib.valid_key(annotations, "kubernetes.io/ingress.class")
 
 	spec := resource.spec
 

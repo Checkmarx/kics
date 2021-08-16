@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
-	object.get(resource, "enable_https_traffic_only", "not found") == "not found"
+	not common_lib.valid_key(resource, "enable_https_traffic_only")
 
 	result := {
 		"documentId": input.document[i].id,

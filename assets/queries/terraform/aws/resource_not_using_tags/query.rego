@@ -1,18 +1,19 @@
 package Cx
 
 import data.generic.terraform as terraform_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource[res][name]
 	terraform_lib.check_resource_tags(res)
-	object.get(resource, "tags", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "tags")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[{{%s}}]", [res, name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[{{%s}}].tags is defined", [res, name]),
-		"keyActualValue": sprintf("%s[{{%s}}].tags is missing", [res, name]),
+		"keyExpectedValue": sprintf("%s[{{%s}}].tags is defined and not null", [res, name]),
+		"keyActualValue": sprintf("%s[{{%s}}].tags is undefined or null", [res, name]),
 	}
 }
 
@@ -32,7 +33,7 @@ CxPolicy[result] {
 }
 
 remove_name_tag(tags) = res_tags {
-	object.get(tags, "Name", "undefined") == "undefined"
+	not common_lib.valid_key(tags, "Name")
 	res_tags := tags
 } else = res_tags {
 	res_tags := object.remove(tags, {"Name"})

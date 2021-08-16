@@ -1,17 +1,19 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
 
-	object.get(resource, "viewer_certificate", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "viewer_certificate")
 
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_cloudfront_distribution[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate is defined", [name]),
-		"keyActualValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate is not defined", [name]),
+		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate is undefined or null", [name]),
 	}
 }
 
@@ -37,21 +39,22 @@ CxPolicy[result] {
 	hasCustomConfig(resource.viewer_certificate)
 
 	attr := {"ssl_support_method", "minimum_protocol_version"}
-	object.get(resource.viewer_certificate, attr[a], "undefined") == "undefined"
+	attributes := attr[a]
+	not common_lib.valid_key(resource.viewer_certificate, attributes)
 
 	result := {
 		"documentId": document.id,
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' are defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
-		"keyActualValue": sprintf("Attribute '%s' is not defined", [attr[a]]),
+		"keyActualValue": sprintf("Attribute '%s' is not defined", [attributes]),
 	}
 }
 
 hasCustomConfig(viewer_certificate) {
-	object.get(viewer_certificate, "acm_certificate_arn", "undefined") != "undefined"
+	common_lib.valid_key(viewer_certificate, "acm_certificate_arn")
 }
 
 hasCustomConfig(viewer_certificate) {
-	object.get(viewer_certificate, "iam_certificate_id", "undefined") != "undefined"
+	common_lib.valid_key(viewer_certificate, "iam_certificate_id")
 }

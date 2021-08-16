@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_storage_bucket[name]
-	object.get(resource,"logging","undefined") == "undefined"
+	not common_lib.valid_key(resource,"logging")
 
 	result := {
 		"documentId": input.document[i].id,

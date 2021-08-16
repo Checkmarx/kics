@@ -4,7 +4,6 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_config_configuration_aggregator[name]
-
 	resource[type].all_regions != true
 
 	result := {
@@ -18,6 +17,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_config_configuration_aggregator[name]
+	options := {"account_aggregation_source", "organization_aggregation_source"}
+    type := options[o]
 	resourceElement := resource[type]
 
 	not common_lib.valid_key(resourceElement, "all_regions")

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	network_rules := input.document[i].resource.azurerm_storage_account[name].network_rules
 	some l
@@ -15,14 +17,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	network_rules := input.document[i].resource.azurerm_storage_account[name].network_rules
-	object.get(network_rules, "ip_rules", "undefined") == "undefined"
+	not common_lib.valid_key(network_rules, "ip_rules")
 	network_rules.default_action == "Allow"
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "network_rules.ip_rules is defined",
-		"keyActualValue": "network_rules.default_action is 'Allow' and ip_rules is undefined",
+		"keyExpectedValue": "network_rules.ip_rules is defined and not null",
+		"keyActualValue": "network_rules.default_action is 'Allow' and ip_rules is undefined or null",
 	}
 }
 
@@ -41,13 +43,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	rules := input.document[i].resource.azurerm_storage_account_network_rules[name]
-	object.get(rules, "ip_rules", "undefined") == "undefined"
+	not common_lib.valid_key(rules, "ip_rules")
 	rules.default_action == "Allow"
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "azurerm_storage_account_network_rules.ip_rules is defined",
-		"keyActualValue": "azurerm_storage_account_network_rules.default_action is 'Allow' and ip_rules is undefined",
+		"keyExpectedValue": "azurerm_storage_account_network_rules.ip_rules is defined and not null",
+		"keyActualValue": "azurerm_storage_account_network_rules.default_action is 'Allow' and ip_rules is undefined or null",
 	}
 }
