@@ -283,7 +283,6 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
 	defer cancel()
-
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
 
 	var cov *cover.Cover
@@ -338,6 +337,10 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
+		// filter for kics_lines false positives
+		if kicsLineFilter(queryResultItem) {
+			continue
+		}
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil {
 			sentry.CaptureException(err)
@@ -368,6 +371,20 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	}
 
 	return vulnerabilities, nil
+}
+
+func kicsLineFilter(queryResultItem interface{}) bool {
+	vObj, ok := queryResultItem.(map[string]interface{})
+	if !ok {
+		return false
+	}
+	if s, ok := vObj["searchKey"]; ok {
+		searchKey := s.(string)
+		if strings.Contains(searchKey, "_kics_lines") {
+			return true
+		}
+	}
+	return false
 }
 
 // contains is a simple method to check if a slice

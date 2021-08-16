@@ -153,8 +153,6 @@ func (e Extensions) Include(ext string) bool {
 	return b
 }
 
-type interfVis interface{}
-
 type LineObject struct {
 	Line int                     `json:"_kics_line"`
 	Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`
