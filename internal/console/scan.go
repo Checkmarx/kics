@@ -439,11 +439,11 @@ func scan(changedDefaultQueryPath bool) error {
 		log.Debug().Msgf("Trying to load queries from %s", getStrFlag(queriesPath))
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-		newQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(getStrFlag(queriesPath))
+		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(getStrFlag(queriesPath))
 		if errDefaultQueryPath != nil {
 			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
 		}
-		setStrFlag(queriesPath, newQueryPath)
+		setStrFlag(queriesPath, defaultQueryPath)
 	}
 
 	extractedPaths, err := provider.GetSources(getMultiStrFlag(pathFlag))
