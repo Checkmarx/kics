@@ -3,7 +3,7 @@
   "queryName": "App Service Authentication Disabled",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled",
+  "descriptionText": "Azure App Service authentication settings should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#enabled",
   "platform": "Terraform",
   "descriptionID": "ec37a064",
