@@ -185,22 +185,22 @@ func setupCfgFile() (bool, error) {
 			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
 			return true, nil
 		}
-		configpath := path[0]
-		info, err := os.Stat(configpath)
+		configPath := path[0]
+		info, err := os.Stat(configPath)
 		if err != nil {
 			return true, nil
 		}
 		if !info.IsDir() {
-			configpath = filepath.Dir(configpath)
+			configPath = filepath.Dir(configPath)
 		}
-		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return true, nil
 			}
 			return true, err
 		}
-		setStrFlag(configFlag, filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+		setStrFlag(configFlag, filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
 	}
 	return false, nil
 }
