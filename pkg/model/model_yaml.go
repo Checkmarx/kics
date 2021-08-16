@@ -2,12 +2,14 @@ package model
 
 import (
 	json "encoding/json"
+	"strconv"
 
+	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
 
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
-	dpc := unmarshal(value)
+	dpc := unmarshal(value).(map[string]interface{})
 	dpc["_kics_lines"] = getLines(value, 0)
 
 	tmp, _ := json.Marshal(dpc)
@@ -15,30 +17,31 @@ func (m *Document) UnmarshalYAML(value *yaml.Node) error {
 	return nil
 }
 
-func unmarshal(val *yaml.Node) map[string]interface{} {
+func unmarshal(val *yaml.Node) interface{} {
 	tmp := make(map[string]interface{})
 
 	if val.Kind == yaml.SequenceNode {
-		var contentArray []map[string]interface{}
+		contentArray := make([]interface{}, 0)
 		for _, contentEntry := range val.Content {
 			contentArray = append(contentArray, unmarshal(contentEntry))
 		}
-
 		tmp["playbooks"] = contentArray
+	} else if val.Kind == yaml.ScalarNode {
+		return transfromScalarNode(val) // Need to place bool
 	} else {
 		for i := 0; i < len(val.Content); i += 2 {
 			if val.Content[i].Kind == yaml.ScalarNode {
 				switch val.Content[i+1].Kind {
-				case yaml.ScalarNode:
-					tmp[val.Content[i].Value] = val.Content[i+1].Value
+				case yaml.ScalarNode: // Need to place bool
+					tmp[val.Content[i].Value] = transfromScalarNode(val.Content[i+1])
 
 				case yaml.MappingNode:
-					tt := unmarshal(val.Content[i+1])
+					tt := unmarshal(val.Content[i+1]).(map[string]interface{})
 					tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
 					tmp[val.Content[i].Value] = tt
 
 				case yaml.SequenceNode:
-					var contentArray []map[string]interface{}
+					contentArray := make([]interface{}, 0)
 					for _, contentEntry := range val.Content[i+1].Content {
 						contentArray = append(contentArray, unmarshal(contentEntry))
 					}
@@ -48,7 +51,6 @@ func unmarshal(val *yaml.Node) map[string]interface{} {
 			}
 		}
 	}
-
 	return tmp
 }
 
@@ -63,6 +65,27 @@ func getSeqLines(val *yaml.Node, def int) map[string]LineObject {
 		Arr:  lineArr,
 	}
 	return lineMap
+}
+
+func transfromScalarNode(val *yaml.Node) interface{} {
+	if val.Tag == "!!bool" {
+		switch val.Value {
+		case "true", "True":
+			return true
+		default:
+			return false
+		}
+	} else if val.Tag == "!!int" {
+		v, err := strconv.Atoi(val.Value)
+		if err != nil {
+			log.Error().Msgf("failed to convert integer in yaml parser")
+			return val.Value
+		}
+		return v
+	} else if val.Tag == "!!null" {
+		return nil
+	}
+	return val.Value
 }
 
 func getLines(val *yaml.Node, def int) map[string]LineObject {

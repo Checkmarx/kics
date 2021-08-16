@@ -6,9 +6,6 @@ subjects:
   - kind: ServiceAccount
     name: tiller
     namespace: kube-system
-  - kind: ServiceAccount2
-    name: tiller2
-    namespace: kube-system2
 roleRef:
   kind: ClusterRole
   name: cluster-admin
