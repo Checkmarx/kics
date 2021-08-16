@@ -45,7 +45,7 @@
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": "high,medium,low,info",
-    "usage": "which kind of results should return an exit code different from 0\naccetps: high, medium, low and info\nexample: \"high,low\""
+    "usage": "which kind of results should return an exit code different from 0\naccepts: high, medium, low and info\nexample: \"high,low\""
   },
   "ignore-on-exit": {
     "flagType": "str",
@@ -94,6 +94,12 @@
     "shorthandFlag": "p",
     "defaultValue": null,
     "usage": "paths or directories to scan\nexample: \"./somepath,somefile.txt\""
+  },
+  "library": {
+    "flagType": "str",
+    "shorthandFlag": "b",
+    "defaultValue": "./assets/libraries",
+    "usage": "path to directory with libraries"
   },
   "payload-path": {
     "flagType": "str",

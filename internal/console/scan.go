@@ -341,7 +341,7 @@ func createService(inspector *engine.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
-	querySource source.FilesystemSource) ([]*kics.Service, error) {
+	querySource *source.FilesystemSource) ([]*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
@@ -396,7 +396,7 @@ func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspecto
 		return &engine.Inspector{}, err
 	}
 
-	services, err := createService(inspector, params.extractedPaths, params.t, params.store, *params.querySource)
+	services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
 	if err != nil {
 		log.Err(err)
 		return &engine.Inspector{}, err
@@ -463,6 +463,7 @@ func scan(changedDefaultQueryPath bool) error {
 		getStrFlag(queriesPath),
 		getMultiStrFlag(typeFlag),
 		getMultiStrFlag(cloudProviderFlag),
+		getStrFlag(libraryPath),
 	)
 	store := storage.NewMemoryStorage()
 

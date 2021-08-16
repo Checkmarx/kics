@@ -245,3 +245,15 @@ valid_key(obj, key) {
 	_ = obj[key]
 	not is_null(obj[key])
 }
+
+unsecured_cors_rule(methods, headers, origins) {
+	# allows all methods
+	availableMethods := {"GET", "PUT", "POST", "DELETE", "HEAD"}
+	count({x | method := methods[x]; method == availableMethods[_]}) == count(availableMethods)
+} else {
+	# allows all headers
+	contains(headers[_], "*")
+} else {
+	# allows several origins
+	contains(origins[_], "*")
+}

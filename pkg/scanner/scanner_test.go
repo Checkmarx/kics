@@ -23,6 +23,10 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 )
 
+var (
+	sourcePath = filepath.FromSlash("../../assets/queries")
+)
+
 func TestScanner_StartScan(t *testing.T) {
 	type args struct {
 		scanID     string
@@ -68,7 +72,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(filepath.FromSlash("../../assets/queries"), types, cloudProviders)
+	querySource := source.NewFilesystemSource(sourcePath, types, cloudProviders, filepath.FromSlash("../../assets/libraries"))
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,

@@ -42,6 +42,7 @@ const (
 	payloadPathFlag       = "payload-path"
 	previewLinesFlag      = "preview-lines"
 	queriesPath           = "queries-path"
+	libraryPath           = "library"
 	reportFormatsFlag     = "report-formats"
 	typeFlag              = "type"
 	queryExecTimeoutFlag  = "timeout"

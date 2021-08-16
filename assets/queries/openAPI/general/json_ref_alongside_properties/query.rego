@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	object.get(value, "$ref", "undefined") != "undefined"
+	common_lib.valid_key(value, "$ref")
 	count(value) > 1
 
 	result := {

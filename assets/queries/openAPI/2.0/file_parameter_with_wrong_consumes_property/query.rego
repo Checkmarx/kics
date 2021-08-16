@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -24,5 +25,5 @@ check_consumes(obj) {
 	obj.consumes[_] != "multipart/form-data"
 	obj.consumes[_] != "application/x-www-form-urlencoded"
 } else {
-	object.get(obj, "consumes", "undefined") == "undefined"
+	not common_lib.valid_key(obj, "consumes")
 }

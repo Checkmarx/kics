@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 # policy for examples
 CxPolicy[result] {
@@ -108,7 +109,7 @@ compare_prop(ex_obj, prop) = items {
 
 # check_prop() - checks if all object properties are present in the example and if they have the correct type
 check_prop(prop, ex_obj, name) {
-	object.get(ex_obj, name, "undefined") != "undefined"
+	common_lib.valid_key(ex_obj, name)
 	check_type(prop.type, type_name(ex_obj[name]))
 }
 
@@ -127,7 +128,7 @@ check_number_type(type) {
 
 # get_ref() - returns the object based on the type (schema, examples). If the object is a ref gets the object from the ref
 get_ref(obj, docs, type, version) = example {
-	object.get(obj, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(obj, "$ref")
 	example := obj
 } else = example {
 	version == "3.0"
