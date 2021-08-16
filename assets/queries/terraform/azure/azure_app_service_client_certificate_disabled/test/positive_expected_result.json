@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive2.tf"
+  }
+]
