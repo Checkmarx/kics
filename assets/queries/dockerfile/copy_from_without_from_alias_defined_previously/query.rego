@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.Flags[x] != "--from=0"
 	aux_split := split(resource.Flags[x], "=")
 
-	not isPreviousAlias(resource.StartLine, aux_split[1])
+	not isPreviousAlias(resource._kics_line, aux_split[1])
 
 	result := {
 		"documentId": input.document[i].id,

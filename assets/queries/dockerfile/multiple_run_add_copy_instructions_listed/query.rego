@@ -7,7 +7,7 @@ CxPolicy[result] {
 	cmdInst := [x | resource[j].Cmd == instructions[y]; x := resource[j]]
 
 	some n, m
-	lineCounter := [x | cmdInst[n].StartLine - cmdInst[m].StartLine == -1; x := cmdInst[n]]
+	lineCounter := [x | cmdInst[n]._kics_line - cmdInst[m]._kics_line == -1; x := cmdInst[n]]
 
 	upperName := upper(instructions[y])
 	countCmdInst := count(lineCounter)
