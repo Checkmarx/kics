@@ -16,8 +16,8 @@ ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 
 #Copy go mod and sum files
-COPY --chown=Checkmarx:0 go.mod .
-COPY --chown=Checkmarx:0 go.sum .
+COPY --chown=Checkmarx:Checkmarx go.mod .
+COPY --chown=Checkmarx:Checkmarx go.sum .
 # Get dependancies - will also be cached if we won't change mod/sum
 RUN go mod download -x
 # COPY the source code as the last step
@@ -37,14 +37,15 @@ FROM alpine:3.14.1
 ARG UID=1000
 ARG GID=1000
 
-RUN addgroup -S -g ${GID} Checkmarx && adduser -S -D -u ${UID} Checkmarx -G Checkmarx
 
 # Install Git
 RUN apk add --no-cache \
-    git=2.32.0-r0
+    git=2.32.0-r0 && \
+    addgroup -S -g ${GID} Checkmarx && \
+    adduser -S -D -u ${UID} Checkmarx -G Checkmarx 
 
-COPY --from=build_env --chown=Checkmarx:0 /app/bin/kics /app/bin/kics
-COPY --from=build_env --chown=Checkmarx:0 /app/assets/ /app/bin/assets/                                               
+COPY --from=build_env --chown=Checkmarx:Checkmarx /app/bin/kics /app/bin/kics
+COPY --from=build_env --chown=Checkmarx:Checkmarx /app/assets/ /app/bin/assets/                                               
 
 USER ${UID}
 
