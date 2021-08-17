@@ -45,10 +45,7 @@ RUN apk add --no-cache \
     addgroup -S -g ${GID} Checkmarx && \
     adduser -S -D -u ${UID} Checkmarx -G Checkmarx && \
     chown -R Checkmarx:0 /app/bin/ && \
-    chmod -R g=u /app/bin/ && \
-    mkdir -p /app/bin/assets/queries/path && \
-    chown -R Checkmarx:0 /app/bin/assets/queries/path && \
-    chmod -R g=u /app/bin/assets/queries/path
+    chmod -R g=u /app/bin/
                                          
 USER ${UID}
 
