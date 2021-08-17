@@ -36,18 +36,20 @@ FROM alpine:3.14.1
 ARG UID=1000
 ARG GID=1000
 
+COPY --from=build_env /app/bin/kics /app/bin/kics
+COPY --from=build_env /app/assets/ /app/bin/assets/  
+
 # Install Git
 RUN apk add --no-cache \
     git=2.32.0-r0 && \
     addgroup -S -g ${GID} Checkmarx && \
     adduser -S -D -u ${UID} Checkmarx -G Checkmarx && \
+    chown -R Checkmarx:0 /app/bin/ && \
+    chmod -R g=u/app/bin/ && \
     mkdir -p /path && \
-    chown -R Checkmarx:Checkmarx /path && \
+    chown -R Checkmarx:0 /path && \
     chmod -R g=u /path
-
-COPY --from=build_env --chown=Checkmarx:Checkmarx /app/bin/kics /app/bin/kics
-COPY --from=build_env --chown=Checkmarx:Checkmarx /app/assets/ /app/bin/assets/                                               
-
+                                         
 USER ${UID}
 
 WORKDIR /app/bin
