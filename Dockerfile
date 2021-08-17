@@ -1,4 +1,3 @@
-
 FROM golang:1.16-alpine as build_env
 # Create a group and user
 ARG UID=1000
