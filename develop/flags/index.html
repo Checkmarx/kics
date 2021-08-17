@@ -937,6 +937,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hidden_and_deprecated_flags" class="md-nav__link">
+    Hidden and Deprecated Flags
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#flag_types" class="md-nav__link">
     Flag types
   </a>
@@ -1008,6 +1015,31 @@
         &quot;defaultValue&quot;: &quot;&quot;,
         &quot;usage&quot;: &quot;case insensitive list of platform types to scan\n(${supportedPlatforms})&quot;
     }
+}
+</code></pre>
+<h2 id="hidden_and_deprecated_flags">Hidden and Deprecated Flags<a class="headerlink" href="#hidden_and_deprecated_flags" title="Permanent link">&para;</a></h2>
+<p>To mark a flag as hidden use the following configuration:</p>
+<pre><code class="language-json">{
+  &quot;disable-cis-descriptions&quot;: {
+    &quot;flagType&quot;: &quot;bool&quot;,
+    &quot;shorthandFlag&quot;: &quot;&quot;,
+    &quot;defaultValue&quot;: &quot;false&quot;,
+    &quot;usage&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;,
+    &quot;hidden&quot;: true
+  }
+}
+</code></pre>
+<p>If you also want to display a flag deprecation warning you can define it like this:</p>
+<pre><code class="language-json">{
+  &quot;disable-cis-descriptions&quot;: {
+    &quot;flagType&quot;: &quot;bool&quot;,
+    &quot;shorthandFlag&quot;: &quot;&quot;,
+    &quot;defaultValue&quot;: &quot;false&quot;,
+    &quot;usage&quot;: &quot;disable request for full descriptions and use default vulnerability descriptions&quot;,
+    &quot;hidden&quot;: true,
+    &quot;deprecated&quot;: true,
+    &quot;deprecatedInfo&quot;: &quot;use --disable-full-descriptions instead&quot;
+  }
 }
 </code></pre>
 <h2 id="flag_types">Flag types<a class="headerlink" href="#flag_types" title="Permanent link">&para;</a></h2>
