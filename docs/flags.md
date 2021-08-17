@@ -37,6 +37,36 @@ Example of a valid `flags.json` file:
 }
 ```
 
+## Hidden and Deprecated Flags
+To mark a flag as hidden use the following configuration:
+```json
+{
+  "disable-cis-descriptions": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "hidden": true
+  }
+}
+```
+
+If you also want to display a flag deprecation warning you can define it like this:
+
+```json
+{
+  "disable-cis-descriptions": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "hidden": true,
+    "deprecated": true,
+    "deprecatedInfo": "use --disable-full-descriptions instead"
+  }
+}
+```
+
 ## Flag types
 As described above you should describe which type is the flag, currently there is 4 flags types:
 - str: Represents a string type;
