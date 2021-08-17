@@ -74,7 +74,7 @@ KICS is able to infer the format without the need of file extension.
   "timeout": "number of seconds the query has to execute before being canceled",
   "verbose": true,
   "profiling": "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)",
-  "disable-cis-descriptions": "disable request for CIS descriptions and use default vulnerability descriptions"
+  "disable-full-descriptions": "disable request for full descriptions and use default vulnerability descriptions"
 }
 ```
 
@@ -103,7 +103,7 @@ silent: false
 type: "type of queries to use in the scan"
 timeout: "number of seconds the query has to execute before being canceled"
 verbose: true
-disable-cis-descriptions: "disable request for CIS descriptions and use default vulnerability descriptions"
+disable-full-descriptions: "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
 #### TOML Format
@@ -131,7 +131,7 @@ silent = false
 type = "type of queries to use in the scan"
 timeout = "number of seconds the query has to execute before being canceled"
 verbose = true
-disable-cis-descriptions = "disable request for CIS descriptions and use default vulnerability descriptions"
+disable-full-descriptions = "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
 #### HCL Format
@@ -159,7 +159,7 @@ disable-cis-descriptions = "disable request for CIS descriptions and use default
 "type" = "type of queries to use in the scan"
 "timeout" = "number of seconds the query has to execute before being canceled"
 "verbose" = true
-"disable-cis-descriptions" = "disable request for CIS descriptions and use default vulnerability descriptions"
+"disable-full-descriptions" = "disable request for full descriptions and use default vulnerability descriptions"
 ```
 
 ---

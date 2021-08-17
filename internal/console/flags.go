@@ -26,6 +26,7 @@ const (
 	cloudProviderFlag     = "cloud-provider"
 	configFlag            = "config"
 	disableCISDescFlag    = "disable-cis-descriptions"
+	disableFullDescFlag   = "disable-full-descriptions"
 	excludeCategoriesFlag = "exclude-categories"
 	excludePathsFlag      = "exclude-paths"
 	excludeQueriesFlag    = "exclude-queries"
@@ -48,11 +49,14 @@ const (
 	queryExecTimeoutFlag  = "timeout"
 )
 
-type flagsJSON struct {
-	FlagType      string
-	ShorthandFlag string
-	DefaultValue  *string
-	Usage         string
+type flagJSON struct {
+	FlagType       string
+	ShorthandFlag  string
+	DefaultValue   *string
+	Usage          string
+	Hidden         bool
+	Deprecated     bool
+	DeprecatedInfo string
 }
 
 func getStrFlag(flagName string) string {
@@ -117,13 +121,31 @@ func evalUsage(usage string) string {
 	return usage
 }
 
+func checkHiddenAndDeprecated(scanCmd *cobra.Command, flagName string, flagProps flagJSON) error { //nolint:gocritic
+	if flagProps.Hidden {
+		err := scanCmd.Flags().MarkHidden(flagName)
+		if err != nil {
+			log.Err(err).Msg("Loading flags: could not mark flag as hidden")
+			return err
+		}
+	}
+	if flagProps.Deprecated {
+		err := scanCmd.Flags().MarkDeprecated(flagName, flagProps.DeprecatedInfo)
+		if err != nil {
+			log.Err(err).Msg("Loading flags: could not mark flag as deprecated")
+			return err
+		}
+	}
+	return nil
+}
+
 func initJSONFlags(scanCmd *cobra.Command) error {
 	flagsMultiStrReferences = make(map[string]*[]string)
 	flagsStrReferences = make(map[string]*string)
 	flagsBoolReferences = make(map[string]*bool)
 	flagsIntReferences = make(map[string]*int)
 
-	var flagsList map[string]flagsJSON
+	var flagsList map[string]flagJSON
 	err := json.Unmarshal([]byte(flagsListContent), &flagsList)
 	if err != nil {
 		log.Err(err).Msg("Loading flags: could not unmarshal flags")
@@ -164,6 +186,13 @@ func initJSONFlags(scanCmd *cobra.Command) error {
 				return err
 			}
 			scanCmd.Flags().IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)
+		default:
+			log.Error().Msgf("Flag %s has unknown type %s", flagName, flagProps.FlagType)
+		}
+
+		err := checkHiddenAndDeprecated(scanCmd, flagName, flagProps)
+		if err != nil {
+			return err
 		}
 	}
 	return nil
