@@ -42,7 +42,7 @@ RUN apk add --no-cache \
     addgroup -S -g ${GID} Checkmarx && \
     adduser -S -D -u ${UID} Checkmarx -G Checkmarx && \
     mkdir /path && \
-    chown Checkmarx:Checkmarx /path
+    chown -R Checkmarx:Checkmarx /path
 
 COPY --from=build_env --chown=Checkmarx:Checkmarx /app/bin/kics /app/bin/kics
 COPY --from=build_env --chown=Checkmarx:Checkmarx /app/assets/ /app/bin/assets/                                               
