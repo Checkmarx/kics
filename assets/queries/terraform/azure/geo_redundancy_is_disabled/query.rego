@@ -17,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
-	common_lib.valid_key(resource, "geo_redundant_backup_enabled")
+	resource.geo_redundant_backup_enabled == false
 
 	not resource.geo_redundant_backup_enabled
 

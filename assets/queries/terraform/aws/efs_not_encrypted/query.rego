@@ -4,9 +4,9 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	efs := input.document[i].resource.aws_efs_file_system[name]
-    common_lib.valid_key(efs,"encrypted")
+	efs.encrypted == false
 
-    not efs.encrypted
+	not efs.encrypted
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,7 +19,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	efs := input.document[i].resource.aws_efs_file_system[name]
-    not common_lib.valid_key(efs,"encrypted")
+	not common_lib.valid_key(efs, "encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

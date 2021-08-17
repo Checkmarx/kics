@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 
-	common_lib.valid_key(resource, "storage_encrypted")
+	resource.storage_encrypted == false
 	not resource.storage_encrypted
 
 	not common_lib.valid_key(resource, "kms_key_id")

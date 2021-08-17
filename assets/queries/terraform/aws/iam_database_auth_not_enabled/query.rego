@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
-	common_lib.valid_key(resource, "iam_database_authentication_enabled")
+	resource.iam_database_authentication_enabled == false
 	not resource.iam_database_authentication_enabled
 
 	result := {

@@ -1,11 +1,9 @@
 package Cx
 
-import data.generic.common as common_lib
-
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_security_center_contact[name]
 
-	common_lib.valid_key(resource, "alert_notifications")
+	resource.alert_notifications == false
 	not resource.alert_notifications
 
 	result := {

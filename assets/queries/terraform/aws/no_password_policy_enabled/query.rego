@@ -1,13 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
-
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_login_profile[name]
 
-	common_lib.valid_key(resource,"password_reset_required")
+	resource.password_reset_required == false
 
-    not resource.password_reset_required
+	not resource.password_reset_required
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +15,6 @@ CxPolicy[result] {
 		"keyActualValue": "Attribute 'password_reset_required' is false",
 	}
 }
-
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_login_profile[name]

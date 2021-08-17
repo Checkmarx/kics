@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'aws_elasticsearch_domain' has log_publishing_options defined",
-		"keyActualValue": "'log_publishing_options.enabled' has not log_publishing_options defined",
+		"keyExpectedValue": "'aws_elasticsearch_domain' has log_publishing_options defined and not null",
+		"keyActualValue": "'log_publishing_options.enabled' has not log_publishing_options undefined or null",
 	}
 }
 

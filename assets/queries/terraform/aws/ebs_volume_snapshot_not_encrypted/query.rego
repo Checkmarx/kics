@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ebs_snapshot[name]
-	common_lib.valid_key(resource,"encrypted")
+	resource.encrypted == false
 	not resource.encrypted
 
 	result := {
@@ -18,7 +18,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ebs_snapshot[name]
-	not common_lib.valid_key(resource,"encrypted")
+	not common_lib.valid_key(resource, "encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

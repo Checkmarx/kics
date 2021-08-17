@@ -4,8 +4,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dax_cluster[name]
-	common_lib.valid_key(resource, "server_side_encryption")
-	common_lib.valid_key(resource.server_side_encryption, "enabled")
+	resource.server_side_encryption.enabled == false
 	not resource.server_side_encryption.enabled
 
 	result := {
