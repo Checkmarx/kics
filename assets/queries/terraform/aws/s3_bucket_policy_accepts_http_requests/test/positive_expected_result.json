@@ -7,7 +7,7 @@
   },
   {
     "queryName": "S3 Bucket Policy Accepts HTTP Requests",
-    "severity": "",
+    "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive2.tf"
   }
