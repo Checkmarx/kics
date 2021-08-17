@@ -1,0 +1,11 @@
+{
+  "id": "bd0088a5-c133-4b20-b129-ec9968b16ef3",
+  "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "CloudTrail Log Files S3 Bucket should not be publicly accessible",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#s3_bucket_name",
+  "platform": "Terraform",
+  "descriptionID": "2f7c6ca4",
+  "cloudProvider": "aws"
+}
