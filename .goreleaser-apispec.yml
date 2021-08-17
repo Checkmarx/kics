@@ -39,8 +39,8 @@ archives:
       - assets/queries/openAPI/**/*.rego
       - assets/queries/common/**/metadata.json
       - assets/queries/common/**/*.rego
-      - assets/libraries/openapi
-      - assets/libraries/common
+      - assets/libraries/openapi.rego
+      - assets/libraries/common.rego
 release:
   prerelease: true
 snapshot:
