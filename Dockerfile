@@ -56,6 +56,7 @@ WORKDIR /app/bin
 # Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 ENV PATH $PATH:/app/bin
+ENV PWD=/app/bin/assets/queries
 # Command to run the executable
 
 ENTRYPOINT ["/app/bin/kics"]
