@@ -1,7 +1,7 @@
 [
   {
     "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
-    "severity": "",
+    "severity": "HIGH",
     "line": 12
   }
 ]
