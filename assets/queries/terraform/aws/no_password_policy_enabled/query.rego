@@ -5,8 +5,6 @@ CxPolicy[result] {
 
 	resource.password_reset_required == false
 
-	not resource.password_reset_required
-
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_reset_required", [name]),

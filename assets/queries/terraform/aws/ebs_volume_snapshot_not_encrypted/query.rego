@@ -5,7 +5,6 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ebs_snapshot[name]
 	resource.encrypted == false
-	not resource.encrypted
 
 	result := {
 		"documentId": input.document[i].id,

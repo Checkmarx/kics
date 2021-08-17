@@ -5,7 +5,6 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 	resource.iam_database_authentication_enabled == false
-	not resource.iam_database_authentication_enabled
 
 	result := {
 		"documentId": input.document[i].id,

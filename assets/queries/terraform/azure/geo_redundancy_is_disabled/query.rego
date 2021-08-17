@@ -19,8 +19,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
 	resource.geo_redundant_backup_enabled == false
 
-	not resource.geo_redundant_backup_enabled
-
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("azurerm_postgresql_server[%s].geo_redundant_backup_enabled", [var0]),

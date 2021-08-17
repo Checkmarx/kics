@@ -5,7 +5,6 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_launch_configuration[name]
 	resource[block].encrypted == false
-	not resource[block].encrypted
 
 	not contains(block, "ephemeral")
 	contains(block, "block_device")

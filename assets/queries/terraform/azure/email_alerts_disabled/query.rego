@@ -4,7 +4,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_security_center_contact[name]
 
 	resource.alert_notifications == false
-	not resource.alert_notifications
 
 	result := {
 		"documentId": input.document[i].id,

@@ -3,7 +3,6 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 	resource.auto_minor_version_upgrade == false
-	not resource.auto_minor_version_upgrade
 
 	result := {
 		"documentId": input.document[i].id,

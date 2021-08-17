@@ -6,7 +6,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 
 	resource.storage_encrypted == false
-	not resource.storage_encrypted
 
 	not common_lib.valid_key(resource, "kms_key_id")
 

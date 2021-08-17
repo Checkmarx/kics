@@ -6,8 +6,6 @@ CxPolicy[result] {
 	efs := input.document[i].resource.aws_efs_file_system[name]
 	efs.encrypted == false
 
-	not efs.encrypted
-
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_efs_file_system[%s].encrypted", [name]),
