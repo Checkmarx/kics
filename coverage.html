@@ -55,7 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/Checkmarx/kics/internal/console/flags.go (75.0%)</option>
+				<option value="file0">github.com/Checkmarx/kics/internal/console/flags.go (72.2%)</option>
 				
 				<option value="file1">github.com/Checkmarx/kics/internal/console/generate_id.go (80.0%)</option>
 				
@@ -236,6 +236,7 @@ const (
         cloudProviderFlag     = "cloud-provider"
         configFlag            = "config"
         disableCISDescFlag    = "disable-cis-descriptions"
+        disableFullDescFlag   = "disable-full-descriptions"
         excludeCategoriesFlag = "exclude-categories"
         excludePathsFlag      = "exclude-paths"
         excludeQueriesFlag    = "exclude-queries"
@@ -258,11 +259,14 @@ const (
         queryExecTimeoutFlag  = "timeout"
 )
 
-type flagsJSON struct {
-        FlagType      string
-        ShorthandFlag string
-        DefaultValue  *string
-        Usage         string
+type flagJSON struct {
+        FlagType       string
+        ShorthandFlag  string
+        DefaultValue   *string
+        Usage          string
+        Hidden         bool
+        Deprecated     bool
+        DeprecatedInfo string
 }
 
 func getStrFlag(flagName string) string <span class="cov8" title="99">{
@@ -281,8 +285,8 @@ func getMultiStrFlag(flagName string) []string <span class="cov8" title="113">{
         return []string{}</span>
 }
 
-func getBoolFlag(flagName string) bool <span class="cov5" title="21">{
-        if value, ok := flagsBoolReferences[flagName]; ok </span><span class="cov5" title="21">{
+func getBoolFlag(flagName string) bool <span class="cov6" title="28">{
+        if value, ok := flagsBoolReferences[flagName]; ok </span><span class="cov6" title="28">{
                 return *value
         }</span>
         <span class="cov0" title="0">log.Debug().Msgf("Could not find boolean flag %s", flagName)
@@ -313,7 +317,7 @@ func setMultiStrFlag(flagName string, value []string) <span class="cov5" title="
         }</span>
 }
 
-func evalUsage(usage string) string <span class="cov10" title="276">{
+func evalUsage(usage string) string <span class="cov10" title="288">{
         variables := map[string]string{
                 "sliceInstructions":  "can be provided multiple times or as a comma separated string",
                 "supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
@@ -324,7 +328,25 @@ func evalUsage(usage string) string <span class="cov10" title="276">{
         for i := range match </span><span class="cov7" title="72">{
                 usage = strings.ReplaceAll(usage, "${"+match[i][1]+"}", variables[match[i][1]])
         }</span>
-        <span class="cov10" title="276">return usage</span>
+        <span class="cov10" title="288">return usage</span>
+}
+
+func checkHiddenAndDeprecated(scanCmd *cobra.Command, flagName string, flagProps flagJSON) error <span class="cov10" title="288">{ //nolint:gocritic
+        if flagProps.Hidden </span><span class="cov4" title="12">{
+                err := scanCmd.Flags().MarkHidden(flagName)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msg("Loading flags: could not mark flag as hidden")
+                        return err
+                }</span>
+        }
+        <span class="cov10" title="288">if flagProps.Deprecated </span><span class="cov4" title="12">{
+                err := scanCmd.Flags().MarkDeprecated(flagName, flagProps.DeprecatedInfo)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Err(err).Msg("Loading flags: could not mark flag as deprecated")
+                        return err
+                }</span>
+        }
+        <span class="cov10" title="288">return nil</span>
 }
 
 func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
@@ -333,14 +355,14 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
         flagsBoolReferences = make(map[string]*bool)
         flagsIntReferences = make(map[string]*int)
 
-        var flagsList map[string]flagsJSON
+        var flagsList map[string]flagJSON
         err := json.Unmarshal([]byte(flagsListContent), &amp;flagsList)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("Loading flags: could not unmarshal flags")
                 return err
         }</span>
 
-        <span class="cov4" title="12">for flagName, flagProps := range flagsList </span><span class="cov10" title="276">{
+        <span class="cov4" title="12">for flagName, flagProps := range flagsList </span><span class="cov10" title="288">{
                 flagProps.Usage = evalUsage(flagProps.Usage)
 
                 switch flagProps.FlagType </span>{
@@ -356,7 +378,7 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
                         var flag string
                         flagsStrReferences[flagName] = &amp;flag
                         scanCmd.Flags().StringVarP(flagsStrReferences[flagName], flagName, flagProps.ShorthandFlag, *flagProps.DefaultValue, flagProps.Usage)</span>
-                case "bool":<span class="cov6" title="36">
+                case "bool":<span class="cov7" title="48">
                         var flag bool
                         flagsBoolReferences[flagName] = &amp;flag
                         defaultValue, err := strconv.ParseBool(*flagProps.DefaultValue)
@@ -364,7 +386,7 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
                                 log.Err(err).Msg("Loading flags: could not convert default values")
                                 return err
                         }</span>
-                        <span class="cov6" title="36">scanCmd.Flags().BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
+                        <span class="cov7" title="48">scanCmd.Flags().BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
                 case "int":<span class="cov6" title="24">
                         var flag int
                         flagsIntReferences[flagName] = &amp;flag
@@ -374,7 +396,14 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
                                 return err
                         }</span>
                         <span class="cov6" title="24">scanCmd.Flags().IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
+                default:<span class="cov0" title="0">
+                        log.Error().Msgf("Flag %s has unknown type %s", flagName, flagProps.FlagType)</span>
                 }
+
+                <span class="cov10" title="288">err := checkHiddenAndDeprecated(scanCmd, flagName, flagProps)
+                if err != nil </span><span class="cov0" title="0">{
+                        return err
+                }</span>
         }
         <span class="cov4" title="12">return nil</span>
 }
@@ -1474,22 +1503,22 @@ func setupCfgFile() (bool, error) <span class="cov4" title="8">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="10">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="330">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="340">{
                 settingsMap[f.Name] = true
-                if strings.Contains(f.Name, "-") </span><span class="cov9" title="230">{
+                if strings.Contains(f.Name, "-") </span><span class="cov9" title="240">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
                         variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
                         if err := v.BindEnv(f.Name, variableName); err != nil </span><span class="cov0" title="0">{
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="330">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov10" title="340">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="321">{
-                if val == true </span><span class="cov9" title="320">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="333">{
+                if val == true </span><span class="cov9" title="332">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1805,7 +1834,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
         }
         summary.ScannedPaths = pathParameters.ScannedPaths
 
-        if getBoolFlag(disableCISDescFlag) </span><span class="cov0" title="0">{
+        if getBoolFlag(disableCISDescFlag) || getBoolFlag(disableFullDescFlag) </span><span class="cov0" title="0">{
                 log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
         }</span> else<span class="cov4" title="7"> {
                 err := descriptions.RequestAndOverrideDescriptions(&amp;summary)
@@ -2251,7 +2280,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4254,7 +4283,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5375,7 +5404,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) string <span class="cov5
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="34">{
+                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="42">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
