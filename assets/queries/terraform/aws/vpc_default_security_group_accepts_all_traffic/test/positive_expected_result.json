@@ -1,7 +1,7 @@
 [
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
-    "severity": "",
+    "severity": "HIGH",
     "line": 5
   }
 ]
