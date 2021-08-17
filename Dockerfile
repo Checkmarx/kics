@@ -41,7 +41,7 @@ RUN apk add --no-cache \
     git=2.32.0-r0 && \
     addgroup -S -g ${GID} Checkmarx && \
     adduser -S -D -u ${UID} Checkmarx -G Checkmarx && \
-    mkdir /path && \
+    mkdir -p /path && \
     chown -R Checkmarx:Checkmarx /path && \
     chmod -R g=u /path
 
