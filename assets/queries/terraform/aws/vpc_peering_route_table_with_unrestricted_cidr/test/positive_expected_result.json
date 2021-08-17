@@ -7,7 +7,7 @@
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
-    "severity": "",
+    "severity": "HIGH",
     "line": 26,
     "fileName": "positive1.tf"
   }
