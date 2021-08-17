@@ -539,7 +539,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 	}
 	summary.ScannedPaths = pathParameters.ScannedPaths
 
-	if getBoolFlag(disableCISDescFlag) {
+	if getBoolFlag(disableCISDescFlag) || getBoolFlag(disableFullDescFlag) {
 		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
 	} else {
 		err := descriptions.RequestAndOverrideDescriptions(&summary)
