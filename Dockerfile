@@ -27,8 +27,8 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go && \
-    chown -R Checkmarx:0 /app/bin/ && \
-    chmod -R g=u /app/bin/
+    chown -R Checkmarx:0 /app && \
+    chmod -R g=u /app
 USER ${UID}
 #Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
@@ -46,8 +46,8 @@ RUN apk add --no-cache \
     git=2.32.0-r0 && \
     addgroup -S -g ${GID} Checkmarx && \
     adduser -S -D -u ${UID} Checkmarx -G Checkmarx && \
-    chown -R Checkmarx:0 /app/bin/ && \
-    chmod -R g=u /app/bin/
+    chown -R Checkmarx:0 /app/bin && \
+    chmod -R g=u /app/bin
                                          
 USER ${UID}
 
