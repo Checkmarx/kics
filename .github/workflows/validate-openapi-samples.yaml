@@ -14,7 +14,7 @@ jobs:
         with:
           persist-credentials: false
       - name: yaml-lint
-        uses: ibiqlik/action-yamllint@v3.0.2
+        uses: ibiqlik/action-yamllint@v3.0.3
         with:
           file_or_dir: assets/queries/openAPI/
           config_file: .github/scripts/samples-linters/yamllint.yml
