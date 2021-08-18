@@ -251,7 +251,7 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 }
 
 func initScanCmd(scanCmd *cobra.Command) error {
-	if err := initJSONFlags(scanCmd); err != nil {
+	if err := initJSONFlags(scanCmd, false); err != nil {
 		return err
 	}
 

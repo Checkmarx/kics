@@ -139,7 +139,7 @@ func checkHiddenAndDeprecated(scanCmd *cobra.Command, flagName string, flagProps
 	return nil
 }
 
-func initJSONFlags(scanCmd *cobra.Command) error {
+func initJSONFlags(cmd *cobra.Command, persistentFlag bool) error {
 	flagsMultiStrReferences = make(map[string]*[]string)
 	flagsStrReferences = make(map[string]*string)
 	flagsBoolReferences = make(map[string]*bool)
@@ -150,6 +150,11 @@ func initJSONFlags(scanCmd *cobra.Command) error {
 	if err != nil {
 		log.Err(err).Msg("Loading flags: could not unmarshal flags")
 		return err
+	}
+
+	flagSet := cmd.Flags()
+	if persistentFlag {
+		flagSet = cmd.PersistentFlags()
 	}
 
 	for flagName, flagProps := range flagsList {
@@ -163,11 +168,11 @@ func initJSONFlags(scanCmd *cobra.Command) error {
 			if flagProps.DefaultValue != nil {
 				defaultValues = strings.Split(*flagProps.DefaultValue, ",")
 			}
-			scanCmd.Flags().StringSliceVarP(flagsMultiStrReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValues, flagProps.Usage)
+			flagSet.StringSliceVarP(flagsMultiStrReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValues, flagProps.Usage)
 		case "str":
 			var flag string
 			flagsStrReferences[flagName] = &flag
-			scanCmd.Flags().StringVarP(flagsStrReferences[flagName], flagName, flagProps.ShorthandFlag, *flagProps.DefaultValue, flagProps.Usage)
+			flagSet.StringVarP(flagsStrReferences[flagName], flagName, flagProps.ShorthandFlag, *flagProps.DefaultValue, flagProps.Usage)
 		case "bool":
 			var flag bool
 			flagsBoolReferences[flagName] = &flag
@@ -176,7 +181,7 @@ func initJSONFlags(scanCmd *cobra.Command) error {
 				log.Err(err).Msg("Loading flags: could not convert default values")
 				return err
 			}
-			scanCmd.Flags().BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)
+			flagSet.BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)
 		case "int":
 			var flag int
 			flagsIntReferences[flagName] = &flag
@@ -185,12 +190,12 @@ func initJSONFlags(scanCmd *cobra.Command) error {
 				log.Err(err).Msg("Loading flags: could not convert default values")
 				return err
 			}
-			scanCmd.Flags().IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)
+			flagSet.IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)
 		default:
 			log.Error().Msgf("Flag %s has unknown type %s", flagName, flagProps.FlagType)
 		}
 
-		err := checkHiddenAndDeprecated(scanCmd, flagName, flagProps)
+		err := checkHiddenAndDeprecated(cmd, flagName, flagProps)
 		if err != nil {
 			return err
 		}
