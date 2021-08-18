@@ -83,7 +83,7 @@ func getPlatforms(queries model.VulnerableQuerySlice) string {
 }
 
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
-func ExportJSONReport(path, filename string, body interface{}, fullJSON bool) error {
+func ExportJSONReport(path, filename string, body interface{}) error {
 	if !strings.Contains(filename, ".") {
 		filename += jsonExtension
 	}
@@ -96,55 +96,10 @@ func ExportJSONReport(path, filename string, body interface{}, fullJSON bool) er
 
 	defer closeFile(fullPath, filename, f)
 
-	if !fullJSON {
-		body, err = removeLineInfoConverter(body)
-		if err != nil {
-			log.Error().Msgf("there was an error")
-		}
-	}
-
 	encoder := json.NewEncoder(f)
 	encoder.SetIndent("", "\t")
 
 	return encoder.Encode(body)
-}
-
-func removeLineInfoConverter(body interface{}) (interface{}, error) {
-	bodyMap := make(map[string]interface{})
-	j, err := json.Marshal(body)
-	if err != nil {
-		return body, err
-	}
-	if err := json.Unmarshal(j, &bodyMap); err != nil {
-		return body, err
-	}
-	removeLineInfo(bodyMap)
-	return bodyMap, nil
-}
-
-func removeLineInfo(body interface{}) {
-	switch bodyType := body.(type) {
-	case map[string]interface{}:
-		removeMapLineInfo(bodyType)
-	case []interface{}:
-		for _, indx := range bodyType {
-			removeLineInfo(indx)
-		}
-	}
-}
-
-func removeMapLineInfo(bodyType map[string]interface{}) {
-	delete(bodyType, "_kics_lines")
-	for _, v := range bodyType {
-		switch value := v.(type) {
-		case map[string]interface{}:
-			removeLineInfo(value)
-		case []interface{}:
-			for _, indx := range value {
-				removeLineInfo(indx)
-			}
-		}
-	}
 }
 
 func getSummary(body interface{}) (sum model.Summary, err error) {

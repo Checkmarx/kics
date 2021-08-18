@@ -84,16 +84,17 @@ type CommentsCommands map[string]string
 
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
-	ID           string `db:"id"`
-	ScanID       string `db:"scan_id"`
-	Document     Document
-	OriginalData string   `db:"orig_data"`
-	Kind         FileKind `db:"kind"`
-	FileName     string   `db:"file_name"`
-	Content      string
-	HelmID       string
-	IDInfo       map[int]interface{}
-	Commands     CommentsCommands
+	ID               string `db:"id"`
+	ScanID           string `db:"scan_id"`
+	Document         Document
+	LineInfoDocument map[string]interface{}
+	OriginalData     string   `db:"orig_data"`
+	Kind             FileKind `db:"kind"`
+	FileName         string   `db:"file_name"`
+	Content          string
+	HelmID           string
+	IDInfo           map[int]interface{}
+	Commands         CommentsCommands
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -214,7 +215,7 @@ type Documents struct {
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file
-func (m FileMetadatas) Combine() Documents {
+func (m FileMetadatas) Combine(lineInfo bool) Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for i := 0; i < len(m); i++ {
 		_, ignore := m[i].Commands["ignore"]
@@ -225,9 +226,15 @@ func (m FileMetadatas) Combine() Documents {
 			log.Debug().Msgf("Ignoring file %s", m[i].FileName)
 			continue
 		}
-		m[i].Document["id"] = m[i].ID
-		m[i].Document["file"] = m[i].FileName
-		documents.Documents = append(documents.Documents, m[i].Document)
+		if !lineInfo {
+			m[i].Document["id"] = m[i].ID
+			m[i].Document["file"] = m[i].FileName
+			documents.Documents = append(documents.Documents, m[i].Document)
+		} else {
+			m[i].LineInfoDocument["id"] = m[i].ID
+			m[i].LineInfoDocument["file"] = m[i].FileName
+			documents.Documents = append(documents.Documents, m[i].LineInfoDocument)
+		}
 	}
 	return documents
 }

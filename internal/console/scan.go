@@ -496,7 +496,7 @@ func scan(changedDefaultQueryPath bool) error {
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
+	if err := resolveOutputs(&summary, files.Combine(getBoolFlag(lineInfoPayloadFlag)), inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
@@ -569,7 +569,6 @@ func resolveOutputs(
 			filepath.Dir(getStrFlag(payloadPathFlag)),
 			filepath.Base(getStrFlag(payloadPathFlag)),
 			documents,
-			getBoolFlag(lineInfoPayloadFlag),
 		); err != nil {
 			return err
 		}

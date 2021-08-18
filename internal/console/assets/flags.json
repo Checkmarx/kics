@@ -113,7 +113,7 @@
   "payload-lines": {
     "flagType": "bool",
     "shorthandFlag": "",
-    "deafaultValue": "false",
+    "defaultValue": "false",
     "usage": "prints line information on payload file (only when payload flag is given)"
   },
   "payload-path": {

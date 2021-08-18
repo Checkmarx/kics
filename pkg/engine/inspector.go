@@ -218,7 +218,7 @@ func (c *Inspector) Inspect(
 	platforms []string,
 	currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
-	combinedFiles := files.Combine()
+	combinedFiles := files.Combine(false)
 
 	_, err := json.Marshal(combinedFiles)
 	if err != nil {
@@ -351,10 +351,6 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
-		// filter for kics_lines false positives
-		if kicsLineFilter(queryResultItem) {
-			continue
-		}
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
 		if err != nil {
 			sentry.CaptureException(err)
@@ -390,20 +386,6 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	}
 
 	return vulnerabilities, nil
-}
-
-func kicsLineFilter(queryResultItem interface{}) bool {
-	vObj, ok := queryResultItem.(map[string]interface{})
-	if !ok {
-		return false
-	}
-	if s, ok := vObj["searchKey"]; ok {
-		searchKey := s.(string)
-		if strings.Contains(searchKey, "_kics_lines") {
-			return true
-		}
-	}
-	return false
 }
 
 // contains is a simple method to check if a slice

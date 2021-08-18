@@ -31,5 +31,5 @@ func PrintGitlabSASTReport(path, filename string, body interface{}) error {
 		body = gitlabSASTReport
 	}
 
-	return ExportJSONReport(path, filename, body, false)
+	return ExportJSONReport(path, filename, body)
 }

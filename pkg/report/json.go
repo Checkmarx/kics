@@ -19,5 +19,5 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 		body = summary
 	}
 
-	return ExportJSONReport(path, filename, body, false)
+	return ExportJSONReport(path, filename, body)
 }
