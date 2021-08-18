@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -35,7 +36,8 @@ CxPolicy[result] {
 	path := doc.paths[name]
 	matches := openapi_lib.is_path_template(name)
 	matches != []
-	path[verb].parameters == {}
+
+	common_lib.check_obj_empty(path[verb].parameters)
 
 	result := {
 		"documentId": doc.id,

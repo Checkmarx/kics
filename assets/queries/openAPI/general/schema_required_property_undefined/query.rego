@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	requiredProperty := schema.required[_]
 
-	all([property | property != requiredProperty; _ := schema.properties[property]])
+	all([property | property != requiredProperty; property != "_kics_lines"; _ := schema.properties[property]])
 	result := {
 		"documentId": docs.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	requiredProperty := schema.required[_]
 
-	all([property | property != requiredProperty; _ := schema.properties[property]])
+	all([property | property != requiredProperty; property != "_kics_lines"; _ := schema.properties[property]])
 	newPath := [path[_], schemaName]
 	result := {
 		"documentId": docs.id,

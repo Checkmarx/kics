@@ -11,9 +11,8 @@ CxPolicy[result] {
 	param := value.parameters[n]
 	param.in == "header"
 
-	dup := check_dup(value.parameters)
-	duplicate = cast_set(dup)
-	duplicate[_] == lower(param.name)
+	dup := check_dup({x | par := value.parameters[z]; z != "_kics_lines"; x = par})
+	dup[_] == lower(param.name)
 
 	p := openapi_lib.concat_path(path)
 	parcialSk := openapi_lib.concat_default_value(p, "parameters")
@@ -26,7 +25,7 @@ CxPolicy[result] {
 		"searchKey": sk,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Parameter Object with location 'header' doesn't have duplicate names",
-		"keyActualValue": sprintf("Parameter Object with location 'header' has duplicate names (name=%s)", [duplicate[_]]),
+		"keyActualValue": sprintf("Parameter Object with location 'header' has duplicate names (name=%s)", [dup[_]]),
 		"overrideKey": version,
 	}
 }
@@ -35,5 +34,5 @@ check_dup(params) = dup {
 	nameArr := [x | p := params[_]; p.in == "header"; x := lower(p.name)]
 	arr := cast_set(nameArr)
 	count(arr) != count(params)
-	dup := [y | y := nameArr[i]]
+	dup := [y | y := arr[i]]
 }

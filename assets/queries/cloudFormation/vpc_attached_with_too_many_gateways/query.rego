@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EC2::VPC"
 
 	gatewayAttachments := {gatewayAttachment |
-		resource := input.document[_].Resources[_]
+		resource := input.document[i].Resources[_]
 		resource.Type == "AWS::EC2::VPCGatewayAttachment"
 		refers(resource.Properties.VpcId, name)
 		gatewayAttachment := resource
