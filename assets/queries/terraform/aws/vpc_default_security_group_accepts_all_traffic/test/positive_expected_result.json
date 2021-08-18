@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 23,
+    "fileName": "positive2.tf"
+  }
+]
