@@ -217,9 +217,11 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
+	pathToLib, err := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
+	if err != nil {
+		return "", err
+	}
 	content, err := os.ReadFile(pathToLib)
-
 	if err != nil {
 		log.Err(err)
 	}
