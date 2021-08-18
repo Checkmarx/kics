@@ -2,21 +2,14 @@ package json
 
 import (
 	"bytes"
-	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
-	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
 // Parser defines a parser type
 type Parser struct {
-}
-
-// Playbooks represents a playbook object from parsed yaml files
-type Playbooks struct {
-	Tasks []map[string]interface{} `json:"playbooks"`
 }
 
 // Resolve - replace or modifies in-memory content before parsing
@@ -37,18 +30,7 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, e
 		doc = &model.Document{}
 	}
 
-	if documents == nil {
-		var err error
-		documents, err = playbookParser(filePath, fileContent)
-		if err != nil {
-			return nil, errors.Wrap(err, "failed to Parse YAML")
-		}
-		if documents == nil {
-			return nil, errors.Wrap(errors.New("invalid yaml"), "failed to parse yaml")
-		}
-	}
-
-	return convertKeysToString(documents), nil
+	return convertKeysToString(addExtraInfo(documents, filePath)), nil
 }
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}
@@ -131,41 +113,17 @@ func processElements(elements map[string]interface{}, filePath string) {
 
 func addExtraInfo(documents []model.Document, filePath string) []model.Document {
 	for _, documentPlaybooks := range documents { // iterate over documents
-		for _, resources := range documentPlaybooks["playbooks"].([]interface{}) { // iterate over playbooks
-			for _, v := range resources.(map[string]interface{}) {
-				_, ok := v.(map[string]interface{})
-				if ok {
-					processElements(v.(map[string]interface{}), filePath)
+		if playbooks, ok := documentPlaybooks["playbooks"]; ok {
+			for _, resources := range playbooks.([]interface{}) { // iterate over playbooks
+				for _, v := range resources.(map[string]interface{}) {
+					_, ok := v.(map[string]interface{})
+					if ok {
+						processElements(v.(map[string]interface{}), filePath)
+					}
 				}
 			}
 		}
 	}
 
 	return documents
-}
-
-func playbookParser(filePath string, fileContent []byte) ([]model.Document, error) {
-	doc := &model.Document{}
-	dec := yaml.NewDecoder(bytes.NewReader(fileContent))
-	arr := make([]map[string]interface{}, 0)
-	var playBooks Playbooks
-	var documents []model.Document
-	for dec.Decode(&arr) == nil {
-		if doc != nil {
-			playBooks.Tasks = append(playBooks.Tasks, arr...)
-			j, err := json.Marshal(playBooks)
-			if err != nil {
-				return nil, errors.Wrap(err, "failed to Marshal YAML")
-			}
-
-			if err := json.Unmarshal(j, &doc); err != nil {
-				return nil, errors.Wrap(err, "failed to Unmarshal YAML")
-			}
-			documents = append(documents, *doc)
-		}
-		doc = &model.Document{}
-		arr = make([]map[string]interface{}, 0)
-	}
-
-	return addExtraInfo(documents, filePath), nil
 }

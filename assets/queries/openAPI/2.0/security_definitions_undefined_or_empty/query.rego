@@ -21,6 +21,6 @@ undefined_or_empty(doc) = issueType {
 	object.get(doc, "securityDefinitions", "undefined") == "undefined"
 	issueType = "MissingAttribute"
 } else = issueType {
-	count(doc.securityDefinitions) == 0
+	count({x | sec := doc.securityDefinitions[n]; n != "_kics_lines"; x = sec}) == 0
 	issueType = "IncorrectValue"
 }

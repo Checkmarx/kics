@@ -51,5 +51,5 @@ CxPolicy[result] {
 }
 
 multiple_entries(params) {
-	count(params.content) > 1
+	count({x | cont := params.content[n]; n != "_kics_lines"; x = cont}) > 1
 }

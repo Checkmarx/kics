@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 options := {null, {}}
@@ -10,7 +11,9 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	value.responses == options[x]
+
+	# value.responses == options[x]
+	common_lib.check_obj_empty(value.responses)
 
 	result := {
 		"documentId": doc.id,

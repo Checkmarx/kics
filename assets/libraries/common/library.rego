@@ -92,6 +92,13 @@ isPrivateIP(ipVal) {
 	net.cidr_contains(private_ips[i], ipVal)
 }
 
+# Checks if an object is empty ignoring kics lines
+check_obj_empty(obj) {
+	obj = null
+} else {
+	count({x | o := obj[n]; n != "_kics_lines"; x = o}) == 0
+}
+
 # Check if field equals to value or if any element from field equals to value
 equalsOrInArray(field, value) {
 	is_string(field)

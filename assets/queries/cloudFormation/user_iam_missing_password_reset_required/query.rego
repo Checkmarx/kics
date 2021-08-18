@@ -35,7 +35,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::IAM::User"
 	passwordResetRequired := resource.Properties.LoginProfile
-	count(passwordResetRequired) == 1
+	object.get(passwordResetRequired, "PasswordResetRequired", "undefined") == "undefined"
 	passwordResetRequired.Password
 
 	result := {

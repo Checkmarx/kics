@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -37,7 +38,8 @@ CxPolicy[result] {
 	object.get(doc, "components", "undefined") != "undefined"
 	object.get(doc.components, "securitySchemes", "undefined") != "undefined"
 
-	doc.components.securitySchemes == {}
+	# doc.components.securitySchemes == {}
+	common_lib.check_obj_empty(doc.components.securitySchemes)
 
 	result := {
 		"documentId": doc.id,

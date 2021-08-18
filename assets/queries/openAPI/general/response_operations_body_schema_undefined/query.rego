@@ -33,7 +33,10 @@ CxPolicy[result] {
 	operation := doc.paths[path][op]
 	acceptable_response(operation, op)
 
-	count(operation.responses[code].content) == 0
+	opCont := operation.responses[code].content
+	cleanOpCont := {x | oper := opCont[n]; n != "_kics_lines"; x := oper}
+
+	count(cleanOpCont) == 0
 
 	result := {
 		"documentId": doc.id,
@@ -71,6 +74,7 @@ acceptable_response(operation, op) {
 	response_code_should_not_have_content := ["204", "304"]
 
 	response := operation.responses[code]
+	code != "_kics_lines"
 	not common_lib.equalsOrInArray(response_code_should_not_have_content, lower(code))
 }
 

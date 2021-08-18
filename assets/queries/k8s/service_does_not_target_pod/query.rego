@@ -8,7 +8,8 @@ CxPolicy[result] {
 	metadata := service.metadata
 	ports := service.spec.ports
 	servicePorts := ports[j]
-	label := service.spec.selector[_]
+	label := service.spec.selector[n]
+	n != "_kics_lines"
 	match_label(label)
 	not confirmPorts(label, servicePorts)
 
@@ -25,7 +26,8 @@ CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
 	metadata := service.metadata
-	label := service.spec.selector[_]
+	label := service.spec.selector[n]
+	n != "_kics_lines"
 	not match_label(label)
 
 	result := {

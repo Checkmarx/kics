@@ -21,7 +21,7 @@ CxPolicy[result] {
 }
 
 check_paths_object(paths) {
-	count(paths) == 0
+	count({x | p := paths[n]; n != "_kics_lines"; x = p}) == 0
 }
 
 # In yaml an empty object is parsed into null

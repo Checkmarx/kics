@@ -98,10 +98,10 @@ CxPolicy[result] {
 # compare_prop() - checks if the example is complient with schema type, returns a set with all feilds that are not valid
 compare_prop(ex_obj, prop) = items {
 	prop.object == true
-	items := {x | prop_item := prop.properties[n]; not check_prop(prop_item, ex_obj, n); x := {"name": n}}
+	items := {x | prop_item := prop.properties[n]; n != "_kics_lines"; not check_prop(prop_item, ex_obj, n); x := {"name": n}}
 } else = items {
 	prop.array == true
-	items := {x | prop_item := ex_obj[z]; not check_type(prop.item_type, type_name(prop_item)); x := {"name": ex_obj[z]}}
+	items := {x | prop_item := ex_obj[z]; z != "_kics_lines"; not check_type(prop.item_type, type_name(prop_item)); x := {"name": ex_obj[z]}}
 } else = items {
 	items := {x | not check_type(prop.type, type_name(ex_obj)); x := {"name": ex_obj}}
 }

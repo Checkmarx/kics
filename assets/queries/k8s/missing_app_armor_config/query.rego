@@ -6,6 +6,7 @@ CxPolicy[result] {
 	document.kind == "Pod"
 	metadata.annotations[key]
 	expectedKey := "container.apparmor.security.beta.kubernetes.io"
+	key != "_kics_lines"
 	not startswith(key, expectedKey)
 
 	result := {

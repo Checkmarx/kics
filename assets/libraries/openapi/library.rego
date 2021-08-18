@@ -234,6 +234,7 @@ api_key_exposed(doc, version, s) {
 check_schemes(doc, opSchemes, version) = opScheme {
 	version == "3.0"
 	operationSecurityScheme := opSchemes[opScheme]
+	opScheme != "_kics_lines"
 	secScheme := doc.components.securitySchemes[scheme]
 	secScheme.type == "oauth2"
 
@@ -244,10 +245,11 @@ check_schemes(doc, opSchemes, version) = opScheme {
 } else = opScheme {
 	version == "2.0"
 	operationSecurityScheme := opSchemes[opScheme]
+	opScheme != "_kics_lines"
 	secScheme := doc.securityDefinitions[scheme]
 	secScheme.type == "oauth2"
 
-	opScope := operationSecurityScheme[_]
+	opScope := operationSecurityScheme[n]
 	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == opScope; x := opScope]
 
 	count(arr) == 0

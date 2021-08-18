@@ -11,8 +11,9 @@ CxPolicy[result] {
 	ansLib.checkState(apiGateway)
 
 	content_info := get_content(apiGateway)
-
-	object.get(content_info.content.components.securitySchemes[x], "x-amazon-apigateway-authorizer", "undefined") == "undefined"
+	secSchemes := content_info.content.components.securitySchemes[x]
+	x != "_kics_lines"
+	object.get(secSchemes, "x-amazon-apigateway-authorizer", "undefined") == "undefined"
 
 	result := {
 		"documentId": id,

@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -8,11 +9,7 @@ CxPolicy[result] {
 	version != "undefined"
 	object.get(doc, "security", "undefined") != "undefined"
 
-	is_array(doc.security)
-	count(doc.security) > 0
-
-	securityItem := doc.security[_]
-	securityItem == {}
+	common_lib.check_obj_empty(doc.security)
 
 	result := {
 		"documentId": doc.id,
@@ -30,8 +27,7 @@ CxPolicy[result] {
 	version != "undefined"
 	object.get(doc, "security", "undefined") != "undefined"
 
-	not is_array(doc.security)
-	doc.security == {}
+	common_lib.check_obj_empty(doc.security[_])
 
 	result := {
 		"documentId": doc.id,

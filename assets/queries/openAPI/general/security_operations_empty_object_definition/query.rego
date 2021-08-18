@@ -11,7 +11,7 @@ CxPolicy[result] {
 	object.get(operationObject, "security", "undefined") != "undefined"
 
 	not is_array(operationObject.security)
-	operationObject.security == {}
+	count({x | sec := operationObject.security[n]; n != "_kics_lines"; x = sec}) == 0
 
 	result := {
 		"documentId": doc.id,

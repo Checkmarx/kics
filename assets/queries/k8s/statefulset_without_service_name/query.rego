@@ -18,5 +18,7 @@ CxPolicy[result] {
 }
 
 labelsMatch(stateful, service) {
-	service.spec.selector == stateful.spec.template.metadata.labels
+	ser := {x | serv := service.spec.selector[n]; n != "_kics_lines"; x = serv}
+	stat := {y | state := stateful.spec.template.metadata.labels[m]; m != "_kics_lines"; y = state}
+	ser == stat
 }
