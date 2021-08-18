@@ -61,5 +61,3 @@ ENV PATH $PATH:/app/bin
 # Healthcheck the container
 
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
-
-ENTRYPOINT ["/app/bin/kics"]
