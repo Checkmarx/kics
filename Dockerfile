@@ -51,7 +51,7 @@ COPY --from=build_env --chown=Checkmarx:Checkmarx /app/assets/ /app/bin/assets/
 
 WORKDIR /app/bin
 
-USER ${UID}
+# USER ${UID}
 # Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 ENV PATH $PATH:/app/bin     
