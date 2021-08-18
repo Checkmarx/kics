@@ -9,7 +9,8 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	object.get(value, "$ref", "undefined") != "undefined"
-	count(value) > 1
+
+	count(object.remove(value, ["_kics_lines"])) > 1
 
 	result := {
 		"documentId": doc.id,
