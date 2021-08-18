@@ -5156,6 +5156,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>VPC Peering Route Table with Unrestricted CIDR<br/><sup><sub>b3a41501-f712-4c4f-81e5-db9a7dc0e34e</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>VPC Peering Route Table should restrict CIDR</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>EKS Cluster Has Public Access CIDRs<br/><sup><sub>61cf9883-1752-4768-b18c-0d57f2737709</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -5210,6 +5218,14 @@
 <td>Networking and Firewall</td>
 <td>EC2 Instance should not have a public IP address.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>VPC Default Security Group Accepts All Traffic<br/><sup><sub>9a4ef195-74b9-4c58-b8ed-2b2fe4353a75</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Default Security Group attached to every VPC should restrict all traffic</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Network ACL With Unrestricted Access To SSH<br/><sup><sub>3af7f2fd-06e6-4dab-b996-2912bea19ba4</sub></sup></td>
@@ -5284,12 +5300,28 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key#enable_key_rotation">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>CloudTrail Log Files S3 Bucket is Publicly Accessible<br/><sup><sub>bd0088a5-c133-4b20-b129-ec9968b16ef3</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>CloudTrail Log Files S3 Bucket should not be publicly accessible</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#s3_bucket_name">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>CloudTrail Logging Disabled<br/><sup><sub>4bb76f17-3d63-4529-bdca-2b454529d774</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
 <td>Observability</td>
 <td>Checks if logging is enabled for CloudTrail.</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_logging">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>CloudTrail Log Files S3 Bucket with Logging Disabled<br/><sup><sub>ee9e50e8-b2ed-4176-ad42-8fc0cf7593f4</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>CloudTrail Log Files S3 Bucket should have 'logging' enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#s3_bucket_name">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Elasticsearch Domain With Vulnerable Policy<br/><sup><sub>16c4216a-50d3-4785-bfb2-4adb5144a8ba</sub></sup></td>
@@ -5722,6 +5754,14 @@
 <td>Encryption</td>
 <td>Check if any ElasticSearch domain isn't encrypted with KMS</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Policy Accepts HTTP Requests<br/><sup><sub>4bc4dd4c-7d8d-405e-a0fb-57fa4c31b4d9</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>S3 Bucket policy should not accept HTTP Requests</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy#policy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SNS Topic Not Encrypted<br/><sup><sub>28545147-2fc6-42d5-a1f9-cf226658e591</sub></sup></td>
