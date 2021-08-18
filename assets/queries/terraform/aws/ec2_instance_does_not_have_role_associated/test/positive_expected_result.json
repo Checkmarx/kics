@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "EC2 Instance Does Not Have Role Associated",
+    "severity": "LOW",
+    "line": 57
+  }
+]
