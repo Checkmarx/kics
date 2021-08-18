@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Open access to back-end resources through API",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "ec6ce36d",
+  "cloudProvider": "aws"
 }

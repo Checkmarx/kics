@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "ECR should have an image tag be immutable",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "a4ed2a4f",
+  "cloudProvider": "aws"
 }

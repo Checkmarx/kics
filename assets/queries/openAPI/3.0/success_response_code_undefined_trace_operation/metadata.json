@@ -5,5 +5,6 @@
   "category": "Networking and Firewall",
   "descriptionText": "Trace should define the '200' successful code",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "d3325ec2"
 }

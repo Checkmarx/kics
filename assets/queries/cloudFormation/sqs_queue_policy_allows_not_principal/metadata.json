@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Checks if an SQS Queue policy has an Allow and a NotPrincipal. AWS strongly recommends against using `NotPrincipal` in the same policy statement as `\"Effect\": \"Allow\"`.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "78666d87",
+  "cloudProvider": "aws"
 }

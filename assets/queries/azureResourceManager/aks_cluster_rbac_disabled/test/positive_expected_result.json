@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive2.json"
+  }
+]

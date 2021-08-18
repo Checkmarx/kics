@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "name": "sqlServer1",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-02-01-preview",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "sqlServer1"
+      },
+      "properties": {
+        "administratorLogin": "adminUsername",
+        "administratorLoginPassword": "adminPassword"
+      },
+      "resources": [
+        {
+          "name": "sqlServer1/sqlDatabase1",
+          "type": "Microsoft.Sql/servers/databases",
+          "apiVersion": "2014-04-01",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "sqlDatabase1"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+          ],
+          "properties": {
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "edition": "Basic",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "Basic"
+          }
+        },
+        {
+          "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+          "apiVersion": "2021-02-01-preview",
+          "name": "sqlServer1/sqlDatabase1/securityPolicy1",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+          ],
+          "properties": {
+            "emailAccountAdmins": true,
+            "retentionDays": 4,
+            "state": "Enabled"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}

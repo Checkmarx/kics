@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_s3_bucket[name]
@@ -37,9 +37,9 @@ CxPolicy[result] {
 }
 
 check_master_key(assed) {
-	object.get(assed, "kms_master_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(assed, "kms_master_key_id")
 }
 
 check_master_key(assed) {
-	commonLib.emptyOrNull(assed.kms_master_key_id)
+	common_lib.emptyOrNull(assed.kms_master_key_id)
 }

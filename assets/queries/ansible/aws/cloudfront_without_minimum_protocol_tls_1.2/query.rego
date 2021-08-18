@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
 
@@ -10,7 +10,7 @@ CxPolicy[result] {
 	cloudfront := task[modules[m]]
 
 	ansLib.checkState(cloudfront)
-	object.get(cloudfront, "viewer_certificate", "undefined") == "undefined"
+	not common_lib.valid_key(cloudfront, "viewer_certificate")
 
 	result := {
 		"documentId": id,
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	ansLib.checkState(cloudfront)
 	protocol_version := cloudfront.viewer_certificate.minimum_protocol_version
 
-	not commonLib.inArray(["TLSv1.2_2018", "TLSv1.2_2019"], protocol_version)
+	not common_lib.inArray(["TLSv1.2_2018", "TLSv1.2_2019"], protocol_version)
 
 	result := {
 		"documentId": id,

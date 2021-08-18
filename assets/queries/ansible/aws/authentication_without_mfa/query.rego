@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	ansLib.checkState(sts_assume_role)
 	attributes := {"mfa_serial_number", "mfa_token"}
 
-	object.get(sts_assume_role, attributes[j], "undefined") == "undefined"
+	not common_lib.valid_key(sts_assume_role, attributes[j])
 
 	result := {
 		"documentId": id,

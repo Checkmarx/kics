@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Make sure that for PosgreSQL, the 'Enforce SSL connection' is set to 'ENABLED'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlserver_module.html#parameter-enforce_ssl",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "b4bcb2d1",
+  "cloudProvider": "azure"
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 not_required(param) = issueType {
-	object.get(param, "required", "undefined") == "undefined"
+	not common_lib.valid_key(param, "required")
 	issueType = "MissingAttribute"
 } else = issueType {
 	param.required == false

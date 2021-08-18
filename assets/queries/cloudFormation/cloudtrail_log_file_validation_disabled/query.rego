@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	object.get(resource.Properties, "EnableLogFileValidation", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "EnableLogFileValidation")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +19,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	object.get(resource.Properties, "EnableLogFileValidation", "undefined") == false
+	resource.Properties.EnableLogFileValidation == false
 
 	result := {
 		"documentId": input.document[i].id,

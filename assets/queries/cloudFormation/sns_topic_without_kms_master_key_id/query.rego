@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::SNS::Topic"
 	properties := resource.Properties
-	object.get(properties, "KmsMasterKeyId", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "KmsMasterKeyId")
 
 	result := {
 		"documentId": input.document[i].id,

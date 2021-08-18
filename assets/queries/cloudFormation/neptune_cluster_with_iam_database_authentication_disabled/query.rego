@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Neptune::DBCluster"
 	properties := resource.Properties
 
-	object.get(properties, "IamAuthEnabled", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "IamAuthEnabled")
 
 	result := {
 		"documentId": input.document[i].id,

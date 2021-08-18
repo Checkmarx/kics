@@ -5,5 +5,7 @@
   "category": "Build Process",
   "descriptionText": "Checks if DynamoDB Table Billing Mode is set to either PAY_PER_REQUEST or PROVISIONED",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "2a9dc4de",
+  "cloudProvider": "aws"
 }

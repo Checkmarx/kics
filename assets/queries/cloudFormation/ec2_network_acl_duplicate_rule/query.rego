@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	entry1 := input.document[i].Resources[name]
 	entry1.Type == "AWS::EC2::NetworkAclEntry"
@@ -28,7 +30,7 @@ CxPolicy[result] {
 }
 
 getRef(obj) = obj.Ref {
-	object.get(obj, "Ref", "undefined") != "undefined"
+	common_lib.valid_key(obj, "Ref")
 } else = obj {
 	true
 }

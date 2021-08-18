@@ -1,0 +1,11 @@
+{
+  "id": "ee9e50e8-b2ed-4176-ad42-8fc0cf7593f4",
+  "queryName": "CloudTrail Log Files S3 Bucket with Logging Disabled",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "CloudTrail Log Files S3 Bucket should have 'logging' enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#s3_bucket_name",
+  "platform": "Terraform",
+  "descriptionID": "7ccceef5",
+  "cloudProvider": "aws"
+}

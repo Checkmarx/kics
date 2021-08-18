@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "ECS Services must not have Admin roles, which means the attribute 'role' must not be an admin role",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "756701f8",
+  "cloudProvider": "aws"
 }

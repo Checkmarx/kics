@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "AWS CloudFormation should have stack notifications enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html#parameter-notification_arns",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "59f8905d",
+  "cloudProvider": "aws"
 }

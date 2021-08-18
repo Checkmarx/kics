@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	object.get(containers[y].security_context.capabilities, "add", "undefined") != "undefined"
+	common_lib.valid_key(containers[y].security_context.capabilities, "add")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	object.get(containers.security_context.capabilities, "add", "undefined") != "undefined"
+	common_lib.valid_key(containers.security_context.capabilities, "add")
 
 	result := {
 		"documentId": input.document[i].id,

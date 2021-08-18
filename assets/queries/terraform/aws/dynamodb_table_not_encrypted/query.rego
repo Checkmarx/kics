@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dynamodb_table[name]
 	resource.server_side_encryption.enabled == false
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_dynamodb_table[name]
-	object.get(resource, "server_side_encryption", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "server_side_encryption")
 
 	result := {
 		"documentId": input.document[i].id,

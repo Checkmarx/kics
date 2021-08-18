@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 45,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive4.json"
+  }
+]

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
@@ -41,7 +43,7 @@ CxPolicy[result] {
 	check_resources_type("AWS::ApiGateway::Stage")
 	settings_are_equal(document[i].Resources, name)
 
-	object.get(resource.Properties, "StageDescription", "undefined") = "undefined"
+	not common_lib.valid_key(resource.Properties, "StageDescription")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -60,7 +62,7 @@ CxPolicy[result] {
 	check_resources_type("AWS::ApiGateway::Stage")
 	settings_are_equal(document[i].Resources, name)
 
-	object.get(resource.Properties.StageDescription, "AccessLogSetting", "undefined") = "undefined"
+	not common_lib.valid_key(resource.Properties.StageDescription, "AccessLogSetting")
 
 	result := {
 		"documentId": input.document[i].id,

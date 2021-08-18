@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
-	object.get(resource.Properties, "AutoDeployment", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "AutoDeployment")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,10 +21,10 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
-	object.get(resource.Properties, "AutoDeployment", "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, "AutoDeployment")
 
     autoDeployment := resource.Properties.AutoDeployment
-	object.get(autoDeployment, "Enabled", "undefined") == "undefined"
+	not common_lib.valid_key(autoDeployment, "Enabled")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,12 +39,9 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
-	object.get(resource.Properties, "AutoDeployment", "undefined") != "undefined"
-
     autoDeployment := resource.Properties.AutoDeployment
-	object.get(autoDeployment, "Enabled", "undefined") != "undefined"
 
-    not autoDeployment.Enabled
+    autoDeployment.Enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -59,7 +58,7 @@ CxPolicy[result] {
     autoDeployment := resource.Properties.AutoDeployment
 
     autoDeployment.Enabled
-	object.get(autoDeployment, "RetainStacksOnAccountRemoval", "undefined") == "undefined"
+	not common_lib.valid_key(autoDeployment, "RetainStacksOnAccountRemoval")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -76,9 +75,8 @@ CxPolicy[result] {
     autoDeployment := resource.Properties.AutoDeployment
 
     autoDeployment.Enabled
-	object.get(autoDeployment, "RetainStacksOnAccountRemoval", "undefined") != "undefined"
 
-    not autoDeployment.RetainStacksOnAccountRemoval
+    autoDeployment.RetainStacksOnAccountRemoval == false
 
 	result := {
 		"documentId": input.document[i].id,

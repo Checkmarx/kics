@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "The IP address in a DB Security Group must not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6).",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "47a14ee4",
+  "cloudProvider": "aws"
 }

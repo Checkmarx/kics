@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	aws_codebuild := task[modules[m]]
 	ansLib.checkState(aws_codebuild)
 
-	object.get(aws_codebuild, "encryption_key", "undefined") == "undefined"
+	not common_lib.valid_key(aws_codebuild, "encryption_key")
 
 	result := {
 		"documentId": id,

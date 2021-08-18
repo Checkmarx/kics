@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "Encoding Map Key should not define a 'Content-Type' in the 'headers' field. If so, it will be ignored.",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "61185041"
 }

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -40,7 +42,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EC2::Route"
 
 	properties := resource.Properties
-	object.get(properties, "NatGatewayId", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "NatGatewayId")
 
 	result := {
 		"documentId": input.document[i].id,

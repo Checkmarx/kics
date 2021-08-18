@@ -5,5 +5,7 @@
   "category": "Insecure Defaults",
   "descriptionText": "CloudFront web distributions should use custom (and not default) SSL certificates. Custom SSL certificates allow only defined users to access content by using an alternate domain name instead of the default one.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "324e63d7",
+  "cloudProvider": "aws"
 }

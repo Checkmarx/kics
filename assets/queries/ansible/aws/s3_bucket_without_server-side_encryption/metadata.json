@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AWS S3 Storage should be protected with SSE (Server-Side Encryption)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "c0dc5aae",
+  "cloudProvider": "aws"
 }

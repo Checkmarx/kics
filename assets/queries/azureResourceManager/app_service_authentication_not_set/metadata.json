@@ -1,0 +1,11 @@
+{
+  "id": "83130a07-235b-4a80-918b-a370e53f0bd9",
+  "queryName": "App Service Authentication Is Not Set",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "Azure App Service should have App Service Authentication set",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites/config-web?tabs=json",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "831efa07"
+}

@@ -5,5 +5,6 @@
   "category": "Networking and Firewall",
   "descriptionText": "Service has an external load balancer, which may cause accessibility from other networks and the Internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "18a78d03"
 }

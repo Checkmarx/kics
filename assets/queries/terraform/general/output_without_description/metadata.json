@@ -1,0 +1,11 @@
+{
+  "id": "59312e8a-a64e-41e7-a252-618533dd1ea8",
+  "queryName": "Output Without Description",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "All outputs should contain a valid description.",
+  "descriptionUrl": "https://www.terraform.io/docs/language/values/outputs.html#description-output-value-documentation",
+  "platform": "Terraform",
+  "descriptionID": "81535d16",
+  "cloudProvider": "common"
+}

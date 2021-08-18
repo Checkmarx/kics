@@ -5,5 +5,7 @@
   "category": "Resource Management",
   "descriptionText": "VPCs without attached subnets may indicate that they are not being used",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "23dfbed0",
+  "cloudProvider": "aws"
 }

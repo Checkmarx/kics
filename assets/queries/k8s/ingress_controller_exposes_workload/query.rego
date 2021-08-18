@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 	annotations := metadata.annotations
 
-	object.get(annotations, "kubernetes.io/ingress.class", "undefined") != "undefined"
+	common_lib.valid_key(annotations, "kubernetes.io/ingress.class")
 
 	spec := specInfo.spec
 

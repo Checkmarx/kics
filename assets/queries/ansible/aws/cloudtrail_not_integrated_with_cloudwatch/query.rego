@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 
 	ansLib.checkState(cloudtrail)
 	properties := {"cloudwatch_logs_role_arn", "cloudwatch_logs_log_group_arn"}
-	object.get(cloudtrail, properties[p], "undefined") == "undefined"
+	not common_lib.valid_key(cloudtrail, properties[p])
 
 	result := {
 		"documentId": id,

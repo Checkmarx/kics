@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_redshift_cluster[name]
-	object.get(cluster, "encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(cluster, "encrypted")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_redshift_cluster.encrypted is defined",
-		"keyActualValue": "aws_redshift_cluster.encrypted is undefined",
+		"keyExpectedValue": "aws_redshift_cluster.encrypted is defined and not null",
+		"keyActualValue": "aws_redshift_cluster.encrypted is undefined or null",
 	}
 }
 

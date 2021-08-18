@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::SNS::TopicPolicy"
 	document := resource.Properties.PolicyDocument
 	statements = document.Statement
 	statements[k].Effect == "Allow"
-	object.get(statements[k], "NotAction", "undefined") != "undefined"
+	common_lib.valid_key(statements[k], "NotAction")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -104,7 +105,7 @@ variables_undefined(server) {
 	url := server.url
 	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
 	url_variables != []
-	object.get(server, "variables", "undefined") == "undefined"
+	not common_lib.valid_key(server, "variables")
 }
 
 variables_undefined(server) {
@@ -113,5 +114,5 @@ variables_undefined(server) {
 	url_variables != []
 	var := replace(url_variables[j], "{", "")
 	clean_var := replace(var, "}", "")
-	object.get(server.variables, clean_var, "undefined") == "undefined"
+	not common_lib.valid_key(server.variables, clean_var)
 }

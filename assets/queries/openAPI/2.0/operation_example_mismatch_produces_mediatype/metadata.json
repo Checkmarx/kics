@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "Example should match one of MimeTypes on 'produces'. It is important to know that, if a 'produces' is declared on operation it will override global 'produces'",
   "descriptionUrl": "https://swagger.io/specification/v2/#exampleObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "77f2d405"
 }

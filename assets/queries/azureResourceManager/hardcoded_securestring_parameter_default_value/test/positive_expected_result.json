@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Hardcoded SecureString Parameter Default Value",
+    "severity": "MEDIUM",
+    "line": 7
+  }
+]

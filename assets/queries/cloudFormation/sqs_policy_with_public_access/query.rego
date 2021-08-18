@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -22,7 +24,7 @@ CxPolicy[result] {
 isUnsafeStatement(stmt) = result {
 	stmt.Effect == "Allow"
 	action := hasDangerousAction(stmt.Action)
-	object.get(stmt, "Condition", "undefined") == "undefined"
+	not common_lib.valid_key(stmt, "Condition")
 	result := [action, hasWildcardPrincipal(stmt.Principal)]
 }
 

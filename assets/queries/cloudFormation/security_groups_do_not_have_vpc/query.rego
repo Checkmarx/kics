@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resources := document[i].Resources[name]
@@ -18,5 +20,5 @@ check_not_exists_vpc(resource) {
 	resource.Type == "AWS::EC2::SecurityGroup"
 	security_group := resource.Properties
 	security_group.GroupName != "default"
-	object.get(security_group, "VpcId", "undefined") == "undefined"
+	not common_lib.valid_key(security_group, "VpcId")
 }

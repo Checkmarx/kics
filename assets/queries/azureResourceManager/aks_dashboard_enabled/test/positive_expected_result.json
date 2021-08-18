@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive2.json"
+  }
+]

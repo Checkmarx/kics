@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice to have point in time recovery enabled for DynamoDB Table",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table#point_in_time_recovery",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "205ac3d1",
+  "cloudProvider": "aws"
 }

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -22,7 +24,7 @@ CxPolicy[result] {
 	resource.Type = "AWS::ElastiCache::ReplicationGroup"
 	properties := resource.Properties
 	lower(properties.Engine) == "redis"
-	object.get(properties, "AtRestEncryptionEnabled", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "AtRestEncryptionEnabled")
 
 	result := {
 		"documentId": input.document[i].id,

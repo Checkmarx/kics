@@ -5,5 +5,6 @@
   "category": "Insecure Defaults",
   "descriptionText": "No role nor cluster role should bind to a default service account",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
-  "platform": "Kubernetes"
+  "platform": "Kubernetes",
+  "descriptionID": "9879e8c2"
 }

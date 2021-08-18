@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Kinesis::Stream"
 
-	object.get(resource.Properties, "StreamEncryption", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "StreamEncryption")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Kinesis::Stream"
 
-	object.get(resource.Properties.StreamEncryption, "EncryptionType", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties.StreamEncryption, "EncryptionType")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -34,7 +36,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Kinesis::Stream"
 
-	object.get(resource.Properties.StreamEncryption, "KeyId", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties.StreamEncryption, "KeyId")
 
 	result := {
 		"documentId": input.document[i].id,

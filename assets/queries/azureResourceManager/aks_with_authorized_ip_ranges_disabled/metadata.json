@@ -1,0 +1,11 @@
+{
+  "id": "2583fab1-953b-4fae-bd02-4a136a6c21f9",
+  "queryName": "AKS With Authorized IP Ranges Disabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure Kubernetes Service must have an authorized IP range for API Services enabled",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object",
+  "platform": "AzureResourceManager",
+  "descriptionID": "258efab1",
+  "cloudProvider": "azure"
+}

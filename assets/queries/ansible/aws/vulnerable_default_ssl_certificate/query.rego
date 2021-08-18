@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -28,22 +29,23 @@ CxPolicy[result] {
 	ansLib.checkState(cloudfront)
 	hasCustomConfig(cloudfront.viewer_certificate)
 
-	attr := {"ssl_support_method", "minimum_protocol_version"}
-	object.get(cloudfront.viewer_certificate, attr[a], "undefined") == "undefined"
+	attributes := {"ssl_support_method", "minimum_protocol_version"}
+	attr := attributes[a]
+	not common_lib.valid_key(cloudfront.viewer_certificate, attr)
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.viewer_certificate", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Attribute %s is defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.", [attr[a]]),
-		"keyActualValue": sprintf("Attribute '%s' is not defined", [attr[a]]),
+		"keyExpectedValue": sprintf("Attribute %s is defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.", [attr]),
+		"keyActualValue": sprintf("Attribute '%s' is not defined", [attr]),
 	}
 }
 
 hasCustomConfig(viewer_certificate) {
-	object.get(viewer_certificate, "acm_certificate_arn", "undefined") != "undefined"
+	common_lib.valid_key(viewer_certificate, "acm_certificate_arn")
 }
 
 hasCustomConfig(viewer_certificate) {
-	object.get(viewer_certificate, "iam_certificate_id", "undefined") != "undefined"
+	common_lib.valid_key(viewer_certificate, "iam_certificate_id")
 }

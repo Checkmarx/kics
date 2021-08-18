@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.cloudformation as cloudFormationLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 isAccessibleFromEntireNetwork(ingress) {
 	endswith(ingress.CidrIp, "/0")
@@ -30,7 +30,7 @@ getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
 }
 
 getELBType(elb) = type {
-	object.get(elb.Properties, "Type", "unspecified") != "unspecified"
+	common_lib.valid_key(elb.Properties, "Type")
 	type = elb.Properties.Type
 } else = type {
 	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
@@ -41,12 +41,12 @@ getELBType(elb) = type {
 }
 
 getLinkedSecGroupList(elb, resources) = elbSecGroupName {
-	object.get(elb.Properties, "SecurityGroups", "unspecified") != "unspecified"
+	common_lib.valid_key(elb.Properties, "SecurityGroups")
 	elbSecGroupName = elb.Properties.SecurityGroups
 } else = ec2SecGroup {
 	ec2InstanceList := [ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE")]
 	ec2Instance := ec2InstanceList[i]
-	object.get(ec2Instance.Properties, "SecurityGroups", "unspecified") != "unspecified"
+	common_lib.valid_key(ec2Instance.Properties, "SecurityGroups")
 	ec2SecGroup = ec2Instance.Properties.SecurityGroups
 }
 
@@ -73,7 +73,7 @@ CxPolicy[result] {
 
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[n]
-	portsMap = getProtocolPorts(protocols, commonLib.tcpPortsMap, cloudFormationLib.udpPortsMap)
+	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cloudFormationLib.udpPortsMap)
 
 	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)

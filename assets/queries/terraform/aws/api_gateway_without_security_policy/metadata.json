@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "API Gateway should have a Security Policy defined and use TLS 1.2.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_domain_name#security_policy",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "b78cd4cb",
+  "cloudProvider": "aws"
 }

@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::SageMaker::NotebookInstance"
 
-	object.get(resource.Properties, "SubnetId", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "SubnetId")
 
 	result := {
 		"documentId": input.document[i].id,

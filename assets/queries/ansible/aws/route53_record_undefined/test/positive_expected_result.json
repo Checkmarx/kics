@@ -2,7 +2,7 @@
 	{
 		"queryName": "Route53 Record Undefined",
 		"severity": "HIGH",
-		"line": 8
+		"line": 3
 	},
 	{
 		"queryName": "Route53 Record Undefined",

@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "42fd2930",
+  "cloudProvider": "aws"
 }

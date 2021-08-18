@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	cosmosdbaccount := task[modules[m]]
 	ansLib.checkState(cosmosdbaccount)
 
-	object.get(cosmosdbaccount, "tags", "undefined") == "undefined"
+	not common_lib.valid_key(cosmosdbaccount, "tags")
 
 	result := {
 		"documentId": id,

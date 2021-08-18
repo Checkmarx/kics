@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AmazonMQ Broker should have Encryption Options defined",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-encryptionoptions",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "c5d562da",
+  "cloudProvider": "aws"
 }

@@ -5,5 +5,6 @@
   "category": "Access Control",
   "descriptionText": "Cleartext credentials over unencrypted channel should not be accepted for the operation",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "dc667769"
 }

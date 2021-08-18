@@ -5,5 +5,7 @@
   "category": "Secret Management",
   "descriptionText": "Directory Service Microsoft AD password must not be a plaintext string or a Ref to a Parameter with a Default value.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "98a72cac",
+  "cloudProvider": "aws"
 }

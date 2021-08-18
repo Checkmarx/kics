@@ -1,0 +1,11 @@
+{
+  "id": "4bc4dd4c-7d8d-405e-a0fb-57fa4c31b4d9",
+  "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "S3 Bucket policy should not accept HTTP Requests",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy#policy",
+  "platform": "Terraform",
+  "descriptionID": "edbcd7bc",
+  "cloudProvider": "aws"
+}

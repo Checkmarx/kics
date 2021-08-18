@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -21,5 +23,5 @@ CxPolicy[result] {
 
 isUnsafeStatement(stmt) {
 	stmt.Effect == "Allow"
-	object.get(stmt, "NotPrincipal", "undefined") != "undefined"
+	common_lib.valid_key(stmt, "NotPrincipal")
 }

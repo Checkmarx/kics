@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::Bucket"
-    object.get(resource, "Properties", "undefined") != "undefined"
-    object.get(resource.Properties, "VersioningConfiguration", "undefined") == "undefined"
+    common_lib.valid_key(resource, "Properties")
+    not common_lib.valid_key(resource.Properties, "VersioningConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,

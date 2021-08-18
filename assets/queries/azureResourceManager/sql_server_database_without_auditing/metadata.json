@@ -1,0 +1,11 @@
+{
+  "id": "e055285c-bc01-48b4-8aa5-8a54acdd29df",
+  "queryName": "SQL Server Database Without Auditing",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Every 'Microsoft.Sql/servers/databases' resource should have Auditing Enabled",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings",
+  "platform": "AzureResourceManager",
+  "descriptionID": "16d077a1",
+  "cloudProvider": "azure"
+}

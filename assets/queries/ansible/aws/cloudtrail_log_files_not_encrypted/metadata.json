@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "CloudTrail Log Files should be encrypted with Key Management Service (KMS)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "d3b81fde",
+  "cloudProvider": "aws"
 }

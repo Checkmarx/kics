@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Ensure Trusted Microsoft Services have Storage Account access.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls/bypass",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "e86db9c1",
+  "cloudProvider": "azure"
 }

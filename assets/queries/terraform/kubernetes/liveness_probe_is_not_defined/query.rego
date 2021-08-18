@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 
     types := {"kubernetes_pod": "spec.container", "kubernetes_deployment": "spec.template.spec.container"}
@@ -8,14 +10,14 @@ CxPolicy[result] {
 
     path := checkPath(resource)
 
-	object.get(path, "liveness_probe", "undefined") == "undefined"
+	not common_lib.valid_key(path, "liveness_probe")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s", [x, name, resource_prefix]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'livenessProbe' is defined",
-		"keyActualValue": "Attribute 'livenessProbe' is undefined",
+		"keyExpectedValue": "Attribute 'livenessProbe' is defined and not null",
+		"keyActualValue": "Attribute 'livenessProbe' is undefined or null",
 	}
 }
 

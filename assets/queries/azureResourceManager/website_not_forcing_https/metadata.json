@@ -1,0 +1,11 @@
+{
+  "id": "488847ff-6031-487c-bf42-98fd6ac5c9a0",
+  "queryName": "Website Not Forcing HTTPS",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "'Microsoft.Web/sites' should force the use of HTTPS",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "3af52329"
+}

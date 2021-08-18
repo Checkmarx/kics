@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "IAM role allows all services or principals to assume it",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "a54d0d27",
+  "cloudProvider": "aws"
 }

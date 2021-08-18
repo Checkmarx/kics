@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 46,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 48,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 48,
+    "filename": "positive2.json"
+  }
+]

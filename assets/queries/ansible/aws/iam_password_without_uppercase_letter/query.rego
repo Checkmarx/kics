@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.iam_password_policy", "iam_password_policy"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	policy := task[modules[m]]
 	ansLib.checkState(policy)
 
-	object.get(policy, "require_uppercase", "undefined") == "undefined"
+	not common_lib.valid_key(policy, "require_uppercase")
 
 	result := {
 		"documentId": id,

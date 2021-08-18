@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	api = document.resource.aws_api_gateway_method[name]
 
-	object.get(api, "api_key_required", "undefined") == "undefined"
+	not common_lib.valid_key(api, "api_key_required")
 
 	result := {
 		"documentId": document.id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.ec2_lc", "ec2_lc"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	ec2_lc := task[modules[m]]
 	ansLib.checkState(ec2_lc)
 
-	object.get(ec2_lc, "volumes", "undefined") == "undefined"
+	not common_lib.valid_key(ec2_lc, "volumes")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,8 @@ CxPolicy[result] {
 	ec2_lc := task[modules[m]]
 	ansLib.checkState(ec2_lc)
 
-	object.get(ec2_lc.volumes[j], "encrypted", "undefined") == "undefined"
+	volume := ec2_lc.volumes[j]
+	not common_lib.valid_key(volume, "encrypted")
 
 	result := {
 		"documentId": id,
@@ -41,7 +43,8 @@ CxPolicy[result] {
 	ec2_lc := task[modules[m]]
 	ansLib.checkState(ec2_lc)
 
-	object.get(ec2_lc.volumes[j], "ephemeral", "undefined") == "undefined"
+	volume := ec2_lc.volumes[j]
+	not common_lib.valid_key(volume, "ephemeral")
 	ansLib.isAnsibleFalse(ec2_lc.volumes[j].encrypted)
 
 	result := {

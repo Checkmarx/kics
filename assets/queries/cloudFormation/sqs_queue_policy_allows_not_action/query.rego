@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::SQS::QueuePolicy"
@@ -7,7 +9,7 @@ CxPolicy[result] {
 	statement := resource.Properties.PolicyDocument.Statement
 
 	statement[index].Effect == "Allow"
-	object.get(statement[index], "NotAction", "undefined") != "undefined"
+	common_lib.valid_key(statement[index], "NotAction")
 
 	result := {
 		"documentId": input.document[i].id,

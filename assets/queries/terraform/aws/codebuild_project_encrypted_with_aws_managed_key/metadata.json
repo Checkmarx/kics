@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "CodeBuild Project should be encrypted with customer-managed KMS keys instead of AWS managed keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codebuild_project#encryption_key",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "1034fb5a",
+  "cloudProvider": "aws"
 }

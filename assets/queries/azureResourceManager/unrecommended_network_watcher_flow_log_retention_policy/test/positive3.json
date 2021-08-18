@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "flowlogs/sample",
+      "type": "Microsoft.Network/networkWatchers/FlowLogs",
+      "apiVersion": "2020-11-01",
+      "location": "location",
+      "tags": {},
+      "properties": {
+        "targetResourceId": "targetResourceId",
+        "storageId": "storageId",
+        "enabled": true,
+        "format": {
+          "type": "JSON"
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}

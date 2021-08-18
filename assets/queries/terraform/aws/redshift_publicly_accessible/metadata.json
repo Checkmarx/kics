@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if 'publicly_accessible' field is true or undefined (default is true)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "9a581503",
+  "cloudProvider": "aws"
 }

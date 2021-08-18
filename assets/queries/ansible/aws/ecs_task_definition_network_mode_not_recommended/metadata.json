@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Network_Mode should be 'awsvpc' in ecs_task_definition. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_taskdefinition_module.html#parameter-network_mode",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "5424397d",
+  "cloudProvider": "aws"
 }

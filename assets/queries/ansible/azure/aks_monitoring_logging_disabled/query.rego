@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_aks", "azure_rm_aks"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	aks := task[modules[m]]
 	ansLib.checkState(aks)
 
-	object.get(aks, "addon", "undefined") == "undefined"
+	not common_lib.valid_key(aks, "addon")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	aks := task[modules[m]]
 	ansLib.checkState(aks)
 
-	object.get(aks.addon, "monitoring", "undefined") == "undefined"
+	not common_lib.valid_key(aks.addon, "monitoring")
 
 	result := {
 		"documentId": id,
@@ -40,16 +41,17 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	aks := task[modules[m]]
 	ansLib.checkState(aks)
-	attributes := {"enabled", "log_analytics_workspace_resource_id"}
+	attr := {"enabled", "log_analytics_workspace_resource_id"}
 
-	object.get(aks.addon.monitoring, attributes[j], "undefined") == "undefined"
+	attribute := attr[j]
+	not common_lib.valid_key(aks.addon.monitoring, attribute)
 
 	result := {
 		"documentId": id,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.addon.monitoring", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("azure_rm_aks.addon.monitoring.%s is set", [attributes[j]]),
-		"keyActualValue": sprintf("azure_rm_aks.addon.monitoring.%s is undefined", [attributes[j]]),
+		"keyExpectedValue": sprintf("azure_rm_aks.addon.monitoring.%s is set", [attr]),
+		"keyActualValue": sprintf("azure_rm_aks.addon.monitoring.%s is undefined", [attr]),
 	}
 }
 

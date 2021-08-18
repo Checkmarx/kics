@@ -1,12 +1,12 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
-	object.get(properties.DistributionConfig, "ViewerCertificate", "undefined") == "undefined"
+	not common_lib.valid_key(properties.DistributionConfig, "ViewerCertificate")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,7 +22,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
 	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
-	not commonLib.inArray({"TLSv1.2_2018", "TLSv1.2_2019","TLSv1.2-2018", "TLSv1.2-2019"}, protocolVer)
+	not common_lib.inArray({"TLSv1.2_2018", "TLSv1.2_2019","TLSv1.2-2018", "TLSv1.2-2019"}, protocolVer)
 
 	result := {
 		"documentId": input.document[i].id,

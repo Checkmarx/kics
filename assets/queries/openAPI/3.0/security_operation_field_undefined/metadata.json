@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "Security operation field should be defined in '#/components/securitySchemes'",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "5ece1b91"
 }

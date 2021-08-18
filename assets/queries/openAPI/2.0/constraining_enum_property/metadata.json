@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "There is a constraining keyword in a property which is already restricted by enum values",
   "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "63cd2785"
 }

@@ -1,0 +1,11 @@
+{
+  "id": "b3a41501-f712-4c4f-81e5-db9a7dc0e34e",
+  "queryName": "VPC Peering Route Table with Unrestricted CIDR",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "VPC Peering Route Table should restrict CIDR",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route",
+  "platform": "Terraform",
+  "descriptionID": "3a60c60e",
+  "cloudProvider": "aws"
+}

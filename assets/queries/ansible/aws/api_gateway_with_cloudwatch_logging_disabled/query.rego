@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	awsApiGateway := task[modules[m]]
 	ansLib.checkState(awsApiGateway)
 
-	object.get(awsApiGateway, "log_group_name", "undefined") == "undefined"
+	not common_lib.valid_key(awsApiGateway, "log_group_name")
 
 	result := {
 		"documentId": id,

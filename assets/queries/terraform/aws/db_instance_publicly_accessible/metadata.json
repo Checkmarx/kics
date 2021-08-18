@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "The field 'publicly_accessible' should not be set to 'true' (default is 'false').",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#publicly_accessible",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "c145a47f",
+  "cloudProvider": "aws"
 }

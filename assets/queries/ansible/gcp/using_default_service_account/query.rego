@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
 
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	ansLib.checkState(instance)
 
 	instance.auth_kind == "serviceaccount"
-	object.get(instance, "service_account_email", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "service_account_email")
 
 	result := {
 		"documentId": id,

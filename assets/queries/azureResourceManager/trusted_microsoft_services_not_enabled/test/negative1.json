@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "storage",
+      "location": "location1",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "accessTier": "Hot",
+        "networkAcls": {
+          "virtualNetworkRules": [
+            {
+              "id": "id",
+              "action": "Allow"
+            },
+            {
+              "id": "id",
+              "action": "Allow"
+            }
+          ],
+          "defaultAction": "Allow"
+        }
+      },
+      "resources": [
+      ]
+    }
+  ],
+  "outputs": {}
+}

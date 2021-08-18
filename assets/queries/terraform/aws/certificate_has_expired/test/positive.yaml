@@ -1,0 +1,6 @@
+- name: upload a self-signed certificate
+  community.aws.aws_acm:
+    certificate: "{{ lookup('file', 'expiredCertificate.pem' ) }}"
+    privateKey: "{{ lookup('file', 'key.pem' ) }}"
+    name_tag: my_cert
+    region: ap-southeast-2

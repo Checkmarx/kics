@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "Schema reference should exists on definitions field",
   "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "6da8f0da"
 }

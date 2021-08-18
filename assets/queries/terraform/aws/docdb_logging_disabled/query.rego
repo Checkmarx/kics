@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraform_lib
+import data.generic.common as common_lib
 
 validTypes := {"profiler", "audit"}
 
@@ -8,14 +9,14 @@ validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_docdb_cluster[name]
-	object.get(resource, "enabled_cloudwatch_logs_exports", "undefined") == "undefined"
+	not exist(resource, "enabled_cloudwatch_logs_exports")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_docdb_cluster[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is defined",
-		"keyActualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is missing",
+		"keyActualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is undefined",
 	}
 }
 
@@ -48,4 +49,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: %s", [validTypeConcat]),
 		"keyActualValue": sprintf("aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: %s", [concat(", ", missingTypes)]),
 	}
+}
+
+exist(obj, key) {
+	_ = obj[key]
 }

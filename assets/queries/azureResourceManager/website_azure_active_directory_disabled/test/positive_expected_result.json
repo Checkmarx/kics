@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive3.json"
+  }
+]

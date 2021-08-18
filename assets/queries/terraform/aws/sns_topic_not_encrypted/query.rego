@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sns_topic[name]
 
-	object.get(resource, "kms_master_key_id", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "kms_master_key_id")
 
 	result := {
 		"documentId": input.document[i].id,

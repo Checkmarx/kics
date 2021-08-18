@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.efs", "efs"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	efs := task[modules[m]]
 	ansLib.checkState(efs)
 
-	object.get(efs, "encrypt", "undefined") == "undefined"
+	not common_lib.valid_key(efs, "encrypt")
 
 	result := {
 		"documentId": id,

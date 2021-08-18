@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 107,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Storage Blob Service Container With Public Access",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive3.json"
+  }
+]

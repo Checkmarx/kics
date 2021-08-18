@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	cloudfront := task[modules[m]]
 	ansLib.checkState(cloudfront)
 
-	object.get(cloudfront, "logging", "undefined") == "undefined"
+	not common_lib.valid_key(cloudfront, "logging")
 
 	result := {
 		"documentId": id,

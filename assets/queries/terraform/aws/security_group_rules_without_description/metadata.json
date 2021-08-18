@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice for all rules in AWS Security Group to have a description",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "cee242dd",
+  "cloudProvider": "aws"
 }

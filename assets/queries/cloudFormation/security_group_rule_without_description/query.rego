@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
 
-	object.get(resource.Properties, "GroupDescription", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "GroupDescription")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,7 +22,8 @@ CxPolicy[result] {
 	resource.Type == "AWS::EC2::SecurityGroup"
 
 	properties := {"SecurityGroupIngress", "SecurityGroupEgress"}
-	object.get(resource.Properties[properties[index]][j], "Description", "undefined") == "undefined"
+	prop := resource.Properties[properties[index]][j]
+	not common_lib.valid_key(prop, "Description")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,7 +40,7 @@ CxPolicy[result] {
 
 	resourceTypes[resource.Type]
 
-	object.get(resource.Properties, "Description", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "Description")
 
 	result := {
 		"documentId": input.document[i].id,

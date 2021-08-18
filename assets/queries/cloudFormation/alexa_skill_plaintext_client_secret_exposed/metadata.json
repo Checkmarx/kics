@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Alexa skills' client secrets should not be defined as a plaintext string. It should either use 'AWS Systems Manager Parameter Store' or 'AWS Secrets Manager' to retrieve sensitive information",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html#cfn-ask-skill-authenticationconfiguration",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "cd21865c",
+  "cloudProvider": "aws"
 }

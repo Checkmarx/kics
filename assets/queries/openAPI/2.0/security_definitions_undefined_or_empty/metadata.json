@@ -5,5 +5,6 @@
   "category": "Access Control",
   "descriptionText": "Security Definitions Object should be set and not empty",
   "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "170dbeca"
 }

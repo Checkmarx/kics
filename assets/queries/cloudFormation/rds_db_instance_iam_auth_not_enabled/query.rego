@@ -1,12 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-    object.get(properties, "EnableIAMDatabaseAuthentication", "undefined") != "undefined"
-	not properties.EnableIAMDatabaseAuthentication
+	properties.EnableIAMDatabaseAuthentication == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,7 +23,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	object.get(properties, "EnableIAMDatabaseAuthentication", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "EnableIAMDatabaseAuthentication")
 
 	result := {
 		"documentId": input.document[i].id,

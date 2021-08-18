@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudtrail[name]
 	resource.enable_log_file_validation == false
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudtrail[name]
-	object.get(resource, "enable_log_file_validation", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "enable_log_file_validation")
 
 	result := {
 		"documentId": input.document[i].id,

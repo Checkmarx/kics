@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 39,
+    "fileName": "positive2.json"
+  }
+]

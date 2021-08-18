@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_athena_workgroup[name]
-	object.get(resource, "configuration", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "configuration")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_athena_workgroup[name]
-	object.get(resource.configuration, "result_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(resource.configuration, "result_configuration")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,7 +30,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_athena_workgroup[name]
-	object.get(resource.configuration.result_configuration, "encryption_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(resource.configuration.result_configuration, "encryption_configuration")
 
 	result := {
 		"documentId": input.document[i].id,

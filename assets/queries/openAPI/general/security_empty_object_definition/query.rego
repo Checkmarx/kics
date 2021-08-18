@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
-	object.get(doc, "security", "undefined") != "undefined"
+	common_lib.valid_key(doc, "security")
 
 	is_array(doc.security)
 	count(doc.security) > 0
@@ -28,7 +29,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
-	object.get(doc, "security", "undefined") != "undefined"
+	common_lib.valid_key(doc, "security")
 
 	not is_array(doc.security)
 	doc.security == {}

@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "Every defined property must be unique throughout the whole API",
   "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "eb2e14e6"
 }

@@ -16,7 +16,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s[%s].policy", [pl[r], name]),
+		"searchKey": sprintf("%s[%s].policy.Action", [pl[r], name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy.Action is not a 'Put' action", [pl[r], name]),
 		"keyActualValue": sprintf("%s[%s].policy.Action is a 'Put' action", [pl[r], name]),

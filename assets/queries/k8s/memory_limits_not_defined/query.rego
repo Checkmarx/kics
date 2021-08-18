@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -9,7 +11,7 @@ CxPolicy[result] {
 	containers := spec[types[t]][c]
 
 	limits := containers.resources.limits
-	object.get(limits, "memory", "undefined") == "undefined"
+	not common_lib.valid_key(limits, "memory")
 
 	metadata := document.metadata
 
@@ -28,7 +30,7 @@ CxPolicy[result] {
 
 	containers := spec[types[t]][c]
 
-	object.get(containers, "resources", "undefined") == "undefined"
+	not common_lib.valid_key(containers, "resources")
 	metadata := document.metadata
 
 	result := {
@@ -47,7 +49,7 @@ CxPolicy[result] {
 	containers := spec[types[t]][c]
 
 	resources := containers.resources
-	object.get(resources, "limits", "undefined") == "undefined"
+	not common_lib.valid_key(resources, "limits")
 
 	metadata := document.metadata
 

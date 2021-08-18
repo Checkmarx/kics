@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	k8sLib.checkKind(kind, listKinds)
 
 	spec := document.spec
-	object.get(spec, "hostAliases", "undefined") == "undefined"
+	not common_lib.valid_key(spec, "hostAliases")
 
 	metadata := document.metadata
 
@@ -19,26 +20,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.hostAliases is defined", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.spec.hostAliases is undefined", [metadata.name]),
-	}
-}
-
-CxPolicy[result] {
-	document := input.document[i]
-	kind := document.kind
-	listKinds := ["Pod"]
-	k8sLib.checkKind(kind, listKinds)
-
-	spec := document.spec
-	spec.hostAliases == null
-
-	metadata := document.metadata
-
-	result := {
-		"documentId": document.id,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.hostAliases", [metadata.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name=%s.spec.hostAliases is not null", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name=%s.spec.hostAliases is null", [metadata.name]),
 	}
 }
 

@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Global Accelerator should have flow logs enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/globalaccelerator_accelerator#flow_logs_enabled",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "3670731d",
+  "cloudProvider": "aws"
 }

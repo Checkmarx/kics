@@ -1,13 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::EMR::Cluster"
 	properties := resource.Properties
 
-	exists_security_configuration := object.get(properties, "SecurityConfiguration", "undefined") != "undefined"
-	not exists_security_configuration
+	not common_lib.valid_key(properties, "SecurityConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,

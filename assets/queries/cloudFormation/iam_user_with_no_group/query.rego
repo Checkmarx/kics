@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::IAM::User"
 	properties := resource.Properties
 
-	object.get(properties, "Groups", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "Groups")
 
     result := {
 		"documentId": input.document[i].id,

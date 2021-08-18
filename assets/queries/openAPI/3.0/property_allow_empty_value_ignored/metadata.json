@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "Property 'allowEmptyValue' is ignored in the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, and {\"sytle\": \"deepObject\", \"explode\": true}",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "91d0af2c"
 }

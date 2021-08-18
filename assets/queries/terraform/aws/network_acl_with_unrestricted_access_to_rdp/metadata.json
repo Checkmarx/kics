@@ -1,0 +1,11 @@
+{
+  "id": "a20be318-cac7-457b-911d-04cc6e812c25",
+  "queryName": "Network ACL With Unrestricted Access To RDP",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "'RDP' (TCP:3389) should not be public in AWS Network ACL",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl",
+  "platform": "Terraform",
+  "descriptionID": "ed220e0d",
+  "cloudProvider": "aws"
+}

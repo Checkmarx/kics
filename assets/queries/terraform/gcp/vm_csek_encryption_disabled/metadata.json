@@ -1,9 +1,0 @@
-{
-  "id": "b1d51728-7270-4991-ac2f-fc26e2695b38",
-  "queryName": "VM CSEK Encryption Disabled",
-  "severity": "MEDIUM",
-  "category": "Encryption",
-  "descriptionText": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK), which means the attribute 'disk_encryption_key' must be defined and its sub attribute 'sha256' must also be defined and not empty",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_disk",
-  "platform": "Terraform"
-}

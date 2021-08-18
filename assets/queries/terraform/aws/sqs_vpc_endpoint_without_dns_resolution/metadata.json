@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "SQS VPC Endpoint should have DNS resolution enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc#enable_dns_support",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "3ab3c05c",
+  "cloudProvider": "aws"
 }

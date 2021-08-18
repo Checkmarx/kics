@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Azure Kubernetes Service should have the proper network policy configuration",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html#parameter-network_profile/network_policy",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "75bbf826",
+  "cloudProvider": "azure"
 }

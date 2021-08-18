@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	spec := document.spec
 	containers := spec[types[x]]
 	ports := containers[c].ports
-	object.get(ports[k], "hostPort", "undefined") != "undefined"
+	common_lib.valid_key(ports[k], "hostPort")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	spec := document.spec.template.spec
 	containers := spec[types[x]]
 	ports := containers[c].ports
-	object.get(ports[k], "hostPort", "undefined") != "undefined"
+	common_lib.valid_key(ports[k], "hostPort")
 
 	result := {
 		"documentId": input.document[i].id,

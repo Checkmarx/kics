@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if the Amazon Organizations' policies ensure that all features are enabled to achieve full control over the use of AWS services and actions across multiple AWS accounts using Service Control Policies (SCPs).",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "0fbcc152",
+  "cloudProvider": "aws"
 }

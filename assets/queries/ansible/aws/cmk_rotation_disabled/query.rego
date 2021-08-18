@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,8 +9,8 @@ CxPolicy[result] {
 	ansLib.checkState(kms)
 
 	kms.enabled == true
-	object.get(kms, "pending_window", "undefined") == "undefined"
-	object.get(kms, "enable_key_rotation", "undefined") == "undefined"
+	not common_lib.valid_key(kms, "pending_window")
+	not common_lib.valid_key(kms, "enable_key_rotation")
 
 	result := {
 		"documentId": id,
@@ -26,7 +27,7 @@ CxPolicy[result] {
 	ansLib.checkState(kms)
 
 	kms.enabled == true
-	object.get(kms, "pending_window", "undefined") == "undefined"
+	not common_lib.valid_key(kms, "pending_window")
 	kms.enable_key_rotation == false
 
 	result := {

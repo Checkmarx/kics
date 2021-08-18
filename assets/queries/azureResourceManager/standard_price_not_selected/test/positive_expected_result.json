@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.json"
+  }
+]

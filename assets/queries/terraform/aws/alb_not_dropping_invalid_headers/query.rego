@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource[name]
 	types := {"aws_alb", "aws_lb"}
@@ -23,7 +25,7 @@ CxPolicy[result] {
 	name == types[x]
 	res := resource[m]
 	check_load_balancer_type(res)
-	object.get(res, "drop_invalid_header_fields", "undefined") == "undefined"
+	not common_lib.valid_key(res, "drop_invalid_header_fields")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,7 +39,7 @@ CxPolicy[result] {
 check_load_balancer_type(res) {
 	res.load_balancer_type == "application"
 } else {
-	object.get(res, "load_balancer_type", "undefined") == "undefined"
+	not common_lib.valid_key(res, "load_balancer_type")
 } else = false {
 	true
 }
