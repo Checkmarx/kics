@@ -4,14 +4,4 @@ resource "aws_vpc" "mainvpc2" {
 
 resource "aws_default_security_group" "default2" {
   vpc_id = aws_vpc.mainvpc2.id
-
-  ingress = [
-    {
-      protocol  = -1
-      self      = true
-      from_port = 0
-      to_port   = 0
-    }
-  ]
-
 }
