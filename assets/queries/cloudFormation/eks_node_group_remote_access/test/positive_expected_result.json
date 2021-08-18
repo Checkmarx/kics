@@ -1,13 +1,13 @@
 [
   {
     "queryName": "EKS node group remote access",
-    "severity": "LOW",
+    "severity": "",
     "line": 17,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "EKS node group remote access",
-    "severity": "LOW",
+    "severity": "",
     "line": 21,
     "fileName": "positive2.json"
   }
