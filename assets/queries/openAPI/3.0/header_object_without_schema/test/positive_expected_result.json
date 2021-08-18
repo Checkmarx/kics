@@ -2,7 +2,7 @@
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
-    "line": 71,
+    "line": 72,
     "filename": "positive1.json"
   },
   {
@@ -14,7 +14,7 @@
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
-    "line": 43,
+    "line": 44,
     "filename": "positive3.yaml"
   },
   {
