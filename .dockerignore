@@ -13,7 +13,6 @@ examples
 cx.configuration
 docker-compose.yml
 Dockerfile
-Dockerfile.alpine
 Dockerfile.debian
 mkdocs.yml
 sonar-project.properties

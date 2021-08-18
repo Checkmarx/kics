@@ -57,7 +57,7 @@ build-all: lint generate
 build: ## go build
 build: generate
 	$(call print-target)
-	@go build -o ${TARGET_BIN} -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION}" \
+	@go build -o ${TARGET_BIN} -ldflags "-X ${CONSTANTS_PATH}.SCMCommit=${COMMIT} -X ${CONSTANTS_PATH}.Version=${VERSION} -X ${CONSTANTS_PATH}.BaseURL=${DESCRIPTIONS_URL}" \
 		cmd/console/main.go
 
 .PHONY: go-clean
@@ -86,6 +86,12 @@ test-race: ## Run tests with race detector
 test-race: generate
 	$(call print-target)
 	@go test -race $(shell go list ./... | grep -v e2e)
+
+.PHONY: test-unit
+test-unit: ## Run unit tests
+test-unit: generate
+	$(call print-target)
+	@go test -v $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-cover
 test-cover: ## Run tests with code coverage

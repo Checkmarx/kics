@@ -92,6 +92,13 @@ isPrivateIP(ipVal) {
 	net.cidr_contains(private_ips[i], ipVal)
 }
 
+# Checks if an object is empty ignoring kics lines
+check_obj_empty(obj) {
+	obj = null
+} else {
+	count({x | o := obj[n]; n != "_kics_lines"; x = o}) == 0
+}
+
 # Check if field equals to value or if any element from field equals to value
 equalsOrInArray(field, value) {
 	is_string(field)
@@ -114,163 +121,6 @@ containsOrInArrayContains(field, value) {
 	is_array(field)
 	some i
 	contains(lower(field[i]), value)
-}
-
-isDefaultPassword(p) {
-	ar = {
-		"!@",
-		"root",
-		"wubao",
-		"password",
-		"123456",
-		"admin",
-		"12345",
-		"1234",
-		"p@ssw0rd",
-		"123",
-		"1",
-		"jiamima",
-		"test",
-		"root123",
-		"!",
-		"!q@w",
-		"!qaz@wsx",
-		"idc!@",
-		"admin!@",
-		"",
-		"alpine",
-		"qwerty",
-		"12345678",
-		"111111",
-		"123456789",
-		"1q2w3e4r",
-		"123123",
-		"default",
-		"1234567",
-		"qwe123",
-		"1qaz2wsx",
-		"1234567890",
-		"abcd1234",
-		"000000",
-		"user",
-		"toor",
-		"qwer1234",
-		"1q2w3e",
-		"asdf1234",
-		"redhat",
-		"1234qwer",
-		"cisco",
-		"12qwaszx",
-		"test123",
-		"1q2w3e4r5t",
-		"admin123",
-		"changeme",
-		"1qazxsw2",
-		"123qweasd",
-		"q1w2e3r4",
-		"letmein",
-		"server",
-		"root1234",
-		"master",
-		"abc123",
-		"rootroot",
-		"a",
-		"system",
-		"pass",
-		"1qaz2wsx3edc",
-		"p@$$w0rd",
-		"112233",
-		"welcome",
-		"!QAZ2wsx",
-		"linux",
-		"123321",
-		"manager",
-		"1qazXSW@",
-		"q1w2e3r4t5",
-		"oracle",
-		"asd123",
-		"admin123456",
-		"ubnt",
-		"123qwe",
-		"qazwsxedc",
-		"administrator",
-		"superuser",
-		"zaq12wsx",
-		"121212",
-		"654321",
-		"ubuntu",
-		"0000",
-		"zxcvbnm",
-		"root@123",
-		"1111",
-		"vmware",
-		"q1w2e3",
-		"qwerty123",
-		"cisco123",
-		"11111111",
-		"pa55w0rd",
-		"asdfgh",
-		"11111",
-		"123abc",
-		"asdf",
-		"centos",
-		"888888",
-		"54321",
-		"password123",
-		"pa$$",
-	}
-
-	ar[p]
-}
-
-isCommonValue(p) {
-	bl = {
-		"RESOURCE",
-		"GROUP",
-		"SUBNET",
-		"S3",
-		"SERVICE",
-		"AZURE",
-		"BUCKET",
-		"VIRTUAL",
-		"NETWORK",
-		"POLICY",
-		"AWS",
-		"PROTOCOL",
-		"CLOUD",
-		"MINUTE",
-		"TLS",
-		"EC2",
-		"VPC",
-		"INTERNET",
-		"ROUTE",
-		"EFS",
-		"INSTANCE",
-		"VPN",
-		"MOUNT",
-		"MYSQL",
-		"APACHE",
-		"ETHERNET",
-		"TERRAFORM",
-		"TARGET",
-		"ENVIRONMENT",
-		"MEMORY",
-		"PACKAGE",
-		"STATEMENT",
-		"REGION",
-		"INGRESS",
-		"CHECKPOINT",
-		"MODULE",
-		"BASIC",
-		"NUMBER",
-		"MASLEN",
-		"VERSION",
-		"MAKE",
-		"ARCH",
-	}
-
-	black := bl[_]
-	contains(upper(p), black)
 }
 
 isCommonKey(p) {
@@ -348,6 +198,8 @@ isCommonKey(p) {
 
 # Dictionary of TCP ports
 tcpPortsMap = {
+	20: "FTP",
+	21: "FTP",
 	22: "SSH",
 	23: "Telnet",
 	25: "SMTP",
@@ -360,11 +212,15 @@ tcpPortsMap = {
 	139: "NetBIOS Session Service",
 	161: "SNMP",
 	389: "LDAP",
+	443: "HTTPS",
 	445: "Microsoft-DS",
 	636: "LDAP SSL",
 	1433: "MSSQL Server",
 	1434: "MSSQL Browser",
 	1521: "Oracl DB",
+	1522: "Oracle Auto Data Warehouse",
+	2375: "Docker",
+	2376: "Docker",
 	2382: "SQL Server Analysis",
 	2383: "SQL Server Analysis",
 	2483: "Oracle DB SSL",
@@ -377,6 +233,7 @@ tcpPortsMap = {
 	4506: "SaltStack Master",
 	5432: "PostgreSQL",
 	5500: "VNC Listener",
+	5601: "Kibana",
 	5900: "VNC Server",
 	5985: "WinRM for HTTP",
 	6379: "Redis",
@@ -384,6 +241,7 @@ tcpPortsMap = {
 	7001: "Cassandra",
 	7199: "Cassandra Monitoring",
 	8000: "Known internal web port",
+	8020: "HDFS NameNode",
 	8080: "Known internal web port",
 	8140: "Puppet Master",
 	8888: "Cassandra OpsCenter Website",
@@ -398,6 +256,8 @@ tcpPortsMap = {
 	11215: "Memcached SSL",
 	27017: "Mongo",
 	27018: "Mongo Web Portal",
+	50070: "HDFS NameNode WebUI",
+	50470: "HDFS NameNode WebUI",
 	61620: "Cassandra OpsCenter",
 	61621: "Cassandra OpsCenter",
 }
@@ -421,4 +281,45 @@ compareArrays(arrayOne, arrayTwo) {
 	upper(arrayOne[_]) == upper(arrayTwo[_])
 } else = false {
 	true
+}
+
+valid_key(obj, key) {
+	_ = obj[key]
+	not is_null(obj[key])
+}
+
+getDays(date, daysInMonth) = days {
+	index := date[1] - 2
+	index >= 0
+
+	days = ((date[0] * 365) + daysInMonth[index]) + date[2]
+}
+
+getDays(date, daysInMonth) = days {
+	index := date[1] - 2
+	index < 0
+
+	days = (date[0] * 365) + date[2]
+}
+
+expired(expirationDate) {
+	currentDate := time.date(time.now_ns())
+	daysInMonth := [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]
+
+	daysInCurrentDate := getDays(currentDate, daysInMonth)
+	daysInExpirationDate := getDays(expirationDate, daysInMonth)
+
+	daysInExpirationDate < daysInCurrentDate
+}
+
+unsecured_cors_rule(methods, headers, origins) {
+	# allows all methods
+	availableMethods := {"GET", "PUT", "POST", "DELETE", "HEAD"}
+	count({x | method := methods[x]; method == availableMethods[_]}) == count(availableMethods)
+} else {
+	# allows all headers
+	contains(headers[_], "*")
+} else {
+	# allows several origins
+	contains(origins[_], "*")
 }

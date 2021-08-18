@@ -9,7 +9,13 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 		if err != nil {
 			return err
 		}
-
+		for idx := range summary.Queries {
+			summary.Queries[idx].CISBenchmarkName = ""
+			summary.Queries[idx].CISBenchmarkVersion = ""
+			summary.Queries[idx].CISDescriptionID = ""
+			summary.Queries[idx].CISDescriptionText = ""
+			summary.Queries[idx].CISRationaleText = ""
+		}
 		body = summary
 	}
 

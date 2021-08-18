@@ -7,10 +7,11 @@ jobs:
       - checkout
       - run:
           name: Run KICS
+          # the following parameters will fail the pipeline if results are found
           command: |
-            /app/bin/kics scan -p ${PWD} -o ~/results.json --ci
+            /app/bin/kics scan -p ${PWD} -o ${PWD} --ci
       - store_artifacts:
-          path: ~/results.json
+          path: ${PWD}/results.json
 
 workflows:
   version: 2

@@ -3,6 +3,7 @@ package model
 import (
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -34,14 +35,23 @@ type VulnerableFile struct {
 
 // VulnerableQuery contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
 type VulnerableQuery struct {
-	QueryName   string           `json:"query_name"`
-	QueryID     string           `json:"query_id"`
-	QueryURI    string           `json:"query_url"`
-	Severity    Severity         `json:"severity"`
-	Platform    string           `json:"platform"`
-	Files       []VulnerableFile `json:"files"`
-	Category    string           `json:"category"`
-	Description string           `json:"description"`
+	QueryName                   string           `json:"query_name"`
+	QueryID                     string           `json:"query_id"`
+	QueryURI                    string           `json:"query_url"`
+	Severity                    Severity         `json:"severity"`
+	Platform                    string           `json:"platform"`
+	Category                    string           `json:"category"`
+	Description                 string           `json:"description"`
+	DescriptionID               string           `json:"description_id"`
+	CISDescriptionIDFormatted   string           `json:"cis_description_id"`
+	CISDescriptionTitle         string           `json:"cis_description_title"`
+	CISDescriptionTextFormatted string           `json:"cis_description_text"`
+	CISDescriptionID            string           `json:"cis_description_id_raw,omitempty"`
+	CISDescriptionText          string           `json:"cis_description_text_raw,omitempty"`
+	CISRationaleText            string           `json:"cis_description_rationale,omitempty"`
+	CISBenchmarkName            string           `json:"cis_benchmark_name,omitempty"`
+	CISBenchmarkVersion         string           `json:"cis_benchmark_version,omitempty"`
+	Files                       []VulnerableFile `json:"files"`
 }
 
 // VulnerableQuerySlice is a slice of VulnerableQuery
@@ -76,31 +86,34 @@ type Summary struct {
 // PathParameters - structure wraps the required fields for temporary path translation
 type PathParameters struct {
 	ScannedPaths      []string
-	PathExtractionMap map[string]string
+	PathExtractionMap map[string]ExtractedPathObject
 }
+
+var (
+	queryRegex = regexp.MustCompile(`\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?`)
+)
 
 func getRelativePath(basePath, filePath string) string {
 	var returnPath string
-	if strings.Contains(filePath, ".zip") {
+	relativePath, err := filepath.Rel(basePath, filePath)
+	if err != nil {
 		returnPath = filePath
 	} else {
-		relativePath, err := filepath.Rel(basePath, filePath)
-		if err != nil {
-			log.Error().Msgf("Cannot make %s relative to %s", filePath, basePath)
-			returnPath = filePath
-		} else {
-			returnPath = relativePath
-		}
+		returnPath = relativePath
 	}
 	return returnPath
 }
 
-func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string) string {
+func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
 	prettyPath := filePath
 	for key, val := range pathExtractionMap {
 		if strings.Contains(filePath, key) {
 			splittedPath := strings.Split(filePath, key)
-			prettyPath = filepath.Join(filepath.Base(val), splittedPath[1])
+			if !val.LocalPath {
+				// remove query parameters '?key=value&key2=value'
+				return filepath.FromSlash(queryRegex.ReplaceAllString(val.Path, "") + splittedPath[1])
+			}
+			prettyPath = filepath.FromSlash(filepath.Base(val.Path) + splittedPath[1])
 		} else {
 			prettyPath = filePath
 		}
@@ -108,9 +121,9 @@ func replaceIfTemporaryPath(filePath string, pathExtractionMap map[string]string
 	return prettyPath
 }
 
-func resolvePath(filePath string, pathExtractionMap map[string]string) string {
+func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObject) string {
 	var returnPath string
-	returnPath = replaceIfTemporaryPath(filePath, pathExtractionMap)
+	returnPath = replaceIfTemporaryPath(filepath.FromSlash(filePath), pathExtractionMap)
 	pwd, err := os.Getwd()
 	if err != nil {
 		log.Error().Msgf("Unable to get current working dir %s", err)
@@ -121,7 +134,8 @@ func resolvePath(filePath string, pathExtractionMap map[string]string) string {
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
-func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID string, pathExtractionMap map[string]string) Summary {
+func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
+	scanID string, pathExtractionMap map[string]ExtractedPathObject) Summary {
 	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]VulnerableQuery, len(vulnerabilities))
 	severitySummary := SeveritySummary{
@@ -131,13 +145,14 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability, scanID st
 		item := vulnerabilities[i]
 		if _, ok := q[item.QueryID]; !ok {
 			q[item.QueryID] = VulnerableQuery{
-				QueryName:   item.QueryName,
-				QueryID:     item.QueryID,
-				Severity:    item.Severity,
-				QueryURI:    item.QueryURI,
-				Platform:    item.Platform,
-				Category:    item.Category,
-				Description: item.Description,
+				QueryName:     item.QueryName,
+				QueryID:       item.QueryID,
+				Severity:      item.Severity,
+				QueryURI:      item.QueryURI,
+				Platform:      item.Platform,
+				Category:      item.Category,
+				Description:   item.Description,
+				DescriptionID: item.DescriptionID,
 			}
 		}
 

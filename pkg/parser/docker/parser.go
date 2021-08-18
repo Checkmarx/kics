@@ -107,3 +107,8 @@ func (p *Parser) SupportedExtensions() []string {
 func (p *Parser) SupportedTypes() []string {
 	return []string{"Dockerfile"}
 }
+
+// GetCommentToken return the comment token of Docker - #
+func (p *Parser) GetCommentToken() string {
+	return "#"
+}

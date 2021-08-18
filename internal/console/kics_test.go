@@ -66,12 +66,6 @@ func TestConsole_Execute(t *testing.T) { //nolint
 			remove:  "",
 		},
 		{
-			name:    "test_kics_no_queries_flag",
-			args:    []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/tc-sim01/positive1.tf")},
-			wantErr: true,
-			remove:  "",
-		},
-		{
 			name: "test_kics_config_flag",
 			args: []string{"kics", "scan", "-p", filepath.FromSlash("../../test/fixtures/config"), "-q",
 				filepath.FromSlash("../../assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),

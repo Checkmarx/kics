@@ -10,3 +10,6 @@ assets/queries/terraform/aws/iam_role_allows_all_principals_to_assume/test/posit
 assets/queries/terraform/aws/iam_role_allows_all_principals_to_assume/test/negative.tf
 assets/queries/terraform/aws/certificate_rsa_key_bytes_lower_than_256/test/positive2.tf
 assets/queries/terraform/aws/certificate_rsa_key_bytes_lower_than_256/test/negative2.tf
+assets/queries/terraform/general/variable_without_type/test/positive2.tf
+assets/queries/terraform/general/variable_without_type/test/positive3.tf
+assets/queries/terraform/general/generic_git_module_without_revision/test/positive1.tf

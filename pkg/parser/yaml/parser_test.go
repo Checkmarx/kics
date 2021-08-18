@@ -176,3 +176,9 @@ func TestModel_TestYamlParser(t *testing.T) {
 		})
 	}
 }
+
+// Test_GetCommentToken must get the token that represents a comment
+func Test_GetCommentToken(t *testing.T) {
+	parser := &Parser{}
+	require.Equal(t, "#", parser.GetCommentToken())
+}

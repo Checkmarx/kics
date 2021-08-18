@@ -32,7 +32,7 @@ jobs:
         with:
           go-version: 1.16
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2.6.1
+        uses: goreleaser/goreleaser-action@v2.7.0
         with:
           version: latest
           args: release --rm-dist
@@ -40,3 +40,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}

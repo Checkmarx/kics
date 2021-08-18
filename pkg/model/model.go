@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	_ "github.com/mailru/easyjson/gen" //nolint
+	"github.com/rs/zerolog/log"
 )
 
 // Constants to describe what kind of file refers
@@ -71,6 +72,16 @@ type CodeLine struct {
 	Line     string
 }
 
+// ExtractedPathObject is the struct that contains the path location of extracted source
+// and a boolean to check if it is a local source
+type ExtractedPathObject struct {
+	Path      string
+	LocalPath bool
+}
+
+// CommentsCommands list of commands on a file that will be parsed
+type CommentsCommands map[string]string
+
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
 	ID           string `db:"id"`
@@ -82,14 +93,16 @@ type FileMetadata struct {
 	Content      string
 	HelmID       string
 	IDInfo       map[int]interface{}
+	Commands     CommentsCommands
 }
 
 // QueryMetadata is a representation of general information about a query
 type QueryMetadata struct {
-	Query    string
-	Content  string
-	Metadata map[string]interface{}
-	Platform string
+	InputData string
+	Query     string
+	Content   string
+	Metadata  map[string]interface{}
+	Platform  string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
 	Aggregation int
@@ -108,6 +121,7 @@ type Vulnerability struct {
 	QueryURI         string     `json:"-"`
 	Category         string     `json:"category"`
 	Description      string     `json:"description"`
+	DescriptionID    string     `json:"descriptionID"`
 	Platform         string     `db:"platform" json:"platform"`
 	Severity         Severity   `json:"severity"`
 	Line             int        `json:"line"`
@@ -152,8 +166,6 @@ func (e Extensions) Include(ext string) bool {
 
 	return b
 }
-
-type interfVis interface{}
 
 type LineObject struct {
 	Line int                     `json:"_kics_line"`
@@ -205,7 +217,12 @@ type Document map[string]interface{}
 func (m FileMetadatas) Combine() Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for i := 0; i < len(m); i++ {
+		_, ignore := m[i].Commands["ignore"]
 		if len(m[i].Document) == 0 {
+			continue
+		}
+		if ignore {
+			log.Debug().Msgf("Ignoring file %s", m[i].FileName)
 			continue
 		}
 		m[i].Document["id"] = m[i].ID

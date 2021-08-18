@@ -14,6 +14,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const (
+	mbConst = 1048576
+)
+
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
 // SaveFile should append metadata to a file
 // SaveVulnerabilities should append vulnerabilities list to current storage
@@ -51,10 +55,9 @@ type Service struct {
 func (s *Service) StartScan(
 	ctx context.Context,
 	scanID string,
-	hideProgress bool,
 	errCh chan<- error,
 	wg *sync.WaitGroup,
-	currentQuery chan<- float64) {
+	currentQuery chan<- int64) {
 	log.Debug().Msg("service.StartScan()")
 	defer wg.Done()
 	if err := s.SourceProvider.GetSources(
@@ -73,7 +76,6 @@ func (s *Service) StartScan(
 		ctx,
 		scanID,
 		s.files,
-		hideProgress,
 		s.SourceProvider.GetBasePaths(),
 		s.Parser.Platform,
 		currentQuery,
@@ -94,7 +96,7 @@ func (s *Service) StartScan(
 func getContent(rc io.Reader) (*[]byte, error) {
 	maxSizeMB := 5 // Max size of file in MBs
 	var content []byte
-	data := make([]byte, 1048576)
+	data := make([]byte, mbConst)
 	for {
 		if maxSizeMB < 0 {
 			return &[]byte{}, errors.New("file size limit exceeded")

@@ -73,6 +73,9 @@ func TestNewFileSystemSourceProvider(t *testing.T) {
 
 // TestFileSystemSourceProvider_GetSources tests the functions [GetSources()] and all the methods called by them
 func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
+	if err := test.ChangeCurrentDir("kics"); err != nil {
+		t.Fatal(err)
+	}
 	type fields struct {
 		paths    []string
 		excludes map[string][]os.FileInfo
@@ -93,7 +96,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "get_sources",
 			fields: fields{
-				paths:    []string{"../../../assets/queries"},
+				paths:    []string{"assets/queries"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
@@ -109,7 +112,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "error_sink",
 			fields: fields{
-				paths:    []string{"../../../assets/queries"},
+				paths:    []string{"assets/queries"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
@@ -125,7 +128,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "get_sources_file",
 			fields: fields{
-				paths:    []string{"../../../assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"},
+				paths:    []string{"assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
@@ -141,7 +144,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "error_not_suported_extension",
 			fields: fields{
-				paths:    []string{"../../../assets/queries/template/test/positive.tf"},
+				paths:    []string{"assets/queries/template/test/positive.tf"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
@@ -172,7 +175,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "err_resolver_sink",
 			fields: fields{
-				paths:    []string{"../../assets/queries/template/test/positive.tf"},
+				paths:    []string{"assets/queries/template/test/positive.tf"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
@@ -189,7 +192,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "test_helm_source_provider",
 			fields: fields{
-				paths:    []string{"../../../test/fixtures/test_helm_subchart"},
+				paths:    []string{"test/fixtures/test_helm_subchart"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{

@@ -28,6 +28,7 @@ var (
 		"../assets/queries/terraform/gcp":        {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
 		"../assets/queries/terraform/github":     {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
 		"../assets/queries/terraform/kubernetes": {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
+		"../assets/queries/terraform/general":    {FileKind: []model.FileKind{model.KindTerraform}, Platform: "terraform"},
 		"../assets/queries/k8s":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "k8s"},
 		"../assets/queries/cloudFormation":       {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/ansible/aws":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
@@ -38,6 +39,7 @@ var (
 		"../assets/queries/openAPI/general":      {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
+		"../assets/queries/azureResourceManager": {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
 	}
 
 	issueTypes = map[string]string{
@@ -157,7 +159,7 @@ func getCombinedParser() []*parser.Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	return bd
 }
 
@@ -215,7 +217,7 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	pathToLib := source.GetPathToLibrary(platform, "../")
+	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
 	content, err := os.ReadFile(pathToLib)
 
 	if err != nil {
@@ -235,9 +237,10 @@ func isValidURL(toTest string) bool {
 	return err == nil && u.Scheme != "" && u.Host != ""
 }
 
-func getQueryFilter() source.QuerySelectionFilter {
-	return source.QuerySelectionFilter{
+func getQueryFilter() *source.QueryInspectorParameters {
+	return &source.QueryInspectorParameters{
 		IncludeQueries: source.IncludeQueries{ByIDs: []string{}},
 		ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
+		InputDataPath:  "",
 	}
 }

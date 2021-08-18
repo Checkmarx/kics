@@ -40,30 +40,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Push scratch to Docker Hub
-        uses: docker/build-push-action@v2.6.1
-        id: build_scratch
-        with:
-          context: .
-          push: true
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
-          build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
-            COMMIT=${{ github.sha }}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
       - name: Push alpine to Docker Hub
         uses: docker/build-push-action@v2.6.1
         id: build_alpine
         with:
           context: .
-          file: ./Dockerfile.alpine
           push: true
-          tags: checkmarx/kics:latest-alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:latest-alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-      - name: Push debian to Docker Hub
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+      - name: Build and push debian to Docker Hub
         id: build_debian
         uses: docker/build-push-action@v2.6.1
         with:
@@ -75,6 +64,7 @@ jobs:
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       # TODO: investigate why this is not working
       #- name: Update repo description
       #  uses: peter-evans/dockerhub-description@v2
@@ -87,7 +77,7 @@ jobs:
         run: |
           VERSION=${{ steps.get-version.outputs.version }}
 
-          DIGEST=${{ steps.build_scratch.outputs.digest }}
+          DIGEST=${{ steps.build_alpine.outputs.digest }}
           ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
           DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
 

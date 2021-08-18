@@ -1,6 +1,6 @@
 ## Create a new Query
 
-The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, that can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
+The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, which can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
 
 ```bash
 go run ./cmd/console/main.go scan -p "pathToTestData" -d "pathToGenerateJson"
@@ -81,6 +81,8 @@ As a first step, it is important to be familiar with the libraries available (ch
 
 For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute `is_multi_region_trail` of the resource `aws_cloudtrail`. Since this attribute is optional and false by default, we have two cases: (1) `is_multi_region_trail` is undefined and (2) `is_multi_region_trail` is set to false. Observe the following implementation as an example and check the Guidelines below.
 
+:rotating_light: **Make sure you use ```package Cx```. If you give another name, the query will not load.** :rotating_light:
+
 ```
 package Cx
 
@@ -137,6 +139,10 @@ Observe the following metadata.json example and check the Guidelines below for m
   "platform": "Terraform"
 }
 ```
+
+👨‍💻 **Data File**
+
+This file contains a map, with string keys, which will have default values for keys that can be overwritten as described on [allowing users to overwrite query data section](#allowing-users-to-overwrite-query-data) and [using custom input data section of Running KICS](./running-kics.md#using-custom-input-data)
 
 👨‍💻 **Test Folder**
 
@@ -349,3 +355,17 @@ CxPolicy[result] {
 isTCPorUDP("TCP") = true
 isTCPorUDP("UDP") = true
 ```
+
+#### Allowing users to overwrite query data
+Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:
+
+1. Create a `data.json` file on the same level as `query.rego`;
+2. Define **ALL** keys that can be overwritten with their default value;
+3. On `query.rego` file, use `data.<key_on_data_json_file>` to access the value of this key;
+
+With these simple steps, users will be able to overwrite the keys they want, elsewhere will use the default value.
+
+#### Query Dependencies
+If you want to use the functions defined in your own library, you should use the flag `-b` to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: `<platform>.rego`. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
+
+

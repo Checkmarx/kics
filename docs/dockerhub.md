@@ -35,41 +35,13 @@ This will generate a `results.json` file, for both examples, under `path`.
 Usage:
 
 ```txt
-Keeping Infrastructure as Code Secure
-
-Usage:
-  kics [command]
-
-Available Commands:
-  generate-id    Generates uuid for query
-  help           Help about any command
-  list-platforms List supported platforms
-  scan           Executes a scan analysis
-  version        Displays the current version
-
-Flags:
-      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-  -h, --help                help for kics
-  -f, --log-format string   determines log format (pretty,json) (default "pretty")
-      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
-      --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
-      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-
-Use "kics [command] --help" for more information about a command.
-```
-
-Scan command:
-
-```txt
 Executes a scan analysis
 
 Usage:
   kics scan [flags]
 
 Flags:
+      --cloud-provider strings       list of cloud providers to scan (aws, azure, gcp)
       --config string                path to configuration file
       --exclude-categories strings   exclude categories by providing its name
                                      cannot be provided with query inclusion flags
@@ -96,8 +68,11 @@ Flags:
                                      cannot be provided with query exclusion flags
                                      can be provided multiple times or as a comma separated string
                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
+      --input-data string            path to query input data files
+  -b, --library string               path to directory with libraries (default "./assets/libraries")
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
+      --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
@@ -108,7 +83,7 @@ Flags:
       --report-formats strings       formats in which the results will be exported (all, json, sarif, html, glsast, pdf) (default [json])
       --timeout int                  number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                 case insensitive list of platform types to scan
-                                     (Ansible, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
+                                     (Ansible, AzureResourceManager, CloudFormation, Dockerfile, Kubernetes, OpenAPI, Terraform)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)

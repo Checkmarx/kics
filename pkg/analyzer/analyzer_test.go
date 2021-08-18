@@ -19,7 +19,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:        "analyze_test_dir_single_path",
 			paths:       []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes:   []string{"dockerfile", "cloudformation", "kubernetes", "openapi", "terraform", "ansible"},
+			wantTypes:   []string{"dockerfile", "cloudformation", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager"},
 			wantExclude: []string{},
 			wantErr:     false,
 		},

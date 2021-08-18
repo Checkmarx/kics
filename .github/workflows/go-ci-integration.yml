@@ -50,7 +50,14 @@ jobs:
       - name: Run docker image and generate results.json
         run: |
           docker run -v ${PWD}/assets/queries:/path \
-            kics:${{ github.sha }} scan --silent --ignore-on-exit "results" --log-level DEBUG --log-file --log-path "/path/info.log" -p "/path" -o "/path/"
+            kics:${{ github.sha }} scan \
+            --silent \
+            --disable-full-descriptions \
+            --ignore-on-exit "results" \
+            --log-level DEBUG \
+            --log-path "/path/info.log" \
+            -p "/path" \
+            -o "/path/"
       - name: Archive test logs
         uses: actions/upload-artifact@v2
         if: always()

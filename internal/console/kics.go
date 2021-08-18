@@ -99,15 +99,14 @@ func initialize(rootCmd *cobra.Command) error {
 		return err
 	}
 
-	initScanCmd(scanCmd)
-	return nil
+	return initScanCmd(scanCmd)
 }
 
 // Execute starts kics execution
 func Execute() error {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 
-	enableTelemetry()
+	enableCrashReport()
 
 	rootCmd := NewKICSCmd()
 
@@ -128,9 +127,9 @@ func Execute() error {
 	return nil
 }
 
-func enableTelemetry() {
-	enableTelemetry, found := os.LookupEnv("KICS_COLLECT_TELEMETRY")
-	if found && (enableTelemetry == "0" || enableTelemetry == "false") {
+func enableCrashReport() {
+	enableCrashReport, found := os.LookupEnv("DISABLE_CRASH_REPORT")
+	if found && (enableCrashReport == "0" || enableCrashReport == "false") {
 		initSentry("")
 	} else {
 		initSentry(constants.SentryDSN)
@@ -140,7 +139,7 @@ func enableTelemetry() {
 func initSentry(dsn string) {
 	var err error
 	if dsn == "" {
-		warnings = append(warnings, "KICS telemetry disabled")
+		warnings = append(warnings, "KICS crash report disabled")
 		err = sentry.Init(sentry.ClientOptions{
 			Release: constants.GetRelease(),
 		})

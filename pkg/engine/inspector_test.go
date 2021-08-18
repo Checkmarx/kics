@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"sync"
 	"testing"
 	"time"
 
@@ -15,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 
@@ -147,7 +149,8 @@ func TestInspect(t *testing.T) { //nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: opaQuery,
 		metadata: model.QueryMetadata{
-			Query: "add_instead_of_copy",
+			Query:     "add_instead_of_copy",
+			InputData: "{}",
 			Content: `package Cx
 
 			CxPolicy [ result ] {
@@ -245,6 +248,8 @@ func TestInspect(t *testing.T) { //nolint
 					QueryID:          "Undefined",
 					QueryName:        "Anonymous",
 					QueryURI:         "https://github.com/Checkmarx/kics/",
+					Description:      "",
+					DescriptionID:    "Undefined",
 					Severity:         model.SeverityInfo,
 					Line:             -1,
 					VulnLines:        []model.CodeLine{},
@@ -287,9 +292,15 @@ func TestInspect(t *testing.T) { //nolint
 		},
 	}
 
+	wg := &sync.WaitGroup{}
 	for _, tt := range tests {
+		currentQuery := make(chan int64)
+		wg.Add(1)
+		proBarBuilder := progress.InitializePbBuilder(true, true, true)
+		progressBar := proBarBuilder.BuildCounter("Executing queries: ", len(tt.fields.queries), wg, currentQuery)
+
+		go progressBar.Start()
 		t.Run(tt.name, func(t *testing.T) {
-			currentQuery := make(chan float64)
 			c := &Inspector{
 				queries:              tt.fields.queries,
 				vb:                   tt.fields.vb,
@@ -301,7 +312,7 @@ func TestInspect(t *testing.T) { //nolint
 				queryExecTimeout:     time.Duration(60) * time.Second,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
-				true, []string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
+				[]string{filepath.FromSlash("assets/queries/")}, []string{""}, currentQuery)
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)
@@ -312,9 +323,16 @@ func TestInspect(t *testing.T) { //nolint
 				require.Nil(t, err)
 				wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
 				require.Nil(t, err)
-				t.Errorf("Inspector.Inspect() = %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
+				t.Errorf("Inspector.Inspect() got %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
 			}
 		})
+
+		go func() {
+			defer func() {
+				close(currentQuery)
+			}()
+			wg.Wait()
+		}()
 	}
 }
 
@@ -336,9 +354,10 @@ func TestNewInspector(t *testing.T) { // nolint
 	opaQueries = append(opaQueries, &preparedQuery{
 		opaQuery: rego.PreparedEvalQuery{},
 		metadata: model.QueryMetadata{
-			Query:    "all_auth_users_get_read_access",
-			Content:  string(contentByte),
-			Platform: "unknown",
+			Query:     "all_auth_users_get_read_access",
+			Content:   string(contentByte),
+			InputData: "{}",
+			Platform:  "cloudFormation",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",
@@ -356,7 +375,7 @@ func TestNewInspector(t *testing.T) { // nolint
 		source           source.QueriesSource
 		vb               VulnerabilityBuilder
 		tracker          Tracker
-		queryFilter      source.QuerySelectionFilter
+		queryFilter      source.QueryInspectorParameters
 		excludeResults   map[string]bool
 		queryExecTimeout int
 	}
@@ -373,7 +392,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				vb:      vbs,
 				tracker: track,
 				source:  sources,
-				queryFilter: source.QuerySelectionFilter{
+				queryFilter: source.QueryInspectorParameters{
 					IncludeQueries: source.IncludeQueries{
 						ByIDs: []string{},
 					},
@@ -399,7 +418,7 @@ func TestNewInspector(t *testing.T) { // nolint
 				tt.args.source,
 				tt.args.vb,
 				tt.args.tracker,
-				tt.args.queryFilter,
+				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout)
 
@@ -554,13 +573,87 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 	}
 }
 
+func TestShouldSkipFile(t *testing.T) {
+	type args struct {
+		commands model.CommentsCommands
+		queryID  string
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected bool
+	}{
+		{
+			name: "test_enabled_queries_valid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"enable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09,0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: false,
+		},
+		{
+			name: "test_enabled_queries_invalid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"enable": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: true,
+		},
+		{
+			name: "test_disabled_queries_invalid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"disable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09,0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: true,
+		},
+		{
+			name: "test_disabled_queries_invalid_query",
+			args: args{
+				commands: model.CommentsCommands{
+					"disable": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
+				},
+				queryID: "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: false,
+		},
+		{
+			name: "test_withoutCommands",
+			args: args{
+				commands: model.CommentsCommands{},
+				queryID:  "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+			},
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := shouldSkipFile(tt.args.commands, tt.args.queryID)
+			require.Equal(t, tt.expected, got)
+		})
+	}
+}
+
 func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
-	querySource := source.NewFilesystemSource(queryPath, []string{""})
+	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
 	}
-	ins, err := NewInspector(context.Background(), querySource, vb, &tracker.CITracker{}, source.QuerySelectionFilter{}, map[string]bool{}, 60)
+	ins, err := NewInspector(
+		context.Background(),
+		querySource,
+		vb,
+		&tracker.CITracker{},
+		&source.QueryInspectorParameters{},
+		map[string]bool{}, 60,
+	)
 	require.NoError(t, err)
 	return ins
 }
@@ -570,16 +663,14 @@ type mockSource struct {
 	Types  []string
 }
 
-func (m *mockSource) GetQueries(queryFilter source.QuerySelectionFilter) ([]model.QueryMetadata, error) {
-	sources := source.NewFilesystemSource(m.Source, []string{""})
+func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
+	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 
 	return sources.GetQueries(queryFilter)
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	currentWorkdir, _ := os.Getwd()
-
-	pathToLib := source.GetPathToLibrary(platform, currentWorkdir)
+	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err

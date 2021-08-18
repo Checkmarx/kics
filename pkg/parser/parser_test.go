@@ -66,7 +66,7 @@ RUN echo hello
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
 func TestParser_Empty(t *testing.T) {
 	p, err := NewBuilder().
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	if err != nil {
 		t.Errorf("Error building parser: %s", err)
 	}
@@ -104,15 +104,17 @@ func initilizeBuilder() []*Parser {
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build([]string{""})
+		Build([]string{""}, []string{""})
 	return bd
 }
 
 // TestParser_SupportedExtensions tests the functions [validateArguments()] and all the methods called by them
 func TestValidateArguments(t *testing.T) {
 	type args struct {
-		types     []string
-		validArgs []string
+		types               []string
+		validArgsTypes      []string
+		cloudProviders      []string
+		validCloudProviders []string
 	}
 	tests := []struct {
 		name    string
@@ -122,24 +124,30 @@ func TestValidateArguments(t *testing.T) {
 		{
 			name: "validate_args_error",
 			args: args{
-				types:     []string{"dockerfiles"},
-				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				types:               []string{"dockerfiles"},
+				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders:      []string{"awss"},
+				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: true,
 		},
 		{
 			name: "validate_args",
 			args: args{
-				types:     []string{"Dockerfile"},
-				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				types:               []string{"Dockerfile"},
+				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders:      []string{"aws"},
+				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: false,
 		},
 		{
 			name: "validate_args_case_sensetive",
 			args: args{
-				types:     []string{"kubernetes"},
-				validArgs: []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				types:               []string{"kubernetes"},
+				validArgsTypes:      []string{"Dockerfile", "Ansible", "Terraform", "CloudFormation", "Kubernetes"},
+				cloudProviders:      []string{"Aws"},
+				validCloudProviders: []string{"aws", "azure", "gcp"},
 			},
 			wantErr: false,
 		},
@@ -147,7 +155,7 @@ func TestValidateArguments(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := validateArguments(tt.args.types, tt.args.validArgs)
+			err := validateArguments(tt.args.types, tt.args.validArgsTypes, tt.args.cloudProviders, tt.args.validCloudProviders)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("validateArguments() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -206,4 +214,30 @@ func TestRemoveDuplicateValues(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestIsValidExtension(t *testing.T) {
+	parser, _ := NewBuilder().
+		Add(&jsonParser.Parser{}).
+		Add(&dockerParser.Parser{}).
+		Build([]string{""}, []string{""})
+	require.True(t, parser[0].isValidExtension("test.json"), "test.json should be a valid extension")
+	require.True(t, parser[1].isValidExtension("Dockerfile"), "dockerfile should be a valid extension")
+	require.False(t, parser[0].isValidExtension("test.xml"), "test.xml should not be a valid extension")
+}
+
+func TestCommentsCommands(t *testing.T) {
+	parser, _ := NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
+	commands := parser[0].CommentsCommands("Dockerfile", []byte(`
+	# kics-scan ignore
+	# kics-scan disable=ffdf4b37-7703-4dfe-a682-9d2e99bc6c09
+	FROM foo
+	COPY . /
+	RUN echo hello
+	`))
+	expectedCommands := model.CommentsCommands{
+		"ignore":  "",
+		"disable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
+	}
+	require.Equal(t, expectedCommands, commands)
 }

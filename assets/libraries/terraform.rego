@@ -1,15 +1,21 @@
 package generic.terraform
 
+check_cidr(rule) {
+	rule.cidr_blocks[_] == "0.0.0.0/0"
+} else {
+	rule.cidr_block == "0.0.0.0/0"
+}
+
 # Checks if a TCP port is open in a rule
 openPort(rule, port) {
-	rule.cidr_blocks[_] == "0.0.0.0/0"
+	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)
 }
 
 openPort(rules, port) {
 	rule := rules[_]
-	rule.cidr_blocks[_] == "0.0.0.0/0"
+	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)
 }

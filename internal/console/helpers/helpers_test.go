@@ -1,17 +1,14 @@
 package helpers
 
 import (
-	"bytes"
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 	"reflect"
-	"strings"
-	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
 	"github.com/gookit/color"
 	"github.com/stretchr/testify/require"
@@ -48,7 +45,7 @@ var printTests = []struct {
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
 			"Description: \nPlatform: \n\n\t[1]: positive.tf:1\n\n\n\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
-			"Description: \n" +
+			"Description: ALB protocol is HTTP Description\n" +
 			"Platform: \n\n" +
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +
@@ -79,89 +76,6 @@ func TestPrintResult(t *testing.T) {
 			out, err := test.CaptureOutput(func() error { return PrintResult(&testCase.caseTest, failedQueries, NewPrinter(false)) })
 			require.NoError(t, err)
 			require.Equal(t, testCase.expectedResultFull, out)
-		})
-	}
-}
-
-type progressBarTestArgs struct {
-	label string
-	total float64
-	space int
-}
-
-var progressBarTests = []struct {
-	name              string
-	args              progressBarTestArgs
-	shouldCheckOutput bool
-	want              string
-}{
-	{
-		name: "Should return labeled progressbar with 5 spaces each side",
-		args: progressBarTestArgs{
-			label: "ProgressTest",
-			total: 100.0,
-			space: 5,
-		},
-		shouldCheckOutput: true,
-		want:              "ProgressTest[===== 100.0% =====]",
-	},
-	{
-		name: "Should return labeless progressbar with 5 spaces each side",
-		args: progressBarTestArgs{
-			label: "",
-			total: 100.0,
-			space: 5,
-		},
-		shouldCheckOutput: true,
-		want:              "[===== 100.0% =====]",
-	},
-	{
-		name: "Should return labeless progressbar with 10 spaces each side",
-		args: progressBarTestArgs{
-			label: "",
-			total: 100.0,
-			space: 10,
-		},
-		shouldCheckOutput: true,
-		want:              "[========== 100.0% ==========]",
-	},
-	{
-		name: "Should ignore progressbar",
-		args: progressBarTestArgs{
-			label: "",
-			total: 100.0,
-			space: 10,
-		},
-		shouldCheckOutput: false,
-		want:              "",
-	},
-}
-
-// TestProgressBar tests the functions [ProgressBar()]
-func TestProgressBar(t *testing.T) {
-	for _, tt := range progressBarTests {
-		t.Run(tt.name, func(t *testing.T) {
-			var wg sync.WaitGroup
-			var out bytes.Buffer
-
-			wg.Add(1)
-			progress := make(chan float64, 1)
-			progressBar := NewProgressBar(tt.args.label, tt.args.space, tt.args.total, progress)
-			if tt.shouldCheckOutput {
-				progressBar.Writer = &out
-			} else {
-				progressBar.Writer = io.Discard
-			}
-			go progressBar.Start(&wg)
-			if tt.shouldCheckOutput {
-				for i := 0; i < 100; i++ {
-					progress <- float64(1)
-				}
-				progress <- float64(1)
-			}
-			wg.Wait()
-			splittedOut := strings.Split(out.String(), "\r")
-			require.Equal(t, tt.want, splittedOut[len(splittedOut)-1])
 		})
 	}
 }
@@ -417,7 +331,7 @@ func TestHelpers_GenerateReport(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := GenerateReport(tt.args.path, tt.args.filename, tt.args.body, tt.args.formats)
+			err := GenerateReport(tt.args.path, tt.args.filename, tt.args.body, tt.args.formats, progress.PbBuilder{})
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GenerateReport() = %v, wantErr = %v", err, tt.wantErr)
 			}

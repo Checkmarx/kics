@@ -12,6 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/parser"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/stretchr/testify/require"
@@ -22,13 +23,18 @@ import (
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 )
 
+var (
+	sourcePath = filepath.FromSlash("../../assets/queries")
+)
+
 func TestScanner_StartScan(t *testing.T) {
 	type args struct {
 		scanID     string
 		noProgress bool
 	}
 	type feilds struct {
-		types []string
+		types          []string
+		cloudProviders []string
 	}
 	tests := []struct {
 		name   string
@@ -36,40 +42,41 @@ func TestScanner_StartScan(t *testing.T) {
 		feilds feilds
 	}{
 		{
-			name: "testing_start_scann",
+			name: "testing_start_scan",
 			args: args{
 				scanID:     "console",
 				noProgress: true,
 			},
 			feilds: feilds{
-				types: []string{""},
+				types:          []string{""},
+				cloudProviders: []string{""},
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			services, store, err := createServices(tt.feilds.types)
+			services, store, err := createServices(tt.feilds.types, tt.feilds.cloudProviders)
 			require.NoError(t, err)
-			err = StartScan(context.Background(), tt.args.scanID, tt.args.noProgress, services)
+			err = StartScan(context.Background(), tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
 			require.NotEmpty(t, &store)
 		})
 	}
 }
 
-func createServices(types []string) (serviceSlice, *storage.MemoryStorage, error) {
+func createServices(types, cloudProviders []string) (serviceSlice, *storage.MemoryStorage, error) {
 	filesSource, err := provider.NewFileSystemSourceProvider([]string{filepath.FromSlash("../../test")}, []string{})
 	if err != nil {
 		return nil, nil, err
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(filepath.FromSlash("../../assets/queries"), types)
+	querySource := source.NewFilesystemSource(sourcePath, types, cloudProviders, filepath.FromSlash("../../assets/libraries"))
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
-		t, source.QuerySelectionFilter{}, map[string]bool{}, 60)
+		t, &source.QueryInspectorParameters{}, map[string]bool{}, 60)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -79,7 +86,7 @@ func createServices(types []string) (serviceSlice, *storage.MemoryStorage, error
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types)
+		Build(types, cloudProviders)
 	if err != nil {
 		return nil, nil, err
 	}
