@@ -127,3 +127,8 @@ func addExtraInfo(documents []model.Document, filePath string) []model.Document 
 
 	return documents
 }
+
+// GetCommentToken return the comment token of YAML - #
+func (p *Parser) GetCommentToken() string {
+	return "#"
+}

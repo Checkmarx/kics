@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "Cloud Storage Bucket is anonymously or publicly accessible",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam#member/members",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "7a54f7e2",
+  "cloudProvider": "gcp"
 }

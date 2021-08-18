@@ -37,6 +37,7 @@ nav:
       - Installation: getting-started.md
       - Configuration: configuration-file.md
       - Command Line Interface: commands.md
+      - Running KICS: running-kics.md
       - Results: results.md
       - Architecture: architecture.md
       - Platforms: platforms.md
@@ -47,6 +48,7 @@ nav:
       - Queries List:
           - All: queries/all-queries.md
           - Ansible: queries/ansible-queries.md
+          - Azure Resource Manager: queries/azureresourcemanager-queries.md
           - CloudFormation: queries/cloudformation-queries.md
           - Common: queries/common-queries.md
           - Dockerfile: queries/dockerfile-queries.md

@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Azure Virtual Network subnet must be configured with a Network Security Group, which means the attribute 'security_group' must be defined and not empty",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_subnet_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "381f57a0",
+  "cloudProvider": "azure"
 }

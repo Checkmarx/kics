@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
     resource.Type == "AWS::Config::ConfigRule"
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	configRule.Type == "AWS::Config::ConfigRule"
 	configRule.Properties.Source.SourceIdentifier == "ACCESS_KEYS_ROTATED"
 
-	object.get(configRule.Properties, "InputParameters", "undefined") == "undefined"
+	not common_lib.valid_key(configRule.Properties, "InputParameters")
 
 	result := {
 		"documentId": document.id,

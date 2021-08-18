@@ -5,5 +5,6 @@
   "category": "Availability",
   "descriptionText": "Check if Readiness Probe is not configured.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#readiness_probe",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "a333fe96"
 }

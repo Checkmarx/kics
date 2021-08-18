@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "keyVaultInstance",
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2019-09-01",
+      "location": "location",
+      "tags": {},
+      "properties": {
+        "tenantId": "72f98888-8666-4144-9199-2d7cd0111111",
+        "sku": {
+          "family": "A",
+          "name": "standard"
+        },
+        "accessPolicies": [
+          {
+            "tenantId": "72f98888-8666-4144-9199-2d7cd0111111",
+            "objectId": "99998888-8666-4144-9199-2d7cd0111111",
+            "permissions": {
+              "keys": [
+                "encrypt"
+              ]
+            }
+          }
+        ],
+        "vaultUri": "string",
+        "enabledForDeployment": true,
+        "enabledForDiskEncryption": true,
+        "enabledForTemplateDeployment": true,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 80,
+        "enableRbacAuthorization": true,
+        "enablePurgeProtection": true
+      },
+      "resources": []
+    }
+  ],
+  "outputs": {}
+}

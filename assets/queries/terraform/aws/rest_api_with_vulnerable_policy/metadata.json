@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "REST API policy should avoid wildcard in 'Action' and 'Principal'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api_policy#policy",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "fb6080ac",
+  "cloudProvider": "aws"
 }

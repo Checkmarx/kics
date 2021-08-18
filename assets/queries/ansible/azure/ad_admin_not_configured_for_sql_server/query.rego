@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	modules := {"azure.azcollection.azure_rm_sqlserver", "azure_rm_sqlserver"}
 	task := ansLib.tasks[id][t]
 	sqlserver := task[modules[m]]
 
-	object.get(sqlserver, "ad_user", "undefined") == "undefined"
+	not common_lib.valid_key(sqlserver, "ad_user")
 
 	result := {
 		"documentId": id,

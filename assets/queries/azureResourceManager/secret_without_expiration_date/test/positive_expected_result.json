@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "HIGH",
+    "line": 49,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "HIGH",
+    "line": 54,
+    "filename": "positive2.json"
+  }
+]

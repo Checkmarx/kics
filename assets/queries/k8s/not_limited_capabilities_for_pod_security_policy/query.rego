@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	document[i].kind == "PodSecurityPolicy"
 	metadata := document[i].metadata
 	spec := document[i].spec
-	object.get(spec, "requiredDropCapabilities", "undefined") == "undefined"
+	not common_lib.valid_key(spec, "requiredDropCapabilities")
 
 	result := {
 		"documentId": input.document[i].id,

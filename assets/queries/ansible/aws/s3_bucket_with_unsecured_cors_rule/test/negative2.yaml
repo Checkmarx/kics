@@ -1,0 +1,16 @@
+- name: Create s3 bucket1
+  aws_s3_cors:
+    name: mys3bucket4
+    state: present
+    rules:
+      - allowed_origins:
+          - http://www.example.com/
+        allowed_methods:
+          - GET
+          - POST
+        allowed_headers:
+          - Authorization
+        expose_headers:
+          - x-amz-server-side-encryption
+          - x-amz-request-id
+        max_age_seconds: 30000

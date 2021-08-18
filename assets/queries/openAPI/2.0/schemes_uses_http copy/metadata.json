@@ -5,5 +5,6 @@
   "category": "Encryption",
   "descriptionText": "Schemes should use 'https' protocol instead of 'http'. Scheme using 'http' allows for clear text credentials",
   "descriptionUrl": "https://swagger.io/specification/v2/#swaggerObject",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "34948b49"
 }

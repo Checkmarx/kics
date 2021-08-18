@@ -1,0 +1,11 @@
+{
+  "id": "574e8d82-1db2-4b9c-b526-e320ede9a9ff",
+  "queryName": "SQL Server Database With Alerts Disabled",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "All Alerts should be enabled in SQL Database Server SecurityAlerts Policy Properties",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "e8a4e321"
+}

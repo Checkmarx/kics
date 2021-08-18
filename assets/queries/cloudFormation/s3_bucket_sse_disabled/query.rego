@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # return every bucket as result if there are no policies defined
 CxPolicy[result] {
 	document := input.document[i]
@@ -9,7 +11,7 @@ CxPolicy[result] {
 
 	bucket := resources[resource].Properties
 
-	object.get(bucket,"BucketEncryption","undefined") == "undefined"
+	not common_lib.valid_key(bucket,"BucketEncryption")
 
 	result := {
 		"documentId": document.id,
@@ -94,11 +96,11 @@ CxPolicy[result] {
 
 hasServerEncryptionRules(list) {
     some i
-    object.get(list[i],"ServerSideEncryptionByDefault","undefined") != "undefined"
+    common_lib.valid_key(list[i],"ServerSideEncryptionByDefault")
 }
 
 checkMasterKey(assed) {
-	object.get(assed, "KMSMasterKeyID", "undefined") == "undefined"
+	not common_lib.valid_key(assed, "KMSMasterKeyID")
 }
 
 checkMasterKey(assed) {

@@ -38,6 +38,8 @@ type gitlabSASTScannerVendor struct {
 	Name string `json:"name"`
 }
 
+type gitlabSASTVulnerabilityDetails map[string]interface{}
+
 type gitlabSASTVulnerability struct {
 	ID          string                              `json:"id"`
 	Category    string                              `json:"category"`
@@ -49,6 +51,7 @@ type gitlabSASTVulnerability struct {
 	Links       []gitlabSASTVulnerabilityLink       `json:"links"`
 	Location    gitlabSASTVulnerabilityLocation     `json:"location"`
 	Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
+	Details     gitlabSASTVulnerabilityDetails      `json:"details,omitempty"`
 }
 
 type gitlabSASTVulnerabilityScanner struct {
@@ -138,6 +141,13 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.Vulnerab
 					Value:          issue.QueryID,
 				},
 			},
+		}
+		if issue.CISDescriptionID != "" {
+			vulnerability.Message = issue.CISDescriptionTextFormatted
+			vulnerability.Details = gitlabSASTVulnerabilityDetails{
+				"cisTitle": issue.CISDescriptionTitle,
+				"cisId":    issue.CISDescriptionIDFormatted,
+			}
 		}
 		glsr.Vulnerabilities = append(glsr.Vulnerabilities, vulnerability)
 	}

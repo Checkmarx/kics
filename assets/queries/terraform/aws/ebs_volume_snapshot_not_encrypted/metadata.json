@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "The value on AWS EBS Volume Snapshot Encryptation must be true",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ebs_snapshot#encrypted",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "b36765a7",
+  "cloudProvider": "aws"
 }

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "roleDef",
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "apiVersion": "2018-01-01-preview",
+      "properties": {
+        "roleName": "my-custom-role",
+        "description": "This is a custom role",
+        "permissions": [
+          {
+            "actions": [
+              "*"
+            ]
+          }
+        ],
+        "assignableScopes": [
+          "[subscription().id]"
+        ]
+      }
+    }
+  ],
+  "outputs": {}
+}

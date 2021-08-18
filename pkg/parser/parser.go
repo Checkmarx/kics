@@ -12,6 +12,7 @@ import (
 
 type kindParser interface {
 	GetKind() model.FileKind
+	GetCommentToken() string
 	SupportedExtensions() []string
 	SupportedTypes() []string
 	Parse(filePath string, fileContent []byte) ([]model.Document, error)
@@ -36,7 +37,7 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types []string) ([]*Parser, error) {
+func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 	parserSlice := make([]*Parser, 0, len(b.parsers))
 	var suportedTypes []string
 	for _, parser := range b.parsers {
@@ -57,7 +58,9 @@ func (b *Builder) Build(types []string) ([]*Parser, error) {
 		}
 	}
 
-	if err := validateArguments(types, suportedTypes); err != nil {
+	supportedCloudProviders := []string{"aws", "azure", "gcp"}
+
+	if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil {
 		return []*Parser{}, err
 	}
 
@@ -74,14 +77,41 @@ type Parser struct {
 	Platform   []string
 }
 
+// CommentsCommands gets commands on comments in the file beginning, before the code starts
+func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.CommentsCommands {
+	if c.isValidExtension(filePath) {
+		commentsCommands := make(model.CommentsCommands)
+		commentToken := c.parsers.GetCommentToken()
+		if commentToken != "" {
+			lines := strings.Split(string(fileContent), "\n")
+			for _, line := range lines {
+				line = strings.TrimSpace(line)
+				if line == "" {
+					continue
+				}
+				if !strings.HasPrefix(line, commentToken) {
+					break
+				}
+				fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
+				if len(fields) > 1 && fields[0] == "kics-scan" && fields[1] != "" {
+					commandParameters := strings.SplitN(fields[1], "=", 2)
+					if len(commandParameters) > 1 {
+						commentsCommands[commandParameters[0]] = commandParameters[1]
+					} else {
+						commentsCommands[commandParameters[0]] = ""
+					}
+				}
+			}
+		}
+		return commentsCommands
+	}
+	return nil
+}
+
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
 func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) {
-	ext := filepath.Ext(filePath)
-	if ext == "" {
-		ext = filepath.Base(filePath)
-	}
-	if _, ok := c.extensions[ext]; ok {
+	if c.isValidExtension(filePath) {
 		resolved, err := c.parsers.Resolve(fileContent, filePath)
 		if err != nil {
 			return nil, "", err
@@ -101,11 +131,17 @@ func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
 }
 
-func validateArguments(types, validArgs []string) error {
-	validArgs = removeDuplicateValues(validArgs)
-	if invalidType, ok, _ := contains(types, validArgs); !ok {
-		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgs, "\n  "))
+func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error {
+	validArgsTypes = removeDuplicateValues(validArgsTypes)
+
+	if invalidType, ok, _ := contains(types, validArgsTypes); !ok {
+		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
 	}
+
+	if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk {
+		return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
+	}
+
 	return nil
 }
 
@@ -144,4 +180,13 @@ func removeDuplicateValues(stringSlice []string) []string {
 		}
 	}
 	return list
+}
+
+func (c *Parser) isValidExtension(filePath string) bool {
+	ext := filepath.Ext(filePath)
+	if ext == "" {
+		ext = filepath.Base(filePath)
+	}
+	_, ok := c.extensions[ext]
+	return ok
 }

@@ -21,13 +21,15 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex     = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
-	openAPIRegexInfo = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
-	openAPIRegexPath = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
-	cloudRegex       = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
-	k8sRegex         = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
-	k8sRegexKind     = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
-	k8sRegexMetadata = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
+	openAPIRegex           = regexp.MustCompile("(\\s*\"openapi\":)|(\\s*openapi:)|(\\s*\"swagger\":)|(\\s*swagger:)")
+	openAPIRegexInfo       = regexp.MustCompile("(\\s*\"info\":)|(\\s*info:)")
+	openAPIRegexPath       = regexp.MustCompile("(\\s*\"paths\":)|(\\s*paths:)")
+	armRegexContentVersion = regexp.MustCompile("\\s*\"contentVersion\":")
+	armRegexResources      = regexp.MustCompile("\\s*\"resources\":")
+	cloudRegex             = regexp.MustCompile("(\\s*\"Resources\":)|(\\s*Resources:)")
+	k8sRegex               = regexp.MustCompile("(\\s*\"apiVersion\":)|(\\s*apiVersion:)")
+	k8sRegexKind           = regexp.MustCompile("(\\s*\"kind\":)|(\\s*kind:)")
+	k8sRegexMetadata       = regexp.MustCompile("(\\s*\"metadata\":)|(\\s*metadata:)")
 )
 
 const (
@@ -133,6 +135,12 @@ var types = map[string]regexSlice{
 	"cloudformation": {
 		regex: []*regexp.Regexp{
 			cloudRegex,
+		},
+	},
+	"azureresourcemanager": {
+		[]*regexp.Regexp{
+			armRegexContentVersion,
+			armRegexResources,
 		},
 	},
 }

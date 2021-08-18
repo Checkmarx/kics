@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -17,11 +18,9 @@ CxPolicy[result] {
 }
 
 isMissing(properties,attribute) {
-    object.get(properties, attribute, "undefined") == "undefined"
+    not common_lib.valid_key(properties, attribute)
 }
 
 isMissing(properties,attribute) {
-    attr := object.get(properties, attribute, "undefined")
-    attr != "undefined"
-    attr == ""
+    properties[attribute] == ""
 }

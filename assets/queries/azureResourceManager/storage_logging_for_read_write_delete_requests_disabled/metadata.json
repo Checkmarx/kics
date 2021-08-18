@@ -1,0 +1,11 @@
+{
+  "id": "43f6e60c-9cdb-4e77-864d-a66595d26518",
+  "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Storage Logging should be enabled for read, write and delete methods",
+  "descriptionUrl": "https://docs.microsoft.com/pt-pt/azure/azure-monitor/essentials/resource-manager-diagnostic-settings#diagnostic-setting-for-azure-storage",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "83fa7bb6"
+}

@@ -12,14 +12,12 @@ variables:
   KICS_BLOCK_ON_HIGH: "true"
 
 before_script:
-  - apk add --no-cache libc6-compat curl
+  - apk add --no-cache libc6-compat
   - DATETIME="`date '+%H:%M'`"
-  - TAG=`curl --silent "https://api.github.com/repos/Checkmarx/kics/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
-  - echo "${DATETIME} - INF latest tag is $TAG"
-  - VERSION=`echo $TAG | sed -r 's/^.{1}//'`
   - echo "${DATETIME} - INF version is $VERSION"
+  - VERSION=1.2.4
   - echo "${DATETIME} - INF downloading latest kics binaries kics_${VERSION}_linux_x64.tar.gz"
-  - wget -q -c "https://github.com/Checkmarx/kics/releases/download/${TAG}/kics_${VERSION}_linux_x64.tar.gz" -O - | tar -xz --directory /usr/bin &>/dev/null
+  - wget -q -c "https://github.com/Checkmarx/kics/releases/download/v${VERSION}/kics_${VERSION}_linux_x64.tar.gz" -O - | tar -xz --directory /usr/bin &>/dev/null
 
 stages:
   - kics
@@ -34,6 +32,9 @@ kics-scan:
     paths:
       - kics-results.json
 
+#
+# before v1.3.0 breaking the pipeline on results required parsing the results json file
+#
 kics-results:
   stage: kics-result
   before_script:

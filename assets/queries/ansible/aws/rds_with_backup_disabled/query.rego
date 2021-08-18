@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.rds_instance", "rds_instance"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	instance := task[modules[m]]
 	ansLib.checkState(instance)
 
-	object.get(instance, "backup_retention_period", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "backup_retention_period")
 
 	result := {
 		"documentId": id,

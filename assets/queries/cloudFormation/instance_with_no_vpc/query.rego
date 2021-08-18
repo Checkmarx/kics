@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	properties := resource.Properties
 	subnetName := properties.NetworkInterfaces[j].SubnetId
 	subNetObj := document.Resources[subnetName]
-	object.get(subNetObj.Properties, "VpcId", "undefined") == "undefined"
+	not common_lib.valid_key(subNetObj.Properties, "VpcId")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EC2::Instance"
 
 	properties := resource.Properties
-	object.get(properties, "NetworkInterfaces", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "NetworkInterfaces")
 
 	result := {
 		"documentId": input.document[i].id,

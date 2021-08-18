@@ -1,0 +1,11 @@
+{
+  "id": "59cb3da7-f206-4ae6-b827-7abf0a9cab9d",
+  "queryName": "Network Security Group With Unrestricted Access To RDP",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Port 3389 (Remote Desktop) is exposed to the Internet",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "e09bde32"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows All Actions From All Principals",
+    "severity": "HIGH",
+    "line": 42,
+    "filename": "positive.tf"
+  }
+]

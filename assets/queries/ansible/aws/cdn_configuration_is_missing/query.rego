@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	cloudfront_distribution := task[modules[m]]
 
 	ansLib.checkState(cloudfront_distribution)
-	object.get(cloudfront_distribution, "enabled", "undefined") == "undefined"
+	not common_lib.valid_key(cloudfront_distribution, "enabled")
 
 	result := {
 		"documentId": id,
@@ -42,7 +43,7 @@ CxPolicy[result] {
 	cloudfront_distribution := task[modules[m]]
 
 	ansLib.checkState(cloudfront_distribution)
-	object.get(cloudfront_distribution, "origins", "undefined") == "undefined"
+	not common_lib.valid_key(cloudfront_distribution, "origins")
 
 	result := {
 		"documentId": id,

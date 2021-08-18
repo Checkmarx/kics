@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "sample/securitygroup",
+      "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+      "apiVersion": "2020-11-01",
+      "properties": {
+        "description": "access to RDP",
+        "protocol": "Tcp",
+        "sourcePortRange": "*",
+        "destinationPortRanges": [
+          "3333-3389"
+        ],
+        "sourceAddressPrefix": "*",
+        "destinationAddressPrefix": "*",
+        "access": "Allow",
+        "priority": 100,
+        "direction": "Inbound"
+      }
+    }
+  ],
+  "outputs": {}
+}

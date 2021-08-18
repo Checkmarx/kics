@@ -3,10 +3,11 @@ package source
 
 import "github.com/Checkmarx/kics/pkg/model"
 
-// QuerySelectionFilter is a struct that represents the optionn to select queries to be executed
-type QuerySelectionFilter struct {
+// QueryInspectorParameters is a struct that represents the optionn to select queries to be executed
+type QueryInspectorParameters struct {
 	IncludeQueries IncludeQueries
 	ExcludeQueries ExcludeQueries
+	InputDataPath  string
 }
 
 // ExcludeQueries is a struct that represents the option to exclude queries by ids or by categories
@@ -24,6 +25,6 @@ type IncludeQueries struct {
 // GetQueries gets all queries from a QueryMetadata list
 // GetQueryLibrary gets a library of rego functions given a plataform's name
 type QueriesSource interface {
-	GetQueries(querySelection QuerySelectionFilter) ([]model.QueryMetadata, error)
+	GetQueries(querySelection *QueryInspectorParameters) ([]model.QueryMetadata, error)
 	GetQueryLibrary(platform string) (string, error)
 }

@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_rds_cluster[name]
 
 	not is_serverless(cluster)
-	object.get(cluster, "storage_encrypted", "undefined") == "undefined"
+	not common_lib.valid_key(cluster, "storage_encrypted")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "Lambda permission may be misconfigured if the action field is not filled in by 'lambda:InvokeFunction'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "9f8d2402",
+  "cloudProvider": "aws"
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.kinesis_stream", "kinesis_stream"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	kinesis_stream := task[modules[m]]
 	ansLib.checkState(kinesis_stream)
 
-	object.get(kinesis_stream, "encryption_type", "undefined") == "undefined"
+	not common_lib.valid_key(kinesis_stream, "encryption_type")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	kinesis_stream := task[modules[m]]
 	ansLib.checkState(kinesis_stream)
 
-	object.get(kinesis_stream, "encryption_state", "undefined") == "undefined"
+	not common_lib.valid_key(kinesis_stream, "encryption_state")
 
 	result := {
 		"documentId": id,
@@ -74,7 +75,7 @@ CxPolicy[result] {
 	ansLib.checkState(kinesis_stream)
 
 	kinesis_stream.encryption_type == "KMS"
-	object.get(kinesis_stream, "key_id", "undefined") == "undefined"
+	not common_lib.valid_key(kinesis_stream, "key_id")
 
 	result := {
 		"documentId": id,

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"reflect"
 	"regexp"
 	"strings"
 	"testing"
@@ -369,18 +368,14 @@ var tests = []testCase{
 				[]string{"scan",
 					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 
-				[]string{"scan", "--exclude-categories", "Access Control,Encryption",
-					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
-
-				[]string{"scan", "--exclude-categories", "Access Control,Encryption",
-					"--exclude-queries", "568a4d22-3517-44a6-a7ad-6a7eed88722c",
-					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
-
-				[]string{"scan", "--exclude-categories", "Access Control,Encryption,Observability",
+				[]string{"scan", "--exclude-categories",
+					"Access Control,Availability,Backup,Best Practices,Build Process,Encryption," +
+						"Insecure Configurations,Insecure Defaults,Networking and Firewall,Observability," +
+						"Resource Management,Secret Management,Supply-Chain,Structure and Semantics",
 					"-q", "../assets/queries", "-p", "../test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 			},
 		},
-		wantStatus: []int{50, 40, 30, 0},
+		wantStatus: []int{50, 0},
 	},
 	// E2E-CLI-022 - Kics  scan command with --profiling CPU and -v flags
 	// must display CPU usage in the CLI
@@ -625,8 +620,7 @@ var tests = []testCase{
 					"d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
-				[]string{"scan", "--exclude-results",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf", "--exclude-results"}, // changed flags order
 			},
 		},
 
@@ -648,8 +642,8 @@ var tests = []testCase{
 				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 
-				[]string{"scan", "--include-queries",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+				[]string{"scan",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf", "--include-queries"}, // changed flags order
 			},
 		},
 
@@ -743,6 +737,45 @@ var tests = []testCase{
 		},
 		wantStatus: []int{50},
 	},
+
+	// E2E-CLI-041 - Kics scan command with -p targeting remote path (git)
+	// should download and scan the provided path.
+	{
+		name: "E2E-CLI-041",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_041_RESULT",
+					"--report-formats", "json,sarif,glsast", "-q", "../assets/queries",
+					"-p", "git::https://github.com/dockersamples/example-voting-app"},
+			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_041_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast"},
+				},
+			},
+		},
+		wantStatus: []int{50},
+	},
+	// E2E-CLI-042 - Kics scan command with -p targeting remote path (http/https)
+	// should download and scan the provided path/file.
+	{
+		name: "E2E-CLI-042",
+		args: args{
+			args: []cmdArgs{
+				[]string{"scan", "--output-path", "output", "--output-name", "E2E_CLI_042_RESULT",
+					"--report-formats", "json,sarif,glsast", "-q", "../assets/queries",
+					"-p", "https://raw.githubusercontent.com/dockersamples/example-voting-app/master/docker-compose-simple.yml"},
+			},
+			expectedResult: []ResultsValidation{
+				{
+					resultsFile:    "E2E_CLI_042_RESULT",
+					resultsFormats: []string{"json", "sarif", "glsast"},
+				},
+			},
+		},
+		wantStatus: []int{50},
+	},
 }
 
 func Test_E2E_CLI(t *testing.T) {
@@ -763,17 +796,16 @@ func Test_E2E_CLI(t *testing.T) {
 				t.Parallel()
 				out, err := utils.RunCommand(append(kicsPath, tt.args.args[arg]...))
 				// Check command Error
-				require.NoError(t, err, "Capture output should not yield an error")
+				require.NoError(t, err, "Capture CLI output should not yield an error")
 				// Check exit status code
-				if !reflect.DeepEqual(out.Status, tt.wantStatus[arg]) {
-					t.Errorf("actual status = %v, expected status = %v", out.Status, tt.wantStatus[arg])
-				}
+				require.Equalf(t, out.Status, tt.wantStatus[arg],
+					"Actual KICS status code: %v\nExpected KICS status code: %v",
+					out.Status, tt.wantStatus[arg])
 
 				if tt.validation != nil {
 					fullString := strings.Join(out.Output, ";")
-					if !tt.validation(fullString) {
-						t.Errorf("kics output doesn't match the validation regex")
-					}
+					validation := tt.validation(fullString)
+					require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
 				}
 
 				if tt.args.expectedResult != nil {
@@ -788,21 +820,23 @@ func Test_E2E_CLI(t *testing.T) {
 				if tt.args.expectedLog.validationFunc != nil {
 					// Check log file
 					logData, _ := utils.ReadFixture(tt.args.expectedLog.logFile, "output")
-					if !tt.args.expectedLog.validationFunc(logData) {
-						t.Errorf("The output log file doesn't match the validation regex")
-					}
+					validation := tt.args.expectedLog.validationFunc(logData)
+					require.Truef(t, validation, "The output log file 'output/%s' doesn't match the regex validation",
+						tt.args.expectedLog.logFile)
 				}
 
 				if tt.args.expectedOut != nil {
 					// Get and preapare expected output
 					want, errPrep := utils.PrepareExpected(tt.args.expectedOut[arg], "fixtures")
-					require.NoError(t, errPrep, "Reading a fixture should not yield an error")
+					require.NoErrorf(t, errPrep, "[fixtures/%s] Reading a fixture should not yield an error",
+						tt.args.expectedOut[arg])
 
 					formattedWant := loadTemplates(want, templates)
 
 					// Check number of Lines
 					require.Equal(t, len(formattedWant), len(out.Output),
-						"\nExpected number of stdout lines:%d\nActual of stdout lines:%d\n", len(formattedWant), len(out.Output))
+						"[fixtures/%s] Expected number lines: %d\n[CLI] Actual KICS output lines: %d",
+						tt.args.expectedOut[arg], len(formattedWant), len(out.Output))
 
 					// Check output lines
 					for idx := range formattedWant {

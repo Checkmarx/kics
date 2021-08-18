@@ -5,5 +5,7 @@
   "category": "Networking and Firewall",
   "descriptionText": "Instances must not have IP forwarding enabled, which means the attribute 'can_ip_forward' must not be true",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_instance",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "2c1a3242",
+  "cloudProvider": "gcp"
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive2.json"
+  }
+]

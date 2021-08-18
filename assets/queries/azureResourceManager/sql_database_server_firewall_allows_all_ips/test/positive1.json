@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "sqlServer1",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-02-01-preview",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "sqlServer1"
+      },
+      "properties": {
+        "administratorLogin": "adminUsername",
+        "administratorLoginPassword": "adminPassword"
+      },
+      "resources": [
+        {
+          "type": "firewallRules",
+          "apiVersion": "2021-02-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "endIpAddress": "255.255.255.255",
+            "startIpAddress": "0.0.0.0"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}

@@ -14,4 +14,5 @@ services:
       args:
         VERSION: ${VERSION:-local}
         COMMIT: ${COMMIT}
-    command: -p /path/ -v
+        DESCRIPTIONS_URL: ${DESCRIPTIONS_URL}
+    command: scan -p /path/ -v

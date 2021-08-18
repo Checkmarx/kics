@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_container_cluster", "gcp_container_cluster"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	container_cluster := task[modules[m]]
 	ansLib.checkState(container_cluster)
 
-	object.get(container_cluster, "master_authorized_networks_config", "undefined") == "undefined"
+	not common_lib.valid_key(container_cluster, "master_authorized_networks_config")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	container_cluster := task[modules[m]]
 	ansLib.checkState(container_cluster)
 
-	object.get(container_cluster.master_authorized_networks_config, "enabled", "undefined") == "undefined"
+	not common_lib.valid_key(container_cluster.master_authorized_networks_config, "enabled")
 
 	result := {
 		"documentId": id,

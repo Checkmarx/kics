@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -10,9 +11,7 @@ CxPolicy[result] {
 	types = {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
-	add := object.get(containers[index].securityContext.capabilities, "add", "undefined")
-	add != "undefined"
-	add[_] == "SYS_ADMIN"
+	containers[index].securityContext.capabilities.add[_] == "SYS_ADMIN"
 
 	result := {
 		"documentId": input.document[i].id,

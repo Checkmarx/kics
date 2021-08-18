@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 37,
+    "filename": "positive2.json"
+  }
+]

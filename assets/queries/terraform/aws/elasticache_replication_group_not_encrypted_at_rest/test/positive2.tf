@@ -5,7 +5,6 @@ resource "aws_elasticache_replication_group" "example2" {
   replication_group_description = "test description"
   node_type                     = "cache.m4.large"
   number_cache_clusters         = 2
-  parameter_group_name          = "default.redis3.2"
   port                          = 6379
   at_rest_encryption_enabled    = false
 }

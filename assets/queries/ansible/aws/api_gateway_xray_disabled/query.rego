@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	tracing := task[modules[m]]
 	ansLib.checkState(tracing)
 
-	object.get(tracing, "tracing_enabled", "undefined") == "undefined"
+	not common_lib.valid_key(tracing, "tracing_enabled")
 
 	result := {
 		"documentId": id,

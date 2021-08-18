@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "Sees if Kubernetes image has digest on",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
-  "platform": "Kubernetes"
+  "platform": "Kubernetes",
+  "descriptionID": "3f9f8d78"
 }

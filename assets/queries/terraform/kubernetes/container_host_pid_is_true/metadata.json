@@ -1,9 +1,10 @@
 {
-	"id": "587d5d82-70cf-449b-9817-f60f9bccb88c",
-	"queryName": "Container Host Pid Is True",
-	"severity": "MEDIUM",
-	"category": "Insecure Configurations",
-	"descriptionText": "Minimize the admission of containers wishing to share the host process ID namespace",
-	"descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_pid",
-	"platform": "Terraform"
+  "id": "587d5d82-70cf-449b-9817-f60f9bccb88c",
+  "queryName": "Container Host Pid Is True",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Minimize the admission of containers wishing to share the host process ID namespace",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_pid",
+  "platform": "Terraform",
+  "descriptionID": "74aa164e"
 }

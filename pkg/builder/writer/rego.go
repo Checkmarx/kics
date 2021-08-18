@@ -33,6 +33,9 @@ type RegoRule struct {
 
 const (
 	stringValue = "\"%s\""
+	prec        = 6
+	bitSize32   = 32
+	bitSize64   = 64
 )
 
 // NewRegoWriter initializes a default RegoWriter using builder template
@@ -137,9 +140,9 @@ func regoValueToString(i interface{}) string {
 	case int:
 		return strconv.Itoa(v)
 	case float64:
-		return strconv.FormatFloat(v, 'f', 6, 64)
+		return strconv.FormatFloat(v, 'f', prec, bitSize64)
 	case float32:
-		return strconv.FormatFloat(float64(v), 'f', 6, 32)
+		return strconv.FormatFloat(float64(v), 'f', prec, bitSize32)
 	case string:
 		return fmt.Sprintf(stringValue, v)
 	case *string:

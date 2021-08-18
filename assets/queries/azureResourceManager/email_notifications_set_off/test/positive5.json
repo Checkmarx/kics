@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
+  "apiProfile": "2019-03-01-hybrid",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "name": "security contact",
+      "type": "Microsoft.Security/securityContacts",
+      "apiVersion": "2020-01-01-preview",
+      "properties": {
+        "emails": "sample@email.com",
+        "phone": "9999999",
+        "alertNotifications": {
+          "state": "On",
+          "minimalSeverity": "High"
+        },
+        "notificationsByRole": {
+          "state": "Off",
+          "roles": [
+            "Owner"
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}

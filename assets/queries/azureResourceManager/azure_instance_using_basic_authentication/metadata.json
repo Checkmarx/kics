@@ -1,0 +1,11 @@
+{
+  "id": "6797f581-0433-4768-ae3e-7ceb2f8b138e",
+  "queryName": "Azure Instance Using Basic Authentication",
+  "severity": "HIGH",
+  "category": "Best Practices",
+  "descriptionText": "Azure Instances should use SSH Key instead of basic authentication",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/virtualmachines?tabs=json#linuxconfiguration-object",
+  "platform": "AzureResourceManager",
+  "descriptionID": "98ba05ca",
+  "cloudProvider": "azure"
+}

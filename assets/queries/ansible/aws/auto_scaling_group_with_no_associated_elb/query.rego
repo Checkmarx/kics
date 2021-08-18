@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.ec2_asg", "ec2_asg"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	resource := task[modules[m]]
 	ansLib.checkState(resource)
 
-	object.get(resource, "load_balancers", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "load_balancers")
 
 	result := {
 		"documentId": id,

@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Generic Git Module Without Revision",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive1.tf"
+  }
+]

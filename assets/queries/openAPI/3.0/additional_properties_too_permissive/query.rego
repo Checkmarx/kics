@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 # This two rules verifies schema and schemas without allOf, anyOf and oneOf
@@ -23,11 +24,12 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 
-	doc.components.schemas[schema]
-	issue := test_schema(schema)
+	targetObject := doc.components.schemas[schema]
+	issue := test_schema(targetObject)
+
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("docs.components.schemas.{{%s}}%s", [schema, issue.path]),
+		"searchKey": sprintf("components.schemas.{{%s}}%s", [schema, issue.path]),
 		"issueType": issue.type,
 		"keyExpectedValue": "'additionalProperties' is set to true",
 		"keyActualValue": issue.message,
@@ -56,7 +58,9 @@ CxPolicy[result] {
 
 test_schema(schema) = issue {
 	should_test_schema(schema)
-	object.get(schema, "additionalProperties", "undefined") == "undefined"
+
+	not common_lib.valid_key(schema, "additionalProperties")
+
 	issue := {
 		"type": "MissingAttribute",
 		"path": "",
@@ -73,16 +77,16 @@ test_schema(schema) = issue {
 }
 
 should_test_schema(schema) {
-	object.get(schema, "anyOf", "undefined") == "undefined"
-	object.get(schema, "oneOf", "undefined") == "undefined"
-	object.get(schema, "allOf", "undefined") == "undefined"
-	object.get(schema, "$ref", "undefined") == "undefined"
+	not common_lib.valid_key(schema, "anyOf")
+	not common_lib.valid_key(schema, "oneOf")
+	not common_lib.valid_key(schema, "allOf")
+	not common_lib.valid_key(schema, "$ref")
 }
 
 get_schema_list(value) = result {
-	object.get(value, "anyOf", "undefined") != "undefined"
+	common_lib.valid_key(value, "anyOf")
 	result := {"schemas": value.anyOf, "kind": "anyOf"}
 } else = result {
-	object.get(value, "oneOf", "undefined") != "undefined"
+	common_lib.valid_key(value, "oneOf")
 	result := {"schemas": value.oneOf, "kind": "oneOf"}
 }

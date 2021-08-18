@@ -5,5 +5,7 @@
   "category": "Build Process",
   "descriptionText": "AWS CloudFormation should have a template defined through the attribute template_url or attribute template_body",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "e925d0ee",
+  "cloudProvider": "aws"
 }

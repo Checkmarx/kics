@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::EC2::NetworkAclEntry"
@@ -8,7 +10,7 @@ CxPolicy[result] {
 
 	checkProtocol(properties.Protocol)
 
-	object.get(properties, "PortRange", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "PortRange")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,7 +30,8 @@ CxPolicy[result] {
 	checkProtocol(properties.Protocol)
 
 	attributes := {"From", "To"}
-	object.get(properties.PortRange, attributes[y], "undefined") == "undefined"
+	attr := attributes[y]
+	not common_lib.valid_key(properties.PortRange, attr)
 
 	result := {
 		"documentId": input.document[i].id,

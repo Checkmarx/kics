@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Kubernetes Engine Clusters must have Network Policy enabled, meaning that the attribute 'network_policy.enabled' must be true and the attribute 'addons_config.network_policy_config.disabled' must be false",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "6fc9b7a0",
+  "cloudProvider": "gcp"
 }

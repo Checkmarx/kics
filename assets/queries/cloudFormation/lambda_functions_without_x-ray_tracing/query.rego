@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource = document.Resources[name]
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	resource = document.Resources[name]
 	resource.Type == "AWS::Lambda::Function"
 	properties := resource.Properties
-	object.get(properties, "TracingConfig", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "TracingConfig")
 
 	result := {
 		"documentId": document.id,

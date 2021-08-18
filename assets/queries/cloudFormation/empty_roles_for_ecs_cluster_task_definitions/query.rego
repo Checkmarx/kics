@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
 
-	object.get(resource.Properties, "TaskDefinition", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "TaskDefinition")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,7 +25,6 @@ CxPolicy[result] {
 
 	isInCluster(resource, i)
 
-	object.get(resource.Properties, "TaskDefinition", "undefined") != "undefined"
 	taskDefinition := resource.Properties.TaskDefinition
 
 	existsTaskDefinition(taskDefinition, i) == null
@@ -43,7 +44,6 @@ CxPolicy[result] {
 
 	isInCluster(resource, i)
 
-	object.get(resource.Properties, "TaskDefinition", "undefined") != "undefined"
 	taskDefinition := resource.Properties.TaskDefinition
 
 	taskDef := existsTaskDefinition(taskDefinition, i)
@@ -67,7 +67,7 @@ isInCluster(service, i) {
 } else {
 	cluster := service.Properties.Cluster
 	is_object(cluster)
-	object.get(cluster, "Ref", "undefined") != "undefined"
+	common_lib.valid_key(cluster, "Ref")
 } else = false {
 	true
 }
@@ -78,8 +78,7 @@ existsTaskDefinition(taskDefName, i) = taskDef {
 	taskDef := input.document[i].Resources[taskDefName]
 } else = taskDef {
 	is_object(taskDefName)
-	object.get(taskDefName, "Ref", "undefined") != "undefined"
-	ref := object.get(taskDefName, "Ref", "undefined")
+	ref := taskDefName.Ref
 	input.document[i].Resources[ref].Type == "AWS::ECS::TaskDefinition"
 	taskDef := input.document[i].Resources[ref]
 } else = null {
@@ -87,7 +86,7 @@ existsTaskDefinition(taskDefName, i) = taskDef {
 }
 
 hasTaskRole(taskDef) {
-	object.get(taskDef.Properties, "TaskRoleArn", "undefined") != "undefined"
+	common_lib.valid_key(taskDef.Properties, "TaskRoleArn")
 } else = false {
 	true
 }

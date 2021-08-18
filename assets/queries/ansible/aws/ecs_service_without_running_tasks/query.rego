@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	ecs_service := task[modules[m]]
 	ansLib.checkState(ecs_service)
 
-	object.get(ecs_service, "deployment_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(ecs_service, "deployment_configuration")
 
 	result := {
 		"documentId": id,
@@ -37,9 +38,8 @@ CxPolicy[result] {
 }
 
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "maximum_percent", "undefined") != "undefined"
+    common_lib.valid_key(deploymentConfiguration, "maximum_percent")
 }
-
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "minimum_healthy_percent", "undefined") != "undefined"
+    common_lib.valid_key(deploymentConfiguration, "minimum_healthy_percent")
 }

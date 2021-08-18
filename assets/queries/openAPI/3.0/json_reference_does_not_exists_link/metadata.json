@@ -5,5 +5,6 @@
   "category": "Structure and Semantics",
   "descriptionText": "Link reference should exists on components field",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "5d9af338"
 }

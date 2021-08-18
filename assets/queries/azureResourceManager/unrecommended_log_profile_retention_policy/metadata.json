@@ -1,0 +1,11 @@
+{
+  "id": "25684eac-daaa-4c2c-94b4-8d2dbb627909",
+  "queryName": "Unrecommended Log Profile Retention Policy",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Log Profile Retention Policy should be enabled and the recommended number of days for the retention should be higher than 365 or 0 (0 will retain the events indefinitely)",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#retentionpolicy-object",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "descriptionID": "f5d9a1fc"
+}

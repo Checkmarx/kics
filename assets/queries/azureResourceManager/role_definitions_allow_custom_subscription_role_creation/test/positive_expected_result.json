@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive2.json"
+  }
+]

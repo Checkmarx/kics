@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Check if PostgreSQL Database Server retains logs for less than 3 Days",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "1ec96250",
+  "cloudProvider": "azure"
 }

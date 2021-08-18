@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_compute_ssl_policy", "gcp_compute_ssl_policy"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	policy := task[modules[m]]
 	ansLib.checkState(policy)
 
-	object.get(policy, "min_tls_version", "undefined") == "undefined"
+	not common_lib.valid_key(policy, "min_tls_version")
 
 	result := {
 		"documentId": id,

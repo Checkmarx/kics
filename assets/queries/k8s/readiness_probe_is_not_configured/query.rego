@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8s
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	types := {"initContainers", "containers"}
 	container := document.spec[types[x]][j]
 
-	object.get(container, "readinessProbe", "undefined") == "undefined"
+	not common_lib.valid_key(container, "readinessProbe")
 
 	metadata := document.metadata
 

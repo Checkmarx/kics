@@ -122,3 +122,8 @@ func (p *Parser) SupportedTypes() []string {
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindTerraform
 }
+
+// GetCommentToken return the comment token of Terraform - #
+func (p *Parser) GetCommentToken() string {
+	return "#"
+}

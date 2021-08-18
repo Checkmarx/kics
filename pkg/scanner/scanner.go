@@ -3,32 +3,31 @@ package scanner
 import (
 	"context"
 	"fmt"
-	"io"
 	"sync"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/progress"
 )
 
 type serviceSlice []*kics.Service
 
 // StartScan will run concurrent scans by parser
-func StartScan(ctx context.Context, scanID string, noProgress bool, services serviceSlice) error {
+func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
 	defer metrics.Metric.Stop()
 	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
 	errCh := make(chan error)
-	currentQuery := make(chan float64, 1)
+	currentQuery := make(chan int64, 1)
 	var wgProg sync.WaitGroup
 	total := services.GetQueriesLength()
 	if total != 0 {
-		startProgressBar(noProgress, total, &wgProg, currentQuery)
+		startProgressBar(total, &wgProg, currentQuery, proBarBuilder)
 	}
 	for _, service := range services {
 		wg.Add(1)
-		go service.StartScan(ctx, scanID, noProgress, errCh, &wg, currentQuery)
+		go service.StartScan(ctx, scanID, errCh, &wg, currentQuery)
 	}
 
 	go func() {
@@ -51,6 +50,7 @@ func StartScan(ctx context.Context, scanID string, noProgress bool, services ser
 	return nil
 }
 
+// GetQueriesLength returns the Total of queries for all Services
 func (s serviceSlice) GetQueriesLength() int {
 	count := 0
 	for _, service := range s {
@@ -59,11 +59,8 @@ func (s serviceSlice) GetQueriesLength() int {
 	return count
 }
 
-func startProgressBar(hideProgress bool, total int, wg *sync.WaitGroup, progressChannel chan float64) {
+func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64, proBarBuilder progress.PbBuilder) {
 	wg.Add(1)
-	progressBar := consoleHelpers.NewProgressBar("Executing queries: ", 10, float64(total), progressChannel)
-	if hideProgress {
-		progressBar.Writer = io.Discard
-	}
-	go progressBar.Start(wg)
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", total, wg, progressChannel)
+	go progressBar.Start()
 }

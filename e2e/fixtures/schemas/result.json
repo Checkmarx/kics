@@ -1,195 +1,242 @@
 {
-    "type": "object",
-    "required": [
-        "files_scanned",
-        "files_parsed",
-        "files_failed_to_scan",
-        "queries_total",
-        "queries_failed_to_execute",
-        "queries_failed_to_compute_similarity_id",
-        "queries",
-        "scan_id",
-        "severity_counters",
-        "total_counter",
-        "start",
-        "end",
-        "paths"
-    ],
-    "properties": {
-        "files_scanned": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "files_parsed": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "files_failed_to_scan": {
-            "type": "integer",
-            "const": 0
-        },
-        "queries_total": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "queries_failed_to_execute": {
-            "type": "integer",
-            "const": 0
-        },
-        "queries_failed_to_compute_similarity_id": {
-            "type": "integer",
-            "const": 0
-        },
-        "queries": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "required": [
-                    "query_name",
-                    "query_id",
-                    "query_url",
-                    "severity",
-                    "platform",
-                    "files",
-                    "category",
-                    "description"
-                ],
-                "properties": {
-                    "query_name": {
-                        "type": "string"
-                    },
-                    "query_id": {
-                        "type": "string",
-                        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}$"
-                    },
-                    "query_url": {
-                        "type": "string",
-                        "format": "uri"
-                    },
-                    "severity": {
-                        "type": "string",
-                        "enum": ["HIGH", "MEDIUM", "LOW", "INFO"]
-                    },
-                    "platform": {
-                        "type": "string",
-                        "enum": ["Common", "Ansible", "CloudFormation", "Dockerfile", "Kubernetes", "OpenAPI", "Terraform"]
-                    },
-                    "files": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "required": [
-                                "file_name",
-                                "similarity_id",
-                                "line",
-                                "issue_type",
-                                "search_key",
-                                "search_value",
-                                "expected_value",
-                                "actual_value",
-                                "value"
-                            ],
-                            "properties": {
-                                "file_name": {
-                                    "type": "string",
-                                    "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
-                                },
-                                "similarity_id": {
-                                    "type": "string",
-                                    "pattern": "^[A-Fa-f0-9]{64}$"
-                                },
-                                "line": {
-                                    "type": "integer",
-                                    "minimum": 1
-                                },
-                                "issue_type": {
-                                    "type": "string",
-                                    "enum": ["IncorrectValue", "MissingAttribute", "RedundantAttribute"]
-                                },
-                                "search_key": {
-                                    "type": "string",
-                                    "minLength": 0
-                                },
-                                "search_value": {
-                                    "type": "string"
-                                },
-                                "expected_value": {
-                                    "type": "string",
-                                    "minLength": 1
-                                },
-                                "actual_value": {
-                                    "type": "string",
-                                    "minLength": 1
-                                },
-                                "value": {
-                                    "type": ["string", "null"]
-                                }
-                            }
-                        }
-                    },
-                    "category": {
-                        "type": "string",
-                        "enum": [
-                            "Access Control", "Availability", "Backup", "Best Practices", "Build Process",
-                            "Encryption", "Insecure Configurations", "Insecure Defaults",
-                            "Networking and Firewall", "Observability", "Resource Management",
-                            "Secret Management", "Supply-Chain", "Structure and Semantics"
-                        ]
-                    },
-                    "description": {
-                        "type": "string",
-                        "minLength": 1
-                    }
-                }
-            }
-        },
-        "scan_id": {
+  "type": "object",
+  "required": [
+    "files_scanned",
+    "files_parsed",
+    "files_failed_to_scan",
+    "queries_total",
+    "queries_failed_to_execute",
+    "queries_failed_to_compute_similarity_id",
+    "queries",
+    "scan_id",
+    "severity_counters",
+    "total_counter",
+    "start",
+    "end",
+    "paths"
+  ],
+  "properties": {
+    "files_scanned": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "files_parsed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "files_failed_to_scan": {
+      "type": "integer",
+      "const": 0
+    },
+    "queries_total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "queries_failed_to_execute": {
+      "type": "integer",
+      "const": 0
+    },
+    "queries_failed_to_compute_similarity_id": {
+      "type": "integer",
+      "const": 0
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "query_name",
+          "query_id",
+          "query_url",
+          "severity",
+          "platform",
+          "files",
+          "category",
+          "description"
+        ],
+        "properties": {
+          "query_name": {
             "type": "string"
-        },
-        "severity_counters": {
-            "type": "object",
-            "required": [
-                "HIGH",
-                "MEDIUM",
-                "LOW",
-                "INFO"
-            ],
-            "properties": {
-                "HIGH": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "INFO": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "LOW": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "MEDIUM": {
-                    "type": "integer",
-                    "minimum": 0
-                }
-            }
-        },
-        "total_counter": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "start": {
+          },
+          "query_id": {
             "type": "string",
-            "format": "date-time"
-        },
-        "end": {
+            "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}$"
+          },
+          "query_url": {
             "type": "string",
-            "format": "date-time"
-        },
-        "paths": {
+            "format": "uri"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW",
+              "INFO"
+            ]
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "Common",
+              "Ansible",
+              "CloudFormation",
+              "Dockerfile",
+              "Kubernetes",
+              "OpenAPI",
+              "Terraform",
+              "AzureResourceManager"
+            ]
+          },
+          "files": {
             "type": "array",
             "items": {
-                "type": "string"
+              "type": "object",
+              "required": [
+                "file_name",
+                "similarity_id",
+                "line",
+                "issue_type",
+                "search_key",
+                "search_value",
+                "expected_value",
+                "actual_value",
+                "value"
+              ],
+              "properties": {
+                "file_name": {
+                  "type": "string",
+                  "oneOf": [
+                    {
+                      "pattern": "^(.)*(:)*(http:|https:|www\\.)(.)+$"
+                    },
+                    {
+                      "pattern": "^([\\w\\-. ]+(\\\\|\\/))*([\\w\\-. ]+(\\\\|\\/).(.)*)$"
+                    }
+                  ]
+                },
+                "similarity_id": {
+                  "type": "string",
+                  "pattern": "^[A-Fa-f0-9]{64}$"
+                },
+                "line": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "issue_type": {
+                  "type": "string",
+                  "enum": [
+                    "IncorrectValue",
+                    "MissingAttribute",
+                    "RedundantAttribute"
+                  ],
+                  "search_key": {
+                    "type": "string",
+                    "minLength": 0
+                  },
+                  "search_value": {
+                    "type": "string"
+                  },
+                  "expected_value": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "actual_value": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
             }
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Access Control",
+              "Availability",
+              "Backup",
+              "Best Practices",
+              "Build Process",
+              "Encryption",
+              "Insecure Configurations",
+              "Insecure Defaults",
+              "Networking and Firewall",
+              "Observability",
+              "Resource Management",
+              "Secret Management",
+              "Supply-Chain",
+              "Structure and Semantics"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
         }
+      }
+    },
+    "scan_id": {
+      "type": "string"
+    },
+    "severity_counters": {
+      "type": "object",
+      "required": [
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "INFO"
+      ],
+      "properties": {
+        "HIGH": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "search_key": {
+          "type": "string",
+          "minLength": 0
+        },
+        "search_value": {
+          "type": "string"
+        },
+        "expected_value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actual_value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "total_counter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
+  }
 }

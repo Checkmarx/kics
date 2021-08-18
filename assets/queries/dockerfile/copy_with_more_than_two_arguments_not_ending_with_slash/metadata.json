@@ -5,5 +5,6 @@
   "category": "Build Process",
   "descriptionText": "When a COPY command has more than two arguments, the last one should end with a slash",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#copy",
-  "platform": "Dockerfile"
+  "platform": "Dockerfile",
+  "descriptionID": "bab38efd"
 }

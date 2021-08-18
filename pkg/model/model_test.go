@@ -59,6 +59,21 @@ func TestFileMetadatas(t *testing.T) {
 		},
 	}
 
+	mIgnoreCommand := FileMetadatas{
+		{
+			ID:           "id",
+			ScanID:       "scan_id",
+			OriginalData: "orig_data",
+			FileName:     "file_name",
+			Document: Document{
+				"id": "",
+			},
+			Commands: CommentsCommands{
+				"ignore": "",
+			},
+		},
+	}
+
 	t.Run("to_map", func(t *testing.T) {
 		result := m.ToMap()
 		require.Len(t, result, 1)
@@ -72,6 +87,11 @@ func TestFileMetadatas(t *testing.T) {
 
 	t.Run("combine_empty_documents", func(t *testing.T) {
 		result := mEmptyDocuments.Combine()
+		require.Equal(t, Documents{Documents: []Document{}}, result)
+	})
+
+	t.Run("ignore_documents", func(t *testing.T) {
+		result := mIgnoreCommand.Combine()
 		require.Equal(t, Documents{Documents: []Document{}}, result)
 	})
 }

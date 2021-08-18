@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "SSL Client Certificate should be enabled in aws_api_gateway_stage resource",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#client_certificate_id",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "6d4941dc",
+  "cloudProvider": "aws"
 }

@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	not object.get(resource.Properties, "IsMultiRegionTrail", "undefined") == "undefined"
+	common_lib.valid_key(resource.Properties, "IsMultiRegionTrail")
 	not checkRegion(resource)
 
 	result := {
@@ -18,7 +20,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	object.get(resource.Properties, "IsMultiRegionTrail", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "IsMultiRegionTrail")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -42,6 +42,36 @@
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 21
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 21
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
     "line": 21
   },
   {
@@ -58,6 +88,16 @@
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 21
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 36
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
@@ -107,6 +147,16 @@
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
+    "line": 51
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 51
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
     "line": 66
   },
   {
@@ -143,6 +193,16 @@
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 111
+  }, 
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
@@ -154,6 +214,97 @@
     "severity": "HIGH",
     "line": 111
   },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 111
+  },
+  
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",

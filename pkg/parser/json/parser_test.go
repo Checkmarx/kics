@@ -30,7 +30,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"CloudFormation", "OpenAPI"}, p.SupportedTypes())
+	require.Equal(t, []string{"CloudFormation", "OpenAPI", "AzureResourceManager"}, p.SupportedTypes())
 }
 
 // TestParser_Parse tests the functions [Parse()] and all the methods called by them
@@ -50,4 +50,10 @@ func Test_Resolve(t *testing.T) {
 	resolved, err := parser.Resolve([]byte(have), "test.json")
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), *resolved)
+}
+
+// Test_GetCommentToken must get the token that represents a comment
+func Test_GetCommentToken(t *testing.T) {
+	parser := &Parser{}
+	require.Equal(t, "", parser.GetCommentToken())
 }

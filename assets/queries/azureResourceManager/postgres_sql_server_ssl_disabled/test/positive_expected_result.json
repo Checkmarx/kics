@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive2.json"
+  }
+]

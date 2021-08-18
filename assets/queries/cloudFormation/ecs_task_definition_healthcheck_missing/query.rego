@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::TaskDefinition"
 	contDef := resource.Properties.ContainerDefinitions[_]
-	object.get(contDef, "HealthCheck", "not found") == "not found"
+	not common_lib.valid_key(contDef, "HealthCheck")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -5,5 +5,7 @@
   "category": "Observability",
   "descriptionText": "Make sure for SQL Servers that Auditing Retention is greater than 90 days",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "96124822",
+  "cloudProvider": "azure"
 }

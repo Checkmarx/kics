@@ -1,12 +1,12 @@
 package Cx
 
-import data.generic.common as lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cognito_user_pool[name]
 
-	object.get(resource, "mfa_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "mfa_configuration")
 
 	result := {
 		"documentId": document.id,
@@ -21,7 +21,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cognito_user_pool[name]
 
-	not lib.inArray(["ON", "OPTIONAL"], resource.mfa_configuration)
+	not common_lib.inArray(["ON", "OPTIONAL"], resource.mfa_configuration)
 
 	result := {
 		"documentId": document.id,
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cognito_user_pool[name]
 
-	lib.inArray(["ON", "OPTIONAL"], resource.mfa_configuration)
+	common_lib.inArray(["ON", "OPTIONAL"], resource.mfa_configuration)
 	not hasRemainingConfiguration(resource)
 
 	result := {

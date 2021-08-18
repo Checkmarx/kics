@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_dns_managed_zone", "gcp_dns_managed_zone"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	managed_zone := task[modules[m]]
 	ansLib.checkState(managed_zone)
 
-	object.get(managed_zone, "dnssec_config", "undefined") == "undefined"
+	not common_lib.valid_key(managed_zone, "dnssec_config")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	managed_zone := task[modules[m]]
 	ansLib.checkState(managed_zone)
 
-	object.get(managed_zone.dnssec_config, "state", "undefined") == "undefined"
+	not common_lib.valid_key(managed_zone.dnssec_config, "state")
 
 	result := {
 		"documentId": id,

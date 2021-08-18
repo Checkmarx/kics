@@ -3,9 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_login_profile[name]
 
-	object.get(resource,"password_reset_required","undefined") != "undefined"
-
-    not resource.password_reset_required
+	resource.password_reset_required == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,7 +13,6 @@ CxPolicy[result] {
 		"keyActualValue": "Attribute 'password_reset_required' is false",
 	}
 }
-
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_user_login_profile[name]

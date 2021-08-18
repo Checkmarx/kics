@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_kms_crypto_key", "gcp_kms_crypto_key"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	gcpTopic := task[modules[m]]
 	ansLib.checkState(gcpTopic)
 
-	object.get(gcpTopic, "rotation_period", "undefined") == "undefined"
+	not common_lib.valid_key(gcpTopic, "rotation_period")
 
 	result := {
 		"documentId": id,

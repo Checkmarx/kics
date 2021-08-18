@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "AWS Athena Database data in S3 should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_database#encryption_configuration",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "c90feea8",
+  "cloudProvider": "aws"
 }

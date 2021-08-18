@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_aks", "azure_rm_aks"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	aks := task[modules[m]]
 	ansLib.checkState(aks)
 
-	object.get(aks, "enable_rbac", "undefined") == "undefined"
+	not common_lib.valid_key(aks, "enable_rbac")
 
 	result := {
 		"documentId": id,

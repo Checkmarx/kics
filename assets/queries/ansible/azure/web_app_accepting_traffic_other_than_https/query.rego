@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_webapp", "azure_rm_webapp"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	webapp := task[modules[m]]
 	ansLib.checkState(webapp)
 
-	object.get(webapp, "https_only", "undefined") == "undefined"
+	not common_lib.valid_key(webapp, "https_only")
 
 	result := {
 		"documentId": id,

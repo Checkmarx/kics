@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_monitorlogprofile", "azure_rm_monitorlogprofile"}
 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	retentionPolicy := azureMonitor.retention_policy
 
 	ansLib.isAnsibleTrue(retentionPolicy.enabled)
-	commonLib.between(retentionPolicy.days, 1, 364)
+	common_lib.between(retentionPolicy.days, 1, 364)
 
 	result := {
 		"documentId": id,
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	azureMonitor := task[modules[m]]
 	ansLib.checkState(azureMonitor)
 
-	object.get(azureMonitor, "retention_policy", "undefined") == "undefined"
+	not common_lib.valid_key(azureMonitor, "retention_policy")
 
 	result := {
 		"documentId": id,

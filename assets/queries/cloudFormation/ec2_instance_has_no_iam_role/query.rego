@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	doc := input.document[i].Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
-	object.get(resource.Properties, "IamInstanceProfile", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "IamInstanceProfile")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,10 +23,10 @@ CxPolicy[result] {
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
-	object.get(resource.Properties, "IamInstanceProfile", "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, "IamInstanceProfile")
 
 	iamProfile := get_iam_instance_profile(resource.Properties.IamInstanceProfile)
-	object.get(doc, iamProfile, "undefined") == "undefined"
+	not common_lib.valid_key(doc, iamProfile)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,11 +42,11 @@ CxPolicy[result] {
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
-	object.get(resource.Properties, "IamInstanceProfile", "undefined") != "undefined"
+	common_lib.valid_key(resource.Properties, "IamInstanceProfile")
 
 	iamProfile := get_iam_instance_profile(resource.Properties.IamInstanceProfile)
-	object.get(doc, iamProfile, "undefined") != "undefined"
-	object.get(doc[iamProfile].Properties, "Roles", "undefined") == "undefined"
+	common_lib.valid_key(doc, iamProfile)
+	not common_lib.valid_key(doc[iamProfile].Properties, "Roles")
 
 	result := {
 		"documentId": input.document[i].id,

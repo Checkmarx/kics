@@ -1,0 +1,11 @@
+{
+  "id": "9a4ef195-74b9-4c58-b8ed-2b2fe4353a75",
+  "queryName": "VPC Default Security Group Accepts All Traffic",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Default Security Group attached to every VPC should restrict all traffic",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group",
+  "platform": "Terraform",
+  "descriptionID": "d79243b5",
+  "cloudProvider": "aws"
+}

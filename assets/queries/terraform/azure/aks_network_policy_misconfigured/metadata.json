@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Check if the Azure Kubernetes Service doesn't have the proper network policy configuration.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "7708dadb",
+  "cloudProvider": "azure"
 }

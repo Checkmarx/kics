@@ -5,15 +5,14 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"math"
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/internal/metrics"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/gookit/color"
 	"github.com/hashicorp/hcl"
@@ -22,23 +21,16 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const (
+	wordWrapCount = 5
+)
+
 var reportGenerators = map[string]func(path, filename string, body interface{}) error{
 	"json":   report.PrintJSONReport,
 	"sarif":  report.PrintSarifReport,
 	"html":   report.PrintHTMLReport,
 	"glsast": report.PrintGitlabSASTReport,
 	"pdf":    report.PrintPdfReport,
-}
-
-// ProgressBar represents a Progress
-// Writer is the writer output for progress bar
-type ProgressBar struct {
-	Writer          io.Writer
-	label           string
-	space           int
-	total           float64
-	currentProgress float64
-	progress        chan float64
 }
 
 // Printer wil print console output with colors
@@ -57,54 +49,6 @@ type Printer struct {
 	Success color.RGBColor
 	Line    color.RGBColor
 	minimal bool
-}
-
-// NewProgressBar initializes a new ProgressBar
-// label is a string print before the progress bar
-// total is the progress bar target (a.k.a 100%)
-// space is the number of '=' characters on each side of the bar
-// progress is a channel updating the current executed elements
-func NewProgressBar(label string, space int, total float64, progress chan float64) ProgressBar {
-	return ProgressBar{
-		Writer:   os.Stdout,
-		label:    label,
-		space:    space,
-		total:    total,
-		progress: progress,
-	}
-}
-
-// Start starts to print a progress bar on console
-// wg is a wait group to report when progress is done
-func (p *ProgressBar) Start(wg *sync.WaitGroup) {
-	defer wg.Done()
-	if p.Writer != io.Discard {
-		var firstHalfPercentage, secondHalfPercentage string
-		const hundredPercent = 100
-		formmatingString := "\r" + p.label + "[%s %4.1f%% %s]"
-		for {
-			newProgress, ok := <-p.progress
-			p.currentProgress += newProgress
-			if !ok || p.currentProgress >= p.total {
-				fmt.Fprintf(p.Writer, formmatingString, strings.Repeat("=", p.space), 100.0, strings.Repeat("=", p.space))
-				break
-			}
-
-			percentage := p.currentProgress / p.total * hundredPercent
-			convertedPercentage := int(math.Round(float64(p.space+p.space) / hundredPercent * math.Round(percentage)))
-			if percentage >= hundredPercent/2 {
-				firstHalfPercentage = strings.Repeat("=", p.space)
-				secondHalfPercentage = strings.Repeat("=", convertedPercentage-p.space) +
-					strings.Repeat(" ", 2*p.space-convertedPercentage)
-			} else {
-				secondHalfPercentage = strings.Repeat(" ", p.space)
-				firstHalfPercentage = strings.Repeat("=", convertedPercentage) +
-					strings.Repeat(" ", p.space-convertedPercentage)
-			}
-			fmt.Fprintf(p.Writer, formmatingString, firstHalfPercentage, percentage, secondHalfPercentage)
-		}
-	}
-	fmt.Println()
 }
 
 // WordWrap Wraps text at the specified number of words
@@ -137,7 +81,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
 	for queryName, err := range failedQueries {
 		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", 5))
+		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
 	}
 	fmt.Printf("------------------------------------\n\n")
 	for index := range summary.Queries {
@@ -149,8 +93,14 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			len(summary.Queries[idx].Files),
 		)
 		if !printer.minimal {
-			fmt.Printf("Description: %s\n", summary.Queries[idx].Description)
-			fmt.Printf("Platform: %s\n\n", summary.Queries[idx].Platform)
+			if summary.Queries[idx].CISDescriptionID != "" {
+				fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
+				fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
+				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
+			} else {
+				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
+			}
+			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
@@ -247,10 +197,16 @@ func FileAnalyzer(path string) (string, error) {
 }
 
 // GenerateReport execute each report function to generate report
-func GenerateReport(path, filename string, body interface{}, formats []string) error {
+func GenerateReport(path, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
 	log.Debug().Msgf("helpers.GenerateReport()")
 	metrics.Metric.Start("generate_report")
+
+	progressBar := proBarBuilder.BuildCircle("Generating Reports: ")
+
 	var err error = nil
+	progressBar.Start()
+	defer progressBar.Close()
+
 	for _, format := range formats {
 		if err = reportGenerators[format](path, filename, body); err != nil {
 			log.Error().Msgf("Failed to generate %s report", format)
@@ -280,6 +236,10 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 		currentWorkDir, err := os.Getwd()
 		if err != nil {
 			return "", err
+		}
+		idx := strings.Index(currentWorkDir, "kics")
+		if idx != -1 {
+			currentWorkDir = currentWorkDir[:strings.LastIndex(currentWorkDir, "kics")] + "kics"
 		}
 		queriesDirectory = filepath.Join(currentWorkDir, queriesPath)
 		if _, err := os.Stat(queriesDirectory); os.IsNotExist(err) {
@@ -344,4 +304,9 @@ func (p *Printer) PrintBySev(content, sev string) string {
 		return p.Info.Sprintf(content)
 	}
 	return content
+}
+
+// Bold returns the output in a bold format
+func (p *Printer) Bold(content string) string {
+	return color.Bold.Sprintf(content)
 }

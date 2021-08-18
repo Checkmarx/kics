@@ -2,11 +2,11 @@
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "HIGH",
-    "line": 8
+    "line": 17
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "HIGH",
-    "line": 31
+    "line": 42
   }
 ]

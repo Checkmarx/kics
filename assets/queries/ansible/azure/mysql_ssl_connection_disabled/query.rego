@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"azure.azcollection.azure_rm_mysqlserver", "azure_rm_mysqlserver"}
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	storageAccount := task[modules[m]]
 	ansLib.checkState(storageAccount)
 
-	object.get(storageAccount, "enforce_ssl", "undefined") == "undefined"
+	not common_lib.valid_key(storageAccount, "enforce_ssl")
 
 	result := {
 		"documentId": id,

@@ -73,7 +73,14 @@
             <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
           <div class="query-details">
-            <span>{{ .Description }}</span>
+            {{- if not .CISDescriptionID -}}
+            <span class="query-description-title">{{ .Description }}</span>
+            {{- end -}}
+            {{- if .CISDescriptionID -}}
+            <span class="cis-description-id"><sub>{{ .CISDescriptionIDFormatted }}</sub></span>
+            <span class="query-description-title">{{ .CISDescriptionTitle }}</span>
+            <span class="cis-description-text">{{ .CISDescriptionTextFormatted }}</span>
+            {{- end -}}
             <span><a href="{{ .QueryURI }}" rel="noopener" target="_blank">{{ .QueryURI }}</a></span>
           </div>
         </div>

@@ -5,5 +5,6 @@
   "category": "Insecure Configurations",
   "descriptionText": "PodSecurityPolicy should not have added capabilities",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allowed_capabilities",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "f3ad2d09"
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"amazon.aws.s3_bucket", "s3_bucket"}
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	bucket := task[modules[m]]
 	ansLib.checkState(bucket)
 
-	object.get(bucket, "debug_botocore_endpoint_logs", "undefined") == "undefined"
+	not common_lib.valid_key(bucket, "debug_botocore_endpoint_logs")
 
 	result := {
 		"documentId": id,

@@ -5,5 +5,7 @@
   "category": "Encryption",
   "descriptionText": "Checks if the ECR Image has been scanned",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "f3f139c0",
+  "cloudProvider": "aws"
 }

@@ -5,5 +5,6 @@
   "category": "Resource Management",
   "descriptionText": "Memory limits should be specified",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#limits",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "c957affa"
 }

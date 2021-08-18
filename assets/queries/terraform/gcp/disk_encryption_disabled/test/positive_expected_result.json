@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.tf"
+  }
+]

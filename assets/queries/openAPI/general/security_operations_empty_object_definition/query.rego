@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	operationObject := doc.paths[path][operation]
-	object.get(operationObject, "security", "undefined") != "undefined"
+	common_lib.valid_key(operationObject, "security")
 
 	not is_array(operationObject.security)
 	count({x | sec := operationObject.security[n]; n != "_kics_lines"; x = sec}) == 0
@@ -29,7 +30,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	operationObject := doc.paths[path][operation]
-	object.get(operationObject, "security", "undefined") != "undefined"
+	common_lib.valid_key(operationObject, "security")
 
 	is_array(operationObject.security)
 	operationSecurityObject := operationObject.security[_]

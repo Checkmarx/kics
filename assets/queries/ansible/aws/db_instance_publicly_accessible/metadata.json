@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "The field 'publicly_accessible' should not be set to 'true' (default is 'false').",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-auto_minor_version_upgrade",
-  "platform": "Ansible"
+  "platform": "Ansible",
+  "descriptionID": "e1b53fb6",
+  "cloudProvider": "aws"
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
 
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
 
-	object.get(specInfo.spec, "automountServiceAccountToken", "undefined") == "undefined"
+	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
 
 	result := {
 		"documentId": input.document[i].id,

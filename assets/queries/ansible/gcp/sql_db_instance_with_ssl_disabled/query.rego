@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_sql_instance", "gcp_sql_instance"}
 
@@ -37,16 +38,16 @@ CxPolicy[result] {
 }
 
 getPathDefinitions(instance) = result {
-	object.get(instance, "settings", "undefined") == "undefined"
+	not common_lib.valid_key(instance, "settings")
 	result = {"defined": "", "undefined": "settings"}
 }
 
 getPathDefinitions(instance) = result {
-	object.get(instance.settings, "ip_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(instance.settings, "ip_configuration")
 	result = {"defined": ".settings", "undefined": "settings.ip_configuration"}
 }
 
 getPathDefinitions(instance) = result {
-	object.get(instance.settings.ip_configuration, "require_ssl", "undefined") == "undefined"
+	not common_lib.valid_key(instance.settings.ip_configuration, "require_ssl")
 	result = {"defined": ".settings.ip_configuration", "undefined": "settings.ip_configuration.require_ssl"}
 }

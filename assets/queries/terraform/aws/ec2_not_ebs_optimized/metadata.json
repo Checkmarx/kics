@@ -5,5 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs_optimized",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "ddce4bd9",
+  "cloudProvider": "aws"
 }

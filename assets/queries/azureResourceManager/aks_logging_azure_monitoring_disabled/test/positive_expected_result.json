@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.json"
+  }
+]

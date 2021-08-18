@@ -1,12 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
-	object.get(doc, "paths", "undefined") != "undefined"
+
+	common_lib.valid_key(doc, "paths")
 
 	check_paths_object(doc.paths)
 

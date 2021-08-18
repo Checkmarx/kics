@@ -33,9 +33,16 @@ kics.config
 
 # Results
 results.*
+gl-sast-results.json
 
 # Sarif files
 *.sarif
 
 # coverage report
 coverage.html
+
+# Local files for tests
+/local-files
+
+# goreleaser
+dist

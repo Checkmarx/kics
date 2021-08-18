@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "Containers must not be allowed to run with root privileges, which means the attributes 'privileged' and 'allow_privilege_escalation' must be set to false, 'run_as_user.rule' must be set to 'MustRunAsNonRoot', and adding the root group must be forbidden",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#run_as_user",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "aa6d70b9"
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -20,5 +21,5 @@ CxPolicy[result] {
 }
 
 exists(security_field, doc) {
-	object.get(doc.components.securitySchemes, security_field, "undefined") != "undefined"
+	common_lib.valid_key(doc.components.securitySchemes, security_field)
 }

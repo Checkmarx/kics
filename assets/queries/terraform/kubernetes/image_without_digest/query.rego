@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -11,14 +12,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	object.get(containers[y], "image", "undefined") == "undefined"
+	containerTypes := containers[_]
+
+	not common_lib.valid_key(containerTypes, "image")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].image is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].image is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].image is set", [resourceType, name, specInfo.path, types[x], containerTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].image is undefined", [resourceType, name, specInfo.path, types[x], containerTypes]),
 	}
 }
 
@@ -48,7 +51,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	object.get(containers, "image", "undefined") == "undefined"
+	not common_lib.valid_key(containers, "image")
 
 	result := {
 		"documentId": input.document[i].id,

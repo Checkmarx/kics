@@ -1,11 +1,13 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 	volumeClaimTemplates := document.spec.volumeClaimTemplates
 
-	object.get(volumeClaimTemplates[j].spec.resources.requests, "storage", "undefined") != "undefined"
+	common_lib.valid_key(volumeClaimTemplates[j].spec.resources.requests, "storage")
 
 	result := {
 		"documentId": document.id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	cloudformation_stack_set := task[modules[m]]
 	ansLib.checkState(cloudformation_stack_set)
 
-	object.get(cloudformation_stack_set, "purge_stacks", "undefined") == "undefined"
+	not common_lib.valid_key(cloudformation_stack_set, "purge_stacks")
 
 	result := {
 		"documentId": id,
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	cloudformation_stack_set := task[modules[m]]
 	ansLib.checkState(cloudformation_stack_set)
 
-	object.get(cloudformation_stack_set, "purge_stacks", "undefined") != "undefined"
+	common_lib.valid_key(cloudformation_stack_set, "purge_stacks")
 
     cloudformation_stack_set.purge_stacks
 

@@ -5,5 +5,6 @@
   "category": "Best Practices",
   "descriptionText": "Expose only the ports that your application needs and avoid exposing ports like SSH (22)",
   "descriptionUrl": "https://sysdig.com/blog/dockerfile-best-practices/",
-  "platform": "Dockerfile"
+  "platform": "Dockerfile",
+  "descriptionID": "79731185"
 }

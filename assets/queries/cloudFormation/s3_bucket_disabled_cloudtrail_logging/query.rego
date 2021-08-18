@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::Bucket"
@@ -8,7 +10,7 @@ CxPolicy[result] {
 	resource2.Properties.Bucket.Ref == name
 	resource2.Properties.PolicyDocument.Statement[0].Principal.Service == "cloudtrail.amazonaws.com"
 
-	object.get(resource.Properties, "LoggingConfiguration", "not found") == "not found"
+	not common_lib.valid_key(resource.Properties, "LoggingConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,

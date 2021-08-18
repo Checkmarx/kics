@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Cognito::UserPool"
 
-	object.get(resource.Properties, "MfaConfiguration", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "MfaConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,

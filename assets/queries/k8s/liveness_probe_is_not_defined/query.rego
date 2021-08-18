@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	not k8sLib.checkKind(kind, listKinds)
 
 	containers := specInfo.spec.containers
-	object.get(containers[index], "livenessProbe", "undefined") == "undefined"
+	not common_lib.valid_key(containers[index], "livenessProbe")
 
 	result := {
 		"documentId": input.document[i].id,

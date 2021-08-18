@@ -1,12 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource = document.Resources[name]
 	resource.Type == "AWS::EFS::FileSystem"
 	properties := resource.Properties
 	properties.Encrypted == false
-	object.get(properties, "KmsKeyId", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "KmsKeyId")
 
 	result := {
 		"documentId": document.id,

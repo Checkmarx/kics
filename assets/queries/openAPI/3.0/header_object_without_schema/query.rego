@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -20,5 +21,5 @@ CxPolicy[result] {
 }
 
 not_defined(header) {
-	object.get(header, "schema", "undefined") == "undefined"
+	not common_lib.valid_key(header, "schema")
 }

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
 
@@ -11,9 +12,10 @@ CxPolicy[result] {
 	ansLib.checkState(apiGateway)
 
 	content_info := get_content(apiGateway)
-	secSchemes := content_info.content.components.securitySchemes[x]
+
+	securityScheme := content_info.content.components.securitySchemes[x]
 	x != "_kics_lines"
-	object.get(secSchemes, "x-amazon-apigateway-authorizer", "undefined") == "undefined"
+	not common_lib.valid_key(securityScheme, "x-amazon-apigateway-authorizer")
 
 	result := {
 		"documentId": id,
@@ -61,9 +63,9 @@ CxPolicy[result] {
 }
 
 without_authorizer(apiGateway) {
-	object.get(apiGateway, "swagger_file", "undefined") == "undefined"
-	object.get(apiGateway, "swagger_text", "undefined") == "undefined"
-	object.get(apiGateway, "swagger_dict", "undefined") == "undefined"
+	not common_lib.valid_key(apiGateway, "swagger_file")
+	not common_lib.valid_key(apiGateway, "swagger_dict")
+	not common_lib.valid_key(apiGateway, "swagger_text")
 }
 
 get_content(apiGateway) = content_info {

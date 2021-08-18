@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 	properties := resource.Properties
-	object.get(properties, "TracingEnabled", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "TracingEnabled")
 
 	result := {
 		"documentId": input.document[i].id,

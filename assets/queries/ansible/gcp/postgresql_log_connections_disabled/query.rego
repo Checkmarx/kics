@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 modules := {"google.cloud.gcp_sql_instance", "gcp_sql_instance"}
 
@@ -39,9 +40,9 @@ CxPolicy[result] {
 }
 
 IsMissingAttribute(task) {
-	object.get(task, "settings", "undefined") == "undefined"
+	not common_lib.valid_key(task, "settings")
 }
 
 IsMissingAttribute(task) {
-	object.get(task.settings, "databaseFlags", "undefined") == "undefined"
+	not common_lib.valid_key(task.settings, "databaseFlags")
 }

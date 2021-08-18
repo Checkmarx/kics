@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
-	object.get(resource, "geo_redundant_backup_enabled", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "geo_redundant_backup_enabled")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,9 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_server[var0]
-	object.get(resource, "geo_redundant_backup_enabled", "undefined") != "undefined"
-
-	not resource.geo_redundant_backup_enabled
+	resource.geo_redundant_backup_enabled == false
 
 	result := {
 		"documentId": input.document[i].id,

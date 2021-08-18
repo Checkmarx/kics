@@ -5,5 +5,7 @@
   "category": "Access Control",
   "descriptionText": "All policies, except IAM identity-based policies, should have the 'Principal' element defined",
   "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "954ac1bf",
+  "cloudProvider": "aws"
 }

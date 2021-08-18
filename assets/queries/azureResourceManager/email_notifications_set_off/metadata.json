@@ -1,0 +1,12 @@
+{
+  "id": "79c2c2c0-eb00-47c0-ac16-f8b0e2c81c92",
+  "queryName": "Email Notifications Disabled",
+  "severity": "INFO",
+  "category": "Networking and Firewall",
+  "descriptionText": "Email notifications about new security alerts, should be set to 'On', and be sent to persons with specific RBAC roles on the subscription",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts",
+  "platform": "AzureResourceManager",
+  "cloudProvider": "azure",
+  "aggregation": 2,
+  "descriptionID": "7f5b9ef4"
+}

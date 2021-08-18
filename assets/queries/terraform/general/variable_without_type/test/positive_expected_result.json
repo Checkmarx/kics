@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Variable Without Type",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Variable Without Type",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Variable Without Type",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive3.tf"
+  }
+]

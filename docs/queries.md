@@ -47,10 +47,10 @@ For example, the JSON code above is the metadata corresponding to the query in t
 
 
 #### Organization
-Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped 
+Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped
 under provider (e.g., aws, gcp, azure, etc.) when applicable.
 
-Per each query created, it is mandatory the creation of **test cases** with, at least, one negative and positive case and a JSON file 
+Per each query created, it is mandatory the creation of **test cases** with, at least, one negative and positive case and a JSON file
 with data about the expected results, as shown below:
 ```json
 [
@@ -109,3 +109,8 @@ And the file tree should be as follows:
     |   |   |- metadata.json
     |   |   |- query.rego
 ```
+
+
+#### Query Dependencies
+
+If you want to use the functions defined in your own library, you should use the flag `-b` to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: `<platform>.rego`. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.

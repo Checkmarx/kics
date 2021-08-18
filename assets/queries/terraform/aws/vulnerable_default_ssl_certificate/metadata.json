@@ -5,5 +5,7 @@
   "category": "Insecure Defaults",
   "descriptionText": "CloudFront web distributions should use custom (and not default) SSL certificates. Custom SSL certificates allow only defined users to access content by using an alternate domain name instead of the default one.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
-  "platform": "Terraform"
+  "platform": "Terraform",
+  "descriptionID": "38579a53",
+  "cloudProvider": "aws"
 }

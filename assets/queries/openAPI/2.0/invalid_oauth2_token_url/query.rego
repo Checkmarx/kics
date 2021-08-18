@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "2.0"
 
-	object.get(doc, "securityDefinitions", "undefined") != "undefined"
+	common_lib.valid_key(doc, "securityDefinitions")
 	sec_scheme := doc.securityDefinitions[key]
 	sec_scheme.type == "oauth2"
 	url := sec_scheme.tokenUrl

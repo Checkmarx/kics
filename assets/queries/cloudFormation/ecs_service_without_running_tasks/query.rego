@@ -1,18 +1,20 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	properties := resource.Properties
 
-	object.get(properties, "DeploymentConfiguration", "undefined") == "undefined"
+	not common_lib.valid_key(properties, "DeploymentConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DeploymentConfiguration is defined", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DeploymentConfiguration is undefined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DeploymentConfiguration is defined and not null", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DeploymentConfiguration is undefined or null", [name]),
 	}
 }
 
@@ -33,13 +35,13 @@ CxPolicy[result] {
 }
 
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "MaximumPercent", "undefined") != "undefined"
+	common_lib.valid_key(deploymentConfiguration, "MaximumPercent")
 }
 
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "MinimumHealthyPercent", "undefined") != "undefined"
+	common_lib.valid_key(deploymentConfiguration, "MinimumHealthyPercent")
 }
 
 checkContent(deploymentConfiguration) {
-	object.get(deploymentConfiguration, "DeploymentCircuitBreaker", "undefined") != "undefined"
+	common_lib.valid_key(deploymentConfiguration, "DeploymentCircuitBreaker")
 }

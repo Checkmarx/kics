@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.cloudformation as cloudFormationLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -33,8 +34,8 @@ CxPolicy[result] {
 	paramName := properties.OauthToken
 	count(paramName) >= 50
 	defaultToken := paramName
-	object.get(document, "Parameters", "undefined") != "undefined"
-	object.get(document.Parameters, paramName, "undefined") == "undefined"
+	common_lib.valid_key(document, "Parameters")
+	not common_lib.valid_key(document.Parameters, paramName)
 
 	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, defaultToken)
 	not cloudFormationLib.hasSecretManager(defaultToken, document.Resources)
@@ -55,7 +56,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	paramName := properties.OauthToken
-	object.get(document, "Parameters", "undefined") == "undefined"
+	not common_lib.valid_key(document, "Parameters")
 	count(paramName) >= 50
 	defaultToken := paramName
 

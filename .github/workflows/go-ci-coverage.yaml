@@ -70,6 +70,7 @@ jobs:
           mv latest-coverage/coverage.svg coverage.svg
           git add coverage.svg
           git add coverage.html
-          git status
-          git commit -m 'chore(tests): updating test coverage report and badge'
-          git push origin gh-pages
+          if ! git status | grep "nothing to commit"; then
+            git commit -m 'chore(tests): updating test coverage report and badge';
+            git push origin gh-pages;
+          fi

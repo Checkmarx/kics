@@ -5,5 +5,6 @@
   "category": "Access Control",
   "descriptionText": "Operation Object should not use 'password' Flow in OAuth2 authentication",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-  "platform": "OpenAPI"
+  "platform": "OpenAPI",
+  "descriptionID": "e0279bb3"
 }

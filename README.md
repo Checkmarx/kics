@@ -30,11 +30,12 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <br>
 <img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Azure Resource Manager" src="docs/img/logo-arm.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Ansible" src="docs/img/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
 <img alt="Helm" src="docs/img/logo-helm.png" width="150">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
 
@@ -69,7 +70,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 ## Meet us at conferences
 
-- [Yalla DevOps 2021](https://yalla-devops.com/)
+- [Yalla DevOps 2021](https://yalla-devops.com/) ([video](https://youtu.be/Hs_YbAH9giI))
 - [Geektime Code 2021](https://code.geektime.co.il/)
 - [DevSecCon24 2021](https://www.devseccon.com/devseccon24-2021/) ([video](https://www.youtube.com/watch?v=eaD-tGMOKe8))
 - [GISEC Global 2021](https://www.gisec.ae/gisec-2021-conference/insecure-infrastructure-as-code-leaves-the-door-open-for-hackers-1wez)

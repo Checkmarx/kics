@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	sec := value.security[idx][name]
 
-	object.get(doc.securityDefinitions, name, "undefined") == "undefined"
+	not common_lib.valid_key(doc.securityDefinitions, name)
 
 	result := {
 		"documentId": doc.id,

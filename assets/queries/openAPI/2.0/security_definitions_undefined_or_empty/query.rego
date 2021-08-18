@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -18,7 +19,7 @@ CxPolicy[result] {
 }
 
 undefined_or_empty(doc) = issueType {
-	object.get(doc, "securityDefinitions", "undefined") == "undefined"
+	not common_lib.valid_key(doc, "securityDefinitions")
 	issueType = "MissingAttribute"
 } else = issueType {
 	count({x | sec := doc.securityDefinitions[n]; n != "_kics_lines"; x = sec}) == 0

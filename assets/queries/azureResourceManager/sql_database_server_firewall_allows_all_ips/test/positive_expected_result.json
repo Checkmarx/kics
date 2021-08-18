@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive2.json"
+  }
+]

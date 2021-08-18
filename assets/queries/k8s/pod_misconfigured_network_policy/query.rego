@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # same namespace but has no ingress rules
 CxPolicy[result] {
 	pod := input.document[i]
@@ -61,7 +63,7 @@ isSameNamespace(pod, policy) {
 
 # if policyType array is undefined or policyTypes array contains "Ingress"
 policyHasIngress(netPolicy) {
-	object.get(netPolicy.spec, "policyTypes", "undefined") == "undefined"
+	not common_lib.valid_key(netPolicy.spec, "policyTypes")
 } else {
 	lower(netPolicy.spec.policyTypes[_]) == lower("Ingress")
 }
@@ -69,7 +71,7 @@ policyHasIngress(netPolicy) {
 # if policyType array is undefined and contains egress rules inside the spec
 # OR if policyType array contains Egress listed
 policyHasEgress(netPolicy) {
-	object.get(netPolicy.spec, "policyTypes", "undefined") == "undefined"
+	not common_lib.valid_key(netPolicy.spec, "policyTypes")
     count(netPolicy.spec.egress) > 0
 } else {
 	lower(netPolicy.spec.policyTypes[_]) == lower("Egress")

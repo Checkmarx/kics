@@ -1,28 +1,30 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_instance[name]
-	object.get(resource, "service_account", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "service_account")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_compute_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account' is defined", [name]),
-		"keyActualValue": sprintf("'google_compute_instance[%s].service_account' is undefined", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account' is defined and not null", [name]),
+		"keyActualValue": sprintf("'google_compute_instance[%s].service_account' is undefined or null", [name]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_compute_instance[name]
-	object.get(resource.service_account, "email", "undefined") == "undefined"
+	not common_lib.valid_key(resource.service_account, "email")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("google_compute_instance[%s].service_account", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is defined", [name]),
-		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is undefined", [name]),
+		"keyExpectedValue": sprintf("'google_compute_instance[%s].service_account.email' is defined and not null", [name]),
+		"keyActualValue": sprintf("'google_compute_instance[%s].service_account.email' is undefined or null", [name]),
 	}
 }
 

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	param := value.parameters[n]
 	param.in != "body"
-	object.get(param, "schema", "undefined") != "undefined"
+	common_lib.valid_key(param, "schema")
 
 	searchKey := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
 

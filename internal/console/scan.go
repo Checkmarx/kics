@@ -17,6 +17,7 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -27,6 +28,7 @@ import (
 	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
 	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
@@ -40,63 +42,13 @@ import (
 )
 
 var (
-	//go:embed img/kics-console
+	//go:embed assets/kics-console
 	banner string
-
-	cfgFile           string
-	excludeCategories []string
-	excludeIDs        []string
-	excludePath       []string
-	excludeResults    []string
-	includeIDs        []string
-	failOn            []string
-	ignoreOnExit      string
-	min               bool
-	noProgress        bool
-	outputName        string
-	outputPath        string
-	path              []string
-	payloadPath       string
-	previewLines      int
-	queryPath         string
-	reportFormats     []string
-	types             []string
-	queryExecTimeout  int
-	lineInfoPayload   bool
 )
 
 const (
-	configFlag              = "config"
-	excludeCategoriesFlag   = "exclude-categories"
-	excludePathsFlag        = "exclude-paths"
-	excludePathsShorthand   = "e"
-	excludeQueriesFlag      = "exclude-queries"
-	excludeResultsFlag      = "exclude-results"
-	excludeResutlsShorthand = "x"
-	includeQueriesFlag      = "include-queries"
-	inlcudeQueriesShorthand = "i"
-	failOnFlag              = "fail-on"
-	ignoreOnExitFlag        = "ignore-on-exit"
-	minimalUIFlag           = "minimal-ui"
-	noProgressFlag          = "no-progress"
-	outputNameFlag          = "output-name"
-	outputPathFlag          = "output-path"
-	outputPathShorthand     = "o"
-	pathFlag                = "path"
-	pathFlagShorthand       = "p"
-	payloadPathFlag         = "payload-path"
-	payloadPathShorthand    = "d"
-	lineInfoPayloadFlag     = "line-payload"
-	previewLinesFlag        = "preview-lines"
-	queriesPathCmdName      = "queries-path"
-	queriesPathShorthand    = "q"
-	reportFormatsFlag       = "report-formats"
-	scanCommandStr          = "scan"
-	typeFlag                = "type"
-	typeShorthand           = "t"
-	queryExecTimeoutFlag    = "timeout"
-	initError               = "initialization error - "
-	msg                     = "can be provided multiple times or as a comma separated string\n"
+	scanCommandStr = "scan"
+	initError      = "initialization error - "
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -114,25 +66,25 @@ func NewScanCmd() *cobra.Command {
 }
 
 func run(cmd *cobra.Command) error {
-	changedDefaultQueryPath := cmd.Flags().Lookup(queriesPathCmdName).Changed
-	if err := consoleHelpers.InitShouldIgnoreArg(ignoreOnExit); err != nil {
+	changedDefaultQueryPath := cmd.Flags().Lookup(queriesPath).Changed
+	if err := consoleHelpers.InitShouldIgnoreArg(getStrFlag(ignoreOnExitFlag)); err != nil {
 		return err
 	}
-	if err := consoleHelpers.InitShouldFailArg(failOn); err != nil {
+	if err := consoleHelpers.InitShouldFailArg(getMultiStrFlag(failOnFlag)); err != nil {
 		return err
 	}
-	if outputPath != "" {
+	if getStrFlag(outputPathFlag) != "" {
 		updateReportFormats()
-		outputName = filepath.Base(outputName)
-		if filepath.Ext(outputPath) != "" {
-			outputPath = filepath.Join(outputPath, string(os.PathSeparator))
+		setStrFlag(outputNameFlag, filepath.Base(getStrFlag(outputNameFlag)))
+		if filepath.Ext(getStrFlag(outputPathFlag)) != "" {
+			setStrFlag(outputPathFlag, filepath.Join(getStrFlag(outputPathFlag), string(os.PathSeparator)))
 		}
-		if err := os.MkdirAll(outputPath, os.ModePerm); err != nil {
+		if err := os.MkdirAll(getStrFlag(outputPathFlag), os.ModePerm); err != nil {
 			return err
 		}
 	}
-	if payloadPath != "" && filepath.Dir(payloadPath) != "." {
-		if err := os.MkdirAll(filepath.Dir(payloadPath), os.ModePerm); err != nil {
+	if getStrFlag(payloadPathFlag) != "" && filepath.Dir(getStrFlag(payloadPathFlag)) != "." {
+		if err := os.MkdirAll(filepath.Dir(getStrFlag(payloadPathFlag)), os.ModePerm); err != nil {
 			return err
 		}
 	}
@@ -167,19 +119,19 @@ func formatNewError(flag1, flag2 string) error {
 }
 
 func updateReportFormats() {
-	for _, format := range reportFormats {
+	for _, format := range getMultiStrFlag(reportFormatsFlag) {
 		if format == "all" {
-			reportFormats = consoleHelpers.ListReportFormats()
+			setMultiStrFlag(reportFormatsFlag, consoleHelpers.ListReportFormats())
 			break
 		}
 	}
 }
 
 func validateQuerySelectionFlags() error {
-	if len(includeIDs) > 0 && len(excludeIDs) > 0 {
+	if len(getMultiStrFlag(includeQueriesFlag)) > 0 && len(getMultiStrFlag(excludeQueriesFlag)) > 0 {
 		return formatNewError(includeQueriesFlag, excludeQueriesFlag)
 	}
-	if len(includeIDs) > 0 && len(excludeCategories) > 0 {
+	if len(getMultiStrFlag(includeQueriesFlag)) > 0 && len(getMultiStrFlag(excludeCategoriesFlag)) > 0 {
 		return formatNewError(includeQueriesFlag, excludeCategoriesFlag)
 	}
 	return nil
@@ -204,10 +156,10 @@ func initializeConfig(cmd *cobra.Command) error {
 		return nil
 	}
 
-	base := filepath.Base(cfgFile)
+	base := filepath.Base(getStrFlag(configFlag))
 	v.SetConfigName(base)
-	v.AddConfigPath(filepath.Dir(cfgFile))
-	ext, err := consoleHelpers.FileAnalyzer(cfgFile)
+	v.AddConfigPath(filepath.Dir(getStrFlag(configFlag)))
+	ext, err := consoleHelpers.FileAnalyzer(getStrFlag(configFlag))
 	if err != nil {
 		return err
 	}
@@ -224,7 +176,8 @@ func initializeConfig(cmd *cobra.Command) error {
 }
 
 func setupCfgFile() (bool, error) {
-	if cfgFile == "" {
+	if getStrFlag(configFlag) == "" {
+		path := getMultiStrFlag(pathFlag)
 		if len(path) == 0 {
 			return true, nil
 		}
@@ -232,22 +185,22 @@ func setupCfgFile() (bool, error) {
 			warnings = append(warnings, "Any kics.config file will be ignored, please use --config if kics.config is wanted")
 			return true, nil
 		}
-		configpath := path[0]
-		info, err := os.Stat(configpath)
+		configPath := path[0]
+		info, err := os.Stat(configPath)
 		if err != nil {
 			return true, nil
 		}
 		if !info.IsDir() {
-			configpath = filepath.Dir(configpath)
+			configPath = filepath.Dir(configPath)
 		}
-		_, err = os.Stat(filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename)))
+		_, err = os.Stat(filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
 		if err != nil {
 			if os.IsNotExist(err) {
 				return true, nil
 			}
 			return true, err
 		}
-		cfgFile = filepath.ToSlash(filepath.Join(configpath, constants.DefaultConfigFilename))
+		setStrFlag(configFlag, filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))
 	}
 	return false, nil
 }
@@ -297,129 +250,26 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) {
 	}
 }
 
-func initScanFlags(scanCmd *cobra.Command) {
-	scanCmd.Flags().StringSliceVarP(&path,
-		pathFlag, pathFlagShorthand,
-		[]string{},
-		"paths or directories to scan\nexample: \"./somepath,somefile.txt\"")
-	scanCmd.Flags().StringVar(&cfgFile,
-		configFlag, "",
-		"path to configuration file")
-	scanCmd.Flags().StringVarP(&queryPath,
-		queriesPathCmdName, queriesPathShorthand,
-		"./assets/queries",
-		"path to directory with queries",
-	)
-	scanCmd.Flags().StringVar(&outputName,
-		outputNameFlag,
-		"results",
-		"name used on report creations")
-	scanCmd.Flags().StringVarP(&outputPath,
-		outputPathFlag,
-		outputPathShorthand,
-		"",
-		"directory path to store reports")
-	scanCmd.Flags().StringSliceVar(&reportFormats, reportFormatsFlag, []string{"json"},
-		"formats in which the results will be exported (all, json, sarif, html, glsast, pdf)",
-	)
-	scanCmd.Flags().IntVar(&previewLines,
-		previewLinesFlag,
-		3,
-		"number of lines to be display in CLI results (min: 1, max: 30)")
-	scanCmd.Flags().StringVarP(&payloadPath,
-		payloadPathFlag, payloadPathShorthand,
-		"",
-		"path to store internal representation JSON file")
-	scanCmd.Flags().StringSliceVarP(&excludePath,
-		excludePathsFlag, excludePathsShorthand,
-		[]string{},
-		"exclude paths from scan\nsupports glob and can be provided multiple times or as a quoted comma separated string"+
-			"\nexample: './shouldNotScan/*,somefile.txt'",
-	)
-	scanCmd.Flags().BoolVar(&min,
-		minimalUIFlag,
-		false,
-		"simplified version of CLI output")
-	scanCmd.Flags().BoolVar(&lineInfoPayload,
-		lineInfoPayloadFlag,
-		false,
-		"prints line information on payload file (only when payload flag is given)")
-	scanCmd.Flags().StringSliceVarP(&types,
-		typeFlag, typeShorthand,
-		[]string{""},
-		"case insensitive list of platform types to scan\n"+
-			fmt.Sprintf("(%s)", strings.Join(source.ListSupportedPlatforms(), ", ")))
-	scanCmd.Flags().BoolVar(&noProgress,
-		noProgressFlag,
-		false,
-		"hides the progress bar")
-	scanCmd.Flags().StringSliceVar(&excludeIDs,
-		excludeQueriesFlag,
-		[]string{},
-		"exclude queries by providing the query ID\n"+"cannot be provided with query inclusion flags\n"+
-			msg+
-			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
-	)
-	scanCmd.Flags().StringSliceVarP(&includeIDs,
-		includeQueriesFlag,
-		inlcudeQueriesShorthand,
-		[]string{},
-		"include queries by providing the query ID\n"+"cannot be provided with query exclusion flags\n"+
-			msg+
-			"example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'",
-	)
-	scanCmd.Flags().StringSliceVarP(&excludeResults,
-		excludeResultsFlag,
-		excludeResutlsShorthand,
-		[]string{},
-		"exclude results by providing the similarity ID of a result\n"+
-			msg+
-			"example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'",
-	)
-	scanCmd.Flags().StringSliceVar(&excludeCategories,
-		excludeCategoriesFlag,
-		[]string{},
-		"exclude categories by providing its name\n"+
-			"cannot be provided with query inclusion flags\n"+
-			msg+
-			"example: 'Access control,Best practices'",
-	)
-	scanCmd.Flags().StringSliceVar(&failOn,
-		failOnFlag,
-		[]string{"high", "medium", "low", "info"},
-		"which kind of results should return an exit code different from 0\n"+
-			"accetps: high, medium, low and info\n"+
-			"example: \"high,low\"",
-	)
-	scanCmd.Flags().StringVar(&ignoreOnExit,
-		ignoreOnExitFlag,
-		"none",
-		"defines which kind of non-zero exits code should be ignored\n"+"accepts: all, results, errors, none\n"+
-			"example: if 'results' is set, only engine errors will make KICS exit code different from 0",
-	)
-	scanCmd.Flags().IntVar(&queryExecTimeout,
-		queryExecTimeoutFlag,
-		60,
-		"number of seconds the query has to execute before being canceled")
-}
+func initScanCmd(scanCmd *cobra.Command) error {
+	if err := initJSONFlags(scanCmd); err != nil {
+		return err
+	}
 
-func initScanCmd(scanCmd *cobra.Command) {
-	initScanFlags(scanCmd)
-
-	if err := scanCmd.MarkFlagRequired("path"); err != nil {
+	if err := scanCmd.MarkFlagRequired(pathFlag); err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).Msg("Failed to add command required flags")
 	}
+	return nil
 }
 
 func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) {
 	var excludePaths []string
-	if payloadPath != "" {
-		excludePaths = append(excludePaths, payloadPath)
+	if getStrFlag(payloadPathFlag) != "" {
+		excludePaths = append(excludePaths, getStrFlag(payloadPathFlag))
 	}
 
-	if len(excludePath) > 0 {
-		excludePaths = append(excludePaths, excludePath...)
+	if len(getMultiStrFlag(excludePathsFlag)) > 0 {
+		excludePaths = append(excludePaths, getMultiStrFlag(excludePathsFlag)...)
 	}
 
 	filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
@@ -438,29 +288,31 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) {
-	excludeResultsMap := getExcludeResultsMap(excludeResults)
+	excludeResultsMap := getExcludeResultsMap(getMultiStrFlag(excludeResultsFlag))
 
 	excludeQueries := source.ExcludeQueries{
-		ByIDs:        excludeIDs,
-		ByCategories: excludeCategories,
+		ByIDs:        getMultiStrFlag(excludeQueriesFlag),
+		ByCategories: getMultiStrFlag(excludeCategoriesFlag),
 	}
 
 	includeQueries := source.IncludeQueries{
-		ByIDs: includeIDs,
+		ByIDs: getMultiStrFlag(includeQueriesFlag),
 	}
 
-	queryFilter := source.QuerySelectionFilter{
+	queryFilter := source.QueryInspectorParameters{
 		IncludeQueries: includeQueries,
 		ExcludeQueries: excludeQueries,
+		InputDataPath:  getStrFlag(inputDataFlag),
 	}
 
 	inspector, err := engine.NewInspector(ctx,
 		querySource,
 		engine.DefaultVulnerabilityBuilder,
 		t,
-		queryFilter,
+		&queryFilter,
 		excludeResultsMap,
-		queryExecTimeout)
+		getIntFlag(queryExecTimeoutFlag),
+	)
 	if err != nil {
 		return nil, err
 	}
@@ -489,7 +341,7 @@ func createService(inspector *engine.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
-	querySource source.FilesystemSource) ([]*kics.Service, error) {
+	querySource *source.FilesystemSource) ([]*kics.Service, error) {
 	filesSource, err := getFileSystemSourceProvider(paths)
 	if err != nil {
 		return nil, err
@@ -500,7 +352,7 @@ func createService(inspector *engine.Inspector,
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(querySource.Types)
+		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err
 	}
@@ -528,21 +380,34 @@ func createService(inspector *engine.Inspector,
 	return services, nil
 }
 
-func extractPaths(paths []string) (extectedPaths []string, pathExtractionMap map[string]string, err error) {
-	absPaths := make([]string, len(path))
-	zProvider := &provider.ZipSystemSourceProvider{}
-	for idx, scanPath := range paths {
-		absPath, err := filepath.Abs(scanPath)
-		if err != nil {
-			return nil, nil, err
-		}
-		absPath, err = zProvider.CheckAndExtractZip(absPath)
-		if err != nil {
-			return nil, nil, err
-		}
-		absPaths[idx] = absPath
+type startServiceParameters struct {
+	t              *tracker.CITracker
+	store          kics.Storage
+	querySource    *source.FilesystemSource
+	extractedPaths []string
+	progressBar    progress.PBar
+	pbBuilder      *progress.PbBuilder
+}
+
+func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) {
+	inspector, err := createInspector(params.t, params.querySource)
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
 	}
-	return absPaths, zProvider.PathExtractionMap, nil
+
+	services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+	params.progressBar.Close()
+
+	if err = scanner.StartScan(ctx, scanID, *params.pbBuilder, services); err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
+	return inspector, nil
 }
 
 func scan(changedDefaultQueryPath bool) error {
@@ -551,57 +416,66 @@ func scan(changedDefaultQueryPath bool) error {
 		log.Warn().Msgf(warn)
 	}
 
-	printer := consoleHelpers.NewPrinter(min)
+	printer := consoleHelpers.NewPrinter(getBoolFlag(minimalUIFlag))
 	printer.Success.Printf("\n%s\n", banner)
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
-	scanStartTime := time.Now()
+	proBarBuilder := progress.InitializePbBuilder(getBoolFlag(noProgressFlag), ci, silent)
 
-	t, err := tracker.NewTracker(previewLines)
+	scanStartTime := time.Now()
+	progressBar := proBarBuilder.BuildCircle("Preparing Scan Assets: ")
+	progressBar.Start()
+
+	t, err := tracker.NewTracker(getIntFlag(previewLinesFlag))
 	if err != nil {
 		log.Err(err)
 		return err
 	}
 
 	if changedDefaultQueryPath {
-		log.Debug().Msgf("Trying to load queries from %s", queryPath)
+		log.Debug().Msgf("Trying to load queries from %s", getStrFlag(queriesPath))
 	} else {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-		queryPath, err = consoleHelpers.GetDefaultQueryPath(queryPath)
-		if err != nil {
-			return errors.Wrap(err, "unable to find queries")
+		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(getStrFlag(queriesPath))
+		if errDefaultQueryPath != nil {
+			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
 		}
+		setStrFlag(queriesPath, defaultQueryPath)
 	}
 
-	extractedPaths, pathExtractionMap, err := extractPaths(path)
+	extractedPaths, err := provider.GetSources(getMultiStrFlag(pathFlag))
 	if err != nil {
 		return err
 	}
 
-	if types, excludePath, err = analyzePaths(extractedPaths, types, excludePath); err != nil {
-		return err
+	newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
+		analyzePaths(extractedPaths.Path, getMultiStrFlag(typeFlag), getMultiStrFlag(excludePathsFlag))
+	if errAnalyze != nil {
+		return errAnalyze
 	}
+	setMultiStrFlag(typeFlag, newTypeFlagValue)
+	setMultiStrFlag(excludePathsFlag, newExcludePathsFlagValue)
 
-	querySource := source.NewFilesystemSource(queryPath, types)
+	querySource := source.NewFilesystemSource(
+		getStrFlag(queriesPath),
+		getMultiStrFlag(typeFlag),
+		getMultiStrFlag(cloudProviderFlag),
+		getStrFlag(libraryPath),
+	)
 	store := storage.NewMemoryStorage()
 
-	inspector, err := createInspector(t, querySource)
+	inspector, err := createServiceAndStartScan(&startServiceParameters{
+		t:              t,
+		store:          store,
+		querySource:    querySource,
+		progressBar:    progressBar,
+		extractedPaths: extractedPaths.Path,
+		pbBuilder:      proBarBuilder,
+	})
 	if err != nil {
-		log.Err(err)
-		return err
-	}
-
-	services, err := createService(inspector, extractedPaths, t, store, *querySource)
-	if err != nil {
-		log.Err(err)
-		return err
-	}
-
-	if err = scanner.StartScan(ctx, scanID, noProgress, services); err != nil {
-		log.Err(err)
 		return err
 	}
 
@@ -618,11 +492,11 @@ func scan(changedDefaultQueryPath bool) error {
 	}
 
 	summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
-		ScannedPaths:      path,
-		PathExtractionMap: pathExtractionMap,
+		ScannedPaths:      getMultiStrFlag(pathFlag),
+		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer); err != nil {
+	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
@@ -664,6 +538,17 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 		End:   end,
 	}
 	summary.ScannedPaths = pathParameters.ScannedPaths
+
+	if getBoolFlag(disableCISDescFlag) || getBoolFlag(disableFullDescFlag) {
+		log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
+	} else {
+		err := descriptions.RequestAndOverrideDescriptions(&summary)
+		if err != nil {
+			log.Warn().Msgf("Unable to get descriptions: %s", err)
+			log.Warn().Msgf("Using default descriptions")
+		}
+	}
+
 	return summary
 }
 
@@ -672,22 +557,28 @@ func resolveOutputs(
 	documents model.Documents,
 	failedQueries map[string]error,
 	printer *consoleHelpers.Printer,
+	proBarBuilder progress.PbBuilder,
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
 	if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil {
 		return err
 	}
-	if payloadPath != "" {
-		if err := report.ExportJSONReport(filepath.Dir(payloadPath), filepath.Base(payloadPath), documents, lineInfoPayload); err != nil {
+	if getStrFlag(payloadPathFlag) != "" {
+		if err := report.ExportJSONReport(
+			filepath.Dir(getStrFlag(payloadPathFlag)),
+			filepath.Base(getStrFlag(payloadPathFlag)),
+			documents,
+			getBoolFlag(lineInfoPayloadFlag),
+		); err != nil {
 			return err
 		}
 	}
 
-	return printOutput(outputPath, outputName, summary, reportFormats)
+	return printOutput(getStrFlag(outputPathFlag), getStrFlag(outputNameFlag), summary, getMultiStrFlag(reportFormatsFlag), proBarBuilder)
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string) error {
+func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
 	log.Debug().Msg("console.printOutput()")
 	if outputPath == "" {
 		return nil
@@ -700,7 +591,7 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 
 	err := consoleHelpers.ValidateReportFormats(formats)
 	if err == nil {
-		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats)
+		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
 	}
 	return err
 }

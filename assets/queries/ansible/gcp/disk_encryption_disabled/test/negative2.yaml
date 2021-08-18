@@ -1,0 +1,12 @@
+#this code is a correct code for which the query should not find any result
+- name: create a disk
+  google.cloud.gcp_compute_disk:
+    name: test_object
+    size_gb: 50
+    disk_encryption_key:
+      kms_key_name: disk-crypto-key
+    zone: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: /tmp/auth.pem
+    state: present

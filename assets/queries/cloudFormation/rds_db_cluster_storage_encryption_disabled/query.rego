@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::RDS::DBCluster"
-	object.get(resource.Properties, "StorageEncrypted", "undefined") == "undefined"
+	not common_lib.valid_key(resource.Properties, "StorageEncrypted")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -5,5 +5,7 @@
   "category": "Insecure Configurations",
   "descriptionText": "Checks if the policy is vulnerable and needs updating",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy",
-  "platform": "CloudFormation"
+  "platform": "CloudFormation",
+  "descriptionID": "1f88b704",
+  "cloudProvider": "aws"
 }

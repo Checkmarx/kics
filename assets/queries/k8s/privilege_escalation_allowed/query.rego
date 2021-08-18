@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import data.generic.common as common_lib
 
 types := {"initContainers", "containers"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 
 	containers := specInfo.spec[types[x]]
 
-	object.get(containers[index].securityContext, "allowPrivilegeEscalation", "undefined") == "undefined"
+	not common_lib.valid_key(containers[index].securityContext, "allowPrivilegeEscalation")
 
 	result := {
 		"documentId": input.document[i].id,
