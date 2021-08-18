@@ -7,10 +7,10 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
-	content = value.content
+	content = object.remove(value.content, ["_kics_lines"])
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	object.get(content[x], "schema", "undefined") == "undefined"
+	object.get(content[_], "schema", "undefined") == "undefined"
 
 	result := {
 		"documentId": doc.id,
@@ -26,9 +26,9 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
-	content = value.content
+	content = object.remove(value.content, ["_kics_lines"])
 	openapi_lib.is_operation(path) == {}
-	object.get(content[x], "schema", "undefined") == "undefined"
+	object.get(content[_], "schema", "undefined") == "undefined"
 
 	result := {
 		"documentId": doc.id,
