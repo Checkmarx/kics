@@ -1,15 +1,17 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	public := input.document[i].resource.aws_redshift_cluster[name]
-	object.get(public, "publicly_accessible", "undefined") == "undefined"
+	not common_lib.valid_key(public, "publicly_accessible")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined",
-		"keyActualValue": "aws_redshift_cluster.publicly_accessible is undefined",
+		"keyExpectedValue": "aws_redshift_cluster.publicly_accessible is defined and not null",
+		"keyActualValue": "aws_redshift_cluster.publicly_accessible is undefined or null",
 	}
 }
 

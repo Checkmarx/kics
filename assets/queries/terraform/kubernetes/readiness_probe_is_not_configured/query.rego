@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -14,7 +15,7 @@ CxPolicy[result] {
 
 	is_object(container) == true
 
-	object.get(container, "readiness_probe", "undefined") == "undefined"
+	not common_lib.valid_key(container, "readiness_probe")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -34,15 +35,16 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]]
 
 	is_array(container) == true
+	containersType := container[_]
 
-	object.get(container[y], "readiness_probe", "undefined") == "undefined"
+	not common_lib.valid_key(containersType, "readiness_probe")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is set", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
 	}
 }
 

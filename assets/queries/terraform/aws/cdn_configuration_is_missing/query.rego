@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
 
-	object.get(resource, "enabled", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "enabled")
 
 	result := {
 		"documentId": document.id,
@@ -34,7 +36,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.aws_cloudfront_distribution[name]
 
-	object.get(resource, "origin", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "origin")
 
 	result := {
 		"documentId": document.id,

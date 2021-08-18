@@ -1,16 +1,18 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.github_repository[example]
-	object.get(resource, "private", "undefined") == "undefined"
-	object.get(resource, "visibility", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "private")
+	not common_lib.valid_key(resource, "visibility")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("github_repository[%s]", [example]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Attribute 'private' is defined or Attribute 'visibility' is defined",
-		"keyActualValue": "Attribute 'private' is undefined and Attribute 'visibility' is undefined",
+		"keyExpectedValue": "Attribute 'private' or Attribute 'visibility' are defined and not null",
+		"keyActualValue": "Attribute 'private' and Attribute 'visibility' are undefined or null",
 	}
 }
 

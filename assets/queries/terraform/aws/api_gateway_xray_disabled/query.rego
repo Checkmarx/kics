@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_stage[name]
 	resource.xray_tracing_enabled == false
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_api_gateway_stage[name]
-	object.get(resource, "xray_tracing_enabled", "undefined") == "undefined"
+	not common_lib.valid_key(resource, "xray_tracing_enabled")
 
 	result := {
 		"documentId": input.document[i].id,

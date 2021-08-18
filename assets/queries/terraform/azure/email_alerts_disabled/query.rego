@@ -3,8 +3,7 @@ package Cx
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_security_center_contact[name]
 
-	object.get(resource, "alert_notifications", "undefined") != "undefined"
-	not resource.alert_notifications
+	resource.alert_notifications == false
 
 	result := {
 		"documentId": input.document[i].id,

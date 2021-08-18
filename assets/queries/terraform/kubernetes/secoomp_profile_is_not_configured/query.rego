@@ -1,14 +1,16 @@
 package Cx
 
+import data.generic.common as common_lib
+
 #pod
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	metadata := resource.metadata
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
 	annotations := metadata.annotations
-	object.get(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}", "undefined") == "undefined"
+	not common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,10 +25,10 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	metadata := resource.metadata
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
 	annotations := metadata.annotations
-	object.get(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}", "undefined") != "undefined"
+	common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	seccomp := annotations["${seccomp.security.alpha.kubernetes.io/defaultProfileName}"]
 
@@ -45,7 +47,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	metadata := resource.metadata
-	object.get(metadata, "annotations", "undefined") == "undefined"
+	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -61,7 +63,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_cron_job[name]
 
 	metadata := resource.spec.job_template.spec.template.metadata
-	object.get(metadata, "annotations", "undefined") == "undefined"
+	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -76,10 +78,10 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_cron_job[name]
 
 	metadata := resource.spec.job_template.spec.template.metadata
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
 	annotations := metadata.annotations
-	object.get(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}", "undefined") == "undefined"
+	not common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -94,10 +96,10 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_cron_job[name]
 
 	metadata := resource.spec.job_template.spec.template.metadata
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
 	annotations := metadata.annotations
-	object.get(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}", "undefined") != "undefined"
+	common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	seccomp := annotations["${seccomp.security.alpha.kubernetes.io/defaultProfileName}"]
 	seccomp != "runtime/default"
@@ -120,7 +122,7 @@ CxPolicy[result] {
 	resourceType != resources[x]
 
 	metadata := resource[name].spec.template.metadata
-	object.get(metadata, "annotations", "undefined") == "undefined"
+	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -137,10 +139,10 @@ CxPolicy[result] {
 	resourceType != resources[x]
 
 	metadata := resource[name].spec.template.metadata
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
 	annotations := metadata.annotations
-	object.get(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}", "undefined") == "undefined"
+	not common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -157,10 +159,10 @@ CxPolicy[result] {
 	resourceType != resources[x]
 
 	metadata := resource[name].spec.template.metadata
-	object.get(metadata, "annotations", "undefined") != "undefined"
+	common_lib.valid_key(metadata, "annotations")
 
 	annotations := metadata.annotations
-	object.get(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}", "undefined") != "undefined"
+	common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	seccomp := annotations["${seccomp.security.alpha.kubernetes.io/defaultProfileName}"]
 

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as terraLib
+import data.generic.common as common_lib
 
 types := {"init_container", "container"}
 
@@ -11,15 +12,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
+	containerTypes := containers[_]
 
-	object.get(containers[y].resources.limits, "cpu", "undefined") == "undefined"
+	not common_lib.valid_key(containerTypes.resources.limits, "cpu")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.limits.cpu is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.limits.cpu is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.limits.cpu is set", [resourceType, name, specInfo.path, types[x], containerTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.limits.cpu is undefined", [resourceType, name, specInfo.path, types[x], containerTypes]),
 	}
 }
 
@@ -31,7 +33,7 @@ CxPolicy[result] {
 
 	is_object(containers) == true
 
-	object.get(containers.resources.limits, "cpu", "undefined") == "undefined"
+	not common_lib.valid_key(containers.resources.limits, "cpu")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -49,14 +51,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	object.get(containers[y], "resources", "undefined") == "undefined"
+	containerTypes := containers[_]
+
+	not common_lib.valid_key(containerTypes, "resources")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources is set", [resourceType, name, specInfo.path, types[x], containerTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources is undefined", [resourceType, name, specInfo.path, types[x], containerTypes]),
 	}
 }
 
@@ -67,7 +71,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	object.get(containers, "resources", "undefined") == "undefined"
+	not common_lib.valid_key(containers, "resources")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -85,15 +89,16 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
+	containerTypes := containers[_]
 
-	object.get(containers[y].resources, "limits", "undefined") == "undefined"
+	not common_lib.valid_key(containerTypes.resources, "limits")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.limits is set", [resourceType, name, specInfo.path, types[x], y]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.limits is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.limits is set", [resourceType, name, specInfo.path, types[x], containerTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.limits is undefined", [resourceType, name, specInfo.path, types[x], containerTypes]),
 	}
 }
 
@@ -105,7 +110,7 @@ CxPolicy[result] {
 
 	is_object(containers) == true
 
-	object.get(containers.resources, "limits", "undefined") == "undefined"
+	not common_lib.valid_key(containers.resources, "limits")
 
 	result := {
 		"documentId": input.document[i].id,

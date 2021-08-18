@@ -1,10 +1,12 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_elasticache_cluster[name]
 
 	cluster.engine == "redis"
-	object.get(cluster, "snapshot_retention_limit", "undefined") == "undefined"
+	not common_lib.valid_key(cluster, "snapshot_retention_limit")
 
 	result := {
 		"documentId": input.document[i].id,

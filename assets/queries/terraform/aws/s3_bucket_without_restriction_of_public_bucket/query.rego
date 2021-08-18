@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 #default of restrict_public_buckets is false
 CxPolicy[result] {
 	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
-	object.get(pubACL, "restrict_public_buckets", "not found") == "not found"
+	not common_lib.valid_key(pubACL, "restrict_public_buckets")
 
 	result := {
 		"documentId": input.document[i].id,

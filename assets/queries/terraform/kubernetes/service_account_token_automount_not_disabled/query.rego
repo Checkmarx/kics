@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
-	object.get(resource.spec, "automount_service_account_token", "undefined") == "undefined"
+	not common_lib.valid_key(resource.spec, "automount_service_account_token")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -33,10 +35,9 @@ listKinds := {"kubernetes_deployment", "kubernetes_daemonset", "kubernetes_job",
 CxPolicy[result] {
 	resource := input.document[i].resource
 
-	k8 := object.get(resource, listKinds[x], "undefined")
-	k8 != "undefined"
+	k8 := resource[listKinds[x]][name].spec.template.spec
 
-	object.get(k8[name].spec.template.spec, "automount_service_account_token", "undefined") == "undefined"
+	not common_lib.valid_key(k8, "automount_service_account_token")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -50,10 +51,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource
 
-	k8 := object.get(resource, listKinds[x], "undefined")
-	k8 != "undefined"
-
-	k8[name].spec.template.spec.automount_service_account_token == true
+	resource[listKinds[x]][name].spec.template.spec.automount_service_account_token == true
 
 	result := {
 		"documentId": input.document[i].id,
@@ -67,7 +65,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_cron_job[name]
 
-	object.get(resource.spec.jobTemplate.spec.template.spec, "automount_service_account_token", "undefined") == "undefined"
+	not common_lib.valid_key(resource.spec.jobTemplate.spec.template.spec, "automount_service_account_token")
 
 	result := {
 		"documentId": input.document[i].id,

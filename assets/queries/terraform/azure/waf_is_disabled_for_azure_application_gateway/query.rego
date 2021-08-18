@@ -1,8 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	gateway := input.document[i].resource.azurerm_application_gateway[name]
-	object.get(gateway, "waf_configuration", "undefined") == "undefined"
+	not common_lib.valid_key(gateway, "waf_configuration")
 
 	result := {
 		"documentId": input.document[i].id,

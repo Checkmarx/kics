@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	deployment = document.resource.aws_api_gateway_deployment[name]
@@ -40,7 +42,7 @@ CxPolicy[result] {
 
 	settings_are_equal(name)
 
-	object.get(deployment, "stage_description", "undefined") == "undefined"
+	not common_lib.valid_key(deployment, "stage_description")
 
 	result := {
 		"documentId": document.id,
@@ -66,5 +68,5 @@ has_reference(deploymentId, name) {
 }
 
 has_access_log_settings(resource) {
-	object.get(resource, "access_log_settings", "undefined") != "undefined"
+	common_lib.valid_key(resource, "access_log_settings")
 }

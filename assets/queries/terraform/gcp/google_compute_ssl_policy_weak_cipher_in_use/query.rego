@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	sslPolicy := input.document[i].resource.google_compute_ssl_policy[name]
 	sslPolicy.min_tls_version != "TLS_1_2"
@@ -15,7 +17,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	sslPolicy := input.document[i].resource.google_compute_ssl_policy[name]
-	object.get(sslPolicy, "min_tls_version", "undefined") == "undefined"
+	not common_lib.valid_key(sslPolicy, "min_tls_version")
 
 	result := {
 		"documentId": input.document[i].id,

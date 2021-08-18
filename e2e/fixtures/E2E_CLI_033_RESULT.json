@@ -89,8 +89,8 @@
           "issue_type": "MissingAttribute",
           "search_key": "aws_redshift_cluster[{{default1}}]",
           "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined",
-          "actual_value": "aws_redshift_cluster[{{default1}}].tags is missing",
+          "expected_value": "aws_redshift_cluster[{{default1}}].tags is defined and not null",
+          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null",
           "value": null
         }
       ]
