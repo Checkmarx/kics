@@ -109,7 +109,7 @@
 				
 				<option value="file26">github.com/Checkmarx/kics/pkg/detector/helper.go (96.4%)</option>
 				
-				<option value="file27">github.com/Checkmarx/kics/pkg/engine/inspector.go (78.2%)</option>
+				<option value="file27">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.6%)</option>
 				
 				<option value="file28">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
@@ -117,7 +117,7 @@
 				
 				<option value="file30">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
 				
-				<option value="file31">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (68.4%)</option>
+				<option value="file31">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
 				
 				<option value="file32">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (82.9%)</option>
 				
@@ -1517,8 +1517,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="323">{
-                if val == true </span><span class="cov9" title="322">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="338">{
+                if val == true </span><span class="cov9" title="337">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2249,13 +2249,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2280,14 +2280,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -2628,7 +2628,7 @@ func createSlice(chanel chan string) []string <span class="cov5" title="10">{
 // contains is a simple method to check if a slice
 // contains an entry
 func contains(s []string, e string) bool <span class="cov7" title="17">{
-        for _, a := range s </span><span class="cov8" title="38">{
+        for _, a := range s </span><span class="cov8" title="39">{
                 if a == e </span><span class="cov3" title="4">{
                         return true
                 }</span>
@@ -4283,7 +4283,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4487,6 +4487,7 @@ func NewInspector(
                 sentry.CaptureException(err)
                 log.Err(err).
                         Msgf("Inspector failed to get general query, query=%s", "common")
+                return nil, errors.Wrap(err, "failed to get library")
         }</span>
         <span class="cov2" title="4">opaQueries := make([]*preparedQuery, 0, len(queries))
         for _, metadata := range queries </span><span class="cov10" title="3625">{
@@ -5371,7 +5372,7 @@ func getKicsDirPath() string <span class="cov5" title="7">{
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, libraryPathFlag string) string <span class="cov5" title="7">{
+func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span class="cov5" title="7">{
         var libraryFilePath, relativeBasePath string
         // user uses the library path flag
         if !isDefaultLibrary(libraryPathFlag) </span><span class="cov0" title="0">{
@@ -5391,34 +5392,43 @@ func GetPathToLibrary(platform, libraryPathFlag string) string <span class="cov5
                 if os.IsNotExist(err) </span><span class="cov5" title="7">{
                         currentDir, err := os.Getwd()
                         if err != nil </span><span class="cov0" title="0">{
-                                log.Fatal().Msgf("Error getting wd: %s", err)
+                                log.Error().Msgf("Error getting wd: %s", err)
+                                return "", err
                         }</span>
-                        <span class="cov5" title="7">currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
-                        libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
+                        <span class="cov5" title="7">if strings.LastIndex(currentDir, "kics") &gt; -1 </span><span class="cov5" title="7">{
+                                currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
+                        }</span> else<span class="cov0" title="0"> {
+                                currentDir = filepath.Join(currentDir, "kics")
+                        }</span>
+                        <span class="cov5" title="7">libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
                         _, err = os.Stat(libraryFilePath)
                         if os.IsNotExist(err) </span><span class="cov0" title="0">{
-                                log.Fatal().Msgf("Error getting wd: %s", err)
+                                log.Error().Msgf("Error getting wd: %s", err)
+                                return "", err
                         }</span>
                         <span class="cov5" title="7">relativeBasePath = currentDir</span>
                         // the system has kics binary accessible
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="30">{
+                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="33">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
                         }
                 }
         }
-        <span class="cov5" title="7">return libraryFilePath</span>
+        <span class="cov5" title="7">return libraryFilePath, nil</span>
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <span class="cov5" title="7">{
-        pathToLib := GetPathToLibrary(platform, s.Library)
+        pathToLib, err := GetPathToLibrary(platform, s.Library)
+        if err != nil </span><span class="cov0" title="0">{
+                return "", err
+        }</span>
 
-        content, err := os.ReadFile(filepath.Clean(pathToLib))
+        <span class="cov5" title="7">content, err := os.ReadFile(filepath.Clean(pathToLib))
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).
                         Msgf("Failed to get filesystem source rego library %s", pathToLib)
