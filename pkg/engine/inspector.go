@@ -120,6 +120,7 @@ func NewInspector(
 		sentry.CaptureException(err)
 		log.Err(err).
 			Msgf("Inspector failed to get general query, query=%s", "common")
+		return nil, errors.Wrap(err, "failed to get library")
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
