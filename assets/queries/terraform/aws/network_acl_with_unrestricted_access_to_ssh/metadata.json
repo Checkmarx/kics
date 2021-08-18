@@ -1,0 +1,11 @@
+{
+  "id": "3af7f2fd-06e6-4dab-b996-2912bea19ba4",
+  "queryName": "Network ACL With Unrestricted Access To SSH",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "'SSH' (TCP:22) should not be public in AWS Network ACL",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl",
+  "platform": "Terraform",
+  "descriptionID": "215ffb15",
+  "cloudProvider": "aws"
+}

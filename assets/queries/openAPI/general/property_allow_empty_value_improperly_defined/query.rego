@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	params := value.parameters[n]
-	object.get(params, "allowEmptyValue", "undefined") != "undefined"
+	common_lib.valid_key(params, "allowEmptyValue")
 	all([params.in != "query", params.in != "formData"])
 
 	result := {

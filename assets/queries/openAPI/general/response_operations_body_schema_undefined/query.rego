@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	response := operation.responses[code]
 	key := get_key_by_version(version)
-	object.get(response, key, "undefined") == "undefined"
+	not common_lib.valid_key(response, key)
 
 	result := {
 		"documentId": doc.id,
@@ -53,7 +53,8 @@ CxPolicy[result] {
 	acceptable_response(operation, op)
 
 	response := operation.responses[code]
-	object.get(response.content[content_type], "schema", "undefined") == "undefined"
+	responses := response.content[content_type]
+	not common_lib.valid_key(responses, "schema")
 
 	result := {
 		"documentId": doc.id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -32,7 +33,7 @@ CxPolicy[result] {
 
 	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
 
-	object.get(param, "type", "undefined") == "undefined"
+	not common_lib.valid_key(param, "type")
 
 	result := {
 		"documentId": doc.id,
@@ -46,18 +47,18 @@ CxPolicy[result] {
 check_required(obj, req) = req_obj {
 	req.array = true
 	req.map_object = false
-	set := {x | item := obj[n]; object.get(item, "$ref", "undefined") == "undefined"; object.get(item, req.value[val], "undefined") == "undefined"; x := item}
+	set := {x | item := obj[n]; not common_lib.valid_key(item, "$ref"); v := req.value[val]; not common_lib.valid_key(item, v); x := item}
 	count(set) > 0
 	req_obj := ""
 } else = req_obj {
 	req.map_object = true
-	set := {x | item := obj[n]; object.get(item, "$ref", "undefined") == "undefined"; object.get(item, req.value[val], "undefined") == "undefined"; x := n}
+	set := {x | item := obj[n]; not common_lib.valid_key(item, "$ref"); v := req.value[val]; not common_lib.valid_key(item, v); x := n}
 	count(set) > 0
 	req_obj := set
 } else = req_obj {
 	req.array = false
 	req.map_object = false
-	set := {x | object.get(obj, "$ref", "undefined") == "undefined"; object.get(obj, req.value[val], "undefined") == "undefined"; x := obj}
+	set := {x | not common_lib.valid_key(obj, "$ref"); v := req.value[val]; not common_lib.valid_key(obj, v); x := obj}
 	count(set) > 0
 	req_obj := ""
 }

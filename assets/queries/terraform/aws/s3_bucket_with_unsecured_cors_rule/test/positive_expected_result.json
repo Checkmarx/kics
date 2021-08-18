@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "S3 Bucket with Unsecured CORS Rule",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket with Unsecured CORS Rule",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive2.tf"
+  }
+]

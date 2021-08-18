@@ -5,7 +5,7 @@ These are our upcoming features:
 - Schemas support gRPC
 - Google Deployment Manager support
 - Azure Blueprints support
-- Terraformer support
+- Bill-of-Material for cloud-resources generation
 
 Have an idea?
 Join the chat <a href="https://gitter.im/kics-io/community" target="_blank">on Gitter</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)

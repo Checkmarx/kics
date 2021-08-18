@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -43,5 +44,5 @@ CxPolicy[result] {
 
 undefined_maximum_number(value) {
 	value.type == "array"
-	object.get(value, "maxItems", "undefined") == "undefined"
+	not common_lib.valid_key(value, "maxItems")
 }

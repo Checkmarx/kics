@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -25,8 +26,8 @@ CxPolicy[result] {
 }
 
 is_oneOf_valid(items) {
-	object.get(items, "oneOf", "undefined") != "undefined"
+	common_lib.valid_key(items, "oneOf")
 	is_array(items.oneOf)
 	count(items.oneOf) > 0
-	count({item | item := items.oneOf[_]; object.get(item, "type", "undefined") == "undefined"; object.get(item, "$ref", "undefined") == "undefined"}) == 0
+	count({item | item := items.oneOf[_]; not common_lib.valid_key(item, "type"); not common_lib.valid_key(item, "$ref")}) == 0
 }

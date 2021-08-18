@@ -357,7 +357,7 @@ func TestNewInspector(t *testing.T) { // nolint
 			Query:     "all_auth_users_get_read_access",
 			Content:   string(contentByte),
 			InputData: "{}",
-			Platform:  "unknown",
+			Platform:  "cloudFormation",
 			Metadata: map[string]interface{}{
 				"id":              "57b9893d-33b1-4419-bcea-b828fb87e318",
 				"queryName":       "All Auth Users Get Read Access",
@@ -641,7 +641,7 @@ func TestShouldSkipFile(t *testing.T) {
 }
 
 func newInspectorInstance(t *testing.T, queryPath string) *Inspector {
-	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""})
+	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
 		detector *detector.DetectLine) (model.Vulnerability, error) {
 		return model.Vulnerability{}, nil
@@ -664,15 +664,13 @@ type mockSource struct {
 }
 
 func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""})
+	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"))
 
 	return sources.GetQueries(queryFilter)
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	currentWorkdir, _ := os.Getwd()
-
-	pathToLib := source.GetPathToLibrary(platform, currentWorkdir)
+	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err

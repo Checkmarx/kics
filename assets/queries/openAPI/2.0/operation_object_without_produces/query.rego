@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,8 +9,8 @@ CxPolicy[result] {
 
 	op := doc.paths[path][operation]
 	operation == "get"
-	object.get(doc, "produces", "undefined") == "undefined"
-	object.get(op, "produces", "undefined") == "undefined"
+	not common_lib.valid_key(doc, "produces")
+	not common_lib.valid_key(op, "produces")
 
 	result := {
 		"documentId": doc.id,

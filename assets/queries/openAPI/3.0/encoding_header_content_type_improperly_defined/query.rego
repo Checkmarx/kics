@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -67,6 +68,6 @@ CxPolicy[result] {
 
 check_content_header(r) = header_info {
 	header := r.content[c].encoding[e].headers[h]
-	object.get(header, "contentType", "undefined") != "undefined"
+	common_lib.valid_key(header, "contentType")
 	header_info := {"c": c, "e": e}
 }

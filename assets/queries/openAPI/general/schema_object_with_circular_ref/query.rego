@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	types := {"allOf", "oneOf", "anyOf", "not"}
-	object.get(value[types[prop]][n], "$ref", "undefined") != "undefined"
+	common_lib.valid_key(value[types[prop]][n], "$ref")
 	properties := value[types[prop]][n]
 	refPaths := {
 		"2.0": "#/definitions/",

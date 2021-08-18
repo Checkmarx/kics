@@ -59,7 +59,7 @@ Flags:
                                      can be provided multiple times or as a comma separated string
                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
       --fail-on strings              which kind of results should return an exit code different from 0
-                                     accetps: high, medium, low and info
+                                     accepts: high, medium, low and info
                                      example: "high,low" (default [high,medium,low,info])
   -h, --help                         help for scan
       --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
@@ -70,9 +70,10 @@ Flags:
                                      can be provided multiple times or as a comma separated string
                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string            path to query input data files
+  -b, --library string               path to directory with libraries (default "./assets/libraries")
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
-      --disable-cis-descriptions     disable request for CIS descriptions and use default vulnerability descriptions
+      --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
@@ -97,6 +98,11 @@ Global Flags:
 ```
 
 The other commands have no further options.
+
+## Library Flag Usage
+
+As mentioned above, the library flag (`-b`) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
+
 
 ---
 
