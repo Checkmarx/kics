@@ -29,7 +29,13 @@ CxPolicy[result] {
 	cidrs := {"cidr_blocks", "ipv6_cidr_blocks"}
 	acceptAll := {"0.0.0.0/0", "::/0"}
 
-	resource[block][_][cidrs[c]][_] == acceptAll[a]
+	# ingress or egress
+	rules := resource[block][_]
+
+	# ingress.cidr_blocks or ingress.ipv6_cidr_blocks or egress.cidr_blocks or egress.ipv6_cidr_blocks
+	cidr := rules[cidrs[c]][_]
+
+	cidr == acceptAll[a]
 
 	result := {
 		"documentId": input.document[i].id,
