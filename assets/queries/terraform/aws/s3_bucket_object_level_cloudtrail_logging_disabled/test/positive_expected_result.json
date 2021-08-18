@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "S3 Bucket Object Level CloudTrail Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 Bucket Object Level CloudTrail Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.tf"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "id": "a8fc2180-b3ac-4c93-bd0d-a55b974e4b07",
+  "queryName": "S3 Bucket Object Level CloudTrail Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "S3 Bucket object-level CloudTrail logging should be enabled for read and write events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#event_selector",
+  "platform": "Terraform",
+  "descriptionID": "e80b4f8a",
+  "cloudProvider": "aws"
+}
