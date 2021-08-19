@@ -54,7 +54,7 @@ resource "aws_iam_instance_profile" "test_profile" {
   role = aws_iam_role.role.name
 }
 
-resource "aws_instance" "foo" {
+resource "aws_instance" "negative1" {
   ami           = "ami-005e54dee72cc1d00" # us-west-2
   instance_type = "t2.micro"
 
