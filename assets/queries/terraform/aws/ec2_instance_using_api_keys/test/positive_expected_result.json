@@ -28,5 +28,20 @@
     "queryName": "EC2 Instance Using API Keys",
     "severity": "LOW",
     "line": 5
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5
   }
 ]
