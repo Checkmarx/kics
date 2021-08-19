@@ -1,52 +1,25 @@
-package console
+package flags
 
 import (
-	_ "embed" // Embed json flags
 	"encoding/json"
 	"regexp"
 	"strconv"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
 var (
-	//go:embed assets/flags.json
-	flagsListContent string
+	flagsMultiStrReferences = make(map[string]*[]string)
+	flagsStrReferences      = make(map[string]*string)
+	flagsBoolReferences     = make(map[string]*bool)
+	flagsIntReferences      = make(map[string]*int)
 
-	flagsMultiStrReferences map[string]*[]string
-	flagsStrReferences      map[string]*string
-	flagsBoolReferences     map[string]*bool
-	flagsIntReferences      map[string]*int
-)
-
-const (
-	cloudProviderFlag     = "cloud-provider"
-	configFlag            = "config"
-	disableCISDescFlag    = "disable-cis-descriptions"
-	disableFullDescFlag   = "disable-full-descriptions"
-	excludeCategoriesFlag = "exclude-categories"
-	excludePathsFlag      = "exclude-paths"
-	excludeQueriesFlag    = "exclude-queries"
-	excludeResultsFlag    = "exclude-results"
-	includeQueriesFlag    = "include-queries"
-	inputDataFlag         = "input-data"
-	failOnFlag            = "fail-on"
-	ignoreOnExitFlag      = "ignore-on-exit"
-	minimalUIFlag         = "minimal-ui"
-	noProgressFlag        = "no-progress"
-	outputNameFlag        = "output-name"
-	outputPathFlag        = "output-path"
-	pathFlag              = "path"
-	payloadPathFlag       = "payload-path"
-	previewLinesFlag      = "preview-lines"
-	queriesPath           = "queries-path"
-	libraryPath           = "library"
-	reportFormatsFlag     = "report-formats"
-	typeFlag              = "type"
-	queryExecTimeoutFlag  = "timeout"
+	validations = make(map[string][]string)
 )
 
 type flagJSON struct {
@@ -57,54 +30,7 @@ type flagJSON struct {
 	Hidden         bool
 	Deprecated     bool
 	DeprecatedInfo string
-}
-
-func getStrFlag(flagName string) string {
-	if value, ok := flagsStrReferences[flagName]; ok {
-		return *value
-	}
-	log.Debug().Msgf("Could not find string flag %s", flagName)
-	return ""
-}
-
-func getMultiStrFlag(flagName string) []string {
-	if value, ok := flagsMultiStrReferences[flagName]; ok {
-		return *value
-	}
-	log.Debug().Msgf("Could not find string slice flag %s", flagName)
-	return []string{}
-}
-
-func getBoolFlag(flagName string) bool {
-	if value, ok := flagsBoolReferences[flagName]; ok {
-		return *value
-	}
-	log.Debug().Msgf("Could not find boolean flag %s", flagName)
-	return false
-}
-
-func getIntFlag(flagName string) int {
-	if value, ok := flagsIntReferences[flagName]; ok {
-		return *value
-	}
-	log.Debug().Msgf("Could not find integer flag %s", flagName)
-	return -1
-}
-
-func setStrFlag(flagName, value string) {
-	if _, ok := flagsStrReferences[flagName]; ok {
-		*flagsStrReferences[flagName] = value
-	} else {
-		log.Debug().Msgf("Could not set string flag %s", flagName)
-	}
-}
-
-func setMultiStrFlag(flagName string, value []string) {
-	if _, ok := flagsMultiStrReferences[flagName]; ok {
-		*flagsMultiStrReferences[flagName] = value
-	} else {
-		log.Debug().Msgf("Could not set string slice flag %s", flagName)
-	}
+	Validation     string
 }
 
 func evalUsage(usage string) string {
@@ -112,6 +38,9 @@ func evalUsage(usage string) string {
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
 		"supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
 		"supportedProviders": strings.Join(source.ListSupportedCloudProviders(), ", "),
+		"defaultLogFile":     constants.DefaultLogFile,
+		"logFormatPretty":    constants.LogFormatPretty,
+		"logFormatJSON":      constants.LogFormatJSON,
 	}
 	variableRegex := regexp.MustCompile(`\$\{(\w+)\}`)
 	match := variableRegex.FindAllStringSubmatch(usage, -1)
@@ -121,16 +50,16 @@ func evalUsage(usage string) string {
 	return usage
 }
 
-func checkHiddenAndDeprecated(scanCmd *cobra.Command, flagName string, flagProps flagJSON) error { //nolint:gocritic
+func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps flagJSON) error { //nolint:gocritic
 	if flagProps.Hidden {
-		err := scanCmd.Flags().MarkHidden(flagName)
+		err := flagSet.MarkHidden(flagName)
 		if err != nil {
 			log.Err(err).Msg("Loading flags: could not mark flag as hidden")
 			return err
 		}
 	}
 	if flagProps.Deprecated {
-		err := scanCmd.Flags().MarkDeprecated(flagName, flagProps.DeprecatedInfo)
+		err := flagSet.MarkDeprecated(flagName, flagProps.DeprecatedInfo)
 		if err != nil {
 			log.Err(err).Msg("Loading flags: could not mark flag as deprecated")
 			return err
@@ -139,12 +68,8 @@ func checkHiddenAndDeprecated(scanCmd *cobra.Command, flagName string, flagProps
 	return nil
 }
 
-func initJSONFlags(cmd *cobra.Command, persistentFlag bool) error {
-	flagsMultiStrReferences = make(map[string]*[]string)
-	flagsStrReferences = make(map[string]*string)
-	flagsBoolReferences = make(map[string]*bool)
-	flagsIntReferences = make(map[string]*int)
-
+// InitJSONFlags initialize cobra flags
+func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag bool) error {
 	var flagsList map[string]flagJSON
 	err := json.Unmarshal([]byte(flagsListContent), &flagsList)
 	if err != nil {
@@ -195,10 +120,68 @@ func initJSONFlags(cmd *cobra.Command, persistentFlag bool) error {
 			log.Error().Msgf("Flag %s has unknown type %s", flagName, flagProps.FlagType)
 		}
 
-		err := checkHiddenAndDeprecated(cmd, flagName, flagProps)
+		err := checkHiddenAndDeprecated(flagSet, flagName, flagProps)
 		if err != nil {
 			return err
 		}
+
+		if flagProps.Validation != "" {
+			validations[flagName] = strings.Split(flagProps.Validation, ",")
+		}
 	}
 	return nil
+}
+
+// GetStrFlag get a string flag by its name
+func GetStrFlag(flagName string) string {
+	if value, ok := flagsStrReferences[flagName]; ok {
+		return *value
+	}
+	log.Debug().Msgf("Could not find string flag %s", flagName)
+	return ""
+}
+
+// GetMultiStrFlag get a slice of strings flag by its name
+func GetMultiStrFlag(flagName string) []string {
+	if value, ok := flagsMultiStrReferences[flagName]; ok {
+		return *value
+	}
+	log.Debug().Msgf("Could not find string slice flag %s", flagName)
+	return []string{}
+}
+
+// GetBoolFlag get a boolean flag by its name
+func GetBoolFlag(flagName string) bool {
+	if value, ok := flagsBoolReferences[flagName]; ok {
+		return *value
+	}
+	log.Debug().Msgf("Could not find boolean flag %s", flagName)
+	return false
+}
+
+// GetIntFlag get a integer flag by its name
+func GetIntFlag(flagName string) int {
+	if value, ok := flagsIntReferences[flagName]; ok {
+		return *value
+	}
+	log.Debug().Msgf("Could not find integer flag %s", flagName)
+	return -1
+}
+
+// SetStrFlag set a string flag using its name
+func SetStrFlag(flagName, value string) {
+	if _, ok := flagsStrReferences[flagName]; ok {
+		*flagsStrReferences[flagName] = value
+	} else {
+		log.Debug().Msgf("Could not set string flag %s", flagName)
+	}
+}
+
+// SetMultiStrFlag set a slice of strings flag using its name
+func SetMultiStrFlag(flagName string, value []string) {
+	if _, ok := flagsMultiStrReferences[flagName]; ok {
+		*flagsMultiStrReferences[flagName] = value
+	} else {
+		log.Debug().Msgf("Could not set string slice flag %s", flagName)
+	}
 }

@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
@@ -37,18 +38,6 @@ const (
 	common = "Common"
 )
 
-var (
-	supportedPlatforms = map[string]string{
-		"Ansible":              "ansible",
-		"CloudFormation":       "cloudformation",
-		"Dockerfile":           "dockerfile",
-		"Kubernetes":           "k8s",
-		"Terraform":            "terraform",
-		"OpenAPI":              "openapi",
-		"AzureResourceManager": "azureresourcemanager",
-	}
-)
-
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
@@ -71,9 +60,9 @@ func NewFilesystemSource(source string, types, cloudProviders []string, libraryP
 
 // ListSupportedPlatforms returns a list of supported platforms
 func ListSupportedPlatforms() []string {
-	keys := make([]string, len(supportedPlatforms))
+	keys := make([]string, len(constants.AvailablePlatforms))
 	i := 0
-	for k := range supportedPlatforms {
+	for k := range constants.AvailablePlatforms {
 		keys[i] = k
 		i++
 	}
@@ -151,7 +140,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) string {
 		} else {
 			relativeBasePath = kicsDirPath
 		}
-		for _, supPlatform := range supportedPlatforms {
+		for _, supPlatform := range constants.AvailablePlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
 				libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
 				break
@@ -226,7 +215,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 		return false
 	}
 	for _, excludedQuery := range excludeQueries {
-		if queryMetadataKey == excludedQuery {
+		if strings.EqualFold(queryMetadataKey, excludedQuery) {
 			return true
 		}
 	}

@@ -16,6 +16,42 @@ var (
 	BaseURL = ""
 	// APIScanner - API scanner feature switch
 	APIScanner = ""
+
+	// AvailableCategories - All categories and its identifies
+	AvailableCategories = map[string]string{
+		"Access Control":          "CAT001",
+		"Availability":            "CAT002",
+		"Backup":                  "CAT003",
+		"Best Practices":          "CAT004",
+		"Build Process":           "CAT005",
+		"Encryption":              "CAT006",
+		"Insecure Configurations": "CAT007",
+		"Insecure Defaults":       "CAT008",
+		"Networking and Firewall": "CAT009",
+		"Observability":           "CAT010",
+		"Resource Management":     "CAT011",
+		"Secret Management":       "CAT012",
+		"Supply-Chain":            "CAT013",
+		"Structure and Semantics": "CAT014",
+	}
+
+	// AvailablePlatforms - All platforms available
+	AvailablePlatforms = map[string]string{
+		"Ansible":              "ansible",
+		"CloudFormation":       "cloudformation",
+		"Dockerfile":           "dockerfile",
+		"Kubernetes":           "k8s",
+		"Terraform":            "terraform",
+		"OpenAPI":              "openapi",
+		"AzureResourceManager": "azureresourcemanager",
+	}
+
+	// AvailableCloudProviders - All cloud providers available
+	AvailableCloudProviders = map[string]string{
+		"aws":   "",
+		"azure": "",
+		"gcp":   "",
+	}
 )
 
 const (
@@ -48,6 +84,12 @@ const (
 
 	// SentryRefreshRate - sentry crash report refresh rate
 	SentryRefreshRate = 2
+
+	// LogFormatJSON - print log as json
+	LogFormatJSON = "json"
+
+	// LogFormatPretty - print log more readable
+	LogFormatPretty = "pretty"
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry

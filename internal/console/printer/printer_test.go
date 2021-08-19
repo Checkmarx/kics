@@ -12,11 +12,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type args struct {
-	opt interface{}
-}
-
 func TestPrinter_LogPath(t *testing.T) {
+	type args struct {
+		opt string
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -44,14 +43,17 @@ func TestPrinter_LogPath(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogPath() = %v, wantErr = %v", err, tt.wantErr)
 			} else if tt.args.opt != "" {
-				require.FileExists(t, filepath.FromSlash(tt.args.opt.(string)))
-				os.RemoveAll(filepath.Dir(filepath.FromSlash(tt.args.opt.(string))))
+				require.FileExists(t, filepath.FromSlash(tt.args.opt))
+				os.RemoveAll(filepath.Dir(filepath.FromSlash(tt.args.opt)))
 			}
 		})
 	}
 }
 
 func TestPrinter_LogLevel(t *testing.T) {
+	type args struct {
+		opt string
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -131,6 +133,9 @@ func TestPrinter_LogLevel(t *testing.T) {
 }
 
 func TestPrinter_CI(t *testing.T) {
+	type args struct {
+		opt bool
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -150,7 +155,7 @@ func TestPrinter_CI(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			outConsoleLogger = io.Discard
 			outFileLogger = io.Discard
-			err := CI(tt.args.opt, true)
+			err := CI(tt.args.opt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("CI() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -159,6 +164,9 @@ func TestPrinter_CI(t *testing.T) {
 }
 
 func TestPrinter_Verbose(t *testing.T) {
+	type args struct {
+		opt bool
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -190,6 +198,9 @@ func TestPrinter_Verbose(t *testing.T) {
 }
 
 func TestPrinter_Silent(t *testing.T) {
+	type args struct {
+		opt bool
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -208,7 +219,7 @@ func TestPrinter_Silent(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			outConsoleLogger = io.Discard
 			outFileLogger = io.Discard
-			err := Silent(tt.args.opt, true)
+			err := Silent(tt.args.opt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Silent() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -217,6 +228,9 @@ func TestPrinter_Silent(t *testing.T) {
 }
 
 func TestPrinter_LogFile(t *testing.T) {
+	type args struct {
+		opt bool
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -243,6 +257,9 @@ func TestPrinter_LogFile(t *testing.T) {
 }
 
 func TestPrinter_LogFormat(t *testing.T) {
+	type args struct {
+		opt string
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -273,7 +290,7 @@ func TestPrinter_LogFormat(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := LogFormat(tt.args.opt, true)
+			err := LogFormat(tt.args.opt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("LogFormat() = %v, wantErr = %v", err, tt.wantErr)
 			}
@@ -282,6 +299,9 @@ func TestPrinter_LogFormat(t *testing.T) {
 }
 
 func TestPrinter_NoColor(t *testing.T) {
+	type args struct {
+		opt bool
+	}
 	tests := []struct {
 		name    string
 		args    args

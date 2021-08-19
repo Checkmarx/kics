@@ -5,14 +5,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/spf13/pflag"
 	"github.com/stretchr/testify/require"
 )
 
 func TestMetrics_InitializeMetrics(t *testing.T) {
 	type args struct {
-		metric mockFlagValue
-		ci     mockFlagValue
+		metric string
+		ci     string
 	}
 	tests := []struct {
 		name    string
@@ -60,31 +59,13 @@ func TestMetrics_InitializeMetrics(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := InitializeMetrics(&pflag.Flag{
-				Value: tt.args.metric,
-			},
-				&pflag.Flag{
-					Value: tt.args.ci,
-				})
+			err := InitializeMetrics(tt.args.metric, tt.args.ci)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("InitializeMetrics = %v, wantErr = %v", err, tt.wantErr)
 			}
 			require.Equal(t, Metric.Disable, tt.disable)
 		})
 	}
-}
-
-type mockFlagValue string
-
-func (m mockFlagValue) String() string {
-	return string(m)
-}
-
-func (m mockFlagValue) Set(string) error {
-	return nil
-}
-func (m mockFlagValue) Type() string {
-	return string(m)
 }
 
 func TestMetrics_formatTotal(t *testing.T) { //nolint
@@ -221,15 +202,15 @@ func TestMetrics_Start_Stop(t *testing.T) {
 	type args struct {
 		location string
 	}
-	type feilds struct {
-		value      mockFlagValue
+	type fields struct {
+		value      string
 		allocation []string
-		ci         mockFlagValue
+		ci         string
 	}
 	tests := []struct {
 		name     string
 		args     args
-		feilds   feilds
+		feilds   fields
 		disabled bool
 	}{
 		{
@@ -237,7 +218,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			args: args{
 				location: "test_location",
 			},
-			feilds: feilds{
+			feilds: fields{
 				value:      "cpu",
 				allocation: []string{"1", "2", "3"},
 				ci:         "false",
@@ -249,7 +230,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			args: args{
 				location: "test_location",
 			},
-			feilds: feilds{
+			feilds: fields{
 				value: "mem",
 				ci:    "false",
 				allocation: []string{
@@ -266,7 +247,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 			args: args{
 				location: "test_location",
 			},
-			feilds: feilds{
+			feilds: fields{
 				value:      "",
 				ci:         "false",
 				allocation: []string{"1", "2", "3"},
@@ -277,11 +258,7 @@ func TestMetrics_Start_Stop(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := InitializeMetrics(&pflag.Flag{
-				Value: tt.feilds.value,
-			}, &pflag.Flag{
-				Value: tt.feilds.ci,
-			})
+			err := InitializeMetrics(tt.feilds.value, tt.feilds.ci)
 			require.NoError(t, err)
 			metricFunc(tt.feilds.allocation, tt.args.location)
 		})

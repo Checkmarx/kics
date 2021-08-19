@@ -1,0 +1,79 @@
+package flags
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/require"
+)
+
+func TestFlags_sliceFlagsShouldNotStartWithFlags(t *testing.T) {
+	tests := []struct {
+		name      string
+		flagName  string
+		flagValue *[]string
+		wantErr   bool
+	}{
+		{
+			name:      "should execute fine",
+			flagName:  "include-queries",
+			flagValue: &[]string{"f81d63d2-c5d7-43a4-a5b5-66717a41c895", "97707503-a22c-4cd7-b7c0-f088fa7cf830"},
+			wantErr:   false,
+		},
+		{
+			name:      "should return an error when the first value is a shorthand",
+			flagName:  "include-queries",
+			flagValue: &[]string{"-p", "/home/"},
+			wantErr:   true,
+		},
+		{
+			name:      "should return an error when the first value is a flag",
+			flagName:  "include-queries",
+			flagValue: &[]string{"--path", "/home/"},
+			wantErr:   true,
+		},
+	}
+	for _, test := range tests {
+		flagsMultiStrReferences[test.flagName] = test.flagValue
+		t.Run(test.name, func(t *testing.T) {
+			gotErr := sliceFlagsShouldNotStartWithFlags(test.flagName)
+			if !test.wantErr {
+				require.NoError(t, gotErr)
+			} else {
+				require.Error(t, gotErr)
+			}
+		})
+	}
+}
+
+func TestFlags_validateEnum(t *testing.T) {
+	tests := []struct {
+		name      string
+		flagName  string
+		flagValue *[]string
+		wantErr   bool
+	}{
+		{
+			name:      "should execute fine",
+			flagName:  "exclude-categories",
+			flagValue: &[]string{"Backup"},
+			wantErr:   false,
+		},
+		{
+			name:      "should return an error when an invalid enum value",
+			flagName:  "exclude-categories",
+			flagValue: &[]string{"Backup", "Undefined"},
+			wantErr:   true,
+		},
+	}
+	for _, test := range tests {
+		flagsMultiStrReferences[test.flagName] = test.flagValue
+		t.Run(test.name, func(t *testing.T) {
+			gotErr := validateEnum(test.flagName)
+			if !test.wantErr {
+				require.NoError(t, gotErr)
+			} else {
+				require.Error(t, gotErr)
+			}
+		})
+	}
+}
