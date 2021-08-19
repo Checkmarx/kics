@@ -114,7 +114,7 @@ func getKicsDirPath() string {
 		return ""
 	}
 
-	return path.Dir(kicsPath)
+	return filepath.Dir(kicsPath)
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
@@ -135,7 +135,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) {
 		libraryFilePath = filepath.FromSlash(kicsDirPath + "/assets/libraries/common.rego")
 		// the system does not have kics binary accessible
 		_, err := os.Stat(libraryFilePath)
-		if os.IsNotExist(err) {
+		if err != nil && os.IsNotExist(err) {
 			currentDir, err := os.Getwd()
 			if err != nil {
 				log.Error().Msgf("Error getting wd: %s", err)
