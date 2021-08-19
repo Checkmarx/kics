@@ -3,7 +3,7 @@
   "queryName": "API Gateway Cache Encrypted Disabled",
   "severity": "",
   "category": "",
-  "descriptionText": "ApiGateway Deployment should have cache data encryption enabled when caching is enabled",
+  "descriptionText": "'API::Gateway::Deployment' should have 'CacheDataEncrypted' enabled when 'CachingEnabled' is set to true",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html",
   "platform": "CloudFormation",
   "descriptionID": "16f89b5d",

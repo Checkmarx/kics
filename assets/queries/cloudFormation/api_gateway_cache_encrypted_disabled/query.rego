@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("Deployment.%s.Properties.StageDescription.CacheDataEncrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is true", [name]),
-		"keyActualValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is false", [name]),
+		"keyExpectedValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is set to true", [name]),
+		"keyActualValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is set to false", [name]),
 	}
 }
