@@ -29,4 +29,5 @@ Resources:
         Ec2SshKey: ED25519
         SourceSecurityGroups: 
           - !Ref SSHAccessToNodeSG
-                              
+
+                            
