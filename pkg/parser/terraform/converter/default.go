@@ -50,15 +50,17 @@ func (c *converter) rangeSource(r hcl.Range) string {
 	return string(c.bytes[r.Start.Byte:r.End.Byte])
 }
 
-func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) { // it is really here that all needs to be done
+func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) {
 	var err error
 	out := make(model.Document)
 	kicsS := make(map[string]model.LineObject)
+	// set kics line for the body
 	kicsS["_kics__default"] = model.LineObject{
 		Line: defLine,
 	}
 	for key, value := range body.Attributes {
 		out[key], err = c.convertExpression(value.Expr)
+		// set kics line for the body value
 		kicsS["_kics_"+key] = model.LineObject{
 			Line: value.SrcRange.Start.Line,
 			Arr:  c.getArrLines(value.Expr),
@@ -70,6 +72,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 	}
 
 	for _, block := range body.Blocks {
+		// set kics line for block
 		kicsS["_kics_"+block.Type] = model.LineObject{
 			Line: block.TypeRange.Start.Line,
 		}
@@ -85,17 +88,19 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 	return out, nil
 }
 
+// getArrLines will get line information for the array elements
 func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.LineObject {
 	arr := make([]map[string]model.LineObject, 0)
 	if v, ok := expr.(*hclsyntax.TupleConsExpr); ok {
 		for _, ex := range v.Exprs {
 			arrEx := make(map[string]model.LineObject)
+			// set default line of array
 			arrEx["_kics__default"] = model.LineObject{
 				Line: ex.Range().Start.Line,
 			}
-
 			switch valType := ex.(type) {
 			case *hclsyntax.ObjectConsExpr:
+				// set lines for array elements
 				for _, item := range valType.Items {
 					key, _ := c.convertKey(item.KeyExpr)
 					arrEx["_kics_"+key] = model.LineObject{
@@ -103,11 +108,10 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
 					}
 				}
 			case *hclsyntax.TupleConsExpr:
+				// set lines for array elements if type is different than array, map/object
 				arrEx["_kics__default"] = model.LineObject{
 					Arr: c.getArrLines(valType),
 				}
-			default:
-				continue
 			}
 
 			arr = append(arr, arrEx)
@@ -151,8 +155,6 @@ func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, def
 
 	return nil
 }
-
-// The Line needs to be passed already here
 
 func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) {
 	// assume it is hcl syntax (because, um, it is)

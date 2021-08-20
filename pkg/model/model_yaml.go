@@ -8,18 +8,33 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
 	dpc := unmarshal(value).(map[string]interface{})
+	// set line information for root level objects
 	dpc["_kics_lines"] = getLines(value, 0)
 
+	// place the payload in the Document struct
 	tmp, _ := json.Marshal(dpc)
 	_ = json.Unmarshal(tmp, m)
 	return nil
 }
 
+/*
+	YAML Node TYPES
+
+	SequenceNode -> array
+	ScalarNode -> generic (execpt for arrays, objects and maps)
+	MappingNode -> map
+
+*/
+// unmarshal is the function that will parse the yaml elements and call the functions needed
+// to place their line information in the payload
 func unmarshal(val *yaml.Node) interface{} {
 	tmp := make(map[string]interface{})
 
+	// if Yaml Node is an Array than we are working with ansible
+	// which need to be placed inside "playbooks"
 	if val.Kind == yaml.SequenceNode {
 		contentArray := make([]interface{}, 0)
 		for _, contentEntry := range val.Content {
@@ -27,25 +42,28 @@ func unmarshal(val *yaml.Node) interface{} {
 		}
 		tmp["playbooks"] = contentArray
 	} else if val.Kind == yaml.ScalarNode {
-		return transfromScalarNode(val) // Need to place bool
+		// resolve Scalar Node
+		return scalarNodeResolver(val)
 	} else {
+		// iterate two by two, since first iteration is the key and the second is the value
 		for i := 0; i < len(val.Content); i += 2 {
 			if val.Content[i].Kind == yaml.ScalarNode {
 				switch val.Content[i+1].Kind {
-				case yaml.ScalarNode: // Need to place bool
-					tmp[val.Content[i].Value] = transfromScalarNode(val.Content[i+1])
-
+				case yaml.ScalarNode:
+					tmp[val.Content[i].Value] = scalarNodeResolver(val.Content[i+1])
+				// in case value iteration is a map
 				case yaml.MappingNode:
+					// unmarshall map value and get its line information
 					tt := unmarshal(val.Content[i+1]).(map[string]interface{})
 					tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
 					tmp[val.Content[i].Value] = tt
-
+				// in case value iteration is an array
 				case yaml.SequenceNode:
 					contentArray := make([]interface{}, 0)
+					// unmarshall each iteration of the array
 					for _, contentEntry := range val.Content[i+1].Content {
 						contentArray = append(contentArray, unmarshal(contentEntry))
 					}
-
 					tmp[val.Content[i].Value] = contentArray
 				}
 			}
@@ -54,12 +72,54 @@ func unmarshal(val *yaml.Node) interface{} {
 	return tmp
 }
 
+// getLines creates the map containing the line information for the yaml Node
+// def is the line to be used as "_kics__default"
+func getLines(val *yaml.Node, def int) map[string]LineObject {
+	lineMap := make(map[string]LineObject)
+
+	// line information map
+	lineMap["_kics__default"] = LineObject{
+		Line: def,
+		Arr:  []map[string]LineObject{},
+	}
+
+	// if yaml Node is an Array use func getSeqLines
+	if val.Kind == yaml.SequenceNode {
+		return getSeqLines(val, def)
+	}
+
+	// iterate two by two, since first iteration is the key and the second is the value
+	for i := 0; i < len(val.Content); i += 2 {
+		lineArr := make([]map[string]LineObject, 0)
+		// in case the value iteration is an array call getLines for each iteration of the array
+		if val.Content[i+1].Kind == yaml.SequenceNode {
+			for _, contentEntry := range val.Content[i+1].Content {
+				lineArr = append(lineArr, getLines(contentEntry, val.Content[i].Line))
+			}
+		}
+
+		// line information map of each key of the yaml Node
+		lineMap["_kics_"+val.Content[i].Value] = LineObject{
+			Line: val.Content[i].Line,
+			Arr:  lineArr,
+		}
+	}
+
+	return lineMap
+}
+
+// getSeqLines iterates through the elements of an Array
+// creating a map with each iteration lines information
 func getSeqLines(val *yaml.Node, def int) map[string]LineObject {
 	lineMap := make(map[string]LineObject)
 	lineArr := make([]map[string]LineObject, 0)
+
+	// get line information slice of every element in the array
 	for _, cont := range val.Content {
 		lineArr = append(lineArr, getLines(cont, cont.Line))
 	}
+
+	// create line information of array with its line and elements line information
 	lineMap["_kics__default"] = LineObject{
 		Line: def,
 		Arr:  lineArr,
@@ -67,47 +127,32 @@ func getSeqLines(val *yaml.Node, def int) map[string]LineObject {
 	return lineMap
 }
 
-func transfromScalarNode(val *yaml.Node) interface{} {
-	if val.Tag == "!!bool" {
-		switch val.Value {
-		case "true", "True":
-			return true
-		default:
-			return false
-		}
-	} else if val.Tag == "!!int" {
+// scalarNodeResolver transforms a ScalarNode value in its correct type
+func scalarNodeResolver(val *yaml.Node) interface{} {
+	var transformed interface{} = val.Value
+	switch val.Tag {
+	case "!!bool":
+		transformed = transformBoolScalarNode(val.Value)
+	case "!!int":
 		v, err := strconv.Atoi(val.Value)
 		if err != nil {
 			log.Error().Msgf("failed to convert integer in yaml parser")
 			return val.Value
 		}
-		return v
-	} else if val.Tag == "!!null" {
-		return nil
+		transformed = v
+	case "!!null":
+		transformed = nil
 	}
-	return val.Value
+
+	return transformed
 }
 
-func getLines(val *yaml.Node, def int) map[string]LineObject {
-	lineMap := make(map[string]LineObject)
-	lineMap["_kics__default"] = LineObject{
-		Line: def,
-		Arr:  []map[string]LineObject{},
+// transformBoolScalarNode transforms a string value to its boolean representation
+func transformBoolScalarNode(value string) bool {
+	switch value {
+	case "true", "True":
+		return true
+	default:
+		return false
 	}
-	if val.Kind == yaml.SequenceNode {
-		return getSeqLines(val, def)
-	}
-	for i := 0; i < len(val.Content); i += 2 {
-		lineArr := make([]map[string]LineObject, 0)
-		if val.Content[i+1].Kind == yaml.SequenceNode {
-			for _, contentEntry := range val.Content[i+1].Content {
-				lineArr = append(lineArr, getLines(contentEntry, val.Content[i].Line))
-			}
-		}
-		lineMap["_kics_"+val.Content[i].Value] = LineObject{
-			Line: val.Content[i].Line,
-			Arr:  lineArr,
-		}
-	}
-	return lineMap
 }

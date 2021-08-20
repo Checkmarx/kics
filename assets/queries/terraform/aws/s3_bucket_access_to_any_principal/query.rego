@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[pl[r]][name]
 
 	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[_]
+	statement := policy.Statement[n]
 
 	statement.Effect == "Allow"
 	terraLib.anyPrincipal(statement)
@@ -19,5 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy.Principal is not equal to, nor does it contain '*'", [pl[r], name]),
 		"keyActualValue": sprintf("%s[%s].policy.Principal is equal to or contains '*'", [pl[r], name]),
+		"searchLine": ["resource", pl[r], name, "policy"],
 	}
 }

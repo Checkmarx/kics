@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s] has a 'aws_api_gateway_usage_plan' resource associated. ", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_deployment[%s] doesn't have a 'aws_api_gateway_usage_plan' resource associated.", [name]),
-		"searchLine": commonLib.get_search_line(deployment, "", -1),
+		"searchLine": ["resource", "aws_api_gateway_deployment", name],
 	}
 }
 

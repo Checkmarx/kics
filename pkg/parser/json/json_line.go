@@ -12,6 +12,12 @@ type jsonLine struct {
 	lineInfo map[string]model.Document
 }
 
+// jsonLineStruct is the struct that keeps important information for the creation of line Information Map
+// tmpParent is the parent key of the value we are currently on
+// pathArr is an array containing the path elements of the value we are currently on
+// noremoveidx keeps information of which elements should not be removed from pathArr on closing delimeters
+// lastWasRune keeps information if last Token was a delimeter
+// parent is the string path of the element we are currently on
 type jsonLineStruct struct {
 	tmpParent   string
 	pathArr     []string
@@ -20,7 +26,7 @@ type jsonLineStruct struct {
 	parent      string
 }
 
-// initiateJSONLine will create a map, containing line information for every key
+// initiateJSONLine will create a map, containing line information for every key present in the JSON
 func initiateJSONLine(doc []byte) *jsonLine {
 	newMap := make(map[string]model.Document)
 	dec := json.NewDecoder(bytes.NewReader(doc))
@@ -33,17 +39,21 @@ func initiateJSONLine(doc []byte) *jsonLine {
 		parent:      "",
 	}
 
+	// for each token inside JSON
 	for {
 		tok, err := dec.Token()
 		if err != nil {
 			break
 		}
+
 		if v, ok := tok.(json.Delim); ok {
+			// token is a delimeter
 			jstruct.delimSetup(v)
 		} else {
 			jstruct.lastWasRune = false
 		}
 
+		// if token is a string than update temporary father key
 		if v, ok := tok.(string); ok {
 			jstruct.tmpParent = v
 		} else {
@@ -51,6 +61,7 @@ func initiateJSONLine(doc []byte) *jsonLine {
 		}
 
 		line := 1
+		// get the correct line based on byte offset
 		for i, val := range doc {
 			if val == byte('\n') {
 				line++
@@ -60,12 +71,25 @@ func initiateJSONLine(doc []byte) *jsonLine {
 			}
 		}
 
+		// insert into line information map
 		if _, ok := newMap[tok.(string)]; !ok {
+			// key info is not in map yet
+			newLineSlice := make([]int, 0)
 			parentMap := make(map[string]interface{})
-			parentMap[jstruct.parent] = line
+			newLineSlice = append(newLineSlice, line)
+			parentMap[jstruct.parent] = newLineSlice
 			newMap[tok.(string)] = parentMap
+		} else if v, ok := newMap[tok.(string)][jstruct.parent]; ok {
+			// key info is in map with the same path so append is made
+			newLineSlice := make([]int, 0)
+			newLineSlice = append(newLineSlice, v.([]int)...)
+			newLineSlice = append(newLineSlice, line)
+			newMap[tok.(string)][jstruct.parent] = newLineSlice
 		} else {
-			newMap[tok.(string)][jstruct.parent] = line
+			// key info is in map with different path
+			newLineSlice := make([]int, 0)
+			newLineSlice = append(newLineSlice, line)
+			newMap[tok.(string)][jstruct.parent] = newLineSlice
 		}
 	}
 	return &jsonLine{
@@ -73,14 +97,26 @@ func initiateJSONLine(doc []byte) *jsonLine {
 	}
 }
 
+// delimSetup updates the jsonLineStruct when a json delimeter (ex: { [ ...) is found
 func (j *jsonLineStruct) delimSetup(v json.Delim) {
 	switch rune(v) {
 	case '{', '[':
+		// check if last element was a json delimeter
 		if !j.lastWasRune {
 			j.pathArr = append(j.pathArr, j.tmpParent)
 		} else {
-			j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+			// check if temporary parent is in path array, if not last element must be the tempParent
+			// and added to noremoveidx
+			// the next close delimeter should not remove the last element from the pathArr
+			if j.tmpParent != j.pathArr[len(j.pathArr)-1] {
+				j.tmpParent = j.pathArr[len(j.pathArr)-1]
+				j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+			} else {
+				// the next close delimeter should not remove the last element from the pathArr
+				j.noremoveidx = append(j.noremoveidx, j.tmpParent)
+			}
 		}
+		// update parent path string
 		j.parent = strings.Join(j.pathArr, ".")
 	case '}', ']':
 		j.closeBrackets()
@@ -88,29 +124,45 @@ func (j *jsonLineStruct) delimSetup(v json.Delim) {
 	j.lastWasRune = true
 }
 
+// closeBrackets is what based on the jsonLineStruct information
+// will update the parent path and make necessary updates on its structure
 func (j *jsonLineStruct) closeBrackets() {
 	lenPathArr := len(j.pathArr)
 	lenNoRemove := len(j.noremoveidx)
+	// check if there are elements in the pathArr
 	if lenPathArr > 0 {
+		// check if there are elements in the no noremoveidx
 		if lenNoRemove > 0 {
+			// if the last elements in pathArr and noremoveidx differ,
+			// than the last element on pathArr was already closed and can
+			// be removed
 			if j.pathArr[lenPathArr-1] != j.noremoveidx[lenNoRemove-1] {
 				j.pathArr = j.pathArr[:lenPathArr-1]
 			} else {
+				// the last element was not closed but should be closed
+				// on the next closing delim
+				// remove from noremoveidx
 				j.noremoveidx = j.noremoveidx[:lenNoRemove-1]
 			}
 		} else {
+			// this last element in the pathArr was closed
+			// it can now be removed from the pathArr
 			j.pathArr = j.pathArr[:lenPathArr-1]
 		}
 	}
+	// update parent string path
 	j.parent = strings.Join(j.pathArr, ".")
 }
 
+// setLineInfo will set the line information of keys in json based on the line Information map
 func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{} {
-	doc["_kics_lines"] = j.setLine(doc, 0, "")
+	// set the line info for keys in root level
+	doc["_kics_lines"] = j.setLine(doc, 0, 0, "")
+	// set the line info for each value of arrays/objects keys
 	for key, val := range doc {
 		switch v := val.(type) {
 		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, j.lineInfo[key][""].(int), "."+key)
+			v["_kics_lines"] = j.setLine(v, j.lineInfo[key][""].([]int)[0], 0, "."+key)
 		default:
 			continue
 		}
@@ -118,55 +170,84 @@ func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{
 	return doc
 }
 
-func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) map[string]model.LineObject {
+// setLine returns the line information for the key containing values
+// def is the line of the key
+// index is used in case of an array, otherwhise should be 0
+// father is the path to the key
+func (j *jsonLine) setLine(val map[string]interface{}, def, index int, father string) map[string]model.LineObject {
 	lineMap := make(map[string]model.LineObject)
+	// set the line information of val
 	lineMap["_kics__default"] = model.LineObject{
 		Line: def,
 		Arr:  []map[string]model.LineObject{},
 	}
+
+	// iterate through the values of the object
 	for key, val := range val {
+		// if key is part of kics line information than it should be ignored
 		if key == "_kics_lines" {
 			continue
 		}
 
+		// if the key with father path was not found ignore
 		if _, ok2 := j.lineInfo[key][father]; !ok2 {
 			continue
 		}
+
 		line := j.lineInfo[key][father]
 		lineArr := make([]map[string]model.LineObject, 0)
+
 		switch v := val.(type) {
+		// value is an array and must call func setSeqLines to set element lines
 		case []interface{}:
-			fatherKey := father + "." + key
-			for _, contentEntry := range v {
-				switch con := contentEntry.(type) {
-				case map[string]interface{}:
-					lineArr = append(lineArr, j.setLine(con, line.(int), fatherKey))
-				case string:
-					if lineStr, ok2 := j.lineInfo[con][father+"."+key]; ok2 {
-						lineArr = append(lineArr, map[string]model.LineObject{
-							"_kics__default": {
-								Line: lineStr.(int),
-							},
-						})
-					}
-				default:
-					continue
-				}
-			}
+			lineArr = j.setSeqLines(v, line, father, key, lineArr, index)
+		// value is an object and must setLines for each element of the object
 		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, line.(int), father+"."+key)
+			v["_kics_lines"] = j.setLine(v, line.([]int)[0], 0, father+"."+key)
 		default:
+			// value as no childs
 			lineMap["_kics_"+key] = model.LineObject{
-				Line: line.(int),
+				Line: line.([]int)[index],
 				Arr:  lineArr,
 			}
 			continue
 		}
 
+		// set line information of value with its default line and
+		// if present array elements line informations
 		lineMap["_kics_"+key] = model.LineObject{
-			Line: line.(int),
+			Line: line.([]int)[index],
 			Arr:  lineArr,
 		}
 	}
 	return lineMap
+}
+
+// setSeqLines sets the elements lines information for value of type array
+func (j *jsonLine) setSeqLines(v []interface{}, line interface{}, father, key string,
+	lineArr []map[string]model.LineObject, index int) []map[string]model.LineObject {
+	// update father path with key
+	fatherKey := father + "." + key
+
+	// iterate over each element of the array
+	for idx, contentEntry := range v {
+		switch con := contentEntry.(type) {
+		// case element is a map/object call func setLine
+		case map[string]interface{}:
+			lineArr = append(lineArr, j.setLine(con, line.([]int)[index], idx, fatherKey))
+		// case element is a string
+		case string:
+			// check if element is present in line info map
+			if lineStr, ok2 := j.lineInfo[con][father+"."+key]; ok2 {
+				lineArr = append(lineArr, map[string]model.LineObject{
+					"_kics__default": {
+						Line: lineStr.([]int)[index],
+					},
+				})
+			}
+		default:
+			continue
+		}
+	}
+	return lineArr
 }
