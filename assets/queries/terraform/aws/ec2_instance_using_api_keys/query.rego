@@ -38,8 +38,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("aws_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
-		"keyActualValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+        "keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+        "keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
 	}
 }
 
