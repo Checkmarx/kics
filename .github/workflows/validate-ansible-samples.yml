@@ -15,7 +15,7 @@ jobs:
         with:
           persist-credentials: false
       - name: yaml-lint
-        uses: ibiqlik/action-yamllint@v3.0.2
+        uses: ibiqlik/action-yamllint@v3.0.4
         with:
           file_or_dir: assets/queries/ansible/
           config_file: .github/scripts/samples-linters/yamllint_ansible.yml
