@@ -1,5 +1,6 @@
 package flags
 
+// Flags constants for kics
 const (
 	CIFlag             = "ci"
 	LogFileFlag        = "log-file"

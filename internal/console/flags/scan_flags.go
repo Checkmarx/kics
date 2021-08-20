@@ -1,5 +1,6 @@
 package flags
 
+// Flags constants for scan
 const (
 	CloudProviderFlag     = "cloud-provider"
 	ConfigFlag            = "config"
