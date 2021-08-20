@@ -155,7 +155,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: .
           push: true
@@ -166,7 +166,7 @@ jobs:
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: .
           file: ./Dockerfile.debian
