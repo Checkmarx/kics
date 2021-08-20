@@ -16,4 +16,3 @@ Resources:
         - subnet-e7e761ac
       RemoteAccess:
         Ec2SshKey: ED25519
-                              
