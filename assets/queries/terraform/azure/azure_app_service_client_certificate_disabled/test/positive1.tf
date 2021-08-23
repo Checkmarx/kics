@@ -10,7 +10,7 @@ resource "azurerm_app_service" "positive1" {
   }
 
   app_settings = {
-    "SOME_KEY" = "some-value"
+    SOME_KEY = "some-value"
   }
 
   connection_string {
