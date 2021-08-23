@@ -153,7 +153,7 @@
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -163,9 +163,9 @@
 				
 				<option value="file53">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
-				<option value="file54">github.com/Checkmarx/kics/pkg/report/html.go (89.5%)</option>
+				<option value="file54">github.com/Checkmarx/kics/pkg/report/html.go (90.0%)</option>
 				
-				<option value="file55">github.com/Checkmarx/kics/pkg/report/json.go (91.7%)</option>
+				<option value="file55">github.com/Checkmarx/kics/pkg/report/json.go (92.3%)</option>
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
 				
@@ -173,7 +173,7 @@
 				
 				<option value="file58">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file59">github.com/Checkmarx/kics/pkg/report/pdf.go (83.1%)</option>
+				<option value="file59">github.com/Checkmarx/kics/pkg/report/pdf.go (83.2%)</option>
 				
 				<option value="file60">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
@@ -1517,8 +1517,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="332">{
-                if val == true </span><span class="cov9" title="331">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="337">{
+                if val == true </span><span class="cov9" title="336">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2249,13 +2249,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2280,7 +2280,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4283,7 +4283,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5411,7 +5411,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="35">{
+                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="28">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -6699,11 +6699,12 @@ type Times struct {
 
 // Summary is a report of a single scan
 type Summary struct {
+        Version string `json:"kics_version,omitempty"`
         Counters
-        Queries VulnerableQuerySlice `json:"queries"`
         SeveritySummary
         Times
-        ScannedPaths []string `json:"paths"`
+        ScannedPaths []string             `json:"paths"`
+        Queries      VulnerableQuerySlice `json:"queries"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
@@ -8172,7 +8173,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -8180,7 +8181,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -8197,17 +8198,17 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         wg := &amp;sync.WaitGroup{}
         go p.incrementProgress(wg)
 
-        go func() </span><span class="cov0" title="0">{
-                defer func() </span><span class="cov0" title="0">{
+        go func() </span><span class="cov1" title="1">{
+                defer func() </span><span class="cov1" title="1">{
                         wg.Wait()
                 }</span>()
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+        for </span><span class="cov10" title="5343">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
@@ -8506,6 +8507,7 @@ import (
         "path/filepath"
         "strings"
 
+        "github.com/Checkmarx/kics/internal/constants"
         "github.com/tdewolff/minify/v2"
         minifyCSS "github.com/tdewolff/minify/v2/css"
         minifyHtml "github.com/tdewolff/minify/v2/html"
@@ -8568,6 +8570,10 @@ func getPaths(paths []string) string <span class="cov1" title="1">{
         return strings.Join(paths, ", ")
 }</span>
 
+func getVersion() string <span class="cov1" title="1">{
+        return constants.Version
+}</span>
+
 // PrintHTMLReport creates a report file on HTML format
 func PrintHTMLReport(path, filename string, body interface{}) error <span class="cov1" title="1">{
         if !strings.HasSuffix(filename, ".html") </span><span class="cov1" title="1">{
@@ -8579,6 +8585,7 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
         templateFuncs["includeJS"] = includeJS
         templateFuncs["getPaths"] = getPaths
         templateFuncs["getPlatforms"] = getPlatforms
+        templateFuncs["getVersion"] = getVersion
 
         fullPath := filepath.Join(path, filename)
         t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))
@@ -8612,6 +8619,8 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
 		
 		<pre class="file" id="file55" style="display: none">package report
 
+import "github.com/Checkmarx/kics/internal/constants"
+
 const jsonExtension = ".json"
 
 // PrintJSONReport prints on JSON file the summary results
@@ -8628,7 +8637,8 @@ func PrintJSONReport(path, filename string, body interface{}) error <span class=
                         summary.Queries[idx].CISDescriptionText = ""
                         summary.Queries[idx].CISRationaleText = ""
                 }</span>
-                <span class="cov8" title="1">body = summary</span>
+                <span class="cov8" title="1">summary.Version = constants.Version
+                body = summary</span>
         }
 
         <span class="cov8" title="1">return ExportJSONReport(path, filename, body)</span>
@@ -9173,6 +9183,7 @@ import (
         "path/filepath"
         "time"
 
+        "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/johnfercher/maroto/pkg/color"
         "github.com/johnfercher/maroto/pkg/consts"
@@ -9393,7 +9404,15 @@ func createHeaderArea(m pdf.Maroto) <span class="cov4" title="2">{
                                 Color:       color.NewWhite(),
                         })
                 }</span>)
-                <span class="cov4" title="2">m.ColSpace(colSix)</span>
+                <span class="cov4" title="2">m.Col(colSix, func() </span><span class="cov4" title="2">{
+                        m.Text(fmt.Sprintf("v%s ", constants.Version), props.Text{
+                                Size:        25,
+                                Style:       consts.Bold,
+                                Align:       consts.Right,
+                                Extrapolate: false,
+                                Color:       color.NewWhite(),
+                        })
+                }</span>)
         })
         <span class="cov4" title="2">m.SetBackgroundColor(color.NewWhite())
         m.Row(rowXSmall, func() </span><span class="cov4" title="2">{
