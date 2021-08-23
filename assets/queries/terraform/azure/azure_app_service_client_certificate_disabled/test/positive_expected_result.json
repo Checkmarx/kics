@@ -7,7 +7,7 @@
   },
   {
     "queryName": "Azure App Service Client Certificate Disabled",
-    "severity": "",
+    "severity": "HIGH",
     "line": 16,
     "fileName": "positive2.tf"
   }
