@@ -1,7 +1,7 @@
 {
   "id": "58b35504-0287-4154-bf69-02c0573deab8",
   "queryName": "Sagemaker Endpoint Configuration Encryption Disabled",
-  "severity": "",
+  "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Sagemaker endpoint configuration should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_endpoint_configuration#kms_key_arn",
