@@ -1,7 +1,7 @@
 [
   {
     "queryName": "SQL Server Alert Email Disabled",
-    "severity": "",
+    "severity": "INFO",
     "line": 1,
     "fileName": "positive1.tf"
   },
