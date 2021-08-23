@@ -1588,6 +1588,14 @@
 <td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-protocol">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EKS node group remote access<br/><sup><sub>73d59e76-a12c-4b74-a3d8-d3e1e19c25b3</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Ensure Amazon EKS Node group has implict SSH access</td>
+<td><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Unknown Port Exposed To Internet<br/><sup><sub>829ce3b8-065c-41a3-ad57-e0accfea82d2</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#C00">High</span></td>
@@ -4556,6 +4564,14 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>App Service Authentication Disabled<br/><sup><sub>c7fc1481-2899-4490-bbd8-544a3a61a2f3</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#00C">Info</span></td>
+<td>Access Control</td>
+<td>Azure App Service authentication settings should be enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#enabled">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>S3 Bucket Allows Delete Action From All Principals<br/><sup><sub>ffdf4b37-7703-4dfe-a682-9d2e99bc6c09</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#C00">High</span></td>
@@ -6146,6 +6162,14 @@
 <td>Secret Management</td>
 <td>Lambda hardcoded AWS access/secret keys</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using API Keys<br/><sup><sub>0b93729a-d882-4803-bdc3-ac429a21f158</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>EC2 instances should use roles to be granted access to other AWS services</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#iam_instance_profile">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>S3 Bucket Public ACL Overridden By Public Access Block<br/><sup><sub>bf878b1a-7418-4de3-b13c-3a86cf894920</sub></sup></td>

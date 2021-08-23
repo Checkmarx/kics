@@ -2367,6 +2367,13 @@
 <td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>App Service Authentication Disabled<br/><sup><sub>c7fc1481-2899-4490-bbd8-544a3a61a2f3</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Access Control</td>
+<td>Azure App Service authentication settings should be enabled</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#enabled">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>### AWS</td>
 <td></td>
 <td></td>
@@ -3785,6 +3792,13 @@
 <td>Secret Management</td>
 <td>Lambda hardcoded AWS access/secret keys</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EC2 Instance Using API Keys<br/><sup><sub>0b93729a-d882-4803-bdc3-ac429a21f158</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Access Control</td>
+<td>EC2 instances should use roles to be granted access to other AWS services</td>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#iam_instance_profile">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>S3 Bucket Public ACL Overridden By Public Access Block<br/><sup><sub>bf878b1a-7418-4de3-b13c-3a86cf894920</sub></sup></td>
