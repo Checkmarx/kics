@@ -10,7 +10,7 @@ resource "azurerm_app_service" "positive2" {
   }
 
   app_settings = {
-    "SOME_KEY" = "some-value"
+    SOME_KEY = "some-value"
   }
 
   client_cert_enabled = false
