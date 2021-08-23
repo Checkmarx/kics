@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Neptune Cluster Instance Public Disabled",
-    "severity": "",
+    "severity": "HIGH",
     "line": 7,
     "fileName": "positive.tf"
   }
