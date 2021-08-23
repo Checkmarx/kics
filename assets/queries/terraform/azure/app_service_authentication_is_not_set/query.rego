@@ -4,9 +4,9 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
-    
-    not common_lib.valid_key(resource, "auth_settings")
+	resource := doc.resource.azurerm_app_service[name]
+
+	not common_lib.valid_key(resource, "auth_settings")
 
 	result := {
 		"documentId": doc.id,
@@ -19,9 +19,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
-    
-    resource.auth_settings.enabled == false
+	resource := doc.resource.azurerm_app_service[name]
+
+	resource.auth_settings.enabled == false
 
 	result := {
 		"documentId": doc.id,
