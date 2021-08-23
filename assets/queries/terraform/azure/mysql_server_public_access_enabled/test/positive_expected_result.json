@@ -7,7 +7,7 @@
   },
   {
     "queryName": "MySQL Server Public Access Enabled",
-    "severity": "",
+    "severity": "HIGH",
     "line": 17,
     "fileName": "positive2.tf"
   }
