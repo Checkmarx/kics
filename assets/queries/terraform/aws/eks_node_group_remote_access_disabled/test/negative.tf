@@ -11,8 +11,8 @@ resource "aws_eks_node_group" "negative" {
   }
 
   remote_access {
-    ec2_ssh_key = ED25519
-    source_security_groups_ids = !Ref SSHAccessToNodeSG
+    ec2_ssh_key = "my-rsa-key"
+    source_security_groups_ids = "sg-213120ASNE"
   }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
