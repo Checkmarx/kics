@@ -20,7 +20,7 @@ resource "aws_s3_bucket_policy" "b" {
         ],
         "Condition": {
           "Bool": {
-            "aws:SecureTransport" = "false"
+            "aws:SecureTransport": "false"
           }
         }
       }

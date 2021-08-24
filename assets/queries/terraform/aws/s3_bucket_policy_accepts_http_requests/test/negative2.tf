@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "b2" {
         ],
         "Condition": {
           "Bool": {
-            "aws:SecureTransport" = "false"
+            "aws:SecureTransport": "false"
           }
         }
       }

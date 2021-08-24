@@ -33,5 +33,5 @@ check_action(action) {
 deny_http_requests(statement) {
 	check_action(statement.Action)
 	statement.Effect == "Deny"
-	statement.Condition.Bool["aws:SecureTransport"] == false
+	statement.Condition.Bool["aws:SecureTransport"] == "false"
 }
