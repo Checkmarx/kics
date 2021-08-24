@@ -153,7 +153,7 @@
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -1517,8 +1517,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="316">{
-                if val == true </span><span class="cov9" title="315">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="328">{
+                if val == true </span><span class="cov9" title="327">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2249,13 +2249,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="43">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="43">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2280,7 +2280,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4109,7 +4109,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -5114,12 +5114,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21211">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="21227">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="21211">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="20980">{
+                <span class="cov9" title="21227">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="20996">{
                         return skipFolder
                 }</span>
 
@@ -5177,7 +5177,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="230">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="21214">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="21230">{
         if info.IsDir() </span><span class="cov8" title="4894">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -5190,11 +5190,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="16320">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="16336">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="16320">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16090">{
+        <span class="cov9" title="16336">if !extensions.Include(filepath.Ext(path)) &amp;&amp; !extensions.Include(filepath.Base(path)) </span><span class="cov9" title="16106">{
                 return true, nil
         }</span>
         <span class="cov5" title="230">return false, nil</span>
@@ -5411,7 +5411,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="32">{
+                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="34">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -8173,7 +8173,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -8181,7 +8181,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -8198,17 +8198,17 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         wg := &amp;sync.WaitGroup{}
         go p.incrementProgress(wg)
 
-        go func() </span><span class="cov1" title="1">{
-                defer func() </span><span class="cov1" title="1">{
+        go func() </span><span class="cov0" title="0">{
+                defer func() </span><span class="cov0" title="0">{
                         wg.Wait()
                 }</span>()
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="8786">{ // increment until the Close func is called
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
