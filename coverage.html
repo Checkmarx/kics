@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/printer/printer.go (56.3%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/printer/printer.go (54.5%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/internal/console/scan.go (76.2%)</option>
 				
@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.1%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/pkg/detector/helper.go (96.4%)</option>
+				<option value="file26">github.com/Checkmarx/kics/pkg/detector/helper.go (93.9%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.6%)</option>
 				
@@ -153,7 +153,7 @@
 				
 				<option value="file48">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
 				<option value="file50">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -685,18 +685,22 @@ func FileAnalyzer(path string) (string, error) <span class="cov8" title="11">{
         }</span>
         <span class="cov8" title="11">var temp map[string]interface{}
 
+        // CxSAST query under review
         if err := json.Unmarshal(rc, &amp;temp); err == nil </span><span class="cov3" title="2">{
                 return "json", nil
         }</span>
 
+        // CxSAST query under review
         <span class="cov7" title="9">if err := yaml.Unmarshal(rc, &amp;temp); err == nil </span><span class="cov4" title="3">{
                 return "yaml", nil
         }</span>
 
+        // CxSAST query under review
         <span class="cov6" title="6">if _, err := toml.Decode(string(rc), &amp;temp); err == nil </span><span class="cov3" title="2">{
                 return "toml", nil
         }</span>
 
+        // CxSAST query under review
         <span class="cov5" title="4">if c, err := hcl.Parse(string(rc)); err == nil </span><span class="cov3" title="2">{
                 if err = hcl.DecodeObject(&amp;temp, c); err == nil </span><span class="cov3" title="2">{
                         return "hcl", nil
@@ -1103,8 +1107,11 @@ func SetupPrinter(flags *pflag.FlagSet) error <span class="cov0" title="0">{
                                 return err
                         }</span>
                 case "bool":<span class="cov0" title="0">
-                        value, _ := strconv.ParseBool(f.Value.String())
-                        err = optionsMap[optionsOrderMap[key]](value, f.Changed)
+                        value, errBool := strconv.ParseBool(f.Value.String())
+                        if errBool != nil </span><span class="cov0" title="0">{
+                                return err
+                        }</span>
+                        <span class="cov0" title="0">err = optionsMap[optionsOrderMap[key]](value, f.Changed)
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
@@ -1137,9 +1144,12 @@ func IsInitialized() bool <span class="cov1" title="1">{
 }</span>
 
 func getFlagValue(flagName string, flags *pflag.FlagSet) bool <span class="cov0" title="0">{
-        v, _ := strconv.ParseBool(flags.Lookup(flagName).Value.String())
-        return v
-}</span>
+        v, err := strconv.ParseBool(flags.Lookup(flagName).Value.String())
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("failed to parse boolean flag")
+        }</span>
+        <span class="cov0" title="0">return v</span>
+}
 
 func validateFlags(flags *pflag.FlagSet) error <span class="cov0" title="0">{
         if getFlagValue(VerboseFlag, flags) &amp;&amp; getFlagValue(SilentFlag, flags) </span><span class="cov0" title="0">{
@@ -1517,8 +1527,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="313">{
-                if val == true </span><span class="cov9" title="312">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="335">{
+                if val == true </span><span class="cov9" title="334">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -2249,13 +2259,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2280,7 +2290,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4132,6 +4142,7 @@ import (
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/agnivade/levenshtein"
+        "github.com/rs/zerolog/log"
 )
 
 var (
@@ -4201,11 +4212,17 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
                         if extractedPart[0] == key </span><span class="cov1" title="1">{
                                 switch idx </span>{
                                 case (len(parts) - 2):<span class="cov0" title="0">
-                                        i, _ := strconv.Atoi(extractedPart[1])
-                                        substr1 = extractedString[i][1]</span>
+                                        i, err := strconv.Atoi(extractedPart[1])
+                                        if err != nil </span><span class="cov0" title="0">{
+                                                log.Error().Msgf("failed to extract curly brackets substring")
+                                        }</span>
+                                        <span class="cov0" title="0">substr1 = extractedString[i][1]</span>
                                 case len(parts) - 1:<span class="cov1" title="1">
-                                        i, _ := strconv.Atoi(extractedPart[1])
-                                        substr2 = extractedString[i][1]</span>
+                                        i, err := strconv.Atoi(extractedPart[1])
+                                        if err != nil </span><span class="cov0" title="0">{
+                                                log.Error().Msgf("failed to extract curly brackets substring")
+                                        }</span>
+                                        <span class="cov1" title="1">substr2 = extractedString[i][1]</span>
                                 }
                         } else<span class="cov1" title="1"> {
                                 substr1 = generateSubstr(substr1, parts, valuePartsLength)
@@ -4283,7 +4300,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5411,7 +5428,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="30">{
+                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov8" title="28">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -6075,6 +6092,7 @@ func (s *Service) StartScan(
         currentQuery chan&lt;- int64) <span class="cov10" title="4">{
         log.Debug().Msg("service.StartScan()")
         defer wg.Done()
+        // CxSAST query under review
         if err := s.SourceProvider.GetSources(
                 ctx,
                 s.Parser.SupportedExtensions(),
@@ -8173,7 +8191,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -8181,7 +8199,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" ti
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov2" title="3">newPb.Start()
+        <span class="cov10" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -8198,17 +8216,17 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         wg := &amp;sync.WaitGroup{}
         go p.incrementProgress(wg)
 
-        go func() </span><span class="cov1" title="1">{
-                defer func() </span><span class="cov1" title="1">{
+        go func() </span><span class="cov0" title="0">{
+                defer func() </span><span class="cov0" title="0">{
                         wg.Wait()
                 }</span>()
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov10" title="13416">{ // increment until the Close func is called
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
