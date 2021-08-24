@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_sagemaker_endpoint_configuration[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_sagemaker_endpoint_configuration.kms_key_arn is defined and not null",
-		"keyActualValue": "aws_sagemaker_endpoint_configuration.kms_key_arn is undefined or null",
+		"keyExpectedValue": sprintf("aws_sagemaker_endpoint_configuration[%s] is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_sagemaker_endpoint_configuration[%s] is undefined or null", [name]),
 	}
 }
