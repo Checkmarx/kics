@@ -21,13 +21,13 @@ CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.resource.azurerm_mysql_server[name]
 
-	resource.public_network_access_enabled == false
+	resource.public_network_access_enabled == true
 
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("azurerm_mysql_server[%s].public_network_access_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is true", [name]),
-		"keyActualValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is false", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to false", [name]),
+		"keyActualValue": sprintf("'azurerm_mysql_server[%s].public_network_access_enabled' is set to true", [name]),
 	}
 }
