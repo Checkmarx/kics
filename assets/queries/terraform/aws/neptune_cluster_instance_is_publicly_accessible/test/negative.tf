@@ -4,5 +4,5 @@ resource "aws_neptune_cluster_instance" "negative" {
   engine             = "neptune"
   instance_class     = "db.r4.large"
   apply_immediately  = true
-  publicy_accessible = false
+  publicly_accessible = false
 }
