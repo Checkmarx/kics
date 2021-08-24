@@ -1053,7 +1053,9 @@ kics-scan:
 <h4 id="download_artifact">Download Artifact<a class="headerlink" href="#download_artifact" title="Permanent link">&para;</a></h4>
 <p><img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850"></p>
 <h2 id="using_gitlab_sast_reports">Using GitLab SAST Reports<a class="headerlink" href="#using_gitlab_sast_reports" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">image: checkmarx/kics:latest-alpine
+<pre><code class="language-yaml">image:
+    name: checkmarx/kics:latest-alpine
+    entrypoint: ['']
 
 stages:
   - kics
@@ -1061,7 +1063,7 @@ stages:
 kics-scan:
   stage: kics
   script:
-    - kics scan -q ./assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
+    - kics scan -q /app/bin/assets/queries -p ${PWD} --ignore-on-exit all --report-formats glsast -o ${PWD} --output-name kics-results
   artifacts:
     reports:
       sast: gl-sast-kics-results.json
