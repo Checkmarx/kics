@@ -13,10 +13,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Deployment.%s.Properties.StageDescription", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.StageDescription", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is defined and not null", [name]),
-		"keyActualValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is undefined or null", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is defined and not null", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is undefined or null", [name]),
 	}
 }
 
@@ -31,9 +31,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("Deployment.%s.Properties.StageDescription.CacheDataEncrypted", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.StageDescription.CacheDataEncrypted", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is set to true", [name]),
-		"keyActualValue": sprintf("'Deployment.%s.Properties.StageDescription.CacheDataEncrypted' is set to false", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is set to true", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.StageDescription.CacheDataEncrypted' is set to false", [name]),
 	}
 }
