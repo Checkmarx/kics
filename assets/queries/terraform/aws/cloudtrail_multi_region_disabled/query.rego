@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "Cloud Trail Multi Region is defined and not null",
-		"keyActualValue": "Cloud Trail Multi Region is undefined or null",
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s] is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_cloudtrail[%s] is undefined or null", [name]),
 	}
 }
 
@@ -23,7 +23,20 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s].is_multi_region_trail", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Cloud Trail Multi Region is true",
-		"keyActualValue": "Cloud Trail Multi Region is false",
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is set to true", [name]),
+		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is set to false", [name]),
+	}
+}
+
+CxPolicy[result] {
+	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+	cloudtrail.include_global_service_events == false
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("aws_cloudtrail[%s].include_global_service_events", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].include_global_service_events undefined or is set to true", [name]),
+		"keyActualValue": sprintf("aws_cloudtrail[%s].include_global_service_events is set to false", [name]),
 	}
 }

@@ -2,11 +2,19 @@
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 4,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive3.tf"
   }
 ]
