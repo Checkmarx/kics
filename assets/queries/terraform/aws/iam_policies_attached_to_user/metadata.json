@@ -3,7 +3,7 @@
   "queryName": "IAM Policies Attached To User",
   "severity": "LOW",
   "category": "Best Practices",
-  "descriptionText": "IAM policies should be attached only to groups or roles",
+  "descriptionText": "IAM policies should be attached only to groups",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment",
   "platform": "Terraform",
   "descriptionID": "32ec58ec",
