@@ -10,8 +10,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_cloudtrail[%s] is defined and not null", [name]),
-		"keyActualValue": sprintf("aws_cloudtrail[%s] is undefined or null", [name]),
+		"keyExpectedValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is defined and not null", [name]),
+		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is undefined or null", [name]),
 	}
 }
 
