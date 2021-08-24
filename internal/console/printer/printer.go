@@ -97,7 +97,10 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 				return err
 			}
 		case "bool":
-			value, _ := strconv.ParseBool(f.Value.String())
+			value, errBool := strconv.ParseBool(f.Value.String())
+			if errBool != nil {
+				return err
+			}
 			err = optionsMap[optionsOrderMap[key]](value, f.Changed)
 			if err != nil {
 				return err
@@ -131,7 +134,10 @@ func IsInitialized() bool {
 }
 
 func getFlagValue(flagName string, flags *pflag.FlagSet) bool {
-	v, _ := strconv.ParseBool(flags.Lookup(flagName).Value.String())
+	v, err := strconv.ParseBool(flags.Lookup(flagName).Value.String())
+	if err != nil {
+		log.Error().Msgf("failed to parse boolean flag")
+	}
 	return v
 }
 

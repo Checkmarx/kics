@@ -9,6 +9,7 @@ import (
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/agnivade/levenshtein"
+	"github.com/rs/zerolog/log"
 )
 
 var (
@@ -78,10 +79,16 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 			if extractedPart[0] == key {
 				switch idx {
 				case (len(parts) - 2):
-					i, _ := strconv.Atoi(extractedPart[1])
+					i, err := strconv.Atoi(extractedPart[1])
+					if err != nil {
+						log.Error().Msgf("failed to extract curly brackets substring")
+					}
 					substr1 = extractedString[i][1]
 				case len(parts) - 1:
-					i, _ := strconv.Atoi(extractedPart[1])
+					i, err := strconv.Atoi(extractedPart[1])
+					if err != nil {
+						log.Error().Msgf("failed to extract curly brackets substring")
+					}
 					substr2 = extractedString[i][1]
 				}
 			} else {
