@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -217,16 +218,20 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	pathToLib, err := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
-	if err != nil {
-		return "", err
-	}
-	content, err := os.ReadFile(pathToLib)
-	if err != nil {
-		log.Err(err)
+	library := source.GetPathToCostumLibrary(platform, "./assets/libraries")
+
+	if library != "default" {
+		content, err  := os.ReadFile(library)
+
+		return string(content), err
 	}
 
-	return string(content), err
+	log.Warn().Msgf("There are no costum library. Getting embedded library instead")
+
+	// getting embedded library
+	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+
+	return embeddedLibrary, errGettingEmbeddedLibrary
 }
 
 func isValidURL(toTest string) bool {

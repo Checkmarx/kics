@@ -6,8 +6,11 @@ import (
 	"encoding/json"
 	"strings"
 	"time"
+	"fmt"
 
+	
 	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
@@ -98,6 +101,23 @@ var (
 	}
 )
 
+
+// func getLibrary(queriesSource source.QueriesSource, platform string) (string, error) {
+// 	content, err :=  queriesSource.GetQueryLibrary(platform)
+
+// 	if content == "default" { // user did not use the -b flag
+
+// 		log.Warn().Msgf("Getting embedded library")
+
+// 		// getting embedded library
+// 		embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
+
+// 		return embeddedLibrary, errGettingEmbeddedLibrary
+// 	}
+
+// 	return content, err
+// }
+
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
@@ -121,6 +141,15 @@ func NewInspector(
 		log.Err(err).
 			Msgf("Inspector failed to get general query, query=%s", "common")
 		return nil, errors.Wrap(err, "failed to get library")
+	} else {
+		commonGeneralQuery, err = assets.GetEmbeddedLibrary("common")
+	}
+	commonGeneralQuery2, err2 := assets.GetEmbeddedLibrary("common")
+	if err2 != nil {
+		sentry.CaptureException(err)
+		log.Err(err).
+			Msgf("Inspector failed to get general query, query=%s", "common")
+		return nil, errors.Wrap(err, "failed to get library")
 	}
 	opaQueries := make([]*preparedQuery, 0, len(queries))
 	for _, metadata := range queries {
@@ -128,7 +157,18 @@ func NewInspector(
 		if err != nil {
 			sentry.CaptureException(err)
 			log.Err(err).
-				Msgf("Inspector failed to get generic query, query=%s", metadata.Query)
+				Msgf("Inspector failed to get generic queryy, query=%s", metadata.Query)
+
+		}
+
+		fmt.Println("aqui vai")
+		platformGeneralQuery2, err2 := assets.GetEmbeddedLibrary(strings.ToLower(metadata.Platform))
+		fmt.Println("aqui vai")
+		fmt.Println(platformGeneralQuery2)
+		if err2 != nil {
+			sentry.CaptureException(err)
+			log.Err(err).
+				Msgf("Inspector failed to get generic query2, query=%s", metadata.Query)
 
 			continue
 		}
@@ -144,7 +184,9 @@ func NewInspector(
 				opaQuery, err = rego.New(
 					rego.Query(regoQuery),
 					rego.Module("Common", commonGeneralQuery),
+					rego.Module("Common2", commonGeneralQuery2),
 					rego.Module("Generic", platformGeneralQuery),
+					rego.Module("Generic2", platformGeneralQuery2),
 					rego.Module(metadata.Query, metadata.Content),
 					rego.Store(store),
 					rego.UnsafeBuiltins(unsafeRegoFunctions),
@@ -153,6 +195,7 @@ func NewInspector(
 				opaQuery, err = rego.New(
 					rego.Query(regoQuery),
 					rego.Module("Generic", platformGeneralQuery),
+					rego.Module("Generic2", platformGeneralQuery2),
 					rego.Module(metadata.Query, metadata.Content),
 					rego.Store(store),
 					rego.UnsafeBuiltins(unsafeRegoFunctions),
