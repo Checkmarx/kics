@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 
+	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/gookit/color"
@@ -17,50 +18,33 @@ import (
 	"github.com/spf13/pflag"
 )
 
-const (
-	CIFlag             = "ci"
-	LogFileFlag        = "log-file"
-	LogFileShorthand   = "l"
-	LogFormatFlag      = "log-format"
-	LogFormatShorthand = "f"
-	LogLevelFlag       = "log-level"
-	LogPathFlag        = "log-path"
-	NoColorFlag        = "no-color"
-	SilentFlag         = "silent"
-	SilentShorthand    = "s"
-	VerboseFlag        = "verbose"
-	VerboseShorthand   = "v"
-	LogFormatJSON      = "json"
-	LogFormatPretty    = "pretty"
-)
-
 var (
 	optionsMap = map[string]func(opt interface{}, changed bool) error{
-		CIFlag: func(opt interface{}, changed bool) error {
+		consoleFlags.CIFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
-		LogFileFlag:  LogFile,
-		LogLevelFlag: LogLevel,
-		LogPathFlag:  LogPath,
-		SilentFlag: func(opt interface{}, changed bool) error {
+		consoleFlags.LogFileFlag:  LogFile,
+		consoleFlags.LogLevelFlag: LogLevel,
+		consoleFlags.LogPathFlag:  LogPath,
+		consoleFlags.SilentFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
-		VerboseFlag: Verbose,
-		LogFormatFlag: func(opt interface{}, changed bool) error {
+		consoleFlags.VerboseFlag: Verbose,
+		consoleFlags.LogFormatFlag: func(opt interface{}, changed bool) error {
 			return nil
 		},
-		NoColorFlag: NoColor,
+		consoleFlags.NoColorFlag: NoColor,
 	}
 
 	optionsOrderMap = map[int]string{
-		1: CIFlag,
-		2: LogFileFlag,
-		3: LogLevelFlag,
-		4: LogPathFlag,
-		5: SilentFlag,
-		6: VerboseFlag,
-		7: LogFormatFlag,
-		8: NoColorFlag,
+		1: consoleFlags.CIFlag,
+		2: consoleFlags.LogFileFlag,
+		3: consoleFlags.LogLevelFlag,
+		4: consoleFlags.LogPathFlag,
+		5: consoleFlags.SilentFlag,
+		6: consoleFlags.VerboseFlag,
+		7: consoleFlags.LogFormatFlag,
+		8: consoleFlags.NoColorFlag,
 	}
 
 	consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
@@ -75,7 +59,7 @@ var (
 
 // SetupPrinter - configures stdout and log options with given FlagSet
 func SetupPrinter(flags *pflag.FlagSet) error {
-	err := validateFlags(flags)
+	err := validateFlags()
 	if err != nil {
 		return err
 	}
@@ -109,18 +93,18 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 	}
 
 	// LogFormat needs to be the last option
-	logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
-	err = LogFormat(logFormat, flags.Lookup(LogFormatFlag).Changed)
+	logFormat := strings.ToLower(consoleFlags.GetStrFlag(consoleFlags.LogFormatFlag))
+	err = LogFormat(logFormat)
 	if err != nil {
 		return err
 	}
 
-	err = Silent(getFlagValue(SilentFlag, flags), flags.Lookup(SilentFlag).Changed)
+	err = Silent(consoleFlags.GetBoolFlag(consoleFlags.SilentFlag))
 	if err != nil {
 		return err
 	}
 
-	err = CI(getFlagValue(CIFlag, flags), flags.Lookup(CIFlag).Changed)
+	err = CI(consoleFlags.GetBoolFlag(consoleFlags.CIFlag))
 	if err != nil {
 		return err
 	}
@@ -133,24 +117,16 @@ func IsInitialized() bool {
 	return initialized
 }
 
-func getFlagValue(flagName string, flags *pflag.FlagSet) bool {
-	v, err := strconv.ParseBool(flags.Lookup(flagName).Value.String())
-	if err != nil {
-		log.Error().Msgf("failed to parse boolean flag")
-	}
-	return v
-}
-
-func validateFlags(flags *pflag.FlagSet) error {
-	if getFlagValue(VerboseFlag, flags) && getFlagValue(SilentFlag, flags) {
+func validateFlags() error {
+	if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) && consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) {
 		return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
 	}
 
-	if getFlagValue(VerboseFlag, flags) && getFlagValue(CIFlag, flags) {
+	if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) && consoleFlags.GetBoolFlag(consoleFlags.CIFlag) {
 		return errors.New("can't provide 'verbose' and 'ci' flags simultaneously")
 	}
 
-	if getFlagValue(CIFlag, flags) && getFlagValue(SilentFlag, flags) {
+	if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) && consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) {
 		return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
 	}
 	return nil
@@ -177,7 +153,7 @@ func Verbose(opt interface{}, changed bool) error {
 }
 
 // Silent - disables stdout output
-func Silent(opt interface{}, changed bool) error {
+func Silent(opt interface{}) error {
 	silent := opt.(bool)
 	if silent {
 		color.SetOutput(io.Discard)
@@ -188,7 +164,7 @@ func Silent(opt interface{}, changed bool) error {
 }
 
 // CI - enable only log messages to CLI output
-func CI(opt interface{}, changed bool) error {
+func CI(opt interface{}) error {
 	ci := opt.(bool)
 	if ci {
 		color.SetOutput(io.Discard)
@@ -199,13 +175,12 @@ func CI(opt interface{}, changed bool) error {
 }
 
 // LogFormat - configures the logs format (JSON,pretty).
-func LogFormat(opt interface{}, changed bool) error {
-	logFormat := opt.(string)
-	if logFormat == LogFormatJSON {
+func LogFormat(logFormat string) error {
+	if logFormat == constants.LogFormatJSON {
 		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, loggerFile.(io.Writer)))
 		outFileLogger = loggerFile
 		outConsoleLogger = os.Stdout
-	} else if logFormat == LogFormatPretty {
+	} else if logFormat == constants.LogFormatPretty {
 		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile.(io.Writer), NoColor: true})
 		log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
 		outFileLogger = fileLogger
@@ -278,8 +253,6 @@ func LogLevel(opt interface{}, changed bool) error {
 		zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	case "FATAL":
 		zerolog.SetGlobalLevel(zerolog.FatalLevel)
-	default:
-		return errors.New("invalid log level")
 	}
 	return nil
 }
