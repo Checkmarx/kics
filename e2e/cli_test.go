@@ -194,7 +194,7 @@ var tests = []testCase{
 			},
 		},
 		validation: func(outputText string) bool {
-			unknownArgRegex := regexp.MustCompile(`Error: unknown argument for --type: \[xml\]`)
+			unknownArgRegex := regexp.MustCompile(`Error: unknown argument\(s\) for --type: xml`)
 			match := unknownArgRegex.MatchString(outputText)
 			return match
 		},
@@ -620,7 +620,7 @@ var tests = []testCase{
 					"d1c5f6aec84fd91ed24f5f06ccb8b6662e26c0202bcb5d4a58a1458c16456d20",
 					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 
-				[]string{"scan", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf", "--exclude-results"}, // changed flags order
+				[]string{"scan", "--exclude-results", "-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
 
@@ -642,12 +642,14 @@ var tests = []testCase{
 				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 					"-s", "-q", "../assets/queries", "-p", "fixtures/samples/terraform.tf"},
 
-				[]string{"scan",
-					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf", "--include-queries"}, // changed flags order
+				[]string{"scan", "--include-queries",
+					"-q", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
+				[]string{"scan", "--include-queries",
+					"--queries-path", "../assets/queries", "-p", "fixtures/samples/terraform-single.tf"},
 			},
 		},
 
-		wantStatus: []int{50, 40, 20, 126},
+		wantStatus: []int{50, 40, 20, 126, 126},
 	},
 	// E2E-CLI-037 - KICS scan command with --exclude-results and --include-queries
 	// should run only provided queries and does not run results (similarityID) provided by this flag

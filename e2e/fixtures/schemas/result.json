@@ -1,6 +1,7 @@
 {
   "type": "object",
   "required": [
+    "kics_version",
     "files_scanned",
     "files_parsed",
     "files_failed_to_scan",
@@ -16,6 +17,9 @@
     "paths"
   ],
   "properties": {
+    "kics_version": {
+      "type": "string"
+    },
     "files_scanned": {
       "type": "integer",
       "minimum": 0

@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/johnfercher/maroto/pkg/color"
 	"github.com/johnfercher/maroto/pkg/consts"
@@ -226,7 +227,15 @@ func createHeaderArea(m pdf.Maroto) {
 				Color:       color.NewWhite(),
 			})
 		})
-		m.ColSpace(colSix)
+		m.Col(colSix, func() {
+			m.Text(fmt.Sprintf("v%s ", constants.Version), props.Text{
+				Size:        25,
+				Style:       consts.Bold,
+				Align:       consts.Right,
+				Extrapolate: false,
+				Color:       color.NewWhite(),
+			})
+		})
 	})
 	m.SetBackgroundColor(color.NewWhite())
 	m.Row(rowXSmall, func() {

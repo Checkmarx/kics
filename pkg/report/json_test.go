@@ -36,6 +36,7 @@ var jsonTests = []struct {
 func TestPrintJSONReport(t *testing.T) {
 	for idx, test := range jsonTests {
 		t.Run(fmt.Sprintf("JSON File test case %d", idx), func(t *testing.T) {
+			test.expectedResult.Version = "development"
 			var err error
 			if err = os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)

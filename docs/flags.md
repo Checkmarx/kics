@@ -1,5 +1,5 @@
 ## Flags
-KICS scan flags are defined on `flags.json`, that can be found on `console/assets` directory.
+KICS scan flags are defined on `kics-flags.json` and `scan-flags.json`, that can be found on `console/assets` directory.
 
 The structure of a flag on JSON definition should use the following structure:
 ```json

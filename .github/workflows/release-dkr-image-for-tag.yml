@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push alpine to Docker Hub
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: .
           push: true
@@ -72,7 +72,7 @@ jobs:
       - name: Push debian to Docker Hub
         if: ${{ hashFiles('Dockerfile.debian') }} != ""
         id: build_debian
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: .
           file: ./Dockerfile.debian

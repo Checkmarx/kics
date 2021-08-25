@@ -24,18 +24,12 @@ openPort(rules, port) {
 containsPort(rule, port) {
 	rule.from_port <= port
 	rule.to_port >= port
-}
-
-else {
+} else {
 	rule.from_port == 0
 	rule.to_port == 0
-}
-
-else {
+} else {
 	regex.match(sprintf("(^|\\s|,)%d(-|,|$|\\s)", [port]), rule.destination_port_range)
-}
-
-else {
+} else {
 	ports := split(rule.destination_port_range, ",")
 	sublist := split(ports[var], "-")
 	to_number(trim(sublist[0], " ")) <= port

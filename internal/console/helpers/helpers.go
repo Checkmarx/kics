@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -175,18 +176,22 @@ func FileAnalyzer(path string) (string, error) {
 	}
 	var temp map[string]interface{}
 
+	// CxSAST query under review
 	if err := json.Unmarshal(rc, &temp); err == nil {
 		return "json", nil
 	}
 
+	// CxSAST query under review
 	if err := yaml.Unmarshal(rc, &temp); err == nil {
 		return "yaml", nil
 	}
 
+	// CxSAST query under review
 	if _, err := toml.Decode(string(rc), &temp); err == nil {
 		return "toml", nil
 	}
 
+	// CxSAST query under review
 	if c, err := hcl.Parse(string(rc)); err == nil {
 		if err = hcl.DecodeObject(&temp, c); err == nil {
 			return "hcl", nil
@@ -257,25 +262,8 @@ func ListReportFormats() []string {
 	for reportFormats := range reportGenerators {
 		supportedFormats = append(supportedFormats, reportFormats)
 	}
+	sort.Strings(supportedFormats)
 	return supportedFormats
-}
-
-// ValidateReportFormats returns an error if output format is not supported
-func ValidateReportFormats(formats []string) error {
-	log.Debug().Msg("helpers.ValidateReportFormats()")
-
-	for _, format := range formats {
-		if _, ok := reportGenerators[format]; !ok {
-			return fmt.Errorf(
-				fmt.Sprintf(
-					"Report format not supported: %s\nSupportted formats:\n  %s\nalso you can use 'all' to export in all supported formats",
-					format,
-					strings.Join(ListReportFormats(), "\n"),
-				),
-			)
-		}
-	}
-	return nil
 }
 
 // NewPrinter initializes a new Printer

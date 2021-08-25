@@ -242,34 +242,6 @@ func TestPrinter(t *testing.T) {
 	}
 }
 
-func TestHelpers_ValidateReportFormats(t *testing.T) {
-	tests := []struct {
-		name    string
-		formats []string
-		wantErr bool
-	}{
-		{
-			name:    "test_validate_report_formats",
-			formats: []string{"json", "html", "sarif"},
-			wantErr: false,
-		},
-		{
-			name:    "test_validate_report_unknown_format",
-			formats: []string{"json", "html", "sarif", "unknown"},
-			wantErr: true,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := ValidateReportFormats(tt.formats)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("ValidateReportFormats() = %v, wantErr = %v", err, tt.wantErr)
-			}
-		})
-	}
-}
-
 func TestHelpers_GenerateReport(t *testing.T) {
 	type args struct {
 		path     string

@@ -75,11 +75,12 @@ type Times struct {
 
 // Summary is a report of a single scan
 type Summary struct {
+	Version string `json:"kics_version,omitempty"`
 	Counters
-	Queries VulnerableQuerySlice `json:"queries"`
 	SeveritySummary
 	Times
-	ScannedPaths []string `json:"paths"`
+	ScannedPaths []string             `json:"paths"`
+	Queries      VulnerableQuerySlice `json:"queries"`
 }
 
 // PathParameters - structure wraps the required fields for temporary path translation
