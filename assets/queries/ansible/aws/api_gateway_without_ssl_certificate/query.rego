@@ -1,38 +1,42 @@
 package Cx
 
 import data.generic.ansible as ansLib
-import data.generic.common as common_lib
 
-modules := {"community.aws.aws_api_gateway", "aws_api_gateway"}
+modules := {"community.aws.elb_application_lb", "elb_application_lb"}
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	api_gateway := task[modules[m]]
-	ansLib.checkState(api_gateway)
+	applicationLb := task[modules[m]]
+	ansLib.checkState(applicationLb)
 
-	not common_lib.valid_key(api_gateway, "validate_certs")
+	applicationLb.listeners[index].Protocol != "HTTPS"
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_api_gateway.validate_certs is set",
-		"keyActualValue": "aws_api_gateway.validate_certs is undefined",
+		"searchKey": sprintf("name={{%s}}.{{%s}}.listeners.Protocol=%s", [task.name, modules[m], applicationLb.listeners[index].Protocol]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
+		"keyActualValue": "'aws_elb_application_lb' Protocol it's not 'HTTP'",
 	}
 }
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	api_gateway := task[modules[m]]
-	ansLib.checkState(api_gateway)
+	applicationLb := task[modules[m]]
+	ansLib.checkState(applicationLb)
 
-	not ansLib.isAnsibleTrue(api_gateway.validate_certs)
+	applicationLb.listeners[index]
+	not MissingProtocol(applicationLb.listeners)
 
 	result := {
 		"documentId": id,
-		"searchKey": sprintf("name={{%s}}.{{%s}}.validate_certs", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_api_gateway.validate_certs is set to yes",
-		"keyActualValue": "aws_api_gateway.validate_certs is not set to yes",
+		"searchKey": sprintf("name={{%s}}.{{%s}}.listeners", [task.name, modules[m]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
+		"keyActualValue": "'aws_elb_application_lb' Protocol is missing",
 	}
+}
+
+MissingProtocol(listeners) {
+	listeners[_].Protocol
 }

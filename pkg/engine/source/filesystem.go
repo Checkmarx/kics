@@ -127,8 +127,8 @@ func GetPathToCostumLibrary(platform, libraryPathFlag string) string {
 		// found a library named according to the platform
 		if library != "" {
 			libraryFilePath = library
-		} else if library == "" && strings.EqualFold(common, platform) {
-			libraryFilePath = ""
+		} else {
+			libraryFilePath = "default"	
 		}
 	} else {
 		libraryFilePath = "default"	
