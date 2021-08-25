@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Neptune Cluster Instance is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive.tf"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SQL Server Alert Email Disabled",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SQL Server Alert Email Disabled",
+    "severity": "INFO",
+    "line": 12,
+    "fileName": "positive2.tf"
+  }
+]

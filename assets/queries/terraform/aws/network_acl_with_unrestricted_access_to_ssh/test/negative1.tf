@@ -1,4 +1,17 @@
-resource "aws_network_acl" "positive1" {
+provider "aws" {
+  region = "us-east-1"
+}
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
+
+resource "aws_network_acl" "negative1" {
   vpc_id = aws_vpc.main.id
 
   egress = [
@@ -17,9 +30,9 @@ resource "aws_network_acl" "positive1" {
       protocol   = "tcp"
       rule_no    = 100
       action     = "allow"
-      cidr_block = "0.0.0.0/0"
-      from_port   = 3389
-      to_port     = 3389
+      cidr_block = "10.3.0.0/18"
+      from_port   = 22
+      to_port     = 22
     }
   ]
 

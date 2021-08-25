@@ -81,7 +81,10 @@ func SetupPrinter(flags *pflag.FlagSet) error {
 				return err
 			}
 		case "bool":
-			value, _ := strconv.ParseBool(f.Value.String())
+			value, errBool := strconv.ParseBool(f.Value.String())
+			if errBool != nil {
+				return err
+			}
 			err = optionsMap[optionsOrderMap[key]](value, f.Changed)
 			if err != nil {
 				return err

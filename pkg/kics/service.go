@@ -60,6 +60,7 @@ func (s *Service) StartScan(
 	currentQuery chan<- int64) {
 	log.Debug().Msg("service.StartScan()")
 	defer wg.Done()
+	// CxSAST query under review
 	if err := s.SourceProvider.GetSources(
 		ctx,
 		s.Parser.SupportedExtensions(),

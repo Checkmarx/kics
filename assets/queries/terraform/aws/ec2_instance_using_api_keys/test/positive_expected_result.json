@@ -1,0 +1,56 @@
+[
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "EC2 Instance Using API Keys",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive9.tf"
+  }
+]

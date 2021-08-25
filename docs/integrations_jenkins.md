@@ -40,7 +40,7 @@ pipeline {
       steps {
         installKICS()
         sh "mkdir -p results"
-        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --report-formats "json,sarif,html"')
+        sh(script: '/usr/bin/kics scan --ci --no-color -p ${WORKSPACE} --output-path results --ignore-on-exit results --report-formats "json,sarif,html"')
         archiveArtifacts(artifacts: 'results/*.html,results/*.sarif,results/*.json', fingerprint: true)
       }
     }
@@ -95,7 +95,7 @@ pipeline {
                 script {
                     docker.image('checkmarx/kics:latest-alpine').inside("--entrypoint=''") {
                       unstash 'source'
-                      sh('/app/bin/kics scan -p \$(pwd) -q /app/bin/assets/queries --ci --report-formats html -o \$(pwd)')
+                      sh('/app/bin/kics scan -p \'\$(pwd)\' -q /app/bin/assets/queries --ci --report-formats html -o \'\$(pwd)\' --ignore-on-exit results')
                       archiveArtifacts(artifacts: 'results.html', fingerprint: true)
                       publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '.', reportFiles: 'results.html', reportName: 'KICS Results', reportTitles: ''])
                     }

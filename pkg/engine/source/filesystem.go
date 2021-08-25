@@ -103,11 +103,11 @@ func getKicsDirPath() string {
 		return ""
 	}
 
-	return path.Dir(kicsPath)
+	return filepath.Dir(kicsPath)
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, libraryPathFlag string) string {
+func GetPathToLibrary(platform, libraryPathFlag string) (string, error) {
 	var libraryFilePath, relativeBasePath string
 	// user uses the library path flag
 	if !isDefaultLibrary(libraryPathFlag) {
@@ -124,16 +124,22 @@ func GetPathToLibrary(platform, libraryPathFlag string) string {
 		libraryFilePath = filepath.FromSlash(kicsDirPath + "/assets/libraries/common.rego")
 		// the system does not have kics binary accessible
 		_, err := os.Stat(libraryFilePath)
-		if os.IsNotExist(err) {
+		if err != nil && os.IsNotExist(err) {
 			currentDir, err := os.Getwd()
 			if err != nil {
-				log.Fatal().Msgf("Error getting wd: %s", err)
+				log.Error().Msgf("Error getting wd: %s", err)
+				return "", err
 			}
-			currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
+			if strings.LastIndex(currentDir, "kics") > -1 {
+				currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
+			} else {
+				currentDir = filepath.Join(currentDir, "kics")
+			}
 			libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
 			_, err = os.Stat(libraryFilePath)
 			if os.IsNotExist(err) {
-				log.Fatal().Msgf("Error getting wd: %s", err)
+				log.Error().Msgf("Error getting wd: %s", err)
+				return "", err
 			}
 			relativeBasePath = currentDir
 			// the system has kics binary accessible
@@ -147,12 +153,15 @@ func GetPathToLibrary(platform, libraryPathFlag string) string {
 			}
 		}
 	}
-	return libraryFilePath
+	return libraryFilePath, nil
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib := GetPathToLibrary(platform, s.Library)
+	pathToLib, err := GetPathToLibrary(platform, s.Library)
+	if err != nil {
+		return "", err
+	}
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
