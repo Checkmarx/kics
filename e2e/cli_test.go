@@ -194,7 +194,7 @@ var tests = []testCase{
 			},
 		},
 		validation: func(outputText string) bool {
-			unknownArgRegex := regexp.MustCompile(`Error: unknown argument for --type: xml`)
+			unknownArgRegex := regexp.MustCompile(`Error: unknown argument\(s\) for --type: xml`)
 			match := unknownArgRegex.MatchString(outputText)
 			return match
 		},

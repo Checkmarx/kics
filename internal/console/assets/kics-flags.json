@@ -23,7 +23,8 @@
     "flagType": "str",
     "shorthandFlag": "",
     "defaultValue": "INFO",
-    "usage": "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)"
+    "usage": "determines log level (${supportedLogLevels})",
+    "validation": "validateStrEnum"
   },
   "log-path": {
     "flagType": "str",

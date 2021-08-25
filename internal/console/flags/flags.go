@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/rs/zerolog/log"
@@ -36,8 +37,10 @@ type flagJSON struct {
 func evalUsage(usage string) string {
 	variables := map[string]string{
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
+		"supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
 		"supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
 		"supportedProviders": strings.Join(source.ListSupportedCloudProviders(), ", "),
+		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
 		"defaultLogFile":     constants.DefaultLogFile,
 		"logFormatPretty":    constants.LogFormatPretty,
 		"logFormatJSON":      constants.LogFormatJSON,

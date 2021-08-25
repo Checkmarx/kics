@@ -6,74 +6,50 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestFlags_sliceFlagsShouldNotStartWithFlags(t *testing.T) {
+func TestFlags_isQueryID(t *testing.T) {
 	tests := []struct {
-		name      string
-		flagName  string
-		flagValue *[]string
-		wantErr   bool
+		name     string
+		id       string
+		expected bool
 	}{
 		{
-			name:      "should execute fine",
-			flagName:  "include-queries",
-			flagValue: &[]string{"f81d63d2-c5d7-43a4-a5b5-66717a41c895", "97707503-a22c-4cd7-b7c0-f088fa7cf830"},
-			wantErr:   false,
+			name:     "should return that query id is valid",
+			id:       "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+			expected: true,
 		},
 		{
-			name:      "should return an error when the first value is a shorthand",
-			flagName:  "include-queries",
-			flagValue: &[]string{"-p", "/home/"},
-			wantErr:   true,
-		},
-		{
-			name:      "should return an error when the first value is a flag",
-			flagName:  "include-queries",
-			flagValue: &[]string{"--path", "/home/"},
-			wantErr:   true,
+			name:     "should return that query id is invalid",
+			id:       "test",
+			expected: false,
 		},
 	}
 	for _, test := range tests {
-		flagsMultiStrReferences[test.flagName] = test.flagValue
 		t.Run(test.name, func(t *testing.T) {
-			gotErr := sliceFlagsShouldNotStartWithFlags(test.flagName)
-			if !test.wantErr {
-				require.NoError(t, gotErr)
-			} else {
-				require.Error(t, gotErr)
-			}
+			got := isQueryID(test.id)
+			require.Equal(t, test.expected, got)
 		})
 	}
 }
 
-func TestFlags_validateEnum(t *testing.T) {
+func TestFlags_convertSliceToDummyMap(t *testing.T) {
 	tests := []struct {
-		name      string
-		flagName  string
-		flagValue *[]string
-		wantErr   bool
+		name     string
+		slice    []string
+		expected map[string]string
 	}{
 		{
-			name:      "should execute fine",
-			flagName:  "exclude-categories",
-			flagValue: &[]string{"Backup"},
-			wantErr:   false,
-		},
-		{
-			name:      "should return an error when an invalid enum value",
-			flagName:  "exclude-categories",
-			flagValue: &[]string{"Backup", "Undefined"},
-			wantErr:   true,
+			name:  "should return a dummy map",
+			slice: []string{"key1", "key2"},
+			expected: map[string]string{
+				"key1": "",
+				"key2": "",
+			},
 		},
 	}
 	for _, test := range tests {
-		flagsMultiStrReferences[test.flagName] = test.flagValue
 		t.Run(test.name, func(t *testing.T) {
-			gotErr := validateEnum(test.flagName)
-			if !test.wantErr {
-				require.NoError(t, gotErr)
-			} else {
-				require.Error(t, gotErr)
-			}
+			got := convertSliceToDummyMap(test.slice)
+			require.Equal(t, test.expected, got)
 		})
 	}
 }

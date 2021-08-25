@@ -46,6 +46,24 @@ var (
 		"AzureResourceManager": "azureresourcemanager",
 	}
 
+	// AvailableSeverities - All severities available
+	AvailableSeverities = []string{
+		"high",
+		"medium",
+		"low",
+		"info",
+	}
+
+	// AvailableLogLevels - All log levels available
+	AvailableLogLevels = []string{
+		"TRACE",
+		"DEBUG",
+		"INFO",
+		"WARN",
+		"ERROR",
+		"FATAL",
+	}
+
 	// AvailableCloudProviders - All cloud providers available
 	AvailableCloudProviders = map[string]string{
 		"aws":   "",

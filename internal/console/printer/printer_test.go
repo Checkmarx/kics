@@ -61,14 +61,6 @@ func TestPrinter_LogLevel(t *testing.T) {
 		want    string
 	}{
 		{
-			name: "test_log_level_invalid",
-			args: args{
-				"INVALID",
-			},
-			wantErr: true,
-			want:    "trace",
-		},
-		{
 			name: "test_log_level_trace",
 			args: args{
 				"TRACE",

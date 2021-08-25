@@ -250,8 +250,6 @@ func LogLevel(opt interface{}, changed bool) error {
 		zerolog.SetGlobalLevel(zerolog.ErrorLevel)
 	case "FATAL":
 		zerolog.SetGlobalLevel(zerolog.FatalLevel)
-	default:
-		return errors.New("invalid log level")
 	}
 	return nil
 }

@@ -604,11 +604,8 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	}
 
 	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
+	err := consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
 
-	err := consoleHelpers.ValidateReportFormats(formats)
-	if err == nil {
-		err = consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
-	}
 	return err
 }
 
