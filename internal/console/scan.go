@@ -303,6 +303,7 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 	excludeQueries := source.ExcludeQueries{
 		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
 		ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
+		BySeverities: flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
 	}
 
 	includeQueries := source.IncludeQueries{
