@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "<= 3.49.0"
+      version = "~> 3.55.0"
     }
   }
 }
@@ -37,8 +37,9 @@ variable vpc_cidr_private_block {
 
 resource "aws_vpc" "vpc1" {
   cidr_block = var.vpc_1_cidr_block
+
   tags = {
-    Name = "tf-test-vpc-2"
+    Name = "tf-test-vpc-1"
     Project = "CIS Certification"
   }
 }
@@ -47,7 +48,6 @@ resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.vpc1.id
   cidr_block        = var.vpc_cidr_public_block
   availability_zone = "us-east-1a"
-
 
   tags = {
     Name    = "public-subnet-1"
@@ -68,6 +68,7 @@ resource "aws_subnet" "private" {
 
 resource "aws_vpc" "vpc2" {
   cidr_block = var.vpc_2_cidr_block
+
   tags = {
     Name = "tf-test-vpc-2"
     Project = "CIS Certification"
@@ -111,12 +112,32 @@ resource "aws_vpc_peering_connection" "my_peering" {
   }
 }
 
-
-resource "aws_route_table" "public_route_table9" {
+resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc1.id
 
+  route = [
+
+    {
+      cidr_block                 = "0.0.0.0/0"
+      vpc_peering_connection_id  = aws_vpc_peering_connection.my_peering.id
+      gateway_id                 = ""
+      instance_id                = ""
+      ipv6_cidr_block            = ""
+      egress_only_gateway_id     = ""
+      nat_gateway_id             = ""
+      network_interface_id       = ""
+      transit_gateway_id         = ""
+      carrier_gateway_id         = ""
+      destination_prefix_list_id = ""
+      local_gateway_id           = ""
+      vpc_endpoint_id            = ""
+
+    }
+  ]
+  
+
   tags = {
-    Name = "public-route-table"
+    Name = "public_route_table"
     Project = "CIS Certification"
   }
 }
@@ -124,19 +145,18 @@ resource "aws_route_table" "public_route_table9" {
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc1.id
 
+  route {
+    cidr_block                  = aws_vpc.vpc2.cidr_block
+    vpc_peering_connection_id   = aws_vpc_peering_connection.my_peering.id
+  }
+
   tags = {
+    Name = "private_route_table"
     Project = "CIS Certification"
   }
 }
 
-resource "aws_route" "private_route2" {
-  route_table_id            = aws_route_table.public_route_table9.id
-  destination_cidr_block    = "0.0.0.0/0"
-  vpc_peering_connection_id = aws_vpc_peering_connection.my_peering.id
-  depends_on                = [aws_route_table.public_route_table9]
-}
-
 resource "aws_route_table_association" "private_route_table_association" {
-  subnet_id      = aws_subnet.private.*.id[0]
+  subnet_id      = aws_subnet.private.id
   route_table_id = aws_route_table.private_route_table.id
 }
