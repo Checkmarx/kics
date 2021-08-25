@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/assets"
+	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -221,7 +221,7 @@ func readLibrary(platform string) (string, error) {
 	library := source.GetPathToCostumLibrary(platform, "./assets/libraries")
 
 	if library != "default" {
-		content, err  := os.ReadFile(library)
+		content, err := os.ReadFile(library)
 
 		return string(content), err
 	}

@@ -37,6 +37,8 @@ const (
 	emptyInputData = "{}"
 
 	common = "Common"
+
+	kicsDefault = "default"
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
@@ -97,30 +99,20 @@ func isDefaultLibrary(libraryPath string) bool {
 	return filepath.FromSlash(libraryPath) == filepath.FromSlash(LibrariesDefaultBasePath)
 }
 
-func getKicsDirPath() string {
-	kicsPath, err := os.Executable()
-	if err != nil {
-		log.Err(err)
-		return ""
-	}
-
-	return filepath.Dir(kicsPath)
-}
-
 // GetPathToLibrary returns the libraries path for a given platform
 func GetPathToCostumLibrary(platform, libraryPathFlag string) string {
 	var libraryFilePath string
-	
+
 	if !isDefaultLibrary(libraryPathFlag) {
 		library := getLibraryInDir(platform, libraryPathFlag)
 		// found a library named according to the platform
 		if library != "" {
 			libraryFilePath = library
 		} else {
-			libraryFilePath = "default"	
+			libraryFilePath = kicsDefault
 		}
 	} else {
-		libraryFilePath = "default"	
+		libraryFilePath = kicsDefault
 	}
 
 	return libraryFilePath
@@ -128,23 +120,20 @@ func GetPathToCostumLibrary(platform, libraryPathFlag string) string {
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-
 	library := GetPathToCostumLibrary(platform, s.Library)
 
-	if library != "default" {
-		content, err  := os.ReadFile(library)
+	if library != kicsDefault {
+		content, err := os.ReadFile(library)
 
 		return string(content), err
 	}
-
 	log.Warn().Msgf("There are no costum library. Getting embedded library instead")
-
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
 
 	return embeddedLibrary, errGettingEmbeddedLibrary
-	
 }
+
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
 func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 	if queryPlatform.(string) == common {

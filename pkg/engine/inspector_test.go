@@ -6,13 +6,13 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
-	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/assets"
+	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
@@ -673,11 +673,10 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	
 	library := source.GetPathToCostumLibrary(platform, "./assets/libraries")
 
 	if library != "default" {
-		content, err  := os.ReadFile(library)
+		content, err := os.ReadFile(library)
 
 		return string(content), err
 	}
