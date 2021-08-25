@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>console: Go Coverage Report</title>
+		<title>flags: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,137 +55,145 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/Checkmarx/kics/internal/console/flags.go (72.2%)</option>
+				<option value="file0">github.com/Checkmarx/kics/internal/console/flags/flags.go (35.0%)</option>
 				
-				<option value="file1">github.com/Checkmarx/kics/internal/console/generate_id.go (80.0%)</option>
+				<option value="file1">github.com/Checkmarx/kics/internal/console/flags/validate.go (50.0%)</option>
 				
-				<option value="file2">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
+				<option value="file2">github.com/Checkmarx/kics/internal/console/flags/validate_multi_str.go (100.0%)</option>
 				
-				<option value="file3">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (83.5%)</option>
+				<option value="file3">github.com/Checkmarx/kics/internal/console/flags/validate_str.go (100.0%)</option>
 				
-				<option value="file4">github.com/Checkmarx/kics/internal/console/kics.go (82.2%)</option>
+				<option value="file4">github.com/Checkmarx/kics/internal/console/generate_id.go (80.0%)</option>
 				
-				<option value="file5">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
+				<option value="file5">github.com/Checkmarx/kics/internal/console/helpers/exit_handler.go (100.0%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/internal/console/printer/printer.go (54.5%)</option>
+				<option value="file6">github.com/Checkmarx/kics/internal/console/helpers/helpers.go (82.9%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/internal/console/scan.go (76.2%)</option>
+				<option value="file7">github.com/Checkmarx/kics/internal/console/kics.go (77.8%)</option>
 				
-				<option value="file8">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
+				<option value="file8">github.com/Checkmarx/kics/internal/console/list_platforms.go (100.0%)</option>
 				
-				<option value="file9">github.com/Checkmarx/kics/internal/constants/constants.go (100.0%)</option>
+				<option value="file9">github.com/Checkmarx/kics/internal/console/printer/printer.go (55.6%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/metrics/cpu_metric.go (91.7%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (75.9%)</option>
 				
-				<option value="file11">github.com/Checkmarx/kics/internal/metrics/mem_metric.go (92.9%)</option>
+				<option value="file11">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
-				<option value="file12">github.com/Checkmarx/kics/internal/metrics/metrics.go (90.5%)</option>
+				<option value="file12">github.com/Checkmarx/kics/internal/constants/constants.go (100.0%)</option>
 				
-				<option value="file13">github.com/Checkmarx/kics/internal/storage/memory.go (100.0%)</option>
+				<option value="file13">github.com/Checkmarx/kics/internal/metrics/cpu_metric.go (91.7%)</option>
 				
-				<option value="file14">github.com/Checkmarx/kics/internal/tracker/ci.go (100.0%)</option>
+				<option value="file14">github.com/Checkmarx/kics/internal/metrics/mem_metric.go (92.9%)</option>
 				
-				<option value="file15">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (95.3%)</option>
+				<option value="file15">github.com/Checkmarx/kics/internal/metrics/metrics.go (90.3%)</option>
 				
-				<option value="file16">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
+				<option value="file16">github.com/Checkmarx/kics/internal/storage/memory.go (100.0%)</option>
 				
-				<option value="file17">github.com/Checkmarx/kics/pkg/builder/model/model.go (100.0%)</option>
+				<option value="file17">github.com/Checkmarx/kics/internal/tracker/ci.go (100.0%)</option>
 				
-				<option value="file18">github.com/Checkmarx/kics/pkg/builder/parser/tag/tag_parser.go (92.0%)</option>
+				<option value="file18">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (95.3%)</option>
 				
-				<option value="file19">github.com/Checkmarx/kics/pkg/builder/writer/rego.go (89.8%)</option>
+				<option value="file19">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
-				<option value="file20">github.com/Checkmarx/kics/pkg/descriptions/client.go (54.0%)</option>
+				<option value="file20">github.com/Checkmarx/kics/pkg/builder/model/model.go (100.0%)</option>
 				
-				<option value="file21">github.com/Checkmarx/kics/pkg/descriptions/descriptions.go (85.7%)</option>
+				<option value="file21">github.com/Checkmarx/kics/pkg/builder/parser/tag/tag_parser.go (92.0%)</option>
 				
-				<option value="file22">github.com/Checkmarx/kics/pkg/detector/default_detect.go (100.0%)</option>
+				<option value="file22">github.com/Checkmarx/kics/pkg/builder/writer/rego.go (89.8%)</option>
 				
-				<option value="file23">github.com/Checkmarx/kics/pkg/detector/detector.go (100.0%)</option>
+				<option value="file23">github.com/Checkmarx/kics/pkg/descriptions/client.go (54.0%)</option>
 				
-				<option value="file24">github.com/Checkmarx/kics/pkg/detector/docker/docker_detect.go (84.2%)</option>
+				<option value="file24">github.com/Checkmarx/kics/pkg/descriptions/descriptions.go (85.7%)</option>
 				
-				<option value="file25">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.1%)</option>
+				<option value="file25">github.com/Checkmarx/kics/pkg/detector/default_detect.go (100.0%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/pkg/detector/helper.go (93.9%)</option>
+				<option value="file26">github.com/Checkmarx/kics/pkg/detector/detector.go (100.0%)</option>
 				
-				<option value="file27">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.6%)</option>
+				<option value="file27">github.com/Checkmarx/kics/pkg/detector/docker/docker_detect.go (84.2%)</option>
 				
-				<option value="file28">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
+				<option value="file28">github.com/Checkmarx/kics/pkg/detector/helm/helm_detect.go (88.1%)</option>
 				
-				<option value="file29">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.0%)</option>
+				<option value="file29">github.com/Checkmarx/kics/pkg/detector/helper.go (93.9%)</option>
 				
-				<option value="file30">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
+				<option value="file30">github.com/Checkmarx/kics/pkg/engine/inspector.go (77.6%)</option>
 				
-				<option value="file31">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
+				<option value="file31">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (89.0%)</option>
 				
-				<option value="file32">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (82.9%)</option>
+				<option value="file32">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (78.0%)</option>
 				
-				<option value="file33">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (70.4%)</option>
+				<option value="file33">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/kics/service.go (84.4%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/kics/sink.go (68.4%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (82.9%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/model/model.go (100.0%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (70.4%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (0.0%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/kics/service.go (84.4%)</option>
 				
-				<option value="file38">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
+				<option value="file38">github.com/Checkmarx/kics/pkg/kics/sink.go (68.4%)</option>
 				
-				<option value="file39">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.9%)</option>
+				<option value="file39">github.com/Checkmarx/kics/pkg/model/model.go (100.0%)</option>
 				
-				<option value="file40">github.com/Checkmarx/kics/pkg/parser/json/parser.go (75.0%)</option>
+				<option value="file40">github.com/Checkmarx/kics/pkg/model/model_easyjson.go (0.0%)</option>
 				
-				<option value="file41">github.com/Checkmarx/kics/pkg/parser/parser.go (92.7%)</option>
+				<option value="file41">github.com/Checkmarx/kics/pkg/model/summary.go (87.0%)</option>
 				
-				<option value="file42">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.1%)</option>
+				<option value="file42">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (90.9%)</option>
 				
-				<option value="file43">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (83.3%)</option>
+				<option value="file43">github.com/Checkmarx/kics/pkg/parser/json/parser.go (75.0%)</option>
 				
-				<option value="file44">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (92.2%)</option>
+				<option value="file44">github.com/Checkmarx/kics/pkg/parser/parser.go (76.1%)</option>
 				
-				<option value="file45">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
+				<option value="file45">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (79.1%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/pkg/parser/utils/file_utils.go (64.0%)</option>
+				<option value="file46">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (83.3%)</option>
 				
-				<option value="file47">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
+				<option value="file47">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (92.2%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
+				<option value="file48">github.com/Checkmarx/kics/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
-				<option value="file49">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file49">github.com/Checkmarx/kics/pkg/parser/utils/file_utils.go (64.0%)</option>
 				
-				<option value="file50">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file50">github.com/Checkmarx/kics/pkg/parser/utils/swagger_utils.go (84.6%)</option>
 				
-				<option value="file51">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
+				<option value="file51">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/report/commons.go (81.6%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
 				
-				<option value="file53">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
+				<option value="file53">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
-				<option value="file54">github.com/Checkmarx/kics/pkg/report/html.go (90.0%)</option>
+				<option value="file54">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
-				<option value="file55">github.com/Checkmarx/kics/pkg/report/json.go (92.3%)</option>
+				<option value="file55">github.com/Checkmarx/kics/pkg/report/commons.go (81.6%)</option>
 				
-				<option value="file56">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
+				<option value="file56">github.com/Checkmarx/kics/pkg/report/gitlab_sast.go (93.3%)</option>
 				
-				<option value="file57">github.com/Checkmarx/kics/pkg/report/model/sarif.go (93.6%)</option>
+				<option value="file57">github.com/Checkmarx/kics/pkg/report/html.go (90.0%)</option>
 				
-				<option value="file58">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
+				<option value="file58">github.com/Checkmarx/kics/pkg/report/json.go (92.3%)</option>
 				
-				<option value="file59">github.com/Checkmarx/kics/pkg/report/pdf.go (83.2%)</option>
+				<option value="file59">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (75.0%)</option>
 				
-				<option value="file60">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
+				<option value="file60">github.com/Checkmarx/kics/pkg/report/model/sarif.go (93.6%)</option>
 				
-				<option value="file61">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.7%)</option>
+				<option value="file61">github.com/Checkmarx/kics/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
-				<option value="file62">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (89.4%)</option>
+				<option value="file62">github.com/Checkmarx/kics/pkg/report/pdf.go (83.2%)</option>
 				
-				<option value="file63">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
+				<option value="file63">github.com/Checkmarx/kics/pkg/report/sarif.go (90.9%)</option>
 				
-				<option value="file64">github.com/Checkmarx/kics/pkg/scanner/scanner.go (93.8%)</option>
+				<option value="file64">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.7%)</option>
 				
-				<option value="file65">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
+				<option value="file65">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (89.4%)</option>
+				
+				<option value="file66">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
+				
+				<option value="file67">github.com/Checkmarx/kics/pkg/scanner/scanner.go (93.8%)</option>
+				
+				<option value="file68">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
+				
+				<option value="file69">github.com/Checkmarx/kics/test/helpers.go (15.0%)</option>
 				
 				</select>
 			</div>
@@ -208,55 +216,29 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package console
+		<pre class="file" id="file0" style="display: none">package flags
 
 import (
-        _ "embed" // Embed json flags
         "encoding/json"
         "regexp"
         "strconv"
         "strings"
 
+        "github.com/Checkmarx/kics/internal/console/helpers"
+        "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/pkg/engine/source"
         "github.com/rs/zerolog/log"
         "github.com/spf13/cobra"
+        "github.com/spf13/pflag"
 )
 
 var (
-        //go:embed assets/flags.json
-        flagsListContent string
+        flagsMultiStrReferences = make(map[string]*[]string)
+        flagsStrReferences      = make(map[string]*string)
+        flagsBoolReferences     = make(map[string]*bool)
+        flagsIntReferences      = make(map[string]*int)
 
-        flagsMultiStrReferences map[string]*[]string
-        flagsStrReferences      map[string]*string
-        flagsBoolReferences     map[string]*bool
-        flagsIntReferences      map[string]*int
-)
-
-const (
-        cloudProviderFlag     = "cloud-provider"
-        configFlag            = "config"
-        disableCISDescFlag    = "disable-cis-descriptions"
-        disableFullDescFlag   = "disable-full-descriptions"
-        excludeCategoriesFlag = "exclude-categories"
-        excludePathsFlag      = "exclude-paths"
-        excludeQueriesFlag    = "exclude-queries"
-        excludeResultsFlag    = "exclude-results"
-        includeQueriesFlag    = "include-queries"
-        inputDataFlag         = "input-data"
-        failOnFlag            = "fail-on"
-        ignoreOnExitFlag      = "ignore-on-exit"
-        minimalUIFlag         = "minimal-ui"
-        noProgressFlag        = "no-progress"
-        outputNameFlag        = "output-name"
-        outputPathFlag        = "output-path"
-        pathFlag              = "path"
-        payloadPathFlag       = "payload-path"
-        previewLinesFlag      = "preview-lines"
-        queriesPath           = "queries-path"
-        libraryPath           = "library"
-        reportFormatsFlag     = "report-formats"
-        typeFlag              = "type"
-        queryExecTimeoutFlag  = "timeout"
+        validations = make(map[string][]string)
 )
 
 type flagJSON struct {
@@ -267,94 +249,48 @@ type flagJSON struct {
         Hidden         bool
         Deprecated     bool
         DeprecatedInfo string
+        Validation     string
 }
 
-func getStrFlag(flagName string) string <span class="cov8" title="99">{
-        if value, ok := flagsStrReferences[flagName]; ok </span><span class="cov8" title="99">{
-                return *value
-        }</span>
-        <span class="cov0" title="0">log.Debug().Msgf("Could not find string flag %s", flagName)
-        return ""</span>
-}
-
-func getMultiStrFlag(flagName string) []string <span class="cov8" title="113">{
-        if value, ok := flagsMultiStrReferences[flagName]; ok </span><span class="cov8" title="113">{
-                return *value
-        }</span>
-        <span class="cov0" title="0">log.Debug().Msgf("Could not find string slice flag %s", flagName)
-        return []string{}</span>
-}
-
-func getBoolFlag(flagName string) bool <span class="cov6" title="28">{
-        if value, ok := flagsBoolReferences[flagName]; ok </span><span class="cov6" title="28">{
-                return *value
-        }</span>
-        <span class="cov0" title="0">log.Debug().Msgf("Could not find boolean flag %s", flagName)
-        return false</span>
-}
-
-func getIntFlag(flagName string) int <span class="cov5" title="14">{
-        if value, ok := flagsIntReferences[flagName]; ok </span><span class="cov5" title="14">{
-                return *value
-        }</span>
-        <span class="cov0" title="0">log.Debug().Msgf("Could not find integer flag %s", flagName)
-        return -1</span>
-}
-
-func setStrFlag(flagName, value string) <span class="cov2" title="2">{
-        if _, ok := flagsStrReferences[flagName]; ok </span><span class="cov2" title="2">{
-                *flagsStrReferences[flagName] = value
-        }</span> else<span class="cov0" title="0"> {
-                log.Debug().Msgf("Could not set string flag %s", flagName)
-        }</span>
-}
-
-func setMultiStrFlag(flagName string, value []string) <span class="cov5" title="14">{
-        if _, ok := flagsMultiStrReferences[flagName]; ok </span><span class="cov5" title="14">{
-                *flagsMultiStrReferences[flagName] = value
-        }</span> else<span class="cov0" title="0"> {
-                log.Debug().Msgf("Could not set string slice flag %s", flagName)
-        }</span>
-}
-
-func evalUsage(usage string) string <span class="cov10" title="288">{
+func evalUsage(usage string) string <span class="cov5" title="3">{
         variables := map[string]string{
                 "sliceInstructions":  "can be provided multiple times or as a comma separated string",
+                "supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
                 "supportedPlatforms": strings.Join(source.ListSupportedPlatforms(), ", "),
                 "supportedProviders": strings.Join(source.ListSupportedCloudProviders(), ", "),
+                "supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
+                "defaultLogFile":     constants.DefaultLogFile,
+                "logFormatPretty":    constants.LogFormatPretty,
+                "logFormatJSON":      constants.LogFormatJSON,
         }
         variableRegex := regexp.MustCompile(`\$\{(\w+)\}`)
         match := variableRegex.FindAllStringSubmatch(usage, -1)
-        for i := range match </span><span class="cov7" title="72">{
+        for i := range match </span><span class="cov5" title="3">{
                 usage = strings.ReplaceAll(usage, "${"+match[i][1]+"}", variables[match[i][1]])
         }</span>
-        <span class="cov10" title="288">return usage</span>
+        <span class="cov5" title="3">return usage</span>
 }
 
-func checkHiddenAndDeprecated(scanCmd *cobra.Command, flagName string, flagProps flagJSON) error <span class="cov10" title="288">{ //nolint:gocritic
-        if flagProps.Hidden </span><span class="cov4" title="12">{
-                err := scanCmd.Flags().MarkHidden(flagName)
+func checkHiddenAndDeprecated(flagSet *pflag.FlagSet, flagName string, flagProps flagJSON) error <span class="cov0" title="0">{ //nolint:gocritic
+        if flagProps.Hidden </span><span class="cov0" title="0">{
+                err := flagSet.MarkHidden(flagName)
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("Loading flags: could not mark flag as hidden")
                         return err
                 }</span>
         }
-        <span class="cov10" title="288">if flagProps.Deprecated </span><span class="cov4" title="12">{
-                err := scanCmd.Flags().MarkDeprecated(flagName, flagProps.DeprecatedInfo)
+        <span class="cov0" title="0">if flagProps.Deprecated </span><span class="cov0" title="0">{
+                err := flagSet.MarkDeprecated(flagName, flagProps.DeprecatedInfo)
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("Loading flags: could not mark flag as deprecated")
                         return err
                 }</span>
         }
-        <span class="cov10" title="288">return nil</span>
+        <span class="cov0" title="0">return nil</span>
 }
 
-func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
-        flagsMultiStrReferences = make(map[string]*[]string)
-        flagsStrReferences = make(map[string]*string)
-        flagsBoolReferences = make(map[string]*bool)
-        flagsIntReferences = make(map[string]*int)
-
+// InitJSONFlags initialize cobra flags
+func InitJSONFlags(cmd *cobra.Command, flagsListContent string, persistentFlag bool) error <span class="cov0" title="0">{
         var flagsList map[string]flagJSON
         err := json.Unmarshal([]byte(flagsListContent), &amp;flagsList)
         if err != nil </span><span class="cov0" title="0">{
@@ -362,23 +298,28 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
                 return err
         }</span>
 
-        <span class="cov4" title="12">for flagName, flagProps := range flagsList </span><span class="cov10" title="288">{
+        <span class="cov0" title="0">flagSet := cmd.Flags()
+        if persistentFlag </span><span class="cov0" title="0">{
+                flagSet = cmd.PersistentFlags()
+        }</span>
+
+        <span class="cov0" title="0">for flagName, flagProps := range flagsList </span><span class="cov0" title="0">{
                 flagProps.Usage = evalUsage(flagProps.Usage)
 
                 switch flagProps.FlagType </span>{
-                case "multiStr":<span class="cov8" title="120">
+                case "multiStr":<span class="cov0" title="0">
                         var flag []string
                         flagsMultiStrReferences[flagName] = &amp;flag
                         defaultValues := make([]string, 0)
-                        if flagProps.DefaultValue != nil </span><span class="cov7" title="48">{
+                        if flagProps.DefaultValue != nil </span><span class="cov0" title="0">{
                                 defaultValues = strings.Split(*flagProps.DefaultValue, ",")
                         }</span>
-                        <span class="cov8" title="120">scanCmd.Flags().StringSliceVarP(flagsMultiStrReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValues, flagProps.Usage)</span>
-                case "str":<span class="cov8" title="96">
+                        <span class="cov0" title="0">flagSet.StringSliceVarP(flagsMultiStrReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValues, flagProps.Usage)</span>
+                case "str":<span class="cov0" title="0">
                         var flag string
                         flagsStrReferences[flagName] = &amp;flag
-                        scanCmd.Flags().StringVarP(flagsStrReferences[flagName], flagName, flagProps.ShorthandFlag, *flagProps.DefaultValue, flagProps.Usage)</span>
-                case "bool":<span class="cov7" title="48">
+                        flagSet.StringVarP(flagsStrReferences[flagName], flagName, flagProps.ShorthandFlag, *flagProps.DefaultValue, flagProps.Usage)</span>
+                case "bool":<span class="cov0" title="0">
                         var flag bool
                         flagsBoolReferences[flagName] = &amp;flag
                         defaultValue, err := strconv.ParseBool(*flagProps.DefaultValue)
@@ -386,8 +327,8 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
                                 log.Err(err).Msg("Loading flags: could not convert default values")
                                 return err
                         }</span>
-                        <span class="cov7" title="48">scanCmd.Flags().BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
-                case "int":<span class="cov6" title="24">
+                        <span class="cov0" title="0">flagSet.BoolVarP(flagsBoolReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
+                case "int":<span class="cov0" title="0">
                         var flag int
                         flagsIntReferences[flagName] = &amp;flag
                         defaultValue, err := strconv.Atoi(*flagProps.DefaultValue)
@@ -395,21 +336,220 @@ func initJSONFlags(scanCmd *cobra.Command) error <span class="cov4" title="12">{
                                 log.Err(err).Msg("Loading flags: could not convert default values")
                                 return err
                         }</span>
-                        <span class="cov6" title="24">scanCmd.Flags().IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
+                        <span class="cov0" title="0">flagSet.IntVarP(flagsIntReferences[flagName], flagName, flagProps.ShorthandFlag, defaultValue, flagProps.Usage)</span>
                 default:<span class="cov0" title="0">
                         log.Error().Msgf("Flag %s has unknown type %s", flagName, flagProps.FlagType)</span>
                 }
 
-                <span class="cov10" title="288">err := checkHiddenAndDeprecated(scanCmd, flagName, flagProps)
+                <span class="cov0" title="0">err := checkHiddenAndDeprecated(flagSet, flagName, flagProps)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
+
+                <span class="cov0" title="0">if flagProps.Validation != "" </span><span class="cov0" title="0">{
+                        validations[flagName] = strings.Split(flagProps.Validation, ",")
+                }</span>
         }
-        <span class="cov4" title="12">return nil</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+// GetStrFlag get a string flag by its name
+func GetStrFlag(flagName string) string <span class="cov7" title="6">{
+        if value, ok := flagsStrReferences[flagName]; ok </span><span class="cov6" title="4">{
+                return *value
+        }</span>
+        <span class="cov3" title="2">log.Debug().Msgf("Could not find string flag %s", flagName)
+        return ""</span>
+}
+
+// GetMultiStrFlag get a slice of strings flag by its name
+func GetMultiStrFlag(flagName string) []string <span class="cov10" title="11">{
+        if value, ok := flagsMultiStrReferences[flagName]; ok </span><span class="cov9" title="9">{
+                return *value
+        }</span>
+        <span class="cov3" title="2">log.Debug().Msgf("Could not find string slice flag %s", flagName)
+        return []string{}</span>
+}
+
+// GetBoolFlag get a boolean flag by its name
+func GetBoolFlag(flagName string) bool <span class="cov3" title="2">{
+        if value, ok := flagsBoolReferences[flagName]; ok </span><span class="cov1" title="1">{
+                return *value
+        }</span>
+        <span class="cov1" title="1">log.Debug().Msgf("Could not find boolean flag %s", flagName)
+        return false</span>
+}
+
+// GetIntFlag get a integer flag by its name
+func GetIntFlag(flagName string) int <span class="cov3" title="2">{
+        if value, ok := flagsIntReferences[flagName]; ok </span><span class="cov1" title="1">{
+                return *value
+        }</span>
+        <span class="cov1" title="1">log.Debug().Msgf("Could not find integer flag %s", flagName)
+        return -1</span>
+}
+
+// SetStrFlag set a string flag using its name
+func SetStrFlag(flagName, value string) <span class="cov3" title="2">{
+        if _, ok := flagsStrReferences[flagName]; ok </span><span class="cov1" title="1">{
+                *flagsStrReferences[flagName] = value
+        }</span> else<span class="cov1" title="1"> {
+                log.Debug().Msgf("Could not set string flag %s", flagName)
+        }</span>
+}
+
+// SetMultiStrFlag set a slice of strings flag using its name
+func SetMultiStrFlag(flagName string, value []string) <span class="cov3" title="2">{
+        if _, ok := flagsMultiStrReferences[flagName]; ok </span><span class="cov1" title="1">{
+                *flagsMultiStrReferences[flagName] = value
+        }</span> else<span class="cov1" title="1"> {
+                log.Debug().Msgf("Could not set string slice flag %s", flagName)
+        }</span>
 }
 </pre>
 		
-		<pre class="file" id="file1" style="display: none">package console
+		<pre class="file" id="file1" style="display: none">package flags
+
+import "regexp"
+
+type flagValidationFuncsMap map[string]func(flagName string) error
+
+var flagValidationFuncs = flagValidationFuncsMap{
+        "sliceFlagsShouldNotStartWithFlags": sliceFlagsShouldNotStartWithFlags,
+        "validateMultiStrEnum":              validateMultiStrEnum,
+        "validateStrEnum":                   validateStrEnum,
+        "allQueriesID":                      allQueriesID,
+}
+
+func isQueryID(id string) bool <span class="cov6" title="5">{
+        re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
+        return re.MatchString(id)
+}</span>
+
+func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="4">{
+        returnMap := make(map[string]string, len(slice))
+        for _, element := range slice </span><span class="cov10" title="18">{
+                returnMap[element] = ""
+        }</span>
+        <span class="cov5" title="4">return returnMap</span>
+}
+
+// Validate validate if flag values are ok, if not, returns an error
+func Validate() error <span class="cov0" title="0">{
+        for validation, validationFuncs := range validations </span><span class="cov0" title="0">{
+                for _, validationFunc := range validationFuncs </span><span class="cov0" title="0">{
+                        if function, ok := flagValidationFuncs[validationFunc]; ok </span><span class="cov0" title="0">{
+                                if err := function(validation); err != nil </span><span class="cov0" title="0">{
+                                        return err
+                                }</span>
+                        }
+                }
+        }
+        <span class="cov0" title="0">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package flags
+
+import (
+        "fmt"
+        "regexp"
+        "strings"
+
+        "github.com/Checkmarx/kics/internal/console/helpers"
+        "github.com/Checkmarx/kics/internal/constants"
+        "github.com/Checkmarx/kics/pkg/utils"
+)
+
+var validMultiStrEnums = map[string]map[string]string{
+        "cloud-provider":     constants.AvailableCloudProviders,
+        "exclude-categories": constants.AvailableCategories,
+        "fail-on":            convertSliceToDummyMap(constants.AvailableSeverities),
+        "report-formats":     convertSliceToDummyMap(append([]string{"all"}, helpers.ListReportFormats()...)),
+        "type":               constants.AvailablePlatforms,
+}
+
+func sliceFlagsShouldNotStartWithFlags(flagName string) error <span class="cov3" title="3">{
+        values := GetMultiStrFlag(flagName)
+        re := regexp.MustCompile(`^--[a-z-]+$`)
+        if len(values) &gt; 0 </span><span class="cov3" title="3">{
+                firstArg := values[0]
+                if strings.HasPrefix(firstArg, "-") &amp;&amp; len(firstArg) == 2 || re.MatchString(firstArg) </span><span class="cov2" title="2">{
+                        return fmt.Errorf("flag needs an argument: %s", flagName)
+                }</span>
+        }
+        <span class="cov1" title="1">return nil</span>
+}
+
+func allQueriesID(flagName string) error <span class="cov2" title="2">{
+        queriesID := GetMultiStrFlag(flagName)
+        for _, queryID := range queriesID </span><span class="cov3" title="3">{
+                if !isQueryID(queryID) </span><span class="cov1" title="1">{
+                        return fmt.Errorf("invalid argument --%s: %s is not a valid query ID", flagName, queryID)
+                }</span>
+        }
+        <span class="cov1" title="1">return nil</span>
+}
+
+func validateMultiStrEnum(flagName string) error <span class="cov2" title="2">{
+        enums := GetMultiStrFlag(flagName)
+        invalidEnum := make([]string, 0)
+        caseInsensitiveMap := make(map[string]string)
+        for key, value := range validMultiStrEnums[flagName] </span><span class="cov10" title="28">{
+                caseInsensitiveMap[strings.ToLower(key)] = value
+        }</span>
+        <span class="cov2" title="2">for _, enum := range enums </span><span class="cov3" title="3">{
+                if _, ok := caseInsensitiveMap[strings.ToLower(enum)]; enum != "" &amp;&amp; !ok </span><span class="cov1" title="1">{
+                        invalidEnum = append(invalidEnum, enum)
+                }</span>
+        }
+        <span class="cov2" title="2">validEnumsValues := utils.SortedKeys(validMultiStrEnums[flagName])
+        if len(invalidEnum) &gt; 0 </span><span class="cov1" title="1">{
+                return fmt.Errorf(
+                        "unknown argument(s) for --%s: %s\nvalid arguments:\n  %s",
+                        flagName,
+                        strings.Join(invalidEnum, ", "),
+                        strings.Join(validEnumsValues, "\n  "),
+                )
+        }</span>
+        <span class="cov1" title="1">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package flags
+
+import (
+        "fmt"
+        "strings"
+
+        "github.com/Checkmarx/kics/internal/constants"
+        "github.com/Checkmarx/kics/pkg/utils"
+)
+
+var validStrEnums = map[string]map[string]string{
+        "log-level": convertSliceToDummyMap(constants.AvailableLogLevels),
+}
+
+func validateStrEnum(flagName string) error <span class="cov3" title="2">{
+        value := GetStrFlag(flagName)
+        caseInsensitiveMap := make(map[string]string)
+        for key, value := range validStrEnums[flagName] </span><span class="cov10" title="12">{
+                caseInsensitiveMap[strings.ToLower(key)] = value
+        }</span>
+        <span class="cov3" title="2">validEnumsValues := utils.SortedKeys(validStrEnums[flagName])
+        if _, ok := caseInsensitiveMap[strings.ToLower(value)]; value != "" &amp;&amp; !ok </span><span class="cov1" title="1">{
+                return fmt.Errorf(
+                        "unknown argument for --%s: %s\nvalid arguments:\n  %s",
+                        flagName,
+                        value,
+                        strings.Join(validEnumsValues, "\n  "),
+                )
+        }</span>
+        <span class="cov1" title="1">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package console
 
 import (
         "fmt"
@@ -435,7 +575,7 @@ func NewGenerateIDCmd() *cobra.Command <span class="cov10" title="12">{
 }
 </pre>
 		
-		<pre class="file" id="file2" style="display: none">package helpers
+		<pre class="file" id="file5" style="display: none">package helpers
 
 import (
         "fmt"
@@ -508,7 +648,7 @@ func ShowError(kind string) bool <span class="cov5" title="4">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file3" style="display: none">package helpers
+		<pre class="file" id="file6" style="display: none">package helpers
 
 import (
         "encoding/json"
@@ -517,6 +657,7 @@ import (
         "io"
         "os"
         "path/filepath"
+        "sort"
         "strings"
 
         "github.com/BurntSushi/toml"
@@ -766,30 +907,13 @@ func GetDefaultQueryPath(queriesPath string) (string, error) <span class="cov3" 
 }
 
 // ListReportFormats return a slice with all supported report formats
-func ListReportFormats() []string <span class="cov3" title="2">{
+func ListReportFormats() []string <span class="cov1" title="1">{
         supportedFormats := make([]string, 0, len(reportGenerators))
-        for reportFormats := range reportGenerators </span><span class="cov8" title="10">{
+        for reportFormats := range reportGenerators </span><span class="cov5" title="5">{
                 supportedFormats = append(supportedFormats, reportFormats)
         }</span>
-        <span class="cov3" title="2">return supportedFormats</span>
-}
-
-// ValidateReportFormats returns an error if output format is not supported
-func ValidateReportFormats(formats []string) error <span class="cov3" title="2">{
-        log.Debug().Msg("helpers.ValidateReportFormats()")
-
-        for _, format := range formats </span><span class="cov6" title="7">{
-                if _, ok := reportGenerators[format]; !ok </span><span class="cov1" title="1">{
-                        return fmt.Errorf(
-                                fmt.Sprintf(
-                                        "Report format not supported: %s\nSupportted formats:\n  %s\nalso you can use 'all' to export in all supported formats",
-                                        format,
-                                        strings.Join(ListReportFormats(), "\n"),
-                                ),
-                        )
-                }</span>
-        }
-        <span class="cov1" title="1">return nil</span>
+        <span class="cov1" title="1">sort.Strings(supportedFormats)
+        return supportedFormats</span>
 }
 
 // NewPrinter initializes a new Printer
@@ -826,14 +950,15 @@ func (p *Printer) Bold(content string) string <span class="cov5" title="4">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file4" style="display: none">package console
+		<pre class="file" id="file7" style="display: none">package console
 
 import (
         "context"
-        "fmt"
+        _ "embed" // Embed kics flags
         "os"
         "time"
 
+        "github.com/Checkmarx/kics/internal/console/flags"
         "github.com/Checkmarx/kics/internal/console/printer"
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/getsentry/sentry-go"
@@ -848,20 +973,13 @@ const (
 )
 
 var (
+        //go:embed assets/kics-flags.json
+        kicsFlagsListContent string
+
         // warnings - a buffer to accumulate warnings before the printer gets initialized
         warnings = make([]string, 0)
 
         ctx = context.Background()
-
-        ci        bool
-        logFile   bool
-        logFormat string
-        logLevel  string
-        logPath   string
-        noColor   bool
-        silent    bool
-        profiling string
-        verbose   bool
 )
 
 // NewKICSCmd creates a new instance of the kics Command
@@ -878,48 +996,8 @@ func initialize(rootCmd *cobra.Command) error <span class="cov10" title="12">{
         rootCmd.AddCommand(NewGenerateIDCmd())
         rootCmd.AddCommand(scanCmd)
         rootCmd.AddCommand(NewListPlatformsCmd())
-        rootCmd.PersistentFlags().BoolVarP(&amp;logFile,
-                printer.LogFileFlag,
-                printer.LogFileShorthand,
-                false,
-                "writes log messages to log file")
-        rootCmd.PersistentFlags().StringVar(&amp;logPath,
-                printer.LogPathFlag,
-                "",
-                fmt.Sprintf("path to generate log file (%s)", constants.DefaultLogFile))
-        rootCmd.PersistentFlags().StringVar(&amp;logLevel,
-                printer.LogLevelFlag,
-                "INFO",
-                "determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL)")
-        rootCmd.PersistentFlags().StringVarP(&amp;logFormat,
-                printer.LogFormatFlag,
-                printer.LogFormatShorthand,
-                printer.LogFormatPretty,
-                fmt.Sprintf("determines log format (%s,%s)", printer.LogFormatPretty, printer.LogFormatJSON))
-        rootCmd.PersistentFlags().BoolVarP(&amp;verbose,
-                printer.VerboseFlag,
-                printer.VerboseShorthand,
-                false,
-                "write logs to stdout too (mutually exclusive with silent)")
-        rootCmd.PersistentFlags().BoolVarP(&amp;silent,
-                printer.SilentFlag,
-                printer.SilentShorthand,
-                false,
-                "silence stdout messages (mutually exclusive with verbose and ci)")
-        rootCmd.PersistentFlags().BoolVar(&amp;noColor,
-                printer.NoColorFlag,
-                false,
-                "disable CLI color output")
-        rootCmd.PersistentFlags().BoolVar(&amp;ci,
-                printer.CIFlag,
-                false,
-                "display only log messages to CLI output (mutually exclusive with silent)")
-        rootCmd.PersistentFlags().StringVar(&amp;profiling,
-                "profiling",
-                "",
-                "enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)")
 
-        if err := rootCmd.PersistentFlags().MarkDeprecated(printer.LogFileFlag, "please use --log-path instead"); err != nil </span><span class="cov0" title="0">{
+        if err := flags.InitJSONFlags(rootCmd, kicsFlagsListContent, true); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
@@ -984,7 +1062,7 @@ func initSentry(dsn string) <span class="cov10" title="12">{
 }
 </pre>
 		
-		<pre class="file" id="file5" style="display: none">package console
+		<pre class="file" id="file8" style="display: none">package console
 
 import (
         "fmt"
@@ -1008,7 +1086,7 @@ func NewListPlatformsCmd() *cobra.Command <span class="cov10" title="12">{
 }
 </pre>
 		
-		<pre class="file" id="file6" style="display: none">package printer
+		<pre class="file" id="file9" style="display: none">package printer
 
 import (
         "io"
@@ -1018,6 +1096,7 @@ import (
         "strconv"
         "strings"
 
+        consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
         consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
         "github.com/Checkmarx/kics/internal/constants"
         "github.com/gookit/color"
@@ -1027,50 +1106,33 @@ import (
         "github.com/spf13/pflag"
 )
 
-const (
-        CIFlag             = "ci"
-        LogFileFlag        = "log-file"
-        LogFileShorthand   = "l"
-        LogFormatFlag      = "log-format"
-        LogFormatShorthand = "f"
-        LogLevelFlag       = "log-level"
-        LogPathFlag        = "log-path"
-        NoColorFlag        = "no-color"
-        SilentFlag         = "silent"
-        SilentShorthand    = "s"
-        VerboseFlag        = "verbose"
-        VerboseShorthand   = "v"
-        LogFormatJSON      = "json"
-        LogFormatPretty    = "pretty"
-)
-
 var (
         optionsMap = map[string]func(opt interface{}, changed bool) error{
-                CIFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
+                consoleFlags.CIFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
                         return nil
                 }</span>,
-                LogFileFlag:  LogFile,
-                LogLevelFlag: LogLevel,
-                LogPathFlag:  LogPath,
-                SilentFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
+                consoleFlags.LogFileFlag:  LogFile,
+                consoleFlags.LogLevelFlag: LogLevel,
+                consoleFlags.LogPathFlag:  LogPath,
+                consoleFlags.SilentFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
                         return nil
                 }</span>,
-                VerboseFlag: Verbose,
-                LogFormatFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
+                consoleFlags.VerboseFlag: Verbose,
+                consoleFlags.LogFormatFlag: func(opt interface{}, changed bool) error <span class="cov0" title="0">{
                         return nil
                 }</span>,
-                NoColorFlag: NoColor,
+                consoleFlags.NoColorFlag: NoColor,
         }
 
         optionsOrderMap = map[int]string{
-                1: CIFlag,
-                2: LogFileFlag,
-                3: LogLevelFlag,
-                4: LogPathFlag,
-                5: SilentFlag,
-                6: VerboseFlag,
-                7: LogFormatFlag,
-                8: NoColorFlag,
+                1: consoleFlags.CIFlag,
+                2: consoleFlags.LogFileFlag,
+                3: consoleFlags.LogLevelFlag,
+                4: consoleFlags.LogPathFlag,
+                5: consoleFlags.SilentFlag,
+                6: consoleFlags.VerboseFlag,
+                7: consoleFlags.LogFormatFlag,
+                8: consoleFlags.NoColorFlag,
         }
 
         consoleLogger = zerolog.ConsoleWriter{Out: io.Discard}
@@ -1085,7 +1147,7 @@ var (
 
 // SetupPrinter - configures stdout and log options with given FlagSet
 func SetupPrinter(flags *pflag.FlagSet) error <span class="cov0" title="0">{
-        err := validateFlags(flags)
+        err := validateFlags()
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -1119,18 +1181,18 @@ func SetupPrinter(flags *pflag.FlagSet) error <span class="cov0" title="0">{
         }
 
         // LogFormat needs to be the last option
-        <span class="cov0" title="0">logFormat := strings.ToLower(flags.Lookup(LogFormatFlag).Value.String())
-        err = LogFormat(logFormat, flags.Lookup(LogFormatFlag).Changed)
+        <span class="cov0" title="0">logFormat := strings.ToLower(consoleFlags.GetStrFlag(consoleFlags.LogFormatFlag))
+        err = LogFormat(logFormat)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov0" title="0">err = Silent(getFlagValue(SilentFlag, flags), flags.Lookup(SilentFlag).Changed)
+        <span class="cov0" title="0">err = Silent(consoleFlags.GetBoolFlag(consoleFlags.SilentFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov0" title="0">err = CI(getFlagValue(CIFlag, flags), flags.Lookup(CIFlag).Changed)
+        <span class="cov0" title="0">err = CI(consoleFlags.GetBoolFlag(consoleFlags.CIFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -1143,24 +1205,16 @@ func IsInitialized() bool <span class="cov1" title="1">{
         return initialized
 }</span>
 
-func getFlagValue(flagName string, flags *pflag.FlagSet) bool <span class="cov0" title="0">{
-        v, err := strconv.ParseBool(flags.Lookup(flagName).Value.String())
-        if err != nil </span><span class="cov0" title="0">{
-                log.Error().Msgf("failed to parse boolean flag")
-        }</span>
-        <span class="cov0" title="0">return v</span>
-}
-
-func validateFlags(flags *pflag.FlagSet) error <span class="cov0" title="0">{
-        if getFlagValue(VerboseFlag, flags) &amp;&amp; getFlagValue(SilentFlag, flags) </span><span class="cov0" title="0">{
+func validateFlags() error <span class="cov0" title="0">{
+        if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) &amp;&amp; consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) </span><span class="cov0" title="0">{
                 return errors.New("can't provide 'silent' and 'verbose' flags simultaneously")
         }</span>
 
-        <span class="cov0" title="0">if getFlagValue(VerboseFlag, flags) &amp;&amp; getFlagValue(CIFlag, flags) </span><span class="cov0" title="0">{
+        <span class="cov0" title="0">if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) &amp;&amp; consoleFlags.GetBoolFlag(consoleFlags.CIFlag) </span><span class="cov0" title="0">{
                 return errors.New("can't provide 'verbose' and 'ci' flags simultaneously")
         }</span>
 
-        <span class="cov0" title="0">if getFlagValue(CIFlag, flags) &amp;&amp; getFlagValue(SilentFlag, flags) </span><span class="cov0" title="0">{
+        <span class="cov0" title="0">if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) &amp;&amp; consoleFlags.GetBoolFlag(consoleFlags.SilentFlag) </span><span class="cov0" title="0">{
                 return errors.New("can't provide 'silent' and 'ci' flags simultaneously")
         }</span>
         <span class="cov0" title="0">return nil</span>
@@ -1187,7 +1241,7 @@ func Verbose(opt interface{}, changed bool) error <span class="cov1" title="1">{
 }
 
 // Silent - disables stdout output
-func Silent(opt interface{}, changed bool) error <span class="cov1" title="1">{
+func Silent(opt interface{}) error <span class="cov1" title="1">{
         silent := opt.(bool)
         if silent </span><span class="cov1" title="1">{
                 color.SetOutput(io.Discard)
@@ -1198,7 +1252,7 @@ func Silent(opt interface{}, changed bool) error <span class="cov1" title="1">{
 }
 
 // CI - enable only log messages to CLI output
-func CI(opt interface{}, changed bool) error <span class="cov1" title="1">{
+func CI(opt interface{}) error <span class="cov1" title="1">{
         ci := opt.(bool)
         if ci </span><span class="cov1" title="1">{
                 color.SetOutput(io.Discard)
@@ -1209,13 +1263,12 @@ func CI(opt interface{}, changed bool) error <span class="cov1" title="1">{
 }
 
 // LogFormat - configures the logs format (JSON,pretty).
-func LogFormat(opt interface{}, changed bool) error <span class="cov6" title="3">{
-        logFormat := opt.(string)
-        if logFormat == LogFormatJSON </span><span class="cov1" title="1">{
+func LogFormat(logFormat string) error <span class="cov6" title="3">{
+        if logFormat == constants.LogFormatJSON </span><span class="cov1" title="1">{
                 log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, loggerFile.(io.Writer)))
                 outFileLogger = loggerFile
                 outConsoleLogger = os.Stdout
-        }</span> else<span class="cov4" title="2"> if logFormat == LogFormatPretty </span><span class="cov1" title="1">{
+        }</span> else<span class="cov4" title="2"> if logFormat == constants.LogFormatPretty </span><span class="cov1" title="1">{
                 fileLogger = consoleHelpers.CustomConsoleWriter(&amp;zerolog.ConsoleWriter{Out: loggerFile.(io.Writer), NoColor: true})
                 log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
                 outFileLogger = fileLogger
@@ -1273,7 +1326,7 @@ func LogFile(opt interface{}, changed bool) error <span class="cov1" title="1">{
 }
 
 // LogLevel - sets log level
-func LogLevel(opt interface{}, changed bool) error <span class="cov10" title="7">{
+func LogLevel(opt interface{}, changed bool) error <span class="cov10" title="6">{
         logLevel := opt.(string)
         switch strings.ToUpper(logLevel) </span>{
         case "TRACE":<span class="cov1" title="1">
@@ -1288,10 +1341,8 @@ func LogLevel(opt interface{}, changed bool) error <span class="cov10" title="7"
                 zerolog.SetGlobalLevel(zerolog.ErrorLevel)</span>
         case "FATAL":<span class="cov1" title="1">
                 zerolog.SetGlobalLevel(zerolog.FatalLevel)</span>
-        default:<span class="cov1" title="1">
-                return errors.New("invalid log level")</span>
         }
-        <span class="cov9" title="6">return nil</span>
+        <span class="cov10" title="6">return nil</span>
 }
 
 func getDefaultLogPath() (string, error) <span class="cov4" title="2">{
@@ -1303,10 +1354,10 @@ func getDefaultLogPath() (string, error) <span class="cov4" title="2">{
 }
 </pre>
 		
-		<pre class="file" id="file7" style="display: none">package console
+		<pre class="file" id="file10" style="display: none">package console
 
 import (
-        _ "embed" // Embed kics CLI img
+        _ "embed" // Embed kics CLI img and scan-flags
         "fmt"
         "os"
         "os/signal"
@@ -1315,6 +1366,7 @@ import (
         "syscall"
         "time"
 
+        "github.com/Checkmarx/kics/internal/console/flags"
         consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
         internalPrinter "github.com/Checkmarx/kics/internal/console/printer"
         "github.com/Checkmarx/kics/internal/constants"
@@ -1349,6 +1401,9 @@ import (
 var (
         //go:embed assets/kics-console
         banner string
+
+        //go:embed assets/scan-flags.json
+        scanFlagsListContent string
 )
 
 const (
@@ -1371,25 +1426,25 @@ func NewScanCmd() *cobra.Command <span class="cov4" title="12">{
 }
 
 func run(cmd *cobra.Command) error <span class="cov4" title="7">{
-        changedDefaultQueryPath := cmd.Flags().Lookup(queriesPath).Changed
-        if err := consoleHelpers.InitShouldIgnoreArg(getStrFlag(ignoreOnExitFlag)); err != nil </span><span class="cov0" title="0">{
+        changedDefaultQueryPath := cmd.Flags().Lookup(flags.QueriesPath).Changed
+        if err := consoleHelpers.InitShouldIgnoreArg(flags.GetStrFlag(flags.IgnoreOnExitFlag)); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">if err := consoleHelpers.InitShouldFailArg(getMultiStrFlag(failOnFlag)); err != nil </span><span class="cov0" title="0">{
+        <span class="cov4" title="7">if err := consoleHelpers.InitShouldFailArg(flags.GetMultiStrFlag(flags.FailOnFlag)); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">if getStrFlag(outputPathFlag) != "" </span><span class="cov1" title="1">{
+        <span class="cov4" title="7">if flags.GetStrFlag(flags.OutputPathFlag) != "" </span><span class="cov1" title="1">{
                 updateReportFormats()
-                setStrFlag(outputNameFlag, filepath.Base(getStrFlag(outputNameFlag)))
-                if filepath.Ext(getStrFlag(outputPathFlag)) != "" </span><span class="cov1" title="1">{
-                        setStrFlag(outputPathFlag, filepath.Join(getStrFlag(outputPathFlag), string(os.PathSeparator)))
+                flags.SetStrFlag(flags.OutputNameFlag, filepath.Base(flags.GetStrFlag(flags.OutputNameFlag)))
+                if filepath.Ext(flags.GetStrFlag(flags.OutputPathFlag)) != "" </span><span class="cov1" title="1">{
+                        flags.SetStrFlag(flags.OutputPathFlag, filepath.Join(flags.GetStrFlag(flags.OutputPathFlag), string(os.PathSeparator)))
                 }</span>
-                <span class="cov1" title="1">if err := os.MkdirAll(getStrFlag(outputPathFlag), os.ModePerm); err != nil </span><span class="cov0" title="0">{
+                <span class="cov1" title="1">if err := os.MkdirAll(flags.GetStrFlag(flags.OutputPathFlag), os.ModePerm); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
-        <span class="cov4" title="7">if getStrFlag(payloadPathFlag) != "" &amp;&amp; filepath.Dir(getStrFlag(payloadPathFlag)) != "." </span><span class="cov0" title="0">{
-                if err := os.MkdirAll(filepath.Dir(getStrFlag(payloadPathFlag)), os.ModePerm); err != nil </span><span class="cov0" title="0">{
+        <span class="cov4" title="7">if flags.GetStrFlag(flags.PayloadPathFlag) != "" &amp;&amp; filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)) != "." </span><span class="cov0" title="0">{
+                if err := os.MkdirAll(filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)), os.ModePerm); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
@@ -1402,6 +1457,12 @@ func preRun(cmd *cobra.Command) error <span class="cov4" title="8">{
         if err != nil </span><span class="cov1" title="1">{
                 return errors.New(initError + err.Error())
         }</span>
+
+        <span class="cov4" title="7">err = flags.Validate()
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
         <span class="cov4" title="7">err = validateQuerySelectionFlags()
         if err != nil </span><span class="cov0" title="0">{
                 return err
@@ -1410,7 +1471,7 @@ func preRun(cmd *cobra.Command) error <span class="cov4" title="8">{
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
-        <span class="cov4" title="7">err = metrics.InitializeMetrics(cmd.InheritedFlags().Lookup("profiling"), cmd.InheritedFlags().Lookup("ci"))
+        <span class="cov4" title="7">err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetStrFlag(flags.CIFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
@@ -1424,20 +1485,20 @@ func formatNewError(flag1, flag2 string) error <span class="cov0" title="0">{
 }</span>
 
 func updateReportFormats() <span class="cov1" title="1">{
-        for _, format := range getMultiStrFlag(reportFormatsFlag) </span><span class="cov1" title="1">{
+        for _, format := range flags.GetMultiStrFlag(flags.ReportFormatsFlag) </span><span class="cov1" title="1">{
                 if format == "all" </span><span class="cov0" title="0">{
-                        setMultiStrFlag(reportFormatsFlag, consoleHelpers.ListReportFormats())
+                        flags.SetMultiStrFlag(flags.ReportFormatsFlag, consoleHelpers.ListReportFormats())
                         break</span>
                 }
         }
 }
 
 func validateQuerySelectionFlags() error <span class="cov4" title="7">{
-        if len(getMultiStrFlag(includeQueriesFlag)) &gt; 0 &amp;&amp; len(getMultiStrFlag(excludeQueriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
-                return formatNewError(includeQueriesFlag, excludeQueriesFlag)
+        if len(flags.GetMultiStrFlag(flags.IncludeQueriesFlag)) &gt; 0 &amp;&amp; len(flags.GetMultiStrFlag(flags.ExcludeQueriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
+                return formatNewError(flags.IncludeQueriesFlag, flags.ExcludeQueriesFlag)
         }</span>
-        <span class="cov4" title="7">if len(getMultiStrFlag(includeQueriesFlag)) &gt; 0 &amp;&amp; len(getMultiStrFlag(excludeCategoriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
-                return formatNewError(includeQueriesFlag, excludeCategoriesFlag)
+        <span class="cov4" title="7">if len(flags.GetMultiStrFlag(flags.IncludeQueriesFlag)) &gt; 0 &amp;&amp; len(flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
+                return formatNewError(flags.IncludeQueriesFlag, flags.ExcludeCategoriesFlag)
         }</span>
         <span class="cov4" title="7">return nil</span>
 }
@@ -1461,10 +1522,10 @@ func initializeConfig(cmd *cobra.Command) error <span class="cov4" title="8">{
                 return nil
         }</span>
 
-        <span class="cov2" title="2">base := filepath.Base(getStrFlag(configFlag))
+        <span class="cov2" title="2">base := filepath.Base(flags.GetStrFlag(flags.ConfigFlag))
         v.SetConfigName(base)
-        v.AddConfigPath(filepath.Dir(getStrFlag(configFlag)))
-        ext, err := consoleHelpers.FileAnalyzer(getStrFlag(configFlag))
+        v.AddConfigPath(filepath.Dir(flags.GetStrFlag(flags.ConfigFlag)))
+        ext, err := consoleHelpers.FileAnalyzer(flags.GetStrFlag(flags.ConfigFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
@@ -1481,8 +1542,8 @@ func initializeConfig(cmd *cobra.Command) error <span class="cov4" title="8">{
 }
 
 func setupCfgFile() (bool, error) <span class="cov4" title="8">{
-        if getStrFlag(configFlag) == "" </span><span class="cov3" title="6">{
-                path := getMultiStrFlag(pathFlag)
+        if flags.GetStrFlag(flags.ConfigFlag) == "" </span><span class="cov3" title="6">{
+                path := flags.GetMultiStrFlag(flags.PathFlag)
                 if len(path) == 0 </span><span class="cov0" title="0">{
                         return true, nil
                 }</span>
@@ -1505,7 +1566,7 @@ func setupCfgFile() (bool, error) <span class="cov4" title="8">{
                         }</span>
                         <span class="cov0" title="0">return true, err</span>
                 }
-                <span class="cov0" title="0">setStrFlag(configFlag, filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))</span>
+                <span class="cov0" title="0">flags.SetStrFlag(flags.ConfigFlag, filepath.ToSlash(filepath.Join(configPath, constants.DefaultConfigFilename)))</span>
         }
         <span class="cov2" title="2">return false, nil</span>
 }
@@ -1527,8 +1588,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov10" title="340">{
-                if val == true </span><span class="cov9" title="339">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="314">{
+                if val == true </span><span class="cov9" title="313">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1556,11 +1617,11 @@ func setBoundFlags(flagName string, val interface{}, cmd *cobra.Command) <span c
 }
 
 func initScanCmd(scanCmd *cobra.Command) error <span class="cov4" title="12">{
-        if err := initJSONFlags(scanCmd); err != nil </span><span class="cov0" title="0">{
+        if err := flags.InitJSONFlags(scanCmd, scanFlagsListContent, false); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov4" title="12">if err := scanCmd.MarkFlagRequired(pathFlag); err != nil </span><span class="cov0" title="0">{
+        <span class="cov4" title="12">if err := scanCmd.MarkFlagRequired(flags.PathFlag); err != nil </span><span class="cov0" title="0">{
                 sentry.CaptureException(err)
                 log.Err(err).Msg("Failed to add command required flags")
         }</span>
@@ -1569,12 +1630,12 @@ func initScanCmd(scanCmd *cobra.Command) error <span class="cov4" title="12">{
 
 func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) <span class="cov4" title="7">{
         var excludePaths []string
-        if getStrFlag(payloadPathFlag) != "" </span><span class="cov1" title="1">{
-                excludePaths = append(excludePaths, getStrFlag(payloadPathFlag))
+        if flags.GetStrFlag(flags.PayloadPathFlag) != "" </span><span class="cov1" title="1">{
+                excludePaths = append(excludePaths, flags.GetStrFlag(flags.PayloadPathFlag))
         }</span>
 
-        <span class="cov4" title="7">if len(getMultiStrFlag(excludePathsFlag)) &gt; 0 </span><span class="cov1" title="1">{
-                excludePaths = append(excludePaths, getMultiStrFlag(excludePathsFlag)...)
+        <span class="cov4" title="7">if len(flags.GetMultiStrFlag(flags.ExcludePathsFlag)) &gt; 0 </span><span class="cov1" title="1">{
+                excludePaths = append(excludePaths, flags.GetMultiStrFlag(flags.ExcludePathsFlag)...)
         }</span>
 
         <span class="cov4" title="7">filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
@@ -1593,21 +1654,21 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="
 }
 
 func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) <span class="cov4" title="7">{
-        excludeResultsMap := getExcludeResultsMap(getMultiStrFlag(excludeResultsFlag))
+        excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
 
         excludeQueries := source.ExcludeQueries{
-                ByIDs:        getMultiStrFlag(excludeQueriesFlag),
-                ByCategories: getMultiStrFlag(excludeCategoriesFlag),
+                ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
+                ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
         }
 
         includeQueries := source.IncludeQueries{
-                ByIDs: getMultiStrFlag(includeQueriesFlag),
+                ByIDs: flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
         }
 
         queryFilter := source.QueryInspectorParameters{
                 IncludeQueries: includeQueries,
                 ExcludeQueries: excludeQueries,
-                InputDataPath:  getStrFlag(inputDataFlag),
+                InputDataPath:  flags.GetStrFlag(flags.InputDataFlag),
         }
 
         inspector, err := engine.NewInspector(ctx,
@@ -1616,7 +1677,7 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
                 t,
                 &amp;queryFilter,
                 excludeResultsMap,
-                getIntFlag(queryExecTimeoutFlag),
+                flags.GetIntFlag(flags.QueryExecTimeoutFlag),
         )
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
@@ -1721,55 +1782,57 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
                 log.Warn().Msgf(warn)
         }</span>
 
-        <span class="cov4" title="7">printer := consoleHelpers.NewPrinter(getBoolFlag(minimalUIFlag))
+        <span class="cov4" title="7">printer := consoleHelpers.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
         printer.Success.Printf("\n%s\n", banner)
 
         versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
         fmt.Println(versionMsg)
         log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
-        proBarBuilder := progress.InitializePbBuilder(getBoolFlag(noProgressFlag), ci, silent)
+        proBarBuilder := progress.InitializePbBuilder(
+                flags.GetBoolFlag(flags.NoProgressFlag),
+                flags.GetBoolFlag(flags.CIFlag),
+                flags.GetBoolFlag(flags.SilentFlag))
 
         scanStartTime := time.Now()
         progressBar := proBarBuilder.BuildCircle("Preparing Scan Assets: ")
         progressBar.Start()
 
-        t, err := tracker.NewTracker(getIntFlag(previewLinesFlag))
+        t, err := tracker.NewTracker(flags.GetIntFlag(flags.PreviewLinesFlag))
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return err
         }</span>
 
         <span class="cov4" title="7">if changedDefaultQueryPath </span><span class="cov4" title="7">{
-                log.Debug().Msgf("Trying to load queries from %s", getStrFlag(queriesPath))
+                log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
         }</span> else<span class="cov0" title="0"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-                defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(getStrFlag(queriesPath))
+                defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
                 if errDefaultQueryPath != nil </span><span class="cov0" title="0">{
                         return errors.Wrap(errDefaultQueryPath, "unable to find queries")
                 }</span>
-                <span class="cov0" title="0">setStrFlag(queriesPath, defaultQueryPath)</span>
+                <span class="cov0" title="0">flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)</span>
         }
 
-        <span class="cov4" title="7">extractedPaths, err := provider.GetSources(getMultiStrFlag(pathFlag))
+        <span class="cov4" title="7">extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
         <span class="cov4" title="7">newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
-                analyzePaths(extractedPaths.Path, getMultiStrFlag(typeFlag), getMultiStrFlag(excludePathsFlag))
+                analyzePaths(extractedPaths.Path, flags.GetMultiStrFlag(flags.TypeFlag), flags.GetMultiStrFlag(flags.ExcludePathsFlag))
         if errAnalyze != nil </span><span class="cov0" title="0">{
                 return errAnalyze
         }</span>
-        <span class="cov4" title="7">setMultiStrFlag(typeFlag, newTypeFlagValue)
-        setMultiStrFlag(excludePathsFlag, newExcludePathsFlagValue)
+        <span class="cov4" title="7">flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
+        flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
 
         querySource := source.NewFilesystemSource(
-                getStrFlag(queriesPath),
-                getMultiStrFlag(typeFlag),
-                getMultiStrFlag(cloudProviderFlag),
-                getStrFlag(libraryPath),
-        )
+                flags.GetStrFlag(flags.QueriesPath),
+                flags.GetMultiStrFlag(flags.TypeFlag),
+                flags.GetMultiStrFlag(flags.CloudProviderFlag),
+                flags.GetStrFlag(flags.LibraryPath))
         store := storage.NewMemoryStorage()
 
         inspector, err := createServiceAndStartScan(&amp;startServiceParameters{
@@ -1797,7 +1860,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
         }</span>
 
         <span class="cov4" title="7">summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
-                ScannedPaths:      getMultiStrFlag(pathFlag),
+                ScannedPaths:      flags.GetMultiStrFlag(flags.PathFlag),
                 PathExtractionMap: extractedPaths.ExtractionMap,
         })
 
@@ -1816,7 +1879,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
 }
 
 func printScanDuration(elapsed time.Duration) <span class="cov4" title="7">{
-        if ci </span><span class="cov0" title="0">{
+        if flags.GetBoolFlag(flags.CIFlag) </span><span class="cov0" title="0">{
                 elapsedStrFormat := "Scan duration: %vms\n"
                 fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
                 log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
@@ -1844,7 +1907,7 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
         }
         summary.ScannedPaths = pathParameters.ScannedPaths
 
-        if getBoolFlag(disableCISDescFlag) || getBoolFlag(disableFullDescFlag) </span><span class="cov0" title="0">{
+        if flags.GetBoolFlag(flags.DisableCISDescFlag) || flags.GetBoolFlag(flags.DisableFullDescFlag) </span><span class="cov0" title="0">{
                 log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
         }</span> else<span class="cov4" title="7"> {
                 err := descriptions.RequestAndOverrideDescriptions(&amp;summary)
@@ -1869,17 +1932,22 @@ func resolveOutputs(
         if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">if getStrFlag(payloadPathFlag) != "" </span><span class="cov1" title="1">{
+        <span class="cov4" title="7">if flags.GetStrFlag(flags.PayloadPathFlag) != "" </span><span class="cov1" title="1">{
                 if err := report.ExportJSONReport(
-                        filepath.Dir(getStrFlag(payloadPathFlag)),
-                        filepath.Base(getStrFlag(payloadPathFlag)),
+                        filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)),
+                        filepath.Base(flags.GetStrFlag(flags.PayloadPathFlag)),
                         documents,
                 ); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
 
-        <span class="cov4" title="7">return printOutput(getStrFlag(outputPathFlag), getStrFlag(outputNameFlag), summary, getMultiStrFlag(reportFormatsFlag), proBarBuilder)</span>
+        <span class="cov4" title="7">return printOutput(
+                flags.GetStrFlag(flags.OutputPathFlag),
+                flags.GetStrFlag(flags.OutputNameFlag),
+                summary, flags.GetMultiStrFlag(flags.ReportFormatsFlag),
+                proBarBuilder,
+        )</span>
 }
 
 func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error <span class="cov4" title="7">{
@@ -1892,12 +1960,9 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
         }</span>
 
         <span class="cov1" title="1">log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
+        err := consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
 
-        err := consoleHelpers.ValidateReportFormats(formats)
-        if err == nil </span><span class="cov1" title="1">{
-                err = consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
-        }</span>
-        <span class="cov1" title="1">return err</span>
+        return err</span>
 }
 
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
@@ -1916,7 +1981,7 @@ func gracefulShutdown() <span class="cov4" title="7">{
 }
 </pre>
 		
-		<pre class="file" id="file8" style="display: none">package console
+		<pre class="file" id="file11" style="display: none">package console
 
 import (
         "fmt"
@@ -1938,7 +2003,7 @@ func NewVersionCmd() *cobra.Command <span class="cov10" title="12">{
 }
 </pre>
 		
-		<pre class="file" id="file9" style="display: none">package constants
+		<pre class="file" id="file12" style="display: none">package constants
 
 import (
         "fmt"
@@ -1956,6 +2021,60 @@ var (
         BaseURL = ""
         // APIScanner - API scanner feature switch
         APIScanner = ""
+
+        // AvailableCategories - All categories and its identifies
+        AvailableCategories = map[string]string{
+                "Access Control":          "CAT001",
+                "Availability":            "CAT002",
+                "Backup":                  "CAT003",
+                "Best Practices":          "CAT004",
+                "Build Process":           "CAT005",
+                "Encryption":              "CAT006",
+                "Insecure Configurations": "CAT007",
+                "Insecure Defaults":       "CAT008",
+                "Networking and Firewall": "CAT009",
+                "Observability":           "CAT010",
+                "Resource Management":     "CAT011",
+                "Secret Management":       "CAT012",
+                "Supply-Chain":            "CAT013",
+                "Structure and Semantics": "CAT014",
+        }
+
+        // AvailablePlatforms - All platforms available
+        AvailablePlatforms = map[string]string{
+                "Ansible":              "ansible",
+                "CloudFormation":       "cloudformation",
+                "Dockerfile":           "dockerfile",
+                "Kubernetes":           "k8s",
+                "Terraform":            "terraform",
+                "OpenAPI":              "openapi",
+                "AzureResourceManager": "azureresourcemanager",
+        }
+
+        // AvailableSeverities - All severities available
+        AvailableSeverities = []string{
+                "high",
+                "medium",
+                "low",
+                "info",
+        }
+
+        // AvailableLogLevels - All log levels available
+        AvailableLogLevels = []string{
+                "TRACE",
+                "DEBUG",
+                "INFO",
+                "WARN",
+                "ERROR",
+                "FATAL",
+        }
+
+        // AvailableCloudProviders - All cloud providers available
+        AvailableCloudProviders = map[string]string{
+                "aws":   "",
+                "azure": "",
+                "gcp":   "",
+        }
 )
 
 const (
@@ -1988,6 +2107,12 @@ const (
 
         // SentryRefreshRate - sentry crash report refresh rate
         SentryRefreshRate = 2
+
+        // LogFormatJSON - print log as json
+        LogFormatJSON = "json"
+
+        // LogFormatPretty - print log more readable
+        LogFormatPretty = "pretty"
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry
@@ -2001,7 +2126,7 @@ func GetVersion() string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file10" style="display: none">package metrics
+		<pre class="file" id="file13" style="display: none">package metrics
 
 import (
         "bytes"
@@ -2066,7 +2191,7 @@ func (c *cpuMetric) getMap() map[string]float64 <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file11" style="display: none">package metrics
+		<pre class="file" id="file14" style="display: none">package metrics
 
 import (
         "bytes"
@@ -2144,7 +2269,7 @@ func (c *memMetric) getMap() map[string]float64 <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file12" style="display: none">package metrics
+		<pre class="file" id="file15" style="display: none">package metrics
 
 import (
         "bytes"
@@ -2155,7 +2280,6 @@ import (
 
         "github.com/google/pprof/profile"
         "github.com/rs/zerolog/log"
-        "github.com/spf13/pflag"
 )
 
 var (
@@ -2188,10 +2312,9 @@ type Metrics struct {
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric, ci *pflag.Flag) error <span class="cov5" title="7">{
-        metricStr := metric.Value.String()
+func InitializeMetrics(metric, ci string) error <span class="cov5" title="7">{
         var err error
-        switch strings.ToLower(metricStr) </span>{
+        switch strings.ToLower(metric) </span>{
         case "cpu":<span class="cov2" title="2">
                 Metric.Disable = false
                 Metric.metric = &amp;cpuMetric{}
@@ -2206,13 +2329,13 @@ func InitializeMetrics(metric, ci *pflag.Flag) error <span class="cov5" title="7
         default:<span class="cov1" title="1">
                 Metric.total = 0
                 Metric.Disable = true
-                err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metricStr)</span>
+                err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metric)</span>
         }
 
         // Create temporary dir to keep pprof file
         <span class="cov5" title="7">if !Metric.Disable </span><span class="cov4" title="4">{
-                Metric.metricsID = metricStr
-                Metric.ci, _ = strconv.ParseBool(ci.Value.String())
+                Metric.metricsID = metric
+                Metric.ci, _ = strconv.ParseBool(ci)
         }</span>
 
         <span class="cov5" title="7">return err</span>
@@ -2259,13 +2382,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov9" title="36">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2290,7 +2413,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2305,7 +2428,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
 }
 </pre>
 		
-		<pre class="file" id="file13" style="display: none">package storage
+		<pre class="file" id="file16" style="display: none">package storage
 
 import (
         "context"
@@ -2357,7 +2480,7 @@ func NewMemoryStorage() *MemoryStorage <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file14" style="display: none">package tracker
+		<pre class="file" id="file17" style="display: none">package tracker
 
 import (
         "fmt"
@@ -2430,7 +2553,7 @@ func (c *CITracker) FailedComputeSimilarityID() <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file15" style="display: none">package analyzer
+		<pre class="file" id="file18" style="display: none">package analyzer
 
 import (
         "os"
@@ -2647,7 +2770,7 @@ func contains(s []string, e string) bool <span class="cov7" title="17">{
 }
 </pre>
 		
-		<pre class="file" id="file16" style="display: none">package engine
+		<pre class="file" id="file19" style="display: none">package engine
 
 import (
         "fmt"
@@ -2895,7 +3018,7 @@ func (e *Engine) addRule(walkHistory []build.PathItem, comment commentParser.Com
 }
 </pre>
 		
-		<pre class="file" id="file17" style="display: none">package model
+		<pre class="file" id="file20" style="display: none">package model
 
 import "github.com/Checkmarx/kics/pkg/model"
 
@@ -2956,7 +3079,7 @@ func (c Condition) AttrAsString(name string) (string, bool) <span class="cov10" 
 }
 </pre>
 		
-		<pre class="file" id="file18" style="display: none">package tag
+		<pre class="file" id="file21" style="display: none">package tag
 
 import (
         "bytes"
@@ -3221,7 +3344,7 @@ func checkType(s string) interface{} <span class="cov4" title="5">{
 }
 </pre>
 		
-		<pre class="file" id="file19" style="display: none">package writer
+		<pre class="file" id="file22" style="display: none">package writer
 
 import (
         "bytes"
@@ -3504,7 +3627,7 @@ func resultName(rule build.Rule, result Block) Block <span class="cov4" title="4
 }
 </pre>
 		
-		<pre class="file" id="file20" style="display: none">package descriptions
+		<pre class="file" id="file23" style="display: none">package descriptions
 
 import (
         "bytes"
@@ -3676,7 +3799,7 @@ func getBasicAuth() string <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file21" style="display: none">package descriptions
+		<pre class="file" id="file24" style="display: none">package descriptions
 
 import (
         "fmt"
@@ -3733,7 +3856,7 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error <span class="c
 }
 </pre>
 		
-		<pre class="file" id="file22" style="display: none">package detector
+		<pre class="file" id="file25" style="display: none">package detector
 
 import (
         "strconv"
@@ -3791,7 +3914,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 }
 </pre>
 		
-		<pre class="file" id="file23" style="display: none">package detector
+		<pre class="file" id="file26" style="display: none">package detector
 
 import (
         "github.com/Checkmarx/kics/pkg/model"
@@ -3842,7 +3965,7 @@ func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string) mode
 }
 </pre>
 		
-		<pre class="file" id="file24" style="display: none">package docker
+		<pre class="file" id="file27" style="display: none">package docker
 
 import (
         "regexp"
@@ -3942,7 +4065,7 @@ func multiLineSpliter(textSplit []string, key string, idx int) string <span clas
 }
 </pre>
 		
-		<pre class="file" id="file25" style="display: none">package helm
+		<pre class="file" id="file28" style="display: none">package helm
 
 import (
         "fmt"
@@ -4131,7 +4254,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
 }
 </pre>
 		
-		<pre class="file" id="file26" style="display: none">package detector
+		<pre class="file" id="file29" style="display: none">package detector
 
 import (
         "fmt"
@@ -4300,7 +4423,7 @@ func createVulnLines(startPos int, lines []string) []model.CodeLine <span class=
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="7">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="10">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="7">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -4382,7 +4505,7 @@ func DetectCurrentLine(lines []string, str1, str2 string,
 }
 </pre>
 		
-		<pre class="file" id="file27" style="display: none">package engine
+		<pre class="file" id="file30" style="display: none">package engine
 
 import (
         "bytes"
@@ -4811,7 +4934,7 @@ func shouldSkipFile(command model.CommentsCommands, queryID string) bool <span c
 }
 </pre>
 		
-		<pre class="file" id="file28" style="display: none">package provider
+		<pre class="file" id="file31" style="display: none">package provider
 
 import (
         "context"
@@ -5013,7 +5136,7 @@ func nextRandom() string <span class="cov10" title="4">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file29" style="display: none">package provider
+		<pre class="file" id="file32" style="display: none">package provider
 
 import (
         "context"
@@ -5227,7 +5350,7 @@ func containsFile(fileList []os.FileInfo, target os.FileInfo) bool <span class="
 }
 </pre>
 		
-		<pre class="file" id="file30" style="display: none">package engine
+		<pre class="file" id="file33" style="display: none">package engine
 
 import (
         "crypto/sha256"
@@ -5269,7 +5392,7 @@ func standardizeToRelativePath(basePath, path string) (string, error) <span clas
 }
 </pre>
 		
-		<pre class="file" id="file31" style="display: none">package source
+		<pre class="file" id="file34" style="display: none">package source
 
 import (
         "encoding/json"
@@ -5279,6 +5402,7 @@ import (
         "sort"
         "strings"
 
+        "github.com/Checkmarx/kics/internal/constants"
         "github.com/Checkmarx/kics/pkg/model"
         "github.com/getsentry/sentry-go"
         "github.com/pkg/errors"
@@ -5308,18 +5432,6 @@ const (
         common = "Common"
 )
 
-var (
-        supportedPlatforms = map[string]string{
-                "Ansible":              "ansible",
-                "CloudFormation":       "cloudformation",
-                "Dockerfile":           "dockerfile",
-                "Kubernetes":           "k8s",
-                "Terraform":            "terraform",
-                "OpenAPI":              "openapi",
-                "AzureResourceManager": "azureresourcemanager",
-        }
-)
-
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource <span class="cov7" title="16">{
         log.Debug().Msg("source.NewFilesystemSource()")
@@ -5342,9 +5454,9 @@ func NewFilesystemSource(source string, types, cloudProviders []string, libraryP
 
 // ListSupportedPlatforms returns a list of supported platforms
 func ListSupportedPlatforms() []string <span class="cov1" title="1">{
-        keys := make([]string, len(supportedPlatforms))
+        keys := make([]string, len(constants.AvailablePlatforms))
         i := 0
-        for k := range supportedPlatforms </span><span class="cov5" title="7">{
+        for k := range constants.AvailablePlatforms </span><span class="cov5" title="7">{
                 keys[i] = k
                 i++
         }</span>
@@ -5428,7 +5540,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range supportedPlatforms </span><span class="cov9" title="30">{
+                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="42">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -5506,7 +5618,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool <span class
                 return false
         }</span>
         <span class="cov5" title="7">for _, excludedQuery := range excludeQueries </span><span class="cov3" title="3">{
-                if queryMetadataKey == excludedQuery </span><span class="cov2" title="2">{
+                if strings.EqualFold(queryMetadataKey, excludedQuery) </span><span class="cov2" title="2">{
                         return true
                 }</span>
         }
@@ -5713,7 +5825,7 @@ func mergeInputData(queryInputData, customInputData string) (string, error) <spa
 }
 </pre>
 		
-		<pre class="file" id="file32" style="display: none">package engine
+		<pre class="file" id="file35" style="display: none">package engine
 
 import (
         "encoding/json"
@@ -5967,7 +6079,7 @@ func ptrStringToString(v *string) string <span class="cov6" title="17">{
 }
 </pre>
 		
-		<pre class="file" id="file33" style="display: none">package kics
+		<pre class="file" id="file36" style="display: none">package kics
 
 import (
         "context"
@@ -6030,7 +6142,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 }
 </pre>
 		
-		<pre class="file" id="file34" style="display: none">package kics
+		<pre class="file" id="file37" style="display: none">package kics
 
 import (
         "context"
@@ -6166,7 +6278,7 @@ func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) <spa
 }
 </pre>
 		
-		<pre class="file" id="file35" style="display: none">package kics
+		<pre class="file" id="file38" style="display: none">package kics
 
 import (
         "context"
@@ -6221,7 +6333,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 }
 </pre>
 		
-		<pre class="file" id="file36" style="display: none">// Package model (go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE)
+		<pre class="file" id="file39" style="display: none">// Package model (go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE)
 package model
 
 import (
@@ -6445,7 +6557,7 @@ func (m FileMetadatas) Combine() Documents <span class="cov8" title="3">{
 }
 </pre>
 		
-		<pre class="file" id="file37" style="display: none">// Code generated by easyjson for marshaling/unmarshaling. DO NOT EDIT.
+		<pre class="file" id="file40" style="display: none">// Code generated by easyjson for marshaling/unmarshaling. DO NOT EDIT.
 
 package model
 
@@ -6640,7 +6752,7 @@ func (v *Document) UnmarshalEasyJSON(l *jlexer.Lexer) <span class="cov0" title="
 }</span>
 </pre>
 		
-		<pre class="file" id="file38" style="display: none">package model
+		<pre class="file" id="file41" style="display: none">package model
 
 import (
         "os"
@@ -6841,7 +6953,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 }
 </pre>
 		
-		<pre class="file" id="file39" style="display: none">package docker
+		<pre class="file" id="file42" style="display: none">package docker
 
 import (
         "bytes"
@@ -6957,7 +7069,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file40" style="display: none">package json
+		<pre class="file" id="file43" style="display: none">package json
 
 import (
         "encoding/json"
@@ -7009,11 +7121,10 @@ func (p *Parser) GetCommentToken() string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file41" style="display: none">package parser
+		<pre class="file" id="file44" style="display: none">package parser
 
 import (
         "errors"
-        "fmt"
         "path/filepath"
         "strings"
 
@@ -7036,32 +7147,30 @@ type Builder struct {
 }
 
 // NewBuilder creates a new Builder's reference
-func NewBuilder() *Builder <span class="cov4" title="5">{
+func NewBuilder() *Builder <span class="cov6" title="5">{
         log.Debug().Msg("parser.NewBuilder()")
         return &amp;Builder{}
 }</span>
 
 // Add is a function that adds a new parser to the caller and returns it
-func (b *Builder) Add(p kindParser) *Builder <span class="cov6" title="11">{
+func (b *Builder) Add(p kindParser) *Builder <span class="cov8" title="11">{
         b.parsers = append(b.parsers, p)
         return b
 }</span>
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov4" title="5">{
+func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span class="cov6" title="5">{
         parserSlice := make([]*Parser, 0, len(b.parsers))
-        var suportedTypes []string
-        for _, parser := range b.parsers </span><span class="cov6" title="11">{
+        for _, parser := range b.parsers </span><span class="cov8" title="11">{
                 var parsers kindParser
                 extensions := make(model.Extensions, len(b.parsers))
                 platforms := parser.SupportedTypes()
-                suportedTypes = append(suportedTypes, platforms...)
-                if _, _, ok := contains(types, parser.SupportedTypes()); ok </span><span class="cov6" title="11">{
+                if _, _, ok := contains(types, parser.SupportedTypes()); ok </span><span class="cov8" title="11">{
                         parsers = parser
-                        for _, ext := range parser.SupportedExtensions() </span><span class="cov7" title="17">{
+                        for _, ext := range parser.SupportedExtensions() </span><span class="cov10" title="17">{
                                 extensions[ext] = struct{}{}
                         }</span>
-                        <span class="cov6" title="11">parserSlice = append(parserSlice, &amp;Parser{
+                        <span class="cov8" title="11">parserSlice = append(parserSlice, &amp;Parser{
                                 parsers:    parsers,
                                 extensions: extensions,
                                 Platform:   platforms,
@@ -7069,13 +7178,7 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) <span
                 }
         }
 
-        <span class="cov4" title="5">supportedCloudProviders := []string{"aws", "azure", "gcp"}
-
-        if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil </span><span class="cov0" title="0">{
-                return []*Parser{}, err
-        }</span>
-
-        <span class="cov4" title="5">return parserSlice, nil</span>
+        <span class="cov6" title="5">return parserSlice, nil</span>
 }
 
 // ErrNotSupportedFile represents an error when a file is not supported by KICS
@@ -7095,16 +7198,16 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
                 commentToken := c.parsers.GetCommentToken()
                 if commentToken != "" </span><span class="cov1" title="1">{
                         lines := strings.Split(string(fileContent), "\n")
-                        for _, line := range lines </span><span class="cov4" title="4">{
+                        for _, line := range lines </span><span class="cov5" title="4">{
                                 line = strings.TrimSpace(line)
                                 if line == "" </span><span class="cov1" title="1">{
                                         continue</span>
                                 }
-                                <span class="cov3" title="3">if !strings.HasPrefix(line, commentToken) </span><span class="cov1" title="1">{
+                                <span class="cov4" title="3">if !strings.HasPrefix(line, commentToken) </span><span class="cov1" title="1">{
                                         break</span>
                                 }
-                                <span class="cov2" title="2">fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
-                                if len(fields) &gt; 1 &amp;&amp; fields[0] == "kics-scan" &amp;&amp; fields[1] != "" </span><span class="cov2" title="2">{
+                                <span class="cov3" title="2">fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
+                                if len(fields) &gt; 1 &amp;&amp; fields[0] == "kics-scan" &amp;&amp; fields[1] != "" </span><span class="cov3" title="2">{
                                         commandParameters := strings.SplitN(fields[1], "=", 2)
                                         if len(commandParameters) &gt; 1 </span><span class="cov1" title="1">{
                                                 commentsCommands[commandParameters[0]] = commandParameters[1]
@@ -7121,89 +7224,75 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) <span class="cov3" title="3">{
-        if c.isValidExtension(filePath) </span><span class="cov3" title="3">{
+func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, model.FileKind, error) <span class="cov4" title="3">{
+        if c.isValidExtension(filePath) </span><span class="cov4" title="3">{
                 resolved, err := c.parsers.Resolve(fileContent, filePath)
                 if err != nil </span><span class="cov0" title="0">{
                         return nil, "", err
                 }</span>
-                <span class="cov3" title="3">obj, err := c.parsers.Parse(filePath, *resolved)
+                <span class="cov4" title="3">obj, err := c.parsers.Parse(filePath, *resolved)
                 if err != nil </span><span class="cov0" title="0">{
                         return nil, "", err
                 }</span>
 
-                <span class="cov3" title="3">return obj, c.parsers.GetKind(), nil</span>
+                <span class="cov4" title="3">return obj, c.parsers.GetKind(), nil</span>
         }
         <span class="cov0" title="0">return nil, "break", ErrNotSupportedFile</span>
 }
 
 // SupportedExtensions returns extensions supported by KICS
-func (c *Parser) SupportedExtensions() model.Extensions <span class="cov4" title="4">{
+func (c *Parser) SupportedExtensions() model.Extensions <span class="cov5" title="4">{
         return c.extensions
 }</span>
 
-func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error <span class="cov5" title="8">{
-        validArgsTypes = removeDuplicateValues(validArgsTypes)
-
-        if invalidType, ok, _ := contains(types, validArgsTypes); !ok </span><span class="cov1" title="1">{
-                return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
-        }</span>
-
-        <span class="cov5" title="7">if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk </span><span class="cov0" title="0">{
-                return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
-        }</span>
-
-        <span class="cov5" title="7">return nil</span>
-}
-
-func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="26">{
-        if types[0] == "" </span><span class="cov8" title="21">{
+func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) <span class="cov8" title="11">{
+        if types[0] == "" </span><span class="cov8" title="11">{
                 return []string{}, true, true
         }</span>
-        <span class="cov4" title="5">set := make(map[string]struct{}, len(supportedTypes))
-        for _, s := range supportedTypes </span><span class="cov8" title="21">{
+        <span class="cov0" title="0">set := make(map[string]struct{}, len(supportedTypes))
+        for _, s := range supportedTypes </span><span class="cov0" title="0">{
                 set[strings.ToUpper(s)] = struct{}{}
         }</span>
-        <span class="cov4" title="5">cont := true
+        <span class="cov0" title="0">cont := true
         supported := false
         var invalidArgs []string
-        for _, item := range types </span><span class="cov4" title="5">{
+        for _, item := range types </span><span class="cov0" title="0">{
                 _, ok := set[strings.ToUpper(item)]
-                if !ok </span><span class="cov1" title="1">{
+                if !ok </span><span class="cov0" title="0">{
                         cont = false
                         invalidArgs = append(invalidArgs, item)
-                }</span> else<span class="cov4" title="4"> {
+                }</span> else<span class="cov0" title="0"> {
                         supported = true
                 }</span>
         }
-        <span class="cov4" title="5">return invalidArgs, cont, supported</span>
+        <span class="cov0" title="0">return invalidArgs, cont, supported</span>
 }
 
 // function to remove duplicate values in array
-func removeDuplicateValues(stringSlice []string) []string <span class="cov6" title="10">{
+func removeDuplicateValues(stringSlice []string) []string <span class="cov3" title="2">{
         keys := make(map[string]bool)
         list := []string{}
 
-        for _, entry := range stringSlice </span><span class="cov10" title="45">{
-                if _, value := keys[entry]; !value </span><span class="cov9" title="40">{
+        for _, entry := range stringSlice </span><span class="cov7" title="7">{
+                if _, value := keys[entry]; !value </span><span class="cov6" title="6">{
                         keys[entry] = true
                         list = append(list, entry)
                 }</span>
         }
-        <span class="cov6" title="10">return list</span>
+        <span class="cov3" title="2">return list</span>
 }
 
-func (c *Parser) isValidExtension(filePath string) bool <span class="cov5" title="7">{
+func (c *Parser) isValidExtension(filePath string) bool <span class="cov7" title="7">{
         ext := filepath.Ext(filePath)
-        if ext == "" </span><span class="cov3" title="3">{
+        if ext == "" </span><span class="cov4" title="3">{
                 ext = filepath.Base(filePath)
         }</span>
-        <span class="cov5" title="7">_, ok := c.extensions[ext]
+        <span class="cov7" title="7">_, ok := c.extensions[ext]
         return ok</span>
 }
 </pre>
 		
-		<pre class="file" id="file42" style="display: none">package converter
+		<pre class="file" id="file45" style="display: none">package converter
 
 import (
         "fmt"
@@ -7536,7 +7625,7 @@ func createEntryInputVar(path []string, defaultValue string) (cty.Value, error) 
 }
 </pre>
 		
-		<pre class="file" id="file43" style="display: none">package terraform
+		<pre class="file" id="file46" style="display: none">package terraform
 
 import (
         "path/filepath"
@@ -7666,7 +7755,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file44" style="display: none">package terraform
+		<pre class="file" id="file47" style="display: none">package terraform
 
 import (
         "fmt"
@@ -7803,7 +7892,7 @@ func getInputVariables(currentPath string) <span class="cov3" title="2">{
 }
 </pre>
 		
-		<pre class="file" id="file45" style="display: none">package utils
+		<pre class="file" id="file48" style="display: none">package utils
 
 import (
         "crypto/rsa"
@@ -7898,7 +7987,7 @@ func AddCertificateInfo(path, content string) map[string]interface{} <span class
 }
 </pre>
 		
-		<pre class="file" id="file46" style="display: none">package utils
+		<pre class="file" id="file49" style="display: none">package utils
 
 import (
         "encoding/json"
@@ -7954,7 +8043,7 @@ func readFile(filePath string) (map[string]interface{}, error) <span class="cov3
 }
 </pre>
 		
-		<pre class="file" id="file47" style="display: none">package utils
+		<pre class="file" id="file50" style="display: none">package utils
 
 import (
         "os"
@@ -7989,7 +8078,7 @@ func AddSwaggerInfo(path, swaggerPath string) map[string]interface{} <span class
 }
 </pre>
 		
-		<pre class="file" id="file48" style="display: none">package json
+		<pre class="file" id="file51" style="display: none">package json
 
 import (
         "bytes"
@@ -8167,7 +8256,7 @@ func (p *Parser) GetCommentToken() string <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file49" style="display: none">package circle
+		<pre class="file" id="file52" style="display: none">package circle
 
 import (
         "fmt"
@@ -8239,7 +8328,7 @@ func (p ProgressBar) Close() error <span class="cov1" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file50" style="display: none">package counter
+		<pre class="file" id="file53" style="display: none">package counter
 
 import (
         "io"
@@ -8313,7 +8402,7 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
 func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
-		<pre class="file" id="file51" style="display: none">package progress
+		<pre class="file" id="file54" style="display: none">package progress
 
 import (
         "sync"
@@ -8360,7 +8449,7 @@ func (i *PbBuilder) BuildCircle(label string) PBar <span class="cov1" title="1">
 }</span>
 </pre>
 		
-		<pre class="file" id="file52" style="display: none">package report
+		<pre class="file" id="file55" style="display: none">package report
 
 import (
         "encoding/json"
@@ -8478,7 +8567,7 @@ func getSummary(body interface{}) (sum model.Summary, err error) <span class="co
 }
 </pre>
 		
-		<pre class="file" id="file53" style="display: none">package report
+		<pre class="file" id="file56" style="display: none">package report
 
 import (
         "strings"
@@ -8515,7 +8604,7 @@ func PrintGitlabSASTReport(path, filename string, body interface{}) error <span 
 }
 </pre>
 		
-		<pre class="file" id="file54" style="display: none">package report
+		<pre class="file" id="file57" style="display: none">package report
 
 import (
         "bytes"
@@ -8635,7 +8724,7 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
 }
 </pre>
 		
-		<pre class="file" id="file55" style="display: none">package report
+		<pre class="file" id="file58" style="display: none">package report
 
 import "github.com/Checkmarx/kics/internal/constants"
 
@@ -8663,7 +8752,7 @@ func PrintJSONReport(path, filename string, body interface{}) error <span class=
 }
 </pre>
 		
-		<pre class="file" id="file56" style="display: none">package model
+		<pre class="file" id="file59" style="display: none">package model
 
 import (
         "fmt"
@@ -8819,7 +8908,7 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.Vulnerab
 }
 </pre>
 		
-		<pre class="file" id="file57" style="display: none">package model
+		<pre class="file" id="file60" style="display: none">package model
 
 import (
         "github.com/Checkmarx/kics/internal/constants"
@@ -9127,7 +9216,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.VulnerableQuery) <span class
 }
 </pre>
 		
-		<pre class="file" id="file58" style="display: none">package model
+		<pre class="file" id="file61" style="display: none">package model
 
 const categoryIdentifier = "CAT"
 
@@ -9193,7 +9282,7 @@ var categories = map[string]sarifTaxanomyDefinition{
 }
 </pre>
 		
-		<pre class="file" id="file59" style="display: none">package report
+		<pre class="file" id="file62" style="display: none">package report
 
 import (
         _ "embed" // used for embedding report static files
@@ -9666,7 +9755,7 @@ func getPurpleColor() color.Color <span class="cov4" title="2">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file60" style="display: none">package report
+		<pre class="file" id="file63" style="display: none">package report
 
 import (
         "strings"
@@ -9696,7 +9785,7 @@ func PrintSarifReport(path, filename string, body interface{}) error <span class
 }
 </pre>
 		
-		<pre class="file" id="file61" style="display: none">package helm
+		<pre class="file" id="file64" style="display: none">package helm
 
 import (
         "fmt"
@@ -9821,7 +9910,7 @@ func addID(file *chart.File) *chart.File <span class="cov4" title="9">{
 }
 </pre>
 		
-		<pre class="file" id="file62" style="display: none">package helm
+		<pre class="file" id="file65" style="display: none">package helm
 
 import (
         "path/filepath"
@@ -9980,7 +10069,7 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
 }
 </pre>
 		
-		<pre class="file" id="file63" style="display: none">package resolver
+		<pre class="file" id="file66" style="display: none">package resolver
 
 import (
         "os"
@@ -10060,7 +10149,7 @@ func (r *Resolver) GetType(filePath string) model.FileKind <span class="cov10" t
 }
 </pre>
 		
-		<pre class="file" id="file64" style="display: none">package scanner
+		<pre class="file" id="file67" style="display: none">package scanner
 
 import (
         "context"
@@ -10128,7 +10217,22 @@ func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64,
 }</span>
 </pre>
 		
-		<pre class="file" id="file65" style="display: none">package test
+		<pre class="file" id="file68" style="display: none">package utils
+
+import "sort"
+
+// SortedKeys returns a sorted slice with all map keys
+func SortedKeys(mapToSort map[string]string) []string <span class="cov1" title="1">{
+        keys := make([]string, 0, len(mapToSort))
+        for k := range mapToSort </span><span class="cov10" title="3">{
+                keys = append(keys, k)
+        }</span>
+        <span class="cov1" title="1">sort.Strings(keys)
+        return keys</span>
+}
+</pre>
+		
+		<pre class="file" id="file69" style="display: none">package test
 
 import (
         "bytes"
