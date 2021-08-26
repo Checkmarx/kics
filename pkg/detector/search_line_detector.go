@@ -61,6 +61,10 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 		}
 	}
 
+	if arrayObject == objPath {
+		ArrPath = "_kics_lines._kics_" + arrayObject + "._kics_arr"
+	}
+
 	// Create a string based on the path components so it can be later transformed in a gjson path
 	for _, pathItem := range pathItems[1 : len(pathItems)-1] {
 		// In case of an array present

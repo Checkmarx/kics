@@ -3,13 +3,14 @@ package json
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
 type jsonLine struct {
-	lineInfo map[string]model.Document
+	LineInfo map[string]model.Document
 }
 
 // jsonLineStruct is the struct that keeps important information for the creation of line Information Map
@@ -24,6 +25,11 @@ type jsonLineStruct struct {
 	lastWasRune bool
 	noremoveidx []string
 	parent      string
+}
+
+type fifo struct {
+	name  string // for debugging purposes
+	Value []int
 }
 
 // initiateJSONLine will create a map, containing line information for every key present in the JSON
@@ -53,47 +59,59 @@ func initiateJSONLine(doc []byte) *jsonLine {
 			jstruct.lastWasRune = false
 		}
 
+		tokStringRepresentation := ""
+
 		// if token is a string than update temporary father key
-		if v, ok := tok.(string); ok {
-			jstruct.tmpParent = v
-		} else {
+		switch t := tok.(type) {
+		case string:
+			jstruct.tmpParent = t
+			tokStringRepresentation = t
+		case float64:
+			tokStringRepresentation = fmt.Sprint(int(t))
+			jstruct.tmpParent = tokStringRepresentation
+		case bool:
+			tokStringRepresentation = fmt.Sprint(t)
+			jstruct.tmpParent = tokStringRepresentation
+		case nil:
+			tokStringRepresentation = fmt.Sprint(t)
+			jstruct.tmpParent = tokStringRepresentation
+		default:
 			continue
 		}
 
 		line := 1
 		// get the correct line based on byte offset
 		for i, val := range doc {
-			if val == byte('\n') {
-				line++
-			}
 			if i == int(dec.InputOffset()) {
 				break
+			} else if val == byte('\n') {
+				line++
 			}
 		}
 
 		// insert into line information map
-		if _, ok := newMap[tok.(string)]; !ok {
+		if _, ok := newMap[tokStringRepresentation]; !ok {
 			// key info is not in map yet
-			newLineSlice := make([]int, 0)
+			newLineSlice := &fifo{name: tokStringRepresentation}
 			parentMap := make(map[string]interface{})
-			newLineSlice = append(newLineSlice, line)
+			newLineSlice.add(line)
 			parentMap[jstruct.parent] = newLineSlice
-			newMap[tok.(string)] = parentMap
-		} else if v, ok := newMap[tok.(string)][jstruct.parent]; ok {
+			newMap[tokStringRepresentation] = parentMap
+		} else if v, ok := newMap[tokStringRepresentation][jstruct.parent]; ok {
 			// key info is in map with the same path so append is made
-			newLineSlice := make([]int, 0)
-			newLineSlice = append(newLineSlice, v.([]int)...)
-			newLineSlice = append(newLineSlice, line)
-			newMap[tok.(string)][jstruct.parent] = newLineSlice
+			newLineSlice := &fifo{name: tokStringRepresentation}
+			newLineSlice.add(v.(*fifo).Value...)
+			newLineSlice.add(line)
+			newMap[tokStringRepresentation][jstruct.parent] = newLineSlice
 		} else {
 			// key info is in map with different path
-			newLineSlice := make([]int, 0)
-			newLineSlice = append(newLineSlice, line)
-			newMap[tok.(string)][jstruct.parent] = newLineSlice
+			newLineSlice := &fifo{name: tokStringRepresentation}
+			newLineSlice.add(line)
+			newMap[tokStringRepresentation][jstruct.parent] = newLineSlice
 		}
 	}
 	return &jsonLine{
-		lineInfo: newMap,
+		LineInfo: newMap,
 	}
 }
 
@@ -157,16 +175,7 @@ func (j *jsonLineStruct) closeBrackets() {
 // setLineInfo will set the line information of keys in json based on the line Information map
 func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{} {
 	// set the line info for keys in root level
-	doc["_kics_lines"] = j.setLine(doc, 0, 0, "")
-	// set the line info for each value of arrays/objects keys
-	for key, val := range doc {
-		switch v := val.(type) {
-		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, j.lineInfo[key][""].([]int)[0], 0, "."+key)
-		default:
-			continue
-		}
-	}
+	doc["_kics_lines"] = j.setLine(doc, 0, "")
 	return doc
 }
 
@@ -174,7 +183,7 @@ func (j *jsonLine) setLineInfo(doc map[string]interface{}) map[string]interface{
 // def is the line of the key
 // index is used in case of an array, otherwhise should be 0
 // father is the path to the key
-func (j *jsonLine) setLine(val map[string]interface{}, def, index int, father string) map[string]model.LineObject {
+func (j *jsonLine) setLine(val map[string]interface{}, def int, father string) map[string]model.LineObject {
 	lineMap := make(map[string]model.LineObject)
 	// set the line information of val
 	lineMap["_kics__default"] = model.LineObject{
@@ -184,30 +193,26 @@ func (j *jsonLine) setLine(val map[string]interface{}, def, index int, father st
 
 	// iterate through the values of the object
 	for key, val := range val {
-		// if key is part of kics line information than it should be ignored
-		if key == "_kics_lines" {
-			continue
-		}
-
 		// if the key with father path was not found ignore
-		if _, ok2 := j.lineInfo[key][father]; !ok2 {
+		if _, ok2 := j.LineInfo[key][father]; !ok2 {
 			continue
 		}
 
-		line := j.lineInfo[key][father]
+		line := j.LineInfo[key][father]
 		lineArr := make([]map[string]model.LineObject, 0)
+		lineNr := line.(*fifo).head()
 
 		switch v := val.(type) {
 		// value is an array and must call func setSeqLines to set element lines
 		case []interface{}:
-			lineArr = j.setSeqLines(v, line, father, key, lineArr, index)
+			lineArr = j.setSeqLines(v, lineNr, father, key, lineArr)
 		// value is an object and must setLines for each element of the object
 		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, line.([]int)[0], 0, father+"."+key)
+			v["_kics_lines"] = j.setLine(v, lineNr, father+"."+key)
 		default:
 			// value as no childs
 			lineMap["_kics_"+key] = model.LineObject{
-				Line: line.([]int)[index],
+				Line: lineNr,
 				Arr:  lineArr,
 			}
 			continue
@@ -216,7 +221,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def, index int, father st
 		// set line information of value with its default line and
 		// if present array elements line informations
 		lineMap["_kics_"+key] = model.LineObject{
-			Line: line.([]int)[index],
+			Line: lineNr,
 			Arr:  lineArr,
 		}
 	}
@@ -224,30 +229,45 @@ func (j *jsonLine) setLine(val map[string]interface{}, def, index int, father st
 }
 
 // setSeqLines sets the elements lines information for value of type array
-func (j *jsonLine) setSeqLines(v []interface{}, line interface{}, father, key string,
-	lineArr []map[string]model.LineObject, index int) []map[string]model.LineObject {
+func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
+	lineArr []map[string]model.LineObject) []map[string]model.LineObject {
 	// update father path with key
 	fatherKey := father + "." + key
 
 	// iterate over each element of the array
-	for idx, contentEntry := range v {
+	for _, contentEntry := range v {
 		switch con := contentEntry.(type) {
 		// case element is a map/object call func setLine
 		case map[string]interface{}:
-			lineArr = append(lineArr, j.setLine(con, line.([]int)[index], idx, fatherKey))
+			lineArr = append(lineArr, j.setLine(con, def, fatherKey))
 		// case element is a string
-		case string:
+		default:
+			stringedCon := fmt.Sprint(con)
 			// check if element is present in line info map
-			if lineStr, ok2 := j.lineInfo[con][father+"."+key]; ok2 {
+			if lineStr, ok2 := j.LineInfo[stringedCon][father+"."+key]; ok2 {
 				lineArr = append(lineArr, map[string]model.LineObject{
 					"_kics__default": {
-						Line: lineStr.([]int)[index],
+						Line: lineStr.(*fifo).pop(),
 					},
 				})
 			}
-		default:
-			continue
 		}
 	}
 	return lineArr
+}
+
+// SET OF TOOLS TO ASSIST WITH JSON LINE
+
+func (f *fifo) add(elements ...int) {
+	f.Value = append(f.Value, elements...)
+}
+
+func (f *fifo) pop() int {
+	firstElement := f.Value[0]
+	f.Value = f.Value[1:]
+	return firstElement
+}
+
+func (f *fifo) head() int {
+	return f.Value[0]
 }

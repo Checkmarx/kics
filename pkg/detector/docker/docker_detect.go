@@ -50,10 +50,12 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		}
 	}
 
+	unchangedText := strings.Split(strings.ReplaceAll(file.OriginalData, "\r", ""), "\n")
+
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{
 			Line:      currentLine + 1,
-			VulnLines: detector.GetAdjacentVulnLines(currentLine, outputLines, text),
+			VulnLines: detector.GetAdjacentVulnLines(currentLine, outputLines, unchangedText),
 		}
 	}
 
@@ -65,6 +67,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	}
 }
 
+// SplitLines splits Dockerfile document by line, multiline are considered as one
 func (d DetectKindLine) SplitLines(content string) []string {
 	text := strings.ReplaceAll(content, "\r", "")
 	return strings.Split(text, "\n")

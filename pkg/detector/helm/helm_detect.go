@@ -100,6 +100,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	}
 }
 
+// SplitLines splits the Helm document by line
 func (d DetectKindLine) SplitLines(content string) []string {
 	text := strings.ReplaceAll(content, "\r", "")
 	return strings.Split(text, "\n")

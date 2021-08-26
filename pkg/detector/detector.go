@@ -49,6 +49,7 @@ func (d *DetectLine) DetectLine(file *model.FileMetadata, searchKey string) mode
 	return d.defaultDetector.DetectLine(file, searchKey, d.logWithFields, d.outputLines)
 }
 
+// GetAdjecent finds and returns the lines adjecent to the line containing the vulnerability
 func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.VulnerabilityLines {
 	if det, ok := d.detectors[file.Kind]; ok {
 		return model.VulnerabilityLines{
@@ -62,6 +63,7 @@ func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.Vulne
 	}
 }
 
+// SplitLines splits lines splits the file by lines based on the type of file
 func (d *DetectLine) SplitLines(file *model.FileMetadata) []string {
 	if det, ok := d.detectors[file.Kind]; ok {
 		return det.SplitLines(file.OriginalData)

@@ -1,7 +1,6 @@
 package converter
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"testing"
@@ -56,14 +55,14 @@ block "label_one" "label_two" {
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
 	body, err := DefaultConverted(file, InputVariableMap{})
-	if err != nil {
-		t.Fatal("parse bytes:", err)
-	}
-	inputMarsheld, err := json.Marshal(body)
-	if err != nil {
-		t.Errorf("Error Marshling: %s", err)
-	}
-	compareTest(t, inputMarsheld, expected)
+	require.NoError(t, err)
+	compareJSONLine(t, body, expected)
+}
+
+func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
+	stringefiedJSON, err := json.Marshal(&test1)
+	require.NoError(t, err)
+	require.JSONEq(t, test2, string(stringefiedJSON))
 }
 
 // TestLabelsWithNestedBlock tests the functions [DefaultConverted] and all the methods called by them (test with single block)
@@ -75,24 +74,34 @@ block "label_one" {
 `
 
 	expected := `{
-	"block": {
-		"label_one": {
-			"attribute": "value"
+		"block": {
+			"label_one": {
+				"attribute": "value",
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 2
+					},
+					"_kics_attribute": {
+						"_kics_line": 3
+					}
+				}
+			}
+		},
+		"_kics_lines": {
+			"_kics__default": {
+				"_kics_line": 0
+			},
+			"_kics_block": {
+				"_kics_line": 2
+			}
 		}
-	}
-}`
+	}`
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
 	body, err := DefaultConverted(file, InputVariableMap{})
-	if err != nil {
-		t.Fatal("parse bytes:", err)
-	}
-	inputMarsheld, err := json.Marshal(body)
-	if err != nil {
-		t.Errorf("Error Marshling: %s", err)
-	}
-	compareTest(t, inputMarsheld, expected)
+	require.NoError(t, err)
+	compareJSONLine(t, body, expected)
 }
 
 // TestMultipleBlocks tests the functions [DefaultConverted] and all the methods called by them (test with multiple blocks)
@@ -107,29 +116,47 @@ block "label_one" {
 `
 
 	expected := `{
-	"block": {
-		"label_one": [
-			{
-				"attribute": "value"
+		"block": {
+			"label_one": [
+				{
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 2
+						},
+						"_kics_attribute": {
+							"_kics_line": 3
+						}
+					},
+					"attribute": "value"
+				},
+				{
+					"attribute": "value_two",
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 5
+						},
+						"_kics_attribute": {
+							"_kics_line": 6
+						}
+					}
+				}
+			]
+		},
+		"_kics_lines": {
+			"_kics__default": {
+				"_kics_line": 0
 			},
-			{
-				"attribute": "value_two"
+			"_kics_block": {
+				"_kics_line": 5
 			}
-		]
-	}
-}`
+		}
+	}`
 
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
 	body, err := DefaultConverted(file, InputVariableMap{})
-	if err != nil {
-		t.Fatal("parse bytes:", err)
-	}
-	inputMarsheld, err := json.Marshal(body)
-	if err != nil {
-		t.Errorf("Error Marshling: %s", err)
-	}
-	compareTest(t, inputMarsheld, expected)
+	require.NoError(t, err)
+	compareJSONLine(t, body, expected)
 }
 
 // TestInputVariables tests if it is replacing variables
@@ -172,7 +199,7 @@ block "label_one" {
 	}
 }
 
-func TestEvalFunction(t *testing.T) {
+func TestEvalFunction(t *testing.T) { //nolint
 	type funcTest struct {
 		name    string
 		input   string
@@ -190,7 +217,34 @@ block "label_one" {
 	some_number = max(max(1,3),2)
 }
 `,
-			want:    `{"block":{"label_one":{"policy":"{\"Id\":\"id\"}","some_number":3}}}`,
+			want: `{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_block": {
+					"_kics_line": 2
+				  }
+				},
+				"block": {
+				  "label_one": {
+					"_kics_lines": {
+					  "_kics__default": {
+						"_kics_line": 2
+					  },
+					  "_kics_policy": {
+						"_kics_line": 3
+					  },
+					  "_kics_some_number": {
+						"_kics_line": 6
+					  }
+					},
+					"policy": "{\"Id\":\"id\"}",
+					"some_number": 3
+				  }
+				}
+			  }
+			  `,
 			wantErr: false,
 		},
 		{
@@ -203,7 +257,34 @@ block "label_one" {
 	some_number = max(max(1,3),2)
 }
 `,
-			want:    `{"block":{"label_one":{"policy":"{\"Id\":\"aws.meuId\"}","some_number":3}}}`,
+			want: `{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_block": {
+					"_kics_line": 2
+				  }
+				},
+				"block": {
+				  "label_one": {
+					"_kics_lines": {
+					  "_kics__default": {
+						"_kics_line": 2
+					  },
+					  "_kics_policy": {
+						"_kics_line": 3
+					  },
+					  "_kics_some_number": {
+						"_kics_line": 6
+					  }
+					},
+					"policy": "{\"Id\":\"aws.meuId\"}",
+					"some_number": 3
+				  }
+				}
+			  }
+			  `,
 			wantErr: false,
 		},
 	}
@@ -295,55 +376,188 @@ variable "region" {
 					4
 				],
 				"temp2": "hi there",
-				"quoted": "\"quoted\"",
-				"test3": "${1 + 2}",
-				"x": "${-10}",
-				"temp": "${1 + 2} %{if local.test2 \u003c 3}\"4\n\"%{endif}",
+				"x": -10,
 				"squoted": "'quoted'",
-				"y": "${-x}",
-				"z": "${-(1 + 4)}",
-				"test1": "hello",
 				"hyphen-test": 3,
-				"test2": 5
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 2
+					},
+					"_kics_arr": {
+						"_kics_line": 6,
+						"_kics_arr": [
+							{
+								"_kics__default": {
+									"_kics_line": 6
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 6
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 6
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 6
+								}
+							}
+						]
+					},
+					"_kics_hyphen-test": {
+						"_kics_line": 7
+					},
+					"_kics_quoted": {
+						"_kics_line": 10
+					},
+					"_kics_squoted": {
+						"_kics_line": 11
+					},
+					"_kics_temp": {
+						"_kics_line": 8
+					},
+					"_kics_temp2": {
+						"_kics_line": 9
+					},
+					"_kics_test1": {
+						"_kics_line": 4
+					},
+					"_kics_test2": {
+						"_kics_line": 5
+					},
+					"_kics_test3": {
+						"_kics_line": 3
+					},
+					"_kics_x": {
+						"_kics_line": 12
+					},
+					"_kics_y": {
+						"_kics_line": 13
+					},
+					"_kics_z": {
+						"_kics_line": 14
+					}
+				},
+				"quoted": "\"quoted\"",
+				"y": "${-x}",
+				"z": -5,
+				"test3": 3,
+				"test1": "hello",
+				"test2": 5,
+				"temp": "${1 + 2} %{if local.test2 \u003c 3}\"4\n\"%{endif}"
 			},
 			{
 				"other": {
+					"a.b.c": "True",
 					"num": "${local.test2 + 5}",
 					"thing": "${[for x in local.arr: x * 2]}",
 					"${local.test3}": 4,
 					"3": 1,
 					"local.test1": 89,
 					"a.b.c[\"hi\"][3].*": 3,
-					"loop": "This has a for loop: %{for x in local.arr}x,%{endfor}",
-					"a.b.c": "True"
+					"loop": "This has a for loop: %{for x in local.arr}x,%{endfor}"
+				},
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 16
+					},
+					"_kics_other": {
+						"_kics_line": 17
+					}
 				}
 			},
 			{
+				"heredoc2": "\t\tAnother heredoc, that\n\t\tdoesn't remove indentation\n\t\t${local.other.3}\n\t\t%{if true ? false : true}\"gotcha\"\\n%{else}4%{endif}\n",` + // nolint
+		`"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 28
+					},
+					"_kics_cond": {
+						"_kics_line": 34
+					},
+					"_kics_heredoc": {
+						"_kics_line": 29
+					},
+					"_kics_heredoc2": {
+						"_kics_line": 35
+					},
+					"_kics_simple": {
+						"_kics_line": 33
+					}
+				},
 				"heredoc": "This is a heredoc template.\nIt references ${local.other.3}\n",
-				"simple": "${4 - 2}",
-				"cond": "${test3 \u003e 2 ? 1: 0}",
-				"heredoc2": "\t\tAnother heredoc, that\n\t\tdoesn't remove indentation\n\t\t${local.other.3}\n\t\t%{if true ? false : true}\"gotcha\"\\n%{else}4%{endif}\n" ` + // nolint
-		`}
+				"simple": 2,
+				"cond": "${test3 \u003e 2 ? 1: 0}"
+			}
 		],
 		"data": {
 			"terraform_remote_state": {
 				"remote": {
+					"some_number": 3,
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 42
+						},
+						"_kics_backend": {
+							"_kics_line": 43
+						},
+						"_kics_config": {
+							"_kics_line": 44
+						},
+						"_kics_policy": {
+							"_kics_line": 50
+						},
+						"_kics_some_number": {
+							"_kics_line": 53
+						}
+					},
 					"backend": "s3",
 					"config": {
-						"bucket": "bucket-mybucket",
-						"key": "mykey",
 						"profile": "${var.profile}",
-						"region": "us-east-1"
+						"region": "${var.region}",
+						"bucket": "${var.bucket}-mybucket",
+						"key": "mykey"
 					},
-					"policy": "{\"Id\":\"MYBUCKETPOLICY\"}",
-					"some_number": 3
+					"policy": "{\"Id\":\"MYBUCKETPOLICY\"}"
 				}
 			}
 		},
 		"variable": {
-			"profile": {},
+			"profile": {
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 55
+					}
+				}
+			},
 			"region": {
-				"default": "us-east-1"
+				"default": "us-east-1",
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 56
+					},
+					"_kics_default": {
+						"_kics_line": 57
+					}
+				}
+			}
+		},
+		"_kics_lines": {
+			"_kics__default": {
+				"_kics_line": 0
+			},
+			"_kics_data": {
+				"_kics_line": 42
+			},
+			"_kics_locals": {
+				"_kics_line": 28
+			},
+			"_kics_variable": {
+				"_kics_line": 56
 			}
 		}
 	}`
@@ -351,32 +565,6 @@ variable "region" {
 	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
 
 	body, err := DefaultConverted(file, InputVariableMap{})
-	if err != nil {
-		t.Fatal("parse bytes:", err)
-	}
-	var v map[string]interface{}
-	err = json.Unmarshal([]byte(expected), &v)
-	if err != nil {
-		t.Fatal("parse bytes:", err)
-	}
-
-	// expectedValue is the value of expected["data"]["terraform_remote_state"]["remote"]["backend"] which is "s3"
-	expectedValue := v["data"].(map[string]interface{})["terraform_remote_state"].(map[string]interface{})["remote"].(map[string]interface{})["backend"] // nolint
-	// got is the value of body["data"]["terraform_remote_state"]["remote"]["backend"] and it must be "s3" in this test case
-	got := body["data"].(model.Document)["terraform_remote_state"].(model.Document)["remote"].(model.Document)["backend"]
-
-	require.Len(t, body, len(v))
-	require.Equal(t, expectedValue, got)
-}
-
-func compareTest(t *testing.T, input []byte, expected string) {
-	var indented bytes.Buffer
-	if err := json.Indent(&indented, input, "", "\t"); err != nil {
-		t.Fatal("indent:", err)
-	}
-
-	actual := indented.String()
-	if actual != expected {
-		t.Errorf("Expected:\n%s\n\nGot:\n%s", expected, actual)
-	}
+	require.NoError(t, err)
+	compareJSONLine(t, body, expected)
 }

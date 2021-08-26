@@ -168,14 +168,10 @@ func (e Extensions) Include(ext string) bool {
 	return b
 }
 
+// Line Object is the struct that will hold line information for each key
 type LineObject struct {
 	Line int                     `json:"_kics_line"`
 	Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`
-}
-
-type LineObjectNoShow struct {
-	Line int                     `json:"-"`
-	Arr  []map[string]LineObject `json:"-"`
 }
 
 // MatchedFilesRegex returns the regex rule to identify if an extension is supported or not
