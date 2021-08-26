@@ -671,7 +671,10 @@ func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([
 }
 
 func (m *mockSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
+	pathToLib, err := source.GetPathToLibrary(platform, filepath.FromSlash("./assets/libraries"))
+	if err != nil {
+		return "", err
+	}
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 
 	return string(content), err

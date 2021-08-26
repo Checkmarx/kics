@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/pkg/errors"
@@ -37,18 +38,6 @@ const (
 	common = "Common"
 )
 
-var (
-	supportedPlatforms = map[string]string{
-		"Ansible":              "ansible",
-		"CloudFormation":       "cloudformation",
-		"Dockerfile":           "dockerfile",
-		"Kubernetes":           "k8s",
-		"Terraform":            "terraform",
-		"OpenAPI":              "openapi",
-		"AzureResourceManager": "azureresourcemanager",
-	}
-)
-
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
 func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
@@ -71,9 +60,9 @@ func NewFilesystemSource(source string, types, cloudProviders []string, libraryP
 
 // ListSupportedPlatforms returns a list of supported platforms
 func ListSupportedPlatforms() []string {
-	keys := make([]string, len(supportedPlatforms))
+	keys := make([]string, len(constants.AvailablePlatforms))
 	i := 0
-	for k := range supportedPlatforms {
+	for k := range constants.AvailablePlatforms {
 		keys[i] = k
 		i++
 	}
@@ -114,11 +103,11 @@ func getKicsDirPath() string {
 		return ""
 	}
 
-	return path.Dir(kicsPath)
+	return filepath.Dir(kicsPath)
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
-func GetPathToLibrary(platform, libraryPathFlag string) string {
+func GetPathToLibrary(platform, libraryPathFlag string) (string, error) {
 	var libraryFilePath, relativeBasePath string
 	// user uses the library path flag
 	if !isDefaultLibrary(libraryPathFlag) {
@@ -135,35 +124,44 @@ func GetPathToLibrary(platform, libraryPathFlag string) string {
 		libraryFilePath = filepath.FromSlash(kicsDirPath + "/assets/libraries/common.rego")
 		// the system does not have kics binary accessible
 		_, err := os.Stat(libraryFilePath)
-		if os.IsNotExist(err) {
+		if err != nil && os.IsNotExist(err) {
 			currentDir, err := os.Getwd()
 			if err != nil {
-				log.Fatal().Msgf("Error getting wd: %s", err)
+				log.Error().Msgf("Error getting wd: %s", err)
+				return "", err
 			}
-			currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
+			if strings.LastIndex(currentDir, "kics") > -1 {
+				currentDir = currentDir[:strings.LastIndex(currentDir, "kics")] + "kics"
+			} else {
+				currentDir = filepath.Join(currentDir, "kics")
+			}
 			libraryFilePath = filepath.FromSlash(currentDir + "/assets/libraries/common.rego")
 			_, err = os.Stat(libraryFilePath)
 			if os.IsNotExist(err) {
-				log.Fatal().Msgf("Error getting wd: %s", err)
+				log.Error().Msgf("Error getting wd: %s", err)
+				return "", err
 			}
 			relativeBasePath = currentDir
 			// the system has kics binary accessible
 		} else {
 			relativeBasePath = kicsDirPath
 		}
-		for _, supPlatform := range supportedPlatforms {
+		for _, supPlatform := range constants.AvailablePlatforms {
 			if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) {
 				libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
 				break
 			}
 		}
 	}
-	return libraryFilePath
+	return libraryFilePath, nil
 }
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-	pathToLib := GetPathToLibrary(platform, s.Library)
+	pathToLib, err := GetPathToLibrary(platform, s.Library)
+	if err != nil {
+		return "", err
+	}
 
 	content, err := os.ReadFile(filepath.Clean(pathToLib))
 	if err != nil {
@@ -226,7 +224,7 @@ func checkQueryExclude(id interface{}, excludeQueries []string) bool {
 		return false
 	}
 	for _, excludedQuery := range excludeQueries {
-		if queryMetadataKey == excludedQuery {
+		if strings.EqualFold(queryMetadataKey, excludedQuery) {
 			return true
 		}
 	}

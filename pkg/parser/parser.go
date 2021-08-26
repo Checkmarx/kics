@@ -2,7 +2,6 @@ package parser
 
 import (
 	"errors"
-	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -39,12 +38,10 @@ func (b *Builder) Add(p kindParser) *Builder {
 // Build prepares parsers and associates a parser to its extension and returns it
 func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 	parserSlice := make([]*Parser, 0, len(b.parsers))
-	var suportedTypes []string
 	for _, parser := range b.parsers {
 		var parsers kindParser
 		extensions := make(model.Extensions, len(b.parsers))
 		platforms := parser.SupportedTypes()
-		suportedTypes = append(suportedTypes, platforms...)
 		if _, _, ok := contains(types, parser.SupportedTypes()); ok {
 			parsers = parser
 			for _, ext := range parser.SupportedExtensions() {
@@ -56,12 +53,6 @@ func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
 				Platform:   platforms,
 			})
 		}
-	}
-
-	supportedCloudProviders := []string{"aws", "azure", "gcp"}
-
-	if err := validateArguments(types, suportedTypes, cloudProviders, supportedCloudProviders); err != nil {
-		return []*Parser{}, err
 	}
 
 	return parserSlice, nil
@@ -129,20 +120,6 @@ func (c *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, m
 // SupportedExtensions returns extensions supported by KICS
 func (c *Parser) SupportedExtensions() model.Extensions {
 	return c.extensions
-}
-
-func validateArguments(types, validArgsTypes, cloudProviders, validArgsProv []string) error {
-	validArgsTypes = removeDuplicateValues(validArgsTypes)
-
-	if invalidType, ok, _ := contains(types, validArgsTypes); !ok {
-		return fmt.Errorf("unknown argument for --type: %s\nvalid arguments:\n  %s", invalidType, strings.Join(validArgsTypes, "\n  "))
-	}
-
-	if invalidCP, isOk, _ := contains(cloudProviders, validArgsProv); !isOk {
-		return fmt.Errorf("unknown argument for --cloud-provider: %s\nvalid arguments:\n  %s", invalidCP, strings.Join(validArgsProv, "\n  "))
-	}
-
-	return nil
 }
 
 func contains(types, supportedTypes []string) (invalidArgsRes []string, contRes, supportedRes bool) {

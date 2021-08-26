@@ -46,3 +46,6 @@ coverage.html
 
 # goreleaser
 dist
+
+# debug payload
+payload.json

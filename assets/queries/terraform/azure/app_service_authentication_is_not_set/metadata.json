@@ -1,0 +1,11 @@
+{
+  "id": "c7fc1481-2899-4490-bbd8-544a3a61a2f3",
+  "queryName": "App Service Authentication Disabled",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "Azure App Service authentication settings should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#enabled",
+  "platform": "Terraform",
+  "descriptionID": "ec37a064",
+  "cloudProvider": "azure"
+}

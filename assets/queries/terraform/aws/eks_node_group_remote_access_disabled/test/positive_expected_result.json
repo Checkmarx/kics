@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "EKS node group remote access disabled",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive.tf"
+  }
+]

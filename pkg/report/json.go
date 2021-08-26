@@ -1,5 +1,7 @@
 package report
 
+import "github.com/Checkmarx/kics/internal/constants"
+
 const jsonExtension = ".json"
 
 // PrintJSONReport prints on JSON file the summary results
@@ -16,6 +18,7 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 			summary.Queries[idx].CISDescriptionText = ""
 			summary.Queries[idx].CISRationaleText = ""
 		}
+		summary.Version = constants.Version
 		body = summary
 	}
 

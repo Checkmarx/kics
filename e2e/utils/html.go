@@ -7,26 +7,10 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/net/html"
 )
-
-var availableCategories = map[string]string{
-	"Access Control":          "CAT001",
-	"Availability":            "CAT002",
-	"Backup":                  "CAT003",
-	"Best Practices":          "CAT004",
-	"Build Process":           "CAT005",
-	"Encryption":              "CAT006",
-	"Insecure Configurations": "CAT007",
-	"Insecure Defaults":       "CAT008",
-	"Networking and Firewall": "CAT009",
-	"Observability":           "CAT010",
-	"Resource Management":     "CAT011",
-	"Secret Management":       "CAT012",
-	"Supply-Chain":            "CAT013",
-	"Structure and Semantics": "CAT014",
-}
 
 var availablePlatforms = map[string]string{
 	"Ansible":              "ansible",
@@ -116,7 +100,7 @@ func HTMLValidation(t *testing.T, file string) {
 		require.NotNil(t, node.FirstChild,
 			"[%s] Invalid category in class element <%s>", file, categoriesClassname)
 
-		require.NotEmpty(t, availableCategories[node.FirstChild.Data],
+		require.NotEmpty(t, constants.AvailableCategories[node.FirstChild.Data],
 			"[%s] Invalid category in class element <%s>: %s\n", file, categoriesClassname, node.FirstChild.Data)
 	}
 

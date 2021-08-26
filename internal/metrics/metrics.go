@@ -9,7 +9,6 @@ import (
 
 	"github.com/google/pprof/profile"
 	"github.com/rs/zerolog/log"
-	"github.com/spf13/pflag"
 )
 
 var (
@@ -42,10 +41,9 @@ type Metrics struct {
 }
 
 // InitializeMetrics - creates a new instance of a Metrics based on the type of metrics specified
-func InitializeMetrics(metric, ci *pflag.Flag) error {
-	metricStr := metric.Value.String()
+func InitializeMetrics(metric, ci string) error {
 	var err error
-	switch strings.ToLower(metricStr) {
+	switch strings.ToLower(metric) {
 	case "cpu":
 		Metric.Disable = false
 		Metric.metric = &cpuMetric{}
@@ -60,13 +58,13 @@ func InitializeMetrics(metric, ci *pflag.Flag) error {
 	default:
 		Metric.total = 0
 		Metric.Disable = true
-		err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metricStr)
+		err = fmt.Errorf("unknonwn metric: %s (available metrics: CPU, MEM)", metric)
 	}
 
 	// Create temporary dir to keep pprof file
 	if !Metric.Disable {
-		Metric.metricsID = metricStr
-		Metric.ci, _ = strconv.ParseBool(ci.Value.String())
+		Metric.metricsID = metric
+		Metric.ci, _ = strconv.ParseBool(ci)
 	}
 
 	return err

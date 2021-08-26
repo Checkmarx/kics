@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "INFO",
+    "line": 17,
+    "fileName": "positive2.tf"
+  }
+]
