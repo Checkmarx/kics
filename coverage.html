@@ -123,7 +123,7 @@
 				
 				<option value="file33">github.com/Checkmarx/kics/pkg/engine/similarity_id.go (94.4%)</option>
 				
-				<option value="file34">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.4%)</option>
+				<option value="file34">github.com/Checkmarx/kics/pkg/engine/source/filesystem.go (67.5%)</option>
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (82.9%)</option>
 				
@@ -421,17 +421,17 @@ var flagValidationFuncs = flagValidationFuncsMap{
         "allQueriesID":                      allQueriesID,
 }
 
-func isQueryID(id string) bool <span class="cov6" title="5">{
+func isQueryID(id string) bool <span class="cov5" title="5">{
         re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
         return re.MatchString(id)
 }</span>
 
-func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="4">{
+func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="5">{
         returnMap := make(map[string]string, len(slice))
-        for _, element := range slice </span><span class="cov10" title="18">{
+        for _, element := range slice </span><span class="cov10" title="22">{
                 returnMap[element] = ""
         }</span>
-        <span class="cov5" title="4">return returnMap</span>
+        <span class="cov5" title="5">return returnMap</span>
 }
 
 // Validate validate if flag values are ok, if not, returns an error
@@ -462,11 +462,12 @@ import (
 )
 
 var validMultiStrEnums = map[string]map[string]string{
-        "cloud-provider":     constants.AvailableCloudProviders,
-        "exclude-categories": constants.AvailableCategories,
-        "fail-on":            convertSliceToDummyMap(constants.AvailableSeverities),
-        "report-formats":     convertSliceToDummyMap(append([]string{"all"}, helpers.ListReportFormats()...)),
-        "type":               constants.AvailablePlatforms,
+        CloudProviderFlag:     constants.AvailableCloudProviders,
+        ExcludeCategoriesFlag: constants.AvailableCategories,
+        ExcludeSeveritiesFlag: convertSliceToDummyMap(constants.AvailableSeverities),
+        FailOnFlag:            convertSliceToDummyMap(constants.AvailableSeverities),
+        ReportFormatsFlag:     convertSliceToDummyMap(append([]string{"all"}, helpers.ListReportFormats()...)),
+        TypeFlag:              constants.AvailablePlatforms,
 }
 
 func sliceFlagsShouldNotStartWithFlags(flagName string) error <span class="cov3" title="3">{
@@ -527,7 +528,7 @@ import (
 )
 
 var validStrEnums = map[string]map[string]string{
-        "log-level": convertSliceToDummyMap(constants.AvailableLogLevels),
+        LogLevelFlag: convertSliceToDummyMap(constants.AvailableLogLevels),
 }
 
 func validateStrEnum(flagName string) error <span class="cov3" title="2">{
@@ -1419,21 +1420,21 @@ func NewScanCmd() *cobra.Command <span class="cov4" title="12">{
                 PersistentPreRunE: func(cmd *cobra.Command, args []string) error </span><span class="cov4" title="8">{
                         return preRun(cmd)
                 }</span>,
-                RunE: func(cmd *cobra.Command, args []string) error <span class="cov4" title="7">{
+                RunE: func(cmd *cobra.Command, args []string) error <span class="cov3" title="7">{
                         return run(cmd)
                 }</span>,
         }
 }
 
-func run(cmd *cobra.Command) error <span class="cov4" title="7">{
+func run(cmd *cobra.Command) error <span class="cov3" title="7">{
         changedDefaultQueryPath := cmd.Flags().Lookup(flags.QueriesPath).Changed
         if err := consoleHelpers.InitShouldIgnoreArg(flags.GetStrFlag(flags.IgnoreOnExitFlag)); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">if err := consoleHelpers.InitShouldFailArg(flags.GetMultiStrFlag(flags.FailOnFlag)); err != nil </span><span class="cov0" title="0">{
+        <span class="cov3" title="7">if err := consoleHelpers.InitShouldFailArg(flags.GetMultiStrFlag(flags.FailOnFlag)); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">if flags.GetStrFlag(flags.OutputPathFlag) != "" </span><span class="cov1" title="1">{
+        <span class="cov3" title="7">if flags.GetStrFlag(flags.OutputPathFlag) != "" </span><span class="cov1" title="1">{
                 updateReportFormats()
                 flags.SetStrFlag(flags.OutputNameFlag, filepath.Base(flags.GetStrFlag(flags.OutputNameFlag)))
                 if filepath.Ext(flags.GetStrFlag(flags.OutputPathFlag)) != "" </span><span class="cov1" title="1">{
@@ -1443,12 +1444,12 @@ func run(cmd *cobra.Command) error <span class="cov4" title="7">{
                         return err
                 }</span>
         }
-        <span class="cov4" title="7">if flags.GetStrFlag(flags.PayloadPathFlag) != "" &amp;&amp; filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)) != "." </span><span class="cov0" title="0">{
+        <span class="cov3" title="7">if flags.GetStrFlag(flags.PayloadPathFlag) != "" &amp;&amp; filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)) != "." </span><span class="cov0" title="0">{
                 if err := os.MkdirAll(filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)), os.ModePerm); err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
         }
-        <span class="cov4" title="7">gracefulShutdown()
+        <span class="cov3" title="7">gracefulShutdown()
         return scan(changedDefaultQueryPath)</span>
 }
 
@@ -1458,24 +1459,24 @@ func preRun(cmd *cobra.Command) error <span class="cov4" title="8">{
                 return errors.New(initError + err.Error())
         }</span>
 
-        <span class="cov4" title="7">err = flags.Validate()
+        <span class="cov3" title="7">err = flags.Validate()
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov4" title="7">err = validateQuerySelectionFlags()
+        <span class="cov3" title="7">err = validateQuerySelectionFlags()
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
+        <span class="cov3" title="7">err = internalPrinter.SetupPrinter(cmd.InheritedFlags())
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
-        <span class="cov4" title="7">err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetStrFlag(flags.CIFlag))
+        <span class="cov3" title="7">err = metrics.InitializeMetrics(flags.GetStrFlag(flags.ProfilingFlag), flags.GetStrFlag(flags.CIFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return errors.New(initError + err.Error())
         }</span>
-        <span class="cov4" title="7">return nil</span>
+        <span class="cov3" title="7">return nil</span>
 }
 
 func formatNewError(flag1, flag2 string) error <span class="cov0" title="0">{
@@ -1493,14 +1494,14 @@ func updateReportFormats() <span class="cov1" title="1">{
         }
 }
 
-func validateQuerySelectionFlags() error <span class="cov4" title="7">{
+func validateQuerySelectionFlags() error <span class="cov3" title="7">{
         if len(flags.GetMultiStrFlag(flags.IncludeQueriesFlag)) &gt; 0 &amp;&amp; len(flags.GetMultiStrFlag(flags.ExcludeQueriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
                 return formatNewError(flags.IncludeQueriesFlag, flags.ExcludeQueriesFlag)
         }</span>
-        <span class="cov4" title="7">if len(flags.GetMultiStrFlag(flags.IncludeQueriesFlag)) &gt; 0 &amp;&amp; len(flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
+        <span class="cov3" title="7">if len(flags.GetMultiStrFlag(flags.IncludeQueriesFlag)) &gt; 0 &amp;&amp; len(flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag)) &gt; 0 </span><span class="cov0" title="0">{
                 return formatNewError(flags.IncludeQueriesFlag, flags.ExcludeCategoriesFlag)
         }</span>
-        <span class="cov4" title="7">return nil</span>
+        <span class="cov3" title="7">return nil</span>
 }
 
 func initializeConfig(cmd *cobra.Command) error <span class="cov4" title="8">{
@@ -1574,22 +1575,22 @@ func setupCfgFile() (bool, error) <span class="cov4" title="8">{
 func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" title="10">{
         log.Debug().Msg("console.bindFlags()")
         settingsMap := v.AllSettings()
-        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="340">{
+        cmd.Flags().VisitAll(func(f *pflag.Flag) </span><span class="cov10" title="350">{
                 settingsMap[f.Name] = true
-                if strings.Contains(f.Name, "-") </span><span class="cov9" title="240">{
+                if strings.Contains(f.Name, "-") </span><span class="cov9" title="250">{
                         envVarSuffix := strings.ToUpper(strings.ReplaceAll(f.Name, "-", "_"))
                         variableName := fmt.Sprintf("%s_%s", "KICS", envVarSuffix)
                         if err := v.BindEnv(f.Name, variableName); err != nil </span><span class="cov0" title="0">{
                                 log.Err(err).Msg("Failed to bind Viper flags")
                         }</span>
                 }
-                <span class="cov10" title="340">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
+                <span class="cov10" title="350">if !f.Changed &amp;&amp; v.IsSet(f.Name) </span><span class="cov3" title="6">{
                         val := v.Get(f.Name)
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="323">{
-                if val == true </span><span class="cov9" title="322">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="317">{
+                if val == true </span><span class="cov9" title="316">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1628,37 +1629,38 @@ func initScanCmd(scanCmd *cobra.Command) error <span class="cov4" title="12">{
         <span class="cov4" title="12">return nil</span>
 }
 
-func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) <span class="cov4" title="7">{
+func getFileSystemSourceProvider(paths []string) (*provider.FileSystemSourceProvider, error) <span class="cov3" title="7">{
         var excludePaths []string
         if flags.GetStrFlag(flags.PayloadPathFlag) != "" </span><span class="cov1" title="1">{
                 excludePaths = append(excludePaths, flags.GetStrFlag(flags.PayloadPathFlag))
         }</span>
 
-        <span class="cov4" title="7">if len(flags.GetMultiStrFlag(flags.ExcludePathsFlag)) &gt; 0 </span><span class="cov1" title="1">{
+        <span class="cov3" title="7">if len(flags.GetMultiStrFlag(flags.ExcludePathsFlag)) &gt; 0 </span><span class="cov1" title="1">{
                 excludePaths = append(excludePaths, flags.GetMultiStrFlag(flags.ExcludePathsFlag)...)
         }</span>
 
-        <span class="cov4" title="7">filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
+        <span class="cov3" title="7">filesSource, err := provider.NewFileSystemSourceProvider(paths, excludePaths)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
-        <span class="cov4" title="7">return filesSource, nil</span>
+        <span class="cov3" title="7">return filesSource, nil</span>
 }
 
-func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="cov4" title="7">{
+func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="cov3" title="7">{
         excludeResultsMap := make(map[string]bool)
         for _, er := range excludeResults </span><span class="cov1" title="1">{
                 excludeResultsMap[er] = true
         }</span>
-        <span class="cov4" title="7">return excludeResultsMap</span>
+        <span class="cov3" title="7">return excludeResultsMap</span>
 }
 
-func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) <span class="cov4" title="7">{
+func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) <span class="cov3" title="7">{
         excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
 
         excludeQueries := source.ExcludeQueries{
                 ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
                 ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
+                BySeverities: flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
         }
 
         includeQueries := source.IncludeQueries{
@@ -1682,13 +1684,13 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
-        <span class="cov4" title="7">return inspector, nil</span>
+        <span class="cov3" title="7">return inspector, nil</span>
 }
 
 // analyzePaths will analyze the paths to scan to determine which type of queries to load
 // and which files should be ignored, it then updates the types and exclude flags variables
 // with the results found
-func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) <span class="cov4" title="7">{
+func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string, errRes error) <span class="cov3" title="7">{
         var err error
         exc := make([]string, 0)
         if types[0] == "" </span><span class="cov3" title="6">{ // if '--type' flag was given skip file analyzing
@@ -1699,7 +1701,7 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
                 }</span>
                 <span class="cov3" title="6">log.Info().Msgf("Loading queries of type: %s", strings.Join(types, ", "))</span>
         }
-        <span class="cov4" title="7">exclude = append(exclude, exc...)
+        <span class="cov3" title="7">exclude = append(exclude, exc...)
         return types, exclude, nil</span>
 }
 
@@ -1707,13 +1709,13 @@ func createService(inspector *engine.Inspector,
         paths []string,
         t kics.Tracker,
         store kics.Storage,
-        querySource *source.FilesystemSource) ([]*kics.Service, error) <span class="cov4" title="7">{
+        querySource *source.FilesystemSource) ([]*kics.Service, error) <span class="cov3" title="7">{
         filesSource, err := getFileSystemSourceProvider(paths)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov4" title="7">combinedParser, err := parser.NewBuilder().
+        <span class="cov3" title="7">combinedParser, err := parser.NewBuilder().
                 Add(&amp;jsonParser.Parser{}).
                 Add(&amp;yamlParser.Parser{}).
                 Add(terraformParser.NewDefault()).
@@ -1724,14 +1726,14 @@ func createService(inspector *engine.Inspector,
         }</span>
 
         // combinedResolver to be used to resolve files and templates
-        <span class="cov4" title="7">combinedResolver, err := resolver.NewBuilder().
+        <span class="cov3" title="7">combinedResolver, err := resolver.NewBuilder().
                 Add(&amp;helm.Resolver{}).
                 Build()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov4" title="7">services := make([]*kics.Service, 0, len(combinedParser))
+        <span class="cov3" title="7">services := make([]*kics.Service, 0, len(combinedParser))
 
         for _, parser := range combinedParser </span><span class="cov4" title="9">{
                 services = append(services, &amp;kics.Service{
@@ -1743,7 +1745,7 @@ func createService(inspector *engine.Inspector,
                         Resolver:       combinedResolver,
                 })
         }</span>
-        <span class="cov4" title="7">return services, nil</span>
+        <span class="cov3" title="7">return services, nil</span>
 }
 
 type startServiceParameters struct {
@@ -1755,34 +1757,34 @@ type startServiceParameters struct {
         pbBuilder      *progress.PbBuilder
 }
 
-func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) <span class="cov4" title="7">{
+func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) <span class="cov3" title="7">{
         inspector, err := createInspector(params.t, params.querySource)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return &amp;engine.Inspector{}, err
         }</span>
 
-        <span class="cov4" title="7">services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
+        <span class="cov3" title="7">services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return &amp;engine.Inspector{}, err
         }</span>
-        <span class="cov4" title="7">params.progressBar.Close()
+        <span class="cov3" title="7">params.progressBar.Close()
 
         if err = scanner.StartScan(ctx, scanID, *params.pbBuilder, services); err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return &amp;engine.Inspector{}, err
         }</span>
-        <span class="cov4" title="7">return inspector, nil</span>
+        <span class="cov3" title="7">return inspector, nil</span>
 }
 
-func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
+func scan(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
         log.Debug().Msg("console.scan()")
         for _, warn := range warnings </span><span class="cov6" title="30">{
                 log.Warn().Msgf(warn)
         }</span>
 
-        <span class="cov4" title="7">printer := consoleHelpers.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
+        <span class="cov3" title="7">printer := consoleHelpers.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
         printer.Success.Printf("\n%s\n", banner)
 
         versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
@@ -1804,7 +1806,7 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
                 return err
         }</span>
 
-        <span class="cov4" title="7">if changedDefaultQueryPath </span><span class="cov4" title="7">{
+        <span class="cov3" title="7">if changedDefaultQueryPath </span><span class="cov3" title="7">{
                 log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
         }</span> else<span class="cov0" title="0"> {
                 log.Debug().Msgf("Looking for queries in executable path and in current work directory")
@@ -1815,17 +1817,17 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
                 <span class="cov0" title="0">flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)</span>
         }
 
-        <span class="cov4" title="7">extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
+        <span class="cov3" title="7">extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov4" title="7">newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
+        <span class="cov3" title="7">newTypeFlagValue, newExcludePathsFlagValue, errAnalyze :=
                 analyzePaths(extractedPaths.Path, flags.GetMultiStrFlag(flags.TypeFlag), flags.GetMultiStrFlag(flags.ExcludePathsFlag))
         if errAnalyze != nil </span><span class="cov0" title="0">{
                 return errAnalyze
         }</span>
-        <span class="cov4" title="7">flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
+        <span class="cov3" title="7">flags.SetMultiStrFlag(flags.TypeFlag, newTypeFlagValue)
         flags.SetMultiStrFlag(flags.ExcludePathsFlag, newExcludePathsFlagValue)
 
         querySource := source.NewFilesystemSource(
@@ -1847,19 +1849,19 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
                 return err
         }</span>
 
-        <span class="cov4" title="7">results, err := store.GetVulnerabilities(ctx, scanID)
+        <span class="cov3" title="7">results, err := store.GetVulnerabilities(ctx, scanID)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return err
         }</span>
 
-        <span class="cov4" title="7">files, err := store.GetFiles(ctx, scanID)
+        <span class="cov3" title="7">files, err := store.GetFiles(ctx, scanID)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return err
         }</span>
 
-        <span class="cov4" title="7">summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
+        <span class="cov3" title="7">summary := getSummary(t, results, scanStartTime, time.Now(), model.PathParameters{
                 ScannedPaths:      flags.GetMultiStrFlag(flags.PathFlag),
                 PathExtractionMap: extractedPaths.ExtractionMap,
         })
@@ -1869,21 +1871,21 @@ func scan(changedDefaultQueryPath bool) error <span class="cov4" title="7">{
                 return err
         }</span>
 
-        <span class="cov4" title="7">printScanDuration(time.Since(scanStartTime))
+        <span class="cov3" title="7">printScanDuration(time.Since(scanStartTime))
 
         exitCode := consoleHelpers.ResultsExitCode(&amp;summary)
         if consoleHelpers.ShowError("results") &amp;&amp; exitCode != 0 </span><span class="cov0" title="0">{
                 os.Exit(exitCode)
         }</span>
-        <span class="cov4" title="7">return nil</span>
+        <span class="cov3" title="7">return nil</span>
 }
 
-func printScanDuration(elapsed time.Duration) <span class="cov4" title="7">{
+func printScanDuration(elapsed time.Duration) <span class="cov3" title="7">{
         if flags.GetBoolFlag(flags.CIFlag) </span><span class="cov0" title="0">{
                 elapsedStrFormat := "Scan duration: %vms\n"
                 fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
                 log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
-        }</span> else<span class="cov4" title="7"> {
+        }</span> else<span class="cov3" title="7"> {
                 elapsedStrFormat := "Scan duration: %v\n"
                 fmt.Printf(elapsedStrFormat, elapsed)
                 log.Info().Msgf(elapsedStrFormat, elapsed)
@@ -1891,7 +1893,7 @@ func printScanDuration(elapsed time.Duration) <span class="cov4" title="7">{
 }
 
 func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end time.Time,
-        pathParameters model.PathParameters) model.Summary <span class="cov4" title="7">{
+        pathParameters model.PathParameters) model.Summary <span class="cov3" title="7">{
         counters := model.Counters{
                 ScannedFiles:           t.FoundFiles,
                 ParsedFiles:            t.ParsedFiles,
@@ -1909,15 +1911,15 @@ func getSummary(t *tracker.CITracker, results []model.Vulnerability, start, end 
 
         if flags.GetBoolFlag(flags.DisableCISDescFlag) || flags.GetBoolFlag(flags.DisableFullDescFlag) </span><span class="cov0" title="0">{
                 log.Warn().Msg("Skipping CIS descriptions because provided disable flag is set")
-        }</span> else<span class="cov4" title="7"> {
+        }</span> else<span class="cov3" title="7"> {
                 err := descriptions.RequestAndOverrideDescriptions(&amp;summary)
-                if err != nil </span><span class="cov4" title="7">{
+                if err != nil </span><span class="cov3" title="7">{
                         log.Warn().Msgf("Unable to get descriptions: %s", err)
                         log.Warn().Msgf("Using default descriptions")
                 }</span>
         }
 
-        <span class="cov4" title="7">return summary</span>
+        <span class="cov3" title="7">return summary</span>
 }
 
 func resolveOutputs(
@@ -1926,13 +1928,13 @@ func resolveOutputs(
         failedQueries map[string]error,
         printer *consoleHelpers.Printer,
         proBarBuilder progress.PbBuilder,
-) error <span class="cov4" title="7">{
+) error <span class="cov3" title="7">{
         log.Debug().Msg("console.resolveOutputs()")
 
         if err := consoleHelpers.PrintResult(summary, failedQueries, printer); err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov4" title="7">if flags.GetStrFlag(flags.PayloadPathFlag) != "" </span><span class="cov1" title="1">{
+        <span class="cov3" title="7">if flags.GetStrFlag(flags.PayloadPathFlag) != "" </span><span class="cov1" title="1">{
                 if err := report.ExportJSONReport(
                         filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)),
                         filepath.Base(flags.GetStrFlag(flags.PayloadPathFlag)),
@@ -1942,7 +1944,7 @@ func resolveOutputs(
                 }</span>
         }
 
-        <span class="cov4" title="7">return printOutput(
+        <span class="cov3" title="7">return printOutput(
                 flags.GetStrFlag(flags.OutputPathFlag),
                 flags.GetStrFlag(flags.OutputNameFlag),
                 summary, flags.GetMultiStrFlag(flags.ReportFormatsFlag),
@@ -1950,7 +1952,7 @@ func resolveOutputs(
         )</span>
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error <span class="cov4" title="7">{
+func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error <span class="cov3" title="7">{
         log.Debug().Msg("console.printOutput()")
         if outputPath == "" </span><span class="cov3" title="6">{
                 return nil
@@ -1966,13 +1968,13 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 }
 
 // gracefulShutdown catches signal interrupt and returns the appropriate exit code
-func gracefulShutdown() <span class="cov4" title="7">{
+func gracefulShutdown() <span class="cov3" title="7">{
         c := make(chan os.Signal)
         // This line should not be lint, since golangci-lint has an issue about it (https://github.com/golang/go/issues/45043)
         signal.Notify(c, os.Interrupt, syscall.SIGTERM) // nolint
         showErrors := consoleHelpers.ShowError("errors")
         interruptCode := constants.SignalInterruptCode
-        go func(showErrors bool, interruptCode int) </span><span class="cov4" title="7">{
+        go func(showErrors bool, interruptCode int) </span><span class="cov3" title="7">{
                 &lt;-c
                 if showErrors </span><span class="cov0" title="0">{
                         os.Exit(interruptCode)
@@ -2382,13 +2384,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2413,14 +2415,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -4242,7 +4244,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -5433,18 +5435,18 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource <span class="cov7" title="16">{
+func NewFilesystemSource(source string, types, cloudProviders []string, libraryPath string) *FilesystemSource <span class="cov7" title="17">{
         log.Debug().Msg("source.NewFilesystemSource()")
 
         if len(types) == 0 </span><span class="cov0" title="0">{
                 types = []string{""}
         }</span>
 
-        <span class="cov7" title="16">if len(cloudProviders) == 0 </span><span class="cov0" title="0">{
+        <span class="cov7" title="17">if len(cloudProviders) == 0 </span><span class="cov0" title="0">{
                 cloudProviders = []string{""}
         }</span>
 
-        <span class="cov7" title="16">return &amp;FilesystemSource{
+        <span class="cov7" title="17">return &amp;FilesystemSource{
                 Source:         filepath.FromSlash(source),
                 Types:          types,
                 CloudProviders: cloudProviders,
@@ -5540,7 +5542,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="32">{
+                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="35">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -5567,18 +5569,18 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) <spa
 }
 
 // CheckType checks if the queries have the type passed as an argument in '--type' flag to be loaded
-func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool <span class="cov5" title="6">{
+func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool <span class="cov5" title="7">{
         if queryPlatform.(string) == common </span><span class="cov0" title="0">{
                 return true
         }</span>
-        <span class="cov5" title="6">if s.Types[0] != "" </span><span class="cov0" title="0">{
+        <span class="cov5" title="7">if s.Types[0] != "" </span><span class="cov0" title="0">{
                 return strings.Contains(strings.ToUpper(strings.Join(s.Types, ",")), strings.ToUpper(queryPlatform.(string)))
         }</span>
-        <span class="cov5" title="6">return true</span>
+        <span class="cov5" title="7">return true</span>
 }
 
 // CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
-func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <span class="cov5" title="6">{
+func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <span class="cov5" title="7">{
         if cloudProvider != nil </span><span class="cov0" title="0">{
                 if strings.EqualFold(cloudProvider.(string), common) </span><span class="cov0" title="0">{
                         return true
@@ -5588,7 +5590,7 @@ func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool <s
                 }</span>
         }
 
-        <span class="cov5" title="6">if s.CloudProviders[0] == "" </span><span class="cov5" title="6">{
+        <span class="cov5" title="7">if s.CloudProviders[0] == "" </span><span class="cov5" title="7">{
                 return true
         }</span>
 
@@ -5610,44 +5612,50 @@ func checkQueryInclude(id interface{}, includedQueries []string) bool <span clas
         <span class="cov1" title="1">return false</span>
 }
 
-func checkQueryExclude(id interface{}, excludeQueries []string) bool <span class="cov5" title="7">{
+func checkQueryExcludeField(id interface{}, excludeQueries []string) bool <span class="cov6" title="12">{
         queryMetadataKey, ok := id.(string)
         if !ok </span><span class="cov0" title="0">{
                 log.Warn().
                         Msgf("Can't cast query metadata key = %v", id)
                 return false
         }</span>
-        <span class="cov5" title="7">for _, excludedQuery := range excludeQueries </span><span class="cov3" title="3">{
-                if strings.EqualFold(queryMetadataKey, excludedQuery) </span><span class="cov2" title="2">{
+        <span class="cov6" title="12">for _, excludedQuery := range excludeQueries </span><span class="cov4" title="4">{
+                if strings.EqualFold(queryMetadataKey, excludedQuery) </span><span class="cov3" title="3">{
                         return true
                 }</span>
         }
-        <span class="cov4" title="5">return false</span>
+        <span class="cov6" title="9">return false</span>
 }
+
+func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool <span class="cov4" title="5">{
+        return checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
+                checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
+                checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities)
+}</span>
 
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
-func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) <span class="cov6" title="9">{
+func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) <span class="cov6" title="10">{
         queryDirs := make([]string, 0)
         err := filepath.Walk(s.Source,
-                func(p string, f os.FileInfo, err error) error </span><span class="cov10" title="45">{
+                func(p string, f os.FileInfo, err error) error </span><span class="cov10" title="52">{
                         if err != nil </span><span class="cov3" title="3">{
                                 return err
                         }</span>
 
-                        <span class="cov9" title="42">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov9" title="36">{
+                        <span class="cov9" title="49">if f.IsDir() || f.Name() != QueryFileName </span><span class="cov9" title="42">{
                                 return nil
                         }</span>
 
-                        <span class="cov5" title="6">queryDirs = append(queryDirs, filepath.Dir(p))
+                        <span class="cov5" title="7">queryDirs = append(queryDirs, filepath.Dir(p))
                         return nil</span>
                 })
-        <span class="cov6" title="9">if err != nil </span><span class="cov3" title="3">{
+        <span class="cov6" title="10">if err != nil </span><span class="cov3" title="3">{
                 return nil, errors.Wrap(err, "failed to get query Source")
         }</span>
 
-        <span class="cov5" title="6">queries := make([]model.QueryMetadata, 0, len(queryDirs))
-        for _, queryDir := range queryDirs </span><span class="cov5" title="6">{
+        <span class="cov5" title="7">queries := make([]model.QueryMetadata, 0, len(queryDirs))
+        for _, queryDir := range queryDirs </span><span class="cov5" title="7">{
                 query, errRQ := ReadQuery(queryDir)
                 if errRQ != nil </span><span class="cov0" title="0">{
                         sentry.CaptureException(errRQ)
@@ -5656,38 +5664,37 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
                         continue</span>
                 }
 
-                <span class="cov5" title="6">if !s.CheckType(query.Metadata["platform"]) </span><span class="cov0" title="0">{
+                <span class="cov5" title="7">if !s.CheckType(query.Metadata["platform"]) </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov5" title="6">if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) </span><span class="cov0" title="0">{
+                <span class="cov5" title="7">if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov5" title="6">customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
+                <span class="cov5" title="7">customInputData, readInputErr := readInputData(filepath.Join(queryParameters.InputDataPath, query.Metadata["id"].(string)+".json"))
                 if readInputErr != nil </span><span class="cov0" title="0">{
                         log.Err(errRQ).
                                 Msgf("failed to read input data, query=%s", path.Base(queryDir))
                         continue</span>
                 }
 
-                <span class="cov5" title="6">inputData, mergeError := mergeInputData(query.InputData, customInputData)
+                <span class="cov5" title="7">inputData, mergeError := mergeInputData(query.InputData, customInputData)
                 if mergeError != nil </span><span class="cov0" title="0">{
                         log.Err(mergeError).
                                 Msgf("failed to merge input data, query=%s", path.Base(queryDir))
                         continue</span>
                 }
-                <span class="cov5" title="6">query.InputData = inputData
+                <span class="cov5" title="7">query.InputData = inputData
 
                 if len(queryParameters.IncludeQueries.ByIDs) &gt; 0 </span><span class="cov2" title="2">{
                         if checkQueryInclude(query.Metadata["id"], queryParameters.IncludeQueries.ByIDs) </span><span class="cov1" title="1">{
                                 queries = append(queries, query)
                         }</span>
-                } else<span class="cov4" title="4"> {
-                        if checkQueryExclude(query.Metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
-                                checkQueryExclude(query.Metadata["category"], queryParameters.ExcludeQueries.ByCategories) </span><span class="cov2" title="2">{
+                } else<span class="cov4" title="5"> {
+                        if checkQueryExclude(query.Metadata, queryParameters) </span><span class="cov3" title="3">{
                                 log.Debug().
-                                        Msgf("Excluding query ID: %s category: %s", query.Metadata["id"], query.Metadata["category"])
+                                        Msgf("Excluding query ID: %s category: %s severity: %s", query.Metadata["id"], query.Metadata["category"], query.Metadata["severity"])
                                 continue</span>
                         }
 
@@ -5695,18 +5702,18 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
                 }
         }
 
-        <span class="cov5" title="6">return queries, err</span>
+        <span class="cov5" title="7">return queries, err</span>
 }
 
 // ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
 // content
-func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" title="6">{
+func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" title="7">{
         queryContent, err := os.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
         if err != nil </span><span class="cov0" title="0">{
                 return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
         }</span>
 
-        <span class="cov5" title="6">metadata := ReadMetadata(queryDir)
+        <span class="cov5" title="7">metadata := ReadMetadata(queryDir)
 
         platform := getPlatform(metadata["platform"].(string))
 
@@ -5716,12 +5723,12 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
                         Msgf("Query provider failed to read input data, query=%s", path.Base(queryDir))
         }</span>
 
-        <span class="cov5" title="6">aggregation := 1
+        <span class="cov5" title="7">aggregation := 1
         if agg, ok := metadata["aggregation"]; ok </span><span class="cov0" title="0">{
                 aggregation = int(agg.(float64))
         }</span>
 
-        <span class="cov5" title="6">return model.QueryMetadata{
+        <span class="cov5" title="7">return model.QueryMetadata{
                 Query:       path.Base(filepath.ToSlash(queryDir)),
                 Content:     string(queryContent),
                 Metadata:    metadata,
@@ -5732,7 +5739,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
 }
 
 // ReadMetadata read query's metadata file inside the query directory
-func ReadMetadata(queryDir string) map[string]interface{} <span class="cov5" title="8">{
+func ReadMetadata(queryDir string) map[string]interface{} <span class="cov6" title="9">{
         f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
         if err != nil </span><span class="cov1" title="1">{
                 sentry.CaptureException(err)
@@ -5748,14 +5755,14 @@ func ReadMetadata(queryDir string) map[string]interface{} <span class="cov5" tit
 
                 return nil</span>
         }
-        <span class="cov5" title="7">defer func() </span><span class="cov5" title="7">{
+        <span class="cov5" title="8">defer func() </span><span class="cov5" title="8">{
                 if err := f.Close(); err != nil </span><span class="cov0" title="0">{
                         log.Err(err).
                                 Msgf("Queries provider can't close file, file=%s", filepath.Clean(path.Join(queryDir, MetadataFileName)))
                 }</span>
         }()
 
-        <span class="cov5" title="7">var metadata map[string]interface{}
+        <span class="cov5" title="8">var metadata map[string]interface{}
         if err := json.NewDecoder(f).Decode(&amp;metadata); err != nil </span><span class="cov0" title="0">{
                 sentry.CaptureException(err)
                 log.Err(err).
@@ -5764,14 +5771,14 @@ func ReadMetadata(queryDir string) map[string]interface{} <span class="cov5" tit
                 return nil
         }</span>
 
-        <span class="cov5" title="7">return metadata</span>
+        <span class="cov5" title="8">return metadata</span>
 }
 
-func getPlatform(metadataPlatform string) string <span class="cov7" title="13">{
+func getPlatform(metadataPlatform string) string <span class="cov7" title="14">{
         switch metadataPlatform </span>{
         case "Ansible":<span class="cov1" title="1">
                 return "ansible"</span>
-        case "CloudFormation":<span class="cov5" title="7">
+        case "CloudFormation":<span class="cov5" title="8">
                 return "cloudFormation"</span>
         case "Common":<span class="cov1" title="1">
                 return "common"</span>
@@ -5790,10 +5797,10 @@ func getPlatform(metadataPlatform string) string <span class="cov7" title="13">{
         }
 }
 
-func readInputData(inputDataPath string) (string, error) <span class="cov7" title="15">{
+func readInputData(inputDataPath string) (string, error) <span class="cov7" title="17">{
         inputData, err := os.ReadFile(filepath.Clean(inputDataPath))
-        if err != nil </span><span class="cov6" title="12">{
-                if os.IsNotExist(err) </span><span class="cov6" title="12">{
+        if err != nil </span><span class="cov7" title="14">{
+                if os.IsNotExist(err) </span><span class="cov7" title="14">{
                         return emptyInputData, nil
                 }</span>
                 <span class="cov0" title="0">return emptyInputData, errors.Wrapf(err, "failed to read query input data %s", path.Base(inputDataPath))</span>
@@ -5801,8 +5808,8 @@ func readInputData(inputDataPath string) (string, error) <span class="cov7" titl
         <span class="cov3" title="3">return string(inputData), nil</span>
 }
 
-func mergeInputData(queryInputData, customInputData string) (string, error) <span class="cov5" title="7">{
-        if customInputData == emptyInputData || customInputData == "" </span><span class="cov5" title="6">{
+func mergeInputData(queryInputData, customInputData string) (string, error) <span class="cov5" title="8">{
+        if customInputData == emptyInputData || customInputData == "" </span><span class="cov5" title="7">{
                 return queryInputData, nil
         }</span>
         <span class="cov1" title="1">dataJSON := map[string]interface{}{}
