@@ -1,5 +1,5 @@
-//comment
-resource "aws_s3_bucket" "negative1" {
+
+resource "aws_s3_bucket" "positive2" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 
@@ -10,6 +10,5 @@ resource "aws_s3_bucket" "negative1" {
 
   versioning {
     enabled = true
-    mfa_delete = true
   }
 }
