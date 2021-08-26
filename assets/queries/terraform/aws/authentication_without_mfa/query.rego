@@ -3,12 +3,11 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_user_policy[name]
+	doc := input.document[i]
+	resource := doc.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	statement := policy.Statement
-
-	checkShortTermCredentials(input.document)
 
 	mfa := existsMFA(statement)
 	mfa == "undefined"
@@ -23,12 +22,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_user_policy[name]
+	doc := input.document[i]
+	resource := doc.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	statement := policy.Statement
-
-	checkShortTermCredentials(input.document)
 
 	mfa := existsMFA(statement)
 	mfa == "false"
@@ -107,12 +105,4 @@ existsMFA(statement) = mfa {
 	common_lib.valid_key(statement[index].Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
 
 	mfa := statement[index].Condition.BoolIfExists["aws:MultiFactorAuthPresent"]
-}
-
-checkShortTermCredentials(documents) = allow {
-	resource := documents[x].provider.aws
-
-	resource.token
-
-	allow = true
 }
