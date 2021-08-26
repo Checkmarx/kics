@@ -11,11 +11,12 @@ import (
 )
 
 var validMultiStrEnums = map[string]map[string]string{
-	"cloud-provider":     constants.AvailableCloudProviders,
-	"exclude-categories": constants.AvailableCategories,
-	"fail-on":            convertSliceToDummyMap(constants.AvailableSeverities),
-	"report-formats":     convertSliceToDummyMap(append([]string{"all"}, helpers.ListReportFormats()...)),
-	"type":               constants.AvailablePlatforms,
+	CloudProviderFlag:     constants.AvailableCloudProviders,
+	ExcludeCategoriesFlag: constants.AvailableCategories,
+	ExcludeSeveritiesFlag: convertSliceToDummyMap(constants.AvailableSeverities),
+	FailOnFlag:            convertSliceToDummyMap(constants.AvailableSeverities),
+	ReportFormatsFlag:     convertSliceToDummyMap(append([]string{"all"}, helpers.ListReportFormats()...)),
+	TypeFlag:              constants.AvailablePlatforms,
 }
 
 func sliceFlagsShouldNotStartWithFlags(flagName string) error {

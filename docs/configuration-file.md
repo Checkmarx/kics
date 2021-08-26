@@ -56,6 +56,7 @@ KICS is able to infer the format without the need of file extension.
   "exclude-paths": "exclude paths or files from scan",
   "exclude-queries": "exclude queries by providing the query ID",
   "exclude-results": "exclude results by providing a list of similarity IDs of a result",
+  "exclude-severities": "exclude results by providing the severity of a result",
   "log-file": true,
   "log-level": "INFO",
   "log-path": "path to the log file",
@@ -85,6 +86,7 @@ exclude-categories: "exclude categories by providing its name"
 exclude-paths: "exclude paths or files from scan"
 exclude-queries: "exclude queries by providing the query ID"
 exclude-results: "exclude results by providing a list of similarity IDs of a result"
+exclude-severities: "exclude results by providing the severity of a result"
 log-file: true
 log-level: INFO
 log-path: path to the log file
@@ -113,6 +115,7 @@ exclude-categories = "exclude categories by providing its name"
 exclude-paths = "exclude paths or files from scan"
 exclude-queries = "exclude queries by providing the query ID"
 exclude-results = "exclude results by providing a list of similarity IDs of a result"
+exclude-severities = "exclude results by providing the severity of a result"
 log-file = true
 log-level = "INFO"
 log-path = "path to the log file"
@@ -141,6 +144,7 @@ disable-full-descriptions = "disable request for full descriptions and use defau
 "exclude-paths" = "exclude paths or files from scan"
 "exclude-queries" = "exclude queries by providing the query ID"
 "exclude-results" = "exclude results by providing a list of similarity IDs of a result"
+"exclude-severities" = "exclude results by providing the severity of a result"
 "log-file" = true
 "log-level" = "INFO"
 "log-path" = "path to the log file"

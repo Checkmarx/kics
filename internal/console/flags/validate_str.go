@@ -9,7 +9,7 @@ import (
 )
 
 var validStrEnums = map[string]map[string]string{
-	"log-level": convertSliceToDummyMap(constants.AvailableLogLevels),
+	LogLevelFlag: convertSliceToDummyMap(constants.AvailableLogLevels),
 }
 
 func validateStrEnum(flagName string) error {
