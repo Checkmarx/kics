@@ -218,7 +218,7 @@ func sliceContains(s []string, str string) bool {
 }
 
 func readLibrary(platform string) (string, error) {
-	library := source.GetPathToCostumLibrary(platform, "./assets/libraries")
+	library := source.GetPathToCustomLibrary(platform, "./assets/libraries")
 
 	if library != "default" {
 		content, err := os.ReadFile(library)
@@ -226,7 +226,7 @@ func readLibrary(platform string) (string, error) {
 		return string(content), err
 	}
 
-	log.Warn().Msgf("There are no costum library. Getting embedded library instead")
+	log.Warn().Msgf("There are no custom library. Getting embedded library instead")
 
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))

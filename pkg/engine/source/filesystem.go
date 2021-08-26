@@ -100,7 +100,7 @@ func isDefaultLibrary(libraryPath string) bool {
 }
 
 // GetPathToLibrary returns the libraries path for a given platform
-func GetPathToCostumLibrary(platform, libraryPathFlag string) string {
+func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 	var libraryFilePath string
 
 	if !isDefaultLibrary(libraryPathFlag) {
@@ -120,14 +120,14 @@ func GetPathToCostumLibrary(platform, libraryPathFlag string) string {
 
 // GetQueryLibrary returns the library.rego for the platform passed in the argument
 func (s *FilesystemSource) GetQueryLibrary(platform string) (string, error) {
-	library := GetPathToCostumLibrary(platform, s.Library)
+	library := GetPathToCustomLibrary(platform, s.Library)
 
 	if library != kicsDefault {
 		content, err := os.ReadFile(library)
 
 		return string(content), err
 	}
-	log.Warn().Msgf("There are no costum library. Getting embedded library instead")
+	log.Warn().Msgf("There are no custom library. Getting embedded library instead")
 	// getting embedded library
 	embeddedLibrary, errGettingEmbeddedLibrary := assets.GetEmbeddedLibrary(strings.ToLower(platform))
 
