@@ -2880,7 +2880,7 @@
 <td>S3 Bucket Without Enabled MFA Delete<br/><sup><sub>c5b31ab9-0f26-4a49-b8aa-4cc064392f4d</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>S3 bucket without enabled MFA Delete</td>
+<td>S3 bucket without MFA Delete Enabled. MFA delete cannot be enabled through Terraform, it can be done by adding a MFA device (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable.html) and enabling versioning and MFA delete by using AWS CLI: 'aws s3api put-bucket-versioning --versioning-configuration=Status=Enabled,MFADelete=Enabled --bucket=<BUCKET_NAME> --mfa=<MFA_SERIAL_NUMBER>'</td>
 <td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete">Documentation</a><br/></td>
 </tr>
 <tr>
