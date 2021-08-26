@@ -115,7 +115,7 @@ func NewInspector(
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
 
-	commonGeneralQuery, err := queriesSource.GetQueryLibrary("common")
+	commonLibrary, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
 		sentry.CaptureException(err)
 		log.Err(err).
@@ -140,10 +140,10 @@ func NewInspector(
 			var opaQuery rego.PreparedEvalQuery
 			store := inmem.NewFromReader(bytes.NewBufferString(metadata.InputData))
 
-			if commonGeneralQuery != "" && platformGeneralQuery != "" {
+			if commonLibrary != "" && platformGeneralQuery != "" {
 				opaQuery, err = rego.New(
 					rego.Query(regoQuery),
-					rego.Module("Common", commonGeneralQuery),
+					rego.Module("Common", commonLibrary),
 					rego.Module("Generic", platformGeneralQuery),
 					rego.Module(metadata.Query, metadata.Content),
 					rego.Store(store),
