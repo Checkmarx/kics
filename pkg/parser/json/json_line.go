@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -261,18 +262,25 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 	return lineArr
 }
 
+// must get all and choose the smallest one
 func (j *jsonLine) getMapDefaultLine(v []interface{}, father string) int {
+	returnNumber := -1
 	for _, contentEntry := range v {
+		linesNumbers := make([]int, 0)
 		if c, ok := contentEntry.(map[string]interface{}); ok {
 			for key := range c {
 				if _, ok2 := j.LineInfo[key][father]; !ok2 {
-					return -1
+					continue
 				}
-				return j.LineInfo[key][father].(*fifo).head()
+				linesNumbers = append(linesNumbers, j.LineInfo[key][father].(*fifo).head())
+			}
+			if len(linesNumbers) > 0 {
+				sort.Ints(linesNumbers)
+				returnNumber = linesNumbers[0]
 			}
 		}
 	}
-	return -1
+	return returnNumber
 }
 
 // SET OF TOOLS TO ASSIST WITH JSON LINE

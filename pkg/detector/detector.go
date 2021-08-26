@@ -59,7 +59,7 @@ func (d *DetectLine) GetAdjecent(file *model.FileMetadata, line int) model.Vulne
 	}
 	return model.VulnerabilityLines{
 		Line:      line,
-		VulnLines: GetAdjacentVulnLines(line, d.outputLines, d.defaultDetector.SplitLines(file.OriginalData)),
+		VulnLines: GetAdjacentVulnLines(line-1, d.outputLines, d.defaultDetector.SplitLines(file.OriginalData)),
 	}
 }
 

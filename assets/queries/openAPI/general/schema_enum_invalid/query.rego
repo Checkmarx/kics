@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as commonLib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -18,5 +19,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "The field 'enum' is consistent with the schema's type",
 		"keyActualValue": "The field 'enum' is not consistent with the schema's type",
 		"overrideKey": version,
+		"searchLine": commonLib.build_search_line(path, ["enum", x]),
 	}
 }

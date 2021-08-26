@@ -1,39 +1,29 @@
 package generic.common
 
-###### Get Line By json structure ###################
-## For Helm searchLine is unused
-get_search_line(obj, key, idx) = line {
-	idx < 0
-	line = get_line(obj, key, idx)
-} else = line {
-	idx >= 0
-	line = get_arr_line(obj, parse_key(key), idx)
-} else = -1 {
-	true
+# build_search_line will convert all values to string, and build path with given values
+# values need to be in the correct order
+# obj case is for the walk function although it can be used as needed
+# if you already have the complete path and have no need for the obj just pass the obj empty []
+# Examples:
+# build_search_line(["father", "son", "grandson"], [])
+# build_search_line(["father", "son"], ["grandson"])
+# [path, value] := walk(doc)
+# build_search_line(path, ["grandson"])
+
+build_search_line(path, obj) = resolvedPath {
+	resolveArray := [x | pathItem := path[n]; x := convert_path_item(pathItem)]
+	resolvedObj := [x | objItem := obj[n]; x := convert_path_item(objItem)]
+	resolvedPath = array.concat(resolveArray, resolvedObj)
 }
 
-get_line(obj, key, idx) = line {
-	key == ""
-	line = obj._kics_lines._kics__default._kics_line
-} else = line {
-	line = obj._kics_lines[sprintf("_kics_%s", [key[0]])]._kics_line
+convert_path_item(pathItem) = convertedPath {
+	is_number(pathItem)
+	convertedPath := sprintf("%d", [pathItem])
+} else = convertedPath {
+	convertedPath := sprintf("%s", [pathItem])
 }
 
-get_arr_line(obj, key, idx) = line {
-	key[1] == ""
-	line = obj._kics_lines[sprintf("_kics_%s", [key[0]])]._kics_arr[idx]._kics__default._kics_line
-} else = line {
-	line = obj._kics_lines[sprintf("_kics_%s", [key[0]])]._kics_arr[idx][sprintf("_kics_%s", [key[1]])]._kics_line
-}
-
-parse_key(key) = key_name {
-	count(key) == 1
-	key_name := [key[0], ""]
-} else = key {
-	true
-}
-
-################################################################
+###################################################
 
 concat_path(path) = concatenated {
 	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
