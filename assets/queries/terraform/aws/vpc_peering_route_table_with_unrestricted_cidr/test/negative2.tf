@@ -112,7 +112,7 @@ resource "aws_vpc_peering_connection" "my_peering" {
 }
 
 
-resource "aws_route_table" "public_route_table9" {
+resource "aws_route_table" "public_route_table2" {
   vpc_id = aws_vpc.vpc1.id
 
   tags = {
@@ -130,10 +130,10 @@ resource "aws_route_table" "private_route_table" {
 }
 
 resource "aws_route" "private_route2" {
-  route_table_id            = aws_route_table.public_route_table9.id
-  destination_cidr_block    = "0.0.0.0/0"
+  route_table_id            = aws_route_table.public_route_table2.id
+  destination_cidr_block    = "10.0.0.0/8"
   vpc_peering_connection_id = aws_vpc_peering_connection.my_peering.id
-  depends_on                = [aws_route_table.public_route_table9]
+  depends_on                = [aws_route_table.public_route_table2]
 }
 
 resource "aws_route_table_association" "private_route_table_association" {
