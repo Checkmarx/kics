@@ -100,6 +100,9 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]model.Li
 			}
 			switch valType := ex.(type) {
 			case *hclsyntax.ObjectConsExpr:
+				arrEx["_kics__default"] = model.LineObject{
+					Line: ex.Range().Start.Line + 1,
+				}
 				// set lines for array elements
 				for _, item := range valType.Items {
 					key, _ := c.convertKey(item.KeyExpr)

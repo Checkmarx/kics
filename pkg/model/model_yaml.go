@@ -97,6 +97,8 @@ func getLines(val *yaml.Node, def int) map[string]LineObject {
 				defaultLine := val.Content[i].Line
 				if contentEntry.Kind == yaml.ScalarNode {
 					defaultLine = contentEntry.Line
+				} else if contentEntry.Kind == yaml.MappingNode && len(contentEntry.Content) > 0 {
+					defaultLine = contentEntry.Content[0].Line
 				}
 				lineArr = append(lineArr, getLines(contentEntry, defaultLine))
 			}

@@ -234,12 +234,17 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 	// update father path with key
 	fatherKey := father + "." + key
 
+	defaultLineArr := j.getMapDefaultLine(v, fatherKey)
+	if defaultLineArr == -1 {
+		defaultLineArr = def
+	}
 	// iterate over each element of the array
 	for _, contentEntry := range v {
 		switch con := contentEntry.(type) {
 		// case element is a map/object call func setLine
 		case map[string]interface{}:
-			lineArr = append(lineArr, j.setLine(con, def, fatherKey))
+
+			lineArr = append(lineArr, j.setLine(con, defaultLineArr, fatherKey))
 		// case element is a string
 		default:
 			stringedCon := fmt.Sprint(con)
@@ -254,6 +259,20 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 		}
 	}
 	return lineArr
+}
+
+func (j *jsonLine) getMapDefaultLine(v []interface{}, father string) int {
+	for _, contentEntry := range v {
+		if c, ok := contentEntry.(map[string]interface{}); ok {
+			for key := range c {
+				if _, ok2 := j.LineInfo[key][father]; !ok2 {
+					return -1
+				}
+				return j.LineInfo[key][father].(*fifo).head()
+			}
+		}
+	}
+	return -1
 }
 
 // SET OF TOOLS TO ASSIST WITH JSON LINE

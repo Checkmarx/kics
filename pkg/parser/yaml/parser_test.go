@@ -174,7 +174,7 @@ downscaler_enabled: "false"
 				  "_kics_arr": [
 					{
 					  "_kics__default": {
-						"_kics_line": 2
+						"_kics_line": 4
 					  },
 					  "_kics_group": {
 						"_kics_line": 4
@@ -214,7 +214,7 @@ downscaler_enabled: "false"
 						  "_kics_line": 8
 						},
 						"_kics__default": {
-						  "_kics_line": 7
+						  "_kics_line": 8
 						}
 					  }
 					],

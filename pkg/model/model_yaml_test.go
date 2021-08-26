@@ -189,7 +189,7 @@ var tests = []struct {
 				  "_kics_arr": [
 					{
 					  "_kics__default": {
-						"_kics_line": 5
+						"_kics_line": 6
 					  },
 					  "_kics_key_seq": {
 						"_kics_line": 6
@@ -200,7 +200,7 @@ var tests = []struct {
 					},
 					{
 					  "_kics__default": {
-						"_kics_line": 5
+						"_kics_line": 8
 					  },
 					  "_kics_second_key": {
 						"_kics_line": 8

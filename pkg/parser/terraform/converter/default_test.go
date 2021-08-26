@@ -59,6 +59,106 @@ block "label_one" "label_two" {
 	compareJSONLine(t, body, expected)
 }
 
+func TestArrayBlock(t *testing.T) {
+	input := `
+block "label_one" "label_two" {
+	default = [
+      {
+        id = "name1"
+        attribute = "a"
+      },
+      {
+        id = "name2"
+        attribute = "a,b"
+      },
+      {
+        id = "name3"
+        attribute = "d"
+      }
+  ]
+}`
+
+	expected := `{
+		"_kics_lines": {
+			"_kics__default": {
+				"_kics_line": 0
+			},
+			"_kics_block": {
+				"_kics_line": 2
+			}
+		},
+		"block": {
+			"label_one": {
+				"label_two": {
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 2
+						},
+						"_kics_default": {
+							"_kics_arr": [
+								{
+									"_kics__default": {
+										"_kics_line": 5
+									},
+									"_kics_attribute": {
+										"_kics_line": 6
+									},
+									"_kics_id": {
+										"_kics_line": 5
+									}
+								},
+								{
+									"_kics__default": {
+										"_kics_line": 9
+									},
+									"_kics_attribute": {
+										"_kics_line": 10
+									},
+									"_kics_id": {
+										"_kics_line": 9
+									}
+								},
+								{
+									"_kics__default": {
+										"_kics_line": 13
+									},
+									"_kics_attribute": {
+										"_kics_line": 14
+									},
+									"_kics_id": {
+										"_kics_line": 13
+									}
+								}
+							],
+							"_kics_line": 3
+						}
+					},
+					"default": [
+						{
+							"attribute": "a",
+							"id": "name1"
+						},
+						{
+							"attribute": "a,b",
+							"id": "name2"
+						},
+						{
+							"attribute": "d",
+							"id": "name3"
+						}
+					]
+				}
+			}
+		}
+	}`
+
+	file, _ := hclsyntax.ParseConfig([]byte(input), "testFileName", hcl.Pos{Byte: 0, Line: 1, Column: 1})
+
+	body, err := DefaultConverted(file, InputVariableMap{})
+	require.NoError(t, err)
+	compareJSONLine(t, body, expected)
+}
+
 func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
 	stringefiedJSON, err := json.Marshal(&test1)
 	require.NoError(t, err)

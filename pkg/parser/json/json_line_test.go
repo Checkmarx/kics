@@ -150,7 +150,7 @@ var testsinitiateJSONLine = []struct {
 				"_kics_arr": [
 				  {
 					"_kics__default": {
-					  "_kics_line": 2
+					  "_kics_line": 4
 					},
 					"_kics_key": {
 					  "_kics_line": 4
