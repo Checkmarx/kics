@@ -99,7 +99,7 @@ func isDefaultLibrary(libraryPath string) bool {
 	return filepath.FromSlash(libraryPath) == filepath.FromSlash(LibrariesDefaultBasePath)
 }
 
-// GetPathToLibrary returns the libraries path for a given platform
+// GetPathToCustomLibrary - returns the libraries path for a given platform
 func GetPathToCustomLibrary(platform, libraryPathFlag string) string {
 	var libraryFilePath string
 
