@@ -168,7 +168,7 @@ func (e Extensions) Include(ext string) bool {
 	return b
 }
 
-// Line Object is the struct that will hold line information for each key
+// LineObject is the struct that will hold line information for each key
 type LineObject struct {
 	Line int                     `json:"_kics_line"`
 	Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`

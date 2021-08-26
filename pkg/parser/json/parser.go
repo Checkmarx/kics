@@ -11,10 +11,6 @@ import (
 type Parser struct {
 }
 
-// var (
-// 	jsonKey = regexp.MustCompile(`"(.*?)"`)
-// )
-
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) (*[]byte, error) {
 	return &fileContent, nil

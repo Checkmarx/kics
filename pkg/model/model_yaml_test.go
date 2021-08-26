@@ -417,17 +417,17 @@ var tests = []struct {
 				"_kics_arr": [
 				  {
 					"_kics__default": {
-					  "_kics_line": 1
+					  "_kics_line": 2
 					}
 				  },
 				  {
 					"_kics__default": {
-					  "_kics_line": 1
+					  "_kics_line": 3
 					}
 				  },
 				  {
 					"_kics__default": {
-					  "_kics_line": 1
+					  "_kics_line": 4
 					}
 				  }
 				],

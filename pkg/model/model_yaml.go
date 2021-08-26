@@ -94,7 +94,11 @@ func getLines(val *yaml.Node, def int) map[string]LineObject {
 		// in case the value iteration is an array call getLines for each iteration of the array
 		if val.Content[i+1].Kind == yaml.SequenceNode {
 			for _, contentEntry := range val.Content[i+1].Content {
-				lineArr = append(lineArr, getLines(contentEntry, val.Content[i].Line))
+				defaultLine := val.Content[i].Line
+				if contentEntry.Kind == yaml.ScalarNode {
+					defaultLine = contentEntry.Line
+				}
+				lineArr = append(lineArr, getLines(contentEntry, defaultLine))
 			}
 		}
 
