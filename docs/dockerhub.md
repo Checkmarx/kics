@@ -43,6 +43,7 @@ Usage:
 Flags:
       --cloud-provider strings       list of cloud providers to scan (aws, azure, gcp)
       --config string                path to configuration file
+      --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
       --exclude-categories strings   exclude categories by providing its name
                                      cannot be provided with query inclusion flags
                                      can be provided multiple times or as a comma separated string
@@ -58,7 +59,7 @@ Flags:
                                      can be provided multiple times or as a comma separated string
                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
       --fail-on strings              which kind of results should return an exit code different from 0
-                                     accetps: high, medium, low and info
+                                     accepts: high, medium, low and info
                                      example: "high,low" (default [high,medium,low,info])
   -h, --help                         help for scan
       --ignore-on-exit string        defines which kind of non-zero exits code should be ignored
@@ -72,11 +73,11 @@ Flags:
   -b, --library string               path to directory with libraries (default "./assets/libraries")
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
-      --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
                                      example: "./somepath,somefile.txt"
+      --payload-lines                prints line information on payload file (only when payload flag is given)
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default "./assets/queries")

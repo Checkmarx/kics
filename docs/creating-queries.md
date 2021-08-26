@@ -149,7 +149,7 @@ This file contains a map, with string keys, which will have default values for k
 Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the [extensions available](https://docs.kics.io/latest/platforms/) by the platform.
 
 
-Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the `is_multi_region_trail` defined (positive1.tf) and another with the `is_multi_region_trail` set to false (positive2.tf). 
+Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the `is_multi_region_trail` defined (positive1.tf) and another with the `is_multi_region_trail` set to false (positive2.tf).
 
 *positive1.tf*
 
@@ -321,6 +321,7 @@ CxPolicy[result] {
 ```
 
 - `searchValue` [optional] should be used when the query returns more than one result for the same line
+- `searchLine` [optional] path where the breaking point occurs in the sample
 
 For example, the query **Sensitive Port Is Exposed To Entire Network** can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the *searchValue* should be used.
 
@@ -355,6 +356,81 @@ CxPolicy[result] {
 isTCPorUDP("TCP") = true
 isTCPorUDP("UDP") = true
 ```
+#### Search Line
+
+To improve the KICS line detection mechanism, `searchLine` was introduced.
+
+SearchLine makes use of json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
+
+Original Content:
+```
+father:
+  name: son
+```
+
+Payload With Line Information:
+```
+{
+    "_kics_lines": {
+        "_kics__default": {
+            "_kics_line": 0
+        },
+        "_kics_father": {
+            "_kics_line": 2
+        }
+    },
+    "father": {
+        "_kics_lines": {
+            "_kics__default": {
+                "_kics_line": 2
+            },
+            "_kics_name": {
+                "_kics_line": 3
+            }
+        },
+        "name": "son"
+    }
+},
+```
+
+Usage:
+
+```
+import data.generic.common as commonLib
+
+result := {
+		"documentId": doc.id,
+		"searchKey": "father.son",
+		"issueType": "IncorrectValue",
+		"searchLine": commonLib.build_search_line(["father", "son"], []),
+	}
+```
+
+Function `build_search_line(path, obj)`:
+
+The function `build_search_line` is a helper that builds the searchLine for the engine to create and use the json path.
+It take two arguments:
+
+- path: An array containing the path elements (keys and indexes) to the desired key line.. (ex: ["father", "son"]; ["father", 1, "son"]; ["father", "son", 0])
+
+- obj: For queries that use the function `walk` in rego, where the caller is given a path that should be placed in the `path` argument of `build_search_line`, the remaining path not present should be placed in obj. Obj can also be used in other queries that don't make use of the function `walk`, otherwise it should be passed empty. (ex: ["son"],["son", 0])
+
+Examples:
+
+```
+    build_search_line(["father"], ["son"])
+```
+```
+    build_search_line(["father", "son"], [])
+```
+```
+    build_search_line(["father", "son"], ["grandson", 1])
+```
+```
+    [path, value] := walk[x]
+    build_search_line(path, ["son"])
+```
+
 
 #### Allowing users to overwrite query data
 Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:

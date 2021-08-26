@@ -19,6 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].policy.Principal is not equal to, nor does it contain '*'", [pl[r], name]),
 		"keyActualValue": sprintf("%s[%s].policy.Principal is equal to or contains '*'", [pl[r], name]),
-		"searchLine": commonLib.build_search_line(["resource", pl[r], name, "policy"], ""),
+		"searchLine": commonLib.build_search_line(["resource", pl[r], name, "policy"], []),
 	}
 }
