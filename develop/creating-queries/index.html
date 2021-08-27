@@ -1112,7 +1112,7 @@ CxPolicy[result] {
 <p>This file contains a map, with string keys, which will have default values for keys that can be overwritten as described on <a href="#allowing-users-to-overwrite-query-data">allowing users to overwrite query data section</a> and <a href="../running-kics/#using-custom-input-data">using custom input data section of Running KICS</a></p>
 <p>👨‍💻 <strong>Test Folder</strong></p>
 <p>Keep in mind that all the positive and negative files should contain only one breaking point case. This way, the results are more clear. As a best practice, the test folder should contain all the <a href="https://docs.kics.io/latest/platforms/">extensions available</a> by the platform.</p>
-<p>Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the <code>is_multi_region_trail</code> defined (positive1.tf) and another with the <code>is_multi_region_trail</code> set to false (positive2.tf). </p>
+<p>Each positive case should present a breaking point of the vulnerability. Continuing with the example, we should display two positive files: one without the <code>is_multi_region_trail</code> defined (positive1.tf) and another with the <code>is_multi_region_trail</code> set to false (positive2.tf).</p>
 <p><em>positive1.tf</em></p>
 <pre><code>resource &quot;aws_cloudtrail&quot; &quot;positive1&quot; {
   name                          = &quot;npositive_1&quot;
@@ -1259,6 +1259,7 @@ CxPolicy[result] {
 </code></pre>
 <ul>
 <li><code>searchValue</code> [optional] should be used when the query returns more than one result for the same line</li>
+<li><code>searchLine</code> [optional] path where the breaking point occurs in the sample</li>
 </ul>
 <p>For example, the query <strong>Sensitive Port Is Exposed To Entire Network</strong> can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the <em>searchValue</em> should be used.</p>
 <pre><code>package Cx
@@ -1290,6 +1291,69 @@ CxPolicy[result] {
 
 isTCPorUDP(&quot;TCP&quot;) = true
 isTCPorUDP(&quot;UDP&quot;) = true
+</code></pre>
+<h4 id="search_line">Search Line<a class="headerlink" href="#search_line" title="Permanent link">&para;</a></h4>
+<p>To improve the KICS line detection mechanism, <code>searchLine</code> was introduced.</p>
+<p>SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag <code>payload-lines</code>).</p>
+<p>Original Content:</p>
+<pre><code>father:
+  name: son
+</code></pre>
+<p>Payload With Line Information:</p>
+<pre><code>{
+    &quot;_kics_lines&quot;: {
+        &quot;_kics__default&quot;: {
+            &quot;_kics_line&quot;: 0
+        },
+        &quot;_kics_father&quot;: {
+            &quot;_kics_line&quot;: 2
+        }
+    },
+    &quot;father&quot;: {
+        &quot;_kics_lines&quot;: {
+            &quot;_kics__default&quot;: {
+                &quot;_kics_line&quot;: 2
+            },
+            &quot;_kics_name&quot;: {
+                &quot;_kics_line&quot;: 3
+            }
+        },
+        &quot;name&quot;: &quot;son&quot;
+    }
+},
+</code></pre>
+<p>Usage:</p>
+<pre><code>import data.generic.common as commonLib
+
+result := {
+        &quot;documentId&quot;: doc.id,
+        &quot;searchKey&quot;: &quot;father.son&quot;,
+        &quot;issueType&quot;: &quot;IncorrectValue&quot;,
+        &quot;searchLine&quot;: commonLib.build_search_line([&quot;father&quot;, &quot;son&quot;], []),
+    }
+</code></pre>
+<p>Function <code>build_search_line(path, obj)</code>:</p>
+<p>The function <code>build_search_line</code> is a helper that builds the searchLine for the engine to create and use the json path.
+It take two arguments:</p>
+<ul>
+<li>
+<p>path: An array containing the path elements (keys and indexes) to the desired key line.. (ex: ["father", "son"]; ["father", 1, "son"]; ["father", "son", 0])</p>
+</li>
+<li>
+<p>obj: For queries that use the function <code>walk</code> in rego, where the caller is given a path that should be placed in the <code>path</code> argument of <code>build_search_line</code>, the remaining path not present should be placed in obj. Obj can also be used in other queries that don't make use of the function <code>walk</code>, otherwise it should be passed empty. (ex: ["son"],["son", 0])</p>
+</li>
+</ul>
+<p>Examples:</p>
+<pre><code>    build_search_line([&quot;father&quot;], [&quot;son&quot;])
+</code></pre>
+<pre><code>    build_search_line([&quot;father&quot;, &quot;son&quot;], [])
+</code></pre>
+<pre><code>    build_search_line([&quot;father&quot;, &quot;son&quot;], [&quot;grandson&quot;, 1])
+</code></pre>
+<pre><code>    [path, value] := walk(x)
+    son := value.son
+    son == false
+    build_search_line(path, [&quot;son&quot;])
 </code></pre>
 <h4 id="allowing_users_to_overwrite_query_data">Allowing users to overwrite query data<a class="headerlink" href="#allowing_users_to_overwrite_query_data" title="Permanent link">&para;</a></h4>
 <p>Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:</p>
