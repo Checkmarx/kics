@@ -44,6 +44,7 @@ Usage:
 Flags:
       --cloud-provider strings       list of cloud providers to scan (aws, azure, gcp)
       --config string                path to configuration file
+      --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
       --exclude-categories strings   exclude categories by providing its name
                                      cannot be provided with query inclusion flags
                                      can be provided multiple times or as a comma separated string
@@ -76,11 +77,11 @@ Flags:
   -b, --library string               path to directory with libraries (default "./assets/libraries")
       --minimal-ui                   simplified version of CLI output
       --no-progress                  hides the progress bar
-      --disable-full-descriptions    disable request for full descriptions and use default vulnerability descriptions
       --output-name string           name used on report creations (default "results")
   -o, --output-path string           directory path to store reports
   -p, --path strings                 paths or directories to scan
                                      example: "./somepath,somefile.txt"
+      --payload-lines                adds line information inside the payload when printing the payload file
   -d, --payload-path string          path to store internal representation JSON file
       --preview-lines int            number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path string          path to directory with queries (default "./assets/queries")

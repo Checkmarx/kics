@@ -124,6 +124,12 @@
     "defaultValue": "./assets/libraries",
     "usage": "path to directory with libraries"
   },
+  "payload-lines": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "adds line information inside the payload when printing the payload file"
+  },
   "payload-path": {
     "flagType": "str",
     "shorthandFlag": "d",

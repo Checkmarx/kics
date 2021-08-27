@@ -219,7 +219,7 @@ func (c *Inspector) Inspect(
 	platforms []string,
 	currentQuery chan<- int64) ([]model.Vulnerability, error) {
 	log.Debug().Msg("engine.Inspect()")
-	combinedFiles := files.Combine()
+	combinedFiles := files.Combine(false)
 
 	_, err := json.Marshal(combinedFiles)
 	if err != nil {
@@ -298,7 +298,6 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.ctx, c.queryExecTimeout)
 	defer cancel()
-
 	options := []rego.EvalOption{rego.EvalInput(ctx.payload)}
 
 	var cov *cover.Cover

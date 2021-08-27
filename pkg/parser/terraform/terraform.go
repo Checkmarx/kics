@@ -59,8 +59,6 @@ func processElements(elements model.Document, path string) {
 
 func processResources(doc model.Document, path string) error {
 	var resourcesElements model.Document
-	var elements model.Document
-
 	for _, resources := range doc { // iterate over resources
 		resourcesElements = resources.(model.Document)
 		for _, v2 := range resourcesElements { // resource name
@@ -68,8 +66,9 @@ func processResources(doc model.Document, path string) error {
 			case []interface{}:
 				return errors.New("failed to process resources")
 			case interface{}:
-				elements = t.(model.Document)
-				processElements(elements, path)
+				if elements, ok := t.(model.Document); ok {
+					processElements(elements, path)
+				}
 			}
 		}
 	}

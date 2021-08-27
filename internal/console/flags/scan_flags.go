@@ -27,4 +27,5 @@ const (
 	ReportFormatsFlag     = "report-formats"
 	TypeFlag              = "type"
 	QueryExecTimeoutFlag  = "timeout"
+	LineInfoPayloadFlag   = "payload-lines"
 )

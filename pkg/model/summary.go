@@ -26,6 +26,7 @@ type VulnerableFile struct {
 	VulnLines        []CodeLine `json:"-"`
 	IssueType        IssueType  `json:"issue_type"`
 	SearchKey        string     `json:"search_key"`
+	SearchLine       int        `json:"search_line"`
 	SearchValue      string     `json:"search_value"`
 	KeyExpectedValue string     `json:"expected_value"`
 	KeyActualValue   string     `json:"actual_value"`
