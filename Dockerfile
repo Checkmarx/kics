@@ -28,7 +28,7 @@ USER Checkmarx
 #Healthcheck the container
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 #runtime image
-FROM alpine:3.14.1
+FROM alpine:3.14.2
 
 RUN addgroup -S Checkmarx && adduser -S Checkmarx -G Checkmarx
 
