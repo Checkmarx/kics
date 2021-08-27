@@ -50,7 +50,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		}
 	}
 
-	unchangedText := strings.Split(strings.ReplaceAll(file.OriginalData, "\r", ""), "\n")
+	unchangedText := d.SplitLines(file.OriginalData)
 
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{

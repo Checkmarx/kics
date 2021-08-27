@@ -222,14 +222,14 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents {
 			log.Debug().Msgf("Ignoring file %s", m[i].FileName)
 			continue
 		}
-		if !lineInfo {
-			m[i].Document["id"] = m[i].ID
-			m[i].Document["file"] = m[i].FileName
-			documents.Documents = append(documents.Documents, m[i].Document)
-		} else {
+		if lineInfo {
 			m[i].LineInfoDocument["id"] = m[i].ID
 			m[i].LineInfoDocument["file"] = m[i].FileName
 			documents.Documents = append(documents.Documents, m[i].LineInfoDocument)
+		} else {
+			m[i].Document["id"] = m[i].ID
+			m[i].Document["file"] = m[i].FileName
+			documents.Documents = append(documents.Documents, m[i].Document)
 		}
 	}
 	return documents

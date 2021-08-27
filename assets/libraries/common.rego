@@ -23,8 +23,6 @@ convert_path_item(pathItem) = convertedPath {
 	convertedPath := sprintf("%s", [pathItem])
 }
 
-###################################################
-
 concat_path(path) = concatenated {
 	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
 }
@@ -80,13 +78,6 @@ isPrivateIP(ipVal) {
 	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
 	some i
 	net.cidr_contains(private_ips[i], ipVal)
-}
-
-# Checks if an object is empty ignoring kics lines
-check_obj_empty(obj) {
-	obj = null
-} else {
-	count({x | o := obj[n]; n != "_kics_lines"; x = o}) == 0
 }
 
 # Check if field equals to value or if any element from field equals to value

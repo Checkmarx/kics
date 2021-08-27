@@ -19,7 +19,8 @@ var (
 	flagsStrReferences      = make(map[string]*string)
 	flagsBoolReferences     = make(map[string]*bool)
 	flagsIntReferences      = make(map[string]*int)
-	validations             = make(map[string][]string)
+
+	validations = make(map[string][]string)
 )
 
 type flagJSON struct {

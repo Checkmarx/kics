@@ -121,7 +121,7 @@
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "prints line information on payload file (only when payload flag is given)"
+    "usage": "adds line information inside the payload when printing the payload file"
   },
   "payload-path": {
     "flagType": "str",

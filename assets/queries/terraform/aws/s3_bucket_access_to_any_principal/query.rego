@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[pl[r]][name]
 
 	policy := commonLib.json_unmarshal(resource.policy)
-	statement := policy.Statement[n]
+	statement := policy.Statement[_]
 
 	statement.Effect == "Allow"
 	terraLib.anyPrincipal(statement)

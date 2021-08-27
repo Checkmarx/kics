@@ -34,7 +34,7 @@ type fifo struct {
 }
 
 // initiateJSONLine will create a map, containing line information for every key present in the JSON
-func initiateJSONLine(doc []byte) *jsonLine {
+func initializeJSONLine(doc []byte) *jsonLine {
 	newMap := make(map[string]model.Document)
 	dec := json.NewDecoder(bytes.NewReader(doc))
 

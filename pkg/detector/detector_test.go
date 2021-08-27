@@ -31,11 +31,14 @@ func (m mockDefaultDetector) DetectLine(file *model.FileMetadata, searchKey stri
 }
 
 func (m mockkindDetectLine) SplitLines(content string) []string {
-	text := strings.ReplaceAll(content, "\r", "")
-	return strings.Split(text, "\n")
+	return splitLines(content)
 }
 
 func (m mockDefaultDetector) SplitLines(content string) []string {
+	return splitLines(content)
+}
+
+func splitLines(content string) []string {
 	text := strings.ReplaceAll(content, "\r", "")
 	return strings.Split(text, "\n")
 }

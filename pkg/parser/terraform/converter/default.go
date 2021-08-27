@@ -168,7 +168,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 		return c.convertTemplate(value)
 	case *hclsyntax.TemplateWrapExpr:
 		return c.convertExpression(value.Wrapped)
-	case *hclsyntax.TupleConsExpr: // this is where array is needed
+	case *hclsyntax.TupleConsExpr:
 		var list []interface{}
 		for _, ex := range value.Exprs {
 			elem, err := c.convertExpression(ex)

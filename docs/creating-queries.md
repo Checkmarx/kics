@@ -360,7 +360,7 @@ isTCPorUDP("UDP") = true
 
 To improve the KICS line detection mechanism, `searchLine` was introduced.
 
-SearchLine makes use of json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
+SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
 
 Original Content:
 ```
@@ -427,7 +427,9 @@ Examples:
     build_search_line(["father", "son"], ["grandson", 1])
 ```
 ```
-    [path, value] := walk[x]
+    [path, value] := walk(x)
+    son := value.son
+    son == false
     build_search_line(path, ["son"])
 ```
 

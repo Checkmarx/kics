@@ -587,10 +587,10 @@ var testsinitiateJSONLine = []struct {
 	},
 }
 
-func Test_initiateJSONLine(t *testing.T) {
+func Test_initializeJSONLine(t *testing.T) {
 	for _, tt := range testsinitiateJSONLine {
 		t.Run(tt.name, func(t *testing.T) {
-			got := initiateJSONLine(tt.args.doc)
+			got := initializeJSONLine(tt.args.doc)
 			compareJSONLine(t, *got, tt.want)
 		})
 	}
@@ -608,7 +608,7 @@ func Test_jsonLine_setLineInfo(t *testing.T) {
 			unmarshaledJSON := make(map[string]interface{})
 			err := json.Unmarshal(tt.args.doc, &unmarshaledJSON)
 			require.NoError(t, err)
-			j := initiateJSONLine(tt.args.doc)
+			j := initializeJSONLine(tt.args.doc)
 			got := j.setLineInfo(unmarshaledJSON)
 			compareJSONLine(t, got, tt.wantKicsLine)
 		})

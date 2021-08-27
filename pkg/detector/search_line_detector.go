@@ -85,7 +85,8 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 
 // getResult creates the paths to be used by gjson pkg to find the line in the content
 func (d *searchLineDetector) getResult() int {
-	pathObjects := []string{d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line",
+	pathObjects := []string{
+		d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line",
 		d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line",
 		d.resolvedArrayPath + "." + d.targetObj + "._kics__default._kics_line",
 		d.resolvedArrayPath + "._kics_" + d.targetObj + "._kics_line",

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/pkg/errors"
 )
 
 // Parser defines a parser type
@@ -26,10 +25,10 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, error) {
 		return r, err
 	}
 
-	jLine := initiateJSONLine(fileContent)
+	jLine := initializeJSONLine(fileContent)
 	dd := jLine.setLineInfo(r)
 
-	return []model.Document{dd}, errors.Wrap(err, "failed to unmarshall json content")
+	return []model.Document{dd}, nil
 }
 
 // SupportedExtensions returns extensions supported by this parser, which is json extension
