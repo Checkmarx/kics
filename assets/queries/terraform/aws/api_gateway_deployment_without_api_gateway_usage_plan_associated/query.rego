@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	deployment = document.resource.aws_api_gateway_deployment[name]
@@ -12,6 +14,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_deployment[%s] has a 'aws_api_gateway_usage_plan' resource associated. ", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_deployment[%s] doesn't have a 'aws_api_gateway_usage_plan' resource associated.", [name]),
+		"searchLine": commonLib.build_search_line(["resource", "aws_api_gateway_deployment", name], []),
 	}
 }
 

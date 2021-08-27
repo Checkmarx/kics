@@ -450,6 +450,28 @@ func createServiceAndStartScan(params *startServiceParameters) (failedQueries ma
 	return failedQueries, nil
 }
 
+func getQueryPath(changedDefaultQueryPath bool) error {
+	if changedDefaultQueryPath {
+		extractedQueriesPath, errExtractQueries := provider.GetSources([]string{flags.GetStrFlag(flags.QueriesPath)})
+		if errExtractQueries != nil {
+			return errExtractQueries
+		}
+		if len(extractedQueriesPath.Path) != 1 {
+			return fmt.Errorf("could not find a valid queries on %s", flags.GetStrFlag(flags.QueriesPath))
+		}
+		log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
+		flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath.Path[0])
+	} else {
+		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
+		if errDefaultQueryPath != nil {
+			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
+		}
+		flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)
+	}
+	return nil
+}
+
 func scan(changedDefaultQueryPath bool) error {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
@@ -478,15 +500,9 @@ func scan(changedDefaultQueryPath bool) error {
 		return err
 	}
 
-	if changedDefaultQueryPath {
-		log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
-	} else {
-		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
-		if errDefaultQueryPath != nil {
-			return errors.Wrap(errDefaultQueryPath, "unable to find queries")
-		}
-		flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)
+	err = getQueryPath(changedDefaultQueryPath)
+	if err != nil {
+		return err
 	}
 
 	extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
@@ -543,7 +559,12 @@ func scan(changedDefaultQueryPath bool) error {
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(&summary, files.Combine(), failedQueries, printer, *proBarBuilder); err != nil {
+	if err := resolveOutputs(
+		&summary,
+		files.Combine(flags.GetBoolFlag(flags.LineInfoPayloadFlag)),
+		failedQueries,
+		printer,
+		*proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}

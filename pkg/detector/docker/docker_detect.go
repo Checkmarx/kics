@@ -27,7 +27,7 @@ var (
 // DetectLine searches vulnerability line in docker files
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	logWithFields *zerolog.Logger, outputLines int) model.VulnerabilityLines {
-	text := strings.ReplaceAll(file.OriginalData, "\r", "")
+	text := d.SplitLines(file.OriginalData)
 	lines := prepareDockerFileLines(text)
 	var isBreak bool
 	foundAtLeastOne := false
@@ -50,10 +50,12 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		}
 	}
 
+	unchangedText := d.SplitLines(file.OriginalData)
+
 	if foundAtLeastOne {
 		return model.VulnerabilityLines{
 			Line:      currentLine + 1,
-			VulnLines: detector.GetAdjacentVulnLines(currentLine, outputLines, strings.Split(text, "\n")),
+			VulnLines: detector.GetAdjacentVulnLines(currentLine, outputLines, unchangedText),
 		}
 	}
 
@@ -65,14 +67,19 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	}
 }
 
-func prepareDockerFileLines(text string) []string {
-	textSplit := strings.Split(text, "\n")
-	for idx, key := range textSplit {
+// SplitLines splits Dockerfile document by line, multiline are considered as one
+func (d DetectKindLine) SplitLines(content string) []string {
+	text := strings.ReplaceAll(content, "\r", "")
+	return strings.Split(text, "\n")
+}
+
+func prepareDockerFileLines(text []string) []string {
+	for idx, key := range text {
 		if !commentRegex.MatchString(key) {
-			textSplit[idx] = multiLineSpliter(textSplit, key, idx)
+			text[idx] = multiLineSpliter(text, key, idx)
 		}
 	}
-	return textSplit
+	return text
 }
 
 func multiLineSpliter(textSplit []string, key string, idx int) string {

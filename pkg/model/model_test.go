@@ -81,17 +81,17 @@ func TestFileMetadatas(t *testing.T) {
 	})
 
 	t.Run("combine", func(t *testing.T) {
-		result := m.Combine()
+		result := m.Combine(false)
 		require.Equal(t, Documents{Documents: []Document{{"file": "file_name", "id": "id"}}}, result)
 	})
 
 	t.Run("combine_empty_documents", func(t *testing.T) {
-		result := mEmptyDocuments.Combine()
+		result := mEmptyDocuments.Combine(false)
 		require.Equal(t, Documents{Documents: []Document{}}, result)
 	})
 
 	t.Run("ignore_documents", func(t *testing.T) {
-		result := mIgnoreCommand.Combine()
+		result := mIgnoreCommand.Combine(false)
 		require.Equal(t, Documents{Documents: []Document{}}, result)
 	})
 }

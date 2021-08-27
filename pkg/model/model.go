@@ -84,16 +84,17 @@ type CommentsCommands map[string]string
 
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
-	ID           string `db:"id"`
-	ScanID       string `db:"scan_id"`
-	Document     Document
-	OriginalData string   `db:"orig_data"`
-	Kind         FileKind `db:"kind"`
-	FilePath     string   `db:"file_name"`
-	Content      string
-	HelmID       string
-	IDInfo       map[int]interface{}
-	Commands     CommentsCommands
+	ID               string `db:"id"`
+	ScanID           string `db:"scan_id"`
+	Document         Document
+	LineInfoDocument map[string]interface{}
+	OriginalData     string   `db:"orig_data"`
+	Kind             FileKind `db:"kind"`
+	FilePath         string   `db:"file_path"`
+	Content          string
+	HelmID           string
+	IDInfo           map[int]interface{}
+	Commands         CommentsCommands
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -128,6 +129,7 @@ type Vulnerability struct {
 	VulnLines        []CodeLine `json:"vulnLines"`
 	IssueType        IssueType  `db:"issue_type" json:"issueType"`
 	SearchKey        string     `db:"search_key" json:"searchKey"`
+	SearchLine       int        `db:"search_line" json:"searchLine"`
 	SearchValue      string     `db:"search_value" json:"searchValue"`
 	KeyExpectedValue string     `db:"key_expected_value" json:"expectedValue"`
 	KeyActualValue   string     `db:"key_actual_value" json:"actualValue"`
@@ -164,6 +166,12 @@ func (e Extensions) Include(ext string) bool {
 	_, b := e[ext]
 
 	return b
+}
+
+// LineObject is the struct that will hold line information for each key
+type LineObject struct {
+	Line int                     `json:"_kics_line"`
+	Arr  []map[string]LineObject `json:"_kics_arr,omitempty"`
 }
 
 // MatchedFilesRegex returns the regex rule to identify if an extension is supported or not
@@ -203,7 +211,7 @@ type Documents struct {
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file
-func (m FileMetadatas) Combine() Documents {
+func (m FileMetadatas) Combine(lineInfo bool) Documents {
 	documents := Documents{Documents: make([]Document, 0, len(m))}
 	for i := 0; i < len(m); i++ {
 		_, ignore := m[i].Commands["ignore"]
@@ -214,9 +222,15 @@ func (m FileMetadatas) Combine() Documents {
 			log.Debug().Msgf("Ignoring file %s", m[i].FilePath)
 			continue
 		}
-		m[i].Document["id"] = m[i].ID
-		m[i].Document["file"] = m[i].FilePath
-		documents.Documents = append(documents.Documents, m[i].Document)
+		if lineInfo {
+			m[i].LineInfoDocument["id"] = m[i].ID
+			m[i].LineInfoDocument["file"] = m[i].FilePath
+			documents.Documents = append(documents.Documents, m[i].LineInfoDocument)
+		} else {
+			m[i].Document["id"] = m[i].ID
+			m[i].Document["file"] = m[i].FilePath
+			documents.Documents = append(documents.Documents, m[i].Document)
+		}
 	}
 	return documents
 }

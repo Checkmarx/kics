@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
@@ -141,12 +142,13 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 		for _, document := range parsedDocuments {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
-				ID:           uuid.NewString(),
-				ScanID:       scanID,
-				Document:     document,
-				OriginalData: string(content),
-				Kind:         kind,
-				FilePath:     filePath,
+				ID:               uuid.NewString(),
+				ScanID:           scanID,
+				Document:         kics.RemoveLineInfoConverter(document),
+				LineInfoDocument: document,
+				OriginalData:     string(content),
+				Kind:             kind,
+				FilePath:         filePath,
 			})
 		}
 	}
