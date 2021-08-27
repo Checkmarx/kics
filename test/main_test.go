@@ -146,7 +146,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 				Document:     document,
 				OriginalData: string(content),
 				Kind:         kind,
-				FileName:     filePath,
+				FilePath:     filePath,
 			})
 		}
 	}

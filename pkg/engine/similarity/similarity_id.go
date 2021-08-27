@@ -1,4 +1,4 @@
-package engine
+package similarity
 
 import (
 	"crypto/sha256"
@@ -25,7 +25,8 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searc
 
 	hashSum := sha256.Sum256([]byte(stringNode))
 
-	return stringToPtrString(hex.EncodeToString(hashSum[:])), nil
+	similarity := hex.EncodeToString(hashSum[:])
+	return &similarity, nil
 }
 
 func standardizeToRelativePath(basePath, path string) (string, error) {

@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestCalculateEntropy(t *testing.T) {
-	testCase := []struct {
+var (
+	calculateEntropyTestCases = []struct {
 		name        string
 		input       string
 		charSetType string
@@ -83,31 +83,8 @@ Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
 			high:        true,
 		},
 	}
-	for _, tc := range testCase {
-		t.Run(tc.name, func(t *testing.T) {
-			var charSet string
-			var threshold float64
-			if tc.charSetType == HexType {
-				charSet = HexChars
-				threshold = HexCharsEntropyThreashold
-			} else {
-				charSet = Base64Chars
-				threshold = Base64EntropyThreashold
-			}
-			entropy := CalculateEntropy(tc.input, charSet)
-			if tc.high {
-				require.Greater(t, entropy, threshold,
-					fmt.Sprintf("test[%s] Entropy should be greater than %f, actual: %v, input: %v", tc.name, threshold, entropy, tc.input))
-			} else {
-				require.Less(t, entropy, threshold,
-					fmt.Sprintf("test[%s] Entropy should be less than %f, actual: %v, input: %v", tc.name, threshold, entropy, tc.input))
-			}
-		})
-	}
-}
 
-func TestGetHighEntropyTokens(t *testing.T) {
-	testCase := []struct {
+	testGetHighEntropyTokensTestCases = []struct {
 		name     string
 		input    string
 		fileName string
@@ -244,7 +221,34 @@ EOT
 			high:     true,
 		},
 	}
-	for _, tc := range testCase {
+)
+
+func TestCalculateEntropy(t *testing.T) {
+	for _, tc := range calculateEntropyTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			var charSet string
+			var threshold float64
+			if tc.charSetType == HexType {
+				charSet = HexChars
+				threshold = HexCharsEntropyThreashold
+			} else {
+				charSet = Base64Chars
+				threshold = Base64EntropyThreashold
+			}
+			entropy := CalculateEntropy(tc.input, charSet)
+			if tc.high {
+				require.Greater(t, entropy, threshold,
+					fmt.Sprintf("test[%s] Entropy should be greater than %f, actual: %v, input: %v", tc.name, threshold, entropy, tc.input))
+			} else {
+				require.Less(t, entropy, threshold,
+					fmt.Sprintf("test[%s] Entropy should be less than %f, actual: %v, input: %v", tc.name, threshold, entropy, tc.input))
+			}
+		})
+	}
+}
+
+func TestGetHighEntropyTokens(t *testing.T) {
+	for _, tc := range testGetHighEntropyTokensTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			matches := GetHighEntropyTokens(tc.input, tc.fileName, tc.line)
 			if tc.high {

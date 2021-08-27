@@ -2,6 +2,20 @@ package secrets
 
 import "regexp"
 
+/*
+{
+  "id": "f996f3cb-00fc-480c-8973-8ab04d44a8cc",
+  "queryName": "Passwords And Secrets",
+  "severity": "HIGH",
+  "category": "Secret Management",
+  "descriptionText": "Query to find passwords and secrets in infrastructure code.",
+  "descriptionUrl": "https://kics.io/",
+  "platform": "Common",
+  "descriptionID": "d69d8a89",
+  "cloudProvider": "common"
+}
+*/
+
 var regexes = map[string]string{
 	"Slack Token":                   "(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})",
 	"RSA private key":               "-----BEGIN RSA PRIVATE KEY-----",

@@ -42,7 +42,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			Document:     document,
 			OriginalData: string(*content),
 			Kind:         kind,
-			FileName:     filename,
+			FilePath:     filename,
 			Commands:     fileCommands,
 		}
 		s.saveToFile(ctx, &file)

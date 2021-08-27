@@ -3,6 +3,7 @@ package engine
 import (
 	"context"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -18,6 +19,8 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 
 	"github.com/open-policy-agent/opa/cover"
@@ -26,6 +29,8 @@ import (
 
 // TestInspector_EnableCoverageReport tests the functions [EnableCoverageReport()] and all the methods called by them
 func TestInspector_EnableCoverageReport(t *testing.T) {
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: io.Discard})
+
 	type fields struct {
 		queries              []*preparedQuery
 		vb                   VulnerabilityBuilder
@@ -234,7 +239,7 @@ func TestInspect(t *testing.T) { //nolint
 						Document:     mockedFileMetadataDocument,
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
-						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						FilePath:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					},
 				},
 			},
@@ -283,7 +288,7 @@ func TestInspect(t *testing.T) { //nolint
 						Document:     mockedFileMetadataDocument,
 						OriginalData: "orig_data",
 						Kind:         "DOCKERFILE",
-						FileName:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
+						FilePath:     "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
 					},
 				},
 			},

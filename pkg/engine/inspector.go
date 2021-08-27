@@ -46,20 +46,6 @@ var ErrInvalidResult = errors.New("query: invalid result format")
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine) (model.Vulnerability, error)
 
-// Tracker wraps an interface that contain basic methods: TrackQueryLoad, TrackQueryExecution and FailedDetectLine
-// TrackQueryLoad increments the number of loaded queries
-// TrackQueryExecution increments the number of queries executed
-// FailedDetectLine decrements the number of queries executed
-// GetOutputLines returns the number of lines to be displayed in results outputs
-type Tracker interface {
-	TrackQueryLoad(queryAggregation int)
-	TrackQueryExecuting(queryAggregation int)
-	TrackQueryExecution(queryAggregation int)
-	FailedDetectLine()
-	FailedComputeSimilarityID()
-	GetOutputLines() int
-}
-
 type preparedQuery struct {
 	opaQuery rego.PreparedEvalQuery
 	metadata model.QueryMetadata
@@ -367,7 +353,7 @@ func (c *Inspector) decodeQueryResults(ctx *QueryContext, results rego.ResultSet
 		}
 		file := ctx.files[vulnerability.FileID]
 		if shouldSkipFile(file.Commands, vulnerability.QueryID) {
-			log.Debug().Msgf("Skipping file %s for query %s", file.FileName, ctx.query.metadata.Query)
+			log.Debug().Msgf("Skipping file %s for query %s", file.FilePath, ctx.query.metadata.Query)
 			continue
 		}
 

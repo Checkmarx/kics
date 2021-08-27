@@ -1,4 +1,4 @@
-package engine
+package similarity
 
 import (
 	"path/filepath"

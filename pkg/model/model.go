@@ -89,7 +89,7 @@ type FileMetadata struct {
 	Document     Document
 	OriginalData string   `db:"orig_data"`
 	Kind         FileKind `db:"kind"`
-	FileName     string   `db:"file_name"`
+	FilePath     string   `db:"file_name"`
 	Content      string
 	HelmID       string
 	IDInfo       map[int]interface{}
@@ -211,11 +211,11 @@ func (m FileMetadatas) Combine() Documents {
 			continue
 		}
 		if ignore {
-			log.Debug().Msgf("Ignoring file %s", m[i].FileName)
+			log.Debug().Msgf("Ignoring file %s", m[i].FilePath)
 			continue
 		}
 		m[i].Document["id"] = m[i].ID
-		m[i].Document["file"] = m[i].FileName
+		m[i].Document["file"] = m[i].FilePath
 		documents.Documents = append(documents.Documents, m[i].Document)
 	}
 	return documents

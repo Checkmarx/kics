@@ -5,27 +5,33 @@ import (
 	"strings"
 )
 
+/*
+{
+	"id": "00a180e1-138e-4127-9eb0-d3ed8fa23fa3",
+	"queryName": "High Entropy String",
+	"severity": "HIGH",
+	"category": "Secret Management",
+	"descriptionText": "Query to find high entropy strings that could be a secrets",
+	"descriptionUrl": "https://kics.io/",
+	"platform": "Common",
+	"descriptionID": "2f8abf55",
+	"cloudProvider": "common"
+}
+*/
+
 const (
-	// EntropyRuleName - rule name
-	EntropyRuleName = "High Entropy Token"
-	// Base64EntropyThreashold - entropy threshold for base64
-	Base64EntropyThreashold = 4.7
-	// HexCharsEntropyThreashold - entropy threshold for hex
+	EntropyRuleName           = "High Entropy Token"
+	Base64EntropyThreashold   = 4.7
 	HexCharsEntropyThreashold = 2.7
-	// MinStringLen - minimum length of a string to be considered a secret
-	MinStringLen = 20
-	// HexType - hex type
-	Base64Type = "base64"
-	// Base64Chars - Base64 charset
-	Base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-	// HexType - hex type
-	HexType = "hex"
-	// HexChars - Hex charset
-	HexChars = "1234567890abcdefABCDEF"
+	MinStringLen              = 20
+	Base64Type                = "base64"
+	Base64Chars               = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+	HexType                   = "hex"
+	HexChars                  = "1234567890abcdefABCDEF"
 )
 
 // CalculateEntropy - calculates the entropy of a string based on the Shannon formula
-func CalculateEntropy(token string, charSet string) float64 {
+func CalculateEntropy(token, charSet string) float64 {
 	if token == "" {
 		return 0
 	}

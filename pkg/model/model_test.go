@@ -42,7 +42,7 @@ func TestFileMetadatas(t *testing.T) {
 			ID:           "id",
 			ScanID:       "scan_id",
 			OriginalData: "orig_data",
-			FileName:     "file_name",
+			FilePath:     "file_name",
 			Document: Document{
 				"id": "",
 			},
@@ -54,7 +54,7 @@ func TestFileMetadatas(t *testing.T) {
 			ID:           "id",
 			ScanID:       "scan_id",
 			OriginalData: "orig_data",
-			FileName:     "file_name",
+			FilePath:     "file_name",
 			Document:     nil,
 		},
 	}
@@ -64,7 +64,7 @@ func TestFileMetadatas(t *testing.T) {
 			ID:           "id",
 			ScanID:       "scan_id",
 			OriginalData: "orig_data",
-			FileName:     "file_name",
+			FilePath:     "file_name",
 			Document: Document{
 				"id": "",
 			},

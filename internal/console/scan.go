@@ -21,6 +21,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -297,8 +298,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engine.Inspector, error) {
-	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
+func createInspector(t engine.Tracker, querySource source.QueriesSource, excludeResults map[string]bool) (*engine.Inspector, error) {
 
 	excludeQueries := source.ExcludeQueries{
 		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
@@ -321,7 +321,7 @@ func createInspector(t engine.Tracker, querySource source.QueriesSource) (*engin
 		engine.DefaultVulnerabilityBuilder,
 		t,
 		&queryFilter,
-		excludeResultsMap,
+		excludeResults,
 		flags.GetIntFlag(flags.QueryExecTimeoutFlag),
 	)
 	if err != nil {
@@ -348,7 +348,9 @@ func analyzePaths(paths, types, exclude []string) (typesRes, excludeRes []string
 	return types, exclude, nil
 }
 
-func createService(inspector *engine.Inspector,
+func createService(
+	inspector *engine.Inspector,
+	secretsInspector *secrets.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
@@ -379,14 +381,18 @@ func createService(inspector *engine.Inspector,
 	services := make([]*kics.Service, 0, len(combinedParser))
 
 	for _, parser := range combinedParser {
-		services = append(services, &kics.Service{
-			SourceProvider: filesSource,
-			Storage:        store,
-			Parser:         parser,
-			Inspector:      inspector,
-			Tracker:        t,
-			Resolver:       combinedResolver,
-		})
+		services = append(
+			services,
+			&kics.Service{
+				SourceProvider:   filesSource,
+				Storage:          store,
+				Parser:           parser,
+				Inspector:        inspector,
+				SecretsInspector: secretsInspector,
+				Tracker:          t,
+				Resolver:         combinedResolver,
+			},
+		)
 	}
 	return services, nil
 }
@@ -398,27 +404,50 @@ type startServiceParameters struct {
 	extractedPaths []string
 	progressBar    progress.PBar
 	pbBuilder      *progress.PbBuilder
+	excludeResults map[string]bool
 }
 
-func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspector, error) {
-	inspector, err := createInspector(params.t, params.querySource)
+func createServiceAndStartScan(params *startServiceParameters) (failedQueries map[string]error, err error) {
+	inspector, err := createInspector(
+		params.t,
+		params.querySource,
+		params.excludeResults,
+	)
 	if err != nil {
 		log.Err(err)
-		return &engine.Inspector{}, err
+		return failedQueries, err
 	}
 
-	services, err := createService(inspector, params.extractedPaths, params.t, params.store, params.querySource)
+	secretsInspector, err := secrets.NewInspector(
+		ctx,
+		params.t,
+		params.excludeResults,
+	)
 	if err != nil {
 		log.Err(err)
-		return &engine.Inspector{}, err
+		return failedQueries, err
+	}
+
+	services, err := createService(
+		inspector,
+		secretsInspector,
+		params.extractedPaths,
+		params.t,
+		params.store,
+		params.querySource,
+	)
+	if err != nil {
+		log.Err(err)
+		return failedQueries, err
 	}
 	params.progressBar.Close()
 
 	if err = scanner.StartScan(ctx, scanID, *params.pbBuilder, services); err != nil {
 		log.Err(err)
-		return &engine.Inspector{}, err
+		return failedQueries, err
 	}
-	return inspector, nil
+	failedQueries = inspector.GetFailedQueries()
+	return failedQueries, nil
 }
 
 func scan(changedDefaultQueryPath bool) error {
@@ -480,14 +509,19 @@ func scan(changedDefaultQueryPath bool) error {
 		flags.GetStrFlag(flags.LibraryPath))
 	store := storage.NewMemoryStorage()
 
-	inspector, err := createServiceAndStartScan(&startServiceParameters{
-		t:              t,
-		store:          store,
-		querySource:    querySource,
-		progressBar:    progressBar,
-		extractedPaths: extractedPaths.Path,
-		pbBuilder:      proBarBuilder,
-	})
+	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
+
+	failedQueries, err := createServiceAndStartScan(
+		&startServiceParameters{
+			t:              t,
+			store:          store,
+			querySource:    querySource,
+			progressBar:    progressBar,
+			extractedPaths: extractedPaths.Path,
+			pbBuilder:      proBarBuilder,
+			excludeResults: excludeResultsMap,
+		},
+	)
 	if err != nil {
 		return err
 	}
@@ -509,7 +543,7 @@ func scan(changedDefaultQueryPath bool) error {
 		PathExtractionMap: extractedPaths.ExtractionMap,
 	})
 
-	if err := resolveOutputs(&summary, files.Combine(), inspector.GetFailedQueries(), printer, *proBarBuilder); err != nil {
+	if err := resolveOutputs(&summary, files.Combine(), failedQueries, printer, *proBarBuilder); err != nil {
 		log.Err(err)
 		return err
 	}
