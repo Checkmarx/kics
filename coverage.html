@@ -75,7 +75,7 @@
 				
 				<option value="file9">github.com/Checkmarx/kics/internal/console/printer/printer.go (55.6%)</option>
 				
-				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (75.9%)</option>
+				<option value="file10">github.com/Checkmarx/kics/internal/console/scan.go (75.7%)</option>
 				
 				<option value="file11">github.com/Checkmarx/kics/internal/console/version.go (100.0%)</option>
 				
@@ -159,7 +159,7 @@
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/parser/yaml/parser.go (94.5%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (71.4%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (90.5%)</option>
 				
 				<option value="file53">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
@@ -1589,8 +1589,8 @@ func bindFlags(cmd *cobra.Command, v *viper.Viper) error <span class="cov4" titl
                         setBoundFlags(f.Name, val, cmd)
                 }</span>
         })
-        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="348">{
-                if val == true </span><span class="cov9" title="347">{
+        <span class="cov4" title="10">for key, val := range settingsMap </span><span class="cov9" title="342">{
+                if val == true </span><span class="cov9" title="341">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return fmt.Errorf("unknown configuration key: '%s'\nShowing help for '%s' command", key, cmd.Name())
@@ -1778,6 +1778,28 @@ func createServiceAndStartScan(params *startServiceParameters) (*engine.Inspecto
         <span class="cov3" title="7">return inspector, nil</span>
 }
 
+func getQueryPath(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
+        if changedDefaultQueryPath </span><span class="cov3" title="7">{
+                extractedQueriesPath, errExtractQueries := provider.GetSources([]string{flags.GetStrFlag(flags.QueriesPath)})
+                if errExtractQueries != nil </span><span class="cov0" title="0">{
+                        return errExtractQueries
+                }</span>
+                <span class="cov3" title="7">if len(extractedQueriesPath.Path) != 1 </span><span class="cov0" title="0">{
+                        return fmt.Errorf("could not find a valid queries on %s", flags.GetStrFlag(flags.QueriesPath))
+                }</span>
+                <span class="cov3" title="7">log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
+                flags.SetStrFlag(flags.QueriesPath, extractedQueriesPath.Path[0])</span>
+        } else<span class="cov0" title="0"> {
+                log.Debug().Msgf("Looking for queries in executable path and in current work directory")
+                defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
+                if errDefaultQueryPath != nil </span><span class="cov0" title="0">{
+                        return errors.Wrap(errDefaultQueryPath, "unable to find queries")
+                }</span>
+                <span class="cov0" title="0">flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)</span>
+        }
+        <span class="cov3" title="7">return nil</span>
+}
+
 func scan(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
         log.Debug().Msg("console.scan()")
         for _, warn := range warnings </span><span class="cov6" title="30">{
@@ -1806,16 +1828,10 @@ func scan(changedDefaultQueryPath bool) error <span class="cov3" title="7">{
                 return err
         }</span>
 
-        <span class="cov3" title="7">if changedDefaultQueryPath </span><span class="cov3" title="7">{
-                log.Debug().Msgf("Trying to load queries from %s", flags.GetStrFlag(flags.QueriesPath))
-        }</span> else<span class="cov0" title="0"> {
-                log.Debug().Msgf("Looking for queries in executable path and in current work directory")
-                defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(flags.GetStrFlag(flags.QueriesPath))
-                if errDefaultQueryPath != nil </span><span class="cov0" title="0">{
-                        return errors.Wrap(errDefaultQueryPath, "unable to find queries")
-                }</span>
-                <span class="cov0" title="0">flags.SetStrFlag(flags.QueriesPath, defaultQueryPath)</span>
-        }
+        <span class="cov3" title="7">err = getQueryPath(changedDefaultQueryPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
 
         <span class="cov3" title="7">extractedPaths, err := provider.GetSources(flags.GetMultiStrFlag(flags.PathFlag))
         if err != nil </span><span class="cov0" title="0">{
@@ -2384,13 +2400,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="35">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2422,7 +2438,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -5542,7 +5558,7 @@ func GetPathToLibrary(platform, libraryPathFlag string) (string, error) <span cl
                 } else<span class="cov0" title="0"> {
                         relativeBasePath = kicsDirPath
                 }</span>
-                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov8" title="33">{
+                <span class="cov5" title="7">for _, supPlatform := range constants.AvailablePlatforms </span><span class="cov9" title="42">{
                         if strings.Contains(strings.ToUpper(platform), strings.ToUpper(supPlatform)) </span><span class="cov4" title="5">{
                                 libraryFilePath = filepath.FromSlash(relativeBasePath + "/assets/libraries/" + strings.ToLower(supPlatform) + ".rego")
                                 break</span>
@@ -8287,7 +8303,7 @@ type ProgressBar struct {
 }
 
 // NewProgressBar creates a new instance of a Circle Progress Bar
-func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" title="3">{
+func NewProgressBar(label string, silent bool) ProgressBar <span class="cov2" title="3">{
         newPb := pb.New64(constants.MaxInteger)
         tmp := fmt.Sprintf(`{{ "%s" }} {{(cycle . "\\" "-" "|" "/" "-" "|" )}}`, label)
         newPb.SetWidth(barWidth)
@@ -8295,7 +8311,7 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
         if silent </span><span class="cov1" title="1">{
                 newPb.SetWriter(io.Discard)
         }</span>
-        <span class="cov10" title="3">newPb.Start()
+        <span class="cov2" title="3">newPb.Start()
 
         return ProgressBar{
                 label: label,
@@ -8319,10 +8335,10 @@ func (p ProgressBar) Start() <span class="cov1" title="1">{
         }()
 }
 
-func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov0" title="0">{
+func (p ProgressBar) incrementProgress(wg *sync.WaitGroup) <span class="cov1" title="1">{
         wg.Add(1)
         defer wg.Done()
-        for </span><span class="cov0" title="0">{ // increment until the Close func is called
+        for </span><span class="cov10" title="7999">{ // increment until the Close func is called
                 p.pBar.Increment()
         }</span>
 }
