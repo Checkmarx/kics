@@ -52,7 +52,7 @@ func CalculateEntropy(token, charSet string) float64 {
 }
 
 // GetHighEntropyTokens - returns a list of tokens that have a high entropy
-func GetHighEntropyTokens(s, file string, line int) []RuleMatch {
+func GetHighEntropyTokens(s string) []RuleMatch {
 	tokens := TokenizeString(s)
 	ruleMatches := make([]RuleMatch, 0)
 	for _, token := range tokens {
@@ -64,8 +64,6 @@ func GetHighEntropyTokens(s, file string, line int) []RuleMatch {
 
 				ruleMatches = append(ruleMatches, RuleMatch{
 					RuleName: EntropyRuleName,
-					File:     file,
-					Line:     line,
 					Matches:  []string{token},
 					Entropy:  highestEntropy,
 				})

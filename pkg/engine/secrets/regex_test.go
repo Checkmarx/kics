@@ -19,22 +19,16 @@ func TestApplyAllRegexex(t *testing.T) {
 			name:  "simple test1",
 			input: "test1",
 			match: false,
-			file:  "test1.tf",
-			line:  1,
 		},
 		{
 			name:  "empty",
 			input: "",
 			match: false,
-			file:  "test2.tf",
-			line:  2,
 		},
 		{
 			name:  "Facebook Token",
 			input: "EAACEdEose0cBAaisd12uqiwdasbdwi221",
 			match: true,
-			file:  "test3.tf",
-			line:  3,
 		},
 		{
 			name: "OPENSSH private key",
@@ -49,49 +43,37 @@ AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
 Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
 -----END OPENSSH PRIVATE KEY-----`,
 			match: true,
-			file:  "test4.tf",
-			line:  4,
 		},
 		{
 			name:  "Basic Authentication in URL",
 			input: "https://username:myPassword@my.domain.com",
 			match: true,
-			file:  "test5.tf",
-			line:  5,
 		},
 		{
 			name:  "AWS API KEY",
 			input: "AKIS21K2541012G2BKJ5",
 			match: true,
-			file:  "test6.tf",
-			line:  6,
 		},
 		{
 			name:  "Normal terraform line",
 			input: "resource \"google_compute_instance\" \"positive1\" {",
 			match: false,
-			file:  "test7.tf",
-			line:  7,
 		},
 		{
 			name:  "Random comment",
 			input: "# this is a random comment",
 			match: false,
-			file:  "test8.tf",
-			line:  8,
 		},
 		{
 			name:  "Dockerfile header",
 			input: "FROM golang:1.17.0-buster as build_env",
 			match: false,
-			file:  "Dockerfile",
-			line:  9,
 		},
 	}
 
 	for _, tc := range testCase {
 		t.Run(tc.name, func(t *testing.T) {
-			result := ApplyAllRegexRules(tc.input, tc.file, tc.line)
+			result := ApplyAllRegexRules(tc.input)
 			if tc.match {
 				require.NotEmpty(t, result, fmt.Sprintf("test[%s] tokens should not be empty\ninput: %v", tc.name, tc.input))
 			} else {

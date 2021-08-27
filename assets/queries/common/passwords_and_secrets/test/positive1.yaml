@@ -1,8 +1,0 @@
-#k8s test
-apiVersion: v1
-kind: Secret
-metadata:
-  name: secret-basic-auth
-type: kubernetes.io/basic-auth
-stringData:
-  password: "root"

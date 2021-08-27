@@ -92,74 +92,54 @@ Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
 		high     bool
 	}{
 		{
-			name:     "empty string",
-			input:    "",
-			fileName: "test1.tf",
-			line:     1,
-			high:     false,
+			name:  "empty string",
+			input: "",
+			high:  false,
 		},
 		{
-			name:     "low entropy - 1 char",
-			input:    "a",
-			fileName: "test2.tf",
-			line:     1,
-			high:     false,
+			name:  "low entropy - 1 char",
+			input: "a",
+			high:  false,
 		},
 		{
-			name:     "low entropy - 20 chars",
-			input:    "111111111111111111111",
-			fileName: "test3.tf",
-			line:     1,
-			high:     false,
+			name:  "low entropy - 20 chars",
+			input: "111111111111111111111",
+			high:  false,
 		},
 		{
-			name:     "medium entropy - 20 chars",
-			input:    "12345678901234567890",
-			fileName: "test4.tf",
-			line:     1,
-			high:     false,
+			name:  "medium entropy - 20 chars",
+			input: "12345678901234567890",
+			high:  false,
 		},
 		{
-			name:     "low entropy - 21 chars",
-			input:    "111111111111111111111",
-			fileName: "test5.tf",
-			line:     1,
-			high:     false,
+			name:  "low entropy - 21 chars",
+			input: "111111111111111111111",
+			high:  false,
 		},
 		{
-			name:     "low entropy - 21 chars",
-			input:    "111111111112222222222",
-			fileName: "test6.tf",
-			line:     1,
-			high:     false,
+			name:  "low entropy - 21 chars",
+			input: "111111111112222222222",
+			high:  false,
 		},
 		{
-			name:     "low entropy - 21 chars",
-			input:    "1111113333332222222222",
-			fileName: "test7.tf",
-			line:     1,
-			high:     false,
+			name:  "low entropy - 21 chars",
+			input: "1111113333332222222222",
+			high:  false,
 		},
 		{
-			name:     "medium entropy - 23 chars",
-			input:    "12345678901234567890123",
-			fileName: "test8.tf",
-			line:     1,
-			high:     true,
+			name:  "medium entropy - 23 chars",
+			input: "12345678901234567890123",
+			high:  true,
 		},
 		{
-			name:     "high entropy - 49 chars",
-			input:    "12A34B5678aSaskT1cai12e12=1241/25901234567O890123",
-			fileName: "test8.tf",
-			line:     1,
-			high:     true,
+			name:  "high entropy - 49 chars",
+			input: "12A34B5678aSaskT1cai12e12=1241/25901234567O890123",
+			high:  true,
 		},
 		{
-			name:     "Dockerfile header",
-			input:    "FROM golang:1.17.0-buster as build_env",
-			fileName: "Dockerfile",
-			line:     1,
-			high:     false,
+			name:  "Dockerfile header",
+			input: "FROM golang:1.17.0-buster as build_env",
+			high:  false,
 		},
 		{
 			name: "RSA Private Key",
@@ -172,9 +152,7 @@ H3HZs6htxcADit2MZpCiomNxdFZHZNLWKgq8wvV8jkos/iS4XdOXI9MuAnGV+sm1hgR8Yf
 AAAAAgHI23o+KRbewZJJxFExEGwiOPwM7gonjATdzLP+YT/6sAAAA0cm9nZXJpb3AtbWFj
 Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
 -----END OPENSSH PRIVATE KEY-----`,
-			fileName: "test9.pem",
-			line:     1,
-			high:     true,
+			high: true,
 		},
 		{
 			name: "Terraform With AWS Access Key",
@@ -194,9 +172,7 @@ resource "aws_instance" "web" {
 		Name = "Dummy Test"
 	}
 }`,
-			fileName: "test10.tf",
-			line:     1,
-			high:     true,
+			high: true,
 		},
 		{
 			name: "Terraform With RSA private Key",
@@ -216,9 +192,7 @@ Ym9va0BSb2dlcmlvUC1NYWNCb29rcy1NYWNCb29rLVByby5sb2NhbAECAwQ=
 -----END OPENSSH PRIVATE KEY-----
 EOT
 }`,
-			fileName: "test11.tf",
-			line:     1,
-			high:     true,
+			high: true,
 		},
 	}
 )
@@ -250,7 +224,7 @@ func TestCalculateEntropy(t *testing.T) {
 func TestGetHighEntropyTokens(t *testing.T) {
 	for _, tc := range testGetHighEntropyTokensTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			matches := GetHighEntropyTokens(tc.input, tc.fileName, tc.line)
+			matches := GetHighEntropyTokens(tc.input)
 			if tc.high {
 				require.NotEmpty(t, matches, fmt.Sprintf("test[%s] tokens should not be empty\ninput: %v", tc.name, tc.input))
 			} else {

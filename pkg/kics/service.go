@@ -78,6 +78,7 @@ func (s *Service) StartScan(
 
 	_, err := s.SecretsInspector.Inspect(
 		ctx,
+		s.SourceProvider.GetBasePaths(),
 		s.files,
 	)
 	if err != nil {

@@ -299,7 +299,6 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func createInspector(t engine.Tracker, querySource source.QueriesSource, excludeResults map[string]bool) (*engine.Inspector, error) {
-
 	excludeQueries := source.ExcludeQueries{
 		ByIDs:        flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
 		ByCategories: flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
@@ -526,18 +525,15 @@ func scan(changedDefaultQueryPath bool) error {
 	store := storage.NewMemoryStorage()
 
 	excludeResultsMap := getExcludeResultsMap(flags.GetMultiStrFlag(flags.ExcludeResultsFlag))
-
-	failedQueries, err := createServiceAndStartScan(
-		&startServiceParameters{
-			t:              t,
-			store:          store,
-			querySource:    querySource,
-			progressBar:    progressBar,
-			extractedPaths: extractedPaths.Path,
-			pbBuilder:      proBarBuilder,
-			excludeResults: excludeResultsMap,
-		},
-	)
+	failedQueries, err := createServiceAndStartScan(&startServiceParameters{
+		t:              t,
+		store:          store,
+		querySource:    querySource,
+		progressBar:    progressBar,
+		extractedPaths: extractedPaths.Path,
+		pbBuilder:      proBarBuilder,
+		excludeResults: excludeResultsMap,
+	})
 	if err != nil {
 		return err
 	}

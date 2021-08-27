@@ -16,6 +16,7 @@ type CITracker struct {
 	LoadedQueries      int
 	ParsedFiles        int
 	ScanSecrets        int
+	ScanPaths          int
 	lines              int
 }
 
@@ -71,6 +72,10 @@ func (c *CITracker) FailedComputeSimilarityID() {
 	c.FailedSimilarityID++
 }
 
-func (c *CITracker) TrackScanSecrets() {
+func (c *CITracker) TrackScanSecret() {
 	c.ScanSecrets++
+}
+
+func (c *CITracker) TrackScanPath() {
+	c.ScanPaths++
 }

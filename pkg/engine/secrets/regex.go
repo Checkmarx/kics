@@ -2,20 +2,6 @@ package secrets
 
 import "regexp"
 
-/*
-{
-  "id": "f996f3cb-00fc-480c-8973-8ab04d44a8cc",
-  "queryName": "Passwords And Secrets",
-  "severity": "HIGH",
-  "category": "Secret Management",
-  "descriptionText": "Query to find passwords and secrets in infrastructure code.",
-  "descriptionUrl": "https://kics.io/",
-  "platform": "Common",
-  "descriptionID": "d69d8a89",
-  "cloudProvider": "common"
-}
-*/
-
 var regexes = map[string]string{
 	"Slack Token":                   "(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})",
 	"RSA private key":               "-----BEGIN RSA PRIVATE KEY-----",
@@ -60,17 +46,15 @@ var regexes = map[string]string{
 }
 
 // ApplyAllRegexRules - apply all regex rules to a given line
-func ApplyAllRegexRules(text, file string, line int) []RuleMatch {
+func ApplyAllRegexRules(text string) []RuleMatch {
 	results := make([]RuleMatch, 0)
 	for name, regex := range regexes {
 		re := regexp.MustCompile(regex)
 		matches := re.FindAllString(text, -1)
 		if len(matches) > 0 {
 			results = append(results, RuleMatch{
-				File:     file,
 				RuleName: name,
 				Matches:  matches,
-				Line:     line,
 			})
 		}
 	}
