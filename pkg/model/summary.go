@@ -143,7 +143,7 @@ func removeAllURLCredentials(pathExtractionMap map[string]ExtractedPathObject) [
 func removeURLCredentials(url string) string {
 	authGroup := ""
 	groups := urlAuthRegex.FindStringSubmatch(url)
-	// authentication is present in URL
+	// credentials are present in the URL
 	if len(groups) > authGroupPosition {
 		authGroup = groups[authGroupPosition]
 	}
