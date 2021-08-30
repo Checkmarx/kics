@@ -27,7 +27,8 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 	}
 
 	for idx := range summary.Queries {
-		if descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID == "" {
+		if descriptionMap[summary.Queries[idx].DescriptionID].DescriptionID == "" &&
+			descriptionMap[summary.Queries[idx].DescriptionID].RationaleText == "" {
 			continue
 		}
 		descriptionID := summary.Queries[idx].DescriptionID
