@@ -99,7 +99,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: unit-test-${{ github.event.pull_request.head.sha }}.log
+          name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log
   security-scan:
     name: security-scan
