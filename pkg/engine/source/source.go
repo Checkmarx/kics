@@ -41,7 +41,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 		statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
 		if err != nil {
 			log.Err(err).Msg("Could not parse custom library")
-			return embeddedLib, err
+			return "", err
 		}
 		headers := make(map[string]string)
 		for _, st := range statements {
@@ -52,7 +52,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 		statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
 		if err != nil {
 			log.Err(err).Msg("Could not parse default library")
-			return customLib, err
+			return "", err
 		}
 		for _, st := range statements {
 			if rule, ok := st.(*ast.Rule); ok {
@@ -66,7 +66,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 				embeddedLib = firstHalf + "\n" + secondHalf
 			}
 		}
-		customLib += embeddedLib
+		customLib += "\n" + embeddedLib
 	} else {
 		customLib = embeddedLib
 	}
